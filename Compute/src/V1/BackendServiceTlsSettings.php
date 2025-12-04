@@ -15,19 +15,36 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Reference to the BackendAuthenticationConfig resource from the networksecurity.googleapis.com namespace. Can be used in authenticating TLS connections to the backend, as specified by the authenticationMode field. Can only be specified if authenticationMode is not NONE.
+     * Reference to the BackendAuthenticationConfig resource from the
+     * networksecurity.googleapis.com namespace. Can be used in authenticating
+     * TLS connections to the backend, as specified by the authenticationMode
+     * field. Can only be specified if authenticationMode is not NONE.
      *
      * Generated from protobuf field <code>optional string authentication_config = 408053481;</code>
      */
     protected $authentication_config = null;
     /**
-     * Server Name Indication - see RFC3546 section 3.1. If set, the load balancer sends this string as the SNI hostname in the TLS connection to the backend, and requires that this string match a Subject Alternative Name (SAN) in the backend's server certificate. With a Regional Internet NEG backend, if the SNI is specified here, the load balancer uses it regardless of whether the Regional Internet NEG is specified with FQDN or IP address and port. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     * Server Name Indication - see RFC3546 section 3.1. If set, the load
+     * balancer sends this string as the SNI hostname in the TLS connection to
+     * the backend, and requires that this string match a Subject Alternative
+     * Name (SAN) in the backend's server certificate. With a Regional Internet
+     * NEG backend, if the SNI is specified here, the load balancer uses it
+     * regardless of whether the Regional Internet NEG is specified with FQDN or
+     * IP address and port. When both sni and subjectAltNames[] are specified,
+     * the load balancer matches the backend certificate's SAN only to
+     * subjectAltNames[].
      *
      * Generated from protobuf field <code>optional string sni = 114030;</code>
      */
     protected $sni = null;
     /**
-     * A list of Subject Alternative Names (SANs) that the Load Balancer verifies during a TLS handshake with the backend. When the server presents its X.509 certificate to the Load Balancer, the Load Balancer inspects the certificate's SAN field, and requires that at least one SAN match one of the subjectAltNames in the list. This field is limited to 5 entries. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     * A list of Subject Alternative Names (SANs) that the Load Balancer
+     * verifies during a TLS handshake with the backend. When the server
+     * presents its X.509 certificate to the Load Balancer, the Load Balancer
+     * inspects the certificate's SAN field, and requires that at least one SAN
+     * match one of the subjectAltNames in the list. This field is limited to 5
+     * entries. When both sni and subjectAltNames[] are specified, the load
+     * balancer matches the backend certificate's SAN only to subjectAltNames[].
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceTlsSettingsSubjectAltName subject_alt_names = 330029535;</code>
      */
@@ -40,11 +57,28 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $authentication_config
-     *           Reference to the BackendAuthenticationConfig resource from the networksecurity.googleapis.com namespace. Can be used in authenticating TLS connections to the backend, as specified by the authenticationMode field. Can only be specified if authenticationMode is not NONE.
+     *           Reference to the BackendAuthenticationConfig resource from the
+     *           networksecurity.googleapis.com namespace. Can be used in authenticating
+     *           TLS connections to the backend, as specified by the authenticationMode
+     *           field. Can only be specified if authenticationMode is not NONE.
      *     @type string $sni
-     *           Server Name Indication - see RFC3546 section 3.1. If set, the load balancer sends this string as the SNI hostname in the TLS connection to the backend, and requires that this string match a Subject Alternative Name (SAN) in the backend's server certificate. With a Regional Internet NEG backend, if the SNI is specified here, the load balancer uses it regardless of whether the Regional Internet NEG is specified with FQDN or IP address and port. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     *           Server Name Indication - see RFC3546 section 3.1. If set, the load
+     *           balancer sends this string as the SNI hostname in the TLS connection to
+     *           the backend, and requires that this string match a Subject Alternative
+     *           Name (SAN) in the backend's server certificate. With a Regional Internet
+     *           NEG backend, if the SNI is specified here, the load balancer uses it
+     *           regardless of whether the Regional Internet NEG is specified with FQDN or
+     *           IP address and port. When both sni and subjectAltNames[] are specified,
+     *           the load balancer matches the backend certificate's SAN only to
+     *           subjectAltNames[].
      *     @type array<\Google\Cloud\Compute\V1\BackendServiceTlsSettingsSubjectAltName>|\Google\Protobuf\Internal\RepeatedField $subject_alt_names
-     *           A list of Subject Alternative Names (SANs) that the Load Balancer verifies during a TLS handshake with the backend. When the server presents its X.509 certificate to the Load Balancer, the Load Balancer inspects the certificate's SAN field, and requires that at least one SAN match one of the subjectAltNames in the list. This field is limited to 5 entries. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     *           A list of Subject Alternative Names (SANs) that the Load Balancer
+     *           verifies during a TLS handshake with the backend. When the server
+     *           presents its X.509 certificate to the Load Balancer, the Load Balancer
+     *           inspects the certificate's SAN field, and requires that at least one SAN
+     *           match one of the subjectAltNames in the list. This field is limited to 5
+     *           entries. When both sni and subjectAltNames[] are specified, the load
+     *           balancer matches the backend certificate's SAN only to subjectAltNames[].
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +87,10 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to the BackendAuthenticationConfig resource from the networksecurity.googleapis.com namespace. Can be used in authenticating TLS connections to the backend, as specified by the authenticationMode field. Can only be specified if authenticationMode is not NONE.
+     * Reference to the BackendAuthenticationConfig resource from the
+     * networksecurity.googleapis.com namespace. Can be used in authenticating
+     * TLS connections to the backend, as specified by the authenticationMode
+     * field. Can only be specified if authenticationMode is not NONE.
      *
      * Generated from protobuf field <code>optional string authentication_config = 408053481;</code>
      * @return string
@@ -74,7 +111,10 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to the BackendAuthenticationConfig resource from the networksecurity.googleapis.com namespace. Can be used in authenticating TLS connections to the backend, as specified by the authenticationMode field. Can only be specified if authenticationMode is not NONE.
+     * Reference to the BackendAuthenticationConfig resource from the
+     * networksecurity.googleapis.com namespace. Can be used in authenticating
+     * TLS connections to the backend, as specified by the authenticationMode
+     * field. Can only be specified if authenticationMode is not NONE.
      *
      * Generated from protobuf field <code>optional string authentication_config = 408053481;</code>
      * @param string $var
@@ -89,7 +129,15 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Server Name Indication - see RFC3546 section 3.1. If set, the load balancer sends this string as the SNI hostname in the TLS connection to the backend, and requires that this string match a Subject Alternative Name (SAN) in the backend's server certificate. With a Regional Internet NEG backend, if the SNI is specified here, the load balancer uses it regardless of whether the Regional Internet NEG is specified with FQDN or IP address and port. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     * Server Name Indication - see RFC3546 section 3.1. If set, the load
+     * balancer sends this string as the SNI hostname in the TLS connection to
+     * the backend, and requires that this string match a Subject Alternative
+     * Name (SAN) in the backend's server certificate. With a Regional Internet
+     * NEG backend, if the SNI is specified here, the load balancer uses it
+     * regardless of whether the Regional Internet NEG is specified with FQDN or
+     * IP address and port. When both sni and subjectAltNames[] are specified,
+     * the load balancer matches the backend certificate's SAN only to
+     * subjectAltNames[].
      *
      * Generated from protobuf field <code>optional string sni = 114030;</code>
      * @return string
@@ -110,7 +158,15 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Server Name Indication - see RFC3546 section 3.1. If set, the load balancer sends this string as the SNI hostname in the TLS connection to the backend, and requires that this string match a Subject Alternative Name (SAN) in the backend's server certificate. With a Regional Internet NEG backend, if the SNI is specified here, the load balancer uses it regardless of whether the Regional Internet NEG is specified with FQDN or IP address and port. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     * Server Name Indication - see RFC3546 section 3.1. If set, the load
+     * balancer sends this string as the SNI hostname in the TLS connection to
+     * the backend, and requires that this string match a Subject Alternative
+     * Name (SAN) in the backend's server certificate. With a Regional Internet
+     * NEG backend, if the SNI is specified here, the load balancer uses it
+     * regardless of whether the Regional Internet NEG is specified with FQDN or
+     * IP address and port. When both sni and subjectAltNames[] are specified,
+     * the load balancer matches the backend certificate's SAN only to
+     * subjectAltNames[].
      *
      * Generated from protobuf field <code>optional string sni = 114030;</code>
      * @param string $var
@@ -125,7 +181,13 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Subject Alternative Names (SANs) that the Load Balancer verifies during a TLS handshake with the backend. When the server presents its X.509 certificate to the Load Balancer, the Load Balancer inspects the certificate's SAN field, and requires that at least one SAN match one of the subjectAltNames in the list. This field is limited to 5 entries. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     * A list of Subject Alternative Names (SANs) that the Load Balancer
+     * verifies during a TLS handshake with the backend. When the server
+     * presents its X.509 certificate to the Load Balancer, the Load Balancer
+     * inspects the certificate's SAN field, and requires that at least one SAN
+     * match one of the subjectAltNames in the list. This field is limited to 5
+     * entries. When both sni and subjectAltNames[] are specified, the load
+     * balancer matches the backend certificate's SAN only to subjectAltNames[].
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceTlsSettingsSubjectAltName subject_alt_names = 330029535;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -136,7 +198,13 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Subject Alternative Names (SANs) that the Load Balancer verifies during a TLS handshake with the backend. When the server presents its X.509 certificate to the Load Balancer, the Load Balancer inspects the certificate's SAN field, and requires that at least one SAN match one of the subjectAltNames in the list. This field is limited to 5 entries. When both sni and subjectAltNames[] are specified, the load balancer matches the backend certificate's SAN only to subjectAltNames[].
+     * A list of Subject Alternative Names (SANs) that the Load Balancer
+     * verifies during a TLS handshake with the backend. When the server
+     * presents its X.509 certificate to the Load Balancer, the Load Balancer
+     * inspects the certificate's SAN field, and requires that at least one SAN
+     * match one of the subjectAltNames in the list. This field is limited to 5
+     * entries. When both sni and subjectAltNames[] are specified, the load
+     * balancer matches the backend certificate's SAN only to subjectAltNames[].
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceTlsSettingsSubjectAltName subject_alt_names = 330029535;</code>
      * @param array<\Google\Cloud\Compute\V1\BackendServiceTlsSettingsSubjectAltName>|\Google\Protobuf\Internal\RepeatedField $var

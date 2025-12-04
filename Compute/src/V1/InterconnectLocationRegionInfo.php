@@ -9,18 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Information about any potential InterconnectAttachments between an Interconnect at a specific InterconnectLocation, and a specific Cloud Region.
+ * Information about any potential InterconnectAttachments between an
+ * Interconnect at a specific InterconnectLocation, and a specific Cloud
+ * Region.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectLocationRegionInfo</code>
  */
 class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
+     * Expected round-trip time in milliseconds, from this InterconnectLocation
+     * to a VM in this region.
      *
      * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
      */
     protected $expected_rtt_ms = null;
+    /**
+     * Identifies whether L2 Interconnect Attachments can be created in this
+     * region for interconnects that are in this location.
+     *
+     * Generated from protobuf field <code>optional bool l2_forwarding_enabled = 241364888;</code>
+     */
+    protected $l2_forwarding_enabled = null;
     /**
      * Identifies the network presence of this location.
      * Check the LocationPresence enum for the list of possible values.
@@ -42,7 +52,11 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $expected_rtt_ms
-     *           Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
+     *           Expected round-trip time in milliseconds, from this InterconnectLocation
+     *           to a VM in this region.
+     *     @type bool $l2_forwarding_enabled
+     *           Identifies whether L2 Interconnect Attachments can be created in this
+     *           region for interconnects that are in this location.
      *     @type string $location_presence
      *           Identifies the network presence of this location.
      *           Check the LocationPresence enum for the list of possible values.
@@ -56,7 +70,8 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
+     * Expected round-trip time in milliseconds, from this InterconnectLocation
+     * to a VM in this region.
      *
      * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
      * @return int|string
@@ -77,7 +92,8 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
+     * Expected round-trip time in milliseconds, from this InterconnectLocation
+     * to a VM in this region.
      *
      * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
      * @param int|string $var
@@ -87,6 +103,44 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->expected_rtt_ms = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifies whether L2 Interconnect Attachments can be created in this
+     * region for interconnects that are in this location.
+     *
+     * Generated from protobuf field <code>optional bool l2_forwarding_enabled = 241364888;</code>
+     * @return bool
+     */
+    public function getL2ForwardingEnabled()
+    {
+        return isset($this->l2_forwarding_enabled) ? $this->l2_forwarding_enabled : false;
+    }
+
+    public function hasL2ForwardingEnabled()
+    {
+        return isset($this->l2_forwarding_enabled);
+    }
+
+    public function clearL2ForwardingEnabled()
+    {
+        unset($this->l2_forwarding_enabled);
+    }
+
+    /**
+     * Identifies whether L2 Interconnect Attachments can be created in this
+     * region for interconnects that are in this location.
+     *
+     * Generated from protobuf field <code>optional bool l2_forwarding_enabled = 241364888;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setL2ForwardingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->l2_forwarding_enabled = $var;
 
         return $this;
     }

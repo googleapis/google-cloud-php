@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use UnexpectedValueException;
 
 /**
- * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
+ * Type of network endpoints in this network endpoint group. Can be one ofGCE_VM_IP, GCE_VM_IP_PORT,NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT,INTERNET_IP_PORT, SERVERLESS,PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType</code>
  */
@@ -32,13 +32,15 @@ class NetworkEndpointType
      */
     const GCE_VM_IP_PORT = 501838375;
     /**
-     * The network endpoint is represented by an IP, Port and Client Destination Port.
+     * The network endpoint is represented by an IP, Port and Client Destination
+     * Port.
      *
      * Generated from protobuf enum <code>GCE_VM_IP_PORTMAP = 22819253;</code>
      */
     const GCE_VM_IP_PORTMAP = 22819253;
     /**
-     * The network endpoint is represented by fully qualified domain name and port.
+     * The network endpoint is represented by fully qualified domain name and
+     * port.
      *
      * Generated from protobuf enum <code>INTERNET_FQDN_PORT = 404154477;</code>
      */
@@ -50,13 +52,16 @@ class NetworkEndpointType
      */
     const INTERNET_IP_PORT = 477719963;
     /**
-     * The network endpoint is represented by an IP address and port. The endpoint belongs to a VM or pod running in a customer's on-premises.
+     * The network endpoint is represented by an IP address and port. The
+     * endpoint belongs to a VM or pod running in a customer's on-premises.
      *
      * Generated from protobuf enum <code>NON_GCP_PRIVATE_IP_PORT = 336447968;</code>
      */
     const NON_GCP_PRIVATE_IP_PORT = 336447968;
     /**
-     * The network endpoint is either public Google APIs or services exposed by other GCP Project with a Service Attachment. The connection is set up by private service connect
+     * The network endpoint is either public Google APIs or
+     * services exposed by other GCP Project with a Service Attachment.
+     * The connection is set up by private service connect
      *
      * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 48134724;</code>
      */

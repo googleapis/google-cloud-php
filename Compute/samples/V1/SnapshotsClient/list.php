@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\SnapshotsClient;
 use Google\Cloud\Compute\V1\ListSnapshotsRequest;
 
 /**
- * Retrieves the list of Snapshot resources contained within the specified project.
+ * Retrieves the list of Snapshot resources contained within
+ * the specified project.
  *
  * @param string $project Project ID for this request.
  */

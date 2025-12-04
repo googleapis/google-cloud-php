@@ -192,7 +192,11 @@ final class LicenseCodesClient
     }
 
     /**
-     * Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+     * Return a specified license code. License codes are mirrored across
+     * all projects that have permissions to read the License Code.
+     * *Caution* This resource is intended
+     * for use only by third-party partners who are creatingCloud Marketplace
+     * images.
      *
      * The async variant is {@see LicenseCodesClient::getAsync()} .
      *
@@ -218,7 +222,10 @@ final class LicenseCodesClient
     }
 
     /**
-     * Returns permissions that a caller has on the specified resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+     * Returns permissions that a caller has on the specified resource.
+     * *Caution* This resource is intended
+     * for use only by third-party partners who are creatingCloud Marketplace
+     * images.
      *
      * The async variant is {@see LicenseCodesClient::testIamPermissionsAsync()} .
      *

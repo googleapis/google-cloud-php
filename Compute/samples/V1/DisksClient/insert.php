@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\InsertDiskRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a persistent disk in the specified project using the data in the request. You can create a disk from a source (sourceImage, sourceSnapshot, or sourceDisk) or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
+ * Creates a persistent disk in the specified project using the data
+ * in the request. You can create a disk from a source
+ * (sourceImage, sourceSnapshot, orsourceDisk) or create an empty 500 GB data disk by
+ * omitting all properties. You can also create a disk that is larger than
+ * the default size by specifying the sizeGb property.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

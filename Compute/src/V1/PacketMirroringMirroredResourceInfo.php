@@ -15,19 +15,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A set of virtual machine instances that are being mirrored. They must live in zones contained in the same region as this packetMirroring. Note that this config will apply only to those network interfaces of the Instances that belong to the network specified in this packetMirroring. You may specify a maximum of 50 Instances.
+     * A set of virtual machine instances that are being mirrored.
+     * They must live in zones contained in the same region as this
+     * packetMirroring.
+     * Note that this config will apply only to those network interfaces of the
+     * Instances that belong to the network specified in this packetMirroring.
+     * You may specify a maximum of 50 Instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoInstanceInfo instances = 29097598;</code>
      */
     private $instances;
     /**
-     * A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring. You may specify a maximum of 5 subnetworks.
+     * A set of subnetworks for which traffic from/to all VM instances will be
+     * mirrored. They must live in the same region as this packetMirroring.
+     * You may specify a maximum of 5 subnetworks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
      */
     private $subnetworks;
     /**
-     * A set of mirrored tags. Traffic from/to all VM instances that have one or more of these tags will be mirrored.
+     * A set of mirrored tags. Traffic from/to all VM instances that have one or
+     * more of these tags will be mirrored.
      *
      * Generated from protobuf field <code>repeated string tags = 3552281;</code>
      */
@@ -40,11 +48,19 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoInstanceInfo>|\Google\Protobuf\Internal\RepeatedField $instances
-     *           A set of virtual machine instances that are being mirrored. They must live in zones contained in the same region as this packetMirroring. Note that this config will apply only to those network interfaces of the Instances that belong to the network specified in this packetMirroring. You may specify a maximum of 50 Instances.
+     *           A set of virtual machine instances that are being mirrored.
+     *           They must live in zones contained in the same region as this
+     *           packetMirroring.
+     *           Note that this config will apply only to those network interfaces of the
+     *           Instances that belong to the network specified in this packetMirroring.
+     *           You may specify a maximum of 50 Instances.
      *     @type array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo>|\Google\Protobuf\Internal\RepeatedField $subnetworks
-     *           A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring. You may specify a maximum of 5 subnetworks.
+     *           A set of subnetworks for which traffic from/to all VM instances will be
+     *           mirrored. They must live in the same region as this packetMirroring.
+     *           You may specify a maximum of 5 subnetworks.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
-     *           A set of mirrored tags. Traffic from/to all VM instances that have one or more of these tags will be mirrored.
+     *           A set of mirrored tags. Traffic from/to all VM instances that have one or
+     *           more of these tags will be mirrored.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +69,12 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A set of virtual machine instances that are being mirrored. They must live in zones contained in the same region as this packetMirroring. Note that this config will apply only to those network interfaces of the Instances that belong to the network specified in this packetMirroring. You may specify a maximum of 50 Instances.
+     * A set of virtual machine instances that are being mirrored.
+     * They must live in zones contained in the same region as this
+     * packetMirroring.
+     * Note that this config will apply only to those network interfaces of the
+     * Instances that belong to the network specified in this packetMirroring.
+     * You may specify a maximum of 50 Instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoInstanceInfo instances = 29097598;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -64,7 +85,12 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A set of virtual machine instances that are being mirrored. They must live in zones contained in the same region as this packetMirroring. Note that this config will apply only to those network interfaces of the Instances that belong to the network specified in this packetMirroring. You may specify a maximum of 50 Instances.
+     * A set of virtual machine instances that are being mirrored.
+     * They must live in zones contained in the same region as this
+     * packetMirroring.
+     * Note that this config will apply only to those network interfaces of the
+     * Instances that belong to the network specified in this packetMirroring.
+     * You may specify a maximum of 50 Instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoInstanceInfo instances = 29097598;</code>
      * @param array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoInstanceInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -79,7 +105,9 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring. You may specify a maximum of 5 subnetworks.
+     * A set of subnetworks for which traffic from/to all VM instances will be
+     * mirrored. They must live in the same region as this packetMirroring.
+     * You may specify a maximum of 5 subnetworks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -90,7 +118,9 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring. You may specify a maximum of 5 subnetworks.
+     * A set of subnetworks for which traffic from/to all VM instances will be
+     * mirrored. They must live in the same region as this packetMirroring.
+     * You may specify a maximum of 5 subnetworks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
      * @param array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -105,7 +135,8 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A set of mirrored tags. Traffic from/to all VM instances that have one or more of these tags will be mirrored.
+     * A set of mirrored tags. Traffic from/to all VM instances that have one or
+     * more of these tags will be mirrored.
      *
      * Generated from protobuf field <code>repeated string tags = 3552281;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -116,7 +147,8 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * A set of mirrored tags. Traffic from/to all VM instances that have one or more of these tags will be mirrored.
+     * A set of mirrored tags. Traffic from/to all VM instances that have one or
+     * more of these tags will be mirrored.
      *
      * Generated from protobuf field <code>repeated string tags = 3552281;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

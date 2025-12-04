@@ -15,7 +15,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class StatefulPolicyPreservedStateNetworkIp extends \Google\Protobuf\Internal\Message
 {
     /**
-     * These stateful IPs will never be released during autohealing, update or VM instance recreate operations. This flag is used to configure if the IP reservation should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted.
+     * These stateful IPs will never be released during autohealing,
+     * update or VM instance recreate operations.
+     * This flag is used to configure if the IP reservation should be deleted
+     * after it is no longer used by the group, e.g. when the given instance
+     * or the whole group is deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
@@ -29,7 +33,11 @@ class StatefulPolicyPreservedStateNetworkIp extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $auto_delete
-     *           These stateful IPs will never be released during autohealing, update or VM instance recreate operations. This flag is used to configure if the IP reservation should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted.
+     *           These stateful IPs will never be released during autohealing,
+     *           update or VM instance recreate operations.
+     *           This flag is used to configure if the IP reservation should be deleted
+     *           after it is no longer used by the group, e.g. when the given instance
+     *           or the whole group is deleted.
      *           Check the AutoDelete enum for the list of possible values.
      * }
      */
@@ -39,7 +47,11 @@ class StatefulPolicyPreservedStateNetworkIp extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * These stateful IPs will never be released during autohealing, update or VM instance recreate operations. This flag is used to configure if the IP reservation should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted.
+     * These stateful IPs will never be released during autohealing,
+     * update or VM instance recreate operations.
+     * This flag is used to configure if the IP reservation should be deleted
+     * after it is no longer used by the group, e.g. when the given instance
+     * or the whole group is deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
@@ -61,7 +73,11 @@ class StatefulPolicyPreservedStateNetworkIp extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * These stateful IPs will never be released during autohealing, update or VM instance recreate operations. This flag is used to configure if the IP reservation should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted.
+     * These stateful IPs will never be released during autohealing,
+     * update or VM instance recreate operations.
+     * This flag is used to configure if the IP reservation should be deleted
+     * after it is no longer used by the group, e.g. when the given instance
+     * or the whole group is deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>

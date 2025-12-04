@@ -276,7 +276,14 @@ final class SnapshotsClient
     }
 
     /**
-     * Deletes the specified Snapshot resource. Keep in mind that deleting a single snapshot might not necessarily delete all the data on that snapshot. If any data on the snapshot that is marked for deletion is needed for subsequent snapshots, the data will be moved to the next corresponding snapshot. For more information, see Deleting snapshots.
+     * Deletes the specified Snapshot resource. Keep in mind that deleting
+     * a single snapshot might not necessarily delete all the data on that
+     * snapshot. If any data on the snapshot that is marked for deletion is
+     * needed for subsequent snapshots, the data will be moved to the next
+     * corresponding snapshot.
+     *
+     * For more information, seeDeleting
+     * snapshots.
      *
      * The async variant is {@see SnapshotsClient::deleteAsync()} .
      *
@@ -328,7 +335,8 @@ final class SnapshotsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see SnapshotsClient::getIamPolicyAsync()} .
      *
@@ -354,7 +362,11 @@ final class SnapshotsClient
     }
 
     /**
-     * Creates a snapshot in the specified project using the data included in the request. For regular snapshot creation, consider using this method instead of disks.createSnapshot, as this method supports more features, such as creating snapshots in a project different from the source disk project.
+     * Creates a snapshot in the specified project using the data included
+     * in the request. For regular snapshot creation, consider using this method
+     * instead of disks.createSnapshot,
+     * as this method supports more features, such as creating snapshots in a
+     * project different from the source disk project.
      *
      * The async variant is {@see SnapshotsClient::insertAsync()} .
      *
@@ -380,7 +392,8 @@ final class SnapshotsClient
     }
 
     /**
-     * Retrieves the list of Snapshot resources contained within the specified project.
+     * Retrieves the list of Snapshot resources contained within
+     * the specified project.
      *
      * The async variant is {@see SnapshotsClient::listAsync()} .
      *
@@ -406,7 +419,8 @@ final class SnapshotsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see SnapshotsClient::setIamPolicyAsync()} .
      *
@@ -432,7 +446,8 @@ final class SnapshotsClient
     }
 
     /**
-     * Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a snapshot. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see SnapshotsClient::setLabelsAsync()} .
      *

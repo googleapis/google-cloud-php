@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
+     * Full or partial URL of the machine type resource. See Machine Types for a full list of
+     * machine types. For example:zones/us-central1-f/machineTypes/n1-standard-1
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
@@ -28,7 +29,8 @@ class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $machine_type
-     *           Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
+     *           Full or partial URL of the machine type resource. See Machine Types for a full list of
+     *           machine types. For example:zones/us-central1-f/machineTypes/n1-standard-1
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
+     * Full or partial URL of the machine type resource. See Machine Types for a full list of
+     * machine types. For example:zones/us-central1-f/machineTypes/n1-standard-1
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @return string
@@ -58,7 +61,8 @@ class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
+     * Full or partial URL of the machine type resource. See Machine Types for a full list of
+     * machine types. For example:zones/us-central1-f/machineTypes/n1-standard-1
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @param string $var

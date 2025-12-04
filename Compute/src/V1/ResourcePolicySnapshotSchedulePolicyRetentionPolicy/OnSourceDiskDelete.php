@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicyRetentionP
 use UnexpectedValueException;
 
 /**
- * Specifies the behavior to apply to scheduled snapshots when the source disk is deleted.
+ * Specifies the behavior to apply to scheduled snapshots when
+ * the source disk is deleted.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicyRetentionPolicy.OnSourceDiskDelete</code>
  */

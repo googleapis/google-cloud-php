@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The user's intent for this AttachmentGroup. This is the only required field besides the name that must be specified on group creation.
+ * The user's intent for this AttachmentGroup. This is the only required field
+ * besides the name that must be specified on group creation.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectAttachmentGroupIntent</code>
  */

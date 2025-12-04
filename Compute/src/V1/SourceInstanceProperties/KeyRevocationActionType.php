@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\SourceInstanceProperties;
 use UnexpectedValueException;
 
 /**
- * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
+ * KeyRevocationActionType of the instance. Supported options are "STOP" and
+ * "NONE". The default value is "NONE" if it is not specified.
  *
  * Protobuf type <code>google.cloud.compute.v1.SourceInstanceProperties.KeyRevocationActionType</code>
  */

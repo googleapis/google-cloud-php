@@ -9,50 +9,68 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a notification endpoint. A notification endpoint resource defines an endpoint to receive notifications when there are status changes detected by the associated health check service. For more information, see Health checks overview.
+ * Represents a notification endpoint.
+ * A notification endpoint resource defines an endpoint to receive notifications
+ * when there are status changes detected by the associated health check
+ * service.
+ * For more information, see
+ * Health checks overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NotificationEndpoint</code>
  */
 class NotificationEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * Settings of the gRPC notification endpoint including the endpoint URL and the retry duration.
+     * Settings of the gRPC notification endpoint including the endpoint URL and
+     * the retry duration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NotificationEndpointGrpcSettings grpc_settings = 456139556;</code>
      */
     protected $grpc_settings = null;
     /**
-     * [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     * [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#notificationEndpoint for notification endpoints.
+     * [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output Only] URL of the region where the notification endpoint resides. This field applies only to the regional resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URL of the region where the notification endpoint resides.
+     * This field applies only to the regional resource. You must specify this
+     * field as part of the HTTP request URL. It is not settable as a field in
+     * the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -71,19 +89,32 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type \Google\Cloud\Compute\V1\NotificationEndpointGrpcSettings $grpc_settings
-     *           Settings of the gRPC notification endpoint including the endpoint URL and the retry duration.
+     *           Settings of the gRPC notification endpoint including the endpoint URL and
+     *           the retry duration.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     *           [Output Only] A unique identifier for this resource type. The server
+     *           generates this identifier.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#notificationEndpoint for notification endpoints.
+     *           [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type string $region
-     *           [Output Only] URL of the region where the notification endpoint resides. This field applies only to the regional resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *           [Output Only] URL of the region where the notification endpoint resides.
+     *           This field applies only to the regional resource. You must specify this
+     *           field as part of the HTTP request URL. It is not settable as a field in
+     *           the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      * }
@@ -94,7 +125,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -115,7 +147,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -130,7 +163,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -151,7 +185,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -166,7 +201,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings of the gRPC notification endpoint including the endpoint URL and the retry duration.
+     * Settings of the gRPC notification endpoint including the endpoint URL and
+     * the retry duration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NotificationEndpointGrpcSettings grpc_settings = 456139556;</code>
      * @return \Google\Cloud\Compute\V1\NotificationEndpointGrpcSettings|null
@@ -187,7 +223,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Settings of the gRPC notification endpoint including the endpoint URL and the retry duration.
+     * Settings of the gRPC notification endpoint including the endpoint URL and
+     * the retry duration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NotificationEndpointGrpcSettings grpc_settings = 456139556;</code>
      * @param \Google\Cloud\Compute\V1\NotificationEndpointGrpcSettings $var
@@ -202,7 +239,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     * [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -223,7 +261,8 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     * [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -238,7 +277,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#notificationEndpoint for notification endpoints.
+     * [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -259,7 +298,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#notificationEndpoint for notification endpoints.
+     * [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -274,7 +313,13 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -295,7 +340,13 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -310,7 +361,10 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the notification endpoint resides. This field applies only to the regional resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URL of the region where the notification endpoint resides.
+     * This field applies only to the regional resource. You must specify this
+     * field as part of the HTTP request URL. It is not settable as a field in
+     * the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -331,7 +385,10 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the notification endpoint resides. This field applies only to the regional resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URL of the region where the notification endpoint resides.
+     * This field applies only to the regional resource. You must specify this
+     * field as part of the HTTP request URL. It is not settable as a field in
+     * the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var

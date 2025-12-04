@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the managed instance group. Name should conform to RFC1035 or be a resource ID.
+     * The name of the managed instance group.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -28,13 +29,15 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
      */
     protected $project = '';
     /**
-     * The name of the resize request. Name should conform to RFC1035 or be a resource ID.
+     * The name of the resize request.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string resize_request = 216941060 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $resize_request = '';
     /**
-     * Name of the href="/compute/docs/regions-zones/#available">zone scoping this request. Name should conform to RFC1035.
+     * Name of the href="/compute/docs/regions-zones/#available">zone
+     * scoping this request. Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,9 +45,12 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
 
     /**
      * @param string $project              Project ID for this request.
-     * @param string $zone                 Name of the href="/compute/docs/regions-zones/#available">zone scoping this request. Name should conform to RFC1035.
-     * @param string $instanceGroupManager The name of the managed instance group. Name should conform to RFC1035 or be a resource ID.
-     * @param string $resizeRequest        The name of the resize request. Name should conform to RFC1035 or be a resource ID.
+     * @param string $zone                 Name of the href="/compute/docs/regions-zones/#available">zone
+     *                                     scoping this request. Name should conform to RFC1035.
+     * @param string $instanceGroupManager The name of the managed instance group.
+     *                                     Name should conform to RFC1035 or be a resource ID.
+     * @param string $resizeRequest        The name of the resize request.
+     *                                     Name should conform to RFC1035 or be a resource ID.
      *
      * @return \Google\Cloud\Compute\V1\GetInstanceGroupManagerResizeRequestRequest
      *
@@ -66,13 +72,16 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_group_manager
-     *           The name of the managed instance group. Name should conform to RFC1035 or be a resource ID.
+     *           The name of the managed instance group.
+     *           Name should conform to RFC1035 or be a resource ID.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $resize_request
-     *           The name of the resize request. Name should conform to RFC1035 or be a resource ID.
+     *           The name of the resize request.
+     *           Name should conform to RFC1035 or be a resource ID.
      *     @type string $zone
-     *           Name of the href="/compute/docs/regions-zones/#available">zone scoping this request. Name should conform to RFC1035.
+     *           Name of the href="/compute/docs/regions-zones/#available">zone
+     *           scoping this request. Name should conform to RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +90,8 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * The name of the managed instance group. Name should conform to RFC1035 or be a resource ID.
+     * The name of the managed instance group.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -92,7 +102,8 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * The name of the managed instance group. Name should conform to RFC1035 or be a resource ID.
+     * The name of the managed instance group.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -133,7 +144,8 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * The name of the resize request. Name should conform to RFC1035 or be a resource ID.
+     * The name of the resize request.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string resize_request = 216941060 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -144,7 +156,8 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * The name of the resize request. Name should conform to RFC1035 or be a resource ID.
+     * The name of the resize request.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string resize_request = 216941060 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -159,7 +172,8 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * Name of the href="/compute/docs/regions-zones/#available">zone scoping this request. Name should conform to RFC1035.
+     * Name of the href="/compute/docs/regions-zones/#available">zone
+     * scoping this request. Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -170,7 +184,8 @@ class GetInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * Name of the href="/compute/docs/regions-zones/#available">zone scoping this request. Name should conform to RFC1035.
+     * Name of the href="/compute/docs/regions-zones/#available">zone
+     * scoping this request. Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

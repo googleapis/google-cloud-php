@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\BfdPacket;
 use UnexpectedValueException;
 
 /**
- * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+ * The current BFD session state as seen by the transmitting system. These
+ * states are specified in section 4.1 ofRFC5880
  *
  * Protobuf type <code>google.cloud.compute.v1.BfdPacket.State</code>
  */

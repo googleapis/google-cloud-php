@@ -10,14 +10,21 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Messages
- * Contains the configurations necessary to generate a signature for access to private storage buckets that support Signature Version 4 for authentication. The service name for generating the authentication header will always default to 's3'.
+ * Contains the configurations necessary to generate a signature for access to
+ * private storage buckets that support Signature Version 4 for authentication.
+ * The service name for generating the authentication header will always default
+ * to 's3'.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AWSV4Signature</code>
  */
 class AWSV4Signature extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The access key used for s3 bucket authentication. Required for updating or creating a backend that uses AWS v4 signature authentication, but will not be returned as part of the configuration when queried with a REST API GET request. &#64;InputOnly
+     * The access key used for s3 bucket authentication. Required for updating or
+     * creating a backend that uses AWS v4 signature authentication, but will not
+     * be returned as part of the configuration when queried with a REST API GET
+     * request.
+     * &#64;InputOnly
      *
      * Generated from protobuf field <code>optional string access_key = 468922628;</code>
      */
@@ -29,13 +36,16 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
      */
     protected $access_key_id = null;
     /**
-     * The optional version identifier for the access key. You can use this to keep track of different iterations of your access key.
+     * The optional version identifier for the access key. You can use this to
+     * keep track of different iterations of your access key.
      *
      * Generated from protobuf field <code>optional string access_key_version = 80261277;</code>
      */
     protected $access_key_version = null;
     /**
-     * The name of the cloud region of your origin. This is a free-form field with the name of the region your cloud uses to host your origin. For example, "us-east-1" for AWS or "us-ashburn-1" for OCI.
+     * The name of the cloud region of your origin. This is a free-form field with
+     * the name of the region your cloud uses to host your origin.  For example,
+     * "us-east-1" for AWS or "us-ashburn-1" for OCI.
      *
      * Generated from protobuf field <code>optional string origin_region = 265305645;</code>
      */
@@ -48,13 +58,20 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $access_key
-     *           The access key used for s3 bucket authentication. Required for updating or creating a backend that uses AWS v4 signature authentication, but will not be returned as part of the configuration when queried with a REST API GET request. &#64;InputOnly
+     *           The access key used for s3 bucket authentication. Required for updating or
+     *           creating a backend that uses AWS v4 signature authentication, but will not
+     *           be returned as part of the configuration when queried with a REST API GET
+     *           request.
+     *           &#64;InputOnly
      *     @type string $access_key_id
      *           The identifier of an access key used for s3 bucket authentication.
      *     @type string $access_key_version
-     *           The optional version identifier for the access key. You can use this to keep track of different iterations of your access key.
+     *           The optional version identifier for the access key. You can use this to
+     *           keep track of different iterations of your access key.
      *     @type string $origin_region
-     *           The name of the cloud region of your origin. This is a free-form field with the name of the region your cloud uses to host your origin. For example, "us-east-1" for AWS or "us-ashburn-1" for OCI.
+     *           The name of the cloud region of your origin. This is a free-form field with
+     *           the name of the region your cloud uses to host your origin.  For example,
+     *           "us-east-1" for AWS or "us-ashburn-1" for OCI.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,7 +80,11 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The access key used for s3 bucket authentication. Required for updating or creating a backend that uses AWS v4 signature authentication, but will not be returned as part of the configuration when queried with a REST API GET request. &#64;InputOnly
+     * The access key used for s3 bucket authentication. Required for updating or
+     * creating a backend that uses AWS v4 signature authentication, but will not
+     * be returned as part of the configuration when queried with a REST API GET
+     * request.
+     * &#64;InputOnly
      *
      * Generated from protobuf field <code>optional string access_key = 468922628;</code>
      * @return string
@@ -84,7 +105,11 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The access key used for s3 bucket authentication. Required for updating or creating a backend that uses AWS v4 signature authentication, but will not be returned as part of the configuration when queried with a REST API GET request. &#64;InputOnly
+     * The access key used for s3 bucket authentication. Required for updating or
+     * creating a backend that uses AWS v4 signature authentication, but will not
+     * be returned as part of the configuration when queried with a REST API GET
+     * request.
+     * &#64;InputOnly
      *
      * Generated from protobuf field <code>optional string access_key = 468922628;</code>
      * @param string $var
@@ -135,7 +160,8 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The optional version identifier for the access key. You can use this to keep track of different iterations of your access key.
+     * The optional version identifier for the access key. You can use this to
+     * keep track of different iterations of your access key.
      *
      * Generated from protobuf field <code>optional string access_key_version = 80261277;</code>
      * @return string
@@ -156,7 +182,8 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The optional version identifier for the access key. You can use this to keep track of different iterations of your access key.
+     * The optional version identifier for the access key. You can use this to
+     * keep track of different iterations of your access key.
      *
      * Generated from protobuf field <code>optional string access_key_version = 80261277;</code>
      * @param string $var
@@ -171,7 +198,9 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cloud region of your origin. This is a free-form field with the name of the region your cloud uses to host your origin. For example, "us-east-1" for AWS or "us-ashburn-1" for OCI.
+     * The name of the cloud region of your origin. This is a free-form field with
+     * the name of the region your cloud uses to host your origin.  For example,
+     * "us-east-1" for AWS or "us-ashburn-1" for OCI.
      *
      * Generated from protobuf field <code>optional string origin_region = 265305645;</code>
      * @return string
@@ -192,7 +221,9 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the cloud region of your origin. This is a free-form field with the name of the region your cloud uses to host your origin. For example, "us-east-1" for AWS or "us-ashburn-1" for OCI.
+     * The name of the cloud region of your origin. This is a free-form field with
+     * the name of the region your cloud uses to host your origin.  For example,
+     * "us-east-1" for AWS or "us-ashburn-1" for OCI.
      *
      * Generated from protobuf field <code>optional string origin_region = 265305645;</code>
      * @param string $var

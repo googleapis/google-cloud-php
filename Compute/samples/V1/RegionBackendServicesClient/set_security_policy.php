@@ -31,9 +31,12 @@ use Google\Cloud\Compute\V1\SetSecurityPolicyRegionBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the Google Cloud Armor security policy for the specified backend service. For more information, see Google Cloud Armor Overview
+ * Sets the Google Cloud Armor security policy for the specified backend
+ * service. For more information, seeGoogle
+ * Cloud Armor Overview
  *
- * @param string $backendService Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+ * @param string $backendService Name of the BackendService resource to which the security policy should be
+ *                               set. The name should conform to RFC1035.
  * @param string $project        Project ID for this request.
  * @param string $region         Name of the region scoping this request.
  */

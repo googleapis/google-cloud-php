@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetLabelsVpnTunnelRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
+ * Sets the labels on a VpnTunnel. To learn more about labels, read theLabeling
+ * Resources documentation.
  *
  * @param string $project  Project ID for this request.
  * @param string $region   The region for this request.

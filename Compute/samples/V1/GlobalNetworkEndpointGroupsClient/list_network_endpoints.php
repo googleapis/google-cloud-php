@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\ListNetworkEndpointsGlobalNetworkEndpointGroupsReque
 /**
  * Lists the network endpoints in the specified network endpoint group.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group from which you want to generate a list of included network endpoints. It should comply with RFC1035.
+ * @param string $networkEndpointGroup The name of the network endpoint group from which you want to generate a
+ *                                     list of included network endpoints. It should comply with RFC1035.
  * @param string $project              Project ID for this request.
  */
 function list_network_endpoints_sample(string $networkEndpointGroup, string $project): void

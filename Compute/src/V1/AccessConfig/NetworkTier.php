@@ -7,7 +7,13 @@ namespace Google\Cloud\Compute\V1\AccessConfig;
 use UnexpectedValueException;
 
 /**
- * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+ * This signifies the networking tier used for configuring this access
+ * configuration and can only take the following values: PREMIUM,STANDARD.
+ * If an AccessConfig is specified without a valid external IP address, an
+ * ephemeral IP will be created with this networkTier.
+ * If an AccessConfig with a valid external IP address is specified, it must
+ * match that of the networkTier associated with the Address resource owning
+ * that IP.
  *
  * Protobuf type <code>google.cloud.compute.v1.AccessConfig.NetworkTier</code>
  */
@@ -26,19 +32,22 @@ class NetworkTier
      */
     const FIXED_STANDARD = 310464328;
     /**
-     * High quality, Google-grade network tier, support for all networking products.
+     * High quality, Google-grade network tier, support for all networking
+     * products.
      *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
      */
     const PREMIUM = 399530551;
     /**
-     * Public internet quality, only limited support for other networking products.
+     * Public internet quality, only limited support for other networking
+     * products.
      *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;
     /**
-     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier is expired or not configured.
+     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier
+     * is expired or not configured.
      *
      * Generated from protobuf enum <code>STANDARD_OVERRIDES_FIXED_STANDARD = 465847234;</code>
      */

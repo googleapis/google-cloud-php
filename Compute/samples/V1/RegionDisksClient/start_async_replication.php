@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\StartAsyncReplicationRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
- * Starts asynchronous replication. Must be invoked on the primary disk.
+ * Starts asynchronous replication.
+ * Must be invoked on the primary disk.
  *
  * @param string $disk    The name of the persistent disk.
  * @param string $project Project ID for this request.

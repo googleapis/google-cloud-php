@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
+     * [Output Only] Deprecated, please use short name instead. The display name
+     * of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
@@ -33,7 +34,8 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
      */
     private $packet_mirroring_rules;
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
@@ -65,13 +67,15 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
+     *           [Output Only] Deprecated, please use short name instead. The display name
+     *           of the firewall policy.
      *     @type string $name
      *           [Output Only] The name of the firewall policy.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
      *           [Output Only] The packet mirroring rules that apply to the network.
      *     @type int $priority
-     *           [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *           [Output only] Priority of firewall policy association. Not applicable for
+     *           type=HIERARCHY.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           [Output Only] The rules that apply to the network.
      *     @type string $short_name
@@ -87,7 +91,8 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     }
 
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
+     * [Output Only] Deprecated, please use short name instead. The display name
+     * of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @return string
@@ -108,7 +113,8 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     }
 
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
+     * [Output Only] Deprecated, please use short name instead. The display name
+     * of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @param string $var
@@ -185,7 +191,8 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @return int
@@ -206,7 +213,8 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @param int $var

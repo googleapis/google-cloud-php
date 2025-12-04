@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\InvalidateCacheUrlMapRequest;
 use Google\Rpc\Status;
 
 /**
- * Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](/cdn/docs/invalidating-cached-content).
+ * Initiates a cache invalidation operation, invalidating the specified path,
+ * scoped to the specified UrlMap.
+ *
+ * For more information, see [Invalidating cached
+ * content](/cdn/docs/invalidating-cached-content).
  *
  * @param string $project Project ID for this request.
  * @param string $urlMap  Name of the UrlMap scoping this request.

@@ -7,7 +7,14 @@ namespace Google\Cloud\Compute\V1\Disk;
 use UnexpectedValueException;
 
 /**
- * The access mode of the disk. - READ_WRITE_SINGLE: The default AccessMode, means the disk can be attached to single instance in RW mode. - READ_WRITE_MANY: The AccessMode means the disk can be attached to multiple instances in RW mode. - READ_ONLY_MANY: The AccessMode means the disk can be attached to multiple instances in RO mode. The AccessMode is only valid for Hyperdisk disk types.
+ * The access mode of the disk.
+ *      - READ_WRITE_SINGLE: The default AccessMode, means the
+ *      disk can be attached to single instance in RW mode.
+ *      - READ_WRITE_MANY: The AccessMode means the disk can be
+ *      attached to multiple instances in RW mode.
+ *      - READ_ONLY_MANY: The AccessMode means the disk can be
+ *      attached to multiple instances in RO mode.
+ * The AccessMode is only valid for Hyperdisk disk types.
  *
  * Protobuf type <code>google.cloud.compute.v1.Disk.AccessMode</code>
  */
@@ -20,19 +27,22 @@ class AccessMode
      */
     const UNDEFINED_ACCESS_MODE = 0;
     /**
-     * The AccessMode means the disk can be attached to multiple instances in RO mode.
+     * The AccessMode means the disk can be attached to multiple instances in RO
+     * mode.
      *
      * Generated from protobuf enum <code>READ_ONLY_MANY = 63460265;</code>
      */
     const READ_ONLY_MANY = 63460265;
     /**
-     * The AccessMode means the disk can be attached to multiple instances in RW mode.
+     * The AccessMode means the disk can be attached to multiple instances in RW
+     * mode.
      *
      * Generated from protobuf enum <code>READ_WRITE_MANY = 488743208;</code>
      */
     const READ_WRITE_MANY = 488743208;
     /**
-     * The default AccessMode, means the disk can be attached to single instance in RW mode.
+     * The default AccessMode, means the disk can be attached to single instance
+     * in RW mode.
      *
      * Generated from protobuf enum <code>READ_WRITE_SINGLE = 99323089;</code>
      */

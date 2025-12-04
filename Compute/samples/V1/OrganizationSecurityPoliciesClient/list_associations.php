@@ -29,7 +29,12 @@ use Google\Cloud\Compute\V1\ListAssociationsOrganizationSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\OrganizationSecurityPoliciesListAssociationsResponse;
 
 /**
- * Lists associations of a specified target, i.e., organization or folder. Use of this API to read firewall policies is deprecated. Use firewallPolicies.listAssociations instead if possible.
+ * Lists associations of a specified target, i.e., organization or folder.
+ *
+ * Use this API to read Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to read firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.listAssociations
+ * instead.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

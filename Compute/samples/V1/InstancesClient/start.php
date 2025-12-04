@@ -30,7 +30,9 @@ use Google\Cloud\Compute\V1\StartInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Starts an instance that was stopped using the instances().stop method. For more information, see Restart an instance.
+ * Starts an instance that was stopped using theinstances().stop
+ * method. For more information, seeRestart an
+ * instance.
  *
  * @param string $instance Name of the instance resource to start.
  * @param string $project  Project ID for this request.

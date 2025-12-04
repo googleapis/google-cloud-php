@@ -321,7 +321,8 @@ final class RegionTargetHttpProxiesClient
     }
 
     /**
-     * Creates a TargetHttpProxy resource in the specified project and region using the data included in the request.
+     * Creates a TargetHttpProxy resource in the specified project and region
+     * using the data included in the request.
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::insertAsync()} .
      *
@@ -347,7 +348,8 @@ final class RegionTargetHttpProxiesClient
     }
 
     /**
-     * Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region.
+     * Retrieves the list of TargetHttpProxy resources available
+     * to the specified project in the specified region.
      *
      * The async variant is {@see RegionTargetHttpProxiesClient::listAsync()} .
      *

@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SnapshotSettingsStorageLocationSettingsStorageLocationPreference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the location. It should be one of the Cloud Storage buckets. Only one location can be specified.
+     * Name of the location. It should be one of the Cloud Storage buckets.
+     * Only one location can be specified.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -29,7 +30,8 @@ class SnapshotSettingsStorageLocationSettingsStorageLocationPreference extends \
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the location. It should be one of the Cloud Storage buckets. Only one location can be specified.
+     *           Name of the location. It should be one of the Cloud Storage buckets.
+     *           Only one location can be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class SnapshotSettingsStorageLocationSettingsStorageLocationPreference extends \
     }
 
     /**
-     * Name of the location. It should be one of the Cloud Storage buckets. Only one location can be specified.
+     * Name of the location. It should be one of the Cloud Storage buckets.
+     * Only one location can be specified.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -59,7 +62,8 @@ class SnapshotSettingsStorageLocationSettingsStorageLocationPreference extends \
     }
 
     /**
-     * Name of the location. It should be one of the Cloud Storage buckets. Only one location can be specified.
+     * Name of the location. It should be one of the Cloud Storage buckets.
+     * Only one location can be specified.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

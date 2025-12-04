@@ -20,13 +20,17 @@ class ByoipApiVersion
      */
     const UNDEFINED_BYOIP_API_VERSION = 0;
     /**
-     * This public advertised prefix can be used to create both regional and global public delegated prefixes. It usually takes 4 weeks to create or delete a public delegated prefix. The BGP status cannot be changed.
+     * This public advertised prefix can be used to create both regional and
+     * global public delegated prefixes. It usually takes 4 weeks to create or
+     * delete a public delegated prefix. The BGP status cannot be changed.
      *
      * Generated from protobuf enum <code>V1 = 2715;</code>
      */
     const V1 = 2715;
     /**
-     * This public advertised prefix can only be used to create regional public delegated prefixes. Public delegated prefix creation and deletion takes minutes and the BGP status can be modified.
+     * This public advertised prefix can only be used to create regional public
+     * delegated prefixes. Public delegated prefix creation and deletion takes
+     * minutes and the BGP status can be modified.
      *
      * Generated from protobuf enum <code>V2 = 2716;</code>
      */

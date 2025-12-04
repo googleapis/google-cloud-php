@@ -9,26 +9,46 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a health check resource. Google Compute Engine has two health check resources: * [Regional](/compute/docs/reference/rest/v1/regionHealthChecks) * [Global](/compute/docs/reference/rest/v1/healthChecks) These health check resources can be used for load balancing and for autohealing VMs in a managed instance group (MIG). **Load balancing** Health check requirements vary depending on the type of load balancer. For details about the type of health check supported for each load balancer and corresponding backend type, see Health checks overview: Load balancer guide. **Autohealing in MIGs** The health checks that you use for autohealing VMs in a MIG can be either regional or global. For more information, see Set up an application health check and autohealing. For more information, see Health checks overview.
+ * Represents a health check resource.
+ * Google Compute Engine has two health check resources:
+ * * [Regional](/compute/docs/reference/rest/v1/regionHealthChecks)
+ * * [Global](/compute/docs/reference/rest/v1/healthChecks)
+ * These health check resources can be used for load balancing and for
+ * autohealing VMs in a managed instance group (MIG).
+ * **Load balancing**
+ * Health check requirements vary depending on the type of load balancer. For
+ * details about the type of health check supported for
+ * each load balancer and corresponding backend type,
+ * see Health
+ * checks overview: Load balancer guide.
+ * **Autohealing in MIGs**
+ * The health checks that you use for autohealing VMs in a MIG can be either
+ * regional or global. For more information, see  Set up an
+ * application health check and autohealing.
+ * For more information, seeHealth checks
+ * overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.HealthCheck</code>
  */
 class HealthCheck extends \Google\Protobuf\Internal\Message
 {
     /**
-     * How often (in seconds) to send a health check. The default value is 5 seconds.
+     * How often (in seconds) to send a health check. The default value is 5
+     * seconds.
      *
      * Generated from protobuf field <code>optional int32 check_interval_sec = 345561006;</code>
      */
     protected $check_interval_sec = null;
     /**
-     * [Output Only] Creation timestamp in 3339 text format.
+     * [Output Only] Creation timestamp in3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
@@ -38,7 +58,12 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $grpc_health_check = null;
     /**
-     * A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GRPCTLSHealthCheck grpc_tls_health_check = 267273258;</code>
+     */
+    protected $grpc_tls_health_check = null;
+    /**
+     * A so-far unhealthy instance will be marked healthy after this
+     * many consecutive successes. The default value is 2.
      *
      * Generated from protobuf field <code>optional int32 healthy_threshold = 403212361;</code>
      */
@@ -56,7 +81,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $https_health_check = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
@@ -74,13 +100,20 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $log_config = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. For example, a name that is 1-63 characters long, matches the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with RFC1035. This regular expression describes a name where the first character is a lowercase letter, and all following characters are a dash, lowercase letter, or digit, except the last character, which isn't a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * For example, a name that is 1-63 characters long, matches the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with
+     * RFC1035. This regular expression describes a name where the first
+     * character is a lowercase letter, and all following characters are a dash,
+     * lowercase letter, or digit, except the last character, which isn't a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output Only] Region where the health check resides. Not applicable to global health checks.
+     * [Output Only] Region where the health check resides.  Not applicable to
+     * global health checks.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -92,7 +125,20 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * The list of cloud regions from which health checks are performed. If any regions are specified, then exactly 3 regions should be specified. The region names must be valid names of Google Cloud regions. This can only be set for global health check. If this list is non-empty, then there are restrictions on what other health check fields are supported and what other resources can use this health check: - SSL, HTTP2, and GRPC protocols are not supported. - The TCP request field is not supported. - The proxyHeader field for HTTP, HTTPS, and TCP is not supported. - The checkIntervalSec field must be at least 30. - The health check cannot be used with BackendService nor with managed instance group auto-healing. 
+     * The list of cloud regions from which health checks are performed. If any
+     * regions are specified, then exactly 3 regions should be specified. The
+     * region names must be valid names of Google Cloud regions.
+     * This can only be set for global health check.
+     * If this list is non-empty, then there are restrictions
+     * on what other health check fields are supported and what other resources
+     * can use this health check:
+     *    - SSL, HTTP2, and GRPC protocols are not supported.
+     *    - The TCP request field is not supported.
+     *    - The proxyHeader field for HTTP, HTTPS, and TCP is not
+     *    supported.
+     *    - The checkIntervalSec field must be at least 30.
+     *    - The health check cannot be used with BackendService nor with managed
+     *    instance group auto-healing.
      *
      * Generated from protobuf field <code>repeated string source_regions = 405568475;</code>
      */
@@ -106,20 +152,24 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $tcp_health_check = null;
     /**
-     * How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
+     * How long (in seconds) to wait before claiming failure. The default value is
+     * 5 seconds. It is invalid for timeoutSec to have greater
+     * value than checkIntervalSec.
      *
      * Generated from protobuf field <code>optional int32 timeout_sec = 79994995;</code>
      */
     protected $timeout_sec = null;
     /**
-     * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS, HTTP2 or GRPC. Exactly one of the protocol-specific health check fields must be specified, which must match type field.
+     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
+     * protocol-specific health check fields must be specified, which must matchtype field.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
     protected $type = null;
     /**
-     * A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+     * A so-far healthy instance will be marked unhealthy after this many
+     * consecutive failures. The default value is 2.
      *
      * Generated from protobuf field <code>optional int32 unhealthy_threshold = 227958480;</code>
      */
@@ -132,40 +182,70 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $check_interval_sec
-     *           How often (in seconds) to send a health check. The default value is 5 seconds.
+     *           How often (in seconds) to send a health check. The default value is 5
+     *           seconds.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in 3339 text format.
+     *           [Output Only] Creation timestamp in3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type \Google\Cloud\Compute\V1\GRPCHealthCheck $grpc_health_check
+     *     @type \Google\Cloud\Compute\V1\GRPCTLSHealthCheck $grpc_tls_health_check
      *     @type int $healthy_threshold
-     *           A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+     *           A so-far unhealthy instance will be marked healthy after this
+     *           many consecutive successes. The default value is 2.
      *     @type \Google\Cloud\Compute\V1\HTTP2HealthCheck $http2_health_check
      *     @type \Google\Cloud\Compute\V1\HTTPHealthCheck $http_health_check
      *     @type \Google\Cloud\Compute\V1\HTTPSHealthCheck $https_health_check
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
      *           Type of the resource.
      *     @type \Google\Cloud\Compute\V1\HealthCheckLogConfig $log_config
      *           Configure logging on this health check.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. For example, a name that is 1-63 characters long, matches the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with RFC1035. This regular expression describes a name where the first character is a lowercase letter, and all following characters are a dash, lowercase letter, or digit, except the last character, which isn't a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           For example, a name that is 1-63 characters long, matches the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with
+     *           RFC1035. This regular expression describes a name where the first
+     *           character is a lowercase letter, and all following characters are a dash,
+     *           lowercase letter, or digit, except the last character, which isn't a dash.
      *     @type string $region
-     *           [Output Only] Region where the health check resides. Not applicable to global health checks.
+     *           [Output Only] Region where the health check resides.  Not applicable to
+     *           global health checks.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_regions
-     *           The list of cloud regions from which health checks are performed. If any regions are specified, then exactly 3 regions should be specified. The region names must be valid names of Google Cloud regions. This can only be set for global health check. If this list is non-empty, then there are restrictions on what other health check fields are supported and what other resources can use this health check: - SSL, HTTP2, and GRPC protocols are not supported. - The TCP request field is not supported. - The proxyHeader field for HTTP, HTTPS, and TCP is not supported. - The checkIntervalSec field must be at least 30. - The health check cannot be used with BackendService nor with managed instance group auto-healing. 
+     *           The list of cloud regions from which health checks are performed. If any
+     *           regions are specified, then exactly 3 regions should be specified. The
+     *           region names must be valid names of Google Cloud regions.
+     *           This can only be set for global health check.
+     *           If this list is non-empty, then there are restrictions
+     *           on what other health check fields are supported and what other resources
+     *           can use this health check:
+     *              - SSL, HTTP2, and GRPC protocols are not supported.
+     *              - The TCP request field is not supported.
+     *              - The proxyHeader field for HTTP, HTTPS, and TCP is not
+     *              supported.
+     *              - The checkIntervalSec field must be at least 30.
+     *              - The health check cannot be used with BackendService nor with managed
+     *              instance group auto-healing.
      *     @type \Google\Cloud\Compute\V1\SSLHealthCheck $ssl_health_check
      *     @type \Google\Cloud\Compute\V1\TCPHealthCheck $tcp_health_check
      *     @type int $timeout_sec
-     *           How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
+     *           How long (in seconds) to wait before claiming failure. The default value is
+     *           5 seconds. It is invalid for timeoutSec to have greater
+     *           value than checkIntervalSec.
      *     @type string $type
-     *           Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS, HTTP2 or GRPC. Exactly one of the protocol-specific health check fields must be specified, which must match type field.
+     *           Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
+     *           protocol-specific health check fields must be specified, which must matchtype field.
      *           Check the Type enum for the list of possible values.
      *     @type int $unhealthy_threshold
-     *           A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+     *           A so-far healthy instance will be marked unhealthy after this many
+     *           consecutive failures. The default value is 2.
      * }
      */
     public function __construct($data = NULL) {
@@ -174,7 +254,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How often (in seconds) to send a health check. The default value is 5 seconds.
+     * How often (in seconds) to send a health check. The default value is 5
+     * seconds.
      *
      * Generated from protobuf field <code>optional int32 check_interval_sec = 345561006;</code>
      * @return int
@@ -195,7 +276,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How often (in seconds) to send a health check. The default value is 5 seconds.
+     * How often (in seconds) to send a health check. The default value is 5
+     * seconds.
      *
      * Generated from protobuf field <code>optional int32 check_interval_sec = 345561006;</code>
      * @param int $var
@@ -210,7 +292,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in 3339 text format.
+     * [Output Only] Creation timestamp in3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -231,7 +314,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in 3339 text format.
+     * [Output Only] Creation timestamp in3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -246,7 +330,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -267,7 +352,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -314,7 +400,40 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GRPCTLSHealthCheck grpc_tls_health_check = 267273258;</code>
+     * @return \Google\Cloud\Compute\V1\GRPCTLSHealthCheck|null
+     */
+    public function getGrpcTlsHealthCheck()
+    {
+        return $this->grpc_tls_health_check;
+    }
+
+    public function hasGrpcTlsHealthCheck()
+    {
+        return isset($this->grpc_tls_health_check);
+    }
+
+    public function clearGrpcTlsHealthCheck()
+    {
+        unset($this->grpc_tls_health_check);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GRPCTLSHealthCheck grpc_tls_health_check = 267273258;</code>
+     * @param \Google\Cloud\Compute\V1\GRPCTLSHealthCheck $var
+     * @return $this
+     */
+    public function setGrpcTlsHealthCheck($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\GRPCTLSHealthCheck::class);
+        $this->grpc_tls_health_check = $var;
+
+        return $this;
+    }
+
+    /**
+     * A so-far unhealthy instance will be marked healthy after this
+     * many consecutive successes. The default value is 2.
      *
      * Generated from protobuf field <code>optional int32 healthy_threshold = 403212361;</code>
      * @return int
@@ -335,7 +454,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+     * A so-far unhealthy instance will be marked healthy after this
+     * many consecutive successes. The default value is 2.
      *
      * Generated from protobuf field <code>optional int32 healthy_threshold = 403212361;</code>
      * @param int $var
@@ -446,7 +566,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -467,7 +588,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -554,7 +676,13 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. For example, a name that is 1-63 characters long, matches the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with RFC1035. This regular expression describes a name where the first character is a lowercase letter, and all following characters are a dash, lowercase letter, or digit, except the last character, which isn't a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * For example, a name that is 1-63 characters long, matches the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with
+     * RFC1035. This regular expression describes a name where the first
+     * character is a lowercase letter, and all following characters are a dash,
+     * lowercase letter, or digit, except the last character, which isn't a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -575,7 +703,13 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. For example, a name that is 1-63 characters long, matches the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with RFC1035. This regular expression describes a name where the first character is a lowercase letter, and all following characters are a dash, lowercase letter, or digit, except the last character, which isn't a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * For example, a name that is 1-63 characters long, matches the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`, and otherwise complies with
+     * RFC1035. This regular expression describes a name where the first
+     * character is a lowercase letter, and all following characters are a dash,
+     * lowercase letter, or digit, except the last character, which isn't a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -590,7 +724,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Region where the health check resides. Not applicable to global health checks.
+     * [Output Only] Region where the health check resides.  Not applicable to
+     * global health checks.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -611,7 +746,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Region where the health check resides. Not applicable to global health checks.
+     * [Output Only] Region where the health check resides.  Not applicable to
+     * global health checks.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
@@ -662,7 +798,20 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of cloud regions from which health checks are performed. If any regions are specified, then exactly 3 regions should be specified. The region names must be valid names of Google Cloud regions. This can only be set for global health check. If this list is non-empty, then there are restrictions on what other health check fields are supported and what other resources can use this health check: - SSL, HTTP2, and GRPC protocols are not supported. - The TCP request field is not supported. - The proxyHeader field for HTTP, HTTPS, and TCP is not supported. - The checkIntervalSec field must be at least 30. - The health check cannot be used with BackendService nor with managed instance group auto-healing. 
+     * The list of cloud regions from which health checks are performed. If any
+     * regions are specified, then exactly 3 regions should be specified. The
+     * region names must be valid names of Google Cloud regions.
+     * This can only be set for global health check.
+     * If this list is non-empty, then there are restrictions
+     * on what other health check fields are supported and what other resources
+     * can use this health check:
+     *    - SSL, HTTP2, and GRPC protocols are not supported.
+     *    - The TCP request field is not supported.
+     *    - The proxyHeader field for HTTP, HTTPS, and TCP is not
+     *    supported.
+     *    - The checkIntervalSec field must be at least 30.
+     *    - The health check cannot be used with BackendService nor with managed
+     *    instance group auto-healing.
      *
      * Generated from protobuf field <code>repeated string source_regions = 405568475;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -673,7 +822,20 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of cloud regions from which health checks are performed. If any regions are specified, then exactly 3 regions should be specified. The region names must be valid names of Google Cloud regions. This can only be set for global health check. If this list is non-empty, then there are restrictions on what other health check fields are supported and what other resources can use this health check: - SSL, HTTP2, and GRPC protocols are not supported. - The TCP request field is not supported. - The proxyHeader field for HTTP, HTTPS, and TCP is not supported. - The checkIntervalSec field must be at least 30. - The health check cannot be used with BackendService nor with managed instance group auto-healing. 
+     * The list of cloud regions from which health checks are performed. If any
+     * regions are specified, then exactly 3 regions should be specified. The
+     * region names must be valid names of Google Cloud regions.
+     * This can only be set for global health check.
+     * If this list is non-empty, then there are restrictions
+     * on what other health check fields are supported and what other resources
+     * can use this health check:
+     *    - SSL, HTTP2, and GRPC protocols are not supported.
+     *    - The TCP request field is not supported.
+     *    - The proxyHeader field for HTTP, HTTPS, and TCP is not
+     *    supported.
+     *    - The checkIntervalSec field must be at least 30.
+     *    - The health check cannot be used with BackendService nor with managed
+     *    instance group auto-healing.
      *
      * Generated from protobuf field <code>repeated string source_regions = 405568475;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -752,7 +914,9 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
+     * How long (in seconds) to wait before claiming failure. The default value is
+     * 5 seconds. It is invalid for timeoutSec to have greater
+     * value than checkIntervalSec.
      *
      * Generated from protobuf field <code>optional int32 timeout_sec = 79994995;</code>
      * @return int
@@ -773,7 +937,9 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
+     * How long (in seconds) to wait before claiming failure. The default value is
+     * 5 seconds. It is invalid for timeoutSec to have greater
+     * value than checkIntervalSec.
      *
      * Generated from protobuf field <code>optional int32 timeout_sec = 79994995;</code>
      * @param int $var
@@ -788,7 +954,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS, HTTP2 or GRPC. Exactly one of the protocol-specific health check fields must be specified, which must match type field.
+     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
+     * protocol-specific health check fields must be specified, which must matchtype field.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -810,7 +977,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS, HTTP2 or GRPC. Exactly one of the protocol-specific health check fields must be specified, which must match type field.
+     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
+     * protocol-specific health check fields must be specified, which must matchtype field.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -826,7 +994,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+     * A so-far healthy instance will be marked unhealthy after this many
+     * consecutive failures. The default value is 2.
      *
      * Generated from protobuf field <code>optional int32 unhealthy_threshold = 227958480;</code>
      * @return int
@@ -847,7 +1016,8 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+     * A so-far healthy instance will be marked unhealthy after this many
+     * consecutive failures. The default value is 2.
      *
      * Generated from protobuf field <code>optional int32 unhealthy_threshold = 227958480;</code>
      * @param int $var

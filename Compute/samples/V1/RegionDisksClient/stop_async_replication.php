@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\StopAsyncReplicationRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
- * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
+ * Stops asynchronous replication.
+ * Can be invoked either on the primary or on the secondary disk.
  *
  * @param string $disk    The name of the persistent disk.
  * @param string $project Project ID for this request.

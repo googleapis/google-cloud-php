@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\NodeGroupsClient;
 use Google\Cloud\Compute\V1\ListNodeGroupsRequest;
 
 /**
- * Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group.
+ * Retrieves a list of node groups available to the specified project.
+ * Note: use nodeGroups.listNodes for more details about each group.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

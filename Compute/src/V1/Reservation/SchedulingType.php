@@ -32,7 +32,8 @@ class SchedulingType
      */
     const GROUP_MAINTENANCE_TYPE_UNSPECIFIED = 447183678;
     /**
-     * Maintenance is not synchronized for this reservation. Instead, each instance has its own maintenance window.
+     * Maintenance is not synchronized for this reservation. Instead, each
+     * instance has its own maintenance window.
      *
      * Generated from protobuf enum <code>INDEPENDENT = 127011674;</code>
      */

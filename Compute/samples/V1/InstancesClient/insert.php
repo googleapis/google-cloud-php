@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\Instance;
 use Google\Rpc\Status;
 
 /**
- * Creates an instance resource in the specified project using the data included in the request.
+ * Creates an instance resource in the specified project using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

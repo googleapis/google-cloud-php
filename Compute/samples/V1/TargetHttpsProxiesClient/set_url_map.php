@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Changes the URL map for TargetHttpsProxy.
  *
  * @param string $project          Project ID for this request.
- * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is to be set.
+ * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is
+ *                                 to be set.
  */
 function set_url_map_sample(string $project, string $targetHttpsProxy): void
 {

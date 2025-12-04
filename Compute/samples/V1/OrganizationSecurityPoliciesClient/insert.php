@@ -31,7 +31,12 @@ use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Rpc\Status;
 
 /**
- * Creates a new policy in the specified project using the data included in the request. Use of this API to insert firewall policies is deprecated. Use firewallPolicies.insert instead.
+ * Creates a new policy in the specified organization using the data included
+ * in the request.
+ *
+ * Use this API to add Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to add firewall policies. This usage is now
+ * disabled for most organizations. Use firewallPolicies.insert instead.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

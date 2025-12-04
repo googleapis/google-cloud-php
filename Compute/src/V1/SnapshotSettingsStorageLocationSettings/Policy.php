@@ -20,19 +20,23 @@ class Policy
      */
     const UNDEFINED_POLICY = 0;
     /**
-     * Store snapshot in the same region as with the originating disk. No additional parameters are needed.
+     * Store snapshot in the same region as with the originating disk.
+     * No additional parameters are needed.
      *
      * Generated from protobuf enum <code>LOCAL_REGION = 403535464;</code>
      */
     const LOCAL_REGION = 403535464;
     /**
-     * Store snapshot in the nearest multi region Cloud Storage bucket, relative to the originating disk. No additional parameters are needed.
+     * Store snapshot in the nearest multi region Cloud Storage bucket,
+     * relative to the originating disk. No additional parameters are needed.
      *
      * Generated from protobuf enum <code>NEAREST_MULTI_REGION = 212467515;</code>
      */
     const NEAREST_MULTI_REGION = 212467515;
     /**
-     * Store snapshot in the specific locations, as specified by the user. The list of regions to store must be defined under the `locations` field.
+     * Store snapshot in the specific locations, as specified by the user.
+     * The list of regions to store must be defined under the `locations`
+     * field.
      *
      * Generated from protobuf enum <code>SPECIFIC_LOCATIONS = 280093809;</code>
      */

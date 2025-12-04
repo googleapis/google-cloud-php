@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersRequest;
 use Google\Rpc\Status;
 
 /**
- * Create Interconnects with redundancy by creating them in a specified interconnect group.
+ * Create Interconnects with redundancy by creating them in a specified
+ * interconnect group.
  *
  * @param string $interconnectGroup Name of the group resource to create members for.
  * @param string $project           Project ID for this request.

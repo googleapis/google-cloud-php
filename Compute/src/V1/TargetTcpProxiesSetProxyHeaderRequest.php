@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     * The new type of proxy header to append before sending data to the
+     * backend.  NONE or PROXY_V1 are allowed.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
@@ -29,7 +30,8 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $proxy_header
-     *           The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     *           The new type of proxy header to append before sending data to the
+     *           backend.  NONE or PROXY_V1 are allowed.
      *           Check the ProxyHeader enum for the list of possible values.
      * }
      */
@@ -39,7 +41,8 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     * The new type of proxy header to append before sending data to the
+     * backend.  NONE or PROXY_V1 are allowed.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
@@ -61,7 +64,8 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+     * The new type of proxy header to append before sending data to the
+     * backend.  NONE or PROXY_V1 are allowed.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>

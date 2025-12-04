@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
+     * Number of allocated resources can be resized with minimum = 1 and
+     * maximum = 1000.
      *
      * Generated from protobuf field <code>optional int64 specific_sku_count = 13890720;</code>
      */
@@ -28,7 +29,8 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $specific_sku_count
-     *           Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
+     *           Number of allocated resources can be resized with minimum = 1 and
+     *           maximum = 1000.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
+     * Number of allocated resources can be resized with minimum = 1 and
+     * maximum = 1000.
      *
      * Generated from protobuf field <code>optional int64 specific_sku_count = 13890720;</code>
      * @return int|string
@@ -58,7 +61,8 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
+     * Number of allocated resources can be resized with minimum = 1 and
+     * maximum = 1000.
      *
      * Generated from protobuf field <code>optional int64 specific_sku_count = 13890720;</code>
      * @param int|string $var

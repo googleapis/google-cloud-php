@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\ListBgpRoutesRoutersRequest;
 use UnexpectedValueException;
 
 /**
- * (Required) limit results to this type of route (either LEARNED or ADVERTISED)
+ * (Required) limit results to this type of route (either LEARNED or
+ * ADVERTISED)
  *
  * Protobuf type <code>google.cloud.compute.v1.ListBgpRoutesRoutersRequest.RouteType</code>
  */

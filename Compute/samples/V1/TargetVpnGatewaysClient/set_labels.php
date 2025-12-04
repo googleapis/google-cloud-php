@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetLabelsTargetVpnGatewayRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the labels on a TargetVpnGateway. To learn more about labels, read the Labeling Resources documentation.
+ * Sets the labels on a TargetVpnGateway. To learn more about labels, read theLabeling
+ * Resources documentation.
  *
  * @param string $project  Project ID for this request.
  * @param string $region   The region for this request.

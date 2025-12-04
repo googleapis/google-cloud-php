@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\UpdateBackendBucketRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified BackendBucket resource with the data included in the request.
+ * Updates the specified BackendBucket resource with the data included in the
+ * request.
  *
  * @param string $backendBucket Name of the BackendBucket resource to update.
  * @param string $project       Project ID for this request.

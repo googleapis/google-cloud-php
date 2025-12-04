@@ -30,7 +30,11 @@ use Google\Cloud\Compute\V1\DeleteStoragePoolRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified storage pool. Deleting a storagePool removes its data permanently and is irreversible. However, deleting a storagePool does not delete any snapshots previously made from the storagePool. You must separately delete snapshots.
+ * Deletes the specified storage pool. Deleting a storagePool
+ * removes its data permanently and is irreversible. However, deleting a
+ * storagePool does not delete any snapshots previously
+ * made from the storagePool. You must separately delete
+ * snapshots.
  *
  * @param string $project     Project ID for this request.
  * @param string $storagePool Name of the storage pool to delete.

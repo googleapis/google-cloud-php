@@ -28,13 +28,16 @@ class SubnetworkPurposes
      */
     const GLOBAL_MANAGED_PROXY = 236463602;
     /**
-     * Subnet reserved for Internal HTTP(S) Load Balancing. This is a legacy purpose, please use REGIONAL_MANAGED_PROXY instead.
+     * Subnet reserved for Internal HTTP(S) Load Balancing. This is a legacy
+     * purpose, please use REGIONAL_MANAGED_PROXY instead.
      *
      * Generated from protobuf enum <code>INTERNAL_HTTPS_LOAD_BALANCER = 248748889;</code>
      */
     const INTERNAL_HTTPS_LOAD_BALANCER = 248748889;
     /**
-     * Subnetwork will be used for Migration from one peered VPC to another. (a transient state of subnetwork while migrating resources from one project to another).
+     * Subnetwork will be used for Migration from one peered VPC to another.
+     * (a transient state of subnetwork
+     * while migrating resources from one project to another).
      *
      * Generated from protobuf enum <code>PEER_MIGRATION = 491902225;</code>
      */

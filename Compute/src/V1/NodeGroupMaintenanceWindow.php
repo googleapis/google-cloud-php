@@ -9,20 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Time window specified for daily maintenance operations. GCE's internal maintenance will be performed within this window.
+ * Time window specified for daily maintenance operations. GCE's internal
+ * maintenance will be performed within this window.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NodeGroupMaintenanceWindow</code>
  */
 class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     * [Output only] A predetermined duration for the window, automatically
+     * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
      */
     protected $maintenance_duration = null;
     /**
-     * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     * Start time of the window. This must be in UTC format that resolves to one
+     * of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     * example, both 13:00-5 and 08:00 are valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
@@ -35,9 +39,12 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Duration $maintenance_duration
-     *           [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     *           [Output only] A predetermined duration for the window, automatically
+     *           chosen to be the smallest possible in the given scenario.
      *     @type string $start_time
-     *           Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     *           Start time of the window. This must be in UTC format that resolves to one
+     *           of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     *           example, both 13:00-5 and 08:00 are valid.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +53,8 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     * [Output only] A predetermined duration for the window, automatically
+     * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
@@ -67,7 +75,8 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     * [Output only] A predetermined duration for the window, automatically
+     * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
@@ -82,7 +91,9 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     * Start time of the window. This must be in UTC format that resolves to one
+     * of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     * example, both 13:00-5 and 08:00 are valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @return string
@@ -103,7 +114,9 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     * Start time of the window. This must be in UTC format that resolves to one
+     * of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     * example, both 13:00-5 and 08:00 are valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @param string $var

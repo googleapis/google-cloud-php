@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ShareSettingsProjectConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project ID, should be same as the key of this project config in the parent map.
+     * The project ID, should be same as the key of this project config in the
+     * parent map.
      *
      * Generated from protobuf field <code>optional string project_id = 177513473;</code>
      */
@@ -29,7 +30,8 @@ class ShareSettingsProjectConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           The project ID, should be same as the key of this project config in the parent map.
+     *           The project ID, should be same as the key of this project config in the
+     *           parent map.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class ShareSettingsProjectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID, should be same as the key of this project config in the parent map.
+     * The project ID, should be same as the key of this project config in the
+     * parent map.
      *
      * Generated from protobuf field <code>optional string project_id = 177513473;</code>
      * @return string
@@ -59,7 +62,8 @@ class ShareSettingsProjectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project ID, should be same as the key of this project config in the parent map.
+     * The project ID, should be same as the key of this project config in the
+     * parent map.
      *
      * Generated from protobuf field <code>optional string project_id = 177513473;</code>
      * @param string $var

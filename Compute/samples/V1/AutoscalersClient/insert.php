@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InsertAutoscalerRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates an autoscaler in the specified project using the data included in the request.
+ * Creates an autoscaler in the specified project using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone for this request.

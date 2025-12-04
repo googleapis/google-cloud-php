@@ -35,7 +35,8 @@ use Google\Rpc\Status;
  *
  * @param string $instanceGroup The name of the instance group where the named ports are updated.
  * @param string $project       Project ID for this request.
- * @param string $zone          The name of the zone where the instance group is located.
+ * @param string $zone          The name of the zone
+ *                              where the instance group is located.
  */
 function set_named_ports_sample(string $instanceGroup, string $project, string $zone): void
 {

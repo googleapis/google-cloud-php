@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetMachineResourcesInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Changes the number and/or type of accelerator for a stopped instance to the values specified in the request.
+ * Changes the number and/or type of accelerator for a stopped instance to the
+ * values specified in the request.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

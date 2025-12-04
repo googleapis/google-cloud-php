@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\Firewall;
 use UnexpectedValueException;
 
 /**
- * Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `EGRESS` traffic, you cannot specify the sourceTags fields.
+ * Direction of traffic to which this firewall applies, either `INGRESS` or
+ * `EGRESS`. The default is `INGRESS`. For `EGRESS` traffic, you cannot
+ * specify the sourceTags fields.
  *
  * Protobuf type <code>google.cloud.compute.v1.Firewall.Direction</code>
  */

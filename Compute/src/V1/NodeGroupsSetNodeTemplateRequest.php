@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class NodeGroupsSetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Full or partial URL of the node template resource to be updated for this node group.
+     * Full or partial URL of the node template resource to be updated for this
+     * node group.
      *
      * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      */
@@ -28,7 +29,8 @@ class NodeGroupsSetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $node_template
-     *           Full or partial URL of the node template resource to be updated for this node group.
+     *           Full or partial URL of the node template resource to be updated for this
+     *           node group.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class NodeGroupsSetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full or partial URL of the node template resource to be updated for this node group.
+     * Full or partial URL of the node template resource to be updated for this
+     * node group.
      *
      * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      * @return string
@@ -58,7 +61,8 @@ class NodeGroupsSetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Full or partial URL of the node template resource to be updated for this node group.
+     * Full or partial URL of the node template resource to be updated for this
+     * node group.
      *
      * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      * @param string $var

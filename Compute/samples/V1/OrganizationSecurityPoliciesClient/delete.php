@@ -30,7 +30,11 @@ use Google\Cloud\Compute\V1\DeleteOrganizationSecurityPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified policy. Use of this API to remove firewall policies is deprecated. Use firewallPolicies.delete instead.
+ * Deletes the specified policy.
+ *
+ * Use this API to remove Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to remove firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.delete instead.
  *
  * @param string $securityPolicy Name of the security policy to delete.
  */

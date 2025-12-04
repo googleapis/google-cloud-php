@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified policy with the data included in the request. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.patch instead.
+ * Patches the specified policy with the data included in the request.
+ *
+ * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to modify firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.patch instead.
  *
  * @param string $securityPolicy Name of the security policy to update.
  */

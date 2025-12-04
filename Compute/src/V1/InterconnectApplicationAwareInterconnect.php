@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration information for application awareness on this Cloud Interconnect.
+ * Configuration information for application awareness on this Cloud
+ * Interconnect.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectApplicationAwareInterconnect</code>
  */
@@ -20,13 +21,16 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
      */
     protected $bandwidth_percentage_policy = null;
     /**
-     * Description for the application awareness profile on this Cloud Interconnect.
+     * Description for the application awareness profile on this Cloud
+     * Interconnect.
      *
      * Generated from protobuf field <code>optional string profile_description = 262813286;</code>
      */
     protected $profile_description = null;
     /**
-     * Optional field to specify a list of shape average percentages to be applied in conjunction with StrictPriorityPolicy or BandwidthPercentagePolicy.
+     * Optional field to specify a list of shape average percentages to be
+     * applied in conjunction with StrictPriorityPolicy or
+     * BandwidthPercentagePolicy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage shape_average_percentages = 259857497;</code>
      */
@@ -44,9 +48,12 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
      *
      *     @type \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy $bandwidth_percentage_policy
      *     @type string $profile_description
-     *           Description for the application awareness profile on this Cloud Interconnect.
+     *           Description for the application awareness profile on this Cloud
+     *           Interconnect.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $shape_average_percentages
-     *           Optional field to specify a list of shape average percentages to be applied in conjunction with StrictPriorityPolicy or BandwidthPercentagePolicy.
+     *           Optional field to specify a list of shape average percentages to be
+     *           applied in conjunction with StrictPriorityPolicy or
+     *           BandwidthPercentagePolicy.
      *     @type \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectStrictPriorityPolicy $strict_priority_policy
      * }
      */
@@ -88,7 +95,8 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
     }
 
     /**
-     * Description for the application awareness profile on this Cloud Interconnect.
+     * Description for the application awareness profile on this Cloud
+     * Interconnect.
      *
      * Generated from protobuf field <code>optional string profile_description = 262813286;</code>
      * @return string
@@ -109,7 +117,8 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
     }
 
     /**
-     * Description for the application awareness profile on this Cloud Interconnect.
+     * Description for the application awareness profile on this Cloud
+     * Interconnect.
      *
      * Generated from protobuf field <code>optional string profile_description = 262813286;</code>
      * @param string $var
@@ -124,7 +133,9 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
     }
 
     /**
-     * Optional field to specify a list of shape average percentages to be applied in conjunction with StrictPriorityPolicy or BandwidthPercentagePolicy.
+     * Optional field to specify a list of shape average percentages to be
+     * applied in conjunction with StrictPriorityPolicy or
+     * BandwidthPercentagePolicy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage shape_average_percentages = 259857497;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -135,7 +146,9 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
     }
 
     /**
-     * Optional field to specify a list of shape average percentages to be applied in conjunction with StrictPriorityPolicy or BandwidthPercentagePolicy.
+     * Optional field to specify a list of shape average percentages to be
+     * applied in conjunction with StrictPriorityPolicy or
+     * BandwidthPercentagePolicy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage shape_average_percentages = 259857497;</code>
      * @param array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $var

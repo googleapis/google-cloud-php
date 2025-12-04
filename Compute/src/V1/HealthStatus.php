@@ -21,7 +21,8 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
-     * URL of the forwarding rule associated with the health status of the instance.
+     * URL of the forwarding rule associated with the health status of the
+     * instance.
      *
      * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
      */
@@ -46,7 +47,9 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     protected $instance = null;
     /**
-     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
+     * For target pool based Network Load Balancing, it indicates the forwarding
+     * rule's IP address assigned to this instance. For other types of load
+     * balancing, the field indicates VM internal ip.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
@@ -63,7 +66,8 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     protected $ipv6_health_state = null;
     /**
-     * The named port of the instance group, not necessarily the port that is health-checked.
+     * The named port of the instance group, not necessarily the port that is
+     * health-checked.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
@@ -89,7 +93,8 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Metadata defined as annotations for network endpoint.
      *     @type string $forwarding_rule
-     *           URL of the forwarding rule associated with the health status of the instance.
+     *           URL of the forwarding rule associated with the health status of the
+     *           instance.
      *     @type string $forwarding_rule_ip
      *           A forwarding rule IP address assigned to this instance.
      *     @type string $health_state
@@ -98,13 +103,16 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      *     @type string $instance
      *           URL of the instance resource.
      *     @type string $ip_address
-     *           For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
+     *           For target pool based Network Load Balancing, it indicates the forwarding
+     *           rule's IP address assigned to this instance. For other types of load
+     *           balancing, the field indicates VM internal ip.
      *     @type string $ipv6_address
      *     @type string $ipv6_health_state
      *           Health state of the IPv6 address of the instance.
      *           Check the Ipv6HealthState enum for the list of possible values.
      *     @type int $port
-     *           The named port of the instance group, not necessarily the port that is health-checked.
+     *           The named port of the instance group, not necessarily the port that is
+     *           health-checked.
      *     @type string $weight
      *     @type string $weight_error
      *           
@@ -143,7 +151,8 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the forwarding rule associated with the health status of the instance.
+     * URL of the forwarding rule associated with the health status of the
+     * instance.
      *
      * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
      * @return string
@@ -164,7 +173,8 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the forwarding rule associated with the health status of the instance.
+     * URL of the forwarding rule associated with the health status of the
+     * instance.
      *
      * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
      * @param string $var
@@ -289,7 +299,9 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
+     * For target pool based Network Load Balancing, it indicates the forwarding
+     * rule's IP address assigned to this instance. For other types of load
+     * balancing, the field indicates VM internal ip.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
@@ -310,7 +322,9 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
+     * For target pool based Network Load Balancing, it indicates the forwarding
+     * rule's IP address assigned to this instance. For other types of load
+     * balancing, the field indicates VM internal ip.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
@@ -395,7 +409,8 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The named port of the instance group, not necessarily the port that is health-checked.
+     * The named port of the instance group, not necessarily the port that is
+     * health-checked.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
@@ -416,7 +431,8 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The named port of the instance group, not necessarily the port that is health-checked.
+     * The named port of the instance group, not necessarily the port that is
+     * health-checked.
      *
      * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var

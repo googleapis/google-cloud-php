@@ -15,13 +15,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Constraints that the caller requires on the result distribution in this zone.
+     * Constraints that the caller requires on the result distribution
+     * in this zone.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicyLocationConstraints constraints = 3909174;</code>
      */
     protected $constraints = null;
     /**
-     * Preference for a given location. Set to either ALLOW or DENY.
+     * Preference for a given location. Set to either ALLOW orDENY.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -35,9 +36,10 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\LocationPolicyLocationConstraints $constraints
-     *           Constraints that the caller requires on the result distribution in this zone.
+     *           Constraints that the caller requires on the result distribution
+     *           in this zone.
      *     @type string $preference
-     *           Preference for a given location. Set to either ALLOW or DENY.
+     *           Preference for a given location. Set to either ALLOW orDENY.
      *           Check the Preference enum for the list of possible values.
      * }
      */
@@ -47,7 +49,8 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Constraints that the caller requires on the result distribution in this zone.
+     * Constraints that the caller requires on the result distribution
+     * in this zone.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicyLocationConstraints constraints = 3909174;</code>
      * @return \Google\Cloud\Compute\V1\LocationPolicyLocationConstraints|null
@@ -68,7 +71,8 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Constraints that the caller requires on the result distribution in this zone.
+     * Constraints that the caller requires on the result distribution
+     * in this zone.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicyLocationConstraints constraints = 3909174;</code>
      * @param \Google\Cloud\Compute\V1\LocationPolicyLocationConstraints $var
@@ -83,7 +87,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given location. Set to either ALLOW or DENY.
+     * Preference for a given location. Set to either ALLOW orDENY.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -105,7 +109,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given location. Set to either ALLOW or DENY.
+     * Preference for a given location. Set to either ALLOW orDENY.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>

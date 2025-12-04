@@ -9,32 +9,39 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the physical host topology of the host on which the VM is running.
+ * Represents the physical host topology of the host on which the VM is
+ * running.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourceStatusPhysicalHostTopology</code>
  */
 class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The ID of the block in which the running instance is located. Instances within the same block experience low network latency.
+     * [Output Only] The ID of the block in which the running instance is
+     * located. Instances within the same block experience low network latency.
      *
      * Generated from protobuf field <code>optional string block = 93832333;</code>
      */
     protected $block = null;
     /**
-     * [Output Only] The global name of the Compute Engine cluster where the running instance is located.
+     * [Output Only] The global name of the Compute Engine cluster where the
+     * running instance is located.
      *
      * Generated from protobuf field <code>optional string cluster = 335221242;</code>
      */
     protected $cluster = null;
     /**
-     * [Output Only] The ID of the host on which the running instance is located. Instances on the same host experience the lowest possible network latency.
+     * [Output Only] The ID of the host on which the running instance is located.
+     * Instances on the same host experience the lowest possible network
+     * latency.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
     protected $host = null;
     /**
-     * [Output Only] The ID of the sub-block in which the running instance is located. Instances in the same sub-block experience lower network latency than instances in the same block.
+     * [Output Only] The ID of the sub-block in which the running instance is
+     * located. Instances in the same sub-block experience lower network latency
+     * than instances in the same block.
      *
      * Generated from protobuf field <code>optional string subblock = 70446669;</code>
      */
@@ -47,13 +54,19 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $block
-     *           [Output Only] The ID of the block in which the running instance is located. Instances within the same block experience low network latency.
+     *           [Output Only] The ID of the block in which the running instance is
+     *           located. Instances within the same block experience low network latency.
      *     @type string $cluster
-     *           [Output Only] The global name of the Compute Engine cluster where the running instance is located.
+     *           [Output Only] The global name of the Compute Engine cluster where the
+     *           running instance is located.
      *     @type string $host
-     *           [Output Only] The ID of the host on which the running instance is located. Instances on the same host experience the lowest possible network latency.
+     *           [Output Only] The ID of the host on which the running instance is located.
+     *           Instances on the same host experience the lowest possible network
+     *           latency.
      *     @type string $subblock
-     *           [Output Only] The ID of the sub-block in which the running instance is located. Instances in the same sub-block experience lower network latency than instances in the same block.
+     *           [Output Only] The ID of the sub-block in which the running instance is
+     *           located. Instances in the same sub-block experience lower network latency
+     *           than instances in the same block.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +75,8 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The ID of the block in which the running instance is located. Instances within the same block experience low network latency.
+     * [Output Only] The ID of the block in which the running instance is
+     * located. Instances within the same block experience low network latency.
      *
      * Generated from protobuf field <code>optional string block = 93832333;</code>
      * @return string
@@ -83,7 +97,8 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The ID of the block in which the running instance is located. Instances within the same block experience low network latency.
+     * [Output Only] The ID of the block in which the running instance is
+     * located. Instances within the same block experience low network latency.
      *
      * Generated from protobuf field <code>optional string block = 93832333;</code>
      * @param string $var
@@ -98,7 +113,8 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The global name of the Compute Engine cluster where the running instance is located.
+     * [Output Only] The global name of the Compute Engine cluster where the
+     * running instance is located.
      *
      * Generated from protobuf field <code>optional string cluster = 335221242;</code>
      * @return string
@@ -119,7 +135,8 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The global name of the Compute Engine cluster where the running instance is located.
+     * [Output Only] The global name of the Compute Engine cluster where the
+     * running instance is located.
      *
      * Generated from protobuf field <code>optional string cluster = 335221242;</code>
      * @param string $var
@@ -134,7 +151,9 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The ID of the host on which the running instance is located. Instances on the same host experience the lowest possible network latency.
+     * [Output Only] The ID of the host on which the running instance is located.
+     * Instances on the same host experience the lowest possible network
+     * latency.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @return string
@@ -155,7 +174,9 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The ID of the host on which the running instance is located. Instances on the same host experience the lowest possible network latency.
+     * [Output Only] The ID of the host on which the running instance is located.
+     * Instances on the same host experience the lowest possible network
+     * latency.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @param string $var
@@ -170,7 +191,9 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The ID of the sub-block in which the running instance is located. Instances in the same sub-block experience lower network latency than instances in the same block.
+     * [Output Only] The ID of the sub-block in which the running instance is
+     * located. Instances in the same sub-block experience lower network latency
+     * than instances in the same block.
      *
      * Generated from protobuf field <code>optional string subblock = 70446669;</code>
      * @return string
@@ -191,7 +214,9 @@ class ResourceStatusPhysicalHostTopology extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The ID of the sub-block in which the running instance is located. Instances in the same sub-block experience lower network latency than instances in the same block.
+     * [Output Only] The ID of the sub-block in which the running instance is
+     * located. Instances in the same sub-block experience lower network latency
+     * than instances in the same block.
      *
      * Generated from protobuf field <code>optional string subblock = 70446669;</code>
      * @param string $var

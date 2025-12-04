@@ -272,7 +272,10 @@ final class AutoscalersClient
     }
 
     /**
-     * Retrieves an aggregated list of autoscalers. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of autoscalers.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see AutoscalersClient::aggregatedListAsync()} .
      *
@@ -352,7 +355,8 @@ final class AutoscalersClient
     }
 
     /**
-     * Creates an autoscaler in the specified project using the data included in the request.
+     * Creates an autoscaler in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see AutoscalersClient::insertAsync()} .
      *
@@ -378,7 +382,8 @@ final class AutoscalersClient
     }
 
     /**
-     * Retrieves a list of autoscalers contained within the specified zone.
+     * Retrieves a list of autoscalers contained within
+     * the specified zone.
      *
      * The async variant is {@see AutoscalersClient::listAsync()} .
      *
@@ -404,7 +409,10 @@ final class AutoscalersClient
     }
 
     /**
-     * Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates an autoscaler in the specified project using the data
+     * included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see AutoscalersClient::patchAsync()} .
      *
@@ -430,7 +438,8 @@ final class AutoscalersClient
     }
 
     /**
-     * Updates an autoscaler in the specified project using the data included in the request.
+     * Updates an autoscaler in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see AutoscalersClient::updateAsync()} .
      *

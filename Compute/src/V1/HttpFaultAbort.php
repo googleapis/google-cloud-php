@@ -16,13 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class HttpFaultAbort extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The HTTP status code used to abort the request. The value must be from 200 to 599 inclusive. For gRPC protocol, the gRPC status code is mapped to HTTP status code according to this mapping table. HTTP status 200 is mapped to gRPC status UNKNOWN. Injecting an OK status is currently not supported by Traffic Director.
+     * The HTTP status code used to abort the request.
+     * The value must be from 200 to 599 inclusive.
+     * For gRPC protocol, the gRPC status code is mapped to HTTP status code
+     * according to this
+     * mapping table. HTTP status 200 is mapped to gRPC status
+     * UNKNOWN. Injecting an OK status is currently not supported by
+     * Traffic Director.
      *
      * Generated from protobuf field <code>optional uint32 http_status = 468949897;</code>
      */
     protected $http_status = null;
     /**
-     * The percentage of traffic for connections, operations, or requests that is aborted as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
+     * The percentage of traffic for connections, operations, or requests
+     * that is aborted as part of fault injection.
+     * The value must be from 0.0 to 100.0 inclusive.
      *
      * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      */
@@ -35,9 +43,17 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $http_status
-     *           The HTTP status code used to abort the request. The value must be from 200 to 599 inclusive. For gRPC protocol, the gRPC status code is mapped to HTTP status code according to this mapping table. HTTP status 200 is mapped to gRPC status UNKNOWN. Injecting an OK status is currently not supported by Traffic Director.
+     *           The HTTP status code used to abort the request.
+     *           The value must be from 200 to 599 inclusive.
+     *           For gRPC protocol, the gRPC status code is mapped to HTTP status code
+     *           according to this
+     *           mapping table. HTTP status 200 is mapped to gRPC status
+     *           UNKNOWN. Injecting an OK status is currently not supported by
+     *           Traffic Director.
      *     @type float $percentage
-     *           The percentage of traffic for connections, operations, or requests that is aborted as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
+     *           The percentage of traffic for connections, operations, or requests
+     *           that is aborted as part of fault injection.
+     *           The value must be from 0.0 to 100.0 inclusive.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +62,13 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The HTTP status code used to abort the request. The value must be from 200 to 599 inclusive. For gRPC protocol, the gRPC status code is mapped to HTTP status code according to this mapping table. HTTP status 200 is mapped to gRPC status UNKNOWN. Injecting an OK status is currently not supported by Traffic Director.
+     * The HTTP status code used to abort the request.
+     * The value must be from 200 to 599 inclusive.
+     * For gRPC protocol, the gRPC status code is mapped to HTTP status code
+     * according to this
+     * mapping table. HTTP status 200 is mapped to gRPC status
+     * UNKNOWN. Injecting an OK status is currently not supported by
+     * Traffic Director.
      *
      * Generated from protobuf field <code>optional uint32 http_status = 468949897;</code>
      * @return int
@@ -67,7 +89,13 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The HTTP status code used to abort the request. The value must be from 200 to 599 inclusive. For gRPC protocol, the gRPC status code is mapped to HTTP status code according to this mapping table. HTTP status 200 is mapped to gRPC status UNKNOWN. Injecting an OK status is currently not supported by Traffic Director.
+     * The HTTP status code used to abort the request.
+     * The value must be from 200 to 599 inclusive.
+     * For gRPC protocol, the gRPC status code is mapped to HTTP status code
+     * according to this
+     * mapping table. HTTP status 200 is mapped to gRPC status
+     * UNKNOWN. Injecting an OK status is currently not supported by
+     * Traffic Director.
      *
      * Generated from protobuf field <code>optional uint32 http_status = 468949897;</code>
      * @param int $var
@@ -82,7 +110,9 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The percentage of traffic for connections, operations, or requests that is aborted as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
+     * The percentage of traffic for connections, operations, or requests
+     * that is aborted as part of fault injection.
+     * The value must be from 0.0 to 100.0 inclusive.
      *
      * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      * @return float
@@ -103,7 +133,9 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The percentage of traffic for connections, operations, or requests that is aborted as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
+     * The percentage of traffic for connections, operations, or requests
+     * that is aborted as part of fault injection.
+     * The value must be from 0.0 to 100.0 inclusive.
      *
      * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      * @param float $var

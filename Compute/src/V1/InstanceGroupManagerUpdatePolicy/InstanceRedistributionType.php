@@ -7,7 +7,13 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy;
 use UnexpectedValueException;
 
 /**
- * The instance redistribution policy for regional managed instance groups. Valid values are: - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region. - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+ * The
+ * instance redistribution policy for regional managed instance groups.
+ * Valid values are:
+ *    - PROACTIVE (default): The group attempts to maintain an
+ *    even distribution of VM instances across zones in the region.
+ *    - NONE: For non-autoscaled groups, proactive
+ *    redistribution is disabled.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * NONE
  * PROACTIVE

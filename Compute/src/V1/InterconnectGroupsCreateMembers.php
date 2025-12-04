@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
 {
     /**
-     * How to behave when configured.topologyCapability.supportedSLA would not equal intent.topologyCapability after this call.
+     * How to behave when configured.topologyCapability.supportedSLA would not
+     * equal intent.topologyCapability after this call.
      * Check the IntentMismatchBehavior enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string intent_mismatch_behavior = 164408000;</code>
@@ -39,7 +40,8 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $intent_mismatch_behavior
-     *           How to behave when configured.topologyCapability.supportedSLA would not equal intent.topologyCapability after this call.
+     *           How to behave when configured.topologyCapability.supportedSLA would not
+     *           equal intent.topologyCapability after this call.
      *           Check the IntentMismatchBehavior enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput>|\Google\Protobuf\Internal\RepeatedField $interconnects
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput $template_interconnect
@@ -52,7 +54,8 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How to behave when configured.topologyCapability.supportedSLA would not equal intent.topologyCapability after this call.
+     * How to behave when configured.topologyCapability.supportedSLA would not
+     * equal intent.topologyCapability after this call.
      * Check the IntentMismatchBehavior enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string intent_mismatch_behavior = 164408000;</code>
@@ -74,7 +77,8 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * How to behave when configured.topologyCapability.supportedSLA would not equal intent.topologyCapability after this call.
+     * How to behave when configured.topologyCapability.supportedSLA would not
+     * equal intent.topologyCapability after this call.
      * Check the IntentMismatchBehavior enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string intent_mismatch_behavior = 164408000;</code>

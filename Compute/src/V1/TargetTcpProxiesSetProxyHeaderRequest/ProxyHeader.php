@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\TargetTcpProxiesSetProxyHeaderRequest;
 use UnexpectedValueException;
 
 /**
- * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+ * The new type of proxy header to append before sending data to the
+ * backend.  NONE or PROXY_V1 are allowed.
  *
  * Protobuf type <code>google.cloud.compute.v1.TargetTcpProxiesSetProxyHeaderRequest.ProxyHeader</code>
  */

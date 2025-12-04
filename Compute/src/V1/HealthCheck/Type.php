@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\HealthCheck;
 use UnexpectedValueException;
 
 /**
- * Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS, HTTP2 or GRPC. Exactly one of the protocol-specific health check fields must be specified, which must match type field.
+ * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
+ * protocol-specific health check fields must be specified, which must matchtype field.
  *
  * Protobuf type <code>google.cloud.compute.v1.HealthCheck.Type</code>
  */
@@ -23,6 +24,10 @@ class Type
      * Generated from protobuf enum <code>GRPC = 2196510;</code>
      */
     const GRPC = 2196510;
+    /**
+     * Generated from protobuf enum <code>GRPC_WITH_TLS = 268089571;</code>
+     */
+    const GRPC_WITH_TLS = 268089571;
     /**
      * Generated from protobuf enum <code>HTTP = 2228360;</code>
      */
@@ -51,6 +56,7 @@ class Type
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::GRPC => 'GRPC',
+        self::GRPC_WITH_TLS => 'GRPC_WITH_TLS',
         self::HTTP => 'HTTP',
         self::HTTP2 => 'HTTP2',
         self::HTTPS => 'HTTPS',

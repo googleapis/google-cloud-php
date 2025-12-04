@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Encountered errors during the last attempt to create or delete the instance.
+     * [Output Only] Encountered errors during the last attempt to create or
+     * delete the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttemptErrors errors = 315977579;</code>
      */
@@ -28,7 +29,8 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\ManagedInstanceLastAttemptErrors $errors
-     *           [Output Only] Encountered errors during the last attempt to create or delete the instance.
+     *           [Output Only] Encountered errors during the last attempt to create or
+     *           delete the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Encountered errors during the last attempt to create or delete the instance.
+     * [Output Only] Encountered errors during the last attempt to create or
+     * delete the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttemptErrors errors = 315977579;</code>
      * @return \Google\Cloud\Compute\V1\ManagedInstanceLastAttemptErrors|null
@@ -58,7 +61,8 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Encountered errors during the last attempt to create or delete the instance.
+     * [Output Only] Encountered errors during the last attempt to create or
+     * delete the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttemptErrors errors = 315977579;</code>
      * @param \Google\Cloud\Compute\V1\ManagedInstanceLastAttemptErrors $var

@@ -7,7 +7,11 @@ namespace Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher;
 use UnexpectedValueException;
 
 /**
- * Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
+ * Preconfigured versioned expression.
+ * If this field is specified, config must also be specified.
+ * Available preconfigured expressions along with their requirements are:
+ * SRC_IPS_V1 - must specify the corresponding src_ip_range field in
+ * config.
  *
  * Protobuf type <code>google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr</code>
  */
@@ -20,7 +24,8 @@ class VersionedExpr
      */
     const UNDEFINED_VERSIONED_EXPR = 0;
     /**
-     * Matches the source IP address of a request to the IP ranges supplied in config.
+     * Matches the source IP address of a request to the IP ranges supplied
+     * in config.
      *
      * Generated from protobuf enum <code>SRC_IPS_V1 = 70925961;</code>
      */

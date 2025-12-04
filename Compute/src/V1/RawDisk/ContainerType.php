@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\RawDisk;
 use UnexpectedValueException;
 
 /**
- * The format used to encode and transmit the block device, which should be TAR. This is just a container and transmission format and not a runtime format. Provided by the client when the disk image is created.
+ * The format used to encode and transmit the block device, which should beTAR. This is just a container and transmission format and not
+ * a runtime format. Provided by the client when the disk image is created.
  *
  * Protobuf type <code>google.cloud.compute.v1.RawDisk.ContainerType</code>
  */

@@ -20,13 +20,15 @@ class ReservationOperationalMode
      */
     const UNDEFINED_RESERVATION_OPERATIONAL_MODE = 0;
     /**
-     * Google Cloud does not manage the failure of machines, but provides additional capacity, which is not guaranteed to be available.
+     * Google Cloud does not manage the failure of machines, but provides
+     * additional capacity, which is not guaranteed to be available.
      *
      * Generated from protobuf enum <code>ALL_CAPACITY = 500029880;</code>
      */
     const ALL_CAPACITY = 500029880;
     /**
-     * Google Cloud manages the failure of machines to provide high availability.
+     * Google Cloud manages the failure of machines to provide high
+     * availability.
      *
      * Generated from protobuf enum <code>HIGHLY_AVAILABLE_CAPACITY = 110861600;</code>
      */

@@ -22,7 +22,9 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      */
     protected $local_gateway_interface = null;
     /**
-     * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or a Google Cloud VPN gateway.
+     * The peer gateway interface this VPN tunnel is connected to, the peer
+     * gateway could either be an external VPN gateway or a Google Cloud
+     * VPN gateway.
      *
      * Generated from protobuf field <code>optional uint32 peer_gateway_interface = 214380385;</code>
      */
@@ -43,7 +45,9 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      *     @type int $local_gateway_interface
      *           The VPN gateway interface this VPN tunnel is associated with.
      *     @type int $peer_gateway_interface
-     *           The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or a Google Cloud VPN gateway.
+     *           The peer gateway interface this VPN tunnel is connected to, the peer
+     *           gateway could either be an external VPN gateway or a Google Cloud
+     *           VPN gateway.
      *     @type string $tunnel_url
      *           URL reference to the VPN tunnel.
      * }
@@ -90,7 +94,9 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or a Google Cloud VPN gateway.
+     * The peer gateway interface this VPN tunnel is connected to, the peer
+     * gateway could either be an external VPN gateway or a Google Cloud
+     * VPN gateway.
      *
      * Generated from protobuf field <code>optional uint32 peer_gateway_interface = 214380385;</code>
      * @return int
@@ -111,7 +117,9 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or a Google Cloud VPN gateway.
+     * The peer gateway interface this VPN tunnel is connected to, the peer
+     * gateway could either be an external VPN gateway or a Google Cloud
+     * VPN gateway.
      *
      * Generated from protobuf field <code>optional uint32 peer_gateway_interface = 214380385;</code>
      * @param int $var

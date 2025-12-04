@@ -29,7 +29,12 @@ use Google\Cloud\Compute\V1\AggregatedListNetworkFirewallPoliciesRequest;
 use Google\Cloud\Compute\V1\Client\NetworkFirewallPoliciesClient;
 
 /**
- * Retrieves an aggregated list of network firewall policies, listing network firewall policies from all applicable scopes (global and regional) and grouping the results per scope. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of network firewall policies, listing network
+ * firewall policies from all applicable scopes (global and regional) and
+ * grouping the results per scope.
+ *
+ * To prevent failure, it is recommended that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

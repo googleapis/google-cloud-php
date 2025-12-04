@@ -298,7 +298,9 @@ final class DisksClient
     }
 
     /**
-     * Adds existing resource policies to a disk. You can only add one policy which will be applied to this disk for scheduling snapshot creation.
+     * Adds existing resource policies to a disk. You can only add one
+     * policy which will be applied to this disk for scheduling snapshot
+     * creation.
      *
      * The async variant is {@see DisksClient::addResourcePoliciesAsync()} .
      *
@@ -326,7 +328,10 @@ final class DisksClient
     }
 
     /**
-     * Retrieves an aggregated list of persistent disks. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of persistent disks.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see DisksClient::aggregatedListAsync()} .
      *
@@ -378,7 +383,8 @@ final class DisksClient
     }
 
     /**
-     * Sets the labels on many disks at once. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on many disks at once. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see DisksClient::bulkSetLabelsAsync()} .
      *
@@ -404,7 +410,10 @@ final class DisksClient
     }
 
     /**
-     * Creates a snapshot of a specified persistent disk. For regular snapshot creation, consider using snapshots.insert instead, as that method supports more features, such as creating snapshots in a project different from the source disk project.
+     * Creates a snapshot of a specified persistent disk. For regular snapshot
+     * creation, consider using snapshots.insert
+     * instead, as that method supports more features, such as creating snapshots
+     * in a project different from the source disk project.
      *
      * The async variant is {@see DisksClient::createSnapshotAsync()} .
      *
@@ -430,7 +439,11 @@ final class DisksClient
     }
 
     /**
-     * Deletes the specified persistent disk. Deleting a disk removes its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
+     * Deletes the specified persistent disk. Deleting a disk removes its data
+     * permanently and is irreversible. However, deleting a disk does not
+     * delete any snapshots
+     * previously made from the disk. You must separatelydelete
+     * snapshots.
      *
      * The async variant is {@see DisksClient::deleteAsync()} .
      *
@@ -482,7 +495,8 @@ final class DisksClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see DisksClient::getIamPolicyAsync()} .
      *
@@ -508,7 +522,11 @@ final class DisksClient
     }
 
     /**
-     * Creates a persistent disk in the specified project using the data in the request. You can create a disk from a source (sourceImage, sourceSnapshot, or sourceDisk) or create an empty 500 GB data disk by omitting all properties. You can also create a disk that is larger than the default size by specifying the sizeGb property.
+     * Creates a persistent disk in the specified project using the data
+     * in the request. You can create a disk from a source
+     * (sourceImage, sourceSnapshot, orsourceDisk) or create an empty 500 GB data disk by
+     * omitting all properties. You can also create a disk that is larger than
+     * the default size by specifying the sizeGb property.
      *
      * The async variant is {@see DisksClient::insertAsync()} .
      *
@@ -534,7 +552,8 @@ final class DisksClient
     }
 
     /**
-     * Retrieves a list of persistent disks contained within the specified zone.
+     * Retrieves a list of persistent disks contained within
+     * the specified zone.
      *
      * The async variant is {@see DisksClient::listAsync()} .
      *
@@ -588,7 +607,8 @@ final class DisksClient
     }
 
     /**
-     * Resizes the specified persistent disk. You can only increase the size of the disk.
+     * Resizes the specified persistent disk.
+     * You can only increase the size of the disk.
      *
      * The async variant is {@see DisksClient::resizeAsync()} .
      *
@@ -614,7 +634,8 @@ final class DisksClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see DisksClient::setIamPolicyAsync()} .
      *
@@ -640,7 +661,8 @@ final class DisksClient
     }
 
     /**
-     * Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a disk. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see DisksClient::setLabelsAsync()} .
      *
@@ -666,7 +688,8 @@ final class DisksClient
     }
 
     /**
-     * Starts asynchronous replication. Must be invoked on the primary disk.
+     * Starts asynchronous replication.
+     * Must be invoked on the primary disk.
      *
      * The async variant is {@see DisksClient::startAsyncReplicationAsync()} .
      *
@@ -694,7 +717,8 @@ final class DisksClient
     }
 
     /**
-     * Stops asynchronous replication. Can be invoked either on the primary or on the secondary disk.
+     * Stops asynchronous replication.
+     * Can be invoked either on the primary or on the secondary disk.
      *
      * The async variant is {@see DisksClient::stopAsyncReplicationAsync()} .
      *
@@ -722,7 +746,8 @@ final class DisksClient
     }
 
     /**
-     * Stops asynchronous replication for a consistency group of disks. Can be invoked either in the primary or secondary scope.
+     * Stops asynchronous replication for a consistency group of disks.
+     * Can be invoked either in the primary or secondary scope.
      *
      * The async variant is {@see DisksClient::stopGroupAsyncReplicationAsync()} .
      *
@@ -778,7 +803,9 @@ final class DisksClient
     }
 
     /**
-     * Updates the specified disk with the data included in the request. The update is performed only on selected fields included as part of update-mask. Only the following fields can be modified: user_license.
+     * Updates the specified disk with the data included in the request.
+     * The update is performed only on selected fields included as part
+     * of update-mask. Only the following fields can be modified: user_license.
      *
      * The async variant is {@see DisksClient::updateAsync()} .
      *

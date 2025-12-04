@@ -276,7 +276,10 @@ final class NodeTemplatesClient
     }
 
     /**
-     * Retrieves an aggregated list of node templates. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of node templates.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NodeTemplatesClient::aggregatedListAsync()} .
      *
@@ -356,7 +359,8 @@ final class NodeTemplatesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see NodeTemplatesClient::getIamPolicyAsync()} .
      *
@@ -382,7 +386,8 @@ final class NodeTemplatesClient
     }
 
     /**
-     * Creates a NodeTemplate resource in the specified project using the data included in the request.
+     * Creates a NodeTemplate resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see NodeTemplatesClient::insertAsync()} .
      *
@@ -408,7 +413,8 @@ final class NodeTemplatesClient
     }
 
     /**
-     * Retrieves a list of node templates available to the specified project.
+     * Retrieves a list of node templates available to the specified
+     * project.
      *
      * The async variant is {@see NodeTemplatesClient::listAsync()} .
      *
@@ -434,7 +440,8 @@ final class NodeTemplatesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see NodeTemplatesClient::setIamPolicyAsync()} .
      *

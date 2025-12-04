@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\MachineImagesClient;
 use Google\Cloud\Compute\V1\ListMachineImagesRequest;
 
 /**
- * Retrieves a list of machine images that are contained within the specified project.
+ * Retrieves a list of machine images that are contained within
+ * the specified project.
  *
  * @param string $project Project ID for this request.
  */

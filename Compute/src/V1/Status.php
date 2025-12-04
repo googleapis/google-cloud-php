@@ -9,7 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+ * The `Status` type defines a logical error model that is suitable for
+ * different programming environments, including REST APIs and RPC APIs. It is
+ * used by [gRPC](https://github.com/grpc). Each `Status` message contains
+ * three pieces of data: error code, error message, and error details.
+ * You can find out more about this error model and how to work with it in the
+ * [API Design Guide](https://cloud.google.com/apis/design/errors).
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Status</code>
  */
@@ -22,13 +27,16 @@ class Status extends \Google\Protobuf\Internal\Message
      */
     protected $code = null;
     /**
-     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of
+     * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 483979842;</code>
      */
     private $details;
     /**
-     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any
+     * user-facing error message should be localized and sent in the
+     * google.rpc.Status.details field, or localized by the client.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
@@ -43,9 +51,12 @@ class Status extends \Google\Protobuf\Internal\Message
      *     @type int $code
      *           The status code, which should be an enum value of google.rpc.Code.
      *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $details
-     *           A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     *           A list of messages that carry the error details.  There is a common set of
+     *           message types for APIs to use.
      *     @type string $message
-     *           A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     *           A developer-facing error message, which should be in English. Any
+     *           user-facing error message should be localized and sent in the
+     *           google.rpc.Status.details field, or localized by the client.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,7 +101,8 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of
+     * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 483979842;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -101,7 +113,8 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of
+     * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 483979842;</code>
      * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
@@ -116,7 +129,9 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any
+     * user-facing error message should be localized and sent in the
+     * google.rpc.Status.details field, or localized by the client.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @return string
@@ -137,7 +152,9 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     * A developer-facing error message, which should be in English. Any
+     * user-facing error message should be localized and sent in the
+     * google.rpc.Status.details field, or localized by the client.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @param string $var

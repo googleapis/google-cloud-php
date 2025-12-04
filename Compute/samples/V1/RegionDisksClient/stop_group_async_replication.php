@@ -31,10 +31,12 @@ use Google\Cloud\Compute\V1\StopGroupAsyncReplicationRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
- * Stops asynchronous replication for a consistency group of disks. Can be invoked either in the primary or secondary scope.
+ * Stops asynchronous replication for a consistency group of disks.
+ * Can be invoked either in the primary or secondary scope.
  *
  * @param string $project Project ID for this request.
- * @param string $region  The name of the region for this request. This must be the region of the primary or secondary disks in the consistency group.
+ * @param string $region  The name of the region for this request. This must be the region of the
+ *                        primary or secondary disks in the consistency group.
  */
 function stop_group_async_replication_sample(string $project, string $region): void
 {

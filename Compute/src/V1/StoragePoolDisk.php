@@ -21,7 +21,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      */
     private $attached_instances;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -51,7 +52,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      */
     protected $provisioned_throughput = null;
     /**
-     * [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     * [Output Only] Resource policies applied to disk for automatic snapshot
+     * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      */
@@ -91,7 +93,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attached_instances
      *           [Output Only] Instances this disk is attached to.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $disk
      *           [Output Only] The URL of the disk.
      *     @type string $name
@@ -101,7 +104,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      *     @type int|string $provisioned_throughput
      *           [Output Only] The throughput provisioned for the disk.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
-     *           [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     *           [Output Only] Resource policies applied to disk for automatic snapshot
+     *           creations.
      *     @type int|string $size_gb
      *           [Output Only] The disk size, in GB.
      *     @type string $status
@@ -145,7 +149,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -166,7 +171,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -325,7 +331,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     * [Output Only] Resource policies applied to disk for automatic snapshot
+     * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -336,7 +343,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     * [Output Only] Resource policies applied to disk for automatic snapshot
+     * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

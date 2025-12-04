@@ -15,13 +15,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStandbyPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the number of seconds that the MIG should wait to suspend or stop a VM after that VM was created. The initial delay gives the initialization script the time to prepare your VM for a quick scale out. The value of initial delay must be between 0 and 3600 seconds. The default value is 0.
+     * Specifies the number of seconds that the MIG should wait to suspend or
+     * stop a VM after that VM was created. The initial delay gives the
+     * initialization script the time to prepare your VM for a quick scale out.
+     * The value of initial delay must be between 0 and 3600 seconds. The
+     * default value is 0.
      *
      * Generated from protobuf field <code>optional int32 initial_delay_sec = 263207002;</code>
      */
     protected $initial_delay_sec = null;
     /**
-     * Defines how a MIG resumes or starts VMs from a standby pool when the group scales out. The default mode is `MANUAL`.
+     * Defines how a MIG resumes or starts VMs from a standby pool when the
+     * group scales out. The default mode is `MANUAL`.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -35,9 +40,14 @@ class InstanceGroupManagerStandbyPolicy extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type int $initial_delay_sec
-     *           Specifies the number of seconds that the MIG should wait to suspend or stop a VM after that VM was created. The initial delay gives the initialization script the time to prepare your VM for a quick scale out. The value of initial delay must be between 0 and 3600 seconds. The default value is 0.
+     *           Specifies the number of seconds that the MIG should wait to suspend or
+     *           stop a VM after that VM was created. The initial delay gives the
+     *           initialization script the time to prepare your VM for a quick scale out.
+     *           The value of initial delay must be between 0 and 3600 seconds. The
+     *           default value is 0.
      *     @type string $mode
-     *           Defines how a MIG resumes or starts VMs from a standby pool when the group scales out. The default mode is `MANUAL`.
+     *           Defines how a MIG resumes or starts VMs from a standby pool when the
+     *           group scales out. The default mode is `MANUAL`.
      *           Check the Mode enum for the list of possible values.
      * }
      */
@@ -47,7 +57,11 @@ class InstanceGroupManagerStandbyPolicy extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Specifies the number of seconds that the MIG should wait to suspend or stop a VM after that VM was created. The initial delay gives the initialization script the time to prepare your VM for a quick scale out. The value of initial delay must be between 0 and 3600 seconds. The default value is 0.
+     * Specifies the number of seconds that the MIG should wait to suspend or
+     * stop a VM after that VM was created. The initial delay gives the
+     * initialization script the time to prepare your VM for a quick scale out.
+     * The value of initial delay must be between 0 and 3600 seconds. The
+     * default value is 0.
      *
      * Generated from protobuf field <code>optional int32 initial_delay_sec = 263207002;</code>
      * @return int
@@ -68,7 +82,11 @@ class InstanceGroupManagerStandbyPolicy extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Specifies the number of seconds that the MIG should wait to suspend or stop a VM after that VM was created. The initial delay gives the initialization script the time to prepare your VM for a quick scale out. The value of initial delay must be between 0 and 3600 seconds. The default value is 0.
+     * Specifies the number of seconds that the MIG should wait to suspend or
+     * stop a VM after that VM was created. The initial delay gives the
+     * initialization script the time to prepare your VM for a quick scale out.
+     * The value of initial delay must be between 0 and 3600 seconds. The
+     * default value is 0.
      *
      * Generated from protobuf field <code>optional int32 initial_delay_sec = 263207002;</code>
      * @param int $var
@@ -83,7 +101,8 @@ class InstanceGroupManagerStandbyPolicy extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Defines how a MIG resumes or starts VMs from a standby pool when the group scales out. The default mode is `MANUAL`.
+     * Defines how a MIG resumes or starts VMs from a standby pool when the
+     * group scales out. The default mode is `MANUAL`.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -105,7 +124,8 @@ class InstanceGroupManagerStandbyPolicy extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Defines how a MIG resumes or starts VMs from a standby pool when the group scales out. The default mode is `MANUAL`.
+     * Defines how a MIG resumes or starts VMs from a standby pool when the
+     * group scales out. The default mode is `MANUAL`.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>

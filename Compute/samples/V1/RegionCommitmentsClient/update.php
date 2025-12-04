@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\UpdateRegionCommitmentRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified commitment with the data included in the request. Update is performed only on selected fields included as part of update-mask. Only the following fields can be updated: auto_renew and plan.
+ * Updates the specified commitment with the data included in the request.
+ * Update is performed only on selected fields included as part of
+ * update-mask. Only the following fields can be updated: auto_renew and plan.
  *
  * @param string $commitment Name of the commitment that you want to update.
  * @param string $project    Project ID for this request.

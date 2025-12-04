@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\HealthStatusForNetworkEndpoint;
 use UnexpectedValueException;
 
 /**
- * Health state of the ipv6 network endpoint determined based on the health checks configured.
+ * Health state of the ipv6 network endpoint determined based on the health
+ * checks configured.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * DRAINING
  * HEALTHY

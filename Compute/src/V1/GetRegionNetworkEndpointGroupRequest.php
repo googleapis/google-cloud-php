@@ -28,7 +28,8 @@ class GetRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
      */
     protected $project = '';
     /**
-     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the region where
+     * the network endpoint group is located. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,7 +37,8 @@ class GetRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
 
     /**
      * @param string $project              Project ID for this request.
-     * @param string $region               The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * @param string $region               The name of the region where
+     *                                     the network endpoint group is located. It should comply with RFC1035.
      * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
      *
      * @return \Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest
@@ -62,7 +64,8 @@ class GetRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
      *     @type string $project
      *           Project ID for this request.
      *     @type string $region
-     *           The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     *           The name of the region where
+     *           the network endpoint group is located. It should comply with RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +126,8 @@ class GetRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the region where
+     * the network endpoint group is located. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -134,7 +138,8 @@ class GetRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the region where
+     * the network endpoint group is located. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

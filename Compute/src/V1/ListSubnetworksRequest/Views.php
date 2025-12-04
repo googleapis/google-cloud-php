@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\ListSubnetworksRequest;
 use UnexpectedValueException;
 
 /**
- * Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response. 
+ * Defines the extra views returned back in the subnetwork resource.
+ * Supported values:
+ *    - WITH_UTILIZATION: Utilization data is included in the
+ *    response.
  *
  * Protobuf type <code>google.cloud.compute.v1.ListSubnetworksRequest.Views</code>
  */

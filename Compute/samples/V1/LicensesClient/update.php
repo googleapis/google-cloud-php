@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\UpdateLicenseRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates a License resource in the specified project. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Updates a License resource in the specified project.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $license The license name for this request.
  * @param string $project Project ID for this request.

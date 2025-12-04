@@ -9,26 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * UrlMaps A host-matching rule for a URL. If matched, will use the named PathMatcher to select the BackendService.
+ * UrlMaps
+ * A host-matching rule for a URL. If matched, will use the namedPathMatcher to select the BackendService.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.HostRule</code>
  */
 class HostRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * The list of host patterns to match. They must be valid hostnames with optional port numbers in the format host:port. * matches any string of ([a-z0-9-.]*). In that case, * must be the first character, and if followed by anything, the immediate following character must be either - or .. * based matching is not supported when the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true.
+     * The list of host patterns to match. They must be valid hostnames with
+     * optional port numbers in the format host:port.* matches any string of ([a-z0-9-.]*). In
+     * that case, * must be the first character, and if followed by
+     * anything, the immediate following character must be either -
+     * or ..
+     * * based matching is not supported when the URL map is bound
+     * to a target gRPC proxy that has the validateForProxyless field
+     * set to true.
      *
      * Generated from protobuf field <code>repeated string hosts = 99467211;</code>
      */
     private $hosts;
     /**
-     * The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.
+     * The name of the PathMatcher to use to match the path portion
+     * of the URL if the hostRule matches the URL's host portion.
      *
      * Generated from protobuf field <code>optional string path_matcher = 337813272;</code>
      */
@@ -41,11 +51,20 @@ class HostRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hosts
-     *           The list of host patterns to match. They must be valid hostnames with optional port numbers in the format host:port. * matches any string of ([a-z0-9-.]*). In that case, * must be the first character, and if followed by anything, the immediate following character must be either - or .. * based matching is not supported when the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true.
+     *           The list of host patterns to match. They must be valid hostnames with
+     *           optional port numbers in the format host:port.* matches any string of ([a-z0-9-.]*). In
+     *           that case, * must be the first character, and if followed by
+     *           anything, the immediate following character must be either -
+     *           or ..
+     *           * based matching is not supported when the URL map is bound
+     *           to a target gRPC proxy that has the validateForProxyless field
+     *           set to true.
      *     @type string $path_matcher
-     *           The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.
+     *           The name of the PathMatcher to use to match the path portion
+     *           of the URL if the hostRule matches the URL's host portion.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +73,8 @@ class HostRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -75,7 +95,8 @@ class HostRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -90,7 +111,14 @@ class HostRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of host patterns to match. They must be valid hostnames with optional port numbers in the format host:port. * matches any string of ([a-z0-9-.]*). In that case, * must be the first character, and if followed by anything, the immediate following character must be either - or .. * based matching is not supported when the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true.
+     * The list of host patterns to match. They must be valid hostnames with
+     * optional port numbers in the format host:port.* matches any string of ([a-z0-9-.]*). In
+     * that case, * must be the first character, and if followed by
+     * anything, the immediate following character must be either -
+     * or ..
+     * * based matching is not supported when the URL map is bound
+     * to a target gRPC proxy that has the validateForProxyless field
+     * set to true.
      *
      * Generated from protobuf field <code>repeated string hosts = 99467211;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -101,7 +129,14 @@ class HostRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of host patterns to match. They must be valid hostnames with optional port numbers in the format host:port. * matches any string of ([a-z0-9-.]*). In that case, * must be the first character, and if followed by anything, the immediate following character must be either - or .. * based matching is not supported when the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true.
+     * The list of host patterns to match. They must be valid hostnames with
+     * optional port numbers in the format host:port.* matches any string of ([a-z0-9-.]*). In
+     * that case, * must be the first character, and if followed by
+     * anything, the immediate following character must be either -
+     * or ..
+     * * based matching is not supported when the URL map is bound
+     * to a target gRPC proxy that has the validateForProxyless field
+     * set to true.
      *
      * Generated from protobuf field <code>repeated string hosts = 99467211;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -116,7 +151,8 @@ class HostRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.
+     * The name of the PathMatcher to use to match the path portion
+     * of the URL if the hostRule matches the URL's host portion.
      *
      * Generated from protobuf field <code>optional string path_matcher = 337813272;</code>
      * @return string
@@ -137,7 +173,8 @@ class HostRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.
+     * The name of the PathMatcher to use to match the path portion
+     * of the URL if the hostRule matches the URL's host portion.
      *
      * Generated from protobuf field <code>optional string path_matcher = 337813272;</code>
      * @param string $var

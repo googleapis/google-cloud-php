@@ -282,7 +282,10 @@ final class ReservationsClient
     }
 
     /**
-     * Retrieves an aggregated list of reservations. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of reservations.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see ReservationsClient::aggregatedListAsync()} .
      *
@@ -362,7 +365,8 @@ final class ReservationsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see ReservationsClient::getIamPolicyAsync()} .
      *
@@ -388,7 +392,8 @@ final class ReservationsClient
     }
 
     /**
-     * Creates a new reservation. For more information, read Reserving zonal resources.
+     * Creates a new reservation. For more information, readReserving zonal
+     * resources.
      *
      * The async variant is {@see ReservationsClient::insertAsync()} .
      *
@@ -414,7 +419,8 @@ final class ReservationsClient
     }
 
     /**
-     * A list of all the reservations that have been configured for the specified project in specified zone.
+     * A list of all the reservations that have been configured for the
+     * specified project in specified zone.
      *
      * The async variant is {@see ReservationsClient::listAsync()} .
      *
@@ -468,7 +474,9 @@ final class ReservationsClient
     }
 
     /**
-     * Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
+     * Resizes the reservation (applicable to standalone reservations only). For
+     * more information, readModifying
+     * reservations.
      *
      * The async variant is {@see ReservationsClient::resizeAsync()} .
      *
@@ -494,7 +502,8 @@ final class ReservationsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see ReservationsClient::setIamPolicyAsync()} .
      *

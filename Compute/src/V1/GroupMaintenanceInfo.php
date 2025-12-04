@@ -28,13 +28,15 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $instance_maintenance_pending_count = null;
     /**
-     * Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have ongoing maintenance.
+     * Progress for ongoing maintenance for this group of VMs/hosts.
+     * Describes number of hosts in the block that have ongoing maintenance.
      *
      * Generated from protobuf field <code>optional int32 maintenance_ongoing_count = 219781919;</code>
      */
     protected $maintenance_ongoing_count = null;
     /**
-     * Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have pending maintenance.
+     * Progress for ongoing maintenance for this group of VMs/hosts.
+     * Describes number of hosts in the block that have pending maintenance.
      *
      * Generated from protobuf field <code>optional int32 maintenance_pending_count = 158783547;</code>
      */
@@ -47,13 +49,19 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $scheduling_type = null;
     /**
-     * Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     * Describes number of subblock Infrastructure that has ongoing maintenance.
+     * Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     * contained in the Subblock that is necessary for a VM Family(e.g. NVLink
+     * Domains). Not all VM Families will support this field.
      *
      * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_ongoing_count = 366161790;</code>
      */
     protected $subblock_infra_maintenance_ongoing_count = null;
     /**
-     * Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
+     * Describes number of subblock Infrastructure that has pending maintenance.
+     *  Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     *  contained in the Subblock that is necessary for a VM Family (e.g. NVLink
+     *  Domains). Not all VM Families will support this field.
      *
      * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_pending_count = 305163418;</code>
      */
@@ -76,16 +84,24 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
      *     @type int $instance_maintenance_pending_count
      *           Describes number of instances that have pending maintenance.
      *     @type int $maintenance_ongoing_count
-     *           Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have ongoing maintenance.
+     *           Progress for ongoing maintenance for this group of VMs/hosts.
+     *           Describes number of hosts in the block that have ongoing maintenance.
      *     @type int $maintenance_pending_count
-     *           Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have pending maintenance.
+     *           Progress for ongoing maintenance for this group of VMs/hosts.
+     *           Describes number of hosts in the block that have pending maintenance.
      *     @type string $scheduling_type
      *           The type of maintenance for the reservation.
      *           Check the SchedulingType enum for the list of possible values.
      *     @type int $subblock_infra_maintenance_ongoing_count
-     *           Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     *           Describes number of subblock Infrastructure that has ongoing maintenance.
+     *           Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     *           contained in the Subblock that is necessary for a VM Family(e.g. NVLink
+     *           Domains). Not all VM Families will support this field.
      *     @type int $subblock_infra_maintenance_pending_count
-     *           Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
+     *           Describes number of subblock Infrastructure that has pending maintenance.
+     *            Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     *            contained in the Subblock that is necessary for a VM Family (e.g. NVLink
+     *            Domains). Not all VM Families will support this field.
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_group_maintenance
      *           Maintenance information on this group of VMs.
      * }
@@ -168,7 +184,8 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have ongoing maintenance.
+     * Progress for ongoing maintenance for this group of VMs/hosts.
+     * Describes number of hosts in the block that have ongoing maintenance.
      *
      * Generated from protobuf field <code>optional int32 maintenance_ongoing_count = 219781919;</code>
      * @return int
@@ -189,7 +206,8 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have ongoing maintenance.
+     * Progress for ongoing maintenance for this group of VMs/hosts.
+     * Describes number of hosts in the block that have ongoing maintenance.
      *
      * Generated from protobuf field <code>optional int32 maintenance_ongoing_count = 219781919;</code>
      * @param int $var
@@ -204,7 +222,8 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have pending maintenance.
+     * Progress for ongoing maintenance for this group of VMs/hosts.
+     * Describes number of hosts in the block that have pending maintenance.
      *
      * Generated from protobuf field <code>optional int32 maintenance_pending_count = 158783547;</code>
      * @return int
@@ -225,7 +244,8 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Progress for ongoing maintenance for this group of VMs/hosts. Describes number of hosts in the block that have pending maintenance.
+     * Progress for ongoing maintenance for this group of VMs/hosts.
+     * Describes number of hosts in the block that have pending maintenance.
      *
      * Generated from protobuf field <code>optional int32 maintenance_pending_count = 158783547;</code>
      * @param int $var
@@ -278,7 +298,10 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     * Describes number of subblock Infrastructure that has ongoing maintenance.
+     * Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     * contained in the Subblock that is necessary for a VM Family(e.g. NVLink
+     * Domains). Not all VM Families will support this field.
      *
      * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_ongoing_count = 366161790;</code>
      * @return int
@@ -299,7 +322,10 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describes number of subblock Infrastructure that has ongoing maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family(e.g. NVLink Domains). Not all VM Families will support this field.
+     * Describes number of subblock Infrastructure that has ongoing maintenance.
+     * Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     * contained in the Subblock that is necessary for a VM Family(e.g. NVLink
+     * Domains). Not all VM Families will support this field.
      *
      * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_ongoing_count = 366161790;</code>
      * @param int $var
@@ -314,7 +340,10 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
+     * Describes number of subblock Infrastructure that has pending maintenance.
+     *  Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     *  contained in the Subblock that is necessary for a VM Family (e.g. NVLink
+     *  Domains). Not all VM Families will support this field.
      *
      * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_pending_count = 305163418;</code>
      * @return int
@@ -335,7 +364,10 @@ class GroupMaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Describes number of subblock Infrastructure that has pending maintenance. Here, Subblock Infrastructure Maintenance pertains to upstream hardware contained in the Subblock that is necessary for a VM Family (e.g. NVLink Domains). Not all VM Families will support this field.
+     * Describes number of subblock Infrastructure that has pending maintenance.
+     *  Here, Subblock Infrastructure Maintenance pertains to upstream hardware
+     *  contained in the Subblock that is necessary for a VM Family (e.g. NVLink
+     *  Domains). Not all VM Families will support this field.
      *
      * Generated from protobuf field <code>optional int32 subblock_infra_maintenance_pending_count = 305163418;</code>
      * @param int $var

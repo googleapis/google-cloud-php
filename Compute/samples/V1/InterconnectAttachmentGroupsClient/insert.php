@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InterconnectAttachmentGroup;
 use Google\Rpc\Status;
 
 /**
- * Creates a InterconnectAttachmentGroup in the specified project in the given scope using the parameters that are included in the request.
+ * Creates a InterconnectAttachmentGroup in the specified project in the given
+ * scope using the parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
  */

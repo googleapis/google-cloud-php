@@ -296,7 +296,8 @@ final class BackendServicesClient
     }
 
     /**
-     * Adds a key for validating requests with signed URLs for this backend service.
+     * Adds a key for validating requests with signed URLs for this backend
+     * service.
      *
      * The async variant is {@see BackendServicesClient::addSignedUrlKeyAsync()} .
      *
@@ -324,7 +325,11 @@ final class BackendServicesClient
     }
 
     /**
-     * Retrieves the list of all BackendService resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all BackendService resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see BackendServicesClient::aggregatedListAsync()} .
      *
@@ -378,7 +383,8 @@ final class BackendServicesClient
     }
 
     /**
-     * Deletes a key for validating requests with signed URLs for this backend service.
+     * Deletes a key for validating requests with signed URLs for this backend
+     * service.
      *
      * The async variant is {@see BackendServicesClient::deleteSignedUrlKeyAsync()} .
      *
@@ -461,7 +467,14 @@ final class BackendServicesClient
     }
 
     /**
-     * Gets the most recent health check results for this BackendService. Example request body: { "group": "/zones/us-east1-b/instanceGroups/lb-backend-example" }
+     * Gets the most recent health check results for this
+     * BackendService.
+     *
+     * Example request body:
+     *
+     * {
+     * "group": "/zones/us-east1-b/instanceGroups/lb-backend-example"
+     * }
      *
      * The async variant is {@see BackendServicesClient::getHealthAsync()} .
      *
@@ -489,7 +502,8 @@ final class BackendServicesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see BackendServicesClient::getIamPolicyAsync()} .
      *
@@ -515,7 +529,9 @@ final class BackendServicesClient
     }
 
     /**
-     * Creates a BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview .
+     * Creates a BackendService resource in the specified project using
+     * the data included in the request. For more information, see
+     * Backend services overview.
      *
      * The async variant is {@see BackendServicesClient::insertAsync()} .
      *
@@ -541,7 +557,8 @@ final class BackendServicesClient
     }
 
     /**
-     * Retrieves the list of BackendService resources available to the specified project.
+     * Retrieves the list of BackendService resources available to the specified
+     * project.
      *
      * The async variant is {@see BackendServicesClient::listAsync()} .
      *
@@ -593,7 +610,11 @@ final class BackendServicesClient
     }
 
     /**
-     * Patches the specified BackendService resource with the data included in the request. For more information, see Backend services overview. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Patches the specified BackendService resource with the data included in the
+     * request. For more information, see
+     * Backend services overview. This method
+     * supports PATCH semantics and uses the JSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see BackendServicesClient::patchAsync()} .
      *
@@ -648,7 +669,8 @@ final class BackendServicesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see BackendServicesClient::setIamPolicyAsync()} .
      *
@@ -674,7 +696,9 @@ final class BackendServicesClient
     }
 
     /**
-     * Sets the Google Cloud Armor security policy for the specified backend service. For more information, see Google Cloud Armor Overview
+     * Sets the Google Cloud Armor security policy for the specified backend
+     * service. For more information, seeGoogle
+     * Cloud Armor Overview
      *
      * The async variant is {@see BackendServicesClient::setSecurityPolicyAsync()} .
      *
@@ -730,7 +754,9 @@ final class BackendServicesClient
     }
 
     /**
-     * Updates the specified BackendService resource with the data included in the request. For more information, see Backend services overview.
+     * Updates the specified BackendService resource with the data included in the
+     * request. For more information, seeBackend
+     * services overview.
      *
      * The async variant is {@see BackendServicesClient::updateAsync()} .
      *

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The current IP utilization of all subnetwork ranges. Contains the total number of allocated and free IPs in each range.
+ * The current IP utilization of all subnetwork ranges. Contains the total
+ * number of allocated and free IPs in each range.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SubnetworkUtilizationDetails</code>
  */
@@ -34,7 +35,8 @@ class SubnetworkUtilizationDetails extends \Google\Protobuf\Internal\Message
      */
     protected $internal_ipv6_utilization = null;
     /**
-     * Utilizations of all IPV4 IP ranges. For primary ranges, the range name will be empty.
+     * Utilizations of all IPV4 IP ranges. For primary ranges, the range name
+     * will be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkUtilizationDetailsIPV4Utilization ipv4_utilizations = 206180011;</code>
      */
@@ -53,7 +55,8 @@ class SubnetworkUtilizationDetails extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV6Utilization $internal_ipv6_utilization
      *           Utilizations of internal IPV6 IP range.
      *     @type array<\Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV4Utilization>|\Google\Protobuf\Internal\RepeatedField $ipv4_utilizations
-     *           Utilizations of all IPV4 IP ranges. For primary ranges, the range name will be empty.
+     *           Utilizations of all IPV4 IP ranges. For primary ranges, the range name
+     *           will be empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,7 +173,8 @@ class SubnetworkUtilizationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Utilizations of all IPV4 IP ranges. For primary ranges, the range name will be empty.
+     * Utilizations of all IPV4 IP ranges. For primary ranges, the range name
+     * will be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkUtilizationDetailsIPV4Utilization ipv4_utilizations = 206180011;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -181,7 +185,8 @@ class SubnetworkUtilizationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Utilizations of all IPV4 IP ranges. For primary ranges, the range name will be empty.
+     * Utilizations of all IPV4 IP ranges. For primary ranges, the range name
+     * will be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkUtilizationDetailsIPV4Utilization ipv4_utilizations = 206180011;</code>
      * @param array<\Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV4Utilization>|\Google\Protobuf\Internal\RepeatedField $var

@@ -9,45 +9,57 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a match condition that incoming traffic is evaluated against. Exactly one field must be specified.
+ * Represents a match condition that incoming traffic is evaluated against.
+ * Exactly one field must be specified.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.FirewallPolicyRuleMatcher</code>
  */
 class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Address groups which should be matched against the traffic destination. Maximum number of destination address groups is 10.
+     * Address groups which should be matched against the traffic destination.
+     * Maximum number of destination address groups is 10.
      *
      * Generated from protobuf field <code>repeated string dest_address_groups = 468760508;</code>
      */
     private $dest_address_groups;
     /**
-     * Fully Qualified Domain Name (FQDN) which should be matched against traffic destination. Maximum number of destination fqdn allowed is 100.
+     * Fully Qualified Domain Name (FQDN) which should be matched against
+     * traffic destination.
+     * Maximum number of destination fqdn allowed is 100.
      *
      * Generated from protobuf field <code>repeated string dest_fqdns = 370712737;</code>
      */
     private $dest_fqdns;
     /**
-     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
+     * CIDR IP address range.
+     * Maximum number of destination CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      */
     private $dest_ip_ranges;
     /**
-     * Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     * Network type of the traffic destination. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - NON_INTERNET
      * Check the DestNetworkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string dest_network_type = 409853224;</code>
      */
     protected $dest_network_type = null;
     /**
-     * Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of dest region codes allowed is 5000.
+     * Region codes whose IP addresses will be used to match for destination
+     * of traffic. Should be specified as 2 letter country code defined as per
+     * ISO 3166 alpha-2 country codes. ex."US"
+     * Maximum number of dest region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_region_codes = 199120280;</code>
      */
     private $dest_region_codes;
     /**
-     * Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic destination.
+     * Names of Network Threat Intelligence lists.
+     * The IPs in these lists will be matched against traffic destination.
      *
      * Generated from protobuf field <code>repeated string dest_threat_intelligences = 119896492;</code>
      */
@@ -59,25 +71,34 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      */
     private $layer4_configs;
     /**
-     * Address groups which should be matched against the traffic source. Maximum number of source address groups is 10.
+     * Address groups which should be matched against the traffic source.
+     * Maximum number of source address groups is 10.
      *
      * Generated from protobuf field <code>repeated string src_address_groups = 436423738;</code>
      */
     private $src_address_groups;
     /**
-     * Fully Qualified Domain Name (FQDN) which should be matched against traffic source. Maximum number of source fqdn allowed is 100.
+     * Fully Qualified Domain Name (FQDN) which should be matched against
+     * traffic source.
+     * Maximum number of source fqdn allowed is 100.
      *
      * Generated from protobuf field <code>repeated string src_fqdns = 435906147;</code>
      */
     private $src_fqdns;
     /**
-     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
+     * CIDR IP address range.
+     * Maximum number of source CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      */
     private $src_ip_ranges;
     /**
-     * Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     * Network type of the traffic source. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - INTRA_VPC
+     *      - NON_INTERNET
+     *      - VPC_NETWORKS
      * Check the SrcNetworkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string src_network_type = 309819686;</code>
@@ -90,19 +111,27 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      */
     private $src_networks;
     /**
-     * Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of source region codes allowed is 5000.
+     * Region codes whose IP addresses will be used to match for source
+     * of traffic. Should be specified as 2 letter country code defined as per
+     * ISO 3166 alpha-2 country codes. ex."US"
+     * Maximum number of source region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
      */
     private $src_region_codes;
     /**
-     * List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
+     * List of secure tag values, which should be matched at the source
+     * of the traffic.
+     * For INGRESS rule, if all the srcSecureTag are INEFFECTIVE,
+     * and there is no srcIpRange, this rule will be ignored.
+     * Maximum number of source tag values allowed is 256.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag src_secure_tags = 508791302;</code>
      */
     private $src_secure_tags;
     /**
-     * Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic source.
+     * Names of Network Threat Intelligence lists.
+     * The IPs in these lists will be matched against traffic source.
      *
      * Generated from protobuf field <code>repeated string src_threat_intelligences = 323631018;</code>
      */
@@ -115,37 +144,65 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_address_groups
-     *           Address groups which should be matched against the traffic destination. Maximum number of destination address groups is 10.
+     *           Address groups which should be matched against the traffic destination.
+     *           Maximum number of destination address groups is 10.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_fqdns
-     *           Fully Qualified Domain Name (FQDN) which should be matched against traffic destination. Maximum number of destination fqdn allowed is 100.
+     *           Fully Qualified Domain Name (FQDN) which should be matched against
+     *           traffic destination.
+     *           Maximum number of destination fqdn allowed is 100.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
-     *           CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
+     *           CIDR IP address range.
+     *           Maximum number of destination CIDR IP ranges allowed is 5000.
      *     @type string $dest_network_type
-     *           Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     *           Network type of the traffic destination. Allowed values are:
+     *                - UNSPECIFIED
+     *                - INTERNET
+     *                - NON_INTERNET
      *           Check the DestNetworkType enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_region_codes
-     *           Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of dest region codes allowed is 5000.
+     *           Region codes whose IP addresses will be used to match for destination
+     *           of traffic. Should be specified as 2 letter country code defined as per
+     *           ISO 3166 alpha-2 country codes. ex."US"
+     *           Maximum number of dest region codes allowed is 5000.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_threat_intelligences
-     *           Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic destination.
+     *           Names of Network Threat Intelligence lists.
+     *           The IPs in these lists will be matched against traffic destination.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRuleMatcherLayer4Config>|\Google\Protobuf\Internal\RepeatedField $layer4_configs
      *           Pairs of IP protocols and ports that the rule should match.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_address_groups
-     *           Address groups which should be matched against the traffic source. Maximum number of source address groups is 10.
+     *           Address groups which should be matched against the traffic source.
+     *           Maximum number of source address groups is 10.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_fqdns
-     *           Fully Qualified Domain Name (FQDN) which should be matched against traffic source. Maximum number of source fqdn allowed is 100.
+     *           Fully Qualified Domain Name (FQDN) which should be matched against
+     *           traffic source.
+     *           Maximum number of source fqdn allowed is 100.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
-     *           CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
+     *           CIDR IP address range.
+     *           Maximum number of source CIDR IP ranges allowed is 5000.
      *     @type string $src_network_type
-     *           Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     *           Network type of the traffic source. Allowed values are:
+     *                - UNSPECIFIED
+     *                - INTERNET
+     *                - INTRA_VPC
+     *                - NON_INTERNET
+     *                - VPC_NETWORKS
      *           Check the SrcNetworkType enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_networks
      *           Networks of the traffic source. It can be either a full or partial url.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_region_codes
-     *           Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of source region codes allowed is 5000.
+     *           Region codes whose IP addresses will be used to match for source
+     *           of traffic. Should be specified as 2 letter country code defined as per
+     *           ISO 3166 alpha-2 country codes. ex."US"
+     *           Maximum number of source region codes allowed is 5000.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>|\Google\Protobuf\Internal\RepeatedField $src_secure_tags
-     *           List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
+     *           List of secure tag values, which should be matched at the source
+     *           of the traffic.
+     *           For INGRESS rule, if all the srcSecureTag are INEFFECTIVE,
+     *           and there is no srcIpRange, this rule will be ignored.
+     *           Maximum number of source tag values allowed is 256.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_threat_intelligences
-     *           Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic source.
+     *           Names of Network Threat Intelligence lists.
+     *           The IPs in these lists will be matched against traffic source.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,7 +211,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Address groups which should be matched against the traffic destination. Maximum number of destination address groups is 10.
+     * Address groups which should be matched against the traffic destination.
+     * Maximum number of destination address groups is 10.
      *
      * Generated from protobuf field <code>repeated string dest_address_groups = 468760508;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -165,7 +223,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Address groups which should be matched against the traffic destination. Maximum number of destination address groups is 10.
+     * Address groups which should be matched against the traffic destination.
+     * Maximum number of destination address groups is 10.
      *
      * Generated from protobuf field <code>repeated string dest_address_groups = 468760508;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -180,7 +239,9 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully Qualified Domain Name (FQDN) which should be matched against traffic destination. Maximum number of destination fqdn allowed is 100.
+     * Fully Qualified Domain Name (FQDN) which should be matched against
+     * traffic destination.
+     * Maximum number of destination fqdn allowed is 100.
      *
      * Generated from protobuf field <code>repeated string dest_fqdns = 370712737;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -191,7 +252,9 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully Qualified Domain Name (FQDN) which should be matched against traffic destination. Maximum number of destination fqdn allowed is 100.
+     * Fully Qualified Domain Name (FQDN) which should be matched against
+     * traffic destination.
+     * Maximum number of destination fqdn allowed is 100.
      *
      * Generated from protobuf field <code>repeated string dest_fqdns = 370712737;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -206,7 +269,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
+     * CIDR IP address range.
+     * Maximum number of destination CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -217,7 +281,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
+     * CIDR IP address range.
+     * Maximum number of destination CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -232,7 +297,10 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     * Network type of the traffic destination. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - NON_INTERNET
      * Check the DestNetworkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string dest_network_type = 409853224;</code>
@@ -254,7 +322,10 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+     * Network type of the traffic destination. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - NON_INTERNET
      * Check the DestNetworkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string dest_network_type = 409853224;</code>
@@ -270,7 +341,10 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of dest region codes allowed is 5000.
+     * Region codes whose IP addresses will be used to match for destination
+     * of traffic. Should be specified as 2 letter country code defined as per
+     * ISO 3166 alpha-2 country codes. ex."US"
+     * Maximum number of dest region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_region_codes = 199120280;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -281,7 +355,10 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of dest region codes allowed is 5000.
+     * Region codes whose IP addresses will be used to match for destination
+     * of traffic. Should be specified as 2 letter country code defined as per
+     * ISO 3166 alpha-2 country codes. ex."US"
+     * Maximum number of dest region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_region_codes = 199120280;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -296,7 +373,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic destination.
+     * Names of Network Threat Intelligence lists.
+     * The IPs in these lists will be matched against traffic destination.
      *
      * Generated from protobuf field <code>repeated string dest_threat_intelligences = 119896492;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -307,7 +385,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic destination.
+     * Names of Network Threat Intelligence lists.
+     * The IPs in these lists will be matched against traffic destination.
      *
      * Generated from protobuf field <code>repeated string dest_threat_intelligences = 119896492;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -348,7 +427,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Address groups which should be matched against the traffic source. Maximum number of source address groups is 10.
+     * Address groups which should be matched against the traffic source.
+     * Maximum number of source address groups is 10.
      *
      * Generated from protobuf field <code>repeated string src_address_groups = 436423738;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -359,7 +439,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Address groups which should be matched against the traffic source. Maximum number of source address groups is 10.
+     * Address groups which should be matched against the traffic source.
+     * Maximum number of source address groups is 10.
      *
      * Generated from protobuf field <code>repeated string src_address_groups = 436423738;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -374,7 +455,9 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully Qualified Domain Name (FQDN) which should be matched against traffic source. Maximum number of source fqdn allowed is 100.
+     * Fully Qualified Domain Name (FQDN) which should be matched against
+     * traffic source.
+     * Maximum number of source fqdn allowed is 100.
      *
      * Generated from protobuf field <code>repeated string src_fqdns = 435906147;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -385,7 +468,9 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully Qualified Domain Name (FQDN) which should be matched against traffic source. Maximum number of source fqdn allowed is 100.
+     * Fully Qualified Domain Name (FQDN) which should be matched against
+     * traffic source.
+     * Maximum number of source fqdn allowed is 100.
      *
      * Generated from protobuf field <code>repeated string src_fqdns = 435906147;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -400,7 +485,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
+     * CIDR IP address range.
+     * Maximum number of source CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -411,7 +497,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
+     * CIDR IP address range.
+     * Maximum number of source CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -426,7 +513,12 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     * Network type of the traffic source. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - INTRA_VPC
+     *      - NON_INTERNET
+     *      - VPC_NETWORKS
      * Check the SrcNetworkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string src_network_type = 309819686;</code>
@@ -448,7 +540,12 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Network type of the traffic source. Allowed values are: - UNSPECIFIED - INTERNET - INTRA_VPC - NON_INTERNET - VPC_NETWORKS
+     * Network type of the traffic source. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - INTRA_VPC
+     *      - NON_INTERNET
+     *      - VPC_NETWORKS
      * Check the SrcNetworkType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string src_network_type = 309819686;</code>
@@ -490,7 +587,10 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of source region codes allowed is 5000.
+     * Region codes whose IP addresses will be used to match for source
+     * of traffic. Should be specified as 2 letter country code defined as per
+     * ISO 3166 alpha-2 country codes. ex."US"
+     * Maximum number of source region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -501,7 +601,10 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex."US" Maximum number of source region codes allowed is 5000.
+     * Region codes whose IP addresses will be used to match for source
+     * of traffic. Should be specified as 2 letter country code defined as per
+     * ISO 3166 alpha-2 country codes. ex."US"
+     * Maximum number of source region codes allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -516,7 +619,11 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
+     * List of secure tag values, which should be matched at the source
+     * of the traffic.
+     * For INGRESS rule, if all the srcSecureTag are INEFFECTIVE,
+     * and there is no srcIpRange, this rule will be ignored.
+     * Maximum number of source tag values allowed is 256.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag src_secure_tags = 508791302;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -527,7 +634,11 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.
+     * List of secure tag values, which should be matched at the source
+     * of the traffic.
+     * For INGRESS rule, if all the srcSecureTag are INEFFECTIVE,
+     * and there is no srcIpRange, this rule will be ignored.
+     * Maximum number of source tag values allowed is 256.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag src_secure_tags = 508791302;</code>
      * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>|\Google\Protobuf\Internal\RepeatedField $var
@@ -542,7 +653,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic source.
+     * Names of Network Threat Intelligence lists.
+     * The IPs in these lists will be matched against traffic source.
      *
      * Generated from protobuf field <code>repeated string src_threat_intelligences = 323631018;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -553,7 +665,8 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic source.
+     * Names of Network Threat Intelligence lists.
+     * The IPs in these lists will be matched against traffic source.
      *
      * Generated from protobuf field <code>repeated string src_threat_intelligences = 323631018;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

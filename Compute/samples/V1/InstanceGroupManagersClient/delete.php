@@ -30,11 +30,15 @@ use Google\Cloud\Compute\V1\DeleteInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified managed instance group and all of the instances in that group. Note that the instance group must not belong to a backend service. Read Deleting an instance group for more information.
+ * Deletes the specified managed instance group and all of the instances
+ * in that group. Note that the instance group must not belong to a
+ * backend service. Read
+ * Deleting an instance group for more information.
  *
  * @param string $instanceGroupManager The name of the managed instance group to delete.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located.
  */
 function delete_sample(string $instanceGroupManager, string $project, string $zone): void
 {

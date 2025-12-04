@@ -319,7 +319,8 @@ final class RegionTargetTcpProxiesClient
     }
 
     /**
-     * Creates a TargetTcpProxy resource in the specified project and region using the data included in the request.
+     * Creates a TargetTcpProxy resource in the specified project and region using
+     * the data included in the request.
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::insertAsync()} .
      *
@@ -345,7 +346,8 @@ final class RegionTargetTcpProxiesClient
     }
 
     /**
-     * Retrieves a list of TargetTcpProxy resources available to the specified project in a given region.
+     * Retrieves a list of TargetTcpProxy resources
+     * available to the specified project in a given region.
      *
      * The async variant is {@see RegionTargetTcpProxiesClient::listAsync()} .
      *

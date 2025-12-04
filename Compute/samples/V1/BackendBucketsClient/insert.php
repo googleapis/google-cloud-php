@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InsertBackendBucketRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a BackendBucket resource in the specified project using the data included in the request.
+ * Creates a BackendBucket resource in the specified project using
+ * the data included in the request.
  *
  * @param string $project Project ID for this request.
  */

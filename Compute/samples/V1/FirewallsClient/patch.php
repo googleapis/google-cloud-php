@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\PatchFirewallRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified firewall rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates the specified firewall rule with the data included in the
+ * request. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
  *
  * @param string $firewall Name of the firewall rule to patch.
  * @param string $project  Project ID for this request.

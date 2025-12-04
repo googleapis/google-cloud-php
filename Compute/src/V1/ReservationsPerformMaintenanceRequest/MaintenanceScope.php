@@ -20,7 +20,8 @@ class MaintenanceScope
      */
     const UNDEFINED_MAINTENANCE_SCOPE = 0;
     /**
-     * Trigger maintenance for all hosts belonging to this reservation irrespective of whether VMs are running on them or not.
+     * Trigger maintenance for all hosts belonging to this reservation
+     * irrespective of whether VMs are running on them or not.
      *
      * Generated from protobuf enum <code>ALL = 64897;</code>
      */
@@ -32,13 +33,15 @@ class MaintenanceScope
      */
     const MAINTENANCE_SCOPE_UNSPECIFIED = 78827328;
     /**
-     * Trigger maintenance only on the hosts belonging to this reservation which have VMs running on them.
+     * Trigger maintenance only on the hosts belonging to this reservation which
+     * have VMs running on them.
      *
      * Generated from protobuf enum <code>RUNNING_VMS = 535770588;</code>
      */
     const RUNNING_VMS = 535770588;
     /**
-     * Trigger maintenance only on the hosts belonging to this reservation which do not have any VMs running on them. This is not allowed for Standard ExR
+     * Trigger maintenance only on the hosts belonging to this reservation which
+     * do not have any VMs running on them. This is not allowed for Standard ExR
      *
      * Generated from protobuf enum <code>UNUSED_CAPACITY = 212724995;</code>
      */

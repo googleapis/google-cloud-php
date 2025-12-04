@@ -15,13 +15,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of site keys to be used during the validation of reCAPTCHA action-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     * A list of site keys to be used during the validation of reCAPTCHA
+     * action-tokens. The provided site keys need to be created from
+     * reCAPTCHA API under the same project where the security policy is
+     * created.
      *
      * Generated from protobuf field <code>repeated string action_token_site_keys = 59929885;</code>
      */
     private $action_token_site_keys;
     /**
-     * A list of site keys to be used during the validation of reCAPTCHA session-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     * A list of site keys to be used during the validation of reCAPTCHA
+     * session-tokens. The provided site keys need to be created from
+     * reCAPTCHA API under the same project where the security policy is
+     * created.
      *
      * Generated from protobuf field <code>repeated string session_token_site_keys = 333363581;</code>
      */
@@ -34,9 +40,15 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $action_token_site_keys
-     *           A list of site keys to be used during the validation of reCAPTCHA action-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     *           A list of site keys to be used during the validation of reCAPTCHA
+     *           action-tokens. The provided site keys need to be created from
+     *           reCAPTCHA API under the same project where the security policy is
+     *           created.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $session_token_site_keys
-     *           A list of site keys to be used during the validation of reCAPTCHA session-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     *           A list of site keys to be used during the validation of reCAPTCHA
+     *           session-tokens. The provided site keys need to be created from
+     *           reCAPTCHA API under the same project where the security policy is
+     *           created.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +57,10 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
     }
 
     /**
-     * A list of site keys to be used during the validation of reCAPTCHA action-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     * A list of site keys to be used during the validation of reCAPTCHA
+     * action-tokens. The provided site keys need to be created from
+     * reCAPTCHA API under the same project where the security policy is
+     * created.
      *
      * Generated from protobuf field <code>repeated string action_token_site_keys = 59929885;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,7 +71,10 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
     }
 
     /**
-     * A list of site keys to be used during the validation of reCAPTCHA action-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     * A list of site keys to be used during the validation of reCAPTCHA
+     * action-tokens. The provided site keys need to be created from
+     * reCAPTCHA API under the same project where the security policy is
+     * created.
      *
      * Generated from protobuf field <code>repeated string action_token_site_keys = 59929885;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -71,7 +89,10 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
     }
 
     /**
-     * A list of site keys to be used during the validation of reCAPTCHA session-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     * A list of site keys to be used during the validation of reCAPTCHA
+     * session-tokens. The provided site keys need to be created from
+     * reCAPTCHA API under the same project where the security policy is
+     * created.
      *
      * Generated from protobuf field <code>repeated string session_token_site_keys = 333363581;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -82,7 +103,10 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
     }
 
     /**
-     * A list of site keys to be used during the validation of reCAPTCHA session-tokens. The provided site keys need to be created from reCAPTCHA API under the same project where the security policy is created.
+     * A list of site keys to be used during the validation of reCAPTCHA
+     * session-tokens. The provided site keys need to be created from
+     * reCAPTCHA API under the same project where the security policy is
+     * created.
      *
      * Generated from protobuf field <code>repeated string session_token_site_keys = 333363581;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

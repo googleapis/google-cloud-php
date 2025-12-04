@@ -34,7 +34,10 @@ class GetSubnetworkRequest extends \Google\Protobuf\Internal\Message
      */
     protected $subnetwork = '';
     /**
-     * Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     * Defines the extra views returned back in the subnetwork resource.
+     * Supported values:
+     *    - WITH_UTILIZATION: Utilization data is included in the
+     *    response.
      * Check the Views enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string views = 112204398;</code>
@@ -71,7 +74,10 @@ class GetSubnetworkRequest extends \Google\Protobuf\Internal\Message
      *     @type string $subnetwork
      *           Name of the Subnetwork resource to return.
      *     @type string $views
-     *           Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     *           Defines the extra views returned back in the subnetwork resource.
+     *           Supported values:
+     *              - WITH_UTILIZATION: Utilization data is included in the
+     *              response.
      *           Check the Views enum for the list of possible values.
      * }
      */
@@ -159,7 +165,10 @@ class GetSubnetworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     * Defines the extra views returned back in the subnetwork resource.
+     * Supported values:
+     *    - WITH_UTILIZATION: Utilization data is included in the
+     *    response.
      * Check the Views enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string views = 112204398;</code>
@@ -181,7 +190,10 @@ class GetSubnetworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the extra views returned back in the subnetwork resource. Supported values: - WITH_UTILIZATION: Utilization data is included in the response.
+     * Defines the extra views returned back in the subnetwork resource.
+     * Supported values:
+     *    - WITH_UTILIZATION: Utilization data is included in the
+     *    response.
      * Check the Views enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string views = 112204398;</code>

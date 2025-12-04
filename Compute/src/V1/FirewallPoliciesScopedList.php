@@ -21,7 +21,8 @@ class FirewallPoliciesScopedList extends \Google\Protobuf\Internal\Message
      */
     private $firewall_policies;
     /**
-     * Informational warning which replaces the list of firewall policies when the list is empty.
+     * Informational warning which replaces the list of firewall policies when
+     * the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -36,7 +37,8 @@ class FirewallPoliciesScopedList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $firewall_policies
      *           A list of firewall policies contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           Informational warning which replaces the list of firewall policies when the list is empty.
+     *           Informational warning which replaces the list of firewall policies when
+     *           the list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class FirewallPoliciesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Informational warning which replaces the list of firewall policies when the list is empty.
+     * Informational warning which replaces the list of firewall policies when
+     * the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +95,8 @@ class FirewallPoliciesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Informational warning which replaces the list of firewall policies when the list is empty.
+     * Informational warning which replaces the list of firewall policies when
+     * the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

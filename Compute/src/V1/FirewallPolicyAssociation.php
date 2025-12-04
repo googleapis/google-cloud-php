@@ -21,7 +21,8 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $attachment_target = null;
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy of the association.
+     * [Output Only] Deprecated, please use short name instead. The display name
+     * of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
@@ -54,7 +55,8 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      *     @type string $attachment_target
      *           The target that the firewall policy is attached to.
      *     @type string $display_name
-     *           [Output Only] Deprecated, please use short name instead. The display name of the firewall policy of the association.
+     *           [Output Only] Deprecated, please use short name instead. The display name
+     *           of the firewall policy of the association.
      *     @type string $firewall_policy_id
      *           [Output Only] The firewall policy ID of the association.
      *     @type string $name
@@ -105,7 +107,8 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy of the association.
+     * [Output Only] Deprecated, please use short name instead. The display name
+     * of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @return string
@@ -126,7 +129,8 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy of the association.
+     * [Output Only] Deprecated, please use short name instead. The display name
+     * of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @param string $var

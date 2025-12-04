@@ -7,7 +7,11 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachment;
 use UnexpectedValueException;
 
 /**
- * The stack type for this interconnect attachment to identify whether the IPv6 feature is enabled or not. If not specified, IPV4_ONLY will be used. This field can be both set at interconnect attachments creation and update interconnect attachment operations.
+ * The stack type for this interconnect attachment to identify whether the
+ * IPv6 feature is enabled or not. If not specified, IPV4_ONLY
+ * will be used.
+ * This field can be both set at interconnect attachments creation and
+ * update interconnect attachment operations.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectAttachment.StackType</code>
  */

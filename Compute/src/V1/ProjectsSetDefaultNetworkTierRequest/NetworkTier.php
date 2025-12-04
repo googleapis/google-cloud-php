@@ -26,19 +26,22 @@ class NetworkTier
      */
     const FIXED_STANDARD = 310464328;
     /**
-     * High quality, Google-grade network tier, support for all networking products.
+     * High quality, Google-grade network tier, support for all networking
+     * products.
      *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
      */
     const PREMIUM = 399530551;
     /**
-     * Public internet quality, only limited support for other networking products.
+     * Public internet quality, only limited support for other networking
+     * products.
      *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;
     /**
-     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier is expired or not configured.
+     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier
+     * is expired or not configured.
      *
      * Generated from protobuf enum <code>STANDARD_OVERRIDES_FIXED_STANDARD = 465847234;</code>
      */

@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\License;
 use Google\Rpc\Status;
 
 /**
- * Create a License resource in the specified project. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Create a License resource in the specified project.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $project Project ID for this request.
  */

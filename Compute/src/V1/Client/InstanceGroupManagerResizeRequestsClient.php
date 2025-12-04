@@ -271,7 +271,10 @@ final class InstanceGroupManagerResizeRequestsClient
     }
 
     /**
-     * Cancels the specified resize request and removes it from the queue. Cancelled resize request does no longer wait for the resources to be provisioned. Cancel is only possible for requests that are accepted in the queue.
+     * Cancels the specified resize request and removes it from the queue.
+     * Cancelled resize request does no longer wait for the resources to be
+     * provisioned. Cancel is only possible for requests that are accepted in the
+     * queue.
      *
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::cancelAsync()} .
@@ -300,7 +303,9 @@ final class InstanceGroupManagerResizeRequestsClient
     }
 
     /**
-     * Deletes the specified, inactive resize request. Requests that are still active cannot be deleted. Deleting request does not delete instances that were provisioned previously.
+     * Deletes the specified, inactive resize request. Requests that are still
+     * active cannot be deleted. Deleting request does not delete instances that
+     * were provisioned previously.
      *
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::deleteAsync()} .
@@ -358,7 +363,8 @@ final class InstanceGroupManagerResizeRequestsClient
     }
 
     /**
-     * Creates a new resize request that starts provisioning VMs immediately or queues VM creation.
+     * Creates a new resize request that starts provisioning VMs immediately
+     * or queues VM creation.
      *
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::insertAsync()} .
@@ -387,7 +393,8 @@ final class InstanceGroupManagerResizeRequestsClient
     }
 
     /**
-     * Retrieves a list of resize requests that are contained in the managed instance group.
+     * Retrieves a list of resize requests that are contained in the
+     * managed instance group.
      *
      * The async variant is
      * {@see InstanceGroupManagerResizeRequestsClient::listAsync()} .

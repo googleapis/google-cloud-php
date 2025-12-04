@@ -15,7 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
+     * The fingerprint of the named ports information for this instance group.
+     * Use this optional property to prevent conflicts when multiple users change
+     * the named ports settings concurrently. Obtain the fingerprint with theinstanceGroups.get
+     * method. Then, include the fingerprint in your request to ensure that you
+     * do not overwrite changes that were applied from another
+     * concurrent request.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
@@ -34,7 +39,12 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
      *     Optional. Data for populating the Message object.
      *
      *     @type string $fingerprint
-     *           The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
+     *           The fingerprint of the named ports information for this instance group.
+     *           Use this optional property to prevent conflicts when multiple users change
+     *           the named ports settings concurrently. Obtain the fingerprint with theinstanceGroups.get
+     *           method. Then, include the fingerprint in your request to ensure that you
+     *           do not overwrite changes that were applied from another
+     *           concurrent request.
      *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
      *           The list of named ports to set for this instance group.
      * }
@@ -45,7 +55,12 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
+     * The fingerprint of the named ports information for this instance group.
+     * Use this optional property to prevent conflicts when multiple users change
+     * the named ports settings concurrently. Obtain the fingerprint with theinstanceGroups.get
+     * method. Then, include the fingerprint in your request to ensure that you
+     * do not overwrite changes that were applied from another
+     * concurrent request.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
@@ -66,7 +81,12 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
+     * The fingerprint of the named ports information for this instance group.
+     * Use this optional property to prevent conflicts when multiple users change
+     * the named ports settings concurrently. Obtain the fingerprint with theinstanceGroups.get
+     * method. Then, include the fingerprint in your request to ensure that you
+     * do not overwrite changes that were applied from another
+     * concurrent request.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var

@@ -7,7 +7,11 @@ namespace Google\Cloud\Compute\V1\UpdateInstanceRequest;
 use UnexpectedValueException;
 
 /**
- * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+ * Specifies the most disruptive action that can be taken on the instance
+ * as part of the update. Compute Engine returns an error if the
+ * instance properties require a more disruptive action as part of the
+ * instance update. Valid options from lowest to highest are
+ * NO_EFFECT, REFRESH, and RESTART.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * INVALID
  * NO_EFFECT

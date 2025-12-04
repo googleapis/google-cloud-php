@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\BackendBucket;
 use UnexpectedValueException;
 
 /**
- * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+ * Compress text responses using Brotli or gzip compression, based on
+ * the client's Accept-Encoding header.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendBucket.CompressionMode</code>
  */
@@ -20,13 +21,15 @@ class CompressionMode
      */
     const UNDEFINED_COMPRESSION_MODE = 0;
     /**
-     * Automatically uses the best compression based on the Accept-Encoding header sent by the client.
+     * Automatically uses the best compression based on the Accept-Encoding
+     * header sent by the client.
      *
      * Generated from protobuf enum <code>AUTOMATIC = 165298699;</code>
      */
     const AUTOMATIC = 165298699;
     /**
-     * Disables compression. Existing compressed responses cached by Cloud CDN will not be served to clients.
+     * Disables compression. Existing compressed responses cached by
+     * Cloud CDN will not be served to clients.
      *
      * Generated from protobuf enum <code>DISABLED = 516696700;</code>
      */

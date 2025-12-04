@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Detach the network endpoint from the specified network endpoint group.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group where you are removing network endpoints. It should comply with RFC1035.
+ * @param string $networkEndpointGroup The name of the network endpoint group where you are removing network
+ *                                     endpoints. It should comply with RFC1035.
  * @param string $project              Project ID for this request.
  */
 function detach_network_endpoints_sample(string $networkEndpointGroup, string $project): void

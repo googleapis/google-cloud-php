@@ -30,7 +30,12 @@ use Google\Cloud\Compute\V1\CopyRulesOrganizationSecurityPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Copies rules to the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.copyRules instead.
+ * Copies rules to the specified security policy.
+ *
+ * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to modify firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.cloneRules
+ * instead.
  *
  * @param string $securityPolicy Name of the security policy to update.
  */

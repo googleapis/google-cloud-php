@@ -34,7 +34,13 @@ class AddressPurposes
      */
     const GCE_ENDPOINT = 230515243;
     /**
-     * A regional internal IP address range reserved for the VLAN attachment that is used in HA VPN over Cloud Interconnect. This regional internal IP address range must not overlap with any IP address range of subnet/route in the VPC network and its peering networks. After the VLAN attachment is created with the reserved IP address range, when creating a new VPN gateway, its interface IP address is allocated from the associated VLAN attachment’s IP address range.
+     * A regional internal IP address range reserved for the VLAN attachment
+     * that is used in HA VPN over Cloud Interconnect. This regional
+     * internal IP address range must not overlap with any IP address range
+     * of subnet/route in the VPC network and its peering networks. After the
+     * VLAN attachment is created with the reserved IP address range, when
+     * creating a new VPN gateway, its interface IP address is allocated
+     * from the associated VLAN attachment’s IP address range.
      *
      * Generated from protobuf enum <code>IPSEC_INTERCONNECT = 340437251;</code>
      */
@@ -56,7 +62,8 @@ class AddressPurposes
      */
     const SERVERLESS = 270492508;
     /**
-     * A private network IP address that can be shared by multiple Internal Load Balancer forwarding rules.
+     * A private network IP address that can be shared by multiple Internal
+     * Load Balancer forwarding rules.
      *
      * Generated from protobuf enum <code>SHARED_LOADBALANCER_VIP = 294447572;</code>
      */

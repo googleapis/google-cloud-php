@@ -31,10 +31,13 @@ use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest;
 /**
  * Returns all of the details about the specified resize request.
  *
- * @param string $instanceGroupManager The name of the managed instance group. Name should conform to RFC1035 or be a resource ID.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ *                                     Name should conform to RFC1035 or be a resource ID.
  * @param string $project              Project ID for this request.
- * @param string $resizeRequest        The name of the resize request. Name should conform to RFC1035 or be a resource ID.
- * @param string $zone                 Name of the href="/compute/docs/regions-zones/#available">zone scoping this request. Name should conform to RFC1035.
+ * @param string $resizeRequest        The name of the resize request.
+ *                                     Name should conform to RFC1035 or be a resource ID.
+ * @param string $zone                 Name of the href="/compute/docs/regions-zones/#available">zone
+ *                                     scoping this request. Name should conform to RFC1035.
  */
 function get_sample(
     string $instanceGroupManager,

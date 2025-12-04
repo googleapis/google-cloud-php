@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.
+     * The maximum number of nodes that the group should have. Must be set if
+     * autoscaling is enabled. Maximum value allowed is 100.
      *
      * Generated from protobuf field <code>optional int32 max_nodes = 297762838;</code>
      */
@@ -27,7 +28,9 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $min_nodes = null;
     /**
-     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
+     * The autoscaling mode. Set to one of: ON, OFF,
+     * or ONLY_SCALE_OUT. For more information, see
+     * Autoscaler modes.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -41,11 +44,14 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $max_nodes
-     *           The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.
+     *           The maximum number of nodes that the group should have. Must be set if
+     *           autoscaling is enabled. Maximum value allowed is 100.
      *     @type int $min_nodes
      *           The minimum number of nodes that the group should have.
      *     @type string $mode
-     *           The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
+     *           The autoscaling mode. Set to one of: ON, OFF,
+     *           or ONLY_SCALE_OUT. For more information, see
+     *           Autoscaler modes.
      *           Check the Mode enum for the list of possible values.
      * }
      */
@@ -55,7 +61,8 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.
+     * The maximum number of nodes that the group should have. Must be set if
+     * autoscaling is enabled. Maximum value allowed is 100.
      *
      * Generated from protobuf field <code>optional int32 max_nodes = 297762838;</code>
      * @return int
@@ -76,7 +83,8 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.
+     * The maximum number of nodes that the group should have. Must be set if
+     * autoscaling is enabled. Maximum value allowed is 100.
      *
      * Generated from protobuf field <code>optional int32 max_nodes = 297762838;</code>
      * @param int $var
@@ -127,7 +135,9 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
+     * The autoscaling mode. Set to one of: ON, OFF,
+     * or ONLY_SCALE_OUT. For more information, see
+     * Autoscaler modes.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -149,7 +159,9 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
+     * The autoscaling mode. Set to one of: ON, OFF,
+     * or ONLY_SCALE_OUT. For more information, see
+     * Autoscaler modes.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>

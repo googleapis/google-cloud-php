@@ -22,13 +22,15 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
      */
     private $dimensions;
     /**
-     * Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
+     * Future quota limit being rolled out. The limit's unit depends on the quota
+     *  type or metric.
      *
      * Generated from protobuf field <code>optional double future_limit = 456564287;</code>
      */
     protected $future_limit = null;
     /**
-     * Current effective quota limit. The limit's unit depends on the quota type or metric.
+     * Current effective quota limit. The limit's unit depends on the quota type
+     * or metric.
      *
      * Generated from protobuf field <code>optional double limit = 102976443;</code>
      */
@@ -62,9 +64,11 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $dimensions
      *           The map holding related quota dimensions.
      *     @type float $future_limit
-     *           Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
+     *           Future quota limit being rolled out. The limit's unit depends on the quota
+     *            type or metric.
      *     @type float $limit
-     *           Current effective quota limit. The limit's unit depends on the quota type or metric.
+     *           Current effective quota limit. The limit's unit depends on the quota type
+     *           or metric.
      *     @type string $limit_name
      *           The name of the quota limit.
      *     @type string $metric_name
@@ -106,7 +110,8 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
+     * Future quota limit being rolled out. The limit's unit depends on the quota
+     *  type or metric.
      *
      * Generated from protobuf field <code>optional double future_limit = 456564287;</code>
      * @return float
@@ -127,7 +132,8 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Future quota limit being rolled out. The limit's unit depends on the quota type or metric.
+     * Future quota limit being rolled out. The limit's unit depends on the quota
+     *  type or metric.
      *
      * Generated from protobuf field <code>optional double future_limit = 456564287;</code>
      * @param float $var
@@ -142,7 +148,8 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Current effective quota limit. The limit's unit depends on the quota type or metric.
+     * Current effective quota limit. The limit's unit depends on the quota type
+     * or metric.
      *
      * Generated from protobuf field <code>optional double limit = 102976443;</code>
      * @return float
@@ -163,7 +170,8 @@ class QuotaExceededInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Current effective quota limit. The limit's unit depends on the quota type or metric.
+     * Current effective quota limit. The limit's unit depends on the quota type
+     * or metric.
      *
      * Generated from protobuf field <code>optional double limit = 102976443;</code>
      * @param float $var

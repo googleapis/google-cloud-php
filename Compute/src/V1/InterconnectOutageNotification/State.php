@@ -7,7 +7,15 @@ namespace Google\Cloud\Compute\V1\InterconnectOutageNotification;
 use UnexpectedValueException;
 
 /**
- * State of this notification, which can take one of the following values: - ACTIVE: This outage notification is active. The event could be in the past, present, or future. See start_time and end_time for scheduling. - CANCELLED: The outage associated with this notification was cancelled before the outage was due to start. - COMPLETED: The outage associated with this notification is complete. Note that the versions of this enum prefixed with "NS_" have been deprecated in favor of the unprefixed values.
+ * State of this notification, which can take one of the following values:
+ *    - ACTIVE: This outage notification is active. The event could be in
+ *    the past, present, or future. See start_time and end_time for
+ *    scheduling.
+ *    - CANCELLED: The outage associated with this notification was cancelled
+ *    before the outage was due to start.
+ *    - COMPLETED: The outage associated with this notification is complete.
+ * Note that the versions of this enum prefixed with "NS_" have been
+ * deprecated in favor of the unprefixed values.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectOutageNotification.State</code>
  */
@@ -20,13 +28,15 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * This outage notification is active. The event could be in the future, present, or past. See start_time and end_time for scheduling.
+     * This outage notification is active. The event could be in the future,
+     * present, or past. See start_time and end_time for scheduling.
      *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
     const ACTIVE = 314733318;
     /**
-     * The outage associated with this notification was cancelled before the outage was due to start.
+     * The outage associated with this notification was cancelled before the
+     * outage was due to start.
      *
      * Generated from protobuf enum <code>CANCELLED = 41957681;</code>
      */
@@ -38,13 +48,16 @@ class State
      */
     const COMPLETED = 309921323;
     /**
-     * [Deprecated] This outage notification is active. The event could be in the future, present, or past. See start_time and end_time for scheduling.
+     * [Deprecated] This outage notification is active. The event could be in
+     * the future, present, or past. See start_time and end_time for
+     * scheduling.
      *
      * Generated from protobuf enum <code>NS_ACTIVE = 252563136;</code>
      */
     const NS_ACTIVE = 252563136;
     /**
-     * [Deprecated] The outage associated with this notification was canceled before the outage was due to start.
+     * [Deprecated] The outage associated with this notification was canceled
+     * before the outage was due to start.
      *
      * Generated from protobuf enum <code>NS_CANCELED = 506579411;</code>
      */

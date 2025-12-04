@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A GroupPlacementPolicy specifies resource placement configuration. It specifies the failure bucket separation
+ * A GroupPlacementPolicy specifies resource placement configuration.
+ * It specifies the failure bucket separation
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy</code>
  */
 class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
+     * The number of availability domains to spread instances across. If two
+     * instances are in different availability domain, they are not in the same
+     * low latency network.
      *
      * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
      */
@@ -29,13 +32,16 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      */
     protected $collocation = null;
     /**
-     * Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
+     * Specifies the shape of the GPU slice, in slice based GPU families eg.
+     * A4X.
      *
      * Generated from protobuf field <code>optional string gpu_topology = 247948450;</code>
      */
     protected $gpu_topology = null;
     /**
-     * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
+     * Number of VMs in this placement group. Google does not recommend that you
+     * use this field unless you use a compact policy and you want your policy
+     * to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
      */
@@ -48,14 +54,19 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type int $availability_domain_count
-     *           The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
+     *           The number of availability domains to spread instances across. If two
+     *           instances are in different availability domain, they are not in the same
+     *           low latency network.
      *     @type string $collocation
      *           Specifies network collocation
      *           Check the Collocation enum for the list of possible values.
      *     @type string $gpu_topology
-     *           Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
+     *           Specifies the shape of the GPU slice, in slice based GPU families eg.
+     *           A4X.
      *     @type int $vm_count
-     *           Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
+     *           Number of VMs in this placement group. Google does not recommend that you
+     *           use this field unless you use a compact policy and you want your policy
+     *           to work only if it contains this exact number of VMs.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +75,9 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
+     * The number of availability domains to spread instances across. If two
+     * instances are in different availability domain, they are not in the same
+     * low latency network.
      *
      * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
      * @return int
@@ -85,7 +98,9 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
+     * The number of availability domains to spread instances across. If two
+     * instances are in different availability domain, they are not in the same
+     * low latency network.
      *
      * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
      * @param int $var
@@ -138,7 +153,8 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
+     * Specifies the shape of the GPU slice, in slice based GPU families eg.
+     * A4X.
      *
      * Generated from protobuf field <code>optional string gpu_topology = 247948450;</code>
      * @return string
@@ -159,7 +175,8 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Specifies the shape of the GPU slice, in slice based GPU families eg. A4X.
+     * Specifies the shape of the GPU slice, in slice based GPU families eg.
+     * A4X.
      *
      * Generated from protobuf field <code>optional string gpu_topology = 247948450;</code>
      * @param string $var
@@ -174,7 +191,9 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
+     * Number of VMs in this placement group. Google does not recommend that you
+     * use this field unless you use a compact policy and you want your policy
+     * to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
      * @return int
@@ -195,7 +214,9 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
+     * Number of VMs in this placement group. Google does not recommend that you
+     * use this field unless you use a compact policy and you want your policy
+     * to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
      * @param int $var

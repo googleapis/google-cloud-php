@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\SetServiceAccountInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance.
+ * Sets the service account on the instance. For more information,
+ * readChanging
+ * the service account and access scopes for an instance.
  *
  * @param string $instance Name of the instance resource to start.
  * @param string $project  Project ID for this request.

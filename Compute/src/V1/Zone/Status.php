@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Zone;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Status of the zone, either UP or DOWN.
+ * [Output Only] Status of the zone, either UP orDOWN.
  *
  * Protobuf type <code>google.cloud.compute.v1.Zone.Status</code>
  */

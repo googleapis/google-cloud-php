@@ -7,7 +7,20 @@ namespace Google\Cloud\Compute\V1\ForwardingRule;
 use UnexpectedValueException;
 
 /**
- * Specifies the canary migration state for the backend buckets attached to this forwarding rule. Possible values are PREPARE, TEST_BY_PERCENTAGE, and TEST_ALL_TRAFFIC. To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate traffic to backend buckets attached to this forwarding rule by percentage using externalManagedBackendBucketMigrationTestingPercentage. Rolling back a migration requires the states to be set in reverse order. So changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to be set to TEST_ALL_TRAFFIC at the same time. Optionally, the TEST_BY_PERCENTAGE state can be used to migrate some traffic back to EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
+ * Specifies the canary migration state for the backend buckets attached to
+ * this forwarding rule. Possible values are PREPARE, TEST_BY_PERCENTAGE, and
+ * TEST_ALL_TRAFFIC.
+ * To begin the migration from EXTERNAL to EXTERNAL_MANAGED, the state must be
+ * changed to PREPARE. The state must be changed to TEST_ALL_TRAFFIC before
+ * the loadBalancingScheme can be changed to EXTERNAL_MANAGED. Optionally, the
+ * TEST_BY_PERCENTAGE state can be used to migrate traffic to backend buckets
+ * attached to this forwarding rule by percentage using
+ * externalManagedBackendBucketMigrationTestingPercentage.
+ * Rolling back a migration requires the states to be set in reverse order. So
+ * changing the scheme from EXTERNAL_MANAGED to EXTERNAL requires the state to
+ * be set to TEST_ALL_TRAFFIC at the same time. Optionally, the
+ * TEST_BY_PERCENTAGE state can be used to migrate some traffic back to
+ * EXTERNAL or PREPARE can be used to migrate all traffic back to EXTERNAL.
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.ExternalManagedBackendBucketMigrationState</code>
  */

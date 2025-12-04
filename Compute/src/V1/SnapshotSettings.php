@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SnapshotSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Policy of which storage location is going to be resolved, and additional data that particularizes how the policy is going to be carried out.
+     * Policy of which storage location is going to be resolved, and additional
+     * data that particularizes how the policy is going to be carried out.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotSettingsStorageLocationSettings storage_location = 460859641;</code>
      */
@@ -28,7 +29,8 @@ class SnapshotSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\SnapshotSettingsStorageLocationSettings $storage_location
-     *           Policy of which storage location is going to be resolved, and additional data that particularizes how the policy is going to be carried out.
+     *           Policy of which storage location is going to be resolved, and additional
+     *           data that particularizes how the policy is going to be carried out.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class SnapshotSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy of which storage location is going to be resolved, and additional data that particularizes how the policy is going to be carried out.
+     * Policy of which storage location is going to be resolved, and additional
+     * data that particularizes how the policy is going to be carried out.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotSettingsStorageLocationSettings storage_location = 460859641;</code>
      * @return \Google\Cloud\Compute\V1\SnapshotSettingsStorageLocationSettings|null
@@ -58,7 +61,8 @@ class SnapshotSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy of which storage location is going to be resolved, and additional data that particularizes how the policy is going to be carried out.
+     * Policy of which storage location is going to be resolved, and additional
+     * data that particularizes how the policy is going to be carried out.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotSettingsStorageLocationSettings storage_location = 460859641;</code>
      * @param \Google\Cloud\Compute\V1\SnapshotSettingsStorageLocationSettings $var

@@ -15,13 +15,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Expression ID should uniquely identify the origin of the expression. E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set version 2.9.1 rule id 973337. The ID could be used to determine the individual attack definition that has been detected. It could also be used to exclude it from the policy in case of false positive. required
+     * Expression ID should uniquely identify the origin of the expression.
+     * E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set
+     * version 2.9.1 rule id 973337.
+     * The ID could be used to determine the individual attack definition
+     * that has been detected. It could also be used to exclude it from
+     * the policy in case of false positive.
+     * required
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
     protected $id = null;
     /**
-     * The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
+     * The sensitivity value associated with the WAF rule ID. This corresponds
+     * to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for
+     * opt-in only rules.
      *
      * Generated from protobuf field <code>optional int32 sensitivity = 27532959;</code>
      */
@@ -34,9 +42,17 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           Expression ID should uniquely identify the origin of the expression. E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set version 2.9.1 rule id 973337. The ID could be used to determine the individual attack definition that has been detected. It could also be used to exclude it from the policy in case of false positive. required
+     *           Expression ID should uniquely identify the origin of the expression.
+     *           E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set
+     *           version 2.9.1 rule id 973337.
+     *           The ID could be used to determine the individual attack definition
+     *           that has been detected. It could also be used to exclude it from
+     *           the policy in case of false positive.
+     *           required
      *     @type int $sensitivity
-     *           The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
+     *           The sensitivity value associated with the WAF rule ID. This corresponds
+     *           to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for
+     *           opt-in only rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +61,13 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expression ID should uniquely identify the origin of the expression. E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set version 2.9.1 rule id 973337. The ID could be used to determine the individual attack definition that has been detected. It could also be used to exclude it from the policy in case of false positive. required
+     * Expression ID should uniquely identify the origin of the expression.
+     * E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set
+     * version 2.9.1 rule id 973337.
+     * The ID could be used to determine the individual attack definition
+     * that has been detected. It could also be used to exclude it from
+     * the policy in case of false positive.
+     * required
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
@@ -66,7 +88,13 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expression ID should uniquely identify the origin of the expression. E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set version 2.9.1 rule id 973337. The ID could be used to determine the individual attack definition that has been detected. It could also be used to exclude it from the policy in case of false positive. required
+     * Expression ID should uniquely identify the origin of the expression.
+     * E.g. owasp-crs-v020901-id973337 identifies Owasp core rule set
+     * version 2.9.1 rule id 973337.
+     * The ID could be used to determine the individual attack definition
+     * that has been detected. It could also be used to exclude it from
+     * the policy in case of false positive.
+     * required
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
@@ -81,7 +109,9 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
+     * The sensitivity value associated with the WAF rule ID. This corresponds
+     * to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for
+     * opt-in only rules.
      *
      * Generated from protobuf field <code>optional int32 sensitivity = 27532959;</code>
      * @return int
@@ -102,7 +132,9 @@ class WafExpressionSetExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sensitivity value associated with the WAF rule ID. This corresponds to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for opt-in only rules.
+     * The sensitivity value associated with the WAF rule ID. This corresponds
+     * to the ModSecurity paranoia level, ranging from 1 to 4. 0 is reserved for
+     * opt-in only rules.
      *
      * Generated from protobuf field <code>optional int32 sensitivity = 27532959;</code>
      * @param int $var

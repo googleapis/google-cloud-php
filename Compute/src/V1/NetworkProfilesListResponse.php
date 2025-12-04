@@ -32,13 +32,19 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Always compute#networkProfileList for network profiles.
+     * [Output Only] Type of resource. Alwayscompute#networkProfileList for network profiles.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value
+     * for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken
+     * to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
@@ -50,7 +56,8 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     * [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      */
@@ -74,13 +81,20 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\NetworkProfile>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of NetworkProfile resources.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#networkProfileList for network profiles.
+     *           [Output Only] Type of resource. Alwayscompute#networkProfileList for network profiles.
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     *           [Output Only] This token allows you to get the next page of results for
+     *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value
+     *           for
+     *           the query parameter pageToken in the next list request.
+     *           Subsequent list requests will have their own nextPageToken
+     *           to
+     *           continue paging through the results.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     *           [Output Only] Unreachable resources.
+     *           end_interface: MixerListResponseWithEtagBuilder
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -185,7 +199,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#networkProfileList for network profiles.
+     * [Output Only] Type of resource. Alwayscompute#networkProfileList for network profiles.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -206,7 +220,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#networkProfileList for network profiles.
+     * [Output Only] Type of resource. Alwayscompute#networkProfileList for network profiles.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -221,7 +235,13 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value
+     * for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken
+     * to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
@@ -242,7 +262,13 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value
+     * for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken
+     * to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
@@ -293,7 +319,8 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     * [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -304,7 +331,8 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     * [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

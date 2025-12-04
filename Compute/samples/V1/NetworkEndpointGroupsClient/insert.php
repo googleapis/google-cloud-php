@@ -31,10 +31,13 @@ use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use Google\Rpc\Status;
 
 /**
- * Creates a network endpoint group in the specified project using the parameters that are included in the request.
+ * Creates a network endpoint group in the specified project using the
+ * parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone where you want to create the network endpoint group. It should comply with RFC1035.
+ * @param string $zone    The name of the zone where
+ *                        you want to create the network endpoint group. It should comply with
+ *                        RFC1035.
  */
 function insert_sample(string $project, string $zone): void
 {

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Properties of the SKU instances being reserved. Next ID: 9
+ * Properties of the SKU instances being reserved.
+ * Next ID: 9
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties</code>
  */
@@ -22,19 +23,24 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      */
     private $guest_accelerators;
     /**
-     * Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
+     * Specifies amount of local ssd to reserve with each instance. The type
+     * of disk is local-ssd.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk local_ssds = 229951299;</code>
      */
     private $local_ssds;
     /**
-     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     * An opaque location hint used to place the allocation close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      */
     protected $location_hint = null;
     /**
-     * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     * Specifies type of machine (name only) which has fixed number of vCPUs
+     * and fixed amount of memory. This also includes specifying custom
+     * machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
@@ -55,11 +61,16 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
      *           Specifies accelerator type and count.
      *     @type array<\Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk>|\Google\Protobuf\Internal\RepeatedField $local_ssds
-     *           Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
+     *           Specifies amount of local ssd to reserve with each instance. The type
+     *           of disk is local-ssd.
      *     @type string $location_hint
-     *           An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     *           An opaque location hint used to place the allocation close to other
+     *           resources.
+     *           This field is for use by internal tools that use the public API.
      *     @type string $machine_type
-     *           Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     *           Specifies type of machine (name only) which has fixed number of vCPUs
+     *           and fixed amount of memory. This also includes specifying custom
+     *           machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *     @type string $min_cpu_platform
      *           Minimum cpu platform the reservation.
      * }
@@ -96,7 +107,8 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     }
 
     /**
-     * Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
+     * Specifies amount of local ssd to reserve with each instance. The type
+     * of disk is local-ssd.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk local_ssds = 229951299;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -107,7 +119,8 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     }
 
     /**
-     * Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
+     * Specifies amount of local ssd to reserve with each instance. The type
+     * of disk is local-ssd.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk local_ssds = 229951299;</code>
      * @param array<\Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk>|\Google\Protobuf\Internal\RepeatedField $var
@@ -122,7 +135,9 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     }
 
     /**
-     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     * An opaque location hint used to place the allocation close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @return string
@@ -143,7 +158,9 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     }
 
     /**
-     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     * An opaque location hint used to place the allocation close to other
+     * resources.
+     * This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @param string $var
@@ -158,7 +175,9 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     }
 
     /**
-     * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     * Specifies type of machine (name only) which has fixed number of vCPUs
+     * and fixed amount of memory. This also includes specifying custom
+     * machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @return string
@@ -179,7 +198,9 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     }
 
     /**
-     * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     * Specifies type of machine (name only) which has fixed number of vCPUs
+     * and fixed amount of memory. This also includes specifying custom
+     * machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @param string $var

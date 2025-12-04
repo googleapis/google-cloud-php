@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\BackendServicesClient;
 use Google\Cloud\Compute\V1\ListBackendServicesRequest;
 
 /**
- * Retrieves the list of BackendService resources available to the specified project.
+ * Retrieves the list of BackendService resources available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

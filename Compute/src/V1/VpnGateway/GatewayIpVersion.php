@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\VpnGateway;
 use UnexpectedValueException;
 
 /**
- * The IP family of the gateway IPs for the HA-VPN gateway interfaces. If not specified, IPV4 will be used.
+ * The IP family of the gateway IPs for the HA-VPN gateway interfaces. If not
+ * specified, IPV4 will be used.
  *
  * Protobuf type <code>google.cloud.compute.v1.VpnGateway.GatewayIpVersion</code>
  */

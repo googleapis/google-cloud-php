@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy;
 use UnexpectedValueException;
 
 /**
- * What action should be used to replace instances. See minimal_action.REPLACE
+ * What action should be used to replace instances.
+ * See minimal_action.REPLACE
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy.ReplacementMethod</code>
  */

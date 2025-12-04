@@ -322,7 +322,8 @@ final class RegionHealthChecksClient
     }
 
     /**
-     * Creates a HealthCheck resource in the specified project using the data included in the request.
+     * Creates a HealthCheck resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see RegionHealthChecksClient::insertAsync()} .
      *
@@ -348,7 +349,8 @@ final class RegionHealthChecksClient
     }
 
     /**
-     * Retrieves the list of HealthCheck resources available to the specified project.
+     * Retrieves the list of HealthCheck resources available to the specified
+     * project.
      *
      * The async variant is {@see RegionHealthChecksClient::listAsync()} .
      *
@@ -374,7 +376,10 @@ final class RegionHealthChecksClient
     }
 
     /**
-     * Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates a HealthCheck resource in the specified project using the data
+     * included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see RegionHealthChecksClient::patchAsync()} .
      *
@@ -400,7 +405,8 @@ final class RegionHealthChecksClient
     }
 
     /**
-     * Updates a HealthCheck resource in the specified project using the data included in the request.
+     * Updates a HealthCheck resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see RegionHealthChecksClient::updateAsync()} .
      *

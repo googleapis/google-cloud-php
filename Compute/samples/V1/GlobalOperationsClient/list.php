@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\ListGlobalOperationsRequest;
 
 /**
- * Retrieves a list of Operation resources contained within the specified project.
+ * Retrieves a list of Operation resources contained within the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

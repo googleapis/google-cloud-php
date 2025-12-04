@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\UpdateInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates an instance only if the necessary resources are available. This method can update only a specific set of instance properties. See Updating a running instance for a list of updatable instance properties.
+ * Updates an instance only if the necessary resources are available. This
+ * method can update only a specific set of instance properties. See
+ * Updating a running instance for a list of updatable instance
+ * properties.
  *
  * @param string $instance Name of the instance resource to update.
  * @param string $project  Project ID for this request.

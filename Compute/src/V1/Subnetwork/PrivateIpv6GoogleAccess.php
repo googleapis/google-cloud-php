@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\Subnetwork;
 use UnexpectedValueException;
 
 /**
- * This field is for internal use. This field can be both set at resource creation time and updated using patch.
+ * This field is for internal use.
+ * This field can be both set at resource creation time and updated usingpatch.
  *
  * Protobuf type <code>google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess</code>
  */
