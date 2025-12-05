@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Storage;
 
+use ArrayObject;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use ArrayObject;
 
 /**
  * Iterates over a set of buckets.
