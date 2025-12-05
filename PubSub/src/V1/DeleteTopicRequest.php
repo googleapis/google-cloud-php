@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteTopicRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the topic to delete.
+     * Required. Identifier. Name of the topic to delete.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
 
     /**
-     * @param string $topic Required. Name of the topic to delete.
+     * @param string $topic Required. Identifier. Name of the topic to delete.
      *                      Format is `projects/{project}/topics/{topic}`. Please see
      *                      {@see PublisherClient::topicName()} for help formatting this field.
      *
@@ -45,7 +45,7 @@ class DeleteTopicRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic
-     *           Required. Name of the topic to delete.
+     *           Required. Identifier. Name of the topic to delete.
      *           Format is `projects/{project}/topics/{topic}`.
      * }
      */
@@ -55,10 +55,10 @@ class DeleteTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the topic to delete.
+     * Required. Identifier. Name of the topic to delete.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -67,10 +67,10 @@ class DeleteTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the topic to delete.
+     * Required. Identifier. Name of the topic to delete.
      * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

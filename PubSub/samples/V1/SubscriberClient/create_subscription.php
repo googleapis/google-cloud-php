@@ -40,7 +40,7 @@ use Google\Cloud\PubSub\V1\Subscription;
  * generated name is populated in the returned Subscription object. Note that
  * for REST API requests, you must specify a name in the request.
  *
- * @param string $name           The name of the subscription. It must have the format
+ * @param string $name           Identifier. The name of the subscription. It must have the format
  *                               `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
  *                               start with a letter, and contain only letters (`[A-Za-z]`), numbers
  *                               (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),

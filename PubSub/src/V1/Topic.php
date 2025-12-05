@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Topic extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the topic. It must have the format
+     * Required. Identifier. The name of the topic. It must have the format
      * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
      * signs (`%`). It must be between 3 and 255 characters in length, and it
      * must not start with `"goog"`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -106,7 +106,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     private $tags;
 
     /**
-     * @param string $name Required. The name of the topic. It must have the format
+     * @param string $name Required. Identifier. The name of the topic. It must have the format
      *                     `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      *                     and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      *                     underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
@@ -130,7 +130,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the topic. It must have the format
+     *           Required. Identifier. The name of the topic. It must have the format
      *           `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      *           and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      *           underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
@@ -182,14 +182,14 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the topic. It must have the format
+     * Required. Identifier. The name of the topic. It must have the format
      * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
      * signs (`%`). It must be between 3 and 255 characters in length, and it
      * must not start with `"goog"`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -198,14 +198,14 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the topic. It must have the format
+     * Required. Identifier. The name of the topic. It must have the format
      * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
      * signs (`%`). It must be between 3 and 255 characters in length, and it
      * must not start with `"goog"`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

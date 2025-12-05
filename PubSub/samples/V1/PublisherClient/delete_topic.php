@@ -34,7 +34,7 @@ use Google\Cloud\PubSub\V1\DeleteTopicRequest;
  * configuration or subscriptions. Existing subscriptions to this topic are
  * not deleted, but their `topic` field is set to `_deleted-topic_`.
  *
- * @param string $formattedTopic Name of the topic to delete.
+ * @param string $formattedTopic Identifier. Name of the topic to delete.
  *                               Format is `projects/{project}/topics/{topic}`. Please see
  *                               {@see PublisherClient::topicName()} for help formatting this field.
  */

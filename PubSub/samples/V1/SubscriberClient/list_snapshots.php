@@ -36,7 +36,7 @@ use Google\Cloud\PubSub\V1\Snapshot;
  * the acknowledgment state of messages in an existing subscription to the
  * state captured by a snapshot.
  *
- * @param string $formattedProject The name of the project in which to list snapshots.
+ * @param string $formattedProject Identifier. The name of the project in which to list snapshots.
  *                                 Format is `projects/{project-id}`. Please see
  *                                 {@see SubscriberClient::projectName()} for help formatting this field.
  */
