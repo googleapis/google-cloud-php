@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use ArrayObject;
 
 /**
  * Iterates over a set of buckets.
@@ -35,9 +36,9 @@ class BucketIterator extends ItemIterator
 
     /**
      * @param PageIterator $iterator
-     * @param \ArrayObject $unreachable
+     * @param ArrayObject $unreachable
      */
-    public function __construct(PageIterator $iterator, \ArrayObject $unreachable)
+    public function __construct(PageIterator $iterator, private ArrayObject $unreachable)
     {
         parent::__construct($iterator);
         $this->unreachable = $unreachable;

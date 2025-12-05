@@ -275,8 +275,8 @@ class StorageClient
      *           this option has no effect. **Defaults to** `true`.
      *      @type bool $returnPartialSuccess If true, the returned iterator will contain an
      *           `unreachable` property with a list of buckets that were not retrieved.
-     *      **Note:** If set to false (default) and unreachable buckets are found,
-     *                the operation will throw an exception.
+     *           **Note:** If set to false (default) and unreachable buckets are found,
+     *           the operation will throw an exception.
      *
      * }
      * @return BucketIterator<Bucket>
@@ -286,9 +286,8 @@ class StorageClient
     {
         $this->requireProjectId();
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $bucketUserProject = $this->pluck('bucketUserProject', $options, null);
-        $bucketUserProject = !is_null($bucketUserProject) ? $bucketUserProject : true;
-        $userProject = (isset($options['userProject']) && $bucketUserProject) ? $options['userProject'] : null;
+        $bucketUserProject = $this->pluck('bucketUserProject', $options, null) ?? true;
+        $userProject = $bucketUserProject ? ($options['userProject'] ?? null) : null;
 
         $unreachable = new \ArrayObject();
 
