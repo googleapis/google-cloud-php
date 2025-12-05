@@ -45,6 +45,8 @@ use Google\Cloud\Firestore\V1\CreateDocumentRequest;
 use Google\Cloud\Firestore\V1\DeleteDocumentRequest;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
+use Google\Cloud\Firestore\V1\ExecutePipelineRequest;
+use Google\Cloud\Firestore\V1\ExecutePipelineResponse;
 use Google\Cloud\Firestore\V1\ExplainOptions;
 use Google\Cloud\Firestore\V1\GetDocumentRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
@@ -62,6 +64,7 @@ use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Cloud\Firestore\V1\StructuredAggregationQuery;
+use Google\Cloud\Firestore\V1\StructuredPipeline;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\UpdateDocumentRequest;
@@ -566,6 +569,82 @@ class FirestoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteDocument', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Executes a pipeline query.
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $database = 'database';
+     *     // Read all responses until the stream is complete
+     *     $stream = $firestoreClient->executePipeline($database);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $database     Required. Database identifier, in the form
+     *                             `projects/{project}/databases/{database}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type StructuredPipeline $structuredPipeline
+     *           A pipelined operation.
+     *     @type string $transaction
+     *           Run the query within an already active transaction.
+     *
+     *           The value here is the opaque transaction ID to execute the query in.
+     *     @type TransactionOptions $newTransaction
+     *           Execute the pipeline in a new transaction.
+     *
+     *           The identifier of the newly created transaction will be returned in the
+     *           first response on the stream. This defaults to a read-only transaction.
+     *     @type Timestamp $readTime
+     *           Execute the pipeline in a snapshot transaction at the given time.
+     *
+     *           This must be a microsecond precision timestamp within the past one hour,
+     *           or if Point-in-Time Recovery is enabled, can additionally be a whole
+     *           minute timestamp within the past 7 days.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function executePipeline($database, array $optionalArgs = [])
+    {
+        $request = new ExecutePipelineRequest();
+        $requestParamHeaders = [];
+        $request->setDatabase($database);
+        $requestParamHeaders['project_id'] = $database;
+        $requestParamHeaders['database_id'] = $database;
+        if (isset($optionalArgs['structuredPipeline'])) {
+            $request->setStructuredPipeline($optionalArgs['structuredPipeline']);
+        }
+
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+
+        if (isset($optionalArgs['newTransaction'])) {
+            $request->setNewTransaction($optionalArgs['newTransaction']);
+        }
+
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ExecutePipeline', ExecutePipelineResponse::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
     }
 
     /**

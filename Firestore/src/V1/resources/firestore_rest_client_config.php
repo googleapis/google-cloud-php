@@ -102,6 +102,18 @@ return [
                     ],
                 ],
             ],
+            'ExecutePipeline' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:executePipeline',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'GetDocument' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/documents/*/**}',
