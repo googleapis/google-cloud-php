@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
@@ -45,6 +47,7 @@ use Google\Cloud\Datastore\V1\RollbackResponse;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
+use Google\Rpc\Code;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -1132,5 +1135,29 @@ class OperationTest extends TestCase
             [],
             ['databaseId' => 'otherDatabaseId']
         );
+    }
+
+    public function testRunQueryApiExceptionConversion()
+    {
+        $this->expectException(FailedPreconditionException::class);
+        $this->expectExceptionMessage('Test exception');
+
+        $query = $this->prophesize(Query::class);
+        $query->queryObject()->willReturn([]);
+        $query->queryKey()->willReturn('query');
+        $query->canPaginate()->willReturn(true);
+
+        $this->gapicClient->runQuery(
+            Argument::type(RunQueryRequest::class),
+            Argument::type('array')
+        )->willThrow(new ApiException(
+            'Test exception',
+            Code::FAILED_PRECONDITION,
+            'FAILED_PRECONDITION'
+        ));
+
+        $iterator = $this->operation->runQuery($query->reveal(), []);
+        // The exception is thrown when we iterate
+        $iterator->current();
     }
 }
