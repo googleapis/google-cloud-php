@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     # removed conditional for testing
     # if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
       - name: Check for at least 2 approvals from yoshi-php members
         env:
