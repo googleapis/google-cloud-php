@@ -21,6 +21,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\ApiCore\Call;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
 use Google\Cloud\Spanner\SpannerClient;
@@ -39,6 +40,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class RequestIdHeaderMiddlewareTest extends TestCase
 {
     use ProphecyTrait;
+    use GrpcTestTrait;
 
     const PROJECT = 'my-awesome-project';
 
@@ -170,6 +172,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
 
     public function testMiddlewareGetsTheRetryField()
     {
+        $this->checkAndSkipGrpcTests();
         $headerName = 'x-goog-spanner-request-id';
         $callCount = 0;
         // the will method from prophecy overrides $this on the scope.
