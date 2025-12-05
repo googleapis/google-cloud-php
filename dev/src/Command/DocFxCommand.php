@@ -53,9 +53,12 @@ class DocFxCommand extends Command
     private static array $productNeutralGuides = [
         'README.md' => 'Getting Started',
         'AUTHENTICATION.md' => 'Authentication',
-        'DEBUG.md' => 'Debug Logging',
+        'CORE_CONCEPTS.md' => 'Core Concepts',
+        'CLIENT_CONFIGURATION.md' => 'Client Configuration',
+        'OCC_FOR_IAM.md' => 'OCC for IAM',
         'MIGRATING.md' => 'Migrating to V2',
         'GRPC.md' => 'Installing gRPC',
+        'TROUBLESHOOTING.md' => 'Troubleshooting',
     ];
 
     protected function configure()
