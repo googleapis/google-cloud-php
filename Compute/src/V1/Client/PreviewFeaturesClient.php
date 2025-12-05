@@ -316,7 +316,8 @@ final class PreviewFeaturesClient
     }
 
     /**
-     * Patches the given PreviewFeature. This method is used to enable or disable a PreviewFeature.
+     * Patches the given PreviewFeature. This method is used to enable or disable
+     * a PreviewFeature.
      *
      * The async variant is {@see PreviewFeaturesClient::updateAsync()} .
      *

@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\GetOrganizationSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicy;
 
 /**
- * List all of the ordered rules present in a single specified policy. Use of this API to read firewall policies is deprecated. Use firewallPolicies.get instead.
+ * List all of the ordered rules present in a single specified policy.
+ *
+ * Use this API to read Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to read firewall policies. This usage is now
+ * disabled for most organizations. Use firewallPolicies.get instead.
  *
  * @param string $securityPolicy Name of the security policy to get.
  */

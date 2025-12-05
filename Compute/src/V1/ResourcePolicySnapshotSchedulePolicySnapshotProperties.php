@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specified snapshot properties for scheduled snapshots created by this policy.
+ * Specified snapshot properties for scheduled snapshots created by this
+ * policy.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicySnapshotProperties</code>
  */
@@ -28,13 +29,15 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      */
     protected $guest_flush = null;
     /**
-     * Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
+     * Labels to apply to scheduled snapshots. These can be later modified
+     * by the setLabels method. Label values may be empty.
      *
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      */
     private $labels;
     /**
-     * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
+     * Cloud Storage bucket storage location of the auto snapshot (regional or
+     * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
      */
@@ -51,9 +54,11 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      *     @type bool $guest_flush
      *           Indication to perform a 'guest aware' snapshot.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
+     *           Labels to apply to scheduled snapshots. These can be later modified
+     *           by the setLabels method. Label values may be empty.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
-     *           Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
+     *           Cloud Storage bucket storage location of the auto snapshot (regional or
+     *           multi-regional).
      * }
      */
     public function __construct($data = NULL) {
@@ -134,7 +139,8 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     }
 
     /**
-     * Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
+     * Labels to apply to scheduled snapshots. These can be later modified
+     * by the setLabels method. Label values may be empty.
      *
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -145,7 +151,8 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     }
 
     /**
-     * Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
+     * Labels to apply to scheduled snapshots. These can be later modified
+     * by the setLabels method. Label values may be empty.
      *
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -160,7 +167,8 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     }
 
     /**
-     * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
+     * Cloud Storage bucket storage location of the auto snapshot (regional or
+     * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -171,7 +179,8 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     }
 
     /**
-     * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
+     * Cloud Storage bucket storage location of the auto snapshot (regional or
+     * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

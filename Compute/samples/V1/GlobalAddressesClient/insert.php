@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InsertGlobalAddressRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates an address resource in the specified project by using the data included in the request.
+ * Creates an address resource in the specified project by using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  */

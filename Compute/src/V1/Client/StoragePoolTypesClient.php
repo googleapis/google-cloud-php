@@ -194,7 +194,10 @@ final class StoragePoolTypesClient
     }
 
     /**
-     * Retrieves an aggregated list of storage pool types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of storage pool types.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see StoragePoolTypesClient::aggregatedListAsync()} .
      *
@@ -248,7 +251,8 @@ final class StoragePoolTypesClient
     }
 
     /**
-     * Retrieves a list of storage pool types available to the specified project.
+     * Retrieves a list of storage pool types available to the specified
+     * project.
      *
      * The async variant is {@see StoragePoolTypesClient::listAsync()} .
      *

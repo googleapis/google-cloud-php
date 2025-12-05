@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * AwsNodePoolError describes errors found on AWS node pools.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsNodePoolError</code>
  */
 class AwsNodePoolError extends \Google\Protobuf\Internal\Message

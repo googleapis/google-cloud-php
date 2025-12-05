@@ -15,13 +15,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is in RFC3339 text format.
+     * [Output Only] The last time the scaling schedule became active.
+     * Note: this is a timestamp when a schedule actually became active, not when
+     * it was planned to do so.
+     * The timestamp is in RFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string last_start_time = 34545107;</code>
      */
     protected $last_start_time = null;
     /**
-     * [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
+     * [Output Only] The next time the scaling schedule is to become active.
+     * Note: this is a timestamp when a schedule is planned to run, but the actual
+     * time might be slightly different.
+     * The timestamp is in RFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string next_start_time = 97270102;</code>
      */
@@ -41,9 +49,17 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $last_start_time
-     *           [Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is in RFC3339 text format.
+     *           [Output Only] The last time the scaling schedule became active.
+     *           Note: this is a timestamp when a schedule actually became active, not when
+     *           it was planned to do so.
+     *           The timestamp is in RFC3339
+     *           text format.
      *     @type string $next_start_time
-     *           [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
+     *           [Output Only] The next time the scaling schedule is to become active.
+     *           Note: this is a timestamp when a schedule is planned to run, but the actual
+     *           time might be slightly different.
+     *           The timestamp is in RFC3339
+     *           text format.
      *     @type string $state
      *           [Output Only] The current state of a scaling schedule.
      *           Check the State enum for the list of possible values.
@@ -55,7 +71,11 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is in RFC3339 text format.
+     * [Output Only] The last time the scaling schedule became active.
+     * Note: this is a timestamp when a schedule actually became active, not when
+     * it was planned to do so.
+     * The timestamp is in RFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string last_start_time = 34545107;</code>
      * @return string
@@ -76,7 +96,11 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is in RFC3339 text format.
+     * [Output Only] The last time the scaling schedule became active.
+     * Note: this is a timestamp when a schedule actually became active, not when
+     * it was planned to do so.
+     * The timestamp is in RFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string last_start_time = 34545107;</code>
      * @param string $var
@@ -91,7 +115,11 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
+     * [Output Only] The next time the scaling schedule is to become active.
+     * Note: this is a timestamp when a schedule is planned to run, but the actual
+     * time might be slightly different.
+     * The timestamp is in RFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string next_start_time = 97270102;</code>
      * @return string
@@ -112,7 +140,11 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
+     * [Output Only] The next time the scaling schedule is to become active.
+     * Note: this is a timestamp when a schedule is planned to run, but the actual
+     * time might be slightly different.
+     * The timestamp is in RFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string next_start_time = 97270102;</code>
      * @param string $var

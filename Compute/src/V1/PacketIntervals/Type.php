@@ -20,7 +20,8 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Only applies to Echo packets. This shows the intervals between sending and receiving the same packet.
+     * Only applies to Echo packets. This shows the intervals between sending
+     * and receiving the same packet.
      *
      * Generated from protobuf enum <code>LOOPBACK = 356174219;</code>
      */

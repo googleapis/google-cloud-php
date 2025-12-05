@@ -328,7 +328,8 @@ final class TargetSslProxiesClient
     }
 
     /**
-     * Creates a TargetSslProxy resource in the specified project using the data included in the request.
+     * Creates a TargetSslProxy resource in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see TargetSslProxiesClient::insertAsync()} .
      *
@@ -354,7 +355,8 @@ final class TargetSslProxiesClient
     }
 
     /**
-     * Retrieves the list of TargetSslProxy resources available to the specified project.
+     * Retrieves the list of TargetSslProxy resources
+     * available to the specified project.
      *
      * The async variant is {@see TargetSslProxiesClient::listAsync()} .
      *
@@ -492,7 +494,10 @@ final class TargetSslProxiesClient
     }
 
     /**
-     * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the load balancer. They do not affect the connection between the load balancer and the backends.
+     * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the
+     * server-side support for SSL features. This affects connections between
+     * clients and the load balancer. They do not affect the
+     * connection between the load balancer and the backends.
      *
      * The async variant is {@see TargetSslProxiesClient::setSslPolicyAsync()} .
      *

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\NetworkProfileNetworkFeatures;
 use UnexpectedValueException;
 
 /**
- * Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
+ * Specifies whether VMs are allowed to have external IP access on network
+ * interfaces connected to this VPC.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkProfileNetworkFeatures.AllowExternalIpAccess</code>
  */

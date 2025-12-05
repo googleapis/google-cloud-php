@@ -7,7 +7,19 @@ namespace Google\Cloud\Compute\V1\Autoscaler;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
+ * [Output Only] The status of the autoscaler configuration. Current set of
+ * possible values:
+ *    - PENDING:
+ *      Autoscaler backend hasn't read new/updated configuration.
+ *    - DELETING:
+ *      Configuration is being deleted.
+ *    - ACTIVE:
+ *      Configuration is acknowledged to be effective. Some warnings might
+ *      be present in the statusDetails field.
+ *    - ERROR:
+ *      Configuration has errors. Actionable for users. Details are present in
+ *      the statusDetails field.
+ * New values might be added in the future.
  *
  * Protobuf type <code>google.cloud.compute.v1.Autoscaler.Status</code>
  */

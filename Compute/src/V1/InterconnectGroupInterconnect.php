@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectGroupInterconnect extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URL of an Interconnect in this group. All Interconnects in the group are unique.
+     * The URL of an Interconnect in this group. All Interconnects in the group
+     * are unique.
      *
      * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
      */
@@ -29,7 +30,8 @@ class InterconnectGroupInterconnect extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $interconnect
-     *           The URL of an Interconnect in this group. All Interconnects in the group are unique.
+     *           The URL of an Interconnect in this group. All Interconnects in the group
+     *           are unique.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +40,8 @@ class InterconnectGroupInterconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of an Interconnect in this group. All Interconnects in the group are unique.
+     * The URL of an Interconnect in this group. All Interconnects in the group
+     * are unique.
      *
      * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
      * @return string
@@ -59,7 +62,8 @@ class InterconnectGroupInterconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of an Interconnect in this group. All Interconnects in the group are unique.
+     * The URL of an Interconnect in this group. All Interconnects in the group
+     * are unique.
      *
      * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
      * @param string $var

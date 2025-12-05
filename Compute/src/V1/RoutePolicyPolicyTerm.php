@@ -21,13 +21,16 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
      */
     private $actions;
     /**
-     * CEL expression evaluated against a route to determine if this term applies. When not set, the term applies to all routes.
+     * CEL expression evaluated against a route to determine if this term
+     * applies. When not set, the term applies to all
+     * routes.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr match = 103668165;</code>
      */
     protected $match = null;
     /**
-     * The evaluation priority for this term, which must be between 0 (inclusive) and 2^31 (exclusive), and unique within the list.
+     * The evaluation priority for this term, which must be between 0
+     * (inclusive) and 2^31 (exclusive), and unique within the list.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
@@ -42,9 +45,12 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\Expr>|\Google\Protobuf\Internal\RepeatedField $actions
      *           CEL expressions to evaluate to modify a route when this term matches.
      *     @type \Google\Cloud\Compute\V1\Expr $match
-     *           CEL expression evaluated against a route to determine if this term applies. When not set, the term applies to all routes.
+     *           CEL expression evaluated against a route to determine if this term
+     *           applies. When not set, the term applies to all
+     *           routes.
      *     @type int $priority
-     *           The evaluation priority for this term, which must be between 0 (inclusive) and 2^31 (exclusive), and unique within the list.
+     *           The evaluation priority for this term, which must be between 0
+     *           (inclusive) and 2^31 (exclusive), and unique within the list.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +85,9 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CEL expression evaluated against a route to determine if this term applies. When not set, the term applies to all routes.
+     * CEL expression evaluated against a route to determine if this term
+     * applies. When not set, the term applies to all
+     * routes.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr match = 103668165;</code>
      * @return \Google\Cloud\Compute\V1\Expr|null
@@ -100,7 +108,9 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CEL expression evaluated against a route to determine if this term applies. When not set, the term applies to all routes.
+     * CEL expression evaluated against a route to determine if this term
+     * applies. When not set, the term applies to all
+     * routes.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr match = 103668165;</code>
      * @param \Google\Cloud\Compute\V1\Expr $var
@@ -115,7 +125,8 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The evaluation priority for this term, which must be between 0 (inclusive) and 2^31 (exclusive), and unique within the list.
+     * The evaluation priority for this term, which must be between 0
+     * (inclusive) and 2^31 (exclusive), and unique within the list.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @return int
@@ -136,7 +147,8 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The evaluation priority for this term, which must be between 0 (inclusive) and 2^31 (exclusive), and unique within the list.
+     * The evaluation priority for this term, which must be between 0
+     * (inclusive) and 2^31 (exclusive), and unique within the list.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @param int $var

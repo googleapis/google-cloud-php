@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] The redundancy this group is configured to support. The way a user queries what SLA their Attachment gets is by looking at this field of the Attachment's AttachmentGroup.
+ * [Output Only] The redundancy this group is configured to support. The way a
+ * user queries what SLA their Attachment gets is by looking at this field of
+ * the Attachment's AttachmentGroup.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectAttachmentGroupConfigured</code>
  */

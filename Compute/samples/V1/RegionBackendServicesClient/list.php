@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionBackendServicesClient;
 use Google\Cloud\Compute\V1\ListRegionBackendServicesRequest;
 
 /**
- * Retrieves the list of regional BackendService resources available to the specified project in the given region.
+ * Retrieves the list of regional BackendService resources available to the
+ * specified project in the given region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

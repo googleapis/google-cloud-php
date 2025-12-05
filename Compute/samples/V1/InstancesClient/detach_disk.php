@@ -32,7 +32,8 @@ use Google\Rpc\Status;
 /**
  * Detaches a disk from an instance.
  *
- * @param string $deviceName The device name of the disk to detach. Make a get() request on the instance to view currently attached disks and device names.
+ * @param string $deviceName The device name of the disk to detach. Make a get() request on
+ *                           the instance to view currently attached disks and device names.
  * @param string $instance   Instance name for this request.
  * @param string $project    Project ID for this request.
  * @param string $zone       The name of the zone for this request.

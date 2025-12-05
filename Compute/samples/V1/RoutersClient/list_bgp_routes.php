@@ -33,7 +33,8 @@ use Google\Cloud\Compute\V1\ListBgpRoutesRoutersRequest;
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.
- * @param string $router  Name or id of the resource for this request. Name should conform to RFC1035.
+ * @param string $router  Name or id of the resource for this request.
+ *                        Name should conform to RFC1035.
  */
 function list_bgp_routes_sample(string $project, string $region, string $router): void
 {

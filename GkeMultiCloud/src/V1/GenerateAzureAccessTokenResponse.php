@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `AzureClusters.GenerateAzureAccessToken` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GenerateAzureAccessTokenResponse</code>
  */
 class GenerateAzureAccessTokenResponse extends \Google\Protobuf\Internal\Message

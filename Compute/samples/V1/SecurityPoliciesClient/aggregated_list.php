@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\AggregatedListSecurityPoliciesRequest;
 use Google\Cloud\Compute\V1\Client\SecurityPoliciesClient;
 
 /**
- * Retrieves the list of all SecurityPolicy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves the list of all SecurityPolicy resources, regional and global,
+ * available to the specified project.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Name of the project scoping this request.
  */

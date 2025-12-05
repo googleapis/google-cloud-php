@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration for the placement of a control plane replica.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.ReplicaPlacement</code>
  */
 class ReplicaPlacement extends \Google\Protobuf\Internal\Message

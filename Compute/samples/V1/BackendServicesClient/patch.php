@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\PatchBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified BackendService resource with the data included in the request. For more information, see Backend services overview. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Patches the specified BackendService resource with the data included in the
+ * request. For more information, see
+ * Backend services overview. This method
+ * supports PATCH semantics and uses the JSON merge
+ * patch format and processing rules.
  *
  * @param string $backendService Name of the BackendService resource to patch.
  * @param string $project        Project ID for this request.

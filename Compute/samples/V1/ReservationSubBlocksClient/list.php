@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\ListReservationSubBlocksRequest;
 /**
  * Retrieves a list of reservation subBlocks under a single reservation.
  *
- * @param string $parentName The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+ * @param string $parentName The name of the parent reservation and parent block. In the format of
+ *                           reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
  * @param string $project    Project ID for this request.
  * @param string $zone       Name of the zone for this request. Zone name should conform to RFC1035.
  */

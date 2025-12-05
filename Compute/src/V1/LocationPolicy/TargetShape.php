@@ -20,19 +20,28 @@ class TargetShape
      */
     const UNDEFINED_TARGET_SHAPE = 0;
     /**
-     * GCE picks zones for creating VM instances to fulfill the requested number of VMs within present resource constraints and to maximize utilization of unused zonal reservations. Recommended for batch workloads that do not require high availability.
+     * GCE picks zones for creating VM instances to fulfill the requested
+     * number of VMs within present resource constraints and to maximize
+     * utilization of unused zonal reservations. Recommended for batch workloads
+     * that do not require high availability.
      *
      * Generated from protobuf enum <code>ANY = 64972;</code>
      */
     const ANY = 64972;
     /**
-     * GCE always selects a single zone for all the VMs, optimizing for resource quotas, available reservations and general capacity. Recommended for batch workloads that cannot tollerate distribution over multiple zones. This the default shape in Bulk Insert and Capacity Advisor APIs.
+     * GCE always selects a single zone for all the VMs, optimizing for resource
+     * quotas, available reservations and general capacity. Recommended for
+     * batch workloads that cannot tollerate distribution over multiple zones.
+     * This the default shape in Bulk Insert and Capacity Advisor APIs.
      *
      * Generated from protobuf enum <code>ANY_SINGLE_ZONE = 61100880;</code>
      */
     const ANY_SINGLE_ZONE = 61100880;
     /**
-     * GCE prioritizes acquisition of resources, scheduling VMs in zones where resources are available while distributing VMs as evenly as possible across allowed zones to minimize the impact of zonal failure. Recommended for highly available serving workloads.
+     * GCE prioritizes acquisition of resources, scheduling VMs in zones
+     * where resources are available while distributing VMs as evenly as
+     * possible across allowed zones to minimize the impact of zonal failure.
+     * Recommended for highly available serving workloads.
      *
      * Generated from protobuf enum <code>BALANCED = 468409608;</code>
      */

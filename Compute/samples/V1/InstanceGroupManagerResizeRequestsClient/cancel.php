@@ -30,12 +30,18 @@ use Google\Cloud\Compute\V1\Client\InstanceGroupManagerResizeRequestsClient;
 use Google\Rpc\Status;
 
 /**
- * Cancels the specified resize request and removes it from the queue. Cancelled resize request does no longer wait for the resources to be provisioned. Cancel is only possible for requests that are accepted in the queue.
+ * Cancels the specified resize request and removes it from the queue.
+ * Cancelled resize request does no longer wait for the resources to be
+ * provisioned. Cancel is only possible for requests that are accepted in the
+ * queue.
  *
- * @param string $instanceGroupManager The name of the managed instance group. The name should conform to RFC1035 or be a resource ID.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ *                                     The name should conform to RFC1035 or be a resource ID.
  * @param string $project              Project ID for this request.
- * @param string $resizeRequest        The name of the resize request to cancel. The name should conform to RFC1035 or be a resource ID.
- * @param string $zone                 The name of the zone where the managed instance group is located. The name should conform to RFC1035.
+ * @param string $resizeRequest        The name of the resize request to cancel.
+ *                                     The name should conform to RFC1035 or be a resource ID.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located. The name should conform to RFC1035.
  */
 function cancel_sample(
     string $instanceGroupManager,

@@ -15,13 +15,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of cache tags used to identify cached objects. - Cache tags are specified when the response is first cached, by setting the `Cache-Tag` response header at the origin. - Multiple cache tags in the same invalidation request are treated as Boolean `OR` - for example, `tag1 OR tag2 OR tag3`. - If other fields are also specified, these are treated as Boolean `AND` with any tags. Up to 10 tags can be specified in a single invalidation request.
+     * A list of cache tags used to identify cached objects.
+     *    - Cache tags are specified when the response is first cached, by setting
+     *    the `Cache-Tag` response header at the origin.
+     *    - Multiple cache tags in the same invalidation request are treated as
+     *    Boolean `OR` - for example, `tag1 OR tag2 OR tag3`.
+     *    - If other fields are also specified, these are treated as Boolean `AND`
+     *    with any tags.
+     * Up to 10 tags can be specified in a single invalidation request.
      *
      * Generated from protobuf field <code>repeated string cache_tags = 29073078;</code>
      */
     private $cache_tags;
     /**
-     * If set, this invalidation rule will only apply to requests with a Host header matching host.
+     * If set, this invalidation rule will only apply to requests with a Host
+     * header matching host.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
@@ -38,9 +46,17 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cache_tags
-     *           A list of cache tags used to identify cached objects. - Cache tags are specified when the response is first cached, by setting the `Cache-Tag` response header at the origin. - Multiple cache tags in the same invalidation request are treated as Boolean `OR` - for example, `tag1 OR tag2 OR tag3`. - If other fields are also specified, these are treated as Boolean `AND` with any tags. Up to 10 tags can be specified in a single invalidation request.
+     *           A list of cache tags used to identify cached objects.
+     *              - Cache tags are specified when the response is first cached, by setting
+     *              the `Cache-Tag` response header at the origin.
+     *              - Multiple cache tags in the same invalidation request are treated as
+     *              Boolean `OR` - for example, `tag1 OR tag2 OR tag3`.
+     *              - If other fields are also specified, these are treated as Boolean `AND`
+     *              with any tags.
+     *           Up to 10 tags can be specified in a single invalidation request.
      *     @type string $host
-     *           If set, this invalidation rule will only apply to requests with a Host header matching host.
+     *           If set, this invalidation rule will only apply to requests with a Host
+     *           header matching host.
      *     @type string $path
      * }
      */
@@ -50,7 +66,14 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of cache tags used to identify cached objects. - Cache tags are specified when the response is first cached, by setting the `Cache-Tag` response header at the origin. - Multiple cache tags in the same invalidation request are treated as Boolean `OR` - for example, `tag1 OR tag2 OR tag3`. - If other fields are also specified, these are treated as Boolean `AND` with any tags. Up to 10 tags can be specified in a single invalidation request.
+     * A list of cache tags used to identify cached objects.
+     *    - Cache tags are specified when the response is first cached, by setting
+     *    the `Cache-Tag` response header at the origin.
+     *    - Multiple cache tags in the same invalidation request are treated as
+     *    Boolean `OR` - for example, `tag1 OR tag2 OR tag3`.
+     *    - If other fields are also specified, these are treated as Boolean `AND`
+     *    with any tags.
+     * Up to 10 tags can be specified in a single invalidation request.
      *
      * Generated from protobuf field <code>repeated string cache_tags = 29073078;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +84,14 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of cache tags used to identify cached objects. - Cache tags are specified when the response is first cached, by setting the `Cache-Tag` response header at the origin. - Multiple cache tags in the same invalidation request are treated as Boolean `OR` - for example, `tag1 OR tag2 OR tag3`. - If other fields are also specified, these are treated as Boolean `AND` with any tags. Up to 10 tags can be specified in a single invalidation request.
+     * A list of cache tags used to identify cached objects.
+     *    - Cache tags are specified when the response is first cached, by setting
+     *    the `Cache-Tag` response header at the origin.
+     *    - Multiple cache tags in the same invalidation request are treated as
+     *    Boolean `OR` - for example, `tag1 OR tag2 OR tag3`.
+     *    - If other fields are also specified, these are treated as Boolean `AND`
+     *    with any tags.
+     * Up to 10 tags can be specified in a single invalidation request.
      *
      * Generated from protobuf field <code>repeated string cache_tags = 29073078;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -76,7 +106,8 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, this invalidation rule will only apply to requests with a Host header matching host.
+     * If set, this invalidation rule will only apply to requests with a Host
+     * header matching host.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @return string
@@ -97,7 +128,8 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, this invalidation rule will only apply to requests with a Host header matching host.
+     * If set, this invalidation rule will only apply to requests with a Host
+     * header matching host.
      *
      * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @param string $var

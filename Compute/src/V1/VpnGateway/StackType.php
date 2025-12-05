@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\VpnGateway;
 use UnexpectedValueException;
 
 /**
- * The stack type for this VPN gateway to identify the IP protocols that are enabled. Possible values are: IPV4_ONLY, IPV4_IPV6, IPV6_ONLY. If not specified, IPV4_ONLY is used if the gateway IP version is IPV4, or IPV4_IPV6 if the gateway IP version is IPV6.
+ * The stack type for this VPN gateway to identify the IP protocols that are
+ * enabled. Possible values are: IPV4_ONLY,IPV4_IPV6, IPV6_ONLY. If not specified,IPV4_ONLY is used if the gateway IP version isIPV4, or IPV4_IPV6 if the gateway IP version isIPV6.
  *
  * Protobuf type <code>google.cloud.compute.v1.VpnGateway.StackType</code>
  */

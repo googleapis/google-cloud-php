@@ -338,7 +338,10 @@ final class TargetPoolsClient
     }
 
     /**
-     * Retrieves an aggregated list of target pools. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of target pools.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see TargetPoolsClient::aggregatedListAsync()} .
      *
@@ -418,7 +421,8 @@ final class TargetPoolsClient
     }
 
     /**
-     * Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
+     * Gets the most recent health check results for each IP for the
+     * instance that is referenced by the given target pool.
      *
      * The async variant is {@see TargetPoolsClient::getHealthAsync()} .
      *
@@ -444,7 +448,8 @@ final class TargetPoolsClient
     }
 
     /**
-     * Creates a target pool in the specified project and region using the data included in the request.
+     * Creates a target pool in the specified project and region using
+     * the data included in the request.
      *
      * The async variant is {@see TargetPoolsClient::insertAsync()} .
      *
@@ -470,7 +475,8 @@ final class TargetPoolsClient
     }
 
     /**
-     * Retrieves a list of target pools available to the specified project and region.
+     * Retrieves a list of target pools available to the specified
+     * project and region.
      *
      * The async variant is {@see TargetPoolsClient::listAsync()} .
      *
@@ -576,7 +582,9 @@ final class TargetPoolsClient
     }
 
     /**
-     * Sets the Google Cloud Armor security policy for the specified target pool. For more information, see Google Cloud Armor Overview
+     * Sets the Google Cloud Armor security policy for the specified target pool.
+     * For more information, seeGoogle
+     * Cloud Armor Overview
      *
      * The async variant is {@see TargetPoolsClient::setSecurityPolicyAsync()} .
      *

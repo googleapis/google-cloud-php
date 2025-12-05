@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\ListPreconfiguredExpressionSetsSecurityPoliciesReque
 use Google\Cloud\Compute\V1\SecurityPoliciesListPreconfiguredExpressionSetsResponse;
 
 /**
- * Gets the current list of preconfigured Web Application Firewall (WAF) expressions.
+ * Gets the current list of preconfigured Web Application Firewall (WAF)
+ * expressions.
  *
  * @param string $project Project ID for this request.
  */

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Address;
 use UnexpectedValueException;
 
 /**
- * The type of address to reserve, either INTERNAL or EXTERNAL. If unspecified, defaults to EXTERNAL.
+ * The type of address to reserve, either INTERNAL orEXTERNAL. If unspecified, defaults to EXTERNAL.
  *
  * Protobuf type <code>google.cloud.compute.v1.Address.AddressType</code>
  */
@@ -26,7 +26,8 @@ class AddressType
      */
     const EXTERNAL = 35607499;
     /**
-     * A private network IP address, for use with an Instance or Internal Load Balancer forwarding rule.
+     * A private network IP address, for use with an Instance or Internal Load
+     * Balancer forwarding rule.
      *
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */

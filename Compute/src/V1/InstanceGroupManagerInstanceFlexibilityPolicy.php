@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerInstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Named instance selections configuring properties that the group will use when creating new VMs.
+     * Named instance selections configuring properties that the group will use
+     * when creating new VMs.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection> instance_selections = 22954577;</code>
      */
@@ -28,7 +29,8 @@ class InstanceGroupManagerInstanceFlexibilityPolicy extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $instance_selections
-     *           Named instance selections configuring properties that the group will use when creating new VMs.
+     *           Named instance selections configuring properties that the group will use
+     *           when creating new VMs.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class InstanceGroupManagerInstanceFlexibilityPolicy extends \Google\Protobuf\Int
     }
 
     /**
-     * Named instance selections configuring properties that the group will use when creating new VMs.
+     * Named instance selections configuring properties that the group will use
+     * when creating new VMs.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection> instance_selections = 22954577;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -48,7 +51,8 @@ class InstanceGroupManagerInstanceFlexibilityPolicy extends \Google\Protobuf\Int
     }
 
     /**
-     * Named instance selections configuring properties that the group will use when creating new VMs.
+     * Named instance selections configuring properties that the group will use
+     * when creating new VMs.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection> instance_selections = 22954577;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

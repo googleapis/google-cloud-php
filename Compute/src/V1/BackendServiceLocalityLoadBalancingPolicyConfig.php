@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Container for either a built-in LB policy supported by gRPC or Envoy or a custom one implemented by the end user.
+ * Container for either a built-in LB policy supported by gRPC or Envoy or
+ * a custom one implemented by the end user.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BackendServiceLocalityLoadBalancingPolicyConfig</code>
  */

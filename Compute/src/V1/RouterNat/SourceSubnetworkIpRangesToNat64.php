@@ -7,7 +7,17 @@ namespace Google\Cloud\Compute\V1\RouterNat;
 use UnexpectedValueException;
 
 /**
- * Specify the Nat option for NAT64, which can take one of the following values: - ALL_IPV6_SUBNETWORKS: All of the IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field nat64_subnetwork below) The default is NAT64_OPTION_UNSPECIFIED. Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other Router.Nat section in this region can also enable NAT64 for any Subnetworks in this network. Other Router.Nat sections can still be present to enable NAT44 only.
+ * Specify the Nat option for NAT64, which can take one of the following
+ * values:
+ *    - ALL_IPV6_SUBNETWORKS: All of the IP ranges in
+ *    every Subnetwork are allowed to Nat.
+ *    - LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat
+ *    (specified in the field nat64_subnetwork below)
+ * The default is NAT64_OPTION_UNSPECIFIED.
+ * Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other
+ * Router.Nat section in this region can also enable NAT64 for any
+ * Subnetworks in this network. Other Router.Nat sections can still be
+ * present to enable NAT44 only.
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat64</code>
  */
@@ -20,13 +30,16 @@ class SourceSubnetworkIpRangesToNat64
      */
     const UNDEFINED_SOURCE_SUBNETWORK_IP_RANGES_TO_NAT64 = 0;
     /**
-     * NAT64 is enabled for all the IPv6 subnet ranges. In dual stack subnets, NAT64 will only be enabled for IPv6-only VMs.
+     * NAT64 is enabled for all the IPv6 subnet ranges.
+     * In dual stack subnets, NAT64 will only be enabled for IPv6-only VMs.
      *
      * Generated from protobuf enum <code>ALL_IPV6_SUBNETWORKS = 341632747;</code>
      */
     const ALL_IPV6_SUBNETWORKS = 341632747;
     /**
-     * NAT64 is enabled for a list of IPv6 subnet ranges. In dual stack subnets, NAT64 will only be enabled for IPv6-only VMs. If this option is used, the nat64_subnetworks field must be specified.
+     * NAT64 is enabled for a list of IPv6 subnet ranges.
+     * In dual stack subnets, NAT64 will only be enabled for IPv6-only VMs.
+     * If this option is used, the nat64_subnetworks field must be specified.
      *
      * Generated from protobuf enum <code>LIST_OF_IPV6_SUBNETWORKS = 521079860;</code>
      */

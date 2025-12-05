@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\TargetInstance;
 use Google\Rpc\Status;
 
 /**
- * Creates a TargetInstance resource in the specified project and zone using the data included in the request.
+ * Creates a TargetInstance resource in the specified project and zone using
+ * the data included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone scoping this request.

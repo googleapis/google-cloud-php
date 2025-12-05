@@ -33,7 +33,9 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Protobuf\GPBEmpty;
 use Google\Shopping\Merchant\Accounts\V1\DeveloperRegistration;
+use Google\Shopping\Merchant\Accounts\V1\GetAccountForGcpRegistrationResponse;
 use Google\Shopping\Merchant\Accounts\V1\GetDeveloperRegistrationRequest;
 use Google\Shopping\Merchant\Accounts\V1\RegisterGcpRequest;
 use Google\Shopping\Merchant\Accounts\V1\UnregisterGcpRequest;
@@ -51,6 +53,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<GetAccountForGcpRegistrationResponse> getAccountForGcpRegistrationAsync(GPBEmpty $request, array $optionalArgs = [])
  * @method PromiseInterface<DeveloperRegistration> getDeveloperRegistrationAsync(GetDeveloperRegistrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DeveloperRegistration> registerGcpAsync(RegisterGcpRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> unregisterGcpAsync(UnregisterGcpRequest $request, array $optionalArgs = [])
@@ -80,9 +83,7 @@ final class DeveloperRegistrationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -97,7 +98,8 @@ final class DeveloperRegistrationServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/developer_registration_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/developer_registration_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -228,6 +230,35 @@ final class DeveloperRegistrationServiceClient
     }
 
     /**
+     * Retrieves the merchant account that the calling GCP is registered with.
+     *
+     * The async variant is
+     * {@see DeveloperRegistrationServiceClient::getAccountForGcpRegistrationAsync()} .
+     *
+     * @example samples/V1/DeveloperRegistrationServiceClient/get_account_for_gcp_registration.php
+     *
+     * @param GPBEmpty $request     A request to house fields associated with the call.
+     * @param array    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GetAccountForGcpRegistrationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAccountForGcpRegistration(
+        GPBEmpty $request,
+        array $callOptions = []
+    ): GetAccountForGcpRegistrationResponse {
+        return $this->startApiCall('GetAccountForGcpRegistration', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a developer registration for a merchant.
      *
      * The async variant is
@@ -249,8 +280,10 @@ final class DeveloperRegistrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDeveloperRegistration(GetDeveloperRegistrationRequest $request, array $callOptions = []): DeveloperRegistration
-    {
+    public function getDeveloperRegistration(
+        GetDeveloperRegistrationRequest $request,
+        array $callOptions = []
+    ): DeveloperRegistration {
         return $this->startApiCall('GetDeveloperRegistration', $request, $callOptions)->wait();
     }
 

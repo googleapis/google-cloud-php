@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AwsClusters.RollbackAwsNodePoolUpdate` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.RollbackAwsNodePoolUpdateRequest</code>
  */
 class RollbackAwsNodePoolUpdateRequest extends \Google\Protobuf\Internal\Message

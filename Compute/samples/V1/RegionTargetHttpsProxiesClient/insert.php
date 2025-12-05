@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\TargetHttpsProxy;
 use Google\Rpc\Status;
 
 /**
- * Creates a TargetHttpsProxy resource in the specified project and region using the data included in the request.
+ * Creates a TargetHttpsProxy resource in the specified project and region
+ * using the data included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

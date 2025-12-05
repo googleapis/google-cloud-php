@@ -15,14 +15,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Instances in which state should be returned. Valid options are: 'ALL', 'RUNNING'. By default, it lists all instances.
+     * Instances in which state should be returned. Valid options are:
+     * 'ALL', 'RUNNING'. By default, it lists all instances.
      * Check the InstanceState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
      */
     protected $instance_state = null;
     /**
-     * Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
+     * Name of port user is interested in. It is optional. If it is set, only
+     * information about this ports will be returned. If it is not set, all the
+     * named ports will be returned.
+     * Always lists all instances.
      *
      * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      */
@@ -35,10 +39,14 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_state
-     *           Instances in which state should be returned. Valid options are: 'ALL', 'RUNNING'. By default, it lists all instances.
+     *           Instances in which state should be returned. Valid options are:
+     *           'ALL', 'RUNNING'. By default, it lists all instances.
      *           Check the InstanceState enum for the list of possible values.
      *     @type string $port_name
-     *           Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
+     *           Name of port user is interested in. It is optional. If it is set, only
+     *           information about this ports will be returned. If it is not set, all the
+     *           named ports will be returned.
+     *           Always lists all instances.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +55,8 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Instances in which state should be returned. Valid options are: 'ALL', 'RUNNING'. By default, it lists all instances.
+     * Instances in which state should be returned. Valid options are:
+     * 'ALL', 'RUNNING'. By default, it lists all instances.
      * Check the InstanceState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
@@ -69,7 +78,8 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Instances in which state should be returned. Valid options are: 'ALL', 'RUNNING'. By default, it lists all instances.
+     * Instances in which state should be returned. Valid options are:
+     * 'ALL', 'RUNNING'. By default, it lists all instances.
      * Check the InstanceState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
@@ -85,7 +95,10 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
+     * Name of port user is interested in. It is optional. If it is set, only
+     * information about this ports will be returned. If it is not set, all the
+     * named ports will be returned.
+     * Always lists all instances.
      *
      * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      * @return string
@@ -106,7 +119,10 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
+     * Name of port user is interested in. It is optional. If it is set, only
+     * information about this ports will be returned. If it is not set, all the
+     * named ports will be returned.
+     * Always lists all instances.
      *
      * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      * @param string $var

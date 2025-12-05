@@ -30,7 +30,12 @@ use Google\Cloud\Compute\V1\RemoveAssociationOrganizationSecurityPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Removes an association for the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.removeAssociation instead if possible.
+ * Removes an association for the specified security policy.
+ *
+ * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to modify firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.removeAssociation
+ * instead.
  *
  * @param string $securityPolicy Name of the security policy to update.
  */

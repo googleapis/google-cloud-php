@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Snapshot;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.
+ * [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
  *
  * Protobuf type <code>google.cloud.compute.v1.Snapshot.Status</code>
  */

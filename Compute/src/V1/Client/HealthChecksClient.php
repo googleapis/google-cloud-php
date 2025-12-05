@@ -272,7 +272,11 @@ final class HealthChecksClient
     }
 
     /**
-     * Retrieves the list of all HealthCheck resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all HealthCheck resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see HealthChecksClient::aggregatedListAsync()} .
      *
@@ -352,7 +356,8 @@ final class HealthChecksClient
     }
 
     /**
-     * Creates a HealthCheck resource in the specified project using the data included in the request.
+     * Creates a HealthCheck resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see HealthChecksClient::insertAsync()} .
      *
@@ -378,7 +383,8 @@ final class HealthChecksClient
     }
 
     /**
-     * Retrieves the list of HealthCheck resources available to the specified project.
+     * Retrieves the list of HealthCheck resources available to the specified
+     * project.
      *
      * The async variant is {@see HealthChecksClient::listAsync()} .
      *
@@ -404,7 +410,10 @@ final class HealthChecksClient
     }
 
     /**
-     * Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates a HealthCheck resource in the specified project using the data
+     * included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see HealthChecksClient::patchAsync()} .
      *
@@ -430,7 +439,8 @@ final class HealthChecksClient
     }
 
     /**
-     * Updates a HealthCheck resource in the specified project using the data included in the request.
+     * Updates a HealthCheck resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see HealthChecksClient::updateAsync()} .
      *

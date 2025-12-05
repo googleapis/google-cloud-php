@@ -29,10 +29,12 @@ use Google\Cloud\Compute\V1\Client\RegionBackendServicesClient;
 use Google\Cloud\Compute\V1\ListUsableRegionBackendServicesRequest;
 
 /**
- * Retrieves a list of all usable backend services in the specified project in the given region.
+ * Retrieves a list of all usable backend services in the specified project in
+ * the given region.
  *
  * @param string $project Project ID for this request.
- * @param string $region  Name of the region scoping this request. It must be a string that meets the requirements in RFC1035.
+ * @param string $region  Name of the region scoping this request.
+ *                        It must be a string that meets the requirements in RFC1035.
  */
 function list_usable_sample(string $project, string $region): void
 {

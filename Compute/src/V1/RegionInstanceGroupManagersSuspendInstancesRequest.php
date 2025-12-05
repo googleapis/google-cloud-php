@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If this flag is set to true, the Instance Group Manager will proceed to suspend the instances, skipping initialization on them.
+     * If this flag is set to true, the Instance Group Manager will proceed to
+     * suspend the instances, skipping initialization on them.
      *
      * Generated from protobuf field <code>optional bool force_suspend = 27637480;</code>
      */
     protected $force_suspend = null;
     /**
-     * The URLs of one or more instances to suspend. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to suspend. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      */
@@ -34,9 +36,11 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $force_suspend
-     *           If this flag is set to true, the Instance Group Manager will proceed to suspend the instances, skipping initialization on them.
+     *           If this flag is set to true, the Instance Group Manager will proceed to
+     *           suspend the instances, skipping initialization on them.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
-     *           The URLs of one or more instances to suspend. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     *           The URLs of one or more instances to suspend. This can be a full URL or
+     *           a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
     }
 
     /**
-     * If this flag is set to true, the Instance Group Manager will proceed to suspend the instances, skipping initialization on them.
+     * If this flag is set to true, the Instance Group Manager will proceed to
+     * suspend the instances, skipping initialization on them.
      *
      * Generated from protobuf field <code>optional bool force_suspend = 27637480;</code>
      * @return bool
@@ -66,7 +71,8 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
     }
 
     /**
-     * If this flag is set to true, the Instance Group Manager will proceed to suspend the instances, skipping initialization on them.
+     * If this flag is set to true, the Instance Group Manager will proceed to
+     * suspend the instances, skipping initialization on them.
      *
      * Generated from protobuf field <code>optional bool force_suspend = 27637480;</code>
      * @param bool $var
@@ -81,7 +87,8 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
     }
 
     /**
-     * The URLs of one or more instances to suspend. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to suspend. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,7 +99,8 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
     }
 
     /**
-     * The URLs of one or more instances to suspend. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to suspend. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

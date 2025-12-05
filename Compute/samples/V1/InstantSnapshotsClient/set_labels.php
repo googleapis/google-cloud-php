@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\ZoneSetLabelsRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the labels on a instantSnapshot in the given zone. To learn more about labels, read the Labeling Resources documentation.
+ * Sets the labels on a instantSnapshot in the given zone. To learn more about
+ * labels, read the Labeling
+ * Resources documentation.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\BulkInsertOperationStatus;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Creation status of BulkInsert operation - information if the flow is rolling forward or rolling back.
+ * [Output Only] Creation status of BulkInsert operation - information
+ * if the flow is rolling forward or rolling back.
  *
  * Protobuf type <code>google.cloud.compute.v1.BulkInsertOperationStatus.Status</code>
  */

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\UrlMapsClient;
 use Google\Cloud\Compute\V1\ListUrlMapsRequest;
 
 /**
- * Retrieves the list of UrlMap resources available to the specified project.
+ * Retrieves the list of UrlMap resources available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

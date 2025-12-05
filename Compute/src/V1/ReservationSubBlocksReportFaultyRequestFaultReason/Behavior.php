@@ -36,6 +36,12 @@ class Behavior
      */
     const PERFORMANCE = 135701520;
     /**
+     * The subBlock experienced silent data corruption.
+     *
+     * Generated from protobuf enum <code>SILENT_DATA_CORRUPTION = 111360678;</code>
+     */
+    const SILENT_DATA_CORRUPTION = 111360678;
+    /**
      * The subBlock experienced a switch failure.
      *
      * Generated from protobuf enum <code>SWITCH_FAILURE = 254909279;</code>
@@ -47,6 +53,7 @@ class Behavior
         self::FAULT_BEHAVIOR_UNSPECIFIED => 'FAULT_BEHAVIOR_UNSPECIFIED',
         self::GPU_ERROR => 'GPU_ERROR',
         self::PERFORMANCE => 'PERFORMANCE',
+        self::SILENT_DATA_CORRUPTION => 'SILENT_DATA_CORRUPTION',
         self::SWITCH_FAILURE => 'SWITCH_FAILURE',
     ];
 

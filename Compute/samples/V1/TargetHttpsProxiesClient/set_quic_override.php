@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Sets the QUIC override policy for TargetHttpsProxy.
  *
  * @param string $project          Project ID for this request.
- * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource to set the QUIC override policy for. The name should conform to RFC1035.
+ * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource to set the QUIC override policy for.
+ *                                 The name should conform to RFC1035.
  */
 function set_quic_override_sample(string $project, string $targetHttpsProxy): void
 {

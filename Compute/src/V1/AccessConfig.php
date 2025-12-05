@@ -9,69 +9,97 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An access configuration attached to an instance's network interface. Only one access config per instance is supported.
+ * An access configuration attached to an instance's network interface.
+ * Only one access config per instance is supported.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AccessConfig</code>
  */
 class AccessConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Applies to ipv6AccessConfigs only. The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. To use a static external IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an external IPv6 address from the instance's subnetwork.
+     * Applies to ipv6AccessConfigs only.
+     * The first IPv6 address of the external IPv6 range associated
+     * with this instance, prefix length is stored inexternalIpv6PrefixLength in ipv6AccessConfig. To
+     * use a static external IP address, it must be unused and in the same region
+     * as the instance's zone. If not specified, Google Cloud will automatically
+     * assign an external IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6 = 532703707;</code>
      */
     protected $external_ipv6 = null;
     /**
-     * Applies to ipv6AccessConfigs only. The prefix length of the external IPv6 range.
+     * Applies to ipv6AccessConfigs only. The prefix length of the
+     * external IPv6 range.
      *
      * Generated from protobuf field <code>optional int32 external_ipv6_prefix_length = 425672143;</code>
      */
     protected $external_ipv6_prefix_length = null;
     /**
-     * [Output Only] Type of the resource. Always compute#accessConfig for access configs.
+     * [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * The name of this access configuration. In accessConfigs (IPv4), the default and recommended name is External NAT, but you can use any arbitrary string, such as My external IP or Network Access. In ipv6AccessConfigs, the recommend name is External IPv6.
+     * The name of this access configuration. In accessConfigs
+     * (IPv4), the default and recommended name is External NAT, but
+     * you can use any arbitrary string, such as My external IP orNetwork Access. In ipv6AccessConfigs, the
+     * recommend name is External IPv6.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * Applies to accessConfigs (IPv4) only. An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+     * Applies to accessConfigs (IPv4) only. Anexternal IP
+     * address associated with this instance. Specify an unused static
+     * external IP address available to the project or leave this field undefined
+     * to use an IP from a shared ephemeral IP address pool. If you specify a
+     * static external IP address, it must live in the same region as the zone of
+     * the instance.
      *
      * Generated from protobuf field <code>optional string nat_i_p = 117634556;</code>
      */
     protected $nat_i_p = null;
     /**
-     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     * This signifies the networking tier used for configuring this access
+     * configuration and can only take the following values: PREMIUM,STANDARD.
+     * If an AccessConfig is specified without a valid external IP address, an
+     * ephemeral IP will be created with this networkTier.
+     * If an AccessConfig with a valid external IP address is specified, it must
+     * match that of the networkTier associated with the Address resource owning
+     * that IP.
      * Check the NetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
      */
     protected $network_tier = null;
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
+     * The DNS domain name for the public PTR record.
+     * You can set this field only if the `setPublicPtr` field is enabled inaccessConfig. If this field is unspecified inipv6AccessConfig, a default PTR record will be created for
+     * first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      */
     protected $public_ptr_domain_name = null;
     /**
-     * The resource URL for the security policy associated with this access config.
+     * The resource URL for the security policy associated with this access
+     * config.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      */
     protected $security_policy = null;
     /**
-     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
+     * Specifies whether a public DNS 'PTR' record should be created to map the
+     * external IP address of the instance to a DNS domain name.
+     * This field is not used in ipv6AccessConfig. A default PTR
+     * record will be created if the VM has external IPv6 range associated.
      *
      * Generated from protobuf field <code>optional bool set_public_ptr = 523870229;</code>
      */
     protected $set_public_ptr = null;
     /**
-     * The type of configuration. In accessConfigs (IPv4), the default and only option is ONE_TO_ONE_NAT. In ipv6AccessConfigs, the default and only option is DIRECT_IPV6.
+     * The type of configuration. In accessConfigs (IPv4), the
+     * default and only option is ONE_TO_ONE_NAT. Inipv6AccessConfigs, the default and only option isDIRECT_IPV6.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -85,26 +113,53 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $external_ipv6
-     *           Applies to ipv6AccessConfigs only. The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. To use a static external IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an external IPv6 address from the instance's subnetwork.
+     *           Applies to ipv6AccessConfigs only.
+     *           The first IPv6 address of the external IPv6 range associated
+     *           with this instance, prefix length is stored inexternalIpv6PrefixLength in ipv6AccessConfig. To
+     *           use a static external IP address, it must be unused and in the same region
+     *           as the instance's zone. If not specified, Google Cloud will automatically
+     *           assign an external IPv6 address from the instance's subnetwork.
      *     @type int $external_ipv6_prefix_length
-     *           Applies to ipv6AccessConfigs only. The prefix length of the external IPv6 range.
+     *           Applies to ipv6AccessConfigs only. The prefix length of the
+     *           external IPv6 range.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#accessConfig for access configs.
+     *           [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *     @type string $name
-     *           The name of this access configuration. In accessConfigs (IPv4), the default and recommended name is External NAT, but you can use any arbitrary string, such as My external IP or Network Access. In ipv6AccessConfigs, the recommend name is External IPv6.
+     *           The name of this access configuration. In accessConfigs
+     *           (IPv4), the default and recommended name is External NAT, but
+     *           you can use any arbitrary string, such as My external IP orNetwork Access. In ipv6AccessConfigs, the
+     *           recommend name is External IPv6.
      *     @type string $nat_i_p
-     *           Applies to accessConfigs (IPv4) only. An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+     *           Applies to accessConfigs (IPv4) only. Anexternal IP
+     *           address associated with this instance. Specify an unused static
+     *           external IP address available to the project or leave this field undefined
+     *           to use an IP from a shared ephemeral IP address pool. If you specify a
+     *           static external IP address, it must live in the same region as the zone of
+     *           the instance.
      *     @type string $network_tier
-     *           This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     *           This signifies the networking tier used for configuring this access
+     *           configuration and can only take the following values: PREMIUM,STANDARD.
+     *           If an AccessConfig is specified without a valid external IP address, an
+     *           ephemeral IP will be created with this networkTier.
+     *           If an AccessConfig with a valid external IP address is specified, it must
+     *           match that of the networkTier associated with the Address resource owning
+     *           that IP.
      *           Check the NetworkTier enum for the list of possible values.
      *     @type string $public_ptr_domain_name
-     *           The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
+     *           The DNS domain name for the public PTR record.
+     *           You can set this field only if the `setPublicPtr` field is enabled inaccessConfig. If this field is unspecified inipv6AccessConfig, a default PTR record will be created for
+     *           first IP in associated external IPv6 range.
      *     @type string $security_policy
-     *           The resource URL for the security policy associated with this access config.
+     *           The resource URL for the security policy associated with this access
+     *           config.
      *     @type bool $set_public_ptr
-     *           Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
+     *           Specifies whether a public DNS 'PTR' record should be created to map the
+     *           external IP address of the instance to a DNS domain name.
+     *           This field is not used in ipv6AccessConfig. A default PTR
+     *           record will be created if the VM has external IPv6 range associated.
      *     @type string $type
-     *           The type of configuration. In accessConfigs (IPv4), the default and only option is ONE_TO_ONE_NAT. In ipv6AccessConfigs, the default and only option is DIRECT_IPV6.
+     *           The type of configuration. In accessConfigs (IPv4), the
+     *           default and only option is ONE_TO_ONE_NAT. Inipv6AccessConfigs, the default and only option isDIRECT_IPV6.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -114,7 +169,12 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies to ipv6AccessConfigs only. The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. To use a static external IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an external IPv6 address from the instance's subnetwork.
+     * Applies to ipv6AccessConfigs only.
+     * The first IPv6 address of the external IPv6 range associated
+     * with this instance, prefix length is stored inexternalIpv6PrefixLength in ipv6AccessConfig. To
+     * use a static external IP address, it must be unused and in the same region
+     * as the instance's zone. If not specified, Google Cloud will automatically
+     * assign an external IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6 = 532703707;</code>
      * @return string
@@ -135,7 +195,12 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies to ipv6AccessConfigs only. The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. To use a static external IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an external IPv6 address from the instance's subnetwork.
+     * Applies to ipv6AccessConfigs only.
+     * The first IPv6 address of the external IPv6 range associated
+     * with this instance, prefix length is stored inexternalIpv6PrefixLength in ipv6AccessConfig. To
+     * use a static external IP address, it must be unused and in the same region
+     * as the instance's zone. If not specified, Google Cloud will automatically
+     * assign an external IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6 = 532703707;</code>
      * @param string $var
@@ -150,7 +215,8 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies to ipv6AccessConfigs only. The prefix length of the external IPv6 range.
+     * Applies to ipv6AccessConfigs only. The prefix length of the
+     * external IPv6 range.
      *
      * Generated from protobuf field <code>optional int32 external_ipv6_prefix_length = 425672143;</code>
      * @return int
@@ -171,7 +237,8 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies to ipv6AccessConfigs only. The prefix length of the external IPv6 range.
+     * Applies to ipv6AccessConfigs only. The prefix length of the
+     * external IPv6 range.
      *
      * Generated from protobuf field <code>optional int32 external_ipv6_prefix_length = 425672143;</code>
      * @param int $var
@@ -186,7 +253,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#accessConfig for access configs.
+     * [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -207,7 +274,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#accessConfig for access configs.
+     * [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -222,7 +289,10 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of this access configuration. In accessConfigs (IPv4), the default and recommended name is External NAT, but you can use any arbitrary string, such as My external IP or Network Access. In ipv6AccessConfigs, the recommend name is External IPv6.
+     * The name of this access configuration. In accessConfigs
+     * (IPv4), the default and recommended name is External NAT, but
+     * you can use any arbitrary string, such as My external IP orNetwork Access. In ipv6AccessConfigs, the
+     * recommend name is External IPv6.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -243,7 +313,10 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of this access configuration. In accessConfigs (IPv4), the default and recommended name is External NAT, but you can use any arbitrary string, such as My external IP or Network Access. In ipv6AccessConfigs, the recommend name is External IPv6.
+     * The name of this access configuration. In accessConfigs
+     * (IPv4), the default and recommended name is External NAT, but
+     * you can use any arbitrary string, such as My external IP orNetwork Access. In ipv6AccessConfigs, the
+     * recommend name is External IPv6.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -258,7 +331,12 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies to accessConfigs (IPv4) only. An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+     * Applies to accessConfigs (IPv4) only. Anexternal IP
+     * address associated with this instance. Specify an unused static
+     * external IP address available to the project or leave this field undefined
+     * to use an IP from a shared ephemeral IP address pool. If you specify a
+     * static external IP address, it must live in the same region as the zone of
+     * the instance.
      *
      * Generated from protobuf field <code>optional string nat_i_p = 117634556;</code>
      * @return string
@@ -279,7 +357,12 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies to accessConfigs (IPv4) only. An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+     * Applies to accessConfigs (IPv4) only. Anexternal IP
+     * address associated with this instance. Specify an unused static
+     * external IP address available to the project or leave this field undefined
+     * to use an IP from a shared ephemeral IP address pool. If you specify a
+     * static external IP address, it must live in the same region as the zone of
+     * the instance.
      *
      * Generated from protobuf field <code>optional string nat_i_p = 117634556;</code>
      * @param string $var
@@ -294,7 +377,13 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     * This signifies the networking tier used for configuring this access
+     * configuration and can only take the following values: PREMIUM,STANDARD.
+     * If an AccessConfig is specified without a valid external IP address, an
+     * ephemeral IP will be created with this networkTier.
+     * If an AccessConfig with a valid external IP address is specified, it must
+     * match that of the networkTier associated with the Address resource owning
+     * that IP.
      * Check the NetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
@@ -316,7 +405,13 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     * This signifies the networking tier used for configuring this access
+     * configuration and can only take the following values: PREMIUM,STANDARD.
+     * If an AccessConfig is specified without a valid external IP address, an
+     * ephemeral IP will be created with this networkTier.
+     * If an AccessConfig with a valid external IP address is specified, it must
+     * match that of the networkTier associated with the Address resource owning
+     * that IP.
      * Check the NetworkTier enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
@@ -332,7 +427,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
+     * The DNS domain name for the public PTR record.
+     * You can set this field only if the `setPublicPtr` field is enabled inaccessConfig. If this field is unspecified inipv6AccessConfig, a default PTR record will be created for
+     * first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      * @return string
@@ -353,7 +450,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
+     * The DNS domain name for the public PTR record.
+     * You can set this field only if the `setPublicPtr` field is enabled inaccessConfig. If this field is unspecified inipv6AccessConfig, a default PTR record will be created for
+     * first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      * @param string $var
@@ -368,7 +467,8 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource URL for the security policy associated with this access config.
+     * The resource URL for the security policy associated with this access
+     * config.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @return string
@@ -389,7 +489,8 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource URL for the security policy associated with this access config.
+     * The resource URL for the security policy associated with this access
+     * config.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @param string $var
@@ -404,7 +505,10 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
+     * Specifies whether a public DNS 'PTR' record should be created to map the
+     * external IP address of the instance to a DNS domain name.
+     * This field is not used in ipv6AccessConfig. A default PTR
+     * record will be created if the VM has external IPv6 range associated.
      *
      * Generated from protobuf field <code>optional bool set_public_ptr = 523870229;</code>
      * @return bool
@@ -425,7 +529,10 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
+     * Specifies whether a public DNS 'PTR' record should be created to map the
+     * external IP address of the instance to a DNS domain name.
+     * This field is not used in ipv6AccessConfig. A default PTR
+     * record will be created if the VM has external IPv6 range associated.
      *
      * Generated from protobuf field <code>optional bool set_public_ptr = 523870229;</code>
      * @param bool $var
@@ -440,7 +547,8 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of configuration. In accessConfigs (IPv4), the default and only option is ONE_TO_ONE_NAT. In ipv6AccessConfigs, the default and only option is DIRECT_IPV6.
+     * The type of configuration. In accessConfigs (IPv4), the
+     * default and only option is ONE_TO_ONE_NAT. Inipv6AccessConfigs, the default and only option isDIRECT_IPV6.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -462,7 +570,8 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of configuration. In accessConfigs (IPv4), the default and only option is ONE_TO_ONE_NAT. In ipv6AccessConfigs, the default and only option is DIRECT_IPV6.
+     * The type of configuration. In accessConfigs (IPv4), the
+     * default and only option is ONE_TO_ONE_NAT. Inipv6AccessConfigs, the default and only option isDIRECT_IPV6.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

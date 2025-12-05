@@ -30,7 +30,9 @@ use Google\Cloud\Compute\V1\ResetInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Performs a reset on the instance. This is a hard reset. The VM does not do a graceful shutdown. For more information, see Resetting an instance.
+ * Performs a reset on the instance. This is a hard reset. The VM
+ * does not do a graceful shutdown. For more information, seeResetting
+ * an instance.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

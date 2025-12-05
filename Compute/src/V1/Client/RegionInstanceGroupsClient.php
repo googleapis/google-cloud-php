@@ -295,7 +295,8 @@ final class RegionInstanceGroupsClient
     }
 
     /**
-     * Retrieves the list of instance group resources contained within the specified region.
+     * Retrieves the list of instance group resources contained within
+     * the specified region.
      *
      * The async variant is {@see RegionInstanceGroupsClient::listAsync()} .
      *
@@ -321,7 +322,10 @@ final class RegionInstanceGroupsClient
     }
 
     /**
-     * Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running. The orderBy query parameter is not supported.
+     * Lists the instances in the specified instance group and displays
+     * information about the named ports. Depending on the specified options, this
+     * method can list all instances or only the instances that are running.
+     * The orderBy query parameter is not supported.
      *
      * The async variant is {@see RegionInstanceGroupsClient::listInstancesAsync()} .
      *

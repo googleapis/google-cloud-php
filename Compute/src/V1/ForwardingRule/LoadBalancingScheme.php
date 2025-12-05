@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\ForwardingRule;
 use UnexpectedValueException;
 
 /**
- * Specifies the forwarding rule type. For more information about forwarding rules, refer to Forwarding rule concepts.
+ * Specifies the forwarding rule type.
+ * For more information about forwarding rules, refer to
+ * Forwarding rule concepts.
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.LoadBalancingScheme</code>
  */

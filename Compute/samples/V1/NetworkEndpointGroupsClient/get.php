@@ -33,7 +33,8 @@ use Google\Cloud\Compute\V1\NetworkEndpointGroup;
  *
  * @param string $networkEndpointGroup The name of the network endpoint group. It should comply with RFC1035.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+ * @param string $zone                 The name of the zone where
+ *                                     the network endpoint group is located. It should comply with RFC1035.
  */
 function get_sample(string $networkEndpointGroup, string $project, string $zone): void
 {

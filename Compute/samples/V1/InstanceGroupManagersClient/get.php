@@ -33,7 +33,8 @@ use Google\Cloud\Compute\V1\InstanceGroupManager;
  *
  * @param string $instanceGroupManager The name of the managed instance group.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located.
  */
 function get_sample(string $instanceGroupManager, string $project, string $zone): void
 {

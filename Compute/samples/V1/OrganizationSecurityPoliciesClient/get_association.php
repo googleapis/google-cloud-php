@@ -29,7 +29,12 @@ use Google\Cloud\Compute\V1\GetAssociationOrganizationSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\SecurityPolicyAssociation;
 
 /**
- * Gets an association with the specified name. Use of this API to read firewall policies is deprecated. Use firewallPolicies.getAssociation instead if possible.
+ * Gets an association with the specified name.
+ *
+ * Use this API to read Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to read firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.getAssociation
+ * instead.
  *
  * @param string $securityPolicy Name of the security policy to which the queried rule belongs.
  */

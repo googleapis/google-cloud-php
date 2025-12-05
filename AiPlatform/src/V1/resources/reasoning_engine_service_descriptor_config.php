@@ -187,6 +187,7 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'gitRepositoryLink' => 'projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}',
                 'location' => 'projects/{project}/locations/{location}',
                 'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{networkattachment}',
                 'reasoningEngine' => 'projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}',

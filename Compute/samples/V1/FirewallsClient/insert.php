@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InsertFirewallRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a firewall rule in the specified project using the data included in the request.
+ * Creates a firewall rule in the specified project using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  */

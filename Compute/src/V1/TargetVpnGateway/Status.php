@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\TargetVpnGateway;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the VPN gateway, which can be one of the following: CREATING, READY, FAILED, or DELETING.
+ * [Output Only] The status of the VPN gateway,
+ * which can be one of the following: CREATING, READY, FAILED, or DELETING.
  *
  * Protobuf type <code>google.cloud.compute.v1.TargetVpnGateway.Status</code>
  */

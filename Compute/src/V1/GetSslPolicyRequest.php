@@ -22,7 +22,8 @@ class GetSslPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * Name of the SSL policy to update. The name must be 1-63 characters long,
+     * and comply with RFC1035.
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,7 +31,8 @@ class GetSslPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $project   Project ID for this request.
-     * @param string $sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * @param string $sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long,
+     *                          and comply with RFC1035.
      *
      * @return \Google\Cloud\Compute\V1\GetSslPolicyRequest
      *
@@ -52,7 +54,8 @@ class GetSslPolicyRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID for this request.
      *     @type string $ssl_policy
-     *           Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     *           Name of the SSL policy to update. The name must be 1-63 characters long,
+     *           and comply with RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,7 +90,8 @@ class GetSslPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * Name of the SSL policy to update. The name must be 1-63 characters long,
+     * and comply with RFC1035.
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -98,7 +102,8 @@ class GetSslPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+     * Name of the SSL policy to update. The name must be 1-63 characters long,
+     * and comply with RFC1035.
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

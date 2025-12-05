@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetInterconnectRemoteLocationRequest;
 use Google\Cloud\Compute\V1\InterconnectRemoteLocation;
 
 /**
- * Returns the details for the specified interconnect remote location. Gets a list of available interconnect remote locations by making a list() request.
+ * Returns the details for the specified interconnect remote location. Gets a
+ * list of available interconnect remote locations by making alist() request.
  *
  * @param string $interconnectRemoteLocation Name of the interconnect remote location to return.
  * @param string $project                    Project ID for this request.

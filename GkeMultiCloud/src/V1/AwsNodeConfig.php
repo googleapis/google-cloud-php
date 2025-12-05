@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Parameters that describe the nodes in a cluster.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsNodeConfig</code>
  */
 class AwsNodeConfig extends \Google\Protobuf\Internal\Message

@@ -15,7 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceHAPolicyLeaderNetworkEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the VM instance of the leader network endpoint. The instance must already be attached to the NEG specified in the haPolicy.leader.backendGroup. The name must be 1-63 characters long, and comply with RFC1035. Authorization requires the following IAM permission on the specified resource instance: compute.instances.use
+     * The name of the VM instance of the leader network endpoint. The
+     * instance must already be attached to the NEG specified in the
+     * haPolicy.leader.backendGroup.
+     * The name must be 1-63 characters long, and comply with RFC1035.
+     * Authorization requires the following IAM permission on the
+     * specified resource instance: compute.instances.use
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
@@ -28,7 +33,12 @@ class BackendServiceHAPolicyLeaderNetworkEndpoint extends \Google\Protobuf\Inter
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance
-     *           The name of the VM instance of the leader network endpoint. The instance must already be attached to the NEG specified in the haPolicy.leader.backendGroup. The name must be 1-63 characters long, and comply with RFC1035. Authorization requires the following IAM permission on the specified resource instance: compute.instances.use
+     *           The name of the VM instance of the leader network endpoint. The
+     *           instance must already be attached to the NEG specified in the
+     *           haPolicy.leader.backendGroup.
+     *           The name must be 1-63 characters long, and comply with RFC1035.
+     *           Authorization requires the following IAM permission on the
+     *           specified resource instance: compute.instances.use
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +47,12 @@ class BackendServiceHAPolicyLeaderNetworkEndpoint extends \Google\Protobuf\Inter
     }
 
     /**
-     * The name of the VM instance of the leader network endpoint. The instance must already be attached to the NEG specified in the haPolicy.leader.backendGroup. The name must be 1-63 characters long, and comply with RFC1035. Authorization requires the following IAM permission on the specified resource instance: compute.instances.use
+     * The name of the VM instance of the leader network endpoint. The
+     * instance must already be attached to the NEG specified in the
+     * haPolicy.leader.backendGroup.
+     * The name must be 1-63 characters long, and comply with RFC1035.
+     * Authorization requires the following IAM permission on the
+     * specified resource instance: compute.instances.use
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
@@ -58,7 +73,12 @@ class BackendServiceHAPolicyLeaderNetworkEndpoint extends \Google\Protobuf\Inter
     }
 
     /**
-     * The name of the VM instance of the leader network endpoint. The instance must already be attached to the NEG specified in the haPolicy.leader.backendGroup. The name must be 1-63 characters long, and comply with RFC1035. Authorization requires the following IAM permission on the specified resource instance: compute.instances.use
+     * The name of the VM instance of the leader network endpoint. The
+     * instance must already be attached to the NEG specified in the
+     * haPolicy.leader.backendGroup.
+     * The name must be 1-63 characters long, and comply with RFC1035.
+     * Authorization requires the following IAM permission on the
+     * specified resource instance: compute.instances.use
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var

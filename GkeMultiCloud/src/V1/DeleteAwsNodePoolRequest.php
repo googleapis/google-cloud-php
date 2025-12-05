@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AwsClusters.DeleteAwsNodePool` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.DeleteAwsNodePoolRequest</code>
  */
 class DeleteAwsNodePoolRequest extends \Google\Protobuf\Internal\Message

@@ -14,6 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * document returned by getOpenIDConfig. See the OpenID Connect
  * Discovery 1.0 specification for details.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GetAwsJsonWebKeysRequest</code>
  */
 class GetAwsJsonWebKeysRequest extends \Google\Protobuf\Internal\Message

@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\Operation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
+ * [Output Only] The status of the operation, which can be one of the
+ * following:
+ * `PENDING`, `RUNNING`, or `DONE`.
  *
  * Protobuf type <code>google.cloud.compute.v1.Operation.Status</code>
  */

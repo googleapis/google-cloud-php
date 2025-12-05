@@ -22,7 +22,8 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicy extends \Google\Protob
      */
     protected $max_retention_days = null;
     /**
-     * Specifies the behavior to apply to scheduled snapshots when the source disk is deleted.
+     * Specifies the behavior to apply to scheduled snapshots when
+     * the source disk is deleted.
      * Check the OnSourceDiskDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_source_disk_delete = 321955529;</code>
@@ -38,7 +39,8 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicy extends \Google\Protob
      *     @type int $max_retention_days
      *           Maximum age of the snapshot that is allowed to be kept.
      *     @type string $on_source_disk_delete
-     *           Specifies the behavior to apply to scheduled snapshots when the source disk is deleted.
+     *           Specifies the behavior to apply to scheduled snapshots when
+     *           the source disk is deleted.
      *           Check the OnSourceDiskDelete enum for the list of possible values.
      * }
      */
@@ -84,7 +86,8 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicy extends \Google\Protob
     }
 
     /**
-     * Specifies the behavior to apply to scheduled snapshots when the source disk is deleted.
+     * Specifies the behavior to apply to scheduled snapshots when
+     * the source disk is deleted.
      * Check the OnSourceDiskDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_source_disk_delete = 321955529;</code>
@@ -106,7 +109,8 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicy extends \Google\Protob
     }
 
     /**
-     * Specifies the behavior to apply to scheduled snapshots when the source disk is deleted.
+     * Specifies the behavior to apply to scheduled snapshots when
+     * the source disk is deleted.
      * Check the OnSourceDiskDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_source_disk_delete = 321955529;</code>

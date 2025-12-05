@@ -27,7 +27,8 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      */
     private $communities;
     /**
-     * [Output only] Destination IP range for the route, in human-readable CIDR format
+     * [Output only] Destination IP range for the route, in human-readable CIDR
+     * format
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BgpRouteNetworkLayerReachabilityInformation destination = 180765710;</code>
      */
@@ -57,7 +58,8 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $communities
      *           [Output only] BGP communities in human-readable A:B format.
      *     @type \Google\Cloud\Compute\V1\BgpRouteNetworkLayerReachabilityInformation $destination
-     *           [Output only] Destination IP range for the route, in human-readable CIDR format
+     *           [Output only] Destination IP range for the route, in human-readable CIDR
+     *           format
      *     @type int $med
      *           [Output only] BGP multi-exit discriminator
      *     @type string $origin
@@ -123,7 +125,8 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Destination IP range for the route, in human-readable CIDR format
+     * [Output only] Destination IP range for the route, in human-readable CIDR
+     * format
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BgpRouteNetworkLayerReachabilityInformation destination = 180765710;</code>
      * @return \Google\Cloud\Compute\V1\BgpRouteNetworkLayerReachabilityInformation|null
@@ -144,7 +147,8 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Destination IP range for the route, in human-readable CIDR format
+     * [Output only] Destination IP range for the route, in human-readable CIDR
+     * format
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BgpRouteNetworkLayerReachabilityInformation destination = 180765710;</code>
      * @param \Google\Cloud\Compute\V1\BgpRouteNetworkLayerReachabilityInformation $var

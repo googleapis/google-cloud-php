@@ -639,6 +639,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $parent = 'parent-995424086';
+        $policyType = 'policyType-2129325529';
         $region2 = 'region2-690338393';
         $ruleTupleCount = 388342037;
         $selfLink = 'selfLink-1691268851';
@@ -653,6 +654,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
+        $expectedResponse->setPolicyType($policyType);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $expectedResponse->setSelfLink($selfLink);

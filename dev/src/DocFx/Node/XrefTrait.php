@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
+use Google\Cloud\Dev\DocFx\ReservedNames;
+
 /**
  * @internal
  */
@@ -114,6 +116,14 @@ trait XrefTrait
                     ?? str_replace(' ', '\\', ucwords(str_replace('.', ' ', $package)));
 
                 $classParts = empty($class) ? [] : explode('.', $class);
+
+                // check for reserved names
+                $classParts = array_map(
+                    fn ($name) => (false === array_search(
+                        strtolower($name), ReservedNames::RESERVED_NAMES
+                    ) ? '' : 'PB') . $name,
+                    $classParts
+                );
 
                 if ($property) {
                     // Convert the underscore property name to camel case getter method name

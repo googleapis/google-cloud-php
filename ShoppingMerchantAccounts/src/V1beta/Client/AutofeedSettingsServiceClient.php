@@ -83,9 +83,7 @@ final class AutofeedSettingsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -100,7 +98,8 @@ final class AutofeedSettingsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/autofeed_settings_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/autofeed_settings_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -289,8 +288,10 @@ final class AutofeedSettingsServiceClient
      *
      * @experimental
      */
-    public function updateAutofeedSettings(UpdateAutofeedSettingsRequest $request, array $callOptions = []): AutofeedSettings
-    {
+    public function updateAutofeedSettings(
+        UpdateAutofeedSettingsRequest $request,
+        array $callOptions = []
+    ): AutofeedSettings {
         return $this->startApiCall('UpdateAutofeedSettings', $request, $callOptions)->wait();
     }
 }

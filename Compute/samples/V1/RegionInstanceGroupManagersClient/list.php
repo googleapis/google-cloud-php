@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\ListRegionInstanceGroupManagersRequest;
 
 /**
- * Retrieves the list of managed instance groups that are contained within the specified region.
+ * Retrieves the list of managed instance groups that are contained
+ * within the specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

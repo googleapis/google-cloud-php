@@ -81,9 +81,7 @@ final class AccountRelationshipsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -98,7 +96,8 @@ final class AccountRelationshipsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/account_relationships_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/account_relationships_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -268,8 +267,10 @@ final class AccountRelationshipsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAccountRelationship(GetAccountRelationshipRequest $request, array $callOptions = []): AccountRelationship
-    {
+    public function getAccountRelationship(
+        GetAccountRelationshipRequest $request,
+        array $callOptions = []
+    ): AccountRelationship {
         return $this->startApiCall('GetAccountRelationship', $request, $callOptions)->wait();
     }
 
@@ -295,8 +296,10 @@ final class AccountRelationshipsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAccountRelationships(ListAccountRelationshipsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAccountRelationships(
+        ListAccountRelationshipsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAccountRelationships', $request, $callOptions);
     }
 
@@ -323,8 +326,10 @@ final class AccountRelationshipsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAccountRelationship(UpdateAccountRelationshipRequest $request, array $callOptions = []): AccountRelationship
-    {
+    public function updateAccountRelationship(
+        UpdateAccountRelationshipRequest $request,
+        array $callOptions = []
+    ): AccountRelationship {
         return $this->startApiCall('UpdateAccountRelationship', $request, $callOptions)->wait();
     }
 }

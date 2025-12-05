@@ -89,9 +89,7 @@ final class OmnichannelSettingsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -106,7 +104,8 @@ final class OmnichannelSettingsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/omnichannel_settings_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/omnichannel_settings_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -276,8 +275,10 @@ final class OmnichannelSettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createOmnichannelSetting(CreateOmnichannelSettingRequest $request, array $callOptions = []): OmnichannelSetting
-    {
+    public function createOmnichannelSetting(
+        CreateOmnichannelSettingRequest $request,
+        array $callOptions = []
+    ): OmnichannelSetting {
         return $this->startApiCall('CreateOmnichannelSetting', $request, $callOptions)->wait();
     }
 
@@ -303,8 +304,10 @@ final class OmnichannelSettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOmnichannelSetting(GetOmnichannelSettingRequest $request, array $callOptions = []): OmnichannelSetting
-    {
+    public function getOmnichannelSetting(
+        GetOmnichannelSettingRequest $request,
+        array $callOptions = []
+    ): OmnichannelSetting {
         return $this->startApiCall('GetOmnichannelSetting', $request, $callOptions)->wait();
     }
 
@@ -330,8 +333,10 @@ final class OmnichannelSettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOmnichannelSettings(ListOmnichannelSettingsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOmnichannelSettings(
+        ListOmnichannelSettingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOmnichannelSettings', $request, $callOptions);
     }
 
@@ -357,8 +362,10 @@ final class OmnichannelSettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function requestInventoryVerification(RequestInventoryVerificationRequest $request, array $callOptions = []): RequestInventoryVerificationResponse
-    {
+    public function requestInventoryVerification(
+        RequestInventoryVerificationRequest $request,
+        array $callOptions = []
+    ): RequestInventoryVerificationResponse {
         return $this->startApiCall('RequestInventoryVerification', $request, $callOptions)->wait();
     }
 
@@ -384,8 +391,10 @@ final class OmnichannelSettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateOmnichannelSetting(UpdateOmnichannelSettingRequest $request, array $callOptions = []): OmnichannelSetting
-    {
+    public function updateOmnichannelSetting(
+        UpdateOmnichannelSettingRequest $request,
+        array $callOptions = []
+    ): OmnichannelSetting {
         return $this->startApiCall('UpdateOmnichannelSetting', $request, $callOptions)->wait();
     }
 }

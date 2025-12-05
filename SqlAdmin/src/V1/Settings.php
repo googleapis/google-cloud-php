@@ -269,6 +269,14 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_dataplex_integration = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enable_dataplex_integration = null;
+    /**
+     * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
+     * parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
+     * versions. The MySQL version must be 8.0.35 or higher.
+     *
+     * Generated from protobuf field <code>optional bool auto_upgrade_enabled = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_upgrade_enabled = null;
 
     /**
      * Constructor.
@@ -391,6 +399,10 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           Optional. By default, Cloud SQL instances have schema extraction disabled
      *           for Dataplex. When this parameter is set to true, schema extraction for
      *           Dataplex on Cloud SQL instances is activated.
+     *     @type bool $auto_upgrade_enabled
+     *           Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
+     *           parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
+     *           versions. The MySQL version must be 8.0.35 or higher.
      * }
      */
     public function __construct($data = NULL) {
@@ -1863,6 +1875,46 @@ class Settings extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("enable_dataplex_integration", $var);
         return $this;}
+
+    /**
+     * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
+     * parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
+     * versions. The MySQL version must be 8.0.35 or higher.
+     *
+     * Generated from protobuf field <code>optional bool auto_upgrade_enabled = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAutoUpgradeEnabled()
+    {
+        return isset($this->auto_upgrade_enabled) ? $this->auto_upgrade_enabled : false;
+    }
+
+    public function hasAutoUpgradeEnabled()
+    {
+        return isset($this->auto_upgrade_enabled);
+    }
+
+    public function clearAutoUpgradeEnabled()
+    {
+        unset($this->auto_upgrade_enabled);
+    }
+
+    /**
+     * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
+     * parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
+     * versions. The MySQL version must be 8.0.35 or higher.
+     *
+     * Generated from protobuf field <code>optional bool auto_upgrade_enabled = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutoUpgradeEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->auto_upgrade_enabled = $var;
+
+        return $this;
+    }
 
 }
 

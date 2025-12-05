@@ -280,7 +280,11 @@ final class TargetHttpsProxiesClient
     }
 
     /**
-     * Retrieves the list of all TargetHttpsProxy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all TargetHttpsProxy resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see TargetHttpsProxiesClient::aggregatedListAsync()} .
      *
@@ -360,7 +364,8 @@ final class TargetHttpsProxiesClient
     }
 
     /**
-     * Creates a TargetHttpsProxy resource in the specified project using the data included in the request.
+     * Creates a TargetHttpsProxy resource in the specified
+     * project using the data included in the request.
      *
      * The async variant is {@see TargetHttpsProxiesClient::insertAsync()} .
      *
@@ -386,7 +391,8 @@ final class TargetHttpsProxiesClient
     }
 
     /**
-     * Retrieves the list of TargetHttpsProxy resources available to the specified project.
+     * Retrieves the list of TargetHttpsProxy resources
+     * available to the specified project.
      *
      * The async variant is {@see TargetHttpsProxiesClient::listAsync()} .
      *
@@ -412,7 +418,10 @@ final class TargetHttpsProxiesClient
     }
 
     /**
-     * Patches the specified TargetHttpsProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified TargetHttpsProxy resource with the data included in
+     * the request. This method supports PATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see TargetHttpsProxiesClient::patchAsync()} .
      *
@@ -523,7 +532,10 @@ final class TargetHttpsProxiesClient
     }
 
     /**
-     * Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the HTTPS proxy load balancer. They do not affect the connection between the load balancer and the backends.
+     * Sets the SSL policy for TargetHttpsProxy. The SSL policy specifies the
+     * server-side support for SSL features. This affects connections between
+     * clients and the HTTPS proxy load balancer. They do not affect the
+     * connection between the load balancer and the backends.
      *
      * The async variant is {@see TargetHttpsProxiesClient::setSslPolicyAsync()} .
      *

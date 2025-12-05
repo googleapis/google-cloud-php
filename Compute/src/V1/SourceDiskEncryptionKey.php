@@ -15,13 +15,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class SourceDiskEncryptionKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+     * Thecustomer-supplied
+     * encryption key of the source disk. Required if the source disk is
+     * protected by a customer-supplied encryption key.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
     protected $disk_encryption_key = null;
     /**
-     * URL of the disk attached to the source instance. This can be a full or valid partial URL. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     * URL of the disk attached to the source instance. This can be a full or
+     * valid partial URL. For example, the following are valid values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *    - projects/project/zones/zone/disks/disk
+     *    - zones/zone/disks/disk
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      */
@@ -34,9 +40,15 @@ class SourceDiskEncryptionKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $disk_encryption_key
-     *           The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+     *           Thecustomer-supplied
+     *           encryption key of the source disk. Required if the source disk is
+     *           protected by a customer-supplied encryption key.
      *     @type string $source_disk
-     *           URL of the disk attached to the source instance. This can be a full or valid partial URL. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     *           URL of the disk attached to the source instance. This can be a full or
+     *           valid partial URL. For example, the following are valid values:
+     *                - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *              - projects/project/zones/zone/disks/disk
+     *              - zones/zone/disks/disk
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +57,9 @@ class SourceDiskEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+     * Thecustomer-supplied
+     * encryption key of the source disk. Required if the source disk is
+     * protected by a customer-supplied encryption key.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
@@ -66,7 +80,9 @@ class SourceDiskEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+     * Thecustomer-supplied
+     * encryption key of the source disk. Required if the source disk is
+     * protected by a customer-supplied encryption key.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
@@ -81,7 +97,11 @@ class SourceDiskEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the disk attached to the source instance. This can be a full or valid partial URL. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     * URL of the disk attached to the source instance. This can be a full or
+     * valid partial URL. For example, the following are valid values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *    - projects/project/zones/zone/disks/disk
+     *    - zones/zone/disks/disk
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      * @return string
@@ -102,7 +122,11 @@ class SourceDiskEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the disk attached to the source instance. This can be a full or valid partial URL. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     * URL of the disk attached to the source instance. This can be a full or
+     * valid partial URL. For example, the following are valid values:
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *    - projects/project/zones/zone/disks/disk
+     *    - zones/zone/disks/disk
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      * @param string $var

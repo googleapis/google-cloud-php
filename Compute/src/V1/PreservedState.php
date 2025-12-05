@@ -16,19 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class PreservedState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Preserved disks defined for this instance. This map is keyed with the device names of the disks.
+     * Preserved disks defined for this instance.
+     * This map is keyed with the device names of the disks.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedDisk> disks = 95594102;</code>
      */
     private $disks;
     /**
-     * Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     * Preserved external IPs defined for this instance.
+     * This map is keyed with the name of the network interface.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> external_i_ps = 532687245;</code>
      */
     private $external_i_ps;
     /**
-     * Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
+     * Preserved internal IPs defined for this instance.
+     * This map is keyed with the name of the network interface.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> internal_i_ps = 215731675;</code>
      */
@@ -47,11 +50,14 @@ class PreservedState extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $disks
-     *           Preserved disks defined for this instance. This map is keyed with the device names of the disks.
+     *           Preserved disks defined for this instance.
+     *           This map is keyed with the device names of the disks.
      *     @type array|\Google\Protobuf\Internal\MapField $external_i_ps
-     *           Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     *           Preserved external IPs defined for this instance.
+     *           This map is keyed with the name of the network interface.
      *     @type array|\Google\Protobuf\Internal\MapField $internal_i_ps
-     *           Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
+     *           Preserved internal IPs defined for this instance.
+     *           This map is keyed with the name of the network interface.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Preserved metadata defined for this instance.
      * }
@@ -62,7 +68,8 @@ class PreservedState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preserved disks defined for this instance. This map is keyed with the device names of the disks.
+     * Preserved disks defined for this instance.
+     * This map is keyed with the device names of the disks.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedDisk> disks = 95594102;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -73,7 +80,8 @@ class PreservedState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preserved disks defined for this instance. This map is keyed with the device names of the disks.
+     * Preserved disks defined for this instance.
+     * This map is keyed with the device names of the disks.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedDisk> disks = 95594102;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -88,7 +96,8 @@ class PreservedState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     * Preserved external IPs defined for this instance.
+     * This map is keyed with the name of the network interface.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> external_i_ps = 532687245;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -99,7 +108,8 @@ class PreservedState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.
+     * Preserved external IPs defined for this instance.
+     * This map is keyed with the name of the network interface.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> external_i_ps = 532687245;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -114,7 +124,8 @@ class PreservedState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
+     * Preserved internal IPs defined for this instance.
+     * This map is keyed with the name of the network interface.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> internal_i_ps = 215731675;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -125,7 +136,8 @@ class PreservedState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.
+     * Preserved internal IPs defined for this instance.
+     * This map is keyed with the name of the network interface.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.PreservedStatePreservedNetworkIp> internal_i_ps = 215731675;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

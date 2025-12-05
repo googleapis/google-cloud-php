@@ -322,7 +322,8 @@ final class RegionAutoscalersClient
     }
 
     /**
-     * Creates an autoscaler in the specified project using the data included in the request.
+     * Creates an autoscaler in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see RegionAutoscalersClient::insertAsync()} .
      *
@@ -348,7 +349,8 @@ final class RegionAutoscalersClient
     }
 
     /**
-     * Retrieves a list of autoscalers contained within the specified region.
+     * Retrieves a list of autoscalers contained within
+     * the specified region.
      *
      * The async variant is {@see RegionAutoscalersClient::listAsync()} .
      *
@@ -374,7 +376,10 @@ final class RegionAutoscalersClient
     }
 
     /**
-     * Updates an autoscaler in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates an autoscaler in the specified project using
+     * the data included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see RegionAutoscalersClient::patchAsync()} .
      *
@@ -400,7 +405,8 @@ final class RegionAutoscalersClient
     }
 
     /**
-     * Updates an autoscaler in the specified project using the data included in the request.
+     * Updates an autoscaler in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see RegionAutoscalersClient::updateAsync()} .
      *

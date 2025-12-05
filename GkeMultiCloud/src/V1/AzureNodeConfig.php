@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Parameters that describe the configuration of all node machines
  * on a given node pool.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureNodeConfig</code>
  */
 class AzureNodeConfig extends \Google\Protobuf\Internal\Message

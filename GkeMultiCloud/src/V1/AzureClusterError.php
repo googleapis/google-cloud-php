@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * AzureClusterError describes errors found on Azure clusters.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureClusterError</code>
  */
 class AzureClusterError extends \Google\Protobuf\Internal\Message

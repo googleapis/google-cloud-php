@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * AwsClusterError describes errors found on AWS clusters.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsClusterError</code>
  */
 class AwsClusterError extends \Google\Protobuf\Internal\Message

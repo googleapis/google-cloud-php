@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetInterconnectAttachmentGroupRequest;
 use Google\Cloud\Compute\V1\InterconnectAttachmentGroup;
 
 /**
- * Returns the specified InterconnectAttachmentGroup resource in the given scope.
+ * Returns the specified InterconnectAttachmentGroup resource in the given
+ * scope.
  *
  * @param string $interconnectAttachmentGroup Name of the InterconnectAttachmentGroup resource to return.
  * @param string $project                     Project ID for this request.

@@ -109,7 +109,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     protected $correlation_id = '';
     /**
-     * Optional. Indicate whether a customer is attesting about the correctness of
+     * Optional. Indicate if a customer is attesting about the correctness of
      * provided information. Only required if creating a GCP Entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Customer.CustomerAttestationState customer_attestation_state = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -164,7 +164,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      *           Optional. External CRM ID for the customer.
      *           Populated only if a CRM ID exists for this customer.
      *     @type int $customer_attestation_state
-     *           Optional. Indicate whether a customer is attesting about the correctness of
+     *           Optional. Indicate if a customer is attesting about the correctness of
      *           provided information. Only required if creating a GCP Entitlement.
      * }
      */
@@ -592,7 +592,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicate whether a customer is attesting about the correctness of
+     * Optional. Indicate if a customer is attesting about the correctness of
      * provided information. Only required if creating a GCP Entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Customer.CustomerAttestationState customer_attestation_state = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -604,7 +604,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Indicate whether a customer is attesting about the correctness of
+     * Optional. Indicate if a customer is attesting about the correctness of
      * provided information. Only required if creating a GCP Entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Customer.CustomerAttestationState customer_attestation_state = 16 [(.google.api.field_behavior) = OPTIONAL];</code>

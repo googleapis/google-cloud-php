@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SubnetworksSetPrivateIpGoogleAccessRequest;
 use Google\Rpc\Status;
 
 /**
- * Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access.
+ * Set whether VMs in this subnet can access Google services without assigning
+ * external IP addresses through Private Google Access.
  *
  * @param string $project    Project ID for this request.
  * @param string $region     Name of the region scoping this request.

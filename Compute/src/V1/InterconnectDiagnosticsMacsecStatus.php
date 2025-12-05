@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectDiagnosticsMacsecStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Indicates the Connectivity Association Key Name (CKN) currently being used if MACsec is operational.
+     * Indicates the Connectivity Association Key Name (CKN)
+     * currently being used if MACsec is operational.
      *
      * Generated from protobuf field <code>optional string ckn = 98566;</code>
      */
@@ -35,7 +36,8 @@ class InterconnectDiagnosticsMacsecStatus extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ckn
-     *           Indicates the Connectivity Association Key Name (CKN) currently being used if MACsec is operational.
+     *           Indicates the Connectivity Association Key Name (CKN)
+     *           currently being used if MACsec is operational.
      *     @type bool $operational
      *           Indicates whether or not MACsec is operational on this link.
      * }
@@ -46,7 +48,8 @@ class InterconnectDiagnosticsMacsecStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Indicates the Connectivity Association Key Name (CKN) currently being used if MACsec is operational.
+     * Indicates the Connectivity Association Key Name (CKN)
+     * currently being used if MACsec is operational.
      *
      * Generated from protobuf field <code>optional string ckn = 98566;</code>
      * @return string
@@ -67,7 +70,8 @@ class InterconnectDiagnosticsMacsecStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Indicates the Connectivity Association Key Name (CKN) currently being used if MACsec is operational.
+     * Indicates the Connectivity Association Key Name (CKN)
+     * currently being used if MACsec is operational.
      *
      * Generated from protobuf field <code>optional string ckn = 98566;</code>
      * @param string $var

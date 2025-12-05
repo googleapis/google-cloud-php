@@ -35,8 +35,9 @@ class PackageSpec extends \Google\Protobuf\Internal\Message
      */
     protected $requirements_gcs_uri = '';
     /**
-     * Optional. The Python version. Currently support 3.8, 3.9, 3.10, 3.11.
-     * If not specified, default value is 3.10.
+     * Optional. The Python version. Supported values
+     * are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value
+     * is 3.10.
      *
      * Generated from protobuf field <code>string python_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,8 +56,9 @@ class PackageSpec extends \Google\Protobuf\Internal\Message
      *     @type string $requirements_gcs_uri
      *           Optional. The Cloud Storage URI of the `requirements.txt` file
      *     @type string $python_version
-     *           Optional. The Python version. Currently support 3.8, 3.9, 3.10, 3.11.
-     *           If not specified, default value is 3.10.
+     *           Optional. The Python version. Supported values
+     *           are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value
+     *           is 3.10.
      * }
      */
     public function __construct($data = NULL) {
@@ -143,8 +145,9 @@ class PackageSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Python version. Currently support 3.8, 3.9, 3.10, 3.11.
-     * If not specified, default value is 3.10.
+     * Optional. The Python version. Supported values
+     * are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value
+     * is 3.10.
      *
      * Generated from protobuf field <code>string python_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -155,8 +158,9 @@ class PackageSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Python version. Currently support 3.8, 3.9, 3.10, 3.11.
-     * If not specified, default value is 3.10.
+     * Optional. The Python version. Supported values
+     * are 3.9, 3.10, 3.11, 3.12, 3.13. If not specified, the default value
+     * is 3.10.
      *
      * Generated from protobuf field <code>string python_version = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

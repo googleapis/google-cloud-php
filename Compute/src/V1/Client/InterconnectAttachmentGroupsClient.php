@@ -308,7 +308,8 @@ final class InterconnectAttachmentGroupsClient
     }
 
     /**
-     * Returns the specified InterconnectAttachmentGroup resource in the given scope.
+     * Returns the specified InterconnectAttachmentGroup resource in the given
+     * scope.
      *
      * The async variant is {@see InterconnectAttachmentGroupsClient::getAsync()} .
      *
@@ -336,7 +337,8 @@ final class InterconnectAttachmentGroupsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is
      * {@see InterconnectAttachmentGroupsClient::getIamPolicyAsync()} .
@@ -365,7 +367,8 @@ final class InterconnectAttachmentGroupsClient
     }
 
     /**
-     * Returns the InterconnectAttachmentStatuses for the specified InterconnectAttachmentGroup resource.
+     * Returns the InterconnectAttachmentStatuses for the specified
+     * InterconnectAttachmentGroup resource.
      *
      * The async variant is
      * {@see InterconnectAttachmentGroupsClient::getOperationalStatusAsync()} .
@@ -394,7 +397,8 @@ final class InterconnectAttachmentGroupsClient
     }
 
     /**
-     * Creates a InterconnectAttachmentGroup in the specified project in the given scope using the parameters that are included in the request.
+     * Creates a InterconnectAttachmentGroup in the specified project in the given
+     * scope using the parameters that are included in the request.
      *
      * The async variant is {@see InterconnectAttachmentGroupsClient::insertAsync()} .
      *
@@ -448,7 +452,10 @@ final class InterconnectAttachmentGroupsClient
     }
 
     /**
-     * Patches the specified InterconnectAttachmentGroup resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified InterconnectAttachmentGroup resource with the data
+     * included in the request. This method supports PATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see InterconnectAttachmentGroupsClient::patchAsync()} .
      *
@@ -474,7 +481,8 @@ final class InterconnectAttachmentGroupsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is
      * {@see InterconnectAttachmentGroupsClient::setIamPolicyAsync()} .

@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\Route;
 use UnexpectedValueException;
 
 /**
- * [Output only] The status of the route.
+ * [Output only] The status of the route. This status only applies to
+ * dynamic routes learned by Cloud Routers. This status is not applicable
+ * to static routes.
  *
  * Protobuf type <code>google.cloud.compute.v1.Route.RouteStatus</code>
  */
@@ -26,19 +28,23 @@ class RouteStatus
      */
     const ACTIVE = 314733318;
     /**
-     * The route is dropped due to the VPC exceeding the dynamic route limit. For dynamic route limit, please refer to the Learned route example
+     * The route is dropped due to the VPC exceeding the dynamic route limit.
+     *  For dynamic route limit, please refer to the
+     * Learned route example
      *
      * Generated from protobuf enum <code>DROPPED = 496235424;</code>
      */
     const DROPPED = 496235424;
     /**
-     * This route is processed but inactive due to failure from the backend. The backend may have rejected the route
+     * This route is processed but inactive due to failure from the backend. The
+     * backend may have rejected the route
      *
      * Generated from protobuf enum <code>INACTIVE = 270421099;</code>
      */
     const INACTIVE = 270421099;
     /**
-     * This route is being processed internally. The status will change once processed.
+     * This route is being processed internally. The status will change once
+     * processed.
      *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */

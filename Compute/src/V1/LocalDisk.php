@@ -27,7 +27,10 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      */
     protected $disk_size_gb = null;
     /**
-     * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
+     * Specifies the desired disk type on the node. This disk type must be a
+     * local storage type (e.g.: local-ssd).
+     * Note that for nodeTemplates, this should be the name of the disk type and
+     * not its URL.
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
@@ -44,7 +47,10 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *     @type int $disk_size_gb
      *           Specifies the size of the disk in base-2 GB.
      *     @type string $disk_type
-     *           Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
+     *           Specifies the desired disk type on the node. This disk type must be a
+     *           local storage type (e.g.: local-ssd).
+     *           Note that for nodeTemplates, this should be the name of the disk type and
+     *           not its URL.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +131,10 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
+     * Specifies the desired disk type on the node. This disk type must be a
+     * local storage type (e.g.: local-ssd).
+     * Note that for nodeTemplates, this should be the name of the disk type and
+     * not its URL.
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @return string
@@ -146,7 +155,10 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
+     * Specifies the desired disk type on the node. This disk type must be a
+     * local storage type (e.g.: local-ssd).
+     * Note that for nodeTemplates, this should be the name of the disk type and
+     * not its URL.
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @param string $var

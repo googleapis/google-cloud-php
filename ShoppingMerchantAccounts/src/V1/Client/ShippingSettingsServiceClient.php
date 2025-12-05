@@ -79,9 +79,7 @@ final class ShippingSettingsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -96,7 +94,8 @@ final class ShippingSettingsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/shipping_settings_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/shipping_settings_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -292,8 +291,10 @@ final class ShippingSettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insertShippingSettings(InsertShippingSettingsRequest $request, array $callOptions = []): ShippingSettings
-    {
+    public function insertShippingSettings(
+        InsertShippingSettingsRequest $request,
+        array $callOptions = []
+    ): ShippingSettings {
         return $this->startApiCall('InsertShippingSettings', $request, $callOptions)->wait();
     }
 }

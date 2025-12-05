@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\RouterNat;
 use UnexpectedValueException;
 
 /**
- * Indicates whether this NAT is used for public or private IP translation. If unspecified, it defaults to PUBLIC.
+ * Indicates whether this NAT is used for public or private IP
+ * translation. If unspecified, it defaults to PUBLIC.
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterNat.Type</code>
  */
@@ -26,7 +27,8 @@ class Type
      */
     const PBPRIVATE = 403485027;
     /**
-     * NAT used for public IP translation. This is the default.
+     * NAT used for public IP translation.
+     * This is the default.
      *
      * Generated from protobuf enum <code>PUBLIC = 223389289;</code>
      */

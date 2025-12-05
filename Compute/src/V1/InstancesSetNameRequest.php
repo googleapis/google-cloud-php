@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesSetNameRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The current name of this resource, used to prevent conflicts. Provide the latest name when making a request to change name.
+     * The current name of this resource, used to prevent conflicts. Provide the
+     * latest name when making a request to change name.
      *
      * Generated from protobuf field <code>optional string current_name = 394983825;</code>
      */
@@ -34,7 +35,8 @@ class InstancesSetNameRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $current_name
-     *           The current name of this resource, used to prevent conflicts. Provide the latest name when making a request to change name.
+     *           The current name of this resource, used to prevent conflicts. Provide the
+     *           latest name when making a request to change name.
      *     @type string $name
      *           The name to be applied to the instance. Needs to be RFC 1035 compliant.
      * }
@@ -45,7 +47,8 @@ class InstancesSetNameRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current name of this resource, used to prevent conflicts. Provide the latest name when making a request to change name.
+     * The current name of this resource, used to prevent conflicts. Provide the
+     * latest name when making a request to change name.
      *
      * Generated from protobuf field <code>optional string current_name = 394983825;</code>
      * @return string
@@ -66,7 +69,8 @@ class InstancesSetNameRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current name of this resource, used to prevent conflicts. Provide the latest name when making a request to change name.
+     * The current name of this resource, used to prevent conflicts. Provide the
+     * latest name when making a request to change name.
      *
      * Generated from protobuf field <code>optional string current_name = 394983825;</code>
      * @param string $var

@@ -1,5 +1,229 @@
 # Changelog
 
+## 0.312.0
+
+<details><summary>google/cloud-ai-platform 1.45.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add support for developer connect based deployment ([#8742](https://github.com/googleapis/google-cloud-php/issues/8742)) ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* Add `gpu_partition_size` in `machine_spec` v1 api ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* Add `ReplicatedVoiceConfig` to `VoiceConfig` to enable Gemini TTS voice replication ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+
+
+### Documentation
+
+* A comment for field `package_spec` in message `.google.cloud.aiplatform.v1.ReasoningEngineSpec` is changed ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* A comment for message `ReasoningEngineSpec` is changed ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.10.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Adding new fields for CMEK and Retention Inheritance features ([#8743](https://github.com/googleapis/google-cloud-php/issues/8743)) ([3bd0a9b](https://github.com/googleapis/google-cloud-php/commit/3bd0a9b75bbc675a7c1a85246b0aa6da52f70e2a))
+
+</details>
+
+<details><summary>google/cloud-batch 1.4.0</summary>
+
+
+
+### Features
+
+* [Batch] added new provisioning models ([#8744](https://github.com/googleapis/google-cloud-php/issues/8744)) ([a19b5e1](https://github.com/googleapis/google-cloud-php/commit/a19b5e1e08074eeba28a22090b429973324f052a))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.9.0</summary>
+
+
+
+### Features
+
+* [NetApp] Add Squash Mode to Export Policy ([#8752](https://github.com/googleapis/google-cloud-php/issues/8752)) ([a4e1a9e](https://github.com/googleapis/google-cloud-php/commit/a4e1a9e33c598fbfd330d8d42f50b74f45dad06a))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.1.0</summary>
+
+
+
+### Features
+
+* [Spanner] Add Spanner location API ([#8737](https://github.com/googleapis/google-cloud-php/issues/8737)) ([c6b8e26](https://github.com/googleapis/google-cloud-php/commit/c6b8e268fac5c585957f1db84ad77ac9f8cb82fb))
+* Add Send and Ack mutations for Queues ([c6b8e26](https://github.com/googleapis/google-cloud-php/commit/c6b8e268fac5c585957f1db84ad77ac9f8cb82fb))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.5.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] introduces auto_upgrade_enabled option for MySQL in DatabaseInstance.Settings ([#8751](https://github.com/googleapis/google-cloud-php/issues/8751)) ([8a7fc50](https://github.com/googleapis/google-cloud-php/commit/8a7fc50c281d4ee1f327a0a9d609e7369dd9c1ab))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.3.0</summary>
+
+
+
+### Features
+
+* [VmMigration] add adaptation modifiers and storage pools to MigratingVM target defaults ([#8740](https://github.com/googleapis/google-cloud-php/issues/8740)) ([31228c6](https://github.com/googleapis/google-cloud-php/commit/31228c6b0b215ab8a59dd93a37c09d8c59955425))
+
+</details>
+
+## 0.311.0
+
+<details><summary>googleads/ad-manager 0.5.0</summary>
+
+
+
+### Features
+
+* Added Application resource ([23558aa](https://github.com/googleapis/google-cloud-php/commit/23558aa9edea94f61bfa6c01b3bc804f24aafb11))
+
+</details>
+
+<details><summary>googleads/marketingplatform-admin 0.4.0</summary>
+
+
+
+### Features
+
+* [AdsMarketingPlatformAdmin] add the `ListOrganizations`, `FindSalesPartnerManagedClients`, and `ReportPropertyUsage` methods ([#8708](https://github.com/googleapis/google-cloud-php/issues/8708)) ([92316e2](https://github.com/googleapis/google-cloud-php/commit/92316e2833607a07af7a4fc89b424c58352b531d))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.4.0</summary>
+
+
+
+### Features
+
+* [ArtifactRegistry] add image_manifest field in DockerImage ([#8731](https://github.com/googleapis/google-cloud-php/issues/8731)) ([4a9423c](https://github.com/googleapis/google-cloud-php/commit/4a9423c47570b69c673cc22d8e2b98086533b705))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.5</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.20.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add PeerInfo proto in Bigtable API ([#8720](https://github.com/googleapis/google-cloud-php/issues/8720)) ([70db3a1](https://github.com/googleapis/google-cloud-php/commit/70db3a185db71cc1b9e33094326166764299ff69))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.54.3</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
+<details><summary>google/cloud-logging 1.34.2</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.2.2</summary>
+
+
+
+### Documentation
+
+* [ShoppingMerchantAccounts] A comment for enum `AccessRight` is changed ([#8736](https://github.com/googleapis/google-cloud-php/issues/8736)) ([ab63d7f](https://github.com/googleapis/google-cloud-php/commit/ab63d7fc897ba2a432cf378cd556e674c3125972))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.2.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantInventories] Added the `product_id_base64_url_encoded` field to `ListLocalInventoriesRequest`, `InsertLocalInventoryRequest`, `DeleteLocalInventoryRequest`, `ListRegionalInventoriesRequest`, `InsertRegionalInventoryRequest`, and `DeleteRegionalInventoryReques... ([#8726](https://github.com/googleapis/google-cloud-php/issues/8726)) ([7618182](https://github.com/googleapis/google-cloud-php/commit/7618182f658a04495b657911384b46505a60a05a))
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.2.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantIssueResolution] Added the `product_id_base64_url_encoded` field to `RenderProductIssuesRequest`. This allows for product IDs containing special characters to be correctly handled when unpadded base64url-encoded ([#8727](https://github.com/googleapis/google-cloud-php/issues/8727)) ([b6b426a](https://github.com/googleapis/google-cloud-php/commit/b6b426a8865dcafbf00685d237d4edb3357e611f))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.3.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] Added the `product_id_base64_url_encoded` field to `InsertProductInputRequest`, `DeleteProductInputRequest`, and `GetProductRequest`. This allows for product IDs containing special characters to be correctly handled when unpadded base64url-encoded ([#8729](https://github.com/googleapis/google-cloud-php/issues/8729)) ([931e728](https://github.com/googleapis/google-cloud-php/commit/931e72895c30baa0a05622c7b87d2afa5eec481d))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.2.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantQuota] Add the AccountLimit resource and its service to the quota bundle ([#8728](https://github.com/googleapis/google-cloud-php/issues/8728)) ([f0ac4e4](https://github.com/googleapis/google-cloud-php/commit/f0ac4e40cee540a7eb44f926de73784e33b33ec2))
+
+</details>
+
+<details><summary>google/cloud-storage 1.48.7</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+* Update move logic now to support non-HNS buckets ([#8705](https://github.com/googleapis/google-cloud-php/issues/8705)) ([63699a9](https://github.com/googleapis/google-cloud-php/commit/63699a945a5de3ea1aa61ad0a1bf43132457a9da))
+
+</details>
+
+<details><summary>google/cloud-trace 1.9.3</summary>
+
+
+
+### Documentation
+
+* Remove `[@deprecated](https://github.com/deprecated)` annotation from config array fields ([#8689](https://github.com/googleapis/google-cloud-php/issues/8689)) ([77185ff](https://github.com/googleapis/google-cloud-php/commit/77185ffff58b65b23e82e1e122965687b29af5e2))
+
+</details>
+
 ## 0.310.1
 
 <details><summary>google/cloud-spanner 2.0.0</summary>

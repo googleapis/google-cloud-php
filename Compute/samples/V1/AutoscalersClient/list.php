@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\AutoscalersClient;
 use Google\Cloud\Compute\V1\ListAutoscalersRequest;
 
 /**
- * Retrieves a list of autoscalers contained within the specified zone.
+ * Retrieves a list of autoscalers contained within
+ * the specified zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone for this request.

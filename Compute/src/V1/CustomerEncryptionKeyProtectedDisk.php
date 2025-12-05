@@ -15,13 +15,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Decrypts data associated with the disk with a customer-supplied encryption key.
+     * Decrypts data associated with the disk with acustomer-supplied
+     * encryption key.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
     protected $disk_encryption_key = null;
     /**
-     * Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
+     * Specifies a valid partial or full URL to an existing Persistent Disk
+     * resource. This field is only applicable for persistent disks.
+     * For example:
+     * "source": "/compute/v1/projects/project_id/zones/zone/disks/
+     * disk_name
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
@@ -34,9 +39,14 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $disk_encryption_key
-     *           Decrypts data associated with the disk with a customer-supplied encryption key.
+     *           Decrypts data associated with the disk with acustomer-supplied
+     *           encryption key.
      *     @type string $source
-     *           Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
+     *           Specifies a valid partial or full URL to an existing Persistent Disk
+     *           resource. This field is only applicable for persistent disks.
+     *           For example:
+     *           "source": "/compute/v1/projects/project_id/zones/zone/disks/
+     *           disk_name
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +55,8 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Decrypts data associated with the disk with a customer-supplied encryption key.
+     * Decrypts data associated with the disk with acustomer-supplied
+     * encryption key.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
@@ -66,7 +77,8 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Decrypts data associated with the disk with a customer-supplied encryption key.
+     * Decrypts data associated with the disk with acustomer-supplied
+     * encryption key.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
@@ -81,7 +93,11 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
+     * Specifies a valid partial or full URL to an existing Persistent Disk
+     * resource. This field is only applicable for persistent disks.
+     * For example:
+     * "source": "/compute/v1/projects/project_id/zones/zone/disks/
+     * disk_name
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @return string
@@ -102,7 +118,11 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
+     * Specifies a valid partial or full URL to an existing Persistent Disk
+     * resource. This field is only applicable for persistent disks.
+     * For example:
+     * "source": "/compute/v1/projects/project_id/zones/zone/disks/
+     * disk_name
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @param string $var

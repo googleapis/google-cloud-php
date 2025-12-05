@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\HealthChecksClient;
 use Google\Cloud\Compute\V1\ListHealthChecksRequest;
 
 /**
- * Retrieves the list of HealthCheck resources available to the specified project.
+ * Retrieves the list of HealthCheck resources available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

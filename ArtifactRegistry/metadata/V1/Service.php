@@ -19,6 +19,7 @@ class Service
         \GPBMetadata\Google\Devtools\Artifactregistry\V1\AptArtifact::initOnce();
         \GPBMetadata\Google\Devtools\Artifactregistry\V1\Artifact::initOnce();
         \GPBMetadata\Google\Devtools\Artifactregistry\V1\Attachment::initOnce();
+        \GPBMetadata\Google\Devtools\Artifactregistry\V1\Export::initOnce();
         \GPBMetadata\Google\Devtools\Artifactregistry\V1\File::initOnce();
         \GPBMetadata\Google\Devtools\Artifactregistry\V1\Package::initOnce();
         \GPBMetadata\Google\Devtools\Artifactregistry\V1\Repository::initOnce();
@@ -34,9 +35,9 @@ class Service
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‰`
-1google/devtools/artifactregistry/v1/service.proto#google.devtools.artifactregistry.v1google/api/client.proto6google/devtools/artifactregistry/v1/apt_artifact.proto2google/devtools/artifactregistry/v1/artifact.proto4google/devtools/artifactregistry/v1/attachment.proto.google/devtools/artifactregistry/v1/file.proto1google/devtools/artifactregistry/v1/package.proto4google/devtools/artifactregistry/v1/repository.proto.google/devtools/artifactregistry/v1/rule.proto2google/devtools/artifactregistry/v1/settings.proto-google/devtools/artifactregistry/v1/tag.proto1google/devtools/artifactregistry/v1/version.proto6google/devtools/artifactregistry/v1/vpcsc_config.proto6google/devtools/artifactregistry/v1/yum_artifact.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"
-OperationMetadata2ÍW
+“c
+1google/devtools/artifactregistry/v1/service.proto#google.devtools.artifactregistry.v1google/api/client.proto6google/devtools/artifactregistry/v1/apt_artifact.proto2google/devtools/artifactregistry/v1/artifact.proto4google/devtools/artifactregistry/v1/attachment.proto0google/devtools/artifactregistry/v1/export.proto.google/devtools/artifactregistry/v1/file.proto1google/devtools/artifactregistry/v1/package.proto4google/devtools/artifactregistry/v1/repository.proto.google/devtools/artifactregistry/v1/rule.proto2google/devtools/artifactregistry/v1/settings.proto-google/devtools/artifactregistry/v1/tag.proto1google/devtools/artifactregistry/v1/version.proto6google/devtools/artifactregistry/v1/vpcsc_config.proto6google/devtools/artifactregistry/v1/yum_artifact.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"
+OperationMetadata2¶Z
 ArtifactRegistry·
 ListDockerImages<.google.devtools.artifactregistry.v1.ListDockerImagesRequest=.google.devtools.artifactregistry.v1.ListDockerImagesResponse"P⁄AparentÇ”‰ìA?/v1/{parent=projects/*/locations/*/repositories/*}/dockerImagesŒ
 GetDockerImage:.google.devtools.artifactregistry.v1.GetDockerImageRequest0.google.devtools.artifactregistry.v1.DockerImage"N⁄AnameÇ”‰ìA?/v1/{name=projects/*/locations/*/repositories/*/dockerImages/*}È
@@ -106,7 +107,9 @@ DeleteRule6.google.devtools.artifactregistry.v1.DeleteRuleRequest.google.prot
 .google.devtools.artifactregistry.v1.Attachment5google.devtools.artifactregistry.v1.OperationMetadata⁄Aparent,attachment,attachment_idÇ”‰ìL">/v1/{parent=projects/*/locations/*/repositories/*}/attachments:
 attachmentê
 DeleteAttachment<.google.devtools.artifactregistry.v1.DeleteAttachmentRequest.google.longrunning.Operation"û AN
-google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata⁄AnameÇ”‰ì@*>/v1/{name=projects/*/locations/*/repositories/*/attachments/*}å Aartifactregistry.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB˜
+google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata⁄AnameÇ”‰ì@*>/v1/{name=projects/*/locations/*/repositories/*/attachments/*}π
+ExportArtifact:.google.devtools.artifactregistry.v1.ExportArtifactRequest.google.longrunning.Operation"À Ax
+:google.devtools.artifactregistry.v1.ExportArtifactResponse:google.devtools.artifactregistry.v1.ExportArtifactMetadataÇ”‰ìJ"E/v1/{repository=projects/*/locations/*/repositories/*}:exportArtifact:*å Aartifactregistry.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB˜
 \'com.google.devtools.artifactregistry.v1BServiceProtoPZPcloud.google.com/go/artifactregistry/apiv1/artifactregistrypb;artifactregistrypb™ Google.Cloud.ArtifactRegistry.V1  Google\\Cloud\\ArtifactRegistry\\V1Í#Google::Cloud::ArtifactRegistry::V1bproto3'
         , true);
 

@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Provides links to documentation or for performing an out of band action. For example, if a quota check failed with an error indicating the calling project hasn't enabled the accessed service, this can contain a URL pointing directly to the right place in the developer console to flip the bit.
+ * Provides links to documentation or for performing an out of band action.
+ * For example, if a quota check failed with an error indicating the calling
+ * project hasn't enabled the accessed service, this can contain a URL pointing
+ * directly to the right place in the developer console to flip the bit.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Help</code>
  */

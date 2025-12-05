@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the managed instance group. It should conform to RFC1035.
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,7 +35,10 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
      */
     protected $project = '';
     /**
-     * The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * The name of thezone
+     * where the managed instance
+     * group is located.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
@@ -42,8 +46,12 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
 
     /**
      * @param string                                                                    $project                                                  Project ID for this request.
-     * @param string                                                                    $zone                                                     The name of the zone where the managed instance group is located. It should conform to RFC1035.
-     * @param string                                                                    $instanceGroupManager                                     The name of the managed instance group. It should conform to RFC1035.
+     * @param string                                                                    $zone                                                     The name of thezone
+     *                                                                                                                                            where the managed instance
+     *                                                                                                                                            group is located.
+     *                                                                                                                                            It should conform to RFC1035.
+     * @param string                                                                    $instanceGroupManager                                     The name of the managed instance group.
+     *                                                                                                                                            It should conform to RFC1035.
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq $instanceGroupManagersDeletePerInstanceConfigsReqResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\DeletePerInstanceConfigsInstanceGroupManagerRequest
@@ -66,13 +74,17 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_group_manager
-     *           The name of the managed instance group. It should conform to RFC1035.
+     *           The name of the managed instance group.
+     *           It should conform to RFC1035.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq $instance_group_managers_delete_per_instance_configs_req_resource
      *           The body resource for this request
      *     @type string $project
      *           Project ID for this request.
      *     @type string $zone
-     *           The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     *           The name of thezone
+     *           where the managed instance
+     *           group is located.
+     *           It should conform to RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +93,8 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     }
 
     /**
-     * The name of the managed instance group. It should conform to RFC1035.
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -92,7 +105,8 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     }
 
     /**
-     * The name of the managed instance group. It should conform to RFC1035.
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -169,7 +183,10 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     }
 
     /**
-     * The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * The name of thezone
+     * where the managed instance
+     * group is located.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @return string
@@ -180,7 +197,10 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     }
 
     /**
-     * The name of the zone where the managed instance group is located. It should conform to RFC1035.
+     * The name of thezone
+     * where the managed instance
+     * group is located.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @param string $var

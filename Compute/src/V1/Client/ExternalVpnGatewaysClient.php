@@ -297,7 +297,8 @@ final class ExternalVpnGatewaysClient
     }
 
     /**
-     * Returns the specified externalVpnGateway. Get a list of available externalVpnGateways by making a list() request.
+     * Returns the specified externalVpnGateway. Get a list of available
+     * externalVpnGateways by making a list() request.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::getAsync()} .
      *
@@ -323,7 +324,8 @@ final class ExternalVpnGatewaysClient
     }
 
     /**
-     * Creates a ExternalVpnGateway in the specified project using the data included in the request.
+     * Creates a ExternalVpnGateway in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::insertAsync()} .
      *
@@ -349,7 +351,8 @@ final class ExternalVpnGatewaysClient
     }
 
     /**
-     * Retrieves the list of ExternalVpnGateway available to the specified project.
+     * Retrieves the list of ExternalVpnGateway available to the specified
+     * project.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::listAsync()} .
      *
@@ -375,7 +378,9 @@ final class ExternalVpnGatewaysClient
     }
 
     /**
-     * Sets the labels on an ExternalVpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on an ExternalVpnGateway. To learn more about labels,
+     * read the Labeling
+     * Resources documentation.
      *
      * The async variant is {@see ExternalVpnGatewaysClient::setLabelsAsync()} .
      *

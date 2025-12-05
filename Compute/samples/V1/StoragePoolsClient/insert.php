@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\StoragePool;
 use Google\Rpc\Status;
 
 /**
- * Creates a storage pool in the specified project using the data in the request.
+ * Creates a storage pool in the specified project using the data
+ * in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

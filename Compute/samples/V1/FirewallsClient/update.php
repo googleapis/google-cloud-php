@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\UpdateFirewallRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified firewall rule with the data included in the request. Note that all fields will be updated if using PUT, even fields that are not specified. To update individual fields, please use PATCH instead.
+ * Updates the specified firewall rule with the data included in the
+ * request.
+ * Note that all fields will be updated if using PUT, even fields that are not
+ * specified. To update individual fields, please use PATCH instead.
  *
  * @param string $firewall Name of the firewall rule to update.
  * @param string $project  Project ID for this request.

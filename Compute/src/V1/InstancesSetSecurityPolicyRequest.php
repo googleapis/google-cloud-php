@@ -15,13 +15,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The network interfaces that the security policy will be applied to. Network interfaces use the nicN naming format. You can only set a security policy for network interfaces with an access config.
+     * The network interfaces that the security policy will be applied to. Network
+     * interfaces use the nicN naming format. You can only set a
+     * security policy for network interfaces with an access config.
      *
      * Generated from protobuf field <code>repeated string network_interfaces = 52735243;</code>
      */
     private $network_interfaces;
     /**
-     * A full or partial URL to a security policy to add to this instance. If this field is set to an empty string it will remove the associated security policy.
+     * A full or partial URL to a security policy to add to this instance.
+     * If this field is set to an empty string it will remove the associated
+     * security policy.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      */
@@ -34,9 +38,13 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
-     *           The network interfaces that the security policy will be applied to. Network interfaces use the nicN naming format. You can only set a security policy for network interfaces with an access config.
+     *           The network interfaces that the security policy will be applied to. Network
+     *           interfaces use the nicN naming format. You can only set a
+     *           security policy for network interfaces with an access config.
      *     @type string $security_policy
-     *           A full or partial URL to a security policy to add to this instance. If this field is set to an empty string it will remove the associated security policy.
+     *           A full or partial URL to a security policy to add to this instance.
+     *           If this field is set to an empty string it will remove the associated
+     *           security policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +53,9 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The network interfaces that the security policy will be applied to. Network interfaces use the nicN naming format. You can only set a security policy for network interfaces with an access config.
+     * The network interfaces that the security policy will be applied to. Network
+     * interfaces use the nicN naming format. You can only set a
+     * security policy for network interfaces with an access config.
      *
      * Generated from protobuf field <code>repeated string network_interfaces = 52735243;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -56,7 +66,9 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The network interfaces that the security policy will be applied to. Network interfaces use the nicN naming format. You can only set a security policy for network interfaces with an access config.
+     * The network interfaces that the security policy will be applied to. Network
+     * interfaces use the nicN naming format. You can only set a
+     * security policy for network interfaces with an access config.
      *
      * Generated from protobuf field <code>repeated string network_interfaces = 52735243;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -71,7 +83,9 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A full or partial URL to a security policy to add to this instance. If this field is set to an empty string it will remove the associated security policy.
+     * A full or partial URL to a security policy to add to this instance.
+     * If this field is set to an empty string it will remove the associated
+     * security policy.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @return string
@@ -92,7 +106,9 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A full or partial URL to a security policy to add to this instance. If this field is set to an empty string it will remove the associated security policy.
+     * A full or partial URL to a security policy to add to this instance.
+     * If this field is set to an empty string it will remove the associated
+     * security policy.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @param string $var

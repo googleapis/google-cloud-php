@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetLabelsInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation.
+ * Sets labels on an instance.  To learn more about labels, read theLabeling
+ * Resources documentation.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

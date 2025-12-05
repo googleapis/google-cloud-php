@@ -29,10 +29,10 @@ use Google\Cloud\Channel\V1\UnregisterSubscriberRequest;
 use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
 
 /**
- * Unregisters a service account with subscriber privileges on the Cloud
- * Pub/Sub topic created for this Channel Services account. If there are no
- * service accounts left with subscriber privileges, this deletes the topic.
- * You can call ListSubscribers to check for these accounts.
+ * Unregisters a service account with subscriber privileges on the Pub/Sub
+ * topic created for this Channel Services account or integrator. If there are
+ * no service accounts left with subscriber privileges, this deletes the
+ * topic. You can call ListSubscribers to check for these accounts.
  *
  * Possible error codes:
  *
@@ -51,18 +51,16 @@ use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
  * Returns a success response if the service email address wasn't registered
  * with the topic.
  *
- * @param string $account        Resource name of the account.
  * @param string $serviceAccount Service account to unregister from subscriber access to the
  *                               topic.
  */
-function unregister_subscriber_sample(string $account, string $serviceAccount): void
+function unregister_subscriber_sample(string $serviceAccount): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
     $request = (new UnregisterSubscriberRequest())
-        ->setAccount($account)
         ->setServiceAccount($serviceAccount);
 
     // Call the API and handle any network failures.
@@ -86,9 +84,8 @@ function unregister_subscriber_sample(string $account, string $serviceAccount): 
  */
 function callSample(): void
 {
-    $account = '[ACCOUNT]';
     $serviceAccount = '[SERVICE_ACCOUNT]';
 
-    unregister_subscriber_sample($account, $serviceAccount);
+    unregister_subscriber_sample($serviceAccount);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_UnregisterSubscriber_sync]

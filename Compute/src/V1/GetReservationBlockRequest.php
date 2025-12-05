@@ -22,13 +22,15 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * The name of the reservation. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation = 47530956 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $reservation = '';
     /**
-     * The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation block.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_block = 532832858 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,8 +52,10 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $project          Project ID for this request.
      * @param string $zone             Name of the zone for this request. Zone name should conform to RFC1035.
-     * @param string $reservation      The name of the reservation. Name should conform to RFC1035 or be a resource ID.
-     * @param string $reservationBlock The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
+     * @param string $reservation      The name of the reservation.
+     *                                 Name should conform to RFC1035 or be a resource ID.
+     * @param string $reservationBlock The name of the reservation block.
+     *                                 Name should conform to RFC1035 or be a resource ID.
      *
      * @return \Google\Cloud\Compute\V1\GetReservationBlockRequest
      *
@@ -75,9 +79,11 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID for this request.
      *     @type string $reservation
-     *           The name of the reservation. Name should conform to RFC1035 or be a resource ID.
+     *           The name of the reservation.
+     *           Name should conform to RFC1035 or be a resource ID.
      *     @type string $reservation_block
-     *           The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
+     *           The name of the reservation block.
+     *           Name should conform to RFC1035 or be a resource ID.
      *     @type string $view
      *           View of the Block.
      *           Check the View enum for the list of possible values.
@@ -117,7 +123,8 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the reservation. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation = 47530956 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -128,7 +135,8 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the reservation. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation = 47530956 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -143,7 +151,8 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation block.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_block = 532832858 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -154,7 +163,8 @@ class GetReservationBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation block.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_block = 532832858 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

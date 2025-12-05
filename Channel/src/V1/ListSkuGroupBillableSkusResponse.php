@@ -23,8 +23,9 @@ class ListSkuGroupBillableSkusResponse extends \Google\Protobuf\Internal\Message
     private $billable_skus;
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListSkuGroupBillableSkus.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListSkuGroupBillableSkusRequest.page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +41,9 @@ class ListSkuGroupBillableSkusResponse extends \Google\Protobuf\Internal\Message
      *           The list of billable SKUs in the requested SKU group.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
-     *           Pass to [ListSkuGroupBillableSkus.page_token][] to obtain that
-     *           page.
+     *           Pass to
+     *           [ListSkuGroupBillableSkusRequest.page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusRequest.page_token]
+     *           to obtain that page.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +79,9 @@ class ListSkuGroupBillableSkusResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListSkuGroupBillableSkus.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListSkuGroupBillableSkusRequest.page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +93,9 @@ class ListSkuGroupBillableSkusResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results.
-     * Pass to [ListSkuGroupBillableSkus.page_token][] to obtain that
-     * page.
+     * Pass to
+     * [ListSkuGroupBillableSkusRequest.page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusRequest.page_token]
+     * to obtain that page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

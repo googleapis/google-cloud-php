@@ -19,6 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Each `AzureClient` resource is bound to a single Azure Active Directory
  * Application and tenant.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureClient</code>
  */
 class AzureClient extends \Google\Protobuf\Internal\Message

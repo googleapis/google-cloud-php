@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\PatchPacketMirroringRequest;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified PacketMirroring resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+ * Patches the specified PacketMirroring resource with the data included in
+ * the request. This method supportsPATCH
+ * semantics and usesJSON merge
+ * patch format and processing rules.
  *
  * @param string $packetMirroring Name of the PacketMirroring resource to patch.
  * @param string $project         Project ID for this request.

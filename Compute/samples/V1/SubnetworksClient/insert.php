@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\Subnetwork;
 use Google\Rpc\Status;
 
 /**
- * Creates a subnetwork in the specified project using the data included in the request.
+ * Creates a subnetwork in the specified project using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

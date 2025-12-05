@@ -15,13 +15,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class DiskMoveRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URL of the destination zone to move the disk. This can be a full or partial URL. For example, the following are all valid URLs to a zone: - https://www.googleapis.com/compute/v1/projects/project/zones/zone - projects/project/zones/zone - zones/zone 
+     * The URL of the destination zone to move the disk. This can be a full or
+     * partial URL. For example, the following are all valid URLs to a zone:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone
+     *    - projects/project/zones/zone
+     *    - zones/zone
      *
      * Generated from protobuf field <code>optional string destination_zone = 131854653;</code>
      */
     protected $destination_zone = null;
     /**
-     * The URL of the target disk to move. This can be a full or partial URL. For example, the following are all valid URLs to a disk: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     * The URL of the target disk to move. This can be a full or partial URL.
+     * For example, the following are all valid URLs to a disk:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *    - projects/project/zones/zone/disks/disk
+     *    - zones/zone/disks/disk
      *
      * Generated from protobuf field <code>optional string target_disk = 62433163;</code>
      */
@@ -34,9 +42,17 @@ class DiskMoveRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $destination_zone
-     *           The URL of the destination zone to move the disk. This can be a full or partial URL. For example, the following are all valid URLs to a zone: - https://www.googleapis.com/compute/v1/projects/project/zones/zone - projects/project/zones/zone - zones/zone 
+     *           The URL of the destination zone to move the disk. This can be a full or
+     *           partial URL. For example, the following are all valid URLs to a zone:
+     *              - https://www.googleapis.com/compute/v1/projects/project/zones/zone
+     *              - projects/project/zones/zone
+     *              - zones/zone
      *     @type string $target_disk
-     *           The URL of the target disk to move. This can be a full or partial URL. For example, the following are all valid URLs to a disk: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     *           The URL of the target disk to move. This can be a full or partial URL.
+     *           For example, the following are all valid URLs to a disk:
+     *              - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *              - projects/project/zones/zone/disks/disk
+     *              - zones/zone/disks/disk
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +61,11 @@ class DiskMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the destination zone to move the disk. This can be a full or partial URL. For example, the following are all valid URLs to a zone: - https://www.googleapis.com/compute/v1/projects/project/zones/zone - projects/project/zones/zone - zones/zone 
+     * The URL of the destination zone to move the disk. This can be a full or
+     * partial URL. For example, the following are all valid URLs to a zone:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone
+     *    - projects/project/zones/zone
+     *    - zones/zone
      *
      * Generated from protobuf field <code>optional string destination_zone = 131854653;</code>
      * @return string
@@ -66,7 +86,11 @@ class DiskMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the destination zone to move the disk. This can be a full or partial URL. For example, the following are all valid URLs to a zone: - https://www.googleapis.com/compute/v1/projects/project/zones/zone - projects/project/zones/zone - zones/zone 
+     * The URL of the destination zone to move the disk. This can be a full or
+     * partial URL. For example, the following are all valid URLs to a zone:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone
+     *    - projects/project/zones/zone
+     *    - zones/zone
      *
      * Generated from protobuf field <code>optional string destination_zone = 131854653;</code>
      * @param string $var
@@ -81,7 +105,11 @@ class DiskMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the target disk to move. This can be a full or partial URL. For example, the following are all valid URLs to a disk: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     * The URL of the target disk to move. This can be a full or partial URL.
+     * For example, the following are all valid URLs to a disk:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *    - projects/project/zones/zone/disks/disk
+     *    - zones/zone/disks/disk
      *
      * Generated from protobuf field <code>optional string target_disk = 62433163;</code>
      * @return string
@@ -102,7 +130,11 @@ class DiskMoveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the target disk to move. This can be a full or partial URL. For example, the following are all valid URLs to a disk: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - projects/project/zones/zone/disks/disk - zones/zone/disks/disk 
+     * The URL of the target disk to move. This can be a full or partial URL.
+     * For example, the following are all valid URLs to a disk:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *    - projects/project/zones/zone/disks/disk
+     *    - zones/zone/disks/disk
      *
      * Generated from protobuf field <code>optional string target_disk = 62433163;</code>
      * @param string $var

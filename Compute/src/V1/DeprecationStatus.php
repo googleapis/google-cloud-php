@@ -16,31 +16,45 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeprecationStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to DELETED. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string deleted = 476721177;</code>
      */
     protected $deleted = null;
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to DEPRECATED. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string deprecated = 515138995;</code>
      */
     protected $deprecated = null;
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to OBSOLETE. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string obsolete = 357647769;</code>
      */
     protected $obsolete = null;
     /**
-     * The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
+     * The URL of the suggested replacement for a deprecated resource.
+     * The suggested replacement resource must be the same kind of resource as the
+     * deprecated resource.
      *
      * Generated from protobuf field <code>optional string replacement = 430919186;</code>
      */
     protected $replacement = null;
     /**
-     * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     * The deprecation state of this resource. This can be ACTIVE,DEPRECATED, OBSOLETE, or DELETED.
+     * Operations which communicate the end of life date for an image, can useACTIVE. Operations which create a new resource using aDEPRECATED resource will return successfully, but with a
+     * warning indicating the deprecated resource and recommending its
+     * replacement. Operations which use OBSOLETE orDELETED resources will be rejected and result in an error.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -54,15 +68,29 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $deleted
-     *           An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
+     *           An optional RFC3339 timestamp on or after which the state of this
+     *           resource is intended to change to DELETED. This is only
+     *           informational and the status will not change unless the client explicitly
+     *           changes it.
      *     @type string $deprecated
-     *           An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
+     *           An optional RFC3339 timestamp on or after which the state of this
+     *           resource is intended to change to DEPRECATED. This is only
+     *           informational and the status will not change unless the client explicitly
+     *           changes it.
      *     @type string $obsolete
-     *           An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
+     *           An optional RFC3339 timestamp on or after which the state of this
+     *           resource is intended to change to OBSOLETE. This is only
+     *           informational and the status will not change unless the client explicitly
+     *           changes it.
      *     @type string $replacement
-     *           The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
+     *           The URL of the suggested replacement for a deprecated resource.
+     *           The suggested replacement resource must be the same kind of resource as the
+     *           deprecated resource.
      *     @type string $state
-     *           The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     *           The deprecation state of this resource. This can be ACTIVE,DEPRECATED, OBSOLETE, or DELETED.
+     *           Operations which communicate the end of life date for an image, can useACTIVE. Operations which create a new resource using aDEPRECATED resource will return successfully, but with a
+     *           warning indicating the deprecated resource and recommending its
+     *           replacement. Operations which use OBSOLETE orDELETED resources will be rejected and result in an error.
      *           Check the State enum for the list of possible values.
      * }
      */
@@ -72,7 +100,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to DELETED. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string deleted = 476721177;</code>
      * @return string
@@ -93,7 +124,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to DELETED. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string deleted = 476721177;</code>
      * @param string $var
@@ -108,7 +142,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to DEPRECATED. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string deprecated = 515138995;</code>
      * @return string
@@ -129,7 +166,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to DEPRECATED. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string deprecated = 515138995;</code>
      * @param string $var
@@ -144,7 +184,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to OBSOLETE. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string obsolete = 357647769;</code>
      * @return string
@@ -165,7 +208,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
+     * An optional RFC3339 timestamp on or after which the state of this
+     * resource is intended to change to OBSOLETE. This is only
+     * informational and the status will not change unless the client explicitly
+     * changes it.
      *
      * Generated from protobuf field <code>optional string obsolete = 357647769;</code>
      * @param string $var
@@ -180,7 +226,9 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
+     * The URL of the suggested replacement for a deprecated resource.
+     * The suggested replacement resource must be the same kind of resource as the
+     * deprecated resource.
      *
      * Generated from protobuf field <code>optional string replacement = 430919186;</code>
      * @return string
@@ -201,7 +249,9 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
+     * The URL of the suggested replacement for a deprecated resource.
+     * The suggested replacement resource must be the same kind of resource as the
+     * deprecated resource.
      *
      * Generated from protobuf field <code>optional string replacement = 430919186;</code>
      * @param string $var
@@ -216,7 +266,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     * The deprecation state of this resource. This can be ACTIVE,DEPRECATED, OBSOLETE, or DELETED.
+     * Operations which communicate the end of life date for an image, can useACTIVE. Operations which create a new resource using aDEPRECATED resource will return successfully, but with a
+     * warning indicating the deprecated resource and recommending its
+     * replacement. Operations which use OBSOLETE orDELETED resources will be rejected and result in an error.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -238,7 +291,10 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     * The deprecation state of this resource. This can be ACTIVE,DEPRECATED, OBSOLETE, or DELETED.
+     * Operations which communicate the end of life date for an image, can useACTIVE. Operations which create a new resource using aDEPRECATED resource will return successfully, but with a
+     * warning indicating the deprecated resource and recommending its
+     * replacement. Operations which use OBSOLETE orDELETED resources will be rejected and result in an error.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>

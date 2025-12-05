@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest;
 use UnexpectedValueException;
 
 /**
- * Instances in which state should be returned. Valid options are: 'ALL', 'RUNNING'. By default, it lists all instances.
+ * Instances in which state should be returned. Valid options are:
+ * 'ALL', 'RUNNING'. By default, it lists all instances.
  *
  * Protobuf type <code>google.cloud.compute.v1.RegionInstanceGroupsListInstancesRequest.InstanceState</code>
  */

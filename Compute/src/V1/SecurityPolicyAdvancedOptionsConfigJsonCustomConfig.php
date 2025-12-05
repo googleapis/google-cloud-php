@@ -15,7 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of custom Content-Type header values to apply the JSON parsing. As per RFC 1341, a Content-Type header value has the following format: Content-Type := type "/" subtype *[";" parameter] When configuring a custom Content-Type header value, only the type/subtype needs to be specified, and the parameters should be excluded.
+     * A list of custom Content-Type header values to apply the JSON parsing.
+     * As per RFC 1341, a Content-Type header value has the following format:
+     * Content-Type := type "/" subtype *[";" parameter]
+     * When configuring a custom Content-Type header value, only the
+     * type/subtype needs to be specified, and the parameters should be
+     * excluded.
      *
      * Generated from protobuf field <code>repeated string content_types = 17428787;</code>
      */
@@ -28,7 +33,12 @@ class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig extends \Google\Protob
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $content_types
-     *           A list of custom Content-Type header values to apply the JSON parsing. As per RFC 1341, a Content-Type header value has the following format: Content-Type := type "/" subtype *[";" parameter] When configuring a custom Content-Type header value, only the type/subtype needs to be specified, and the parameters should be excluded.
+     *           A list of custom Content-Type header values to apply the JSON parsing.
+     *           As per RFC 1341, a Content-Type header value has the following format:
+     *           Content-Type := type "/" subtype *[";" parameter]
+     *           When configuring a custom Content-Type header value, only the
+     *           type/subtype needs to be specified, and the parameters should be
+     *           excluded.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +47,12 @@ class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig extends \Google\Protob
     }
 
     /**
-     * A list of custom Content-Type header values to apply the JSON parsing. As per RFC 1341, a Content-Type header value has the following format: Content-Type := type "/" subtype *[";" parameter] When configuring a custom Content-Type header value, only the type/subtype needs to be specified, and the parameters should be excluded.
+     * A list of custom Content-Type header values to apply the JSON parsing.
+     * As per RFC 1341, a Content-Type header value has the following format:
+     * Content-Type := type "/" subtype *[";" parameter]
+     * When configuring a custom Content-Type header value, only the
+     * type/subtype needs to be specified, and the parameters should be
+     * excluded.
      *
      * Generated from protobuf field <code>repeated string content_types = 17428787;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +63,12 @@ class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig extends \Google\Protob
     }
 
     /**
-     * A list of custom Content-Type header values to apply the JSON parsing. As per RFC 1341, a Content-Type header value has the following format: Content-Type := type "/" subtype *[";" parameter] When configuring a custom Content-Type header value, only the type/subtype needs to be specified, and the parameters should be excluded.
+     * A list of custom Content-Type header values to apply the JSON parsing.
+     * As per RFC 1341, a Content-Type header value has the following format:
+     * Content-Type := type "/" subtype *[";" parameter]
+     * When configuring a custom Content-Type header value, only the
+     * type/subtype needs to be specified, and the parameters should be
+     * excluded.
      *
      * Generated from protobuf field <code>repeated string content_types = 17428787;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

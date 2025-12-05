@@ -79,9 +79,7 @@ final class BusinessIdentityServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -96,7 +94,8 @@ final class BusinessIdentityServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/business_identity_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/business_identity_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -276,8 +275,10 @@ final class BusinessIdentityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateBusinessIdentity(UpdateBusinessIdentityRequest $request, array $callOptions = []): BusinessIdentity
-    {
+    public function updateBusinessIdentity(
+        UpdateBusinessIdentityRequest $request,
+        array $callOptions = []
+    ): BusinessIdentity {
         return $this->startApiCall('UpdateBusinessIdentity', $request, $callOptions)->wait();
     }
 }

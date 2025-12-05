@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  *
  * @param string $project               Project ID for this request.
  * @param string $publicDelegatedPrefix The name of the public delegated prefix. It should comply with RFC1035.
- * @param string $region                The name of the region where the public delegated prefix is located. It should comply with RFC1035.
+ * @param string $region                The name of theregion where
+ *                                      the public delegated prefix is located. It should comply with RFC1035.
  */
 function withdraw_sample(string $project, string $publicDelegatedPrefix, string $region): void
 {

@@ -31,11 +31,14 @@ use Google\Cloud\Compute\V1\SetSecurityPolicyTargetPoolRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the Google Cloud Armor security policy for the specified target pool. For more information, see Google Cloud Armor Overview
+ * Sets the Google Cloud Armor security policy for the specified target pool.
+ * For more information, seeGoogle
+ * Cloud Armor Overview
  *
  * @param string $project    Project ID for this request.
  * @param string $region     Name of the region scoping this request.
- * @param string $targetPool Name of the TargetPool resource to which the security policy should be set. The name should conform to RFC1035.
+ * @param string $targetPool Name of the TargetPool resource to which the security policy should be
+ *                           set. The name should conform to RFC1035.
  */
 function set_security_policy_sample(string $project, string $region, string $targetPool): void
 {

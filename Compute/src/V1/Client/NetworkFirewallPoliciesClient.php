@@ -389,7 +389,12 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
-     * Retrieves an aggregated list of network firewall policies, listing network firewall policies from all applicable scopes (global and regional) and grouping the results per scope. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of network firewall policies, listing network
+     * firewall policies from all applicable scopes (global and regional) and
+     * grouping the results per scope.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::aggregatedListAsync()}
      * .
@@ -527,7 +532,8 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::getIamPolicyAsync()} .
      *
@@ -608,7 +614,8 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
-     * Creates a new policy in the specified project using the data included in the request.
+     * Creates a new policy in the specified project using the data included in
+     * the request.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::insertAsync()} .
      *
@@ -829,7 +836,8 @@ final class NetworkFirewallPoliciesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see NetworkFirewallPoliciesClient::setIamPolicyAsync()} .
      *

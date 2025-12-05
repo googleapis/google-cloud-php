@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\NotificationEndpoint;
 use Google\Rpc\Status;
 
 /**
- * Create a NotificationEndpoint in the specified project in the given region using the parameters that are included in the request.
+ * Create a NotificationEndpoint in the specified project in the given region
+ * using the parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

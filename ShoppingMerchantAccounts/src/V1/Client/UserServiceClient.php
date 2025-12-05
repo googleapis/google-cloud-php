@@ -40,6 +40,7 @@ use Google\Shopping\Merchant\Accounts\V1\GetUserRequest;
 use Google\Shopping\Merchant\Accounts\V1\ListUsersRequest;
 use Google\Shopping\Merchant\Accounts\V1\UpdateUserRequest;
 use Google\Shopping\Merchant\Accounts\V1\User;
+use Google\Shopping\Merchant\Accounts\V1\VerifySelfRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -59,6 +60,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<User> getUserAsync(GetUserRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<User> updateUserAsync(UpdateUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<User> verifySelfAsync(VerifySelfRequest $request, array $optionalArgs = [])
  */
 final class UserServiceClient
 {
@@ -85,9 +87,7 @@ final class UserServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -381,5 +381,32 @@ final class UserServiceClient
     public function updateUser(UpdateUserRequest $request, array $callOptions = []): User
     {
         return $this->startApiCall('UpdateUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the user that is represented by the caller from pending to
+     * verified.
+     *
+     * The async variant is {@see UserServiceClient::verifySelfAsync()} .
+     *
+     * @example samples/V1/UserServiceClient/verify_self.php
+     *
+     * @param VerifySelfRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return User
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function verifySelf(VerifySelfRequest $request, array $callOptions = []): User
+    {
+        return $this->startApiCall('VerifySelf', $request, $callOptions)->wait();
     }
 }

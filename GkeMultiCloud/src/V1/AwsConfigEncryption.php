@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Config encryption for user data.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsConfigEncryption</code>
  */
 class AwsConfigEncryption extends \Google\Protobuf\Internal\Message

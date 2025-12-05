@@ -80,7 +80,7 @@ class CloudRunJobMetadataProvider implements MetadataProviderInterface
             : null;
 
         $this->metadata = $metadata ?? new Metadata();
-        $this->region = \basename($this->metadata->get('instance/region'));
+        $this->region = \basename($this->metadata->get('instance/region') ?? '');
         $this->instanceId = $this->metadata->get('instance/id');
     }
 

@@ -16,23 +16,37 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkInterface extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+     * An array of configurations for this interface. Currently, only one access
+     * config, ONE_TO_ONE_NAT, is supported. If there are noaccessConfigs specified, then this instance will have
+     * no external internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig access_configs = 111058326;</code>
      */
     private $access_configs;
     /**
-     * An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
+     * An array of alias IP ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ip_ranges = 165085631;</code>
      */
     private $alias_ip_ranges;
     /**
-     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
+     * Fingerprint hash of contents stored in this network interface.
+     * This field will be ignored when inserting an Instance or
+     * adding a NetworkInterface. An up-to-date
+     * fingerprint must be provided in order to update theNetworkInterface. The request will fail with error400 Bad Request if the fingerprint is not provided, or412 Precondition Failed if the fingerprint is out of date.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     protected $fingerprint = null;
+    /**
+     * Indicate whether igmp query is enabled on the network interface
+     * or not. If enabled, also indicates the version of IGMP supported.
+     * Check the IgmpQuery enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string igmp_query = 30249546;</code>
+     */
+    protected $igmp_query = null;
     /**
      * The prefix length of the primary internal IPv6 range.
      *
@@ -40,56 +54,82 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     protected $internal_ipv6_prefix_length = null;
     /**
-     * An array of IPv6 access configurations for this interface. Currently, only one IPv6 access config, DIRECT_IPV6, is supported. If there is no ipv6AccessConfig specified, then this instance will have no external IPv6 Internet access.
+     * An array of IPv6 access configurations for this interface. Currently, only
+     * one IPv6 access config, DIRECT_IPV6, is supported. If there
+     * is no ipv6AccessConfig specified, then this instance will
+     * have no external IPv6 Internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig ipv6_access_configs = 483472110;</code>
      */
     private $ipv6_access_configs;
     /**
-     * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be accessed from the Internet. This field is always inherited from its subnetwork. Valid only if stackType is IPV4_IPV6.
+     * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be
+     * accessed from the Internet. This field is always inherited from its
+     * subnetwork.
+     * Valid only if stackType is IPV4_IPV6.
      * Check the Ipv6AccessType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_access_type = 504658653;</code>
      */
     protected $ipv6_access_type = null;
     /**
-     * An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
+     * An IPv6 internal network address for this network interface. To
+     * use a static internal IP address, it must be unused and in the same region
+     * as the instance's zone. If not specified, Google Cloud will automatically
+     * assign an internal IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      */
     protected $ipv6_address = null;
     /**
-     * [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
+     * [Output Only] Type of the resource. Alwayscompute#networkInterface for network interfaces.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] The name of the network interface, which is generated by the server. For a VM, the network interface uses the nicN naming format. Where N is a value between 0 and 7. The default interface value is nic0.
+     * [Output Only] The name of the network interface, which is generated by the
+     * server. For a VM, the network interface uses the nicN naming
+     * format. Where N is a value between 0 and7. The default interface value is nic0.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * URL of the VPC network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used. If the selected project doesn't have the default network, you must specify a network or subnet. If the network is not specified but the subnetwork is specified, the network is inferred. If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/global/networks/ network - projects/project/global/networks/network - global/networks/default 
+     * URL of the VPC network resource for this instance. When creating an
+     * instance, if neither the network nor the subnetwork is specified, the
+     * default network global/networks/default is used. If the
+     * selected project doesn't have the default network, you must specify a
+     * network or subnet. If the network is not specified but the subnetwork is
+     * specified, the network is inferred.
+     * If you specify this property, you can specify the network as
+     * a full or partial URL. For example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/global/networks/network
+     *       - projects/project/global/networks/network
+     *       - global/networks/default
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
     protected $network = null;
     /**
-     * The URL of the network attachment that this interface should connect to in the following format: projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+     * The URL of the network attachment that this interface should connect
+     * to in the following format:
+     * projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
      *
      * Generated from protobuf field <code>optional string network_attachment = 224644052;</code>
      */
     protected $network_attachment = null;
     /**
-     * An IPv4 internal IP address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.
+     * An IPv4 internal IP address to assign to the instance for this network
+     * interface. If not specified by the user, an unused internal IP is
+     * assigned by the system.
      *
      * Generated from protobuf field <code>optional string network_i_p = 207181961;</code>
      */
     protected $network_i_p = null;
     /**
-     * The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+     * The type of vNIC to be used on this interface. This may be gVNIC or
+     * VirtioNet.
      * Check the NicType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nic_type = 59810577;</code>
@@ -102,26 +142,40 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     protected $parent_nic_name = null;
     /**
-     * The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.
+     * The networking queue count that's specified by users for the network
+     * interface. Both Rx and Tx queues will be set to this number. It'll be empty
+     * if not specified by the users.
      *
      * Generated from protobuf field <code>optional int32 queue_count = 503708769;</code>
      */
     protected $queue_count = null;
     /**
-     * The stack type for this network interface. To assign only IPv4 addresses, use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, use IPV4_IPV6. If not specified, IPV4_ONLY is used. This field can be both set at instance creation and update network interface operations.
+     * The stack type for this network interface. To assign only IPv4 addresses,
+     * use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, useIPV4_IPV6. If not specified, IPV4_ONLY is used.
+     * This field can be both set at instance creation and update network
+     * interface operations.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
      */
     protected $stack_type = null;
     /**
-     * The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /subnetworks/subnetwork - regions/region/subnetworks/subnetwork 
+     * The URL of the Subnetwork resource for this instance. If the network
+     * resource is inlegacy
+     * mode, do not specify this field. If the network is in auto subnet
+     * mode, specifying the subnetwork is optional. If the network is in custom
+     * subnet mode, specifying the subnetwork is required. If you specify this
+     * field, you can specify the subnetwork as a full or partial URL. For
+     * example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork
+     *    - regions/region/subnetworks/subnetwork
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
     protected $subnetwork = null;
     /**
-     * VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
+     * VLAN tag of a dynamic network interface, must be  an integer in the range
+     * from 2 to 255 inclusively.
      *
      * Generated from protobuf field <code>optional int32 vlan = 3622243;</code>
      */
@@ -134,44 +188,94 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $access_configs
-     *           An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+     *           An array of configurations for this interface. Currently, only one access
+     *           config, ONE_TO_ONE_NAT, is supported. If there are noaccessConfigs specified, then this instance will have
+     *           no external internet access.
      *     @type array<\Google\Cloud\Compute\V1\AliasIpRange>|\Google\Protobuf\Internal\RepeatedField $alias_ip_ranges
-     *           An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
+     *           An array of alias IP ranges for this network interface.
+     *           You can only specify this field for network interfaces in VPC networks.
      *     @type string $fingerprint
-     *           Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
+     *           Fingerprint hash of contents stored in this network interface.
+     *           This field will be ignored when inserting an Instance or
+     *           adding a NetworkInterface. An up-to-date
+     *           fingerprint must be provided in order to update theNetworkInterface. The request will fail with error400 Bad Request if the fingerprint is not provided, or412 Precondition Failed if the fingerprint is out of date.
+     *     @type string $igmp_query
+     *           Indicate whether igmp query is enabled on the network interface
+     *           or not. If enabled, also indicates the version of IGMP supported.
+     *           Check the IgmpQuery enum for the list of possible values.
      *     @type int $internal_ipv6_prefix_length
      *           The prefix length of the primary internal IPv6 range.
      *     @type array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $ipv6_access_configs
-     *           An array of IPv6 access configurations for this interface. Currently, only one IPv6 access config, DIRECT_IPV6, is supported. If there is no ipv6AccessConfig specified, then this instance will have no external IPv6 Internet access.
+     *           An array of IPv6 access configurations for this interface. Currently, only
+     *           one IPv6 access config, DIRECT_IPV6, is supported. If there
+     *           is no ipv6AccessConfig specified, then this instance will
+     *           have no external IPv6 Internet access.
      *     @type string $ipv6_access_type
-     *           [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be accessed from the Internet. This field is always inherited from its subnetwork. Valid only if stackType is IPV4_IPV6.
+     *           [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be
+     *           accessed from the Internet. This field is always inherited from its
+     *           subnetwork.
+     *           Valid only if stackType is IPV4_IPV6.
      *           Check the Ipv6AccessType enum for the list of possible values.
      *     @type string $ipv6_address
-     *           An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
+     *           An IPv6 internal network address for this network interface. To
+     *           use a static internal IP address, it must be unused and in the same region
+     *           as the instance's zone. If not specified, Google Cloud will automatically
+     *           assign an internal IPv6 address from the instance's subnetwork.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
+     *           [Output Only] Type of the resource. Alwayscompute#networkInterface for network interfaces.
      *     @type string $name
-     *           [Output Only] The name of the network interface, which is generated by the server. For a VM, the network interface uses the nicN naming format. Where N is a value between 0 and 7. The default interface value is nic0.
+     *           [Output Only] The name of the network interface, which is generated by the
+     *           server. For a VM, the network interface uses the nicN naming
+     *           format. Where N is a value between 0 and7. The default interface value is nic0.
      *     @type string $network
-     *           URL of the VPC network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used. If the selected project doesn't have the default network, you must specify a network or subnet. If the network is not specified but the subnetwork is specified, the network is inferred. If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/global/networks/ network - projects/project/global/networks/network - global/networks/default 
+     *           URL of the VPC network resource for this instance. When creating an
+     *           instance, if neither the network nor the subnetwork is specified, the
+     *           default network global/networks/default is used. If the
+     *           selected project doesn't have the default network, you must specify a
+     *           network or subnet. If the network is not specified but the subnetwork is
+     *           specified, the network is inferred.
+     *           If you specify this property, you can specify the network as
+     *           a full or partial URL. For example, the following are all valid URLs:
+     *                 - https://www.googleapis.com/compute/v1/projects/project/global/networks/network
+     *                 - projects/project/global/networks/network
+     *                 - global/networks/default
      *     @type string $network_attachment
-     *           The URL of the network attachment that this interface should connect to in the following format: projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+     *           The URL of the network attachment that this interface should connect
+     *           to in the following format:
+     *           projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
      *     @type string $network_i_p
-     *           An IPv4 internal IP address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.
+     *           An IPv4 internal IP address to assign to the instance for this network
+     *           interface. If not specified by the user, an unused internal IP is
+     *           assigned by the system.
      *     @type string $nic_type
-     *           The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+     *           The type of vNIC to be used on this interface. This may be gVNIC or
+     *           VirtioNet.
      *           Check the NicType enum for the list of possible values.
      *     @type string $parent_nic_name
      *           Name of the parent network interface of a dynamic network interface.
      *     @type int $queue_count
-     *           The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.
+     *           The networking queue count that's specified by users for the network
+     *           interface. Both Rx and Tx queues will be set to this number. It'll be empty
+     *           if not specified by the users.
      *     @type string $stack_type
-     *           The stack type for this network interface. To assign only IPv4 addresses, use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, use IPV4_IPV6. If not specified, IPV4_ONLY is used. This field can be both set at instance creation and update network interface operations.
+     *           The stack type for this network interface. To assign only IPv4 addresses,
+     *           use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, useIPV4_IPV6. If not specified, IPV4_ONLY is used.
+     *           This field can be both set at instance creation and update network
+     *           interface operations.
      *           Check the StackType enum for the list of possible values.
      *     @type string $subnetwork
-     *           The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /subnetworks/subnetwork - regions/region/subnetworks/subnetwork 
+     *           The URL of the Subnetwork resource for this instance. If the network
+     *           resource is inlegacy
+     *           mode, do not specify this field. If the network is in auto subnet
+     *           mode, specifying the subnetwork is optional. If the network is in custom
+     *           subnet mode, specifying the subnetwork is required. If you specify this
+     *           field, you can specify the subnetwork as a full or partial URL. For
+     *           example, the following are all valid URLs:
+     *                 - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork
+     *              - regions/region/subnetworks/subnetwork
      *     @type int $vlan
-     *           VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
+     *           VLAN tag of a dynamic network interface, must be  an integer in the range
+     *           from 2 to 255 inclusively.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,7 +284,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+     * An array of configurations for this interface. Currently, only one access
+     * config, ONE_TO_ONE_NAT, is supported. If there are noaccessConfigs specified, then this instance will have
+     * no external internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig access_configs = 111058326;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -191,7 +297,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+     * An array of configurations for this interface. Currently, only one access
+     * config, ONE_TO_ONE_NAT, is supported. If there are noaccessConfigs specified, then this instance will have
+     * no external internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig access_configs = 111058326;</code>
      * @param array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $var
@@ -206,7 +314,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
+     * An array of alias IP ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ip_ranges = 165085631;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -217,7 +326,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
+     * An array of alias IP ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ip_ranges = 165085631;</code>
      * @param array<\Google\Cloud\Compute\V1\AliasIpRange>|\Google\Protobuf\Internal\RepeatedField $var
@@ -232,7 +342,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
+     * Fingerprint hash of contents stored in this network interface.
+     * This field will be ignored when inserting an Instance or
+     * adding a NetworkInterface. An up-to-date
+     * fingerprint must be provided in order to update theNetworkInterface. The request will fail with error400 Bad Request if the fingerprint is not provided, or412 Precondition Failed if the fingerprint is out of date.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
@@ -253,7 +366,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
+     * Fingerprint hash of contents stored in this network interface.
+     * This field will be ignored when inserting an Instance or
+     * adding a NetworkInterface. An up-to-date
+     * fingerprint must be provided in order to update theNetworkInterface. The request will fail with error400 Bad Request if the fingerprint is not provided, or412 Precondition Failed if the fingerprint is out of date.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
@@ -263,6 +379,46 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->fingerprint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicate whether igmp query is enabled on the network interface
+     * or not. If enabled, also indicates the version of IGMP supported.
+     * Check the IgmpQuery enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string igmp_query = 30249546;</code>
+     * @return string
+     */
+    public function getIgmpQuery()
+    {
+        return isset($this->igmp_query) ? $this->igmp_query : '';
+    }
+
+    public function hasIgmpQuery()
+    {
+        return isset($this->igmp_query);
+    }
+
+    public function clearIgmpQuery()
+    {
+        unset($this->igmp_query);
+    }
+
+    /**
+     * Indicate whether igmp query is enabled on the network interface
+     * or not. If enabled, also indicates the version of IGMP supported.
+     * Check the IgmpQuery enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string igmp_query = 30249546;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIgmpQuery($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->igmp_query = $var;
 
         return $this;
     }
@@ -304,7 +460,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of IPv6 access configurations for this interface. Currently, only one IPv6 access config, DIRECT_IPV6, is supported. If there is no ipv6AccessConfig specified, then this instance will have no external IPv6 Internet access.
+     * An array of IPv6 access configurations for this interface. Currently, only
+     * one IPv6 access config, DIRECT_IPV6, is supported. If there
+     * is no ipv6AccessConfig specified, then this instance will
+     * have no external IPv6 Internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig ipv6_access_configs = 483472110;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -315,7 +474,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of IPv6 access configurations for this interface. Currently, only one IPv6 access config, DIRECT_IPV6, is supported. If there is no ipv6AccessConfig specified, then this instance will have no external IPv6 Internet access.
+     * An array of IPv6 access configurations for this interface. Currently, only
+     * one IPv6 access config, DIRECT_IPV6, is supported. If there
+     * is no ipv6AccessConfig specified, then this instance will
+     * have no external IPv6 Internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig ipv6_access_configs = 483472110;</code>
      * @param array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $var
@@ -330,7 +492,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be accessed from the Internet. This field is always inherited from its subnetwork. Valid only if stackType is IPV4_IPV6.
+     * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be
+     * accessed from the Internet. This field is always inherited from its
+     * subnetwork.
+     * Valid only if stackType is IPV4_IPV6.
      * Check the Ipv6AccessType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_access_type = 504658653;</code>
@@ -352,7 +517,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be accessed from the Internet. This field is always inherited from its subnetwork. Valid only if stackType is IPV4_IPV6.
+     * [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be
+     * accessed from the Internet. This field is always inherited from its
+     * subnetwork.
+     * Valid only if stackType is IPV4_IPV6.
      * Check the Ipv6AccessType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_access_type = 504658653;</code>
@@ -368,7 +536,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
+     * An IPv6 internal network address for this network interface. To
+     * use a static internal IP address, it must be unused and in the same region
+     * as the instance's zone. If not specified, Google Cloud will automatically
+     * assign an internal IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      * @return string
@@ -389,7 +560,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IPv6 internal network address for this network interface. To use a static internal IP address, it must be unused and in the same region as the instance's zone. If not specified, Google Cloud will automatically assign an internal IPv6 address from the instance's subnetwork.
+     * An IPv6 internal network address for this network interface. To
+     * use a static internal IP address, it must be unused and in the same region
+     * as the instance's zone. If not specified, Google Cloud will automatically
+     * assign an internal IPv6 address from the instance's subnetwork.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      * @param string $var
@@ -404,7 +578,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
+     * [Output Only] Type of the resource. Alwayscompute#networkInterface for network interfaces.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -425,7 +599,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
+     * [Output Only] Type of the resource. Alwayscompute#networkInterface for network interfaces.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -440,7 +614,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the network interface, which is generated by the server. For a VM, the network interface uses the nicN naming format. Where N is a value between 0 and 7. The default interface value is nic0.
+     * [Output Only] The name of the network interface, which is generated by the
+     * server. For a VM, the network interface uses the nicN naming
+     * format. Where N is a value between 0 and7. The default interface value is nic0.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -461,7 +637,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the network interface, which is generated by the server. For a VM, the network interface uses the nicN naming format. Where N is a value between 0 and 7. The default interface value is nic0.
+     * [Output Only] The name of the network interface, which is generated by the
+     * server. For a VM, the network interface uses the nicN naming
+     * format. Where N is a value between 0 and7. The default interface value is nic0.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -476,7 +654,17 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the VPC network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used. If the selected project doesn't have the default network, you must specify a network or subnet. If the network is not specified but the subnetwork is specified, the network is inferred. If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/global/networks/ network - projects/project/global/networks/network - global/networks/default 
+     * URL of the VPC network resource for this instance. When creating an
+     * instance, if neither the network nor the subnetwork is specified, the
+     * default network global/networks/default is used. If the
+     * selected project doesn't have the default network, you must specify a
+     * network or subnet. If the network is not specified but the subnetwork is
+     * specified, the network is inferred.
+     * If you specify this property, you can specify the network as
+     * a full or partial URL. For example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/global/networks/network
+     *       - projects/project/global/networks/network
+     *       - global/networks/default
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
@@ -497,7 +685,17 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the VPC network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used. If the selected project doesn't have the default network, you must specify a network or subnet. If the network is not specified but the subnetwork is specified, the network is inferred. If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/global/networks/ network - projects/project/global/networks/network - global/networks/default 
+     * URL of the VPC network resource for this instance. When creating an
+     * instance, if neither the network nor the subnetwork is specified, the
+     * default network global/networks/default is used. If the
+     * selected project doesn't have the default network, you must specify a
+     * network or subnet. If the network is not specified but the subnetwork is
+     * specified, the network is inferred.
+     * If you specify this property, you can specify the network as
+     * a full or partial URL. For example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/global/networks/network
+     *       - projects/project/global/networks/network
+     *       - global/networks/default
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var
@@ -512,7 +710,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the network attachment that this interface should connect to in the following format: projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+     * The URL of the network attachment that this interface should connect
+     * to in the following format:
+     * projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
      *
      * Generated from protobuf field <code>optional string network_attachment = 224644052;</code>
      * @return string
@@ -533,7 +733,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the network attachment that this interface should connect to in the following format: projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+     * The URL of the network attachment that this interface should connect
+     * to in the following format:
+     * projects/{project_number}/regions/{region_name}/networkAttachments/{network_attachment_name}.
      *
      * Generated from protobuf field <code>optional string network_attachment = 224644052;</code>
      * @param string $var
@@ -548,7 +750,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IPv4 internal IP address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.
+     * An IPv4 internal IP address to assign to the instance for this network
+     * interface. If not specified by the user, an unused internal IP is
+     * assigned by the system.
      *
      * Generated from protobuf field <code>optional string network_i_p = 207181961;</code>
      * @return string
@@ -569,7 +773,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An IPv4 internal IP address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.
+     * An IPv4 internal IP address to assign to the instance for this network
+     * interface. If not specified by the user, an unused internal IP is
+     * assigned by the system.
      *
      * Generated from protobuf field <code>optional string network_i_p = 207181961;</code>
      * @param string $var
@@ -584,7 +790,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+     * The type of vNIC to be used on this interface. This may be gVNIC or
+     * VirtioNet.
      * Check the NicType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nic_type = 59810577;</code>
@@ -606,7 +813,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+     * The type of vNIC to be used on this interface. This may be gVNIC or
+     * VirtioNet.
      * Check the NicType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nic_type = 59810577;</code>
@@ -658,7 +866,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.
+     * The networking queue count that's specified by users for the network
+     * interface. Both Rx and Tx queues will be set to this number. It'll be empty
+     * if not specified by the users.
      *
      * Generated from protobuf field <code>optional int32 queue_count = 503708769;</code>
      * @return int
@@ -679,7 +889,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.
+     * The networking queue count that's specified by users for the network
+     * interface. Both Rx and Tx queues will be set to this number. It'll be empty
+     * if not specified by the users.
      *
      * Generated from protobuf field <code>optional int32 queue_count = 503708769;</code>
      * @param int $var
@@ -694,7 +906,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stack type for this network interface. To assign only IPv4 addresses, use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, use IPV4_IPV6. If not specified, IPV4_ONLY is used. This field can be both set at instance creation and update network interface operations.
+     * The stack type for this network interface. To assign only IPv4 addresses,
+     * use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, useIPV4_IPV6. If not specified, IPV4_ONLY is used.
+     * This field can be both set at instance creation and update network
+     * interface operations.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -716,7 +931,10 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The stack type for this network interface. To assign only IPv4 addresses, use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, use IPV4_IPV6. If not specified, IPV4_ONLY is used. This field can be both set at instance creation and update network interface operations.
+     * The stack type for this network interface. To assign only IPv4 addresses,
+     * use IPV4_ONLY. To assign both IPv4 and IPv6 addresses, useIPV4_IPV6. If not specified, IPV4_ONLY is used.
+     * This field can be both set at instance creation and update network
+     * interface operations.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -732,7 +950,15 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /subnetworks/subnetwork - regions/region/subnetworks/subnetwork 
+     * The URL of the Subnetwork resource for this instance. If the network
+     * resource is inlegacy
+     * mode, do not specify this field. If the network is in auto subnet
+     * mode, specifying the subnetwork is optional. If the network is in custom
+     * subnet mode, specifying the subnetwork is required. If you specify this
+     * field, you can specify the subnetwork as a full or partial URL. For
+     * example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork
+     *    - regions/region/subnetworks/subnetwork
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @return string
@@ -753,7 +979,15 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /subnetworks/subnetwork - regions/region/subnetworks/subnetwork 
+     * The URL of the Subnetwork resource for this instance. If the network
+     * resource is inlegacy
+     * mode, do not specify this field. If the network is in auto subnet
+     * mode, specifying the subnetwork is optional. If the network is in custom
+     * subnet mode, specifying the subnetwork is required. If you specify this
+     * field, you can specify the subnetwork as a full or partial URL. For
+     * example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork
+     *    - regions/region/subnetworks/subnetwork
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @param string $var
@@ -768,7 +1002,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
+     * VLAN tag of a dynamic network interface, must be  an integer in the range
+     * from 2 to 255 inclusively.
      *
      * Generated from protobuf field <code>optional int32 vlan = 3622243;</code>
      * @return int
@@ -789,7 +1024,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * VLAN tag of a dynamic network interface, must be an integer in the range from 2 to 255 inclusively.
+     * VLAN tag of a dynamic network interface, must be  an integer in the range
+     * from 2 to 255 inclusively.
      *
      * Generated from protobuf field <code>optional int32 vlan = 3622243;</code>
      * @param int $var

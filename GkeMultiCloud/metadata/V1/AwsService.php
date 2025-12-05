@@ -26,81 +26,81 @@ class AwsService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ž9
-/google/cloud/gkemulticloud/v1/aws_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto1google/cloud/gkemulticloud/v1/aws_resources.proto4google/cloud/gkemulticloud/v1/common_resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ó
+¹:
+/google/cloud/gkemulticloud/v1/aws_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto1google/cloud/gkemulticloud/v1/aws_resources.proto4google/cloud/gkemulticloud/v1/common_resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"×
 CreateAwsClusterRequest?
 parent (	B/àAúA)\'gkemulticloud.googleapis.com/AwsClusterC
 aws_cluster (2).google.cloud.gkemulticloud.v1.AwsClusterBàA
 aws_cluster_id (	BàA
-validate_only ("«
+validate_only (:"¯
 UpdateAwsClusterRequestC
 aws_cluster (2).google.cloud.gkemulticloud.v1.AwsClusterBàA
 validate_only (4
-update_mask (2.google.protobuf.FieldMaskBàA"U
+update_mask (2.google.protobuf.FieldMaskBàA:"Y
 GetAwsClusterRequest=
 name (	B/àAúA)
-\'gkemulticloud.googleapis.com/AwsCluster"€
+\'gkemulticloud.googleapis.com/AwsCluster:"„
 ListAwsClustersRequest?
 parent (	B/àAúA)\'gkemulticloud.googleapis.com/AwsCluster
 	page_size (
 
-page_token (	"s
+page_token (	:"w
 ListAwsClustersResponse?
 aws_clusters (2).google.cloud.gkemulticloud.v1.AwsCluster
-next_page_token (	"°
+next_page_token (	:"´
 DeleteAwsClusterRequest=
 name (	B/àAúA)
 \'gkemulticloud.googleapis.com/AwsCluster
 validate_only (
 allow_missing (
 ignore_errors (BàA
-etag (	"Ú
+etag (	:"Þ
 CreateAwsNodePoolRequest@
 parent (	B0àAúA*(gkemulticloud.googleapis.com/AwsNodePoolF
 aws_node_pool (2*.google.cloud.gkemulticloud.v1.AwsNodePoolBàA
 aws_node_pool_id (	BàA
-validate_only ("¯
+validate_only (:"³
 UpdateAwsNodePoolRequestF
 aws_node_pool (2*.google.cloud.gkemulticloud.v1.AwsNodePoolBàA
 validate_only (4
-update_mask (2.google.protobuf.FieldMaskBàA"|
+update_mask (2.google.protobuf.FieldMaskBàA:"€
  RollbackAwsNodePoolUpdateRequest>
 name (	B0àAúA*
 (gkemulticloud.googleapis.com/AwsNodePool
-respect_pdb (BàA"W
+respect_pdb (BàA:"[
 GetAwsNodePoolRequest>
 name (	B0àAúA*
-(gkemulticloud.googleapis.com/AwsNodePool"‚
+(gkemulticloud.googleapis.com/AwsNodePool:"†
 ListAwsNodePoolsRequest@
 parent (	B0àAúA*(gkemulticloud.googleapis.com/AwsNodePool
 	page_size (
 
-page_token (	"w
+page_token (	:"{
 ListAwsNodePoolsResponseB
 aws_node_pools (2*.google.cloud.gkemulticloud.v1.AwsNodePool
-next_page_token (	"²
+next_page_token (	:"¶
 DeleteAwsNodePoolRequest>
 name (	B0àAúA*
 (gkemulticloud.googleapis.com/AwsNodePool
 validate_only (
 allow_missing (
 ignore_errors (BàA
-etag (	"a
+etag (	:"e
 GetAwsOpenIdConfigRequestD
 aws_cluster (	B/àAúA)
-\'gkemulticloud.googleapis.com/AwsCluster"`
+\'gkemulticloud.googleapis.com/AwsCluster:"d
 GetAwsJsonWebKeysRequestD
 aws_cluster (	B/àAúA)
-\'gkemulticloud.googleapis.com/AwsCluster"_
+\'gkemulticloud.googleapis.com/AwsCluster:"c
 GetAwsServerConfigRequestB
 name (	B4àAúA.
-,gkemulticloud.googleapis.com/AwsServerConfig"e
+,gkemulticloud.googleapis.com/AwsServerConfig:"i
 GenerateAwsAccessTokenRequestD
 aws_cluster (	B/àAúA)
-\'gkemulticloud.googleapis.com/AwsCluster"u
+\'gkemulticloud.googleapis.com/AwsCluster:"y
 GenerateAwsAccessTokenResponse
 access_token (	BàA8
-expiration_time (2.google.protobuf.TimestampBàA"Ö
+expiration_time (2.google.protobuf.TimestampBàA:"Ú
 #GenerateAwsClusterAgentTokenRequestD
 aws_cluster (	B/àAúA)
 \'gkemulticloud.googleapis.com/AwsCluster
@@ -114,39 +114,41 @@ grant_type (	BàA
 scope (	BàA!
 requested_token_type	 (	BàA
 options
- (	BàA"d
-$GenerateAwsClusterAgentTokenResponse
-access_token (	
+ (	BàA:"Ž
+$GenerateAwsClusterAgentTokenResponse"
+access_token (	Raccess_token
 
-expires_in (
+expires_in (R
+expires_in
 
-token_type (	2©
-AwsClustersö
-CreateAwsCluster6.google.cloud.gkemulticloud.v1.CreateAwsClusterRequest.google.longrunning.Operation"ŠÊA
+token_type (	R
+token_type:2Ü
+AwsClustersù
+CreateAwsCluster6.google.cloud.gkemulticloud.v1.CreateAwsClusterRequest.google.longrunning.Operation"ˆÊA
 
-AwsClusterOperationMetadataÚA!parent,aws_cluster,aws_cluster_id‚Óä“>"//v1/{parent=projects/*/locations/*}/awsClusters:aws_clusterø
-UpdateAwsCluster6.google.cloud.gkemulticloud.v1.UpdateAwsClusterRequest.google.longrunning.Operation"ŒÊA
+AwsClusterOperationMetadataÚA!parent,aws_cluster,aws_cluster_id‚Óä“>"//v1/{parent=projects/*/locations/*}/awsClusters:aws_clusterû
+UpdateAwsCluster6.google.cloud.gkemulticloud.v1.UpdateAwsClusterRequest.google.longrunning.Operation"ˆÊA
 
-AwsClusterOperationMetadataÚAaws_cluster,update_mask‚Óä“J2;/v1/{aws_cluster.name=projects/*/locations/*/awsClusters/*}:aws_cluster¯
-GetAwsCluster3.google.cloud.gkemulticloud.v1.GetAwsClusterRequest).google.cloud.gkemulticloud.v1.AwsCluster">ÚAname‚Óä“1//v1/{name=projects/*/locations/*/awsClusters/*}Â
-ListAwsClusters5.google.cloud.gkemulticloud.v1.ListAwsClustersRequest6.google.cloud.gkemulticloud.v1.ListAwsClustersResponse"@ÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/awsClustersÖ
-DeleteAwsCluster6.google.cloud.gkemulticloud.v1.DeleteAwsClusterRequest.google.longrunning.Operation"kÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“1*//v1/{name=projects/*/locations/*/awsClusters/*}‡
-GenerateAwsClusterAgentTokenB.google.cloud.gkemulticloud.v1.GenerateAwsClusterAgentTokenRequestC.google.cloud.gkemulticloud.v1.GenerateAwsClusterAgentTokenResponse"^‚Óä“X"S/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}:generateAwsClusterAgentToken:*ì
-GenerateAwsAccessToken<.google.cloud.gkemulticloud.v1.GenerateAwsAccessTokenRequest=.google.cloud.gkemulticloud.v1.GenerateAwsAccessTokenResponse"U‚Óä“OM/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}:generateAwsAccessTokenŽ
-CreateAwsNodePool7.google.cloud.gkemulticloud.v1.CreateAwsNodePoolRequest.google.longrunning.Operation" ÊA 
-AwsNodePoolOperationMetadataÚA%parent,aws_node_pool,aws_node_pool_id‚Óä“O">/v1/{parent=projects/*/locations/*/awsClusters/*}/awsNodePools:aws_node_pool
-UpdateAwsNodePool7.google.cloud.gkemulticloud.v1.UpdateAwsNodePoolRequest.google.longrunning.Operation"¢ÊA 
-AwsNodePoolOperationMetadataÚAaws_node_pool,update_mask‚Óä“]2L/v1/{aws_node_pool.name=projects/*/locations/*/awsClusters/*/awsNodePools/*}:aws_node_poolù
-RollbackAwsNodePoolUpdate?.google.cloud.gkemulticloud.v1.RollbackAwsNodePoolUpdateRequest.google.longrunning.Operation"|ÊA 
-AwsNodePoolOperationMetadataÚAname‚Óä“L"G/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}:rollback:*Á
-GetAwsNodePool4.google.cloud.gkemulticloud.v1.GetAwsNodePoolRequest*.google.cloud.gkemulticloud.v1.AwsNodePool"MÚAname‚Óä“@>/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}Ô
-ListAwsNodePools6.google.cloud.gkemulticloud.v1.ListAwsNodePoolsRequest7.google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse"OÚAparent‚Óä“@>/v1/{parent=projects/*/locations/*/awsClusters/*}/awsNodePoolsç
-DeleteAwsNodePool7.google.cloud.gkemulticloud.v1.DeleteAwsNodePoolRequest.google.longrunning.Operation"zÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“@*>/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}ß
-GetAwsOpenIdConfig8.google.cloud.gkemulticloud.v1.GetAwsOpenIdConfigRequest..google.cloud.gkemulticloud.v1.AwsOpenIdConfig"_‚Óä“YW/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}/.well-known/openid-configurationÀ
-GetAwsJsonWebKeys7.google.cloud.gkemulticloud.v1.GetAwsJsonWebKeysRequest-.google.cloud.gkemulticloud.v1.AwsJsonWebKeys"C‚Óä“=;/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}/jwksÀ
-GetAwsServerConfig8.google.cloud.gkemulticloud.v1.GetAwsServerConfigRequest..google.cloud.gkemulticloud.v1.AwsServerConfig"@ÚAname‚Óä“31/v1/{name=projects/*/locations/*/awsServerConfig}PÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBâ
+AwsClusterOperationMetadataÚAaws_cluster,update_mask‚Óä“J2;/v1/{aws_cluster.name=projects/*/locations/*/awsClusters/*}:aws_cluster²
+GetAwsCluster3.google.cloud.gkemulticloud.v1.GetAwsClusterRequest).google.cloud.gkemulticloud.v1.AwsCluster"AˆÚAname‚Óä“1//v1/{name=projects/*/locations/*/awsClusters/*}Å
+ListAwsClusters5.google.cloud.gkemulticloud.v1.ListAwsClustersRequest6.google.cloud.gkemulticloud.v1.ListAwsClustersResponse"CˆÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/awsClustersÙ
+DeleteAwsCluster6.google.cloud.gkemulticloud.v1.DeleteAwsClusterRequest.google.longrunning.Operation"nˆÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“1*//v1/{name=projects/*/locations/*/awsClusters/*}Š
+GenerateAwsClusterAgentTokenB.google.cloud.gkemulticloud.v1.GenerateAwsClusterAgentTokenRequestC.google.cloud.gkemulticloud.v1.GenerateAwsClusterAgentTokenResponse"aˆ‚Óä“X"S/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}:generateAwsClusterAgentToken:*ï
+GenerateAwsAccessToken<.google.cloud.gkemulticloud.v1.GenerateAwsAccessTokenRequest=.google.cloud.gkemulticloud.v1.GenerateAwsAccessTokenResponse"Xˆ‚Óä“OM/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}:generateAwsAccessToken‘
+CreateAwsNodePool7.google.cloud.gkemulticloud.v1.CreateAwsNodePoolRequest.google.longrunning.Operation"£ˆÊA 
+AwsNodePoolOperationMetadataÚA%parent,aws_node_pool,aws_node_pool_id‚Óä“O">/v1/{parent=projects/*/locations/*/awsClusters/*}/awsNodePools:aws_node_pool“
+UpdateAwsNodePool7.google.cloud.gkemulticloud.v1.UpdateAwsNodePoolRequest.google.longrunning.Operation"¥ˆÊA 
+AwsNodePoolOperationMetadataÚAaws_node_pool,update_mask‚Óä“]2L/v1/{aws_node_pool.name=projects/*/locations/*/awsClusters/*/awsNodePools/*}:aws_node_poolü
+RollbackAwsNodePoolUpdate?.google.cloud.gkemulticloud.v1.RollbackAwsNodePoolUpdateRequest.google.longrunning.Operation"ˆÊA 
+AwsNodePoolOperationMetadataÚAname‚Óä“L"G/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}:rollback:*Ä
+GetAwsNodePool4.google.cloud.gkemulticloud.v1.GetAwsNodePoolRequest*.google.cloud.gkemulticloud.v1.AwsNodePool"PˆÚAname‚Óä“@>/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}×
+ListAwsNodePools6.google.cloud.gkemulticloud.v1.ListAwsNodePoolsRequest7.google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse"RˆÚAparent‚Óä“@>/v1/{parent=projects/*/locations/*/awsClusters/*}/awsNodePoolsê
+DeleteAwsNodePool7.google.cloud.gkemulticloud.v1.DeleteAwsNodePoolRequest.google.longrunning.Operation"}ˆÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“@*>/v1/{name=projects/*/locations/*/awsClusters/*/awsNodePools/*}â
+GetAwsOpenIdConfig8.google.cloud.gkemulticloud.v1.GetAwsOpenIdConfigRequest..google.cloud.gkemulticloud.v1.AwsOpenIdConfig"bˆ‚Óä“YW/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}/.well-known/openid-configurationÃ
+GetAwsJsonWebKeys7.google.cloud.gkemulticloud.v1.GetAwsJsonWebKeysRequest-.google.cloud.gkemulticloud.v1.AwsJsonWebKeys"Fˆ‚Óä“=;/v1/{aws_cluster=projects/*/locations/*/awsClusters/*}/jwksÃ
+GetAwsServerConfig8.google.cloud.gkemulticloud.v1.GetAwsServerConfigRequest..google.cloud.gkemulticloud.v1.AwsServerConfig"CˆÚAname‚Óä“31/v1/{name=projects/*/locations/*/awsServerConfig}SˆÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBâ
 !com.google.cloud.gkemulticloud.v1BAwsServiceProtoPZGcloud.google.com/go/gkemulticloud/apiv1/gkemulticloudpb;gkemulticloudpbªGoogle.Cloud.GkeMultiCloud.V1ÊGoogle\\Cloud\\GkeMultiCloud\\V1ê Google::Cloud::GkeMultiCloud::V1bproto3'
         , true);
 

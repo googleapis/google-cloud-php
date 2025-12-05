@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionAutoscalersClient;
 use Google\Cloud\Compute\V1\ListRegionAutoscalersRequest;
 
 /**
- * Retrieves a list of autoscalers contained within the specified region.
+ * Retrieves a list of autoscalers contained within
+ * the specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

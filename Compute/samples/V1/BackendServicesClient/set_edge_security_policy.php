@@ -33,7 +33,8 @@ use Google\Rpc\Status;
 /**
  * Sets the edge security policy for the specified backend service.
  *
- * @param string $backendService Name of the BackendService resource to which the edge security policy should be set. The name should conform to RFC1035.
+ * @param string $backendService Name of the BackendService resource to which the edge security policy
+ *                               should be set. The name should conform to RFC1035.
  * @param string $project        Project ID for this request.
  */
 function set_edge_security_policy_sample(string $backendService, string $project): void

@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\ShieldedInstanceIntegrityPolicy;
 use Google\Rpc\Status;
 
 /**
- * Sets the Shielded Instance integrity policy for an instance. You can only use this method on a running instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Sets the Shielded Instance integrity policy for an instance. You can
+ * only use this method on a running instance. This method
+ * supports PATCH semantics and uses the JSON merge
+ * patch format and processing rules.
  *
  * @param string $instance Name or id of the instance scoping this request.
  * @param string $project  Project ID for this request.

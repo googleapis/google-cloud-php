@@ -16,19 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Defines whether the instance has integrity monitoring enabled. Enabled by default.
+     * Defines whether the instance has integrity monitoring enabled.Enabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 409071030;</code>
      */
     protected $enable_integrity_monitoring = null;
     /**
-     * Defines whether the instance has Secure Boot enabled. Disabled by default.
+     * Defines whether the instance has Secure Boot enabled.Disabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_secure_boot = 123568638;</code>
      */
     protected $enable_secure_boot = null;
     /**
-     * Defines whether the instance has the vTPM enabled. Enabled by default.
+     * Defines whether the instance has the vTPM enabled.Enabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_vtpm = 181858935;</code>
      */
@@ -41,11 +44,14 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable_integrity_monitoring
-     *           Defines whether the instance has integrity monitoring enabled. Enabled by default.
+     *           Defines whether the instance has integrity monitoring enabled.Enabled by
+     *           default.
      *     @type bool $enable_secure_boot
-     *           Defines whether the instance has Secure Boot enabled. Disabled by default.
+     *           Defines whether the instance has Secure Boot enabled.Disabled by
+     *           default.
      *     @type bool $enable_vtpm
-     *           Defines whether the instance has the vTPM enabled. Enabled by default.
+     *           Defines whether the instance has the vTPM enabled.Enabled by
+     *           default.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +60,8 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance has integrity monitoring enabled. Enabled by default.
+     * Defines whether the instance has integrity monitoring enabled.Enabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 409071030;</code>
      * @return bool
@@ -75,7 +82,8 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance has integrity monitoring enabled. Enabled by default.
+     * Defines whether the instance has integrity monitoring enabled.Enabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 409071030;</code>
      * @param bool $var
@@ -90,7 +98,8 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance has Secure Boot enabled. Disabled by default.
+     * Defines whether the instance has Secure Boot enabled.Disabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_secure_boot = 123568638;</code>
      * @return bool
@@ -111,7 +120,8 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance has Secure Boot enabled. Disabled by default.
+     * Defines whether the instance has Secure Boot enabled.Disabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_secure_boot = 123568638;</code>
      * @param bool $var
@@ -126,7 +136,8 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance has the vTPM enabled. Enabled by default.
+     * Defines whether the instance has the vTPM enabled.Enabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_vtpm = 181858935;</code>
      * @return bool
@@ -147,7 +158,8 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines whether the instance has the vTPM enabled. Enabled by default.
+     * Defines whether the instance has the vTPM enabled.Enabled by
+     * default.
      *
      * Generated from protobuf field <code>optional bool enable_vtpm = 181858935;</code>
      * @param bool $var

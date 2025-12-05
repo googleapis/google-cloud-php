@@ -75,28 +75,23 @@ The libraries that support this environment variable are:
 ### Client Authentication
 
 Each Google Cloud PHP client may be authenticated in code when creating a client library instance.
-
-Most clients use the `credentials` option for providing credentials as a constructor option:
+Most clients use the `credentials` option for providing explicit credentials:
 
 ```php
 use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
 
-// Authenticating with keyfile data.
-$video = new VideoIntelligenceServiceClient([
-    'credentials' => json_decode(file_get_contents('/path/to/credential-file.json'), true)
-]);
+$scope = ['https://www.googleapis.com/auth/cloud-platform'];
+$keyFile = json_decode(file_get_contents('/path/to/service-account.json'), true);
 
-// Authenticating with a keyfile path.
+// Authenticating with keyfile data.
+$credentials = new ServiceAccountCredentials($scope, $keyFile);
 $video = new VideoIntelligenceServiceClient([
-    'credentials' => '/path/to/credential-file.json'
+    'credentials' => $credentials,
 ]);
 ```
 
 #### Note:
-Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials
-file. However, both of these options are deprecated in favor of using the `credentialsFetcher`
-option or
-[Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
+Some clients use the `credentialsFetcher` client option instead:
 
 ```php
 require 'vendor/autoload.php';
@@ -105,6 +100,7 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 
 // Create the service account credentials and pass them in using the "credentialsFile" option
+$scope = ['https://www.googleapis.com/auth/devstorage.read_only'];
 $keyFile = json_decode(file_get_contents('/path/to/keyfile.json'), true);
 $storage = new StorageClient([
     'credentialsFetcher' => new ServiceAccountCredentials($scopes, $keyFile),

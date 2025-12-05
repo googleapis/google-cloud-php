@@ -15,7 +15,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class DisksStartAsyncReplicationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The secondary disk to start asynchronous replication to. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
+     * The secondary disk to start asynchronous replication to.
+     * You can provide this as a partial or full URL to the resource. For example,
+     * the following are valid values:
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/regions/region/disks/disk
+     *      -
+     *        projects/project/zones/zone/disks/disk
+     *      -
+     *        projects/project/regions/region/disks/disk
+     *      -
+     *        zones/zone/disks/disk
+     *      -
+     *        regions/region/disks/disk
      *
      * Generated from protobuf field <code>optional string async_secondary_disk = 131645867;</code>
      */
@@ -28,7 +42,21 @@ class DisksStartAsyncReplicationRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $async_secondary_disk
-     *           The secondary disk to start asynchronous replication to. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
+     *           The secondary disk to start asynchronous replication to.
+     *           You can provide this as a partial or full URL to the resource. For example,
+     *           the following are valid values:
+     *                -
+     *                  https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *                -
+     *                  https://www.googleapis.com/compute/v1/projects/project/regions/region/disks/disk
+     *                -
+     *                  projects/project/zones/zone/disks/disk
+     *                -
+     *                  projects/project/regions/region/disks/disk
+     *                -
+     *                  zones/zone/disks/disk
+     *                -
+     *                  regions/region/disks/disk
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +65,21 @@ class DisksStartAsyncReplicationRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The secondary disk to start asynchronous replication to. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
+     * The secondary disk to start asynchronous replication to.
+     * You can provide this as a partial or full URL to the resource. For example,
+     * the following are valid values:
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/regions/region/disks/disk
+     *      -
+     *        projects/project/zones/zone/disks/disk
+     *      -
+     *        projects/project/regions/region/disks/disk
+     *      -
+     *        zones/zone/disks/disk
+     *      -
+     *        regions/region/disks/disk
      *
      * Generated from protobuf field <code>optional string async_secondary_disk = 131645867;</code>
      * @return string
@@ -58,7 +100,21 @@ class DisksStartAsyncReplicationRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The secondary disk to start asynchronous replication to. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /disks/disk - https://www.googleapis.com/compute/v1/projects/project/regions/region /disks/disk - projects/project/zones/zone/disks/disk - projects/project/regions/region/disks/disk - zones/zone/disks/disk - regions/region/disks/disk 
+     * The secondary disk to start asynchronous replication to.
+     * You can provide this as a partial or full URL to the resource. For example,
+     * the following are valid values:
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk
+     *      -
+     *        https://www.googleapis.com/compute/v1/projects/project/regions/region/disks/disk
+     *      -
+     *        projects/project/zones/zone/disks/disk
+     *      -
+     *        projects/project/regions/region/disks/disk
+     *      -
+     *        zones/zone/disks/disk
+     *      -
+     *        regions/region/disks/disk
      *
      * Generated from protobuf field <code>optional string async_secondary_disk = 131645867;</code>
      * @param string $var

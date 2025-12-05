@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionTargetTcpProxiesClient;
 use Google\Cloud\Compute\V1\ListRegionTargetTcpProxiesRequest;
 
 /**
- * Retrieves a list of TargetTcpProxy resources available to the specified project in a given region.
+ * Retrieves a list of TargetTcpProxy resources
+ * available to the specified project in a given region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

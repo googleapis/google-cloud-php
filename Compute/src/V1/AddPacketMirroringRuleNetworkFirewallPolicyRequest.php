@@ -28,13 +28,15 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
      */
     protected $firewall_policy_rule_resource = null;
     /**
-     * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     * When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     * This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 max_priority = 329635359;</code>
      */
     protected $max_priority = null;
     /**
-     * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     * When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     * This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 min_priority = 267190513;</code>
      */
@@ -46,7 +48,17 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
      */
     protected $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -80,13 +92,25 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
      *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule $firewall_policy_rule_resource
      *           The body resource for this request
      *     @type int $max_priority
-     *           When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     *           When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     *           This field is exclusive with rule.priority.
      *     @type int $min_priority
-     *           When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     *           When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     *           This field is exclusive with rule.priority.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -157,7 +181,8 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
     }
 
     /**
-     * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     * When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     * This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 max_priority = 329635359;</code>
      * @return int
@@ -178,7 +203,8 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
     }
 
     /**
-     * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     * When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     * This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 max_priority = 329635359;</code>
      * @param int $var
@@ -193,7 +219,8 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
     }
 
     /**
-     * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     * When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     * This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 min_priority = 267190513;</code>
      * @return int
@@ -214,7 +241,8 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
     }
 
     /**
-     * When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.
+     * When rule.priority is not specified, auto choose a unused priority betweenminPriority and maxPriority>.
+     * This field is exclusive with rule.priority.
      *
      * Generated from protobuf field <code>optional int32 min_priority = 267190513;</code>
      * @param int $var
@@ -255,7 +283,17 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -276,7 +314,17 @@ class AddPacketMirroringRuleNetworkFirewallPolicyRequest extends \Google\Protobu
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

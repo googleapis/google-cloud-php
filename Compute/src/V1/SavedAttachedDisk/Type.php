@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SavedAttachedDisk;
 use UnexpectedValueException;
 
 /**
- * Specifies the type of the attached disk, either SCRATCH or PERSISTENT.
+ * Specifies the type of the attached disk, either SCRATCH orPERSISTENT.
  *
  * Protobuf type <code>google.cloud.compute.v1.SavedAttachedDisk.Type</code>
  */

@@ -325,7 +325,8 @@ final class RegionTargetHttpsProxiesClient
     }
 
     /**
-     * Creates a TargetHttpsProxy resource in the specified project and region using the data included in the request.
+     * Creates a TargetHttpsProxy resource in the specified project and region
+     * using the data included in the request.
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::insertAsync()} .
      *
@@ -351,7 +352,8 @@ final class RegionTargetHttpsProxiesClient
     }
 
     /**
-     * Retrieves the list of TargetHttpsProxy resources available to the specified project in the specified region.
+     * Retrieves the list of TargetHttpsProxy resources available
+     * to the specified project in the specified region.
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::listAsync()} .
      *
@@ -377,7 +379,10 @@ final class RegionTargetHttpsProxiesClient
     }
 
     /**
-     * Patches the specified regional TargetHttpsProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified regional TargetHttpsProxy resource with the data
+     * included in the request. This method supports PATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see RegionTargetHttpsProxiesClient::patchAsync()} .
      *

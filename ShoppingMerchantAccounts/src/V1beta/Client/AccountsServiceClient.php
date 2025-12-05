@@ -91,9 +91,7 @@ final class AccountsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -307,8 +305,10 @@ final class AccountsServiceClient
      *
      * @experimental
      */
-    public function createAndConfigureAccount(CreateAndConfigureAccountRequest $request, array $callOptions = []): Account
-    {
+    public function createAndConfigureAccount(
+        CreateAndConfigureAccountRequest $request,
+        array $callOptions = []
+    ): Account {
         return $this->startApiCall('CreateAndConfigureAccount', $request, $callOptions)->wait();
     }
 

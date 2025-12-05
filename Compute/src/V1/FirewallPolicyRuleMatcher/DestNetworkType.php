@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\FirewallPolicyRuleMatcher;
 use UnexpectedValueException;
 
 /**
- * Network type of the traffic destination. Allowed values are: - UNSPECIFIED - INTERNET - NON_INTERNET
+ * Network type of the traffic destination. Allowed values are:
+ *      - UNSPECIFIED
+ *      - INTERNET
+ *      - NON_INTERNET
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * INTERNET
  * INTRA_VPC

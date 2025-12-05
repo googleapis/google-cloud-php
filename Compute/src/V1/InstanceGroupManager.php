@@ -9,38 +9,58 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Managed Instance Group resource. An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups. For zonal Managed Instance Group, use the instanceGroupManagers resource. For regional Managed Instance Group, use the regionInstanceGroupManagers resource.
+ * Represents a Managed Instance Group resource.
+ * An instance group is a collection of VM instances that you can manage as a
+ * single entity. For more information, readInstance groups.
+ * For zonal Managed Instance Group, use the instanceGroupManagers
+ * resource.
+ * For regional Managed Instance Group, use theregionInstanceGroupManagers resource.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InstanceGroupManager</code>
  */
 class InstanceGroupManager extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies configuration that overrides the instance template configuration for the group.
+     * Specifies configuration that overrides the instance template configuration
+     * for the group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerAllInstancesConfig all_instances_config = 112596737;</code>
      */
     protected $all_instances_config = null;
     /**
-     * The autohealing policy for this managed instance group. You can specify only one value.
+     * The autohealing policy for this managed instance group. You can specify
+     * only one value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy auto_healing_policies = 456799109;</code>
      */
     private $auto_healing_policies;
     /**
-     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
+     * The base instance name is a prefix that you want to attach to the names of
+     * all VMs in a MIG. The maximum character length is 58 and the name must
+     * comply with RFC1035 format.
+     * When a VM is created in the group, the MIG appends a hyphen and a random
+     * four-character string to the base instance name. If you want the MIG to
+     * assign sequential numbers instead of a random string, then end the base
+     * instance name with a hyphen followed by one or more hash symbols. The hash
+     * symbols indicate the number of digits. For example, a base instance name of
+     * "vm-###" results in "vm-001" as a VM name.
+     * &#64;pattern
+     * [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      */
     protected $base_instance_name = null;
     /**
-     * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
+     * [Output Only] The creation timestamp for this managed instance group inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
+     * [Output Only] The list of instance actions and the number of instances
+     * in this managed instance group that are scheduled for each of those
+     * actions.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      */
@@ -52,25 +72,35 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
+     * Policy specifying the intended distribution of managed instances across
+     * zones in a regional managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      */
     protected $distribution_policy = null;
     /**
-     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     * Fingerprint of this resource. This field may be used in optimistic locking.
+     * It will be ignored when inserting an InstanceGroupManager. An up-to-date
+     * fingerprint must be provided in order to update the InstanceGroupManager,
+     * otherwise the request will fail with error412 conditionNotMet.
+     * To see the latest fingerprint, make a get() request to
+     * retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     * [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     * Instance flexibility allowing MIG to create VMs from multiple
+     * types of machines.
+     * Instance flexibility configuration on MIG overrides instance
+     * template configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
      */
@@ -88,38 +118,45 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $instance_lifecycle_policy = null;
     /**
-     * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
+     * The URL of the instance template that is specified for this managed
+     * instance group. The group uses this template to create all new instances
+     * in the managed instance group. The templates for existing instances in the
+     * group do not change unless you run recreateInstances, runapplyUpdatesToInstances, or set the group'supdatePolicy.type to PROACTIVE.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      */
     protected $instance_template = null;
     /**
-     * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+     * [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * Pagination behavior of the listManagedInstances API method for this managed instance group.
+     * Pagination behavior of the listManagedInstances API method for
+     * this managed instance group.
      * Check the ListManagedInstancesResults enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string list_managed_instances_results = 296047156;</code>
      */
     protected $list_managed_instances_results = null;
     /**
-     * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
+     * The name of the managed instance group. The name must be 1-63 characters
+     * long, and comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary
+     * to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      */
     private $named_ports;
     /**
-     * [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+     * [Output Only] The URL of theregion
+     * where the managed instance group resides (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -143,7 +180,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] The URL for this managed instance group. The server defines this URL.
+     * [Output Only] The URL for this managed instance group. The server defines
+     * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -167,25 +205,41 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     * The URLs for all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      */
     private $target_pools;
     /**
-     * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
+     * The target number of running instances for this managed instance group.
+     * You can reduce this number by using the instanceGroupManager
+     * deleteInstances or abandonInstances methods. Resizing the group also
+     * changes this number.
      *
      * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
      */
     protected $target_size = null;
     /**
-     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     * The target number of stopped instances for this managed instance group.
+     * This number changes when you:
+     *    - Stop instance using the stopInstances
+     *    method or start instances using the startInstances
+     *    method.
+     *    - Manually change the targetStoppedSize using the update
+     *    method.
      *
      * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
      */
     protected $target_stopped_size = null;
     /**
-     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     * The target number of suspended instances for this managed instance group.
+     * This number changes when you:
+     *    - Suspend instance using the suspendInstances
+     *    method or resume instances using the resumeInstances
+     *    method.
+     *    - Manually change the targetSuspendedSize using the update
+     *    method.
      *
      * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
      */
@@ -197,13 +251,21 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $update_policy = null;
     /**
-     * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     * Specifies the instance templates used by this managed instance group to
+     * create instances.
+     * Each version is defined by an instanceTemplate and aname. Every version can appear at most once per instance
+     * group. This field overrides the top-level instanceTemplate
+     * field. Read more about therelationships
+     * between these fields. Exactly one version must leave thetargetSize field unset. That version will be applied to all
+     * remaining instances. For more information, read aboutcanary
+     * updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
      */
     private $versions;
     /**
-     * [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
+     * [Output Only] The URL of azone
+     * where the managed instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -216,42 +278,74 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig $all_instances_config
-     *           Specifies configuration that overrides the instance template configuration for the group.
+     *           Specifies configuration that overrides the instance template configuration
+     *           for the group.
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $auto_healing_policies
-     *           The autohealing policy for this managed instance group. You can specify only one value.
+     *           The autohealing policy for this managed instance group. You can specify
+     *           only one value.
      *     @type string $base_instance_name
-     *           The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
+     *           The base instance name is a prefix that you want to attach to the names of
+     *           all VMs in a MIG. The maximum character length is 58 and the name must
+     *           comply with RFC1035 format.
+     *           When a VM is created in the group, the MIG appends a hyphen and a random
+     *           four-character string to the base instance name. If you want the MIG to
+     *           assign sequential numbers instead of a random string, then end the base
+     *           instance name with a hyphen followed by one or more hash symbols. The hash
+     *           symbols indicate the number of digits. For example, a base instance name of
+     *           "vm-###" results in "vm-001" as a VM name.
+     *           &#64;pattern
+     *           [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *     @type string $creation_timestamp
-     *           [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
+     *           [Output Only] The creation timestamp for this managed instance group inRFC3339
+     *           text format.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary $current_actions
-     *           [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
+     *           [Output Only] The list of instance actions and the number of instances
+     *           in this managed instance group that are scheduled for each of those
+     *           actions.
      *     @type string $description
      *           An optional description of this resource.
      *     @type \Google\Cloud\Compute\V1\DistributionPolicy $distribution_policy
-     *           Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
+     *           Policy specifying the intended distribution of managed instances across
+     *           zones in a regional managed instance group.
      *     @type string $fingerprint
-     *           Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     *           Fingerprint of this resource. This field may be used in optimistic locking.
+     *           It will be ignored when inserting an InstanceGroupManager. An up-to-date
+     *           fingerprint must be provided in order to update the InstanceGroupManager,
+     *           otherwise the request will fail with error412 conditionNotMet.
+     *           To see the latest fingerprint, make a get() request to
+     *           retrieve an InstanceGroupManager.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     *           [Output Only] A unique identifier for this resource type. The server
+     *           generates this identifier.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy $instance_flexibility_policy
-     *           Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     *           Instance flexibility allowing MIG to create VMs from multiple
+     *           types of machines.
+     *           Instance flexibility configuration on MIG overrides instance
+     *           template configuration.
      *     @type string $instance_group
      *           [Output Only] The URL of the Instance Group resource.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy $instance_lifecycle_policy
      *           The repair policy for this managed instance group.
      *     @type string $instance_template
-     *           The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
+     *           The URL of the instance template that is specified for this managed
+     *           instance group. The group uses this template to create all new instances
+     *           in the managed instance group. The templates for existing instances in the
+     *           group do not change unless you run recreateInstances, runapplyUpdatesToInstances, or set the group'supdatePolicy.type to PROACTIVE.
      *     @type string $kind
-     *           [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+     *           [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *     @type string $list_managed_instances_results
-     *           Pagination behavior of the listManagedInstances API method for this managed instance group.
+     *           Pagination behavior of the listManagedInstances API method for
+     *           this managed instance group.
      *           Check the ListManagedInstancesResults enum for the list of possible values.
      *     @type string $name
-     *           The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
+     *           The name of the managed instance group. The name must be 1-63 characters
+     *           long, and comply withRFC1035.
      *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
-     *           [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
+     *           [Output Only] Named ports configured on the Instance Groups complementary
+     *           to this Instance Group Manager.
      *     @type string $region
-     *           [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+     *           [Output Only] The URL of theregion
+     *           where the managed instance group resides (for regional resources).
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies $resource_policies
      *           Resource policies for this managed instance group.
      *     @type bool $satisfies_pzi
@@ -259,7 +353,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] The URL for this managed instance group. The server defines this URL.
+     *           [Output Only] The URL for this managed instance group. The server defines
+     *           this URL.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy $standby_policy
      *           Standby policy for stopped and suspended instances.
      *     @type \Google\Cloud\Compute\V1\StatefulPolicy $stateful_policy
@@ -267,19 +362,43 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $status
      *           [Output Only] The status of this managed instance group.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
-     *           The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     *           The URLs for all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     *           apply to all of the instances in the managed instance group.
      *     @type int $target_size
-     *           The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
+     *           The target number of running instances for this managed instance group.
+     *           You can reduce this number by using the instanceGroupManager
+     *           deleteInstances or abandonInstances methods. Resizing the group also
+     *           changes this number.
      *     @type int $target_stopped_size
-     *           The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     *           The target number of stopped instances for this managed instance group.
+     *           This number changes when you:
+     *              - Stop instance using the stopInstances
+     *              method or start instances using the startInstances
+     *              method.
+     *              - Manually change the targetStoppedSize using the update
+     *              method.
      *     @type int $target_suspended_size
-     *           The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     *           The target number of suspended instances for this managed instance group.
+     *           This number changes when you:
+     *              - Suspend instance using the suspendInstances
+     *              method or resume instances using the resumeInstances
+     *              method.
+     *              - Manually change the targetSuspendedSize using the update
+     *              method.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy $update_policy
      *           The update policy for this managed instance group.
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $versions
-     *           Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     *           Specifies the instance templates used by this managed instance group to
+     *           create instances.
+     *           Each version is defined by an instanceTemplate and aname. Every version can appear at most once per instance
+     *           group. This field overrides the top-level instanceTemplate
+     *           field. Read more about therelationships
+     *           between these fields. Exactly one version must leave thetargetSize field unset. That version will be applied to all
+     *           remaining instances. For more information, read aboutcanary
+     *           updates.
      *     @type string $zone
-     *           [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
+     *           [Output Only] The URL of azone
+     *           where the managed instance group is located (for zonal resources).
      * }
      */
     public function __construct($data = NULL) {
@@ -288,7 +407,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies configuration that overrides the instance template configuration for the group.
+     * Specifies configuration that overrides the instance template configuration
+     * for the group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerAllInstancesConfig all_instances_config = 112596737;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig|null
@@ -309,7 +429,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies configuration that overrides the instance template configuration for the group.
+     * Specifies configuration that overrides the instance template configuration
+     * for the group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerAllInstancesConfig all_instances_config = 112596737;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig $var
@@ -324,7 +445,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autohealing policy for this managed instance group. You can specify only one value.
+     * The autohealing policy for this managed instance group. You can specify
+     * only one value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy auto_healing_policies = 456799109;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -335,7 +457,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autohealing policy for this managed instance group. You can specify only one value.
+     * The autohealing policy for this managed instance group. You can specify
+     * only one value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy auto_healing_policies = 456799109;</code>
      * @param array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $var
@@ -350,7 +473,17 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
+     * The base instance name is a prefix that you want to attach to the names of
+     * all VMs in a MIG. The maximum character length is 58 and the name must
+     * comply with RFC1035 format.
+     * When a VM is created in the group, the MIG appends a hyphen and a random
+     * four-character string to the base instance name. If you want the MIG to
+     * assign sequential numbers instead of a random string, then end the base
+     * instance name with a hyphen followed by one or more hash symbols. The hash
+     * symbols indicate the number of digits. For example, a base instance name of
+     * "vm-###" results in "vm-001" as a VM name.
+     * &#64;pattern
+     * [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      * @return string
@@ -371,7 +504,17 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The base instance name is a prefix that you want to attach to the names of all VMs in a MIG. The maximum character length is 58 and the name must comply with RFC1035 format. When a VM is created in the group, the MIG appends a hyphen and a random four-character string to the base instance name. If you want the MIG to assign sequential numbers instead of a random string, then end the base instance name with a hyphen followed by one or more hash symbols. The hash symbols indicate the number of digits. For example, a base instance name of "vm-###" results in "vm-001" as a VM name. &#64;pattern [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
+     * The base instance name is a prefix that you want to attach to the names of
+     * all VMs in a MIG. The maximum character length is 58 and the name must
+     * comply with RFC1035 format.
+     * When a VM is created in the group, the MIG appends a hyphen and a random
+     * four-character string to the base instance name. If you want the MIG to
+     * assign sequential numbers instead of a random string, then end the base
+     * instance name with a hyphen followed by one or more hash symbols. The hash
+     * symbols indicate the number of digits. For example, a base instance name of
+     * "vm-###" results in "vm-001" as a VM name.
+     * &#64;pattern
+     * [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
      * @param string $var
@@ -386,7 +529,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
+     * [Output Only] The creation timestamp for this managed instance group inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -407,7 +551,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
+     * [Output Only] The creation timestamp for this managed instance group inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -422,7 +567,9 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
+     * [Output Only] The list of instance actions and the number of instances
+     * in this managed instance group that are scheduled for each of those
+     * actions.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary|null
@@ -443,7 +590,9 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
+     * [Output Only] The list of instance actions and the number of instances
+     * in this managed instance group that are scheduled for each of those
+     * actions.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary $var
@@ -494,7 +643,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
+     * Policy specifying the intended distribution of managed instances across
+     * zones in a regional managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      * @return \Google\Cloud\Compute\V1\DistributionPolicy|null
@@ -515,7 +665,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
+     * Policy specifying the intended distribution of managed instances across
+     * zones in a regional managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      * @param \Google\Cloud\Compute\V1\DistributionPolicy $var
@@ -530,7 +681,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     * Fingerprint of this resource. This field may be used in optimistic locking.
+     * It will be ignored when inserting an InstanceGroupManager. An up-to-date
+     * fingerprint must be provided in order to update the InstanceGroupManager,
+     * otherwise the request will fail with error412 conditionNotMet.
+     * To see the latest fingerprint, make a get() request to
+     * retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
@@ -551,7 +707,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     * Fingerprint of this resource. This field may be used in optimistic locking.
+     * It will be ignored when inserting an InstanceGroupManager. An up-to-date
+     * fingerprint must be provided in order to update the InstanceGroupManager,
+     * otherwise the request will fail with error412 conditionNotMet.
+     * To see the latest fingerprint, make a get() request to
+     * retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
@@ -566,7 +727,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     * [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -587,7 +749,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server generates this identifier.
+     * [Output Only] A unique identifier for this resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -602,7 +765,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     * Instance flexibility allowing MIG to create VMs from multiple
+     * types of machines.
+     * Instance flexibility configuration on MIG overrides instance
+     * template configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy|null
@@ -623,7 +789,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+     * Instance flexibility allowing MIG to create VMs from multiple
+     * types of machines.
+     * Instance flexibility configuration on MIG overrides instance
+     * template configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerInstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy $var
@@ -710,7 +879,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
+     * The URL of the instance template that is specified for this managed
+     * instance group. The group uses this template to create all new instances
+     * in the managed instance group. The templates for existing instances in the
+     * group do not change unless you run recreateInstances, runapplyUpdatesToInstances, or set the group'supdatePolicy.type to PROACTIVE.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      * @return string
@@ -731,7 +903,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
+     * The URL of the instance template that is specified for this managed
+     * instance group. The group uses this template to create all new instances
+     * in the managed instance group. The templates for existing instances in the
+     * group do not change unless you run recreateInstances, runapplyUpdatesToInstances, or set the group'supdatePolicy.type to PROACTIVE.
      *
      * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      * @param string $var
@@ -746,7 +921,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+     * [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -767,7 +942,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+     * [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -782,7 +957,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pagination behavior of the listManagedInstances API method for this managed instance group.
+     * Pagination behavior of the listManagedInstances API method for
+     * this managed instance group.
      * Check the ListManagedInstancesResults enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string list_managed_instances_results = 296047156;</code>
@@ -804,7 +980,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pagination behavior of the listManagedInstances API method for this managed instance group.
+     * Pagination behavior of the listManagedInstances API method for
+     * this managed instance group.
      * Check the ListManagedInstancesResults enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string list_managed_instances_results = 296047156;</code>
@@ -820,7 +997,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
+     * The name of the managed instance group. The name must be 1-63 characters
+     * long, and comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -841,7 +1019,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
+     * The name of the managed instance group. The name must be 1-63 characters
+     * long, and comply withRFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -856,7 +1035,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary
+     * to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -867,7 +1047,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Named ports configured on the Instance Groups complementary to this Instance Group Manager.
+     * [Output Only] Named ports configured on the Instance Groups complementary
+     * to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
@@ -882,7 +1063,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+     * [Output Only] The URL of theregion
+     * where the managed instance group resides (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -903,7 +1085,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where the managed instance group resides (for regional resources).
+     * [Output Only] The URL of theregion
+     * where the managed instance group resides (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
@@ -1026,7 +1209,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this managed instance group. The server defines this URL.
+     * [Output Only] The URL for this managed instance group. The server defines
+     * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1047,7 +1231,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this managed instance group. The server defines this URL.
+     * [Output Only] The URL for this managed instance group. The server defines
+     * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -1170,7 +1355,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     * The URLs for all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1181,7 +1367,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     * The URLs for all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1196,7 +1383,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
+     * The target number of running instances for this managed instance group.
+     * You can reduce this number by using the instanceGroupManager
+     * deleteInstances or abandonInstances methods. Resizing the group also
+     * changes this number.
      *
      * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
      * @return int
@@ -1217,7 +1407,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
+     * The target number of running instances for this managed instance group.
+     * You can reduce this number by using the instanceGroupManager
+     * deleteInstances or abandonInstances methods. Resizing the group also
+     * changes this number.
      *
      * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
      * @param int $var
@@ -1232,7 +1425,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     * The target number of stopped instances for this managed instance group.
+     * This number changes when you:
+     *    - Stop instance using the stopInstances
+     *    method or start instances using the startInstances
+     *    method.
+     *    - Manually change the targetStoppedSize using the update
+     *    method.
      *
      * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
      * @return int
@@ -1253,7 +1452,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of stopped instances for this managed instance group. This number changes when you: - Stop instance using the stopInstances method or start instances using the startInstances method. - Manually change the targetStoppedSize using the update method. 
+     * The target number of stopped instances for this managed instance group.
+     * This number changes when you:
+     *    - Stop instance using the stopInstances
+     *    method or start instances using the startInstances
+     *    method.
+     *    - Manually change the targetStoppedSize using the update
+     *    method.
      *
      * Generated from protobuf field <code>optional int32 target_stopped_size = 2419489;</code>
      * @param int $var
@@ -1268,7 +1473,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     * The target number of suspended instances for this managed instance group.
+     * This number changes when you:
+     *    - Suspend instance using the suspendInstances
+     *    method or resume instances using the resumeInstances
+     *    method.
+     *    - Manually change the targetSuspendedSize using the update
+     *    method.
      *
      * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
      * @return int
@@ -1289,7 +1500,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of suspended instances for this managed instance group. This number changes when you: - Suspend instance using the suspendInstances method or resume instances using the resumeInstances method. - Manually change the targetSuspendedSize using the update method. 
+     * The target number of suspended instances for this managed instance group.
+     * This number changes when you:
+     *    - Suspend instance using the suspendInstances
+     *    method or resume instances using the resumeInstances
+     *    method.
+     *    - Manually change the targetSuspendedSize using the update
+     *    method.
      *
      * Generated from protobuf field <code>optional int32 target_suspended_size = 308085843;</code>
      * @param int $var
@@ -1340,7 +1557,14 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     * Specifies the instance templates used by this managed instance group to
+     * create instances.
+     * Each version is defined by an instanceTemplate and aname. Every version can appear at most once per instance
+     * group. This field overrides the top-level instanceTemplate
+     * field. Read more about therelationships
+     * between these fields. Exactly one version must leave thetargetSize field unset. That version will be applied to all
+     * remaining instances. For more information, read aboutcanary
+     * updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1351,7 +1575,14 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     * Specifies the instance templates used by this managed instance group to
+     * create instances.
+     * Each version is defined by an instanceTemplate and aname. Every version can appear at most once per instance
+     * group. This field overrides the top-level instanceTemplate
+     * field. Read more about therelationships
+     * between these fields. Exactly one version must leave thetargetSize field unset. That version will be applied to all
+     * remaining instances. For more information, read aboutcanary
+     * updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
      * @param array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1366,7 +1597,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
+     * [Output Only] The URL of azone
+     * where the managed instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -1387,7 +1619,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
+     * [Output Only] The URL of azone
+     * where the managed instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

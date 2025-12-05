@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\Warnings;
 use UnexpectedValueException;
 
 /**
- * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+ * [Output Only] A warning code, if applicable. For example, Compute
+ * Engine returns NO_RESULTS_ON_PAGE if there
+ * are no results in the response.
  *
  * Protobuf type <code>google.cloud.compute.v1.Warnings.Code</code>
  */
@@ -20,7 +22,8 @@ class Code
      */
     const UNDEFINED_CODE = 0;
     /**
-     * Warning about failed cleanup of transient changes made by a failed operation.
+     * Warning about failed cleanup of transient changes made by a failed
+     * operation.
      *
      * Generated from protobuf enum <code>CLEANUP_FAILED = 150308440;</code>
      */
@@ -32,7 +35,8 @@ class Code
      */
     const DEPRECATED_RESOURCE_USED = 391835586;
     /**
-     * When deploying and at least one of the resources has a type marked as deprecated
+     * When deploying and at least one of the resources has a type marked as
+     * deprecated
      *
      * Generated from protobuf enum <code>DEPRECATED_TYPE_USED = 346526230;</code>
      */
@@ -44,7 +48,8 @@ class Code
      */
     const DISK_SIZE_LARGER_THAN_IMAGE_SIZE = 369442967;
     /**
-     * When deploying and at least one of the resources has a type marked as experimental
+     * When deploying and at least one of the resources has a type marked as
+     * experimental
      *
      * Generated from protobuf enum <code>EXPERIMENTAL_TYPE_USED = 451954443;</code>
      */
@@ -56,7 +61,8 @@ class Code
      */
     const EXTERNAL_API_WARNING = 175546307;
     /**
-     * Warning that value of a field has been overridden. Deprecated unused field.
+     * Warning that value of a field has been overridden.
+     * Deprecated unused field.
      *
      * Generated from protobuf enum <code>FIELD_VALUE_OVERRIDEN = 329669423;</code>
      */
@@ -68,7 +74,8 @@ class Code
      */
     const INJECTED_KERNELS_DEPRECATED = 417377419;
     /**
-     * A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.
+     * A WEIGHTED_MAGLEV backend service is associated with a health check that is
+     * not of type HTTP/HTTPS/HTTP2.
      *
      * Generated from protobuf enum <code>INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB = 401542606;</code>
      */
@@ -80,7 +87,9 @@ class Code
      */
     const LARGE_DEPLOYMENT_WARNING = 481440678;
     /**
-     * Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter.
+     * Resource can't be retrieved due to list overhead quota exceed
+     * which captures the amount of resources filtered out by
+     * user-defined list filter.
      *
      * Generated from protobuf enum <code>LIST_OVERHEAD_QUOTA_EXCEED = 47618117;</code>
      */
@@ -92,7 +101,8 @@ class Code
      */
     const MISSING_TYPE_DEPENDENCY = 344505463;
     /**
-     * The route's nextHopIp address is not assigned to an instance on the network.
+     * The route's nextHopIp address is not assigned to an instance on the
+     * network.
      *
      * Generated from protobuf enum <code>NEXT_HOP_ADDRESS_NOT_ASSIGNED = 324964999;</code>
      */
@@ -104,7 +114,8 @@ class Code
      */
     const NEXT_HOP_CANNOT_IP_FORWARD = 383382887;
     /**
-     * The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.
+     * The route's nextHopInstance URL refers to an instance that does not have an
+     * ipv6 interface on the same network as the route.
      *
      * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE = 146748434;</code>
      */
@@ -116,7 +127,8 @@ class Code
      */
     const NEXT_HOP_INSTANCE_NOT_FOUND = 464250446;
     /**
-     * The route's nextHopInstance URL refers to an instance that is not on the same network as the route.
+     * The route's nextHopInstance URL refers to an instance that is not on the
+     * same network as the route.
      *
      * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_NOT_ON_NETWORK = 243758146;</code>
      */
@@ -128,7 +140,8 @@ class Code
      */
     const NEXT_HOP_NOT_RUNNING = 417081265;
     /**
-     * Error which is not critical. We decided to continue the process despite the mentioned error.
+     * Error which is not critical. We decided to continue the process despite
+     * the mentioned error.
      *
      * Generated from protobuf enum <code>NOT_CRITICAL_ERROR = 105763924;</code>
      */
@@ -146,13 +159,15 @@ class Code
      */
     const PARTIAL_SUCCESS = 39966469;
     /**
-     * Quota information is not available to client requests (e.g: regions.list).
+     * Quota information is not available to client requests (e.g:
+     * regions.list).
      *
      * Generated from protobuf enum <code>QUOTA_INFO_UNAVAILABLE = 304294182;</code>
      */
     const QUOTA_INFO_UNAVAILABLE = 304294182;
     /**
-     * The user attempted to use a resource that requires a TOS they have not accepted.
+     * The user attempted to use a resource that requires a TOS they have not
+     * accepted.
      *
      * Generated from protobuf enum <code>REQUIRED_TOS_AGREEMENT = 3745539;</code>
      */
@@ -164,7 +179,8 @@ class Code
      */
     const RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING = 496728641;
     /**
-     * One or more of the resources set to auto-delete could not be deleted because they were in use.
+     * One or more of the resources set to auto-delete could not be deleted
+     * because they were in use.
      *
      * Generated from protobuf enum <code>RESOURCE_NOT_DELETED = 168598460;</code>
      */
@@ -176,7 +192,9 @@ class Code
      */
     const SCHEMA_VALIDATION_IGNORED = 275245642;
     /**
-     * Instance template used in instance group manager is valid as such, but its application does not make a lot of sense, because it allows only single instance in instance group.
+     * Instance template used in instance group manager is valid as such, but
+     * its application does not make a lot of sense, because it allows only
+     * single instance in instance group.
      *
      * Generated from protobuf enum <code>SINGLE_INSTANCE_PROPERTY_TEMPLATE = 268305617;</code>
      */

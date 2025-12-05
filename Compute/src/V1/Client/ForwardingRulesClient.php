@@ -274,7 +274,10 @@ final class ForwardingRulesClient
     }
 
     /**
-     * Retrieves an aggregated list of forwarding rules. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of forwarding rules.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see ForwardingRulesClient::aggregatedListAsync()} .
      *
@@ -354,7 +357,8 @@ final class ForwardingRulesClient
     }
 
     /**
-     * Creates a ForwardingRule resource in the specified project and region using the data included in the request.
+     * Creates a ForwardingRule resource in the specified project and region using
+     * the data included in the request.
      *
      * The async variant is {@see ForwardingRulesClient::insertAsync()} .
      *
@@ -380,7 +384,8 @@ final class ForwardingRulesClient
     }
 
     /**
-     * Retrieves a list of ForwardingRule resources available to the specified project and region.
+     * Retrieves a list of ForwardingRule resources available to the specified
+     * project and region.
      *
      * The async variant is {@see ForwardingRulesClient::listAsync()} .
      *
@@ -406,7 +411,11 @@ final class ForwardingRulesClient
     }
 
     /**
-     * Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
+     * Updates the specified forwarding rule with the data included in the
+     * request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules. Currently, you can only
+     * patch the network_tier field.
      *
      * The async variant is {@see ForwardingRulesClient::patchAsync()} .
      *
@@ -432,7 +441,9 @@ final class ForwardingRulesClient
     }
 
     /**
-     * Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on the specified resource. To learn more about labels,
+     * read the
+     * Labeling Resources documentation.
      *
      * The async variant is {@see ForwardingRulesClient::setLabelsAsync()} .
      *
@@ -458,7 +469,8 @@ final class ForwardingRulesClient
     }
 
     /**
-     * Changes target URL for forwarding rule. The new target should be of the same type as the old target.
+     * Changes target URL for forwarding rule. The new target should be of the
+     * same type as the old target.
      *
      * The async variant is {@see ForwardingRulesClient::setTargetAsync()} .
      *

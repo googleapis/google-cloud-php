@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetOperationalStatusInterconnectAttachmentGroupReque
 use Google\Cloud\Compute\V1\InterconnectAttachmentGroupsGetOperationalStatusResponse;
 
 /**
- * Returns the InterconnectAttachmentStatuses for the specified InterconnectAttachmentGroup resource.
+ * Returns the InterconnectAttachmentStatuses for the specified
+ * InterconnectAttachmentGroup resource.
  *
  * @param string $interconnectAttachmentGroup Name of the interconnectAttachmentGroup resource to query.
  * @param string $project                     Project ID for this request.

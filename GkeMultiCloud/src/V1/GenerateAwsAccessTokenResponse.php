@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `AwsClusters.GenerateAwsAccessToken` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GenerateAwsAccessTokenResponse</code>
  */
 class GenerateAwsAccessTokenResponse extends \Google\Protobuf\Internal\Message

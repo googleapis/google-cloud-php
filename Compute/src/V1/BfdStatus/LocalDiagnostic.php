@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\BfdStatus;
 use UnexpectedValueException;
 
 /**
- * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+ * The diagnostic code specifies the local system's reason for the last change
+ * in session state. This allows remote systems to determine the reason that
+ * the previous session failed, for example. These diagnostic codes are
+ * specified in section 4.1 ofRFC5880
  *
  * Protobuf type <code>google.cloud.compute.v1.BfdStatus.LocalDiagnostic</code>
  */

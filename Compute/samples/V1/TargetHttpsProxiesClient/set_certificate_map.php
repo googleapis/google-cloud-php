@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Changes the Certificate Map for TargetHttpsProxy.
  *
  * @param string $project          Project ID for this request.
- * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource whose CertificateMap is to be set. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource whose CertificateMap is
+ *                                 to be set. The name must be 1-63 characters long, and comply with RFC1035.
  */
 function set_certificate_map_sample(string $project, string $targetHttpsProxy): void
 {

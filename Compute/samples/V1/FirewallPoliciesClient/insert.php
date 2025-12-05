@@ -31,9 +31,12 @@ use Google\Cloud\Compute\V1\InsertFirewallPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a new policy in the specified project using the data included in the request.
+ * Creates a new policy in the specified project using the data included in
+ * the request.
  *
- * @param string $parentId Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
+ * @param string $parentId Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]"
+ *                         if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the
+ *                         parent is an organization.
  */
 function insert_sample(string $parentId): void
 {

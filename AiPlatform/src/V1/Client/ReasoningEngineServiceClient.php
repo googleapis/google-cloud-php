@@ -173,6 +173,31 @@ final class ReasoningEngineServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * git_repository_link resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $gitRepositoryLink
+     *
+     * @return string The formatted git_repository_link resource.
+     */
+    public static function gitRepositoryLinkName(
+        string $project,
+        string $location,
+        string $connection,
+        string $gitRepositoryLink
+    ): string {
+        return self::getPathTemplate('gitRepositoryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'git_repository_link' => $gitRepositoryLink,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -231,6 +256,7 @@ final class ReasoningEngineServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
      * - location: projects/{project}/locations/{location}
      * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{networkattachment}
      * - reasoningEngine: projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}

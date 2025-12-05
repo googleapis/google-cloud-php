@@ -16,19 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
+     * Defines a schedule with units measured in days. The value determines
+     * how many days pass between the start of each cycle.
      *
      * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      */
     protected $days_in_cycle = null;
     /**
-     * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     * [Output only] A predetermined duration for the window, automatically
+     * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
     protected $duration = null;
     /**
-     * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     * Start time of the window. This must be in UTC format that resolves to one
+     * of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     * example, both 13:00-5 and 08:00 are valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
@@ -41,11 +45,15 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $days_in_cycle
-     *           Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
+     *           Defines a schedule with units measured in days. The value determines
+     *           how many days pass between the start of each cycle.
      *     @type string $duration
-     *           [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     *           [Output only] A predetermined duration for the window, automatically
+     *           chosen to be the smallest possible in the given scenario.
      *     @type string $start_time
-     *           Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     *           Start time of the window. This must be in UTC format that resolves to one
+     *           of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     *           example, both 13:00-5 and 08:00 are valid.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +62,8 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
+     * Defines a schedule with units measured in days. The value determines
+     * how many days pass between the start of each cycle.
      *
      * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      * @return int
@@ -75,7 +84,8 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
+     * Defines a schedule with units measured in days. The value determines
+     * how many days pass between the start of each cycle.
      *
      * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      * @param int $var
@@ -90,7 +100,8 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     * [Output only] A predetermined duration for the window, automatically
+     * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @return string
@@ -111,7 +122,8 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
+     * [Output only] A predetermined duration for the window, automatically
+     * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @param string $var
@@ -126,7 +138,9 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     * Start time of the window. This must be in UTC format that resolves to one
+     * of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     * example, both 13:00-5 and 08:00 are valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @return string
@@ -147,7 +161,9 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
+     * Start time of the window. This must be in UTC format that resolves to one
+     * of 00:00, 04:00, 08:00,12:00, 16:00, or 20:00. For
+     * example, both 13:00-5 and 08:00 are valid.
      *
      * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @param string $var

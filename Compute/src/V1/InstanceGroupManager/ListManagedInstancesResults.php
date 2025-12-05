@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManager;
 use UnexpectedValueException;
 
 /**
- * Pagination behavior of the listManagedInstances API method for this managed instance group.
+ * Pagination behavior of the listManagedInstances API method for
+ * this managed instance group.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManager.ListManagedInstancesResults</code>
  */
@@ -20,13 +21,17 @@ class ListManagedInstancesResults
      */
     const UNDEFINED_LIST_MANAGED_INSTANCES_RESULTS = 0;
     /**
-     * (Default) Pagination is disabled for the group's listManagedInstances API method. maxResults and pageToken query parameters are ignored and all instances are returned in a single response.
+     * (Default) Pagination is disabled for the group'slistManagedInstances API method. maxResults
+     * and pageToken query parameters are ignored and all
+     * instances are returned in a single response.
      *
      * Generated from protobuf enum <code>PAGELESS = 32183464;</code>
      */
     const PAGELESS = 32183464;
     /**
-     * Pagination is enabled for the group's listManagedInstances API method. maxResults and pageToken query parameters are respected.
+     * Pagination is enabled for the group's listManagedInstances
+     * API method. maxResults and pageToken query
+     * parameters are respected.
      *
      * Generated from protobuf enum <code>PAGINATED = 40190637;</code>
      */

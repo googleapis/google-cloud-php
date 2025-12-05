@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * An Anthos node pool running on Azure.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureNodePool</code>
  */
 class AzureNodePool extends \Google\Protobuf\Internal\Message

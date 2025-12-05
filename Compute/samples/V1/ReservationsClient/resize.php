@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\ResizeReservationRequest;
 use Google\Rpc\Status;
 
 /**
- * Resizes the reservation (applicable to standalone reservations only). For more information, read Modifying reservations.
+ * Resizes the reservation (applicable to standalone reservations only). For
+ * more information, readModifying
+ * reservations.
  *
  * @param string $project     Project ID for this request.
  * @param string $reservation Name of the reservation to update.

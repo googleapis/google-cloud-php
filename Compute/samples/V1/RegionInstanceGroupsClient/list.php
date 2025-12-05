@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionInstanceGroupsClient;
 use Google\Cloud\Compute\V1\ListRegionInstanceGroupsRequest;
 
 /**
- * Retrieves the list of instance group resources contained within the specified region.
+ * Retrieves the list of instance group resources contained within
+ * the specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

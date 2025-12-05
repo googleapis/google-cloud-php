@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * AzureNodeManagement defines the set of node management features turned on for
  * an Azure node pool.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureNodeManagement</code>
  */
 class AzureNodeManagement extends \Google\Protobuf\Internal\Message

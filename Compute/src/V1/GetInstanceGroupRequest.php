@@ -28,7 +28,8 @@ class GetInstanceGroupRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * The name of the zone where the instance group is located.
+     * The name of the zone
+     * where the instance group is located.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,7 +37,8 @@ class GetInstanceGroupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $project       Project ID for this request.
-     * @param string $zone          The name of the zone where the instance group is located.
+     * @param string $zone          The name of the zone
+     *                              where the instance group is located.
      * @param string $instanceGroup The name of the instance group.
      *
      * @return \Google\Cloud\Compute\V1\GetInstanceGroupRequest
@@ -62,7 +64,8 @@ class GetInstanceGroupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID for this request.
      *     @type string $zone
-     *           The name of the zone where the instance group is located.
+     *           The name of the zone
+     *           where the instance group is located.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +126,8 @@ class GetInstanceGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the zone where the instance group is located.
+     * The name of the zone
+     * where the instance group is located.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -134,7 +138,8 @@ class GetInstanceGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the zone where the instance group is located.
+     * The name of the zone
+     * where the instance group is located.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

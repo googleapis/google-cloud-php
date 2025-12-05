@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A snapshot schedule policy specifies when and how frequently snapshots are to be created for the target disk. Also specifies how many and how long these scheduled snapshots should be retained.
+ * A snapshot schedule policy specifies when and how frequently snapshots are
+ * to be created for the target disk. Also specifies how many and how long
+ * these scheduled snapshots should be retained.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy</code>
  */
@@ -22,13 +24,16 @@ class ResourcePolicySnapshotSchedulePolicy extends \Google\Protobuf\Internal\Mes
      */
     protected $retention_policy = null;
     /**
-     * A Vm Maintenance Policy specifies what kind of infrastructure maintenance we are allowed to perform on this VM and when. Schedule that is applied to disks covered by this policy.
+     * A Vm Maintenance Policy specifies what kind of infrastructure
+     * maintenance we are allowed to perform on this VM and when. Schedule
+     * that is applied to disks covered by this policy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicySchedule schedule = 375820951;</code>
      */
     protected $schedule = null;
     /**
-     * Properties with which snapshots are created such as labels, encryption keys.
+     * Properties with which snapshots are created such as labels, encryption
+     * keys.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicySnapshotProperties snapshot_properties = 185371278;</code>
      */
@@ -43,9 +48,12 @@ class ResourcePolicySnapshotSchedulePolicy extends \Google\Protobuf\Internal\Mes
      *     @type \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicyRetentionPolicy $retention_policy
      *           Retention policy applied to snapshots created by this resource policy.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicySchedule $schedule
-     *           A Vm Maintenance Policy specifies what kind of infrastructure maintenance we are allowed to perform on this VM and when. Schedule that is applied to disks covered by this policy.
+     *           A Vm Maintenance Policy specifies what kind of infrastructure
+     *           maintenance we are allowed to perform on this VM and when. Schedule
+     *           that is applied to disks covered by this policy.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicySnapshotProperties $snapshot_properties
-     *           Properties with which snapshots are created such as labels, encryption keys.
+     *           Properties with which snapshots are created such as labels, encryption
+     *           keys.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,7 +98,9 @@ class ResourcePolicySnapshotSchedulePolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * A Vm Maintenance Policy specifies what kind of infrastructure maintenance we are allowed to perform on this VM and when. Schedule that is applied to disks covered by this policy.
+     * A Vm Maintenance Policy specifies what kind of infrastructure
+     * maintenance we are allowed to perform on this VM and when. Schedule
+     * that is applied to disks covered by this policy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicySchedule schedule = 375820951;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicySchedule|null
@@ -111,7 +121,9 @@ class ResourcePolicySnapshotSchedulePolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * A Vm Maintenance Policy specifies what kind of infrastructure maintenance we are allowed to perform on this VM and when. Schedule that is applied to disks covered by this policy.
+     * A Vm Maintenance Policy specifies what kind of infrastructure
+     * maintenance we are allowed to perform on this VM and when. Schedule
+     * that is applied to disks covered by this policy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicySchedule schedule = 375820951;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicySchedule $var
@@ -126,7 +138,8 @@ class ResourcePolicySnapshotSchedulePolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Properties with which snapshots are created such as labels, encryption keys.
+     * Properties with which snapshots are created such as labels, encryption
+     * keys.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicySnapshotProperties snapshot_properties = 185371278;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicySnapshotProperties|null
@@ -147,7 +160,8 @@ class ResourcePolicySnapshotSchedulePolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Properties with which snapshots are created such as labels, encryption keys.
+     * Properties with which snapshots are created such as labels, encryption
+     * keys.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicySnapshotProperties snapshot_properties = 185371278;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicySnapshotProperties $var

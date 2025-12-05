@@ -49,6 +49,8 @@ use Google\Cloud\ArtifactRegistry\V1\DeleteRuleRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteTagRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteVersionRequest;
 use Google\Cloud\ArtifactRegistry\V1\DockerImage;
+use Google\Cloud\ArtifactRegistry\V1\ExportArtifactRequest;
+use Google\Cloud\ArtifactRegistry\V1\ExportArtifactResponse;
 use Google\Cloud\ArtifactRegistry\V1\File;
 use Google\Cloud\ArtifactRegistry\V1\GetAttachmentRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetDockerImageRequest;
@@ -144,6 +146,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> deleteRuleAsync(DeleteRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteTagAsync(DeleteTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteVersionAsync(DeleteVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportArtifactAsync(ExportArtifactRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DockerImage> getDockerImageAsync(GetDockerImageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<File> getFileAsync(GetFileRequest $request, array $optionalArgs = [])
@@ -1055,6 +1058,32 @@ final class ArtifactRegistryClient
     public function deleteVersion(DeleteVersionRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Exports an artifact.
+     *
+     * The async variant is {@see ArtifactRegistryClient::exportArtifactAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/export_artifact.php
+     *
+     * @param ExportArtifactRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ExportArtifactResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportArtifact(ExportArtifactRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportArtifact', $request, $callOptions)->wait();
     }
 
     /**

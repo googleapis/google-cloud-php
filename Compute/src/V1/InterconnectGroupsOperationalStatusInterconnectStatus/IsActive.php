@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatusInterconnec
 use UnexpectedValueException;
 
 /**
- * Whether this interconnect is participating in the redundant configuration.
+ * Whether this interconnect is participating in the redundant
+ * configuration.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectGroupsOperationalStatusInterconnectStatus.IsActive</code>
  */

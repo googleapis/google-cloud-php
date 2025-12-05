@@ -7,7 +7,9 @@ namespace Google\Cloud\Spanner\V1\TransactionOptions;
 use UnexpectedValueException;
 
 /**
- * `IsolationLevel` is used when setting `isolation_level` for a transaction.
+ * `IsolationLevel` is used when setting the [isolation
+ * level](https://cloud.google.com/spanner/docs/isolation-levels) for a
+ * transaction.
  *
  * Protobuf type <code>google.spanner.v1.TransactionOptions.IsolationLevel</code>
  */
@@ -41,7 +43,7 @@ class IsolationLevel
      * that have occurred since that snapshot. Consequently, in contrast to
      * `SERIALIZABLE` transactions, only write-write conflicts are detected in
      * snapshot transactions.
-     * This isolation level does not support Read-only and Partitioned DML
+     * This isolation level does not support read-only and partitioned DML
      * transactions.
      * When `REPEATABLE_READ` is specified on a read-write transaction, the
      * locking semantics default to `OPTIMISTIC`.

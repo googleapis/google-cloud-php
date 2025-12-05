@@ -151,6 +151,16 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool last_statement = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $last_statement = false;
+    /**
+     * Optional. If present, it makes the Spanner requests location-aware.
+     * It gives the server hints that can be used to route the request
+     * to an appropriate server, potentially significantly decreasing latency and
+     * improving throughput. To achieve improved performance, most fields must be
+     * filled in with accurate values.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RoutingHint routing_hint = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $routing_hint = null;
 
     /**
      * Constructor.
@@ -237,6 +247,12 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           be deferred until commit time (for example, validation of unique
      *           constraints). Given this, successful execution of a DML statement shouldn't
      *           be assumed until a subsequent `Commit` call completes successfully.
+     *     @type \Google\Cloud\Spanner\V1\RoutingHint $routing_hint
+     *           Optional. If present, it makes the Spanner requests location-aware.
+     *           It gives the server hints that can be used to route the request
+     *           to an appropriate server, potentially significantly decreasing latency and
+     *           improving throughput. To achieve improved performance, most fields must be
+     *           filled in with accurate values.
      * }
      */
     public function __construct($data = NULL) {
@@ -756,6 +772,50 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->last_statement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If present, it makes the Spanner requests location-aware.
+     * It gives the server hints that can be used to route the request
+     * to an appropriate server, potentially significantly decreasing latency and
+     * improving throughput. To achieve improved performance, most fields must be
+     * filled in with accurate values.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RoutingHint routing_hint = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\RoutingHint|null
+     */
+    public function getRoutingHint()
+    {
+        return $this->routing_hint;
+    }
+
+    public function hasRoutingHint()
+    {
+        return isset($this->routing_hint);
+    }
+
+    public function clearRoutingHint()
+    {
+        unset($this->routing_hint);
+    }
+
+    /**
+     * Optional. If present, it makes the Spanner requests location-aware.
+     * It gives the server hints that can be used to route the request
+     * to an appropriate server, potentially significantly decreasing latency and
+     * improving throughput. To achieve improved performance, most fields must be
+     * filled in with accurate values.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RoutingHint routing_hint = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\RoutingHint $var
+     * @return $this
+     */
+    public function setRoutingHint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RoutingHint::class);
+        $this->routing_hint = $var;
 
         return $this;
     }

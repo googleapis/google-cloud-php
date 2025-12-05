@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\NetworkPeeringConnectionStatusTrafficConfigura
 use UnexpectedValueException;
 
 /**
- * Which IP version(s) of traffic and routes are being imported or exported between peer networks.
+ * Which IP version(s) of traffic and routes are being imported or
+ * exported between peer networks.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkPeeringConnectionStatusTrafficConfiguration.StackType</code>
  */
@@ -20,13 +21,17 @@ class StackType
      */
     const UNDEFINED_STACK_TYPE = 0;
     /**
-     * This Peering will allow IPv4 traffic and routes to be exchanged. Additionally if the matching peering is IPV4_IPV6, IPv6 traffic and routes will be exchanged as well.
+     * This Peering will allow IPv4 traffic and routes to be
+     * exchanged. Additionally if the matching peering is
+     * IPV4_IPV6, IPv6 traffic and routes will be exchanged as
+     * well.
      *
      * Generated from protobuf enum <code>IPV4_IPV6 = 22197249;</code>
      */
     const IPV4_IPV6 = 22197249;
     /**
-     * This Peering will only allow IPv4 traffic and routes to be exchanged, even if the matching peering is IPV4_IPV6.
+     * This Peering will only allow IPv4 traffic and routes to be
+     * exchanged, even if the matching peering is IPV4_IPV6.
      *
      * Generated from protobuf enum <code>IPV4_ONLY = 22373798;</code>
      */

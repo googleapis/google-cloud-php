@@ -23,6 +23,10 @@
 return [
     'interfaces' => [
         'google.shopping.merchant.accounts.v1.DeveloperRegistrationService' => [
+            'GetAccountForGcpRegistration' => [
+                'method' => 'get',
+                'uriTemplate' => '/accounts/v1/accounts:getAccountForGcpRegistration',
+            ],
             'GetDeveloperRegistration' => [
                 'method' => 'get',
                 'uriTemplate' => '/accounts/v1/{name=accounts/*/developerRegistration}',

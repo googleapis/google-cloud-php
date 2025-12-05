@@ -87,9 +87,7 @@ final class AccountsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -275,18 +273,23 @@ final class AccountsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAndConfigureAccount(CreateAndConfigureAccountRequest $request, array $callOptions = []): Account
-    {
+    public function createAndConfigureAccount(
+        CreateAndConfigureAccountRequest $request,
+        array $callOptions = []
+    ): Account {
         return $this->startApiCall('CreateAndConfigureAccount', $request, $callOptions)->wait();
     }
 
     /**
      * Deletes the specified account regardless of its type: standalone, advanced
      * account or sub-account. Deleting an advanced account leads to the deletion
-     * of all of its sub-accounts. Executing this method requires admin access.
-     * The deletion succeeds only if the account does not provide services
-     * to any other account and has no processed offers. You can use the `force`
-     * parameter to override this.
+     * of all of its sub-accounts. This also deletes the account's [developer
+     * registration
+     * entity](/merchant/api/reference/rest/accounts_v1/accounts.developerRegistration)
+     * and any associated GCP project to the account. Executing this method
+     * requires admin access. The deletion succeeds only if the account does not
+     * provide services to any other account and has no processed offers. You can
+     * use the `force` parameter to override this.
      *
      * The async variant is {@see AccountsServiceClient::deleteAccountAsync()} .
      *

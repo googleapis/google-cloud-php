@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\Router;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+ * Patches the specified Router resource with the data included in the
+ * request. This method supportsPATCH
+ * semantics and usesJSON merge
+ * patch format and processing rules.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

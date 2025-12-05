@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specify bandwidth percentages for various traffic classes for queuing type Bandwidth Percent.
+     * Specify bandwidth percentages for various traffic classes for queuing
+     * type Bandwidth Percent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage bandwidth_percentages = 233373323;</code>
      */
@@ -28,7 +29,8 @@ class InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy extends 
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $bandwidth_percentages
-     *           Specify bandwidth percentages for various traffic classes for queuing type Bandwidth Percent.
+     *           Specify bandwidth percentages for various traffic classes for queuing
+     *           type Bandwidth Percent.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy extends 
     }
 
     /**
-     * Specify bandwidth percentages for various traffic classes for queuing type Bandwidth Percent.
+     * Specify bandwidth percentages for various traffic classes for queuing
+     * type Bandwidth Percent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage bandwidth_percentages = 233373323;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +51,8 @@ class InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy extends 
     }
 
     /**
-     * Specify bandwidth percentages for various traffic classes for queuing type Bandwidth Percent.
+     * Specify bandwidth percentages for various traffic classes for queuing
+     * type Bandwidth Percent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage bandwidth_percentages = 233373323;</code>
      * @param array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $var

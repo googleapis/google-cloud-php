@@ -32,7 +32,8 @@ class QuicOverride
      */
     const ENABLE = 438835587;
     /**
-     * No overrides to the default QUIC policy. This option is implicit if no QUIC override has been specified in the request.
+     * No overrides to the default QUIC policy. This option is implicit if
+     * no QUIC override has been specified in the request.
      *
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */

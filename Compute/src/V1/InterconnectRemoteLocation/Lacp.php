@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Link Aggregation Control Protocol (LACP) constraints, which can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
+ * [Output Only] Link Aggregation Control Protocol (LACP) constraints, which
+ * can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectRemoteLocation.Lacp</code>
  */
@@ -20,13 +21,16 @@ class Lacp
      */
     const UNDEFINED_LACP = 0;
     /**
-     * LACP_SUPPORTED: LACP is supported, and enabled by default on the Cross-Cloud Interconnect.
+     * LACP_SUPPORTED: LACP is supported, and enabled by default on
+     * the Cross-Cloud Interconnect.
      *
      * Generated from protobuf enum <code>LACP_SUPPORTED = 339576113;</code>
      */
     const LACP_SUPPORTED = 339576113;
     /**
-     * LACP_UNSUPPORTED: LACP is not supported and is not be enabled on this port. GetDiagnostics shows bundleAggregationType as "static". GCP does not support LAGs without LACP, so requestedLinkCount must be 1.
+     * LACP_UNSUPPORTED: LACP is not supported and is not be enabled on this
+     * port. GetDiagnostics shows bundleAggregationType as "static". GCP does
+     * not support LAGs without LACP, so requestedLinkCount must be 1.
      *
      * Generated from protobuf enum <code>LACP_UNSUPPORTED = 203930104;</code>
      */

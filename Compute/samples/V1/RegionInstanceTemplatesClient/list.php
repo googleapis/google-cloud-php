@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionInstanceTemplatesClient;
 use Google\Cloud\Compute\V1\ListRegionInstanceTemplatesRequest;
 
 /**
- * Retrieves a list of instance templates that are contained within the specified project and region.
+ * Retrieves a list of instance templates that are contained within the
+ * specified project and region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  The name of the regions for this request.

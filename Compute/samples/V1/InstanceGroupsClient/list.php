@@ -29,10 +29,16 @@ use Google\Cloud\Compute\V1\Client\InstanceGroupsClient;
 use Google\Cloud\Compute\V1\ListInstanceGroupsRequest;
 
 /**
- * Retrieves the list of zonal instance group resources contained within the specified zone. For managed instance groups, use the instanceGroupManagers or regionInstanceGroupManagers methods instead.
+ * Retrieves the list of zonal instance group resources contained within the
+ * specified zone.
+ *
+ * For managed instance groups, use theinstanceGroupManagers
+ * or regionInstanceGroupManagers
+ * methods instead.
  *
  * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone where the instance group is located.
+ * @param string $zone    The name of thezone
+ *                        where the instance group is located.
  */
 function list_sample(string $project, string $zone): void
 {

@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\Client\RegionInstancesClient;
 use Google\Rpc\Status;
 
 /**
- * Creates multiple instances in a given region. Count specifies the number of instances to create.
+ * Creates multiple instances in a given region. Count specifies the number of
+ * instances to create.
  *
  * @param string $project Project ID for this request.
  * @param string $region  The name of the region for this request.

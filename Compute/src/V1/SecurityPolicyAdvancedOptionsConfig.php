@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
+     * Custom configuration to apply the JSON parsing. Only applicable when
+     * json_parsing is set to STANDARD.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfigJsonCustomConfig json_custom_config = 111570105;</code>
      */
@@ -35,7 +36,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      */
     protected $log_level = null;
     /**
-     * An optional list of case-insensitive request header names to use for resolving the callers client IP address.
+     * An optional list of case-insensitive request header names to use for
+     * resolving the callers client IP address.
      *
      * Generated from protobuf field <code>repeated string user_ip_request_headers = 421050290;</code>
      */
@@ -48,7 +50,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfigJsonCustomConfig $json_custom_config
-     *           Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
+     *           Custom configuration to apply the JSON parsing. Only applicable when
+     *           json_parsing is set to STANDARD.
      *     @type string $json_parsing
      *           
      *           Check the JsonParsing enum for the list of possible values.
@@ -56,7 +59,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      *           
      *           Check the LogLevel enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $user_ip_request_headers
-     *           An optional list of case-insensitive request header names to use for resolving the callers client IP address.
+     *           An optional list of case-insensitive request header names to use for
+     *           resolving the callers client IP address.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,7 +69,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
+     * Custom configuration to apply the JSON parsing. Only applicable when
+     * json_parsing is set to STANDARD.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfigJsonCustomConfig json_custom_config = 111570105;</code>
      * @return \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfigJsonCustomConfig|null
@@ -86,7 +91,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
+     * Custom configuration to apply the JSON parsing. Only applicable when
+     * json_parsing is set to STANDARD.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfigJsonCustomConfig json_custom_config = 111570105;</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfigJsonCustomConfig $var
@@ -177,7 +183,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * An optional list of case-insensitive request header names to use for resolving the callers client IP address.
+     * An optional list of case-insensitive request header names to use for
+     * resolving the callers client IP address.
      *
      * Generated from protobuf field <code>repeated string user_ip_request_headers = 421050290;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -188,7 +195,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * An optional list of case-insensitive request header names to use for resolving the callers client IP address.
+     * An optional list of case-insensitive request header names to use for
+     * resolving the callers client IP address.
      *
      * Generated from protobuf field <code>repeated string user_ip_request_headers = 421050290;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
