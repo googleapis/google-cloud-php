@@ -1145,7 +1145,6 @@ class OperationTest extends TestCase
         $query = $this->prophesize(Query::class);
         $query->queryObject()->willReturn([]);
         $query->queryKey()->willReturn('query');
-        $query->canPaginate()->willReturn(true);
 
         $this->gapicClient->runQuery(
             Argument::type(RunQueryRequest::class),
@@ -1156,7 +1155,7 @@ class OperationTest extends TestCase
             'FAILED_PRECONDITION'
         ));
 
-        $iterator = $this->operation->runQuery($query->reveal(), []);
+        $iterator = $this->operation->runQuery($query->reveal());
         // The exception is thrown when we iterate
         $iterator->current();
     }
