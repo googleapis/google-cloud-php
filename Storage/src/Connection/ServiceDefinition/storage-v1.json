@@ -745,6 +745,13 @@
                         "$ref": "Bucket"
                     }
                 },
+                "unreachable": {
+                    "type": "array",
+                    "description": "The list of bucket resource names that could not be reached during the listing operation.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "kind": {
                     "type": "string",
                     "description": "The kind of item this is. For lists of buckets, this is always storage#buckets.",
@@ -2527,6 +2534,11 @@
                         "softDeleted": {
                             "type": "boolean",
                             "description": "If set to true, only soft-deleted bucket versions are listed as distinct results in order of bucket name and generation number. The default value is false.",
+                            "location": "query"
+                        },
+                        "returnPartialSuccess": {
+                            "type": "boolean",
+                            "description": "If true, returns a partial list of buckets. The `unreachable` field will contain buckets that were not reachable.",
                             "location": "query"
                         }
                     },

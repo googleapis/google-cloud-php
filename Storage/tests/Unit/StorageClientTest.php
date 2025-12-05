@@ -418,7 +418,7 @@ class StorageClientTest extends TestCase
         }
 
         $objects = iterator_to_array($client->bucket('myBucket')->objects());
-        
+
         $this->assertEquals('file.txt', $objects[0]->name());
         $this->assertEquals($expectedRemainingResponses, $mockHandler->count());
     }
@@ -576,7 +576,7 @@ class StorageClientTest extends TestCase
         ]);
 
         $objects = iterator_to_array($client->bucket('myBucket')->objects());
-        
+
         $this->assertEquals('file.txt', $objects[0]->name());
         $this->assertEquals([100, 200], $capturedDelays);
     }
@@ -624,7 +624,7 @@ class StorageClientTest extends TestCase
         ];
         $mockHandler = new MockHandler($mockResponses);
         $handlerStack = HandlerStack::create($mockHandler);
-        
+
         $requestHistory = [];
         $handlerStack->push(\GuzzleHttp\Middleware::history($requestHistory));
         $guzzleClient = new \GuzzleHttp\Client(['handler' => $handlerStack]);
@@ -657,6 +657,100 @@ class StorageClientTest extends TestCase
         $this->assertEquals(1, $listenerInvocations);
         $this->assertFalse($requestHistory[0]['request']->hasHeader('X-Retry-Attempt'));
         $this->assertEquals('1', $requestHistory[1]['request']->getHeaderLine('X-Retry-Attempt'));
+    }
+
+    public function testListBucketsReturnPartialSuccess()
+    {
+        $expectedUnreachable = [
+            'projects/_/buckets/unreachable-1',
+            'projects/_/buckets/unreachable-2',
+        ];
+
+        $this->connection->listBuckets(
+            Argument::withEntry('returnPartialSuccess', true)
+        )->willReturn([
+            'nextPageToken' => 'token',
+            'unreachable' => $expectedUnreachable,
+            'items' => [
+                ['name' => 'bucket1']
+            ]
+        ], [
+            'items' => [
+                ['name' => 'bucket2']
+            ]
+        ]);
+
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $responseWrapper = $this->client->buckets(['returnPartialSuccess' => true]);
+
+        $this->assertInstanceOf(
+            \Google\Cloud\Storage\BucketIterator::class,
+            $responseWrapper
+        );
+        $bucket = iterator_to_array($responseWrapper);
+
+        $this->assertCount(2, $bucket);
+        $this->assertEquals('bucket1', $bucket[0]->name());
+        $this->assertEquals('bucket2', $bucket[1]->name());
+        $this->assertNotEmpty($responseWrapper->unreachable());
+        $this->assertEquals($expectedUnreachable, $responseWrapper->unreachable());
+    }
+
+    public function testBucketsIgnoresUnreachableWhenPartialSuccessIsFalse()
+    {
+        $this->connection->listBuckets(
+            Argument::withEntry('returnPartialSuccess', false)
+        )->willReturn([
+            'nextPageToken' => 'token',
+            'items' => [
+                ['name' => 'bucket1']
+            ]
+        ], [
+            'items' => [
+                ['name' => 'bucket2']
+            ]
+        ]);
+
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $responseWrapper = $this->client->buckets(['returnPartialSuccess' => false]);
+        $bucket = iterator_to_array($responseWrapper);
+
+        $this->assertCount(2, $bucket);
+        $this->assertEquals('bucket1', $bucket[0]->name());
+        $this->assertEquals('bucket2', $bucket[1]->name());
+        $this->assertEmpty($responseWrapper->unreachable());
+    }
+
+    public function testBucketsIgnoresUnreachableWhenOptionIsAbsent()
+    {
+        $this->connection->listBuckets(
+            Argument::withEntry('project', self::PROJECT)
+        )->willReturn([
+            'nextPageToken' => 'token',
+            'items' => [
+                ['name' => 'bucket1']
+            ]
+        ], [
+            'items' => [
+                ['name' => 'bucket2']
+            ]
+        ]);
+
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $responseWrapper = $this->client->buckets();
+        $bucket = iterator_to_array($responseWrapper);
+
+        $this->assertCount(2, $bucket);
+        $this->assertEquals('bucket1', $bucket[0]->name());
+        $this->assertEquals('bucket2', $bucket[1]->name());
+        $this->assertEmpty($responseWrapper->unreachable());
     }
 }
 
