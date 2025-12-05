@@ -20,10 +20,9 @@ jobs:
     if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
       - uses: actions/checkout@v5
-      - uses: actions4gh/setup-gh@main
       - name: Check for at least 2 approvals from yoshi-php members
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REQUIRED_APPROVALS: 2
         run: |
