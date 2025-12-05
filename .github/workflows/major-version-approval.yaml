@@ -15,7 +15,8 @@ jobs:
   major-version-approval-check:
     name: Major Version Approval Check
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    # removed conditional for testing
+    # if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
       - name: Check for at least 2 approvals from yoshi-php members
         env:
