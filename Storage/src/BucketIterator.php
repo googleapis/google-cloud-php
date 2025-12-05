@@ -30,11 +30,6 @@ use ArrayObject;
 class BucketIterator extends ItemIterator
 {
     /**
-     * @var \ArrayObject
-     */
-    private $unreachable;
-
-    /**
      * @param PageIterator $iterator
      * @param ArrayObject $unreachable
      */
