@@ -243,7 +243,9 @@ EOF
             $updateMask = $request->getUpdateMask();
             $this->assertEquals(['labels'], iterator_to_array($updateMask->getPaths()));
             return true;
-        }))->shouldBeCalledOnce();
+        }))
+            ->shouldBeCalledOnce()
+            ->willReturn(new Secret());
 
         $snippet->replace(
             '$client = new SecretManagerServiceClient();',
