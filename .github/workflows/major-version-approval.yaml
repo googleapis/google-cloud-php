@@ -27,7 +27,6 @@ jobs:
           REQUIRED_APPROVALS: 2
         run: |
           set -eo
-          set -x
 
           echo "Fetching approvals for PR #$PR_NUMBER..."
           # Get a unique, sorted list of all users who have approved.
