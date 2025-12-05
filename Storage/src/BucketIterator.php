@@ -36,7 +36,6 @@ class BucketIterator extends ItemIterator
     public function __construct(PageIterator $iterator, private ArrayObject $unreachable)
     {
         parent::__construct($iterator);
-        $this->unreachable = $unreachable;
     }
 
     /**
