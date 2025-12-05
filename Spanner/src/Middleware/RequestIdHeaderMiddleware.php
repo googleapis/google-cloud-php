@@ -37,6 +37,8 @@ use Google\ApiCore\Middleware\MiddlewareInterface;
 
 /**
  * Middleware that adds the RequestId header to each rpc call made by spanner
+ *
+ * @internal
  */
 class RequestIdHeaderMiddleware implements MiddlewareInterface
 {
@@ -46,7 +48,7 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
     private static int $currentClient = 1;
     private int $client;
     private int $channel;
-    private int $request = 1;
+    private int $request = 0;
 
     /** @var callable */
     private $nextHandler;
@@ -81,8 +83,8 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
         $process = $this->getProcess();
         $client = $this->client;
         $channel = $this->channel;
-        $request = $this->getNextRequestValue();
         $attempt = $this->getAttempt($options);
+        $request = $this->getNextRequestValue($attempt);
 
         return sprintf($template, self::VERSION, $process, $client, $channel, $request, $attempt);
     }
@@ -119,10 +121,14 @@ class RequestIdHeaderMiddleware implements MiddlewareInterface
         return $options['retryAttempt'] + 1;
     }
 
-    private function getNextRequestValue(): int
+    private function getNextRequestValue(int $attempt): int
     {
-        $currentValue = $this->request;
+        if ($attempt > 1) {
+            return $this->request;
+        }
+
         $this->request++;
+        $currentValue = $this->request;
         return $currentValue;
     }
 }

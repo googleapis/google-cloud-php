@@ -193,6 +193,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
                 $headerValue = $options['headers'][$headerName][0];
                 $parts = explode('.', $headerValue);
                 $attempt = (int) $parts[5];
+                $request = (int) $parts[4];
 
                 if ($callCount === 1) {
                     $test->assertEquals(1, $attempt);
@@ -201,6 +202,7 @@ class RequestIdHeaderMiddlewareTest extends TestCase
                     );
                 }
 
+                $test->assertEquals(1, $request);
                 $test->assertEquals(2, $attempt);
 
                 $response = new ListInstancesResponse();
