@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -67,6 +69,7 @@ class Operation
     use ValidateTrait;
     use TimestampTrait;
     use ApiHelperTrait;
+    use RequestProcessorTrait;
 
     /**
      * @var Serializer
@@ -295,7 +298,11 @@ class Operation
             CallOptions::class
         );
 
-        $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $callOptions);
+        try {
+            $res = $this->gapicClient->beginTransaction($beginTransactionRequest, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         return base64_encode($res->getTransaction());
     }
@@ -357,7 +364,11 @@ class Operation
             CallOptions::class
         );
 
-        $allocateIdsResponse = $this->gapicClient->allocateIds($allocateIdsRequest, $callOptions);
+        try {
+            $allocateIdsResponse = $this->gapicClient->allocateIds($allocateIdsRequest, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         /** @var ProtobufKey $responseKey */
         foreach ($allocateIdsResponse->getKeys() as $index => $responseKey) {
@@ -444,7 +455,11 @@ class Operation
             $lookupRequest->setReadOptions($readOptions);
         }
 
-        $lookupResponse = $this->gapicClient->lookup($lookupRequest, $callOptions);
+        try {
+            $lookupResponse = $this->gapicClient->lookup($lookupRequest, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         $result = [
             'result' => [],
@@ -590,7 +605,11 @@ class Operation
                 $runQueryRequest->setReadOptions($readOptions);
             }
 
-            $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest, $callOptions);
+            try {
+                $runQueryResponse = $this->gapicClient->runQuery($runQueryRequest, $callOptions);
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
 
             // When executing a GQL Query, the server will compute a query object
             // and return it with the first response batch.
@@ -694,8 +713,12 @@ class Operation
             $runAggregationQueryRequest->setReadOptions($readOptions);
         }
 
-        $runAggregationQueryResponse = $this->gapicClient
-            ->runAggregationQuery($runAggregationQueryRequest, $callOptions);
+        try {
+            $runAggregationQueryResponse = $this->gapicClient
+                ->runAggregationQuery($runAggregationQueryRequest, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         $res = $this->serializer->encodeMessage($runAggregationQueryResponse);
 
@@ -744,7 +767,11 @@ class Operation
             : MODE::TRANSACTIONAL
         );
 
-        $commitResponse = $this->gapicClient->commit($commitRequest, $callOptions);
+        try {
+            $commitResponse = $this->gapicClient->commit($commitRequest, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         return $this->serializer->encodeMessage($commitResponse);
     }
@@ -836,7 +863,11 @@ class Operation
             ->setDatabaseId($this->databaseId)
             ->setTransaction(base64_decode($transactionId));
 
-        $this->gapicClient->rollback($rollbackRequest);
+        try {
+            $this->gapicClient->rollback($rollbackRequest);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
     }
 
     /**
