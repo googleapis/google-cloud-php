@@ -40,7 +40,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @internal
  */
-class SplitCommand extends Command
+class RepoSplitCommand extends Command
 {
     const PARENT_TAG_NAME = 'https://github.com/%s/releases/tag/%s';
     const EXEC_DIR = '.split';
@@ -64,7 +64,8 @@ class SplitCommand extends Command
      */
     protected function configure()
     {
-        $this->setName('split')
+        $this->setName('repo:split')
+            ->setAliases(['split'])
             ->setDescription('Split subtree and push to various remotes.')
             ->addArgument(
                 'repo',

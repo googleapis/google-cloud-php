@@ -30,11 +30,11 @@ use Symfony\Component\Finder\Finder;
  *
  * @internal
  */
-class UpdateDepsCommand extends Command
+class ComponentUpdateDepsCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('update-deps')
+        $this->setName('component:update:deps')
             ->setDescription('update a dependency across all components')
             ->addArgument('package', InputArgument::REQUIRED, 'Package name to update, e.g. "google/gax"')
             ->addArgument('version', InputArgument::OPTIONAL, 'Package version to update to, e.g. "1.4.0"', '')

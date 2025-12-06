@@ -25,11 +25,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use GuzzleHttp\Client;
 
-class VerifyReleaseCommand extends Command
+class ReleaseVerifyCommand extends Command
 {
     protected function configure()
     {
-        $this->setName('verify-release')
+        $this->setName('release:verify')
             ->setDescription('Verifies the package version from packagist.')
             ->addOption(
                 'component',

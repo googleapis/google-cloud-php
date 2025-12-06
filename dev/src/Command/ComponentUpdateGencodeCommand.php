@@ -36,7 +36,7 @@ use Google\Cloud\Dev\Component;
  *
  * @internal
  */
-class UpdateComponentCommand extends Command
+class ComponentUpdateGencodeCommand extends Command
 {
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
 
@@ -57,7 +57,7 @@ class UpdateComponentCommand extends Command
 
     protected function configure()
     {
-        $this->setName('update-component')
+        $this->setName('component:update:gencode')
             ->setDescription('Update one or all components using Owlbot')
             ->addArgument(
                 'component',
