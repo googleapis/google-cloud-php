@@ -36,6 +36,7 @@ use GuzzleHttp\Client;
  */
 class RepoInfoCommand extends Command
 {
+    private const PACKAGIST_USERNAME = 'google-cloud';
     private GitHub $github;
     private Packagist $packagist;
 
@@ -57,7 +58,7 @@ class RepoInfoCommand extends Command
         // Create github client wrapper
         $http = new Client();
         $this->github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
-        $this->packagist = new Packagist($http, '', '');
+        $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('update-packagist-token') ?? '');
 
         $nextPageQuestion = new ConfirmationQuestion('Next Page (enter)', true);
         $table = (new Table($output))->setHeaders([
@@ -103,16 +104,24 @@ class RepoInfoCommand extends Command
                     $details = $this->getRepoDetails($component);
                 }
             }
-            if ($packagistToken = $input->getOption('update-packagist-token')) {
+            if ($packagistToken = $this->packagist->getApiToken()) {
                 $repoName = 'googleapis/' . $details['name'];
-                $packagistUrl1 = 'https://packagist.org/api/github';
-                $packagistUrl2 = 'https://packagist.org/api/update-package?username=google-cloud';
-                if ($this->github->updateWebhookSecret($repoName, $packagistUrl1, $packagistToken)
-                    || $this->github->updateWebhookSecret($repoName, $packagistUrl2, $packagistToken)
-                ) {
-                    $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook updated.', $repoName));
+                $oldUrl = 'https://packagist.org/api/github';
+                $newUrl = $this->packagist->getWebhookUrl();
+                if ($webhookId = $this->github->getWebhook($repoName, $oldUrl, $packagistToken)) {
+                    if ($this->github->updateWebhook($repoName, $webhookId, $packagistToken, $newUrl)) {
+                        $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook URL and token updated.', $repoName));
+                    } else {
+                        $output->writeln(sprintf('<error>%s</error>: Unable to update webhook.', $repoName));
+                    }
+                } elseif ($webhookId = $this->github->getWebhook($repoName, $newUrl, $packagistToken)) {
+                    if ($this->github->updateWebhook($repoName, $webhookId, $packagistToken, $newUrl)) {
+                        $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook token updated.', $repoName));
+                    } else {
+                        $output->writeln(sprintf('<error>%s</error>: Unable to update webhook.', $repoName));
+                    }
                 } else {
-                    $output->writeln(sprintf('<error>%s</error>: Unable to update packagist token.', $repoName));
+                    $output->writeln(sprintf('<error>%s</error>: Webhook not found in', $repoName));
                 }
             }
             $table->addRow($details);
@@ -124,11 +133,11 @@ class RepoInfoCommand extends Command
 
     private function checkSettingsCompliance(array $details)
     {
-        return $details['has_issues'] === 'false'
-            && $details['has_projects'] === 'false'
-            && $details['has_wiki'] === 'false'
-            && $details['has_pages'] === 'false'
-            && $details['has_discussions'] === 'false';
+        return $details['repo_config'] === "issues: false
+projects: false
+wiki: false
+pages: false
+discussions: false";
     }
 
     private function checkTeamCompliance(array $details)
@@ -141,7 +150,9 @@ class RepoInfoCommand extends Command
 
     private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        $fieldsToUpdate = array_keys(array_filter($details, fn ($value) => $value === 'true'));
+        $explodedConfig = array_map(fn ($line) => explode(': ', $line), explode("\n", $details['repo_config']));
+        $fields = array_combine(array_column($explodedConfig, 0), array_column($explodedConfig, 1));
+        $fieldsToUpdate = array_keys(array_filter($fields, fn ($value) => $value === 'true'));
         $question = new ConfirmationQuestion(sprintf(
             'Repo %s has the following configuration enabled: %s. Would you like to disable them? (Y/n)',
             $details['name'],
@@ -150,7 +161,10 @@ class RepoInfoCommand extends Command
         if ($this->getHelper('question')->ask($input, $output, $question)) {
             $this->github->updateRepoDetails(
                 'googleapis/' . $details['name'],
-                array_fill_keys($fieldsToUpdate, false)
+                array_fill_keys(array_map(
+                    fn ($key) => 'has_' . $key,
+                    array_keys($fields)
+                ), false)
             );
             return true;
         }
@@ -161,7 +175,7 @@ class RepoInfoCommand extends Command
     {
         return !empty(array_filter(
             explode("\n", $details['packagist_config']),
-            fn ($team) => $team === 'google-cloud'
+            fn ($team) => $team === self::PACKAGIST_USERNAME
         ));
     }
 

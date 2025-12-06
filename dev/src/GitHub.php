@@ -411,19 +411,17 @@ class GitHub
     }
 
     /**
-     * Update webhook
+     * Get webhook
      *
      * @param string $target the target org/repo
-     * @param string $webhookUrl the webhook URL to update
-     * @param string $secret the new secret
+     * @param string $webhookUrl the webhook URL to match
      *
      * @return bool
      */
-    public function updateWebhookSecret(
+    public function getWebhook(
         string $target,
         string $webhookUrl,
-        string $secret
-    ): bool {
+    ): string|null {
         // Get all webhooks for the repo
         try {
             $res = $this->client->get(sprintf(
@@ -440,22 +438,31 @@ class GitHub
         $webhooks = json_decode((string) $res->getBody(), true);
 
         // Find the webhook with the matching URL
-        $webhookId = null;
         foreach ($webhooks as $webhook) {
             if (isset($webhook['config']['url']) && $webhook['config']['url'] === $webhookUrl) {
-                $webhookId = $webhook['id'];
-                break;
+                return $webhook['id'];
             }
         }
 
-        if (!$webhookId) {
-            if ($this->output) {
-                $this->output->writeln('<error>Webhook not found for URL: ' . $webhookUrl . '</error>');
-            }
-            return false;
-        }
+        return null;
+    }
 
-        // Update the webhook secret
+    /**
+     * Update webhook
+     *
+     * @param string $target the target org/repo
+     * @param string $webhookId the webhook ID
+     * @param string $secret the new secret
+     * @param string $webhookUrl the new webhook URL to update
+     *
+     * @return bool
+     */
+    public function updateWebhook(
+        string $target,
+        string $webhookId,
+        string $secret,
+        string $url,
+    ): bool {
         try {
             $res = $this->client->patch(sprintf(
                 self::GITHUB_WEBHOOK_UPDATE_ENDPOINT,
@@ -464,11 +471,11 @@ class GitHub
             ), [
                 'auth' => [null, $this->token],
                 'json' => [
-                    'config' =>  [
-                        'url' => $webhookUrl,
+                    'config' => [
                         'content_type' => 'json',
-                        'secret' => $secret,
                         'insecure_ssl' => false,
+                        'url' => $url,
+                        'secret' => $secret,
                     ],
                 ],
             ]);
