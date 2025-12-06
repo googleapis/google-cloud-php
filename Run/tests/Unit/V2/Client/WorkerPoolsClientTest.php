@@ -109,6 +109,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
+        $threatDetectionEnabled = true;
         $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
@@ -124,6 +125,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
+        $expectedResponse->setThreatDetectionEnabled($threatDetectionEnabled);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
@@ -277,6 +279,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
+        $threatDetectionEnabled = true;
         $satisfiesPzs = false;
         $reconciling = false;
         $etag2 = 'etag2-1293302904';
@@ -292,6 +295,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
+        $expectedResponse->setThreatDetectionEnabled($threatDetectionEnabled);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag2);
@@ -482,6 +486,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
+        $threatDetectionEnabled = true;
         $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
@@ -497,6 +502,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
+        $expectedResponse->setThreatDetectionEnabled($threatDetectionEnabled);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
@@ -794,6 +800,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
+        $threatDetectionEnabled = true;
         $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
@@ -809,6 +816,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
+        $expectedResponse->setThreatDetectionEnabled($threatDetectionEnabled);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
@@ -948,6 +956,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
+        $threatDetectionEnabled = true;
         $satisfiesPzs = false;
         $reconciling = false;
         $etag = 'etag3123477';
@@ -963,6 +972,7 @@ class WorkerPoolsClientTest extends GeneratedTest
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
+        $expectedResponse->setThreatDetectionEnabled($threatDetectionEnabled);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);

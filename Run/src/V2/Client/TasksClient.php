@@ -79,9 +79,7 @@ final class TasksClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -135,8 +133,13 @@ final class TasksClient
      *
      * @return string The formatted task resource.
      */
-    public static function taskName(string $project, string $location, string $job, string $execution, string $task): string
-    {
+    public static function taskName(
+        string $project,
+        string $location,
+        string $job,
+        string $execution,
+        string $task
+    ): string {
         return self::getPathTemplate('task')->render([
             'project' => $project,
             'location' => $location,

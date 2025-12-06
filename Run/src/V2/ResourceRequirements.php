@@ -16,13 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceRequirements extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Only `memory` and `cpu` keys in the map are supported.
+     * Only `memory`, `cpu` and `nvidia.com/gpu` keys in the map are supported.
      * <p>Notes:
      *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      * CPU requires at least 2Gi of memory. For more information, go to
      * https://cloud.google.com/run/docs/configuring/cpu.
      *   * For supported 'memory' values and syntax, go to
      *  https://cloud.google.com/run/docs/configuring/memory-limits
+     *  * The only supported 'nvidia.com/gpu' value is '1'.
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
      */
@@ -51,13 +52,14 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $limits
-     *           Only `memory` and `cpu` keys in the map are supported.
+     *           Only `memory`, `cpu` and `nvidia.com/gpu` keys in the map are supported.
      *           <p>Notes:
      *            * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      *           CPU requires at least 2Gi of memory. For more information, go to
      *           https://cloud.google.com/run/docs/configuring/cpu.
      *             * For supported 'memory' values and syntax, go to
      *            https://cloud.google.com/run/docs/configuring/memory-limits
+     *            * The only supported 'nvidia.com/gpu' value is '1'.
      *     @type bool $cpu_idle
      *           Determines whether CPU is only allocated during requests (true by default).
      *           However, if ResourceRequirements is set, the caller must explicitly
@@ -74,13 +76,14 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only `memory` and `cpu` keys in the map are supported.
+     * Only `memory`, `cpu` and `nvidia.com/gpu` keys in the map are supported.
      * <p>Notes:
      *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      * CPU requires at least 2Gi of memory. For more information, go to
      * https://cloud.google.com/run/docs/configuring/cpu.
      *   * For supported 'memory' values and syntax, go to
      *  https://cloud.google.com/run/docs/configuring/memory-limits
+     *  * The only supported 'nvidia.com/gpu' value is '1'.
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -91,13 +94,14 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only `memory` and `cpu` keys in the map are supported.
+     * Only `memory`, `cpu` and `nvidia.com/gpu` keys in the map are supported.
      * <p>Notes:
      *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      * CPU requires at least 2Gi of memory. For more information, go to
      * https://cloud.google.com/run/docs/configuring/cpu.
      *   * For supported 'memory' values and syntax, go to
      *  https://cloud.google.com/run/docs/configuring/memory-limits
+     *  * The only supported 'nvidia.com/gpu' value is '1'.
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

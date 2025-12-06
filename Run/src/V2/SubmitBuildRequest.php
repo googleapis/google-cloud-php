@@ -54,6 +54,26 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string tags = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tags;
+    /**
+     * Optional. The machine type from default pool to use for the build. If left
+     * blank, cloudbuild will use a sensible default. Currently only E2_HIGHCPU_8
+     * is supported. If worker_pool is set, this field will be ignored.
+     *
+     * Generated from protobuf field <code>string machine_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $machine_type = '';
+    /**
+     * Optional. The release track of the client that initiated the build request.
+     *
+     * Generated from protobuf field <code>.google.api.LaunchStage release_track = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $release_track = 0;
+    /**
+     * Optional. The client that initiated the build request.
+     *
+     * Generated from protobuf field <code>string client = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client = '';
     protected $source;
     protected $build_type;
 
@@ -88,6 +108,14 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
      *           worker pool.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Optional. Additional tags to annotate the build.
+     *     @type string $machine_type
+     *           Optional. The machine type from default pool to use for the build. If left
+     *           blank, cloudbuild will use a sensible default. Currently only E2_HIGHCPU_8
+     *           is supported. If worker_pool is set, this field will be ignored.
+     *     @type int $release_track
+     *           Optional. The release track of the client that initiated the build request.
+     *     @type string $client
+     *           Optional. The client that initiated the build request.
      * }
      */
     public function __construct($data = NULL) {
@@ -332,6 +360,88 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The machine type from default pool to use for the build. If left
+     * blank, cloudbuild will use a sensible default. Currently only E2_HIGHCPU_8
+     * is supported. If worker_pool is set, this field will be ignored.
+     *
+     * Generated from protobuf field <code>string machine_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMachineType()
+    {
+        return $this->machine_type;
+    }
+
+    /**
+     * Optional. The machine type from default pool to use for the build. If left
+     * blank, cloudbuild will use a sensible default. Currently only E2_HIGHCPU_8
+     * is supported. If worker_pool is set, this field will be ignored.
+     *
+     * Generated from protobuf field <code>string machine_type = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMachineType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->machine_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The release track of the client that initiated the build request.
+     *
+     * Generated from protobuf field <code>.google.api.LaunchStage release_track = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getReleaseTrack()
+    {
+        return $this->release_track;
+    }
+
+    /**
+     * Optional. The release track of the client that initiated the build request.
+     *
+     * Generated from protobuf field <code>.google.api.LaunchStage release_track = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReleaseTrack($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Api\LaunchStage::class);
+        $this->release_track = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The client that initiated the build request.
+     *
+     * Generated from protobuf field <code>string client = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Optional. The client that initiated the build request.
+     *
+     * Generated from protobuf field <code>string client = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClient($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client = $var;
 
         return $this;
     }

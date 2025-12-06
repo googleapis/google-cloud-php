@@ -20,13 +20,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Service extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The fully qualified name of this Service. In CreateServiceRequest, this
-     * field is ignored, and instead composed from CreateServiceRequest.parent and
-     * CreateServiceRequest.service_id.
+     * Identifier. The fully qualified name of this Service. In
+     * CreateServiceRequest, this field is ignored, and instead composed from
+     * CreateServiceRequest.parent and CreateServiceRequest.service_id.
      * Format:
      * projects/{project}/locations/{location}/services/{service_id}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -182,8 +182,7 @@ class Service extends \Google\Protobuf\Internal\Message
     protected $scaling = null;
     /**
      * Optional. Disables IAM permission check for run.routes.invoke for callers
-     * of this service. This feature is available by invitation only. For more
-     * information, visit
+     * of this service. For more information, visit
      * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
      * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -201,6 +200,18 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $urls;
+    /**
+     * Optional. IAP settings on the Service.
+     *
+     * Generated from protobuf field <code>bool iap_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $iap_enabled = false;
+    /**
+     * Optional. Settings for multi-region deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Service.MultiRegionSettings multi_region_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $multi_region_settings = null;
     /**
      * One or more custom audiences that you want this service to support. Specify
      * each custom audience as the full URL in a string. The custom audiences are
@@ -276,6 +287,13 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
+     * Output only. True if Cloud Run Threat Detection monitoring is enabled for
+     * the parent project of this Service.
+     *
+     * Generated from protobuf field <code>bool threat_detection_enabled = 40 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $threat_detection_enabled = false;
+    /**
      * Optional. Configuration for building a Cloud Run function.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -306,10 +324,10 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     protected $reconciling = false;
     /**
-     * Output only. A system-generated fingerprint for this version of the
+     * Optional. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
-     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
 
@@ -320,9 +338,9 @@ class Service extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The fully qualified name of this Service. In CreateServiceRequest, this
-     *           field is ignored, and instead composed from CreateServiceRequest.parent and
-     *           CreateServiceRequest.service_id.
+     *           Identifier. The fully qualified name of this Service. In
+     *           CreateServiceRequest, this field is ignored, and instead composed from
+     *           CreateServiceRequest.parent and CreateServiceRequest.service_id.
      *           Format:
      *           projects/{project}/locations/{location}/services/{service_id}
      *     @type string $description
@@ -402,13 +420,16 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies service-level scaling settings
      *     @type bool $invoker_iam_disabled
      *           Optional. Disables IAM permission check for run.routes.invoke for callers
-     *           of this service. This feature is available by invitation only. For more
-     *           information, visit
+     *           of this service. For more information, visit
      *           https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *     @type bool $default_uri_disabled
      *           Optional. Disables public resolution of the default URI of this service.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
      *           Output only. All URLs serving traffic for this Service.
+     *     @type bool $iap_enabled
+     *           Optional. IAP settings on the Service.
+     *     @type \Google\Cloud\Run\V2\Service\MultiRegionSettings $multi_region_settings
+     *           Optional. Settings for multi-region deployment.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
      *           One or more custom audiences that you want this service to support. Specify
      *           each custom audience as the full URL in a string. The custom audiences are
@@ -447,6 +468,9 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Output only. The main URI in which this Service is serving traffic.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
+     *     @type bool $threat_detection_enabled
+     *           Output only. True if Cloud Run Threat Detection monitoring is enabled for
+     *           the parent project of this Service.
      *     @type \Google\Cloud\Run\V2\BuildConfig $build_config
      *           Optional. Configuration for building a Cloud Run function.
      *     @type bool $reconciling
@@ -470,7 +494,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           or empty for newly created Services. Additional information on the failure
      *           can be found in `terminal_condition` and `conditions`.
      *     @type string $etag
-     *           Output only. A system-generated fingerprint for this version of the
+     *           Optional. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
      * }
      */
@@ -480,13 +504,13 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fully qualified name of this Service. In CreateServiceRequest, this
-     * field is ignored, and instead composed from CreateServiceRequest.parent and
-     * CreateServiceRequest.service_id.
+     * Identifier. The fully qualified name of this Service. In
+     * CreateServiceRequest, this field is ignored, and instead composed from
+     * CreateServiceRequest.parent and CreateServiceRequest.service_id.
      * Format:
      * projects/{project}/locations/{location}/services/{service_id}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -495,13 +519,13 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fully qualified name of this Service. In CreateServiceRequest, this
-     * field is ignored, and instead composed from CreateServiceRequest.parent and
-     * CreateServiceRequest.service_id.
+     * Identifier. The fully qualified name of this Service. In
+     * CreateServiceRequest, this field is ignored, and instead composed from
+     * CreateServiceRequest.parent and CreateServiceRequest.service_id.
      * Format:
      * projects/{project}/locations/{location}/services/{service_id}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -1153,8 +1177,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Disables IAM permission check for run.routes.invoke for callers
-     * of this service. This feature is available by invitation only. For more
-     * information, visit
+     * of this service. For more information, visit
      * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
      * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1167,8 +1190,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Disables IAM permission check for run.routes.invoke for callers
-     * of this service. This feature is available by invitation only. For more
-     * information, visit
+     * of this service. For more information, visit
      * https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *
      * Generated from protobuf field <code>bool invoker_iam_disabled = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1231,6 +1253,68 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->urls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. IAP settings on the Service.
+     *
+     * Generated from protobuf field <code>bool iap_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIapEnabled()
+    {
+        return $this->iap_enabled;
+    }
+
+    /**
+     * Optional. IAP settings on the Service.
+     *
+     * Generated from protobuf field <code>bool iap_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIapEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->iap_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for multi-region deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Service.MultiRegionSettings multi_region_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\Service\MultiRegionSettings|null
+     */
+    public function getMultiRegionSettings()
+    {
+        return $this->multi_region_settings;
+    }
+
+    public function hasMultiRegionSettings()
+    {
+        return isset($this->multi_region_settings);
+    }
+
+    public function clearMultiRegionSettings()
+    {
+        unset($this->multi_region_settings);
+    }
+
+    /**
+     * Optional. Settings for multi-region deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Service.MultiRegionSettings multi_region_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\Service\MultiRegionSettings $var
+     * @return $this
+     */
+    public function setMultiRegionSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\Service\MultiRegionSettings::class);
+        $this->multi_region_settings = $var;
 
         return $this;
     }
@@ -1520,6 +1604,34 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. True if Cloud Run Threat Detection monitoring is enabled for
+     * the parent project of this Service.
+     *
+     * Generated from protobuf field <code>bool threat_detection_enabled = 40 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getThreatDetectionEnabled()
+    {
+        return $this->threat_detection_enabled;
+    }
+
+    /**
+     * Output only. True if Cloud Run Threat Detection monitoring is enabled for
+     * the parent project of this Service.
+     *
+     * Generated from protobuf field <code>bool threat_detection_enabled = 40 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setThreatDetectionEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->threat_detection_enabled = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Configuration for building a Cloud Run function.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.BuildConfig build_config = 41 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1618,10 +1730,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-generated fingerprint for this version of the
+     * Optional. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
-     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -1630,10 +1742,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-generated fingerprint for this version of the
+     * Optional. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
-     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

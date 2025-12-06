@@ -28,6 +28,13 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Output only. For global requests, returns the list of regions that could
+     * not be reached within the deadline.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           A token indicating there are more items than page_size. Use it in the next
      *           ListServices request to continue.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Output only. For global requests, returns the list of regions that could
+     *           not be reached within the deadline.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +107,34 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. For global requests, returns the list of regions that could
+     * not be reached within the deadline.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Output only. For global requests, returns the list of regions that could
+     * not be reached within the deadline.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }
