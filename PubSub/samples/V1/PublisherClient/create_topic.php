@@ -31,7 +31,7 @@ use Google\Cloud\PubSub\V1\Topic;
  * Creates the given topic with the given name. See the [resource name rules]
  * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
  *
- * @param string $name The name of the topic. It must have the format
+ * @param string $name Identifier. The name of the topic. It must have the format
  *                     `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
  *                     and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
  *                     underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent

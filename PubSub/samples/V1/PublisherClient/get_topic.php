@@ -31,7 +31,7 @@ use Google\Cloud\PubSub\V1\Topic;
 /**
  * Gets the configuration of a topic.
  *
- * @param string $formattedTopic The name of the topic to get.
+ * @param string $formattedTopic Identifier. The name of the topic to get.
  *                               Format is `projects/{project}/topics/{topic}`. Please see
  *                               {@see PublisherClient::topicName()} for help formatting this field.
  */

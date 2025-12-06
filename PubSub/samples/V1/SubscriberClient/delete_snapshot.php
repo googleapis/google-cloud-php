@@ -38,7 +38,7 @@ use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
  * created with the same name, but the new one has no association with the old
  * snapshot or its subscription, unless the same subscription is specified.
  *
- * @param string $formattedSnapshot The name of the snapshot to delete.
+ * @param string $formattedSnapshot Identifier. The name of the snapshot to delete.
  *                                  Format is `projects/{project}/snapshots/{snap}`. Please see
  *                                  {@see SubscriberClient::snapshotName()} for help formatting this field.
  */

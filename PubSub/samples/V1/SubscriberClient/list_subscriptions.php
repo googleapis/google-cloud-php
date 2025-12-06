@@ -32,8 +32,8 @@ use Google\Cloud\PubSub\V1\Subscription;
 /**
  * Lists matching subscriptions.
  *
- * @param string $formattedProject The name of the project in which to list subscriptions.
- *                                 Format is `projects/{project-id}`. Please see
+ * @param string $formattedProject Identifier. The name of the project in which to list
+ *                                 subscriptions. Format is `projects/{project-id}`. Please see
  *                                 {@see SubscriberClient::projectName()} for help formatting this field.
  */
 function list_subscriptions_sample(string $formattedProject): void

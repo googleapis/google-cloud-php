@@ -34,7 +34,7 @@ use Google\Protobuf\FieldMask;
  * update mask. Note that certain properties of a subscription, such as its
  * topic, are not modifiable.
  *
- * @param string $subscriptionName           The name of the subscription. It must have the format
+ * @param string $subscriptionName           Identifier. The name of the subscription. It must have the format
  *                                           `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
  *                                           start with a letter, and contain only letters (`[A-Za-z]`), numbers
  *                                           (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
