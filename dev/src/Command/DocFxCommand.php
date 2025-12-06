@@ -58,7 +58,7 @@ class DocFxCommand extends Command
         'OCC_FOR_IAM.md' => 'OCC for IAM',
         'MIGRATING.md' => 'Migrating to V2',
         'GRPC.md' => 'Installing gRPC',
-        'TROUBLESHOOTING.md' => 'Troubleshooting',
+        'DEBUG.md' => 'Troubleshooting',
     ];
 
     protected function configure()

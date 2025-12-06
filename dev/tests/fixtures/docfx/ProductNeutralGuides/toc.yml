@@ -25,4 +25,4 @@
       href: grpc.md
     -
       name: Troubleshooting
-      href: troubleshooting.md
+      href: debug.md
