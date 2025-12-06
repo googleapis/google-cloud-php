@@ -55,6 +55,21 @@ class Value extends \Google\Protobuf\Internal\Message
      *           map which contains another array.
      *     @type \Google\Cloud\Firestore\V1\MapValue $map_value
      *           A map value.
+     *     @type string $field_reference_value
+     *           Value which references a field.
+     *           This is considered relative (vs absolute) since it only refers to a field
+     *           and not a field within a particular document.
+     *           **Requires:**
+     *           * Must follow [field reference][FieldReference.field_path] limitations.
+     *           * Not allowed to be used when writing documents.
+     *     @type \Google\Cloud\Firestore\V1\PBFunction $function_value
+     *           A value that represents an unevaluated expression.
+     *           **Requires:**
+     *           * Not allowed to be used when writing documents.
+     *     @type \Google\Cloud\Firestore\V1\Pipeline $pipeline_value
+     *           A value that represents an unevaluated pipeline.
+     *           **Requires:**
+     *           * Not allowed to be used when writing documents.
      * }
      */
     public function __construct($data = NULL) {
@@ -419,6 +434,117 @@ class Value extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\MapValue::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Value which references a field.
+     * This is considered relative (vs absolute) since it only refers to a field
+     * and not a field within a particular document.
+     * **Requires:**
+     * * Must follow [field reference][FieldReference.field_path] limitations.
+     * * Not allowed to be used when writing documents.
+     *
+     * Generated from protobuf field <code>string field_reference_value = 19;</code>
+     * @return string
+     */
+    public function getFieldReferenceValue()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasFieldReferenceValue()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Value which references a field.
+     * This is considered relative (vs absolute) since it only refers to a field
+     * and not a field within a particular document.
+     * **Requires:**
+     * * Must follow [field reference][FieldReference.field_path] limitations.
+     * * Not allowed to be used when writing documents.
+     *
+     * Generated from protobuf field <code>string field_reference_value = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFieldReferenceValue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * A value that represents an unevaluated expression.
+     * **Requires:**
+     * * Not allowed to be used when writing documents.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.Function function_value = 20;</code>
+     * @return \Google\Cloud\Firestore\V1\PBFunction|null
+     */
+    public function getFunctionValue()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasFunctionValue()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * A value that represents an unevaluated expression.
+     * **Requires:**
+     * * Not allowed to be used when writing documents.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.Function function_value = 20;</code>
+     * @param \Google\Cloud\Firestore\V1\PBFunction $var
+     * @return $this
+     */
+    public function setFunctionValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\PBFunction::class);
+        $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * A value that represents an unevaluated pipeline.
+     * **Requires:**
+     * * Not allowed to be used when writing documents.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.Pipeline pipeline_value = 21;</code>
+     * @return \Google\Cloud\Firestore\V1\Pipeline|null
+     */
+    public function getPipelineValue()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasPipelineValue()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * A value that represents an unevaluated pipeline.
+     * **Requires:**
+     * * Not allowed to be used when writing documents.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.Pipeline pipeline_value = 21;</code>
+     * @param \Google\Cloud\Firestore\V1\Pipeline $var
+     * @return $this
+     */
+    public function setPipelineValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\Pipeline::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }

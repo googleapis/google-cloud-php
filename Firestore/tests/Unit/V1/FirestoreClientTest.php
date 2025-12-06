@@ -35,6 +35,7 @@ use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\Cursor;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
+use Google\Cloud\Firestore\V1\ExecutePipelineResponse;
 use Google\Cloud\Firestore\V1\FirestoreClient;
 use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\V1\ListDocumentsResponse;
@@ -456,6 +457,82 @@ class FirestoreClientTest extends GeneratedTest
         try {
             $gapicClient->deleteDocument($name);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executePipelineTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $transaction2 = '17';
+        $expectedResponse = new ExecutePipelineResponse();
+        $expectedResponse->setTransaction($transaction2);
+        $transport->addResponse($expectedResponse);
+        $transaction3 = '18';
+        $expectedResponse2 = new ExecutePipelineResponse();
+        $expectedResponse2->setTransaction($transaction3);
+        $transport->addResponse($expectedResponse2);
+        $transaction4 = '19';
+        $expectedResponse3 = new ExecutePipelineResponse();
+        $expectedResponse3->setTransaction($transaction4);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $database = 'database1789464955';
+        $serverStream = $gapicClient->executePipeline($database);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.v1.Firestore/ExecutePipeline', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($database, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executePipelineExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $database = 'database1789464955';
+        $serverStream = $gapicClient->executePipeline($database);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

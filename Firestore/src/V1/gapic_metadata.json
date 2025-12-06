@@ -40,6 +40,11 @@
                                 "deleteDocument"
                             ]
                         },
+                        "ExecutePipeline": {
+                            "methods": [
+                                "executePipeline"
+                            ]
+                        },
                         "GetDocument": {
                             "methods": [
                                 "getDocument"

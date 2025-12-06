@@ -104,6 +104,29 @@ return [
                     ],
                 ],
             ],
+            'ExecutePipeline' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Firestore\V1\ExecutePipelineResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project_id',
+                        'fieldAccessors' => [
+                            'getDatabase',
+                        ],
+                        'matchers' => [],
+                    ],
+                    [
+                        'keyName' => 'database_id',
+                        'fieldAccessors' => [
+                            'getDatabase',
+                        ],
+                        'matchers' => [],
+                    ],
+                ],
+            ],
             'GetDocument' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Firestore\V1\Document',
