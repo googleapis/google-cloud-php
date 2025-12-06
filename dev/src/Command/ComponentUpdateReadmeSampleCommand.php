@@ -27,7 +27,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Add a Component
  * @internal
  */
-class UpdateReadmeSampleCommand extends Command
+class ComponentUpdateReadmeSampleCommand extends Command
 {
     private $rootPath;
 
@@ -43,7 +43,7 @@ class UpdateReadmeSampleCommand extends Command
 
     protected function configure()
     {
-        $this->setName('update-readme-sample')
+        $this->setName('component:update:readme-sample')
             ->setDescription('Add a sample to a component')
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Add to the readme of the specified component', [])
             ->addOption('update', '', InputOption::VALUE_NONE, 'updates the sample in the readme if it exists');

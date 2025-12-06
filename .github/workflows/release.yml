@@ -69,3 +69,10 @@ jobs:
               --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
               --packagist-token=${{ secrets.PACKAGIST_TOKEN }} \
               --packagist-safe-token=${{ secrets.PACKAGIST_SAFE_TOKEN }}
+        - name: Verify all releases made it to Packagist
+          uses: nick-invision/retry-action@v1
+          with:
+            command: |
+              ./dev/google-cloud verify-release
+            timeout_minutes: 1
+            max_attempts: 3

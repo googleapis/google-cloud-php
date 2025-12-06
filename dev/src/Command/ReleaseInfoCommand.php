@@ -52,7 +52,7 @@ class ReleaseInfoCommand extends Command
 
     protected function configure()
     {
-        $this->setName('release-info')
+        $this->setName('release:info')
             ->setDescription('list information for a google-cloud-php release')
             ->addArgument('tag', InputArgument::OPTIONAL, 'The git tag of the release (e.g. v0.200.0)')
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')

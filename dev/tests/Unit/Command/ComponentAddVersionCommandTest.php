@@ -2,7 +2,7 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\Command\AddVersionCommand;
+use Google\Cloud\Dev\Command\ComponentAddVersionCommand;
 use Google\Cloud\Dev\Component;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Filesystem\Filesystem;
 
-class AddVersionCommandTest extends TestCase
+class ComponentAddVersionCommandTest extends TestCase
 {
     private static $rootPath;
     private static $componentPath;
@@ -33,7 +33,7 @@ class AddVersionCommandTest extends TestCase
 
     public function testAddVersion()
     {
-        $command = new AddVersionCommand(self::$rootPath);
+        $command = new ComponentAddVersionCommand(self::$rootPath);
         $command->setApplication($this->mockApplication());
         $tester = new CommandTester($command);
 
@@ -48,14 +48,14 @@ class AddVersionCommandTest extends TestCase
 
     public function testAddVersionNoUpdate()
     {
-        $command = new AddVersionCommand(self::$rootPath);
+        $command = new ComponentAddVersionCommand(self::$rootPath);
         $command->setApplication($this->mockApplication(false));
         $tester = new CommandTester($command);
 
         $tester->execute([
             'component' => 'component',
             'version' => 'v3',
-            '--no-update-component' => true,
+            '--no-update' => true,
         ]);
 
         $this->assertStringContainsString('Adding new version \'v3\' to .OwlBot.yaml', $tester->getDisplay());
@@ -65,7 +65,7 @@ class AddVersionCommandTest extends TestCase
 
     public function testDoesNotUpdateOwlBotIfVersionExists()
     {
-        $command = new AddVersionCommand(self::$rootPath);
+        $command = new ComponentAddVersionCommand(self::$rootPath);
         $command->setApplication($this->mockApplication());
         $tester = new CommandTester($command);
 

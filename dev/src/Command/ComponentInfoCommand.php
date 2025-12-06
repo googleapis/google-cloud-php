@@ -23,7 +23,6 @@ use Google\Cloud\Dev\Packagist;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use GuzzleHttp\Client;
@@ -73,7 +72,7 @@ class ComponentInfoCommand extends Command
 
     protected function configure()
     {
-        $this->setName('component-info')
+        $this->setName('component:info')
             ->setAliases(['info'])
             ->setDescription('list info of a component or the whole library')
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'get info for a single component', [])

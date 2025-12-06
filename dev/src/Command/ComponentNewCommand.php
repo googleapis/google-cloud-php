@@ -36,13 +36,12 @@ use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use RuntimeException;
 use Exception;
-use Google\Cloud\Dev\Component;
 
 /**
  * Add a Component
  * @internal
  */
-class NewComponentCommand extends Command
+class ComponentNewCommand extends Command
 {
     private const TEMPLATE_DIR = __DIR__ . '/../../templates';
     private const COPY_FILES = [
@@ -75,14 +74,14 @@ class NewComponentCommand extends Command
 
     protected function configure()
     {
-        $this->setName('new-component')
+        $this->setName('component:new')
             ->setDescription('Add a new Component')
             ->addArgument('proto', InputArgument::REQUIRED, 'Path to service proto.')
             ->addOption(
-                'no-update-component',
+                'no-update',
                 null,
                 InputOption::VALUE_NONE,
-                'Do not run the update-component command after adding the component skeleton'
+                'Do not run the component:update:gencode command after adding the component skeleton'
             )
             ->addOption(
                 'timeout',
@@ -231,25 +230,33 @@ class NewComponentCommand extends Command
         $composer->updateMainComposer();
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
-        if (!$input->getOption('no-update-component')) {
+        if (!$input->getOption('no-update')) {
             $args = [
                 'component' => $new->componentName,
                 '--timeout' => $timeout,
             ];
-            if (!$this->getApplication()->has('update-component')) {
+            if (!$this->getApplication()->has('component:update:gencode')) {
                 throw new \RuntimeException(
-                    'Application does not have an update-component command. '
-                    . 'Run with --no-update-component to skip this.'
+                    'Application does not have an component:update:gencode command. '
+                    . 'Run with --no-update to skip this.'
                 );
             }
-            $updateCommand = $this->getApplication()->find('update-component');
+            $updateCommand = $this->getApplication()->find('component:update:gencode');
             $returnCode = $updateCommand->run(new ArrayInput($args), $output);
             if ($returnCode !== Command::SUCCESS) {
                 return $returnCode;
             }
-            $updateReadmeSampleArgs = ['--component' => [$new->componentName]];
-            $updateReadmeSampleCommand = $this->getApplication()->find('update-readme-sample');
-            $returnCode = $updateReadmeSampleCommand->run(new ArrayInput($updateReadmeSampleArgs), $output);
+            if (!$this->getApplication()->has('component:update:readme-sample')) {
+                throw new \RuntimeException(
+                    'Application does not have an component:update:readme-sample command. '
+                    . 'Run with --no-update to skip this.'
+                );
+            }
+            $updateReadmeSampleCommand = $this->getApplication()->find('component:update:readme-sample');
+            $returnCode = $updateReadmeSampleCommand->run(
+                new ArrayInput(['--component' => [$new->componentName]]),
+                $output
+            );
             if ($returnCode !== Command::SUCCESS) {
                 return $returnCode;
             }

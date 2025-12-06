@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\Command\UpdateComponentCommand;
+use Google\Cloud\Dev\Command\ComponentUpdateGencodeCommand;
 use Google\Cloud\Dev\RunProcess;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -28,7 +28,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * @group dev
  */
-class UpdateComponentCommandTest extends TestCase
+class ComponentUpdateGencodeCommandTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -55,8 +55,8 @@ class UpdateComponentCommandTest extends TestCase
             ],
         ]));
         $application = new Application();
-        $application->add(new UpdateComponentCommand(self::$tmpDir));
-        self::$commandTester = new CommandTester($application->get('update-component'));
+        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir));
+        self::$commandTester = new CommandTester($application->get('component:update:gencode'));
     }
 
     public static function tearDownAfterClass(): void
@@ -76,8 +76,8 @@ class UpdateComponentCommandTest extends TestCase
 
         $googleapisGenPath = '/path/to/googleapis-gen';
         $application = new Application();
-        $application->add(new UpdateComponentCommand(self::$tmpDir));
-        $commandTester = new CommandTester($application->get('update-component'));
+        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir));
+        $commandTester = new CommandTester($application->get('component:update:gencode'));
 
         $commandTester->execute([
             'component' => self::COMPONENT_NAME,
@@ -96,8 +96,8 @@ class UpdateComponentCommandTest extends TestCase
             ->willReturn('');
 
         $application = new Application();
-        $application->add(new UpdateComponentCommand(self::$tmpDir, $runProcess->reveal()));
-        $commandTester = new CommandTester($application->get('update-component'));
+        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir, $runProcess->reveal()));
+        $commandTester = new CommandTester($application->get('component:update:gencode'));
 
         $commandTester->execute([
             'component' => self::COMPONENT_NAME,
@@ -116,8 +116,8 @@ class UpdateComponentCommandTest extends TestCase
             ->willReturn('/path/to/docker');
 
         $application = new Application();
-        $application->add(new UpdateComponentCommand(self::$tmpDir, $runProcess->reveal()));
-        $commandTester = new CommandTester($application->get('update-component'));
+        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir, $runProcess->reveal()));
+        $commandTester = new CommandTester($application->get('component:update:gencode'));
 
         $commandTester->execute([
             'component' => 'NonExistantComponent',
@@ -185,9 +185,9 @@ class UpdateComponentCommandTest extends TestCase
             ->willReturn('');
 
         $application = new Application();
-        $application->add(new UpdateComponentCommand(self::$tmpDir, $runProcess->reveal()));
+        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir, $runProcess->reveal()));
 
-        $commandTester = new CommandTester($application->get('update-component'));
+        $commandTester = new CommandTester($application->get('component:update:gencode'));
 
         $commandTester->execute([
             'component' => self::COMPONENT_NAME,
@@ -206,9 +206,9 @@ class UpdateComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
 
         $application = new Application();
-        $application->add(new UpdateComponentCommand(self::$tmpDir));
+        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir));
 
-        $commandTester = new CommandTester($application->get('update-component'));
+        $commandTester = new CommandTester($application->get('component:update:gencode'));
         $commandTester->setInputs([
             'Y' // Does this information look correct? [Y/n]
         ]);

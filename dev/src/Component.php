@@ -37,6 +37,7 @@ class Component
     private string $clientDocumentation;
     private string $libraryType;
     private string $description;
+    private string|null $composerVersion;
     private array $namespaces;
     /** @var array<Component> */
     private array $componentDependencies;
@@ -185,6 +186,7 @@ class Component
 
         $this->packageName = $composerJson['name'];
         $this->description = $composerJson['description'];
+        $this->composerVersion = $composerJson['version'] ?? null;
 
         if (!$repoName = $composerJson['extra']['component']['target'] ?? null) {
             if (!str_starts_with($composerJson['homepage'], 'https://github.com/')) {
@@ -267,6 +269,14 @@ class Component
     public function getPackageVersion(): string
     {
         return trim(file_get_contents(sprintf('%s/VERSION', $this->path)));
+    }
+
+    /**
+     * Get the contents of the "version" field from the component's composer.json
+     */
+    public function getComposerVersion(): string|null
+    {
+        return $this->composerVersion;
     }
 
     public function getComponentPackages(): array
