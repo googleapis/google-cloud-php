@@ -81,7 +81,7 @@ class Tool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Tool to support URL context retrieval.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $url_context = null;
     /**
@@ -419,7 +419,7 @@ class Tool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Tool to support URL context retrieval.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\UrlContext|null
      */
     public function getUrlContext()
@@ -440,7 +440,7 @@ class Tool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Tool to support URL context retrieval.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UrlContext url_context = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\UrlContext $var
      * @return $this
      */

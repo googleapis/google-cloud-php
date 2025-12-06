@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\SetLabelsGlobalForwardingRuleRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the labels on the specified resource. To learn more about labels, read the Labeling resources documentation.
+ * Sets the labels on the specified resource. To learn more about labels,
+ * read the
+ * Labeling resources documentation.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

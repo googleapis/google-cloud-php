@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\PatchInterconnectAttachmentGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Patches the specified InterconnectAttachmentGroup resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+ * Patches the specified InterconnectAttachmentGroup resource with the data
+ * included in the request. This method supports PATCH
+ * semantics and usesJSON merge
+ * patch format and processing rules.
  *
  * @param string $interconnectAttachmentGroup Name of the InterconnectAttachmentGroup resource to patch.
  * @param string $project                     Project ID for this request.

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\ForwardingRulesClient;
 use Google\Cloud\Compute\V1\ListForwardingRulesRequest;
 
 /**
- * Retrieves a list of ForwardingRule resources available to the specified project and region.
+ * Retrieves a list of ForwardingRule resources available to the specified
+ * project and region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

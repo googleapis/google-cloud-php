@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RoutersPreviewResponse;
 
 /**
- * Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
+ * Preview fields auto-generated during router create andupdate operations.
+ * Calling this method does NOT create or update the router.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

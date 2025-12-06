@@ -9,14 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Region resource. A region is a geographical area where a resource is located. For more information, read Regions and Zones.
+ * Represents a Region resource.
+ * A region is a geographical area where a resource is located. For more
+ * information, readRegions
+ * and Zones.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Region</code>
  */
 class Region extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -34,13 +38,15 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#region for regions.
+     * [Output Only] Type of the resource. Always compute#region for
+     * regions.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -52,7 +58,8 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Warning of fetching the `quotas` field for this region. This field is populated only if fetching of the `quotas` field fails.
+     * [Output Only] Warning of fetching the `quotas` field for this region. This
+     * field is populated only if fetching of the `quotas` field fails.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaStatusWarning quota_status_warning = 302941430;</code>
      */
@@ -70,7 +77,7 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Status of the region, either UP or DOWN.
+     * [Output Only] Status of the region, either UP orDOWN.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -83,7 +90,8 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     protected $supports_pzs = null;
     /**
-     * [Output Only] A list of zones available in this region, in the form of resource URLs.
+     * [Output Only] A list of zones available in this region, in the form of
+     * resource URLs.
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
      */
@@ -96,30 +104,35 @@ class Region extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
      *           [Output Only] The deprecation status associated with this region.
      *     @type string $description
      *           [Output Only] Textual description of the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#region for regions.
+     *           [Output Only] Type of the resource. Always compute#region for
+     *           regions.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type \Google\Cloud\Compute\V1\QuotaStatusWarning $quota_status_warning
-     *           [Output Only] Warning of fetching the `quotas` field for this region. This field is populated only if fetching of the `quotas` field fails.
+     *           [Output Only] Warning of fetching the `quotas` field for this region. This
+     *           field is populated only if fetching of the `quotas` field fails.
      *     @type array<\Google\Cloud\Compute\V1\Quota>|\Google\Protobuf\Internal\RepeatedField $quotas
      *           [Output Only] Quotas assigned to this region.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $status
-     *           [Output Only] Status of the region, either UP or DOWN.
+     *           [Output Only] Status of the region, either UP orDOWN.
      *           Check the Status enum for the list of possible values.
      *     @type bool $supports_pzs
      *           [Output Only] Reserved for future use.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
-     *           [Output Only] A list of zones available in this region, in the form of resource URLs.
+     *           [Output Only] A list of zones available in this region, in the form of
+     *           resource URLs.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,7 +141,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -149,7 +163,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -236,7 +251,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -257,7 +273,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -272,7 +289,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#region for regions.
+     * [Output Only] Type of the resource. Always compute#region for
+     * regions.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -293,7 +311,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#region for regions.
+     * [Output Only] Type of the resource. Always compute#region for
+     * regions.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -344,7 +363,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Warning of fetching the `quotas` field for this region. This field is populated only if fetching of the `quotas` field fails.
+     * [Output Only] Warning of fetching the `quotas` field for this region. This
+     * field is populated only if fetching of the `quotas` field fails.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaStatusWarning quota_status_warning = 302941430;</code>
      * @return \Google\Cloud\Compute\V1\QuotaStatusWarning|null
@@ -365,7 +385,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Warning of fetching the `quotas` field for this region. This field is populated only if fetching of the `quotas` field fails.
+     * [Output Only] Warning of fetching the `quotas` field for this region. This
+     * field is populated only if fetching of the `quotas` field fails.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaStatusWarning quota_status_warning = 302941430;</code>
      * @param \Google\Cloud\Compute\V1\QuotaStatusWarning $var
@@ -442,7 +463,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the region, either UP or DOWN.
+     * [Output Only] Status of the region, either UP orDOWN.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -464,7 +485,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the region, either UP or DOWN.
+     * [Output Only] Status of the region, either UP orDOWN.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -516,7 +537,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of zones available in this region, in the form of resource URLs.
+     * [Output Only] A list of zones available in this region, in the form of
+     * resource URLs.
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -527,7 +549,8 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of zones available in this region, in the form of resource URLs.
+     * [Output Only] A list of zones available in this region, in the form of
+     * resource URLs.
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

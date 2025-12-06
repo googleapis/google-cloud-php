@@ -270,7 +270,10 @@ final class TargetVpnGatewaysClient
     }
 
     /**
-     * Retrieves an aggregated list of target VPN gateways. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of target VPN gateways.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see TargetVpnGatewaysClient::aggregatedListAsync()} .
      *
@@ -350,7 +353,8 @@ final class TargetVpnGatewaysClient
     }
 
     /**
-     * Creates a target VPN gateway in the specified project and region using the data included in the request.
+     * Creates a target VPN gateway in the specified project and region using
+     * the data included in the request.
      *
      * The async variant is {@see TargetVpnGatewaysClient::insertAsync()} .
      *
@@ -376,7 +380,8 @@ final class TargetVpnGatewaysClient
     }
 
     /**
-     * Retrieves a list of target VPN gateways available to the specified project and region.
+     * Retrieves a list of target VPN gateways available to the specified
+     * project and region.
      *
      * The async variant is {@see TargetVpnGatewaysClient::listAsync()} .
      *
@@ -402,7 +407,8 @@ final class TargetVpnGatewaysClient
     }
 
     /**
-     * Sets the labels on a TargetVpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a TargetVpnGateway. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see TargetVpnGatewaysClient::setLabelsAsync()} .
      *

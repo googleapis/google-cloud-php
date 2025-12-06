@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] The facilities used for this group's Attachments' Interconnects.
+ * [Output Only] The facilities used for this group's Attachments'
+ * Interconnects.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegionMetroFacility</code>
  */

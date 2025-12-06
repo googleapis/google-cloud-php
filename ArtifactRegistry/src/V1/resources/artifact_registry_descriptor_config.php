@@ -175,6 +175,25 @@ return [
                     ],
                 ],
             ],
+            'ExportArtifact' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1\ExportArtifactResponse',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1\ExportArtifactMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'repository',
+                        'fieldAccessors' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
             'ImportAptArtifacts' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsResponse',

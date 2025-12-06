@@ -497,7 +497,8 @@ final class RegionNetworkFirewallPoliciesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::getIamPolicyAsync()} .
@@ -583,7 +584,8 @@ final class RegionNetworkFirewallPoliciesClient
     }
 
     /**
-     * Lists all the network firewall policies that have been configured for the specified project in the given region.
+     * Lists all the network firewall policies that have been configured
+     * for the specified project in the given region.
      *
      * The async variant is {@see RegionNetworkFirewallPoliciesClient::listAsync()} .
      *
@@ -722,7 +724,8 @@ final class RegionNetworkFirewallPoliciesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is
      * {@see RegionNetworkFirewallPoliciesClient::setIamPolicyAsync()} .

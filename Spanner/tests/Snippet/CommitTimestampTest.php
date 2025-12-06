@@ -59,6 +59,8 @@ class CommitTimestampTest extends SnippetTestCase
 
         $this->spannerClient->addMiddleware(Argument::type('callable'))
             ->shouldBeCalledOnce();
+        $this->spannerClient->prependMiddleware(Argument::type('callable'))
+            ->shouldBeCalledOnce();
 
         // ensure cache hit
         $cacheItem = $this->prophesize(CacheItemInterface::class);

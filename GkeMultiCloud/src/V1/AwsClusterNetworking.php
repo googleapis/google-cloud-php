@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Anthos clusters on AWS run on a single VPC. This includes control
  * plane replicas and node pool nodes.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsClusterNetworking</code>
  */
 class AwsClusterNetworking extends \Google\Protobuf\Internal\Message

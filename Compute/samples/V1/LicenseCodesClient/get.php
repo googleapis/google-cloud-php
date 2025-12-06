@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\GetLicenseCodeRequest;
 use Google\Cloud\Compute\V1\LicenseCode;
 
 /**
- * Return a specified license code. License codes are mirrored across all projects that have permissions to read the License Code. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Return a specified license code. License codes are mirrored across
+ * all projects that have permissions to read the License Code.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $licenseCode Number corresponding to the License code resource to return.
  * @param string $project     Project ID for this request.

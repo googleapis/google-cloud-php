@@ -9,14 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Resource Policy resource. You can use resource policies to schedule actions for some Compute Engine resources. For example, you can use them to schedule persistent disk snapshots.
+ * Represents a Resource Policy resource. You can use resource policies to
+ * schedule actions for some Compute Engine resources. For example, you can
+ * use them toschedule persistent disk
+ * snapshots.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicy</code>
  */
 class ResourcePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -38,7 +42,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     protected $group_placement_policy = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
@@ -50,13 +55,20 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     protected $instance_schedule_policy = null;
     /**
-     * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
+     * [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -104,20 +116,29 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyDiskConsistencyGroupPolicy $disk_consistency_group_policy
      *           Resource policy for disk consistency groups.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyGroupPlacementPolicy $group_placement_policy
      *           Resource policy for instances for placement configuration.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy $instance_schedule_policy
      *           Resource policy for scheduling instance operations.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
+     *           [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *     @type string $name
-     *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           The name of the resource, provided by the client when initially creating
+     *           the resource. The resource name must be 1-63 characters long, and comply
+     *           withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must be
+     *           a dash, lowercase letter, or digit, except the last character, which cannot
+     *           be a dash.
      *     @type string $region
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus $resource_status
      *           [Output Only] The system status of the resource policy.
@@ -138,7 +159,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -159,7 +181,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -278,7 +301,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -299,7 +323,8 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -350,7 +375,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
+     * [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -371,7 +396,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
+     * [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -386,7 +411,14 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -407,7 +439,14 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * The name of the resource, provided by the client when initially creating
+     * the resource. The resource name must be 1-63 characters long, and comply
+     * withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must be
+     * a dash, lowercase letter, or digit, except the last character, which cannot
+     * be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

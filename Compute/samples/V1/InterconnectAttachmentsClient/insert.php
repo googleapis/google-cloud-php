@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InterconnectAttachment;
 use Google\Rpc\Status;
 
 /**
- * Creates an InterconnectAttachment in the specified project using the data included in the request.
+ * Creates an InterconnectAttachment in the specified project using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

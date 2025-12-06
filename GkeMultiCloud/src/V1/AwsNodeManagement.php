@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * AwsNodeManagement defines the set of node management features turned on for
  * an AWS node pool.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsNodeManagement</code>
  */
 class AwsNodeManagement extends \Google\Protobuf\Internal\Message

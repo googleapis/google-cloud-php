@@ -32,7 +32,8 @@ use Google\Rpc\Status;
 /**
  * Deletes the specified regional HealthCheckService.
  *
- * @param string $healthCheckService Name of the HealthCheckService to delete. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $healthCheckService Name of the HealthCheckService to delete. The name
+ *                                   must be 1-63 characters long, and comply with RFC1035.
  * @param string $project            Project ID for this request.
  * @param string $region             Name of the region scoping this request.
  */

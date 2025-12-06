@@ -7,7 +7,15 @@ namespace Google\Cloud\Compute\V1\Backend;
 use UnexpectedValueException;
 
 /**
- * This field indicates whether this backend should be fully utilized before sending traffic to backends with default preference. The possible values are: - PREFERRED: Backends with this preference level will be filled up to their capacity limits first, based on RTT. - DEFAULT: If preferred backends don't have enough capacity, backends in this layer would be used and traffic would be assigned based on the load balancing algorithm you use. This is the default 
+ * This field indicates whether this backend should be fully utilized before
+ * sending traffic to backends with default preference. The possible values
+ * are:
+ *    - PREFERRED: Backends with this preference level will be
+ *    filled up to their capacity limits first, based on RTT.
+ *    - DEFAULT:  If preferred backends don't have enough
+ *    capacity, backends in this layer would be used and traffic would be
+ *    assigned based on the load balancing algorithm you use. This is the
+ *    default
  *
  * Protobuf type <code>google.cloud.compute.v1.Backend.Preference</code>
  */

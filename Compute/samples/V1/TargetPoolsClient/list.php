@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\TargetPoolsClient;
 use Google\Cloud\Compute\V1\ListTargetPoolsRequest;
 
 /**
- * Retrieves a list of target pools available to the specified project and region.
+ * Retrieves a list of target pools available to the specified
+ * project and region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

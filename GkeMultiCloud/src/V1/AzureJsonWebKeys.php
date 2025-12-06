@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * AzureJsonWebKeys is a valid JSON Web Key Set as specififed in RFC 7517.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureJsonWebKeys</code>
  */
 class AzureJsonWebKeys extends \Google\Protobuf\Internal\Message

@@ -31,11 +31,16 @@ use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a new resize request that starts provisioning VMs immediately or queues VM creation.
+ * Creates a new resize request that starts provisioning VMs immediately
+ * or queues VM creation.
  *
- * @param string $instanceGroupManager The name of the managed instance group to which the resize request will be added. Name should conform to RFC1035 or be a resource ID.
+ * @param string $instanceGroupManager The name of the managed instance group to which the resize request will
+ *                                     be added.
+ *                                     Name should conform to RFC1035 or be a resource ID.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located and where the resize request will be created. Name should conform to RFC1035.
+ * @param string $zone                 The name of thezone where the managed
+ *                                     instance group is located and where the resize request will be created.
+ *                                     Name should conform to RFC1035.
  */
 function insert_sample(string $instanceGroupManager, string $project, string $zone): void
 {

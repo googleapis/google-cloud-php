@@ -21,7 +21,18 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
      */
     private $as_lists;
     /**
-     * [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed
+     * [Output Only] The type of the AS Path, which can be one of the following
+     * values:
+     * - 'AS_SET': unordered set of autonomous systems that the route
+     * in has traversed
+     * - 'AS_SEQUENCE': ordered set of autonomous
+     * systems that the route has traversed
+     * - 'AS_CONFED_SEQUENCE':
+     * ordered set of Member Autonomous Systems in the local confederation that
+     * the route has traversed
+     * - 'AS_CONFED_SET': unordered set of
+     * Member Autonomous Systems in the local confederation that the route has
+     * traversed
      * Check the PathSegmentType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string path_segment_type = 513464992;</code>
@@ -37,7 +48,18 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $as_lists
      *           [Output Only] The AS numbers of the AS Path.
      *     @type string $path_segment_type
-     *           [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed
+     *           [Output Only] The type of the AS Path, which can be one of the following
+     *           values:
+     *           - 'AS_SET': unordered set of autonomous systems that the route
+     *           in has traversed
+     *           - 'AS_SEQUENCE': ordered set of autonomous
+     *           systems that the route has traversed
+     *           - 'AS_CONFED_SEQUENCE':
+     *           ordered set of Member Autonomous Systems in the local confederation that
+     *           the route has traversed
+     *           - 'AS_CONFED_SET': unordered set of
+     *           Member Autonomous Systems in the local confederation that the route has
+     *           traversed
      *           Check the PathSegmentType enum for the list of possible values.
      * }
      */
@@ -73,7 +95,18 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed
+     * [Output Only] The type of the AS Path, which can be one of the following
+     * values:
+     * - 'AS_SET': unordered set of autonomous systems that the route
+     * in has traversed
+     * - 'AS_SEQUENCE': ordered set of autonomous
+     * systems that the route has traversed
+     * - 'AS_CONFED_SEQUENCE':
+     * ordered set of Member Autonomous Systems in the local confederation that
+     * the route has traversed
+     * - 'AS_CONFED_SET': unordered set of
+     * Member Autonomous Systems in the local confederation that the route has
+     * traversed
      * Check the PathSegmentType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string path_segment_type = 513464992;</code>
@@ -95,7 +128,18 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed
+     * [Output Only] The type of the AS Path, which can be one of the following
+     * values:
+     * - 'AS_SET': unordered set of autonomous systems that the route
+     * in has traversed
+     * - 'AS_SEQUENCE': ordered set of autonomous
+     * systems that the route has traversed
+     * - 'AS_CONFED_SEQUENCE':
+     * ordered set of Member Autonomous Systems in the local confederation that
+     * the route has traversed
+     * - 'AS_CONFED_SET': unordered set of
+     * Member Autonomous Systems in the local confederation that the route has
+     * traversed
      * Check the PathSegmentType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string path_segment_type = 513464992;</code>

@@ -16,13 +16,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class AddAssociationOrganizationSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
+     * Indicates whether or not to replace it if an association of the attachment
+     * already exists. This is false by default, in which case an error will be
+     * returned if an association already exists.
      *
      * Generated from protobuf field <code>optional bool replace_existing_association = 209541240;</code>
      */
     protected $replace_existing_association = null;
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -62,9 +74,21 @@ class AddAssociationOrganizationSecurityPolicyRequest extends \Google\Protobuf\I
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $replace_existing_association
-     *           Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
+     *           Indicates whether or not to replace it if an association of the attachment
+     *           already exists. This is false by default, in which case an error will be
+     *           returned if an association already exists.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      *     @type string $security_policy
      *           Name of the security policy to update.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyAssociation $security_policy_association_resource
@@ -77,7 +101,9 @@ class AddAssociationOrganizationSecurityPolicyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
+     * Indicates whether or not to replace it if an association of the attachment
+     * already exists. This is false by default, in which case an error will be
+     * returned if an association already exists.
      *
      * Generated from protobuf field <code>optional bool replace_existing_association = 209541240;</code>
      * @return bool
@@ -98,7 +124,9 @@ class AddAssociationOrganizationSecurityPolicyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
+     * Indicates whether or not to replace it if an association of the attachment
+     * already exists. This is false by default, in which case an error will be
+     * returned if an association already exists.
      *
      * Generated from protobuf field <code>optional bool replace_existing_association = 209541240;</code>
      * @param bool $var
@@ -113,7 +141,17 @@ class AddAssociationOrganizationSecurityPolicyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -134,7 +172,17 @@ class AddAssociationOrganizationSecurityPolicyRequest extends \Google\Protobuf\I
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

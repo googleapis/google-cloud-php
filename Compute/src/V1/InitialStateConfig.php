@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Initial State for shielded instance, these are public keys which are safe to store in public
+ * Initial State for shielded instance,
+ * these are public keys which are safe to store in public
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InitialStateConfig</code>
  */

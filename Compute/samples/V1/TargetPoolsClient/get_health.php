@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\InstanceReference;
 use Google\Cloud\Compute\V1\TargetPoolInstanceHealth;
 
 /**
- * Gets the most recent health check results for each IP for the instance that is referenced by the given target pool.
+ * Gets the most recent health check results for each IP for the
+ * instance that is referenced by the given target pool.
  *
  * @param string $project    Project ID for this request.
  * @param string $region     Name of the region scoping this request.

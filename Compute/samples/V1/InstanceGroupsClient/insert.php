@@ -31,10 +31,12 @@ use Google\Cloud\Compute\V1\InstanceGroup;
 use Google\Rpc\Status;
 
 /**
- * Creates an instance group in the specified project using the parameters that are included in the request.
+ * Creates an instance group in the specified project using the
+ * parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone where you want to create the instance group.
+ * @param string $zone    The name of the zone
+ *                        where you want to create the instance group.
  */
 function insert_sample(string $project, string $zone): void
 {

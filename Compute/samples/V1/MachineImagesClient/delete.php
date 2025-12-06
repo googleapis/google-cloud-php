@@ -30,7 +30,8 @@ use Google\Cloud\Compute\V1\DeleteMachineImageRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified machine image. Deleting a machine image is permanent and cannot be undone.
+ * Deletes the specified machine image. Deleting a machine image is permanent
+ * and cannot be undone.
  *
  * @param string $machineImage The name of the machine image to delete.
  * @param string $project      Project ID for this request.

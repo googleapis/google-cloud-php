@@ -313,6 +313,7 @@ class ReservationsClientTest extends GeneratedTest
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $protectionTier = 'protectionTier2114572168';
         $satisfiesPzs = false;
         $schedulingType = 'schedulingType199835397';
         $selfLink = 'selfLink-1691268851';
@@ -329,6 +330,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setProtectionTier($protectionTier);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSchedulingType($schedulingType);
         $expectedResponse->setSelfLink($selfLink);

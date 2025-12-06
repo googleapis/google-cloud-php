@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [CloudChannelService.ChangeParametersRequest][].
+ * Request message for
+ * [CloudChannelService.ChangeParameters][google.cloud.channel.v1.CloudChannelService.ChangeParameters].
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.ChangeParametersRequest</code>
  */

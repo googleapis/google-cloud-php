@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetIamPolicyMachineImageRequest;
 use Google\Cloud\Compute\V1\Policy;
 
 /**
- * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+ * Gets the access control policy for a resource. May be empty if no such
+ * policy or resource exists.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

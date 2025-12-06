@@ -30,9 +30,11 @@ use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a key for validating requests with signed URLs for this backend service.
+ * Deletes a key for validating requests with signed URLs for this backend
+ * service.
  *
- * @param string $backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+ * @param string $backendService Name of the BackendService resource to which the Signed URL Key should be
+ *                               added. The name should conform to RFC1035.
  * @param string $keyName        The name of the Signed URL Key to delete.
  * @param string $project        Project ID for this request.
  */

@@ -59,6 +59,12 @@ class Region extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue shipping_eligible = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $shipping_eligible = null;
+    /**
+     * Optional. A radius area that defines the region area.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.Region.RadiusArea radius_area = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $radius_area = null;
 
     /**
      * Constructor.
@@ -81,6 +87,8 @@ class Region extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\BoolValue $shipping_eligible
      *           Output only. Indicates if the region is eligible for use in the Shipping
      *           Services configuration.
+     *     @type \Google\Shopping\Merchant\Accounts\V1\Region\RadiusArea $radius_area
+     *           Optional. A radius area that defines the region area.
      * }
      */
     public function __construct($data = NULL) {
@@ -357,6 +365,42 @@ class Region extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("shipping_eligible", $var);
         return $this;}
+
+    /**
+     * Optional. A radius area that defines the region area.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.Region.RadiusArea radius_area = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1\Region\RadiusArea|null
+     */
+    public function getRadiusArea()
+    {
+        return $this->radius_area;
+    }
+
+    public function hasRadiusArea()
+    {
+        return isset($this->radius_area);
+    }
+
+    public function clearRadiusArea()
+    {
+        unset($this->radius_area);
+    }
+
+    /**
+     * Optional. A radius area that defines the region area.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.Region.RadiusArea radius_area = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1\Region\RadiusArea $var
+     * @return $this
+     */
+    public function setRadiusArea($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\Region\RadiusArea::class);
+        $this->radius_area = $var;
+
+        return $this;
+    }
 
 }
 

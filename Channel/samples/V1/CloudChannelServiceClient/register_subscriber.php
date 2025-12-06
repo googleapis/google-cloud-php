@@ -29,8 +29,8 @@ use Google\Cloud\Channel\V1\RegisterSubscriberRequest;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 
 /**
- * Registers a service account with subscriber privileges on the Cloud Pub/Sub
- * topic for this Channel Services account. After you create a
+ * Registers a service account with subscriber privileges on the Pub/Sub
+ * topic for this Channel Services account or integrator. After you create a
  * subscriber, you get the events through
  * [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
  *
@@ -48,18 +48,16 @@ use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
  * Return value:
  * The topic name with the registered service email address.
  *
- * @param string $account        Resource name of the account.
  * @param string $serviceAccount Service account that provides subscriber access to the registered
  *                               topic.
  */
-function register_subscriber_sample(string $account, string $serviceAccount): void
+function register_subscriber_sample(string $serviceAccount): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
     $request = (new RegisterSubscriberRequest())
-        ->setAccount($account)
         ->setServiceAccount($serviceAccount);
 
     // Call the API and handle any network failures.
@@ -83,9 +81,8 @@ function register_subscriber_sample(string $account, string $serviceAccount): vo
  */
 function callSample(): void
 {
-    $account = '[ACCOUNT]';
     $serviceAccount = '[SERVICE_ACCOUNT]';
 
-    register_subscriber_sample($account, $serviceAccount);
+    register_subscriber_sample($serviceAccount);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_RegisterSubscriber_sync]

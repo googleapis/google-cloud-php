@@ -7,7 +7,12 @@ namespace Google\Cloud\Compute\V1\PreservedStatePreservedDisk;
 use UnexpectedValueException;
 
 /**
- * These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+ * These stateful disks will never be deleted during autohealing,
+ * update, instance recreate operations. This flag is used to configure
+ * if the disk should be deleted after it is no longer used by the group,
+ * e.g. when the given instance or the whole MIG is deleted.
+ * Note: disks attached in READ_ONLY mode cannot be
+ * auto-deleted.
  *
  * Protobuf type <code>google.cloud.compute.v1.PreservedStatePreservedDisk.AutoDelete</code>
  */

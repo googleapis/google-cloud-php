@@ -20,7 +20,8 @@ class ProvisioningModel
      */
     const UNDEFINED_PROVISIONING_MODEL = 0;
     /**
-     * Instance is provisioned using the Flex Start provisioning model and has a limited runtime.
+     * Instance is provisioned using the Flex Start provisioning model and
+     * has a limited runtime.
      *
      * Generated from protobuf enum <code>FLEX_START = 101746812;</code>
      */

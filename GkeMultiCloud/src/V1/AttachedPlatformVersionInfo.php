@@ -21,6 +21,36 @@ class AttachedPlatformVersionInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string version = 1;</code>
      */
     protected $version = '';
+    /**
+     * Optional. True if the version is available for attachedcluster creation. If
+     * a version is enabled, it can be used to attach new clusters.
+     *
+     * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enabled = false;
+    /**
+     * Optional. True if this cluster version belongs to a minor version that has
+     * reached its end of life and is no longer in scope to receive security and
+     * bug fixes.
+     *
+     * Generated from protobuf field <code>bool end_of_life = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $end_of_life = false;
+    /**
+     * Optional. The estimated date (in Pacific Time) when this cluster version
+     * will reach its end of life. Or if this version is no longer supported (the
+     * `end_of_life` field is true), this is the actual date (in Pacific time)
+     * when the version reached its end of life.
+     *
+     * Generated from protobuf field <code>.google.type.Date end_of_life_date = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $end_of_life_date = null;
+    /**
+     * Optional. The date (in Pacific Time) when the cluster version was released.
+     *
+     * Generated from protobuf field <code>.google.type.Date release_date = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $release_date = null;
 
     /**
      * Constructor.
@@ -30,6 +60,20 @@ class AttachedPlatformVersionInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type string $version
      *           Platform version name.
+     *     @type bool $enabled
+     *           Optional. True if the version is available for attachedcluster creation. If
+     *           a version is enabled, it can be used to attach new clusters.
+     *     @type bool $end_of_life
+     *           Optional. True if this cluster version belongs to a minor version that has
+     *           reached its end of life and is no longer in scope to receive security and
+     *           bug fixes.
+     *     @type \Google\Type\Date $end_of_life_date
+     *           Optional. The estimated date (in Pacific Time) when this cluster version
+     *           will reach its end of life. Or if this version is no longer supported (the
+     *           `end_of_life` field is true), this is the actual date (in Pacific time)
+     *           when the version reached its end of life.
+     *     @type \Google\Type\Date $release_date
+     *           Optional. The date (in Pacific Time) when the cluster version was released.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +103,142 @@ class AttachedPlatformVersionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True if the version is available for attachedcluster creation. If
+     * a version is enabled, it can be used to attach new clusters.
+     *
+     * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Optional. True if the version is available for attachedcluster creation. If
+     * a version is enabled, it can be used to attach new clusters.
+     *
+     * Generated from protobuf field <code>bool enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True if this cluster version belongs to a minor version that has
+     * reached its end of life and is no longer in scope to receive security and
+     * bug fixes.
+     *
+     * Generated from protobuf field <code>bool end_of_life = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEndOfLife()
+    {
+        return $this->end_of_life;
+    }
+
+    /**
+     * Optional. True if this cluster version belongs to a minor version that has
+     * reached its end of life and is no longer in scope to receive security and
+     * bug fixes.
+     *
+     * Generated from protobuf field <code>bool end_of_life = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEndOfLife($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->end_of_life = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The estimated date (in Pacific Time) when this cluster version
+     * will reach its end of life. Or if this version is no longer supported (the
+     * `end_of_life` field is true), this is the actual date (in Pacific time)
+     * when the version reached its end of life.
+     *
+     * Generated from protobuf field <code>.google.type.Date end_of_life_date = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Type\Date|null
+     */
+    public function getEndOfLifeDate()
+    {
+        return $this->end_of_life_date;
+    }
+
+    public function hasEndOfLifeDate()
+    {
+        return isset($this->end_of_life_date);
+    }
+
+    public function clearEndOfLifeDate()
+    {
+        unset($this->end_of_life_date);
+    }
+
+    /**
+     * Optional. The estimated date (in Pacific Time) when this cluster version
+     * will reach its end of life. Or if this version is no longer supported (the
+     * `end_of_life` field is true), this is the actual date (in Pacific time)
+     * when the version reached its end of life.
+     *
+     * Generated from protobuf field <code>.google.type.Date end_of_life_date = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Type\Date $var
+     * @return $this
+     */
+    public function setEndOfLifeDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Date::class);
+        $this->end_of_life_date = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The date (in Pacific Time) when the cluster version was released.
+     *
+     * Generated from protobuf field <code>.google.type.Date release_date = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Type\Date|null
+     */
+    public function getReleaseDate()
+    {
+        return $this->release_date;
+    }
+
+    public function hasReleaseDate()
+    {
+        return isset($this->release_date);
+    }
+
+    public function clearReleaseDate()
+    {
+        unset($this->release_date);
+    }
+
+    /**
+     * Optional. The date (in Pacific Time) when the cluster version was released.
+     *
+     * Generated from protobuf field <code>.google.type.Date release_date = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Type\Date $var
+     * @return $this
+     */
+    public function setReleaseDate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Date::class);
+        $this->release_date = $var;
 
         return $this;
     }

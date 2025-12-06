@@ -9,14 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a License Code resource. A License Code is a unique identifier used to represent a license resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images. 
+ * Represents a License Code resource.
+ * A License Code is a unique identifier used to represent alicense
+ * resource.
+ *  *Caution* This resource is intended for
+ * use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LicenseCode</code>
  */
 class LicenseCode extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -28,25 +34,29 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of resource. Always compute#licenseCode for licenses.
+     * [Output Only] Type of resource. Always compute#licenseCode for
+     * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] URL and description aliases of Licenses with the same License Code.
+     * [Output Only] URL and description aliases of Licenses with the same
+     * License Code.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LicenseCodeLicenseAlias license_alias = 43550930;</code>
      */
     private $license_alias;
     /**
-     * [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
+     * [Output Only] Name of the resource. The name is 1-20 characters long and
+     * must be a valid 64 bit integer.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -65,7 +75,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      */
     protected $state = null;
     /**
-     * [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
+     * [Output Only] If true, the license will remain attached when creating
+     * images or snapshots from disks. Otherwise, the license is not transferred.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      */
@@ -78,24 +89,30 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
      *           [Output Only] Description of this License Code.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#licenseCode for licenses.
+     *           [Output Only] Type of resource. Always compute#licenseCode for
+     *           licenses.
      *     @type array<\Google\Cloud\Compute\V1\LicenseCodeLicenseAlias>|\Google\Protobuf\Internal\RepeatedField $license_alias
-     *           [Output Only] URL and description aliases of Licenses with the same License Code.
+     *           [Output Only] URL and description aliases of Licenses with the same
+     *           License Code.
      *     @type string $name
-     *           [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
+     *           [Output Only] Name of the resource. The name is 1-20 characters long and
+     *           must be a valid 64 bit integer.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $state
      *           [Output Only] Current state of this License Code.
      *           Check the State enum for the list of possible values.
      *     @type bool $transferable
-     *           [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
+     *           [Output Only] If true, the license will remain attached when creating
+     *           images or snapshots from disks. Otherwise, the license is not transferred.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +121,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -125,7 +143,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -176,7 +195,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -197,7 +217,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -212,7 +233,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#licenseCode for licenses.
+     * [Output Only] Type of resource. Always compute#licenseCode for
+     * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -233,7 +255,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#licenseCode for licenses.
+     * [Output Only] Type of resource. Always compute#licenseCode for
+     * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -248,7 +271,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL and description aliases of Licenses with the same License Code.
+     * [Output Only] URL and description aliases of Licenses with the same
+     * License Code.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LicenseCodeLicenseAlias license_alias = 43550930;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -259,7 +283,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL and description aliases of Licenses with the same License Code.
+     * [Output Only] URL and description aliases of Licenses with the same
+     * License Code.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LicenseCodeLicenseAlias license_alias = 43550930;</code>
      * @param array<\Google\Cloud\Compute\V1\LicenseCodeLicenseAlias>|\Google\Protobuf\Internal\RepeatedField $var
@@ -274,7 +299,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
+     * [Output Only] Name of the resource. The name is 1-20 characters long and
+     * must be a valid 64 bit integer.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -295,7 +321,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
+     * [Output Only] Name of the resource. The name is 1-20 characters long and
+     * must be a valid 64 bit integer.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -384,7 +411,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
+     * [Output Only] If true, the license will remain attached when creating
+     * images or snapshots from disks. Otherwise, the license is not transferred.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @return bool
@@ -405,7 +433,8 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
+     * [Output Only] If true, the license will remain attached when creating
+     * images or snapshots from disks. Otherwise, the license is not transferred.
      *
      * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @param bool $var

@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Configuration related to CloudWatch metrics collection in an AWS
  * Auto Scaling group.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsAutoscalingGroupMetricsCollection</code>
  */
 class AwsAutoscalingGroupMetricsCollection extends \Google\Protobuf\Internal\Message

@@ -9,20 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A VPN connection contains all VPN tunnels connected from this VpnGateway to the same peer gateway. The peer gateway could either be an external VPN gateway or a Google Cloud VPN gateway.
+ * A VPN connection contains all VPN tunnels connected from this VpnGateway
+ * to the same peer gateway. The peer gateway could either be an external VPN
+ * gateway or a Google Cloud VPN gateway.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.VpnGatewayStatusVpnConnection</code>
  */
 class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     * URL reference to the peer external VPN gateways to which the VPN tunnels
+     * in this VPN connection are connected.
+     * This field is mutually exclusive with peer_gcp_gateway.
      *
      * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      */
     protected $peer_external_gateway = null;
     /**
-     * URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     * URL reference to the peer side VPN gateways to which the VPN tunnels in
+     * this VPN connection are connected.
+     * This field is mutually exclusive with peer_gcp_gateway.
      *
      * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      */
@@ -47,9 +53,13 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $peer_external_gateway
-     *           URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     *           URL reference to the peer external VPN gateways to which the VPN tunnels
+     *           in this VPN connection are connected.
+     *           This field is mutually exclusive with peer_gcp_gateway.
      *     @type string $peer_gcp_gateway
-     *           URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     *           URL reference to the peer side VPN gateways to which the VPN tunnels in
+     *           this VPN connection are connected.
+     *           This field is mutually exclusive with peer_gcp_gateway.
      *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState $state
      *           HighAvailabilityRequirementState for the VPN connection.
      *     @type array<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>|\Google\Protobuf\Internal\RepeatedField $tunnels
@@ -62,7 +72,9 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     * URL reference to the peer external VPN gateways to which the VPN tunnels
+     * in this VPN connection are connected.
+     * This field is mutually exclusive with peer_gcp_gateway.
      *
      * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      * @return string
@@ -83,7 +95,9 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer external VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     * URL reference to the peer external VPN gateways to which the VPN tunnels
+     * in this VPN connection are connected.
+     * This field is mutually exclusive with peer_gcp_gateway.
      *
      * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      * @param string $var
@@ -98,7 +112,9 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     * URL reference to the peer side VPN gateways to which the VPN tunnels in
+     * this VPN connection are connected.
+     * This field is mutually exclusive with peer_gcp_gateway.
      *
      * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      * @return string
@@ -119,7 +135,9 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
+     * URL reference to the peer side VPN gateways to which the VPN tunnels in
+     * this VPN connection are connected.
+     * This field is mutually exclusive with peer_gcp_gateway.
      *
      * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      * @param string $var

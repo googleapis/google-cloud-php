@@ -21,7 +21,8 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
      */
     private $network_edge_security_services;
     /**
-     * Informational warning which replaces the list of security policies when the list is empty.
+     * Informational warning which replaces the list of
+     * security policies when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -36,7 +37,8 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
      *     @type array<\Google\Cloud\Compute\V1\NetworkEdgeSecurityService>|\Google\Protobuf\Internal\RepeatedField $network_edge_security_services
      *           A list of NetworkEdgeSecurityServices contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           Informational warning which replaces the list of security policies when the list is empty.
+     *           Informational warning which replaces the list of
+     *           security policies when the list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Informational warning which replaces the list of security policies when the list is empty.
+     * Informational warning which replaces the list of
+     * security policies when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +95,8 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Informational warning which replaces the list of security policies when the list is empty.
+     * Informational warning which replaces the list of
+     * security policies when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

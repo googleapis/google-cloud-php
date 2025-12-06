@@ -79,6 +79,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @deprecated This class will be removed in the next major version update.
+ *
  * @method PromiseInterface<OperationResponse> createAzureClientAsync(CreateAzureClientRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAzureClusterAsync(CreateAzureClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAzureNodePoolAsync(CreateAzureNodePoolRequest $request, array $optionalArgs = [])
@@ -124,9 +126,7 @@ final class AzureClustersClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -246,8 +246,12 @@ final class AzureClustersClient
      *
      * @return string The formatted azure_node_pool resource.
      */
-    public static function azureNodePoolName(string $project, string $location, string $azureCluster, string $azureNodePool): string
-    {
+    public static function azureNodePoolName(
+        string $project,
+        string $location,
+        string $azureCluster,
+        string $azureNodePool
+    ): string {
         return self::getPathTemplate('azureNodePool')->render([
             'project' => $project,
             'location' => $location,
@@ -433,6 +437,8 @@ final class AzureClustersClient
      * @return OperationResponse<AzureClient>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createAzureClient(CreateAzureClientRequest $request, array $callOptions = []): OperationResponse
     {
@@ -464,6 +470,8 @@ final class AzureClustersClient
      * @return OperationResponse<AzureCluster>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createAzureCluster(CreateAzureClusterRequest $request, array $callOptions = []): OperationResponse
     {
@@ -496,6 +504,8 @@ final class AzureClustersClient
      * @return OperationResponse<AzureNodePool>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function createAzureNodePool(CreateAzureNodePoolRequest $request, array $callOptions = []): OperationResponse
     {
@@ -530,6 +540,8 @@ final class AzureClustersClient
      * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteAzureClient(DeleteAzureClientRequest $request, array $callOptions = []): OperationResponse
     {
@@ -564,6 +576,8 @@ final class AzureClustersClient
      * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteAzureCluster(DeleteAzureClusterRequest $request, array $callOptions = []): OperationResponse
     {
@@ -595,6 +609,8 @@ final class AzureClustersClient
      * @return OperationResponse<null>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function deleteAzureNodePool(DeleteAzureNodePoolRequest $request, array $callOptions = []): OperationResponse
     {
@@ -623,9 +639,13 @@ final class AzureClustersClient
      * @return GenerateAzureAccessTokenResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function generateAzureAccessToken(GenerateAzureAccessTokenRequest $request, array $callOptions = []): GenerateAzureAccessTokenResponse
-    {
+    public function generateAzureAccessToken(
+        GenerateAzureAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAzureAccessTokenResponse {
         return $this->startApiCall('GenerateAzureAccessToken', $request, $callOptions)->wait();
     }
 
@@ -650,9 +670,13 @@ final class AzureClustersClient
      * @return GenerateAzureClusterAgentTokenResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function generateAzureClusterAgentToken(GenerateAzureClusterAgentTokenRequest $request, array $callOptions = []): GenerateAzureClusterAgentTokenResponse
-    {
+    public function generateAzureClusterAgentToken(
+        GenerateAzureClusterAgentTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAzureClusterAgentTokenResponse {
         return $this->startApiCall('GenerateAzureClusterAgentToken', $request, $callOptions)->wait();
     }
 
@@ -677,6 +701,8 @@ final class AzureClustersClient
      * @return AzureClient
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAzureClient(GetAzureClientRequest $request, array $callOptions = []): AzureClient
     {
@@ -704,6 +730,8 @@ final class AzureClustersClient
      * @return AzureCluster
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAzureCluster(GetAzureClusterRequest $request, array $callOptions = []): AzureCluster
     {
@@ -731,6 +759,8 @@ final class AzureClustersClient
      * @return AzureJsonWebKeys
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAzureJsonWebKeys(GetAzureJsonWebKeysRequest $request, array $callOptions = []): AzureJsonWebKeys
     {
@@ -758,6 +788,8 @@ final class AzureClustersClient
      * @return AzureNodePool
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getAzureNodePool(GetAzureNodePoolRequest $request, array $callOptions = []): AzureNodePool
     {
@@ -788,9 +820,13 @@ final class AzureClustersClient
      * @return AzureOpenIdConfig
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function getAzureOpenIdConfig(GetAzureOpenIdConfigRequest $request, array $callOptions = []): AzureOpenIdConfig
-    {
+    public function getAzureOpenIdConfig(
+        GetAzureOpenIdConfigRequest $request,
+        array $callOptions = []
+    ): AzureOpenIdConfig {
         return $this->startApiCall('GetAzureOpenIdConfig', $request, $callOptions)->wait();
     }
 
@@ -815,9 +851,13 @@ final class AzureClustersClient
      * @return AzureServerConfig
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
-    public function getAzureServerConfig(GetAzureServerConfigRequest $request, array $callOptions = []): AzureServerConfig
-    {
+    public function getAzureServerConfig(
+        GetAzureServerConfigRequest $request,
+        array $callOptions = []
+    ): AzureServerConfig {
         return $this->startApiCall('GetAzureServerConfig', $request, $callOptions)->wait();
     }
 
@@ -842,6 +882,8 @@ final class AzureClustersClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAzureClients(ListAzureClientsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -869,6 +911,8 @@ final class AzureClustersClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAzureClusters(ListAzureClustersRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -897,6 +941,8 @@ final class AzureClustersClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listAzureNodePools(ListAzureNodePoolsRequest $request, array $callOptions = []): PagedListResponse
     {
@@ -923,6 +969,8 @@ final class AzureClustersClient
      * @return OperationResponse<AzureCluster>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateAzureCluster(UpdateAzureClusterRequest $request, array $callOptions = []): OperationResponse
     {
@@ -949,6 +997,8 @@ final class AzureClustersClient
      * @return OperationResponse<AzureNodePool>
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function updateAzureNodePool(UpdateAzureNodePoolRequest $request, array $callOptions = []): OperationResponse
     {

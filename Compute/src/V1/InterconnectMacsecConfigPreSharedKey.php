@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a pre-shared key used to setup MACsec in static connectivity association key (CAK) mode.
+ * Describes a pre-shared key used to setup MACsec in static connectivity
+ * association key (CAK) mode.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectMacsecConfigPreSharedKey</code>
  */

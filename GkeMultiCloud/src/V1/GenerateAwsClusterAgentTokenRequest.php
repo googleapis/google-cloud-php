@@ -9,6 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GenerateAwsClusterAgentTokenRequest</code>
  */
 class GenerateAwsClusterAgentTokenRequest extends \Google\Protobuf\Internal\Message

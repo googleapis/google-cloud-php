@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\ReservationsClient;
 use Google\Cloud\Compute\V1\ListReservationsRequest;
 
 /**
- * A list of all the reservations that have been configured for the specified project in specified zone.
+ * A list of all the reservations that have been configured for the
+ * specified project in specified zone.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone for this request.

@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AzureClusters.UpdateAzureNodePool` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.UpdateAzureNodePoolRequest</code>
  */
 class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message

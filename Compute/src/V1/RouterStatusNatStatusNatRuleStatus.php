@@ -16,25 +16,30 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of active IPs for NAT. Example: ["1.1.1.1", "179.12.26.133"].
+     * A list of active IPs for NAT.
+     * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string active_nat_ips = 208517077;</code>
      */
     private $active_nat_ips;
     /**
-     * A list of IPs for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
+     * A list of IPs for NAT that are in drain mode.
+     * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
      */
     private $drain_nat_ips;
     /**
-     * The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
+     * The number of extra IPs to allocate. This will be greater than 0 only
+     * if the existing IPs in this NAT Rule are NOT enough to allow all
+     * configured VMs to use NAT.
      *
      * Generated from protobuf field <code>optional int32 min_extra_ips_needed = 353002756;</code>
      */
     protected $min_extra_ips_needed = null;
     /**
-     * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.
+     * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this
+     * NAT Rule.
      *
      * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      */
@@ -53,13 +58,18 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $active_nat_ips
-     *           A list of active IPs for NAT. Example: ["1.1.1.1", "179.12.26.133"].
+     *           A list of active IPs for NAT.
+     *           Example: ["1.1.1.1", "179.12.26.133"].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
-     *           A list of IPs for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
+     *           A list of IPs for NAT that are in drain mode.
+     *           Example: ["1.1.1.1", "179.12.26.133"].
      *     @type int $min_extra_ips_needed
-     *           The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
+     *           The number of extra IPs to allocate. This will be greater than 0 only
+     *           if the existing IPs in this NAT Rule are NOT enough to allow all
+     *           configured VMs to use NAT.
      *     @type int $num_vm_endpoints_with_nat_mappings
-     *           Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.
+     *           Number of VM endpoints (i.e., NICs) that have NAT Mappings from this
+     *           NAT Rule.
      *     @type int $rule_number
      *           Rule number of the rule.
      * }
@@ -70,7 +80,8 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A list of active IPs for NAT. Example: ["1.1.1.1", "179.12.26.133"].
+     * A list of active IPs for NAT.
+     * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string active_nat_ips = 208517077;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -81,7 +92,8 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A list of active IPs for NAT. Example: ["1.1.1.1", "179.12.26.133"].
+     * A list of active IPs for NAT.
+     * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string active_nat_ips = 208517077;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -96,7 +108,8 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A list of IPs for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
+     * A list of IPs for NAT that are in drain mode.
+     * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -107,7 +120,8 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * A list of IPs for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
+     * A list of IPs for NAT that are in drain mode.
+     * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -122,7 +136,9 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
+     * The number of extra IPs to allocate. This will be greater than 0 only
+     * if the existing IPs in this NAT Rule are NOT enough to allow all
+     * configured VMs to use NAT.
      *
      * Generated from protobuf field <code>optional int32 min_extra_ips_needed = 353002756;</code>
      * @return int
@@ -143,7 +159,9 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
+     * The number of extra IPs to allocate. This will be greater than 0 only
+     * if the existing IPs in this NAT Rule are NOT enough to allow all
+     * configured VMs to use NAT.
      *
      * Generated from protobuf field <code>optional int32 min_extra_ips_needed = 353002756;</code>
      * @param int $var
@@ -158,7 +176,8 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.
+     * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this
+     * NAT Rule.
      *
      * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @return int
@@ -179,7 +198,8 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.
+     * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this
+     * NAT Rule.
      *
      * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @param int $var

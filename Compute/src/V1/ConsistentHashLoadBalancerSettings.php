@@ -16,19 +16,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated. This field is applicable if the sessionAffinity is set to HTTP_COOKIE. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will
+     * be used as the hash key for the consistent hash load balancer. If the
+     * cookie is not present, it will be generated. This field is applicable if
+     * the sessionAffinity is set to HTTP_COOKIE.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConsistentHashLoadBalancerSettingsHttpCookie http_cookie = 6673915;</code>
      */
     protected $http_cookie = null;
     /**
-     * The hash based on the value of the specified header field. This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+     * The hash based on the value of the specified header field. This field is
+     * applicable if the sessionAffinity is set toHEADER_FIELD.
      *
      * Generated from protobuf field <code>optional string http_header_name = 234798022;</code>
      */
     protected $http_header_name = null;
     /**
-     * The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
+     * The minimum number of virtual nodes to use for the hash ring. Defaults to
+     * 1024. Larger ring sizes result in more granular load distributions. If the
+     * number of hosts in the load balancing pool is larger than the ring size,
+     * each host will be assigned a single virtual node.
      *
      * Generated from protobuf field <code>optional int64 minimum_ring_size = 234380735;</code>
      */
@@ -41,11 +50,20 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\ConsistentHashLoadBalancerSettingsHttpCookie $http_cookie
-     *           Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated. This field is applicable if the sessionAffinity is set to HTTP_COOKIE. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     *           Hash is based on HTTP Cookie. This field describes a HTTP cookie that will
+     *           be used as the hash key for the consistent hash load balancer. If the
+     *           cookie is not present, it will be generated. This field is applicable if
+     *           the sessionAffinity is set to HTTP_COOKIE.
+     *           Not supported when the backend service is referenced by a URL map that is
+     *           bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type string $http_header_name
-     *           The hash based on the value of the specified header field. This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+     *           The hash based on the value of the specified header field. This field is
+     *           applicable if the sessionAffinity is set toHEADER_FIELD.
      *     @type int|string $minimum_ring_size
-     *           The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
+     *           The minimum number of virtual nodes to use for the hash ring. Defaults to
+     *           1024. Larger ring sizes result in more granular load distributions. If the
+     *           number of hosts in the load balancing pool is larger than the ring size,
+     *           each host will be assigned a single virtual node.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +72,12 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated. This field is applicable if the sessionAffinity is set to HTTP_COOKIE. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will
+     * be used as the hash key for the consistent hash load balancer. If the
+     * cookie is not present, it will be generated. This field is applicable if
+     * the sessionAffinity is set to HTTP_COOKIE.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConsistentHashLoadBalancerSettingsHttpCookie http_cookie = 6673915;</code>
      * @return \Google\Cloud\Compute\V1\ConsistentHashLoadBalancerSettingsHttpCookie|null
@@ -75,7 +98,12 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated. This field is applicable if the sessionAffinity is set to HTTP_COOKIE. Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
+     * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will
+     * be used as the hash key for the consistent hash load balancer. If the
+     * cookie is not present, it will be generated. This field is applicable if
+     * the sessionAffinity is set to HTTP_COOKIE.
+     * Not supported when the backend service is referenced by a URL map that is
+     * bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConsistentHashLoadBalancerSettingsHttpCookie http_cookie = 6673915;</code>
      * @param \Google\Cloud\Compute\V1\ConsistentHashLoadBalancerSettingsHttpCookie $var
@@ -90,7 +118,8 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The hash based on the value of the specified header field. This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+     * The hash based on the value of the specified header field. This field is
+     * applicable if the sessionAffinity is set toHEADER_FIELD.
      *
      * Generated from protobuf field <code>optional string http_header_name = 234798022;</code>
      * @return string
@@ -111,7 +140,8 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The hash based on the value of the specified header field. This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+     * The hash based on the value of the specified header field. This field is
+     * applicable if the sessionAffinity is set toHEADER_FIELD.
      *
      * Generated from protobuf field <code>optional string http_header_name = 234798022;</code>
      * @param string $var
@@ -126,7 +156,10 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
+     * The minimum number of virtual nodes to use for the hash ring. Defaults to
+     * 1024. Larger ring sizes result in more granular load distributions. If the
+     * number of hosts in the load balancing pool is larger than the ring size,
+     * each host will be assigned a single virtual node.
      *
      * Generated from protobuf field <code>optional int64 minimum_ring_size = 234380735;</code>
      * @return int|string
@@ -147,7 +180,10 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
+     * The minimum number of virtual nodes to use for the hash ring. Defaults to
+     * 1024. Larger ring sizes result in more granular load distributions. If the
+     * number of hosts in the load balancing pool is larger than the ring size,
+     * each host will be assigned a single virtual node.
      *
      * Generated from protobuf field <code>optional int64 minimum_ring_size = 234380735;</code>
      * @param int|string $var

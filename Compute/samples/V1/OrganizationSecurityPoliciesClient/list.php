@@ -29,7 +29,12 @@ use Google\Cloud\Compute\V1\Client\OrganizationSecurityPoliciesClient;
 use Google\Cloud\Compute\V1\ListOrganizationSecurityPoliciesRequest;
 
 /**
- * List all the policies that have been configured for the specified project. Use of this API to read firewall policies is deprecated. Use firewallPolicies.list instead.
+ * List all the policies that have been configured for the specified
+ * organization.
+ *
+ * Use this API to read Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to read firewall policies. This usage is now
+ * disabled for most organizations. Use firewallPolicies.list instead.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

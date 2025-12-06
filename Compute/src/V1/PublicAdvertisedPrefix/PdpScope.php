@@ -7,7 +7,15 @@ namespace Google\Cloud\Compute\V1\PublicAdvertisedPrefix;
 use UnexpectedValueException;
 
 /**
- * Specifies how child public delegated prefix will be scoped. It could be one of following values: - `REGIONAL`: The public delegated prefix is regional only. The provisioning will take a few minutes. - `GLOBAL`: The public delegated prefix is global only. The provisioning will take ~4 weeks. - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is BYOIP V1 legacy prefix. This is output only value and no longer supported in BYOIP V2. 
+ * Specifies how child public delegated prefix will be scoped. It could
+ * be one of following values:
+ *      - `REGIONAL`: The public delegated prefix is regional only. The
+ *      provisioning will take a few minutes.
+ *      - `GLOBAL`: The public delegated prefix is global only. The
+ *      provisioning will take ~4 weeks.
+ *      - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is
+ *       BYOIP V1 legacy prefix. This is output only value and no longer
+ *       supported in BYOIP V2.
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicAdvertisedPrefix.PdpScope</code>
  */
@@ -20,19 +28,22 @@ class PdpScope
      */
     const UNDEFINED_PDP_SCOPE = 0;
     /**
-     * The public delegated prefix is global only. The provisioning will take ~4 weeks.
+     * The public delegated prefix is global only. The provisioning will take ~4
+     * weeks.
      *
      * Generated from protobuf enum <code>GLOBAL = 494663587;</code>
      */
     const PBGLOBAL = 494663587;
     /**
-     * The public delegated prefixes is BYOIP V1 legacy prefix. This is output only value and no longer supported in BYOIP V2.
+     * The public delegated prefixes is BYOIP V1 legacy prefix. This is output
+     * only value and no longer supported in BYOIP V2.
      *
      * Generated from protobuf enum <code>GLOBAL_AND_REGIONAL = 318053059;</code>
      */
     const GLOBAL_AND_REGIONAL = 318053059;
     /**
-     * The public delegated prefix is regional only. The provisioning will take a few minutes.
+     * The public delegated prefix is regional only. The provisioning will take
+     * a few minutes.
      *
      * Generated from protobuf enum <code>REGIONAL = 92288543;</code>
      */

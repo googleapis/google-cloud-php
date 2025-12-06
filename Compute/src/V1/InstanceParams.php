@@ -16,13 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceParams extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Relative deadline for waiting for capacity. Relevant only for Instances.Insert API.
+     * Relative deadline for waiting for capacity. Relevant only for
+     * Instances.Insert API.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration request_valid_for_duration = 116247389;</code>
      */
     protected $request_valid_for_duration = null;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     * Resource manager tags to be bound to the instance. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
+     * values are in the format `tagValues/456`. The field is ignored (both PUT &
+     * PATCH) when empty.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
      */
@@ -35,9 +40,14 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Duration $request_valid_for_duration
-     *           Relative deadline for waiting for capacity. Relevant only for Instances.Insert API.
+     *           Relative deadline for waiting for capacity. Relevant only for
+     *           Instances.Insert API.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
-     *           Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *           Resource manager tags to be bound to the instance. Tag keys and values
+     *           have the same definition as resource
+     *           manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
+     *           values are in the format `tagValues/456`. The field is ignored (both PUT &
+     *           PATCH) when empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +56,8 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relative deadline for waiting for capacity. Relevant only for Instances.Insert API.
+     * Relative deadline for waiting for capacity. Relevant only for
+     * Instances.Insert API.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration request_valid_for_duration = 116247389;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
@@ -67,7 +78,8 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relative deadline for waiting for capacity. Relevant only for Instances.Insert API.
+     * Relative deadline for waiting for capacity. Relevant only for
+     * Instances.Insert API.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration request_valid_for_duration = 116247389;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
@@ -82,7 +94,11 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     * Resource manager tags to be bound to the instance. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
+     * values are in the format `tagValues/456`. The field is ignored (both PUT &
+     * PATCH) when empty.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -93,7 +109,11 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     * Resource manager tags to be bound to the instance. Tag keys and values
+     * have the same definition as resource
+     * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
+     * values are in the format `tagValues/456`. The field is ignored (both PUT &
+     * PATCH) when empty.
      *
      * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

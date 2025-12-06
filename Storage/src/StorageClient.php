@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.48.7';
+    const VERSION = '1.49.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -273,24 +273,37 @@ class StorageClient
      *           If false, `$options.userProject` will be used ONLY for the
      *           listBuckets operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
+     *      @type bool $returnPartialSuccess If true, the returned iterator will contain an
+     *           `unreachable` property with a list of buckets that were not retrieved.
+     *           **Note:** If set to false (default) and unreachable buckets are found,
+     *           the operation will throw an exception.
+     *
      * }
-     * @return ItemIterator<Bucket>
+     * @return BucketIterator<Bucket>
      * @throws GoogleException When a project ID has not been detected.
      */
     public function buckets(array $options = [])
     {
         $this->requireProjectId();
-
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
-        $bucketUserProject = !is_null($bucketUserProject)
-            ? $bucketUserProject
-            : true;
-        $userProject = (isset($options['userProject']) && $bucketUserProject)
-            ? $options['userProject']
-            : null;
+        $bucketUserProject = $this->pluck('bucketUserProject', $options, null) ?? true;
+        $userProject = $bucketUserProject ? ($options['userProject'] ?? null) : null;
 
-        return new ItemIterator(
+        $unreachable = new \ArrayObject();
+
+        $apiCall = [$this->connection, 'listBuckets'];
+        $callDelegate = function (array $args) use ($apiCall, $unreachable) {
+            $response = call_user_func($apiCall, $args);
+            if (isset($response['unreachable']) && is_array($response['unreachable'])) {
+                $current = $unreachable->getArrayCopy();
+                $updated = array_unique(array_merge($current, $response['unreachable']));
+                $unreachable->exchangeArray($updated);
+            }
+            return $response;
+        };
+
+        // Return the new BucketIterator with the wrapped unreachable bucket
+        return new BucketIterator(
             new PageIterator(
                 function (array $bucket) use ($userProject) {
                     return new Bucket(
@@ -299,10 +312,11 @@ class StorageClient
                         $bucket + ['requesterProjectId' => $userProject]
                     );
                 },
-                [$this->connection, 'listBuckets'],
+                $callDelegate,
                 $options + ['project' => $this->projectId],
                 ['resultLimit' => $resultLimit]
-            )
+            ),
+            $unreachable
         );
     }
 

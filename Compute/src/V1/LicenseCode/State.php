@@ -20,7 +20,8 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Machines are not allowed to attach boot disks with this License Code. Requests to create new resources with this license will be rejected.
+     * Machines are not allowed to attach boot disks with this License Code.
+     * Requests to create new resources with this license will be rejected.
      *
      * Generated from protobuf enum <code>DISABLED = 516696700;</code>
      */

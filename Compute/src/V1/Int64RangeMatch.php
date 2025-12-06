@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * HttpRouteRuleMatch criteria for field values that must stay within the specified integer range.
+ * HttpRouteRuleMatch criteria for field values that must stay
+ * within the specified integer range.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Int64RangeMatch</code>
  */

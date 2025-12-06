@@ -16,13 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class GuestAttributes extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
+     * [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
+     * The path to be queried. This can be the default namespace ('') or a
+     * nested namespace ('\/') or a specified key
+     * ('\/\').
      *
      * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      */
@@ -59,9 +61,11 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
+     *           [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *     @type string $query_path
-     *           The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
+     *           The path to be queried. This can be the default namespace ('') or a
+     *           nested namespace ('\/') or a specified key
+     *           ('\/\').
      *     @type \Google\Cloud\Compute\V1\GuestAttributesValue $query_value
      *           [Output Only] The value of the requested queried path.
      *     @type string $self_link
@@ -78,7 +82,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
+     * [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -99,7 +103,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
+     * [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -114,7 +118,9 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
+     * The path to be queried. This can be the default namespace ('') or a
+     * nested namespace ('\/') or a specified key
+     * ('\/\').
      *
      * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      * @return string
@@ -135,7 +141,9 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
+     * The path to be queried. This can be the default namespace ('') or a
+     * nested namespace ('\/') or a specified key
+     * ('\/\').
      *
      * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      * @param string $var

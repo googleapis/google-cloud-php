@@ -21,7 +21,11 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
      */
     private $machine_types;
     /**
-     * Preference of this instance selection. Lower number means higher preference. MIG will first try to create a VM based on the machine-type with lowest rank and fallback to next rank based on availability. Machine types and instance selections with the same rank have the same preference.
+     * Preference of this instance selection. Lower number means higher
+     * preference. MIG will first try to create a VM based on the machine-type
+     * with lowest rank and fallback to next rank based on availability.
+     * Machine types and instance selections with the same rank have the same
+     * preference.
      *
      * Generated from protobuf field <code>optional int32 rank = 3492908;</code>
      */
@@ -36,7 +40,11 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $machine_types
      *           Full machine-type names, e.g. "n1-standard-16".
      *     @type int $rank
-     *           Preference of this instance selection. Lower number means higher preference. MIG will first try to create a VM based on the machine-type with lowest rank and fallback to next rank based on availability. Machine types and instance selections with the same rank have the same preference.
+     *           Preference of this instance selection. Lower number means higher
+     *           preference. MIG will first try to create a VM based on the machine-type
+     *           with lowest rank and fallback to next rank based on availability.
+     *           Machine types and instance selections with the same rank have the same
+     *           preference.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +79,11 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
     }
 
     /**
-     * Preference of this instance selection. Lower number means higher preference. MIG will first try to create a VM based on the machine-type with lowest rank and fallback to next rank based on availability. Machine types and instance selections with the same rank have the same preference.
+     * Preference of this instance selection. Lower number means higher
+     * preference. MIG will first try to create a VM based on the machine-type
+     * with lowest rank and fallback to next rank based on availability.
+     * Machine types and instance selections with the same rank have the same
+     * preference.
      *
      * Generated from protobuf field <code>optional int32 rank = 3492908;</code>
      * @return int
@@ -92,7 +104,11 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
     }
 
     /**
-     * Preference of this instance selection. Lower number means higher preference. MIG will first try to create a VM based on the machine-type with lowest rank and fallback to next rank based on availability. Machine types and instance selections with the same rank have the same preference.
+     * Preference of this instance selection. Lower number means higher
+     * preference. MIG will first try to create a VM based on the machine-type
+     * with lowest rank and fallback to next rank based on availability.
+     * Machine types and instance selections with the same rank have the same
+     * preference.
      *
      * Generated from protobuf field <code>optional int32 rank = 3492908;</code>
      * @param int $var

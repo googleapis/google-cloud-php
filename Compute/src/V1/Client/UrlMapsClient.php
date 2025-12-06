@@ -277,7 +277,11 @@ final class UrlMapsClient
     }
 
     /**
-     * Retrieves the list of all UrlMap resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all UrlMap resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see UrlMapsClient::aggregatedListAsync()} .
      *
@@ -355,7 +359,8 @@ final class UrlMapsClient
     }
 
     /**
-     * Creates a UrlMap resource in the specified project using the data included in the request.
+     * Creates a UrlMap resource in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see UrlMapsClient::insertAsync()} .
      *
@@ -381,7 +386,11 @@ final class UrlMapsClient
     }
 
     /**
-     * Initiates a cache invalidation operation, invalidating the specified path, scoped to the specified UrlMap. For more information, see [Invalidating cached content](/cdn/docs/invalidating-cached-content).
+     * Initiates a cache invalidation operation, invalidating the specified path,
+     * scoped to the specified UrlMap.
+     *
+     * For more information, see [Invalidating cached
+     * content](/cdn/docs/invalidating-cached-content).
      *
      * The async variant is {@see UrlMapsClient::invalidateCacheAsync()} .
      *
@@ -407,7 +416,8 @@ final class UrlMapsClient
     }
 
     /**
-     * Retrieves the list of UrlMap resources available to the specified project.
+     * Retrieves the list of UrlMap resources available to the specified
+     * project.
      *
      * The async variant is {@see UrlMapsClient::listAsync()} .
      *
@@ -433,7 +443,10 @@ final class UrlMapsClient
     }
 
     /**
-     * Patches the specified UrlMap resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Patches the specified UrlMap resource with the data included in the
+     * request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see UrlMapsClient::patchAsync()} .
      *
@@ -459,7 +472,8 @@ final class UrlMapsClient
     }
 
     /**
-     * Updates the specified UrlMap resource with the data included in the request.
+     * Updates the specified UrlMap resource with the data included in the
+     * request.
      *
      * The async variant is {@see UrlMapsClient::updateAsync()} .
      *
@@ -485,7 +499,9 @@ final class UrlMapsClient
     }
 
     /**
-     * Runs static validation for the UrlMap. In particular, the tests of the provided UrlMap will be run. Calling this method does NOT create the UrlMap.
+     * Runs static validation for the UrlMap. In particular, the tests of the
+     * provided UrlMap will be run. Calling this method does NOT create the
+     * UrlMap.
      *
      * The async variant is {@see UrlMapsClient::validateAsync()} .
      *

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionSecurityPoliciesClient;
 use Google\Cloud\Compute\V1\ListRegionSecurityPoliciesRequest;
 
 /**
- * List all the policies that have been configured for the specified project and region.
+ * List all the policies that have been configured for the specified project
+ * and region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

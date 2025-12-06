@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\InstanceTemplatesClient;
 use Google\Cloud\Compute\V1\ListInstanceTemplatesRequest;
 
 /**
- * Retrieves a list of instance templates that are contained within the specified project.
+ * Retrieves a list of instance templates that are contained within
+ * the specified project.
  *
  * @param string $project Project ID for this request.
  */

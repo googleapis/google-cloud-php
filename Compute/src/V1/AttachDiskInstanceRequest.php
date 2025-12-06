@@ -22,7 +22,9 @@ class AttachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $attached_disk_resource = null;
     /**
-     * Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     * Whether to force attach the regional disk even if it's currently attached
+     * to another instance. If you try to force attach a zonal disk to an
+     * instance, you will receive an error.
      *
      * Generated from protobuf field <code>optional bool force_attach = 142758425;</code>
      */
@@ -40,7 +42,17 @@ class AttachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -80,13 +92,25 @@ class AttachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\AttachedDisk $attached_disk_resource
      *           The body resource for this request
      *     @type bool $force_attach
-     *           Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     *           Whether to force attach the regional disk even if it's currently attached
+     *           to another instance. If you try to force attach a zonal disk to an
+     *           instance, you will receive an error.
      *     @type string $instance
      *           The instance name for this request.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      *     @type string $zone
      *           The name of the zone for this request.
      * }
@@ -133,7 +157,9 @@ class AttachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     * Whether to force attach the regional disk even if it's currently attached
+     * to another instance. If you try to force attach a zonal disk to an
+     * instance, you will receive an error.
      *
      * Generated from protobuf field <code>optional bool force_attach = 142758425;</code>
      * @return bool
@@ -154,7 +180,9 @@ class AttachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     * Whether to force attach the regional disk even if it's currently attached
+     * to another instance. If you try to force attach a zonal disk to an
+     * instance, you will receive an error.
      *
      * Generated from protobuf field <code>optional bool force_attach = 142758425;</code>
      * @param bool $var
@@ -221,7 +249,17 @@ class AttachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -242,7 +280,17 @@ class AttachDiskInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

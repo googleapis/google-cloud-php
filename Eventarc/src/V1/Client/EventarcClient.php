@@ -178,9 +178,7 @@ final class EventarcClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -721,8 +719,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createChannelConnection(CreateChannelConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createChannelConnection(
+        CreateChannelConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateChannelConnection', $request, $callOptions)->wait();
     }
 
@@ -773,8 +773,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createGoogleApiSource(CreateGoogleApiSourceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createGoogleApiSource(
+        CreateGoogleApiSourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateGoogleApiSource', $request, $callOptions)->wait();
     }
 
@@ -903,8 +905,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteChannelConnection(DeleteChannelConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteChannelConnection(
+        DeleteChannelConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteChannelConnection', $request, $callOptions)->wait();
     }
 
@@ -955,8 +959,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteGoogleApiSource(DeleteGoogleApiSourceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteGoogleApiSource(
+        DeleteGoogleApiSourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteGoogleApiSource', $request, $callOptions)->wait();
     }
 
@@ -1085,8 +1091,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getChannelConnection(GetChannelConnectionRequest $request, array $callOptions = []): ChannelConnection
-    {
+    public function getChannelConnection(
+        GetChannelConnectionRequest $request,
+        array $callOptions = []
+    ): ChannelConnection {
         return $this->startApiCall('GetChannelConnection', $request, $callOptions)->wait();
     }
 
@@ -1165,8 +1173,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGoogleChannelConfig(GetGoogleChannelConfigRequest $request, array $callOptions = []): GoogleChannelConfig
-    {
+    public function getGoogleChannelConfig(
+        GetGoogleChannelConfigRequest $request,
+        array $callOptions = []
+    ): GoogleChannelConfig {
         return $this->startApiCall('GetGoogleChannelConfig', $request, $callOptions)->wait();
     }
 
@@ -1295,8 +1305,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listChannelConnections(ListChannelConnectionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listChannelConnections(
+        ListChannelConnectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListChannelConnections', $request, $callOptions);
     }
 
@@ -1373,8 +1385,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listGoogleApiSources(ListGoogleApiSourcesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listGoogleApiSources(
+        ListGoogleApiSourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListGoogleApiSources', $request, $callOptions);
     }
 
@@ -1399,8 +1413,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMessageBusEnrollments(ListMessageBusEnrollmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMessageBusEnrollments(
+        ListMessageBusEnrollmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMessageBusEnrollments', $request, $callOptions);
     }
 
@@ -1581,8 +1597,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGoogleApiSource(UpdateGoogleApiSourceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateGoogleApiSource(
+        UpdateGoogleApiSourceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateGoogleApiSource', $request, $callOptions)->wait();
     }
 
@@ -1607,8 +1625,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGoogleChannelConfig(UpdateGoogleChannelConfigRequest $request, array $callOptions = []): GoogleChannelConfig
-    {
+    public function updateGoogleChannelConfig(
+        UpdateGoogleChannelConfigRequest $request,
+        array $callOptions = []
+    ): GoogleChannelConfig {
         return $this->startApiCall('UpdateGoogleChannelConfig', $request, $callOptions)->wait();
     }
 
@@ -1826,8 +1846,10 @@ final class EventarcClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

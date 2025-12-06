@@ -34,7 +34,8 @@ class ApplyUpdatesToInstancesInstanceGroupManagerRequest extends \Google\Protobu
      */
     protected $project = '';
     /**
-     * The name of the zone where the managed instance group is located. Should conform to RFC1035.
+     * The name of thezone
+     * where the managed instance group is located. Should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
@@ -42,7 +43,8 @@ class ApplyUpdatesToInstancesInstanceGroupManagerRequest extends \Google\Protobu
 
     /**
      * @param string                                                            $project                                          Project ID for this request.
-     * @param string                                                            $zone                                             The name of the zone where the managed instance group is located. Should conform to RFC1035.
+     * @param string                                                            $zone                                             The name of thezone
+     *                                                                                                                            where the managed instance group is located. Should conform to RFC1035.
      * @param string                                                            $instanceGroupManager                             The name of the managed instance group, should conform to RFC1035.
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagersApplyUpdatesRequest $instanceGroupManagersApplyUpdatesRequestResource The body resource for this request
      *
@@ -72,7 +74,8 @@ class ApplyUpdatesToInstancesInstanceGroupManagerRequest extends \Google\Protobu
      *     @type string $project
      *           Project ID for this request.
      *     @type string $zone
-     *           The name of the zone where the managed instance group is located. Should conform to RFC1035.
+     *           The name of thezone
+     *           where the managed instance group is located. Should conform to RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,7 +172,8 @@ class ApplyUpdatesToInstancesInstanceGroupManagerRequest extends \Google\Protobu
     }
 
     /**
-     * The name of the zone where the managed instance group is located. Should conform to RFC1035.
+     * The name of thezone
+     * where the managed instance group is located. Should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @return string
@@ -180,7 +184,8 @@ class ApplyUpdatesToInstancesInstanceGroupManagerRequest extends \Google\Protobu
     }
 
     /**
-     * The name of the zone where the managed instance group is located. Should conform to RFC1035.
+     * The name of thezone
+     * where the managed instance group is located. Should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @param string $var

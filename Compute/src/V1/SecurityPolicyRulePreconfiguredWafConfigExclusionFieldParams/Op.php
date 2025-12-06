@@ -20,19 +20,22 @@ class Op
      */
     const UNDEFINED_OP = 0;
     /**
-     * The operator matches if the field value contains the specified value.
+     * The operator matches if the field value contains the specified
+     * value.
      *
      * Generated from protobuf enum <code>CONTAINS = 215180831;</code>
      */
     const CONTAINS = 215180831;
     /**
-     * The operator matches if the field value ends with the specified value.
+     * The operator matches if the field value ends with the specified
+     * value.
      *
      * Generated from protobuf enum <code>ENDS_WITH = 490402221;</code>
      */
     const ENDS_WITH = 490402221;
     /**
-     * The operator matches if the field value equals the specified value.
+     * The operator matches if the field value equals the specified
+     * value.
      *
      * Generated from protobuf enum <code>EQUALS = 442201023;</code>
      */
@@ -44,7 +47,8 @@ class Op
      */
     const EQUALS_ANY = 337226060;
     /**
-     * The operator matches if the field value starts with the specified value.
+     * The operator matches if the field value starts with the specified
+     * value.
      *
      * Generated from protobuf enum <code>STARTS_WITH = 139505652;</code>
      */

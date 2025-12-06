@@ -27,13 +27,17 @@ class SecurityPolicyList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Always compute#securityPolicyList for listsof securityPolicies
+     * [Output Only] Type of resource. Alwayscompute#securityPolicyList for listsof securityPolicies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
@@ -56,9 +60,13 @@ class SecurityPolicyList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicy>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of SecurityPolicy resources.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#securityPolicyList for listsof securityPolicies
+     *           [Output Only] Type of resource. Alwayscompute#securityPolicyList for listsof securityPolicies
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     *           [Output Only] This token allows you to get the next page of results for
+     *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     *           the query parameter pageToken in the next list request.
+     *           Subsequent list requests will have their own nextPageToken to
+     *           continue paging through the results.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -131,7 +139,7 @@ class SecurityPolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#securityPolicyList for listsof securityPolicies
+     * [Output Only] Type of resource. Alwayscompute#securityPolicyList for listsof securityPolicies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -152,7 +160,7 @@ class SecurityPolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#securityPolicyList for listsof securityPolicies
+     * [Output Only] Type of resource. Alwayscompute#securityPolicyList for listsof securityPolicies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -167,7 +175,11 @@ class SecurityPolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
@@ -188,7 +200,11 @@ class SecurityPolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var

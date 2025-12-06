@@ -210,6 +210,7 @@ class GlobalPublicDelegatedPrefixesClientTest extends GeneratedTest
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $ipCidrRange = 'ipCidrRange-2049366326';
+        $ipv6AccessType = 'ipv6AccessType-569083171';
         $isLiveMigration = true;
         $kind = 'kind3292052';
         $mode = 'mode3357091';
@@ -226,6 +227,7 @@ class GlobalPublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setIpCidrRange($ipCidrRange);
+        $expectedResponse->setIpv6AccessType($ipv6AccessType);
         $expectedResponse->setIsLiveMigration($isLiveMigration);
         $expectedResponse->setKind($kind);
         $expectedResponse->setMode($mode);

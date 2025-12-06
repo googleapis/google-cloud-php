@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * ControlPlane defines common parameters between control plane nodes.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsControlPlane</code>
  */
 class AwsControlPlane extends \Google\Protobuf\Internal\Message

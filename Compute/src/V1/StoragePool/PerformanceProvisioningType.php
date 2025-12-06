@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\StoragePool;
 use UnexpectedValueException;
 
 /**
- * Provisioning type of the performance-related parameters of the pool, such as throughput and IOPS.
+ * Provisioning type of the performance-related parameters of the pool,
+ * such as throughput and IOPS.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * ADVANCED
  * STANDARD

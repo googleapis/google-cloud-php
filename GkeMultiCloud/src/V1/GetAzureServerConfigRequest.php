@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * GetAzureServerConfigRequest gets the server config of GKE cluster on Azure.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GetAzureServerConfigRequest</code>
  */
 class GetAzureServerConfigRequest extends \Google\Protobuf\Internal\Message

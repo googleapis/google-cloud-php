@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The policy describes the baseline against which Instance boot integrity is measured.
+ * The policy describes the baseline against which
+ * Instance boot integrity is measured.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy</code>
  */
 class ShieldedInstanceIntegrityPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Updates the integrity policy baseline using the measurements from the VM instance's most recent boot.
+     * Updates the integrity policy baseline using the
+     * measurements from the VM instance's most recent boot.
      *
      * Generated from protobuf field <code>optional bool update_auto_learn_policy = 245490215;</code>
      */
@@ -29,7 +31,8 @@ class ShieldedInstanceIntegrityPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $update_auto_learn_policy
-     *           Updates the integrity policy baseline using the measurements from the VM instance's most recent boot.
+     *           Updates the integrity policy baseline using the
+     *           measurements from the VM instance's most recent boot.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,8 @@ class ShieldedInstanceIntegrityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Updates the integrity policy baseline using the measurements from the VM instance's most recent boot.
+     * Updates the integrity policy baseline using the
+     * measurements from the VM instance's most recent boot.
      *
      * Generated from protobuf field <code>optional bool update_auto_learn_policy = 245490215;</code>
      * @return bool
@@ -59,7 +63,8 @@ class ShieldedInstanceIntegrityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Updates the integrity policy baseline using the measurements from the VM instance's most recent boot.
+     * Updates the integrity policy baseline using the
+     * measurements from the VM instance's most recent boot.
      *
      * Generated from protobuf field <code>optional bool update_auto_learn_policy = 245490215;</code>
      * @param bool $var

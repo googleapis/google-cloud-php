@@ -30,7 +30,11 @@ use Google\Cloud\Compute\V1\DeleteRegionDiskRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified regional persistent disk. Deleting a regional disk removes all the replicas of its data permanently and is irreversible. However, deleting a disk does not delete any snapshots previously made from the disk. You must separately delete snapshots.
+ * Deletes the specified regional persistent disk. Deleting a regional disk
+ * removes all the replicas of its data permanently and is irreversible.
+ * However, deleting a disk does not delete anysnapshots
+ * previously made from the disk. You must separatelydelete
+ * snapshots.
  *
  * @param string $disk    Name of the regional persistent disk to delete.
  * @param string $project Project ID for this request.

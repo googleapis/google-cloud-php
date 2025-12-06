@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *
      * Generated from protobuf field <code>string parent_name = 478151936 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -28,13 +29,24 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
      */
     protected $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
     protected $request_id = null;
     /**
-     * The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_sub_block = 22750491 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -55,8 +67,10 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
     /**
      * @param string                                                           $project                                         Project ID for this request.
      * @param string                                                           $zone                                            Name of the zone for this request. Zone name should conform to RFC1035.
-     * @param string                                                           $parentName                                      The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
-     * @param string                                                           $reservationSubBlock                             The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * @param string                                                           $parentName                                      The name of the parent reservation and parent block. In the format of
+     *                                                                                                                          reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * @param string                                                           $reservationSubBlock                             The name of the reservation subBlock.
+     *                                                                                                                          Name should conform to RFC1035 or be a resource ID.
      * @param \Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequest $reservationSubBlocksReportFaultyRequestResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\ReportFaultyReservationSubBlockRequest
@@ -80,13 +94,25 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent_name
-     *           The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     *           The name of the parent reservation and parent block. In the format of
+     *           reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      *     @type string $reservation_sub_block
-     *           The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     *           The name of the reservation subBlock.
+     *           Name should conform to RFC1035 or be a resource ID.
      *     @type \Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequest $reservation_sub_blocks_report_faulty_request_resource
      *           The body resource for this request
      *     @type string $zone
@@ -99,7 +125,8 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *
      * Generated from protobuf field <code>string parent_name = 478151936 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -110,7 +137,8 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *
      * Generated from protobuf field <code>string parent_name = 478151936 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -151,7 +179,17 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -172,7 +210,17 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
@@ -187,7 +235,8 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_sub_block = 22750491 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -198,7 +247,8 @@ class ReportFaultyReservationSubBlockRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_sub_block = 22750491 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

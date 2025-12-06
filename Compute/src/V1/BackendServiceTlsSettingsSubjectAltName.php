@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Subject Alternative Name that the load balancer matches against the SAN field in the TLS certificate provided by the backend, specified as either a DNS name or a URI, in accordance with RFC 5280 4.2.1.6
+ * A Subject Alternative Name that the load balancer matches against the SAN
+ * field in the TLS certificate provided by the backend, specified as either
+ * a DNS name or a URI, in accordance with RFC 5280 4.2.1.6
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BackendServiceTlsSettingsSubjectAltName</code>
  */

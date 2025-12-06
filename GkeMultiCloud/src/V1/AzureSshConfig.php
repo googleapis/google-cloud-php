@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * SSH configuration for Azure resources.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureSshConfig</code>
  */
 class AzureSshConfig extends \Google\Protobuf\Internal\Message

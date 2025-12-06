@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\AcceleratorTypesClient;
 use Google\Cloud\Compute\V1\ListAcceleratorTypesRequest;
 
 /**
- * Retrieves a list of accelerator types that are available to the specified project.
+ * Retrieves a list of accelerator types that are available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    The name of the zone for this request.

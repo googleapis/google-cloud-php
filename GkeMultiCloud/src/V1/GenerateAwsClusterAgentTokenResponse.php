@@ -9,20 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GenerateAwsClusterAgentTokenResponse</code>
  */
 class GenerateAwsClusterAgentTokenResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string access_token = 1;</code>
+     * Generated from protobuf field <code>string access_token = 1 [json_name = "access_token"];</code>
      */
     protected $access_token = '';
     /**
-     * Generated from protobuf field <code>int32 expires_in = 2;</code>
+     * Generated from protobuf field <code>int32 expires_in = 2 [json_name = "expires_in"];</code>
      */
     protected $expires_in = 0;
     /**
-     * Generated from protobuf field <code>string token_type = 3;</code>
+     * Generated from protobuf field <code>string token_type = 3 [json_name = "token_type"];</code>
      */
     protected $token_type = '';
 
@@ -43,7 +44,7 @@ class GenerateAwsClusterAgentTokenResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Generated from protobuf field <code>string access_token = 1;</code>
+     * Generated from protobuf field <code>string access_token = 1 [json_name = "access_token"];</code>
      * @return string
      */
     public function getAccessToken()
@@ -52,7 +53,7 @@ class GenerateAwsClusterAgentTokenResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Generated from protobuf field <code>string access_token = 1;</code>
+     * Generated from protobuf field <code>string access_token = 1 [json_name = "access_token"];</code>
      * @param string $var
      * @return $this
      */
@@ -65,7 +66,7 @@ class GenerateAwsClusterAgentTokenResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Generated from protobuf field <code>int32 expires_in = 2;</code>
+     * Generated from protobuf field <code>int32 expires_in = 2 [json_name = "expires_in"];</code>
      * @return int
      */
     public function getExpiresIn()
@@ -74,7 +75,7 @@ class GenerateAwsClusterAgentTokenResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Generated from protobuf field <code>int32 expires_in = 2;</code>
+     * Generated from protobuf field <code>int32 expires_in = 2 [json_name = "expires_in"];</code>
      * @param int $var
      * @return $this
      */
@@ -87,7 +88,7 @@ class GenerateAwsClusterAgentTokenResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Generated from protobuf field <code>string token_type = 3;</code>
+     * Generated from protobuf field <code>string token_type = 3 [json_name = "token_type"];</code>
      * @return string
      */
     public function getTokenType()
@@ -96,7 +97,7 @@ class GenerateAwsClusterAgentTokenResponse extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Generated from protobuf field <code>string token_type = 3;</code>
+     * Generated from protobuf field <code>string token_type = 3 [json_name = "token_type"];</code>
      * @param string $var
      * @return $this
      */

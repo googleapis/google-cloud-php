@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether this Attachment is enabled. This becomes false when the customer drains their Attachment.
+     * Whether this Attachment is enabled. This becomes false when the customer
+     * drains their Attachment.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      */
@@ -28,7 +29,10 @@ class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Goo
      */
     protected $attachment = null;
     /**
-     * Whether this Attachment is participating in the redundant configuration. This will be ACTIVE if and only if the status below is CONNECTION_UP. Any INACTIVE Attachments are excluded from the analysis that generates operational.availabilitySLA.
+     * Whether this Attachment is participating in the redundant configuration.
+     * This will be ACTIVE if and only if the status below is CONNECTION_UP.
+     * Any INACTIVE Attachments are excluded from the analysis that generates
+     * operational.availabilitySLA.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>
@@ -49,11 +53,15 @@ class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Goo
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $admin_enabled
-     *           Whether this Attachment is enabled. This becomes false when the customer drains their Attachment.
+     *           Whether this Attachment is enabled. This becomes false when the customer
+     *           drains their Attachment.
      *     @type string $attachment
      *           The URL of the Attachment being described.
      *     @type string $is_active
-     *           Whether this Attachment is participating in the redundant configuration. This will be ACTIVE if and only if the status below is CONNECTION_UP. Any INACTIVE Attachments are excluded from the analysis that generates operational.availabilitySLA.
+     *           Whether this Attachment is participating in the redundant configuration.
+     *           This will be ACTIVE if and only if the status below is CONNECTION_UP.
+     *           Any INACTIVE Attachments are excluded from the analysis that generates
+     *           operational.availabilitySLA.
      *           Check the IsActive enum for the list of possible values.
      *     @type string $status
      *           Whether this Attachment is active, and if so, whether BGP is up.
@@ -66,7 +74,8 @@ class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Goo
     }
 
     /**
-     * Whether this Attachment is enabled. This becomes false when the customer drains their Attachment.
+     * Whether this Attachment is enabled. This becomes false when the customer
+     * drains their Attachment.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      * @return bool
@@ -87,7 +96,8 @@ class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Goo
     }
 
     /**
-     * Whether this Attachment is enabled. This becomes false when the customer drains their Attachment.
+     * Whether this Attachment is enabled. This becomes false when the customer
+     * drains their Attachment.
      *
      * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
      * @param bool $var
@@ -138,7 +148,10 @@ class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Goo
     }
 
     /**
-     * Whether this Attachment is participating in the redundant configuration. This will be ACTIVE if and only if the status below is CONNECTION_UP. Any INACTIVE Attachments are excluded from the analysis that generates operational.availabilitySLA.
+     * Whether this Attachment is participating in the redundant configuration.
+     * This will be ACTIVE if and only if the status below is CONNECTION_UP.
+     * Any INACTIVE Attachments are excluded from the analysis that generates
+     * operational.availabilitySLA.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>
@@ -160,7 +173,10 @@ class InterconnectAttachmentGroupsOperationalStatusAttachmentStatus extends \Goo
     }
 
     /**
-     * Whether this Attachment is participating in the redundant configuration. This will be ACTIVE if and only if the status below is CONNECTION_UP. Any INACTIVE Attachments are excluded from the analysis that generates operational.availabilitySLA.
+     * Whether this Attachment is participating in the redundant configuration.
+     * This will be ACTIVE if and only if the status below is CONNECTION_UP.
+     * Any INACTIVE Attachments are excluded from the analysis that generates
+     * operational.availabilitySLA.
      * Check the IsActive enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string is_active = 114830267;</code>

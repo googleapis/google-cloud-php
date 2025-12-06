@@ -16,13 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     * A local certificate file. The certificate must be in
+     * PEM format. The certificate chain must be no greater than 5 certs
+     * long. The chain must include at least one intermediate cert.
      *
      * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      */
     protected $certificate = null;
     /**
-     * A write-only private key in PEM format. Only insert requests will include this field.
+     * A write-only private key in PEM format. Only insert
+     * requests will include this field.
      *
      * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      */
@@ -35,9 +38,12 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $certificate
-     *           A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     *           A local certificate file. The certificate must be in
+     *           PEM format. The certificate chain must be no greater than 5 certs
+     *           long. The chain must include at least one intermediate cert.
      *     @type string $private_key
-     *           A write-only private key in PEM format. Only insert requests will include this field.
+     *           A write-only private key in PEM format. Only insert
+     *           requests will include this field.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +52,9 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     }
 
     /**
-     * A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     * A local certificate file. The certificate must be in
+     * PEM format. The certificate chain must be no greater than 5 certs
+     * long. The chain must include at least one intermediate cert.
      *
      * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      * @return string
@@ -67,7 +75,9 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     }
 
     /**
-     * A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     * A local certificate file. The certificate must be in
+     * PEM format. The certificate chain must be no greater than 5 certs
+     * long. The chain must include at least one intermediate cert.
      *
      * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      * @param string $var
@@ -82,7 +92,8 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     }
 
     /**
-     * A write-only private key in PEM format. Only insert requests will include this field.
+     * A write-only private key in PEM format. Only insert
+     * requests will include this field.
      *
      * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      * @return string
@@ -103,7 +114,8 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     }
 
     /**
-     * A write-only private key in PEM format. Only insert requests will include this field.
+     * A write-only private key in PEM format. Only insert
+     * requests will include this field.
      *
      * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      * @param string $var

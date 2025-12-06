@@ -189,7 +189,8 @@ final class RegionZonesClient
     }
 
     /**
-     * Retrieves the list of Zone resources under the specific region available to the specified project.
+     * Retrieves the list of Zone resources under the specific region available to
+     * the specified project.
      *
      * The async variant is {@see RegionZonesClient::listAsync()} .
      *

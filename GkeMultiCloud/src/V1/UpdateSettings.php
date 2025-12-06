@@ -30,6 +30,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * 3. (max_surge + max_unavailable) determines the level of parallelism (i.e.,
  * the number of nodes being updated at the same time).
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.UpdateSettings</code>
  */
 class UpdateSettings extends \Google\Protobuf\Internal\Message

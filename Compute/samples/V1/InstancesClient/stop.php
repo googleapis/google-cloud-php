@@ -30,7 +30,12 @@ use Google\Cloud\Compute\V1\StopInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Stops a running instance, shutting it down cleanly, and allows you to restart the instance at a later time. Stopped instances do not incur VM usage charges while they are stopped. However, resources that the VM is using, such as persistent disks and static IP addresses, will continue to be charged until they are deleted. For more information, see Stopping an instance.
+ * Stops a running instance, shutting it down cleanly, and allows
+ * you to restart the instance at a later time. Stopped instances do not incur
+ * VM usage charges while they are stopped. However, resources that the VM is
+ * using, such as persistent disks and static IP addresses, will continue to
+ * be charged until they are deleted. For more information, seeStopping
+ * an instance.
  *
  * @param string $instance Name of the instance resource to stop.
  * @param string $project  Project ID for this request.

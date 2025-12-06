@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\AggregatedListPacketMirroringsRequest;
 use Google\Cloud\Compute\V1\Client\PacketMirroringsClient;
 
 /**
- * Retrieves an aggregated list of packetMirrorings. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of packetMirrorings.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

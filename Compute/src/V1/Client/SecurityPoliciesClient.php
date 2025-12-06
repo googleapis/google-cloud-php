@@ -310,7 +310,11 @@ final class SecurityPoliciesClient
     }
 
     /**
-     * Retrieves the list of all SecurityPolicy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all SecurityPolicy resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see SecurityPoliciesClient::aggregatedListAsync()} .
      *
@@ -416,7 +420,8 @@ final class SecurityPoliciesClient
     }
 
     /**
-     * Creates a new policy in the specified project using the data included in the request.
+     * Creates a new policy in the specified project using the data included in
+     * the request.
      *
      * The async variant is {@see SecurityPoliciesClient::insertAsync()} .
      *
@@ -468,7 +473,8 @@ final class SecurityPoliciesClient
     }
 
     /**
-     * Gets the current list of preconfigured Web Application Firewall (WAF) expressions.
+     * Gets the current list of preconfigured Web Application Firewall (WAF)
+     * expressions.
      *
      * The async variant is
      * {@see SecurityPoliciesClient::listPreconfiguredExpressionSetsAsync()} .
@@ -497,7 +503,11 @@ final class SecurityPoliciesClient
     }
 
     /**
-     * Patches the specified policy with the data included in the request. To clear fields in the policy, leave the fields empty and specify them in the updateMask. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.
+     * Patches the specified policy with the data included in the request. To
+     * clear fields in the policy, leave the fields empty and specify them in the
+     * updateMask. This cannot be used to be update the rules in the policy.
+     * Please use the per rule methods like addRule, patchRule, and removeRule
+     * instead.
      *
      * The async variant is {@see SecurityPoliciesClient::patchAsync()} .
      *
@@ -523,7 +533,8 @@ final class SecurityPoliciesClient
     }
 
     /**
-     * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
+     * Patches a rule at the specified priority. To clear fields in the rule,
+     * leave the fields empty and specify them in the updateMask.
      *
      * The async variant is {@see SecurityPoliciesClient::patchRuleAsync()} .
      *
@@ -575,7 +586,9 @@ final class SecurityPoliciesClient
     }
 
     /**
-     * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a security policy. To learn more about labels,
+     * read the Labeling Resources
+     * documentation.
      *
      * The async variant is {@see SecurityPoliciesClient::setLabelsAsync()} .
      *

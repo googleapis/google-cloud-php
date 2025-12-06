@@ -15,38 +15,44 @@ use Google\Protobuf\Internal\GPBUtil;
 class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URL of the backend service associated with the health state of the network endpoint.
+     * URL of the backend service associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
      */
     protected $backend_service = null;
     /**
-     * URL of the forwarding rule associated with the health state of the network endpoint.
+     * URL of the forwarding rule associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
      */
     protected $forwarding_rule = null;
     /**
-     * URL of the health check associated with the health state of the network endpoint.
+     * URL of the health check associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
      */
     protected $health_check = null;
     /**
-     * URL of the health check service associated with the health state of the network endpoint.
+     * URL of the health check service associated with the health state of the
+     * network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
      */
     protected $health_check_service = null;
     /**
-     * Health state of the network endpoint determined based on the health checks configured.
+     * Health state of the network endpoint determined based on the health checks
+     * configured.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
      */
     protected $health_state = null;
     /**
-     * Health state of the ipv6 network endpoint determined based on the health checks configured.
+     * Health state of the ipv6 network endpoint determined based on the health
+     * checks configured.
      * Check the Ipv6HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>
@@ -60,18 +66,24 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\BackendServiceReference $backend_service
-     *           URL of the backend service associated with the health state of the network endpoint.
+     *           URL of the backend service associated with the health state of the network
+     *           endpoint.
      *     @type \Google\Cloud\Compute\V1\ForwardingRuleReference $forwarding_rule
-     *           URL of the forwarding rule associated with the health state of the network endpoint.
+     *           URL of the forwarding rule associated with the health state of the network
+     *           endpoint.
      *     @type \Google\Cloud\Compute\V1\HealthCheckReference $health_check
-     *           URL of the health check associated with the health state of the network endpoint.
+     *           URL of the health check associated with the health state of the network
+     *           endpoint.
      *     @type \Google\Cloud\Compute\V1\HealthCheckServiceReference $health_check_service
-     *           URL of the health check service associated with the health state of the network endpoint.
+     *           URL of the health check service associated with the health state of the
+     *           network endpoint.
      *     @type string $health_state
-     *           Health state of the network endpoint determined based on the health checks configured.
+     *           Health state of the network endpoint determined based on the health checks
+     *           configured.
      *           Check the HealthState enum for the list of possible values.
      *     @type string $ipv6_health_state
-     *           Health state of the ipv6 network endpoint determined based on the health checks configured.
+     *           Health state of the ipv6 network endpoint determined based on the health
+     *           checks configured.
      *           Check the Ipv6HealthState enum for the list of possible values.
      * }
      */
@@ -81,7 +93,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the backend service associated with the health state of the network endpoint.
+     * URL of the backend service associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
      * @return \Google\Cloud\Compute\V1\BackendServiceReference|null
@@ -102,7 +115,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the backend service associated with the health state of the network endpoint.
+     * URL of the backend service associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
      * @param \Google\Cloud\Compute\V1\BackendServiceReference $var
@@ -117,7 +131,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the forwarding rule associated with the health state of the network endpoint.
+     * URL of the forwarding rule associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
      * @return \Google\Cloud\Compute\V1\ForwardingRuleReference|null
@@ -138,7 +153,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the forwarding rule associated with the health state of the network endpoint.
+     * URL of the forwarding rule associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
      * @param \Google\Cloud\Compute\V1\ForwardingRuleReference $var
@@ -153,7 +169,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the health check associated with the health state of the network endpoint.
+     * URL of the health check associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
      * @return \Google\Cloud\Compute\V1\HealthCheckReference|null
@@ -174,7 +191,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the health check associated with the health state of the network endpoint.
+     * URL of the health check associated with the health state of the network
+     * endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
      * @param \Google\Cloud\Compute\V1\HealthCheckReference $var
@@ -189,7 +207,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the health check service associated with the health state of the network endpoint.
+     * URL of the health check service associated with the health state of the
+     * network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
      * @return \Google\Cloud\Compute\V1\HealthCheckServiceReference|null
@@ -210,7 +229,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the health check service associated with the health state of the network endpoint.
+     * URL of the health check service associated with the health state of the
+     * network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
      * @param \Google\Cloud\Compute\V1\HealthCheckServiceReference $var
@@ -225,7 +245,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health state of the network endpoint determined based on the health checks configured.
+     * Health state of the network endpoint determined based on the health checks
+     * configured.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
@@ -247,7 +268,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health state of the network endpoint determined based on the health checks configured.
+     * Health state of the network endpoint determined based on the health checks
+     * configured.
      * Check the HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string health_state = 324007150;</code>
@@ -263,7 +285,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health state of the ipv6 network endpoint determined based on the health checks configured.
+     * Health state of the ipv6 network endpoint determined based on the health
+     * checks configured.
      * Check the Ipv6HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>
@@ -285,7 +308,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health state of the ipv6 network endpoint determined based on the health checks configured.
+     * Health state of the ipv6 network endpoint determined based on the health
+     * checks configured.
      * Check the Ipv6HealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ipv6_health_state = 190316614;</code>

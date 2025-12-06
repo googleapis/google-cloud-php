@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\SetMinCpuPlatformInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Changes the minimum CPU platform that this instance should use. This method can only be called on a stopped instance. For more information, read Specifying a Minimum CPU Platform.
+ * Changes the minimum CPU platform that this instance should use.
+ * This method can only
+ * be called on a stopped instance. For more information, readSpecifying a
+ * Minimum CPU Platform.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

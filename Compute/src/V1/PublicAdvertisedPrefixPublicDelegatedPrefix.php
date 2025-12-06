@@ -34,13 +34,17 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
      */
     protected $project = null;
     /**
-     * The region of the public delegated prefix if it is regional. If absent, the prefix is global.
+     * The region of the public delegated prefix if it is regional. If absent,
+     * the prefix is global.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     protected $region = null;
     /**
-     * The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
+     * The status of the public delegated prefix. Possible values are:
+     *   INITIALIZING: The public delegated prefix is being initialized and
+     *     addresses cannot be created yet.
+     *   ANNOUNCED: The public delegated prefix is active.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
@@ -59,9 +63,13 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
      *     @type string $project
      *           The project number of the public delegated prefix
      *     @type string $region
-     *           The region of the public delegated prefix if it is regional. If absent, the prefix is global.
+     *           The region of the public delegated prefix if it is regional. If absent,
+     *           the prefix is global.
      *     @type string $status
-     *           The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
+     *           The status of the public delegated prefix. Possible values are:
+     *             INITIALIZING: The public delegated prefix is being initialized and
+     *               addresses cannot be created yet.
+     *             ANNOUNCED: The public delegated prefix is active.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,7 +186,8 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     }
 
     /**
-     * The region of the public delegated prefix if it is regional. If absent, the prefix is global.
+     * The region of the public delegated prefix if it is regional. If absent,
+     * the prefix is global.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -199,7 +208,8 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     }
 
     /**
-     * The region of the public delegated prefix if it is regional. If absent, the prefix is global.
+     * The region of the public delegated prefix if it is regional. If absent,
+     * the prefix is global.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
@@ -214,7 +224,10 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     }
 
     /**
-     * The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
+     * The status of the public delegated prefix. Possible values are:
+     *   INITIALIZING: The public delegated prefix is being initialized and
+     *     addresses cannot be created yet.
+     *   ANNOUNCED: The public delegated prefix is active.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      * @return string
@@ -235,7 +248,10 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     }
 
     /**
-     * The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
+     * The status of the public delegated prefix. Possible values are:
+     *   INITIALIZING: The public delegated prefix is being initialized and
+     *     addresses cannot be created yet.
+     *   ANNOUNCED: The public delegated prefix is active.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      * @param string $var

@@ -29,7 +29,8 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
      */
     protected $nat_ip = null;
     /**
-     * Specifies whether NAT IP is currently serving at least one endpoint or not.
+     * Specifies whether NAT IP is currently serving at least one endpoint or
+     * not.
      * Check the Usage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string usage = 111574433;</code>
@@ -48,7 +49,8 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
      *     @type string $nat_ip
      *           NAT IP address. For example: 203.0.113.11.
      *     @type string $usage
-     *           Specifies whether NAT IP is currently serving at least one endpoint or not.
+     *           Specifies whether NAT IP is currently serving at least one endpoint or
+     *           not.
      *           Check the Usage enum for the list of possible values.
      * }
      */
@@ -132,7 +134,8 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether NAT IP is currently serving at least one endpoint or not.
+     * Specifies whether NAT IP is currently serving at least one endpoint or
+     * not.
      * Check the Usage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string usage = 111574433;</code>
@@ -154,7 +157,8 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether NAT IP is currently serving at least one endpoint or not.
+     * Specifies whether NAT IP is currently serving at least one endpoint or
+     * not.
      * Check the Usage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string usage = 111574433;</code>

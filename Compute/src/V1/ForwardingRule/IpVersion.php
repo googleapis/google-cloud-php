@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\ForwardingRule;
 use UnexpectedValueException;
 
 /**
- * The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6.
+ * The IP Version that will be used by this forwarding rule.  Valid options
+ * are IPV4 or IPV6.
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.IpVersion</code>
  */

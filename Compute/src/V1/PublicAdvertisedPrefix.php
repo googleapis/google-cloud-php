@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A public advertised prefix represents an aggregated IP prefix or netblock which customers bring to cloud. The IP prefix is a single unit of route advertisement and is announced globally to the internet.
+ * A public advertised prefix represents an aggregated IP prefix or netblock
+ * which customers bring to cloud. The IP prefix is a single unit of route
+ * advertisement and is announced globally to the internet.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.PublicAdvertisedPrefix</code>
  */
@@ -23,13 +25,15 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $byoip_api_version = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
@@ -41,44 +45,74 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $dns_verification_ip = null;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a new PublicAdvertisedPrefix. An up-to-date fingerprint must be provided in order to update the PublicAdvertisedPrefix, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a PublicAdvertisedPrefix.
+     * Fingerprint of this resource. A hash of the contents stored in this object.
+     * This field is used in optimistic locking. This field will be ignored when
+     * inserting a new PublicAdvertisedPrefix. An up-to-date
+     * fingerprint must be provided in order to update thePublicAdvertisedPrefix, otherwise the request will fail with
+     * error 412 conditionNotMet.
+     * To see the latest fingerprint, make a get() request to
+     * retrieve a PublicAdvertisedPrefix.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     * [Output Only] The unique identifier for the resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * The address range, in CIDR format, represented by this public advertised prefix.
+     * The address range, in CIDR format, represented by this public advertised
+     * prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
     protected $ip_cidr_range = null;
     /**
-     * [Output Only] Type of the resource. Always compute#publicAdvertisedPrefix for public advertised prefixes.
+     * The internet access type for IPv6 Public Advertised Prefixes.
+     * Check the Ipv6AccessType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_access_type = 504658653;</code>
+     */
+    protected $ipv6_access_type = null;
+    /**
+     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * Specifies how child public delegated prefix will be scoped. It could be one of following values: - `REGIONAL`: The public delegated prefix is regional only. The provisioning will take a few minutes. - `GLOBAL`: The public delegated prefix is global only. The provisioning will take ~4 weeks. - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is BYOIP V1 legacy prefix. This is output only value and no longer supported in BYOIP V2.
+     * Specifies how child public delegated prefix will be scoped. It could
+     * be one of following values:
+     *      - `REGIONAL`: The public delegated prefix is regional only. The
+     *      provisioning will take a few minutes.
+     *      - `GLOBAL`: The public delegated prefix is global only. The
+     *      provisioning will take ~4 weeks.
+     *      - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is
+     *       BYOIP V1 legacy prefix. This is output only value and no longer
+     *       supported in BYOIP V2.
      * Check the PdpScope enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string pdp_scope = 524264785;</code>
      */
     protected $pdp_scope = null;
     /**
-     * [Output Only] The list of public delegated prefixes that exist for this public advertised prefix.
+     * [Output Only] The list of public delegated prefixes that exist for this
+     * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
      */
@@ -96,7 +130,15 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $shared_secret = null;
     /**
-     * The status of the public advertised prefix. Possible values include: - `INITIAL`: RPKI validation is complete. - `PTR_CONFIGURED`: User has configured the PTR. - `VALIDATED`: Reverse DNS lookup is successful. - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed. - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being configured. - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured. - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
+     * The status of the public advertised prefix. Possible values include:
+     *      - `INITIAL`: RPKI validation is complete.
+     *      - `PTR_CONFIGURED`: User has configured the PTR.
+     *      - `VALIDATED`: Reverse DNS lookup is successful.
+     *      - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed.
+     *      - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being
+     *      configured.
+     *      - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured.
+     *      - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -113,32 +155,68 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      *           [Output Only] The version of BYOIP API.
      *           Check the ByoipApiVersion enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type string $dns_verification_ip
      *           The address to be used for reverse DNS verification.
      *     @type string $fingerprint
-     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a new PublicAdvertisedPrefix. An up-to-date fingerprint must be provided in order to update the PublicAdvertisedPrefix, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a PublicAdvertisedPrefix.
+     *           Fingerprint of this resource. A hash of the contents stored in this object.
+     *           This field is used in optimistic locking. This field will be ignored when
+     *           inserting a new PublicAdvertisedPrefix. An up-to-date
+     *           fingerprint must be provided in order to update thePublicAdvertisedPrefix, otherwise the request will fail with
+     *           error 412 conditionNotMet.
+     *           To see the latest fingerprint, make a get() request to
+     *           retrieve a PublicAdvertisedPrefix.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     *           [Output Only] The unique identifier for the resource type. The server
+     *           generates this identifier.
      *     @type string $ip_cidr_range
-     *           The address range, in CIDR format, represented by this public advertised prefix.
+     *           The address range, in CIDR format, represented by this public advertised
+     *           prefix.
+     *     @type string $ipv6_access_type
+     *           The internet access type for IPv6 Public Advertised Prefixes.
+     *           Check the Ipv6AccessType enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#publicAdvertisedPrefix for public advertised prefixes.
+     *           [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type string $pdp_scope
-     *           Specifies how child public delegated prefix will be scoped. It could be one of following values: - `REGIONAL`: The public delegated prefix is regional only. The provisioning will take a few minutes. - `GLOBAL`: The public delegated prefix is global only. The provisioning will take ~4 weeks. - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is BYOIP V1 legacy prefix. This is output only value and no longer supported in BYOIP V2.
+     *           Specifies how child public delegated prefix will be scoped. It could
+     *           be one of following values:
+     *                - `REGIONAL`: The public delegated prefix is regional only. The
+     *                provisioning will take a few minutes.
+     *                - `GLOBAL`: The public delegated prefix is global only. The
+     *                provisioning will take ~4 weeks.
+     *                - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is
+     *                 BYOIP V1 legacy prefix. This is output only value and no longer
+     *                 supported in BYOIP V2.
      *           Check the PdpScope enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix>|\Google\Protobuf\Internal\RepeatedField $public_delegated_prefixs
-     *           [Output Only] The list of public delegated prefixes that exist for this public advertised prefix.
+     *           [Output Only] The list of public delegated prefixes that exist for this
+     *           public advertised prefix.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $shared_secret
      *           [Output Only] The shared secret to be used for reverse DNS verification.
      *     @type string $status
-     *           The status of the public advertised prefix. Possible values include: - `INITIAL`: RPKI validation is complete. - `PTR_CONFIGURED`: User has configured the PTR. - `VALIDATED`: Reverse DNS lookup is successful. - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed. - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being configured. - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured. - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
+     *           The status of the public advertised prefix. Possible values include:
+     *                - `INITIAL`: RPKI validation is complete.
+     *                - `PTR_CONFIGURED`: User has configured the PTR.
+     *                - `VALIDATED`: Reverse DNS lookup is successful.
+     *                - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed.
+     *                - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being
+     *                configured.
+     *                - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured.
+     *                - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
      *           Check the Status enum for the list of possible values.
      * }
      */
@@ -186,7 +264,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -207,7 +286,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -222,7 +302,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -243,7 +324,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -294,7 +376,13 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a new PublicAdvertisedPrefix. An up-to-date fingerprint must be provided in order to update the PublicAdvertisedPrefix, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a PublicAdvertisedPrefix.
+     * Fingerprint of this resource. A hash of the contents stored in this object.
+     * This field is used in optimistic locking. This field will be ignored when
+     * inserting a new PublicAdvertisedPrefix. An up-to-date
+     * fingerprint must be provided in order to update thePublicAdvertisedPrefix, otherwise the request will fail with
+     * error 412 conditionNotMet.
+     * To see the latest fingerprint, make a get() request to
+     * retrieve a PublicAdvertisedPrefix.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
@@ -315,7 +403,13 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a new PublicAdvertisedPrefix. An up-to-date fingerprint must be provided in order to update the PublicAdvertisedPrefix, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a PublicAdvertisedPrefix.
+     * Fingerprint of this resource. A hash of the contents stored in this object.
+     * This field is used in optimistic locking. This field will be ignored when
+     * inserting a new PublicAdvertisedPrefix. An up-to-date
+     * fingerprint must be provided in order to update thePublicAdvertisedPrefix, otherwise the request will fail with
+     * error 412 conditionNotMet.
+     * To see the latest fingerprint, make a get() request to
+     * retrieve a PublicAdvertisedPrefix.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
@@ -330,7 +424,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     * [Output Only] The unique identifier for the resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -351,7 +446,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server generates this identifier.
+     * [Output Only] The unique identifier for the resource type. The server
+     * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -366,7 +462,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The address range, in CIDR format, represented by this public advertised prefix.
+     * The address range, in CIDR format, represented by this public advertised
+     * prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
@@ -387,7 +484,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The address range, in CIDR format, represented by this public advertised prefix.
+     * The address range, in CIDR format, represented by this public advertised
+     * prefix.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var
@@ -402,7 +500,45 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#publicAdvertisedPrefix for public advertised prefixes.
+     * The internet access type for IPv6 Public Advertised Prefixes.
+     * Check the Ipv6AccessType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_access_type = 504658653;</code>
+     * @return string
+     */
+    public function getIpv6AccessType()
+    {
+        return isset($this->ipv6_access_type) ? $this->ipv6_access_type : '';
+    }
+
+    public function hasIpv6AccessType()
+    {
+        return isset($this->ipv6_access_type);
+    }
+
+    public function clearIpv6AccessType()
+    {
+        unset($this->ipv6_access_type);
+    }
+
+    /**
+     * The internet access type for IPv6 Public Advertised Prefixes.
+     * Check the Ipv6AccessType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_access_type = 504658653;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6AccessType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_access_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -423,7 +559,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#publicAdvertisedPrefix for public advertised prefixes.
+     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -438,7 +574,13 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -459,7 +601,13 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -474,7 +622,15 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how child public delegated prefix will be scoped. It could be one of following values: - `REGIONAL`: The public delegated prefix is regional only. The provisioning will take a few minutes. - `GLOBAL`: The public delegated prefix is global only. The provisioning will take ~4 weeks. - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is BYOIP V1 legacy prefix. This is output only value and no longer supported in BYOIP V2.
+     * Specifies how child public delegated prefix will be scoped. It could
+     * be one of following values:
+     *      - `REGIONAL`: The public delegated prefix is regional only. The
+     *      provisioning will take a few minutes.
+     *      - `GLOBAL`: The public delegated prefix is global only. The
+     *      provisioning will take ~4 weeks.
+     *      - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is
+     *       BYOIP V1 legacy prefix. This is output only value and no longer
+     *       supported in BYOIP V2.
      * Check the PdpScope enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string pdp_scope = 524264785;</code>
@@ -496,7 +652,15 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how child public delegated prefix will be scoped. It could be one of following values: - `REGIONAL`: The public delegated prefix is regional only. The provisioning will take a few minutes. - `GLOBAL`: The public delegated prefix is global only. The provisioning will take ~4 weeks. - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is BYOIP V1 legacy prefix. This is output only value and no longer supported in BYOIP V2.
+     * Specifies how child public delegated prefix will be scoped. It could
+     * be one of following values:
+     *      - `REGIONAL`: The public delegated prefix is regional only. The
+     *      provisioning will take a few minutes.
+     *      - `GLOBAL`: The public delegated prefix is global only. The
+     *      provisioning will take ~4 weeks.
+     *      - `GLOBAL_AND_REGIONAL` [output only]: The public delegated prefixes is
+     *       BYOIP V1 legacy prefix. This is output only value and no longer
+     *       supported in BYOIP V2.
      * Check the PdpScope enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string pdp_scope = 524264785;</code>
@@ -512,7 +676,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of public delegated prefixes that exist for this public advertised prefix.
+     * [Output Only] The list of public delegated prefixes that exist for this
+     * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -523,7 +688,8 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of public delegated prefixes that exist for this public advertised prefix.
+     * [Output Only] The list of public delegated prefixes that exist for this
+     * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
      * @param array<\Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix>|\Google\Protobuf\Internal\RepeatedField $var
@@ -610,7 +776,15 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the public advertised prefix. Possible values include: - `INITIAL`: RPKI validation is complete. - `PTR_CONFIGURED`: User has configured the PTR. - `VALIDATED`: Reverse DNS lookup is successful. - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed. - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being configured. - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured. - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
+     * The status of the public advertised prefix. Possible values include:
+     *      - `INITIAL`: RPKI validation is complete.
+     *      - `PTR_CONFIGURED`: User has configured the PTR.
+     *      - `VALIDATED`: Reverse DNS lookup is successful.
+     *      - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed.
+     *      - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being
+     *      configured.
+     *      - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured.
+     *      - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -632,7 +806,15 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the public advertised prefix. Possible values include: - `INITIAL`: RPKI validation is complete. - `PTR_CONFIGURED`: User has configured the PTR. - `VALIDATED`: Reverse DNS lookup is successful. - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed. - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being configured. - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured. - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
+     * The status of the public advertised prefix. Possible values include:
+     *      - `INITIAL`: RPKI validation is complete.
+     *      - `PTR_CONFIGURED`: User has configured the PTR.
+     *      - `VALIDATED`: Reverse DNS lookup is successful.
+     *      - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed.
+     *      - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being
+     *      configured.
+     *      - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured.
+     *      - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

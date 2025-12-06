@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\Snapshot;
 use Google\Rpc\Status;
 
 /**
- * Creates a snapshot of a specified persistent disk. For regular snapshot creation, consider using snapshots.insert instead, as that method supports more features, such as creating snapshots in a project different from the source disk project.
+ * Creates a snapshot of a specified persistent disk. For regular snapshot
+ * creation, consider using snapshots.insert
+ * instead, as that method supports more features, such as creating snapshots
+ * in a project different from the source disk project.
  *
  * @param string $disk    Name of the persistent disk to snapshot.
  * @param string $project Project ID for this request.

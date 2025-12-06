@@ -31,9 +31,11 @@ use Google\Cloud\Compute\V1\SignedUrlKey;
 use Google\Rpc\Status;
 
 /**
- * Adds a key for validating requests with signed URLs for this backend service.
+ * Adds a key for validating requests with signed URLs for this backend
+ * service.
  *
- * @param string $backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+ * @param string $backendService Name of the BackendService resource to which the Signed URL Key should be
+ *                               added. The name should conform to RFC1035.
  * @param string $project        Project ID for this request.
  */
 function add_signed_url_key_sample(string $backendService, string $project): void

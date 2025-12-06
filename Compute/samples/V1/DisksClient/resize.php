@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\ResizeDiskRequest;
 use Google\Rpc\Status;
 
 /**
- * Resizes the specified persistent disk. You can only increase the size of the disk.
+ * Resizes the specified persistent disk.
+ * You can only increase the size of the disk.
  *
  * @param string $disk    The name of the persistent disk.
  * @param string $project Project ID for this request.

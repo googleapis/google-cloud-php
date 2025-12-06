@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionInstantSnapshotsClient;
 use Google\Cloud\Compute\V1\ListRegionInstantSnapshotsRequest;
 
 /**
- * Retrieves the list of InstantSnapshot resources contained within the specified region.
+ * Retrieves the list of InstantSnapshot resources contained within
+ * the specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  The name of the region for this request.

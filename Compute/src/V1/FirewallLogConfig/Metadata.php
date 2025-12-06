@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\FirewallLogConfig;
 use UnexpectedValueException;
 
 /**
- * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+ * This field can only be specified for a particular firewall rule if
+ * logging is enabled for that rule. This field denotes whether to include
+ * or exclude metadata for firewall logs.
  *
  * Protobuf type <code>google.cloud.compute.v1.FirewallLogConfig.Metadata</code>
  */

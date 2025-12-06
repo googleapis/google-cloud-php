@@ -275,7 +275,10 @@ final class AddressesClient
     }
 
     /**
-     * Retrieves an aggregated list of addresses. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of addresses.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see AddressesClient::aggregatedListAsync()} .
      *
@@ -353,7 +356,8 @@ final class AddressesClient
     }
 
     /**
-     * Creates an address resource in the specified project by using the data included in the request.
+     * Creates an address resource in the specified project by using the data
+     * included in the request.
      *
      * The async variant is {@see AddressesClient::insertAsync()} .
      *
@@ -379,7 +383,8 @@ final class AddressesClient
     }
 
     /**
-     * Retrieves a list of addresses contained within the specified region.
+     * Retrieves a list of addresses contained within
+     * the specified region.
      *
      * The async variant is {@see AddressesClient::listAsync()} .
      *
@@ -431,7 +436,8 @@ final class AddressesClient
     }
 
     /**
-     * Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on an Address. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see AddressesClient::setLabelsAsync()} .
      *

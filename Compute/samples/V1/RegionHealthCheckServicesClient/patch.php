@@ -31,9 +31,13 @@ use Google\Cloud\Compute\V1\PatchRegionHealthCheckServiceRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified regional HealthCheckService resource with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates the specified regional HealthCheckService resource
+ * with the data included in the request.  This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
  *
- * @param string $healthCheckService Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $healthCheckService Name of the HealthCheckService to update. The name
+ *                                   must be 1-63 characters long, and comply with RFC1035.
  * @param string $project            Project ID for this request.
  * @param string $region             Name of the region scoping this request.
  */

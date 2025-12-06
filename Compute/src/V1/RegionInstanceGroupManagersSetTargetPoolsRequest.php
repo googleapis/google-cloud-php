@@ -15,13 +15,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
+     * Fingerprint of the target pools information, which is a hash of the
+     * contents. This field is used for optimistic locking when you update the
+     * target pool entries. This field is optional.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     protected $fingerprint = null;
     /**
-     * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     * The URL of all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      */
@@ -34,9 +37,12 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $fingerprint
-     *           Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
+     *           Fingerprint of the target pools information, which is a hash of the
+     *           contents. This field is used for optimistic locking when you update the
+     *           target pool entries. This field is optional.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
-     *           The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     *           The URL of all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     *           apply to all of the instances in the managed instance group.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +51,9 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     }
 
     /**
-     * Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
+     * Fingerprint of the target pools information, which is a hash of the
+     * contents. This field is used for optimistic locking when you update the
+     * target pool entries. This field is optional.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
@@ -66,7 +74,9 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     }
 
     /**
-     * Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
+     * Fingerprint of the target pools information, which is a hash of the
+     * contents. This field is used for optimistic locking when you update the
+     * target pool entries. This field is optional.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
@@ -81,7 +91,8 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     }
 
     /**
-     * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     * The URL of all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,7 +103,8 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     }
 
     /**
-     * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+     * The URL of all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
+     * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

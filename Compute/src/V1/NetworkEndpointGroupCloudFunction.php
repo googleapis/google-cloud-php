@@ -9,20 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for a Cloud Function network endpoint group (NEG). The function must be provided explicitly or in the URL mask. Note: Cloud Function must be in the same project and located in the same region as the Serverless NEG.
+ * Configuration for a Cloud Function network endpoint group (NEG).
+ * The function must be provided explicitly or in the URL mask.
+ * Note: Cloud Function must be in the same project and located in the same
+ * region as the Serverless NEG.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NetworkEndpointGroupCloudFunction</code>
  */
 class NetworkEndpointGroupCloudFunction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A user-defined name of the Cloud Function. The function name is case-sensitive and must be 1-63 characters long. Example value: func1.
+     * A user-defined name of the Cloud Function.
+     * The function name is case-sensitive and must be 1-63
+     * characters long.
+     * Example value: func1.
      *
      * Generated from protobuf field <code>optional string function = 307196888;</code>
      */
     protected $function = null;
     /**
-     * An URL mask is one of the main components of the Cloud Function. A template to parse function field from a request URL. URL mask allows for routing to multiple Cloud Functions without having to create multiple Network Endpoint Groups and backend services. For example, request URLs mydomain.com/function1 and mydomain.com/function2 can be backed by the same Serverless NEG with URL mask /<function>. The URL mask will parse them to { function = "function1" } and { function = "function2" } respectively.
+     * An URL
+     * mask is one of the main components of the Cloud Function.
+     * A template to parse function field from a request URL. URL
+     * mask allows for routing to multiple Cloud Functions without having to
+     * create multiple Network Endpoint Groups and backend services.
+     * For example, request URLs mydomain.com/function1 andmydomain.com/function2 can be backed by the same
+     * Serverless NEG with URL mask /<function>. The URL
+     * mask will parse them to { function = "function1" } and{ function = "function2" } respectively.
      *
      * Generated from protobuf field <code>optional string url_mask = 103352252;</code>
      */
@@ -35,9 +48,19 @@ class NetworkEndpointGroupCloudFunction extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $function
-     *           A user-defined name of the Cloud Function. The function name is case-sensitive and must be 1-63 characters long. Example value: func1.
+     *           A user-defined name of the Cloud Function.
+     *           The function name is case-sensitive and must be 1-63
+     *           characters long.
+     *           Example value: func1.
      *     @type string $url_mask
-     *           An URL mask is one of the main components of the Cloud Function. A template to parse function field from a request URL. URL mask allows for routing to multiple Cloud Functions without having to create multiple Network Endpoint Groups and backend services. For example, request URLs mydomain.com/function1 and mydomain.com/function2 can be backed by the same Serverless NEG with URL mask /<function>. The URL mask will parse them to { function = "function1" } and { function = "function2" } respectively.
+     *           An URL
+     *           mask is one of the main components of the Cloud Function.
+     *           A template to parse function field from a request URL. URL
+     *           mask allows for routing to multiple Cloud Functions without having to
+     *           create multiple Network Endpoint Groups and backend services.
+     *           For example, request URLs mydomain.com/function1 andmydomain.com/function2 can be backed by the same
+     *           Serverless NEG with URL mask /<function>. The URL
+     *           mask will parse them to { function = "function1" } and{ function = "function2" } respectively.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +69,10 @@ class NetworkEndpointGroupCloudFunction extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A user-defined name of the Cloud Function. The function name is case-sensitive and must be 1-63 characters long. Example value: func1.
+     * A user-defined name of the Cloud Function.
+     * The function name is case-sensitive and must be 1-63
+     * characters long.
+     * Example value: func1.
      *
      * Generated from protobuf field <code>optional string function = 307196888;</code>
      * @return string
@@ -67,7 +93,10 @@ class NetworkEndpointGroupCloudFunction extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * A user-defined name of the Cloud Function. The function name is case-sensitive and must be 1-63 characters long. Example value: func1.
+     * A user-defined name of the Cloud Function.
+     * The function name is case-sensitive and must be 1-63
+     * characters long.
+     * Example value: func1.
      *
      * Generated from protobuf field <code>optional string function = 307196888;</code>
      * @param string $var
@@ -82,7 +111,14 @@ class NetworkEndpointGroupCloudFunction extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * An URL mask is one of the main components of the Cloud Function. A template to parse function field from a request URL. URL mask allows for routing to multiple Cloud Functions without having to create multiple Network Endpoint Groups and backend services. For example, request URLs mydomain.com/function1 and mydomain.com/function2 can be backed by the same Serverless NEG with URL mask /<function>. The URL mask will parse them to { function = "function1" } and { function = "function2" } respectively.
+     * An URL
+     * mask is one of the main components of the Cloud Function.
+     * A template to parse function field from a request URL. URL
+     * mask allows for routing to multiple Cloud Functions without having to
+     * create multiple Network Endpoint Groups and backend services.
+     * For example, request URLs mydomain.com/function1 andmydomain.com/function2 can be backed by the same
+     * Serverless NEG with URL mask /<function>. The URL
+     * mask will parse them to { function = "function1" } and{ function = "function2" } respectively.
      *
      * Generated from protobuf field <code>optional string url_mask = 103352252;</code>
      * @return string
@@ -103,7 +139,14 @@ class NetworkEndpointGroupCloudFunction extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * An URL mask is one of the main components of the Cloud Function. A template to parse function field from a request URL. URL mask allows for routing to multiple Cloud Functions without having to create multiple Network Endpoint Groups and backend services. For example, request URLs mydomain.com/function1 and mydomain.com/function2 can be backed by the same Serverless NEG with URL mask /<function>. The URL mask will parse them to { function = "function1" } and { function = "function2" } respectively.
+     * An URL
+     * mask is one of the main components of the Cloud Function.
+     * A template to parse function field from a request URL. URL
+     * mask allows for routing to multiple Cloud Functions without having to
+     * create multiple Network Endpoint Groups and backend services.
+     * For example, request URLs mydomain.com/function1 andmydomain.com/function2 can be backed by the same
+     * Serverless NEG with URL mask /<function>. The URL
+     * mask will parse them to { function = "function1" } and{ function = "function2" } respectively.
      *
      * Generated from protobuf field <code>optional string url_mask = 103352252;</code>
      * @param string $var

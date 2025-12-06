@@ -29,7 +29,14 @@ use Google\Cloud\Compute\V1\AggregatedListInstancesRequest;
 use Google\Cloud\Compute\V1\Client\InstancesClient;
 
 /**
- * Retrieves an aggregated list of all of the instances in your project across all regions and zones. The performance of this method degrades when a filter is specified on a project that has a very large number of instances. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of all of the instances in your project
+ * across all regions and zones.
+ *
+ * The performance of this method degrades when a filter is specified on a
+ * project that has a very large number of instances.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

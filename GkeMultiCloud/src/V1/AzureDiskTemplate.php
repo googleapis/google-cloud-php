@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration for Azure Disks.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureDiskTemplate</code>
  */
 class AzureDiskTemplate extends \Google\Protobuf\Internal\Message

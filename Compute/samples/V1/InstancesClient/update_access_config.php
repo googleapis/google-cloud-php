@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\UpdateAccessConfigInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified access config from an instance's network interface with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates the specified access config from an instance's network interface
+ * with the data included in the request. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
  *
  * @param string $instance         The instance name for this request.
  * @param string $networkInterface The name of the network interface where the access config is attached.

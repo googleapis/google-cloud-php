@@ -223,7 +223,8 @@ final class GlobalOrganizationOperationsClient
     }
 
     /**
-     * Retrieves the specified Operations resource. Gets a list of operations by making a `list()` request.
+     * Retrieves the specified Operations resource. Gets a list of operations
+     * by making a `list()` request.
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::getAsync()} .
      *
@@ -249,7 +250,8 @@ final class GlobalOrganizationOperationsClient
     }
 
     /**
-     * Retrieves a list of Operation resources contained within the specified organization.
+     * Retrieves a list of Operation resources contained within the specified
+     * organization.
      *
      * The async variant is {@see GlobalOrganizationOperationsClient::listAsync()} .
      *

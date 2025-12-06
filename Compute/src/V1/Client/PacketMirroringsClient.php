@@ -273,7 +273,10 @@ final class PacketMirroringsClient
     }
 
     /**
-     * Retrieves an aggregated list of packetMirrorings. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of packetMirrorings.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see PacketMirroringsClient::aggregatedListAsync()} .
      *
@@ -353,7 +356,8 @@ final class PacketMirroringsClient
     }
 
     /**
-     * Creates a PacketMirroring resource in the specified project and region using the data included in the request.
+     * Creates a PacketMirroring resource in the specified project and region
+     * using the data included in the request.
      *
      * The async variant is {@see PacketMirroringsClient::insertAsync()} .
      *
@@ -379,7 +383,8 @@ final class PacketMirroringsClient
     }
 
     /**
-     * Retrieves a list of PacketMirroring resources available to the specified project and region.
+     * Retrieves a list of PacketMirroring resources available to the specified
+     * project and region.
      *
      * The async variant is {@see PacketMirroringsClient::listAsync()} .
      *
@@ -405,7 +410,10 @@ final class PacketMirroringsClient
     }
 
     /**
-     * Patches the specified PacketMirroring resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified PacketMirroring resource with the data included in
+     * the request. This method supportsPATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see PacketMirroringsClient::patchAsync()} .
      *

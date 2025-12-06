@@ -9,7 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represent a sole-tenant Node Type resource. Each node within a node group must have a node type. A node type specifies the total amount of cores and memory for that node. Currently, the only available node type is n1-node-96-624 node type that has 96 vCPUs and 624 GB of memory, available in multiple zones. For more information read Node types.
+ * Represent a sole-tenant Node Type resource.
+ * Each node within a node group must have a node type. A node type specifies
+ * the total amount of cores and memory for that node. Currently, the only
+ * available node type is n1-node-96-624 node type that has 96
+ * vCPUs and 624 GB of memory, available in multiple zones. For more information
+ * readNode types.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NodeType</code>
  */
@@ -22,7 +27,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     protected $cpu_platform = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -40,19 +46,21 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The number of virtual CPUs that are available to the node type.
+     * [Output Only] The number of virtual CPUs that are available to the node
+     * type.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      */
     protected $guest_cpus = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] The type of the resource. Always compute#nodeType for node types.
+     * [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -70,7 +78,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     protected $max_vms = null;
     /**
-     * [Output Only] The amount of physical memory available to the node type, defined in MB.
+     * [Output Only] The amount of physical memory available to the node type,
+     * defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      */
@@ -88,7 +97,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] The name of the zone where the node type resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the node type resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -103,29 +113,34 @@ class NodeType extends \Google\Protobuf\Internal\Message
      *     @type string $cpu_platform
      *           [Output Only] The CPU platform used by this node type.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
      *           [Output Only] The deprecation status associated with this node type.
      *     @type string $description
      *           [Output Only] An optional textual description of the resource.
      *     @type int $guest_cpus
-     *           [Output Only] The number of virtual CPUs that are available to the node type.
+     *           [Output Only] The number of virtual CPUs that are available to the node
+     *           type.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Always compute#nodeType for node types.
+     *           [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *     @type int $local_ssd_gb
      *           [Output Only] Local SSD available to the node type, defined in GB.
      *     @type int $max_vms
      *           [Output Only] Maximum number of VMs that can be created for this node type.
      *     @type int $memory_mb
-     *           [Output Only] The amount of physical memory available to the node type, defined in MB.
+     *           [Output Only] The amount of physical memory available to the node type,
+     *           defined in MB.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
-     *           [Output Only] The name of the zone where the node type resides, such as us-central1-a.
+     *           [Output Only] The name of the zone where the node type resides,
+     *           such as us-central1-a.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,7 +185,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -191,7 +207,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -278,7 +295,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The number of virtual CPUs that are available to the node type.
+     * [Output Only] The number of virtual CPUs that are available to the node
+     * type.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      * @return int
@@ -299,7 +317,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The number of virtual CPUs that are available to the node type.
+     * [Output Only] The number of virtual CPUs that are available to the node
+     * type.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      * @param int $var
@@ -314,7 +333,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -335,7 +355,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -350,7 +371,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#nodeType for node types.
+     * [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -371,7 +392,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#nodeType for node types.
+     * [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -458,7 +479,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The amount of physical memory available to the node type, defined in MB.
+     * [Output Only] The amount of physical memory available to the node type,
+     * defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      * @return int
@@ -479,7 +501,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The amount of physical memory available to the node type, defined in MB.
+     * [Output Only] The amount of physical memory available to the node type,
+     * defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      * @param int $var
@@ -566,7 +589,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node type resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the node type resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -587,7 +611,8 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node type resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the node type resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

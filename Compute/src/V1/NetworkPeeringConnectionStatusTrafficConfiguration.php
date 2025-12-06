@@ -21,7 +21,8 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
      */
     protected $export_custom_routes_to_peer = null;
     /**
-     * Whether subnet routes with public IP ranges are being exported to the peer network.
+     * Whether subnet routes with public IP ranges are being exported to the
+     * peer network.
      *
      * Generated from protobuf field <code>optional bool export_subnet_routes_with_public_ip_to_peer = 8358601;</code>
      */
@@ -33,13 +34,15 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
      */
     protected $import_custom_routes_from_peer = null;
     /**
-     * Whether subnet routes with public IP ranges are being imported from the peer network.
+     * Whether subnet routes with public IP ranges are being imported
+     * from the peer network.
      *
      * Generated from protobuf field <code>optional bool import_subnet_routes_with_public_ip_from_peer = 234712361;</code>
      */
     protected $import_subnet_routes_with_public_ip_from_peer = null;
     /**
-     * Which IP version(s) of traffic and routes are being imported or exported between peer networks.
+     * Which IP version(s) of traffic and routes are being imported or
+     * exported between peer networks.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -55,13 +58,16 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
      *     @type bool $export_custom_routes_to_peer
      *           Whether custom routes are being exported to the peer network.
      *     @type bool $export_subnet_routes_with_public_ip_to_peer
-     *           Whether subnet routes with public IP ranges are being exported to the peer network.
+     *           Whether subnet routes with public IP ranges are being exported to the
+     *           peer network.
      *     @type bool $import_custom_routes_from_peer
      *           Whether custom routes are being imported from the peer network.
      *     @type bool $import_subnet_routes_with_public_ip_from_peer
-     *           Whether subnet routes with public IP ranges are being imported from the peer network.
+     *           Whether subnet routes with public IP ranges are being imported
+     *           from the peer network.
      *     @type string $stack_type
-     *           Which IP version(s) of traffic and routes are being imported or exported between peer networks.
+     *           Which IP version(s) of traffic and routes are being imported or
+     *           exported between peer networks.
      *           Check the StackType enum for the list of possible values.
      * }
      */
@@ -107,7 +113,8 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
     }
 
     /**
-     * Whether subnet routes with public IP ranges are being exported to the peer network.
+     * Whether subnet routes with public IP ranges are being exported to the
+     * peer network.
      *
      * Generated from protobuf field <code>optional bool export_subnet_routes_with_public_ip_to_peer = 8358601;</code>
      * @return bool
@@ -128,7 +135,8 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
     }
 
     /**
-     * Whether subnet routes with public IP ranges are being exported to the peer network.
+     * Whether subnet routes with public IP ranges are being exported to the
+     * peer network.
      *
      * Generated from protobuf field <code>optional bool export_subnet_routes_with_public_ip_to_peer = 8358601;</code>
      * @param bool $var
@@ -179,7 +187,8 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
     }
 
     /**
-     * Whether subnet routes with public IP ranges are being imported from the peer network.
+     * Whether subnet routes with public IP ranges are being imported
+     * from the peer network.
      *
      * Generated from protobuf field <code>optional bool import_subnet_routes_with_public_ip_from_peer = 234712361;</code>
      * @return bool
@@ -200,7 +209,8 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
     }
 
     /**
-     * Whether subnet routes with public IP ranges are being imported from the peer network.
+     * Whether subnet routes with public IP ranges are being imported
+     * from the peer network.
      *
      * Generated from protobuf field <code>optional bool import_subnet_routes_with_public_ip_from_peer = 234712361;</code>
      * @param bool $var
@@ -215,7 +225,8 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
     }
 
     /**
-     * Which IP version(s) of traffic and routes are being imported or exported between peer networks.
+     * Which IP version(s) of traffic and routes are being imported or
+     * exported between peer networks.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -237,7 +248,8 @@ class NetworkPeeringConnectionStatusTrafficConfiguration extends \Google\Protobu
     }
 
     /**
-     * Which IP version(s) of traffic and routes are being imported or exported between peer networks.
+     * Which IP version(s) of traffic and routes are being imported or
+     * exported between peer networks.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>

@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\GetImageFamilyViewRequest;
 use Google\Cloud\Compute\V1\ImageFamilyView;
 
 /**
- * Returns the latest image that is part of an image family, is not deprecated and is rolled out in the specified zone.
+ * Returns the latest image that is part of an image family, is not
+ * deprecated and is rolled out in the specified zone.
  *
  * @param string $family  Name of the image family to search for.
  * @param string $project Project ID for this request.

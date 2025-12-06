@@ -15,7 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
+     * Optional organization ID managed by Cloud Resource Manager, for which to
+     * list shared VPC host projects. If not specified, the organization will be
+     * inferred from the project.
      *
      * Generated from protobuf field <code>optional string organization = 105180467;</code>
      */
@@ -28,7 +30,9 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $organization
-     *           Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
+     *           Optional organization ID managed by Cloud Resource Manager, for which to
+     *           list shared VPC host projects. If not specified, the organization will be
+     *           inferred from the project.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +41,9 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
+     * Optional organization ID managed by Cloud Resource Manager, for which to
+     * list shared VPC host projects. If not specified, the organization will be
+     * inferred from the project.
      *
      * Generated from protobuf field <code>optional string organization = 105180467;</code>
      * @return string
@@ -58,7 +64,9 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.
+     * Optional organization ID managed by Cloud Resource Manager, for which to
+     * list shared VPC host projects. If not specified, the organization will be
+     * inferred from the project.
      *
      * Generated from protobuf field <code>optional string organization = 105180467;</code>
      * @param string $var

@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\InstanceTemplate;
 use Google\Rpc\Status;
 
 /**
- * Creates an instance template in the specified project and region using the global instance template whose URL is included in the request.
+ * Creates an instance template in the specified project and region using the
+ * global instance template whose URL is included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  The name of the region for this request.

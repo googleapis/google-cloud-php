@@ -33,7 +33,8 @@ use Google\Cloud\Compute\V1\GetNatMappingInfoRoutersRequest;
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.
- * @param string $router  Name of the Router resource to query for Nat Mapping information of VM endpoints.
+ * @param string $router  Name of the Router resource to query for Nat Mapping information of
+ *                        VM endpoints.
  */
 function get_nat_mapping_info_sample(string $project, string $region, string $router): void
 {

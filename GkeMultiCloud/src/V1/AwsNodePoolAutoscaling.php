@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * AwsNodePoolAutoscaling contains information required by cluster autoscaler
  * to adjust the size of the node pool to the current cluster usage.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsNodePoolAutoscaling</code>
  */
 class AwsNodePoolAutoscaling extends \Google\Protobuf\Internal\Message

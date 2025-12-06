@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\RequestRemovePeeringNetworkRequest;
 use Google\Rpc\Status;
 
 /**
- * Requests to remove a peering from the specified network. Applicable only for PeeringConnection with update_strategy=CONSENSUS.
+ * Requests to remove a peering from the specified network. Applicable only
+ * for PeeringConnection with update_strategy=CONSENSUS.
  *
  * @param string $network Name of the network resource to remove peering from.
  * @param string $project Project ID for this request.

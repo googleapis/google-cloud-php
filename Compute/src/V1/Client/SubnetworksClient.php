@@ -284,7 +284,10 @@ final class SubnetworksClient
     }
 
     /**
-     * Retrieves an aggregated list of subnetworks. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of subnetworks.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see SubnetworksClient::aggregatedListAsync()} .
      *
@@ -392,7 +395,8 @@ final class SubnetworksClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see SubnetworksClient::getIamPolicyAsync()} .
      *
@@ -418,7 +422,8 @@ final class SubnetworksClient
     }
 
     /**
-     * Creates a subnetwork in the specified project using the data included in the request.
+     * Creates a subnetwork in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see SubnetworksClient::insertAsync()} .
      *
@@ -444,7 +449,8 @@ final class SubnetworksClient
     }
 
     /**
-     * Retrieves a list of subnetworks available to the specified project.
+     * Retrieves a list of subnetworks available to the specified
+     * project.
      *
      * The async variant is {@see SubnetworksClient::listAsync()} .
      *
@@ -496,7 +502,11 @@ final class SubnetworksClient
     }
 
     /**
-     * Patches the specified subnetwork with the data included in the request. Only certain fields can be updated with a patch request as indicated in the field descriptions. You must specify the current fingerprint of the subnetwork resource being patched.
+     * Patches the specified subnetwork with the data included in the request.
+     * Only certain fields can be updated with a patch request
+     * as indicated in the field descriptions.
+     * You must specify the current fingerprint of the
+     * subnetwork resource being patched.
      *
      * The async variant is {@see SubnetworksClient::patchAsync()} .
      *
@@ -522,7 +532,8 @@ final class SubnetworksClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see SubnetworksClient::setIamPolicyAsync()} .
      *
@@ -548,7 +559,8 @@ final class SubnetworksClient
     }
 
     /**
-     * Set whether VMs in this subnet can access Google services without assigning external IP addresses through Private Google Access.
+     * Set whether VMs in this subnet can access Google services without assigning
+     * external IP addresses through Private Google Access.
      *
      * The async variant is {@see SubnetworksClient::setPrivateIpGoogleAccessAsync()} .
      *

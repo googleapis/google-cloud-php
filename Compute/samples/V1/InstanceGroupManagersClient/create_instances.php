@@ -31,11 +31,17 @@ use Google\Cloud\Compute\V1\InstanceGroupManagersCreateInstancesRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates instances with per-instance configurations in this managed instance group. Instances are created using the current instance template. The create instances operation is marked DONE if the createInstances request is successful. The underlying actions take additional time. You must separately verify the status of the creating or actions with the listmanagedinstances method.
+ * Creates instances with per-instance configurations in this managed instance
+ * group. Instances are created using the current instance template. Thecreate instances operation is marked DONE if thecreateInstances request is successful. The underlying actions
+ * take additional time. You must separately verify the status of thecreating or actions with the listmanagedinstances
+ * method.
  *
- * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ *                                     It should conform to RFC1035.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where the managed instance group is located. It should conform to RFC1035.
+ * @param string $zone                 The name of thezone
+ *                                     where the managed instance group is located.
+ *                                     It should conform to RFC1035.
  */
 function create_instances_sample(
     string $instanceGroupManager,

@@ -16,13 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class FirewallLogConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This field denotes whether to enable logging for a particular firewall rule.
+     * This field denotes whether to enable logging for a particular firewall
+     * rule.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
     protected $enable = null;
     /**
-     * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     * This field can only be specified for a particular firewall rule if
+     * logging is enabled for that rule. This field denotes whether to include
+     * or exclude metadata for firewall logs.
      * Check the Metadata enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string metadata = 86866735;</code>
@@ -36,9 +39,12 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable
-     *           This field denotes whether to enable logging for a particular firewall rule.
+     *           This field denotes whether to enable logging for a particular firewall
+     *           rule.
      *     @type string $metadata
-     *           This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     *           This field can only be specified for a particular firewall rule if
+     *           logging is enabled for that rule. This field denotes whether to include
+     *           or exclude metadata for firewall logs.
      *           Check the Metadata enum for the list of possible values.
      * }
      */
@@ -48,7 +54,8 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field denotes whether to enable logging for a particular firewall rule.
+     * This field denotes whether to enable logging for a particular firewall
+     * rule.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
@@ -69,7 +76,8 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field denotes whether to enable logging for a particular firewall rule.
+     * This field denotes whether to enable logging for a particular firewall
+     * rule.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var
@@ -84,7 +92,9 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     * This field can only be specified for a particular firewall rule if
+     * logging is enabled for that rule. This field denotes whether to include
+     * or exclude metadata for firewall logs.
      * Check the Metadata enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string metadata = 86866735;</code>
@@ -106,7 +116,9 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     * This field can only be specified for a particular firewall rule if
+     * logging is enabled for that rule. This field denotes whether to include
+     * or exclude metadata for firewall logs.
      * Check the Metadata enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string metadata = 86866735;</code>

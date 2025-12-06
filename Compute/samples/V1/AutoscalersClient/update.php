@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\UpdateAutoscalerRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates an autoscaler in the specified project using the data included in the request.
+ * Updates an autoscaler in the specified project using the data
+ * included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $zone    Name of the zone for this request.

@@ -35,7 +35,8 @@ use Google\Rpc\Status;
  *
  * @param string $project          Project ID for this request.
  * @param string $region           Name of the region scoping this request.
- * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+ * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource to set an
+ *                                 SslCertificates resource for.
  */
 function set_ssl_certificates_sample(
     string $project,

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\Image;
 use UnexpectedValueException;
 
 /**
- * The architecture of the image. Valid values are ARM64 or X86_64.
+ * The architecture of the image. Valid values are
+ * ARM64 or X86_64.
  *
  * Protobuf type <code>google.cloud.compute.v1.Image.Architecture</code>
  */

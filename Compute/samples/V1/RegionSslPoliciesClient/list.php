@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionSslPoliciesClient;
 use Google\Cloud\Compute\V1\ListRegionSslPoliciesRequest;
 
 /**
- * Lists all the SSL policies that have been configured for the specified project and region.
+ * Lists all the SSL policies that have been configured for the specified
+ * project and region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

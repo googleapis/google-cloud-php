@@ -1,5 +1,250 @@
 # Changelog
 
+## 0.313.0
+
+<details><summary>google/cloud-ai-platform 1.46.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Expose zone when creating a FeatureOnlineStore ([#8762](https://github.com/googleapis/google-cloud-php/issues/8762)) ([e16ea8e](https://github.com/googleapis/google-cloud-php/commit/e16ea8ef8c9eb781bbc0ac2280b9ccc5f569666c))
+
+
+### Bug Fixes
+
+* Fix issue when using UrlContext tool ([#8776](https://github.com/googleapis/google-cloud-php/issues/8776)) ([8169fa7](https://github.com/googleapis/google-cloud-php/commit/8169fa736029c71c37d17d3fd4a2aad419a49ed1))
+
+
+### Documentation
+
+* [AiPlatform] update `ReplicatedVoiceConfig.mime_type` comment ([#8770](https://github.com/googleapis/google-cloud-php/issues/8770)) ([3507dfe](https://github.com/googleapis/google-cloud-php/commit/3507dfe1a622778df7fe93fe9ddaaa8568f39bf2))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.5.0</summary>
+
+
+
+### Features
+
+* Add ExportArtifact API ([#8772](https://github.com/googleapis/google-cloud-php/issues/8772)) ([048ebfa](https://github.com/googleapis/google-cloud-php/commit/048ebfa58fae8dcb113691163fcc6150a5a89df9))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 2.4.0</summary>
+
+
+
+### Features
+
+* [Channel] add Entitlement.price_reference_id, enum DiscountType enum DiscountComponent, RepricingConfig.entitlement_granularity, TransferableOffer.price_reference_id, RegisterSubscriberRequest.account, RegisterSubscriberRequest.integrator, UnregisterSubscriberRequest.account, UnregisterSubscriberRequest.integrator, ListSubscribersRequest.account, ListSubscribersRequest.integrator ([#8767](https://github.com/googleapis/google-cloud-php/issues/8767)) ([ca789ef](https://github.com/googleapis/google-cloud-php/commit/ca789ef7953b4fc12f1aa174705c6aa42ee6484f))
+
+
+### Bug Fixes
+
+* Changed field behavior for an existing field `entitlement_granularity` in message `.google.cloud.channel.v1.RepricingConfig` ([ca789ef](https://github.com/googleapis/google-cloud-php/commit/ca789ef7953b4fc12f1aa174705c6aa42ee6484f))
+
+</details>
+
+<details><summary>google/cloud-compute 2.3.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine v1 API to revision 20251031 ([#8773](https://github.com/googleapis/google-cloud-php/issues/8773)) ([1f5ddc5](https://github.com/googleapis/google-cloud-php/commit/1f5ddc50b572801562d476b9874e80120f56ac51))
+
+</details>
+
+<details><summary>google/cloud-core 1.69.0</summary>
+
+
+
+### Features
+
+* **docs:** Add docs for core concepts, client configuration, and OCC for IAM ([#8757](https://github.com/googleapis/google-cloud-php/issues/8757)) ([8b4acac](https://github.com/googleapis/google-cloud-php/commit/8b4acaca90d1fb66b971860b9c520dcbaa71847b))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.0</summary>
+
+
+
+### Bug Fixes
+
+* **Datastore:** Wrap exceptions for compatibility with V1 ([#8778](https://github.com/googleapis/google-cloud-php/issues/8778)) ([2b8d089](https://github.com/googleapis/google-cloud-php/commit/2b8d089672ab1e186bd6773c9d3cba1b079ee641))
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.3.0</summary>
+
+
+
+### Features
+
+* [Eventarc] add wide-scope Eventarc GoogleApiSource flags ([#8761](https://github.com/googleapis/google-cloud-php/issues/8761)) ([319f6ec](https://github.com/googleapis/google-cloud-php/commit/319f6ec0d102a156c3d8e0a5ff09fc86b9cbfed2))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.54.4</summary>
+
+
+
+### Documentation
+
+* Minor api documentation changes ([#8777](https://github.com/googleapis/google-cloud-php/issues/8777)) ([6f3210d](https://github.com/googleapis/google-cloud-php/commit/6f3210dcb91a5b94be2d50bbafeadb0262522824))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 1.4.0</summary>
+
+
+
+### Features
+
+* Added custom tolerations and labels support for Attached Clusters ([#8771](https://github.com/googleapis/google-cloud-php/issues/8771)) ([db09836](https://github.com/googleapis/google-cloud-php/commit/db09836bf2c3d312a6659182a0920368fc95d592))
+
+</details>
+
+<details><summary>google/cloud-logging 1.34.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.13.0</summary>
+
+
+
+### Features
+
+* Add transfer metadata options proto definition ([#8769](https://github.com/googleapis/google-cloud-php/issues/8769)) ([151195d](https://github.com/googleapis/google-cloud-php/commit/151195d2bcd73acc72a66b49cc482b9f7e5ae69d))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.3.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantAccounts] A new field `radius_area` is added to message `.google.shopping.merchant.accounts.v1.Region` ([#8766](https://github.com/googleapis/google-cloud-php/issues/8766)) ([7788e0d](https://github.com/googleapis/google-cloud-php/commit/7788e0d60b66ecef8eff44c8dfff4f7590b607e0))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.2.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Add the RequestIdHeaderMiddleware class ([#8764](https://github.com/googleapis/google-cloud-php/issues/8764)) ([45b3c58](https://github.com/googleapis/google-cloud-php/commit/45b3c5859074279e4d4126ba32fd6f9ddbf155a7))
+
+
+### Documentation
+
+* [Spanner] minor update for Spanner Location API ([#8754](https://github.com/googleapis/google-cloud-php/issues/8754)) ([55eae9c](https://github.com/googleapis/google-cloud-php/commit/55eae9c551ba4af1e203a148589aaddc067c9245))
+
+</details>
+
+<details><summary>google/cloud-storage 1.49.0</summary>
+
+
+
+### Features
+
+* **Storage:** List buckets partial success ([#8745](https://github.com/googleapis/google-cloud-php/issues/8745)) ([694e94a](https://github.com/googleapis/google-cloud-php/commit/694e94ad9919b3d8f5dec59d1b5e711fc4619c14))
+
+</details>
+
+## 0.312.0
+
+<details><summary>google/cloud-ai-platform 1.45.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add support for developer connect based deployment ([#8742](https://github.com/googleapis/google-cloud-php/issues/8742)) ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* Add `gpu_partition_size` in `machine_spec` v1 api ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* Add `ReplicatedVoiceConfig` to `VoiceConfig` to enable Gemini TTS voice replication ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+
+
+### Documentation
+
+* A comment for field `package_spec` in message `.google.cloud.aiplatform.v1.ReasoningEngineSpec` is changed ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+* A comment for message `ReasoningEngineSpec` is changed ([2777b8b](https://github.com/googleapis/google-cloud-php/commit/2777b8b9d43598d55856fb45008e389ed845db8a))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.10.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Adding new fields for CMEK and Retention Inheritance features ([#8743](https://github.com/googleapis/google-cloud-php/issues/8743)) ([3bd0a9b](https://github.com/googleapis/google-cloud-php/commit/3bd0a9b75bbc675a7c1a85246b0aa6da52f70e2a))
+
+</details>
+
+<details><summary>google/cloud-batch 1.4.0</summary>
+
+
+
+### Features
+
+* [Batch] added new provisioning models ([#8744](https://github.com/googleapis/google-cloud-php/issues/8744)) ([a19b5e1](https://github.com/googleapis/google-cloud-php/commit/a19b5e1e08074eeba28a22090b429973324f052a))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.9.0</summary>
+
+
+
+### Features
+
+* [NetApp] Add Squash Mode to Export Policy ([#8752](https://github.com/googleapis/google-cloud-php/issues/8752)) ([a4e1a9e](https://github.com/googleapis/google-cloud-php/commit/a4e1a9e33c598fbfd330d8d42f50b74f45dad06a))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.1.0</summary>
+
+
+
+### Features
+
+* [Spanner] Add Spanner location API ([#8737](https://github.com/googleapis/google-cloud-php/issues/8737)) ([c6b8e26](https://github.com/googleapis/google-cloud-php/commit/c6b8e268fac5c585957f1db84ad77ac9f8cb82fb))
+* Add Send and Ack mutations for Queues ([c6b8e26](https://github.com/googleapis/google-cloud-php/commit/c6b8e268fac5c585957f1db84ad77ac9f8cb82fb))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.5.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] introduces auto_upgrade_enabled option for MySQL in DatabaseInstance.Settings ([#8751](https://github.com/googleapis/google-cloud-php/issues/8751)) ([8a7fc50](https://github.com/googleapis/google-cloud-php/commit/8a7fc50c281d4ee1f327a0a9d609e7369dd9c1ab))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.3.0</summary>
+
+
+
+### Features
+
+* [VmMigration] add adaptation modifiers and storage pools to MigratingVM target defaults ([#8740](https://github.com/googleapis/google-cloud-php/issues/8740)) ([31228c6](https://github.com/googleapis/google-cloud-php/commit/31228c6b0b215ab8a59dd93a37c09d8c59955425))
+
+</details>
+
 ## 0.311.0
 
 <details><summary>googleads/ad-manager 0.5.0</summary>

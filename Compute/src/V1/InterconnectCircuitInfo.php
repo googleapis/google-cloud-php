@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a single physical circuit between the Customer and Google. CircuitInfo objects are created by Google, so all fields are output only.
+ * Describes a single physical circuit between the Customer and Google.
+ * CircuitInfo objects are created by Google, so all fields are output only.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectCircuitInfo</code>
  */
@@ -28,7 +29,8 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
      */
     protected $google_circuit_id = null;
     /**
-     * Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
+     * Google-side demarc ID for this circuit. Assigned at circuit turn-up and
+     * provided by Google to the customer in the LOA.
      *
      * Generated from protobuf field <code>optional string google_demarc_id = 448196270;</code>
      */
@@ -45,7 +47,8 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
      *     @type string $google_circuit_id
      *           Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
      *     @type string $google_demarc_id
-     *           Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
+     *           Google-side demarc ID for this circuit. Assigned at circuit turn-up and
+     *           provided by Google to the customer in the LOA.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +129,8 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
+     * Google-side demarc ID for this circuit. Assigned at circuit turn-up and
+     * provided by Google to the customer in the LOA.
      *
      * Generated from protobuf field <code>optional string google_demarc_id = 448196270;</code>
      * @return string
@@ -147,7 +151,8 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
+     * Google-side demarc ID for this circuit. Assigned at circuit turn-up and
+     * provided by Google to the customer in the LOA.
      *
      * Generated from protobuf field <code>optional string google_demarc_id = 448196270;</code>
      * @param string $var

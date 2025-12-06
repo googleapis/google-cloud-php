@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\NetworkAttachment;
 use Google\Rpc\Status;
 
 /**
- * Creates a NetworkAttachment in the specified project in the given scope using the parameters that are included in the request.
+ * Creates a NetworkAttachment in the specified project in the given scope
+ * using the parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region of this request.

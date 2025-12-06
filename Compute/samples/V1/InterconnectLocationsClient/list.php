@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\InterconnectLocationsClient;
 use Google\Cloud\Compute\V1\ListInterconnectLocationsRequest;
 
 /**
- * Retrieves the list of interconnect locations available to the specified project.
+ * Retrieves the list of interconnect locations available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

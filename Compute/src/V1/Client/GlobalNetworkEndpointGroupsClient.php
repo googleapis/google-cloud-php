@@ -302,7 +302,8 @@ final class GlobalNetworkEndpointGroupsClient
     }
 
     /**
-     * Deletes the specified network endpoint group.Note that the NEG cannot be deleted if there are backend services referencing it.
+     * Deletes the specified network endpoint group.Note that the NEG cannot be
+     * deleted if there are backend services referencing it.
      *
      * The async variant is {@see GlobalNetworkEndpointGroupsClient::deleteAsync()} .
      *
@@ -383,7 +384,8 @@ final class GlobalNetworkEndpointGroupsClient
     }
 
     /**
-     * Creates a network endpoint group in the specified project using the parameters that are included in the request.
+     * Creates a network endpoint group in the specified project using the
+     * parameters that are included in the request.
      *
      * The async variant is {@see GlobalNetworkEndpointGroupsClient::insertAsync()} .
      *
@@ -409,7 +411,8 @@ final class GlobalNetworkEndpointGroupsClient
     }
 
     /**
-     * Retrieves the list of network endpoint groups that are located in the specified project.
+     * Retrieves the list of network endpoint groups that are located in the
+     * specified project.
      *
      * The async variant is {@see GlobalNetworkEndpointGroupsClient::listAsync()} .
      *

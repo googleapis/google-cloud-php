@@ -1,4 +1,30 @@
-# Debugging
+# Troubleshooting
+
+## **How can I trace gRPC issues?**
+
+When working with libraries that use gRPC (which is the default transport for many Google Cloud PHP clients if the extension is installed), you can use the underlying gRPC C-core environment variables to enable logging.
+
+### **Prerequisites**
+
+Ensure you have the `grpc` PECL extension installed and enabled. You can check this by running:
+
+```
+php -m | grep grpc
+```
+
+For detailed instructions, see the [gRPC installation documentation](https://cloud.google.com/php/docs/reference/).
+
+### **Transport logging with gRPC**
+
+The primary method for debugging gRPC calls in PHP is setting environment variables. These affect the underlying C extension. The environment variables affecting gRPC are [listed in the gRPC repository](https://github.com/grpc/grpc/blob/master/doc/environment_variables.md). The important ones for diagnostics are `GRPC_TRACE` and `GRPC_VERBOSITY`.
+
+For example, you might want to start off with `GRPC_TRACE=all` and `GRPC_VERBOSITY=debug` which will dump a *lot* of information, then tweak them to reduce this to only useful data (e.g., `GRPC_TRACE=http,call_error`).
+
+```
+GRPC_VERBOSITY=debug GRPC_TRACE=all php your_script.php
+```
+
+## **Debug Logging**
 
 There are a few features built into the Google Cloud PHP client libraries which can help you debug
 your application. This guide will show you how to log client library requests and responses.
@@ -29,6 +55,7 @@ $request->setParent('projects/php-docs-samples-kokoro');
 // variable GOOGLE_SDK_PHP_LOGGING=true
 $response = $client->translateText($request);
 ```
+
 
 ```sh
 $ GOOGLE_SDK_PHP_LOGGING=true php debug-logging-example.php
@@ -201,3 +228,17 @@ $client = new TranslationServiceClient([
     'logger' => false
 ]);
 ```
+
+## **How can I diagnose proxy issues?**
+
+See [Client Configuration: Configuring a Proxy](/CLIENT_CONFIGURATION.md).
+
+## **Reporting a problem**
+
+If none of the above advice helps to resolve your issue, please ask for help. If you have a support contract with Google, please create an issue in the [support console](https://cloud.google.com/support/) instead of filing on GitHub. This will ensure a timely response.
+
+Otherwise, please either file an issue on GitHub or ask a question on [Stack Overflow](https://stackoverflow.com/). In most cases creating a GitHub issue will result in a quicker turnaround time, but if you believe your question is likely to help other users in the future, Stack Overflow is a good option. When creating a Stack Overflow question, please use the [google-cloud-platform tag](https://stackoverflow.com/questions/tagged/google-cloud-platform) and [php tag](https://stackoverflow.com/questions/tagged/php).
+
+Although there are multiple GitHub repositories associated with the Google Cloud Libraries, we recommend filing an issue in [https://github.com/googleapis/google-cloud-php](https://github.com/googleapis/google-cloud-php) unless you are certain that it belongs elsewhere. The maintainers may move it to a different repository where appropriate, but you will be notified of this via the email associated with your GitHub account.
+
+When filing an issue or asking a Stack Overflow question, please include as much of the following information as possible. This will enable us to help you quickly.

@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\PatchGlobalForwardingRuleRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified forwarding rule with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. Currently, you can only patch the network_tier field.
+ * Updates the specified forwarding rule with the data included in the
+ * request. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules. Currently, you can only
+ * patch the network_tier field.
  *
  * @param string $forwardingRule Name of the ForwardingRule resource to patch.
  * @param string $project        Project ID for this request.

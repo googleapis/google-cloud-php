@@ -70,6 +70,11 @@
                                 "deleteVersion"
                             ]
                         },
+                        "ExportArtifact": {
+                            "methods": [
+                                "exportArtifact"
+                            ]
+                        },
                         "GetAttachment": {
                             "methods": [
                                 "getAttachment"

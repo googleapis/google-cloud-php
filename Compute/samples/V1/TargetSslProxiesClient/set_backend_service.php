@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Changes the BackendService for TargetSslProxy.
  *
  * @param string $project        Project ID for this request.
- * @param string $targetSslProxy Name of the TargetSslProxy resource whose BackendService resource is to be set.
+ * @param string $targetSslProxy Name of the TargetSslProxy resource whose BackendService resource
+ *                               is to be set.
  */
 function set_backend_service_sample(string $project, string $targetSslProxy): void
 {

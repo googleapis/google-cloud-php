@@ -43,13 +43,15 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
      */
     protected $detection_relative_to_baseline_qps = null;
     /**
-     * The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * The name must be unique within the security policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
+     * Configuration options for enabling Adaptive Protection to operate
+     * on specified granular traffic units.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig traffic_granularity_configs = 85367358;</code>
      */
@@ -69,9 +71,11 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
      *     @type float $detection_load_threshold
      *     @type float $detection_relative_to_baseline_qps
      *     @type string $name
-     *           The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           The name must be unique within the security policy.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig>|\Google\Protobuf\Internal\RepeatedField $traffic_granularity_configs
-     *           Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
+     *           Configuration options for enabling Adaptive Protection to operate
+     *           on specified granular traffic units.
      * }
      */
     public function __construct($data = NULL) {
@@ -304,7 +308,8 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     }
 
     /**
-     * The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * The name must be unique within the security policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -325,7 +330,8 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     }
 
     /**
-     * The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the security policy.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * The name must be unique within the security policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -340,7 +346,8 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     }
 
     /**
-     * Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
+     * Configuration options for enabling Adaptive Protection to operate
+     * on specified granular traffic units.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig traffic_granularity_configs = 85367358;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -351,7 +358,8 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     }
 
     /**
-     * Configuration options for enabling Adaptive Protection to operate on specified granular traffic units.
+     * Configuration options for enabling Adaptive Protection to operate
+     * on specified granular traffic units.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig traffic_granularity_configs = 85367358;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig>|\Google\Protobuf\Internal\RepeatedField $var

@@ -9,26 +9,49 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The spec for modifying the path before sending the request to the matched backend service.
+ * The spec for modifying the path before sending the request to the matched
+ * backend service.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.UrlRewrite</code>
  */
 class UrlRewrite extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Before forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be from 1 to 255 characters.
+     * Before forwarding the request to the selected service, the request's
+     * host header is replaced with contents of hostRewrite.
+     * The value must be from 1 to 255 characters.
      *
      * Generated from protobuf field <code>optional string host_rewrite = 159819253;</code>
      */
     protected $host_rewrite = null;
     /**
-     * Before forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be from 1 to 1024 characters.
+     * Before forwarding the request to the selected backend service, the
+     * matching portion of the request's path is replaced bypathPrefixRewrite.
+     * The value must be from 1 to 1024 characters.
      *
      * Generated from protobuf field <code>optional string path_prefix_rewrite = 41186361;</code>
      */
     protected $path_prefix_rewrite = null;
     /**
-     *  If specified, the pattern rewrites the URL path (based on the :path header) using the HTTP template syntax. A corresponding path_template_match must be specified. Any template variables must exist in the path_template_match field. - -At least one variable must be specified in the path_template_match field - You can omit variables from the rewritten URL - The * and ** operators cannot be matched unless they have a corresponding variable name - e.g. {format=*} or {var=**}. For example, a path_template_match of /static/{format=**} could be rewritten as /static/content/{format} to prefix /content to the URL. Variables can also be re-ordered in a rewrite, so that /{country}/{format}/{suffix=**} can be rewritten as /content/{format}/{country}/{suffix}. At least one non-empty routeRules[].matchRules[].path_template_match is required. Only one of path_prefix_rewrite or path_template_rewrite may be specified.
+     * If specified, the pattern rewrites the URL path (based on the :path
+     * header) using the HTTP template syntax.
+     * A corresponding
+     * path_template_match must be specified. Any template variables must exist in
+     * the path_template_match field.
+     *       - -At least one variable must be specified in the path_template_match
+     *       field
+     *    - You can omit variables from the rewritten URL
+     *       - The * and ** operators cannot be matched
+     *       unless they have a corresponding variable name - e.g.
+     *       {format=*} or {var=**}.
+     * For example, a path_template_match of /static/{format=**}
+     * could be rewritten as /static/content/{format} to prefix/content to the URL. Variables can also be re-ordered in a
+     * rewrite, so that /{country}/{format}/{suffix=**} can be
+     * rewritten as /content/{format}/{country}/{suffix}.
+     * At least
+     * one non-empty routeRules[].matchRules[].path_template_match is
+     * required.
+     * Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
      *
      * Generated from protobuf field <code>optional string path_template_rewrite = 423409569;</code>
      */
@@ -41,11 +64,33 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $host_rewrite
-     *           Before forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be from 1 to 255 characters.
+     *           Before forwarding the request to the selected service, the request's
+     *           host header is replaced with contents of hostRewrite.
+     *           The value must be from 1 to 255 characters.
      *     @type string $path_prefix_rewrite
-     *           Before forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be from 1 to 1024 characters.
+     *           Before forwarding the request to the selected backend service, the
+     *           matching portion of the request's path is replaced bypathPrefixRewrite.
+     *           The value must be from 1 to 1024 characters.
      *     @type string $path_template_rewrite
-     *            If specified, the pattern rewrites the URL path (based on the :path header) using the HTTP template syntax. A corresponding path_template_match must be specified. Any template variables must exist in the path_template_match field. - -At least one variable must be specified in the path_template_match field - You can omit variables from the rewritten URL - The * and ** operators cannot be matched unless they have a corresponding variable name - e.g. {format=*} or {var=**}. For example, a path_template_match of /static/{format=**} could be rewritten as /static/content/{format} to prefix /content to the URL. Variables can also be re-ordered in a rewrite, so that /{country}/{format}/{suffix=**} can be rewritten as /content/{format}/{country}/{suffix}. At least one non-empty routeRules[].matchRules[].path_template_match is required. Only one of path_prefix_rewrite or path_template_rewrite may be specified.
+     *           If specified, the pattern rewrites the URL path (based on the :path
+     *           header) using the HTTP template syntax.
+     *           A corresponding
+     *           path_template_match must be specified. Any template variables must exist in
+     *           the path_template_match field.
+     *                 - -At least one variable must be specified in the path_template_match
+     *                 field
+     *              - You can omit variables from the rewritten URL
+     *                 - The * and ** operators cannot be matched
+     *                 unless they have a corresponding variable name - e.g.
+     *                 {format=*} or {var=**}.
+     *           For example, a path_template_match of /static/{format=**}
+     *           could be rewritten as /static/content/{format} to prefix/content to the URL. Variables can also be re-ordered in a
+     *           rewrite, so that /{country}/{format}/{suffix=**} can be
+     *           rewritten as /content/{format}/{country}/{suffix}.
+     *           At least
+     *           one non-empty routeRules[].matchRules[].path_template_match is
+     *           required.
+     *           Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +99,9 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Before forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be from 1 to 255 characters.
+     * Before forwarding the request to the selected service, the request's
+     * host header is replaced with contents of hostRewrite.
+     * The value must be from 1 to 255 characters.
      *
      * Generated from protobuf field <code>optional string host_rewrite = 159819253;</code>
      * @return string
@@ -75,7 +122,9 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Before forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be from 1 to 255 characters.
+     * Before forwarding the request to the selected service, the request's
+     * host header is replaced with contents of hostRewrite.
+     * The value must be from 1 to 255 characters.
      *
      * Generated from protobuf field <code>optional string host_rewrite = 159819253;</code>
      * @param string $var
@@ -90,7 +139,9 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Before forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be from 1 to 1024 characters.
+     * Before forwarding the request to the selected backend service, the
+     * matching portion of the request's path is replaced bypathPrefixRewrite.
+     * The value must be from 1 to 1024 characters.
      *
      * Generated from protobuf field <code>optional string path_prefix_rewrite = 41186361;</code>
      * @return string
@@ -111,7 +162,9 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Before forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be from 1 to 1024 characters.
+     * Before forwarding the request to the selected backend service, the
+     * matching portion of the request's path is replaced bypathPrefixRewrite.
+     * The value must be from 1 to 1024 characters.
      *
      * Generated from protobuf field <code>optional string path_prefix_rewrite = 41186361;</code>
      * @param string $var
@@ -126,7 +179,25 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     *  If specified, the pattern rewrites the URL path (based on the :path header) using the HTTP template syntax. A corresponding path_template_match must be specified. Any template variables must exist in the path_template_match field. - -At least one variable must be specified in the path_template_match field - You can omit variables from the rewritten URL - The * and ** operators cannot be matched unless they have a corresponding variable name - e.g. {format=*} or {var=**}. For example, a path_template_match of /static/{format=**} could be rewritten as /static/content/{format} to prefix /content to the URL. Variables can also be re-ordered in a rewrite, so that /{country}/{format}/{suffix=**} can be rewritten as /content/{format}/{country}/{suffix}. At least one non-empty routeRules[].matchRules[].path_template_match is required. Only one of path_prefix_rewrite or path_template_rewrite may be specified.
+     * If specified, the pattern rewrites the URL path (based on the :path
+     * header) using the HTTP template syntax.
+     * A corresponding
+     * path_template_match must be specified. Any template variables must exist in
+     * the path_template_match field.
+     *       - -At least one variable must be specified in the path_template_match
+     *       field
+     *    - You can omit variables from the rewritten URL
+     *       - The * and ** operators cannot be matched
+     *       unless they have a corresponding variable name - e.g.
+     *       {format=*} or {var=**}.
+     * For example, a path_template_match of /static/{format=**}
+     * could be rewritten as /static/content/{format} to prefix/content to the URL. Variables can also be re-ordered in a
+     * rewrite, so that /{country}/{format}/{suffix=**} can be
+     * rewritten as /content/{format}/{country}/{suffix}.
+     * At least
+     * one non-empty routeRules[].matchRules[].path_template_match is
+     * required.
+     * Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
      *
      * Generated from protobuf field <code>optional string path_template_rewrite = 423409569;</code>
      * @return string
@@ -147,7 +218,25 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     *  If specified, the pattern rewrites the URL path (based on the :path header) using the HTTP template syntax. A corresponding path_template_match must be specified. Any template variables must exist in the path_template_match field. - -At least one variable must be specified in the path_template_match field - You can omit variables from the rewritten URL - The * and ** operators cannot be matched unless they have a corresponding variable name - e.g. {format=*} or {var=**}. For example, a path_template_match of /static/{format=**} could be rewritten as /static/content/{format} to prefix /content to the URL. Variables can also be re-ordered in a rewrite, so that /{country}/{format}/{suffix=**} can be rewritten as /content/{format}/{country}/{suffix}. At least one non-empty routeRules[].matchRules[].path_template_match is required. Only one of path_prefix_rewrite or path_template_rewrite may be specified.
+     * If specified, the pattern rewrites the URL path (based on the :path
+     * header) using the HTTP template syntax.
+     * A corresponding
+     * path_template_match must be specified. Any template variables must exist in
+     * the path_template_match field.
+     *       - -At least one variable must be specified in the path_template_match
+     *       field
+     *    - You can omit variables from the rewritten URL
+     *       - The * and ** operators cannot be matched
+     *       unless they have a corresponding variable name - e.g.
+     *       {format=*} or {var=**}.
+     * For example, a path_template_match of /static/{format=**}
+     * could be rewritten as /static/content/{format} to prefix/content to the URL. Variables can also be re-ordered in a
+     * rewrite, so that /{country}/{format}/{suffix=**} can be
+     * rewritten as /content/{format}/{country}/{suffix}.
+     * At least
+     * one non-empty routeRules[].matchRules[].path_template_match is
+     * required.
+     * Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
      *
      * Generated from protobuf field <code>optional string path_template_rewrite = 423409569;</code>
      * @param string $var

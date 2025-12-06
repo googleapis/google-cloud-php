@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SecurityPolicyRule;
 use Google\Rpc\Status;
 
 /**
- * Patches a rule at the specified priority. To clear fields in the rule, leave the fields empty and specify them in the updateMask.
+ * Patches a rule at the specified priority. To clear fields in the rule,
+ * leave the fields empty and specify them in the updateMask.
  *
  * @param string $project        Project ID for this request.
  * @param string $securityPolicy Name of the security policy to update.

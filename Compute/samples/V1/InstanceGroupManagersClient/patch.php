@@ -31,11 +31,26 @@ use Google\Cloud\Compute\V1\PatchInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports PATCH semantics and uses the JSON merge patch format and processing rules. If you update your group to specify a new template or instance configuration, it's possible that your intended specification for each VM in the group is different from the current state of that VM. To learn how to apply an updated configuration to the VMs in a MIG, see Updating instances in a MIG.
+ * Updates a managed instance group using the information that you specify
+ * in the request.
+ * This operation is marked as DONE when the group is patched
+ * even if the instances in the group are still in the process of being
+ * patched. You must separately verify the status of the individual instances
+ * with thelistManagedInstances
+ * method. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
+ *
+ * If you update your group to specify a new template or instance
+ * configuration, it's possible that your intended specification for each VM
+ * in the group is different from the current state of that VM. To learn how
+ * to apply an updated configuration to the VMs in a MIG, seeUpdating instances in
+ * a MIG.
  *
  * @param string $instanceGroupManager The name of the instance group manager.
  * @param string $project              Project ID for this request.
- * @param string $zone                 The name of the zone where you want to create the managed instance group.
+ * @param string $zone                 The name of the zone where
+ *                                     you want to create the managed instance group.
  */
 function patch_sample(string $instanceGroupManager, string $project, string $zone): void
 {

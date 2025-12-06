@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Details of a proxy config stored in AWS Secret Manager.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsProxyConfig</code>
  */
 class AwsProxyConfig extends \Google\Protobuf\Internal\Message

@@ -15,7 +15,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerAllInstancesConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Properties to set on all instances in the group. You can add or modify properties using the instanceGroupManagers.patch or regionInstanceGroupManagers.patch. After setting allInstancesConfig on the group, you must update the group's instances to apply the configuration. To apply the configuration, set the group's updatePolicy.type field to use proactive updates or use the applyUpdatesToInstances method.
+     * Properties to set on all instances in the group.
+     * You can add or modify properties using theinstanceGroupManagers.patch orregionInstanceGroupManagers.patch. After settingallInstancesConfig on the group, you must update the group's
+     * instances to apply the configuration. To apply the configuration, set the
+     * group's updatePolicy.type field to use proactive updates or
+     * use the applyUpdatesToInstances method.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstancePropertiesPatch properties = 147688755;</code>
      */
@@ -28,7 +32,11 @@ class InstanceGroupManagerAllInstancesConfig extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InstancePropertiesPatch $properties
-     *           Properties to set on all instances in the group. You can add or modify properties using the instanceGroupManagers.patch or regionInstanceGroupManagers.patch. After setting allInstancesConfig on the group, you must update the group's instances to apply the configuration. To apply the configuration, set the group's updatePolicy.type field to use proactive updates or use the applyUpdatesToInstances method.
+     *           Properties to set on all instances in the group.
+     *           You can add or modify properties using theinstanceGroupManagers.patch orregionInstanceGroupManagers.patch. After settingallInstancesConfig on the group, you must update the group's
+     *           instances to apply the configuration. To apply the configuration, set the
+     *           group's updatePolicy.type field to use proactive updates or
+     *           use the applyUpdatesToInstances method.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +45,11 @@ class InstanceGroupManagerAllInstancesConfig extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Properties to set on all instances in the group. You can add or modify properties using the instanceGroupManagers.patch or regionInstanceGroupManagers.patch. After setting allInstancesConfig on the group, you must update the group's instances to apply the configuration. To apply the configuration, set the group's updatePolicy.type field to use proactive updates or use the applyUpdatesToInstances method.
+     * Properties to set on all instances in the group.
+     * You can add or modify properties using theinstanceGroupManagers.patch orregionInstanceGroupManagers.patch. After settingallInstancesConfig on the group, you must update the group's
+     * instances to apply the configuration. To apply the configuration, set the
+     * group's updatePolicy.type field to use proactive updates or
+     * use the applyUpdatesToInstances method.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstancePropertiesPatch properties = 147688755;</code>
      * @return \Google\Cloud\Compute\V1\InstancePropertiesPatch|null
@@ -58,7 +70,11 @@ class InstanceGroupManagerAllInstancesConfig extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Properties to set on all instances in the group. You can add or modify properties using the instanceGroupManagers.patch or regionInstanceGroupManagers.patch. After setting allInstancesConfig on the group, you must update the group's instances to apply the configuration. To apply the configuration, set the group's updatePolicy.type field to use proactive updates or use the applyUpdatesToInstances method.
+     * Properties to set on all instances in the group.
+     * You can add or modify properties using theinstanceGroupManagers.patch orregionInstanceGroupManagers.patch. After settingallInstancesConfig on the group, you must update the group's
+     * instances to apply the configuration. To apply the configuration, set the
+     * group's updatePolicy.type field to use proactive updates or
+     * use the applyUpdatesToInstances method.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstancePropertiesPatch properties = 147688755;</code>
      * @param \Google\Cloud\Compute\V1\InstancePropertiesPatch $var

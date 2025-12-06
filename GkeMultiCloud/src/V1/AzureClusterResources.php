@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Managed Azure resources for the cluster.
  * The values could change and be empty, depending on the state of the cluster.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureClusterResources</code>
  */
 class AzureClusterResources extends \Google\Protobuf\Internal\Message

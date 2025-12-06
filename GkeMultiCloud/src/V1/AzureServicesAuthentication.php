@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Authentication configuration for the management of Azure resources.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureServicesAuthentication</code>
  */
 class AzureServicesAuthentication extends \Google\Protobuf\Internal\Message

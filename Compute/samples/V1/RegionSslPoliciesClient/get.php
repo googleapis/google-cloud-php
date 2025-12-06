@@ -33,7 +33,8 @@ use Google\Cloud\Compute\V1\SslPolicy;
  *
  * @param string $project   Project ID for this request.
  * @param string $region    Name of the region scoping this request.
- * @param string $sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
+ * @param string $sslPolicy Name of the SSL policy to update. The name must be 1-63 characters long,
+ *                          and comply with RFC1035.
  */
 function get_sample(string $project, string $region, string $sslPolicy): void
 {

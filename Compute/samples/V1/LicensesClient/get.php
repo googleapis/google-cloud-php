@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\GetLicenseRequest;
 use Google\Cloud\Compute\V1\License;
 
 /**
- * Returns the specified License resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images.
+ * Returns the specified License resource.
+ * *Caution* This resource is intended
+ * for use only by third-party partners who are creatingCloud Marketplace
+ * images.
  *
  * @param string $license Name of the License resource to return.
  * @param string $project Project ID for this request.

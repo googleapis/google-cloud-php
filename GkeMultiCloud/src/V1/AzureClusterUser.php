@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Identities of a user-type subject for Azure clusters.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureClusterUser</code>
  */
 class AzureClusterUser extends \Google\Protobuf\Internal\Message

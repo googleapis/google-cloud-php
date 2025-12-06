@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] An analysis of the physical layout of Interconnects in this group. Every Interconnect in the group is shown once in this structure.
+ * [Output Only] An analysis of the physical layout of Interconnects in this
+ * group. Every Interconnect in the group is shown once in this structure.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectGroupPhysicalStructure</code>
  */

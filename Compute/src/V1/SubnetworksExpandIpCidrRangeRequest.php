@@ -15,7 +15,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class SubnetworksExpandIpCidrRangeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
+     * The IP (in CIDR format or netmask) of internal addresses that are legal on
+     * this Subnetwork. This range should be disjoint from other subnetworks
+     * within this network. This range can only be larger than (i.e. a superset
+     * of) the range previously defined before the update.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
@@ -28,7 +31,10 @@ class SubnetworksExpandIpCidrRangeRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ip_cidr_range
-     *           The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
+     *           The IP (in CIDR format or netmask) of internal addresses that are legal on
+     *           this Subnetwork. This range should be disjoint from other subnetworks
+     *           within this network. This range can only be larger than (i.e. a superset
+     *           of) the range previously defined before the update.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +43,10 @@ class SubnetworksExpandIpCidrRangeRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
+     * The IP (in CIDR format or netmask) of internal addresses that are legal on
+     * this Subnetwork. This range should be disjoint from other subnetworks
+     * within this network. This range can only be larger than (i.e. a superset
+     * of) the range previously defined before the update.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
@@ -58,7 +67,10 @@ class SubnetworksExpandIpCidrRangeRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
+     * The IP (in CIDR format or netmask) of internal addresses that are legal on
+     * this Subnetwork. This range should be disjoint from other subnetworks
+     * within this network. This range can only be larger than (i.e. a superset
+     * of) the range previously defined before the update.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var

@@ -21,7 +21,8 @@ class OrganizationSecurityPoliciesListAssociationsResponse extends \Google\Proto
      */
     private $associations;
     /**
-     * [Output Only] Type of securityPolicy associations. Always compute#organizationSecurityPoliciesListAssociations for lists of securityPolicy associations.
+     * [Output Only] Type of securityPolicy associations. Alwayscompute#organizationSecurityPoliciesListAssociations for lists
+     * of securityPolicy associations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -36,7 +37,8 @@ class OrganizationSecurityPoliciesListAssociationsResponse extends \Google\Proto
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
      *           A list of associations.
      *     @type string $kind
-     *           [Output Only] Type of securityPolicy associations. Always compute#organizationSecurityPoliciesListAssociations for lists of securityPolicy associations.
+     *           [Output Only] Type of securityPolicy associations. Alwayscompute#organizationSecurityPoliciesListAssociations for lists
+     *           of securityPolicy associations.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class OrganizationSecurityPoliciesListAssociationsResponse extends \Google\Proto
     }
 
     /**
-     * [Output Only] Type of securityPolicy associations. Always compute#organizationSecurityPoliciesListAssociations for lists of securityPolicy associations.
+     * [Output Only] Type of securityPolicy associations. Alwayscompute#organizationSecurityPoliciesListAssociations for lists
+     * of securityPolicy associations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -92,7 +95,8 @@ class OrganizationSecurityPoliciesListAssociationsResponse extends \Google\Proto
     }
 
     /**
-     * [Output Only] Type of securityPolicy associations. Always compute#organizationSecurityPoliciesListAssociations for lists of securityPolicy associations.
+     * [Output Only] Type of securityPolicy associations. Alwayscompute#organizationSecurityPoliciesListAssociations for lists
+     * of securityPolicy associations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

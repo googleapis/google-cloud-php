@@ -21,7 +21,8 @@ class NodeTemplatesScopedList extends \Google\Protobuf\Internal\Message
      */
     private $node_templates;
     /**
-     * [Output Only] An informational warning that appears when the node templates list is empty.
+     * [Output Only] An informational warning that appears when the node templates
+     * list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -36,7 +37,8 @@ class NodeTemplatesScopedList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\NodeTemplate>|\Google\Protobuf\Internal\RepeatedField $node_templates
      *           [Output Only] A list of node templates contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] An informational warning that appears when the node templates list is empty.
+     *           [Output Only] An informational warning that appears when the node templates
+     *           list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class NodeTemplatesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that appears when the node templates list is empty.
+     * [Output Only] An informational warning that appears when the node templates
+     * list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +95,8 @@ class NodeTemplatesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that appears when the node templates list is empty.
+     * [Output Only] An informational warning that appears when the node templates
+     * list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

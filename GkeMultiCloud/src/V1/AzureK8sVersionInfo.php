@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Kubernetes version information of GKE cluster on Azure.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureK8sVersionInfo</code>
  */
 class AzureK8sVersionInfo extends \Google\Protobuf\Internal\Message

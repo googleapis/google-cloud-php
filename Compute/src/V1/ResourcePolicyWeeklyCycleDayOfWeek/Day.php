@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycleDayOfWeek;
 use UnexpectedValueException;
 
 /**
- * Defines a schedule that runs on specific days of the week. Specify one or more days. The following options are available: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY.
+ * Defines a schedule that runs on specific days of the week. Specify
+ * one or more days. The following options are available:
+ * MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourcePolicyWeeklyCycleDayOfWeek.Day</code>
  */

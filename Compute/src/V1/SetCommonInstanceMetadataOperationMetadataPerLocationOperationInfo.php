@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] If state is `ABANDONED` or `FAILED`, this field is populated.
+     * [Output Only] If state is `ABANDONED` or `FAILED`, this field is
+     * populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Status error = 96784904;</code>
      */
     protected $error = null;
     /**
-     * [Output Only] Status of the action, which can be one of the following: `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
+     * [Output Only] Status of the action, which can be one of the following:
+     * `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -35,9 +37,11 @@ class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo extends
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Status $error
-     *           [Output Only] If state is `ABANDONED` or `FAILED`, this field is populated.
+     *           [Output Only] If state is `ABANDONED` or `FAILED`, this field is
+     *           populated.
      *     @type string $state
-     *           [Output Only] Status of the action, which can be one of the following: `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
+     *           [Output Only] Status of the action, which can be one of the following:
+     *           `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
      *           Check the State enum for the list of possible values.
      * }
      */
@@ -47,7 +51,8 @@ class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo extends
     }
 
     /**
-     * [Output Only] If state is `ABANDONED` or `FAILED`, this field is populated.
+     * [Output Only] If state is `ABANDONED` or `FAILED`, this field is
+     * populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Status error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\Status|null
@@ -68,7 +73,8 @@ class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo extends
     }
 
     /**
-     * [Output Only] If state is `ABANDONED` or `FAILED`, this field is populated.
+     * [Output Only] If state is `ABANDONED` or `FAILED`, this field is
+     * populated.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Status error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\Status $var
@@ -83,7 +89,8 @@ class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo extends
     }
 
     /**
-     * [Output Only] Status of the action, which can be one of the following: `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
+     * [Output Only] Status of the action, which can be one of the following:
+     * `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -105,7 +112,8 @@ class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo extends
     }
 
     /**
-     * [Output Only] Status of the action, which can be one of the following: `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
+     * [Output Only] Status of the action, which can be one of the following:
+     * `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>

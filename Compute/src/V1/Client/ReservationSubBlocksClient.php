@@ -34,11 +34,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\GetIamPolicyReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\GetReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\ListReservationSubBlocksRequest;
 use Google\Cloud\Compute\V1\PerformMaintenanceReservationSubBlockRequest;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\ReportFaultyReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\ReservationSubBlocksGetResponse;
+use Google\Cloud\Compute\V1\SetIamPolicyReservationSubBlockRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsReservationSubBlockRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -49,9 +54,12 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<ReservationSubBlocksGetResponse> getAsync(GetReservationSubBlockRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyReservationSubBlockRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListReservationSubBlocksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceReservationSubBlockRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> reportFaultyAsync(ReportFaultyReservationSubBlockRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyReservationSubBlockRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsReservationSubBlockRequest $request, array $optionalArgs = [])
  */
 final class ReservationSubBlocksClient
 {
@@ -294,6 +302,33 @@ final class ReservationSubBlocksClient
     }
 
     /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     *
+     * The async variant is {@see ReservationSubBlocksClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationSubBlocksClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyReservationSubBlockRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyReservationSubBlockRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a list of reservation subBlocks under a single reservation.
      *
      * The async variant is {@see ReservationSubBlocksClient::listAsync()} .
@@ -374,5 +409,61 @@ final class ReservationSubBlocksClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('ReportFaulty', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     *
+     * The async variant is {@see ReservationSubBlocksClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ReservationSubBlocksClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyReservationSubBlockRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyReservationSubBlockRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is
+     * {@see ReservationSubBlocksClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ReservationSubBlocksClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsReservationSubBlockRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsReservationSubBlockRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -29,7 +29,8 @@ class Quota extends \Google\Protobuf\Internal\Message
      */
     protected $metric = null;
     /**
-     * [Output Only] Owning resource. This is the resource on which this quota is applied.
+     * [Output Only] Owning resource. This is the resource on which this quota
+     * is applied.
      *
      * Generated from protobuf field <code>optional string owner = 106164915;</code>
      */
@@ -53,7 +54,8 @@ class Quota extends \Google\Protobuf\Internal\Message
      *           [Output Only] Name of the quota metric.
      *           Check the Metric enum for the list of possible values.
      *     @type string $owner
-     *           [Output Only] Owning resource. This is the resource on which this quota is applied.
+     *           [Output Only] Owning resource. This is the resource on which this quota
+     *           is applied.
      *     @type float $usage
      *           [Output Only] Current usage of this metric.
      * }
@@ -138,7 +140,8 @@ class Quota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Owning resource. This is the resource on which this quota is applied.
+     * [Output Only] Owning resource. This is the resource on which this quota
+     * is applied.
      *
      * Generated from protobuf field <code>optional string owner = 106164915;</code>
      * @return string
@@ -159,7 +162,8 @@ class Quota extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Owning resource. This is the resource on which this quota is applied.
+     * [Output Only] Owning resource. This is the resource on which this quota
+     * is applied.
      *
      * Generated from protobuf field <code>optional string owner = 106164915;</code>
      * @param string $var

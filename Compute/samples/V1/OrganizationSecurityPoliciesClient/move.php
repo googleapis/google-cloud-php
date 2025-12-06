@@ -30,7 +30,11 @@ use Google\Cloud\Compute\V1\MoveOrganizationSecurityPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Moves the specified security policy. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.move instead.
+ * Moves the specified security policy.
+ *
+ * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to modify firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.move instead.
  *
  * @param string $securityPolicy Name of the security policy to update.
  */

@@ -25,13 +25,15 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     protected $bfd_status = null;
     /**
-     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     * Enable IPv4 traffic over BGP Peer.
+     * It is enabled by default if the peerIpAddress is version 4.
      *
      * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
      */
     protected $enable_ipv4 = null;
     /**
-     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     * Enable IPv6 traffic over BGP Peer.
+     * It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      */
@@ -97,13 +99,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     protected $peer_ipv6_nexthop_address = null;
     /**
-     * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
+     * [Output only] URI of the VM instance that is used as third-party router
+     * appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     * Appliances.
+     * The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
      */
     protected $router_appliance_instance = null;
     /**
-     * The state of the BGP session. For a list of possible values for this field, see BGP session states.
+     * The state of the BGP session. For a list of possible values for this
+     * field, seeBGP session states.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
@@ -123,13 +129,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     protected $status_reason = null;
     /**
-     * Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
+     * Time this session has been up.
+     * Format:
+     *  14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *
      * Generated from protobuf field <code>optional string uptime = 235379688;</code>
      */
     protected $uptime = null;
     /**
-     * Time this session has been up, in seconds. Format: 145
+     * Time this session has been up, in seconds.
+     * Format:
+     *  145
      *
      * Generated from protobuf field <code>optional string uptime_seconds = 104736040;</code>
      */
@@ -145,9 +155,11 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *           Routes that were advertised to the remote BGP peer
      *     @type \Google\Cloud\Compute\V1\BfdStatus $bfd_status
      *     @type bool $enable_ipv4
-     *           Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *           Enable IPv4 traffic over BGP Peer.
+     *           It is enabled by default if the peerIpAddress is version 4.
      *     @type bool $enable_ipv6
-     *           Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     *           Enable IPv6 traffic over BGP Peer.
+     *           It is enabled by default if the peerIpAddress is version 6.
      *     @type string $ip_address
      *           IP address of the local BGP interface.
      *     @type string $ipv4_nexthop_address
@@ -169,9 +181,13 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *     @type string $peer_ipv6_nexthop_address
      *           IPv6 address of the remote BGP interface.
      *     @type string $router_appliance_instance
-     *           [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
+     *           [Output only] URI of the VM instance that is used as third-party router
+     *           appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     *           Appliances.
+     *           The VM instance is the peer side of the BGP session.
      *     @type string $state
-     *           The state of the BGP session. For a list of possible values for this field, see BGP session states.
+     *           The state of the BGP session. For a list of possible values for this
+     *           field, seeBGP session states.
      *     @type string $status
      *           Status of the BGP peer: {UP, DOWN}
      *           Check the Status enum for the list of possible values.
@@ -179,9 +195,13 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *           Indicates why particular status was returned.
      *           Check the StatusReason enum for the list of possible values.
      *     @type string $uptime
-     *           Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
+     *           Time this session has been up.
+     *           Format:
+     *            14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *     @type string $uptime_seconds
-     *           Time this session has been up, in seconds. Format: 145
+     *           Time this session has been up, in seconds.
+     *           Format:
+     *            145
      * }
      */
     public function __construct($data = NULL) {
@@ -248,7 +268,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     * Enable IPv4 traffic over BGP Peer.
+     * It is enabled by default if the peerIpAddress is version 4.
      *
      * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
      * @return bool
@@ -269,7 +290,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     * Enable IPv4 traffic over BGP Peer.
+     * It is enabled by default if the peerIpAddress is version 4.
      *
      * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
      * @param bool $var
@@ -284,7 +306,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     * Enable IPv6 traffic over BGP Peer.
+     * It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @return bool
@@ -305,7 +328,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     * Enable IPv6 traffic over BGP Peer.
+     * It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @param bool $var
@@ -680,7 +704,10 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
+     * [Output only] URI of the VM instance that is used as third-party router
+     * appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     * Appliances.
+     * The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
      * @return string
@@ -701,7 +728,10 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
+     * [Output only] URI of the VM instance that is used as third-party router
+     * appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     * Appliances.
+     * The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
      * @param string $var
@@ -716,7 +746,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state of the BGP session. For a list of possible values for this field, see BGP session states.
+     * The state of the BGP session. For a list of possible values for this
+     * field, seeBGP session states.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      * @return string
@@ -737,7 +768,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state of the BGP session. For a list of possible values for this field, see BGP session states.
+     * The state of the BGP session. For a list of possible values for this
+     * field, seeBGP session states.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      * @param string $var
@@ -828,7 +860,9 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
+     * Time this session has been up.
+     * Format:
+     *  14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *
      * Generated from protobuf field <code>optional string uptime = 235379688;</code>
      * @return string
@@ -849,7 +883,9 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
+     * Time this session has been up.
+     * Format:
+     *  14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *
      * Generated from protobuf field <code>optional string uptime = 235379688;</code>
      * @param string $var
@@ -864,7 +900,9 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time this session has been up, in seconds. Format: 145
+     * Time this session has been up, in seconds.
+     * Format:
+     *  145
      *
      * Generated from protobuf field <code>optional string uptime_seconds = 104736040;</code>
      * @return string
@@ -885,7 +923,9 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time this session has been up, in seconds. Format: 145
+     * Time this session has been up, in seconds.
+     * Format:
+     *  145
      *
      * Generated from protobuf field <code>optional string uptime_seconds = 104736040;</code>
      * @param string $var

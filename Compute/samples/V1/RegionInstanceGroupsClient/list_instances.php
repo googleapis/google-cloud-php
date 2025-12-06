@@ -30,9 +30,13 @@ use Google\Cloud\Compute\V1\ListInstancesRegionInstanceGroupsRequest;
 use Google\Cloud\Compute\V1\RegionInstanceGroupsListInstancesRequest;
 
 /**
- * Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running. The orderBy query parameter is not supported.
+ * Lists the instances in the specified instance group and displays
+ * information about the named ports. Depending on the specified options, this
+ * method can list all instances or only the instances that are running.
+ * The orderBy query parameter is not supported.
  *
- * @param string $instanceGroup Name of the regional instance group for which we want to list the instances.
+ * @param string $instanceGroup Name of the regional instance group for which we want to list the
+ *                              instances.
  * @param string $project       Project ID for this request.
  * @param string $region        Name of the region scoping this request.
  */

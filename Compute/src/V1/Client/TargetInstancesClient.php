@@ -273,7 +273,10 @@ final class TargetInstancesClient
     }
 
     /**
-     * Retrieves an aggregated list of target instances. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of target instances.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see TargetInstancesClient::aggregatedListAsync()} .
      *
@@ -353,7 +356,8 @@ final class TargetInstancesClient
     }
 
     /**
-     * Creates a TargetInstance resource in the specified project and zone using the data included in the request.
+     * Creates a TargetInstance resource in the specified project and zone using
+     * the data included in the request.
      *
      * The async variant is {@see TargetInstancesClient::insertAsync()} .
      *
@@ -379,7 +383,8 @@ final class TargetInstancesClient
     }
 
     /**
-     * Retrieves a list of TargetInstance resources available to the specified project and zone.
+     * Retrieves a list of TargetInstance resources available to the specified
+     * project and zone.
      *
      * The async variant is {@see TargetInstancesClient::listAsync()} .
      *
@@ -405,7 +410,9 @@ final class TargetInstancesClient
     }
 
     /**
-     * Sets the Google Cloud Armor security policy for the specified target instance. For more information, see Google Cloud Armor Overview
+     * Sets the Google Cloud Armor security policy for the specified target
+     * instance. For more information, seeGoogle
+     * Cloud Armor Overview
      *
      * The async variant is {@see TargetInstancesClient::setSecurityPolicyAsync()} .
      *

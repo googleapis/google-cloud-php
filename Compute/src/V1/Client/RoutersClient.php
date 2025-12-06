@@ -296,7 +296,10 @@ final class RoutersClient
     }
 
     /**
-     * Retrieves an aggregated list of routers. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of routers.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see RoutersClient::aggregatedListAsync()} .
      *
@@ -512,7 +515,8 @@ final class RoutersClient
     }
 
     /**
-     * Creates a Router resource in the specified project and region using the data included in the request.
+     * Creates a Router resource in the specified project and region using
+     * the data included in the request.
      *
      * The async variant is {@see RoutersClient::insertAsync()} .
      *
@@ -590,7 +594,8 @@ final class RoutersClient
     }
 
     /**
-     * Retrieves a list of router route policy subresources available to the specified project.
+     * Retrieves a list of router route policy subresources available to the
+     * specified project.
      *
      * The async variant is {@see RoutersClient::listRoutePoliciesAsync()} .
      *
@@ -618,7 +623,10 @@ final class RoutersClient
     }
 
     /**
-     * Patches the specified Router resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified Router resource with the data included in the
+     * request. This method supportsPATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see RoutersClient::patchAsync()} .
      *
@@ -670,7 +678,8 @@ final class RoutersClient
     }
 
     /**
-     * Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
+     * Preview fields auto-generated during router create andupdate operations.
+     * Calling this method does NOT create or update the router.
      *
      * The async variant is {@see RoutersClient::previewAsync()} .
      *
@@ -696,7 +705,10 @@ final class RoutersClient
     }
 
     /**
-     * Updates the specified Router resource with the data included in the request. This method conforms to PUT semantics, which requests that the state of the target resource be created or replaced with the state defined by the representation enclosed in the request message payload.
+     * Updates the specified Router resource with the data included in the
+     * request.  This method conforms toPUT semantics, which requests that the state of the
+     * target resource be created or replaced with the state defined by the
+     * representation enclosed in the request message payload.
      *
      * The async variant is {@see RoutersClient::updateAsync()} .
      *
