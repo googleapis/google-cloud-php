@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
-use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\Filter;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
@@ -26,8 +24,12 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\Tests\Unit\ServerStreamMockTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\ValueMapper;
+use Prophecy\Argument;
 
 /**
  * @group firestore
@@ -35,16 +37,18 @@ use Google\Cloud\Firestore\ValueMapper;
  */
 class FilterTest extends SnippetTestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use ProphecyTrait;
 
     const COLLECTION = 'a';
     const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
 
-    private $connection;
+    private $gapicClient;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
     }
 
     public function testFilterClass()
@@ -183,24 +187,30 @@ class FilterTest extends SnippetTestCase
             ]
         ];
 
-        $q = TestHelpers::stub(Query::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $q = new Query(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             self::QUERY_PARENT,
             [
                 'from' => $from
             ]
-        ]);
+        );
 
-        $this->connection->runQuery(new ArrayHasSameValuesToken([
-            'parent' => self::QUERY_PARENT,
-            'retries' => 0,
-            'structuredQuery' => [
-                'from' => $from
-            ] + $query
-        ]))->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
+        $this->gapicClient->runQuery(
+            Argument::that(function (RunQueryRequest $request) use ($query, $from) {
+                $expectedRequest = self::generateProto(RunQueryRequest::class, [
+                    'parent' => self::QUERY_PARENT,
+                    'structuredQuery' => [
+                        'from' => $from
+                    ] + $query
+                ]);
 
-        $q->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([]));
+
         $snippet->addLocal('query', $q);
 
         $res = $snippet->invoke('result');
