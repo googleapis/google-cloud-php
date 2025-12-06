@@ -1,12 +1,10 @@
 # Optimistic Concurrency Control (OCC) Loop for IAM
 
-## 1\. Introduction to OCC
-
 Optimistic Concurrency Control (OCC) is a strategy used to manage shared resources and prevent "lost updates" or race conditions when multiple users or processes attempt to modify the same resource simultaneously.
 
 In the context of Google Cloud IAM, the resource is the **IAM Policy** applied to a resource (like a Project, Bucket, or Service). An IAM Policy object contains a version number and an `etag` (entity tag) field.
 
-### The Problem Without OCC
+## 1\. Introduction to OCC
 
 Imagine two processes, A and B, try to add a user to a policy at the same time:
 
