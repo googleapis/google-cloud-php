@@ -31,7 +31,7 @@ class WorkerPool
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-◊&
+˛&
 %google/cloud/run/v2/worker_pool.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto(google/cloud/run/v2/instance_split.proto)google/cloud/run/v2/vendor_settings.proto7google/cloud/run/v2/worker_pool_revision_template.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ƒ
 CreateWorkerPoolRequest5
 parent (	B%‡A˙Arun.googleapis.com/WorkerPool9
@@ -60,7 +60,7 @@ page_token (	
 name (	B%‡A˙A
 run.googleapis.com/WorkerPool
 validate_only (B‡A
-etag (	"£
+etag (	" 
 
 WorkerPool
 name (	
@@ -92,11 +92,12 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 run.googleapis.com/RevisionD
 latest_created_revision" (	B#‡A˙A
 run.googleapis.com/RevisionN
-instance_split_statuses (2(.google.cloud.run.v2.InstanceSplitStatusB‡A
+instance_split_statuses (2(.google.cloud.run.v2.InstanceSplitStatusB‡A%
+threat_detection_enabled (B‡A
 custom_audiences% (	
 satisfies_pzs& (B‡A
 reconcilingb (B‡A
-etagc (	B‡A-
+etagc (	B‡A-
 LabelsEntry
 key (	
 value (	:82
