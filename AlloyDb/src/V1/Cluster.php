@@ -129,7 +129,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $reconciling = false;
     /**
-     * Input only. Initial user to setup during cluster creation. Required.
+     * Input only. Initial user to setup during cluster creation.
      * If used in `RestoreCluster` this is ignored.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.UserPassword initial_user = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -309,7 +309,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           reconcile them. This can happen due to user-triggered updates or
      *           system actions like failover or maintenance.
      *     @type \Google\Cloud\AlloyDb\V1\UserPassword $initial_user
-     *           Input only. Initial user to setup during cluster creation. Required.
+     *           Input only. Initial user to setup during cluster creation.
      *           If used in `RestoreCluster` this is ignored.
      *     @type \Google\Cloud\AlloyDb\V1\AutomatedBackupPolicy $automated_backup_policy
      *           The automated backup policy for this cluster.
@@ -935,7 +935,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Initial user to setup during cluster creation. Required.
+     * Input only. Initial user to setup during cluster creation.
      * If used in `RestoreCluster` this is ignored.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.UserPassword initial_user = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -957,7 +957,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Initial user to setup during cluster creation. Required.
+     * Input only. Initial user to setup during cluster creation.
      * If used in `RestoreCluster` this is ignored.
      *
      * Generated from protobuf field <code>.google.cloud.alloydb.v1.UserPassword initial_user = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
