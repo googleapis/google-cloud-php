@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\BigQuery\Connection;
 
+use Exception;
 use Google\Auth\GetUniverseDomainInterface;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
@@ -79,7 +81,7 @@ class Rest implements ConnectionInterface
 
         $apiEndpoint = $this->getApiEndpoint(null, $config, self::DEFAULT_API_ENDPOINT_TEMPLATE);
 
-        $this->setRequestWrapper(new RequestWrapper($config));
+        $this->setRequestWrapper($this->getRequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
             $apiEndpoint
@@ -418,5 +420,29 @@ class Rest implements ConnectionInterface
     public function testTableIamPermissions(array $args = [])
     {
         return $this->send('tables', 'testIamPermissions', $args);
+    }
+
+    /**
+     * Creates a request wrapper and sets the HTTP Handler logger to the configured one.
+     *
+     * @param array $config
+     * @return RequestWrapper
+     */
+    private function getRequestWrapper(array $config): RequestWrapper
+    {
+        // Because we are setting a logger, we build a handler here instead of using the default
+        $httpHandler = HttpHandlerFactory::build(logger:$config['logger']);
+        $config['httpHandler'] = $httpHandler;
+        $config['restRetryListener'] = $this->getRetryListener();
+        return new RequestWrapper($config);
+    }
+
+    private function getRetryListener(): callable
+    {
+        return function (Exception $ex, int $retryAttempt, array &$arguments) {
+            // The REST calls are [$request, $options]. We need to modify the options.
+            $options = $arguments[1];
+            $options['retryAttempt'] = $retryAttempt;
+        };
     }
 }
