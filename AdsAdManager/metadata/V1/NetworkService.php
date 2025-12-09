@@ -21,14 +21,21 @@ class NetworkService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-†
+ë
 -google/ads/admanager/v1/network_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"K
 GetNetworkRequest6
 name (	B(‡A˙A"
- admanager.googleapis.com/Network"
-ListNetworksRequest"J
+ admanager.googleapis.com/Network"Y
+ListNetworksRequest
+	page_size (B‡A
+
+page_token (	B‡A
+skip (B‡A"w
 ListNetworksResponse2
-networks (2 .google.ads.admanager.v1.Network2‡
+networks (2 .google.ads.admanager.v1.Network
+next_page_token (	
+
+total_size (2‡
 NetworkServiceÄ
 
 GetNetwork*.google.ads.admanager.v1.GetNetworkRequest .google.ads.admanager.v1.Network"$⁄AnameÇ”‰ì/v1/{name=networks/*}Å

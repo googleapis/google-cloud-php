@@ -25,34 +25,34 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Display name for Network.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $display_name = '';
+    protected $display_name = null;
     /**
      * Output only. Network Code.
      *
-     * Generated from protobuf field <code>string network_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string network_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $network_code = '';
+    protected $network_code = null;
     /**
      * Output only. Property code.
      *
-     * Generated from protobuf field <code>string property_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string property_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $property_code = '';
+    protected $property_code = null;
     /**
      * Output only. Time zone associated with the delivery of orders and
      * reporting.
      *
-     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string time_zone = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $time_zone = '';
+    protected $time_zone = null;
     /**
      * Output only. Primary currency code, in ISO-4217 format.
      *
-     * Generated from protobuf field <code>string currency_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string currency_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $currency_code = '';
+    protected $currency_code = null;
     /**
      * Optional. Currency codes that can be used as an alternative to the primary
      * currency code for trafficking Line Items.
@@ -65,21 +65,21 @@ class Network extends \Google\Protobuf\Internal\Message
      * descendant Ad Units can be added.
      * Format: networks/{network_code}/adUnits/{ad_unit}
      *
-     * Generated from protobuf field <code>string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    protected $effective_root_ad_unit = '';
+    protected $effective_root_ad_unit = null;
     /**
      * Output only. Whether this is a test network.
      *
-     * Generated from protobuf field <code>bool test_network = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool test_network = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $test_network = false;
+    protected $test_network = null;
     /**
      * Output only. Network ID.
      *
-     * Generated from protobuf field <code>int64 network_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 network_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $network_id = 0;
+    protected $network_id = null;
 
     /**
      * Constructor.
@@ -150,18 +150,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Display name for Network.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDisplayName()
     {
-        return $this->display_name;
+        return isset($this->display_name) ? $this->display_name : '';
+    }
+
+    public function hasDisplayName()
+    {
+        return isset($this->display_name);
+    }
+
+    public function clearDisplayName()
+    {
+        unset($this->display_name);
     }
 
     /**
      * Optional. Display name for Network.
      *
-     * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -176,18 +186,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Network Code.
      *
-     * Generated from protobuf field <code>string network_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string network_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getNetworkCode()
     {
-        return $this->network_code;
+        return isset($this->network_code) ? $this->network_code : '';
+    }
+
+    public function hasNetworkCode()
+    {
+        return isset($this->network_code);
+    }
+
+    public function clearNetworkCode()
+    {
+        unset($this->network_code);
     }
 
     /**
      * Output only. Network Code.
      *
-     * Generated from protobuf field <code>string network_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string network_code = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -202,18 +222,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Property code.
      *
-     * Generated from protobuf field <code>string property_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string property_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getPropertyCode()
     {
-        return $this->property_code;
+        return isset($this->property_code) ? $this->property_code : '';
+    }
+
+    public function hasPropertyCode()
+    {
+        return isset($this->property_code);
+    }
+
+    public function clearPropertyCode()
+    {
+        unset($this->property_code);
     }
 
     /**
      * Output only. Property code.
      *
-     * Generated from protobuf field <code>string property_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string property_code = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -229,19 +259,29 @@ class Network extends \Google\Protobuf\Internal\Message
      * Output only. Time zone associated with the delivery of orders and
      * reporting.
      *
-     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string time_zone = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getTimeZone()
     {
-        return $this->time_zone;
+        return isset($this->time_zone) ? $this->time_zone : '';
+    }
+
+    public function hasTimeZone()
+    {
+        return isset($this->time_zone);
+    }
+
+    public function clearTimeZone()
+    {
+        unset($this->time_zone);
     }
 
     /**
      * Output only. Time zone associated with the delivery of orders and
      * reporting.
      *
-     * Generated from protobuf field <code>string time_zone = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string time_zone = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -256,18 +296,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Primary currency code, in ISO-4217 format.
      *
-     * Generated from protobuf field <code>string currency_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string currency_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCurrencyCode()
     {
-        return $this->currency_code;
+        return isset($this->currency_code) ? $this->currency_code : '';
+    }
+
+    public function hasCurrencyCode()
+    {
+        return isset($this->currency_code);
+    }
+
+    public function clearCurrencyCode()
+    {
+        unset($this->currency_code);
     }
 
     /**
      * Output only. Primary currency code, in ISO-4217 format.
      *
-     * Generated from protobuf field <code>string currency_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string currency_code = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -312,12 +362,22 @@ class Network extends \Google\Protobuf\Internal\Message
      * descendant Ad Units can be added.
      * Format: networks/{network_code}/adUnits/{ad_unit}
      *
-     * Generated from protobuf field <code>string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getEffectiveRootAdUnit()
     {
-        return $this->effective_root_ad_unit;
+        return isset($this->effective_root_ad_unit) ? $this->effective_root_ad_unit : '';
+    }
+
+    public function hasEffectiveRootAdUnit()
+    {
+        return isset($this->effective_root_ad_unit);
+    }
+
+    public function clearEffectiveRootAdUnit()
+    {
+        unset($this->effective_root_ad_unit);
     }
 
     /**
@@ -325,7 +385,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * descendant Ad Units can be added.
      * Format: networks/{network_code}/adUnits/{ad_unit}
      *
-     * Generated from protobuf field <code>string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string effective_root_ad_unit = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -340,18 +400,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Whether this is a test network.
      *
-     * Generated from protobuf field <code>bool test_network = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool test_network = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getTestNetwork()
     {
-        return $this->test_network;
+        return isset($this->test_network) ? $this->test_network : false;
+    }
+
+    public function hasTestNetwork()
+    {
+        return isset($this->test_network);
+    }
+
+    public function clearTestNetwork()
+    {
+        unset($this->test_network);
     }
 
     /**
      * Output only. Whether this is a test network.
      *
-     * Generated from protobuf field <code>bool test_network = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional bool test_network = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -366,18 +436,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Network ID.
      *
-     * Generated from protobuf field <code>int64 network_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 network_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getNetworkId()
     {
-        return $this->network_id;
+        return isset($this->network_id) ? $this->network_id : 0;
+    }
+
+    public function hasNetworkId()
+    {
+        return isset($this->network_id);
+    }
+
+    public function clearNetworkId()
+    {
+        unset($this->network_id);
     }
 
     /**
      * Output only. Network ID.
      *
-     * Generated from protobuf field <code>int64 network_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 network_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */

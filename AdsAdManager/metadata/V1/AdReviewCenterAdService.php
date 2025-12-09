@@ -33,7 +33,7 @@ $admanager.googleapis.com/WebProperty
 	page_size (B‡A
 
 page_token (	B‡A_
-status (2J.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatusB‡A#
+status (2J.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatusB‡A#
 ad_review_center_ad_id (	B‡A3
 date_time_range (2.google.type.IntervalB‡A
 search_text (	B‡A

@@ -22,15 +22,28 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchActivateCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\BatchCreateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchCreateCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\BatchUpdateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchUpdateCustomTargetingKeysResponse;
 use Google\Ads\AdManager\V1\Client\CustomTargetingKeyServiceClient;
+use Google\Ads\AdManager\V1\CreateCustomTargetingKeyRequest;
 use Google\Ads\AdManager\V1\CustomTargetingKey;
+use Google\Ads\AdManager\V1\CustomTargetingKeyReportableTypeEnum\CustomTargetingKeyReportableType;
+use Google\Ads\AdManager\V1\CustomTargetingKeyTypeEnum\CustomTargetingKeyType;
 use Google\Ads\AdManager\V1\GetCustomTargetingKeyRequest;
 use Google\Ads\AdManager\V1\ListCustomTargetingKeysRequest;
 use Google\Ads\AdManager\V1\ListCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\UpdateCustomTargetingKeyRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -62,6 +75,386 @@ class CustomTargetingKeyServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new CustomTargetingKeyServiceClient($options);
+    }
+
+    /** @test */
+    public function batchActivateCustomTargetingKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchActivateCustomTargetingKeysResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]')];
+        $request = (new BatchActivateCustomTargetingKeysRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchActivateCustomTargetingKeys($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CustomTargetingKeyService/BatchActivateCustomTargetingKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchActivateCustomTargetingKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]')];
+        $request = (new BatchActivateCustomTargetingKeysRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        try {
+            $gapicClient->batchActivateCustomTargetingKeys($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateCustomTargetingKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchCreateCustomTargetingKeysResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateCustomTargetingKeysRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateCustomTargetingKeys($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CustomTargetingKeyService/BatchCreateCustomTargetingKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateCustomTargetingKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateCustomTargetingKeysRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchCreateCustomTargetingKeys($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeactivateCustomTargetingKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchDeactivateCustomTargetingKeysResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]')];
+        $request = (new BatchDeactivateCustomTargetingKeysRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchDeactivateCustomTargetingKeys($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CustomTargetingKeyService/BatchDeactivateCustomTargetingKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeactivateCustomTargetingKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]')];
+        $request = (new BatchDeactivateCustomTargetingKeysRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        try {
+            $gapicClient->batchDeactivateCustomTargetingKeys($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateCustomTargetingKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUpdateCustomTargetingKeysResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateCustomTargetingKeysRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateCustomTargetingKeys($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CustomTargetingKeyService/BatchUpdateCustomTargetingKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateCustomTargetingKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateCustomTargetingKeysRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchUpdateCustomTargetingKeys($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCustomTargetingKeyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $customTargetingKeyId = 138683049;
+        $adTagName = 'adTagName-1355595604';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new CustomTargetingKey();
+        $expectedResponse->setName($name);
+        $expectedResponse->setCustomTargetingKeyId($customTargetingKeyId);
+        $expectedResponse->setAdTagName($adTagName);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $customTargetingKey = new CustomTargetingKey();
+        $customTargetingKeyType = CustomTargetingKeyType::CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED;
+        $customTargetingKey->setType($customTargetingKeyType);
+        $customTargetingKeyReportableType =
+            CustomTargetingKeyReportableType::CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED;
+        $customTargetingKey->setReportableType($customTargetingKeyReportableType);
+        $request = (new CreateCustomTargetingKeyRequest())
+            ->setParent($formattedParent)
+            ->setCustomTargetingKey($customTargetingKey);
+        $response = $gapicClient->createCustomTargetingKey($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CustomTargetingKeyService/CreateCustomTargetingKey',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getCustomTargetingKey();
+        $this->assertProtobufEquals($customTargetingKey, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCustomTargetingKeyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $customTargetingKey = new CustomTargetingKey();
+        $customTargetingKeyType = CustomTargetingKeyType::CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED;
+        $customTargetingKey->setType($customTargetingKeyType);
+        $customTargetingKeyReportableType =
+            CustomTargetingKeyReportableType::CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED;
+        $customTargetingKey->setReportableType($customTargetingKeyReportableType);
+        $request = (new CreateCustomTargetingKeyRequest())
+            ->setParent($formattedParent)
+            ->setCustomTargetingKey($customTargetingKey);
+        try {
+            $gapicClient->createCustomTargetingKey($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -212,7 +605,7 @@ class CustomTargetingKeyServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getCustomTargetingKeyAsyncTest()
+    public function updateCustomTargetingKeyTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -220,28 +613,120 @@ class CustomTargetingKeyServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
+        $name = 'name3373707';
         $customTargetingKeyId = 138683049;
         $adTagName = 'adTagName-1355595604';
         $displayName = 'displayName1615086568';
         $expectedResponse = new CustomTargetingKey();
-        $expectedResponse->setName($name2);
+        $expectedResponse->setName($name);
         $expectedResponse->setCustomTargetingKeyId($customTargetingKeyId);
         $expectedResponse->setAdTagName($adTagName);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]');
-        $request = (new GetCustomTargetingKeyRequest())->setName($formattedName);
-        $response = $gapicClient->getCustomTargetingKeyAsync($request)->wait();
+        $customTargetingKey = new CustomTargetingKey();
+        $customTargetingKeyType = CustomTargetingKeyType::CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED;
+        $customTargetingKey->setType($customTargetingKeyType);
+        $customTargetingKeyReportableType =
+            CustomTargetingKeyReportableType::CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED;
+        $customTargetingKey->setReportableType($customTargetingKeyReportableType);
+        $updateMask = new FieldMask();
+        $request = (new UpdateCustomTargetingKeyRequest())
+            ->setCustomTargetingKey($customTargetingKey)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateCustomTargetingKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.CustomTargetingKeyService/GetCustomTargetingKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertSame(
+            '/google.ads.admanager.v1.CustomTargetingKeyService/UpdateCustomTargetingKey',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getCustomTargetingKey();
+        $this->assertProtobufEquals($customTargetingKey, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCustomTargetingKeyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $customTargetingKey = new CustomTargetingKey();
+        $customTargetingKeyType = CustomTargetingKeyType::CUSTOM_TARGETING_KEY_TYPE_UNSPECIFIED;
+        $customTargetingKey->setType($customTargetingKeyType);
+        $customTargetingKeyReportableType =
+            CustomTargetingKeyReportableType::CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED;
+        $customTargetingKey->setReportableType($customTargetingKeyReportableType);
+        $updateMask = new FieldMask();
+        $request = (new UpdateCustomTargetingKeyRequest())
+            ->setCustomTargetingKey($customTargetingKey)
+            ->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateCustomTargetingKey($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchActivateCustomTargetingKeysAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchActivateCustomTargetingKeysResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->customTargetingKeyName('[NETWORK_CODE]', '[CUSTOM_TARGETING_KEY]')];
+        $request = (new BatchActivateCustomTargetingKeysRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchActivateCustomTargetingKeysAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CustomTargetingKeyService/BatchActivateCustomTargetingKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

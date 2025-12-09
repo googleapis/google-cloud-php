@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
-use Google\Ads\AdManager\V1\Client\NetworkServiceClient;
-use Google\Ads\AdManager\V1\GetNetworkRequest;
-use Google\Ads\AdManager\V1\ListNetworksRequest;
-use Google\Ads\AdManager\V1\ListNetworksResponse;
-use Google\Ads\AdManager\V1\Network;
+use Google\Ads\AdManager\V1\Client\LineItemServiceClient;
+use Google\Ads\AdManager\V1\GetLineItemRequest;
+use Google\Ads\AdManager\V1\LineItem;
+use Google\Ads\AdManager\V1\ListLineItemsRequest;
+use Google\Ads\AdManager\V1\ListLineItemsResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -39,7 +39,7 @@ use stdClass;
  *
  * @group gapic
  */
-class NetworkServiceClientTest extends GeneratedTest
+class LineItemServiceClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -55,17 +55,17 @@ class NetworkServiceClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return NetworkServiceClient */
+    /** @return LineItemServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new NetworkServiceClient($options);
+        return new LineItemServiceClient($options);
     }
 
     /** @test */
-    public function getNetworkTest()
+    public function getLineItemTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -74,42 +74,30 @@ class NetworkServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $order = 'order106006350';
         $displayName = 'displayName1615086568';
-        $networkCode = 'networkCode-19973794';
-        $propertyCode = 'propertyCode-1019877865';
-        $timeZone = 'timeZone36848094';
-        $currencyCode = 'currencyCode1108728155';
-        $effectiveRootAdUnit = 'effectiveRootAdUnit98840923';
-        $testNetwork = false;
-        $networkId = 478232372;
-        $expectedResponse = new Network();
+        $expectedResponse = new LineItem();
         $expectedResponse->setName($name2);
+        $expectedResponse->setOrder($order);
         $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setNetworkCode($networkCode);
-        $expectedResponse->setPropertyCode($propertyCode);
-        $expectedResponse->setTimeZone($timeZone);
-        $expectedResponse->setCurrencyCode($currencyCode);
-        $expectedResponse->setEffectiveRootAdUnit($effectiveRootAdUnit);
-        $expectedResponse->setTestNetwork($testNetwork);
-        $expectedResponse->setNetworkId($networkId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new GetNetworkRequest())->setName($formattedName);
-        $response = $gapicClient->getNetwork($request);
+        $formattedName = $gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]');
+        $request = (new GetLineItemRequest())->setName($formattedName);
+        $response = $gapicClient->getLineItem($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.NetworkService/GetNetwork', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/GetLineItem', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getNetworkExceptionTest()
+    public function getLineItemExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -130,10 +118,10 @@ class NetworkServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new GetNetworkRequest())->setName($formattedName);
+        $formattedName = $gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]');
+        $request = (new GetLineItemRequest())->setName($formattedName);
         try {
-            $gapicClient->getNetwork($request);
+            $gapicClient->getLineItem($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -146,7 +134,7 @@ class NetworkServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listNetworksTest()
+    public function listLineItemsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -156,29 +144,33 @@ class NetworkServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $totalSize = 705419236;
-        $networksElement = new Network();
-        $networks = [$networksElement];
-        $expectedResponse = new ListNetworksResponse();
+        $lineItemsElement = new LineItem();
+        $lineItems = [$lineItemsElement];
+        $expectedResponse = new ListLineItemsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setNetworks($networks);
+        $expectedResponse->setLineItems($lineItems);
         $transport->addResponse($expectedResponse);
-        $request = new ListNetworksRequest();
-        $response = $gapicClient->listNetworks($request);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $request = (new ListLineItemsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listLineItems($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getNetworks()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getLineItems()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.NetworkService/ListNetworks', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/ListLineItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listNetworksExceptionTest()
+    public function listLineItemsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -198,9 +190,11 @@ class NetworkServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new ListNetworksRequest();
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $request = (new ListLineItemsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listNetworks($request);
+            $gapicClient->listLineItems($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -213,7 +207,7 @@ class NetworkServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getNetworkAsyncTest()
+    public function getLineItemAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -222,35 +216,23 @@ class NetworkServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $order = 'order106006350';
         $displayName = 'displayName1615086568';
-        $networkCode = 'networkCode-19973794';
-        $propertyCode = 'propertyCode-1019877865';
-        $timeZone = 'timeZone36848094';
-        $currencyCode = 'currencyCode1108728155';
-        $effectiveRootAdUnit = 'effectiveRootAdUnit98840923';
-        $testNetwork = false;
-        $networkId = 478232372;
-        $expectedResponse = new Network();
+        $expectedResponse = new LineItem();
         $expectedResponse->setName($name2);
+        $expectedResponse->setOrder($order);
         $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setNetworkCode($networkCode);
-        $expectedResponse->setPropertyCode($propertyCode);
-        $expectedResponse->setTimeZone($timeZone);
-        $expectedResponse->setCurrencyCode($currencyCode);
-        $expectedResponse->setEffectiveRootAdUnit($effectiveRootAdUnit);
-        $expectedResponse->setTestNetwork($testNetwork);
-        $expectedResponse->setNetworkId($networkId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new GetNetworkRequest())->setName($formattedName);
-        $response = $gapicClient->getNetworkAsync($request)->wait();
+        $formattedName = $gapicClient->lineItemName('[NETWORK_CODE]', '[LINE_ITEM]');
+        $request = (new GetLineItemRequest())->setName($formattedName);
+        $response = $gapicClient->getLineItemAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.NetworkService/GetNetwork', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.LineItemService/GetLineItem', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());

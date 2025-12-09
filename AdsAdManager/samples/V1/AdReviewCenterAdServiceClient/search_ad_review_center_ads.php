@@ -23,7 +23,6 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START admanager_v1_generated_AdReviewCenterAdService_SearchAdReviewCenterAds_sync]
-use Google\Ads\AdManager\V1\AdReviewCenterAdStatusEnum\AdReviewCenterAdStatus;
 use Google\Ads\AdManager\V1\Client\AdReviewCenterAdServiceClient;
 use Google\Ads\AdManager\V1\SearchAdReviewCenterAdsRequest;
 use Google\ApiCore\ApiException;
@@ -47,17 +46,15 @@ use Google\ApiCore\PagedListResponse;
  *
  *                                `networks/{network_code}/webProperties/games`
  *                                Please see {@see AdReviewCenterAdServiceClient::webPropertyName()} for help formatting this field.
- * @param int    $status          Only return ads with the given status.
  */
-function search_ad_review_center_ads_sample(string $formattedParent, int $status): void
+function search_ad_review_center_ads_sample(string $formattedParent): void
 {
     // Create a client.
     $adReviewCenterAdServiceClient = new AdReviewCenterAdServiceClient();
 
     // Prepare the request message.
     $request = (new SearchAdReviewCenterAdsRequest())
-        ->setParent($formattedParent)
-        ->setStatus($status);
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -87,8 +84,7 @@ function callSample(): void
         '[NETWORK_CODE]',
         '[WEB_PROPERTY]'
     );
-    $status = AdReviewCenterAdStatus::AD_REVIEW_CENTER_AD_STATUS_UNSPECIFIED;
 
-    search_ad_review_center_ads_sample($formattedParent, $status);
+    search_ad_review_center_ads_sample($formattedParent);
 }
 // [END admanager_v1_generated_AdReviewCenterAdService_SearchAdReviewCenterAds_sync]

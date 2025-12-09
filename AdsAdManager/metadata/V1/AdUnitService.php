@@ -19,10 +19,11 @@ class AdUnitService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˆ
--google/ads/admanager/v1/ad_unit_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"I
+„"
+-google/ads/admanager/v1/ad_unit_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.proto"I
 GetAdUnitRequest5
 name (	B\'àAúA!
 admanager.googleapis.com/AdUnit"¾
@@ -39,7 +40,26 @@ page_token (	BàA
 ad_units (2.google.ads.admanager.v1.AdUnit
 next_page_token (	
 
-total_size ("Â
+total_size ("†
+CreateAdUnitRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network5
+ad_unit (2.google.ads.admanager.v1.AdUnitBàA"‚
+UpdateAdUnitRequest5
+ad_unit (2.google.ads.admanager.v1.AdUnitBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"š
+BatchCreateAdUnitsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkC
+requests (2,.google.ads.admanager.v1.CreateAdUnitRequestBàA"O
+BatchCreateAdUnitsResponse1
+ad_units (2.google.ads.admanager.v1.AdUnit"š
+BatchUpdateAdUnitsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkC
+requests (2,.google.ads.admanager.v1.UpdateAdUnitRequestBàA"O
+BatchUpdateAdUnitsResponse1
+ad_units (2.google.ads.admanager.v1.AdUnit"Â
 ListAdUnitSizesRequest8
 parent (	B(àAúA"
  admanager.googleapis.com/Network
@@ -53,11 +73,36 @@ page_token (	BàA
 ad_unit_sizes (2#.google.ads.admanager.v1.AdUnitSize
 next_page_token (	
 
-total_size (2¬
+total_size ("
+BatchActivateAdUnitsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network6
+names (	B\'àAúA!
+admanager.googleapis.com/AdUnit"
+BatchActivateAdUnitsResponse"‘
+BatchDeactivateAdUnitsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network6
+names (	B\'àAúA!
+admanager.googleapis.com/AdUnit" 
+BatchDeactivateAdUnitsResponse"
+BatchArchiveAdUnitsRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/Network6
+names (	B\'àAúA!
+admanager.googleapis.com/AdUnit"
+BatchArchiveAdUnitsResponse2„
 AdUnitService‡
 	GetAdUnit).google.ads.admanager.v1.GetAdUnitRequest.google.ads.admanager.v1.AdUnit".ÚAname‚Óä“!/v1/{name=networks/*/adUnits/*}š
 ListAdUnits+.google.ads.admanager.v1.ListAdUnitsRequest,.google.ads.admanager.v1.ListAdUnitsResponse"0ÚAparent‚Óä“!/v1/{parent=networks/*}/adUnitsª
-ListAdUnitSizes/.google.ads.admanager.v1.ListAdUnitSizesRequest0.google.ads.admanager.v1.ListAdUnitSizesResponse"4ÚAparent‚Óä“%#/v1/{parent=networks/*}/adUnitSizesGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÆ
+ListAdUnitSizes/.google.ads.admanager.v1.ListAdUnitSizesRequest0.google.ads.admanager.v1.ListAdUnitSizesResponse"4ÚAparent‚Óä“%#/v1/{parent=networks/*}/adUnitSizes 
+CreateAdUnit,.google.ads.admanager.v1.CreateAdUnitRequest.google.ads.admanager.v1.AdUnit"AÚAparent,ad_unit‚Óä“*"/v1/{parent=networks/*}/adUnits:ad_unit­
+UpdateAdUnit,.google.ads.admanager.v1.UpdateAdUnitRequest.google.ads.admanager.v1.AdUnit"NÚAad_unit,update_mask‚Óä“22\'/v1/{ad_unit.name=networks/*/adUnits/*}:ad_unitÇ
+BatchCreateAdUnits2.google.ads.admanager.v1.BatchCreateAdUnitsRequest3.google.ads.admanager.v1.BatchCreateAdUnitsResponse"HÚAparent,requests‚Óä“0"+/v1/{parent=networks/*}/adUnits:batchCreate:*Ç
+BatchUpdateAdUnits2.google.ads.admanager.v1.BatchUpdateAdUnitsRequest3.google.ads.admanager.v1.BatchUpdateAdUnitsResponse"HÚAparent,requests‚Óä“0"+/v1/{parent=networks/*}/adUnits:batchUpdate:*Ì
+BatchActivateAdUnits4.google.ads.admanager.v1.BatchActivateAdUnitsRequest5.google.ads.admanager.v1.BatchActivateAdUnitsResponse"GÚAparent,names‚Óä“2"-/v1/{parent=networks/*}/adUnits:batchActivate:*Ô
+BatchDeactivateAdUnits6.google.ads.admanager.v1.BatchDeactivateAdUnitsRequest7.google.ads.admanager.v1.BatchDeactivateAdUnitsResponse"IÚAparent,names‚Óä“4"//v1/{parent=networks/*}/adUnits:batchDeactivate:*È
+BatchArchiveAdUnits3.google.ads.admanager.v1.BatchArchiveAdUnitsRequest4.google.ads.admanager.v1.BatchArchiveAdUnitsResponse"FÚAparent,names‚Óä“1",/v1/{parent=networks/*}/adUnits:batchArchive:*GÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÆ
 com.google.ads.admanager.v1BAdUnitServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

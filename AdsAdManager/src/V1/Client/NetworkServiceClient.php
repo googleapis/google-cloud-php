@@ -26,12 +26,12 @@ namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\GetNetworkRequest;
 use Google\Ads\AdManager\V1\ListNetworksRequest;
-use Google\Ads\AdManager\V1\ListNetworksResponse;
 use Google\Ads\AdManager\V1\Network;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -52,7 +52,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<Network> getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<ListNetworksResponse> listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
  */
 final class NetworkServiceClient
 {
@@ -276,12 +276,12 @@ final class NetworkServiceClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return ListNetworksResponse
+     * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNetworks(ListNetworksRequest $request, array $callOptions = []): ListNetworksResponse
+    public function listNetworks(ListNetworksRequest $request, array $callOptions = []): PagedListResponse
     {
-        return $this->startApiCall('ListNetworks', $request, $callOptions)->wait();
+        return $this->startApiCall('ListNetworks', $request, $callOptions);
     }
 }

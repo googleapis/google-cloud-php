@@ -46,13 +46,14 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Required. Only return ads with the given status.
+     * Optional. Only return ads with the given status.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $status = 0;
     /**
-     * Optional. If provided, only return ads with the given AdReviewCenterAd IDs.
+     * Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
+     * no other filter can be set (other than page size and page token).
      *
      * Generated from protobuf field <code>repeated string ad_review_center_ad_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -136,9 +137,10 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The page token to fetch the next page of AdReviewCenterAds. This
      *           is the value returned from a previous Search request, or empty.
      *     @type int $status
-     *           Required. Only return ads with the given status.
+     *           Optional. Only return ads with the given status.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ad_review_center_ad_id
-     *           Optional. If provided, only return ads with the given AdReviewCenterAd IDs.
+     *           Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
+     *           no other filter can be set (other than page size and page token).
      *     @type \Google\Type\Interval $date_time_range
      *           Optional. If provided, only return ads that served within the given date
      *           range (inclusive). The  date range must be within the last 30 days. If not
@@ -263,9 +265,9 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Only return ads with the given status.
+     * Optional. Only return ads with the given status.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getStatus()
@@ -274,9 +276,9 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Only return ads with the given status.
+     * Optional. Only return ads with the given status.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -289,7 +291,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If provided, only return ads with the given AdReviewCenterAd IDs.
+     * Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
+     * no other filter can be set (other than page size and page token).
      *
      * Generated from protobuf field <code>repeated string ad_review_center_ad_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -300,7 +303,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If provided, only return ads with the given AdReviewCenterAd IDs.
+     * Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
+     * no other filter can be set (other than page size and page token).
      *
      * Generated from protobuf field <code>repeated string ad_review_center_ad_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

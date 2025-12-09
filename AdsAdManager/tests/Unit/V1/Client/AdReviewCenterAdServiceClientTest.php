@@ -23,7 +23,6 @@
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
 use Google\Ads\AdManager\V1\AdReviewCenterAd;
-use Google\Ads\AdManager\V1\AdReviewCenterAdStatusEnum\AdReviewCenterAdStatus;
 use Google\Ads\AdManager\V1\BatchAllowAdReviewCenterAdsRequest;
 use Google\Ads\AdManager\V1\BatchAllowAdReviewCenterAdsResponse;
 use Google\Ads\AdManager\V1\BatchBlockAdReviewCenterAdsRequest;
@@ -356,8 +355,7 @@ class AdReviewCenterAdServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->webPropertyName('[NETWORK_CODE]', '[WEB_PROPERTY]');
-        $status = AdReviewCenterAdStatus::AD_REVIEW_CENTER_AD_STATUS_UNSPECIFIED;
-        $request = (new SearchAdReviewCenterAdsRequest())->setParent($formattedParent)->setStatus($status);
+        $request = (new SearchAdReviewCenterAdsRequest())->setParent($formattedParent);
         $response = $gapicClient->searchAdReviewCenterAds($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -370,8 +368,6 @@ class AdReviewCenterAdServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.AdReviewCenterAdService/SearchAdReviewCenterAds', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getStatus();
-        $this->assertProtobufEquals($status, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -398,8 +394,7 @@ class AdReviewCenterAdServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->webPropertyName('[NETWORK_CODE]', '[WEB_PROPERTY]');
-        $requestStatus = AdReviewCenterAdStatus::AD_REVIEW_CENTER_AD_STATUS_UNSPECIFIED;
-        $request = (new SearchAdReviewCenterAdsRequest())->setParent($formattedParent)->setStatus($requestStatus);
+        $request = (new SearchAdReviewCenterAdsRequest())->setParent($formattedParent);
         try {
             $gapicClient->searchAdReviewCenterAds($request);
             // If the $gapicClient method call did not throw, fail the test

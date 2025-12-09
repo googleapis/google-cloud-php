@@ -36,7 +36,15 @@ return [
                 ],
             ],
             'ListNetworks' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getNetworks',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\ListNetworksResponse',
             ],
             'templateMap' => [

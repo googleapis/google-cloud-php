@@ -23,6 +23,78 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.AdUnitService' => [
+            'BatchActivateAdUnits' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/adUnits:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchArchiveAdUnits' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/adUnits:batchArchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateAdUnits' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/adUnits:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateAdUnits' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/adUnits:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateAdUnits' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/adUnits:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAdUnit' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/adUnits',
+                'body' => 'ad_unit',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetAdUnit' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/adUnits/*}',
@@ -54,6 +126,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdateAdUnit' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{ad_unit.name=networks/*/adUnits/*}',
+                'body' => 'ad_unit',
+                'placeholders' => [
+                    'ad_unit.name' => [
+                        'getters' => [
+                            'getAdUnit',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

@@ -15,6 +15,30 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class ListNetworksRequest extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. The maximum number of `Network`s to return. The service may
+     * return fewer than this value. If unspecified, at most 50 `Network`s will be
+     * returned. The maximum value is 1000; values greater than 1000 will be
+     * coerced to 1000.
+     *
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $page_size = 0;
+    /**
+     * Optional. A page token, received from a previous `ListNetworks` call.
+     * Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListNetworks` must match
+     * the call that provided the page token.
+     *
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $page_token = '';
+    /**
+     * Optional. Number of individual resources to skip while paginating.
+     *
+     * Generated from protobuf field <code>int32 skip = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $skip = 0;
 
     /**
      * Constructor.
@@ -22,11 +46,113 @@ class ListNetworksRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $page_size
+     *           Optional. The maximum number of `Network`s to return. The service may
+     *           return fewer than this value. If unspecified, at most 50 `Network`s will be
+     *           returned. The maximum value is 1000; values greater than 1000 will be
+     *           coerced to 1000.
+     *     @type string $page_token
+     *           Optional. A page token, received from a previous `ListNetworks` call.
+     *           Provide this to retrieve the subsequent page.
+     *           When paginating, all other parameters provided to `ListNetworks` must match
+     *           the call that provided the page token.
+     *     @type int $skip
+     *           Optional. Number of individual resources to skip while paginating.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Ads\Admanager\V1\NetworkService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The maximum number of `Network`s to return. The service may
+     * return fewer than this value. If unspecified, at most 50 `Network`s will be
+     * returned. The maximum value is 1000; values greater than 1000 will be
+     * coerced to 1000.
+     *
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->page_size;
+    }
+
+    /**
+     * Optional. The maximum number of `Network`s to return. The service may
+     * return fewer than this value. If unspecified, at most 50 `Network`s will be
+     * returned. The maximum value is 1000; values greater than 1000 will be
+     * coerced to 1000.
+     *
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->page_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A page token, received from a previous `ListNetworks` call.
+     * Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListNetworks` must match
+     * the call that provided the page token.
+     *
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPageToken()
+    {
+        return $this->page_token;
+    }
+
+    /**
+     * Optional. A page token, received from a previous `ListNetworks` call.
+     * Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListNetworks` must match
+     * the call that provided the page token.
+     *
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Number of individual resources to skip while paginating.
+     *
+     * Generated from protobuf field <code>int32 skip = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSkip()
+    {
+        return $this->skip;
+    }
+
+    /**
+     * Optional. Number of individual resources to skip while paginating.
+     *
+     * Generated from protobuf field <code>int32 skip = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSkip($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->skip = $var;
+
+        return $this;
     }
 
 }

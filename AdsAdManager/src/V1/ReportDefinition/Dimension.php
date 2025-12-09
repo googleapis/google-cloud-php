@@ -50,7 +50,7 @@ class Dimension
      */
     const ADVERTISER_CREDIT_STATUS = 475;
     /**
-     * Advertiser credit status locallized name
+     * Advertiser credit status localized name
      * Corresponds to "Advertiser credit status" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
      * `AD_SPEED`
@@ -137,7 +137,7 @@ class Dimension
      */
     const ADVERTISER_STATUS = 471;
     /**
-     * Advertiser status locallized name
+     * Advertiser status localized name
      * Corresponds to "Advertiser status" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `STRING`
@@ -157,7 +157,7 @@ class Dimension
      */
     const ADVERTISER_TYPE = 473;
     /**
-     * Advertiser type locallized name
+     * Advertiser type localized name
      * Corresponds to "Advertiser type" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
      * `AD_SPEED`
@@ -180,7 +180,8 @@ class Dimension
      * Classification of different Ad Exchange products.
      * Corresponds to "Ad Exchange product value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>ADX_PRODUCT = 499;</code>
@@ -190,7 +191,8 @@ class Dimension
      * Localized name of the classification of different Ad Exchange
      *  products.
      * Corresponds to "Ad Exchange product" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>ADX_PRODUCT_NAME = 500;</code>
@@ -236,6 +238,15 @@ class Dimension
      * Generated from protobuf enum <code>AD_LOCATION_NAME = 391;</code>
      */
     const AD_LOCATION_NAME = 391;
+    /**
+     * Multi-size inventory in an ad request.
+     * Corresponds to "Ad request sizes" in the Ad Manager UI.
+     * Compatible with the following report types:
+     * Data format: `STRING_LIST`
+     *
+     * Generated from protobuf enum <code>AD_REQUEST_SIZES = 541;</code>
+     */
+    const AD_REQUEST_SIZES = 541;
     /**
      * The domain of the ad technology provider associated with the bid.
      * Corresponds to "Ad technology provider domain" in the Ad Manager UI.
@@ -921,6 +932,24 @@ class Dimension
      */
     const AGE_BRACKET_NAME = 582;
     /**
+     * Property ID in Google Analytics
+     * Corresponds to "Analytics property ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>ANALYTICS_PROPERTY_ID = 733;</code>
+     */
+    const ANALYTICS_PROPERTY_ID = 733;
+    /**
+     * Property name in Google Analytics
+     * Corresponds to "Analytics property" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>ANALYTICS_PROPERTY_NAME = 767;</code>
+     */
+    const ANALYTICS_PROPERTY_NAME = 767;
+    /**
      * Enum value for App Tracking Transparency consent status.
      * Corresponds to "App Tracking Transparency consent status value" in the Ad
      * Manager UI (when showing API fields).
@@ -968,6 +997,42 @@ class Dimension
      */
     const AUCTION_PACKAGE_DEAL_ID = 571;
     /**
+     * Name of billable audience segment.
+     * Corresponds to "Audience segment (billable)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_BILLABLE = 594;</code>
+     */
+    const AUDIENCE_SEGMENT_BILLABLE = 594;
+    /**
+     * ID of the data provider for the audience segment.
+     * Corresponds to "Audience segment data provider ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_DATA_PROVIDER_ID = 613;</code>
+     */
+    const AUDIENCE_SEGMENT_DATA_PROVIDER_ID = 613;
+    /**
+     * Name of the data provider for the audience segment.
+     * Corresponds to "Audience segment data provider" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_DATA_PROVIDER_NAME = 614;</code>
+     */
+    const AUDIENCE_SEGMENT_DATA_PROVIDER_NAME = 614;
+    /**
+     * ID of billable audience segment.
+     * Corresponds to "Audience segment ID (billable)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_ID_BILLABLE = 595;</code>
+     */
+    const AUDIENCE_SEGMENT_ID_BILLABLE = 595;
+    /**
      * ID of targeted audience segment, including all first-party and
      *  third-party segments that matched the user on the winning line item.
      * Corresponds to "Audience segment ID (targeted)" in the Ad Manager UI.
@@ -987,6 +1052,144 @@ class Dimension
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED = 585;</code>
      */
     const AUDIENCE_SEGMENT_TARGETED = 585;
+    /**
+     * Number of AdID identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) AdID size" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_AD_ID_USER_SIZE = 605;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_AD_ID_USER_SIZE = 605;
+    /**
+     * Number of Amazon Fire identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) Amazon Fire size" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_AMAZON_FIRE_USER_SIZE = 606;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_AMAZON_FIRE_USER_SIZE = 606;
+    /**
+     * Number of Android TV identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) Android TV size" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_ANDROID_TV_USER_SIZE = 607;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_ANDROID_TV_USER_SIZE = 607;
+    /**
+     * Number of Apple TV identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) Apple TV size" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_APPLE_TV_USER_SIZE = 608;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_APPLE_TV_USER_SIZE = 608;
+    /**
+     * Number of IDFA identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) IDFA size" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_IDFA_USER_SIZE = 609;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_IDFA_USER_SIZE = 609;
+    /**
+     * Number of mobile web identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) mobile web size" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_MOBILE_WEB_USER_SIZE = 610;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_MOBILE_WEB_USER_SIZE = 610;
+    /**
+     * Number of PlayStation identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) PlayStation size" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_PLAYSTATION_USER_SIZE = 611;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_PLAYSTATION_USER_SIZE = 611;
+    /**
+     * Number of PPID identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) PPID size" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_PPID_USER_SIZE = 612;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_PPID_USER_SIZE = 612;
+    /**
+     * Number of Roku identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) Roku size" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_ROKU_USER_SIZE = 615;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_ROKU_USER_SIZE = 615;
+    /**
+     * Number of Samsung TV identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) Samsung TV size" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_SAMSUNG_TV_USER_SIZE = 616;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_SAMSUNG_TV_USER_SIZE = 616;
+    /**
+     * Number of identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) size" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_SIZE = 618;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_SIZE = 618;
+    /**
+     * Status of the audience segment.
+     * Corresponds to "Audience segment (targeted) status value" in the Ad
+     * Manager UI (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_STATUS = 628;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_STATUS = 628;
+    /**
+     * Name of the status of the audience segment.
+     * Corresponds to "Audience segment (targeted) status" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_STATUS_NAME = 617;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_STATUS_NAME = 617;
+    /**
+     * Number of Xbox identifiers in the audience segment.
+     * Corresponds to "Audience segment (targeted) Xbox size" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_XBOX_USER_SIZE = 619;</code>
+     */
+    const AUDIENCE_SEGMENT_TARGETED_XBOX_USER_SIZE = 619;
     /**
      * Enum value of Auto refreshed traffic.
      * Corresponds to "Auto refreshed traffic value" in the Ad Manager UI (when
@@ -1009,7 +1212,8 @@ class Dimension
     /**
      * The encrypted version of BIDDER_ID.
      * Corresponds to "Bidder encrypted ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>BIDDER_ENCRYPTED_ID = 493;</code>
@@ -1018,7 +1222,8 @@ class Dimension
     /**
      * The name of the bidder.
      * Corresponds to "Bidder" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>BIDDER_NAME = 494;</code>
@@ -1258,6 +1463,42 @@ class Dimension
      */
     const CLASSIFIED_BRAND_NAME = 244;
     /**
+     * ID of the video content bundle served.
+     * Corresponds to "Content bundle ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>CONTENT_BUNDLE_ID = 460;</code>
+     */
+    const CONTENT_BUNDLE_ID = 460;
+    /**
+     * Name of the video content bundle served.
+     * Corresponds to "Content bundle" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>CONTENT_BUNDLE_NAME = 461;</code>
+     */
+    const CONTENT_BUNDLE_NAME = 461;
+    /**
+     * ID of the video content metadata namespace served.
+     * Corresponds to "CMS metadata key ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>CONTENT_CMS_METADATA_KV_NAMESPACE_ID = 462;</code>
+     */
+    const CONTENT_CMS_METADATA_KV_NAMESPACE_ID = 462;
+    /**
+     * Name of the video content metadata namespace served.
+     * Corresponds to "CMS metadata key" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>CONTENT_CMS_METADATA_KV_NAMESPACE_NAME = 463;</code>
+     */
+    const CONTENT_CMS_METADATA_KV_NAMESPACE_NAME = 463;
+    /**
      * The display name of the CMS content.
      * Corresponds to "Content source name" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -1428,7 +1669,7 @@ class Dimension
      */
     const CREATIVE_POLICIES_FILTERING_NAME = 712;
     /**
-     * Creative Protections filtering (Publisher Blocks Enforcement).
+     * Creative Protections filtering.
      * Corresponds to "Creative protections filtering value" in the Ad Manager
      * UI (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`
@@ -1478,7 +1719,7 @@ class Dimension
      */
     const CREATIVE_TECHNOLOGY = 148;
     /**
-     * Creative technology locallized name
+     * Creative technology localized name
      * Corresponds to "Creative technology" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `STRING`
@@ -1622,7 +1863,7 @@ class Dimension
      * Breaks down reporting data by date.
      * Corresponds to "Date" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * `PRIVACY_AND_MESSAGING`, `REVENUE_VERIFICATION`, `AD_SPEED`
      * Data format: `DATE`
      *
      * Generated from protobuf enum <code>DATE = 3;</code>
@@ -1700,7 +1941,7 @@ class Dimension
      * Corresponds to "Demand channel value" in the Ad Manager UI (when showing
      * API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * `REVENUE_VERIFICATION`, `AD_SPEED`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>DEMAND_CHANNEL = 9;</code>
@@ -1710,7 +1951,7 @@ class Dimension
      * Demand channel name.
      * Corresponds to "Demand channel" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * `REVENUE_VERIFICATION`, `AD_SPEED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEMAND_CHANNEL_NAME = 10;</code>
@@ -1830,7 +2071,7 @@ class Dimension
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `STRING`
      *
-     * Generated from protobuf enum <code>DEVICE_NAME = 225;</code>
+     * Generated from protobuf enum <code>DEVICE_NAME = 225 [deprecated = true];</code>
      */
     const DEVICE_NAME = 225;
     /**
@@ -2300,6 +2541,15 @@ class Dimension
      */
     const KEY_VALUES_NAME = 215;
     /**
+     * The custom criteria key-values specified in ad requests.
+     * Corresponds to "Key-values" in the Ad Manager UI.
+     * Compatible with the following report types:
+     * Data format: `STRING_LIST`
+     *
+     * Generated from protobuf enum <code>KEY_VALUES_SET = 713;</code>
+     */
+    const KEY_VALUES_SET = 713;
+    /**
      * The agency of the order associated with the line item.
      * Corresponds to "Line item agency" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`
@@ -2318,7 +2568,7 @@ class Dimension
      */
     const LINE_ITEM_ARCHIVED = 188;
     /**
-     * Line item comanion delivery option ENUM value.
+     * Line item companion delivery option ENUM value.
      * Corresponds to "Line item companion delivery option value" in the Ad
      * Manager UI (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`
@@ -2328,7 +2578,7 @@ class Dimension
      */
     const LINE_ITEM_COMPANION_DELIVERY_OPTION = 204;
     /**
-     * Localized line item comanion delivery option name.
+     * Localized line item companion delivery option name.
      * Corresponds to "Line item companion delivery option" in the Ad Manager
      * UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`
@@ -2662,7 +2912,7 @@ class Dimension
      */
     const LINE_ITEM_NON_CPD_BOOKED_REVENUE = 98;
     /**
-     * Whether a Line item is eligible for opitimization.
+     * Whether a Line item is eligible for optimization.
      * Corresponds to "Line item is optimizable" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `BOOLEAN`
@@ -3076,7 +3326,8 @@ class Dimension
      * Mobile rendering SDK.
      * Corresponds to "Rendering SDK value" in the Ad Manager UI (when showing
      * API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>MOBILE_RENDERING_SDK = 646;</code>
@@ -3085,7 +3336,8 @@ class Dimension
     /**
      * Localized name of the Mobile rendering SDK.
      * Corresponds to "Rendering SDK" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>MOBILE_RENDERING_SDK_NAME = 647;</code>
@@ -3122,7 +3374,7 @@ class Dimension
      * Breaks down reporting data by month and year.
      * Corresponds to "Month and year" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`
+     * `PRIVACY_AND_MESSAGING`, `REVENUE_VERIFICATION`, `PARTNER_FINANCE`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>MONTH_YEAR = 6;</code>
@@ -3533,6 +3785,46 @@ class Dimension
      */
     const PAGE_TITLE_AND_SCREEN_NAME = 513;
     /**
+     * The ID of a partner management assignment.
+     * Corresponds to "Partner management assignment ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`,
+     * `PARTNER_FINANCE`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_ASSIGNMENT_ID = 657;</code>
+     */
+    const PARTNER_MANAGEMENT_ASSIGNMENT_ID = 657;
+    /**
+     * The name of a partner management assignment.
+     * Corresponds to "Partner management assignment" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`,
+     * `PARTNER_FINANCE`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_ASSIGNMENT_NAME = 658;</code>
+     */
+    const PARTNER_MANAGEMENT_ASSIGNMENT_NAME = 658;
+    /**
+     * The ID of a partner in a partner management assignment.
+     * Corresponds to "Partner management partner ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`,
+     * `PARTNER_FINANCE`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_PARTNER_ID = 655;</code>
+     */
+    const PARTNER_MANAGEMENT_PARTNER_ID = 655;
+    /**
+     * The name of a partner in a partner management assignment.
+     * Corresponds to "Partner management partner" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`,
+     * `PARTNER_FINANCE`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_PARTNER_NAME = 656;</code>
+     */
+    const PARTNER_MANAGEMENT_PARTNER_NAME = 656;
+    /**
      * Placement ID
      * Corresponds to "Placement ID" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`
@@ -3715,7 +4007,8 @@ class Dimension
      *  The type of transaction that occurred in Ad Exchange.
      * Corresponds to "Programmatic channel value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REVENUE_VERIFICATION`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>PROGRAMMATIC_CHANNEL = 13;</code>
@@ -3725,7 +4018,8 @@ class Dimension
      * Programmatic channel name.
      *  The type of transaction that occurred in Ad Exchange.
      * Corresponds to "Programmatic channel" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`, `REACH`,
+     * `REVENUE_VERIFICATION`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>PROGRAMMATIC_CHANNEL_NAME = 14;</code>
@@ -3972,7 +4266,7 @@ class Dimension
      */
     const REQUEST_TYPE = 146;
     /**
-     * Request type locallized name
+     * Request type localized name
      * Corresponds to "Request type" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
      * Data format: `STRING`
@@ -3980,6 +4274,15 @@ class Dimension
      * Generated from protobuf enum <code>REQUEST_TYPE_NAME = 147;</code>
      */
     const REQUEST_TYPE_NAME = 147;
+    /**
+     * Revenue Verification bidder-provided ID.
+     * Corresponds to "Revenue verification ID" in the Ad Manager UI.
+     * Compatible with the following report types: `REVENUE_VERIFICATION`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>REVENUE_VERIFICATION_ID = 645;</code>
+     */
+    const REVENUE_VERIFICATION_ID = 645;
     /**
      * Indicates if a request was eligible for server-side unwrapping.
      * Corresponds to "Server-side unwrapping eligible" in the Ad Manager UI.
@@ -4163,6 +4466,25 @@ class Dimension
      * Generated from protobuf enum <code>URL_ID = 507;</code>
      */
     const URL_ID = 507;
+    /**
+     * The choice made in a user message.
+     * Corresponds to "User choice value" in the Ad Manager UI (when showing API
+     * fields).
+     * Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>USER_MESSAGES_CHOICE = 702;</code>
+     */
+    const USER_MESSAGES_CHOICE = 702;
+    /**
+     * Localized name of the choice made in a user message.
+     * Corresponds to "User choice" in the Ad Manager UI.
+     * Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>USER_MESSAGES_CHOICE_NAME = 703;</code>
+     */
+    const USER_MESSAGES_CHOICE_NAME = 703;
     /**
      * Enum value for the entitlement source.
      * Corresponds to "Entitlement source value" in the Ad Manager UI (when
@@ -4364,6 +4686,61 @@ class Dimension
      */
     const VIDEO_FALLBACK_POSITION = 530;
     /**
+     * The duration of the ad break in seconds for a live stream event.
+     * Corresponds to "Ad break duration (seconds)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_AD_BREAK_DURATION = 547;</code>
+     */
+    const VIDEO_LIVE_STREAM_EVENT_AD_BREAK_DURATION = 547;
+    /**
+     * The ID of the ad break in a live stream event.
+     * Corresponds to "Live stream ad break ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_AD_BREAK_ID = 548;</code>
+     */
+    const VIDEO_LIVE_STREAM_EVENT_AD_BREAK_ID = 548;
+    /**
+     * The name of the ad break in a live stream event.
+     * Corresponds to "Live stream ad break" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_AD_BREAK_NAME = 549;</code>
+     */
+    const VIDEO_LIVE_STREAM_EVENT_AD_BREAK_NAME = 549;
+    /**
+     * The time of the ad break in a live stream event in the format of
+     *  YYYY-MM-DD HH:MM:SS+Timezone.
+     * Corresponds to "Ad break time" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `TIMESTAMP`
+     *
+     * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_AD_BREAK_TIME = 550;</code>
+     */
+    const VIDEO_LIVE_STREAM_EVENT_AD_BREAK_TIME = 550;
+    /**
+     * The ID of the live stream event.
+     * Corresponds to "Live stream ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_ID = 551;</code>
+     */
+    const VIDEO_LIVE_STREAM_EVENT_ID = 551;
+    /**
+     * The name of the live stream event.
+     * Corresponds to "Live stream" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_NAME = 552;</code>
+     */
+    const VIDEO_LIVE_STREAM_EVENT_NAME = 552;
+    /**
      * The performance of the video ad inventory broken out by source.
      * Corresponds to "Video measurement source value" in the Ad Manager UI
      * (when showing API fields).
@@ -4459,6 +4836,15 @@ class Dimension
      */
     const VIDEO_STITCHER_TYPE_NAME = 753;
     /**
+     * Web property code
+     * Corresponds to "Web property code" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>WEB_PROPERTY_CODE = 730;</code>
+     */
+    const WEB_PROPERTY_CODE = 730;
+    /**
      * Breaks down reporting data by week of the year.
      * Corresponds to "Week" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
@@ -4536,7 +4922,7 @@ class Dimension
      */
     const YOUTUBE_AD_TYPE = 399;
     /**
-     * YouTube instream Ad Type locallized name.
+     * YouTube instream Ad Type localized name.
      * Corresponds to "YouTube ad type" in the Ad Manager UI.
      * Compatible with the following report types:
      * Data format: `STRING`
@@ -6151,6 +6537,7 @@ class Dimension
         self::AD_EXPERIENCES_TYPE_NAME => 'AD_EXPERIENCES_TYPE_NAME',
         self::AD_LOCATION => 'AD_LOCATION',
         self::AD_LOCATION_NAME => 'AD_LOCATION_NAME',
+        self::AD_REQUEST_SIZES => 'AD_REQUEST_SIZES',
         self::AD_TECHNOLOGY_PROVIDER_DOMAIN => 'AD_TECHNOLOGY_PROVIDER_DOMAIN',
         self::AD_TECHNOLOGY_PROVIDER_ID => 'AD_TECHNOLOGY_PROVIDER_ID',
         self::AD_TECHNOLOGY_PROVIDER_NAME => 'AD_TECHNOLOGY_PROVIDER_NAME',
@@ -6223,13 +6610,33 @@ class Dimension
         self::AGENCY_LEVEL_3_NAME => 'AGENCY_LEVEL_3_NAME',
         self::AGE_BRACKET => 'AGE_BRACKET',
         self::AGE_BRACKET_NAME => 'AGE_BRACKET_NAME',
+        self::ANALYTICS_PROPERTY_ID => 'ANALYTICS_PROPERTY_ID',
+        self::ANALYTICS_PROPERTY_NAME => 'ANALYTICS_PROPERTY_NAME',
         self::APP_TRACKING_TRANSPARENCY_CONSENT_STATUS => 'APP_TRACKING_TRANSPARENCY_CONSENT_STATUS',
         self::APP_TRACKING_TRANSPARENCY_CONSENT_STATUS_NAME => 'APP_TRACKING_TRANSPARENCY_CONSENT_STATUS_NAME',
         self::APP_VERSION => 'APP_VERSION',
         self::AUCTION_PACKAGE_DEAL => 'AUCTION_PACKAGE_DEAL',
         self::AUCTION_PACKAGE_DEAL_ID => 'AUCTION_PACKAGE_DEAL_ID',
+        self::AUDIENCE_SEGMENT_BILLABLE => 'AUDIENCE_SEGMENT_BILLABLE',
+        self::AUDIENCE_SEGMENT_DATA_PROVIDER_ID => 'AUDIENCE_SEGMENT_DATA_PROVIDER_ID',
+        self::AUDIENCE_SEGMENT_DATA_PROVIDER_NAME => 'AUDIENCE_SEGMENT_DATA_PROVIDER_NAME',
+        self::AUDIENCE_SEGMENT_ID_BILLABLE => 'AUDIENCE_SEGMENT_ID_BILLABLE',
         self::AUDIENCE_SEGMENT_ID_TARGETED => 'AUDIENCE_SEGMENT_ID_TARGETED',
         self::AUDIENCE_SEGMENT_TARGETED => 'AUDIENCE_SEGMENT_TARGETED',
+        self::AUDIENCE_SEGMENT_TARGETED_AD_ID_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_AD_ID_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_AMAZON_FIRE_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_AMAZON_FIRE_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_ANDROID_TV_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_ANDROID_TV_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_APPLE_TV_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_APPLE_TV_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_IDFA_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_IDFA_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_MOBILE_WEB_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_MOBILE_WEB_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_PLAYSTATION_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_PLAYSTATION_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_PPID_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_PPID_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_ROKU_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_ROKU_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_SAMSUNG_TV_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_SAMSUNG_TV_USER_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_SIZE => 'AUDIENCE_SEGMENT_TARGETED_SIZE',
+        self::AUDIENCE_SEGMENT_TARGETED_STATUS => 'AUDIENCE_SEGMENT_TARGETED_STATUS',
+        self::AUDIENCE_SEGMENT_TARGETED_STATUS_NAME => 'AUDIENCE_SEGMENT_TARGETED_STATUS_NAME',
+        self::AUDIENCE_SEGMENT_TARGETED_XBOX_USER_SIZE => 'AUDIENCE_SEGMENT_TARGETED_XBOX_USER_SIZE',
         self::AUTO_REFRESHED_TRAFFIC => 'AUTO_REFRESHED_TRAFFIC',
         self::AUTO_REFRESHED_TRAFFIC_NAME => 'AUTO_REFRESHED_TRAFFIC_NAME',
         self::BIDDER_ENCRYPTED_ID => 'BIDDER_ENCRYPTED_ID',
@@ -6259,6 +6666,10 @@ class Dimension
         self::CLASSIFIED_ADVERTISER_NAME => 'CLASSIFIED_ADVERTISER_NAME',
         self::CLASSIFIED_BRAND_ID => 'CLASSIFIED_BRAND_ID',
         self::CLASSIFIED_BRAND_NAME => 'CLASSIFIED_BRAND_NAME',
+        self::CONTENT_BUNDLE_ID => 'CONTENT_BUNDLE_ID',
+        self::CONTENT_BUNDLE_NAME => 'CONTENT_BUNDLE_NAME',
+        self::CONTENT_CMS_METADATA_KV_NAMESPACE_ID => 'CONTENT_CMS_METADATA_KV_NAMESPACE_ID',
+        self::CONTENT_CMS_METADATA_KV_NAMESPACE_NAME => 'CONTENT_CMS_METADATA_KV_NAMESPACE_NAME',
         self::CONTENT_CMS_NAME => 'CONTENT_CMS_NAME',
         self::CONTENT_CMS_VIDEO_ID => 'CONTENT_CMS_VIDEO_ID',
         self::CONTENT_ID => 'CONTENT_ID',
@@ -6368,6 +6779,7 @@ class Dimension
         self::IS_FIRST_LOOK_DEAL => 'IS_FIRST_LOOK_DEAL',
         self::KEY_VALUES_ID => 'KEY_VALUES_ID',
         self::KEY_VALUES_NAME => 'KEY_VALUES_NAME',
+        self::KEY_VALUES_SET => 'KEY_VALUES_SET',
         self::LINE_ITEM_AGENCY => 'LINE_ITEM_AGENCY',
         self::LINE_ITEM_ARCHIVED => 'LINE_ITEM_ARCHIVED',
         self::LINE_ITEM_COMPANION_DELIVERY_OPTION => 'LINE_ITEM_COMPANION_DELIVERY_OPTION',
@@ -6494,6 +6906,10 @@ class Dimension
         self::PAGE_PATH => 'PAGE_PATH',
         self::PAGE_TITLE_AND_SCREEN_CLASS => 'PAGE_TITLE_AND_SCREEN_CLASS',
         self::PAGE_TITLE_AND_SCREEN_NAME => 'PAGE_TITLE_AND_SCREEN_NAME',
+        self::PARTNER_MANAGEMENT_ASSIGNMENT_ID => 'PARTNER_MANAGEMENT_ASSIGNMENT_ID',
+        self::PARTNER_MANAGEMENT_ASSIGNMENT_NAME => 'PARTNER_MANAGEMENT_ASSIGNMENT_NAME',
+        self::PARTNER_MANAGEMENT_PARTNER_ID => 'PARTNER_MANAGEMENT_PARTNER_ID',
+        self::PARTNER_MANAGEMENT_PARTNER_NAME => 'PARTNER_MANAGEMENT_PARTNER_NAME',
         self::PLACEMENT_ID => 'PLACEMENT_ID',
         self::PLACEMENT_ID_ALL => 'PLACEMENT_ID_ALL',
         self::PLACEMENT_NAME => 'PLACEMENT_NAME',
@@ -6540,6 +6956,7 @@ class Dimension
         self::REQUESTED_AD_SIZES => 'REQUESTED_AD_SIZES',
         self::REQUEST_TYPE => 'REQUEST_TYPE',
         self::REQUEST_TYPE_NAME => 'REQUEST_TYPE_NAME',
+        self::REVENUE_VERIFICATION_ID => 'REVENUE_VERIFICATION_ID',
         self::SERVER_SIDE_UNWRAPPING_ELIGIBLE => 'SERVER_SIDE_UNWRAPPING_ELIGIBLE',
         self::SERVING_RESTRICTION => 'SERVING_RESTRICTION',
         self::SERVING_RESTRICTION_NAME => 'SERVING_RESTRICTION_NAME',
@@ -6559,6 +6976,8 @@ class Dimension
         self::UNIFIED_PRICING_RULE_NAME => 'UNIFIED_PRICING_RULE_NAME',
         self::URL => 'URL',
         self::URL_ID => 'URL_ID',
+        self::USER_MESSAGES_CHOICE => 'USER_MESSAGES_CHOICE',
+        self::USER_MESSAGES_CHOICE_NAME => 'USER_MESSAGES_CHOICE_NAME',
         self::USER_MESSAGES_ENTITLEMENT_SOURCE => 'USER_MESSAGES_ENTITLEMENT_SOURCE',
         self::USER_MESSAGES_ENTITLEMENT_SOURCE_NAME => 'USER_MESSAGES_ENTITLEMENT_SOURCE_NAME',
         self::USER_MESSAGES_OPERATING_SYSTEM_CRITERIA_ID => 'USER_MESSAGES_OPERATING_SYSTEM_CRITERIA_ID',
@@ -6580,6 +6999,12 @@ class Dimension
         self::VIDEO_CONTINUOUS_PLAY_TYPE => 'VIDEO_CONTINUOUS_PLAY_TYPE',
         self::VIDEO_CONTINUOUS_PLAY_TYPE_NAME => 'VIDEO_CONTINUOUS_PLAY_TYPE_NAME',
         self::VIDEO_FALLBACK_POSITION => 'VIDEO_FALLBACK_POSITION',
+        self::VIDEO_LIVE_STREAM_EVENT_AD_BREAK_DURATION => 'VIDEO_LIVE_STREAM_EVENT_AD_BREAK_DURATION',
+        self::VIDEO_LIVE_STREAM_EVENT_AD_BREAK_ID => 'VIDEO_LIVE_STREAM_EVENT_AD_BREAK_ID',
+        self::VIDEO_LIVE_STREAM_EVENT_AD_BREAK_NAME => 'VIDEO_LIVE_STREAM_EVENT_AD_BREAK_NAME',
+        self::VIDEO_LIVE_STREAM_EVENT_AD_BREAK_TIME => 'VIDEO_LIVE_STREAM_EVENT_AD_BREAK_TIME',
+        self::VIDEO_LIVE_STREAM_EVENT_ID => 'VIDEO_LIVE_STREAM_EVENT_ID',
+        self::VIDEO_LIVE_STREAM_EVENT_NAME => 'VIDEO_LIVE_STREAM_EVENT_NAME',
         self::VIDEO_MEASUREMENT_SOURCE => 'VIDEO_MEASUREMENT_SOURCE',
         self::VIDEO_MEASUREMENT_SOURCE_NAME => 'VIDEO_MEASUREMENT_SOURCE_NAME',
         self::VIDEO_PLCMT => 'VIDEO_PLCMT',
@@ -6590,6 +7015,7 @@ class Dimension
         self::VIDEO_SDK_VERSION_NAME => 'VIDEO_SDK_VERSION_NAME',
         self::VIDEO_STITCHER_TYPE => 'VIDEO_STITCHER_TYPE',
         self::VIDEO_STITCHER_TYPE_NAME => 'VIDEO_STITCHER_TYPE_NAME',
+        self::WEB_PROPERTY_CODE => 'WEB_PROPERTY_CODE',
         self::WEEK => 'WEEK',
         self::YIELD_GROUP_BUYER_NAME => 'YIELD_GROUP_BUYER_NAME',
         self::YIELD_GROUP_BUYER_TAG_NAME => 'YIELD_GROUP_BUYER_TAG_NAME',
