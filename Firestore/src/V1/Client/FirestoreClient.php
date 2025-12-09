@@ -46,6 +46,8 @@ use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\CreateDocumentRequest;
 use Google\Cloud\Firestore\V1\DeleteDocumentRequest;
 use Google\Cloud\Firestore\V1\Document;
+use Google\Cloud\Firestore\V1\ExecutePipelineRequest;
+use Google\Cloud\Firestore\V1\ExecutePipelineResponse;
 use Google\Cloud\Firestore\V1\GetDocumentRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\V1\ListDocumentsRequest;
@@ -378,6 +380,28 @@ final class FirestoreClient
     public function deleteDocument(DeleteDocumentRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteDocument', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Executes a pipeline query.
+     *
+     * @example samples/V1/FirestoreClient/execute_pipeline.php
+     *
+     * @param ExecutePipelineRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream<ExecutePipelineResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executePipeline(ExecutePipelineRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('ExecutePipeline', $request, $callOptions);
     }
 
     /**
