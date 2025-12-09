@@ -51,8 +51,16 @@ class AnalyzeTest extends LanguageTestCase
             $sentence = $sentences[$i];
             $this->assertEquals($expectedSentence['text']['content'], $sentence->getText()->getContent());
             $this->assertEquals($expectedSentence['text']['beginOffset'], $sentence->getText()->getBeginOffset());
-            $this->assertEqualsWithDelta($expectedSentence['sentiment']['magnitude'], $sentence->getSentiment()->getMagnitude(), 0.2);
-            $this->assertEqualsWithDelta($expectedSentence['sentiment']['score'], $sentence->getSentiment()->getScore(), 0.2);
+            $this->assertEqualsWithDelta(
+                $expectedSentence['sentiment']['magnitude'],
+                $sentence->getSentiment()->getMagnitude(),
+                0.2
+            );
+            $this->assertEqualsWithDelta(
+                $expectedSentence['sentiment']['score'],
+                $sentence->getSentiment()->getScore(),
+                0.2
+            );
         }
     }
 
