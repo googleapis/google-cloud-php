@@ -73,6 +73,7 @@ class Rest implements ConnectionInterface
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/bigquery-v2.json',
             'componentVersion' => BigQueryClient::VERSION,
             'apiEndpoint' => null,
+            'logger' => null,
             // If the user has not supplied a universe domain, use the environment variable if set.
             // Otherwise, use the default ("googleapis.com").
             'universeDomain' => getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
