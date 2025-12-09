@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require googleads/datamanager
+$ composer require googleads/data-manager
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
@@ -57,7 +57,7 @@ try {
 }
 ```
 
-See the [samples directory](https://github.com/googleapis/php-ads-datamanager/tree/main/samples) for a canonical list of samples.
+See the [samples directory](https://github.com/googleapis/php-ads-data-manager/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
 

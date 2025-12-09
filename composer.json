@@ -295,7 +295,7 @@
         "google/shopping-merchant-reports": "1.1.1",
         "google/shopping-merchant-reviews": "0.5.1",
         "googleads/ad-manager": "0.5.0",
-        "googleads/datamanager": "0.0.0",
+        "googleads/data-manager": "0.0.0",
         "googleads/marketingplatform-admin": "0.4.0"
     },
     "suggest": {

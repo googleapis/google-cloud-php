@@ -25,9 +25,9 @@
     },
     "AdsDataManager": {
         "language": "php",
-        "distribution_name": "googleads/datamanager",
+        "distribution_name": "googleads/data-manager",
         "release_level": "preview",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/datamanager/latest",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/data-manager/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "datamanager"
     },

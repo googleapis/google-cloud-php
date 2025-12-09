@@ -1,5 +1,5 @@
 {
-    "name": "googleads/datamanager",
+    "name": "googleads/data-manager",
     "description": "Google Ads Data Manager Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
@@ -11,9 +11,9 @@
     },
     "extra": {
         "component": {
-            "id": "googleads/datamanager",
+            "id": "googleads/data-manager",
             "path": "AdsDataManager",
-            "target": "googleapis/php-ads-datamanager"
+            "target": "googleapis/php-ads-data-manager"
         }
     },
     "require": {
