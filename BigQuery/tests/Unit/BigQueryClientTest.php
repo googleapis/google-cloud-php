@@ -777,7 +777,7 @@ class BigQueryClientTest extends TestCase
         $retryHeaderAppeared = false;
         $logger = $this->prophesize(LoggerInterface::class);
         $logger->debug(
-            Argument::that(function(string $jsonString) use (&$retryHeaderAppeared) {
+            Argument::that(function (string $jsonString) use (&$retryHeaderAppeared) {
                 $jsonParsed = json_decode($jsonString, true);
                 if (isset($jsonParsed['jsonPayload']['retryAttempt'])) {
                     $retryHeaderAppeared = true;
