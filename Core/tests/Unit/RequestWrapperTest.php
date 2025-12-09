@@ -40,6 +40,7 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use ReflectionClass;
 
 /**
  * @group core
@@ -857,6 +858,27 @@ class RequestWrapperTest extends TestCase
         // send a fake request
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
         $this->assertTrue($called);
+    }
+
+    public function testRetryListenerOnConstructor()
+    {
+        $listener = function ($_, int $__, array &$___) {
+            return;
+        };
+        $wrapper = new RequestWrapper([
+            'restRetryListener' => $listener
+        ]);
+
+        $reflectionClass = new ReflectionClass($wrapper);
+        $property = $reflectionClass->getProperty('retryListener');
+        $property->setAccessible(true);
+
+        $this->assertNotEmpty($property->getValue($wrapper), 'The retryListener property should be set.');
+        $this->assertEquals(
+            $listener,
+            $property->getValue($wrapper),
+            'The retryListener should be the same as the one passed via options.'
+        );
     }
 
     public function provideCheckUniverseDomainPasses()

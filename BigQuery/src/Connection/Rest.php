@@ -432,7 +432,7 @@ class Rest implements ConnectionInterface
     private function getRequestWrapper(array $config): RequestWrapper
     {
         // Because we are setting a logger, we build a handler here instead of using the default
-        $config['httpHandler'] = $config['httpHandler'] ?? HttpHandlerFactory::build(logger:$config['logger']);
+        $config['httpHandler'] = $config['httpHandler'] ?? HttpHandlerFactory::build(logger: $config['logger']);
         $config['restRetryListener'] = $this->getRetryListener();
         return new RequestWrapper($config);
     }
