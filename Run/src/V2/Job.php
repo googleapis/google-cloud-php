@@ -211,10 +211,10 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzs = false;
     /**
-     * Output only. A system-generated fingerprint for this version of the
+     * Optional. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
-     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
     protected $create_execution;
@@ -336,7 +336,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           will become ready when the execution is successfully completed.
      *           The sum of job name and token length must be fewer than 63 characters.
      *     @type string $etag
-     *           Output only. A system-generated fingerprint for this version of the
+     *           Optional. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
      * }
      */
@@ -1206,10 +1206,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-generated fingerprint for this version of the
+     * Optional. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
-     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -1218,10 +1218,10 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system-generated fingerprint for this version of the
+     * Optional. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
-     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

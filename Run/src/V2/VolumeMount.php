@@ -31,6 +31,13 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string mount_path = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $mount_path = '';
+    /**
+     * Optional. Path within the volume from which the container's volume should
+     * be mounted. Defaults to "" (volume's root).
+     *
+     * Generated from protobuf field <code>string sub_path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sub_path = '';
 
     /**
      * Constructor.
@@ -46,6 +53,9 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
      *           otherwise be `/cloudsql`. All instances defined in the Volume will be
      *           available as `/cloudsql/[instance]`. For more information on Cloud SQL
      *           volumes, visit https://cloud.google.com/sql/docs/mysql/connect-run
+     *     @type string $sub_path
+     *           Optional. Path within the volume from which the container's volume should
+     *           be mounted. Defaults to "" (volume's root).
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +119,34 @@ class VolumeMount extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->mount_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Path within the volume from which the container's volume should
+     * be mounted. Defaults to "" (volume's root).
+     *
+     * Generated from protobuf field <code>string sub_path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSubPath()
+    {
+        return $this->sub_path;
+    }
+
+    /**
+     * Optional. Path within the volume from which the container's volume should
+     * be mounted. Defaults to "" (volume's root).
+     *
+     * Generated from protobuf field <code>string sub_path = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubPath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sub_path = $var;
 
         return $this;
     }

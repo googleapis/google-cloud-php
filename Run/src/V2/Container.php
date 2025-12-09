@@ -34,6 +34,12 @@ class Container extends \Google\Protobuf\Internal\Message
      */
     protected $image = '';
     /**
+     * Optional. Location of the source.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode source_code = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $source_code = null;
+    /**
      * Entrypoint array. Not executed within a shell.
      * The docker image's ENTRYPOINT is used if this is not provided.
      *
@@ -131,6 +137,8 @@ class Container extends \Google\Protobuf\Internal\Message
      *           Required. Name of the container image in Dockerhub, Google Artifact
      *           Registry, or Google Container Registry. If the host is not provided,
      *           Dockerhub is assumed.
+     *     @type \Google\Cloud\Run\V2\SourceCode $source_code
+     *           Optional. Location of the source.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
      *           Entrypoint array. Not executed within a shell.
      *           The docker image's ENTRYPOINT is used if this is not provided.
@@ -227,6 +235,42 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->image = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Location of the source.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode source_code = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\SourceCode|null
+     */
+    public function getSourceCode()
+    {
+        return $this->source_code;
+    }
+
+    public function hasSourceCode()
+    {
+        return isset($this->source_code);
+    }
+
+    public function clearSourceCode()
+    {
+        unset($this->source_code);
+    }
+
+    /**
+     * Optional. Location of the source.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.SourceCode source_code = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\SourceCode $var
+     * @return $this
+     */
+    public function setSourceCode($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\SourceCode::class);
+        $this->source_code = $var;
 
         return $this;
     }

@@ -50,6 +50,12 @@ class ExecutionReason
      * Generated from protobuf enum <code>DELETED = 5;</code>
      */
     const DELETED = 5;
+    /**
+     * A delayed execution is waiting for a start time.
+     *
+     * Generated from protobuf enum <code>DELAYED_START_PENDING = 6;</code>
+     */
+    const DELAYED_START_PENDING = 6;
 
     private static $valueToName = [
         self::EXECUTION_REASON_UNDEFINED => 'EXECUTION_REASON_UNDEFINED',
@@ -58,6 +64,7 @@ class ExecutionReason
         self::CANCELLED => 'CANCELLED',
         self::CANCELLING => 'CANCELLING',
         self::DELETED => 'DELETED',
+        self::DELAYED_START_PENDING => 'DELAYED_START_PENDING',
     ];
 
     public static function name($value)
