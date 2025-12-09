@@ -431,8 +431,7 @@ class Rest implements ConnectionInterface
     private function getRequestWrapper(array $config): RequestWrapper
     {
         // Because we are setting a logger, we build a handler here instead of using the default
-        $httpHandler = HttpHandlerFactory::build(logger:$config['logger']);
-        $config['httpHandler'] = $httpHandler;
+        $config['httpHandler'] = $config['httpHandler'] ?? HttpHandlerFactory::build(logger:$config['logger']);
         $config['restRetryListener'] = $this->getRetryListener();
         return new RequestWrapper($config);
     }
@@ -441,8 +440,7 @@ class Rest implements ConnectionInterface
     {
         return function (Exception $ex, int $retryAttempt, array &$arguments) {
             // The REST calls are [$request, $options]. We need to modify the options.
-            $options = $arguments[1];
-            $options['retryAttempt'] = $retryAttempt;
+            $arguments[1]['retryAttempt'] = $retryAttempt;
         };
     }
 }
