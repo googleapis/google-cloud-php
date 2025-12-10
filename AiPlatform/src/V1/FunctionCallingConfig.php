@@ -29,6 +29,14 @@ class FunctionCallingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string allowed_function_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_function_names;
+    /**
+     * Optional. When set to true, arguments of a single function call will be
+     * streamed out in multiple parts/contents/responses. Partial parameter
+     * results will be returned in the [FunctionCall.partial_args] field.
+     *
+     * Generated from protobuf field <code>bool stream_function_call_arguments = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $stream_function_call_arguments = false;
 
     /**
      * Constructor.
@@ -42,6 +50,10 @@ class FunctionCallingConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Function names to call. Only set when the Mode is ANY. Function
      *           names should match [FunctionDeclaration.name]. With mode set to ANY, model
      *           will predict a function call from the set of function names provided.
+     *     @type bool $stream_function_call_arguments
+     *           Optional. When set to true, arguments of a single function call will be
+     *           streamed out in multiple parts/contents/responses. Partial parameter
+     *           results will be returned in the [FunctionCall.partial_args] field.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +113,36 @@ class FunctionCallingConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->allowed_function_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When set to true, arguments of a single function call will be
+     * streamed out in multiple parts/contents/responses. Partial parameter
+     * results will be returned in the [FunctionCall.partial_args] field.
+     *
+     * Generated from protobuf field <code>bool stream_function_call_arguments = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getStreamFunctionCallArguments()
+    {
+        return $this->stream_function_call_arguments;
+    }
+
+    /**
+     * Optional. When set to true, arguments of a single function call will be
+     * streamed out in multiple parts/contents/responses. Partial parameter
+     * results will be returned in the [FunctionCall.partial_args] field.
+     *
+     * Generated from protobuf field <code>bool stream_function_call_arguments = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStreamFunctionCallArguments($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->stream_function_call_arguments = $var;
 
         return $this;
     }
