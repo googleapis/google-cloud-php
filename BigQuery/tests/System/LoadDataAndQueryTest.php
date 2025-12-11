@@ -25,7 +25,10 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest;
+use Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest;
+use Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\Reservation;
 use GuzzleHttp\Psr7\Utils;
 
@@ -986,15 +989,17 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         // Create reservation if it does not exist
         $reservationAdminClient = new ReservationServiceClient();
+        $getRequest = GetReservationRequest::build($fullReservationPath);
         try {
-            $reservationAdminClient->getReservation($fullReservationPath);
+            $reservationAdminClient->getReservation($getRequest);
         } catch (ApiException $e) {
             if ($e->getStatus() === 'NOT_FOUND') {
-                $reservationAdminClient->createReservation(
-                    'projects/' . $projectId . '/locations/US',
-                    ['reservation' => new Reservation(['slot_capacity' => 50, 'ignore_idle_slots' => true]),
-                    'reservationId' => $reservationId]
-                );
+                $createRequest = new CreateReservationRequest([
+                    'parent' => 'projects/' . $projectId . '/locations/US',
+                    'reservation' => new Reservation(['slot_capacity' => 50, 'ignore_idle_slots' => true]),
+                    'reservation_id' => $reservationId
+                ]);
+                $reservationAdminClient->createReservation($createRequest);
             }
         }
 
@@ -1005,7 +1010,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ->jobTimeoutMs($timeout);
 
         $maxRetry = 3;
-        $retry = 1;
+        $retry = 3;
         $success = false;
 
         do {
@@ -1021,7 +1026,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
                 // Cancel job
                 $job->cancel();
-            
+
                 // Exit retry loop
                 $success = true;
                 break;
@@ -1038,11 +1043,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             }
         } while ($retry <= $maxRetry);
 
-        // Clean up - delete reservation
-        $reservationAdminClient->deleteReservation($fullReservationPath);
-
         // Assert that load job with reservation could be started and verified
         $this->assertTrue($success, 'Load job with reservation could not be started after maximum retries.');
+
+        // Clean up - delete reservation
+        $deleteRequest = DeleteReservationRequest::build($fullReservationPath);
+        $reservationAdminClient->deleteReservation($deleteRequest);
     }
 
     public function invalidJsonProvider()
