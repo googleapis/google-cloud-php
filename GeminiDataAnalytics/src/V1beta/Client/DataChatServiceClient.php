@@ -45,6 +45,8 @@ use Google\Cloud\GeminiDataAnalytics\V1beta\GetConversationRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListConversationsRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListMessagesRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Message;
+use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -71,6 +73,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryDataResponse> queryDataAsync(QueryDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -476,6 +479,34 @@ final class DataChatServiceClient
     public function listMessages(ListMessagesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListMessages', $request, $callOptions);
+    }
+
+    /**
+     * Queries data from a natural language user query.
+     *
+     * The async variant is {@see DataChatServiceClient::queryDataAsync()} .
+     *
+     * @example samples/V1beta/DataChatServiceClient/query_data.php
+     *
+     * @param QueryDataRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryDataResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryData(QueryDataRequest $request, array $callOptions = []): QueryDataResponse
+    {
+        return $this->startApiCall('QueryData', $request, $callOptions)->wait();
     }
 
     /**
