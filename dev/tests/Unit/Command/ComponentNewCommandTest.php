@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\Command\NewComponentCommand;
+use Google\Cloud\Dev\Command\ComponentNewCommand;
 use Symfony\Component\Console\Input\InputDefinition;
 use Google\Cloud\Dev\Composer;
 use PHPUnit\Framework\TestCase;
@@ -31,7 +31,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @group dev
  */
-class NewComponentCommandTest extends TestCase
+class ComponentNewCommandTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -58,8 +58,8 @@ class NewComponentCommandTest extends TestCase
         self::$tmpDir = realpath($tmpDir);
 
         $application = new Application();
-        $application->add(new NewComponentCommand(self::$tmpDir));
-        self::$commandTester = new CommandTester($application->get('new-component'));
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+        self::$commandTester = new CommandTester($application->get('component:new'));
     }
 
     public function testNewComponent()
@@ -71,7 +71,7 @@ class NewComponentCommandTest extends TestCase
 
         self::$commandTester->execute([
             'proto' => 'google/cloud/secretmanager/v1/service.proto',
-            '--no-update-component' => true,
+            '--no-update' => true,
         ]);
 
         // confirm expected output
@@ -129,7 +129,7 @@ class NewComponentCommandTest extends TestCase
 
         self::$commandTester->execute([
             'proto' => 'google/cloud/secretmanager/v1/service.proto',
-            '--no-update-component' => true
+            '--no-update' => true
         ]);
 
         // confirm expected output
@@ -172,18 +172,18 @@ class NewComponentCommandTest extends TestCase
         $dummyCommand->setApplication(Argument::type(Application::class))->shouldBeCalled();
 
         $application = new Application();
-        $application->add(new NewComponentCommand(self::$tmpDir));
+        $application->add(new ComponentNewCommand(self::$tmpDir));
 
-        // Add dummy command for update-command and update-readme-sample to ensure they're called
-        $dummyCommand->getName()->willReturn('update-component');
+        // Add dummy command for component:update:gencode and component:update:readme-sample to ensure they're called
+        $dummyCommand->getName()->willReturn('component:update:gencode');
         $application->add($dummyCommand->reveal());
-        $dummyCommand->getName()->willReturn('update-readme-sample');
+        $dummyCommand->getName()->willReturn('component:update:readme-sample');
         $application->add($dummyCommand->reveal());
         $dummyCommand->run(Argument::cetera())
             ->willReturn(0)
             ->shouldBeCalledTimes(2);
 
-        $commandTester = new CommandTester($application->get('new-component'));
+        $commandTester = new CommandTester($application->get('component:new'));
 
         $commandTester->setInputs([
             'Y',   // Component already exists. Overwrite it? ? [Y/n]
@@ -230,10 +230,10 @@ class NewComponentCommandTest extends TestCase
     public function testNewComponentWithExistingComponent()
     {
         $application = new Application();
-        $application->add(new NewComponentCommand(self::$tmpDir));
+        $application->add(new ComponentNewCommand(self::$tmpDir));
 
         // Add dummy command for update-command and add-sample-to-readme to ensure they're called
-        $commandTester = new CommandTester($application->get('new-component'));
+        $commandTester = new CommandTester($application->get('component:new'));
         $commandTester->setInputs([
             'n'    // Component already exists. Overwrite it? ? [Y/n]
         ]);
@@ -255,9 +255,9 @@ class NewComponentCommandTest extends TestCase
         $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
 
         $application = new Application();
-        $application->add(new NewComponentCommand(self::$tmpDir));
+        $application->add(new ComponentNewCommand(self::$tmpDir));
 
-        $commandTester = new CommandTester($application->get('new-component'));
+        $commandTester = new CommandTester($application->get('component:new'));
         $commandTester->setInputs([
             'Y' // Does this information look correct? [Y/n]
         ]);

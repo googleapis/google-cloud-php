@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\Command\UpdateDepsCommand;
+use Google\Cloud\Dev\Command\ComponentUpdateDepsCommand;
 use Google\Cloud\Dev\Composer;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 /**
  * @group dev
  */
-class UpdateDepsCommandTest extends TestCase
+class ComponentUpdateDepsCommandTest extends TestCase
 {
     /**
      * @dataProvider provideUpdateDeps
@@ -36,7 +36,7 @@ class UpdateDepsCommandTest extends TestCase
         $tmpFile = sys_get_temp_dir() . '/composer.json';
         file_put_contents($tmpFile, json_encode($json));
         $cmdOptions['--component'] = [$tmpFile];
-        $commandTester = new CommandTester(new UpdateDepsCommand());
+        $commandTester = new CommandTester(new ComponentUpdateDepsCommand());
         $commandTester->execute($cmdOptions);
 
         $this->assertEquals($expectedJson, json_decode(file_get_contents($tmpFile), true));
@@ -47,7 +47,7 @@ class UpdateDepsCommandTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('You cannot supply both a package version and the --bump flag');
 
-        $commandTester = new CommandTester(new UpdateDepsCommand());
+        $commandTester = new CommandTester(new ComponentUpdateDepsCommand());
         $commandTester->execute([
             'package' => 'google/gax',
             'version' => '1.2.3',
@@ -60,7 +60,7 @@ class UpdateDepsCommandTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('You must either supply a package version or the --bump flag');
 
-        $commandTester = new CommandTester(new UpdateDepsCommand());
+        $commandTester = new CommandTester(new ComponentUpdateDepsCommand());
         $commandTester->execute([
             'package' => 'google/gax',
         ]);
@@ -71,7 +71,7 @@ class UpdateDepsCommandTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Component not found for package google/foo');
 
-        $commandTester = new CommandTester(new UpdateDepsCommand());
+        $commandTester = new CommandTester(new ComponentUpdateDepsCommand());
         $commandTester->execute([
             'package' => 'google/foo',
             'version' => '1.2.3',

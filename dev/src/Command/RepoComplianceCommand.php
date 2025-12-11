@@ -34,20 +34,21 @@ use GuzzleHttp\Client;
  * List repo details
  * @internal
  */
-class RepoInfoCommand extends Command
+class RepoComplianceCommand extends Command
 {
+    private const PACKAGIST_USERNAME = 'google-cloud';
     private GitHub $github;
     private Packagist $packagist;
 
     protected function configure()
     {
-        $this->setName('repo-info')
-            ->setDescription('list info for all github repositories')
-            ->addArgument('component', InputArgument::OPTIONAL, 'If specified, display repo info for this component only', '')
+        $this->setName('repo:compliance')
+            ->setDescription('ensure all github repositories meet compliance')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
             ->addOption('page', 'p', InputOption::VALUE_REQUIRED, 'page to start from', '1')
             ->addOption('results-per-page', 'r', InputOption::VALUE_REQUIRED, 'results to display per page (0 for all)', '10')
-            ->addOption('fix', 'f', InputOption::VALUE_NONE, 'whether to prompt to fix non-compliant repos')
+            ->addOption('new-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
         ;
     }
 
@@ -56,21 +57,26 @@ class RepoInfoCommand extends Command
         // Create github client wrapper
         $http = new Client();
         $this->github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
-        $this->packagist = new Packagist($http, '', '');
+        $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('new-packagist-token') ?? '');
 
-        $nextPageQuestion = new ConfirmationQuestion('Next Page (enter)', true);
+        $nextPageQuestion = new ConfirmationQuestion('Next Page (enter), "n" to quit: ', true);
         $table = (new Table($output))->setHeaders([
             'name' => 'Name',
             'repo_config' => 'Repo Config',
             'packagist_config' => 'Packagist Config',
             'teams' => 'Teams',
+            'compliant' => 'Compliant?'
         ]);
-        if ($componentName = $input->getArgument('component')) {
+        if ($componentName = $input->getOption('component')) {
             $table->setVertical();
         }
         $page = (int) $input->getOption('page');
         $resultsPerPage = (int) $input->getOption('results-per-page');
         $components = $componentName ? [new Component($componentName)] : Component::getComponents();
+
+        if (!$input->getOption('token')) {
+            $output->writeln('<error>No token provided - please provide token to update compliance</error>');
+        }
         foreach ($components as $i => $component) {
             if ($i < (($page-1) * $resultsPerPage)) {
                 continue;
@@ -84,24 +90,59 @@ class RepoInfoCommand extends Command
                 $page++;
             }
             $details = $this->getRepoDetails($component);
-            if ($input->getOption('fix')) {
-                if (!$this->github->token) {
-                    throw new \InvalidArgumentException('Token required to fix compliance');
-                }
-                $refreshDetails = false;
-                if (!$this->checkSettingsCompliance($details)) {
-                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
-                }
-                if (!$this->checkPackagistCompliance($details)) {
-                    $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $component->getRepoName());
-                }
-                if (!$this->checkTeamCompliance($details)) {
-                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
-                }
-                if ($refreshDetails) {
-                    $details = $this->getRepoDetails($component);
+            $compliance = [
+                'settings' => true,
+                'packagist' => true,
+                'teams' => true,
+            ];
+
+            $refreshDetails = false;
+            if (!$this->checkSettingsCompliance($details)) {
+                $compliance['settings'] = false;
+                $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
+            }
+            if (!$this->checkPackagistCompliance($details)) {
+                $compliance['packagist'] = false;
+                $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $component->getRepoName());
+            }
+            if (!$this->checkTeamCompliance($details)) {
+                $compliance['teams'] = $this->github->token ? false : null;
+                $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
+            }
+            if ($refreshDetails) {
+                $details = $this->getRepoDetails($component);
+            }
+            if ($packagistToken = $this->packagist->getApiToken()) {
+                $repoName = 'googleapis/' . $details['name'];
+                $webhookUrl = $this->packagist->getWebhookUrl();
+                if (!$webhookId = $this->github->getWebhook($repoName, $webhookUrl, $packagistToken)) {
+                    $output->writeln(sprintf('<error>%s</error>: Webhook not found in', $repoName));
+                } elseif (!$this->github->updateWebhook($repoName, $webhookId, $packagistToken, $webhookUrl)) {
+                    $output->writeln(sprintf('<error>%s</error>: Unable to update webhook.', $repoName));
+                } else {
+                    $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook token updated.', $repoName));
                 }
             }
+            $isCompliant = true;
+            $details['compliant'] = '<info>REPO IS COMPLIANT</info>';
+            foreach ($compliance as $key => $val) {
+                if ($val === false) {
+                    $isCompliant = false;
+                    $details['compliant'] = '<error>NOT COMPLIANT</error>';
+                } elseif ($isCompliant && $val === null) {
+                    $details['compliant'] = '<error>???</error> (token required)';
+                    $isCompliant = null;
+                }
+            }
+
+            if (!$isCompliant) {
+                $details['compliant'] .= PHP_EOL . implode("\n", array_map(
+                    fn ($k, $v) => $k . ': ' . (is_null($v) ? '???' : var_export($v, true)),
+                    array_keys($compliance),
+                    array_values($compliance)
+                ));
+            }
+
             $table->addRow($details);
         }
         $table->render();
@@ -111,11 +152,11 @@ class RepoInfoCommand extends Command
 
     private function checkSettingsCompliance(array $details)
     {
-        return $details['has_issues'] === 'false'
-            && $details['has_projects'] === 'false'
-            && $details['has_wiki'] === 'false'
-            && $details['has_pages'] === 'false'
-            && $details['has_discussions'] === 'false';
+        return $details['repo_config'] === "issues: false
+projects: false
+wiki: false
+pages: false
+discussions: false";
     }
 
     private function checkTeamCompliance(array $details)
@@ -128,7 +169,13 @@ class RepoInfoCommand extends Command
 
     private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        $fieldsToUpdate = array_keys(array_filter($details, fn ($value) => $value === 'true'));
+        if (!$this->github->token) {
+            // without a token, don't ask to fix compliance
+            return false;
+        }
+        $explodedConfig = array_map(fn ($line) => explode(': ', $line), explode("\n", $details['repo_config']));
+        $fields = array_combine(array_column($explodedConfig, 0), array_column($explodedConfig, 1));
+        $fieldsToUpdate = array_keys(array_filter($fields, fn ($value) => $value === 'true'));
         $question = new ConfirmationQuestion(sprintf(
             'Repo %s has the following configuration enabled: %s. Would you like to disable them? (Y/n)',
             $details['name'],
@@ -137,7 +184,10 @@ class RepoInfoCommand extends Command
         if ($this->getHelper('question')->ask($input, $output, $question)) {
             $this->github->updateRepoDetails(
                 'googleapis/' . $details['name'],
-                array_fill_keys($fieldsToUpdate, false)
+                array_fill_keys(array_map(
+                    fn ($key) => 'has_' . $key,
+                    array_keys($fields)
+                ), false)
             );
             return true;
         }
@@ -148,17 +198,25 @@ class RepoInfoCommand extends Command
     {
         return !empty(array_filter(
             explode("\n", $details['packagist_config']),
-            fn ($team) => $team === 'google-cloud'
+            fn ($team) => $team === self::PACKAGIST_USERNAME
         ));
     }
 
     private function askFixPackagistCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
+        if (!$this->github->token) {
+            // without a token, don't ask to fix compliance
+            return false;
+        }
         throw new \Exception('not implemented');
     }
 
     private function askFixTeamCompliance(InputInterface $input, OutputInterface $output, string $repoName)
     {
+        if (!$this->github->token) {
+            // without a token, don't ask to fix compliance
+            return false;
+        }
         $question = new ConfirmationQuestion(sprintf(
             'Repo %s does not have "yoshi-php" as an admin. Would you like to add it? (Y/n)',
             $repoName

@@ -25,24 +25,23 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
-use Google\Cloud\Dev\Component;
 
 /**
  * Add a Component
  * @internal
  */
-class AddVersionCommand extends Command
+class ComponentAddVersionCommand extends Command
 {
     private const OWL_BOT_REGEX='/.*\/\(([\w|]+)\).*/';
 
     protected function configure()
     {
-        $this->setName('add-version')
+        $this->setName('component:add-version')
             ->setDescription('Add a new version to an existing Component')
             ->addArgument('component', InputArgument::REQUIRED, 'Component to add the version to.')
             ->addArgument('version', InputArgument::REQUIRED, 'The new version to add.')
             ->addOption(
-                'no-update-component',
+                'no-update',
                 null,
                 InputOption::VALUE_NONE,
                 'Do not run the update-component command after adding the component skeleton'
@@ -96,9 +95,9 @@ class AddVersionCommand extends Command
         }
 
         // Run "update-component" command to generate the new version and add its sample to the README
-        if ($input->getOption('no-update-component')) {
+        if ($input->getOption('no-update')) {
             // nothing left to do
-            $output->writeln('Skipping component update: "--no-update-component" flag set');
+            $output->writeln('Skipping component update: "--no-update" flag set');
             return 0;
         }
 
@@ -106,21 +105,24 @@ class AddVersionCommand extends Command
             'component' => $componentName,
             '--timeout' => $input->getOption('timeout'),
         ];
-        if (!$this->getApplication()->has('update-component')) {
+        if (!$this->getApplication()->has('component:update:gencode')) {
             throw new \RuntimeException(
-                'Application does not have an update-component command. '
-                . 'Run with --no-update-component to skip this.'
+                'Application does not have an component:update:gencode command. '
+                . 'Run with --no-update to skip this.'
             );
         }
-        $updateCommand = $this->getApplication()->find('update-component');
+        $updateCommand = $this->getApplication()->find('component:update:gencode');
         $returnCode = $updateCommand->run(new ArrayInput($args), $output);
         if ($returnCode !== Command::SUCCESS) {
             return $returnCode;
         }
-        // Run "update-readme-sample" command to ensure our README contains the latest version's sample.
+        // Run "component:update:readme-sample" command to ensure our README contains the latest version's sample.
         $updateReadmeSampleArgs = ['--component' => [$componentName], '--update' => true];
-        if (!$updateReadmeSampleCommand = $this->getApplication()->find('update-readme-sample')) {
-            throw new \RuntimeException('Application does not have an add-samples-to-readme command.');
+        if (!$updateReadmeSampleCommand = $this->getApplication()->find('component:update::readme-sample')) {
+            throw new \RuntimeException(
+                'Application does not have an component:update::readme-sample command. '
+                . 'Run with --no-update to skip this.'
+            );
         }
         return $updateReadmeSampleCommand->run(new ArrayInput($updateReadmeSampleArgs), $output);
     }

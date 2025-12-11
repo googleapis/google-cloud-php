@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\Command\UpdateReadmeSampleCommand;
+use Google\Cloud\Dev\Command\ComponentUpdateReadmeSampleCommand;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -26,7 +26,7 @@ use Symfony\Component\Filesystem\Filesystem;
 /**
  * @group dev
  */
-class UpdateReadmeSampleCommandTest extends TestCase
+class ComponentUpdateReadmeSampleCommandTest extends TestCase
 {
     private static CommandTester $commandTester;
     private $componentDir;
@@ -52,8 +52,8 @@ class UpdateReadmeSampleCommandTest extends TestCase
         ]));
 
         $application = new Application();
-        $application->add(new UpdateReadmeSampleCommand($this->componentDir . '/..'));
-        self::$commandTester = new CommandTester($application->get('update-readme-sample'));
+        $application->add(new ComponentUpdateReadmeSampleCommand($this->componentDir . '/..'));
+        self::$commandTester = new CommandTester($application->get('component:update:readme-sample'));
     }
 
     public function testUpdateReadmeSample()
