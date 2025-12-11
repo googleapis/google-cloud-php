@@ -21,7 +21,7 @@
       name: 'Migrating to V2'
       href: migrating.md
     -
-      name: 'Installing gRPC'
+      name: 'Installing gRPC and Protobuf'
       href: grpc.md
     -
       name: Troubleshooting
