@@ -98,7 +98,7 @@ var_dump($response->getTranslations()[0]);
 
 ### Authentication
 
-See [AUTHENTICATION.md](AUTHENTICATION.md)
+See [Authentication](AUTHENTICATION.md) for details and examples.
 
 ### Debugging
 

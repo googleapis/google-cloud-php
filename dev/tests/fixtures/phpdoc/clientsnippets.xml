@@ -18,6 +18,7 @@
             
                         
                         
+                        
                                         <class final="true" abstract="false" namespace="\Google\Cloud\ClientSnippets\Client" line="5">
                     <name>ClientSnippetsClient</name>
                     <full_name>\Google\Cloud\ClientSnippets\Client\ClientSnippetsClient</full_name>
