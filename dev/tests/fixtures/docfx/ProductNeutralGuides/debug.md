@@ -197,10 +197,10 @@ from logging to avoid excessive noise.
 putenv('GOOGLE_SDK_PHP_LOGGING=true');
 
 // The Big Table client will log all the requests
-$client = new BigtableClient();
+$bigtable = new BigtableClient();
 
 // The TranslationServiceClient will not log any requests
-$client = new TranslationServiceClient([
+$translation = new TranslationServiceClient([
     'logger' => false
 ]);
 ```

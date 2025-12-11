@@ -23,7 +23,7 @@ OCC introduces a unique fingerprint which changes every time an entity is modifi
 
 This failure forces the client to **retry** the entire process—re-read the *new* policy, re-apply the changes, and try the write again with the new `etag`.
 
-## Implementing the OCC Loop in PHP
+## Implementing the OCC Loop
 
 The core of the OCC implementation is a `while` loop that handles the retry logic. You should set a reasonable maximum number of retries to prevent infinite loops in cases of high contention.
 
@@ -39,6 +39,8 @@ The core of the OCC implementation is a `while` loop that handles the retry logi
 The following file provides a runnable example of how to implement the OCC loop to add a new member to an IAM policy on a Project resource.
 
 *Note: This example uses the `google/cloud-resource-manager` component, but the same OCC pattern applies to any service that uses IAM policies (Storage, Pub/Sub, etc.).*
+
+### Example
 
 ```php
 use Google\Cloud\Core\Exception\AbortedException;
