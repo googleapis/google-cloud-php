@@ -118,7 +118,7 @@ class ComponentAddVersionCommand extends Command
         }
         // Run "component:update:readme-sample" command to ensure our README contains the latest version's sample.
         $updateReadmeSampleArgs = ['--component' => [$componentName], '--update' => true];
-        if (!$updateReadmeSampleCommand = $this->getApplication()->find('component:update::readme-sample')) {
+        if (!$updateReadmeSampleCommand = $this->getApplication()->find('component:update:readme-sample')) {
             throw new \RuntimeException(
                 'Application does not have an component:update::readme-sample command. '
                 . 'Run with --no-update to skip this.'
