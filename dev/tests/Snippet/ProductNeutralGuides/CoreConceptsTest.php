@@ -78,7 +78,7 @@ class CoreConceptsTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMarkdown(
             self::CORE_CONCEPTS_FILE,
-            '2. Pagination'
+            '1. Pagination'
         );
 
         $mockSecrets = [

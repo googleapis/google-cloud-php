@@ -46,7 +46,7 @@ class OccForIamTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMarkdown(
             self::OCC_FOR_IAM_FILE,
-            '3\. PHP Code Example'
+            'Example'
         );
         // Use the global $projectsClient so we can inject our own
         $snippet->replace('$projectsClient = new ProjectsClient();', 'global $projectsClient;');
@@ -90,7 +90,7 @@ EOF, $output);
     {
         $snippet = $this->snippetFromMarkdown(
             self::OCC_FOR_IAM_FILE,
-            '3\. PHP Code Example'
+            'Example'
         );
 
         // Use the global $projectsClient so we can inject our own
@@ -139,7 +139,7 @@ EOF, $output);
     {
         $snippet = $this->snippetFromMarkdown(
             self::OCC_FOR_IAM_FILE,
-            '3\. PHP Code Example'
+            'Example'
         );
 
         $snippet->invoke();
