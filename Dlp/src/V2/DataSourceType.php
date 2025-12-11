@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class DataSourceType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. An identifying string to the type of resource being profiled.
+     * A string that identifies the type of resource being profiled.
      * Current values:
      * * google/bigquery/table
      * * google/project
      * * google/sql/table
      * * google/gcs/bucket
      *
-     * Generated from protobuf field <code>string data_source = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string data_source = 1;</code>
      */
     protected $data_source = '';
 
@@ -34,7 +34,7 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $data_source
-     *           Output only. An identifying string to the type of resource being profiled.
+     *           A string that identifies the type of resource being profiled.
      *           Current values:
      *           * google/bigquery/table
      *           * google/project
@@ -48,14 +48,14 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An identifying string to the type of resource being profiled.
+     * A string that identifies the type of resource being profiled.
      * Current values:
      * * google/bigquery/table
      * * google/project
      * * google/sql/table
      * * google/gcs/bucket
      *
-     * Generated from protobuf field <code>string data_source = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string data_source = 1;</code>
      * @return string
      */
     public function getDataSource()
@@ -64,14 +64,14 @@ class DataSourceType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. An identifying string to the type of resource being profiled.
+     * A string that identifies the type of resource being profiled.
      * Current values:
      * * google/bigquery/table
      * * google/project
      * * google/sql/table
      * * google/gcs/bucket
      *
-     * Generated from protobuf field <code>string data_source = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string data_source = 1;</code>
      * @param string $var
      * @return $this
      */
