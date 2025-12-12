@@ -1,15 +1,14 @@
-name: Major Version Approval Check
+name: Major Version Approval Logic
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review, edited]
-    branches: ['main']
-  pull_request_review:
-    types: [submitted, dismissed]
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
+  workflow_call:
+    inputs:
+      pr_number:
+        required: true
+        type: number
+      secrets:
+        token:
+          required: true
 
 permissions:
   contents: read
@@ -19,15 +18,12 @@ jobs:
   major-version-approval-check:
     name: Major Version Approval Check
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
-    # testing
-    # if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
       - uses: actions/checkout@v5
       - name: Check for at least 2 approvals from yoshi-php members
         env:
-          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.token }}
+          PR_NUMBER: ${{ inputs.pr_number }}
           REQUIRED_APPROVALS: 2
         run: |
           set -e
