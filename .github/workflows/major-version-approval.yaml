@@ -52,6 +52,7 @@ jobs:
 
             let conclusion = 'failure';
             let summary = 'An unexpected error occurred during the approval check.';
+            let log = '';
 
             try {
               const check_run_id = ${{ steps.create_check.outputs.result }};
@@ -62,21 +63,21 @@ jobs:
               const prNumber = process.env.PR_NUMBER;
               const requiredApprovals = parseInt(process.env.REQUIRED_APPROVALS, 10);
 
-              console.log(`Fetching approvals for PR #${prNumber}...`);
+              log += `\nFetching approvals for PR #${prNumber}...`
               const approvalsCmd = `gh pr view ${prNumber} --json reviews --jq '[.reviews[] | select(.state == "APPROVED") | .author.login] | unique | .[]'`;
               let approvalsOutput = '';
               try {
                 // execSync throws on non-zero exit code. jq may exit non-zero with no results.
                 approvalsOutput = execSync(approvalsCmd, { encoding: 'utf8', env: process.env });
               } catch (e) {
-                console.log('No approvals found or an error occurred fetching them. Continuing...');
+                log += '\nNo approvals found or an error occurred fetching them. Continuing...';
                 // approvalsOutput remains empty, which is handled below.
               }
 
               const approvals = approvalsOutput.trim() ? approvalsOutput.trim().split('\n') : [];
-              console.log(`Approvals found: ${approvals.length}`);
+              log += `\nApprovals found: ${approvals.length}`;
 
-              console.log('Fetching yoshi-php team members...');
+              log += '\nFetching yoshi-php team members...';
               const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login'`;
               const teamMembersOutput = execSync(teamMembersCmd, { encoding: 'utf8', env: process.env });
               if (!teamMembersOutput.trim()) {
@@ -87,7 +88,7 @@ jobs:
               const matchingApprovals = approvals.filter(login => teamMembers.has(login));
               const count = matchingApprovals.length;
 
-              console.log(`Found ${count} approval(s) from the yoshi-php team.`);
+              log += `\nFound ${count} approval(s) from the yoshi-php team.`;
 
               if (count >= requiredApprovals) {
                 conclusion = 'success';
@@ -113,7 +114,8 @@ jobs:
               conclusion: conclusion,
               output: {
                 title: 'Major Version Approval',
-                summary: summary
+                summary: summary,
+                text: log
               }
             });
 
