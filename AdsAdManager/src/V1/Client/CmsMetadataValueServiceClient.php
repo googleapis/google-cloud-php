@@ -253,7 +253,7 @@ final class CmsMetadataValueServiceClient
     }
 
     /**
-     * API to retrieve a `CmsMetadataKey` object.
+     * API to retrieve a `CmsMetadataValue` object.
      *
      * The async variant is
      * {@see CmsMetadataValueServiceClient::getCmsMetadataValueAsync()} .

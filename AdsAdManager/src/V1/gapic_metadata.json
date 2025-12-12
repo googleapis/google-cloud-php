@@ -68,6 +68,36 @@
                 "grpc": {
                     "libraryClient": "AdUnitServiceGapicClient",
                     "rpcs": {
+                        "BatchActivateAdUnits": {
+                            "methods": [
+                                "batchActivateAdUnits"
+                            ]
+                        },
+                        "BatchArchiveAdUnits": {
+                            "methods": [
+                                "batchArchiveAdUnits"
+                            ]
+                        },
+                        "BatchCreateAdUnits": {
+                            "methods": [
+                                "batchCreateAdUnits"
+                            ]
+                        },
+                        "BatchDeactivateAdUnits": {
+                            "methods": [
+                                "batchDeactivateAdUnits"
+                            ]
+                        },
+                        "BatchUpdateAdUnits": {
+                            "methods": [
+                                "batchUpdateAdUnits"
+                            ]
+                        },
+                        "CreateAdUnit": {
+                            "methods": [
+                                "createAdUnit"
+                            ]
+                        },
                         "GetAdUnit": {
                             "methods": [
                                 "getAdUnit"
@@ -81,6 +111,11 @@
                         "ListAdUnits": {
                             "methods": [
                                 "listAdUnits"
+                            ]
+                        },
+                        "UpdateAdUnit": {
+                            "methods": [
+                                "updateAdUnit"
                             ]
                         }
                     }
@@ -408,6 +443,31 @@
                 "grpc": {
                     "libraryClient": "CustomTargetingKeyServiceGapicClient",
                     "rpcs": {
+                        "BatchActivateCustomTargetingKeys": {
+                            "methods": [
+                                "batchActivateCustomTargetingKeys"
+                            ]
+                        },
+                        "BatchCreateCustomTargetingKeys": {
+                            "methods": [
+                                "batchCreateCustomTargetingKeys"
+                            ]
+                        },
+                        "BatchDeactivateCustomTargetingKeys": {
+                            "methods": [
+                                "batchDeactivateCustomTargetingKeys"
+                            ]
+                        },
+                        "BatchUpdateCustomTargetingKeys": {
+                            "methods": [
+                                "batchUpdateCustomTargetingKeys"
+                            ]
+                        },
+                        "CreateCustomTargetingKey": {
+                            "methods": [
+                                "createCustomTargetingKey"
+                            ]
+                        },
                         "GetCustomTargetingKey": {
                             "methods": [
                                 "getCustomTargetingKey"
@@ -416,6 +476,11 @@
                         "ListCustomTargetingKeys": {
                             "methods": [
                                 "listCustomTargetingKeys"
+                            ]
+                        },
+                        "UpdateCustomTargetingKey": {
+                            "methods": [
+                                "updateCustomTargetingKey"
                             ]
                         }
                     }
@@ -550,6 +615,25 @@
                         "ListGeoTargets": {
                             "methods": [
                                 "listGeoTargets"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LineItemService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LineItemServiceGapicClient",
+                    "rpcs": {
+                        "GetLineItem": {
+                            "methods": [
+                                "getLineItem"
+                            ]
+                        },
+                        "ListLineItems": {
+                            "methods": [
+                                "listLineItems"
                             ]
                         }
                     }

@@ -21,6 +21,25 @@ class ListNetworksResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Network networks = 1;</code>
      */
     private $networks;
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     * If this field is omitted, there are no subsequent pages.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     */
+    protected $next_page_token = '';
+    /**
+     * Total number of `Network`s.
+     * `total_size` won't be calculated in the response unless it has been
+     * included in a response field mask. The response field mask can be provided
+     * to the method by using the URL parameter `$fields` or `fields`, or by using
+     * the HTTP/gRPC header `X-Goog-FieldMask`.
+     * For more information, see
+     * https://developers.google.com/ad-manager/api/beta/field-masks
+     *
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
+     */
+    protected $total_size = 0;
 
     /**
      * Constructor.
@@ -30,6 +49,17 @@ class ListNetworksResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Ads\AdManager\V1\Network>|\Google\Protobuf\Internal\RepeatedField $networks
      *           The `Network`s a user has access to.
+     *     @type string $next_page_token
+     *           A token, which can be sent as `page_token` to retrieve the next page.
+     *           If this field is omitted, there are no subsequent pages.
+     *     @type int $total_size
+     *           Total number of `Network`s.
+     *           `total_size` won't be calculated in the response unless it has been
+     *           included in a response field mask. The response field mask can be provided
+     *           to the method by using the URL parameter `$fields` or `fields`, or by using
+     *           the HTTP/gRPC header `X-Goog-FieldMask`.
+     *           For more information, see
+     *           https://developers.google.com/ad-manager/api/beta/field-masks
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +89,72 @@ class ListNetworksResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\Network::class);
         $this->networks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     * If this field is omitted, there are no subsequent pages.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @return string
+     */
+    public function getNextPageToken()
+    {
+        return $this->next_page_token;
+    }
+
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     * If this field is omitted, there are no subsequent pages.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Total number of `Network`s.
+     * `total_size` won't be calculated in the response unless it has been
+     * included in a response field mask. The response field mask can be provided
+     * to the method by using the URL parameter `$fields` or `fields`, or by using
+     * the HTTP/gRPC header `X-Goog-FieldMask`.
+     * For more information, see
+     * https://developers.google.com/ad-manager/api/beta/field-masks
+     *
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
+     * @return int
+     */
+    public function getTotalSize()
+    {
+        return $this->total_size;
+    }
+
+    /**
+     * Total number of `Network`s.
+     * `total_size` won't be calculated in the response unless it has been
+     * included in a response field mask. The response field mask can be provided
+     * to the method by using the URL parameter `$fields` or `fields`, or by using
+     * the HTTP/gRPC header `X-Goog-FieldMask`.
+     * For more information, see
+     * https://developers.google.com/ad-manager/api/beta/field-masks
+     *
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_size = $var;
 
         return $this;
     }

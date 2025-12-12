@@ -728,7 +728,7 @@ class Metric
      * The ratio of matched ad requests served by the Ad Exchange that
      *  resulted in users clicking on an ad. The clickthrough rate (CTR) is
      *  updated nightly. Ad Exchange Matched Request CTR is calculated as:
-     *  (Ad Exchange clicks / Ad Exchange Macthed Ad Requests).
+     *  (Ad Exchange clicks / Ad Exchange Matched Ad Requests).
      * Corresponds to "Ad Exchange matched request CTR" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `PERCENT`
@@ -1207,6 +1207,28 @@ class Metric
      */
     const AD_SERVER_INACTIVE_BEGIN_TO_RENDER_IMPRESSIONS = 338;
     /**
+     * Total number of ad server VAST errors discounting errors generated from
+     *  video fallback ads.
+     * Corresponds to "Ad Server opportunities from errors" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AD_SERVER_OPPORTUNITIES_FROM_ERRORS = 461;</code>
+     */
+    const AD_SERVER_OPPORTUNITIES_FROM_ERRORS = 461;
+    /**
+     * Total number of ad server impressions discounting video fallback
+     *  impressions.
+     * Corresponds to "Ad Server opportunities from impressions" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>AD_SERVER_OPPORTUNITIES_FROM_IMPRESSIONS = 462;</code>
+     */
+    const AD_SERVER_OPPORTUNITIES_FROM_IMPRESSIONS = 462;
+    /**
      * Ratio of clicks delivered by the Google Ad Manager server in relation to
      *  the total clicks delivered.
      * Corresponds to "Ad server clicks (%)" in the Ad Manager UI.
@@ -1478,7 +1500,7 @@ class Metric
     /**
      * Number of header bidding trafficking ad requests with no bids in the Ads
      *  traffic navigator report.
-     * Corresponds to "Header bidding trafficking ad requests with no bids" in
+     * Corresponds to "Ad requests with no header bidding trafficking bids" in
      * the Ad Manager UI.
      * Compatible with the following report types:
      * Data format: `INTEGER`
@@ -1511,7 +1533,7 @@ class Metric
     /**
      * Number of header bidding trafficking ad requests with bids in the Ads
      *  traffic navigator report.
-     * Corresponds to "Header bidding trafficking ad requests with bids" in the
+     * Corresponds to "Ad requests with header bidding trafficking bids" in the
      * Ad Manager UI.
      * Compatible with the following report types:
      * Data format: `INTEGER`
@@ -1531,7 +1553,8 @@ class Metric
     /**
      * Number of line items with no creative retrieved in the Ads
      *  traffic navigator report.
-     * Corresponds to "Creative not retrieved" in the Ad Manager UI.
+     * Corresponds to "Line items with no creative retrieved" in the Ad Manager
+     * UI.
      * Compatible with the following report types:
      * Data format: `INTEGER`
      *
@@ -1561,7 +1584,7 @@ class Metric
     /**
      * Number of line items that matched an ad request but were not selected to
      *  compete in the auction in the Ads traffic navigator report.
-     * Corresponds to "Not selected to compete" in the Ad Manager UI.
+     * Corresponds to "Line items not selected to compete" in the Ad Manager UI.
      * Compatible with the following report types:
      * Data format: `INTEGER`
      *
@@ -1624,8 +1647,8 @@ class Metric
     /**
      * Number of ad requests with mediation demand having no partners in the Ads
      *  traffic navigator report.
-     * Corresponds to "Mediation requests with no partners" in the Ad Manager
-     * UI.
+     * Corresponds to "Ad requests with no targeted mediation partners" in the
+     * Ad Manager UI.
      * Compatible with the following report types:
      * Data format: `INTEGER`
      *
@@ -1909,7 +1932,8 @@ class Metric
     /**
      * Total number of ad requests which counts optimized pod request as a
      *  single request in the Ads traffic navigator report.
-     * Corresponds to "Total ad requests (ATN)" in the Ad Manager UI.
+     * Corresponds to "Total ad requests (Ads traffic navigator)" in the Ad
+     * Manager UI.
      * Compatible with the following report types:
      * Data format: `INTEGER`
      *
@@ -1954,6 +1978,15 @@ class Metric
      */
     const ATN_YIELD_GROUP_MEDIATION_PASSBACKS = 390;
     /**
+     * Cost of the audience segment.
+     * Corresponds to "Audience segment cost" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>AUDIENCE_SEGMENT_COST = 558;</code>
+     */
+    const AUDIENCE_SEGMENT_COST = 558;
+    /**
      * eCPM averaged across the Google Ad Manager server, AdSense,
      *  and Ad Exchange.
      * Corresponds to "Total average eCPM" in the Ad Manager UI.
@@ -1967,7 +2000,7 @@ class Metric
      * eCPM averaged across the Google Ad Manager server (excluding CPD),
      *  AdSense, and Ad Exchange.
      * Corresponds to "Total average eCPM w/o CPD" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
      * Data format: `MONEY`
      *
      * Generated from protobuf enum <code>AVERAGE_ECPM_WITHOUT_CPD = 5;</code>
@@ -2059,7 +2092,7 @@ class Metric
     /**
      * The number of times a user clicked on an ad.
      * Corresponds to "Total clicks" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>CLICKS = 2;</code>
@@ -2152,7 +2185,7 @@ class Metric
      *  clicks divided by the number of individual ad impressions expressed as a
      *  fraction. Ad CTR = Clicks / Ad impressions.
      * Corresponds to "Total CTR" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
      * Data format: `PERCENT`
      *
      * Generated from protobuf enum <code>CTR = 3;</code>
@@ -2536,7 +2569,7 @@ class Metric
      * Total impressions from the Google Ad Manager server, AdSense,
      *  Ad Exchange, and yield group partners.
      * Corresponds to "Total impressions" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>IMPRESSIONS = 1;</code>
@@ -2638,6 +2671,146 @@ class Metric
      * Generated from protobuf enum <code>OVERDELIVERED_IMPRESSIONS = 432;</code>
      */
     const OVERDELIVERED_IMPRESSIONS = 432;
+    /**
+     * The gross revenue for partner finance reports.
+     * Corresponds to "Gross revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `PARTNER_FINANCE`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>PARTNER_FINANCE_GROSS_REVENUE = 648;</code>
+     */
+    const PARTNER_FINANCE_GROSS_REVENUE = 648;
+    /**
+     * Monthly host eCPM for partner finance reports
+     * Corresponds to "Host eCPM" in the Ad Manager UI.
+     * Compatible with the following report types: `PARTNER_FINANCE`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>PARTNER_FINANCE_HOST_ECPM = 649;</code>
+     */
+    const PARTNER_FINANCE_HOST_ECPM = 649;
+    /**
+     * The host impressions for partner finance reports.
+     * Corresponds to "Host impressions" in the Ad Manager UI.
+     * Compatible with the following report types: `PARTNER_FINANCE`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_FINANCE_HOST_IMPRESSIONS = 650;</code>
+     */
+    const PARTNER_FINANCE_HOST_IMPRESSIONS = 650;
+    /**
+     * Monthly host revenue for partner finance reports
+     * Corresponds to "Host revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `PARTNER_FINANCE`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>PARTNER_FINANCE_HOST_REVENUE = 651;</code>
+     */
+    const PARTNER_FINANCE_HOST_REVENUE = 651;
+    /**
+     * Monthly partner eCPM for partner finance reports
+     * Corresponds to "Partner eCPM" in the Ad Manager UI.
+     * Compatible with the following report types: `PARTNER_FINANCE`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>PARTNER_FINANCE_PARTNER_ECPM = 652;</code>
+     */
+    const PARTNER_FINANCE_PARTNER_ECPM = 652;
+    /**
+     * Monthly partner revenue for partner finance reports
+     * Corresponds to "Partner revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `PARTNER_FINANCE`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>PARTNER_FINANCE_PARTNER_REVENUE = 653;</code>
+     */
+    const PARTNER_FINANCE_PARTNER_REVENUE = 653;
+    /**
+     * The gross revenue in the partner management.
+     * Corresponds to "Partner management gross revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_GROSS_REVENUE = 533;</code>
+     */
+    const PARTNER_MANAGEMENT_GROSS_REVENUE = 533;
+    /**
+     * The host clicks in the partner management.
+     * Corresponds to "Partner management host clicks" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_HOST_CLICKS = 534;</code>
+     */
+    const PARTNER_MANAGEMENT_HOST_CLICKS = 534;
+    /**
+     * The host CTR in the partner management.
+     * Corresponds to "Partner management host CTR" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_HOST_CTR = 535;</code>
+     */
+    const PARTNER_MANAGEMENT_HOST_CTR = 535;
+    /**
+     * The host impressions in the partner management.
+     * Corresponds to "Partner management host impressions" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_HOST_IMPRESSIONS = 536;</code>
+     */
+    const PARTNER_MANAGEMENT_HOST_IMPRESSIONS = 536;
+    /**
+     * The partner clicks in the partner management.
+     * Corresponds to "Partner management partner clicks" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_PARTNER_CLICKS = 537;</code>
+     */
+    const PARTNER_MANAGEMENT_PARTNER_CLICKS = 537;
+    /**
+     * The partner CTR in the partner management.
+     * Corresponds to "Partner management partner CTR" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_PARTNER_CTR = 538;</code>
+     */
+    const PARTNER_MANAGEMENT_PARTNER_CTR = 538;
+    /**
+     * The partner impressions in the partner management.
+     * Corresponds to "Partner management partner impressions" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_PARTNER_IMPRESSIONS = 539;</code>
+     */
+    const PARTNER_MANAGEMENT_PARTNER_IMPRESSIONS = 539;
+    /**
+     * The total content views in the partner management.
+     * Corresponds to "Partner management total monetizable content views" in
+     * the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_TOTAL_CONTENT_VIEWS = 540;</code>
+     */
+    const PARTNER_MANAGEMENT_TOTAL_CONTENT_VIEWS = 540;
+    /**
+     * The unfilled impressions in the partner management.
+     * Corresponds to "Partner management unfilled impressions" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `HISTORICAL`,
+     * `PARTNER_FINANCE`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>PARTNER_MANAGEMENT_UNFILLED_IMPRESSIONS = 541;</code>
+     */
+    const PARTNER_MANAGEMENT_UNFILLED_IMPRESSIONS = 541;
     /**
      * The number of filled pod requests (filled by partner or Google) in
      *  partner sales.
@@ -2794,7 +2967,7 @@ class Metric
      *  served by the Google Ad Manager server, AdSense, Ad Exchange, and
      *  third-party Mediation networks.
      * Corresponds to "Total revenue" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
      * Data format: `MONEY`
      *
      * Generated from protobuf enum <code>REVENUE = 36;</code>
@@ -2813,7 +2986,53 @@ class Metric
      */
     const REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT = 214;
     /**
-     * Total amount of revenue (excluding CPD) based on the number of units
+     * The total CPD net revenue for Revenue Verification reporting.
+     * Corresponds to "Total CPD revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `REVENUE_VERIFICATION`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>REVENUE_VERIFICATION_CPD_REVENUE = 560;</code>
+     */
+    const REVENUE_VERIFICATION_CPD_REVENUE = 560;
+    /**
+     * The total CPD gross revenue for Revenue Verification reporting.
+     * Corresponds to "Total CPD revenue (gross)" in the Ad Manager UI.
+     * Compatible with the following report types: `REVENUE_VERIFICATION`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>REVENUE_VERIFICATION_GROSS_CPD_REVENUE = 559;</code>
+     */
+    const REVENUE_VERIFICATION_GROSS_CPD_REVENUE = 559;
+    /**
+     * The total gross revenue (excluding CPD) for Revenue Verification
+     *  reporting.
+     * Corresponds to "Total CPM and CPC revenue (gross)" in the Ad Manager UI.
+     * Compatible with the following report types: `REVENUE_VERIFICATION`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>REVENUE_VERIFICATION_GROSS_REVENUE_WITHOUT_CPD = 561;</code>
+     */
+    const REVENUE_VERIFICATION_GROSS_REVENUE_WITHOUT_CPD = 561;
+    /**
+     * The total impressions for Revenue Verification reporting.
+     * Corresponds to "Total impressions" in the Ad Manager UI.
+     * Compatible with the following report types: `REVENUE_VERIFICATION`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>REVENUE_VERIFICATION_IMPRESSIONS = 564;</code>
+     */
+    const REVENUE_VERIFICATION_IMPRESSIONS = 564;
+    /**
+     * The total net revenue (excluding CPD) for Revenue Verification reporting.
+     * Corresponds to "Total CPM and CPC revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `REVENUE_VERIFICATION`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>REVENUE_VERIFICATION_REVENUE_WITHOUT_CPD = 567;</code>
+     */
+    const REVENUE_VERIFICATION_REVENUE_WITHOUT_CPD = 567;
+    /**
+     * Total revenue (excluding CPD) based on the number of units
      *  served by the Google Ad Manager server, AdSense, Ad Exchange, and
      *  third-party Mediation networks.
      * Corresponds to "Total CPM and CPC revenue" in the Ad Manager UI.
@@ -3426,15 +3645,6 @@ class Metric
      */
     const USER_MESSAGES_ALLOW_ADS_PAGEVIEWS = 489;
     /**
-     * Number of times a US state regulations message was shown to users.
-     * Corresponds to "US states messages shown" in the Ad Manager UI.
-     * Compatible with the following report types: `PRIVACY_AND_MESSAGING`
-     * Data format: `INTEGER`
-     *
-     * Generated from protobuf enum <code>USER_MESSAGES_CCPA_MESSAGES_SHOWN = 490;</code>
-     */
-    const USER_MESSAGES_CCPA_MESSAGES_SHOWN = 490;
-    /**
      * Number of iOS ATT alerts that were triggered by an IDFA message (IDFA
      *  messages can be IDFA explainers or GDPR messages).
      * Corresponds to "IDFA ATT alerts shown" in the Ad Manager UI.
@@ -3570,6 +3780,24 @@ class Metric
      * Generated from protobuf enum <code>USER_MESSAGES_UPTC_PERSONALIZATION_OPT_OUT_RATIO = 502;</code>
      */
     const USER_MESSAGES_UPTC_PERSONALIZATION_OPT_OUT_RATIO = 502;
+    /**
+     * Number of times a US state regulations message was shown to users.
+     * Corresponds to "US states messages shown" in the Ad Manager UI.
+     * Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>USER_MESSAGES_US_STATES_MESSAGES_SHOWN = 490;</code>
+     */
+    const USER_MESSAGES_US_STATES_MESSAGES_SHOWN = 490;
+    /**
+     * Number of times users selected the opt-out option in a US states message.
+     * Corresponds to "US states opt-out selections" in the Ad Manager UI.
+     * Compatible with the following report types: `PRIVACY_AND_MESSAGING`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>USER_MESSAGES_US_STATES_OPT_OUT_SELECTIONS = 586;</code>
+     */
+    const USER_MESSAGES_US_STATES_OPT_OUT_SELECTIONS = 586;
     /**
      * The number of errors of type 100 in reporting.
      * Corresponds to "VAST error 100 count" in the Ad Manager UI.
@@ -4303,6 +4531,100 @@ class Metric
      */
     const VIDEO_REAL_TIME_UNMATCHED_QUERIES = 141;
     /**
+     * The total number of breaks completed or fatal errors for the last ad in
+     *  the pod.
+     * Corresponds to "Break end" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END = 279;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END = 279;
+    /**
+     * The total number of breaks starts or errors for the first ad in a pod
+     *  that users made it to.
+     * Corresponds to "Break start" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START = 280;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START = 280;
+    /**
+     * The number of video ad opportunities reached by a user (rounded down, or
+     *  capped based on your max ads setting, whichever is less).
+     * Corresponds to "Capped opportunities (adbreak)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK = 281;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK = 281;
+    /**
+     * The total number of seconds available to be filled.
+     * Corresponds to "Total duration (adbreak)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK = 283;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK = 283;
+    /**
+     * The total number of seconds filled.
+     * Corresponds to "Matched duration (adbreak)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK = 285;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK = 285;
+    /**
+     * The total matched opportunities in video true opportunities reporting.
+     * Corresponds to "Matched opportunities (adbreak)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK = 287;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK = 287;
+    /**
+     * The number of video ad opportunities reached by a user (rounded down).
+     * Corresponds to "Viewed opportunities (adbreak)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK = 289;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK = 289;
+    /**
+     * The number of TrueView ad impressions viewed.
+     * Corresponds to "True views" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_VIEWS = 392;</code>
+     */
+    const VIDEO_TRUE_VIEWS = 392;
+    /**
+     * Measures the percentage of skips.
+     * Corresponds to "True views skip rate" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_VIEW_SKIP_RATE = 393;</code>
+     */
+    const VIDEO_TRUE_VIEW_SKIP_RATE = 393;
+    /**
+     * The view-through rate is the percentage of views divided by number of
+     *  impressions
+     * Corresponds to "True views view-through rate" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE = 394;</code>
+     */
+    const VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE = 394;
+    /**
      * Number of times that the publisher specified a video ad played
      *  automatically.
      * Corresponds to "Auto-plays" in the Ad Manager UI.
@@ -4699,6 +5021,8 @@ class Metric
         self::AD_SERVER_IMPRESSIONS => 'AD_SERVER_IMPRESSIONS',
         self::AD_SERVER_IMPRESSIONS_WITH_COMPANION => 'AD_SERVER_IMPRESSIONS_WITH_COMPANION',
         self::AD_SERVER_INACTIVE_BEGIN_TO_RENDER_IMPRESSIONS => 'AD_SERVER_INACTIVE_BEGIN_TO_RENDER_IMPRESSIONS',
+        self::AD_SERVER_OPPORTUNITIES_FROM_ERRORS => 'AD_SERVER_OPPORTUNITIES_FROM_ERRORS',
+        self::AD_SERVER_OPPORTUNITIES_FROM_IMPRESSIONS => 'AD_SERVER_OPPORTUNITIES_FROM_IMPRESSIONS',
         self::AD_SERVER_PERCENT_CLICKS => 'AD_SERVER_PERCENT_CLICKS',
         self::AD_SERVER_PERCENT_IMPRESSIONS => 'AD_SERVER_PERCENT_IMPRESSIONS',
         self::AD_SERVER_PERCENT_REVENUE => 'AD_SERVER_PERCENT_REVENUE',
@@ -4772,6 +5096,7 @@ class Metric
         self::ATN_TOTAL_LOADED_ADS => 'ATN_TOTAL_LOADED_ADS',
         self::ATN_VALID_AD_REQUESTS => 'ATN_VALID_AD_REQUESTS',
         self::ATN_YIELD_GROUP_MEDIATION_PASSBACKS => 'ATN_YIELD_GROUP_MEDIATION_PASSBACKS',
+        self::AUDIENCE_SEGMENT_COST => 'AUDIENCE_SEGMENT_COST',
         self::AVERAGE_ECPM => 'AVERAGE_ECPM',
         self::AVERAGE_ECPM_WITHOUT_CPD => 'AVERAGE_ECPM_WITHOUT_CPD',
         self::AVERAGE_ENGAGEMENT_SECONDS_PER_SESSION => 'AVERAGE_ENGAGEMENT_SECONDS_PER_SESSION',
@@ -4844,6 +5169,21 @@ class Metric
         self::MUTE_ELIGIBLE_IMPRESSIONS => 'MUTE_ELIGIBLE_IMPRESSIONS',
         self::OPPORTUNITIES => 'OPPORTUNITIES',
         self::OVERDELIVERED_IMPRESSIONS => 'OVERDELIVERED_IMPRESSIONS',
+        self::PARTNER_FINANCE_GROSS_REVENUE => 'PARTNER_FINANCE_GROSS_REVENUE',
+        self::PARTNER_FINANCE_HOST_ECPM => 'PARTNER_FINANCE_HOST_ECPM',
+        self::PARTNER_FINANCE_HOST_IMPRESSIONS => 'PARTNER_FINANCE_HOST_IMPRESSIONS',
+        self::PARTNER_FINANCE_HOST_REVENUE => 'PARTNER_FINANCE_HOST_REVENUE',
+        self::PARTNER_FINANCE_PARTNER_ECPM => 'PARTNER_FINANCE_PARTNER_ECPM',
+        self::PARTNER_FINANCE_PARTNER_REVENUE => 'PARTNER_FINANCE_PARTNER_REVENUE',
+        self::PARTNER_MANAGEMENT_GROSS_REVENUE => 'PARTNER_MANAGEMENT_GROSS_REVENUE',
+        self::PARTNER_MANAGEMENT_HOST_CLICKS => 'PARTNER_MANAGEMENT_HOST_CLICKS',
+        self::PARTNER_MANAGEMENT_HOST_CTR => 'PARTNER_MANAGEMENT_HOST_CTR',
+        self::PARTNER_MANAGEMENT_HOST_IMPRESSIONS => 'PARTNER_MANAGEMENT_HOST_IMPRESSIONS',
+        self::PARTNER_MANAGEMENT_PARTNER_CLICKS => 'PARTNER_MANAGEMENT_PARTNER_CLICKS',
+        self::PARTNER_MANAGEMENT_PARTNER_CTR => 'PARTNER_MANAGEMENT_PARTNER_CTR',
+        self::PARTNER_MANAGEMENT_PARTNER_IMPRESSIONS => 'PARTNER_MANAGEMENT_PARTNER_IMPRESSIONS',
+        self::PARTNER_MANAGEMENT_TOTAL_CONTENT_VIEWS => 'PARTNER_MANAGEMENT_TOTAL_CONTENT_VIEWS',
+        self::PARTNER_MANAGEMENT_UNFILLED_IMPRESSIONS => 'PARTNER_MANAGEMENT_UNFILLED_IMPRESSIONS',
         self::PARTNER_SALES_FILLED_POD_REQUESTS => 'PARTNER_SALES_FILLED_POD_REQUESTS',
         self::PARTNER_SALES_FILL_RATE => 'PARTNER_SALES_FILL_RATE',
         self::PARTNER_SALES_PARTNER_MATCH_RATE => 'PARTNER_SALES_PARTNER_MATCH_RATE',
@@ -4861,6 +5201,11 @@ class Metric
         self::RETENTION => 'RETENTION',
         self::REVENUE => 'REVENUE',
         self::REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT => 'REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT',
+        self::REVENUE_VERIFICATION_CPD_REVENUE => 'REVENUE_VERIFICATION_CPD_REVENUE',
+        self::REVENUE_VERIFICATION_GROSS_CPD_REVENUE => 'REVENUE_VERIFICATION_GROSS_CPD_REVENUE',
+        self::REVENUE_VERIFICATION_GROSS_REVENUE_WITHOUT_CPD => 'REVENUE_VERIFICATION_GROSS_REVENUE_WITHOUT_CPD',
+        self::REVENUE_VERIFICATION_IMPRESSIONS => 'REVENUE_VERIFICATION_IMPRESSIONS',
+        self::REVENUE_VERIFICATION_REVENUE_WITHOUT_CPD => 'REVENUE_VERIFICATION_REVENUE_WITHOUT_CPD',
         self::REVENUE_WITHOUT_CPD => 'REVENUE_WITHOUT_CPD',
         self::REWARDS_GRANTED => 'REWARDS_GRANTED',
         self::RICH_MEDIA_AVERAGE_DISPLAY_TIME => 'RICH_MEDIA_AVERAGE_DISPLAY_TIME',
@@ -4923,7 +5268,6 @@ class Metric
         self::USER_MESSAGES_AD_BLOCKING_RECOVERY_ALLOWLISTED_COUNT => 'USER_MESSAGES_AD_BLOCKING_RECOVERY_ALLOWLISTED_COUNT',
         self::USER_MESSAGES_AD_BLOCKING_RECOVERY_MESSAGES_SHOWN => 'USER_MESSAGES_AD_BLOCKING_RECOVERY_MESSAGES_SHOWN',
         self::USER_MESSAGES_ALLOW_ADS_PAGEVIEWS => 'USER_MESSAGES_ALLOW_ADS_PAGEVIEWS',
-        self::USER_MESSAGES_CCPA_MESSAGES_SHOWN => 'USER_MESSAGES_CCPA_MESSAGES_SHOWN',
         self::USER_MESSAGES_IDFA_ATT_ALERTS_SHOWN => 'USER_MESSAGES_IDFA_ATT_ALERTS_SHOWN',
         self::USER_MESSAGES_IDFA_ATT_CONSENT => 'USER_MESSAGES_IDFA_ATT_CONSENT',
         self::USER_MESSAGES_IDFA_ATT_CONSENT_RATE => 'USER_MESSAGES_IDFA_ATT_CONSENT_RATE',
@@ -4938,6 +5282,8 @@ class Metric
         self::USER_MESSAGES_TOTAL_ESTIMATED_REVENUE => 'USER_MESSAGES_TOTAL_ESTIMATED_REVENUE',
         self::USER_MESSAGES_UPTC_MESSAGES_SHOWN => 'USER_MESSAGES_UPTC_MESSAGES_SHOWN',
         self::USER_MESSAGES_UPTC_PERSONALIZATION_OPT_OUT_RATIO => 'USER_MESSAGES_UPTC_PERSONALIZATION_OPT_OUT_RATIO',
+        self::USER_MESSAGES_US_STATES_MESSAGES_SHOWN => 'USER_MESSAGES_US_STATES_MESSAGES_SHOWN',
+        self::USER_MESSAGES_US_STATES_OPT_OUT_SELECTIONS => 'USER_MESSAGES_US_STATES_OPT_OUT_SELECTIONS',
         self::VIDEO_ERROR_100_COUNT => 'VIDEO_ERROR_100_COUNT',
         self::VIDEO_ERROR_101_COUNT => 'VIDEO_ERROR_101_COUNT',
         self::VIDEO_ERROR_102_COUNT => 'VIDEO_ERROR_102_COUNT',
@@ -5019,6 +5365,16 @@ class Metric
         self::VIDEO_REAL_TIME_TOTAL_ERROR_COUNT => 'VIDEO_REAL_TIME_TOTAL_ERROR_COUNT',
         self::VIDEO_REAL_TIME_TOTAL_QUERIES => 'VIDEO_REAL_TIME_TOTAL_QUERIES',
         self::VIDEO_REAL_TIME_UNMATCHED_QUERIES => 'VIDEO_REAL_TIME_UNMATCHED_QUERIES',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK',
+        self::VIDEO_TRUE_VIEWS => 'VIDEO_TRUE_VIEWS',
+        self::VIDEO_TRUE_VIEW_SKIP_RATE => 'VIDEO_TRUE_VIEW_SKIP_RATE',
+        self::VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE => 'VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE',
         self::VIDEO_VIEWERSHIP_AUTO_PLAYS => 'VIDEO_VIEWERSHIP_AUTO_PLAYS',
         self::VIDEO_VIEWERSHIP_AVERAGE_VIEW_RATE => 'VIDEO_VIEWERSHIP_AVERAGE_VIEW_RATE',
         self::VIDEO_VIEWERSHIP_AVERAGE_VIEW_TIME => 'VIDEO_VIEWERSHIP_AVERAGE_VIEW_TIME',

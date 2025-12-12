@@ -49,10 +49,11 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     protected $trafficker = null;
     /**
-     * Optional. The resource names of Contacts from the advertiser of this Order.
-     * Format: "networks/{network_code}/contacts/{contact_id}"
+     * Optional. Unordered list. The resource names of Contacts from the
+     * advertiser of this Order. Format:
+     * "networks/{network_code}/contacts/{contact_id}"
      *
-     * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
      */
     private $advertiser_contacts;
     /**
@@ -239,8 +240,9 @@ class Order extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the User responsible for trafficking the
      *           Order. Format: "networks/{network_code}/users/{user_id}"
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertiser_contacts
-     *           Optional. The resource names of Contacts from the advertiser of this Order.
-     *           Format: "networks/{network_code}/contacts/{contact_id}"
+     *           Optional. Unordered list. The resource names of Contacts from the
+     *           advertiser of this Order. Format:
+     *           "networks/{network_code}/contacts/{contact_id}"
      *     @type string $advertiser
      *           Required. The resource name of the Company, which is of type
      *           Company.Type.ADVERTISER, to which this order belongs. Format:
@@ -496,10 +498,11 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource names of Contacts from the advertiser of this Order.
-     * Format: "networks/{network_code}/contacts/{contact_id}"
+     * Optional. Unordered list. The resource names of Contacts from the
+     * advertiser of this Order. Format:
+     * "networks/{network_code}/contacts/{contact_id}"
      *
-     * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAdvertiserContacts()
@@ -508,10 +511,11 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource names of Contacts from the advertiser of this Order.
-     * Format: "networks/{network_code}/contacts/{contact_id}"
+     * Optional. Unordered list. The resource names of Contacts from the
+     * advertiser of this Order. Format:
+     * "networks/{network_code}/contacts/{contact_id}"
      *
-     * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

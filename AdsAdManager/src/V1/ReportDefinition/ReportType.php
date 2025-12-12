@@ -38,6 +38,18 @@ class ReportType
      */
     const PRIVACY_AND_MESSAGING = 6;
     /**
+     * Gross revenue.
+     *
+     * Generated from protobuf enum <code>REVENUE_VERIFICATION = 7;</code>
+     */
+    const REVENUE_VERIFICATION = 7;
+    /**
+     * Partner finance.
+     *
+     * Generated from protobuf enum <code>PARTNER_FINANCE = 8;</code>
+     */
+    const PARTNER_FINANCE = 8;
+    /**
      * Ad speed.
      *
      * Generated from protobuf enum <code>AD_SPEED = 13;</code>
@@ -49,6 +61,8 @@ class ReportType
         self::HISTORICAL => 'HISTORICAL',
         self::REACH => 'REACH',
         self::PRIVACY_AND_MESSAGING => 'PRIVACY_AND_MESSAGING',
+        self::REVENUE_VERIFICATION => 'REVENUE_VERIFICATION',
+        self::PARTNER_FINANCE => 'PARTNER_FINANCE',
         self::AD_SPEED => 'AD_SPEED',
     ];
 

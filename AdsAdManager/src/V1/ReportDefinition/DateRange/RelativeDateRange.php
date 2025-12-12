@@ -95,6 +95,13 @@ class RelativeDateRange
      */
     const LAST_WEEK = 7;
     /**
+     * The entire previous calendar week, Sunday to Saturday (inclusive),
+     * preceding the calendar week the report is run.
+     *
+     * Generated from protobuf enum <code>LAST_WEEK_STARTING_SUNDAY = 39;</code>
+     */
+    const LAST_WEEK_STARTING_SUNDAY = 39;
+    /**
      * The entire previous calendar month preceding the calendar month the
      * report is run.
      *
@@ -139,6 +146,12 @@ class RelativeDateRange
      * Generated from protobuf enum <code>LAST_90_DAYS = 14;</code>
      */
     const LAST_90_DAYS = 14;
+    /**
+     * The 93 days preceding the day the report is run.
+     *
+     * Generated from protobuf enum <code>LAST_93_DAYS = 38;</code>
+     */
+    const LAST_93_DAYS = 38;
     /**
      * The 180 days preceding the day the report is run.
      *
@@ -288,6 +301,7 @@ class RelativeDateRange
         self::THIS_YEAR => 'THIS_YEAR',
         self::THIS_YEAR_TO_DATE => 'THIS_YEAR_TO_DATE',
         self::LAST_WEEK => 'LAST_WEEK',
+        self::LAST_WEEK_STARTING_SUNDAY => 'LAST_WEEK_STARTING_SUNDAY',
         self::LAST_MONTH => 'LAST_MONTH',
         self::LAST_QUARTER => 'LAST_QUARTER',
         self::LAST_YEAR => 'LAST_YEAR',
@@ -295,6 +309,7 @@ class RelativeDateRange
         self::LAST_30_DAYS => 'LAST_30_DAYS',
         self::LAST_60_DAYS => 'LAST_60_DAYS',
         self::LAST_90_DAYS => 'LAST_90_DAYS',
+        self::LAST_93_DAYS => 'LAST_93_DAYS',
         self::LAST_180_DAYS => 'LAST_180_DAYS',
         self::LAST_360_DAYS => 'LAST_360_DAYS',
         self::LAST_365_DAYS => 'LAST_365_DAYS',

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetCmsMetadataValueRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the CmsMetadataKey.
+     * Required. The resource name of the CmsMetadataValue.
      * Format: `networks/{network_code}/cmsMetadataValues/{cms_metadata_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -24,7 +24,7 @@ class GetCmsMetadataValueRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Required. The resource name of the CmsMetadataKey.
+     * @param string $name Required. The resource name of the CmsMetadataValue.
      *                     Format: `networks/{network_code}/cmsMetadataValues/{cms_metadata_value_id}`
      *                     Please see {@see CmsMetadataValueServiceClient::cmsMetadataValueName()} for help formatting this field.
      *
@@ -45,7 +45,7 @@ class GetCmsMetadataValueRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the CmsMetadataKey.
+     *           Required. The resource name of the CmsMetadataValue.
      *           Format: `networks/{network_code}/cmsMetadataValues/{cms_metadata_value_id}`
      * }
      */
@@ -55,7 +55,7 @@ class GetCmsMetadataValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the CmsMetadataKey.
+     * Required. The resource name of the CmsMetadataValue.
      * Format: `networks/{network_code}/cmsMetadataValues/{cms_metadata_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -67,7 +67,7 @@ class GetCmsMetadataValueRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the CmsMetadataKey.
+     * Required. The resource name of the CmsMetadataValue.
      * Format: `networks/{network_code}/cmsMetadataValues/{cms_metadata_value_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
