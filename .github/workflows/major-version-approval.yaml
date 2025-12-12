@@ -2,10 +2,14 @@ name: Major Version Approval Check
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
     branches: ['main']
   pull_request_review:
     types: [submitted]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -15,15 +19,18 @@ jobs:
   major-version-approval-check:
     name: Major Version Approval Check
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    # testing
+    # if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
+      - uses: actions/checkout@v5
       - name: Check for at least 2 approvals from yoshi-php members
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REQUIRED_APPROVALS: 2
         run: |
-          set -eo pipefail
+          set -e
 
           echo "Fetching approvals for PR #$PR_NUMBER..."
           # Get a unique, sorted list of all users who have approved.
@@ -34,14 +41,14 @@ jobs:
           fi
 
           echo "Fetching yoshi-php team members..."
-          team_members=$(gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login' | sort -u)
+          team_members=$(gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login')
           if [ -z "$team_members" ]; then
             echo "Error: Could not fetch any members for the yoshi-php team."
             exit 1
           fi
 
           # find and count the intersection of the two lists.
-          count=$(echo "$team_members" | grep -F -x -f <(echo "$approvals") | wc -l)
+          count=$(echo "$team_members" | sort -u | grep -F -x -f <(echo "$approvals") | wc -l)
 
           echo "Found $count approval(s) from the yoshi-php team."
 
