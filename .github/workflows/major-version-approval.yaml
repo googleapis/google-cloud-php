@@ -32,7 +32,7 @@ jobs:
             const { execSync } = require('child_process');
 
             const requiredApprovals = 2;
-            const checkName = `Require ${requiredApprovals} approvals minimum from yoshi-php team on Major Version releases`;
+            const checkName = `Major Version release requires ${requiredApprovals}+ yoshi-php approvals`;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
