@@ -295,6 +295,7 @@
         "google/shopping-merchant-reports": "1.1.1",
         "google/shopping-merchant-reviews": "0.5.1",
         "googleads/ad-manager": "0.5.0",
+        "googleads/data-manager": "0.0.0",
         "googleads/marketingplatform-admin": "0.4.0"
     },
     "suggest": {
@@ -304,6 +305,7 @@
     "autoload": {
         "psr-4": {
             "GPBMetadata\\Google\\Ads\\Admanager\\": "AdsAdManager/metadata",
+            "GPBMetadata\\Google\\Ads\\Datamanager\\": "AdsDataManager/metadata",
             "GPBMetadata\\Google\\Analytics\\Admin\\": "AnalyticsAdmin/metadata",
             "GPBMetadata\\Google\\Analytics\\Data\\": "AnalyticsData/metadata",
             "GPBMetadata\\Google\\Api\\": "CommonProtos/metadata/Api",
@@ -535,6 +537,7 @@
             "GPBMetadata\\Google\\Type\\": "CommonProtos/metadata/Type",
             "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
             "Google\\Ads\\AdManager\\": "AdsAdManager/src",
+            "Google\\Ads\\DataManager\\": "AdsDataManager/src",
             "Google\\Ads\\MarketingPlatform\\Admin\\": "AdsMarketingPlatformAdmin/src",
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
