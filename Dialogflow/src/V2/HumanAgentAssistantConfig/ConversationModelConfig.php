@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Custom conversation models used in agent assist feature.
  * Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY,
- * CONVERSATION_SUMMARIZATION.
+ * CONVERSATION_SUMMARIZATION
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig</code>
  */
@@ -28,11 +28,11 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      * Version of current baseline model. It will be ignored if
      * [model][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig.model]
      * is set. Valid versions are:
-     *   Article Suggestion baseline model:
-     *     - 0.9
-     *     - 1.0 (default)
-     *   Summarization baseline model:
-     *     - 1.0
+     * - Article Suggestion baseline model:
+     *   - 0.9
+     *   - 1.0 (default)
+     * - Summarization baseline model:
+     *   - 1.0
      *
      * Generated from protobuf field <code>string baseline_model_version = 8;</code>
      */
@@ -51,11 +51,11 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      *           Version of current baseline model. It will be ignored if
      *           [model][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig.model]
      *           is set. Valid versions are:
-     *             Article Suggestion baseline model:
-     *               - 0.9
-     *               - 1.0 (default)
-     *             Summarization baseline model:
-     *               - 1.0
+     *           - Article Suggestion baseline model:
+     *             - 0.9
+     *             - 1.0 (default)
+     *           - Summarization baseline model:
+     *             - 1.0
      * }
      */
     public function __construct($data = NULL) {
@@ -95,11 +95,11 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      * Version of current baseline model. It will be ignored if
      * [model][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig.model]
      * is set. Valid versions are:
-     *   Article Suggestion baseline model:
-     *     - 0.9
-     *     - 1.0 (default)
-     *   Summarization baseline model:
-     *     - 1.0
+     * - Article Suggestion baseline model:
+     *   - 0.9
+     *   - 1.0 (default)
+     * - Summarization baseline model:
+     *   - 1.0
      *
      * Generated from protobuf field <code>string baseline_model_version = 8;</code>
      * @return string
@@ -113,11 +113,11 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      * Version of current baseline model. It will be ignored if
      * [model][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig.model]
      * is set. Valid versions are:
-     *   Article Suggestion baseline model:
-     *     - 0.9
-     *     - 1.0 (default)
-     *   Summarization baseline model:
-     *     - 1.0
+     * - Article Suggestion baseline model:
+     *   - 0.9
+     *   - 1.0 (default)
+     * - Summarization baseline model:
+     *   - 1.0
      *
      * Generated from protobuf field <code>string baseline_model_version = 8;</code>
      * @param string $var

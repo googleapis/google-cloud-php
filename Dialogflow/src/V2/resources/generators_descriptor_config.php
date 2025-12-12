@@ -129,6 +129,7 @@ return [
             'templateMap' => [
                 'generator' => 'projects/{project}/locations/{location}/generators/{generator}',
                 'project' => 'projects/{project}',
+                'tool' => 'projects/{project}/locations/{location}/tools/{tool}',
             ],
         ],
     ],

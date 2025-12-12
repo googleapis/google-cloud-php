@@ -34,6 +34,15 @@ class ContextContent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp ingestion_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $ingestion_time = null;
+    /**
+     * If the context content was generated from a tool call, specify the
+     * answer record associated with the tool call.
+     * Format: `projects/<Project ID>/locations/<Location
+     * ID>/answerRecords/<Answer Record ID>`.
+     *
+     * Generated from protobuf field <code>string answer_record = 4;</code>
+     */
+    protected $answer_record = '';
 
     /**
      * Constructor.
@@ -48,6 +57,11 @@ class ContextContent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $ingestion_time
      *           Output only. The time when this information was incorporated into the
      *           relevant context reference.
+     *     @type string $answer_record
+     *           If the context content was generated from a tool call, specify the
+     *           answer record associated with the tool call.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/answerRecords/<Answer Record ID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,6 +155,38 @@ class ContextContent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->ingestion_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * If the context content was generated from a tool call, specify the
+     * answer record associated with the tool call.
+     * Format: `projects/<Project ID>/locations/<Location
+     * ID>/answerRecords/<Answer Record ID>`.
+     *
+     * Generated from protobuf field <code>string answer_record = 4;</code>
+     * @return string
+     */
+    public function getAnswerRecord()
+    {
+        return $this->answer_record;
+    }
+
+    /**
+     * If the context content was generated from a tool call, specify the
+     * answer record associated with the tool call.
+     * Format: `projects/<Project ID>/locations/<Location
+     * ID>/answerRecords/<Answer Record ID>`.
+     *
+     * Generated from protobuf field <code>string answer_record = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAnswerRecord($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->answer_record = $var;
 
         return $this;
     }

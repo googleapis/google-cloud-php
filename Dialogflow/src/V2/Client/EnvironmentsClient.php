@@ -237,8 +237,11 @@ final class EnvironmentsClient
      *
      * @return string The formatted project_location_environment resource.
      */
-    public static function projectLocationEnvironmentName(string $project, string $location, string $environment): string
-    {
+    public static function projectLocationEnvironmentName(
+        string $project,
+        string $location,
+        string $environment
+    ): string {
         return self::getPathTemplate('projectLocationEnvironment')->render([
             'project' => $project,
             'location' => $location,
@@ -533,8 +536,10 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getEnvironmentHistory(GetEnvironmentHistoryRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function getEnvironmentHistory(
+        GetEnvironmentHistoryRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('GetEnvironmentHistory', $request, $callOptions);
     }
 

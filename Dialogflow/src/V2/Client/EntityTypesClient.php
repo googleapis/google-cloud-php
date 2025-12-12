@@ -507,8 +507,10 @@ final class EntityTypesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchDeleteEntityTypes(BatchDeleteEntityTypesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchDeleteEntityTypes(
+        BatchDeleteEntityTypesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchDeleteEntityTypes', $request, $callOptions)->wait();
     }
 
@@ -588,8 +590,10 @@ final class EntityTypesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateEntityTypes(BatchUpdateEntityTypesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchUpdateEntityTypes(
+        BatchUpdateEntityTypesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchUpdateEntityTypes', $request, $callOptions)->wait();
     }
 

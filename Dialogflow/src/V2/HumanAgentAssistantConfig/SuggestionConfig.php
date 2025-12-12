@@ -55,6 +55,31 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_high_latency_features_sync_delivery = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $disable_high_latency_features_sync_delivery = false;
+    /**
+     * Optional. Enable skipping event based suggestion if the suggestion is
+     * empty.
+     * For example, with this field disabled, Knowledge Assist feature sends
+     * a Pub/Sub message when there are no suggestions. Enabling this field
+     * will change the behavior to skip the Pub/Sub message in this situation.
+     *
+     * Generated from protobuf field <code>bool skip_empty_event_based_suggestion = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $skip_empty_event_based_suggestion = false;
+    /**
+     * Optional. If true,
+     * use unredacted transcript data (Supported features: AI_COACH) and
+     * use unredacted ingested context (Supported features: All Agent Assist
+     * features)
+     *
+     * Generated from protobuf field <code>bool use_unredacted_conversation_data = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $use_unredacted_conversation_data = false;
+    /**
+     * Optional. If true, enable asynchronous execution of tools.
+     *
+     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_async_tool_call = false;
 
     /**
      * Constructor.
@@ -86,6 +111,19 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      *           enable_event_based_suggestion must be set to true to receive the
      *           responses from high latency features in Pub/Sub. High latency feature(s):
      *           KNOWLEDGE_ASSIST
+     *     @type bool $skip_empty_event_based_suggestion
+     *           Optional. Enable skipping event based suggestion if the suggestion is
+     *           empty.
+     *           For example, with this field disabled, Knowledge Assist feature sends
+     *           a Pub/Sub message when there are no suggestions. Enabling this field
+     *           will change the behavior to skip the Pub/Sub message in this situation.
+     *     @type bool $use_unredacted_conversation_data
+     *           Optional. If true,
+     *           use unredacted transcript data (Supported features: AI_COACH) and
+     *           use unredacted ingested context (Supported features: All Agent Assist
+     *           features)
+     *     @type bool $enable_async_tool_call
+     *           Optional. If true, enable asynchronous execution of tools.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,6 +263,98 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_high_latency_features_sync_delivery = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enable skipping event based suggestion if the suggestion is
+     * empty.
+     * For example, with this field disabled, Knowledge Assist feature sends
+     * a Pub/Sub message when there are no suggestions. Enabling this field
+     * will change the behavior to skip the Pub/Sub message in this situation.
+     *
+     * Generated from protobuf field <code>bool skip_empty_event_based_suggestion = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSkipEmptyEventBasedSuggestion()
+    {
+        return $this->skip_empty_event_based_suggestion;
+    }
+
+    /**
+     * Optional. Enable skipping event based suggestion if the suggestion is
+     * empty.
+     * For example, with this field disabled, Knowledge Assist feature sends
+     * a Pub/Sub message when there are no suggestions. Enabling this field
+     * will change the behavior to skip the Pub/Sub message in this situation.
+     *
+     * Generated from protobuf field <code>bool skip_empty_event_based_suggestion = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipEmptyEventBasedSuggestion($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_empty_event_based_suggestion = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true,
+     * use unredacted transcript data (Supported features: AI_COACH) and
+     * use unredacted ingested context (Supported features: All Agent Assist
+     * features)
+     *
+     * Generated from protobuf field <code>bool use_unredacted_conversation_data = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseUnredactedConversationData()
+    {
+        return $this->use_unredacted_conversation_data;
+    }
+
+    /**
+     * Optional. If true,
+     * use unredacted transcript data (Supported features: AI_COACH) and
+     * use unredacted ingested context (Supported features: All Agent Assist
+     * features)
+     *
+     * Generated from protobuf field <code>bool use_unredacted_conversation_data = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseUnredactedConversationData($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_unredacted_conversation_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, enable asynchronous execution of tools.
+     *
+     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableAsyncToolCall()
+    {
+        return $this->enable_async_tool_call;
+    }
+
+    /**
+     * Optional. If true, enable asynchronous execution of tools.
+     *
+     * Generated from protobuf field <code>bool enable_async_tool_call = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableAsyncToolCall($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_async_tool_call = $var;
 
         return $this;
     }

@@ -426,8 +426,11 @@ final class ConversationProfilesClient
      *
      * @return string The formatted project_knowledge_base_document resource.
      */
-    public static function projectKnowledgeBaseDocumentName(string $project, string $knowledgeBase, string $document): string
-    {
+    public static function projectKnowledgeBaseDocumentName(
+        string $project,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectKnowledgeBaseDocument')->render([
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
@@ -462,8 +465,11 @@ final class ConversationProfilesClient
      *
      * @return string The formatted project_location_conversation_model resource.
      */
-    public static function projectLocationConversationModelName(string $project, string $location, string $conversationModel): string
-    {
+    public static function projectLocationConversationModelName(
+        string $project,
+        string $location,
+        string $conversationModel
+    ): string {
         return self::getPathTemplate('projectLocationConversationModel')->render([
             'project' => $project,
             'location' => $location,
@@ -481,8 +487,11 @@ final class ConversationProfilesClient
      *
      * @return string The formatted project_location_conversation_profile resource.
      */
-    public static function projectLocationConversationProfileName(string $project, string $location, string $conversationProfile): string
-    {
+    public static function projectLocationConversationProfileName(
+        string $project,
+        string $location,
+        string $conversationProfile
+    ): string {
         return self::getPathTemplate('projectLocationConversationProfile')->render([
             'project' => $project,
             'location' => $location,
@@ -500,8 +509,11 @@ final class ConversationProfilesClient
      *
      * @return string The formatted project_location_knowledge_base resource.
      */
-    public static function projectLocationKnowledgeBaseName(string $project, string $location, string $knowledgeBase): string
-    {
+    public static function projectLocationKnowledgeBaseName(
+        string $project,
+        string $location,
+        string $knowledgeBase
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBase')->render([
             'project' => $project,
             'location' => $location,
@@ -520,8 +532,12 @@ final class ConversationProfilesClient
      *
      * @return string The formatted project_location_knowledge_base_document resource.
      */
-    public static function projectLocationKnowledgeBaseDocumentName(string $project, string $location, string $knowledgeBase, string $document): string
-    {
+    public static function projectLocationKnowledgeBaseDocumentName(
+        string $project,
+        string $location,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBaseDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -691,8 +707,10 @@ final class ConversationProfilesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function clearSuggestionFeatureConfig(ClearSuggestionFeatureConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function clearSuggestionFeatureConfig(
+        ClearSuggestionFeatureConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ClearSuggestionFeatureConfig', $request, $callOptions)->wait();
     }
 
@@ -725,8 +743,10 @@ final class ConversationProfilesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversationProfile(CreateConversationProfileRequest $request, array $callOptions = []): ConversationProfile
-    {
+    public function createConversationProfile(
+        CreateConversationProfileRequest $request,
+        array $callOptions = []
+    ): ConversationProfile {
         return $this->startApiCall('CreateConversationProfile', $request, $callOptions)->wait();
     }
 
@@ -777,8 +797,10 @@ final class ConversationProfilesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConversationProfile(GetConversationProfileRequest $request, array $callOptions = []): ConversationProfile
-    {
+    public function getConversationProfile(
+        GetConversationProfileRequest $request,
+        array $callOptions = []
+    ): ConversationProfile {
         return $this->startApiCall('GetConversationProfile', $request, $callOptions)->wait();
     }
 
@@ -804,8 +826,10 @@ final class ConversationProfilesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversationProfiles(ListConversationProfilesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversationProfiles(
+        ListConversationProfilesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversationProfiles', $request, $callOptions);
     }
 
@@ -848,8 +872,10 @@ final class ConversationProfilesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setSuggestionFeatureConfig(SetSuggestionFeatureConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setSuggestionFeatureConfig(
+        SetSuggestionFeatureConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetSuggestionFeatureConfig', $request, $callOptions)->wait();
     }
 
@@ -882,8 +908,10 @@ final class ConversationProfilesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConversationProfile(UpdateConversationProfileRequest $request, array $callOptions = []): ConversationProfile
-    {
+    public function updateConversationProfile(
+        UpdateConversationProfileRequest $request,
+        array $callOptions = []
+    ): ConversationProfile {
         return $this->startApiCall('UpdateConversationProfile', $request, $callOptions)->wait();
     }
 

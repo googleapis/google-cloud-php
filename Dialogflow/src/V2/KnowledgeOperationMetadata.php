@@ -27,6 +27,12 @@ class KnowledgeOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string knowledge_base = 3;</code>
      */
     protected $knowledge_base = '';
+    /**
+     * The time when the operation finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp done_time = 5;</code>
+     */
+    protected $done_time = null;
     protected $operation_metadata;
 
     /**
@@ -41,6 +47,8 @@ class KnowledgeOperationMetadata extends \Google\Protobuf\Internal\Message
      *           The name of the knowledge base interacted with during the operation.
      *     @type \Google\Cloud\Dialogflow\V2\ExportOperationMetadata $export_operation_metadata
      *           Metadata for the Export Data Operation such as the destination of export.
+     *     @type \Google\Protobuf\Timestamp $done_time
+     *           The time when the operation finished.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,42 @@ class KnowledgeOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\ExportOperationMetadata::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * The time when the operation finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp done_time = 5;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDoneTime()
+    {
+        return $this->done_time;
+    }
+
+    public function hasDoneTime()
+    {
+        return isset($this->done_time);
+    }
+
+    public function clearDoneTime()
+    {
+        unset($this->done_time);
+    }
+
+    /**
+     * The time when the operation finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp done_time = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDoneTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->done_time = $var;
 
         return $this;
     }

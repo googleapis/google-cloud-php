@@ -53,6 +53,20 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
+    /**
+     * Optional. Resource names of the tools that the generator can choose from.
+     * Format: `projects/<Project ID>/locations/<Location ID>/tools/<tool ID>`.
+     *
+     * Generated from protobuf field <code>repeated string tools = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $tools;
+    /**
+     * Optional. Configuration for suggestion deduping. This is only applicable to
+     * AI Coach feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionDedupingConfig suggestion_deduping_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $suggestion_deduping_config = null;
     protected $context;
     protected $foundation_model;
 
@@ -69,6 +83,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           Optional. Human readable description of the generator.
      *     @type \Google\Cloud\Dialogflow\V2\FreeFormContext $free_form_context
      *           Input of free from generator to LLM.
+     *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingContext $agent_coaching_context
+     *           Input of prebuilt Agent Coaching feature.
      *     @type \Google\Cloud\Dialogflow\V2\SummarizationContext $summarization_context
      *           Input of prebuilt Summarization feature.
      *     @type \Google\Cloud\Dialogflow\V2\InferenceParameter $inference_parameter
@@ -86,6 +102,12 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           Output only. Creation time of this generator.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Update time of this generator.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tools
+     *           Optional. Resource names of the tools that the generator can choose from.
+     *           Format: `projects/<Project ID>/locations/<Location ID>/tools/<tool ID>`.
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestionDedupingConfig $suggestion_deduping_config
+     *           Optional. Configuration for suggestion deduping. This is only applicable to
+     *           AI Coach feature.
      * }
      */
     public function __construct($data = NULL) {
@@ -174,6 +196,37 @@ class Generator extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\FreeFormContext::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Input of prebuilt Agent Coaching feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentCoachingContext agent_coaching_context = 12;</code>
+     * @return \Google\Cloud\Dialogflow\V2\AgentCoachingContext|null
+     */
+    public function getAgentCoachingContext()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasAgentCoachingContext()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Input of prebuilt Agent Coaching feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentCoachingContext agent_coaching_context = 12;</code>
+     * @param \Google\Cloud\Dialogflow\V2\AgentCoachingContext $var
+     * @return $this
+     */
+    public function setAgentCoachingContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AgentCoachingContext::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }
@@ -380,6 +433,72 @@ class Generator extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource names of the tools that the generator can choose from.
+     * Format: `projects/<Project ID>/locations/<Location ID>/tools/<tool ID>`.
+     *
+     * Generated from protobuf field <code>repeated string tools = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTools()
+    {
+        return $this->tools;
+    }
+
+    /**
+     * Optional. Resource names of the tools that the generator can choose from.
+     * Format: `projects/<Project ID>/locations/<Location ID>/tools/<tool ID>`.
+     *
+     * Generated from protobuf field <code>repeated string tools = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTools($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for suggestion deduping. This is only applicable to
+     * AI Coach feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionDedupingConfig suggestion_deduping_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\SuggestionDedupingConfig|null
+     */
+    public function getSuggestionDedupingConfig()
+    {
+        return $this->suggestion_deduping_config;
+    }
+
+    public function hasSuggestionDedupingConfig()
+    {
+        return isset($this->suggestion_deduping_config);
+    }
+
+    public function clearSuggestionDedupingConfig()
+    {
+        unset($this->suggestion_deduping_config);
+    }
+
+    /**
+     * Optional. Configuration for suggestion deduping. This is only applicable to
+     * AI Coach feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionDedupingConfig suggestion_deduping_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\SuggestionDedupingConfig $var
+     * @return $this
+     */
+    public function setSuggestionDedupingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SuggestionDedupingConfig::class);
+        $this->suggestion_deduping_config = $var;
 
         return $this;
     }
