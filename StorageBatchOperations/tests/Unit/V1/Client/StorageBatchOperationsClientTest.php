@@ -163,9 +163,11 @@ class StorageBatchOperationsClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
+        $dryRun = false;
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setDryRun($dryRun);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -356,9 +358,11 @@ class StorageBatchOperationsClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
+        $dryRun = false;
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setDryRun($dryRun);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');

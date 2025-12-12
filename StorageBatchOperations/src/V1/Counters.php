@@ -33,6 +33,13 @@ class Counters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 failed_object_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $failed_object_count = 0;
+    /**
+     * Output only. Number of bytes found from source. This field is only
+     * populated for jobs with a prefix list object configuration.
+     *
+     * Generated from protobuf field <code>optional int64 total_bytes_found = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_bytes_found = null;
 
     /**
      * Constructor.
@@ -46,6 +53,9 @@ class Counters extends \Google\Protobuf\Internal\Message
      *           Output only. Number of objects completed.
      *     @type int|string $failed_object_count
      *           Output only. Number of objects failed.
+     *     @type int|string $total_bytes_found
+     *           Output only. Number of bytes found from source. This field is only
+     *           populated for jobs with a prefix list object configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +137,44 @@ class Counters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->failed_object_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of bytes found from source. This field is only
+     * populated for jobs with a prefix list object configuration.
+     *
+     * Generated from protobuf field <code>optional int64 total_bytes_found = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalBytesFound()
+    {
+        return isset($this->total_bytes_found) ? $this->total_bytes_found : 0;
+    }
+
+    public function hasTotalBytesFound()
+    {
+        return isset($this->total_bytes_found);
+    }
+
+    public function clearTotalBytesFound()
+    {
+        unset($this->total_bytes_found);
+    }
+
+    /**
+     * Output only. Number of bytes found from source. This field is only
+     * populated for jobs with a prefix list object configuration.
+     *
+     * Generated from protobuf field <code>optional int64 total_bytes_found = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalBytesFound($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_bytes_found = $var;
 
         return $this;
     }
