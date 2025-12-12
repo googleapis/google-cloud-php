@@ -99,6 +99,11 @@
                                 "listMessages"
                             ]
                         },
+                        "QueryData": {
+                            "methods": [
+                                "queryData"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

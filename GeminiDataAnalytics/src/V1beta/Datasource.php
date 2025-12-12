@@ -45,6 +45,12 @@ class Datasource extends \Google\Protobuf\Internal\Message
      *           A reference to a Looker Studio datasource.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference $looker_explore_reference
      *           A reference to a Looker explore.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\AlloyDbReference $alloy_db_reference
+     *           A reference to an AlloyDB database.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\SpannerReference $spanner_reference
+     *           A reference to a Spanner database.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference $cloud_sql_reference
+     *           A reference to a CloudSQL database.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
      *           Optional. The schema of the datasource.
      *     @type \Google\Protobuf\Struct $struct_schema
@@ -149,6 +155,99 @@ class Datasource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * A reference to an AlloyDB database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AlloyDbReference alloy_db_reference = 12;</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\AlloyDbReference|null
+     */
+    public function getAlloyDbReference()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasAlloyDbReference()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * A reference to an AlloyDB database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AlloyDbReference alloy_db_reference = 12;</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\AlloyDbReference $var
+     * @return $this
+     */
+    public function setAlloyDbReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\AlloyDbReference::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * A reference to a Spanner database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.SpannerReference spanner_reference = 13;</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\SpannerReference|null
+     */
+    public function getSpannerReference()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasSpannerReference()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * A reference to a Spanner database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.SpannerReference spanner_reference = 13;</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\SpannerReference $var
+     * @return $this
+     */
+    public function setSpannerReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\SpannerReference::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * A reference to a CloudSQL database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.CloudSqlReference cloud_sql_reference = 14;</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference|null
+     */
+    public function getCloudSqlReference()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasCloudSqlReference()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * A reference to a CloudSQL database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.CloudSqlReference cloud_sql_reference = 14;</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference $var
+     * @return $this
+     */
+    public function setCloudSqlReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }

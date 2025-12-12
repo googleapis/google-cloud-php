@@ -91,6 +91,18 @@ return [
                     ],
                 ],
             ],
+            'QueryData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}:queryData',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [
