@@ -48,6 +48,7 @@ class ValueMapper
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PROTO = TypeCode::PROTO;
     const TYPE_INTERVAL = TypeCode::INTERVAL;
+    const TYPE_UUID = TypeCode::UUID;
     const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_PG_OID = 'pgOid';
@@ -74,6 +75,7 @@ class ValueMapper
         self::TYPE_FLOAT32,
         self::TYPE_PROTO,
         self::TYPE_INTERVAL,
+        self::TYPE_UUID,
     ];
 
     /*
@@ -385,6 +387,9 @@ class ValueMapper
                     ));
                 }
                 $value = Interval::parse($value);
+                break;
+            case self::TYPE_UUID:
+                $value = new Uuid($value);
                 break;
         }
 

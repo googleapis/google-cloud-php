@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Spanner\Uuid;
 use PHPUnit\Framework\TestCase;
 use Testing\Data\Book;
 use Testing\Data\User;
@@ -73,7 +74,8 @@ class ValueMapperTest extends TestCase
             [1, Database::TYPE_INT64],
             ['john', Database::TYPE_STRING],
             [3.1415, Database::TYPE_FLOAT64],
-            [false, Database::TYPE_BOOL]
+            [false, Database::TYPE_BOOL],
+            [new Uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479'), Database::TYPE_UUID]
         ];
     }
 
@@ -858,7 +860,8 @@ class ValueMapperTest extends TestCase
             [new Bytes('hello world'), base64_encode('hello world')],
             [new Proto('hello world', 'foo'), 'hello world'],
             [['foo', 'bar']],
-            ['{\"rating\":9,\"open\":true}']
+            ['{\"rating\":9,\"open\":true}'],
+            [new Uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479'), 'f47ac10b-58cc-4372-a567-0e02b2c3d479']
         ];
     }
 
@@ -1378,5 +1381,54 @@ class ValueMapperTest extends TestCase
             [Database::TYPE_FLOAT64],
             [Database::TYPE_FLOAT32]
         ];
+    }
+
+    public function testDecodeValuesUuid()
+    {
+        $uuid = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_UUID),
+            $this->createRow($uuid),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertInstanceOf(Uuid::class, $res['rowName']);
+        $this->assertEquals($uuid, $res['rowName']->get());
+    }
+
+    public function testFormatParamsForExecuteSqlArrayUuid()
+    {
+        $uuid = new Uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479');
+        $params = [
+            'array' => [$uuid]
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params);
+
+        $this->assertEquals($uuid->get(), $res['params']['array'][0]);
+        $this->assertEquals(Database::TYPE_ARRAY, $res['paramTypes']['array']['code']);
+        $this->assertEquals(Database::TYPE_UUID, $res['paramTypes']['array']['arrayElementType']['code']);
+    }
+
+    public function testFormatParamsForExecuteSqlStructUuid()
+    {
+        $uuid = new Uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479');
+        $params = [
+            'struct' => [
+                'uuid' => $uuid
+            ]
+        ];
+        $types = [
+            'struct' => (new StructType())
+                ->add('uuid', Database::TYPE_UUID)
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals($uuid->get(), $res['params']['struct'][0]);
+        $this->assertEquals(Database::TYPE_STRUCT, $res['paramTypes']['struct']['code']);
+        $this->assertEquals(
+            Database::TYPE_UUID,
+            $res['paramTypes']['struct']['structType']['fields'][0]['type']['code']
+        );
     }
 }
