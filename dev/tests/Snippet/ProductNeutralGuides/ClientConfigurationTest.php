@@ -46,7 +46,7 @@ class ClientConfigurationTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMarkdown(
             self::CLIENT_CONFIGURATION_FILE,
-            'Connecting to a Regional Endpoint'
+            '1. Customizing the API Endpoint'
         );
 
         // Invoke the snippet

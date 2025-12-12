@@ -37,7 +37,7 @@ class AuthenticationTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMarkdown(
             self::AUTHENTICATION_FILE,
-            'Client Authentication',
+            'Credentials Options',
         );
 
         $clientEmail = 'testing-sa@test.com';
@@ -63,7 +63,7 @@ class AuthenticationTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMarkdown(
             self::AUTHENTICATION_FILE,
-            'Client Authentication',
+            'Credentials Options',
             1 // second example in this section
         );
 

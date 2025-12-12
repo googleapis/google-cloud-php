@@ -1,12 +1,10 @@
 # Optimistic Concurrency Control (OCC) Loop for IAM
 
-## 1\. Introduction to OCC
-
 Optimistic Concurrency Control (OCC) is a strategy used to manage shared resources and prevent "lost updates" or race conditions when multiple users or processes attempt to modify the same resource simultaneously.
 
 In the context of Google Cloud IAM, the resource is the **IAM Policy** applied to a resource (like a Project, Bucket, or Service). An IAM Policy object contains a version number and an `etag` (entity tag) field.
 
-### The Problem Without OCC
+## Introduction to OCC
 
 Imagine two processes, A and B, try to add a user to a policy at the same time:
 
@@ -17,8 +15,6 @@ Imagine two processes, A and B, try to add a user to a policy at the same time:
 
 Because Process **B** overwrites the policy *without* knowing that Process **A** already changed it, the user added by Process **A** is **lost**.
 
-### The OCC Solution
-
 OCC introduces a unique fingerprint which changes every time an entity is modified. In the case of IAM, this is done using an `etag`. The IAM service checks this tag on every write:
 
 1. When you read the policy, the server returns an `etag` (a unique fingerprint).
@@ -27,7 +23,7 @@ OCC introduces a unique fingerprint which changes every time an entity is modifi
 
 This failure forces the client to **retry** the entire process—re-read the *new* policy, re-apply the changes, and try the write again with the new `etag`.
 
-## 2\. Implementing the OCC Loop in PHP
+## Implementing the OCC Loop
 
 The core of the OCC implementation is a `while` loop that handles the retry logic. You should set a reasonable maximum number of retries to prevent infinite loops in cases of high contention.
 
@@ -40,11 +36,11 @@ The core of the OCC implementation is a `while` loop that handles the retry logi
 | **3\. Write/Check** | Attempt to set the modified policy using the old `etag`. This action must be inside a `try` block. | `try {    $client->setIamPolicy($resourceName, $policy);    return $policy; } catch (AbortedException $e) {    // retry loop}` |
 | **4\. Success/Retry** | If the write succeeds, exit the loop. If it fails with a concurrency error, increment the retry counter and continue the loop (go back to Step 1). |  |
 
-## 3\. PHP Code Example
-
 The following file provides a runnable example of how to implement the OCC loop to add a new member to an IAM policy on a Project resource.
 
 *Note: This example uses the `google/cloud-resource-manager` component, but the same OCC pattern applies to any service that uses IAM policies (Storage, Pub/Sub, etc.).*
+
+### Example
 
 ```php
 use Google\Cloud\Core\Exception\AbortedException;

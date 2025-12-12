@@ -2,48 +2,7 @@
 
 This documentation covers essential patterns and usage for the Google Cloud PHP Client Library, focusing on performance (gRPC), data handling (Protobuf, Update Masks), and flow control (Pagination, LROs, Streaming).
 
-## 1. Protobuf and gRPC
-
-The Google Cloud PHP library supports two transports: **REST (HTTP/1.1)** and **gRPC**.
-
-* **Protobuf (Protocol Buffers):** A mechanism for serializing structured data. It is the interface language for gRPC.
-
-* **gRPC:** A high-performance, open-source universal RPC framework. It is generally faster than REST due to efficient binary serialization and HTTP/2 support.
-
-### Installation & Setup
-
-To use gRPC and Protobuf, you must install the PECL extensions. These are highly recommended for production environments to improve performance and enable streaming capabilities.
-
-For detailed instructions, see the [gRPC installation documentation][grpc].
-
-[grpc]: https://cloud.google.com/php/docs/reference/
-
-```bash
-# Install extensions via PECL
-pecl install grpc
-pecl install protobuf
-```
-
-Ensure these lines are added to your `php.ini`:
-
-```ini
-extension=grpc.so
-extension=protobuf.so
-```
-
-### Usage in Client
-
-The client library automatically detects if the `grpc` extension is enabled and uses it by default. You can force a specific transport using the `transport` option when creating a client.
-
-```php
-use Google\Cloud\PubSub\V1\Client\PublisherClient;
-
-$publisher = new PublisherClient([
-    'transport' => 'grpc' // or 'rest'
-]);
-```
-
-## 2. Pagination
+## 1. Pagination
 
 Most list methods in the Google Cloud PHP library return an instance of `Google\ApiCore\PageIterator`. This allows you to iterate over results without manually managing page tokens.
 
@@ -94,7 +53,7 @@ foreach ($response as $secret) {
 $nextToken = $response->getPage()->getNextPageToken();
 ```
 
-## 3. Long Running Operations (LROs)
+## 2. Long Running Operations (LROs)
 
 Some operations, like creating a Compute Engine instance or training an AI model, take too long to complete in a single HTTP request. These return a **Long Running Operation (LRO)**.
 
@@ -156,7 +115,7 @@ if ($newOperation->isDone()) {
 }
 ```
 
-## 4. Update Masks
+## 3. Update Masks
 
 When updating resources (PATCH requests), Google Cloud APIs often use an **Update Mask** (`Google\Protobuf\FieldMask`). This tells the server *exactly* which fields you intend to update, preventing accidental overwrites of other fields.
 
@@ -193,6 +152,45 @@ $client->updateSecret($request);
 ```
 
 **Note:** The field names in `paths` should be the protocol buffer field names (usually `snake_case`), even if the PHP setter methods are `camelCase`.
+
+## 4. Protobuf and gRPC
+
+The Google Cloud PHP library supports two transports: **REST (HTTP/1.1)** and **gRPC**.
+
+* **Protobuf (Protocol Buffers):** A mechanism for serializing structured data. It is the interface language for gRPC.
+
+* **gRPC:** A high-performance, open-source universal RPC framework. It is generally faster than REST due to efficient binary serialization and HTTP/2 support.
+
+### Installation & Setup
+
+To use gRPC and Protobuf, you must install the PECL extensions. These are highly recommended for production environments to improve performance and enable streaming capabilities.
+
+For detailed instructions, see the [gRPC installation documentation](GRPC.md).
+
+```bash
+# Install extensions via PECL
+pecl install grpc
+pecl install protobuf
+```
+
+Ensure these lines are added to your `php.ini`:
+
+```ini
+extension=grpc.so
+extension=protobuf.so
+```
+
+### Usage in Client
+
+The client library automatically detects if the `grpc` extension is enabled and uses it by default. You can force a specific transport using the `transport` option when creating a client.
+
+```php
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+
+$publisher = new PublisherClient([
+    'transport' => 'grpc' // or 'rest'
+]);
+```
 
 ## 5. gRPC Streaming
 

@@ -1,29 +1,5 @@
 # Troubleshooting
 
-## **How can I trace gRPC issues?**
-
-When working with libraries that use gRPC (which is the default transport for many Google Cloud PHP clients if the extension is installed), you can use the underlying gRPC C-core environment variables to enable logging.
-
-### **Prerequisites**
-
-Ensure you have the `grpc` PECL extension installed and enabled. You can check this by running:
-
-```
-php -m | grep grpc
-```
-
-For detailed instructions, see the [gRPC installation documentation](https://cloud.google.com/php/docs/reference/).
-
-### **Transport logging with gRPC**
-
-The primary method for debugging gRPC calls in PHP is setting environment variables. These affect the underlying C extension. The environment variables affecting gRPC are [listed in the gRPC repository](https://github.com/grpc/grpc/blob/master/doc/environment_variables.md). The important ones for diagnostics are `GRPC_TRACE` and `GRPC_VERBOSITY`.
-
-For example, you might want to start off with `GRPC_TRACE=all` and `GRPC_VERBOSITY=debug` which will dump a *lot* of information, then tweak them to reduce this to only useful data (e.g., `GRPC_TRACE=http,call_error`).
-
-```
-GRPC_VERBOSITY=debug GRPC_TRACE=all php your_script.php
-```
-
 ## **Debug Logging**
 
 There are a few features built into the Google Cloud PHP client libraries which can help you debug
@@ -37,7 +13,7 @@ your application. This guide will show you how to log client library requests an
 > configuration used to avoid leaking sensitive user data. This may also include authentication
 > tokens.
 
-## Log examples
+### Log examples
 
 ```php
 // debug-logging-example.php
@@ -159,7 +135,7 @@ $ GOOGLE_SDK_PHP_LOGGING=true php debug-logging-example.php
 
 </details>
 
-## Configuration
+### Configuration
 
 There are a few ways to configure debug logging which we will go through in this document.
 
@@ -221,12 +197,36 @@ from logging to avoid excessive noise.
 putenv('GOOGLE_SDK_PHP_LOGGING=true');
 
 // The Big Table client will log all the requests
-$client = new BigtableClient();
+$bigtable = new BigtableClient();
 
 // The TranslationServiceClient will not log any requests
-$client = new TranslationServiceClient([
+$translation = new TranslationServiceClient([
     'logger' => false
 ]);
+```
+
+## **How can I trace gRPC issues?**
+
+When working with libraries that use gRPC (which is the default transport for many Google Cloud PHP clients if the extension is installed), you can use the underlying gRPC C-core environment variables to enable logging.
+
+### **Prerequisites**
+
+Ensure you have the `grpc` PECL extension installed and enabled. You can check this by running:
+
+```
+php -m | grep grpc
+```
+
+For detailed instructions, see the [gRPC installation documentation](https://cloud.google.com/php/docs/reference/).
+
+### **Transport logging with gRPC**
+
+The primary method for debugging gRPC calls in PHP is setting environment variables. These affect the underlying C extension. The environment variables affecting gRPC are [listed in the gRPC repository](https://github.com/grpc/grpc/blob/master/doc/environment_variables.md). The important ones for diagnostics are `GRPC_TRACE` and `GRPC_VERBOSITY`.
+
+For example, you might want to start off with `GRPC_TRACE=all` and `GRPC_VERBOSITY=debug` which will dump a *lot* of information, then tweak them to reduce this to only useful data (e.g., `GRPC_TRACE=http,call_error`).
+
+```
+GRPC_VERBOSITY=debug GRPC_TRACE=all php your_script.php
 ```
 
 ## **How can I diagnose proxy issues?**

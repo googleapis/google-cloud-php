@@ -56,8 +56,8 @@ class DocFxCommand extends Command
         'CLIENT_CONFIGURATION.md' => 'Client Configuration',
         'OCC_FOR_IAM.md' => 'OCC for IAM',
         'MIGRATING.md' => 'Migrating to V2',
-        'GRPC.md' => 'Installing gRPC',
-        'TROUBLESHOOTING.md' => 'Troubleshooting',
+        'GRPC.md' => 'Installing gRPC and Protobuf',
+        'DEBUG.md' => 'Troubleshooting',
     ];
 
     protected function configure()
