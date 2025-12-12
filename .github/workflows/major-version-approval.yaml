@@ -25,11 +25,14 @@ jobs:
     steps:
       - name: Run Approval Check
         uses: actions/github-script@v7
+        env:
+          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
         with:
-          github-token: ${{ secrets.SPLIT_TOKEN }}
-          script: |
+          script: | 
+            const { execSync } = require('child_process');
+
             const requiredApprovals = 2;
-            const checkName = `For Major Version Releases, a minimum of ${requiredApprovals} approvals required from yoshi-php team`;
+            const checkName = `Require ${requiredApprovals} approvals minimum from yoshi-php team on Major Version releases`;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
@@ -49,7 +52,7 @@ jobs:
             try {
               const pull_number = context.payload.pull_request.number;
 
-              // 1. Get PR approvals via API
+              // 1. Get PR approvals
               log += `\nFetching approvals for PR #${pull_number}...`;
               const reviews = await github.rest.pulls.listReviews({
                 owner, repo, pull_number
@@ -61,19 +64,17 @@ jobs:
               );
               log += `\nApprovals found: ${approvals.size}`;
 
-              // 2. Get team members via API
+              // 2. Get team members
               log += '\nFetching yoshi-php team members...';
-              const teamMembers = await github.paginate(github.rest.teams.listMembersInOrg, {
-                  org: 'googleapis',
-                  team_slug: 'yoshi-php',
-              });
-              const teamMembersLogins = new Set(teamMembers.map(member => member.login));
-              if (teamMembersLogins.size === 0) {
+              const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login'`;
+              const teamMembersOutput = execSync(teamMembersCmd, { encoding: 'utf8', env: process.env });
+              if (!teamMembersOutput.trim()) {
                 log += '\nERROR: Could not fetch any members for the yoshi-php team.';
               }
+              const teamMembers = new Set(teamMembersOutput.trim().split('\n'));
 
               // 3. Compare
-              const matchingApprovals = [...approvals].filter(login => teamMembersLogins.has(login));
+              const matchingApprovals = [...approvals].filter(login => teamMembers.has(login));
               const count = matchingApprovals.length;
 
               log += `\nFound ${count} approval(s) from the yoshi-php team.`;
