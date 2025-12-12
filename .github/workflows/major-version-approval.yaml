@@ -38,59 +38,72 @@ jobs:
             });
             return check.id;
       
-      # Step 2: Run the actual approval logic
-      - name: Check for at least 2 approvals from yoshi-php members
-        id: approval_logic
-        continue-on-error: true 
+      # Step 2: Check approvals and update check run
+      - name: Check Approvals and Update Check Run
+        uses: actions/github-script@v7
+        if: always() # Run even if create_check fails, to report failure
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           REQUIRED_APPROVALS: 2
-        run: |
-          set -e
-
-          echo "Fetching approvals for PR #$PR_NUMBER..."
-          approvals=$(gh pr view $PR_NUMBER --json reviews --jq '[.reviews[] | select(.state == "APPROVED") | .author.login] | unique | .[]' | sort -u)
-          if [ -z "$approvals" ]; then
-            echo "No approvals found on this PR."
-            approvals=""
-          fi
-
-          echo "Fetching yoshi-php team members..."
-          team_members=$(gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login')
-          if [ -z "$team_members" ]; then
-            echo "Error: Could not fetch any members for the yoshi-php team."
-            exit 1
-          fi
-
-          count=$(echo "$team_members" | sort -u | grep -F -x -f <(echo "$approvals") | wc -l)
-
-          echo "Found $count approval(s) from the yoshi-php team."
-
-          if [[ $count -lt $REQUIRED_APPROVALS ]]; then
-            echo "Error: Requires at least $REQUIRED_APPROVALS approvals from the yoshi-php team. Only $count found."
-            exit 1
-          else
-            echo "Success: Approval requirement of $REQUIRED_APPROVALS met."
-          fi
-
-      # Step 3: Update check run with the result
-      - name: Update Check Run
-        uses: actions/github-script@v7
-        if: always() 
         with:
           script: |
-            const outcome = '${{ steps.approval_logic.outcome }}';
-            let conclusion = 'neutral';
-            let summary = 'The approval check did not run or was cancelled.';
+            const { execSync } = require('child_process');
 
-            if (outcome === 'success') {
-              conclusion = 'success';
-              summary = 'Approval requirements met!';
-            } else if (outcome === 'failure') {
+            let conclusion = 'failure';
+            let summary = 'An unexpected error occurred during the approval check.';
+
+            try {
+              const check_run_id = ${{ steps.create_check.outputs.result }};
+              if (!check_run_id) {
+                throw new Error('Failed to create a check run in the previous step.');
+              }
+
+              const prNumber = process.env.PR_NUMBER;
+              const requiredApprovals = parseInt(process.env.REQUIRED_APPROVALS, 10);
+
+              console.log(`Fetching approvals for PR #${prNumber}...`);
+              const approvalsCmd = `gh pr view ${prNumber} --json reviews --jq '[.reviews[] | select(.state == "APPROVED") | .author.login] | unique | .[]'`;
+              let approvalsOutput = '';
+              try {
+                // execSync throws on non-zero exit code. jq may exit non-zero with no results.
+                approvalsOutput = execSync(approvalsCmd, { encoding: 'utf8', env: process.env });
+              } catch (e) {
+                console.log('No approvals found or an error occurred fetching them. Continuing...');
+                // approvalsOutput remains empty, which is handled below.
+              }
+
+              const approvals = approvalsOutput.trim() ? approvalsOutput.trim().split('\n') : [];
+              console.log(`Approvals found: ${approvals.length}`);
+
+              console.log('Fetching yoshi-php team members...');
+              const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login'`;
+              const teamMembersOutput = execSync(teamMembersCmd, { encoding: 'utf8', env: process.env });
+              if (!teamMembersOutput.trim()) {
+                throw new Error('Could not fetch any members for the yoshi-php team.');
+              }
+              const teamMembers = new Set(teamMembersOutput.trim().split('\n'));
+
+              const matchingApprovals = approvals.filter(login => teamMembers.has(login));
+              const count = matchingApprovals.length;
+
+              console.log(`Found ${count} approval(s) from the yoshi-php team.`);
+
+              if (count >= requiredApprovals) {
+                conclusion = 'success';
+                summary = `Success: Approval requirement of ${requiredApprovals} met with ${count} approvals.`;
+              } else {
+                conclusion = 'failure';
+                summary = `Error: Requires at least ${requiredApprovals} approvals from the yoshi-php team. Only ${count} found.`;
+              }
+            } catch (error) {
+              console.error(error);
+              summary = `An error occurred while checking approvals: ${error.message}`;
               conclusion = 'failure';
-              summary = 'Approval requirements not met. See logs for details.';
             }
+
+            console.log(`Final conclusion: ${conclusion}`);
+            console.log(`Final summary: ${summary}`);
 
             await github.rest.checks.update({
               owner: context.repo.owner,
@@ -104,7 +117,4 @@ jobs:
               }
             });
 
-            // If the logic step failed, fail the whole job
-            if (outcome === 'failure') {
-              core.setFailed('Approval check failed.');
-            }
+            // The step will now always succeed, but the Check Run status will still reflect the true outcome.
