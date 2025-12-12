@@ -1,0 +1,21 @@
+name: Major Version Approval Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    branches: ['main']
+  pull_request_review:
+    types: [submitted, dismissed]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  call-approval-check:
+    if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    uses: ./.github/workflows/major-version-approval-logic.yaml
+    with:
+      pr_number: ${{ github.event.pull_request.number }}
+    secrets:
+      token: ${{ secrets.SPLIT_TOKEN }}
