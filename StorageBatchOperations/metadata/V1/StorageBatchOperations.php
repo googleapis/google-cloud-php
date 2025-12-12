@@ -17,6 +17,7 @@ class StorageBatchOperations
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\FieldInfo::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Storagebatchoperations\V1\StorageBatchOperationsTypes::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
@@ -24,8 +25,8 @@ class StorageBatchOperations
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˇ
-Egoogle/cloud/storagebatchoperations/v1/storage_batch_operations.proto&google.cloud.storagebatchoperations.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protoKgoogle/cloud/storagebatchoperations/v1/storage_batch_operations_types.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"±
+¥
+Egoogle/cloud/storagebatchoperations/v1/storage_batch_operations.proto&google.cloud.storagebatchoperations.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.protoKgoogle/cloud/storagebatchoperations/v1/storage_batch_operations_types.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"±
 ListJobsRequestA
 parent (	B1‡A˙A+)storagebatchoperations.googleapis.com/Job
 filter (	B‡A
@@ -39,23 +40,23 @@ page_token (	B‡A
 unreachable (	"P
 GetJobRequest?
 name (	B1‡A˙A+
-)storagebatchoperations.googleapis.com/Job"¬
+)storagebatchoperations.googleapis.com/Job" 
 CreateJobRequestA
 parent (	B1‡A˙A+)storagebatchoperations.googleapis.com/Job
 job_id (	B‡A=
-job (2+.google.cloud.storagebatchoperations.v1.JobB‡A
+job (2+.google.cloud.storagebatchoperations.v1.JobB‡A
 
-request_id (	B‡A"l
+request_id (	B‡A‚åœ◊"t
 CancelJobRequest?
 name (	B1‡A˙A+
-)storagebatchoperations.googleapis.com/Job
+)storagebatchoperations.googleapis.com/Job
 
-request_id (	B‡A"l
+request_id (	B‡A‚åœ◊"t
 DeleteJobRequest?
 name (	B1‡A˙A+
-)storagebatchoperations.googleapis.com/Job
+)storagebatchoperations.googleapis.com/Job
 
-request_id (	B‡A"
+request_id (	B‡A‚åœ◊"
 CancelJobResponse"í
 OperationMetadata
 	operation (	B‡A4

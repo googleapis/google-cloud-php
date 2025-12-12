@@ -59,6 +59,4 @@ class RetentionMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RetentionMode::class, \Google\Cloud\StorageBatchOperations\V1\ObjectRetention_RetentionMode::class);
 
