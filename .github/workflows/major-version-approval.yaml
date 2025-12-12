@@ -23,69 +23,57 @@ jobs:
     # if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
-      # Step 1: Create the check run
-      - name: Create Check Run
-        id: create_check
+      - name: Run Approval Check
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.SPLIT_TOKEN }}
           script: |
+            const requiredApprovals = 2;
+            const checkName = `For Major Version Releases, a minimum of ${requiredApprovals} approvals required from yoshi-php team`;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            // Create the Check Run
             const { data: check } = await github.rest.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'Major Version Approval',
+              owner, repo,
+              name: checkName,
               head_sha: context.payload.pull_request.head.sha,
               status: 'in_progress',
             });
-            return check.id;
-      
-      # Step 2: Check approvals and update check run
-      - name: Check Approvals and Update Check Run
-        uses: actions/github-script@v7
-        if: always() # Run even if create_check fails, to report failure
-        env:
-          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          REQUIRED_APPROVALS: 2
-        with:
-          script: |
-            const { execSync } = require('child_process');
+            const check_run_id = check.id;
 
             let conclusion = 'failure';
             let summary = 'An unexpected error occurred during the approval check.';
             let log = '';
 
             try {
-              const check_run_id = ${{ steps.create_check.outputs.result }};
-              if (!check_run_id) {
-                throw new Error('Failed to create a check run in the previous step.');
-              }
+              const pull_number = context.payload.pull_request.number;
 
-              const prNumber = process.env.PR_NUMBER;
-              const requiredApprovals = parseInt(process.env.REQUIRED_APPROVALS, 10);
+              // 1. Get PR approvals via API
+              log += `\nFetching approvals for PR #${pull_number}...`;
+              const reviews = await github.rest.pulls.listReviews({
+                owner, repo, pull_number
+              });
+              const approvals = new Set(
+                reviews.data
+                  .filter(review => review.state === 'APPROVED')
+                  .map(review => review.user.login)
+              );
+              log += `\nApprovals found: ${approvals.size}`;
 
-              log += `\nFetching approvals for PR #${prNumber}...`
-              const approvalsCmd = `gh pr view ${prNumber} --json reviews --jq '[.reviews[] | select(.state == "APPROVED") | .author.login] | unique | .[]'`;
-              let approvalsOutput = '';
-              try {
-                // execSync throws on non-zero exit code. jq may exit non-zero with no results.
-                approvalsOutput = execSync(approvalsCmd, { encoding: 'utf8', env: process.env });
-              } catch (e) {
-                log += '\nNo approvals found or an error occurred fetching them. Continuing...';
-                // approvalsOutput remains empty, which is handled below.
-              }
-
-              const approvals = approvalsOutput.trim() ? approvalsOutput.trim().split('\n') : [];
-              log += `\nApprovals found: ${approvals.length}`;
-
+              // 2. Get team members via API
               log += '\nFetching yoshi-php team members...';
-              const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login'`;
-              const teamMembersOutput = execSync(teamMembersCmd, { encoding: 'utf8', env: process.env });
-              if (!teamMembersOutput.trim()) {
-                throw new Error('Could not fetch any members for the yoshi-php team.');
+              const teamMembers = await github.paginate(github.rest.teams.listMembersInOrg, {
+                  org: 'googleapis',
+                  team_slug: 'yoshi-php',
+              });
+              const teamMembersLogins = new Set(teamMembers.map(member => member.login));
+              if (teamMembersLogins.size === 0) {
+                log += '\nERROR: Could not fetch any members for the yoshi-php team.';
               }
-              const teamMembers = new Set(teamMembersOutput.trim().split('\n'));
 
-              const matchingApprovals = approvals.filter(login => teamMembers.has(login));
+              // 3. Compare
+              const matchingApprovals = [...approvals].filter(login => teamMembersLogins.has(login));
               const count = matchingApprovals.length;
 
               log += `\nFound ${count} approval(s) from the yoshi-php team.`;
@@ -98,25 +86,18 @@ jobs:
                 summary = `Error: Requires at least ${requiredApprovals} approvals from the yoshi-php team. Only ${count} found.`;
               }
             } catch (error) {
-              console.error(error);
               summary = `An error occurred while checking approvals: ${error.message}`;
               conclusion = 'failure';
+              log += `\n\nERROR: ${error.message}`;
             }
 
-            console.log(`Final conclusion: ${conclusion}`);
-            console.log(`Final summary: ${summary}`);
-
+            // Update the Check Run
             await github.rest.checks.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              check_run_id: ${{ steps.create_check.outputs.result }},
+              owner, repo, conclusion, check_run_id,
               status: 'completed',
-              conclusion: conclusion,
               output: {
-                title: 'Major Version Approval',
-                summary: summary,
+                summary,
+                title: checkName,
                 text: log
               }
             });
-
-            // The step will now always succeed, but the Check Run status will still reflect the true outcome.
