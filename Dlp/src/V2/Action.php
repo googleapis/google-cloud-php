@@ -32,7 +32,9 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc $publish_summary_to_cscc
      *           Publish summary to Cloud Security Command Center (Alpha).
      *     @type \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog $publish_findings_to_cloud_data_catalog
-     *           Publish findings to Cloud Datahub.
+     *           Deprecated because Data Catalog is being turned down. Use
+     *           publish_findings_to_dataplex_catalog to publish findings to Dataplex
+     *           Universal Catalog.
      *     @type \Google\Cloud\Dlp\V2\Action\PublishFindingsToDataplexCatalog $publish_findings_to_dataplex_catalog
      *           Publish findings as an aspect to Dataplex Universal Catalog.
      *     @type \Google\Cloud\Dlp\V2\Action\Deidentify $deidentify
@@ -144,30 +146,43 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Publish findings to Cloud Datahub.
+     * Deprecated because Data Catalog is being turned down. Use
+     * publish_findings_to_dataplex_catalog to publish findings to Dataplex
+     * Universal Catalog.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog publish_findings_to_cloud_data_catalog = 5;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog publish_findings_to_cloud_data_catalog = 5 [deprecated = true];</code>
      * @return \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog|null
+     * @deprecated
      */
     public function getPublishFindingsToCloudDataCatalog()
     {
+        if ($this->hasOneof(5)) {
+            @trigger_error('publish_findings_to_cloud_data_catalog is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->readOneof(5);
     }
 
     public function hasPublishFindingsToCloudDataCatalog()
     {
+        if ($this->hasOneof(5)) {
+            @trigger_error('publish_findings_to_cloud_data_catalog is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->hasOneof(5);
     }
 
     /**
-     * Publish findings to Cloud Datahub.
+     * Deprecated because Data Catalog is being turned down. Use
+     * publish_findings_to_dataplex_catalog to publish findings to Dataplex
+     * Universal Catalog.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog publish_findings_to_cloud_data_catalog = 5;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog publish_findings_to_cloud_data_catalog = 5 [deprecated = true];</code>
      * @param \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog $var
      * @return $this
+     * @deprecated
      */
     public function setPublishFindingsToCloudDataCatalog($var)
     {
+        @trigger_error('publish_findings_to_cloud_data_catalog is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog::class);
         $this->writeOneof(5, $var);
 
