@@ -7,24 +7,41 @@ on:
   pull_request_review:
     types: [submitted, dismissed]
 
+permissions:
+  contents: read
+  pull-requests: read
+  checks: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
-  pull-requests: read
-
 jobs:
-  major-version-approval-check:
-    name: Major Version Approval Check
+  approval-check:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     # testing
     # if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
-      - uses: actions/checkout@v5
+      # Step 1: Create the check run
+      - name: Create Check Run
+        id: create_check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: check } = await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'Major Version Approval',
+              head_sha: context.payload.pull_request.head.sha,
+              status: 'in_progress',
+            });
+            return check.id;
+      
+      # Step 2: Run the actual approval logic
       - name: Check for at least 2 approvals from yoshi-php members
+        id: approval_logic
+        continue-on-error: true 
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -33,7 +50,6 @@ jobs:
           set -e
 
           echo "Fetching approvals for PR #$PR_NUMBER..."
-          # Get a unique, sorted list of all users who have approved.
           approvals=$(gh pr view $PR_NUMBER --json reviews --jq '[.reviews[] | select(.state == "APPROVED") | .author.login] | unique | .[]' | sort -u)
           if [ -z "$approvals" ]; then
             echo "No approvals found on this PR."
@@ -47,7 +63,6 @@ jobs:
             exit 1
           fi
 
-          # find and count the intersection of the two lists.
           count=$(echo "$team_members" | sort -u | grep -F -x -f <(echo "$approvals") | wc -l)
 
           echo "Found $count approval(s) from the yoshi-php team."
@@ -58,3 +73,38 @@ jobs:
           else
             echo "Success: Approval requirement of $REQUIRED_APPROVALS met."
           fi
+
+      # Step 3: Update check run with the result
+      - name: Update Check Run
+        uses: actions/github-script@v7
+        if: always() 
+        with:
+          script: |
+            const outcome = '${{ steps.approval_logic.outcome }}';
+            let conclusion = 'neutral';
+            let summary = 'The approval check did not run or was cancelled.';
+
+            if (outcome === 'success') {
+              conclusion = 'success';
+              summary = 'Approval requirements met!';
+            } else if (outcome === 'failure') {
+              conclusion = 'failure';
+              summary = 'Approval requirements not met. See logs for details.';
+            }
+
+            await github.rest.checks.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              check_run_id: ${{ steps.create_check.outputs.result }},
+              status: 'completed',
+              conclusion: conclusion,
+              output: {
+                title: 'Major Version Approval',
+                summary: summary
+              }
+            });
+
+            // If the logic step failed, fail the whole job
+            if (outcome === 'failure') {
+              core.setFailed('Approval check failed.');
+            }
