@@ -1,0 +1,23 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.databasecenter.v1beta",
+    "libraryPackage": "Google\\Cloud\\DatabaseCenter\\V1beta",
+    "services": {
+        "DatabaseCenter": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DatabaseCenterGapicClient",
+                    "rpcs": {
+                        "QueryProducts": {
+                            "methods": [
+                                "queryProducts"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
