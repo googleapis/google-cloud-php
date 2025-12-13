@@ -874,6 +874,26 @@ class SpannerClient
     }
 
     /**
+     * Create a UUID object.
+     *
+     * The string value must consists of 32 hexadecimal digits in five groups separated
+     * by hyphens in the form 8-4-4-4-12. The hexadecimal digits represent 122
+     * random bits and 6 fixed bits, in compliance with RFC 4122 section 4.4.
+     *
+     * Example:
+     * ```
+     * $uuid = $spanner->uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479');
+     * ```
+     *
+     * @param string $value The UUID value.
+     * @return Uuid
+     */
+    public function uuid(string $value): Uuid
+    {
+        return new Uuid($value);
+    }
+
+    /**
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *
