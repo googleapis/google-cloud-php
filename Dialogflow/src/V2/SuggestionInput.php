@@ -9,23 +9,41 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the selection of a suggestion.
+ * Represents the action to take for a tool call that requires confirmation.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.SuggestionInput</code>
  */
 class SuggestionInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ID of a suggestion selected by the human agent.
-     * The suggestion(s) were generated in a previous call to
-     * request Dialogflow assist.
-     * The format is:
-     * `projects/<Project ID>/locations/<Location ID>/answerRecords/<Answer Record
-     * ID>` where <Answer Record ID> is an alphanumeric string.
+     * Required. Format: `projects/<Project ID>/locations/<Location
+     * ID>/answerRecords/<Answer Record ID>`
+     * The answer record associated with the tool call.
      *
      * Generated from protobuf field <code>string answer_record = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $answer_record = '';
+    /**
+     * Optional. Parameters to be used for the tool call.  If not provided, the
+     * tool will be called without any parameters.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $parameters = null;
+    /**
+     * Optional. The type of action to take with the tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionInput.Action action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $action = 0;
+    /**
+     * Optional. Time when the current suggest input is sent. For tool calls, this
+     * timestamp (along with the answer record) will be included in the
+     * corresponding tool call result so that it can be identified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $send_time = null;
 
     /**
      * Constructor.
@@ -34,12 +52,18 @@ class SuggestionInput extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $answer_record
-     *           Required. The ID of a suggestion selected by the human agent.
-     *           The suggestion(s) were generated in a previous call to
-     *           request Dialogflow assist.
-     *           The format is:
-     *           `projects/<Project ID>/locations/<Location ID>/answerRecords/<Answer Record
-     *           ID>` where <Answer Record ID> is an alphanumeric string.
+     *           Required. Format: `projects/<Project ID>/locations/<Location
+     *           ID>/answerRecords/<Answer Record ID>`
+     *           The answer record associated with the tool call.
+     *     @type \Google\Protobuf\Struct $parameters
+     *           Optional. Parameters to be used for the tool call.  If not provided, the
+     *           tool will be called without any parameters.
+     *     @type int $action
+     *           Optional. The type of action to take with the tool.
+     *     @type \Google\Protobuf\Timestamp $send_time
+     *           Optional. Time when the current suggest input is sent. For tool calls, this
+     *           timestamp (along with the answer record) will be included in the
+     *           corresponding tool call result so that it can be identified.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,12 +72,9 @@ class SuggestionInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of a suggestion selected by the human agent.
-     * The suggestion(s) were generated in a previous call to
-     * request Dialogflow assist.
-     * The format is:
-     * `projects/<Project ID>/locations/<Location ID>/answerRecords/<Answer Record
-     * ID>` where <Answer Record ID> is an alphanumeric string.
+     * Required. Format: `projects/<Project ID>/locations/<Location
+     * ID>/answerRecords/<Answer Record ID>`
+     * The answer record associated with the tool call.
      *
      * Generated from protobuf field <code>string answer_record = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -64,12 +85,9 @@ class SuggestionInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of a suggestion selected by the human agent.
-     * The suggestion(s) were generated in a previous call to
-     * request Dialogflow assist.
-     * The format is:
-     * `projects/<Project ID>/locations/<Location ID>/answerRecords/<Answer Record
-     * ID>` where <Answer Record ID> is an alphanumeric string.
+     * Required. Format: `projects/<Project ID>/locations/<Location
+     * ID>/answerRecords/<Answer Record ID>`
+     * The answer record associated with the tool call.
      *
      * Generated from protobuf field <code>string answer_record = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -79,6 +97,110 @@ class SuggestionInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->answer_record = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Parameters to be used for the tool call.  If not provided, the
+     * tool will be called without any parameters.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    public function hasParameters()
+    {
+        return isset($this->parameters);
+    }
+
+    public function clearParameters()
+    {
+        unset($this->parameters);
+    }
+
+    /**
+     * Optional. Parameters to be used for the tool call.  If not provided, the
+     * tool will be called without any parameters.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of action to take with the tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionInput.Action action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * Optional. The type of action to take with the tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionInput.Action action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAction($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SuggestionInput\Action::class);
+        $this->action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Time when the current suggest input is sent. For tool calls, this
+     * timestamp (along with the answer record) will be included in the
+     * corresponding tool call result so that it can be identified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSendTime()
+    {
+        return $this->send_time;
+    }
+
+    public function hasSendTime()
+    {
+        return isset($this->send_time);
+    }
+
+    public function clearSendTime()
+    {
+        unset($this->send_time);
+    }
+
+    /**
+     * Optional. Time when the current suggest input is sent. For tool calls, this
+     * timestamp (along with the answer record) will be included in the
+     * corresponding tool call result so that it can be identified.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp send_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSendTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->send_time = $var;
 
         return $this;
     }

@@ -23,8 +23,9 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $dialed_number = '';
     /**
-     * Optional. SDP of the call. It's initially the SDP answer to the endpoint,
-     * but maybe later updated for the purpose of making the link active, etc.
+     * Optional. SDP of the call. It's initially the SDP answer to the incoming
+     * call, but maybe later updated for the purpose of making the link active,
+     * etc.
      *
      * Generated from protobuf field <code>string sdp = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -51,8 +52,9 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
      *     @type string $dialed_number
      *           Output only. The number dialed to connect this call in E.164 format.
      *     @type string $sdp
-     *           Optional. SDP of the call. It's initially the SDP answer to the endpoint,
-     *           but maybe later updated for the purpose of making the link active, etc.
+     *           Optional. SDP of the call. It's initially the SDP answer to the incoming
+     *           call, but maybe later updated for the purpose of making the link active,
+     *           etc.
      *     @type array<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\SipHeader>|\Google\Protobuf\Internal\RepeatedField $sip_headers
      *           Output only. The SIP headers from the initial SIP INVITE.
      *     @type array<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\MimeContent>|\Google\Protobuf\Internal\RepeatedField $extra_mime_contents
@@ -91,8 +93,9 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. SDP of the call. It's initially the SDP answer to the endpoint,
-     * but maybe later updated for the purpose of making the link active, etc.
+     * Optional. SDP of the call. It's initially the SDP answer to the incoming
+     * call, but maybe later updated for the purpose of making the link active,
+     * etc.
      *
      * Generated from protobuf field <code>string sdp = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -103,8 +106,9 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. SDP of the call. It's initially the SDP answer to the endpoint,
-     * but maybe later updated for the purpose of making the link active, etc.
+     * Optional. SDP of the call. It's initially the SDP answer to the incoming
+     * call, but maybe later updated for the purpose of making the link active,
+     * etc.
      *
      * Generated from protobuf field <code>string sdp = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

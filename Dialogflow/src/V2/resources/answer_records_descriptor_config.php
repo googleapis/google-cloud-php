@@ -112,6 +112,7 @@ return [
                 'projectSession' => 'projects/{project}/agent/sessions/{session}',
                 'projectSessionContext' => 'projects/{project}/agent/sessions/{session}/contexts/{context}',
                 'session' => 'projects/{project}/agent/sessions/{session}',
+                'tool' => 'projects/{project}/locations/{location}/tools/{tool}',
             ],
         ],
     ],

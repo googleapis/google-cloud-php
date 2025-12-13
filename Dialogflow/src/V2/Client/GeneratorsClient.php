@@ -153,11 +153,31 @@ final class GeneratorsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a tool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $tool
+     *
+     * @return string The formatted tool resource.
+     */
+    public static function toolName(string $project, string $location, string $tool): string
+    {
+        return self::getPathTemplate('tool')->render([
+            'project' => $project,
+            'location' => $location,
+            'tool' => $tool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - generator: projects/{project}/locations/{location}/generators/{generator}
      * - project: projects/{project}
+     * - tool: projects/{project}/locations/{location}/tools/{tool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -29,6 +29,8 @@ class Type
     /**
      * An existing conversation has closed. This is fired when a telephone call
      * is terminated, or a conversation is closed via the API.
+     * The event is fired for every CompleteConversation call, even if the
+     * conversation is already closed.
      *
      * Generated from protobuf enum <code>CONVERSATION_FINISHED = 2;</code>
      */

@@ -91,6 +91,21 @@ class Participant extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> documents_metadata_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $documents_metadata_filters;
+    /**
+     * Optional. For tracking the utilization of prebuilt Agent Assist integration
+     * modules. This field is only inscope for Integration type that include UI
+     * Modules, Backend Modules, and Agent Desktop connector, it is out of scope
+     * for CCaaS and Direct Integration.
+     * For each human agent, prebuilt UI Modules needs to trigger the
+     * UpdateParticipant API to update this field. Both
+     * [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
+     * and
+     * [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant]
+     * will be supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.AgentDesktopSource agent_desktop_source = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $agent_desktop_source = 0;
 
     /**
      * Constructor.
@@ -154,6 +169,17 @@ class Participant extends \Google\Protobuf\Internal\Message
      *             value: "agent"
      *           }
      *           ```
+     *     @type int $agent_desktop_source
+     *           Optional. For tracking the utilization of prebuilt Agent Assist integration
+     *           modules. This field is only inscope for Integration type that include UI
+     *           Modules, Backend Modules, and Agent Desktop connector, it is out of scope
+     *           for CCaaS and Direct Integration.
+     *           For each human agent, prebuilt UI Modules needs to trigger the
+     *           UpdateParticipant API to update this field. Both
+     *           [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
+     *           and
+     *           [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant]
+     *           will be supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -379,6 +405,50 @@ class Participant extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->documents_metadata_filters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. For tracking the utilization of prebuilt Agent Assist integration
+     * modules. This field is only inscope for Integration type that include UI
+     * Modules, Backend Modules, and Agent Desktop connector, it is out of scope
+     * for CCaaS and Direct Integration.
+     * For each human agent, prebuilt UI Modules needs to trigger the
+     * UpdateParticipant API to update this field. Both
+     * [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
+     * and
+     * [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant]
+     * will be supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.AgentDesktopSource agent_desktop_source = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAgentDesktopSource()
+    {
+        return $this->agent_desktop_source;
+    }
+
+    /**
+     * Optional. For tracking the utilization of prebuilt Agent Assist integration
+     * modules. This field is only inscope for Integration type that include UI
+     * Modules, Backend Modules, and Agent Desktop connector, it is out of scope
+     * for CCaaS and Direct Integration.
+     * For each human agent, prebuilt UI Modules needs to trigger the
+     * UpdateParticipant API to update this field. Both
+     * [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant]
+     * and
+     * [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant]
+     * will be supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Participant.AgentDesktopSource agent_desktop_source = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAgentDesktopSource($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\Participant\AgentDesktopSource::class);
+        $this->agent_desktop_source = $var;
 
         return $this;
     }

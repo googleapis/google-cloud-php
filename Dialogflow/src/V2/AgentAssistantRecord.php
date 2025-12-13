@@ -29,6 +29,8 @@ class AgentAssistantRecord extends \Google\Protobuf\Internal\Message
      *           Output only. The FAQ answer.
      *     @type \Google\Cloud\Dialogflow\V2\DialogflowAssistAnswer $dialogflow_assist_answer
      *           Output only. Dialogflow assist answer.
+     *     @type \Google\Cloud\Dialogflow\V2\GeneratorSuggestion $generator_suggestion
+     *           Output only. The generator suggestion.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +127,37 @@ class AgentAssistantRecord extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\DialogflowAssistAnswer::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The generator suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GeneratorSuggestion generator_suggestion = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dialogflow\V2\GeneratorSuggestion|null
+     */
+    public function getGeneratorSuggestion()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasGeneratorSuggestion()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Output only. The generator suggestion.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GeneratorSuggestion generator_suggestion = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dialogflow\V2\GeneratorSuggestion $var
+     * @return $this
+     */
+    public function setGeneratorSuggestion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\GeneratorSuggestion::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

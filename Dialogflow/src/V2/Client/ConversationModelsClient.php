@@ -190,8 +190,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted conversation_dataset resource.
      */
-    public static function conversationDatasetName(string $project, string $location, string $conversationDataset): string
-    {
+    public static function conversationDatasetName(
+        string $project,
+        string $location,
+        string $conversationDataset
+    ): string {
         return self::getPathTemplate('conversationDataset')->render([
             'project' => $project,
             'location' => $location,
@@ -228,8 +231,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted conversation_model_evaluation resource.
      */
-    public static function conversationModelEvaluationName(string $project, string $conversationModel, string $evaluation): string
-    {
+    public static function conversationModelEvaluationName(
+        string $project,
+        string $conversationModel,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('conversationModelEvaluation')->render([
             'project' => $project,
             'conversation_model' => $conversationModel,
@@ -283,8 +289,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_conversation_model_evaluation resource.
      */
-    public static function projectConversationModelEvaluationName(string $project, string $conversationModel, string $evaluation): string
-    {
+    public static function projectConversationModelEvaluationName(
+        string $project,
+        string $conversationModel,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('projectConversationModelEvaluation')->render([
             'project' => $project,
             'conversation_model' => $conversationModel,
@@ -302,8 +311,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_knowledge_base_document resource.
      */
-    public static function projectKnowledgeBaseDocumentName(string $project, string $knowledgeBase, string $document): string
-    {
+    public static function projectKnowledgeBaseDocumentName(
+        string $project,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectKnowledgeBaseDocument')->render([
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
@@ -321,8 +333,11 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_location_conversation_model resource.
      */
-    public static function projectLocationConversationModelName(string $project, string $location, string $conversationModel): string
-    {
+    public static function projectLocationConversationModelName(
+        string $project,
+        string $location,
+        string $conversationModel
+    ): string {
         return self::getPathTemplate('projectLocationConversationModel')->render([
             'project' => $project,
             'location' => $location,
@@ -341,8 +356,12 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_location_conversation_model_evaluation resource.
      */
-    public static function projectLocationConversationModelEvaluationName(string $project, string $location, string $conversationModel, string $evaluation): string
-    {
+    public static function projectLocationConversationModelEvaluationName(
+        string $project,
+        string $location,
+        string $conversationModel,
+        string $evaluation
+    ): string {
         return self::getPathTemplate('projectLocationConversationModelEvaluation')->render([
             'project' => $project,
             'location' => $location,
@@ -362,8 +381,12 @@ final class ConversationModelsClient
      *
      * @return string The formatted project_location_knowledge_base_document resource.
      */
-    public static function projectLocationKnowledgeBaseDocumentName(string $project, string $location, string $knowledgeBase, string $document): string
-    {
+    public static function projectLocationKnowledgeBaseDocumentName(
+        string $project,
+        string $location,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBaseDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -522,8 +545,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversationModel(CreateConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConversationModel(
+        CreateConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConversationModel', $request, $callOptions)->wait();
     }
 
@@ -549,8 +574,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversationModelEvaluation(CreateConversationModelEvaluationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConversationModelEvaluation(
+        CreateConversationModelEvaluationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConversationModelEvaluation', $request, $callOptions)->wait();
     }
 
@@ -585,8 +612,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConversationModel(DeleteConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConversationModel(
+        DeleteConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConversationModel', $request, $callOptions)->wait();
     }
 
@@ -624,8 +653,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deployConversationModel(DeployConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deployConversationModel(
+        DeployConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeployConversationModel', $request, $callOptions)->wait();
     }
 
@@ -651,8 +682,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConversationModel(GetConversationModelRequest $request, array $callOptions = []): ConversationModel
-    {
+    public function getConversationModel(
+        GetConversationModelRequest $request,
+        array $callOptions = []
+    ): ConversationModel {
         return $this->startApiCall('GetConversationModel', $request, $callOptions)->wait();
     }
 
@@ -678,8 +711,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConversationModelEvaluation(GetConversationModelEvaluationRequest $request, array $callOptions = []): ConversationModelEvaluation
-    {
+    public function getConversationModelEvaluation(
+        GetConversationModelEvaluationRequest $request,
+        array $callOptions = []
+    ): ConversationModelEvaluation {
         return $this->startApiCall('GetConversationModelEvaluation', $request, $callOptions)->wait();
     }
 
@@ -705,8 +740,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversationModelEvaluations(ListConversationModelEvaluationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversationModelEvaluations(
+        ListConversationModelEvaluationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversationModelEvaluations', $request, $callOptions);
     }
 
@@ -732,8 +769,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversationModels(ListConversationModelsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversationModels(
+        ListConversationModelsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversationModels', $request, $callOptions);
     }
 
@@ -771,8 +810,10 @@ final class ConversationModelsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function undeployConversationModel(UndeployConversationModelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function undeployConversationModel(
+        UndeployConversationModelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UndeployConversationModel', $request, $callOptions)->wait();
     }
 
