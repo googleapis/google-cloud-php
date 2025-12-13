@@ -1,5 +1,159 @@
 # Changelog
 
+## 0.314.0
+
+<details><summary>googleads/ad-manager 0.6.0</summary>
+
+
+
+### Features
+
+* [AdsAdManager] Added proto3 optional to Network primitive fields ([#8791](https://github.com/googleapis/google-cloud-php/issues/8791)) ([935c543](https://github.com/googleapis/google-cloud-php/commit/935c543aaed0177f4f7b16520b25de87bc662a86))
+
+</details>
+
+<details><summary>googleads/data-manager 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce AdsDataManager ([#8786](https://github.com/googleapis/google-cloud-php/issues/8786)) ([49c0e47](https://github.com/googleapis/google-cloud-php/commit/49c0e47aa0089213240f3b8c8a33cb88d4ab9371))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.47.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add streaming function call argument API changes ([#8794](https://github.com/googleapis/google-cloud-php/issues/8794)) ([4c8b67b](https://github.com/googleapis/google-cloud-php/commit/4c8b67b975a243e766546c0163bf94baa7595d07))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.6.2</summary>
+
+
+
+### Documentation
+
+* [AlloyDb] Clarify that [initial_user](http://_vscodecontentref_/3) is not required in Cluster ([#8789](https://github.com/googleapis/google-cloud-php/issues/8789)) ([5d20399](https://github.com/googleapis/google-cloud-php/commit/5d20399798983fd065548bb5a035f3f2fcd944e0))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.34.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce DatabaseCenter ([#8787](https://github.com/googleapis/google-cloud-php/issues/8787)) ([1ae41ce](https://github.com/googleapis/google-cloud-php/commit/1ae41cecbb9d6d032b4ae9994c6a4d4f43b31346))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.3.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] updated v2 dialogflow client libraries ([#8802](https://github.com/googleapis/google-cloud-php/issues/8802)) ([e6e1b7b](https://github.com/googleapis/google-cloud-php/commit/e6e1b7b5dd1cce02a6fd46df827302633676deae))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.9.1</summary>
+
+
+
+### Documentation
+
+* [Dlp] add messages stating that Data Catalog actions are deprecated ([#8795](https://github.com/googleapis/google-cloud-php/issues/8795)) ([fd5c3c9](https://github.com/googleapis/google-cloud-php/commit/fd5c3c960a702463d9472ad672fe9787d0d443ce))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.55.0</summary>
+
+
+
+### Features
+
+* [Firestore] publish the pipelines API to the stable branch ([#8781](https://github.com/googleapis/google-cloud-php/issues/8781)) ([1063e3c](https://github.com/googleapis/google-cloud-php/commit/1063e3c486d239e18279c93569f39dad37dfc4ce))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.5.0</summary>
+
+
+
+### Features
+
+* [GeminiDataAnalytics] add a QueryData API for NL2SQL conversion ([#8796](https://github.com/googleapis/google-cloud-php/issues/8796)) ([36f9aa0](https://github.com/googleapis/google-cloud-php/commit/36f9aa06c6a4d84ea6b82f163dde252911358d31))
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce HypercomputeCluster ([#8788](https://github.com/googleapis/google-cloud-php/issues/8788)) ([a2aaac6](https://github.com/googleapis/google-cloud-php/commit/a2aaac651599858ef06db7153ae79d07b20b6e80))
+
+</details>
+
+<details><summary>google/cloud-language 1.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-maintenance 0.3.0</summary>
+
+
+
+### Features
+
+* **Maintenance:** Add Maintenance V1 ([#8798](https://github.com/googleapis/google-cloud-php/issues/8798)) ([65b255b](https://github.com/googleapis/google-cloud-php/commit/65b255bd8550bb41b87410e681326831e037bd78))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.16.1</summary>
+
+
+
+### Documentation
+
+* [PubSub] Add the IDENTIFIER field behavior annotation to fields of Cloud Pub/Sub methods that represent a specific identity and need to be sourced with additional care ([#8780](https://github.com/googleapis/google-cloud-php/issues/8780)) ([b550805](https://github.com/googleapis/google-cloud-php/commit/b550805ccca45390b109585025dae03b474a6e9e))
+
+</details>
+
+<details><summary>google/cloud-run 1.11.0</summary>
+
+
+
+### Features
+
+* [Run] add SourceCode proto to Run container config ([#8782](https://github.com/googleapis/google-cloud-php/issues/8782)) ([3b11505](https://github.com/googleapis/google-cloud-php/commit/3b115052f7832a5fb036857fdc3cfd1ce200a539))
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations 0.3.0</summary>
+
+
+
+### Features
+
+* [StorageBatchOperations] Add support for creating Job resource in dry-run mode ([#8803](https://github.com/googleapis/google-cloud-php/issues/8803)) ([2d9d201](https://github.com/googleapis/google-cloud-php/commit/2d9d201f3739db747ddddb226e91fc9346f6e163))
+
+</details>
+
 ## 0.313.0
 
 <details><summary>google/cloud-ai-platform 1.46.0</summary>
