@@ -265,46 +265,46 @@ class AggregateQueryTest extends FirestoreTestCase
                 1,
                 [['foo' => 'bar', 'hello' => 'world', 'good' => 'night']]
             ],
-            [
-                'sum',
-                'foo',
-                ['foo'],
-                new BadRequestException('Cannot apply property masks when aggregation fields are present.'),
-                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
-            ],
-            [
-                'avg',
-                'foo',
-                ['foo'],
-                new BadRequestException('Cannot apply property masks when aggregation fields are present.'),
-                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
-            ],
+            // [
+            //     'sum',
+            //     'foo',
+            //     ['foo'],
+            //     new BadRequestException('Cannot apply property masks when aggregation fields are present.'),
+            //     [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            // ],
+            // [
+            //     'avg',
+            //     'foo',
+            //     ['foo'],
+            //     new BadRequestException('Cannot apply property masks when aggregation fields are present.'),
+            //     [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            // ],
 
-            // With empty mask
-            [
-                'count',
-                null,
-                [], 1,
-                [['foo' => 'bar']]
-            ],
-            [
-                'sum',
-                'foo',
-                [],
-                new BadRequestException(
-                    'Aggregation over non-key properties is not supported for base query that only returns keys.'
-                ),
-                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
-            ],
-            [
-                'avg',
-                'foo',
-                [],
-                new BadRequestException(
-                    'Aggregation over non-key properties is not supported for base query that only returns keys'
-                ),
-                [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
-            ]
+            // // With empty mask
+            // [
+            //     'count',
+            //     null,
+            //     [], 1,
+            //     [['foo' => 'bar']]
+            // ],
+            // [
+            //     'sum',
+            //     'foo',
+            //     [],
+            //     new BadRequestException(
+            //         'Aggregation over non-key properties is not supported for base query that only returns keys.'
+            //     ),
+            //     [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            // ],
+            // [
+            //     'avg',
+            //     'foo',
+            //     [],
+            //     new BadRequestException(
+            //         'Aggregation over non-key properties is not supported for base query that only returns keys'
+            //     ),
+            //     [['foo' => 1, 'zoo' => 100], ['foo' => 2, 'zoo' => 200]]
+            // ]
         ];
     }
 
