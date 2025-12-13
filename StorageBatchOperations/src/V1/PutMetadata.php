@@ -45,19 +45,16 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
     protected $content_language = null;
     /**
      * Optional. Updates objects Content-Type fixed metadata. Unset values will be
-     * ignored.
-     *  Set empty values to clear the metadata. Refer to documentation in
-     *  https://cloud.google.com/storage/docs/metadata#content-type
+     * ignored. Set empty values to clear the metadata. Refer to documentation in
+     * https://cloud.google.com/storage/docs/metadata#content-type
      *
      * Generated from protobuf field <code>optional string content_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $content_type = null;
     /**
      * Optional. Updates objects Cache-Control fixed metadata. Unset values will
-     * be
-     *  ignored. Set empty values to clear the metadata.
-     *  Additionally, the value for Custom-Time cannot decrease. Refer to
-     *  documentation in
+     * be ignored. Set empty values to clear the metadata. Additionally, the value
+     * for Custom-Time cannot decrease. Refer to documentation in
      * https://cloud.google.com/storage/docs/metadata#caching_data.
      *
      * Generated from protobuf field <code>optional string cache_control = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -81,6 +78,16 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> custom_metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_metadata;
+    /**
+     * Optional. Updates objects retention lock configuration. Unset values will
+     * be ignored. Set empty values to clear the retention for the object with
+     * existing `Unlocked` retention mode. Object with existing `Locked` retention
+     * mode cannot be cleared or reduce retain_until_time. Refer to documentation
+     * in https://cloud.google.com/storage/docs/object-lock
+     *
+     * Generated from protobuf field <code>optional .google.cloud.storagebatchoperations.v1.ObjectRetention object_retention = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $object_retention = null;
 
     /**
      * Constructor.
@@ -106,15 +113,12 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/storage/docs/metadata#content-language.
      *     @type string $content_type
      *           Optional. Updates objects Content-Type fixed metadata. Unset values will be
-     *           ignored.
-     *            Set empty values to clear the metadata. Refer to documentation in
-     *            https://cloud.google.com/storage/docs/metadata#content-type
+     *           ignored. Set empty values to clear the metadata. Refer to documentation in
+     *           https://cloud.google.com/storage/docs/metadata#content-type
      *     @type string $cache_control
      *           Optional. Updates objects Cache-Control fixed metadata. Unset values will
-     *           be
-     *            ignored. Set empty values to clear the metadata.
-     *            Additionally, the value for Custom-Time cannot decrease. Refer to
-     *            documentation in
+     *           be ignored. Set empty values to clear the metadata. Additionally, the value
+     *           for Custom-Time cannot decrease. Refer to documentation in
      *           https://cloud.google.com/storage/docs/metadata#caching_data.
      *     @type string $custom_time
      *           Optional. Updates objects Custom-Time fixed metadata. Unset values will be
@@ -126,6 +130,12 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
      *           metadata values will have its value cleared. Existing custom metadata not
      *           specified with this flag is not changed. Refer to documentation in
      *           https://cloud.google.com/storage/docs/metadata#custom-metadata
+     *     @type \Google\Cloud\StorageBatchOperations\V1\ObjectRetention $object_retention
+     *           Optional. Updates objects retention lock configuration. Unset values will
+     *           be ignored. Set empty values to clear the retention for the object with
+     *           existing `Unlocked` retention mode. Object with existing `Locked` retention
+     *           mode cannot be cleared or reduce retain_until_time. Refer to documentation
+     *           in https://cloud.google.com/storage/docs/object-lock
      * }
      */
     public function __construct($data = NULL) {
@@ -263,9 +273,8 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Updates objects Content-Type fixed metadata. Unset values will be
-     * ignored.
-     *  Set empty values to clear the metadata. Refer to documentation in
-     *  https://cloud.google.com/storage/docs/metadata#content-type
+     * ignored. Set empty values to clear the metadata. Refer to documentation in
+     * https://cloud.google.com/storage/docs/metadata#content-type
      *
      * Generated from protobuf field <code>optional string content_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -287,9 +296,8 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Updates objects Content-Type fixed metadata. Unset values will be
-     * ignored.
-     *  Set empty values to clear the metadata. Refer to documentation in
-     *  https://cloud.google.com/storage/docs/metadata#content-type
+     * ignored. Set empty values to clear the metadata. Refer to documentation in
+     * https://cloud.google.com/storage/docs/metadata#content-type
      *
      * Generated from protobuf field <code>optional string content_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -305,10 +313,8 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Updates objects Cache-Control fixed metadata. Unset values will
-     * be
-     *  ignored. Set empty values to clear the metadata.
-     *  Additionally, the value for Custom-Time cannot decrease. Refer to
-     *  documentation in
+     * be ignored. Set empty values to clear the metadata. Additionally, the value
+     * for Custom-Time cannot decrease. Refer to documentation in
      * https://cloud.google.com/storage/docs/metadata#caching_data.
      *
      * Generated from protobuf field <code>optional string cache_control = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -331,10 +337,8 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Updates objects Cache-Control fixed metadata. Unset values will
-     * be
-     *  ignored. Set empty values to clear the metadata.
-     *  Additionally, the value for Custom-Time cannot decrease. Refer to
-     *  documentation in
+     * be ignored. Set empty values to clear the metadata. Additionally, the value
+     * for Custom-Time cannot decrease. Refer to documentation in
      * https://cloud.google.com/storage/docs/metadata#caching_data.
      *
      * Generated from protobuf field <code>optional string cache_control = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -419,6 +423,50 @@ class PutMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->custom_metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Updates objects retention lock configuration. Unset values will
+     * be ignored. Set empty values to clear the retention for the object with
+     * existing `Unlocked` retention mode. Object with existing `Locked` retention
+     * mode cannot be cleared or reduce retain_until_time. Refer to documentation
+     * in https://cloud.google.com/storage/docs/object-lock
+     *
+     * Generated from protobuf field <code>optional .google.cloud.storagebatchoperations.v1.ObjectRetention object_retention = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\StorageBatchOperations\V1\ObjectRetention|null
+     */
+    public function getObjectRetention()
+    {
+        return $this->object_retention;
+    }
+
+    public function hasObjectRetention()
+    {
+        return isset($this->object_retention);
+    }
+
+    public function clearObjectRetention()
+    {
+        unset($this->object_retention);
+    }
+
+    /**
+     * Optional. Updates objects retention lock configuration. Unset values will
+     * be ignored. Set empty values to clear the retention for the object with
+     * existing `Unlocked` retention mode. Object with existing `Locked` retention
+     * mode cannot be cleared or reduce retain_until_time. Refer to documentation
+     * in https://cloud.google.com/storage/docs/object-lock
+     *
+     * Generated from protobuf field <code>optional .google.cloud.storagebatchoperations.v1.ObjectRetention object_retention = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\StorageBatchOperations\V1\ObjectRetention $var
+     * @return $this
+     */
+    public function setObjectRetention($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageBatchOperations\V1\ObjectRetention::class);
+        $this->object_retention = $var;
 
         return $this;
     }

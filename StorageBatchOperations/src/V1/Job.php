@@ -74,6 +74,14 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.storagebatchoperations.v1.Job.State state = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
+    /**
+     * Optional. If true, the job will run in dry run mode, returning the total
+     * object count and, if the object configuration is a prefix list, the bytes
+     * found from source. No transformations will be performed.
+     *
+     * Generated from protobuf field <code>bool dry_run = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dry_run = false;
     protected $source;
     protected $transformation;
 
@@ -118,6 +126,10 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. Summarizes errors encountered with sample error log entries.
      *     @type int $state
      *           Output only. State of the job.
+     *     @type bool $dry_run
+     *           Optional. If true, the job will run in dry run mode, returning the total
+     *           object count and, if the object configuration is a prefix list, the bytes
+     *           found from source. No transformations will be performed.
      * }
      */
     public function __construct($data = NULL) {
@@ -574,6 +586,36 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\StorageBatchOperations\V1\Job\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the job will run in dry run mode, returning the total
+     * object count and, if the object configuration is a prefix list, the bytes
+     * found from source. No transformations will be performed.
+     *
+     * Generated from protobuf field <code>bool dry_run = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDryRun()
+    {
+        return $this->dry_run;
+    }
+
+    /**
+     * Optional. If true, the job will run in dry run mode, returning the total
+     * object count and, if the object configuration is a prefix list, the bytes
+     * found from source. No transformations will be performed.
+     *
+     * Generated from protobuf field <code>bool dry_run = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDryRun($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dry_run = $var;
 
         return $this;
     }
