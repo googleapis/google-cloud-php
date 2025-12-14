@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Enum that represents an event in the payment transaction lifecycle.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.TransactionEvent.TransactionEventType</code>
  */

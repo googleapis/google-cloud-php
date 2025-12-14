@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Enum that represents the types of invalid token reasons.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.TokenProperties.InvalidReason</code>
  */
@@ -56,6 +57,18 @@ class InvalidReason
      * Generated from protobuf enum <code>BROWSER_ERROR = 6;</code>
      */
     const BROWSER_ERROR = 6;
+    /**
+     * The action provided at token generation was different than
+     * the `expected_action` in the assessment request. The comparison is
+     * case-insensitive. This reason can only be returned if all of the
+     * following are true:
+     *   - your `site_key` has the POLICY_BASED_CHALLENGE integration type
+     *   - you set an action score threshold higher than 0.0
+     *   - you provided a non-empty `expected_action`
+     *
+     * Generated from protobuf enum <code>UNEXPECTED_ACTION = 7;</code>
+     */
+    const UNEXPECTED_ACTION = 7;
 
     private static $valueToName = [
         self::INVALID_REASON_UNSPECIFIED => 'INVALID_REASON_UNSPECIFIED',
@@ -65,6 +78,7 @@ class InvalidReason
         self::DUPE => 'DUPE',
         self::MISSING => 'MISSING',
         self::BROWSER_ERROR => 'BROWSER_ERROR',
+        self::UNEXPECTED_ACTION => 'UNEXPECTED_ACTION',
     ];
 
     public static function name($value)

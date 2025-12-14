@@ -9,6 +9,7 @@ use UnexpectedValueException;
 /**
  * Supported WAF features. For more information, see
  * https://cloud.google.com/recaptcha/docs/usecase#comparison_of_features.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.WafSettings.WafFeature</code>
  */
@@ -40,10 +41,9 @@ class WafFeature
      */
     const ACTION_TOKEN = 3;
     /**
-     * Use reCAPTCHA WAF express protection to protect any content other than
-     * web pages, like APIs and IoT devices.
+     * Deprecated: Use `express_settings` instead.
      *
-     * Generated from protobuf enum <code>EXPRESS = 5;</code>
+     * Generated from protobuf enum <code>EXPRESS = 5 [deprecated = true];</code>
      */
     const EXPRESS = 5;
 

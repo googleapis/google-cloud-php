@@ -9,6 +9,7 @@ use UnexpectedValueException;
 /**
  * Enum that represents the possible challenge frequency and difficulty
  * configurations for a web key.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference</code>
  */

@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Labels returned by account defender for this request.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountDefenderLabel</code>
  */

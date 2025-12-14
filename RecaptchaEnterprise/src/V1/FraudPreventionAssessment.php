@@ -24,6 +24,13 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
      */
     protected $transaction_risk = 0.0;
     /**
+     * Output only. Reasons why the transaction is probably fraudulent and
+     * received a high transaction risk score.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason risk_reasons = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $risk_reasons;
+    /**
      * Output only. Assessment of this transaction for risk of a stolen
      * instrument.
      *
@@ -54,6 +61,9 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
      *           Output only. Probability of this transaction being fraudulent. Summarizes
      *           the combined risk of attack vectors below. Values are from 0.0 (lowest)
      *           to 1.0 (highest).
+     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason>|\Google\Protobuf\Internal\RepeatedField $risk_reasons
+     *           Output only. Reasons why the transaction is probably fraudulent and
+     *           received a high transaction risk score.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\StolenInstrumentVerdict $stolen_instrument_verdict
      *           Output only. Assessment of this transaction for risk of a stolen
      *           instrument.
@@ -95,6 +105,34 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->transaction_risk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reasons why the transaction is probably fraudulent and
+     * received a high transaction risk score.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason risk_reasons = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRiskReasons()
+    {
+        return $this->risk_reasons;
+    }
+
+    /**
+     * Output only. Reasons why the transaction is probably fraudulent and
+     * received a high transaction risk score.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason risk_reasons = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRiskReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason::class);
+        $this->risk_reasons = $arr;
 
         return $this;
     }
