@@ -15,14 +15,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     * Output only. [Output only] ASNs in the path segment. When type is SEQUENCE, these are
      * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
      */
     private $asns;
     /**
-     * [Output only] ASNs in the path segment. This field is for better
+     * Output only. [Output only] ASNs in the path segment. This field is for better
      * support of 32 bit ASNs as the other asns field suffers from overflow when
      * the ASN is larger. When type is SEQUENCE, these are ordered.
      *
@@ -30,7 +30,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      */
     private $asns32;
     /**
-     * [Output only] Type of AS-PATH segment (SEQUENCE or SET)
+     * Output only. [Output only] Type of AS-PATH segment (SEQUENCE or SET)
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -44,14 +44,14 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $asns
-     *           [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     *           Output only. [Output only] ASNs in the path segment. When type is SEQUENCE, these are
      *           ordered.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $asns32
-     *           [Output only] ASNs in the path segment. This field is for better
+     *           Output only. [Output only] ASNs in the path segment. This field is for better
      *           support of 32 bit ASNs as the other asns field suffers from overflow when
      *           the ASN is larger. When type is SEQUENCE, these are ordered.
      *     @type string $type
-     *           [Output only] Type of AS-PATH segment (SEQUENCE or SET)
+     *           Output only. [Output only] Type of AS-PATH segment (SEQUENCE or SET)
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -61,7 +61,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     * Output only. [Output only] ASNs in the path segment. When type is SEQUENCE, these are
      * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
@@ -73,7 +73,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] ASNs in the path segment. When type is SEQUENCE, these are
+     * Output only. [Output only] ASNs in the path segment. When type is SEQUENCE, these are
      * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
@@ -89,7 +89,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] ASNs in the path segment. This field is for better
+     * Output only. [Output only] ASNs in the path segment. This field is for better
      * support of 32 bit ASNs as the other asns field suffers from overflow when
      * the ASN is larger. When type is SEQUENCE, these are ordered.
      *
@@ -102,7 +102,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] ASNs in the path segment. This field is for better
+     * Output only. [Output only] ASNs in the path segment. This field is for better
      * support of 32 bit ASNs as the other asns field suffers from overflow when
      * the ASN is larger. When type is SEQUENCE, these are ordered.
      *
@@ -119,7 +119,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of AS-PATH segment (SEQUENCE or SET)
+     * Output only. [Output only] Type of AS-PATH segment (SEQUENCE or SET)
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -141,7 +141,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of AS-PATH segment (SEQUENCE or SET)
+     * Output only. [Output only] Type of AS-PATH segment (SEQUENCE or SET)
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

@@ -15,13 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceConsumptionData extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resources consumed by the instance.
+     * Output only. Resources consumed by the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumption_info = 146354898;</code>
      */
     protected $consumption_info = null;
     /**
-     * Server-defined URL for the instance.
+     * Output only. Server-defined URL for the instance.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
@@ -34,9 +34,9 @@ class InstanceConsumptionData extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InstanceConsumptionInfo $consumption_info
-     *           Resources consumed by the instance.
+     *           Output only. Resources consumed by the instance.
      *     @type string $instance
-     *           Server-defined URL for the instance.
+     *           Output only. Server-defined URL for the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class InstanceConsumptionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resources consumed by the instance.
+     * Output only. Resources consumed by the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumption_info = 146354898;</code>
      * @return \Google\Cloud\Compute\V1\InstanceConsumptionInfo|null
@@ -66,7 +66,7 @@ class InstanceConsumptionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resources consumed by the instance.
+     * Output only. Resources consumed by the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumption_info = 146354898;</code>
      * @param \Google\Cloud\Compute\V1\InstanceConsumptionInfo $var
@@ -81,7 +81,7 @@ class InstanceConsumptionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Server-defined URL for the instance.
+     * Output only. Server-defined URL for the instance.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
@@ -102,7 +102,7 @@ class InstanceConsumptionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Server-defined URL for the instance.
+     * Output only. Server-defined URL for the instance.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var

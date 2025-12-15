@@ -29,7 +29,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetHttpProxy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -73,7 +73,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of resource. Always compute#targetHttpProxy
+     * Output only. [Output Only] Type of resource. Always compute#targetHttpProxy
      * for target HTTP proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -106,7 +106,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     protected $proxy_bind = null;
     /**
-     * [Output Only] URL of the region where the regional Target HTTP Proxy
+     * Output only. [Output Only] URL of the region where the regional Target HTTP Proxy
      * resides. This field is not applicable to global Target HTTP Proxies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -133,7 +133,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -157,7 +157,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#targetHttpProxy
+     *           Output only. [Output Only] Type of resource. Always compute#targetHttpProxy
      *           for target HTTP proxies.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
@@ -178,7 +178,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      *           requests when it receives them.
      *           The default is false.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional Target HTTP Proxy
+     *           Output only. [Output Only] URL of the region where the regional Target HTTP Proxy
      *           resides. This field is not applicable to global Target HTTP Proxies.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -193,7 +193,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -215,7 +215,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -401,7 +401,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#targetHttpProxy
+     * Output only. [Output Only] Type of resource. Always compute#targetHttpProxy
      * for target HTTP proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -423,7 +423,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#targetHttpProxy
+     * Output only. [Output Only] Type of resource. Always compute#targetHttpProxy
      * for target HTTP proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -539,7 +539,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional Target HTTP Proxy
+     * Output only. [Output Only] URL of the region where the regional Target HTTP Proxy
      * resides. This field is not applicable to global Target HTTP Proxies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -561,7 +561,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional Target HTTP Proxy
+     * Output only. [Output Only] URL of the region where the regional Target HTTP Proxy
      * resides. This field is not applicable to global Target HTTP Proxies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>

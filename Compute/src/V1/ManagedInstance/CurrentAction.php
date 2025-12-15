@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ManagedInstance;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current action that the managed instance group has
+ * Output only. [Output Only] The current action that the managed instance group has
  * scheduled for the instance. Possible values:
  *    - NONE The instance is running, and the managed
  *    instance group does not have any scheduled actions for this instance.

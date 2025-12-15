@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterInterface;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The resource that configures and manages this interface.
+ * Output only. [Output Only] The resource that configures and manages this interface.
  *    - MANAGED_BY_USER is the default value and can be managed directly
  *    by users.
  *    - MANAGED_BY_ATTACHMENT is an interface that is configured and

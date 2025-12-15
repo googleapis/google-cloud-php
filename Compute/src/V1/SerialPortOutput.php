@@ -22,7 +22,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      */
     protected $contents = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -37,7 +37,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      */
     protected $next = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -63,14 +63,14 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      *     @type string $contents
      *           [Output Only] The contents of the console output.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
      *     @type int|string $next
      *           [Output Only] The position of the next byte of content, regardless of
      *           whether the content exists, following the output returned in the `contents`
      *           property. Use this value in the next request as the start
      *           parameter.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type int|string $start
      *           The starting byte position of the output that was returned.
      *           This should match the start parameter sent with the request.
@@ -122,7 +122,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -143,7 +143,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#serialPortOutput for serial port output.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -200,7 +200,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -221,7 +221,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

@@ -60,7 +60,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -72,7 +72,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     protected $local_ssd_gb = null;
     /**
-     * [Output Only] Maximum number of VMs that can be created for this node type.
+     * Output only. [Output Only] Maximum number of VMs that can be created for this node type.
      *
      * Generated from protobuf field <code>optional int32 max_vms = 307579713;</code>
      */
@@ -91,13 +91,13 @@ class NodeType extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] The name of the zone where the node type resides,
+     * Output only. [Output Only] The name of the zone where the node type resides,
      * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -126,20 +126,20 @@ class NodeType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
+     *           Output only. [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *     @type int $local_ssd_gb
      *           [Output Only] Local SSD available to the node type, defined in GB.
      *     @type int $max_vms
-     *           [Output Only] Maximum number of VMs that can be created for this node type.
+     *           Output only. [Output Only] Maximum number of VMs that can be created for this node type.
      *     @type int $memory_mb
      *           [Output Only] The amount of physical memory available to the node type,
      *           defined in MB.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $zone
-     *           [Output Only] The name of the zone where the node type resides,
+     *           Output only. [Output Only] The name of the zone where the node type resides,
      *           such as us-central1-a.
      * }
      */
@@ -371,7 +371,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -392,7 +392,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#nodeType for node types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -443,7 +443,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum number of VMs that can be created for this node type.
+     * Output only. [Output Only] Maximum number of VMs that can be created for this node type.
      *
      * Generated from protobuf field <code>optional int32 max_vms = 307579713;</code>
      * @return int
@@ -464,7 +464,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum number of VMs that can be created for this node type.
+     * Output only. [Output Only] Maximum number of VMs that can be created for this node type.
      *
      * Generated from protobuf field <code>optional int32 max_vms = 307579713;</code>
      * @param int $var
@@ -553,7 +553,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -574,7 +574,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -589,7 +589,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node type resides,
+     * Output only. [Output Only] The name of the zone where the node type resides,
      * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -611,7 +611,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node type resides,
+     * Output only. [Output Only] The name of the zone where the node type resides,
      * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>

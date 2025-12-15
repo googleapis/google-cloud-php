@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Reference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Type of the resource. Always compute#reference
+     * Output only. [Output Only] Type of the resource. Always compute#reference
      * for references.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -50,7 +50,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#reference
+     *           Output only. [Output Only] Type of the resource. Always compute#reference
      *           for references.
      *     @type string $reference_type
      *           A description of the reference type with no implied semantics. Possible
@@ -68,7 +68,7 @@ class Reference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#reference
+     * Output only. [Output Only] Type of the resource. Always compute#reference
      * for references.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -90,7 +90,7 @@ class Reference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#reference
+     * Output only. [Output Only] Type of the resource. Always compute#reference
      * for references.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

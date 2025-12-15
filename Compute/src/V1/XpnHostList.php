@@ -27,7 +27,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Always compute#xpnHostList for
+     * Output only. [Output Only] Type of resource. Always compute#xpnHostList for
      * lists of shared VPC hosts.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -44,7 +44,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -67,7 +67,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\Project>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output Only] A list of shared VPC host project URLs.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#xpnHostList for
+     *           Output only. [Output Only] Type of resource. Always compute#xpnHostList for
      *           lists of shared VPC hosts.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -76,7 +76,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -149,7 +149,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#xpnHostList for
+     * Output only. [Output Only] Type of resource. Always compute#xpnHostList for
      * lists of shared VPC hosts.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -171,7 +171,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#xpnHostList for
+     * Output only. [Output Only] Type of resource. Always compute#xpnHostList for
      * lists of shared VPC hosts.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -231,7 +231,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -252,7 +252,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

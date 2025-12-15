@@ -25,7 +25,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      */
     private $allowed;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -71,14 +71,14 @@ class Firewall extends \Google\Protobuf\Internal\Message
      */
     protected $disabled = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#firewall
+     * Output only. [Output Only] Type of the resource. Always compute#firewall
      * for firewall rules.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -222,7 +222,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *           The list of ALLOW rules specified by this firewall. Each rule specifies a
      *           protocol and port-range tuple that describes a permitted connection.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type array<\Google\Cloud\Compute\V1\Denied>|\Google\Protobuf\Internal\RepeatedField $denied
      *           The list of DENY rules specified by this firewall. Each rule specifies a
@@ -244,10 +244,10 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *           firewall rule is not enforced and the network behaves as if it did not
      *           exist. If this is unspecified, the firewall rule will be enabled.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#firewall
+     *           Output only. [Output Only] Type of the resource. Always compute#firewall
      *           for firewall rules.
      *     @type \Google\Cloud\Compute\V1\FirewallLogConfig $log_config
      *           This field denotes the logging options for a particular firewall rule. If
@@ -368,7 +368,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -390,7 +390,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -584,7 +584,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -606,7 +606,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -622,7 +622,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#firewall
+     * Output only. [Output Only] Type of the resource. Always compute#firewall
      * for firewall rules.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -644,7 +644,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#firewall
+     * Output only. [Output Only] Type of the resource. Always compute#firewall
      * for firewall rules.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

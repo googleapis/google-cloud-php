@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of all drain IP:port-range mappings assigned to this interface
+     * Output only. List of all drain IP:port-range mappings assigned to this interface
      * by this rule.
      * These ranges are inclusive, that is, both the first and the last
      * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
@@ -26,7 +26,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
      */
     private $drain_nat_ip_port_ranges;
     /**
-     * A list of all IP:port-range mappings assigned to this interface by this
+     * Output only. A list of all IP:port-range mappings assigned to this interface by this
      * rule.
      * These ranges are inclusive, that is, both the first and the last
      * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
@@ -36,7 +36,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
      */
     private $nat_ip_port_ranges;
     /**
-     * Total number of drain ports across all NAT IPs allocated to this
+     * Output only. Total number of drain ports across all NAT IPs allocated to this
      * interface by this rule.
      * It equals the aggregated port number in the field
      * drain_nat_ip_port_ranges.
@@ -45,7 +45,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
      */
     protected $num_total_drain_nat_ports = null;
     /**
-     * Total number of ports across all NAT IPs allocated to this interface
+     * Output only. Total number of ports across all NAT IPs allocated to this interface
      * by this rule.
      * It equals the aggregated port number in the field nat_ip_port_ranges.
      *
@@ -53,7 +53,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
      */
     protected $num_total_nat_ports = null;
     /**
-     * Rule number of the NAT Rule.
+     * Output only. Rule number of the NAT Rule.
      *
      * Generated from protobuf field <code>optional int32 rule_number = 535211500;</code>
      */
@@ -66,28 +66,28 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ip_port_ranges
-     *           List of all drain IP:port-range mappings assigned to this interface
+     *           Output only. List of all drain IP:port-range mappings assigned to this interface
      *           by this rule.
      *           These ranges are inclusive, that is, both the first and the last
      *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
      *           "1.1.1.1:2234-2234"].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ip_port_ranges
-     *           A list of all IP:port-range mappings assigned to this interface by this
+     *           Output only. A list of all IP:port-range mappings assigned to this interface by this
      *           rule.
      *           These ranges are inclusive, that is, both the first and the last
      *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
      *           "1.1.1.1:2234-2234"].
      *     @type int $num_total_drain_nat_ports
-     *           Total number of drain ports across all NAT IPs allocated to this
+     *           Output only. Total number of drain ports across all NAT IPs allocated to this
      *           interface by this rule.
      *           It equals the aggregated port number in the field
      *           drain_nat_ip_port_ranges.
      *     @type int $num_total_nat_ports
-     *           Total number of ports across all NAT IPs allocated to this interface
+     *           Output only. Total number of ports across all NAT IPs allocated to this interface
      *           by this rule.
      *           It equals the aggregated port number in the field nat_ip_port_ranges.
      *     @type int $rule_number
-     *           Rule number of the NAT Rule.
+     *           Output only. Rule number of the NAT Rule.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +96,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * List of all drain IP:port-range mappings assigned to this interface
+     * Output only. List of all drain IP:port-range mappings assigned to this interface
      * by this rule.
      * These ranges are inclusive, that is, both the first and the last
      * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
@@ -111,7 +111,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * List of all drain IP:port-range mappings assigned to this interface
+     * Output only. List of all drain IP:port-range mappings assigned to this interface
      * by this rule.
      * These ranges are inclusive, that is, both the first and the last
      * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
@@ -130,7 +130,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * A list of all IP:port-range mappings assigned to this interface by this
+     * Output only. A list of all IP:port-range mappings assigned to this interface by this
      * rule.
      * These ranges are inclusive, that is, both the first and the last
      * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
@@ -145,7 +145,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * A list of all IP:port-range mappings assigned to this interface by this
+     * Output only. A list of all IP:port-range mappings assigned to this interface by this
      * rule.
      * These ranges are inclusive, that is, both the first and the last
      * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
@@ -164,7 +164,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of drain ports across all NAT IPs allocated to this
+     * Output only. Total number of drain ports across all NAT IPs allocated to this
      * interface by this rule.
      * It equals the aggregated port number in the field
      * drain_nat_ip_port_ranges.
@@ -188,7 +188,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of drain ports across all NAT IPs allocated to this
+     * Output only. Total number of drain ports across all NAT IPs allocated to this
      * interface by this rule.
      * It equals the aggregated port number in the field
      * drain_nat_ip_port_ranges.
@@ -206,7 +206,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of ports across all NAT IPs allocated to this interface
+     * Output only. Total number of ports across all NAT IPs allocated to this interface
      * by this rule.
      * It equals the aggregated port number in the field nat_ip_port_ranges.
      *
@@ -229,7 +229,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Total number of ports across all NAT IPs allocated to this interface
+     * Output only. Total number of ports across all NAT IPs allocated to this interface
      * by this rule.
      * It equals the aggregated port number in the field nat_ip_port_ranges.
      *
@@ -246,7 +246,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Rule number of the NAT Rule.
+     * Output only. Rule number of the NAT Rule.
      *
      * Generated from protobuf field <code>optional int32 rule_number = 535211500;</code>
      * @return int
@@ -267,7 +267,7 @@ class VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings extends \Google\P
     }
 
     /**
-     * Rule number of the NAT Rule.
+     * Output only. Rule number of the NAT Rule.
      *
      * Generated from protobuf field <code>optional int32 rule_number = 535211500;</code>
      * @param int $var

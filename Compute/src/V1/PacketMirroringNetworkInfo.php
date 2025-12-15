@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Unique identifier for the network; defined by the server.
+     * Output only. [Output Only] Unique identifier for the network; defined by the server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      */
@@ -34,7 +34,7 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $canonical_url
-     *           [Output Only] Unique identifier for the network; defined by the server.
+     *           Output only. [Output Only] Unique identifier for the network; defined by the server.
      *     @type string $url
      *           URL of the network resource.
      * }
@@ -45,7 +45,7 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unique identifier for the network; defined by the server.
+     * Output only. [Output Only] Unique identifier for the network; defined by the server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @return string
@@ -66,7 +66,7 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unique identifier for the network; defined by the server.
+     * Output only. [Output Only] Unique identifier for the network; defined by the server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @param string $var

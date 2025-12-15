@@ -54,7 +54,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      */
     protected $linked_vpn_tunnel = null;
     /**
-     * [Output Only] The resource that configures and manages this interface.
+     * Output only. [Output Only] The resource that configures and manages this interface.
      *    - MANAGED_BY_USER is the default value and can be managed directly
      *    by users.
      *    - MANAGED_BY_ATTACHMENT is an interface that is configured and
@@ -143,7 +143,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      *           router. Each interface can have one linked resource, which can be
      *           a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *     @type string $management_type
-     *           [Output Only] The resource that configures and manages this interface.
+     *           Output only. [Output Only] The resource that configures and manages this interface.
      *              - MANAGED_BY_USER is the default value and can be managed directly
      *              by users.
      *              - MANAGED_BY_ATTACHMENT is an interface that is configured and
@@ -363,7 +363,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this interface.
+     * Output only. [Output Only] The resource that configures and manages this interface.
      *    - MANAGED_BY_USER is the default value and can be managed directly
      *    by users.
      *    - MANAGED_BY_ATTACHMENT is an interface that is configured and
@@ -392,7 +392,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this interface.
+     * Output only. [Output Only] The resource that configures and manages this interface.
      *    - MANAGED_BY_USER is the default value and can be managed directly
      *    by users.
      *    - MANAGED_BY_ATTACHMENT is an interface that is configured and

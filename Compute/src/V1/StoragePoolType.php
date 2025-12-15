@@ -42,7 +42,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -103,7 +103,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -141,7 +141,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *     @type int|string $max_pool_provisioned_capacity_gb
      *           [Output Only] Maximum storage pool size in GB.
      *     @type int|string $max_pool_provisioned_iops
@@ -162,7 +162,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_disk_types
      *           [Output Only] The list of disk types supported in this storage pool type.
      *     @type string $zone
@@ -327,7 +327,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -348,7 +348,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -689,7 +689,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -710,7 +710,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var

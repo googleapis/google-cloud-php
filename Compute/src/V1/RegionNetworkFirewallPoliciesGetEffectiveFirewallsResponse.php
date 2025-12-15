@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] Effective firewalls from firewall policy. It applies to
+     * Output only. [Output only] Effective firewalls from firewall policy. It applies to
      * Regional Network Firewall Policies in the specified region, Global Network
      * Firewall Policies and Hierachial Firewall Policies which are associated
      * with the network.
@@ -37,7 +37,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $firewall_policys
-     *           [Output only] Effective firewalls from firewall policy. It applies to
+     *           Output only. [Output only] Effective firewalls from firewall policy. It applies to
      *           Regional Network Firewall Policies in the specified region, Global Network
      *           Firewall Policies and Hierachial Firewall Policies which are associated
      *           with the network.
@@ -51,7 +51,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
     }
 
     /**
-     * [Output only] Effective firewalls from firewall policy. It applies to
+     * Output only. [Output only] Effective firewalls from firewall policy. It applies to
      * Regional Network Firewall Policies in the specified region, Global Network
      * Firewall Policies and Hierachial Firewall Policies which are associated
      * with the network.
@@ -65,7 +65,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
     }
 
     /**
-     * [Output only] Effective firewalls from firewall policy. It applies to
+     * Output only. [Output only] Effective firewalls from firewall policy. It applies to
      * Regional Network Firewall Policies in the specified region, Global Network
      * Firewall Policies and Hierachial Firewall Policies which are associated
      * with the network.

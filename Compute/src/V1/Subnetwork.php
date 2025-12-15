@@ -20,7 +20,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class Subnetwork extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Setting this to true allows this subnetwork's primary and secondary ranges
+     * to overlap with (and contain) static routes that have already been
+     * configured on the corresponding network.
+     * For example if a static route has range 10.1.0.0/16, a subnet
+     * range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
+     * Overlapping is only allowed on subnetwork operations; routes
+     * whose ranges conflict with this subnetwork's ranges won't be allowed unless
+     * route.allow_conflicting_subnetworks is set to true.
+     * Typically packets destined to IPs within the subnetwork (which may contain
+     * private/sensitive data) are prevented from leaving the virtual network.
+     * Setting this field to true will disable this feature.
+     * The default value is false and applies to all existing subnetworks and
+     * automatically created subnetworks.
+     * This field cannot be set to true at resource creation time.
+     *
+     * Generated from protobuf field <code>optional bool allow_subnet_cidr_routes_overlap = 67856209;</code>
+     */
+    protected $allow_subnet_cidr_routes_overlap = null;
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -63,14 +83,14 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The gateway address for default routes to reach destination
+     * Output only. [Output Only] The gateway address for default routes to reach destination
      * addresses outside this subnetwork.
      *
      * Generated from protobuf field <code>optional string gateway_address = 459867385;</code>
      */
     protected $gateway_address = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -121,13 +141,13 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     protected $ipv6_access_type = null;
     /**
-     * [Output Only] This field is for internal use.
+     * Output only. [Output Only] This field is for internal use.
      *
      * Generated from protobuf field <code>optional string ipv6_cidr_range = 273141258;</code>
      */
     protected $ipv6_cidr_range = null;
     /**
-     * [Output Only] Possible endpoints of this subnetwork. It can be one of the
+     * Output only. [Output Only] Possible endpoints of this subnetwork. It can be one of the
      * following:
      *    - VM_ONLY: The subnetwork can be used for creating instances and
      *    IPv6 addresses with VM endpoint type. Such a subnetwork gets external IPv6
@@ -142,7 +162,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     protected $ipv6_gce_endpoint = null;
     /**
-     * [Output Only] Type of the resource. Always compute#subnetwork
+     * Output only. [Output Only] Type of the resource. Always compute#subnetwork
      * for Subnetwork resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -256,7 +276,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     protected $stack_type = null;
     /**
-     * [Output Only] The state of the subnetwork, which can be one of the
+     * Output only. [Output Only] The state of the subnetwork, which can be one of the
      * following values:READY: Subnetwork is created and ready to useDRAINING: only applicable to subnetworks that have the
      * purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that
      * connections to the load balancer are being drained. A subnetwork that is
@@ -294,8 +314,24 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $allow_subnet_cidr_routes_overlap
+     *           Whether this subnetwork's ranges can conflict with existing static routes.
+     *           Setting this to true allows this subnetwork's primary and secondary ranges
+     *           to overlap with (and contain) static routes that have already been
+     *           configured on the corresponding network.
+     *           For example if a static route has range 10.1.0.0/16, a subnet
+     *           range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
+     *           Overlapping is only allowed on subnetwork operations; routes
+     *           whose ranges conflict with this subnetwork's ranges won't be allowed unless
+     *           route.allow_conflicting_subnetworks is set to true.
+     *           Typically packets destined to IPs within the subnetwork (which may contain
+     *           private/sensitive data) are prevented from leaving the virtual network.
+     *           Setting this field to true will disable this feature.
+     *           The default value is false and applies to all existing subnetworks and
+     *           automatically created subnetworks.
+     *           This field cannot be set to true at resource creation time.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -318,10 +354,10 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to
      *           retrieve a Subnetwork.
      *     @type string $gateway_address
-     *           [Output Only] The gateway address for default routes to reach destination
+     *           Output only. [Output Only] The gateway address for default routes to reach destination
      *           addresses outside this subnetwork.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $internal_ipv6_prefix
      *           The internal IPv6 address range that is owned by this
@@ -352,9 +388,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           into IPV4_IPV6 dual stack.
      *           Check the Ipv6AccessType enum for the list of possible values.
      *     @type string $ipv6_cidr_range
-     *           [Output Only] This field is for internal use.
+     *           Output only. [Output Only] This field is for internal use.
      *     @type string $ipv6_gce_endpoint
-     *           [Output Only] Possible endpoints of this subnetwork. It can be one of the
+     *           Output only. [Output Only] Possible endpoints of this subnetwork. It can be one of the
      *           following:
      *              - VM_ONLY: The subnetwork can be used for creating instances and
      *              IPv6 addresses with VM endpoint type. Such a subnetwork gets external IPv6
@@ -365,7 +401,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *              IPv6 range from Google IP Pool directly.
      *           Check the Ipv6GceEndpoint enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#subnetwork
+     *           Output only. [Output Only] Type of the resource. Always compute#subnetwork
      *           for Subnetwork resources.
      *     @type \Google\Cloud\Compute\V1\SubnetworkLogConfig $log_config
      *           This field denotes the VPC flow logging options for this subnetwork.
@@ -423,7 +459,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           This field can be both set at resource creation time and updated usingpatch.
      *           Check the StackType enum for the list of possible values.
      *     @type string $state
-     *           [Output Only] The state of the subnetwork, which can be one of the
+     *           Output only. [Output Only] The state of the subnetwork, which can be one of the
      *           following values:READY: Subnetwork is created and ready to useDRAINING: only applicable to subnetworks that have the
      *           purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that
      *           connections to the load balancer are being drained. A subnetwork that is
@@ -446,7 +482,71 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Setting this to true allows this subnetwork's primary and secondary ranges
+     * to overlap with (and contain) static routes that have already been
+     * configured on the corresponding network.
+     * For example if a static route has range 10.1.0.0/16, a subnet
+     * range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
+     * Overlapping is only allowed on subnetwork operations; routes
+     * whose ranges conflict with this subnetwork's ranges won't be allowed unless
+     * route.allow_conflicting_subnetworks is set to true.
+     * Typically packets destined to IPs within the subnetwork (which may contain
+     * private/sensitive data) are prevented from leaving the virtual network.
+     * Setting this field to true will disable this feature.
+     * The default value is false and applies to all existing subnetworks and
+     * automatically created subnetworks.
+     * This field cannot be set to true at resource creation time.
+     *
+     * Generated from protobuf field <code>optional bool allow_subnet_cidr_routes_overlap = 67856209;</code>
+     * @return bool
+     */
+    public function getAllowSubnetCidrRoutesOverlap()
+    {
+        return isset($this->allow_subnet_cidr_routes_overlap) ? $this->allow_subnet_cidr_routes_overlap : false;
+    }
+
+    public function hasAllowSubnetCidrRoutesOverlap()
+    {
+        return isset($this->allow_subnet_cidr_routes_overlap);
+    }
+
+    public function clearAllowSubnetCidrRoutesOverlap()
+    {
+        unset($this->allow_subnet_cidr_routes_overlap);
+    }
+
+    /**
+     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Setting this to true allows this subnetwork's primary and secondary ranges
+     * to overlap with (and contain) static routes that have already been
+     * configured on the corresponding network.
+     * For example if a static route has range 10.1.0.0/16, a subnet
+     * range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
+     * Overlapping is only allowed on subnetwork operations; routes
+     * whose ranges conflict with this subnetwork's ranges won't be allowed unless
+     * route.allow_conflicting_subnetworks is set to true.
+     * Typically packets destined to IPs within the subnetwork (which may contain
+     * private/sensitive data) are prevented from leaving the virtual network.
+     * Setting this field to true will disable this feature.
+     * The default value is false and applies to all existing subnetworks and
+     * automatically created subnetworks.
+     * This field cannot be set to true at resource creation time.
+     *
+     * Generated from protobuf field <code>optional bool allow_subnet_cidr_routes_overlap = 67856209;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowSubnetCidrRoutesOverlap($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_subnet_cidr_routes_overlap = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -468,7 +568,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -652,7 +752,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The gateway address for default routes to reach destination
+     * Output only. [Output Only] The gateway address for default routes to reach destination
      * addresses outside this subnetwork.
      *
      * Generated from protobuf field <code>optional string gateway_address = 459867385;</code>
@@ -674,7 +774,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The gateway address for default routes to reach destination
+     * Output only. [Output Only] The gateway address for default routes to reach destination
      * addresses outside this subnetwork.
      *
      * Generated from protobuf field <code>optional string gateway_address = 459867385;</code>
@@ -690,7 +790,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -712,7 +812,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -912,7 +1012,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This field is for internal use.
+     * Output only. [Output Only] This field is for internal use.
      *
      * Generated from protobuf field <code>optional string ipv6_cidr_range = 273141258;</code>
      * @return string
@@ -933,7 +1033,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This field is for internal use.
+     * Output only. [Output Only] This field is for internal use.
      *
      * Generated from protobuf field <code>optional string ipv6_cidr_range = 273141258;</code>
      * @param string $var
@@ -948,7 +1048,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Possible endpoints of this subnetwork. It can be one of the
+     * Output only. [Output Only] Possible endpoints of this subnetwork. It can be one of the
      * following:
      *    - VM_ONLY: The subnetwork can be used for creating instances and
      *    IPv6 addresses with VM endpoint type. Such a subnetwork gets external IPv6
@@ -978,7 +1078,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Possible endpoints of this subnetwork. It can be one of the
+     * Output only. [Output Only] Possible endpoints of this subnetwork. It can be one of the
      * following:
      *    - VM_ONLY: The subnetwork can be used for creating instances and
      *    IPv6 addresses with VM endpoint type. Such a subnetwork gets external IPv6
@@ -1002,7 +1102,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#subnetwork
+     * Output only. [Output Only] Type of the resource. Always compute#subnetwork
      * for Subnetwork resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1024,7 +1124,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#subnetwork
+     * Output only. [Output Only] Type of the resource. Always compute#subnetwork
      * for Subnetwork resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1556,7 +1656,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The state of the subnetwork, which can be one of the
+     * Output only. [Output Only] The state of the subnetwork, which can be one of the
      * following values:READY: Subnetwork is created and ready to useDRAINING: only applicable to subnetworks that have the
      * purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that
      * connections to the load balancer are being drained. A subnetwork that is
@@ -1582,7 +1682,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The state of the subnetwork, which can be one of the
+     * Output only. [Output Only] The state of the subnetwork, which can be one of the
      * following values:READY: Subnetwork is created and ready to useDRAINING: only applicable to subnetworks that have the
      * purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that
      * connections to the load balancer are being drained. A subnetwork that is

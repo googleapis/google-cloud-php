@@ -29,7 +29,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Always `compute#operations` for Operations
+     * Output only. [Output Only] Type of resource. Always `compute#operations` for Operations
      * resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -71,7 +71,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output Only] A list of Operation resources.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always `compute#operations` for Operations
+     *           Output only. [Output Only] Type of resource. Always `compute#operations` for Operations
      *           resource.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -156,7 +156,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always `compute#operations` for Operations
+     * Output only. [Output Only] Type of resource. Always `compute#operations` for Operations
      * resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -178,7 +178,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always `compute#operations` for Operations
+     * Output only. [Output Only] Type of resource. Always `compute#operations` for Operations
      * resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

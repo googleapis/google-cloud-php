@@ -30,7 +30,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     protected $collector_ilb = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -60,14 +60,14 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     protected $filter = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -117,7 +117,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -135,7 +135,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *           The specified forwarding rule must have isMirroringCollector
      *           set to true.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -149,10 +149,10 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\PacketMirroringFilter $filter
      *           Filter for mirrored traffic. If unspecified, all IPv4 traffic is mirrored.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
      *     @type \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfo $mirrored_resources
      *           PacketMirroring mirroredResourceInfos.
      *           MirroredResourceInfo specifies a set of mirrored VM instances, subnetworks
@@ -178,7 +178,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           [Output Only] URI of the region where the packetMirroring resides.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,7 +229,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -251,7 +251,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -385,7 +385,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -407,7 +407,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -423,7 +423,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -444,7 +444,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#packetMirroring for packet mirrorings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -667,7 +667,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -688,7 +688,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

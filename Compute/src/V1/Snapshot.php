@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Snapshot extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The architecture of the snapshot. Valid values are
+     * Output only. [Output Only] The architecture of the snapshot. Valid values are
      * ARM64 or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -27,7 +27,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $architecture = null;
     /**
-     * [Output Only] Set to true if snapshots are automatically created by
+     * Output only. [Output Only] Set to true if snapshots are automatically created by
      * applying resource policy on the target disk.
      *
      * Generated from protobuf field <code>optional bool auto_created = 463922264;</code>
@@ -45,13 +45,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $chain_name = null;
     /**
-     * [Output Only] Size in bytes of the snapshot at creation time.
+     * Output only. [Output Only] Size in bytes of the snapshot at creation time.
      *
      * Generated from protobuf field <code>optional int64 creation_size_bytes = 125400077;</code>
      */
     protected $creation_size_bytes = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -65,19 +65,19 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] Size of the source disk, specified in GB.
+     * Output only. [Output Only] Size of the source disk, specified in GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      */
     protected $disk_size_gb = null;
     /**
-     * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     * Output only. [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *
      * Generated from protobuf field <code>optional int64 download_bytes = 435054068;</code>
      */
     protected $download_bytes = null;
     /**
-     * Whether this snapshot is created from a confidential compute mode disk.
+     * Output only. Whether this snapshot is created from a confidential compute mode disk.
      * [Output Only]: This field is not set by user, but from source disk.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
@@ -91,7 +91,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $guest_flush = null;
     /**
-     * [Output Only] A list of features to enable on the guest operating system.
+     * Output only. [Output Only] A list of features to enable on the guest operating system.
      * Applicable only for bootable images. Read
      * Enabling guest operating system features to see a list of available
      * options.
@@ -100,14 +100,14 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $guest_os_features;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#snapshot
+     * Output only. [Output Only] Type of the resource. Always compute#snapshot
      * for Snapshot resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -135,14 +135,14 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * [Output Only] Integer license codes indicating which licenses are attached
+     * Output only. [Output Only] Integer license codes indicating which licenses are attached
      * to this snapshot.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      */
     private $license_codes;
     /**
-     * [Output Only] A list of public visible licenses that apply to this
+     * Output only. [Output Only] A list of public visible licenses that apply to this
      * snapshot. This can be because the original image had licenses attached
      * (such as a Windows image).
      *
@@ -183,13 +183,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzi = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -239,7 +239,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $source_disk_for_recovery_checkpoint = null;
     /**
-     * [Output Only] The ID value of the disk used to create this snapshot. This
+     * Output only. [Output Only] The ID value of the disk used to create this snapshot. This
      * value may be used to determine whether the snapshot was taken from the
      * current or a previous instance of a given disk name.
      *
@@ -265,7 +265,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $source_instant_snapshot_encryption_key = null;
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this
+     * Output only. [Output Only] The unique ID of the instant snapshot used to create this
      * snapshot. This value identifies the exact instant snapshot that was used to
      * create this snapshot. For example, if you created the snapshot from an
      * instant snapshot that was later deleted and recreated under the same name,
@@ -276,28 +276,28 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $source_instant_snapshot_id = null;
     /**
-     * [Output Only] URL of the resource policy which created this
+     * Output only. [Output Only] URL of the resource policy which created this
      * scheduled snapshot.
      *
      * Generated from protobuf field <code>optional string source_snapshot_schedule_policy = 235756291;</code>
      */
     protected $source_snapshot_schedule_policy = null;
     /**
-     * [Output Only] ID of the resource policy which created this
+     * Output only. [Output Only] ID of the resource policy which created this
      * scheduled snapshot.
      *
      * Generated from protobuf field <code>optional string source_snapshot_schedule_policy_id = 70489047;</code>
      */
     protected $source_snapshot_schedule_policy_id = null;
     /**
-     * [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
+     * Output only. [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     protected $status = null;
     /**
-     * [Output Only] A size of the storage used by the snapshot. As snapshots
+     * Output only. [Output Only] A size of the storage used by the snapshot. As snapshots
      * share storage, this number is expected to change with snapshot
      * creation/deletion.
      *
@@ -305,7 +305,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     protected $storage_bytes = null;
     /**
-     * [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
      * reallocation. This status can either be UPDATING, meaning
      * the size of the snapshot is being updated, or UP_TO_DATE,
@@ -330,11 +330,11 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $architecture
-     *           [Output Only] The architecture of the snapshot. Valid values are
+     *           Output only. [Output Only] The architecture of the snapshot. Valid values are
      *           ARM64 or X86_64.
      *           Check the Architecture enum for the list of possible values.
      *     @type bool $auto_created
-     *           [Output Only] Set to true if snapshots are automatically created by
+     *           Output only. [Output Only] Set to true if snapshots are automatically created by
      *           applying resource policy on the target disk.
      *     @type string $chain_name
      *           Creates the new snapshot in the snapshot chain labeled with the
@@ -344,33 +344,33 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           for chargeback tracking. When you describe your snapshot resource, this
      *           field is visible only if it has a non-empty value.
      *     @type int|string $creation_size_bytes
-     *           [Output Only] Size in bytes of the snapshot at creation time.
+     *           Output only. [Output Only] Size in bytes of the snapshot at creation time.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type int|string $disk_size_gb
-     *           [Output Only] Size of the source disk, specified in GB.
+     *           Output only. [Output Only] Size of the source disk, specified in GB.
      *     @type int|string $download_bytes
-     *           [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     *           Output only. [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *     @type bool $enable_confidential_compute
-     *           Whether this snapshot is created from a confidential compute mode disk.
+     *           Output only. Whether this snapshot is created from a confidential compute mode disk.
      *           [Output Only]: This field is not set by user, but from source disk.
      *     @type bool $guest_flush
      *           [Input Only] Whether to attempt an application consistent snapshot by
      *           informing the OS to prepare for the snapshot process.
      *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
-     *           [Output Only] A list of features to enable on the guest operating system.
+     *           Output only. [Output Only] A list of features to enable on the guest operating system.
      *           Applicable only for bootable images. Read
      *           Enabling guest operating system features to see a list of available
      *           options.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#snapshot
+     *           Output only. [Output Only] Type of the resource. Always compute#snapshot
      *           for Snapshot resources.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this snapshot, which is
@@ -386,10 +386,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           the setLabels method.
      *           Label values may be empty.
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $license_codes
-     *           [Output Only] Integer license codes indicating which licenses are attached
+     *           Output only. [Output Only] Integer license codes indicating which licenses are attached
      *           to this snapshot.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
-     *           [Output Only] A list of public visible licenses that apply to this
+     *           Output only. [Output Only] A list of public visible licenses that apply to this
      *           snapshot. This can be because the original image had licenses attached
      *           (such as a Windows image).
      *     @type string $location_hint
@@ -410,9 +410,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $snapshot_encryption_key
      *           Encrypts the snapshot using acustomer-supplied
      *           encryption key.
@@ -438,7 +438,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           The source disk whose recovery checkpoint will be used to create this
      *           snapshot.
      *     @type string $source_disk_id
-     *           [Output Only] The ID value of the disk used to create this snapshot. This
+     *           Output only. [Output Only] The ID value of the disk used to create this snapshot. This
      *           value may be used to determine whether the snapshot was taken from the
      *           current or a previous instance of a given disk name.
      *     @type string $source_instant_snapshot
@@ -452,27 +452,27 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           Customer provided encryption key when creating Snapshot from Instant
      *           Snapshot.
      *     @type string $source_instant_snapshot_id
-     *           [Output Only] The unique ID of the instant snapshot used to create this
+     *           Output only. [Output Only] The unique ID of the instant snapshot used to create this
      *           snapshot. This value identifies the exact instant snapshot that was used to
      *           create this snapshot. For example, if you created the snapshot from an
      *           instant snapshot that was later deleted and recreated under the same name,
      *           the source instant snapshot ID would identify the exact instant snapshot
      *           that was used.
      *     @type string $source_snapshot_schedule_policy
-     *           [Output Only] URL of the resource policy which created this
+     *           Output only. [Output Only] URL of the resource policy which created this
      *           scheduled snapshot.
      *     @type string $source_snapshot_schedule_policy_id
-     *           [Output Only] ID of the resource policy which created this
+     *           Output only. [Output Only] ID of the resource policy which created this
      *           scheduled snapshot.
      *     @type string $status
-     *           [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
+     *           Output only. [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
      *           Check the Status enum for the list of possible values.
      *     @type int|string $storage_bytes
-     *           [Output Only] A size of the storage used by the snapshot. As snapshots
+     *           Output only. [Output Only] A size of the storage used by the snapshot. As snapshots
      *           share storage, this number is expected to change with snapshot
      *           creation/deletion.
      *     @type string $storage_bytes_status
-     *           [Output Only] An indicator whether storageBytes is in a
+     *           Output only. [Output Only] An indicator whether storageBytes is in a
      *           stable state or it is being adjusted as a result of shared storage
      *           reallocation. This status can either be UPDATING, meaning
      *           the size of the snapshot is being updated, or UP_TO_DATE,
@@ -489,7 +489,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the snapshot. Valid values are
+     * Output only. [Output Only] The architecture of the snapshot. Valid values are
      * ARM64 or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -512,7 +512,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the snapshot. Valid values are
+     * Output only. [Output Only] The architecture of the snapshot. Valid values are
      * ARM64 or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -529,7 +529,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true if snapshots are automatically created by
+     * Output only. [Output Only] Set to true if snapshots are automatically created by
      * applying resource policy on the target disk.
      *
      * Generated from protobuf field <code>optional bool auto_created = 463922264;</code>
@@ -551,7 +551,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Set to true if snapshots are automatically created by
+     * Output only. [Output Only] Set to true if snapshots are automatically created by
      * applying resource policy on the target disk.
      *
      * Generated from protobuf field <code>optional bool auto_created = 463922264;</code>
@@ -613,7 +613,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size in bytes of the snapshot at creation time.
+     * Output only. [Output Only] Size in bytes of the snapshot at creation time.
      *
      * Generated from protobuf field <code>optional int64 creation_size_bytes = 125400077;</code>
      * @return int|string
@@ -634,7 +634,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size in bytes of the snapshot at creation time.
+     * Output only. [Output Only] Size in bytes of the snapshot at creation time.
      *
      * Generated from protobuf field <code>optional int64 creation_size_bytes = 125400077;</code>
      * @param int|string $var
@@ -649,7 +649,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -671,7 +671,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -725,7 +725,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size of the source disk, specified in GB.
+     * Output only. [Output Only] Size of the source disk, specified in GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      * @return int|string
@@ -746,7 +746,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size of the source disk, specified in GB.
+     * Output only. [Output Only] Size of the source disk, specified in GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      * @param int|string $var
@@ -761,7 +761,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     * Output only. [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *
      * Generated from protobuf field <code>optional int64 download_bytes = 435054068;</code>
      * @return int|string
@@ -782,7 +782,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     * Output only. [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *
      * Generated from protobuf field <code>optional int64 download_bytes = 435054068;</code>
      * @param int|string $var
@@ -797,7 +797,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether this snapshot is created from a confidential compute mode disk.
+     * Output only. Whether this snapshot is created from a confidential compute mode disk.
      * [Output Only]: This field is not set by user, but from source disk.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
@@ -819,7 +819,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether this snapshot is created from a confidential compute mode disk.
+     * Output only. Whether this snapshot is created from a confidential compute mode disk.
      * [Output Only]: This field is not set by user, but from source disk.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
@@ -873,7 +873,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of features to enable on the guest operating system.
+     * Output only. [Output Only] A list of features to enable on the guest operating system.
      * Applicable only for bootable images. Read
      * Enabling guest operating system features to see a list of available
      * options.
@@ -887,7 +887,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of features to enable on the guest operating system.
+     * Output only. [Output Only] A list of features to enable on the guest operating system.
      * Applicable only for bootable images. Read
      * Enabling guest operating system features to see a list of available
      * options.
@@ -905,7 +905,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -927,7 +927,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -943,7 +943,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#snapshot
+     * Output only. [Output Only] Type of the resource. Always compute#snapshot
      * for Snapshot resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -965,7 +965,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#snapshot
+     * Output only. [Output Only] Type of the resource. Always compute#snapshot
      * for Snapshot resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1061,7 +1061,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Integer license codes indicating which licenses are attached
+     * Output only. [Output Only] Integer license codes indicating which licenses are attached
      * to this snapshot.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
@@ -1073,7 +1073,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Integer license codes indicating which licenses are attached
+     * Output only. [Output Only] Integer license codes indicating which licenses are attached
      * to this snapshot.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
@@ -1089,7 +1089,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of public visible licenses that apply to this
+     * Output only. [Output Only] A list of public visible licenses that apply to this
      * snapshot. This can be because the original image had licenses attached
      * (such as a Windows image).
      *
@@ -1102,7 +1102,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of public visible licenses that apply to this
+     * Output only. [Output Only] A list of public visible licenses that apply to this
      * snapshot. This can be because the original image had licenses attached
      * (such as a Windows image).
      *
@@ -1281,7 +1281,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -1302,7 +1302,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -1317,7 +1317,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1338,7 +1338,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -1561,7 +1561,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The ID value of the disk used to create this snapshot. This
+     * Output only. [Output Only] The ID value of the disk used to create this snapshot. This
      * value may be used to determine whether the snapshot was taken from the
      * current or a previous instance of a given disk name.
      *
@@ -1584,7 +1584,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The ID value of the disk used to create this snapshot. This
+     * Output only. [Output Only] The ID value of the disk used to create this snapshot. This
      * value may be used to determine whether the snapshot was taken from the
      * current or a previous instance of a given disk name.
      *
@@ -1685,7 +1685,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this
+     * Output only. [Output Only] The unique ID of the instant snapshot used to create this
      * snapshot. This value identifies the exact instant snapshot that was used to
      * create this snapshot. For example, if you created the snapshot from an
      * instant snapshot that was later deleted and recreated under the same name,
@@ -1711,7 +1711,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this
+     * Output only. [Output Only] The unique ID of the instant snapshot used to create this
      * snapshot. This value identifies the exact instant snapshot that was used to
      * create this snapshot. For example, if you created the snapshot from an
      * instant snapshot that was later deleted and recreated under the same name,
@@ -1731,7 +1731,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the resource policy which created this
+     * Output only. [Output Only] URL of the resource policy which created this
      * scheduled snapshot.
      *
      * Generated from protobuf field <code>optional string source_snapshot_schedule_policy = 235756291;</code>
@@ -1753,7 +1753,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the resource policy which created this
+     * Output only. [Output Only] URL of the resource policy which created this
      * scheduled snapshot.
      *
      * Generated from protobuf field <code>optional string source_snapshot_schedule_policy = 235756291;</code>
@@ -1769,7 +1769,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] ID of the resource policy which created this
+     * Output only. [Output Only] ID of the resource policy which created this
      * scheduled snapshot.
      *
      * Generated from protobuf field <code>optional string source_snapshot_schedule_policy_id = 70489047;</code>
@@ -1791,7 +1791,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] ID of the resource policy which created this
+     * Output only. [Output Only] ID of the resource policy which created this
      * scheduled snapshot.
      *
      * Generated from protobuf field <code>optional string source_snapshot_schedule_policy_id = 70489047;</code>
@@ -1807,7 +1807,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
+     * Output only. [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -1829,7 +1829,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
+     * Output only. [Output Only] The status of the snapshot. This can beCREATING, DELETING, FAILED,READY, or UPLOADING.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -1845,7 +1845,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A size of the storage used by the snapshot. As snapshots
+     * Output only. [Output Only] A size of the storage used by the snapshot. As snapshots
      * share storage, this number is expected to change with snapshot
      * creation/deletion.
      *
@@ -1868,7 +1868,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A size of the storage used by the snapshot. As snapshots
+     * Output only. [Output Only] A size of the storage used by the snapshot. As snapshots
      * share storage, this number is expected to change with snapshot
      * creation/deletion.
      *
@@ -1885,7 +1885,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
      * reallocation. This status can either be UPDATING, meaning
      * the size of the snapshot is being updated, or UP_TO_DATE,
@@ -1911,7 +1911,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
      * reallocation. This status can either be UPDATING, meaning
      * the size of the snapshot is being updated, or UP_TO_DATE,

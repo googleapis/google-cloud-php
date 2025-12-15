@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetTcpProxy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -41,7 +41,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -82,7 +82,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      */
     protected $proxy_header = null;
     /**
-     * [Output Only] URL of the region where the regional TCP proxy resides.
+     * Output only. [Output Only] URL of the region where the regional TCP proxy resides.
      * This field is not applicable to global TCP proxy.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -108,7 +108,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -117,7 +117,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -142,7 +142,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      *           is NONE.
      *           Check the ProxyHeader enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional TCP proxy resides.
+     *           Output only. [Output Only] URL of the region where the regional TCP proxy resides.
      *           This field is not applicable to global TCP proxy.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -156,7 +156,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -178,7 +178,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -270,7 +270,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -291,7 +291,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -448,7 +448,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional TCP proxy resides.
+     * Output only. [Output Only] URL of the region where the regional TCP proxy resides.
      * This field is not applicable to global TCP proxy.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -470,7 +470,7 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional TCP proxy resides.
+     * Output only. [Output Only] URL of the region where the regional TCP proxy resides.
      * This field is not applicable to global TCP proxy.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>

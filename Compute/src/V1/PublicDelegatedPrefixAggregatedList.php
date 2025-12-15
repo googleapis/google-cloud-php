@@ -27,7 +27,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
      */
     private $items;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
      * lists of public delegated prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -50,7 +50,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      */
@@ -73,7 +73,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
      *     @type array|\Google\Protobuf\Internal\MapField $items
      *           A list of PublicDelegatedPrefixesScopedList resources.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
      *           lists of public delegated prefixes.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -84,7 +84,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           Output only. [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -157,7 +157,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
      * lists of public delegated prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -179,7 +179,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixAggregatedList for aggregated
      * lists of public delegated prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -275,7 +275,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -286,7 +286,7 @@ class PublicDelegatedPrefixAggregatedList extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ResourcePolicy;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of resource policy creation.
+ * Output only. [Output Only] The status of resource policy creation.
  *
  * Protobuf type <code>google.cloud.compute.v1.ResourcePolicy.Status</code>
  */

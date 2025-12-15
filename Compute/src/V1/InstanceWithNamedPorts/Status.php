@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstanceWithNamedPorts;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the instance.
+ * Output only. [Output Only] The status of the instance.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceWithNamedPorts.Status</code>
  */

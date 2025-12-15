@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusA
 use UnexpectedValueException;
 
 /**
- * Whether this Attachment is active, and if so, whether BGP is up.
+ * Output only. Whether this Attachment is active, and if so, whether BGP is up.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectAttachmentGroupsOperationalStatusAttachmentStatus.Status</code>
  */

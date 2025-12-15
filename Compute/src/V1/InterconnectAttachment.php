@@ -27,7 +27,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $admin_enabled = null;
     /**
-     * [Output Only] URL of the AttachmentGroup that includes this Attachment.
+     * Output only. [Output Only] URL of the AttachmentGroup that includes this Attachment.
      *
      * Generated from protobuf field <code>optional string attachment_group = 63442019;</code>
      */
@@ -58,6 +58,46 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $bandwidth = null;
     /**
+     * Single IPv4 address + prefix length to be configured on the cloud router
+     * interface for this interconnect attachment.
+     *    - Both candidate_cloud_router_ip_address and
+     *    candidate_customer_router_ip_address fields must be set or both must be
+     *    unset.
+     *    - Prefix length of both candidate_cloud_router_ip_address and
+     *    candidate_customer_router_ip_address must be the same.
+     *    - Max prefix length is 31.
+     *
+     * Generated from protobuf field <code>optional string candidate_cloud_router_ip_address = 311379276;</code>
+     */
+    protected $candidate_cloud_router_ip_address = null;
+    /**
+     * Single IPv6 address + prefix length to be configured on the cloud router
+     * interface for this interconnect attachment.
+     *    - Both candidate_cloud_router_ipv6_address and
+     *    candidate_customer_router_ipv6_address fields must be set or both must be
+     *    unset.
+     *    - Prefix length of both candidate_cloud_router_ipv6_address and
+     *    candidate_customer_router_ipv6_address must be the same.
+     *    - Max prefix length is 126.
+     *
+     * Generated from protobuf field <code>optional string candidate_cloud_router_ipv6_address = 417499660;</code>
+     */
+    protected $candidate_cloud_router_ipv6_address = null;
+    /**
+     * Single IPv4 address + prefix length to be configured on the customer router
+     * interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string candidate_customer_router_ip_address = 339113389;</code>
+     */
+    protected $candidate_customer_router_ip_address = null;
+    /**
+     * Single IPv6 address + prefix length to be configured on the customer router
+     * interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string candidate_customer_router_ipv6_address = 226436653;</code>
+     */
+    protected $candidate_customer_router_ipv6_address = null;
+    /**
      * This field is not available.
      *
      * Generated from protobuf field <code>repeated string candidate_ipv6_subnets = 70682522;</code>
@@ -76,14 +116,14 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $candidate_subnets;
     /**
-     * [Output Only] IPv4 address + prefix length to be configured on Cloud Router
+     * Output only. [Output Only] IPv4 address + prefix length to be configured on Cloud Router
      * Interface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
      */
     protected $cloud_router_ip_address = null;
     /**
-     * [Output Only] IPv6 address + prefix length to be configured on Cloud
+     * Output only. [Output Only] IPv6 address + prefix length to be configured on Cloud
      * Router Interface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string cloud_router_ipv6_address = 451922376;</code>
@@ -96,28 +136,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $cloud_router_ipv6_interface_id = null;
     /**
-     * [Output Only] Constraints for this attachment, if any. The attachment does
+     * Output only. [Output Only] Constraints for this attachment, if any. The attachment does
      * not work if these constraints are not met.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints configuration_constraints = 179681389;</code>
      */
     protected $configuration_constraints = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] IPv4 address + prefix length to be configured on the customer
+     * Output only. [Output Only] IPv4 address + prefix length to be configured on the customer
      * router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ip_address = 332475761;</code>
      */
     protected $customer_router_ip_address = null;
     /**
-     * [Output Only] IPv6 address + prefix length to be configured on the
+     * Output only. [Output Only] IPv6 address + prefix length to be configured on the
      * customer router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ipv6_address = 290127089;</code>
@@ -130,7 +170,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $customer_router_ipv6_interface_id = null;
     /**
-     * [Output Only] Dataplane version for this InterconnectAttachment. This
+     * Output only. [Output Only] Dataplane version for this InterconnectAttachment. This
      * field is only present for Dataplane version 2 and higher. Absence of this
      * field in the API output indicates that the Dataplane is version 1.
      *
@@ -179,7 +219,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $encryption = null;
     /**
-     * [Output Only] Google reference ID, to be used when raising support tickets
+     * Output only. [Output Only] Google reference ID, to be used when raising support tickets
      * with Google or otherwise to debug backend connectivity issues.
      * [Deprecated] This field is not used.
      *
@@ -187,7 +227,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $google_reference_id = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -220,7 +260,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $ipsec_internal_addresses;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -278,7 +318,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] The current status of whether or not this interconnect
+     * Output only. [Output Only] The current status of whether or not this interconnect
      * attachment is functional, which can take one of the following values:
      *    - OS_ACTIVE: The attachment has been turned up and is ready to
      *    use.
@@ -325,7 +365,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $partner_metadata = null;
     /**
-     * [Output Only] Information specific to an InterconnectAttachment.
+     * Output only. [Output Only] Information specific to an InterconnectAttachment.
      * This property is populated if the interconnect that
      * this is attached to is of type DEDICATED.
      *
@@ -333,7 +373,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $private_interconnect_info = null;
     /**
-     * [Output Only] URL of the region where the regional interconnect attachment
+     * Output only. [Output Only] URL of the region where the regional interconnect attachment
      * resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -342,7 +382,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * If the attachment is on a Cross-Cloud Interconnect connection, this field
      * contains the interconnect's remote location service provider. Example
      * values: "Amazon Web Services" "Microsoft Azure".
@@ -363,13 +403,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $router = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -386,7 +426,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $stack_type = null;
     /**
-     * [Output Only] The current state of this attachment's functionality.
+     * Output only. [Output Only] The current state of this attachment's functionality.
      * Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE,
      * PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values
      * PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used
@@ -460,7 +500,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           Determines whether this Attachment will carry packets.
      *           Not present for PARTNER_PROVIDER.
      *     @type string $attachment_group
-     *           [Output Only] URL of the AttachmentGroup that includes this Attachment.
+     *           Output only. [Output Only] URL of the AttachmentGroup that includes this Attachment.
      *     @type string $bandwidth
      *           Provisioned bandwidth capacity for the interconnect attachment. For
      *           attachments of type DEDICATED, the user can set the bandwidth.
@@ -482,6 +522,30 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *              - BPS_50G: 50 Gbit/s
      *              - BPS_100G: 100 Gbit/s
      *           Check the Bandwidth enum for the list of possible values.
+     *     @type string $candidate_cloud_router_ip_address
+     *           Single IPv4 address + prefix length to be configured on the cloud router
+     *           interface for this interconnect attachment.
+     *              - Both candidate_cloud_router_ip_address and
+     *              candidate_customer_router_ip_address fields must be set or both must be
+     *              unset.
+     *              - Prefix length of both candidate_cloud_router_ip_address and
+     *              candidate_customer_router_ip_address must be the same.
+     *              - Max prefix length is 31.
+     *     @type string $candidate_cloud_router_ipv6_address
+     *           Single IPv6 address + prefix length to be configured on the cloud router
+     *           interface for this interconnect attachment.
+     *              - Both candidate_cloud_router_ipv6_address and
+     *              candidate_customer_router_ipv6_address fields must be set or both must be
+     *              unset.
+     *              - Prefix length of both candidate_cloud_router_ipv6_address and
+     *              candidate_customer_router_ipv6_address must be the same.
+     *              - Max prefix length is 126.
+     *     @type string $candidate_customer_router_ip_address
+     *           Single IPv4 address + prefix length to be configured on the customer router
+     *           interface for this interconnect attachment.
+     *     @type string $candidate_customer_router_ipv6_address
+     *           Single IPv6 address + prefix length to be configured on the customer router
+     *           interface for this interconnect attachment.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $candidate_ipv6_subnets
      *           This field is not available.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $candidate_subnets
@@ -493,29 +557,29 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           all possible /29s are in use on Google's edge. If not supplied, Google will
      *           randomly select an unused /29 from all of link-local space.
      *     @type string $cloud_router_ip_address
-     *           [Output Only] IPv4 address + prefix length to be configured on Cloud Router
+     *           Output only. [Output Only] IPv4 address + prefix length to be configured on Cloud Router
      *           Interface for this interconnect attachment.
      *     @type string $cloud_router_ipv6_address
-     *           [Output Only] IPv6 address + prefix length to be configured on Cloud
+     *           Output only. [Output Only] IPv6 address + prefix length to be configured on Cloud
      *           Router Interface for this interconnect attachment.
      *     @type string $cloud_router_ipv6_interface_id
      *           This field is not available.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraints $configuration_constraints
-     *           [Output Only] Constraints for this attachment, if any. The attachment does
+     *           Output only. [Output Only] Constraints for this attachment, if any. The attachment does
      *           not work if these constraints are not met.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $customer_router_ip_address
-     *           [Output Only] IPv4 address + prefix length to be configured on the customer
+     *           Output only. [Output Only] IPv4 address + prefix length to be configured on the customer
      *           router subinterface for this interconnect attachment.
      *     @type string $customer_router_ipv6_address
-     *           [Output Only] IPv6 address + prefix length to be configured on the
+     *           Output only. [Output Only] IPv6 address + prefix length to be configured on the
      *           customer router subinterface for this interconnect attachment.
      *     @type string $customer_router_ipv6_interface_id
      *           This field is not available.
      *     @type int $dataplane_version
-     *           [Output Only] Dataplane version for this InterconnectAttachment. This
+     *           Output only. [Output Only] Dataplane version for this InterconnectAttachment. This
      *           field is only present for Dataplane version 2 and higher. Absence of this
      *           field in the API output indicates that the Dataplane is version 1.
      *     @type string $description
@@ -548,11 +612,11 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *              option.
      *           Check the Encryption enum for the list of possible values.
      *     @type string $google_reference_id
-     *           [Output Only] Google reference ID, to be used when raising support tickets
+     *           Output only. [Output Only] Google reference ID, to be used when raising support tickets
      *           with Google or otherwise to debug backend connectivity issues.
      *           [Deprecated] This field is not used.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $interconnect
      *           URL of the underlying Interconnect object that this attachment's traffic
@@ -573,7 +637,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           VPN gateway's IP address is allocated from the regional external IP address
      *           pool.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentL2Forwarding $l2_forwarding
      *           L2 Interconnect Attachment related config. This field is required if the
      *           type is L2_DEDICATED.
@@ -607,7 +671,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $operational_status
-     *           [Output Only] The current status of whether or not this interconnect
+     *           Output only. [Output Only] The current status of whether or not this interconnect
      *           attachment is functional, which can take one of the following values:
      *              - OS_ACTIVE: The attachment has been turned up and is ready to
      *              use.
@@ -634,16 +698,16 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           Output only for PARTNER type, mutable for PARTNER_PROVIDER, not
      *           available for DEDICATED.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentPrivateInfo $private_interconnect_info
-     *           [Output Only] Information specific to an InterconnectAttachment.
+     *           Output only. [Output Only] Information specific to an InterconnectAttachment.
      *           This property is populated if the interconnect that
      *           this is attached to is of type DEDICATED.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional interconnect attachment
+     *           Output only. [Output Only] URL of the region where the regional interconnect attachment
      *           resides.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      *     @type string $remote_service
-     *           [Output Only]
+     *           Output only. [Output Only]
      *           If the attachment is on a Cross-Cloud Interconnect connection, this field
      *           contains the interconnect's remote location service provider. Example
      *           values: "Amazon Web Services" "Microsoft Azure".
@@ -656,9 +720,9 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           InterconnectAttachment will automatically connect the Interconnect to the
      *           network & region within which the Cloud Router is configured.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $stack_type
      *           The stack type for this interconnect attachment to identify whether the
      *           IPv6 feature is enabled or not. If not specified, IPV4_ONLY
@@ -667,7 +731,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           update interconnect attachment operations.
      *           Check the StackType enum for the list of possible values.
      *     @type string $state
-     *           [Output Only] The current state of this attachment's functionality.
+     *           Output only. [Output Only] The current state of this attachment's functionality.
      *           Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE,
      *           PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values
      *           PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used
@@ -760,7 +824,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the AttachmentGroup that includes this Attachment.
+     * Output only. [Output Only] URL of the AttachmentGroup that includes this Attachment.
      *
      * Generated from protobuf field <code>optional string attachment_group = 63442019;</code>
      * @return string
@@ -781,7 +845,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the AttachmentGroup that includes this Attachment.
+     * Output only. [Output Only] URL of the AttachmentGroup that includes this Attachment.
      *
      * Generated from protobuf field <code>optional string attachment_group = 63442019;</code>
      * @param string $var
@@ -870,6 +934,182 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Single IPv4 address + prefix length to be configured on the cloud router
+     * interface for this interconnect attachment.
+     *    - Both candidate_cloud_router_ip_address and
+     *    candidate_customer_router_ip_address fields must be set or both must be
+     *    unset.
+     *    - Prefix length of both candidate_cloud_router_ip_address and
+     *    candidate_customer_router_ip_address must be the same.
+     *    - Max prefix length is 31.
+     *
+     * Generated from protobuf field <code>optional string candidate_cloud_router_ip_address = 311379276;</code>
+     * @return string
+     */
+    public function getCandidateCloudRouterIpAddress()
+    {
+        return isset($this->candidate_cloud_router_ip_address) ? $this->candidate_cloud_router_ip_address : '';
+    }
+
+    public function hasCandidateCloudRouterIpAddress()
+    {
+        return isset($this->candidate_cloud_router_ip_address);
+    }
+
+    public function clearCandidateCloudRouterIpAddress()
+    {
+        unset($this->candidate_cloud_router_ip_address);
+    }
+
+    /**
+     * Single IPv4 address + prefix length to be configured on the cloud router
+     * interface for this interconnect attachment.
+     *    - Both candidate_cloud_router_ip_address and
+     *    candidate_customer_router_ip_address fields must be set or both must be
+     *    unset.
+     *    - Prefix length of both candidate_cloud_router_ip_address and
+     *    candidate_customer_router_ip_address must be the same.
+     *    - Max prefix length is 31.
+     *
+     * Generated from protobuf field <code>optional string candidate_cloud_router_ip_address = 311379276;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCandidateCloudRouterIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->candidate_cloud_router_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Single IPv6 address + prefix length to be configured on the cloud router
+     * interface for this interconnect attachment.
+     *    - Both candidate_cloud_router_ipv6_address and
+     *    candidate_customer_router_ipv6_address fields must be set or both must be
+     *    unset.
+     *    - Prefix length of both candidate_cloud_router_ipv6_address and
+     *    candidate_customer_router_ipv6_address must be the same.
+     *    - Max prefix length is 126.
+     *
+     * Generated from protobuf field <code>optional string candidate_cloud_router_ipv6_address = 417499660;</code>
+     * @return string
+     */
+    public function getCandidateCloudRouterIpv6Address()
+    {
+        return isset($this->candidate_cloud_router_ipv6_address) ? $this->candidate_cloud_router_ipv6_address : '';
+    }
+
+    public function hasCandidateCloudRouterIpv6Address()
+    {
+        return isset($this->candidate_cloud_router_ipv6_address);
+    }
+
+    public function clearCandidateCloudRouterIpv6Address()
+    {
+        unset($this->candidate_cloud_router_ipv6_address);
+    }
+
+    /**
+     * Single IPv6 address + prefix length to be configured on the cloud router
+     * interface for this interconnect attachment.
+     *    - Both candidate_cloud_router_ipv6_address and
+     *    candidate_customer_router_ipv6_address fields must be set or both must be
+     *    unset.
+     *    - Prefix length of both candidate_cloud_router_ipv6_address and
+     *    candidate_customer_router_ipv6_address must be the same.
+     *    - Max prefix length is 126.
+     *
+     * Generated from protobuf field <code>optional string candidate_cloud_router_ipv6_address = 417499660;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCandidateCloudRouterIpv6Address($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->candidate_cloud_router_ipv6_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Single IPv4 address + prefix length to be configured on the customer router
+     * interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string candidate_customer_router_ip_address = 339113389;</code>
+     * @return string
+     */
+    public function getCandidateCustomerRouterIpAddress()
+    {
+        return isset($this->candidate_customer_router_ip_address) ? $this->candidate_customer_router_ip_address : '';
+    }
+
+    public function hasCandidateCustomerRouterIpAddress()
+    {
+        return isset($this->candidate_customer_router_ip_address);
+    }
+
+    public function clearCandidateCustomerRouterIpAddress()
+    {
+        unset($this->candidate_customer_router_ip_address);
+    }
+
+    /**
+     * Single IPv4 address + prefix length to be configured on the customer router
+     * interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string candidate_customer_router_ip_address = 339113389;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCandidateCustomerRouterIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->candidate_customer_router_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Single IPv6 address + prefix length to be configured on the customer router
+     * interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string candidate_customer_router_ipv6_address = 226436653;</code>
+     * @return string
+     */
+    public function getCandidateCustomerRouterIpv6Address()
+    {
+        return isset($this->candidate_customer_router_ipv6_address) ? $this->candidate_customer_router_ipv6_address : '';
+    }
+
+    public function hasCandidateCustomerRouterIpv6Address()
+    {
+        return isset($this->candidate_customer_router_ipv6_address);
+    }
+
+    public function clearCandidateCustomerRouterIpv6Address()
+    {
+        unset($this->candidate_customer_router_ipv6_address);
+    }
+
+    /**
+     * Single IPv6 address + prefix length to be configured on the customer router
+     * interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string candidate_customer_router_ipv6_address = 226436653;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCandidateCustomerRouterIpv6Address($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->candidate_customer_router_ipv6_address = $var;
+
+        return $this;
+    }
+
+    /**
      * This field is not available.
      *
      * Generated from protobuf field <code>repeated string candidate_ipv6_subnets = 70682522;</code>
@@ -934,7 +1174,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv4 address + prefix length to be configured on Cloud Router
+     * Output only. [Output Only] IPv4 address + prefix length to be configured on Cloud Router
      * Interface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
@@ -956,7 +1196,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv4 address + prefix length to be configured on Cloud Router
+     * Output only. [Output Only] IPv4 address + prefix length to be configured on Cloud Router
      * Interface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
@@ -972,7 +1212,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv6 address + prefix length to be configured on Cloud
+     * Output only. [Output Only] IPv6 address + prefix length to be configured on Cloud
      * Router Interface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string cloud_router_ipv6_address = 451922376;</code>
@@ -994,7 +1234,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv6 address + prefix length to be configured on Cloud
+     * Output only. [Output Only] IPv6 address + prefix length to be configured on Cloud
      * Router Interface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string cloud_router_ipv6_address = 451922376;</code>
@@ -1046,7 +1286,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Constraints for this attachment, if any. The attachment does
+     * Output only. [Output Only] Constraints for this attachment, if any. The attachment does
      * not work if these constraints are not met.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints configuration_constraints = 179681389;</code>
@@ -1068,7 +1308,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Constraints for this attachment, if any. The attachment does
+     * Output only. [Output Only] Constraints for this attachment, if any. The attachment does
      * not work if these constraints are not met.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints configuration_constraints = 179681389;</code>
@@ -1084,7 +1324,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -1106,7 +1346,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -1122,7 +1362,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv4 address + prefix length to be configured on the customer
+     * Output only. [Output Only] IPv4 address + prefix length to be configured on the customer
      * router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ip_address = 332475761;</code>
@@ -1144,7 +1384,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv4 address + prefix length to be configured on the customer
+     * Output only. [Output Only] IPv4 address + prefix length to be configured on the customer
      * router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ip_address = 332475761;</code>
@@ -1160,7 +1400,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv6 address + prefix length to be configured on the
+     * Output only. [Output Only] IPv6 address + prefix length to be configured on the
      * customer router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ipv6_address = 290127089;</code>
@@ -1182,7 +1422,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv6 address + prefix length to be configured on the
+     * Output only. [Output Only] IPv6 address + prefix length to be configured on the
      * customer router subinterface for this interconnect attachment.
      *
      * Generated from protobuf field <code>optional string customer_router_ipv6_address = 290127089;</code>
@@ -1234,7 +1474,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Dataplane version for this InterconnectAttachment. This
+     * Output only. [Output Only] Dataplane version for this InterconnectAttachment. This
      * field is only present for Dataplane version 2 and higher. Absence of this
      * field in the API output indicates that the Dataplane is version 1.
      *
@@ -1257,7 +1497,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Dataplane version for this InterconnectAttachment. This
+     * Output only. [Output Only] Dataplane version for this InterconnectAttachment. This
      * field is only present for Dataplane version 2 and higher. Absence of this
      * field in the API output indicates that the Dataplane is version 1.
      *
@@ -1428,7 +1668,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Google reference ID, to be used when raising support tickets
+     * Output only. [Output Only] Google reference ID, to be used when raising support tickets
      * with Google or otherwise to debug backend connectivity issues.
      * [Deprecated] This field is not used.
      *
@@ -1451,7 +1691,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Google reference ID, to be used when raising support tickets
+     * Output only. [Output Only] Google reference ID, to be used when raising support tickets
      * with Google or otherwise to debug backend connectivity issues.
      * [Deprecated] This field is not used.
      *
@@ -1468,7 +1708,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -1490,7 +1730,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -1596,7 +1836,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -1617,7 +1857,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectAttachment for interconnect attachments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -1846,7 +2086,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of whether or not this interconnect
+     * Output only. [Output Only] The current status of whether or not this interconnect
      * attachment is functional, which can take one of the following values:
      *    - OS_ACTIVE: The attachment has been turned up and is ready to
      *    use.
@@ -1873,7 +2113,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of whether or not this interconnect
+     * Output only. [Output Only] The current status of whether or not this interconnect
      * attachment is functional, which can take one of the following values:
      *    - OS_ACTIVE: The attachment has been turned up and is ready to
      *    use.
@@ -2060,7 +2300,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Information specific to an InterconnectAttachment.
+     * Output only. [Output Only] Information specific to an InterconnectAttachment.
      * This property is populated if the interconnect that
      * this is attached to is of type DEDICATED.
      *
@@ -2083,7 +2323,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Information specific to an InterconnectAttachment.
+     * Output only. [Output Only] Information specific to an InterconnectAttachment.
      * This property is populated if the interconnect that
      * this is attached to is of type DEDICATED.
      *
@@ -2100,7 +2340,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional interconnect attachment
+     * Output only. [Output Only] URL of the region where the regional interconnect attachment
      * resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -2124,7 +2364,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional interconnect attachment
+     * Output only. [Output Only] URL of the region where the regional interconnect attachment
      * resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -2142,7 +2382,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * If the attachment is on a Cross-Cloud Interconnect connection, this field
      * contains the interconnect's remote location service provider. Example
      * values: "Amazon Web Services" "Microsoft Azure".
@@ -2169,7 +2409,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * If the attachment is on a Cross-Cloud Interconnect connection, this field
      * contains the interconnect's remote location service provider. Example
      * values: "Amazon Web Services" "Microsoft Azure".
@@ -2232,7 +2472,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -2253,7 +2493,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -2268,7 +2508,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -2289,7 +2529,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -2350,7 +2590,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current state of this attachment's functionality.
+     * Output only. [Output Only] The current state of this attachment's functionality.
      * Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE,
      * PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values
      * PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used
@@ -2391,7 +2631,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current state of this attachment's functionality.
+     * Output only. [Output Only] The current state of this attachment's functionality.
      * Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE,
      * PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values
      * PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used

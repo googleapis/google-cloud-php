@@ -36,7 +36,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of the resource. Always compute#metadata
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
      * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -62,7 +62,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *           Array of key/value pairs. The total size of all keys and values must be
      *           less than 512 KB.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#metadata
+     *           Output only. [Output Only] Type of the resource. Always compute#metadata
      *           for metadata.
      * }
      */
@@ -150,7 +150,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#metadata
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
      * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -172,7 +172,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#metadata
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
      * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

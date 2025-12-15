@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\FutureReservationStatus;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current status of the requested amendment.
+ * Output only. [Output Only] The current status of the requested amendment.
  *
  * Protobuf type <code>google.cloud.compute.v1.FutureReservationStatus.AmendmentStatus</code>
  */

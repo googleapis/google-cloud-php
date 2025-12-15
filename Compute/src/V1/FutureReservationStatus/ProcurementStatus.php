@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\FutureReservationStatus;
 use UnexpectedValueException;
 
 /**
- * Current state of this Future Reservation
+ * Output only. Current state of this Future Reservation
  *
  * Protobuf type <code>google.cloud.compute.v1.FutureReservationStatus.ProcurementStatus</code>
  */

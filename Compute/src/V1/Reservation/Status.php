@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Reservation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the reservation.
+ * Output only. [Output Only] The status of the reservation.
  *      - CREATING: Reservation resources are being
  *        allocated.
  *      - READY: Reservation resources have been allocated,

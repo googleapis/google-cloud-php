@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusA
 use UnexpectedValueException;
 
 /**
- * Whether this Attachment is participating in the redundant configuration.
+ * Output only. Whether this Attachment is participating in the redundant configuration.
  * This will be ACTIVE if and only if the status below is CONNECTION_UP.
  * Any INACTIVE Attachments are excluded from the analysis that generates
  * operational.availabilitySLA.

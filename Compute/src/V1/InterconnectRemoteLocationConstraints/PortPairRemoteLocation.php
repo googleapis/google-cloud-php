@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocationConstraints;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Port pair remote location constraints, which can take one
+ * Output only. [Output Only] Port pair remote location constraints, which can take one
  * of the following values: PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION,
  * PORT_PAIR_MATCHING_REMOTE_LOCATION.
  * Google Cloud API refers only to individual ports, but the UI uses this

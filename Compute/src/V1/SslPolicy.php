@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SslPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -42,7 +42,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The list of features enabled in the SSL policy.
+     * Output only. [Output Only] The list of features enabled in the SSL policy.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      */
@@ -60,14 +60,14 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
+     * Output only. [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -103,20 +103,20 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $profile = null;
     /**
-     * [Output Only] URL of the region where the regional SSL policy
+     * Output only. [Output Only] URL of the region where the regional SSL policy
      * resides. This field is not applicable to global SSL policies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] If potential misconfigurations are detected for this
+     * Output only. [Output Only] If potential misconfigurations are detected for this
      * SSL policy, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
@@ -130,7 +130,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_features
      *           A list of features enabled when the selected profile is CUSTOM. The
@@ -140,7 +140,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
-     *           [Output Only] The list of features enabled in the SSL policy.
+     *           Output only. [Output Only] The list of features enabled in the SSL policy.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object.
      *           This field is used in optimistic locking. This field will be ignored when
@@ -150,10 +150,10 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to
      *           retrieve an SslPolicy.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
+     *           Output only. [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
      *     @type string $min_tls_version
      *           The minimum version of SSL protocol that can be used by the clients to
      *           establish a connection with the load balancer. This can be one ofTLS_1_0, TLS_1_1, TLS_1_2,TLS_1_3. When set to TLS_1_3, the profile field
@@ -173,12 +173,12 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *           to enable must be specified in the customFeatures field.
      *           Check the Profile enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional SSL policy
+     *           Output only. [Output Only] URL of the region where the regional SSL policy
      *           resides. This field is not applicable to global SSL policies.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
-     *           [Output Only] If potential misconfigurations are detected for this
+     *           Output only. [Output Only] If potential misconfigurations are detected for this
      *           SSL policy, this field will be populated with warning messages.
      * }
      */
@@ -188,7 +188,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -210,7 +210,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -294,7 +294,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of features enabled in the SSL policy.
+     * Output only. [Output Only] The list of features enabled in the SSL policy.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -305,7 +305,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of features enabled in the SSL policy.
+     * Output only. [Output Only] The list of features enabled in the SSL policy.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -368,7 +368,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -390,7 +390,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -406,7 +406,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
+     * Output only. [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -427,7 +427,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
+     * Output only. [Output only] Type of the resource. Alwayscompute#sslPolicyfor SSL policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -574,7 +574,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional SSL policy
+     * Output only. [Output Only] URL of the region where the regional SSL policy
      * resides. This field is not applicable to global SSL policies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -596,7 +596,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional SSL policy
+     * Output only. [Output Only] URL of the region where the regional SSL policy
      * resides. This field is not applicable to global SSL policies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -612,7 +612,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -633,7 +633,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -648,7 +648,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If potential misconfigurations are detected for this
+     * Output only. [Output Only] If potential misconfigurations are detected for this
      * SSL policy, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
@@ -660,7 +660,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If potential misconfigurations are detected for this
+     * Output only. [Output Only] If potential misconfigurations are detected for this
      * SSL policy, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>

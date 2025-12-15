@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstantSnapshot;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
+ * Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstantSnapshot.Status</code>
  */

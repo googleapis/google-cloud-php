@@ -15,20 +15,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] Status of all-instances configuration on the group.
+     * Output only. [Output only] Status of all-instances configuration on the group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAllInstancesConfig all_instances_config = 112596737;</code>
      */
     protected $all_instances_config = null;
     /**
-     * [Output Only] The URL of theAutoscaler
+     * Output only. [Output Only] The URL of theAutoscaler
      * that targets this instance group manager.
      *
      * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
      */
     protected $autoscaler = null;
     /**
-     * [Output Only] A bit indicating whether the managed instance group is in a
+     * Output only. [Output Only] A bit indicating whether the managed instance group is in a
      * stable state. A stable state means that: none of the instances in the
      * managed instance group is currently undergoing any type of change (for
      * example, creation, restart, or deletion); no future changes are scheduled
@@ -39,13 +39,13 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
      */
     protected $is_stable = null;
     /**
-     * [Output Only] Stateful status of the given Instance Group Manager.
+     * Output only. [Output Only] Stateful status of the given Instance Group Manager.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
      */
     protected $stateful = null;
     /**
-     * [Output Only] A status of consistency of Instances' versions with their
+     * Output only. [Output Only] A status of consistency of Instances' versions with their
      * target version specified by version field on Instance Group
      * Manager.
      *
@@ -60,21 +60,21 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig $all_instances_config
-     *           [Output only] Status of all-instances configuration on the group.
+     *           Output only. [Output only] Status of all-instances configuration on the group.
      *     @type string $autoscaler
-     *           [Output Only] The URL of theAutoscaler
+     *           Output only. [Output Only] The URL of theAutoscaler
      *           that targets this instance group manager.
      *     @type bool $is_stable
-     *           [Output Only] A bit indicating whether the managed instance group is in a
+     *           Output only. [Output Only] A bit indicating whether the managed instance group is in a
      *           stable state. A stable state means that: none of the instances in the
      *           managed instance group is currently undergoing any type of change (for
      *           example, creation, restart, or deletion); no future changes are scheduled
      *           for instances in the managed instance group; and the managed instance
      *           group itself is not being modified.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStateful $stateful
-     *           [Output Only] Stateful status of the given Instance Group Manager.
+     *           Output only. [Output Only] Stateful status of the given Instance Group Manager.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusVersionTarget $version_target
-     *           [Output Only] A status of consistency of Instances' versions with their
+     *           Output only. [Output Only] A status of consistency of Instances' versions with their
      *           target version specified by version field on Instance Group
      *           Manager.
      * }
@@ -85,7 +85,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Status of all-instances configuration on the group.
+     * Output only. [Output only] Status of all-instances configuration on the group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAllInstancesConfig all_instances_config = 112596737;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig|null
@@ -106,7 +106,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Status of all-instances configuration on the group.
+     * Output only. [Output only] Status of all-instances configuration on the group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAllInstancesConfig all_instances_config = 112596737;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig $var
@@ -121,7 +121,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theAutoscaler
+     * Output only. [Output Only] The URL of theAutoscaler
      * that targets this instance group manager.
      *
      * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
@@ -143,7 +143,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theAutoscaler
+     * Output only. [Output Only] The URL of theAutoscaler
      * that targets this instance group manager.
      *
      * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
@@ -159,7 +159,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A bit indicating whether the managed instance group is in a
+     * Output only. [Output Only] A bit indicating whether the managed instance group is in a
      * stable state. A stable state means that: none of the instances in the
      * managed instance group is currently undergoing any type of change (for
      * example, creation, restart, or deletion); no future changes are scheduled
@@ -185,7 +185,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A bit indicating whether the managed instance group is in a
+     * Output only. [Output Only] A bit indicating whether the managed instance group is in a
      * stable state. A stable state means that: none of the instances in the
      * managed instance group is currently undergoing any type of change (for
      * example, creation, restart, or deletion); no future changes are scheduled
@@ -205,7 +205,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Stateful status of the given Instance Group Manager.
+     * Output only. [Output Only] Stateful status of the given Instance Group Manager.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStateful|null
@@ -226,7 +226,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Stateful status of the given Instance Group Manager.
+     * Output only. [Output Only] Stateful status of the given Instance Group Manager.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStateful $var
@@ -241,7 +241,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A status of consistency of Instances' versions with their
+     * Output only. [Output Only] A status of consistency of Instances' versions with their
      * target version specified by version field on Instance Group
      * Manager.
      *
@@ -264,7 +264,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A status of consistency of Instances' versions with their
+     * Output only. [Output Only] A status of consistency of Instances' versions with their
      * target version specified by version field on Instance Group
      * Manager.
      *

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceStatusReservationConsumptionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The full resource name of the reservation that this
+     * Output only. [Output Only] The full resource name of the reservation that this
      * instance is consuming from.
      *
      * Generated from protobuf field <code>optional string consumed_reservation = 318474741;</code>
@@ -30,7 +30,7 @@ class ResourceStatusReservationConsumptionInfo extends \Google\Protobuf\Internal
      *     Optional. Data for populating the Message object.
      *
      *     @type string $consumed_reservation
-     *           [Output Only] The full resource name of the reservation that this
+     *           Output only. [Output Only] The full resource name of the reservation that this
      *           instance is consuming from.
      * }
      */
@@ -40,7 +40,7 @@ class ResourceStatusReservationConsumptionInfo extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] The full resource name of the reservation that this
+     * Output only. [Output Only] The full resource name of the reservation that this
      * instance is consuming from.
      *
      * Generated from protobuf field <code>optional string consumed_reservation = 318474741;</code>
@@ -62,7 +62,7 @@ class ResourceStatusReservationConsumptionInfo extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] The full resource name of the reservation that this
+     * Output only. [Output Only] The full resource name of the reservation that this
      * instance is consuming from.
      *
      * Generated from protobuf field <code>optional string consumed_reservation = 318474741;</code>

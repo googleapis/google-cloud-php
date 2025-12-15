@@ -20,7 +20,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceAttachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] An array of connections for all the consumers connected to
+     * Output only. [Output Only] An array of connections for all the consumers connected to
      * this service attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint connected_endpoints = 72223688;</code>
@@ -59,7 +59,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     private $consumer_reject_lists;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -102,14 +102,14 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -163,7 +163,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $propagated_connection_limit = null;
     /**
-     * [Output Only] An 128-bit global unique ID of the PSC service attachment.
+     * Output only. [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
      */
@@ -184,7 +184,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $reconcile_connections = null;
     /**
-     * [Output Only] URL of the region where the service attachment resides.
+     * Output only. [Output Only] URL of the region where the service attachment resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -193,7 +193,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -213,7 +213,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $connected_endpoints
-     *           [Output Only] An array of connections for all the consumers connected to
+     *           Output only. [Output Only] An array of connections for all the consumers connected to
      *           this service attachment.
      *     @type string $connection_preference
      *           The connection preference of service attachment. The value can be set
@@ -236,7 +236,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           level. Therefore, both the reject and accept lists for a given service
      *           attachment must contain either only projects or only networks.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -259,10 +259,10 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           latest fingerprint, make a get() request to retrieve the
      *           ServiceAttachment.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server
+     *           Output only. [Output Only] The unique identifier for the resource type. The server
      *           generates this identifier.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Metadata of the service attachment.
      *     @type string $name
@@ -292,7 +292,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           connected endpoint.
      *           If unspecified, the default propagated connection limit is 250.
      *     @type \Google\Cloud\Compute\V1\Uint128 $psc_service_attachment_id
-     *           [Output Only] An 128-bit global unique ID of the PSC service attachment.
+     *           Output only. [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *     @type bool $reconcile_connections
      *           This flag determines whether a consumer accept/reject list change can
      *           reconcile the statuses of existing ACCEPTED or REJECTED PSC endpoints.
@@ -305,12 +305,12 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *               is added to the reject list.
      *           For newly created service attachment, this boolean defaults to false.
      *     @type string $region
-     *           [Output Only] URL of the region where the service attachment resides.
+     *           Output only. [Output Only] URL of the region where the service attachment resides.
      *           This field applies only to the region resource. You must specify this
      *           field as part of the HTTP request URL. It is not settable as a field in
      *           the request body.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $target_service
      *           The URL of a service serving the endpoint identified by this service
      *           attachment.
@@ -322,7 +322,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An array of connections for all the consumers connected to
+     * Output only. [Output Only] An array of connections for all the consumers connected to
      * this service attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint connected_endpoints = 72223688;</code>
@@ -334,7 +334,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An array of connections for all the consumers connected to
+     * Output only. [Output Only] An array of connections for all the consumers connected to
      * this service attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint connected_endpoints = 72223688;</code>
@@ -466,7 +466,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -488,7 +488,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -662,7 +662,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -684,7 +684,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -700,7 +700,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -721,7 +721,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -932,7 +932,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An 128-bit global unique ID of the PSC service attachment.
+     * Output only. [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
      * @return \Google\Cloud\Compute\V1\Uint128|null
@@ -953,7 +953,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An 128-bit global unique ID of the PSC service attachment.
+     * Output only. [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
      * @param \Google\Cloud\Compute\V1\Uint128 $var
@@ -1022,7 +1022,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the service attachment resides.
+     * Output only. [Output Only] URL of the region where the service attachment resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -1046,7 +1046,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the service attachment resides.
+     * Output only. [Output Only] URL of the region where the service attachment resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -1064,7 +1064,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1085,7 +1085,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

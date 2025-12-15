@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. [Output only] Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
@@ -44,7 +44,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $duration
-     *           [Output only] Duration of the time window, automatically chosen to be
+     *           Output only. [Output only] Duration of the time window, automatically chosen to be
      *           smallest possible in the given scenario.
      *     @type int $hours_in_cycle
      *           Defines a schedule with units measured in hours. The value determines
@@ -60,7 +60,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. [Output only] Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
@@ -82,7 +82,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. [Output only] Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>

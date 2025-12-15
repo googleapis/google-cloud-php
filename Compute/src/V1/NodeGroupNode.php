@@ -21,7 +21,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      */
     private $accelerators;
     /**
-     * Node resources that are reserved by all instances.
+     * Output only. Node resources that are reserved by all instances.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumed_resources = 334527118;</code>
      */
@@ -40,7 +40,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      */
     private $disks;
     /**
-     * Instance data that shows consumed resources on the node.
+     * Output only. Instance data that shows consumed resources on the node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceConsumptionData instance_consumption_data = 84715576;</code>
      */
@@ -64,7 +64,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      */
     protected $node_type = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
@@ -89,13 +89,13 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * Total amount of available resources on the node.
+     * Output only. Total amount of available resources on the node.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo total_resources = 97406698;</code>
      */
     protected $total_resources = null;
     /**
-     * [Output Only] The information about an upcoming maintenance event.
+     * Output only. [Output Only] The information about an upcoming maintenance event.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      */
@@ -110,14 +110,14 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           Accelerators for this node.
      *     @type \Google\Cloud\Compute\V1\InstanceConsumptionInfo $consumed_resources
-     *           Node resources that are reserved by all instances.
+     *           Output only. Node resources that are reserved by all instances.
      *     @type string $cpu_overcommit_type
      *           CPU overcommit.
      *           Check the CpuOvercommitType enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           Local disk configurations.
      *     @type array<\Google\Cloud\Compute\V1\InstanceConsumptionData>|\Google\Protobuf\Internal\RepeatedField $instance_consumption_data
-     *           Instance data that shows consumed resources on the node.
+     *           Output only. Instance data that shows consumed resources on the node.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
      *           Instances scheduled on this node.
      *     @type string $name
@@ -125,7 +125,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *     @type string $node_type
      *           The type of this node.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\ServerBinding $server_binding
      *           Binding properties for the physical server.
      *     @type string $server_id
@@ -134,9 +134,9 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *           
      *           Check the Status enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InstanceConsumptionInfo $total_resources
-     *           Total amount of available resources on the node.
+     *           Output only. Total amount of available resources on the node.
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
-     *           [Output Only] The information about an upcoming maintenance event.
+     *           Output only. [Output Only] The information about an upcoming maintenance event.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,7 +171,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Node resources that are reserved by all instances.
+     * Output only. Node resources that are reserved by all instances.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumed_resources = 334527118;</code>
      * @return \Google\Cloud\Compute\V1\InstanceConsumptionInfo|null
@@ -192,7 +192,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Node resources that are reserved by all instances.
+     * Output only. Node resources that are reserved by all instances.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo consumed_resources = 334527118;</code>
      * @param \Google\Cloud\Compute\V1\InstanceConsumptionInfo $var
@@ -271,7 +271,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instance data that shows consumed resources on the node.
+     * Output only. Instance data that shows consumed resources on the node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceConsumptionData instance_consumption_data = 84715576;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -282,7 +282,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instance data that shows consumed resources on the node.
+     * Output only. Instance data that shows consumed resources on the node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceConsumptionData instance_consumption_data = 84715576;</code>
      * @param array<\Google\Cloud\Compute\V1\InstanceConsumptionData>|\Google\Protobuf\Internal\RepeatedField $var
@@ -395,7 +395,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -416,7 +416,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -541,7 +541,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total amount of available resources on the node.
+     * Output only. Total amount of available resources on the node.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo total_resources = 97406698;</code>
      * @return \Google\Cloud\Compute\V1\InstanceConsumptionInfo|null
@@ -562,7 +562,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total amount of available resources on the node.
+     * Output only. Total amount of available resources on the node.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo total_resources = 97406698;</code>
      * @param \Google\Cloud\Compute\V1\InstanceConsumptionInfo $var
@@ -577,7 +577,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The information about an upcoming maintenance event.
+     * Output only. [Output Only] The information about an upcoming maintenance event.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      * @return \Google\Cloud\Compute\V1\UpcomingMaintenance|null
@@ -598,7 +598,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The information about an upcoming maintenance event.
+     * Output only. [Output Only] The information about an upcoming maintenance event.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
      * @param \Google\Cloud\Compute\V1\UpcomingMaintenance $var

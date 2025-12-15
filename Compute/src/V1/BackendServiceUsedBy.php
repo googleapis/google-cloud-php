@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Server-defined URL for resources referencing given
+     * Output only. [Output Only] Server-defined URL for resources referencing given
      * BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
      * and ForwardingRule.
      *
@@ -30,7 +30,7 @@ class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $reference
-     *           [Output Only] Server-defined URL for resources referencing given
+     *           Output only. [Output Only] Server-defined URL for resources referencing given
      *           BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
      *           and ForwardingRule.
      * }
@@ -41,7 +41,7 @@ class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for resources referencing given
+     * Output only. [Output Only] Server-defined URL for resources referencing given
      * BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
      * and ForwardingRule.
      *
@@ -64,7 +64,7 @@ class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for resources referencing given
+     * Output only. [Output Only] Server-defined URL for resources referencing given
      * BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
      * and ForwardingRule.
      *

@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Indicates how many instances are actually usable currently.
+     * Output only. [Output Only] Indicates how many instances are actually usable currently.
      *
      * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
      */
@@ -29,7 +29,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      */
     protected $count = null;
     /**
-     * [Output Only] Indicates how many instances are in use.
+     * Output only. [Output Only] Indicates how many instances are in use.
      *
      * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      */
@@ -60,11 +60,11 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $assured_count
-     *           [Output Only] Indicates how many instances are actually usable currently.
+     *           Output only. [Output Only] Indicates how many instances are actually usable currently.
      *     @type int|string $count
      *           Specifies the number of resources that are allocated.
      *     @type int|string $in_use_count
-     *           [Output Only] Indicates how many instances are in use.
+     *           Output only. [Output Only] Indicates how many instances are in use.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationReservedInstanceProperties $instance_properties
      *           The instance properties for the reservation.
      *     @type string $source_instance_template
@@ -83,7 +83,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are actually usable currently.
+     * Output only. [Output Only] Indicates how many instances are actually usable currently.
      *
      * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
      * @return int|string
@@ -104,7 +104,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are actually usable currently.
+     * Output only. [Output Only] Indicates how many instances are actually usable currently.
      *
      * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
      * @param int|string $var
@@ -155,7 +155,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are in use.
+     * Output only. [Output Only] Indicates how many instances are in use.
      *
      * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      * @return int|string
@@ -176,7 +176,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are in use.
+     * Output only. [Output Only] Indicates how many instances are in use.
      *
      * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      * @param int|string $var

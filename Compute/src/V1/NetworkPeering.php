@@ -28,7 +28,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     protected $auto_create_routes = null;
     /**
-     * [Output Only] The effective state of the peering connection
+     * Output only. [Output Only] The effective state of the peering connection
      * as a whole.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
@@ -97,7 +97,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
-     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     * Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      */
@@ -111,7 +111,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     protected $stack_type = null;
     /**
-     * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
      * peering is `ACTIVE` when there's a matching configuration in the peer
      * network.
      * Check the State enum for the list of possible values.
@@ -120,7 +120,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     protected $state = null;
     /**
-     * [Output Only] Details about the current state of the peering.
+     * Output only. [Output Only] Details about the current state of the peering.
      *
      * Generated from protobuf field <code>optional string state_details = 95566996;</code>
      */
@@ -147,7 +147,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *           be true since Google Compute Engine will automatically create and manage
      *           subnetwork routes between two networks when peering state isACTIVE.
      *     @type \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus $connection_status
-     *           [Output Only] The effective state of the peering connection
+     *           Output only. [Output Only] The effective state of the peering connection
      *           as a whole.
      *     @type bool $exchange_subnet_routes
      *           Indicates whether full mesh connectivity is created and managed
@@ -184,18 +184,18 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *           contain project, it is assumed that the peer network is in the same project
      *           as the current network.
      *     @type int $peer_mtu
-     *           [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     *           Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *     @type string $stack_type
      *           Which IP version(s) of traffic and routes are allowed to be imported or
      *           exported between peer networks. The default value is IPV4_ONLY.
      *           Check the StackType enum for the list of possible values.
      *     @type string $state
-     *           [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     *           Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
      *           peering is `ACTIVE` when there's a matching configuration in the peer
      *           network.
      *           Check the State enum for the list of possible values.
      *     @type string $state_details
-     *           [Output Only] Details about the current state of the peering.
+     *           Output only. [Output Only] Details about the current state of the peering.
      *     @type string $update_strategy
      *           The update strategy determines the semantics for updates and deletes to the
      *           peering connection configuration.
@@ -252,7 +252,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The effective state of the peering connection
+     * Output only. [Output Only] The effective state of the peering connection
      * as a whole.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
@@ -274,7 +274,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The effective state of the peering connection
+     * Output only. [Output Only] The effective state of the peering connection
      * as a whole.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
@@ -582,7 +582,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     * Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      * @return int
@@ -603,7 +603,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     * Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      * @param int $var
@@ -658,7 +658,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
      * peering is `ACTIVE` when there's a matching configuration in the peer
      * network.
      * Check the State enum for the list of possible values.
@@ -682,7 +682,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
      * peering is `ACTIVE` when there's a matching configuration in the peer
      * network.
      * Check the State enum for the list of possible values.
@@ -700,7 +700,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Details about the current state of the peering.
+     * Output only. [Output Only] Details about the current state of the peering.
      *
      * Generated from protobuf field <code>optional string state_details = 95566996;</code>
      * @return string
@@ -721,7 +721,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Details about the current state of the peering.
+     * Output only. [Output Only] Details about the current state of the peering.
      *
      * Generated from protobuf field <code>optional string state_details = 95566996;</code>
      * @param string $var

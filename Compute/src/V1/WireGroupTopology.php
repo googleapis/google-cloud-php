@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class WireGroupTopology extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Topology details for all endpoints in the wire group.
+     * Output only. Topology details for all endpoints in the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireGroupTopologyEndpoint endpoints = 287085950;</code>
      */
@@ -29,7 +29,7 @@ class WireGroupTopology extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\WireGroupTopologyEndpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
-     *           Topology details for all endpoints in the wire group.
+     *           Output only. Topology details for all endpoints in the wire group.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class WireGroupTopology extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Topology details for all endpoints in the wire group.
+     * Output only. Topology details for all endpoints in the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireGroupTopologyEndpoint endpoints = 287085950;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +49,7 @@ class WireGroupTopology extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Topology details for all endpoints in the wire group.
+     * Output only. Topology details for all endpoints in the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireGroupTopologyEndpoint endpoints = 287085950;</code>
      * @param array<\Google\Cloud\Compute\V1\WireGroupTopologyEndpoint>|\Google\Protobuf\Internal\RepeatedField $var

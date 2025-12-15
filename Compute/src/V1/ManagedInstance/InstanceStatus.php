@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ManagedInstance;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the instance. This field is empty when
+ * Output only. [Output Only] The status of the instance. This field is empty when
  * the instance does not exist.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * STOPPING

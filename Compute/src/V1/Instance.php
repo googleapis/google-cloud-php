@@ -36,13 +36,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $confidential_instance_config = null;
     /**
-     * [Output Only] The CPU platform used by this instance.
+     * Output only. [Output Only] The CPU platform used by this instance.
      *
      * Generated from protobuf field <code>optional string cpu_platform = 410285354;</code>
      */
     protected $cpu_platform = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -101,7 +101,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $hostname = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -128,7 +128,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $key_revocation_action_type = null;
     /**
-     * [Output Only] Type of the resource. Always compute#instance
+     * Output only. [Output Only] Type of the resource. Always compute#instance
      * for instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -154,19 +154,19 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * [Output Only] Last start timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last start timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_start_timestamp = 443830736;</code>
      */
     protected $last_start_timestamp = null;
     /**
-     * [Output Only] Last stop timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last stop timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_stop_timestamp = 412823010;</code>
      */
     protected $last_stop_timestamp = null;
     /**
-     * [Output Only] Last suspended timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last suspended timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_suspended_timestamp = 356275337;</code>
      */
@@ -264,7 +264,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $resource_policies;
     /**
-     * [Output Only] Specifies values set for instance attributes as
+     * Output only. [Output Only] Specifies values set for instance attributes as
      * compared to the values requested by user in the corresponding input only
      * field.
      *
@@ -272,13 +272,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $resource_status = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
      */
     protected $satisfies_pzi = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
@@ -290,7 +290,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $scheduling = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -328,14 +328,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $source_machine_image_encryption_key = null;
     /**
-     * [Output Only] Whether a VM has been restricted for start because Compute
+     * Output only. [Output Only] Whether a VM has been restricted for start because Compute
      * Engine has detected suspicious activity.
      *
      * Generated from protobuf field <code>optional bool start_restricted = 123693144;</code>
      */
     protected $start_restricted = null;
     /**
-     * [Output Only] The status of the instance. One of the
+     * Output only. [Output Only] The status of the instance. One of the
      * following values: PROVISIONING, STAGING,RUNNING, STOPPING, SUSPENDING,SUSPENDED, REPAIRING, andTERMINATED. For more information about the status of the
      * instance, see
      * Instance life cycle.
@@ -345,7 +345,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * [Output Only] An optional, human-readable explanation of the status.
+     * Output only. [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      */
@@ -361,7 +361,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $tags = null;
     /**
-     * [Output Only] URL of the zone where the instance resides.
+     * Output only. [Output Only] URL of the zone where the instance resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -383,9 +383,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           instance to forward routes. For more information, seeEnabling IP Forwarding.
      *     @type \Google\Cloud\Compute\V1\ConfidentialInstanceConfig $confidential_instance_config
      *     @type string $cpu_platform
-     *           [Output Only] The CPU platform used by this instance.
+     *           Output only. [Output Only] The CPU platform used by this instance.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339 text format.
+     *           Output only. [Output Only] Creation timestamp inRFC3339 text format.
      *     @type bool $deletion_protection
      *           Whether the resource should be protected against deletion.
      *     @type string $description
@@ -412,7 +412,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           [INSTANCE_NAME].c.[PROJECT_ID].internal when using the global DNS, and
      *           [INSTANCE_NAME].[ZONE].c.[PROJECT_ID].internal when using zonal DNS.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $instance_encryption_key
      *           Encrypts suspended data for an instance with acustomer-managed
@@ -427,7 +427,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           "NONE". The default value is "NONE" if it is not specified.
      *           Check the KeyRevocationActionType enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#instance
+     *           Output only. [Output Only] Type of the resource. Always compute#instance
      *           for instances.
      *     @type string $label_fingerprint
      *           A fingerprint for this request, which is essentially a hash of
@@ -441,11 +441,11 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Labels to apply to this instance. These can be later modified by
      *           the setLabels method.
      *     @type string $last_start_timestamp
-     *           [Output Only] Last start timestamp inRFC3339 text format.
+     *           Output only. [Output Only] Last start timestamp inRFC3339 text format.
      *     @type string $last_stop_timestamp
-     *           [Output Only] Last stop timestamp inRFC3339 text format.
+     *           Output only. [Output Only] Last stop timestamp inRFC3339 text format.
      *     @type string $last_suspended_timestamp
-     *           [Output Only] Last suspended timestamp inRFC3339 text format.
+     *           Output only. [Output Only] Last suspended timestamp inRFC3339 text format.
      *     @type string $machine_type
      *           Full or partial URL of the machine type resource to use for this instance,
      *           in the format:zones/zone/machineTypes/machine-type. This is provided by the client
@@ -500,17 +500,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this instance.
      *     @type \Google\Cloud\Compute\V1\ResourceStatus $resource_status
-     *           [Output Only] Specifies values set for instance attributes as
+     *           Output only. [Output Only] Specifies values set for instance attributes as
      *           compared to the values requested by user in the corresponding input only
      *           field.
      *     @type bool $satisfies_pzi
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
      *           Sets the scheduling options for this instance.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type array<\Google\Cloud\Compute\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_accounts
      *           A list of service accounts, with their specified scopes, authorized for
      *           this instance. Only one service account per VM instance is supported.
@@ -526,16 +526,16 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Source machine image encryption key when creating an instance from a
      *           machine image.
      *     @type bool $start_restricted
-     *           [Output Only] Whether a VM has been restricted for start because Compute
+     *           Output only. [Output Only] Whether a VM has been restricted for start because Compute
      *           Engine has detected suspicious activity.
      *     @type string $status
-     *           [Output Only] The status of the instance. One of the
+     *           Output only. [Output Only] The status of the instance. One of the
      *           following values: PROVISIONING, STAGING,RUNNING, STOPPING, SUSPENDING,SUSPENDED, REPAIRING, andTERMINATED. For more information about the status of the
      *           instance, see
      *           Instance life cycle.
      *           Check the Status enum for the list of possible values.
      *     @type string $status_message
-     *           [Output Only] An optional, human-readable explanation of the status.
+     *           Output only. [Output Only] An optional, human-readable explanation of the status.
      *     @type \Google\Cloud\Compute\V1\Tags $tags
      *           Tags to apply to this instance. Tags are used to identify valid
      *           sources or targets for network firewalls and are specified by the client
@@ -543,7 +543,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           method. Each tag within the list must comply withRFC1035.
      *           Multiple tags can be specified via the 'tags.items' field.
      *     @type string $zone
-     *           [Output Only] URL of the zone where the instance resides.
+     *           Output only. [Output Only] URL of the zone where the instance resides.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      * }
@@ -662,7 +662,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The CPU platform used by this instance.
+     * Output only. [Output Only] The CPU platform used by this instance.
      *
      * Generated from protobuf field <code>optional string cpu_platform = 410285354;</code>
      * @return string
@@ -683,7 +683,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The CPU platform used by this instance.
+     * Output only. [Output Only] The CPU platform used by this instance.
      *
      * Generated from protobuf field <code>optional string cpu_platform = 410285354;</code>
      * @param string $var
@@ -698,7 +698,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -719,7 +719,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -988,7 +988,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -1010,7 +1010,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -1114,7 +1114,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#instance
+     * Output only. [Output Only] Type of the resource. Always compute#instance
      * for instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1136,7 +1136,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#instance
+     * Output only. [Output Only] Type of the resource. Always compute#instance
      * for instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1228,7 +1228,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last start timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last start timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_start_timestamp = 443830736;</code>
      * @return string
@@ -1249,7 +1249,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last start timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last start timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_start_timestamp = 443830736;</code>
      * @param string $var
@@ -1264,7 +1264,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last stop timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last stop timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_stop_timestamp = 412823010;</code>
      * @return string
@@ -1285,7 +1285,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last stop timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last stop timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_stop_timestamp = 412823010;</code>
      * @param string $var
@@ -1300,7 +1300,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last suspended timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last suspended timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_suspended_timestamp = 356275337;</code>
      * @return string
@@ -1321,7 +1321,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last suspended timestamp inRFC3339 text format.
+     * Output only. [Output Only] Last suspended timestamp inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_suspended_timestamp = 356275337;</code>
      * @param string $var
@@ -1740,7 +1740,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Specifies values set for instance attributes as
+     * Output only. [Output Only] Specifies values set for instance attributes as
      * compared to the values requested by user in the corresponding input only
      * field.
      *
@@ -1763,7 +1763,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Specifies values set for instance attributes as
+     * Output only. [Output Only] Specifies values set for instance attributes as
      * compared to the values requested by user in the corresponding input only
      * field.
      *
@@ -1780,7 +1780,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
      * @return bool
@@ -1801,7 +1801,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
      * @param bool $var
@@ -1816,7 +1816,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -1837,7 +1837,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -1888,7 +1888,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1909,7 +1909,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -2098,7 +2098,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Whether a VM has been restricted for start because Compute
+     * Output only. [Output Only] Whether a VM has been restricted for start because Compute
      * Engine has detected suspicious activity.
      *
      * Generated from protobuf field <code>optional bool start_restricted = 123693144;</code>
@@ -2120,7 +2120,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Whether a VM has been restricted for start because Compute
+     * Output only. [Output Only] Whether a VM has been restricted for start because Compute
      * Engine has detected suspicious activity.
      *
      * Generated from protobuf field <code>optional bool start_restricted = 123693144;</code>
@@ -2136,7 +2136,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the instance. One of the
+     * Output only. [Output Only] The status of the instance. One of the
      * following values: PROVISIONING, STAGING,RUNNING, STOPPING, SUSPENDING,SUSPENDED, REPAIRING, andTERMINATED. For more information about the status of the
      * instance, see
      * Instance life cycle.
@@ -2161,7 +2161,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the instance. One of the
+     * Output only. [Output Only] The status of the instance. One of the
      * following values: PROVISIONING, STAGING,RUNNING, STOPPING, SUSPENDING,SUSPENDED, REPAIRING, andTERMINATED. For more information about the status of the
      * instance, see
      * Instance life cycle.
@@ -2180,7 +2180,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional, human-readable explanation of the status.
+     * Output only. [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @return string
@@ -2201,7 +2201,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional, human-readable explanation of the status.
+     * Output only. [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @param string $var
@@ -2260,7 +2260,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the instance resides.
+     * Output only. [Output Only] URL of the zone where the instance resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -2283,7 +2283,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the instance resides.
+     * Output only. [Output Only] URL of the zone where the instance resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *

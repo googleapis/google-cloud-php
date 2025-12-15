@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStatusVersionTarget extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] A bit indicating whether version target has been reached
+     * Output only. [Output Only] A bit indicating whether version target has been reached
      * in this managed instance group, i.e. all instances are in their target
      * version. Instances' target version are specified byversion field on Instance Group Manager.
      *
@@ -30,7 +30,7 @@ class InstanceGroupManagerStatusVersionTarget extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $is_reached
-     *           [Output Only] A bit indicating whether version target has been reached
+     *           Output only. [Output Only] A bit indicating whether version target has been reached
      *           in this managed instance group, i.e. all instances are in their target
      *           version. Instances' target version are specified byversion field on Instance Group Manager.
      * }
@@ -41,7 +41,7 @@ class InstanceGroupManagerStatusVersionTarget extends \Google\Protobuf\Internal\
     }
 
     /**
-     * [Output Only] A bit indicating whether version target has been reached
+     * Output only. [Output Only] A bit indicating whether version target has been reached
      * in this managed instance group, i.e. all instances are in their target
      * version. Instances' target version are specified byversion field on Instance Group Manager.
      *
@@ -64,7 +64,7 @@ class InstanceGroupManagerStatusVersionTarget extends \Google\Protobuf\Internal\
     }
 
     /**
-     * [Output Only] A bit indicating whether version target has been reached
+     * Output only. [Output Only] A bit indicating whether version target has been reached
      * in this managed instance group, i.e. all instances are in their target
      * version. Instances' target version are specified byversion field on Instance Group Manager.
      *

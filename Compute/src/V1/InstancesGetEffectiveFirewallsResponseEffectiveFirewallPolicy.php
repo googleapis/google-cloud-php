@@ -15,26 +15,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name
+     * Output only. [Output Only] Deprecated, please use short name instead. The display name
      * of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
     protected $display_name = null;
     /**
-     * [Output Only] The name of the firewall policy.
+     * Output only. [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output Only] The packet mirroring rules that apply to the instance.
+     * Output only. [Output Only] The packet mirroring rules that apply to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
      */
     private $packet_mirroring_rules;
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for
+     * Output only. [Output only] Priority of firewall policy association. Not applicable for
      * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
@@ -49,13 +49,13 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      */
     private $rules;
     /**
-     * [Output Only] The short name of the firewall policy.
+     * Output only. [Output Only] The short name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      */
     protected $short_name = null;
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
      * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
@@ -70,23 +70,23 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           [Output Only] Deprecated, please use short name instead. The display name
+     *           Output only. [Output Only] Deprecated, please use short name instead. The display name
      *           of the firewall policy.
      *     @type string $name
-     *           [Output Only] The name of the firewall policy.
+     *           Output only. [Output Only] The name of the firewall policy.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
-     *           [Output Only] The packet mirroring rules that apply to the instance.
+     *           Output only. [Output Only] The packet mirroring rules that apply to the instance.
      *     @type int $priority
-     *           [Output only] Priority of firewall policy association. Not applicable for
+     *           Output only. [Output only] Priority of firewall policy association. Not applicable for
      *           type=HIERARCHY.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           [Output Only] The rules that apply to the instance. Only rules that
      *           target the specific VM instance are returned if target service accounts
      *           or target secure tags are specified in the rules.
      *     @type string $short_name
-     *           [Output Only] The short name of the firewall policy.
+     *           Output only. [Output Only] The short name of the firewall policy.
      *     @type string $type
-     *           [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     *           Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
      *           NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      *           Check the Type enum for the list of possible values.
      * }
@@ -97,7 +97,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name
+     * Output only. [Output Only] Deprecated, please use short name instead. The display name
      * of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
@@ -119,7 +119,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] Deprecated, please use short name instead. The display name
+     * Output only. [Output Only] Deprecated, please use short name instead. The display name
      * of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
@@ -135,7 +135,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The name of the firewall policy.
+     * Output only. [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -156,7 +156,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The name of the firewall policy.
+     * Output only. [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -171,7 +171,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The packet mirroring rules that apply to the instance.
+     * Output only. [Output Only] The packet mirroring rules that apply to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -182,7 +182,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The packet mirroring rules that apply to the instance.
+     * Output only. [Output Only] The packet mirroring rules that apply to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
      * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
@@ -197,7 +197,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for
+     * Output only. [Output only] Priority of firewall policy association. Not applicable for
      * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
@@ -219,7 +219,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for
+     * Output only. [Output only] Priority of firewall policy association. Not applicable for
      * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
@@ -265,7 +265,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The short name of the firewall policy.
+     * Output only. [Output Only] The short name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @return string
@@ -286,7 +286,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The short name of the firewall policy.
+     * Output only. [Output Only] The short name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @param string $var
@@ -301,7 +301,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
      * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
@@ -324,7 +324,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
      * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *

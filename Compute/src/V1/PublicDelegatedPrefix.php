@@ -28,14 +28,14 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $allocatable_prefix_length = null;
     /**
-     * [Output Only] The version of BYOIP API.
+     * Output only. [Output Only] The version of BYOIP API.
      * Check the ByoipApiVersion enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
      */
     protected $byoip_api_version = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -49,6 +49,13 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
+     * Output only. [Output Only] Whether this PDP supports enhanced IPv4 allocations.
+     * Applicable for IPv4 PDPs only.
+     *
+     * Generated from protobuf field <code>optional bool enable_enhanced_ipv4_allocation = 54582253;</code>
+     */
+    protected $enable_enhanced_ipv4_allocation = null;
+    /**
      * Fingerprint of this resource. A hash of the contents stored in this object.
      * This field is used in optimistic locking. This field will be ignored when
      * inserting a new PublicDelegatedPrefix. An up-to-date
@@ -61,7 +68,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -75,7 +82,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $ip_cidr_range = null;
     /**
-     * [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
+     * Output only. [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
      * Inherited from parent prefix.
      * Check the Ipv6AccessType enum for the list of possible values.
      *
@@ -89,7 +96,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $is_live_migration = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -128,7 +135,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     private $public_delegated_sub_prefixs;
     /**
-     * [Output Only] URL of the region where the public delegated prefix resides.
+     * Output only. [Output Only] URL of the region where the public delegated prefix resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -137,7 +144,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -170,14 +177,17 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *           This field is optional and cannot be set for prefixes in DELEGATION mode.
      *           It cannot be set for IPv4 prefixes either, and it always defaults to 32.
      *     @type string $byoip_api_version
-     *           [Output Only] The version of BYOIP API.
+     *           Output only. [Output Only] The version of BYOIP API.
      *           Check the ByoipApiVersion enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
+     *     @type bool $enable_enhanced_ipv4_allocation
+     *           Output only. [Output Only] Whether this PDP supports enhanced IPv4 allocations.
+     *           Applicable for IPv4 PDPs only.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object.
      *           This field is used in optimistic locking. This field will be ignored when
@@ -187,19 +197,19 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to
      *           retrieve a PublicDelegatedPrefix.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server
+     *           Output only. [Output Only] The unique identifier for the resource type. The server
      *           generates this identifier.
      *     @type string $ip_cidr_range
      *           The IP address range, in CIDR format, represented by this public
      *           delegated prefix.
      *     @type string $ipv6_access_type
-     *           [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
+     *           Output only. [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
      *           Inherited from parent prefix.
      *           Check the Ipv6AccessType enum for the list of possible values.
      *     @type bool $is_live_migration
      *           If true, the prefix will be live migrated.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
      *     @type string $mode
      *           The public delegated prefix mode for IPv6 only.
      *           Check the Mode enum for the list of possible values.
@@ -218,12 +228,12 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *           The list of sub public delegated prefixes that exist for this public
      *           delegated prefix.
      *     @type string $region
-     *           [Output Only] URL of the region where the public delegated prefix resides.
+     *           Output only. [Output Only] URL of the region where the public delegated prefix resides.
      *           This field applies only to the region resource. You must specify this
      *           field as part of the HTTP request URL. It is not settable as a field in
      *           the request body.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $status
      *           [Output Only] The status of the public delegated prefix, which can be one
      *           of following values:
@@ -284,7 +294,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The version of BYOIP API.
+     * Output only. [Output Only] The version of BYOIP API.
      * Check the ByoipApiVersion enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
@@ -306,7 +316,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The version of BYOIP API.
+     * Output only. [Output Only] The version of BYOIP API.
      * Check the ByoipApiVersion enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
@@ -322,7 +332,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -344,7 +354,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -398,6 +408,44 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. [Output Only] Whether this PDP supports enhanced IPv4 allocations.
+     * Applicable for IPv4 PDPs only.
+     *
+     * Generated from protobuf field <code>optional bool enable_enhanced_ipv4_allocation = 54582253;</code>
+     * @return bool
+     */
+    public function getEnableEnhancedIpv4Allocation()
+    {
+        return isset($this->enable_enhanced_ipv4_allocation) ? $this->enable_enhanced_ipv4_allocation : false;
+    }
+
+    public function hasEnableEnhancedIpv4Allocation()
+    {
+        return isset($this->enable_enhanced_ipv4_allocation);
+    }
+
+    public function clearEnableEnhancedIpv4Allocation()
+    {
+        unset($this->enable_enhanced_ipv4_allocation);
+    }
+
+    /**
+     * Output only. [Output Only] Whether this PDP supports enhanced IPv4 allocations.
+     * Applicable for IPv4 PDPs only.
+     *
+     * Generated from protobuf field <code>optional bool enable_enhanced_ipv4_allocation = 54582253;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableEnhancedIpv4Allocation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_enhanced_ipv4_allocation = $var;
+
+        return $this;
+    }
+
+    /**
      * Fingerprint of this resource. A hash of the contents stored in this object.
      * This field is used in optimistic locking. This field will be ignored when
      * inserting a new PublicDelegatedPrefix. An up-to-date
@@ -446,7 +494,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -468,7 +516,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -522,7 +570,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
+     * Output only. [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
      * Inherited from parent prefix.
      * Check the Ipv6AccessType enum for the list of possible values.
      *
@@ -545,7 +593,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
+     * Output only. [Output Only] The internet access type for IPv6 Public Delegated Prefixes.
      * Inherited from parent prefix.
      * Check the Ipv6AccessType enum for the list of possible values.
      *
@@ -598,7 +646,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -619,7 +667,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefix for public delegated prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -786,7 +834,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the public delegated prefix resides.
+     * Output only. [Output Only] URL of the region where the public delegated prefix resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -810,7 +858,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the public delegated prefix resides.
+     * Output only. [Output Only] URL of the region where the public delegated prefix resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -828,7 +876,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -849,7 +897,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

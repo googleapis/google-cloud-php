@@ -59,7 +59,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $commitment_info = null;
     /**
-     * [Output Only] The creation timestamp for this future reservation inRFC3339
+     * Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -86,14 +86,14 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $enable_emergent_maintenance = null;
     /**
-     * [Output Only] A unique identifier for this future reservation. The server
+     * Output only. [Output Only] A unique identifier for this future reservation. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -153,13 +153,13 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $scheduling_type = null;
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -186,7 +186,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $specific_sku_properties = null;
     /**
-     * [Output only] Status of the Future Reservation
+     * Output only. [Output only] Status of the Future Reservation
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatus status = 181260274;</code>
      */
@@ -198,7 +198,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $time_window = null;
     /**
-     * [Output Only] URL of the Zone where this future reservation resides.
+     * Output only. [Output Only] URL of the Zone where this future reservation resides.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -235,7 +235,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *           If not present, then FR will not deliver a new commitment or update an
      *           existing commitment.
      *     @type string $creation_timestamp
-     *           [Output Only] The creation timestamp for this future reservation inRFC3339
+     *           Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      *           text format.
      *     @type string $deployment_type
      *           Type of the deployment requested as part of future reservation.
@@ -246,10 +246,10 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_emergent_maintenance
      *           Indicates if this group of VMs have emergent maintenance enabled.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this future reservation. The server
+     *           Output only. [Output Only] A unique identifier for this future reservation. The server
      *           defines this identifier.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating
      *           the resource. The resource name must be 1-63 characters long, and comply
@@ -281,9 +281,9 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *           Maintenance information for this reservation
      *           Check the SchedulingType enum for the list of possible values.
      *     @type string $self_link
-     *           [Output Only] Server-defined fully-qualified URL for this resource.
+     *           Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
      *           List of Projects/Folders to share with.
      *     @type bool $specific_reservation_required
@@ -294,11 +294,11 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *           Future Reservation configuration to indicate instance properties and
      *           total count.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatus $status
-     *           [Output only] Status of the Future Reservation
+     *           Output only. [Output only] Status of the Future Reservation
      *     @type \Google\Cloud\Compute\V1\FutureReservationTimeWindow $time_window
      *           Time window for this Future Reservation.
      *     @type string $zone
-     *           [Output Only] URL of the Zone where this future reservation resides.
+     *           Output only. [Output Only] URL of the Zone where this future reservation resides.
      * }
      */
     public function __construct($data = NULL) {
@@ -515,7 +515,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this future reservation inRFC3339
+     * Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -537,7 +537,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this future reservation inRFC3339
+     * Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -665,7 +665,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this future reservation. The server
+     * Output only. [Output Only] A unique identifier for this future reservation. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -687,7 +687,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this future reservation. The server
+     * Output only. [Output Only] A unique identifier for this future reservation. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -703,7 +703,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -724,7 +724,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#futureReservation for future reservations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -991,7 +991,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1012,7 +1012,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -1027,7 +1027,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -1048,7 +1048,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var
@@ -1177,7 +1177,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Status of the Future Reservation
+     * Output only. [Output only] Status of the Future Reservation
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatus status = 181260274;</code>
      * @return \Google\Cloud\Compute\V1\FutureReservationStatus|null
@@ -1198,7 +1198,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Status of the Future Reservation
+     * Output only. [Output only] Status of the Future Reservation
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatus status = 181260274;</code>
      * @param \Google\Cloud\Compute\V1\FutureReservationStatus $var
@@ -1249,7 +1249,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the Zone where this future reservation resides.
+     * Output only. [Output Only] URL of the Zone where this future reservation resides.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -1270,7 +1270,7 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the Zone where this future reservation resides.
+     * Output only. [Output Only] URL of the Zone where this future reservation resides.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

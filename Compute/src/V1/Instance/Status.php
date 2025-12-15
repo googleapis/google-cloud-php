@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Instance;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the instance. One of the
+ * Output only. [Output Only] The status of the instance. One of the
  * following values: PROVISIONING, STAGING,RUNNING, STOPPING, SUSPENDING,SUSPENDED, REPAIRING, andTERMINATED. For more information about the status of the
  * instance, see
  * Instance life cycle.

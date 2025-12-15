@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstantSnapshot extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The architecture of the instant snapshot. Valid values are
+     * Output only. [Output Only] The architecture of the instant snapshot. Valid values are
      * ARM64 or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -25,7 +25,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $architecture = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -39,20 +39,20 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] Size of the source disk, specified in GB.
+     * Output only. [Output Only] Size of the source disk, specified in GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      */
     protected $disk_size_gb = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -91,7 +91,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] URL of the region where the instant snapshot resides.
+     * Output only. [Output Only] URL of the region where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -99,7 +99,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Status information for the instant snapshot resource.
+     * Output only. [Output Only] Status information for the instant snapshot resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotResourceStatus resource_status = 249429315;</code>
      */
@@ -111,19 +111,19 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzi = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource's resource id.
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -150,7 +150,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $source_disk = null;
     /**
-     * [Output Only] The ID value of the disk used to create this InstantSnapshot.
+     * Output only. [Output Only] The ID value of the disk used to create this InstantSnapshot.
      * This value may be used to determine whether the InstantSnapshot
      * was taken from the current or a previous instance of a given disk name.
      *
@@ -158,14 +158,14 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $source_disk_id = null;
     /**
-     * [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
+     * Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     protected $status = null;
     /**
-     * [Output Only] URL of the zone where the instant snapshot resides.
+     * Output only. [Output Only] URL of the zone where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -180,22 +180,22 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $architecture
-     *           [Output Only] The architecture of the instant snapshot. Valid values are
+     *           Output only. [Output Only] The architecture of the instant snapshot. Valid values are
      *           ARM64 or X86_64.
      *           Check the Architecture enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type int|string $disk_size_gb
-     *           [Output Only] Size of the source disk, specified in GB.
+     *           Output only. [Output Only] Size of the source disk, specified in GB.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this InstantSnapshot, which
      *           is essentially a hash of the labels set used for optimistic locking. The
@@ -218,19 +218,19 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      *           a dash, lowercase letter, or digit, except the last character, which cannot
      *           be a dash.
      *     @type string $region
-     *           [Output Only] URL of the region where the instant snapshot resides.
+     *           Output only. [Output Only] URL of the region where the instant snapshot resides.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      *     @type \Google\Cloud\Compute\V1\InstantSnapshotResourceStatus $resource_status
-     *           [Output Only] Status information for the instant snapshot resource.
+     *           Output only. [Output Only] Status information for the instant snapshot resource.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource's resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource's resource id.
      *     @type string $source_disk
      *           URL of the source disk used to create this instant snapshot.
      *           Note that the source disk must be in the same zone/region as the
@@ -249,14 +249,14 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      *                -
      *                  regions/region/disks/disk
      *     @type string $source_disk_id
-     *           [Output Only] The ID value of the disk used to create this InstantSnapshot.
+     *           Output only. [Output Only] The ID value of the disk used to create this InstantSnapshot.
      *           This value may be used to determine whether the InstantSnapshot
      *           was taken from the current or a previous instance of a given disk name.
      *     @type string $status
-     *           [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
+     *           Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
      *           Check the Status enum for the list of possible values.
      *     @type string $zone
-     *           [Output Only] URL of the zone where the instant snapshot resides.
+     *           Output only. [Output Only] URL of the zone where the instant snapshot resides.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      * }
@@ -267,7 +267,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the instant snapshot. Valid values are
+     * Output only. [Output Only] The architecture of the instant snapshot. Valid values are
      * ARM64 or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -290,7 +290,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the instant snapshot. Valid values are
+     * Output only. [Output Only] The architecture of the instant snapshot. Valid values are
      * ARM64 or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -307,7 +307,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -329,7 +329,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -383,7 +383,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size of the source disk, specified in GB.
+     * Output only. [Output Only] Size of the source disk, specified in GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      * @return int|string
@@ -404,7 +404,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size of the source disk, specified in GB.
+     * Output only. [Output Only] Size of the source disk, specified in GB.
      *
      * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      * @param int|string $var
@@ -419,7 +419,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -441,7 +441,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -457,7 +457,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -478,7 +478,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#instantSnapshot for InstantSnapshot resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -621,7 +621,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the instant snapshot resides.
+     * Output only. [Output Only] URL of the region where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -644,7 +644,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the instant snapshot resides.
+     * Output only. [Output Only] URL of the region where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -661,7 +661,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information for the instant snapshot resource.
+     * Output only. [Output Only] Status information for the instant snapshot resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotResourceStatus resource_status = 249429315;</code>
      * @return \Google\Cloud\Compute\V1\InstantSnapshotResourceStatus|null
@@ -682,7 +682,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information for the instant snapshot resource.
+     * Output only. [Output Only] Status information for the instant snapshot resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotResourceStatus resource_status = 249429315;</code>
      * @param \Google\Cloud\Compute\V1\InstantSnapshotResourceStatus $var
@@ -733,7 +733,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -754,7 +754,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -769,7 +769,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -790,7 +790,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -805,7 +805,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource's resource id.
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -826,7 +826,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource's resource id.
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var
@@ -907,7 +907,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The ID value of the disk used to create this InstantSnapshot.
+     * Output only. [Output Only] The ID value of the disk used to create this InstantSnapshot.
      * This value may be used to determine whether the InstantSnapshot
      * was taken from the current or a previous instance of a given disk name.
      *
@@ -930,7 +930,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The ID value of the disk used to create this InstantSnapshot.
+     * Output only. [Output Only] The ID value of the disk used to create this InstantSnapshot.
      * This value may be used to determine whether the InstantSnapshot
      * was taken from the current or a previous instance of a given disk name.
      *
@@ -947,7 +947,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
+     * Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -969,7 +969,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
+     * Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -985,7 +985,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the instant snapshot resides.
+     * Output only. [Output Only] URL of the zone where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -1008,7 +1008,7 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the instant snapshot resides.
+     * Output only. [Output Only] URL of the zone where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *

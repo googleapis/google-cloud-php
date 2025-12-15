@@ -26,7 +26,15 @@ class State
      */
     const AVAILABLE = 442079913;
     /**
-     * The accelerator topology is running.
+     * The accelerator topology is degraded. The underlying capacity is not in a
+     * healthy state and is not available.
+     *
+     * Generated from protobuf enum <code>DEGRADED = 396890926;</code>
+     */
+    const DEGRADED = 396890926;
+    /**
+     * The accelerator topology is running. If there are both running and
+     * degraded hosts within a topology, DEGRADED state will be returned.
      *
      * Generated from protobuf enum <code>RUNNING = 121282975;</code>
      */
@@ -38,7 +46,7 @@ class State
      */
     const TOPOLOGY_STATE_UNSPECIFIED = 188327545;
     /**
-     * The accelerator topology is unhealthy.
+     * This value has been deprecated and is no longer used.
      *
      * Generated from protobuf enum <code>UNHEALTHY = 462118084;</code>
      */
@@ -47,6 +55,7 @@ class State
     private static $valueToName = [
         self::UNDEFINED_STATE => 'UNDEFINED_STATE',
         self::AVAILABLE => 'AVAILABLE',
+        self::DEGRADED => 'DEGRADED',
         self::RUNNING => 'RUNNING',
         self::TOPOLOGY_STATE_UNSPECIFIED => 'TOPOLOGY_STATE_UNSPECIFIED',
         self::UNHEALTHY => 'UNHEALTHY',

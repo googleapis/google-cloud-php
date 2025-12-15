@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstanceManagedByIgmErrorInstanceActionDetails
 use UnexpectedValueException;
 
 /**
- * [Output Only] Action that managed instance group was executing on
+ * Output only. [Output Only] Action that managed instance group was executing on
  * the instance when the error occurred. Possible values:
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails.Action</code>

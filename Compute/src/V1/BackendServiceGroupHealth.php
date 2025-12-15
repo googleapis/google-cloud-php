@@ -28,7 +28,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
      */
     private $health_status;
     /**
-     * [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
+     * Output only. [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
      * services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -47,7 +47,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
      *           Health state of the backend instances or endpoints in requested instance or
      *           network endpoint group, determined based on configured health checks.
      *     @type string $kind
-     *           [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
+     *           Output only. [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
      *           services.
      * }
      */
@@ -111,7 +111,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
+     * Output only. [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
      * services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -133,7 +133,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
+     * Output only. [Output Only] Type of resource. Alwayscompute#backendServiceGroupHealth for the health of backend
      * services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

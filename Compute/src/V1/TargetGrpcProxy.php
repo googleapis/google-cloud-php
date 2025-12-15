@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -47,14 +47,14 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -72,13 +72,13 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL with id for the resource.
+     * Output only. [Output Only] Server-defined URL with id for the resource.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -114,7 +114,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -128,10 +128,10 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
      *           latest fingerprint, make a get() request to retrieve the
      *           TargetGrpcProxy.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server
+     *           Output only. [Output Only] The unique identifier for the resource type. The server
      *           generates this identifier.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -141,9 +141,9 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL with id for the resource.
+     *           Output only. [Output Only] Server-defined URL with id for the resource.
      *     @type string $url_map
      *           URL to the UrlMap resource that defines the mapping from URL to the
      *           BackendService. The protocol field in the BackendService must be set to
@@ -167,7 +167,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -189,7 +189,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -291,7 +291,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -313,7 +313,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -329,7 +329,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -350,7 +350,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetGrpcProxy for target grpc proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -413,7 +413,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -434,7 +434,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -449,7 +449,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL with id for the resource.
+     * Output only. [Output Only] Server-defined URL with id for the resource.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -470,7 +470,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL with id for the resource.
+     * Output only. [Output Only] Server-defined URL with id for the resource.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var

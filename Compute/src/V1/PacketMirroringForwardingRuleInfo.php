@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Unique identifier for the forwarding rule; defined by the
+     * Output only. [Output Only] Unique identifier for the forwarding rule; defined by the
      * server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
@@ -36,7 +36,7 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $canonical_url
-     *           [Output Only] Unique identifier for the forwarding rule; defined by the
+     *           Output only. [Output Only] Unique identifier for the forwarding rule; defined by the
      *           server.
      *     @type string $url
      *           Resource URL to the forwarding rule representing the ILB
@@ -49,7 +49,7 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * [Output Only] Unique identifier for the forwarding rule; defined by the
+     * Output only. [Output Only] Unique identifier for the forwarding rule; defined by the
      * server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
@@ -71,7 +71,7 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * [Output Only] Unique identifier for the forwarding rule; defined by the
+     * Output only. [Output Only] Unique identifier for the forwarding rule; defined by the
      * server.
      *
      * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>

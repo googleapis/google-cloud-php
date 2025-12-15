@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class PreviewFeatureStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The description of the feature.
+     * Output only. [Output Only] The description of the feature.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] Link to the public documentation for the feature.
+     * Output only. [Output Only] Link to the public documentation for the feature.
      *
      * Generated from protobuf field <code>optional string help_link = 223410744;</code>
      */
@@ -39,9 +39,9 @@ class PreviewFeatureStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $description
-     *           [Output Only] The description of the feature.
+     *           Output only. [Output Only] The description of the feature.
      *     @type string $help_link
-     *           [Output Only] Link to the public documentation for the feature.
+     *           Output only. [Output Only] Link to the public documentation for the feature.
      *     @type \Google\Cloud\Compute\V1\PreviewFeatureStatusReleaseStatus $release_status
      * }
      */
@@ -51,7 +51,7 @@ class PreviewFeatureStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The description of the feature.
+     * Output only. [Output Only] The description of the feature.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -72,7 +72,7 @@ class PreviewFeatureStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The description of the feature.
+     * Output only. [Output Only] The description of the feature.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -87,7 +87,7 @@ class PreviewFeatureStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Link to the public documentation for the feature.
+     * Output only. [Output Only] Link to the public documentation for the feature.
      *
      * Generated from protobuf field <code>optional string help_link = 223410744;</code>
      * @return string
@@ -108,7 +108,7 @@ class PreviewFeatureStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Link to the public documentation for the feature.
+     * Output only. [Output Only] Link to the public documentation for the feature.
      *
      * Generated from protobuf field <code>optional string help_link = 223410744;</code>
      * @param string $var

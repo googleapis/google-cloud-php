@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Specifies a set of output values reffering to
+     * Output only. [Output Only] Specifies a set of output values reffering to
      * the instance_schedule_policy system status.
      * This field should have the same name as corresponding policy field.
      *
@@ -34,7 +34,7 @@ class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyResourceStatusInstanceSchedulePolicyStatus $instance_schedule_policy
-     *           [Output Only] Specifies a set of output values reffering to
+     *           Output only. [Output Only] Specifies a set of output values reffering to
      *           the instance_schedule_policy system status.
      *           This field should have the same name as corresponding policy field.
      * }
@@ -45,7 +45,7 @@ class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Specifies a set of output values reffering to
+     * Output only. [Output Only] Specifies a set of output values reffering to
      * the instance_schedule_policy system status.
      * This field should have the same name as corresponding policy field.
      *
@@ -68,7 +68,7 @@ class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Specifies a set of output values reffering to
+     * Output only. [Output Only] Specifies a set of output values reffering to
      * the instance_schedule_policy system status.
      * This field should have the same name as corresponding policy field.
      *

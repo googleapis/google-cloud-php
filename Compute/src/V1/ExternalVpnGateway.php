@@ -23,7 +23,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -37,7 +37,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -54,7 +54,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      */
     private $interfaces;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -99,7 +99,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      */
     protected $redundancy_type = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -112,13 +112,13 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type array<\Google\Cloud\Compute\V1\ExternalVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
      *           A list of interfaces for this external VPN gateway.
@@ -127,7 +127,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      *           VPN gateway. If your peer side is an AWS virtual private gateway, four
      *           interfaces should be provided for an external VPN gateway.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this ExternalVpnGateway,
      *           which is essentially a hash of the labels set used for optimistic locking.
@@ -152,7 +152,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      *           Indicates the user-supplied redundancy type of this external VPN gateway.
      *           Check the RedundancyType enum for the list of possible values.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,7 +161,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -183,7 +183,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -237,7 +237,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -259,7 +259,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -309,7 +309,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -330,7 +330,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#externalVpnGateway for externalVpnGateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -509,7 +509,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -530,7 +530,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

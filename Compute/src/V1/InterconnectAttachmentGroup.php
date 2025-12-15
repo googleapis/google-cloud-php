@@ -31,7 +31,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      */
     protected $configured = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -55,7 +55,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      */
     protected $etag = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -74,7 +74,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      */
     protected $interconnect_group = null;
     /**
-     * [Output Only] Type of the resource. Always
+     * Output only. [Output Only] Type of the resource. Always
      * compute#interconnectAttachmentGroup.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -97,7 +97,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -117,7 +117,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      *           The size of this map is limited by an "Attachments per group" quota.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfigured $configured
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -129,7 +129,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      *           a reliable means of doing read-modify-write (optimistic locking) as
      *           described byAIP 154.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server
+     *           Output only. [Output Only] The unique identifier for the resource type. The server
      *           generates this identifier.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupIntent $intent
      *     @type string $interconnect_group
@@ -137,7 +137,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      *           Interconnects. Customers do not need to set this unless directed by
      *           Google Support.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always
+     *           Output only. [Output Only] Type of the resource. Always
      *           compute#interconnectAttachmentGroup.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructure $logical_structure
      *     @type string $name
@@ -149,7 +149,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,7 +224,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -246,7 +246,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -344,7 +344,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -366,7 +366,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -454,7 +454,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always
+     * Output only. [Output Only] Type of the resource. Always
      * compute#interconnectAttachmentGroup.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -476,7 +476,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always
+     * Output only. [Output Only] Type of the resource. Always
      * compute#interconnectAttachmentGroup.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -572,7 +572,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -593,7 +593,7 @@ class InterconnectAttachmentGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

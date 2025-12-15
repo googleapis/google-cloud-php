@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterBgpPeer;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The resource that configures and manages this BGP peer.
+ * Output only. [Output Only] The resource that configures and manages this BGP peer.
  *    -  MANAGED_BY_USER is the default value and can be managed by you
  *    or other users
  *    - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed

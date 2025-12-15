@@ -80,7 +80,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     protected $is_shared_cpu = null;
     /**
-     * [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -157,7 +157,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] Whether this machine type has a shared CPU. SeeShared-core machine
      *           types for more information.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
+     *           Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *     @type int $maximum_persistent_disks
      *           [Output Only] Maximum persistent disks allowed.
      *     @type int|string $maximum_persistent_disks_size_gb
@@ -510,7 +510,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -531,7 +531,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

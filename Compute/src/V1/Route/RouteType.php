@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Route;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The type of this route, which can be one of the following
+ * Output only. [Output Only] The type of this route, which can be one of the following
  * values:
  * - 'TRANSIT' for a transit route that this router learned from
  * another Cloud Router and will readvertise to one of its BGP peers

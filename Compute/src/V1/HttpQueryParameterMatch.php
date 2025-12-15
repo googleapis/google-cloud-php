@@ -45,7 +45,8 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      * more information about regular expression syntax, see Syntax.
      * Only one of presentMatch, exactMatch, orregexMatch must be set.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      */
@@ -75,7 +76,8 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      *           more information about regular expression syntax, see Syntax.
      *           Only one of presentMatch, exactMatch, orregexMatch must be set.
      *           Regular expressions can only be used when the loadBalancingScheme is
-     *           set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     *           set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     *           (regional scope) or INTERNAL_MANAGED.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,7 +211,8 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      * more information about regular expression syntax, see Syntax.
      * Only one of presentMatch, exactMatch, orregexMatch must be set.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @return string
@@ -235,7 +238,8 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      * more information about regular expression syntax, see Syntax.
      * Only one of presentMatch, exactMatch, orregexMatch must be set.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @param string $var

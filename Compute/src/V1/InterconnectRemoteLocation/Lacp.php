@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Link Aggregation Control Protocol (LACP) constraints, which
+ * Output only. [Output Only] Link Aggregation Control Protocol (LACP) constraints, which
  * can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectRemoteLocation.Lacp</code>

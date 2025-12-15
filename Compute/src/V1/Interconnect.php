@@ -59,14 +59,14 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $available_features;
     /**
-     * [Output Only] A list of CircuitInfo objects, that describe the individual
+     * Output only. [Output Only] A list of CircuitInfo objects, that describe the individual
      * circuits in this LAG.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectCircuitInfo circuit_infos = 164839855;</code>
      */
     private $circuit_infos;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -87,41 +87,41 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] A list of outages expected for this Interconnect.
+     * Output only. [Output Only] A list of outages expected for this Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectOutageNotification expected_outages = 264484123;</code>
      */
     private $expected_outages;
     /**
-     * [Output Only] IP address configured on the Google side of the Interconnect
+     * Output only. [Output Only] IP address configured on the Google side of the Interconnect
      * link. This can be used only for ping tests.
      *
      * Generated from protobuf field <code>optional string google_ip_address = 443105954;</code>
      */
     protected $google_ip_address = null;
     /**
-     * [Output Only] Google reference ID to be used when raising support tickets
+     * Output only. [Output Only] Google reference ID to be used when raising support tickets
      * with Google or otherwise to debug backend connectivity issues.
      *
      * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
      */
     protected $google_reference_id = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] A list of the URLs of all InterconnectAttachments configured
+     * Output only. [Output Only] A list of the URLs of all InterconnectAttachments configured
      * to use  this Interconnect.
      *
      * Generated from protobuf field <code>repeated string interconnect_attachments = 425388415;</code>
      */
     private $interconnect_attachments;
     /**
-     * [Output Only] URLs of InterconnectGroups that include this Interconnect.
+     * Output only. [Output Only] URLs of InterconnectGroups that include this Interconnect.
      * Order is arbitrary and items are unique.
      *
      * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
@@ -140,7 +140,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $interconnect_type = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -222,7 +222,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $noc_contact_email = null;
     /**
-     * [Output Only] The current status of this Interconnect's functionality,
+     * Output only. [Output Only] The current status of this Interconnect's functionality,
      * which can take one of the following values:
      *    - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to
      *    use. Attachments may be provisioned on this Interconnect.
@@ -244,7 +244,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $params = null;
     /**
-     * [Output Only] IP address configured on the customer side of the
+     * Output only. [Output Only] IP address configured on the customer side of the
      * Interconnect link. The customer should configure this IP address during
      * turnup when prompted by Google NOC. This can be used only for ping tests.
      *
@@ -252,7 +252,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $peer_ip_address = null;
     /**
-     * [Output Only] Number of links actually provisioned in this interconnect.
+     * Output only. [Output Only] Number of links actually provisioned in this interconnect.
      *
      * Generated from protobuf field <code>optional int32 provisioned_link_count = 410888565;</code>
      */
@@ -287,19 +287,19 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $requested_link_count = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] The current state of Interconnect functionality, which can
+     * Output only. [Output Only] The current state of Interconnect functionality, which can
      * take one of the following values:
      *    - ACTIVE: The Interconnect is valid, turned up and ready to use.
      *    Attachments may be provisioned on this Interconnect.
@@ -322,7 +322,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $subzone = null;
     /**
-     * [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
+     * Output only. [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
      * configured to use this Interconnect. The Interconnect cannot be deleted if
      * this list is non-empty.
      *
@@ -361,10 +361,10 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *              it for Cross-Site Networking will fail.
      *           Check the AvailableFeatures enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $circuit_infos
-     *           [Output Only] A list of CircuitInfo objects, that describe the individual
+     *           Output only. [Output Only] A list of CircuitInfo objects, that describe the individual
      *           circuits in this LAG.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $customer_name
      *           Customer name, to put in the Letter of Authorization as the party
@@ -373,21 +373,21 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectOutageNotification>|\Google\Protobuf\Internal\RepeatedField $expected_outages
-     *           [Output Only] A list of outages expected for this Interconnect.
+     *           Output only. [Output Only] A list of outages expected for this Interconnect.
      *     @type string $google_ip_address
-     *           [Output Only] IP address configured on the Google side of the Interconnect
+     *           Output only. [Output Only] IP address configured on the Google side of the Interconnect
      *           link. This can be used only for ping tests.
      *     @type string $google_reference_id
-     *           [Output Only] Google reference ID to be used when raising support tickets
+     *           Output only. [Output Only] Google reference ID to be used when raising support tickets
      *           with Google or otherwise to debug backend connectivity issues.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
-     *           [Output Only] A list of the URLs of all InterconnectAttachments configured
+     *           Output only. [Output Only] A list of the URLs of all InterconnectAttachments configured
      *           to use  this Interconnect.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_groups
-     *           [Output Only] URLs of InterconnectGroups that include this Interconnect.
+     *           Output only. [Output Only] URLs of InterconnectGroups that include this Interconnect.
      *           Order is arbitrary and items are unique.
      *     @type string $interconnect_type
      *           Type of interconnect, which can take one of the following values:
@@ -398,7 +398,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *           Check the InterconnectType enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this Interconnect, which
      *           is essentially a hash of the labels set used for optimistic locking. The
@@ -444,7 +444,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           required for users who sign up for Cloud Interconnect using
      *           workforce identity federation.
      *     @type string $operational_status
-     *           [Output Only] The current status of this Interconnect's functionality,
+     *           Output only. [Output Only] The current status of this Interconnect's functionality,
      *           which can take one of the following values:
      *              - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to
      *              use. Attachments may be provisioned on this Interconnect.
@@ -458,11 +458,11 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           Input only. [Input Only] Additional params passed with the request, but not persisted
      *           as part of resource payload.
      *     @type string $peer_ip_address
-     *           [Output Only] IP address configured on the customer side of the
+     *           Output only. [Output Only] IP address configured on the customer side of the
      *           Interconnect link. The customer should configure this IP address during
      *           turnup when prompted by Google NOC. This can be used only for ping tests.
      *     @type int $provisioned_link_count
-     *           [Output Only] Number of links actually provisioned in this interconnect.
+     *           Output only. [Output Only] Number of links actually provisioned in this interconnect.
      *     @type string $remote_location
      *           Indicates that this is a Cross-Cloud Interconnect. This field specifies the
      *           location outside of Google's network that the interconnect is connected to.
@@ -481,11 +481,11 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           Target number of physical links in the link bundle, as requested by the
      *           customer.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $state
-     *           [Output Only] The current state of Interconnect functionality, which can
+     *           Output only. [Output Only] The current state of Interconnect functionality, which can
      *           take one of the following values:
      *              - ACTIVE: The Interconnect is valid, turned up and ready to use.
      *              Attachments may be provisioned on this Interconnect.
@@ -500,7 +500,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           this connection is to be provisioned.
      *           Check the Subzone enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $wire_groups
-     *           [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
+     *           Output only. [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
      *           configured to use this Interconnect. The Interconnect cannot be deleted if
      *           this list is non-empty.
      * }
@@ -677,7 +677,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of CircuitInfo objects, that describe the individual
+     * Output only. [Output Only] A list of CircuitInfo objects, that describe the individual
      * circuits in this LAG.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectCircuitInfo circuit_infos = 164839855;</code>
@@ -689,7 +689,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of CircuitInfo objects, that describe the individual
+     * Output only. [Output Only] A list of CircuitInfo objects, that describe the individual
      * circuits in this LAG.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectCircuitInfo circuit_infos = 164839855;</code>
@@ -705,7 +705,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -727,7 +727,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -819,7 +819,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of outages expected for this Interconnect.
+     * Output only. [Output Only] A list of outages expected for this Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectOutageNotification expected_outages = 264484123;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -830,7 +830,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of outages expected for this Interconnect.
+     * Output only. [Output Only] A list of outages expected for this Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectOutageNotification expected_outages = 264484123;</code>
      * @param array<\Google\Cloud\Compute\V1\InterconnectOutageNotification>|\Google\Protobuf\Internal\RepeatedField $var
@@ -845,7 +845,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IP address configured on the Google side of the Interconnect
+     * Output only. [Output Only] IP address configured on the Google side of the Interconnect
      * link. This can be used only for ping tests.
      *
      * Generated from protobuf field <code>optional string google_ip_address = 443105954;</code>
@@ -867,7 +867,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IP address configured on the Google side of the Interconnect
+     * Output only. [Output Only] IP address configured on the Google side of the Interconnect
      * link. This can be used only for ping tests.
      *
      * Generated from protobuf field <code>optional string google_ip_address = 443105954;</code>
@@ -883,7 +883,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Google reference ID to be used when raising support tickets
+     * Output only. [Output Only] Google reference ID to be used when raising support tickets
      * with Google or otherwise to debug backend connectivity issues.
      *
      * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
@@ -905,7 +905,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Google reference ID to be used when raising support tickets
+     * Output only. [Output Only] Google reference ID to be used when raising support tickets
      * with Google or otherwise to debug backend connectivity issues.
      *
      * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
@@ -921,7 +921,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -943,7 +943,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -959,7 +959,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of the URLs of all InterconnectAttachments configured
+     * Output only. [Output Only] A list of the URLs of all InterconnectAttachments configured
      * to use  this Interconnect.
      *
      * Generated from protobuf field <code>repeated string interconnect_attachments = 425388415;</code>
@@ -971,7 +971,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of the URLs of all InterconnectAttachments configured
+     * Output only. [Output Only] A list of the URLs of all InterconnectAttachments configured
      * to use  this Interconnect.
      *
      * Generated from protobuf field <code>repeated string interconnect_attachments = 425388415;</code>
@@ -987,7 +987,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URLs of InterconnectGroups that include this Interconnect.
+     * Output only. [Output Only] URLs of InterconnectGroups that include this Interconnect.
      * Order is arbitrary and items are unique.
      *
      * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
@@ -999,7 +999,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URLs of InterconnectGroups that include this Interconnect.
+     * Output only. [Output Only] URLs of InterconnectGroups that include this Interconnect.
      * Order is arbitrary and items are unique.
      *
      * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
@@ -1063,7 +1063,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -1084,7 +1084,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnect for interconnects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -1433,7 +1433,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of this Interconnect's functionality,
+     * Output only. [Output Only] The current status of this Interconnect's functionality,
      * which can take one of the following values:
      *    - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to
      *    use. Attachments may be provisioned on this Interconnect.
@@ -1463,7 +1463,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of this Interconnect's functionality,
+     * Output only. [Output Only] The current status of this Interconnect's functionality,
      * which can take one of the following values:
      *    - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to
      *    use. Attachments may be provisioned on this Interconnect.
@@ -1525,7 +1525,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IP address configured on the customer side of the
+     * Output only. [Output Only] IP address configured on the customer side of the
      * Interconnect link. The customer should configure this IP address during
      * turnup when prompted by Google NOC. This can be used only for ping tests.
      *
@@ -1548,7 +1548,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IP address configured on the customer side of the
+     * Output only. [Output Only] IP address configured on the customer side of the
      * Interconnect link. The customer should configure this IP address during
      * turnup when prompted by Google NOC. This can be used only for ping tests.
      *
@@ -1565,7 +1565,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Number of links actually provisioned in this interconnect.
+     * Output only. [Output Only] Number of links actually provisioned in this interconnect.
      *
      * Generated from protobuf field <code>optional int32 provisioned_link_count = 410888565;</code>
      * @return int
@@ -1586,7 +1586,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Number of links actually provisioned in this interconnect.
+     * Output only. [Output Only] Number of links actually provisioned in this interconnect.
      *
      * Generated from protobuf field <code>optional int32 provisioned_link_count = 410888565;</code>
      * @param int $var
@@ -1721,7 +1721,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -1742,7 +1742,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -1757,7 +1757,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1778,7 +1778,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -1793,7 +1793,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current state of Interconnect functionality, which can
+     * Output only. [Output Only] The current state of Interconnect functionality, which can
      * take one of the following values:
      *    - ACTIVE: The Interconnect is valid, turned up and ready to use.
      *    Attachments may be provisioned on this Interconnect.
@@ -1823,7 +1823,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current state of Interconnect functionality, which can
+     * Output only. [Output Only] The current state of Interconnect functionality, which can
      * take one of the following values:
      *    - ACTIVE: The Interconnect is valid, turned up and ready to use.
      *    Attachments may be provisioned on this Interconnect.
@@ -1887,7 +1887,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
+     * Output only. [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
      * configured to use this Interconnect. The Interconnect cannot be deleted if
      * this list is non-empty.
      *
@@ -1900,7 +1900,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
+     * Output only. [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
      * configured to use this Interconnect. The Interconnect cannot be deleted if
      * this list is non-empty.
      *

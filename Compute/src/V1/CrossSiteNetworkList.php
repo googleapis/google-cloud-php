@@ -32,7 +32,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -54,7 +54,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
@@ -79,7 +79,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\CrossSiteNetwork>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of CrossSiteNetwork resources.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
      *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
@@ -89,7 +89,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           Output only. [Output Only] Unreachable resources.
      *           end_interface: MixerListResponseWithEtagBuilder
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
@@ -195,7 +195,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -216,7 +216,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#crossSiteNetwork for cross-site networks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -311,7 +311,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
@@ -323,7 +323,7 @@ class CrossSiteNetworkList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>

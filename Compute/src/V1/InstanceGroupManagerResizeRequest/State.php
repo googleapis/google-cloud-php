@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest;
 use UnexpectedValueException;
 
 /**
- * [Output only] Current state of the request.
+ * Output only. [Output only] Current state of the request.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerResizeRequest.State</code>
  */

@@ -32,7 +32,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
+     * Output only. [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -48,7 +48,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -73,7 +73,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\ResourcePolicy>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output Only] A list of ResourcePolicy resources.
      *     @type string $kind
-     *           [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
+     *           Output only. [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
      *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
@@ -81,7 +81,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -188,7 +188,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
+     * Output only. [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -209,7 +209,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
+     * Output only. [Output Only] Type of resource.Alwayscompute#resourcePoliciesList for listsof resourcePolicies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -268,7 +268,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -289,7 +289,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

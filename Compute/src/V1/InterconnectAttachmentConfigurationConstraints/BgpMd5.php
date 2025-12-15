@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraints
 use UnexpectedValueException;
 
 /**
- * [Output Only] Whether the attachment's BGP session
+ * Output only. [Output Only] Whether the attachment's BGP session
  * requires/allows/disallows BGP MD5 authentication. This can take one of
  * the following values: MD5_OPTIONAL, MD5_REQUIRED, MD5_UNSUPPORTED.
  * For example, a Cross-Cloud Interconnect connection to a remote cloud

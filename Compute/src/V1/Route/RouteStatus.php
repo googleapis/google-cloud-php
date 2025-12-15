@@ -7,9 +7,9 @@ namespace Google\Cloud\Compute\V1\Route;
 use UnexpectedValueException;
 
 /**
- * [Output only] The status of the route. This status only applies to
- * dynamic routes learned by Cloud Routers. This status is not applicable
- * to static routes.
+ * [Output only] The status of the route. This status applies to
+ * dynamic routes learned by Cloud Routers. It is also applicable to routes
+ * undergoing migration.
  *
  * Protobuf type <code>google.cloud.compute.v1.Route.RouteStatus</code>
  */

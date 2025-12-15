@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] The health status of network endpoint.
+     * Output only. [Output only] The health status of network endpoint.
      * Optional. Displayed only if the network endpoint has centralized health
      * checking configured.
      *
@@ -23,7 +23,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
      */
     private $healths;
     /**
-     * [Output only] The network endpoint.
+     * Output only. [Output only] The network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
      */
@@ -36,11 +36,11 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\HealthStatusForNetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $healths
-     *           [Output only] The health status of network endpoint.
+     *           Output only. [Output only] The health status of network endpoint.
      *           Optional. Displayed only if the network endpoint has centralized health
      *           checking configured.
      *     @type \Google\Cloud\Compute\V1\NetworkEndpoint $network_endpoint
-     *           [Output only] The network endpoint.
+     *           Output only. [Output only] The network endpoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +49,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The health status of network endpoint.
+     * Output only. [Output only] The health status of network endpoint.
      * Optional. Displayed only if the network endpoint has centralized health
      * checking configured.
      *
@@ -62,7 +62,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The health status of network endpoint.
+     * Output only. [Output only] The health status of network endpoint.
      * Optional. Displayed only if the network endpoint has centralized health
      * checking configured.
      *
@@ -79,7 +79,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The network endpoint.
+     * Output only. [Output only] The network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
      * @return \Google\Cloud\Compute\V1\NetworkEndpoint|null
@@ -100,7 +100,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The network endpoint.
+     * Output only. [Output only] The network endpoint.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
      * @param \Google\Cloud\Compute\V1\NetworkEndpoint $var

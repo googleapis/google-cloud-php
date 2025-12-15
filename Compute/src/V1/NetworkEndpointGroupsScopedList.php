@@ -15,14 +15,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The list ofnetwork
+     * Output only. [Output Only] The list ofnetwork
      * endpoint groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_groups = 29346733;</code>
      */
     private $network_endpoint_groups;
     /**
-     * [Output Only] An informational warning that replaces the list of network
+     * Output only. [Output Only] An informational warning that replaces the list of network
      * endpoint groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
@@ -36,10 +36,10 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\NetworkEndpointGroup>|\Google\Protobuf\Internal\RepeatedField $network_endpoint_groups
-     *           [Output Only] The list ofnetwork
+     *           Output only. [Output Only] The list ofnetwork
      *           endpoint groups that are contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] An informational warning that replaces the list of network
+     *           Output only. [Output Only] An informational warning that replaces the list of network
      *           endpoint groups when the list is empty.
      * }
      */
@@ -49,7 +49,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list ofnetwork
+     * Output only. [Output Only] The list ofnetwork
      * endpoint groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_groups = 29346733;</code>
@@ -61,7 +61,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list ofnetwork
+     * Output only. [Output Only] The list ofnetwork
      * endpoint groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_groups = 29346733;</code>
@@ -77,7 +77,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that replaces the list of network
+     * Output only. [Output Only] An informational warning that replaces the list of network
      * endpoint groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
@@ -99,7 +99,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An informational warning that replaces the list of network
+     * Output only. [Output Only] An informational warning that replaces the list of network
      * endpoint groups when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>

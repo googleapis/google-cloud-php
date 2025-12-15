@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PreviewFeatureStatusReleaseStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The stage of the feature.
+     * Output only. [Output Only] The stage of the feature.
      * Check the Stage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stage = 109757182;</code>
@@ -36,7 +36,7 @@ class PreviewFeatureStatusReleaseStatus extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $stage
-     *           [Output Only] The stage of the feature.
+     *           Output only. [Output Only] The stage of the feature.
      *           Check the Stage enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\Date $update_date
      *           Output only. The last date when a feature transitioned between ReleaseStatuses.
@@ -48,7 +48,7 @@ class PreviewFeatureStatusReleaseStatus extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * [Output Only] The stage of the feature.
+     * Output only. [Output Only] The stage of the feature.
      * Check the Stage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stage = 109757182;</code>
@@ -70,7 +70,7 @@ class PreviewFeatureStatusReleaseStatus extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * [Output Only] The stage of the feature.
+     * Output only. [Output Only] The stage of the feature.
      * Check the Stage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stage = 109757182;</code>

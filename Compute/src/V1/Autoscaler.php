@@ -33,7 +33,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     protected $autoscaling_policy = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -47,14 +47,14 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#autoscaler
+     * Output only. [Output Only] Type of the resource. Always compute#autoscaler
      * for autoscalers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -73,7 +73,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Target recommended MIG size (number of instances) computed by
+     * Output only. [Output Only] Target recommended MIG size (number of instances) computed by
      * autoscaler. Autoscaler calculates the recommended MIG size even when the
      * autoscaling policy mode is different from ON. This field is empty when
      * autoscaler is not connected to an existing managed instance group or
@@ -83,7 +83,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     protected $recommended_size = null;
     /**
-     * [Output Only] URL of theregion
+     * Output only. [Output Only] URL of theregion
      * where the instance group resides (for autoscalers living in regional
      * scope).
      *
@@ -91,7 +91,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Status information of existing scaling schedules.
+     * Output only. [Output Only] Status information of existing scaling schedules.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ScalingScheduleStatus> scaling_schedule_status = 465950178;</code>
      */
@@ -138,7 +138,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     protected $target = null;
     /**
-     * [Output Only] URL of thezone
+     * Output only. [Output Only] URL of thezone
      * where the instance group resides (for autoscalers living in zonal scope).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -156,16 +156,16 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *           one or more signals for an autoscaler: cpuUtilization,customMetricUtilizations, andloadBalancingUtilization.
      *           If none of these are specified, the default will be to autoscale based oncpuUtilization to 0.6 or 60%.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#autoscaler
+     *           Output only. [Output Only] Type of the resource. Always compute#autoscaler
      *           for autoscalers.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
@@ -176,17 +176,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type int $recommended_size
-     *           [Output Only] Target recommended MIG size (number of instances) computed by
+     *           Output only. [Output Only] Target recommended MIG size (number of instances) computed by
      *           autoscaler. Autoscaler calculates the recommended MIG size even when the
      *           autoscaling policy mode is different from ON. This field is empty when
      *           autoscaler is not connected to an existing managed instance group or
      *           autoscaler did not generate its prediction.
      *     @type string $region
-     *           [Output Only] URL of theregion
+     *           Output only. [Output Only] URL of theregion
      *           where the instance group resides (for autoscalers living in regional
      *           scope).
      *     @type array|\Google\Protobuf\Internal\MapField $scaling_schedule_status
-     *           [Output Only] Status information of existing scaling schedules.
+     *           Output only. [Output Only] Status information of existing scaling schedules.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $status
@@ -213,7 +213,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *           URL of the managed instance group that this autoscaler will scale. This
      *           field is required when creating an autoscaler.
      *     @type string $zone
-     *           [Output Only] URL of thezone
+     *           Output only. [Output Only] URL of thezone
      *           where the instance group resides (for autoscalers living in zonal scope).
      * }
      */
@@ -263,7 +263,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -285,7 +285,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -339,7 +339,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -361,7 +361,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -377,7 +377,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#autoscaler
+     * Output only. [Output Only] Type of the resource. Always compute#autoscaler
      * for autoscalers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -399,7 +399,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#autoscaler
+     * Output only. [Output Only] Type of the resource. Always compute#autoscaler
      * for autoscalers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -463,7 +463,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Target recommended MIG size (number of instances) computed by
+     * Output only. [Output Only] Target recommended MIG size (number of instances) computed by
      * autoscaler. Autoscaler calculates the recommended MIG size even when the
      * autoscaling policy mode is different from ON. This field is empty when
      * autoscaler is not connected to an existing managed instance group or
@@ -488,7 +488,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Target recommended MIG size (number of instances) computed by
+     * Output only. [Output Only] Target recommended MIG size (number of instances) computed by
      * autoscaler. Autoscaler calculates the recommended MIG size even when the
      * autoscaling policy mode is different from ON. This field is empty when
      * autoscaler is not connected to an existing managed instance group or
@@ -507,7 +507,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of theregion
+     * Output only. [Output Only] URL of theregion
      * where the instance group resides (for autoscalers living in regional
      * scope).
      *
@@ -530,7 +530,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of theregion
+     * Output only. [Output Only] URL of theregion
      * where the instance group resides (for autoscalers living in regional
      * scope).
      *
@@ -547,7 +547,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information of existing scaling schedules.
+     * Output only. [Output Only] Status information of existing scaling schedules.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ScalingScheduleStatus> scaling_schedule_status = 465950178;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -558,7 +558,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information of existing scaling schedules.
+     * Output only. [Output Only] Status information of existing scaling schedules.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ScalingScheduleStatus> scaling_schedule_status = 465950178;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -741,7 +741,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of thezone
+     * Output only. [Output Only] URL of thezone
      * where the instance group resides (for autoscalers living in zonal scope).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -763,7 +763,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of thezone
+     * Output only. [Output Only] URL of thezone
      * where the instance group resides (for autoscalers living in zonal scope).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>

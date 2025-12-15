@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SavedAttachedDisk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] An indicator whether storageBytes is in a
+ * Output only. [Output Only] An indicator whether storageBytes is in a
  * stable state or it is being adjusted as a result of shared storage
  * reallocation. This status can either be UPDATING, meaning
  * the size of the snapshot is being updated, or UP_TO_DATE,

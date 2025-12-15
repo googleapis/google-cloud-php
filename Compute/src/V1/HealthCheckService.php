@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class HealthCheckService extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -69,14 +69,14 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     protected $health_status_aggregation_policy = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
+     * Output only. [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -112,7 +112,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     private $notification_endpoints;
     /**
-     * [Output Only] URL of the region where the health check service
+     * Output only. [Output Only] URL of the region where the health check service
      * resides. This field is not applicable to global health check services.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -121,7 +121,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -134,7 +134,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -167,10 +167,10 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *           This is only allowed with regional HealthCheckService.
      *           Check the HealthStatusAggregationPolicy enum for the list of possible values.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
+     *           Output only. [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
      *     @type string $name
      *           Name of the resource. The name must be 1-63 characters long, and comply
      *           with RFC1035. Specifically, the name must be 1-63 characters
@@ -190,12 +190,12 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *           receiving notifications of change in health status. For regionalHealthCheckService,NotificationEndpoint must be regional and in the
      *           same region. For global HealthCheckService,NotificationEndpoint must be global.
      *     @type string $region
-     *           [Output Only] URL of the region where the health check service
+     *           Output only. [Output Only] URL of the region where the health check service
      *           resides. This field is not applicable to global health check services.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,7 +204,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -226,7 +226,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -420,7 +420,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -442,7 +442,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -458,7 +458,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
+     * Output only. [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -479,7 +479,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
+     * Output only. [Output only] Type of the resource. Alwayscompute#healthCheckServicefor health check services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -606,7 +606,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the health check service
+     * Output only. [Output Only] URL of the region where the health check service
      * resides. This field is not applicable to global health check services.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -630,7 +630,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the health check service
+     * Output only. [Output Only] URL of the region where the health check service
      * resides. This field is not applicable to global health check services.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -648,7 +648,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -669,7 +669,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
