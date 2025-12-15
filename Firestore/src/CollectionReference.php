@@ -266,21 +266,19 @@ class CollectionReference extends Query
 
         $options = $this->formatReadTimeOption($options);
 
-        $listDocumentsCall = function (array $options) {
-            /**
-             * @var ListDocumentsRequest $request
-             * @var CallOptions $callOptions
-             */
-            [$request, $callOptions] = $this->validateOptions(
-                $options,
-                new ListDocumentsRequest(),
-                CallOptions::class
-            );
+        /**
+         * @var ListDocumentsRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options,
+            new ListDocumentsRequest(),
+            CallOptions::class
+        );
 
+        $listDocumentsCall = function (array $callOptions) use ($request) {
             $response = $this->gapicClient->listDocuments($request, $callOptions);
-
             $page = $response->getPage();
-
             return $this->serializer->encodeMessage($page->getResponseObject());
         };
 

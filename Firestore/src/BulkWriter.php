@@ -33,8 +33,6 @@ use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Rpc\Code;
 
-use function PHPUnit\Framework\isEmpty;
-
 /**
  * Enqueue and write multiple mutations to Cloud Firestore.
  *
@@ -954,7 +952,7 @@ class BulkWriter
 
         $responseArray = $this->serializer->encodeMessage($response);
 
-        if (!isEmpty($response->getWriteResults())) {
+        if (!empty($response->getWriteResults())) {
             foreach ($responseArray['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
                     $time = $this->parseTimeString($result['updateTime']);

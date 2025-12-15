@@ -384,19 +384,18 @@ class DocumentReference
     {
         $options = $this->formatReadTimeOption($options);
 
-        $listCollectionCall = function (array $options) {
-            /**
-             * @var ListCollectionIdsRequest $request
-             * @var CallOptions $callOptions
-             */
-            [$request, $callOptions] = $this->validateOptions(
-                $options,
-                new ListCollectionIdsRequest(),
-                CallOptions::class
-            );
+        /**
+         * @var ListCollectionIdsRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options + ['parent' => $this->name],
+            new ListCollectionIdsRequest(),
+            CallOptions::class
+        );
 
+        $listCollectionCall = function (array $callOptions) use ($request) {
             $response = $this->gapicClient->listCollectionIds($request, $callOptions);
-
             return $this->serializer->encodeMessage($response->getPage()->getResponseObject());
         };
 
