@@ -17,16 +17,19 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\BulkWriter;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Serializer;
 use Google\Cloud\Firestore\V1\BatchWriteRequest;
 use Google\Cloud\Firestore\V1\BatchWriteResponse;
-use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Firestore\ValueMapper;
@@ -49,19 +52,28 @@ class BulkWriterTest extends TestCase
     const DATABASE = '(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
     const TRANSACTION = 'foobar';
+    const COLLECTION_NAME = 'collection_name';
 
     private $gapicClient;
+    private $client;
     private $batch;
+    private $collection;
 
     public function setUp(): void
     {
-        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->gapicClient = $this->prophesize(GapicFirestoreClient::class);
         $this->batch = new BulkWriter(
             $this->gapicClient->reveal(),
             new ValueMapper($this->gapicClient->reveal(), false),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             []
         );
+        $this->client = new FirestoreClient([
+            'projectId' => self::PROJECT,
+            'database' => self::DATABASE,
+            'firestoreClient' => $this->gapicClient->reveal(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+        ]);
 
         // avoids sleep during unit tests
         $this->batch->setMaxRetryTimeInMs(0);
@@ -1006,6 +1018,89 @@ class BulkWriterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->batch->update(self::DOCUMENT, []);
+    }
+
+    public function testLongFailuresAreRetriedWithDelay()
+    {
+        $this->collection = $this->client->collection(uniqid(self::COLLECTION_NAME));
+        $docs = $this->bulkDocumentsForWritter();
+        $batch = new BulkWriter(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
+            $this->collection->name(),
+            [
+                'initialOpsPerSecond' => 5,
+                'maxOpsPerSecond' => 10,
+                'greedilySend' => false,
+            ],
+        );
+
+        $batchSize = 20;
+        $successPerBatch = $batchSize * 3 / 4;
+        $successfulDocs = [];
+
+        $protoResponse = self::generateProto(BatchWriteResponse::class, [
+            'writeResults' => array_fill(0, $batchSize, []),
+            'status' => array_merge(
+                array_fill(0, $successPerBatch, [
+                    'code' => Code::OK,
+                ]),
+                array_fill(0, $batchSize - $successPerBatch, [
+                    'code' => Code::DATA_LOSS,
+                ]),
+            ),
+        ]);
+
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs, $successPerBatch, &$successfulDocs) {
+                $this->assertGreaterThan(0, count($request->getWrites()));
+
+                /**
+                 * @var Write $write
+                 */
+                foreach ($request->getWrites() as $i => $write) {
+                    $this->assertNotEmpty($write->getCurrentDocument());
+                    $this->assertEquals(
+                        $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()]->name(),
+                        $write->getUpdate()->getFields()['path']->getReferenceValue()
+                    );
+                    if ($i < $successPerBatch) {
+                        $successfulDocs[] = $write->getUpdate()->getFields()['path']->getReferenceValue();
+                    }
+                }
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(10)
+            ->willReturn($protoResponse);
+
+        foreach ($docs as $k => $v) {
+            $batch->create($v, [
+                'key' => $k,
+                'path' => $v,
+            ]);
+        }
+
+        $startTime = floor(microtime(true) * 1000);
+        $batch->flush();
+        $endTime = floor(microtime(true) * 1000);
+        $this->assertGreaterThan(2 * 1000, $endTime - $startTime);
+        $this->assertLessThan(10 * 1000, $endTime - $startTime);
+        $this->assertEquals(count($docs), count($successfulDocs));
+        for ($i = 0; $i < count($docs); $i++) {
+            $this->assertContains($docs[$i]->name(), $successfulDocs);
+        }
+    }
+
+    private function bulkDocumentsForWritter()
+    {
+        $docs = [];
+        for ($i = 0; $i < 50; $i++) {
+            $docs[] = $this->collection->newDocument();
+        }
+
+        return $docs;
     }
 
     private function flushAndAssert(array $required): void
