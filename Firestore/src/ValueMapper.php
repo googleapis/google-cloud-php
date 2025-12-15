@@ -48,13 +48,13 @@ class ValueMapper
     private bool $returnInt64AsObject;
 
     /**
-     * @param FirestoreClient $gapicClient A FirestoreClient instance
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance
      * @param bool $returnInt64AsObject Whether to wrap int types in a wrapper
      *        (to preserve values in 32-bit environments).
      */
-    public function __construct(FirestoreClient $gapicClient, $returnInt64AsObject)
+    public function __construct(FirestoreClient $firestoreClient, $returnInt64AsObject)
     {
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
 

@@ -129,7 +129,7 @@ class Query
     private OptionsValidator $optionsValidator;
 
     /**
-     * @param GapicFirestoreClient $gapicClient A FirestoreClient instance.
+     * @param GapicFirestoreClient $firestoreClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
@@ -137,13 +137,13 @@ class Query
      * @throws \InvalidArgumentException If the query does not provide a valid selector.
      */
     public function __construct(
-        GapicFirestoreClient $gapicClient,
+        GapicFirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         $parent,
         array $query,
         $limitToLast = false
     ) {
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->parentName = $parent;
         $this->query = $query;

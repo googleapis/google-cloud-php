@@ -53,18 +53,18 @@ class AggregateQuery
     /**
      * Create an aggregation query.
      *
-     * @param FirestoreClient $gapicClient A FirestoreClient instance.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param string $parent The parent of the query.
      * @param array $query Represents the underlying structured query.
      * @param Aggregate $aggregate Aggregation over the provided query.
      */
     public function __construct(
-        FirestoreClient $gapicClient,
+        FirestoreClient $firestoreClient,
         $parent,
         array $query,
         Aggregate $aggregate
     ) {
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->parentName = $parent;
         $this->query = $query;
         $this->aggregates[] = $aggregate;

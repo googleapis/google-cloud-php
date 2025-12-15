@@ -135,7 +135,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     /**
      * Create a custom session handler backed by Cloud Firestore.
      *
-     * @param FirestoreClient $gapicClient A FirestoreClient instance.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -158,14 +158,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * }
      */
     public function __construct(
-        FirestoreClient $gapicClient,
+        FirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         $projectId,
         $database,
         array $options = []
     ) {
         $this->id = null;
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->projectId = $projectId;
         $this->database = $database;

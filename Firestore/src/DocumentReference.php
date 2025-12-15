@@ -49,7 +49,7 @@ class DocumentReference
     private OptionsValidator $optionsValidator;
 
     /**
-     * @param FirestoreClient $gapicClient An instance of the Firestore client.
+     * @param FirestoreClient $firestoreClient An instance of the Firestore client.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
@@ -57,12 +57,12 @@ class DocumentReference
      * @param string $name The fully-qualified document name.
      */
     public function __construct(
-        FirestoreClient $gapicClient,
+        FirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         CollectionReference $parent,
         $name
     ) {
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->name = $name;

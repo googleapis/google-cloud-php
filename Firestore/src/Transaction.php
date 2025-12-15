@@ -60,18 +60,18 @@ class Transaction
     private OptionsValidator $optionsValidator;
 
     /**
-     * @param FirestoreClient $gapicClient A FirestoreClient instance.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $database The database name.
      * @param string $transaction The transaction ID.
      */
     public function __construct(
-        FirestoreClient $gapicClient,
+        FirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         $database,
         $transaction
     ) {
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->transaction = $transaction;

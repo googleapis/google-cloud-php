@@ -57,25 +57,25 @@ class CollectionReference extends Query
     private OptionsValidator $optionsValidator;
 
     /**
-     * @param FirestoreClient $gapicClient A Connection to Cloud Firestore.
+     * @param FirestoreClient $firestoreClient A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
      */
     public function __construct(
-        FirestoreClient $gapicClient,
+        FirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         $name
     ) {
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
         $this->serializer = new Serializer();
         $this->optionsValidator = new OptionsValidator($this->serializer);
 
         parent::__construct(
-            $gapicClient,
+            $this->gapicClient,
             $valueMapper,
             $this->parentPath($this->name),
             [

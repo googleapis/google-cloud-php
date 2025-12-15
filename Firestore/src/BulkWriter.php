@@ -123,7 +123,7 @@ class BulkWriter
     private FirestoreClient $gapicClient;
     private ValueMapper $valueMapper;
     private string $database;
-    private string|null $transaction;
+    private string|null $transaction = null;
     private bool $isLegacyWriteBatch;
     private int $maxBatchSize;
     private array $writes = [];
@@ -162,7 +162,7 @@ class BulkWriter
     private int $maxDelayTime;
 
     /**
-     * @param FirestoreClient $gapicClient A FirestoreClient instance.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
      * @param array $options [optional] {
@@ -191,9 +191,9 @@ class BulkWriter
      *           true if retryable.
      * }
      */
-    public function __construct(FirestoreClient $gapicClient, $valueMapper, $database, $options = null)
+    public function __construct(FirestoreClient $firestoreClient, $valueMapper, $database, $options = null)
     {
-        $this->gapicClient = $gapicClient;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->closed = false;
