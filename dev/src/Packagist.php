@@ -103,8 +103,9 @@ class Packagist
 
     public function versionExists(string $packageName, string $version): bool
     {
+        $rand = rand();
         try {
-            $response = $this->client->get("https://packagist.org/packages/$packageName.json");
+            $response = $this->client->get("https://packagist.org/packages/$packageName.json?cachebuster=$rand");
             $data = json_decode($response->getBody()->getContents(), true);
             return isset($data['package']['versions'][$version]);
         } catch (GuzzleException $e) {
