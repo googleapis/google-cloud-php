@@ -16,8 +16,7 @@ concurrency:
 jobs:
   approval-count-check:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
-    #if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
       - name: Run Approval Check
         uses: actions/github-script@v7
