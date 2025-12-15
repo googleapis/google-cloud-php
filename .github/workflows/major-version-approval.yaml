@@ -1,0 +1,76 @@
+name: Major Version Release Requires 2+ yoshi-php Approvals
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+    branches: ['main']
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  approval-count-check:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    steps:
+      - name: Run Approval Check
+        uses: actions/github-script@v7
+        env:
+          GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
+        with:
+          script: | 
+            const { execSync } = require('child_process');
+
+            const requiredApprovals = 2;
+
+            try {
+              // 1. Get PR approvals
+              const pull_number = context.payload.pull_request.number;
+
+              core.info(`Fetching approvals for PR #${pull_number}...`);
+              const reviews = await github.rest.pulls.listReviews({
+                pull_number,
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              const approvals = new Set(
+                reviews.data
+                  .filter(review => review.state === 'APPROVED')
+                  .map(review => review.user.login)
+              );
+              if (approvals.size < requiredApprovals) {
+                core.setFailed(`Requires ${requiredApprovals}+ approvals from the yoshi-php team. Only ${approvals.size} total approvals found.`)
+                core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
+                return;
+              }
+              core.info(`Total approval count: ${approvals.size}`);
+
+              // 2. Get team members
+              core.info('Fetching yoshi-php team members...');
+              const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login'`;
+              const teamMembersOutput = execSync(teamMembersCmd, { encoding: 'utf8', env: process.env });
+              if (!teamMembersOutput.trim()) {
+                core.error('Could not fetch any members for the yoshi-php team.');
+              }
+              const teamMembers = new Set(teamMembersOutput.trim().split('\n'));
+
+              // 3. Compare
+              const matchingApprovals = [...approvals].filter(login => teamMembers.has(login));
+              const count = matchingApprovals.length;
+
+              core.info(`Found ${count} approval(s) from the yoshi-php team.`);
+
+              if (count >= requiredApprovals) {
+                core.info(`Success: Requirement of ${requiredApprovals}+ yoshi-php approvals met with ${count} approvals.`);
+              } else {
+                core.setFailed(`Requires ${requiredApprovals}+ approvals from the yoshi-php team. Only ${count} yoshi-php approvals found.`);
+                core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
+              }
+            } catch (error) {
+              core.setFailed(`${error.message}`);
+            }
