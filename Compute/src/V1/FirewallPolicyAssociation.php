@@ -28,7 +28,7 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = null;
     /**
-     * [Output Only] The firewall policy ID of the association.
+     * Output only. [Output Only] The firewall policy ID of the association.
      *
      * Generated from protobuf field <code>optional string firewall_policy_id = 357211849;</code>
      */
@@ -40,7 +40,7 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] The short name of the firewall policy of the association.
+     * Output only. [Output Only] The short name of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      */
@@ -58,11 +58,11 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Deprecated, please use short name instead. The display name
      *           of the firewall policy of the association.
      *     @type string $firewall_policy_id
-     *           [Output Only] The firewall policy ID of the association.
+     *           Output only. [Output Only] The firewall policy ID of the association.
      *     @type string $name
      *           The name for an association.
      *     @type string $short_name
-     *           [Output Only] The short name of the firewall policy of the association.
+     *           Output only. [Output Only] The short name of the firewall policy of the association.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,7 +145,7 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The firewall policy ID of the association.
+     * Output only. [Output Only] The firewall policy ID of the association.
      *
      * Generated from protobuf field <code>optional string firewall_policy_id = 357211849;</code>
      * @return string
@@ -166,7 +166,7 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The firewall policy ID of the association.
+     * Output only. [Output Only] The firewall policy ID of the association.
      *
      * Generated from protobuf field <code>optional string firewall_policy_id = 357211849;</code>
      * @param string $var
@@ -217,7 +217,7 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The short name of the firewall policy of the association.
+     * Output only. [Output Only] The short name of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @return string
@@ -238,7 +238,7 @@ class FirewallPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The short name of the firewall policy of the association.
+     * Output only. [Output Only] The short name of the firewall policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @param string $var

@@ -16,28 +16,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class FutureReservationStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The current status of the requested amendment.
+     * Output only. [Output Only] The current status of the requested amendment.
      * Check the AmendmentStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string amendment_status = 250270052;</code>
      */
     protected $amendment_status = null;
     /**
-     * Fully qualified urls of the automatically created reservations at
+     * Output only. Fully qualified urls of the automatically created reservations at
      * start_time.
      *
      * Generated from protobuf field <code>repeated string auto_created_reservations = 140217006;</code>
      */
     private $auto_created_reservations;
     /**
-     * [Output Only] Represents the existing matching usage for the future
+     * Output only. [Output Only] Represents the existing matching usage for the future
      * reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatusExistingMatchingUsageInfo existing_matching_usage_info = 509920602;</code>
      */
     protected $existing_matching_usage_info = null;
     /**
-     * This count indicates the fulfilled capacity so far. This is set during
+     * Output only. This count indicates the fulfilled capacity so far. This is set during
      * "PROVISIONING" state. This count also includes capacity delivered as part
      * of existing matching reservations.
      *
@@ -45,7 +45,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      */
     protected $fulfilled_count = null;
     /**
-     * [Output Only] This field represents the future reservation before an
+     * Output only. [Output Only] This field represents the future reservation before an
      * amendment was requested. If the amendment is declined, the Future
      * Reservation will be reverted to the last known good state. The last known
      * good state is not set when updating a future reservation whose
@@ -55,7 +55,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      */
     protected $last_known_good_state = null;
     /**
-     * Time when Future Reservation would become LOCKED, after which no
+     * Output only. Time when Future Reservation would become LOCKED, after which no
      * modifications to Future Reservation will be allowed. Applicable only
      * after the Future Reservation is in the APPROVED state. The lock_time is
      * an RFC3339 string. The procurement_status will transition to PROCURING
@@ -65,7 +65,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      */
     protected $lock_time = null;
     /**
-     * Current state of this Future Reservation
+     * Output only. Current state of this Future Reservation
      * Check the ProcurementStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string procurement_status = 224718945;</code>
@@ -83,32 +83,32 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $amendment_status
-     *           [Output Only] The current status of the requested amendment.
+     *           Output only. [Output Only] The current status of the requested amendment.
      *           Check the AmendmentStatus enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_created_reservations
-     *           Fully qualified urls of the automatically created reservations at
+     *           Output only. Fully qualified urls of the automatically created reservations at
      *           start_time.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusExistingMatchingUsageInfo $existing_matching_usage_info
-     *           [Output Only] Represents the existing matching usage for the future
+     *           Output only. [Output Only] Represents the existing matching usage for the future
      *           reservation.
      *     @type int|string $fulfilled_count
-     *           This count indicates the fulfilled capacity so far. This is set during
+     *           Output only. This count indicates the fulfilled capacity so far. This is set during
      *           "PROVISIONING" state. This count also includes capacity delivered as part
      *           of existing matching reservations.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusLastKnownGoodState $last_known_good_state
-     *           [Output Only] This field represents the future reservation before an
+     *           Output only. [Output Only] This field represents the future reservation before an
      *           amendment was requested. If the amendment is declined, the Future
      *           Reservation will be reverted to the last known good state. The last known
      *           good state is not set when updating a future reservation whose
      *           Procurement Status is DRAFTING.
      *     @type string $lock_time
-     *           Time when Future Reservation would become LOCKED, after which no
+     *           Output only. Time when Future Reservation would become LOCKED, after which no
      *           modifications to Future Reservation will be allowed. Applicable only
      *           after the Future Reservation is in the APPROVED state. The lock_time is
      *           an RFC3339 string. The procurement_status will transition to PROCURING
      *           state at this time.
      *     @type string $procurement_status
-     *           Current state of this Future Reservation
+     *           Output only. Current state of this Future Reservation
      *           Check the ProcurementStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusSpecificSKUProperties $specific_sku_properties
      * }
@@ -119,7 +119,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of the requested amendment.
+     * Output only. [Output Only] The current status of the requested amendment.
      * Check the AmendmentStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string amendment_status = 250270052;</code>
@@ -141,7 +141,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of the requested amendment.
+     * Output only. [Output Only] The current status of the requested amendment.
      * Check the AmendmentStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string amendment_status = 250270052;</code>
@@ -157,7 +157,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified urls of the automatically created reservations at
+     * Output only. Fully qualified urls of the automatically created reservations at
      * start_time.
      *
      * Generated from protobuf field <code>repeated string auto_created_reservations = 140217006;</code>
@@ -169,7 +169,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fully qualified urls of the automatically created reservations at
+     * Output only. Fully qualified urls of the automatically created reservations at
      * start_time.
      *
      * Generated from protobuf field <code>repeated string auto_created_reservations = 140217006;</code>
@@ -185,7 +185,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Represents the existing matching usage for the future
+     * Output only. [Output Only] Represents the existing matching usage for the future
      * reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatusExistingMatchingUsageInfo existing_matching_usage_info = 509920602;</code>
@@ -207,7 +207,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Represents the existing matching usage for the future
+     * Output only. [Output Only] Represents the existing matching usage for the future
      * reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatusExistingMatchingUsageInfo existing_matching_usage_info = 509920602;</code>
@@ -223,7 +223,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This count indicates the fulfilled capacity so far. This is set during
+     * Output only. This count indicates the fulfilled capacity so far. This is set during
      * "PROVISIONING" state. This count also includes capacity delivered as part
      * of existing matching reservations.
      *
@@ -246,7 +246,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This count indicates the fulfilled capacity so far. This is set during
+     * Output only. This count indicates the fulfilled capacity so far. This is set during
      * "PROVISIONING" state. This count also includes capacity delivered as part
      * of existing matching reservations.
      *
@@ -263,7 +263,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This field represents the future reservation before an
+     * Output only. [Output Only] This field represents the future reservation before an
      * amendment was requested. If the amendment is declined, the Future
      * Reservation will be reverted to the last known good state. The last known
      * good state is not set when updating a future reservation whose
@@ -288,7 +288,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This field represents the future reservation before an
+     * Output only. [Output Only] This field represents the future reservation before an
      * amendment was requested. If the amendment is declined, the Future
      * Reservation will be reverted to the last known good state. The last known
      * good state is not set when updating a future reservation whose
@@ -307,7 +307,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when Future Reservation would become LOCKED, after which no
+     * Output only. Time when Future Reservation would become LOCKED, after which no
      * modifications to Future Reservation will be allowed. Applicable only
      * after the Future Reservation is in the APPROVED state. The lock_time is
      * an RFC3339 string. The procurement_status will transition to PROCURING
@@ -332,7 +332,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when Future Reservation would become LOCKED, after which no
+     * Output only. Time when Future Reservation would become LOCKED, after which no
      * modifications to Future Reservation will be allowed. Applicable only
      * after the Future Reservation is in the APPROVED state. The lock_time is
      * an RFC3339 string. The procurement_status will transition to PROCURING
@@ -351,7 +351,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Current state of this Future Reservation
+     * Output only. Current state of this Future Reservation
      * Check the ProcurementStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string procurement_status = 224718945;</code>
@@ -373,7 +373,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Current state of this Future Reservation
+     * Output only. Current state of this Future Reservation
      * Check the ProcurementStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string procurement_status = 224718945;</code>

@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The description of the FutureReservation before an
+     * Output only. [Output Only] The description of the FutureReservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] Represents the matching usage for the future
+     * Output only. [Output Only] Represents the matching usage for the future
      * reservation before an amendment was requested.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatusExistingMatchingUsageInfo existing_matching_usage_info = 509920602;</code>
@@ -35,21 +35,21 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
      */
     protected $future_reservation_specs = null;
     /**
-     * [Output Only] The lock time of the FutureReservation before an
+     * Output only. [Output Only] The lock time of the FutureReservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string lock_time = 143772001;</code>
      */
     protected $lock_time = null;
     /**
-     * [Output Only] The name prefix of the Future Reservation before an
+     * Output only. [Output Only] The name prefix of the Future Reservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string name_prefix = 236409542;</code>
      */
     protected $name_prefix = null;
     /**
-     * [Output Only] The status of the last known good state for the Future
+     * Output only. [Output Only] The status of the last known good state for the Future
      * Reservation.
      * Check the ProcurementStatus enum for the list of possible values.
      *
@@ -64,20 +64,20 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type string $description
-     *           [Output Only] The description of the FutureReservation before an
+     *           Output only. [Output Only] The description of the FutureReservation before an
      *           amendment was requested.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusExistingMatchingUsageInfo $existing_matching_usage_info
-     *           [Output Only] Represents the matching usage for the future
+     *           Output only. [Output Only] Represents the matching usage for the future
      *           reservation before an amendment was requested.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusLastKnownGoodStateFutureReservationSpecs $future_reservation_specs
      *     @type string $lock_time
-     *           [Output Only] The lock time of the FutureReservation before an
+     *           Output only. [Output Only] The lock time of the FutureReservation before an
      *           amendment was requested.
      *     @type string $name_prefix
-     *           [Output Only] The name prefix of the Future Reservation before an
+     *           Output only. [Output Only] The name prefix of the Future Reservation before an
      *           amendment was requested.
      *     @type string $procurement_status
-     *           [Output Only] The status of the last known good state for the Future
+     *           Output only. [Output Only] The status of the last known good state for the Future
      *           Reservation.
      *           Check the ProcurementStatus enum for the list of possible values.
      * }
@@ -88,7 +88,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The description of the FutureReservation before an
+     * Output only. [Output Only] The description of the FutureReservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -110,7 +110,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The description of the FutureReservation before an
+     * Output only. [Output Only] The description of the FutureReservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -126,7 +126,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] Represents the matching usage for the future
+     * Output only. [Output Only] Represents the matching usage for the future
      * reservation before an amendment was requested.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatusExistingMatchingUsageInfo existing_matching_usage_info = 509920602;</code>
@@ -148,7 +148,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] Represents the matching usage for the future
+     * Output only. [Output Only] Represents the matching usage for the future
      * reservation before an amendment was requested.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatusExistingMatchingUsageInfo existing_matching_usage_info = 509920602;</code>
@@ -196,7 +196,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The lock time of the FutureReservation before an
+     * Output only. [Output Only] The lock time of the FutureReservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string lock_time = 143772001;</code>
@@ -218,7 +218,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The lock time of the FutureReservation before an
+     * Output only. [Output Only] The lock time of the FutureReservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string lock_time = 143772001;</code>
@@ -234,7 +234,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The name prefix of the Future Reservation before an
+     * Output only. [Output Only] The name prefix of the Future Reservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string name_prefix = 236409542;</code>
@@ -256,7 +256,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The name prefix of the Future Reservation before an
+     * Output only. [Output Only] The name prefix of the Future Reservation before an
      * amendment was requested.
      *
      * Generated from protobuf field <code>optional string name_prefix = 236409542;</code>
@@ -272,7 +272,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The status of the last known good state for the Future
+     * Output only. [Output Only] The status of the last known good state for the Future
      * Reservation.
      * Check the ProcurementStatus enum for the list of possible values.
      *
@@ -295,7 +295,7 @@ class FutureReservationStatusLastKnownGoodState extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The status of the last known good state for the Future
+     * Output only. [Output Only] The status of the last known good state for the Future
      * Reservation.
      * Check the ProcurementStatus enum for the list of possible values.
      *

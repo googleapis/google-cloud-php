@@ -35,7 +35,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     protected $external_ipv6_prefix_length = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -123,7 +123,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *           Applies to ipv6AccessConfigs only. The prefix length of the
      *           external IPv6 range.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *     @type string $name
      *           The name of this access configuration. In accessConfigs
      *           (IPv4), the default and recommended name is External NAT, but
@@ -253,7 +253,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -274,7 +274,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

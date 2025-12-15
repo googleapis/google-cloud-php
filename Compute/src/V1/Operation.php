@@ -102,7 +102,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $instances_bulk_insert_operation_metadata = null;
     /**
-     * [Output Only] Type of the resource. Always `compute#operation` for
+     * Output only. [Output Only] Type of the resource. Always `compute#operation` for
      * Operation resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -115,7 +115,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] An ID that represents a group of operations, such as when a
+     * Output only. [Output Only] An ID that represents a group of operations, such as when a
      * group of operations results from a `bulkInsert` API request.
      *
      * Generated from protobuf field <code>optional string operation_group_id = 40171187;</code>
@@ -152,7 +152,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] If the operation is for projects.setCommonInstanceMetadata,
+     * Output only. [Output Only] If the operation is for projects.setCommonInstanceMetadata,
      * this field will contain information on all underlying zonal actions and
      * their state.
      *
@@ -256,12 +256,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           text format.
      *     @type \Google\Cloud\Compute\V1\InstancesBulkInsertOperationMetadata $instances_bulk_insert_operation_metadata
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always `compute#operation` for
+     *           Output only. [Output Only] Type of the resource. Always `compute#operation` for
      *           Operation resources.
      *     @type string $name
      *           [Output Only] Name of the operation.
      *     @type string $operation_group_id
-     *           [Output Only] An ID that represents a group of operations, such as when a
+     *           Output only. [Output Only] An ID that represents a group of operations, such as when a
      *           group of operations results from a `bulkInsert` API request.
      *     @type string $operation_type
      *           [Output Only] The type of operation, such as `insert`,
@@ -278,7 +278,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\SetCommonInstanceMetadataOperationMetadata $set_common_instance_metadata_operation_metadata
-     *           [Output Only] If the operation is for projects.setCommonInstanceMetadata,
+     *           Output only. [Output Only] If the operation is for projects.setCommonInstanceMetadata,
      *           this field will contain information on all underlying zonal actions and
      *           their state.
      *     @type string $start_time
@@ -693,7 +693,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always `compute#operation` for
+     * Output only. [Output Only] Type of the resource. Always `compute#operation` for
      * Operation resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -715,7 +715,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always `compute#operation` for
+     * Output only. [Output Only] Type of the resource. Always `compute#operation` for
      * Operation resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -767,7 +767,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An ID that represents a group of operations, such as when a
+     * Output only. [Output Only] An ID that represents a group of operations, such as when a
      * group of operations results from a `bulkInsert` API request.
      *
      * Generated from protobuf field <code>optional string operation_group_id = 40171187;</code>
@@ -789,7 +789,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An ID that represents a group of operations, such as when a
+     * Output only. [Output Only] An ID that represents a group of operations, such as when a
      * group of operations results from a `bulkInsert` API request.
      *
      * Generated from protobuf field <code>optional string operation_group_id = 40171187;</code>
@@ -961,7 +961,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If the operation is for projects.setCommonInstanceMetadata,
+     * Output only. [Output Only] If the operation is for projects.setCommonInstanceMetadata,
      * this field will contain information on all underlying zonal actions and
      * their state.
      *
@@ -984,7 +984,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If the operation is for projects.setCommonInstanceMetadata,
+     * Output only. [Output Only] If the operation is for projects.setCommonInstanceMetadata,
      * this field will contain information on all underlying zonal actions and
      * their state.
      *

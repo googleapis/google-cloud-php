@@ -44,7 +44,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -62,7 +62,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Server-defined, fully qualified URL for this resource.
+     * Output only. [Output Only] Server-defined, fully qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -93,13 +93,13 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
+     *           Output only. [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *     @type int $maximum_cards_per_instance
      *           [Output Only] Maximum number of accelerator cards allowed per instance.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type string $self_link
-     *           [Output Only] Server-defined, fully qualified URL for this resource.
+     *           Output only. [Output Only] Server-defined, fully qualified URL for this resource.
      *     @type string $zone
      *           [Output Only] The name of the zone where the accelerator type resides,
      *           such as us-central1-a.
@@ -259,7 +259,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -280,7 +280,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -367,7 +367,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined, fully qualified URL for this resource.
+     * Output only. [Output Only] Server-defined, fully qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -388,7 +388,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined, fully qualified URL for this resource.
+     * Output only. [Output Only] Server-defined, fully qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

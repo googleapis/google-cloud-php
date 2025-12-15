@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The internet access type for IPv6 Public Delegated Sub
+ * Output only. [Output Only] The internet access type for IPv6 Public Delegated Sub
  * Prefixes. Inherited from parent prefix.
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix.Ipv6AccessType</code>

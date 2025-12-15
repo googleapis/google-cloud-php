@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Project;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The Cloud Armor tier for this project. It can be one of the
+ * Output only. [Output Only] The Cloud Armor tier for this project. It can be one of the
  * following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
  * If this field is not specified, it is assumed to beCA_STANDARD.
  *

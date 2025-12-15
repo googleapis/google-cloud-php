@@ -26,7 +26,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The creation timestamp for this instance group inRFC3339
+     * Output only. [Output Only] The creation timestamp for this instance group inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -40,7 +40,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The fingerprint of the named ports. The system
+     * Output only. [Output Only] The fingerprint of the named ports. The system
      * uses this fingerprint to detect conflicts when multiple users change the
      * named ports concurrently.
      *
@@ -48,14 +48,14 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] A unique identifier for this instance group, generated
+     * Output only. [Output Only] A unique identifier for this instance group, generated
      * by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -89,27 +89,27 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the instance group is located (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     protected $region = null;
     /**
-     * [Output Only] The URL for this instance group. The server generates
+     * Output only. [Output Only] The URL for this instance group. The server generates
      * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] The total number of instances in the instance group.
+     * Output only. [Output Only] The total number of instances in the instance group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
     protected $size = null;
     /**
-     * [Output Only] The URL of the subnetwork to which all instances in the
+     * Output only. [Output Only] The URL of the subnetwork to which all instances in the
      * instance group belong. If your instance has multiple network interfaces,
      * then the network and subnetwork fields only refer to the
      * network and subnet used by your primary interface (nic0).
@@ -118,7 +118,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      */
     protected $subnetwork = null;
     /**
-     * [Output Only] The URL of thezone
+     * Output only. [Output Only] The URL of thezone
      * where the instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -132,20 +132,20 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] The creation timestamp for this instance group inRFC3339
+     *           Output only. [Output Only] The creation timestamp for this instance group inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type string $fingerprint
-     *           [Output Only] The fingerprint of the named ports. The system
+     *           Output only. [Output Only] The fingerprint of the named ports. The system
      *           uses this fingerprint to detect conflicts when multiple users change the
      *           named ports concurrently.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this instance group, generated
+     *           Output only. [Output Only] A unique identifier for this instance group, generated
      *           by the server.
      *     @type string $kind
-     *           [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
+     *           Output only. [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
      *     @type string $name
      *           The name of the instance group. The name must be 1-63 characters
      *           long, and comply withRFC1035.
@@ -163,20 +163,20 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      *           then the network and subnetwork fields only refer to the
      *           network and subnet used by your primary interface (nic0).
      *     @type string $region
-     *           [Output Only] The URL of theregion
+     *           Output only. [Output Only] The URL of theregion
      *           where the instance group is located (for regional resources).
      *     @type string $self_link
-     *           [Output Only] The URL for this instance group. The server generates
+     *           Output only. [Output Only] The URL for this instance group. The server generates
      *           this URL.
      *     @type int $size
-     *           [Output Only] The total number of instances in the instance group.
+     *           Output only. [Output Only] The total number of instances in the instance group.
      *     @type string $subnetwork
-     *           [Output Only] The URL of the subnetwork to which all instances in the
+     *           Output only. [Output Only] The URL of the subnetwork to which all instances in the
      *           instance group belong. If your instance has multiple network interfaces,
      *           then the network and subnetwork fields only refer to the
      *           network and subnet used by your primary interface (nic0).
      *     @type string $zone
-     *           [Output Only] The URL of thezone
+     *           Output only. [Output Only] The URL of thezone
      *           where the instance group is located (for zonal resources).
      * }
      */
@@ -186,7 +186,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this instance group inRFC3339
+     * Output only. [Output Only] The creation timestamp for this instance group inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -208,7 +208,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this instance group inRFC3339
+     * Output only. [Output Only] The creation timestamp for this instance group inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -262,7 +262,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The fingerprint of the named ports. The system
+     * Output only. [Output Only] The fingerprint of the named ports. The system
      * uses this fingerprint to detect conflicts when multiple users change the
      * named ports concurrently.
      *
@@ -285,7 +285,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The fingerprint of the named ports. The system
+     * Output only. [Output Only] The fingerprint of the named ports. The system
      * uses this fingerprint to detect conflicts when multiple users change the
      * named ports concurrently.
      *
@@ -302,7 +302,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this instance group, generated
+     * Output only. [Output Only] A unique identifier for this instance group, generated
      * by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -324,7 +324,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this instance group, generated
+     * Output only. [Output Only] A unique identifier for this instance group, generated
      * by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -340,7 +340,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -361,7 +361,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroup for instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -494,7 +494,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the instance group is located (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -516,7 +516,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the instance group is located (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -532,7 +532,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this instance group. The server generates
+     * Output only. [Output Only] The URL for this instance group. The server generates
      * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -554,7 +554,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this instance group. The server generates
+     * Output only. [Output Only] The URL for this instance group. The server generates
      * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -570,7 +570,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The total number of instances in the instance group.
+     * Output only. [Output Only] The total number of instances in the instance group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @return int
@@ -591,7 +591,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The total number of instances in the instance group.
+     * Output only. [Output Only] The total number of instances in the instance group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @param int $var
@@ -606,7 +606,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the subnetwork to which all instances in the
+     * Output only. [Output Only] The URL of the subnetwork to which all instances in the
      * instance group belong. If your instance has multiple network interfaces,
      * then the network and subnetwork fields only refer to the
      * network and subnet used by your primary interface (nic0).
@@ -630,7 +630,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the subnetwork to which all instances in the
+     * Output only. [Output Only] The URL of the subnetwork to which all instances in the
      * instance group belong. If your instance has multiple network interfaces,
      * then the network and subnetwork fields only refer to the
      * network and subnet used by your primary interface (nic0).
@@ -648,7 +648,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of thezone
+     * Output only. [Output Only] The URL of thezone
      * where the instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -670,7 +670,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of thezone
+     * Output only. [Output Only] The URL of thezone
      * where the instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>

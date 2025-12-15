@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate;
 use UnexpectedValueException;
 
 /**
- * [Output only] Status of the managed certificate resource.
+ * Output only. [Output only] Status of the managed certificate resource.
  *
  * Protobuf type <code>google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status</code>
  */

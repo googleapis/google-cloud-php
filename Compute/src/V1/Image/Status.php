@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Image;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the image. An image can be used to create other
+ * Output only. [Output Only] The status of the image. An image can be used to create other
  * resources, such as instances, only after the image has been successfully
  * created and the status is set to READY. Possible
  * values are FAILED, PENDING, orREADY.

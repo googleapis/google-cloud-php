@@ -36,7 +36,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $address_type = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -50,12 +50,28 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
+    /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     * Use one of the following formats to specify a PDP when reserving an
+     * external IPv4 address using BYOIP.
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     */
+    protected $ip_collection = null;
     /**
      * The IP version that will be used by this address. Valid options areIPV4 or IPV6.
      * Check the IpVersion enum for the list of possible values.
@@ -73,7 +89,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $ipv6_endpoint_type = null;
     /**
-     * [Output Only] Type of the resource. Always compute#address for
+     * Output only. [Output Only] Type of the resource. Always compute#address for
      * addresses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -163,7 +179,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $purpose = null;
     /**
-     * [Output Only] The URL of the region where a regional address resides.
+     * Output only. [Output Only] The URL of the region where a regional address resides.
      * For regional addresses, you must specify the region as a path parameter in
      * the HTTP request URL. *This field is not applicable to global
      * addresses.*
@@ -178,7 +194,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
+     * Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      * An address that is RESERVING is currently in the process of
      * being reserved. A RESERVED address is currently reserved and
      * available to use. An IN_USE address is currently being used
@@ -215,14 +231,26 @@ class Address extends \Google\Protobuf\Internal\Message
      *           The type of address to reserve, either INTERNAL orEXTERNAL. If unspecified, defaults to EXTERNAL.
      *           Check the AddressType enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this field when you
      *           create the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
+     *     @type string $ip_collection
+     *           Reference to the source of external IPv4 addresses,
+     *           like a PublicDelegatedPrefix (PDP) for BYOIP.
+     *           The PDP must support enhanced IPv4 allocations.
+     *           Use one of the following formats to specify a PDP when reserving an
+     *           external IPv4 address using BYOIP.
+     *              -
+     *              Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *              -
+     *              Partial URL, as in
+     *                     - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *                     - regions/region/publicDelegatedPrefixes/pdp-name
      *     @type string $ip_version
      *           The IP version that will be used by this address. Valid options areIPV4 or IPV6.
      *           Check the IpVersion enum for the list of possible values.
@@ -232,7 +260,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *           this address can be used after the external IPv6 address reservation.
      *           Check the Ipv6EndpointType enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#address for
+     *           Output only. [Output Only] Type of the resource. Always compute#address for
      *           addresses.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this Address, which is
@@ -290,14 +318,14 @@ class Address extends \Google\Protobuf\Internal\Message
      *                can use this purpose.
      *           Check the Purpose enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] The URL of the region where a regional address resides.
+     *           Output only. [Output Only] The URL of the region where a regional address resides.
      *           For regional addresses, you must specify the region as a path parameter in
      *           the HTTP request URL. *This field is not applicable to global
      *           addresses.*
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $status
-     *           [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
+     *           Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      *           An address that is RESERVING is currently in the process of
      *           being reserved. A RESERVED address is currently reserved and
      *           available to use. An IN_USE address is currently being used
@@ -391,7 +419,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -413,7 +441,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -467,7 +495,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -489,7 +517,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -500,6 +528,62 @@ class Address extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint64($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     * Use one of the following formats to specify a PDP when reserving an
+     * external IPv4 address using BYOIP.
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @return string
+     */
+    public function getIpCollection()
+    {
+        return isset($this->ip_collection) ? $this->ip_collection : '';
+    }
+
+    public function hasIpCollection()
+    {
+        return isset($this->ip_collection);
+    }
+
+    public function clearIpCollection()
+    {
+        unset($this->ip_collection);
+    }
+
+    /**
+     * Reference to the source of external IPv4 addresses,
+     * like a PublicDelegatedPrefix (PDP) for BYOIP.
+     * The PDP must support enhanced IPv4 allocations.
+     * Use one of the following formats to specify a PDP when reserving an
+     * external IPv4 address using BYOIP.
+     *    -
+     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *    -
+     *    Partial URL, as in
+     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpCollection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_collection = $var;
 
         return $this;
     }
@@ -585,7 +669,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#address for
+     * Output only. [Output Only] Type of the resource. Always compute#address for
      * addresses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -607,7 +691,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#address for
+     * Output only. [Output Only] Type of the resource. Always compute#address for
      * addresses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -947,7 +1031,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where a regional address resides.
+     * Output only. [Output Only] The URL of the region where a regional address resides.
      * For regional addresses, you must specify the region as a path parameter in
      * the HTTP request URL. *This field is not applicable to global
      * addresses.*
@@ -971,7 +1055,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where a regional address resides.
+     * Output only. [Output Only] The URL of the region where a regional address resides.
      * For regional addresses, you must specify the region as a path parameter in
      * the HTTP request URL. *This field is not applicable to global
      * addresses.*
@@ -1025,7 +1109,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
+     * Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      * An address that is RESERVING is currently in the process of
      * being reserved. A RESERVED address is currently reserved and
      * available to use. An IN_USE address is currently being used
@@ -1051,7 +1135,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
+     * Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
      * An address that is RESERVING is currently in the process of
      * being reserved. A RESERVED address is currently reserved and
      * available to use. An IN_USE address is currently being used

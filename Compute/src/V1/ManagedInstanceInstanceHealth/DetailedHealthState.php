@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current detailed instance health state.
+ * Output only. [Output Only] The current detailed instance health state.
  *
  * Protobuf type <code>google.cloud.compute.v1.ManagedInstanceInstanceHealth.DetailedHealthState</code>
  */

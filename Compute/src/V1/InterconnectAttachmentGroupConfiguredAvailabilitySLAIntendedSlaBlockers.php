@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] URLs of any particular Attachments to explain this
+     * Output only. [Output Only] URLs of any particular Attachments to explain this
      * blocker in more detail.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
@@ -32,21 +32,21 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      */
     protected $blocker_type = null;
     /**
-     * [Output Only] The url of Google Cloud public documentation explaining
+     * Output only. [Output Only] The url of Google Cloud public documentation explaining
      * this requirement. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string documentation_link = 93465183;</code>
      */
     protected $documentation_link = null;
     /**
-     * [Output Only] A human-readable explanation of this requirement and
+     * Output only. [Output Only] A human-readable explanation of this requirement and
      * why it's not met. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string explanation = 504745497;</code>
      */
     protected $explanation = null;
     /**
-     * [Output Only] Metros used to explain this blocker in more detail.
+     * Output only. [Output Only] Metros used to explain this blocker in more detail.
      * These are three-letter lowercase strings like "iad". This will be set
      * for some blockers (like NO_ATTACHMENTS_IN_METRO_AND_ZONE) but does
      * not apply to others.
@@ -55,7 +55,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      */
     private $metros;
     /**
-     * [Output Only] Regions used to explain this blocker in more
+     * Output only. [Output Only] Regions used to explain this blocker in more
      * detail. These are region names formatted like "us-central1". This
      * will be set for some blockers (like INCOMPATIBLE_REGIONS) but does
      * not apply to others.
@@ -64,7 +64,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      */
     private $regions;
     /**
-     * [Output Only] Zones used to explain this blocker in more detail.
+     * Output only. [Output Only] Zones used to explain this blocker in more detail.
      * Format is "zone1" and/or "zone2". This will be set for some blockers
      * (like  MISSING_ZONE) but does not apply to others.
      *
@@ -79,29 +79,29 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attachments
-     *           [Output Only] URLs of any particular Attachments to explain this
+     *           Output only. [Output Only] URLs of any particular Attachments to explain this
      *           blocker in more detail.
      *     @type string $blocker_type
      *           
      *           Check the BlockerType enum for the list of possible values.
      *     @type string $documentation_link
-     *           [Output Only] The url of Google Cloud public documentation explaining
+     *           Output only. [Output Only] The url of Google Cloud public documentation explaining
      *           this requirement. This is set for every type of requirement.
      *     @type string $explanation
-     *           [Output Only] A human-readable explanation of this requirement and
+     *           Output only. [Output Only] A human-readable explanation of this requirement and
      *           why it's not met. This is set for every type of requirement.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metros
-     *           [Output Only] Metros used to explain this blocker in more detail.
+     *           Output only. [Output Only] Metros used to explain this blocker in more detail.
      *           These are three-letter lowercase strings like "iad". This will be set
      *           for some blockers (like NO_ATTACHMENTS_IN_METRO_AND_ZONE) but does
      *           not apply to others.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
-     *           [Output Only] Regions used to explain this blocker in more
+     *           Output only. [Output Only] Regions used to explain this blocker in more
      *           detail. These are region names formatted like "us-central1". This
      *           will be set for some blockers (like INCOMPATIBLE_REGIONS) but does
      *           not apply to others.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
-     *           [Output Only] Zones used to explain this blocker in more detail.
+     *           Output only. [Output Only] Zones used to explain this blocker in more detail.
      *           Format is "zone1" and/or "zone2". This will be set for some blockers
      *           (like  MISSING_ZONE) but does not apply to others.
      * }
@@ -112,7 +112,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] URLs of any particular Attachments to explain this
+     * Output only. [Output Only] URLs of any particular Attachments to explain this
      * blocker in more detail.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
@@ -124,7 +124,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] URLs of any particular Attachments to explain this
+     * Output only. [Output Only] URLs of any particular Attachments to explain this
      * blocker in more detail.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
@@ -178,7 +178,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] The url of Google Cloud public documentation explaining
+     * Output only. [Output Only] The url of Google Cloud public documentation explaining
      * this requirement. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string documentation_link = 93465183;</code>
@@ -200,7 +200,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] The url of Google Cloud public documentation explaining
+     * Output only. [Output Only] The url of Google Cloud public documentation explaining
      * this requirement. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string documentation_link = 93465183;</code>
@@ -216,7 +216,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] A human-readable explanation of this requirement and
+     * Output only. [Output Only] A human-readable explanation of this requirement and
      * why it's not met. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string explanation = 504745497;</code>
@@ -238,7 +238,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] A human-readable explanation of this requirement and
+     * Output only. [Output Only] A human-readable explanation of this requirement and
      * why it's not met. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string explanation = 504745497;</code>
@@ -254,7 +254,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] Metros used to explain this blocker in more detail.
+     * Output only. [Output Only] Metros used to explain this blocker in more detail.
      * These are three-letter lowercase strings like "iad". This will be set
      * for some blockers (like NO_ATTACHMENTS_IN_METRO_AND_ZONE) but does
      * not apply to others.
@@ -268,7 +268,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] Metros used to explain this blocker in more detail.
+     * Output only. [Output Only] Metros used to explain this blocker in more detail.
      * These are three-letter lowercase strings like "iad". This will be set
      * for some blockers (like NO_ATTACHMENTS_IN_METRO_AND_ZONE) but does
      * not apply to others.
@@ -286,7 +286,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] Regions used to explain this blocker in more
+     * Output only. [Output Only] Regions used to explain this blocker in more
      * detail. These are region names formatted like "us-central1". This
      * will be set for some blockers (like INCOMPATIBLE_REGIONS) but does
      * not apply to others.
@@ -300,7 +300,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] Regions used to explain this blocker in more
+     * Output only. [Output Only] Regions used to explain this blocker in more
      * detail. These are region names formatted like "us-central1". This
      * will be set for some blockers (like INCOMPATIBLE_REGIONS) but does
      * not apply to others.
@@ -318,7 +318,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] Zones used to explain this blocker in more detail.
+     * Output only. [Output Only] Zones used to explain this blocker in more detail.
      * Format is "zone1" and/or "zone2". This will be set for some blockers
      * (like  MISSING_ZONE) but does not apply to others.
      *
@@ -331,7 +331,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
     }
 
     /**
-     * [Output Only] Zones used to explain this blocker in more detail.
+     * Output only. [Output Only] Zones used to explain this blocker in more detail.
      * Format is "zone1" and/or "zone2". This will be set for some blockers
      * (like  MISSING_ZONE) but does not apply to others.
      *

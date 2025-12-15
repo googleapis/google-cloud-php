@@ -60,7 +60,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      */
     protected $header_action = null;
     /**
-     * [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
+     * Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -185,7 +185,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *           This field is only supported in Global Security Policies of type
      *           CLOUD_ARMOR.
      *     @type string $kind
-     *           [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
+     *           Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher $match
      *           A match condition that incoming traffic is evaluated against.
      *           If it evaluates to true, the corresponding 'action' is enforced.
@@ -405,7 +405,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
+     * Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -426,7 +426,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
+     * Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyRule for security policy rules
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

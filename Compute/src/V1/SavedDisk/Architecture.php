@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SavedDisk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The architecture of the attached disk.
+ * Output only. [Output Only] The architecture of the attached disk.
  *
  * Protobuf type <code>google.cloud.compute.v1.SavedDisk.Architecture</code>
  */

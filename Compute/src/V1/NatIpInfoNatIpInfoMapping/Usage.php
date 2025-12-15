@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping;
 use UnexpectedValueException;
 
 /**
- * Specifies whether NAT IP is currently serving at least one endpoint or
+ * Output only. Specifies whether NAT IP is currently serving at least one endpoint or
  * not.
  *
  * Protobuf type <code>google.cloud.compute.v1.NatIpInfoNatIpInfoMapping.Usage</code>

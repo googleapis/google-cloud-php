@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\StoragePoolDisk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The disk status.
+ * Output only. [Output Only] The disk status.
  *
  * Protobuf type <code>google.cloud.compute.v1.StoragePoolDisk.Status</code>
  */

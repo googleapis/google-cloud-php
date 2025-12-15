@@ -33,7 +33,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     private $associations;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -64,14 +64,14 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
+     * Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -108,7 +108,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] The parent of the security policy.
+     * Output only. [Output Only] The parent of the security policy.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
      */
@@ -118,7 +118,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $recaptcha_options_config = null;
     /**
-     * [Output Only] URL of the region where the regional security policy
+     * Output only. [Output Only] URL of the region where the regional security policy
      * resides. This field is not applicable to global security policies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -137,7 +137,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     private $rules;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -209,7 +209,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
      *           A list of associations that belong to this policy.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyDdosProtectionConfig $ddos_protection_config
      *     @type string $description
@@ -225,10 +225,10 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make get() request to the
      *           security policy.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
+     *           Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this security policy, which
      *           is essentially a hash of the labels set used for optimistic locking. The
@@ -249,10 +249,10 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $parent
-     *           [Output Only] The parent of the security policy.
+     *           Output only. [Output Only] The parent of the security policy.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRecaptchaOptionsConfig $recaptcha_options_config
      *     @type string $region
-     *           [Output Only] URL of the region where the regional security policy
+     *           Output only. [Output Only] URL of the region where the regional security policy
      *           resides. This field is not applicable to global security policies.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of rules that belong to this policy.
@@ -263,7 +263,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *           creating a security policy, a default rule with action "allow" will be
      *           added.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $short_name
      *           User-provided name of the organization security policy. The name should be
      *           unique in the organization in which the security policy is created. This
@@ -405,7 +405,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -427,7 +427,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -563,7 +563,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -585,7 +585,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -601,7 +601,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
+     * Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -622,7 +622,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
+     * Output only. [Output only] Type of the resource. Alwayscompute#securityPolicyfor security policies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -761,7 +761,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The parent of the security policy.
+     * Output only. [Output Only] The parent of the security policy.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
      * @return string
@@ -782,7 +782,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The parent of the security policy.
+     * Output only. [Output Only] The parent of the security policy.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
      * @param string $var
@@ -829,7 +829,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional security policy
+     * Output only. [Output Only] URL of the region where the regional security policy
      * resides. This field is not applicable to global security policies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -851,7 +851,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional security policy
+     * Output only. [Output Only] URL of the region where the regional security policy
      * resides. This field is not applicable to global security policies.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -905,7 +905,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -926,7 +926,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

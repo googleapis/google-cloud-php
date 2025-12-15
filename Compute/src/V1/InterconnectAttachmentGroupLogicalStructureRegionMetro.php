@@ -20,7 +20,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
      */
     private $facilities;
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase
      * string like "iad". This is the first component of the location of an
      * Interconnect.
      *
@@ -36,7 +36,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
      *
      *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacility>|\Google\Protobuf\Internal\RepeatedField $facilities
      *     @type string $metro
-     *           [Output Only] The name of the metro, as a three-letter lowercase
+     *           Output only. [Output Only] The name of the metro, as a three-letter lowercase
      *           string like "iad". This is the first component of the location of an
      *           Interconnect.
      * }
@@ -69,7 +69,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
     }
 
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase
      * string like "iad". This is the first component of the location of an
      * Interconnect.
      *
@@ -92,7 +92,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
     }
 
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase
      * string like "iad". This is the first component of the location of an
      * Interconnect.
      *

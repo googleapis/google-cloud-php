@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\FutureReservationStatusLastKnownGoodState;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the last known good state for the Future
+ * Output only. [Output Only] The status of the last known good state for the Future
  * Reservation.
  *
  * Protobuf type <code>google.cloud.compute.v1.FutureReservationStatusLastKnownGoodState.ProcurementStatus</code>

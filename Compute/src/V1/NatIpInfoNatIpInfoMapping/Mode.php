@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping;
 use UnexpectedValueException;
 
 /**
- * Specifies whether NAT IP is auto or manual.
+ * Output only. Specifies whether NAT IP is auto or manual.
  *
  * Protobuf type <code>google.cloud.compute.v1.NatIpInfoNatIpInfoMapping.Mode</code>
  */

@@ -117,7 +117,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     protected $backend_service = null;
     /**
-     * [Output Only] The URL for the corresponding base forwarding rule. By base
+     * Output only. [Output Only] The URL for the corresponding base forwarding rule. By base
      * forwarding rule, we mean the forwarding rule that has the same IP address,
      * protocol, and port settings with the current forwarding rule, but without
      * sourceIPRanges specified.
@@ -128,7 +128,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     protected $base_forwarding_rule = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -222,7 +222,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     protected $is_mirroring_collector = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -389,7 +389,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     protected $psc_connection_status = null;
     /**
-     * [Output Only] URL of the region where the regional forwarding rule resides.
+     * Output only. [Output Only] URL of the region where the regional forwarding rule resides.
      * This field is not applicable to global forwarding rules.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -404,7 +404,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -550,14 +550,14 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           Required for internal and external passthrough Network Load Balancers;
      *           must be omitted for all other load balancer types.
      *     @type string $base_forwarding_rule
-     *           [Output Only] The URL for the corresponding base forwarding rule. By base
+     *           Output only. [Output Only] The URL for the corresponding base forwarding rule. By base
      *           forwarding rule, we mean the forwarding rule that has the same IP address,
      *           protocol, and port settings with the current forwarding rule, but without
      *           sourceIPRanges specified.
      *           Always empty if the current forwarding rule does not have sourceIPRanges
      *           specified.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -615,7 +615,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           load balancer will not have their traffic mirrored even if aPacketMirroring rule applies to them.
      *           This can only be set to true for load balancers that have theirloadBalancingScheme set to INTERNAL.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this resource, which is
      *           essentially a hash of the labels set used for optimistic locking. The
@@ -730,14 +730,14 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           
      *           Check the PscConnectionStatus enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional forwarding rule resides.
+     *           Output only. [Output Only] URL of the region where the regional forwarding rule resides.
      *           This field is not applicable to global forwarding rules.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *     @type array<\Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration>|\Google\Protobuf\Internal\RepeatedField $service_directory_registrations
      *           Service Directory resources to register this forwarding rule with.
      *           Currently, only supports a single Service Directory resource.
@@ -1113,7 +1113,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for the corresponding base forwarding rule. By base
+     * Output only. [Output Only] The URL for the corresponding base forwarding rule. By base
      * forwarding rule, we mean the forwarding rule that has the same IP address,
      * protocol, and port settings with the current forwarding rule, but without
      * sourceIPRanges specified.
@@ -1139,7 +1139,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for the corresponding base forwarding rule. By base
+     * Output only. [Output Only] The URL for the corresponding base forwarding rule. By base
      * forwarding rule, we mean the forwarding rule that has the same IP address,
      * protocol, and port settings with the current forwarding rule, but without
      * sourceIPRanges specified.
@@ -1159,7 +1159,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -1181,7 +1181,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -1563,7 +1563,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -1584,7 +1584,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#forwardingRule for forwarding rule resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -2179,7 +2179,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional forwarding rule resides.
+     * Output only. [Output Only] URL of the region where the regional forwarding rule resides.
      * This field is not applicable to global forwarding rules.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -2203,7 +2203,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional forwarding rule resides.
+     * Output only. [Output Only] URL of the region where the regional forwarding rule resides.
      * This field is not applicable to global forwarding rules.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -2257,7 +2257,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -2278,7 +2278,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var

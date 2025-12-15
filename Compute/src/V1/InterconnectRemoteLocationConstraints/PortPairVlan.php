@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocationConstraints;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Port pair VLAN constraints, which can take one of the
+ * Output only. [Output Only] Port pair VLAN constraints, which can take one of the
  * following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectRemoteLocationConstraints.PortPairVlan</code>

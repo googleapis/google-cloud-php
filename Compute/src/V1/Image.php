@@ -33,14 +33,14 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $archive_size_bytes = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * The deprecation status associated with this image.
+     * Output only. The deprecation status associated with this image.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
@@ -59,7 +59,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $disk_size_gb = null;
     /**
-     * Whether this image is created from a confidential compute mode disk.
+     * Output only. Whether this image is created from a confidential compute mode disk.
      * [Output Only]: This field is not set by user, but from source disk.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
@@ -86,7 +86,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     private $guest_os_features;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -108,7 +108,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $image_encryption_key = null;
     /**
-     * [Output Only] Type of the resource. Always compute#image for
+     * Output only. [Output Only] Type of the resource. Always compute#image for
      * images.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -178,13 +178,13 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzi = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -220,7 +220,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $source_disk_encryption_key = null;
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the disk used to create this image. This value may be used
      * to determine whether the image was taken from the current or a previous
      * instance of a given disk name.
@@ -252,7 +252,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $source_image_encryption_key = null;
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the image used to create this image. This value may be used
      * to determine whether the image was taken from the current or a previous
      * instance of a given image name.
@@ -284,7 +284,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $source_snapshot_encryption_key = null;
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the snapshot used to create this image. This value may be
      * used to determine whether the snapshot was taken from the current or a
      * previous instance of a given snapshot name.
@@ -301,7 +301,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     protected $source_type = null;
     /**
-     * [Output Only] The status of the image. An image can be used to create other
+     * Output only. [Output Only] The status of the image. An image can be used to create other
      * resources, such as instances, only after the image has been successfully
      * created and the status is set to READY. Possible
      * values are FAILED, PENDING, orREADY.
@@ -332,17 +332,17 @@ class Image extends \Google\Protobuf\Internal\Message
      *           Size of the image tar.gz archive stored in Google Cloud
      *           Storage (in bytes).
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
-     *           The deprecation status associated with this image.
+     *           Output only. The deprecation status associated with this image.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type int|string $disk_size_gb
      *           Size of the image when restored onto a persistent disk (in GB).
      *     @type bool $enable_confidential_compute
-     *           Whether this image is created from a confidential compute mode disk.
+     *           Output only. Whether this image is created from a confidential compute mode disk.
      *           [Output Only]: This field is not set by user, but from source disk.
      *     @type string $family
      *           The name of the image family to which this image belongs. The image
@@ -357,7 +357,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           A list of features to enable on the guest operating system. Applicable
      *           only for bootable images. To see a list of available options, see theguestOSfeatures[].type parameter.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $image_encryption_key
      *           Encrypts the image using acustomer-supplied
@@ -371,7 +371,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           disk will be encrypted using an automatically generated key and you do not
      *           need to provide a key to use the image later.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#image for
+     *           Output only. [Output Only] Type of the resource. Always compute#image for
      *           images.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this image, which is
@@ -405,9 +405,9 @@ class Image extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\InitialStateConfig $shielded_instance_initial_state
      *           Set the secure boot keys of shielded instance.
      *     @type string $source_disk
@@ -427,7 +427,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           encryption key of the source disk. Required if the source disk is
      *           protected by a customer-supplied encryption key.
      *     @type string $source_disk_id
-     *           [Output Only]
+     *           Output only. [Output Only]
      *           The ID value of the disk used to create this image. This value may be used
      *           to determine whether the image was taken from the current or a previous
      *           instance of a given disk name.
@@ -447,7 +447,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           The customer-supplied encryption key of the source image. Required if the
      *           source image is protected by a customer-supplied encryption key.
      *     @type string $source_image_id
-     *           [Output Only]
+     *           Output only. [Output Only]
      *           The ID value of the image used to create this image. This value may be used
      *           to determine whether the image was taken from the current or a previous
      *           instance of a given image name.
@@ -467,7 +467,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           The customer-supplied encryption key of the source snapshot. Required if
      *           the source snapshot is protected by a customer-supplied encryption key.
      *     @type string $source_snapshot_id
-     *           [Output Only]
+     *           Output only. [Output Only]
      *           The ID value of the snapshot used to create this image. This value may be
      *           used to determine whether the snapshot was taken from the current or a
      *           previous instance of a given snapshot name.
@@ -476,7 +476,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           default and only valid value is RAW.
      *           Check the SourceType enum for the list of possible values.
      *     @type string $status
-     *           [Output Only] The status of the image. An image can be used to create other
+     *           Output only. [Output Only] The status of the image. An image can be used to create other
      *           resources, such as instances, only after the image has been successfully
      *           created and the status is set to READY. Possible
      *           values are FAILED, PENDING, orREADY.
@@ -570,7 +570,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -592,7 +592,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -608,7 +608,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The deprecation status associated with this image.
+     * Output only. The deprecation status associated with this image.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @return \Google\Cloud\Compute\V1\DeprecationStatus|null
@@ -629,7 +629,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The deprecation status associated with this image.
+     * Output only. The deprecation status associated with this image.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @param \Google\Cloud\Compute\V1\DeprecationStatus $var
@@ -718,7 +718,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether this image is created from a confidential compute mode disk.
+     * Output only. Whether this image is created from a confidential compute mode disk.
      * [Output Only]: This field is not set by user, but from source disk.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
@@ -740,7 +740,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether this image is created from a confidential compute mode disk.
+     * Output only. Whether this image is created from a confidential compute mode disk.
      * [Output Only]: This field is not set by user, but from source disk.
      *
      * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
@@ -834,7 +834,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -856,7 +856,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -926,7 +926,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#image for
+     * Output only. [Output Only] Type of the resource. Always compute#image for
      * images.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -948,7 +948,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#image for
+     * Output only. [Output Only] Type of the resource. Always compute#image for
      * images.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1252,7 +1252,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -1273,7 +1273,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -1288,7 +1288,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1309,7 +1309,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -1456,7 +1456,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the disk used to create this image. This value may be used
      * to determine whether the image was taken from the current or a previous
      * instance of a given disk name.
@@ -1480,7 +1480,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the disk used to create this image. This value may be used
      * to determine whether the image was taken from the current or a previous
      * instance of a given disk name.
@@ -1592,7 +1592,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the image used to create this image. This value may be used
      * to determine whether the image was taken from the current or a previous
      * instance of a given image name.
@@ -1616,7 +1616,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the image used to create this image. This value may be used
      * to determine whether the image was taken from the current or a previous
      * instance of a given image name.
@@ -1728,7 +1728,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the snapshot used to create this image. This value may be
      * used to determine whether the snapshot was taken from the current or a
      * previous instance of a given snapshot name.
@@ -1752,7 +1752,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * The ID value of the snapshot used to create this image. This value may be
      * used to determine whether the snapshot was taken from the current or a
      * previous instance of a given snapshot name.
@@ -1810,7 +1810,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the image. An image can be used to create other
+     * Output only. [Output Only] The status of the image. An image can be used to create other
      * resources, such as instances, only after the image has been successfully
      * created and the status is set to READY. Possible
      * values are FAILED, PENDING, orREADY.
@@ -1835,7 +1835,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the image. An image can be used to create other
+     * Output only. [Output Only] The status of the image. An image can be used to create other
      * resources, such as instances, only after the image has been successfully
      * created and the status is set to READY. Possible
      * values are FAILED, PENDING, orREADY.

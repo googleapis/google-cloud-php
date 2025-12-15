@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -42,7 +42,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     protected $group_placement_policy = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -55,7 +55,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     protected $instance_schedule_policy = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -78,13 +78,13 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] The system status of the resource policy.
+     * Output only. [Output Only] The system status of the resource policy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
      */
     protected $resource_status = null;
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -96,7 +96,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      */
     protected $snapshot_schedule_policy = null;
     /**
-     * [Output Only] The status of resource policy creation.
+     * Output only. [Output Only] The status of resource policy creation.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -116,7 +116,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyDiskConsistencyGroupPolicy $disk_consistency_group_policy
@@ -124,12 +124,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyGroupPlacementPolicy $group_placement_policy
      *           Resource policy for instances for placement configuration.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy $instance_schedule_policy
      *           Resource policy for scheduling instance operations.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating
      *           the resource. The resource name must be 1-63 characters long, and comply
@@ -141,13 +141,13 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *           be a dash.
      *     @type string $region
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus $resource_status
-     *           [Output Only] The system status of the resource policy.
+     *           Output only. [Output Only] The system status of the resource policy.
      *     @type string $self_link
-     *           [Output Only] Server-defined fully-qualified URL for this resource.
+     *           Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicy $snapshot_schedule_policy
      *           Resource policy for persistent disks for creating snapshots.
      *     @type string $status
-     *           [Output Only] The status of resource policy creation.
+     *           Output only. [Output Only] The status of resource policy creation.
      *           Check the Status enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyWorkloadPolicy $workload_policy
      *           Resource policy for defining instance placement for MIGs.
@@ -159,7 +159,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -181,7 +181,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -301,7 +301,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -323,7 +323,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -375,7 +375,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -396,7 +396,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#resource_policies for resource policies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -493,7 +493,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The system status of the resource policy.
+     * Output only. [Output Only] The system status of the resource policy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus|null
@@ -514,7 +514,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The system status of the resource policy.
+     * Output only. [Output Only] The system status of the resource policy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus $var
@@ -529,7 +529,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -550,7 +550,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -601,7 +601,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of resource policy creation.
+     * Output only. [Output Only] The status of resource policy creation.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -623,7 +623,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of resource policy creation.
+     * Output only. [Output Only] The status of resource policy creation.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

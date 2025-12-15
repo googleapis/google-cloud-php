@@ -208,14 +208,14 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     private $subnet_stack_types;
     /**
-     * Specifies which subnetwork purposes are supported.
+     * Output only. Specifies which subnetwork purposes are supported.
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
      */
     private $subnetwork_purposes;
     /**
-     * Specifies which subnetwork stack types are supported.
+     * Output only. Specifies which subnetwork stack types are supported.
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
@@ -321,10 +321,10 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *           Specifies which subnetwork stack types are supported.
      *           Check the SubnetStackTypes enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_purposes
-     *           Specifies which subnetwork purposes are supported.
+     *           Output only. Specifies which subnetwork purposes are supported.
      *           Check the SubnetworkPurposes enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_stack_types
-     *           Specifies which subnetwork stack types are supported.
+     *           Output only. Specifies which subnetwork stack types are supported.
      *           Check the SubnetworkStackTypes enum for the list of possible values.
      *     @type string $unicast
      *           Specifies which type of unicast is supported.
@@ -1331,7 +1331,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork purposes are supported.
+     * Output only. Specifies which subnetwork purposes are supported.
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
@@ -1343,7 +1343,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork purposes are supported.
+     * Output only. Specifies which subnetwork purposes are supported.
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
@@ -1359,7 +1359,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork stack types are supported.
+     * Output only. Specifies which subnetwork stack types are supported.
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
@@ -1371,7 +1371,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork stack types are supported.
+     * Output only. Specifies which subnetwork stack types are supported.
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>

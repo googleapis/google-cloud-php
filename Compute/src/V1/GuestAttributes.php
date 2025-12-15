@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GuestAttributes extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -30,13 +30,13 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $query_path = null;
     /**
-     * [Output Only] The value of the requested queried path.
+     * Output only. [Output Only] The value of the requested queried path.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
      */
     protected $query_value = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -48,7 +48,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $variable_key = null;
     /**
-     * [Output Only] The value found for the requested key.
+     * Output only. [Output Only] The value found for the requested key.
      *
      * Generated from protobuf field <code>optional string variable_value = 124582382;</code>
      */
@@ -61,19 +61,19 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *     @type string $query_path
      *           The path to be queried. This can be the default namespace ('') or a
      *           nested namespace ('\/') or a specified key
      *           ('\/\').
      *     @type \Google\Cloud\Compute\V1\GuestAttributesValue $query_value
-     *           [Output Only] The value of the requested queried path.
+     *           Output only. [Output Only] The value of the requested queried path.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type string $variable_key
      *           The key to search for.
      *     @type string $variable_value
-     *           [Output Only] The value found for the requested key.
+     *           Output only. [Output Only] The value found for the requested key.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -103,7 +103,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#guestAttributes for guest attributes entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -158,7 +158,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The value of the requested queried path.
+     * Output only. [Output Only] The value of the requested queried path.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
      * @return \Google\Cloud\Compute\V1\GuestAttributesValue|null
@@ -179,7 +179,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The value of the requested queried path.
+     * Output only. [Output Only] The value of the requested queried path.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
      * @param \Google\Cloud\Compute\V1\GuestAttributesValue $var
@@ -194,7 +194,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -215,7 +215,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -266,7 +266,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The value found for the requested key.
+     * Output only. [Output Only] The value found for the requested key.
      *
      * Generated from protobuf field <code>optional string variable_value = 124582382;</code>
      * @return string
@@ -287,7 +287,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The value found for the requested key.
+     * Output only. [Output Only] The value found for the requested key.
      *
      * Generated from protobuf field <code>optional string variable_value = 124582382;</code>
      * @param string $var

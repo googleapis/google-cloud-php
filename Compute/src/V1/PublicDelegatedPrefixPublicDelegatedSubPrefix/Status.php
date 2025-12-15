@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the sub public delegated prefix.
+ * Output only. [Output Only] The status of the sub public delegated prefix.
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix.Status</code>
  */

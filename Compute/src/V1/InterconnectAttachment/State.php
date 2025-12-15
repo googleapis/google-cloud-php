@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachment;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current state of this attachment's functionality.
+ * Output only. [Output Only] The current state of this attachment's functionality.
  * Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE,
  * PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values
  * PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used

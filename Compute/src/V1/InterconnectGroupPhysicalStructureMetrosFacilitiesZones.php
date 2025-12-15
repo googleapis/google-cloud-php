@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] URLs of Interconnects in this redundancy group in the
+     * Output only. [Output Only] URLs of Interconnects in this redundancy group in the
      * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
      */
     private $interconnects;
     /**
-     * [Output Only] The name of the zone, either "zone1" or "zone2".
+     * Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
      * This is the second component of the location of Interconnects in
      * this facility.
      *
@@ -39,10 +39,10 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnects
-     *           [Output Only] URLs of Interconnects in this redundancy group in the
+     *           Output only. [Output Only] URLs of Interconnects in this redundancy group in the
      *           given metro, facility, and zone.
      *     @type string $zone
-     *           [Output Only] The name of the zone, either "zone1" or "zone2".
+     *           Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
      *           This is the second component of the location of Interconnects in
      *           this facility.
      * }
@@ -53,7 +53,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] URLs of Interconnects in this redundancy group in the
+     * Output only. [Output Only] URLs of Interconnects in this redundancy group in the
      * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
@@ -65,7 +65,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] URLs of Interconnects in this redundancy group in the
+     * Output only. [Output Only] URLs of Interconnects in this redundancy group in the
      * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
@@ -81,7 +81,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] The name of the zone, either "zone1" or "zone2".
+     * Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
      * This is the second component of the location of Interconnects in
      * this facility.
      *
@@ -104,7 +104,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] The name of the zone, either "zone1" or "zone2".
+     * Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
      * This is the second component of the location of Interconnects in
      * this facility.
      *

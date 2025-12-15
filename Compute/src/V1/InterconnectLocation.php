@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The postal address of the Point of Presence, each line in
+     * Output only. [Output Only] The postal address of the Point of Presence, each line in
      * the address is separated by a newline character.
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
@@ -76,7 +76,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     protected $continent = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -92,52 +92,52 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     private $cross_site_interconnect_infos;
     /**
-     * [Output Only] An optional description of the resource.
+     * Output only. [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     * Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      */
     protected $facility_provider = null;
     /**
-     * [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     * Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
      * Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
      */
     protected $facility_provider_facility_id = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] Name of the resource.
+     * Output only. [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output Only] The peeringdb identifier for this facility (corresponding
+     * Output only. [Output Only] The peeringdb identifier for this facility (corresponding
      * with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
      */
     protected $peeringdb_facility_id = null;
     /**
-     * [Output Only] A list of InterconnectLocation.RegionInfo objects, that
+     * Output only. [Output Only] A list of InterconnectLocation.RegionInfo objects, that
      * describe parameters pertaining to the relation between this
      * InterconnectLocation and various Google Cloud regions.
      *
@@ -145,13 +145,13 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     private $region_infos;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] URLs of the other locations that can pair up with this
+     * Output only. [Output Only] URLs of the other locations that can pair up with this
      * location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and
      * iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *
@@ -171,7 +171,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      */
@@ -184,7 +184,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $address
-     *           [Output Only] The postal address of the Point of Presence, each line in
+     *           Output only. [Output Only] The postal address of the Point of Presence, each line in
      *           the address is separated by a newline character.
      *     @type string $availability_zone
      *           [Output Only] Availability zone for this InterconnectLocation. Within a
@@ -217,7 +217,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *              - SOUTH_AMERICA
      *           Check the Continent enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectLocationCrossSiteInterconnectInfo>|\Google\Protobuf\Internal\RepeatedField $cross_site_interconnect_infos
      *           [Output Only] A list of InterconnectLocation.CrossSiteInterconnectInfo
@@ -225,30 +225,30 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           from this location and associated connection parameters. Cross-Site
      *           Interconnect isn't allowed to locations which are not listed.
      *     @type string $description
-     *           [Output Only] An optional description of the resource.
+     *           Output only. [Output Only] An optional description of the resource.
      *     @type string $facility_provider
-     *           [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     *           Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *     @type string $facility_provider_facility_id
-     *           [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     *           Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
      *           Ashburn-DC1).
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
      *     @type string $name
-     *           [Output Only] Name of the resource.
+     *           Output only. [Output Only] Name of the resource.
      *     @type string $peeringdb_facility_id
-     *           [Output Only] The peeringdb identifier for this facility (corresponding
+     *           Output only. [Output Only] The peeringdb identifier for this facility (corresponding
      *           with a netfac type in peeringdb).
      *     @type array<\Google\Cloud\Compute\V1\InterconnectLocationRegionInfo>|\Google\Protobuf\Internal\RepeatedField $region_infos
-     *           [Output Only] A list of InterconnectLocation.RegionInfo objects, that
+     *           Output only. [Output Only] A list of InterconnectLocation.RegionInfo objects, that
      *           describe parameters pertaining to the relation between this
      *           InterconnectLocation and various Google Cloud regions.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $single_region_production_critical_peer_locations
-     *           [Output Only] URLs of the other locations that can pair up with this
+     *           Output only. [Output Only] URLs of the other locations that can pair up with this
      *           location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and
      *           iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *     @type string $status
@@ -260,7 +260,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *              Interconnects.
      *           Check the Status enum for the list of possible values.
      *     @type bool $supports_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -269,7 +269,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The postal address of the Point of Presence, each line in
+     * Output only. [Output Only] The postal address of the Point of Presence, each line in
      * the address is separated by a newline character.
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
@@ -291,7 +291,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The postal address of the Point of Presence, each line in
+     * Output only. [Output Only] The postal address of the Point of Presence, each line in
      * the address is separated by a newline character.
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
@@ -507,7 +507,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -529,7 +529,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -577,7 +577,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional description of the resource.
+     * Output only. [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -598,7 +598,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional description of the resource.
+     * Output only. [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -613,7 +613,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     * Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      * @return string
@@ -634,7 +634,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     * Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      * @param string $var
@@ -649,7 +649,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     * Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
      * Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
@@ -671,7 +671,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     * Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
      * Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
@@ -687,7 +687,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -709,7 +709,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -725,7 +725,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -746,7 +746,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectLocation for interconnect locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -761,7 +761,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource.
+     * Output only. [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -782,7 +782,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource.
+     * Output only. [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -797,7 +797,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The peeringdb identifier for this facility (corresponding
+     * Output only. [Output Only] The peeringdb identifier for this facility (corresponding
      * with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
@@ -819,7 +819,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The peeringdb identifier for this facility (corresponding
+     * Output only. [Output Only] The peeringdb identifier for this facility (corresponding
      * with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
@@ -835,7 +835,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of InterconnectLocation.RegionInfo objects, that
+     * Output only. [Output Only] A list of InterconnectLocation.RegionInfo objects, that
      * describe parameters pertaining to the relation between this
      * InterconnectLocation and various Google Cloud regions.
      *
@@ -848,7 +848,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of InterconnectLocation.RegionInfo objects, that
+     * Output only. [Output Only] A list of InterconnectLocation.RegionInfo objects, that
      * describe parameters pertaining to the relation between this
      * InterconnectLocation and various Google Cloud regions.
      *
@@ -865,7 +865,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -886,7 +886,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -901,7 +901,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URLs of the other locations that can pair up with this
+     * Output only. [Output Only] URLs of the other locations that can pair up with this
      * location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and
      * iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *
@@ -914,7 +914,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URLs of the other locations that can pair up with this
+     * Output only. [Output Only] URLs of the other locations that can pair up with this
      * location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and
      * iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *
@@ -979,7 +979,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @return bool
@@ -1000,7 +1000,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @param bool $var

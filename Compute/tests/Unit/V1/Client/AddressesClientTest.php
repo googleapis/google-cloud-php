@@ -304,6 +304,7 @@ class AddressesClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $id = 3355;
+        $ipCollection = 'ipCollection176818358';
         $ipVersion = 'ipVersion-1315653184';
         $ipv6EndpointType = 'ipv6EndpointType-2049982644';
         $kind = 'kind3292052';
@@ -323,6 +324,7 @@ class AddressesClientTest extends GeneratedTest
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
+        $expectedResponse->setIpCollection($ipCollection);
         $expectedResponse->setIpVersion($ipVersion);
         $expectedResponse->setIpv6EndpointType($ipv6EndpointType);
         $expectedResponse->setKind($kind);

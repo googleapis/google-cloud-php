@@ -15,13 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Error code.
+     * Output only. [Output Only] Error code.
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
     protected $code = null;
     /**
-     * [Output Only] Error message.
+     * Output only. [Output Only] Error message.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
@@ -34,9 +34,9 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $code
-     *           [Output Only] Error code.
+     *           Output only. [Output Only] Error code.
      *     @type string $message
-     *           [Output Only] Error message.
+     *           Output only. [Output Only] Error message.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     }
 
     /**
-     * [Output Only] Error code.
+     * Output only. [Output Only] Error code.
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @return string
@@ -66,7 +66,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     }
 
     /**
-     * [Output Only] Error code.
+     * Output only. [Output Only] Error code.
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @param string $var
@@ -81,7 +81,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     }
 
     /**
-     * [Output Only] Error message.
+     * Output only. [Output Only] Error message.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @return string
@@ -102,7 +102,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     }
 
     /**
-     * [Output Only] Error message.
+     * Output only. [Output Only] Error message.
      *
      * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @param string $var

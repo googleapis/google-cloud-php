@@ -51,14 +51,14 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $base_instance_name = null;
     /**
-     * [Output Only] The creation timestamp for this managed instance group inRFC3339
+     * Output only. [Output Only] The creation timestamp for this managed instance group inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] The list of instance actions and the number of instances
+     * Output only. [Output Only] The list of instance actions and the number of instances
      * in this managed instance group that are scheduled for each of those
      * actions.
      *
@@ -90,7 +90,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] A unique identifier for this resource type. The server
+     * Output only. [Output Only] A unique identifier for this resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -106,7 +106,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $instance_flexibility_policy = null;
     /**
-     * [Output Only] The URL of the Instance Group resource.
+     * Output only. [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
      */
@@ -127,7 +127,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $instance_template = null;
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -155,7 +155,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $named_ports;
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the managed instance group resides (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -168,19 +168,19 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $resource_policies = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
      */
     protected $satisfies_pzi = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] The URL for this managed instance group. The server defines
+     * Output only. [Output Only] The URL for this managed instance group. The server defines
      * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -199,7 +199,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $stateful_policy = null;
     /**
-     * [Output Only] The status of this managed instance group.
+     * Output only. [Output Only] The status of this managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      */
@@ -264,7 +264,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $versions;
     /**
-     * [Output Only] The URL of azone
+     * Output only. [Output Only] The URL of azone
      * where the managed instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -296,10 +296,10 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           &#64;pattern
      *           [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *     @type string $creation_timestamp
-     *           [Output Only] The creation timestamp for this managed instance group inRFC3339
+     *           Output only. [Output Only] The creation timestamp for this managed instance group inRFC3339
      *           text format.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary $current_actions
-     *           [Output Only] The list of instance actions and the number of instances
+     *           Output only. [Output Only] The list of instance actions and the number of instances
      *           in this managed instance group that are scheduled for each of those
      *           actions.
      *     @type string $description
@@ -315,7 +315,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to
      *           retrieve an InstanceGroupManager.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this resource type. The server
+     *           Output only. [Output Only] A unique identifier for this resource type. The server
      *           generates this identifier.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceFlexibilityPolicy $instance_flexibility_policy
      *           Instance flexibility allowing MIG to create VMs from multiple
@@ -323,7 +323,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           Instance flexibility configuration on MIG overrides instance
      *           template configuration.
      *     @type string $instance_group
-     *           [Output Only] The URL of the Instance Group resource.
+     *           Output only. [Output Only] The URL of the Instance Group resource.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerInstanceLifecyclePolicy $instance_lifecycle_policy
      *           The repair policy for this managed instance group.
      *     @type string $instance_template
@@ -332,7 +332,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           in the managed instance group. The templates for existing instances in the
      *           group do not change unless you run recreateInstances, runapplyUpdatesToInstances, or set the group'supdatePolicy.type to PROACTIVE.
      *     @type string $kind
-     *           [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
+     *           Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *     @type string $list_managed_instances_results
      *           Pagination behavior of the listManagedInstances API method for
      *           this managed instance group.
@@ -344,23 +344,23 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           [Output Only] Named ports configured on the Instance Groups complementary
      *           to this Instance Group Manager.
      *     @type string $region
-     *           [Output Only] The URL of theregion
+     *           Output only. [Output Only] The URL of theregion
      *           where the managed instance group resides (for regional resources).
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerResourcePolicies $resource_policies
      *           Resource policies for this managed instance group.
      *     @type bool $satisfies_pzi
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] The URL for this managed instance group. The server defines
+     *           Output only. [Output Only] The URL for this managed instance group. The server defines
      *           this URL.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStandbyPolicy $standby_policy
      *           Standby policy for stopped and suspended instances.
      *     @type \Google\Cloud\Compute\V1\StatefulPolicy $stateful_policy
      *           Stateful configuration for this Instanced Group Manager
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $status
-     *           [Output Only] The status of this managed instance group.
+     *           Output only. [Output Only] The status of this managed instance group.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
      *           The URLs for all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
      *           apply to all of the instances in the managed instance group.
@@ -397,7 +397,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           remaining instances. For more information, read aboutcanary
      *           updates.
      *     @type string $zone
-     *           [Output Only] The URL of azone
+     *           Output only. [Output Only] The URL of azone
      *           where the managed instance group is located (for zonal resources).
      * }
      */
@@ -529,7 +529,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this managed instance group inRFC3339
+     * Output only. [Output Only] The creation timestamp for this managed instance group inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -551,7 +551,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this managed instance group inRFC3339
+     * Output only. [Output Only] The creation timestamp for this managed instance group inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -567,7 +567,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of instance actions and the number of instances
+     * Output only. [Output Only] The list of instance actions and the number of instances
      * in this managed instance group that are scheduled for each of those
      * actions.
      *
@@ -590,7 +590,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of instance actions and the number of instances
+     * Output only. [Output Only] The list of instance actions and the number of instances
      * in this managed instance group that are scheduled for each of those
      * actions.
      *
@@ -727,7 +727,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server
+     * Output only. [Output Only] A unique identifier for this resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -749,7 +749,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server
+     * Output only. [Output Only] A unique identifier for this resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -807,7 +807,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the Instance Group resource.
+     * Output only. [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
      * @return string
@@ -828,7 +828,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the Instance Group resource.
+     * Output only. [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
      * @param string $var
@@ -921,7 +921,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -942,7 +942,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -1063,7 +1063,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the managed instance group resides (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -1085,7 +1085,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the managed instance group resides (for regional resources).
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -1137,7 +1137,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
      * @return bool
@@ -1158,7 +1158,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
      * @param bool $var
@@ -1173,7 +1173,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -1194,7 +1194,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -1209,7 +1209,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this managed instance group. The server defines
+     * Output only. [Output Only] The URL for this managed instance group. The server defines
      * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -1231,7 +1231,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this managed instance group. The server defines
+     * Output only. [Output Only] The URL for this managed instance group. The server defines
      * this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -1319,7 +1319,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of this managed instance group.
+     * Output only. [Output Only] The status of this managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatus|null
@@ -1340,7 +1340,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of this managed instance group.
+     * Output only. [Output Only] The status of this managed instance group.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $var
@@ -1597,7 +1597,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of azone
+     * Output only. [Output Only] The URL of azone
      * where the managed instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -1619,7 +1619,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of azone
+     * Output only. [Output Only] The URL of azone
      * where the managed instance group is located (for zonal resources).
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>

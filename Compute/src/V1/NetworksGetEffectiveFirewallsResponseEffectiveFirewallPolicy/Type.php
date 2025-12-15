@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NetworksGetEffectiveFirewallsResponseEffective
 use UnexpectedValueException;
 
 /**
- * [Output Only] The type of the firewall policy.
+ * Output only. [Output Only] The type of the firewall policy.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type</code>
  */

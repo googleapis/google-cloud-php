@@ -37,7 +37,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
      */
     protected $encryption_key = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
+     * Output only. [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
      * identity entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -67,7 +67,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
      *           An Endorsement Key (EK) made by the RSA 2048 algorithm
      *           issued to the Shielded Instance's vTPM.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
      *           identity entry.
      *     @type \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry $signing_key
      *           An Attestation Key (AK) made by the RSA 2048 algorithm
@@ -194,7 +194,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
+     * Output only. [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
      * identity entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -216,7 +216,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
+     * Output only. [Output Only] Type of the resource. Alwayscompute#shieldedInstanceIdentity for shielded Instance
      * identity entry.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

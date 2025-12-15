@@ -443,6 +443,7 @@ class SubnetworksClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $allowSubnetCidrRoutesOverlap = false;
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $enableFlowLogs = true;
@@ -469,6 +470,7 @@ class SubnetworksClientTest extends GeneratedTest
         $stackType = 'stackType2036521617';
         $state = 'state109757585';
         $expectedResponse = new Subnetwork();
+        $expectedResponse->setAllowSubnetCidrRoutesOverlap($allowSubnetCidrRoutesOverlap);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEnableFlowLogs($enableFlowLogs);

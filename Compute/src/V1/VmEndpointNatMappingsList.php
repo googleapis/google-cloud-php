@@ -23,7 +23,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
+     * Output only. [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
      * VM endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -46,7 +46,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      */
     private $result;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -68,7 +68,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
+     *           Output only. [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
      *           VM endpoints.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -79,7 +79,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappings>|\Google\Protobuf\Internal\RepeatedField $result
      *           [Output Only] A list of Nat mapping information of VM endpoints.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -128,7 +128,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
+     * Output only. [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
      * VM endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -150,7 +150,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
+     * Output only. [Output Only] Type of resource. Alwayscompute#vmEndpointNatMappingsList for lists of Nat mappings of
      * VM endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -236,7 +236,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -257,7 +257,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

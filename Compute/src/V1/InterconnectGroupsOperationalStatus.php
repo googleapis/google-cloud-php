@@ -16,20 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The configuration analysis, as returned by Get.
+     * Output only. The configuration analysis, as returned by Get.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured configured = 295631422;</code>
      */
     protected $configured = null;
     /**
-     * Summarizes the status of the group.
+     * Output only. Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
      */
     protected $group_status = null;
     /**
-     * The intent of the resource, as returned by Get.
+     * Output only. The intent of the resource, as returned by Get.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupIntent intent = 426849948;</code>
      */
@@ -39,7 +39,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
      */
     private $interconnect_statuses;
     /**
-     * The operational state of the group, including only active Interconnects.
+     * Output only. The operational state of the group, including only active Interconnects.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured operational = 129704914;</code>
      */
@@ -52,15 +52,15 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupConfigured $configured
-     *           The configuration analysis, as returned by Get.
+     *           Output only. The configuration analysis, as returned by Get.
      *     @type string $group_status
-     *           Summarizes the status of the group.
+     *           Output only. Summarizes the status of the group.
      *           Check the GroupStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupIntent $intent
-     *           The intent of the resource, as returned by Get.
+     *           Output only. The intent of the resource, as returned by Get.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatusInterconnectStatus>|\Google\Protobuf\Internal\RepeatedField $interconnect_statuses
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupConfigured $operational
-     *           The operational state of the group, including only active Interconnects.
+     *           Output only. The operational state of the group, including only active Interconnects.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,7 +69,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The configuration analysis, as returned by Get.
+     * Output only. The configuration analysis, as returned by Get.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured configured = 295631422;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectGroupConfigured|null
@@ -90,7 +90,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The configuration analysis, as returned by Get.
+     * Output only. The configuration analysis, as returned by Get.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured configured = 295631422;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectGroupConfigured $var
@@ -105,7 +105,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Summarizes the status of the group.
+     * Output only. Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
@@ -127,7 +127,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Summarizes the status of the group.
+     * Output only. Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
@@ -143,7 +143,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The intent of the resource, as returned by Get.
+     * Output only. The intent of the resource, as returned by Get.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupIntent intent = 426849948;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectGroupIntent|null
@@ -164,7 +164,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The intent of the resource, as returned by Get.
+     * Output only. The intent of the resource, as returned by Get.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupIntent intent = 426849948;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectGroupIntent $var
@@ -201,7 +201,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The operational state of the group, including only active Interconnects.
+     * Output only. The operational state of the group, including only active Interconnects.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured operational = 129704914;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectGroupConfigured|null
@@ -222,7 +222,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * The operational state of the group, including only active Interconnects.
+     * Output only. The operational state of the group, including only active Interconnects.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectGroupConfigured operational = 129704914;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectGroupConfigured $var

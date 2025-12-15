@@ -210,6 +210,7 @@ class RoutesClientTest extends GeneratedTest
         $nextHopIlb = 'nextHopIlb-1948803747';
         $nextHopInstance = 'nextHopInstance1467250071';
         $nextHopInterRegionCost = 1586170733;
+        $nextHopInterconnectAttachment = 'nextHopInterconnectAttachment-1383759822';
         $nextHopIp = 'nextHopIp1184061353';
         $nextHopMed = 1948800118;
         $nextHopNetwork = 'nextHopNetwork1872908524';
@@ -233,6 +234,7 @@ class RoutesClientTest extends GeneratedTest
         $expectedResponse->setNextHopIlb($nextHopIlb);
         $expectedResponse->setNextHopInstance($nextHopInstance);
         $expectedResponse->setNextHopInterRegionCost($nextHopInterRegionCost);
+        $expectedResponse->setNextHopInterconnectAttachment($nextHopInterconnectAttachment);
         $expectedResponse->setNextHopIp($nextHopIp);
         $expectedResponse->setNextHopMed($nextHopMed);
         $expectedResponse->setNextHopNetwork($nextHopNetwork);

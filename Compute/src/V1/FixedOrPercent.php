@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class FixedOrPercent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Absolute value of VM instances calculated based on the
+     * Output only. [Output Only] Absolute value of VM instances calculated based on the
      * specific mode.
      *     - If the value is fixed, then the calculated
      *      value is equal to the fixed value.
@@ -51,7 +51,7 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $calculated
-     *           [Output Only] Absolute value of VM instances calculated based on the
+     *           Output only. [Output Only] Absolute value of VM instances calculated based on the
      *           specific mode.
      *               - If the value is fixed, then the calculated
      *                value is equal to the fixed value.
@@ -74,7 +74,7 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Absolute value of VM instances calculated based on the
+     * Output only. [Output Only] Absolute value of VM instances calculated based on the
      * specific mode.
      *     - If the value is fixed, then the calculated
      *      value is equal to the fixed value.
@@ -104,7 +104,7 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Absolute value of VM instances calculated based on the
+     * Output only. [Output Only] Absolute value of VM instances calculated based on the
      * specific mode.
      *     - If the value is fixed, then the calculated
      *      value is equal to the fixed value.

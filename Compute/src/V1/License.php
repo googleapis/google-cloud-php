@@ -41,7 +41,7 @@ class License extends \Google\Protobuf\Internal\Message
      */
     protected $charges_use_fee = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -70,7 +70,7 @@ class License extends \Google\Protobuf\Internal\Message
      */
     private $incompatible_licenses;
     /**
-     * [Output Only] Type of resource. Always compute#license for
+     * Output only. [Output Only] Type of resource. Always compute#license for
      * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -132,13 +132,13 @@ class License extends \Google\Protobuf\Internal\Message
      */
     protected $resource_requirements = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -157,7 +157,7 @@ class License extends \Google\Protobuf\Internal\Message
      */
     protected $transferable = null;
     /**
-     * [Output Only] Last update timestamp inRFC3339
+     * Output only. [Output Only] Last update timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
@@ -180,7 +180,7 @@ class License extends \Google\Protobuf\Internal\Message
      *           [Output Only] Deprecated. This field no longer reflects whether a license
      *           charges a usage fee.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional textual description of the resource; provided by the client
@@ -193,7 +193,7 @@ class License extends \Google\Protobuf\Internal\Message
      *           If a license is incompatible with this license, it cannot be attached to
      *           the same disk or image.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#license for
+     *           Output only. [Output Only] Type of resource. Always compute#license for
      *           licenses.
      *     @type int|string $license_code
      *           [Output Only] The unique code used to attach this license to images,
@@ -219,16 +219,16 @@ class License extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\LicenseResourceRequirements $resource_requirements
      *           [Input Only] Deprecated.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *     @type bool $sole_tenant_only
      *           If true, this license can only be used on VMs on sole tenant nodes.
      *     @type bool $transferable
      *           If false, licenses will not be copied from the source resource when
      *           creating an image from a disk, disk from snapshot, or snapshot from disk.
      *     @type string $update_timestamp
-     *           [Output Only] Last update timestamp inRFC3339
+     *           Output only. [Output Only] Last update timestamp inRFC3339
      *           text format.
      * }
      */
@@ -342,7 +342,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -364,7 +364,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -486,7 +486,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#license for
+     * Output only. [Output Only] Type of resource. Always compute#license for
      * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -508,7 +508,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#license for
+     * Output only. [Output Only] Type of resource. Always compute#license for
      * licenses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -816,7 +816,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -837,7 +837,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -852,7 +852,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -873,7 +873,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var
@@ -962,7 +962,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last update timestamp inRFC3339
+     * Output only. [Output Only] Last update timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>
@@ -984,7 +984,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last update timestamp inRFC3339
+     * Output only. [Output Only] Last update timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string update_timestamp = 120894752;</code>

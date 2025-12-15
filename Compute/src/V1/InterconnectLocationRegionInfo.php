@@ -18,28 +18,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Expected round-trip time in milliseconds, from this InterconnectLocation
+     * Output only. Expected round-trip time in milliseconds, from this InterconnectLocation
      * to a VM in this region.
      *
      * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
      */
     protected $expected_rtt_ms = null;
     /**
-     * Identifies whether L2 Interconnect Attachments can be created in this
+     * Output only. Identifies whether L2 Interconnect Attachments can be created in this
      * region for interconnects that are in this location.
      *
      * Generated from protobuf field <code>optional bool l2_forwarding_enabled = 241364888;</code>
      */
     protected $l2_forwarding_enabled = null;
     /**
-     * Identifies the network presence of this location.
+     * Output only. Identifies the network presence of this location.
      * Check the LocationPresence enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string location_presence = 101517893;</code>
      */
     protected $location_presence = null;
     /**
-     * URL for the region of this location.
+     * Output only. URL for the region of this location.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -52,16 +52,16 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $expected_rtt_ms
-     *           Expected round-trip time in milliseconds, from this InterconnectLocation
+     *           Output only. Expected round-trip time in milliseconds, from this InterconnectLocation
      *           to a VM in this region.
      *     @type bool $l2_forwarding_enabled
-     *           Identifies whether L2 Interconnect Attachments can be created in this
+     *           Output only. Identifies whether L2 Interconnect Attachments can be created in this
      *           region for interconnects that are in this location.
      *     @type string $location_presence
-     *           Identifies the network presence of this location.
+     *           Output only. Identifies the network presence of this location.
      *           Check the LocationPresence enum for the list of possible values.
      *     @type string $region
-     *           URL for the region of this location.
+     *           Output only. URL for the region of this location.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,7 +70,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected round-trip time in milliseconds, from this InterconnectLocation
+     * Output only. Expected round-trip time in milliseconds, from this InterconnectLocation
      * to a VM in this region.
      *
      * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
@@ -92,7 +92,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Expected round-trip time in milliseconds, from this InterconnectLocation
+     * Output only. Expected round-trip time in milliseconds, from this InterconnectLocation
      * to a VM in this region.
      *
      * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
@@ -108,7 +108,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies whether L2 Interconnect Attachments can be created in this
+     * Output only. Identifies whether L2 Interconnect Attachments can be created in this
      * region for interconnects that are in this location.
      *
      * Generated from protobuf field <code>optional bool l2_forwarding_enabled = 241364888;</code>
@@ -130,7 +130,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies whether L2 Interconnect Attachments can be created in this
+     * Output only. Identifies whether L2 Interconnect Attachments can be created in this
      * region for interconnects that are in this location.
      *
      * Generated from protobuf field <code>optional bool l2_forwarding_enabled = 241364888;</code>
@@ -146,7 +146,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the network presence of this location.
+     * Output only. Identifies the network presence of this location.
      * Check the LocationPresence enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string location_presence = 101517893;</code>
@@ -168,7 +168,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the network presence of this location.
+     * Output only. Identifies the network presence of this location.
      * Check the LocationPresence enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string location_presence = 101517893;</code>
@@ -184,7 +184,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL for the region of this location.
+     * Output only. URL for the region of this location.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -205,7 +205,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL for the region of this location.
+     * Output only. URL for the region of this location.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var

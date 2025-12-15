@@ -58,7 +58,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      */
     protected $enable_logging = null;
     /**
-     * [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
+     * Output only. [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -87,7 +87,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      */
     protected $rule_name = null;
     /**
-     * [Output Only] Calculation of the complexity of a single firewall policy
+     * Output only. [Output Only] Calculation of the complexity of a single firewall policy
      * rule.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -168,7 +168,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *           Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you
      *           cannot enable logging on "goto_next" rules.
      *     @type string $kind
-     *           [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
+     *           Output only. [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
      *     @type \Google\Cloud\Compute\V1\FirewallPolicyRuleMatcher $match
      *           A match condition that incoming traffic is evaluated against.
      *           If it evaluates to true, the corresponding 'action' is enforced.
@@ -181,7 +181,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *           An optional name for the rule. This field is not a unique identifier
      *           and can be updated.
      *     @type int $rule_tuple_count
-     *           [Output Only] Calculation of the complexity of a single firewall policy
+     *           Output only. [Output Only] Calculation of the complexity of a single firewall policy
      *           rule.
      *     @type string $security_profile_group
      *           A fully-qualified URL of a SecurityProfile resource instance.
@@ -419,7 +419,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
+     * Output only. [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -440,7 +440,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
+     * Output only. [Output only] Type of the resource. Returnscompute#firewallPolicyRule for firewall rules andcompute#packetMirroringRule for packet mirroring rules.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -573,7 +573,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Calculation of the complexity of a single firewall policy
+     * Output only. [Output Only] Calculation of the complexity of a single firewall policy
      * rule.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -595,7 +595,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Calculation of the complexity of a single firewall policy
+     * Output only. [Output Only] Calculation of the complexity of a single firewall policy
      * rule.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>

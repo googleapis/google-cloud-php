@@ -47,7 +47,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     protected $category = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -68,7 +68,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] Commitment end time inRFC3339
+     * Output only. [Output Only] Commitment end time inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string end_timestamp = 468096690;</code>
@@ -79,14 +79,14 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $existing_reservations;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#commitment
+     * Output only. [Output Only] Type of the resource. Always compute#commitment
      * for commitments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -131,7 +131,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     protected $plan = null;
     /**
-     * [Output Only] URL of the region where the commitment and committed
+     * Output only. [Output Only] URL of the region where the commitment and committed
      * resources are located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -150,7 +150,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $reservations;
     /**
-     * [Output Only] Status information for Commitment resource.
+     * Output only. [Output Only] Status information for Commitment resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CommitmentResourceStatus resource_status = 249429315;</code>
      */
@@ -164,7 +164,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $resources;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -178,14 +178,14 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     protected $split_source_commitment = null;
     /**
-     * [Output Only] Commitment start time inRFC3339
+     * Output only. [Output Only] Commitment start time inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
      */
     protected $start_timestamp = null;
     /**
-     * [Output Only] Status of the commitment with regards to eventual expiration
+     * Output only. [Output Only] Status of the commitment with regards to eventual expiration
      * (each commitment has an end date defined). Status can be one of the
      * following values: NOT_YET_ACTIVE, ACTIVE, orEXPIRED.
      * Check the Status enum for the list of possible values.
@@ -194,7 +194,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * [Output Only] An optional, human-readable explanation of the status.
+     * Output only. [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      */
@@ -205,12 +205,11 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * The choice of machine series affects the discount rate and the eligible
      * resource types.
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED,MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4,STORAGE_OPTIMIZED_Z3.
-     * For example, type MEMORY_OPTIMIZED specifies a commitment
-     * that applies only to eligible resources of memory optimized M1 and M2
-     * machine series. Type GENERAL_PURPOSE specifies a commitment
-     * that applies only to eligible resources of general purpose N1 machine
-     * series.
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+     * example, type MEMORY_OPTIMIZED specifies a commitment that
+     * applies only to eligible resources of memory optimized M1 and M2 machine
+     * series. Type GENERAL_PURPOSE specifies a commitment that
+     * applies only to eligible resources of general purpose N1 machine series.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -242,7 +241,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           hardware resource that you are committing to.
      *           Check the Category enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $custom_end_timestamp
      *           [Input Only] Optional, specifies the requested commitment end time inRFC3339 text format. Use this option when the desired
@@ -251,14 +250,14 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           An optional description of the commitment. You can provide this property
      *           when you create the resource.
      *     @type string $end_timestamp
-     *           [Output Only] Commitment end time inRFC3339
+     *           Output only. [Output Only] Commitment end time inRFC3339
      *           text format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $existing_reservations
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#commitment
+     *           Output only. [Output Only] Type of the resource. Always compute#commitment
      *           for commitments.
      *     @type \Google\Cloud\Compute\V1\LicenseResourceCommitment $license_resource
      *           The license specification required as part of a license commitment.
@@ -283,7 +282,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           field are TWELVE_MONTH (1 year), andTHIRTY_SIX_MONTH (3 years).
      *           Check the Plan enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] URL of the region where the commitment and committed
+     *           Output only. [Output Only] URL of the region where the commitment and committed
      *           resources are located.
      *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
      *           The list of new reservations that you want to create and attach to this
@@ -294,39 +293,38 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           Specify this property only if you want to create new
      *           reservations to attach. To attach existing reservations, specify theexistingReservations property instead.
      *     @type \Google\Cloud\Compute\V1\CommitmentResourceStatus $resource_status
-     *           [Output Only] Status information for Commitment resource.
+     *           Output only. [Output Only] Status information for Commitment resource.
      *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
      *           The list of all the hardware resources, with their types and amounts, that
      *           you want to commit to. Specify as a separate entry in the list for each
      *           individual resource type.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $split_source_commitment
      *           The source commitment from which you are transferring resources to create
      *           the new split commitment. For more information, see
      *           Split commitments.
      *     @type string $start_timestamp
-     *           [Output Only] Commitment start time inRFC3339
+     *           Output only. [Output Only] Commitment start time inRFC3339
      *           text format.
      *     @type string $status
-     *           [Output Only] Status of the commitment with regards to eventual expiration
+     *           Output only. [Output Only] Status of the commitment with regards to eventual expiration
      *           (each commitment has an end date defined). Status can be one of the
      *           following values: NOT_YET_ACTIVE, ACTIVE, orEXPIRED.
      *           Check the Status enum for the list of possible values.
      *     @type string $status_message
-     *           [Output Only] An optional, human-readable explanation of the status.
+     *           Output only. [Output Only] An optional, human-readable explanation of the status.
      *     @type string $type
      *           The type of commitment; specifies the
      *           machine series for which you want to commit to purchasing resources.
      *           The choice of machine series affects the discount rate and the eligible
      *           resource types.
      *            The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *            COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED,MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4,STORAGE_OPTIMIZED_Z3.
-     *           For example, type MEMORY_OPTIMIZED specifies a commitment
-     *           that applies only to eligible resources of memory optimized M1 and M2
-     *           machine series. Type GENERAL_PURPOSE specifies a commitment
-     *           that applies only to eligible resources of general purpose N1 machine
-     *           series.
+     *            COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+     *           example, type MEMORY_OPTIMIZED specifies a commitment that
+     *           applies only to eligible resources of memory optimized M1 and M2 machine
+     *           series. Type GENERAL_PURPOSE specifies a commitment that
+     *           applies only to eligible resources of general purpose N1 machine series.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -436,7 +434,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -458,7 +456,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -550,7 +548,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Commitment end time inRFC3339
+     * Output only. [Output Only] Commitment end time inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string end_timestamp = 468096690;</code>
@@ -572,7 +570,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Commitment end time inRFC3339
+     * Output only. [Output Only] Commitment end time inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string end_timestamp = 468096690;</code>
@@ -610,7 +608,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -632,7 +630,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -648,7 +646,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#commitment
+     * Output only. [Output Only] Type of the resource. Always compute#commitment
      * for commitments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -670,7 +668,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#commitment
+     * Output only. [Output Only] Type of the resource. Always compute#commitment
      * for commitments.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -848,7 +846,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the commitment and committed
+     * Output only. [Output Only] URL of the region where the commitment and committed
      * resources are located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -870,7 +868,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the commitment and committed
+     * Output only. [Output Only] URL of the region where the commitment and committed
      * resources are located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -924,7 +922,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information for Commitment resource.
+     * Output only. [Output Only] Status information for Commitment resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CommitmentResourceStatus resource_status = 249429315;</code>
      * @return \Google\Cloud\Compute\V1\CommitmentResourceStatus|null
@@ -945,7 +943,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information for Commitment resource.
+     * Output only. [Output Only] Status information for Commitment resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.CommitmentResourceStatus resource_status = 249429315;</code>
      * @param \Google\Cloud\Compute\V1\CommitmentResourceStatus $var
@@ -990,7 +988,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1011,7 +1009,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -1066,7 +1064,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Commitment start time inRFC3339
+     * Output only. [Output Only] Commitment start time inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
@@ -1088,7 +1086,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Commitment start time inRFC3339
+     * Output only. [Output Only] Commitment start time inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
@@ -1104,7 +1102,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the commitment with regards to eventual expiration
+     * Output only. [Output Only] Status of the commitment with regards to eventual expiration
      * (each commitment has an end date defined). Status can be one of the
      * following values: NOT_YET_ACTIVE, ACTIVE, orEXPIRED.
      * Check the Status enum for the list of possible values.
@@ -1128,7 +1126,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the commitment with regards to eventual expiration
+     * Output only. [Output Only] Status of the commitment with regards to eventual expiration
      * (each commitment has an end date defined). Status can be one of the
      * following values: NOT_YET_ACTIVE, ACTIVE, orEXPIRED.
      * Check the Status enum for the list of possible values.
@@ -1146,7 +1144,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional, human-readable explanation of the status.
+     * Output only. [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @return string
@@ -1167,7 +1165,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional, human-readable explanation of the status.
+     * Output only. [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @param string $var
@@ -1187,12 +1185,11 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * The choice of machine series affects the discount rate and the eligible
      * resource types.
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED,MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4,STORAGE_OPTIMIZED_Z3.
-     * For example, type MEMORY_OPTIMIZED specifies a commitment
-     * that applies only to eligible resources of memory optimized M1 and M2
-     * machine series. Type GENERAL_PURPOSE specifies a commitment
-     * that applies only to eligible resources of general purpose N1 machine
-     * series.
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+     * example, type MEMORY_OPTIMIZED specifies a commitment that
+     * applies only to eligible resources of memory optimized M1 and M2 machine
+     * series. Type GENERAL_PURPOSE specifies a commitment that
+     * applies only to eligible resources of general purpose N1 machine series.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -1219,12 +1216,11 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * The choice of machine series affects the discount rate and the eligible
      * resource types.
      *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
-     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED,MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4,STORAGE_OPTIMIZED_Z3.
-     * For example, type MEMORY_OPTIMIZED specifies a commitment
-     * that applies only to eligible resources of memory optimized M1 and M2
-     * machine series. Type GENERAL_PURPOSE specifies a commitment
-     * that applies only to eligible resources of general purpose N1 machine
-     * series.
+     *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+     * example, type MEMORY_OPTIMIZED specifies a commitment that
+     * applies only to eligible resources of memory optimized M1 and M2 machine
+     * series. Type GENERAL_PURPOSE specifies a commitment that
+     * applies only to eligible resources of general purpose N1 machine series.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

@@ -142,7 +142,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     protected $ipv6_nexthop_address = null;
     /**
-     * [Output Only] The resource that configures and manages this BGP peer.
+     * Output only. [Output Only] The resource that configures and manages this BGP peer.
      *    -  MANAGED_BY_USER is the default value and can be managed by you
      *    or other users
      *    - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
@@ -280,7 +280,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type string $ipv6_nexthop_address
      *           IPv6 address of the interface inside Google Cloud Platform.
      *     @type string $management_type
-     *           [Output Only] The resource that configures and manages this BGP peer.
+     *           Output only. [Output Only] The resource that configures and manages this BGP peer.
      *              -  MANAGED_BY_USER is the default value and can be managed by you
      *              or other users
      *              - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
@@ -911,7 +911,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this BGP peer.
+     * Output only. [Output Only] The resource that configures and manages this BGP peer.
      *    -  MANAGED_BY_USER is the default value and can be managed by you
      *    or other users
      *    - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
@@ -940,7 +940,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this BGP peer.
+     * Output only. [Output Only] The resource that configures and manages this BGP peer.
      *    -  MANAGED_BY_USER is the default value and can be managed by you
      *    or other users
      *    - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed

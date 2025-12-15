@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Action that managed instance group was executing on
+     * Output only. [Output Only] Action that managed instance group was executing on
      * the instance when the error occurred. Possible values:
      * Check the Action enum for the list of possible values.
      *
@@ -23,14 +23,14 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
      */
     protected $action = null;
     /**
-     * [Output Only] The URL of the instance.
+     * Output only. [Output Only] The URL of the instance.
      * The URL can be set even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
     protected $instance = null;
     /**
-     * [Output Only] Version this instance was created from, or was being
+     * Output only. [Output Only] Version this instance was created from, or was being
      * created from, but the creation failed. Corresponds to one of the versions
      * that were set on the Instance Group Manager resource at the time this
      * instance was being created.
@@ -46,14 +46,14 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type string $action
-     *           [Output Only] Action that managed instance group was executing on
+     *           Output only. [Output Only] Action that managed instance group was executing on
      *           the instance when the error occurred. Possible values:
      *           Check the Action enum for the list of possible values.
      *     @type string $instance
-     *           [Output Only] The URL of the instance.
+     *           Output only. [Output Only] The URL of the instance.
      *           The URL can be set even if the instance has not yet been created.
      *     @type \Google\Cloud\Compute\V1\ManagedInstanceVersion $version
-     *           [Output Only] Version this instance was created from, or was being
+     *           Output only. [Output Only] Version this instance was created from, or was being
      *           created from, but the creation failed. Corresponds to one of the versions
      *           that were set on the Instance Group Manager resource at the time this
      *           instance was being created.
@@ -65,7 +65,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] Action that managed instance group was executing on
+     * Output only. [Output Only] Action that managed instance group was executing on
      * the instance when the error occurred. Possible values:
      * Check the Action enum for the list of possible values.
      *
@@ -88,7 +88,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] Action that managed instance group was executing on
+     * Output only. [Output Only] Action that managed instance group was executing on
      * the instance when the error occurred. Possible values:
      * Check the Action enum for the list of possible values.
      *
@@ -105,7 +105,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] The URL of the instance.
+     * Output only. [Output Only] The URL of the instance.
      * The URL can be set even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
@@ -127,7 +127,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] The URL of the instance.
+     * Output only. [Output Only] The URL of the instance.
      * The URL can be set even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
@@ -143,7 +143,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] Version this instance was created from, or was being
+     * Output only. [Output Only] Version this instance was created from, or was being
      * created from, but the creation failed. Corresponds to one of the versions
      * that were set on the Instance Group Manager resource at the time this
      * instance was being created.
@@ -167,7 +167,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] Version this instance was created from, or was being
+     * Output only. [Output Only] Version this instance was created from, or was being
      * created from, but the creation failed. Corresponds to one of the versions
      * that were set on the Instance Group Manager resource at the time this
      * instance was being created.

@@ -90,7 +90,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * satisfies the RFC2616 Host header's port specifier.
      * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      */
@@ -160,7 +161,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      *           satisfies the RFC2616 Host header's port specifier.
      *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *           Regular expressions can only be used when the loadBalancingScheme is
-     *           set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     *           set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     *           (regional scope) or INTERNAL_MANAGED.
      *     @type string $suffix_match
      *           The value of the header must end with the contents ofsuffixMatch.
      *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
@@ -457,7 +459,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * satisfies the RFC2616 Host header's port specifier.
      * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @return string
@@ -485,7 +488,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * satisfies the RFC2616 Host header's port specifier.
      * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @param string $var

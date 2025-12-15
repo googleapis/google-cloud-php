@@ -32,7 +32,7 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -45,7 +45,7 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
      */
     protected $metadata = null;
     /**
-     * [Output Only] URL of the zone where the resource resides
+     * Output only. [Output Only] URL of the zone where the resource resides
      * You must specify this field as part of the HTTP request URL. It is not
      * settable as a field in the request body.
      *
@@ -70,12 +70,12 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to
      *           retrieve the resource.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
      *     @type \Google\Cloud\Compute\V1\InstanceSettingsMetadata $metadata
      *           The metadata key/value pairs assigned to all the instances in the
      *           corresponding scope.
      *     @type string $zone
-     *           [Output Only] URL of the zone where the resource resides
+     *           Output only. [Output Only] URL of the zone where the resource resides
      *           You must specify this field as part of the HTTP request URL. It is not
      *           settable as a field in the request body.
      * }
@@ -138,7 +138,7 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -159,7 +159,7 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#instance_settings for instance settings.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -212,7 +212,7 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the resource resides
+     * Output only. [Output Only] URL of the zone where the resource resides
      * You must specify this field as part of the HTTP request URL. It is not
      * settable as a field in the request body.
      *
@@ -235,7 +235,7 @@ class InstanceSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the resource resides
+     * Output only. [Output Only] URL of the zone where the resource resides
      * You must specify this field as part of the HTTP request URL. It is not
      * settable as a field in the request body.
      *

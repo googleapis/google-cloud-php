@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag;
 use UnexpectedValueException;
 
 /**
- * [Output Only] State of the secure tag, either `EFFECTIVE` or
+ * Output only. [Output Only] State of the secure tag, either `EFFECTIVE` or
  * `INEFFECTIVE`. A secure tag is `INEFFECTIVE` when it is deleted
  * or its network is deleted.
  *

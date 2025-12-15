@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The version of BYOIP API.
+ * Output only. [Output Only] The version of BYOIP API.
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicDelegatedPrefix.ByoipApiVersion</code>
  */

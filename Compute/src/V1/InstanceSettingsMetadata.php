@@ -22,7 +22,7 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of the resource. Always compute#metadata
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
      * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -39,7 +39,7 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
      *           A metadata key/value items map.
      *           The total size of all keys and values must be less than 512KB.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#metadata
+     *           Output only. [Output Only] Type of the resource. Always compute#metadata
      *           for metadata.
      * }
      */
@@ -77,7 +77,7 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#metadata
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
      * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -99,7 +99,7 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#metadata
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
      * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

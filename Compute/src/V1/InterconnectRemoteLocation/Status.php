@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of this InterconnectRemoteLocation, which can take
+ * Output only. [Output Only] The status of this InterconnectRemoteLocation, which can take
  * one of the following values:
  *    - CLOSED: The InterconnectRemoteLocation is closed and is unavailable
  *    for provisioning new Cross-Cloud Interconnects.

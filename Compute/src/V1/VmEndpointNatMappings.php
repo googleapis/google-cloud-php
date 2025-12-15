@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the VM instance which the endpoint belongs to
+     * Output only. Name of the VM instance which the endpoint belongs to
      *
      * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      */
@@ -33,7 +33,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_name
-     *           Name of the VM instance which the endpoint belongs to
+     *           Output only. Name of the VM instance which the endpoint belongs to
      *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings>|\Google\Protobuf\Internal\RepeatedField $interface_nat_mappings
      * }
      */
@@ -43,7 +43,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the VM instance which the endpoint belongs to
+     * Output only. Name of the VM instance which the endpoint belongs to
      *
      * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      * @return string
@@ -64,7 +64,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the VM instance which the endpoint belongs to
+     * Output only. Name of the VM instance which the endpoint belongs to
      *
      * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      * @param string $var

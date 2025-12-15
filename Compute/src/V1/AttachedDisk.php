@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class AttachedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The architecture of the attached disk. Valid values are ARM64
+     * Output only. [Output Only] The architecture of the attached disk. Valid values are ARM64
      * or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -97,7 +97,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     private $guest_os_features;
     /**
-     * [Output Only] A zero-based index to this disk, where 0 is reserved for the
+     * Output only. [Output Only] A zero-based index to this disk, where 0 is reserved for the
      * boot disk. If you have many disks attached to an instance, each
      * disk would have a unique index number.
      *
@@ -127,13 +127,13 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     protected $interface = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] Any valid publicly visible licenses.
+     * Output only. [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      */
@@ -147,7 +147,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     protected $mode = null;
     /**
-     * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
+     * Output only. For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
      * field is set to PRESERVED if the LocalSSD data has been saved
      * to a persistent location by customer request.  (see the
      * discard_local_ssd option on Stop/Suspend).
@@ -158,7 +158,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     protected $saved_state = null;
     /**
-     * [Output Only] shielded vm initial state stored on disk
+     * Output only. [Output Only] shielded vm initial state stored on disk
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
      */
@@ -190,7 +190,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $architecture
-     *           [Output Only] The architecture of the attached disk. Valid values are ARM64
+     *           Output only. [Output Only] The architecture of the attached disk. Valid values are ARM64
      *           or X86_64.
      *           Check the Architecture enum for the list of possible values.
      *     @type bool $auto_delete
@@ -239,7 +239,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *           Enabling guest operating system features to see a list of available
      *           options.
      *     @type int $index
-     *           [Output Only] A zero-based index to this disk, where 0 is reserved for the
+     *           Output only. [Output Only] A zero-based index to this disk, where 0 is reserved for the
      *           boot disk. If you have many disks attached to an instance, each
      *           disk would have a unique index number.
      *     @type \Google\Cloud\Compute\V1\AttachedDiskInitializeParams $initialize_params
@@ -257,22 +257,22 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *           persistent disks.
      *           Check the Interface enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
-     *           [Output Only] Any valid publicly visible licenses.
+     *           Output only. [Output Only] Any valid publicly visible licenses.
      *     @type string $mode
      *           The mode in which to attach this disk, either READ_WRITE orREAD_ONLY. If not specified, the default is to attach the disk
      *           in READ_WRITE mode.
      *           Check the Mode enum for the list of possible values.
      *     @type string $saved_state
-     *           For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
+     *           Output only. For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
      *           field is set to PRESERVED if the LocalSSD data has been saved
      *           to a persistent location by customer request.  (see the
      *           discard_local_ssd option on Stop/Suspend).
      *           Read-only in the api.
      *           Check the SavedState enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InitialStateConfig $shielded_instance_initial_state
-     *           [Output Only] shielded vm initial state stored on disk
+     *           Output only. [Output Only] shielded vm initial state stored on disk
      *     @type string $source
      *           Specifies a valid partial or full URL to an existing Persistent Disk
      *           resource. When creating a new instance boot disk, one ofinitializeParams.sourceImage orinitializeParams.sourceSnapshot or disks.source
@@ -292,7 +292,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the attached disk. Valid values are ARM64
+     * Output only. [Output Only] The architecture of the attached disk. Valid values are ARM64
      * or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -315,7 +315,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the attached disk. Valid values are ARM64
+     * Output only. [Output Only] The architecture of the attached disk. Valid values are ARM64
      * or X86_64.
      * Check the Architecture enum for the list of possible values.
      *
@@ -636,7 +636,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A zero-based index to this disk, where 0 is reserved for the
+     * Output only. [Output Only] A zero-based index to this disk, where 0 is reserved for the
      * boot disk. If you have many disks attached to an instance, each
      * disk would have a unique index number.
      *
@@ -659,7 +659,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A zero-based index to this disk, where 0 is reserved for the
+     * Output only. [Output Only] A zero-based index to this disk, where 0 is reserved for the
      * boot disk. If you have many disks attached to an instance, each
      * disk would have a unique index number.
      *
@@ -768,7 +768,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -789,7 +789,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -804,7 +804,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Any valid publicly visible licenses.
+     * Output only. [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -815,7 +815,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Any valid publicly visible licenses.
+     * Output only. [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -870,7 +870,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
+     * Output only. For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
      * field is set to PRESERVED if the LocalSSD data has been saved
      * to a persistent location by customer request.  (see the
      * discard_local_ssd option on Stop/Suspend).
@@ -896,7 +896,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
+     * Output only. For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
      * field is set to PRESERVED if the LocalSSD data has been saved
      * to a persistent location by customer request.  (see the
      * discard_local_ssd option on Stop/Suspend).
@@ -916,7 +916,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] shielded vm initial state stored on disk
+     * Output only. [Output Only] shielded vm initial state stored on disk
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
      * @return \Google\Cloud\Compute\V1\InitialStateConfig|null
@@ -937,7 +937,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] shielded vm initial state stored on disk
+     * Output only. [Output Only] shielded vm initial state stored on disk
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
      * @param \Google\Cloud\Compute\V1\InitialStateConfig $var

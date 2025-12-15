@@ -56,13 +56,13 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $async_primary_disk = null;
     /**
-     * [Output Only] A list of disks this disk is asynchronously replicated to.
+     * Output only. [Output Only] A list of disks this disk is asynchronously replicated to.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.DiskAsyncReplicationList> async_secondary_disks = 322925608;</code>
      */
     private $async_secondary_disks;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -115,14 +115,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $guest_os_features;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#disk for
+     * Output only. [Output Only] Type of the resource. Always compute#disk for
      * disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -149,14 +149,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * [Output Only] Last attach timestamp inRFC3339
+     * Output only. [Output Only] Last attach timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string last_attach_timestamp = 42159653;</code>
      */
     protected $last_attach_timestamp = null;
     /**
-     * [Output Only] Last detach timestamp inRFC3339
+     * Output only. [Output Only] Last detach timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string last_detach_timestamp = 56471027;</code>
@@ -235,7 +235,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $provisioned_throughput = null;
     /**
-     * [Output Only] URL of the region where the disk resides. Only applicable for
+     * Output only. [Output Only] URL of the region where the disk resides. Only applicable for
      * regional resources.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -257,7 +257,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $resource_policies;
     /**
-     * [Output Only] Status information for the disk resource.
+     * Output only. [Output Only] Status information for the disk resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskResourceStatus resource_status = 249429315;</code>
      */
@@ -269,13 +269,13 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzi = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -292,14 +292,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $size_gb = null;
     /**
-     * [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
+     * Output only. [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
      * that was created using a consistency group.
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
      */
     protected $source_consistency_group_policy = null;
     /**
-     * [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
+     * Output only. [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
      * that was created using a consistency group.
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy_id = 267568957;</code>
@@ -326,7 +326,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $source_disk = null;
     /**
-     * [Output Only] The unique ID of the disk used to create this disk. This
+     * Output only. [Output Only] The unique ID of the disk used to create this disk. This
      * value identifies the exact disk that was used to create this persistent
      * disk. For example, if you created the persistent disk from a disk that
      * was later deleted and recreated under the same name, the source disk ID
@@ -363,7 +363,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $source_image_encryption_key = null;
     /**
-     * [Output Only] The ID value of the image used to create this disk. This
+     * Output only. [Output Only] The ID value of the image used to create this disk. This
      * value identifies the exact image that was used to create this persistent
      * disk. For example, if you created the persistent disk from an image that
      * was later deleted and recreated under the same name, the source image ID
@@ -384,7 +384,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $source_instant_snapshot = null;
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this
+     * Output only. [Output Only] The unique ID of the instant snapshot used to create this
      * disk. This value identifies the exact instant snapshot that was used to
      * create this persistent disk. For example, if you created the persistent
      * disk from an instant snapshot that was later deleted and recreated under
@@ -414,7 +414,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $source_snapshot_encryption_key = null;
     /**
-     * [Output Only] The unique ID of the snapshot used to create this disk. This
+     * Output only. [Output Only] The unique ID of the snapshot used to create this disk. This
      * value identifies the exact snapshot that was used to create this persistent
      * disk. For example, if you created the persistent disk from a snapshot that
      * was later deleted and recreated under the same name, the source snapshot ID
@@ -436,7 +436,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $source_storage_object = null;
     /**
-     * [Output Only] The status of disk creation.
+     * Output only. [Output Only] The status of disk creation.
      *      - CREATING: Disk is provisioning.
      *      - RESTORING: Source data is being copied into the
      *      disk.
@@ -468,14 +468,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     protected $type = null;
     /**
-     * [Output Only] Links to the users of the disk (attached instances)
+     * Output only. [Output Only] Links to the users of the disk (attached instances)
      * in form:projects/project/zones/zone/instances/instance
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
      */
     private $users;
     /**
-     * [Output Only] URL of the zone where the disk resides.
+     * Output only. [Output Only] URL of the zone where the disk resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -506,9 +506,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\DiskAsyncReplication $async_primary_disk
      *           Disk asynchronously replicated into this disk.
      *     @type array|\Google\Protobuf\Internal\MapField $async_secondary_disks
-     *           [Output Only] A list of disks this disk is asynchronously replicated to.
+     *           Output only. [Output Only] A list of disks this disk is asynchronously replicated to.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -541,10 +541,10 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Enabling guest operating system features to see a list of available
      *           options.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#disk for
+     *           Output only. [Output Only] Type of the resource. Always compute#disk for
      *           disks.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this disk, which is
@@ -559,10 +559,10 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Labels to apply to this disk. These can be later modified by
      *           the setLabels method.
      *     @type string $last_attach_timestamp
-     *           [Output Only] Last attach timestamp inRFC3339
+     *           Output only. [Output Only] Last attach timestamp inRFC3339
      *           text format.
      *     @type string $last_detach_timestamp
-     *           [Output Only] Last detach timestamp inRFC3339
+     *           Output only. [Output Only] Last detach timestamp inRFC3339
      *           text format.
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $license_codes
      *           Integer license codes indicating which licenses are attached to this disk.
@@ -601,7 +601,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           number of throughput mb per second that the disk can handle. Values must be
      *           greater than or equal to 1.
      *     @type string $region
-     *           [Output Only] URL of the region where the disk resides. Only applicable for
+     *           Output only. [Output Only] URL of the region where the disk resides. Only applicable for
      *           regional resources.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
@@ -611,13 +611,13 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations.
      *     @type \Google\Cloud\Compute\V1\DiskResourceStatus $resource_status
-     *           [Output Only] Status information for the disk resource.
+     *           Output only. [Output Only] Status information for the disk resource.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
-     *           [Output Only] Server-defined fully-qualified URL for this resource.
+     *           Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type int|string $size_gb
      *           Size, in GB, of the persistent disk. You can specify
      *           this field when creating a persistent disk using thesourceImage, sourceSnapshot, orsourceDisk parameter, or specify it alone to create an empty
@@ -626,10 +626,10 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           source.
      *           Acceptable values are greater than 0.
      *     @type string $source_consistency_group_policy
-     *           [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
+     *           Output only. [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
      *           that was created using a consistency group.
      *     @type string $source_consistency_group_policy_id
-     *           [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
+     *           Output only. [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
      *           that was created using a consistency group.
      *     @type string $source_disk
      *           The source disk used to create this disk. You can provide this as a
@@ -648,7 +648,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *                -
      *                  regions/region/disks/disk
      *     @type string $source_disk_id
-     *           [Output Only] The unique ID of the disk used to create this disk. This
+     *           Output only. [Output Only] The unique ID of the disk used to create this disk. This
      *           value identifies the exact disk that was used to create this persistent
      *           disk. For example, if you created the persistent disk from a disk that
      *           was later deleted and recreated under the same name, the source disk ID
@@ -673,7 +673,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           encryption key of the source image. Required if the source image is
      *           protected by a customer-supplied encryption key.
      *     @type string $source_image_id
-     *           [Output Only] The ID value of the image used to create this disk. This
+     *           Output only. [Output Only] The ID value of the image used to create this disk. This
      *           value identifies the exact image that was used to create this persistent
      *           disk. For example, if you created the persistent disk from an image that
      *           was later deleted and recreated under the same name, the source image ID
@@ -686,7 +686,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *                - projects/project/zones/zone/instantSnapshots/instantSnapshot
      *              - zones/zone/instantSnapshots/instantSnapshot
      *     @type string $source_instant_snapshot_id
-     *           [Output Only] The unique ID of the instant snapshot used to create this
+     *           Output only. [Output Only] The unique ID of the instant snapshot used to create this
      *           disk. This value identifies the exact instant snapshot that was used to
      *           create this persistent disk. For example, if you created the persistent
      *           disk from an instant snapshot that was later deleted and recreated under
@@ -704,7 +704,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           encryption key of the source snapshot. Required if the source snapshot
      *           is protected by a customer-supplied encryption key.
      *     @type string $source_snapshot_id
-     *           [Output Only] The unique ID of the snapshot used to create this disk. This
+     *           Output only. [Output Only] The unique ID of the snapshot used to create this disk. This
      *           value identifies the exact snapshot that was used to create this persistent
      *           disk. For example, if you created the persistent disk from a snapshot that
      *           was later deleted and recreated under the same name, the source snapshot ID
@@ -718,7 +718,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           source storage object, use gcloud compute images
      *           import instead.
      *     @type string $status
-     *           [Output Only] The status of disk creation.
+     *           Output only. [Output Only] The status of disk creation.
      *                - CREATING: Disk is provisioning.
      *                - RESTORING: Source data is being copied into the
      *                disk.
@@ -738,10 +738,10 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           the disk. Provide this when creating the disk. For example:projects/project/zones/zone/diskTypes/pd-ssd. See Persistent disk
      *           types.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
-     *           [Output Only] Links to the users of the disk (attached instances)
+     *           Output only. [Output Only] Links to the users of the disk (attached instances)
      *           in form:projects/project/zones/zone/instances/instance
      *     @type string $zone
-     *           [Output Only] URL of the zone where the disk resides.
+     *           Output only. [Output Only] URL of the zone where the disk resides.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      * }
@@ -880,7 +880,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of disks this disk is asynchronously replicated to.
+     * Output only. [Output Only] A list of disks this disk is asynchronously replicated to.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.DiskAsyncReplicationList> async_secondary_disks = 322925608;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -891,7 +891,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of disks this disk is asynchronously replicated to.
+     * Output only. [Output Only] A list of disks this disk is asynchronously replicated to.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.DiskAsyncReplicationList> async_secondary_disks = 322925608;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -906,7 +906,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -928,7 +928,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -1122,7 +1122,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -1144,7 +1144,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -1160,7 +1160,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#disk for
+     * Output only. [Output Only] Type of the resource. Always compute#disk for
      * disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1182,7 +1182,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#disk for
+     * Output only. [Output Only] Type of the resource. Always compute#disk for
      * disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -1276,7 +1276,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last attach timestamp inRFC3339
+     * Output only. [Output Only] Last attach timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string last_attach_timestamp = 42159653;</code>
@@ -1298,7 +1298,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last attach timestamp inRFC3339
+     * Output only. [Output Only] Last attach timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string last_attach_timestamp = 42159653;</code>
@@ -1314,7 +1314,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last detach timestamp inRFC3339
+     * Output only. [Output Only] Last detach timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string last_detach_timestamp = 56471027;</code>
@@ -1336,7 +1336,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Last detach timestamp inRFC3339
+     * Output only. [Output Only] Last detach timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string last_detach_timestamp = 56471027;</code>
@@ -1692,7 +1692,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the disk resides. Only applicable for
+     * Output only. [Output Only] URL of the region where the disk resides. Only applicable for
      * regional resources.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -1716,7 +1716,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the disk resides. Only applicable for
+     * Output only. [Output Only] URL of the region where the disk resides. Only applicable for
      * regional resources.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -1788,7 +1788,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information for the disk resource.
+     * Output only. [Output Only] Status information for the disk resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskResourceStatus resource_status = 249429315;</code>
      * @return \Google\Cloud\Compute\V1\DiskResourceStatus|null
@@ -1809,7 +1809,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status information for the disk resource.
+     * Output only. [Output Only] Status information for the disk resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DiskResourceStatus resource_status = 249429315;</code>
      * @param \Google\Cloud\Compute\V1\DiskResourceStatus $var
@@ -1860,7 +1860,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -1881,7 +1881,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -1896,7 +1896,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -1917,7 +1917,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined fully-qualified URL for this resource.
+     * Output only. [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -1978,7 +1978,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
+     * Output only. [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
      * that was created using a consistency group.
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
@@ -2000,7 +2000,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
+     * Output only. [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk
      * that was created using a consistency group.
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy = 19616093;</code>
@@ -2016,7 +2016,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
+     * Output only. [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
      * that was created using a consistency group.
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy_id = 267568957;</code>
@@ -2038,7 +2038,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
+     * Output only. [Output Only] ID of the DiskConsistencyGroupPolicy for a secondary disk
      * that was created using a consistency group.
      *
      * Generated from protobuf field <code>optional string source_consistency_group_policy_id = 267568957;</code>
@@ -2118,7 +2118,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the disk used to create this disk. This
+     * Output only. [Output Only] The unique ID of the disk used to create this disk. This
      * value identifies the exact disk that was used to create this persistent
      * disk. For example, if you created the persistent disk from a disk that
      * was later deleted and recreated under the same name, the source disk ID
@@ -2143,7 +2143,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the disk used to create this disk. This
+     * Output only. [Output Only] The unique ID of the disk used to create this disk. This
      * value identifies the exact disk that was used to create this persistent
      * disk. For example, if you created the persistent disk from a disk that
      * was later deleted and recreated under the same name, the source disk ID
@@ -2264,7 +2264,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The ID value of the image used to create this disk. This
+     * Output only. [Output Only] The ID value of the image used to create this disk. This
      * value identifies the exact image that was used to create this persistent
      * disk. For example, if you created the persistent disk from an image that
      * was later deleted and recreated under the same name, the source image ID
@@ -2289,7 +2289,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The ID value of the image used to create this disk. This
+     * Output only. [Output Only] The ID value of the image used to create this disk. This
      * value identifies the exact image that was used to create this persistent
      * disk. For example, if you created the persistent disk from an image that
      * was later deleted and recreated under the same name, the source image ID
@@ -2354,7 +2354,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this
+     * Output only. [Output Only] The unique ID of the instant snapshot used to create this
      * disk. This value identifies the exact instant snapshot that was used to
      * create this persistent disk. For example, if you created the persistent
      * disk from an instant snapshot that was later deleted and recreated under
@@ -2380,7 +2380,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the instant snapshot used to create this
+     * Output only. [Output Only] The unique ID of the instant snapshot used to create this
      * disk. This value identifies the exact instant snapshot that was used to
      * create this persistent disk. For example, if you created the persistent
      * disk from an instant snapshot that was later deleted and recreated under
@@ -2486,7 +2486,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the snapshot used to create this disk. This
+     * Output only. [Output Only] The unique ID of the snapshot used to create this disk. This
      * value identifies the exact snapshot that was used to create this persistent
      * disk. For example, if you created the persistent disk from a snapshot that
      * was later deleted and recreated under the same name, the source snapshot ID
@@ -2511,7 +2511,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the snapshot used to create this disk. This
+     * Output only. [Output Only] The unique ID of the snapshot used to create this disk. This
      * value identifies the exact snapshot that was used to create this persistent
      * disk. For example, if you created the persistent disk from a snapshot that
      * was later deleted and recreated under the same name, the source snapshot ID
@@ -2578,7 +2578,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of disk creation.
+     * Output only. [Output Only] The status of disk creation.
      *      - CREATING: Disk is provisioning.
      *      - RESTORING: Source data is being copied into the
      *      disk.
@@ -2606,7 +2606,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of disk creation.
+     * Output only. [Output Only] The status of disk creation.
      *      - CREATING: Disk is provisioning.
      *      - RESTORING: Source data is being copied into the
      *      disk.
@@ -2714,7 +2714,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Links to the users of the disk (attached instances)
+     * Output only. [Output Only] Links to the users of the disk (attached instances)
      * in form:projects/project/zones/zone/instances/instance
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
@@ -2726,7 +2726,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Links to the users of the disk (attached instances)
+     * Output only. [Output Only] Links to the users of the disk (attached instances)
      * in form:projects/project/zones/zone/instances/instance
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
@@ -2742,7 +2742,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the disk resides.
+     * Output only. [Output Only] URL of the zone where the disk resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -2765,7 +2765,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the disk resides.
+     * Output only. [Output Only] URL of the zone where the disk resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *

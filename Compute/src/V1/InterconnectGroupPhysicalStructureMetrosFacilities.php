@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The ID of this facility, as a numeric string like
+     * Output only. [Output Only] The ID of this facility, as a numeric string like
      * "5467". This is the third component of the location of Interconnects
      * in this facility.
      *
@@ -36,7 +36,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
      *     Optional. Data for populating the Message object.
      *
      *     @type string $facility
-     *           [Output Only] The ID of this facility, as a numeric string like
+     *           Output only. [Output Only] The ID of this facility, as a numeric string like
      *           "5467". This is the third component of the location of Interconnects
      *           in this facility.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilitiesZones>|\Google\Protobuf\Internal\RepeatedField $zones
@@ -48,7 +48,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
     }
 
     /**
-     * [Output Only] The ID of this facility, as a numeric string like
+     * Output only. [Output Only] The ID of this facility, as a numeric string like
      * "5467". This is the third component of the location of Interconnects
      * in this facility.
      *
@@ -71,7 +71,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
     }
 
     /**
-     * [Output Only] The ID of this facility, as a numeric string like
+     * Output only. [Output Only] The ID of this facility, as a numeric string like
      * "5467". This is the third component of the location of Interconnects
      * in this facility.
      *

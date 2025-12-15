@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendBucketUsedBy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Server-defined URL for UrlMaps referencing that
+     * Output only. [Output Only] Server-defined URL for UrlMaps referencing that
      * BackendBucket.
      *
      * Generated from protobuf field <code>optional string reference = 148586315;</code>
@@ -29,7 +29,7 @@ class BackendBucketUsedBy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $reference
-     *           [Output Only] Server-defined URL for UrlMaps referencing that
+     *           Output only. [Output Only] Server-defined URL for UrlMaps referencing that
      *           BackendBucket.
      * }
      */
@@ -39,7 +39,7 @@ class BackendBucketUsedBy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for UrlMaps referencing that
+     * Output only. [Output Only] Server-defined URL for UrlMaps referencing that
      * BackendBucket.
      *
      * Generated from protobuf field <code>optional string reference = 148586315;</code>
@@ -61,7 +61,7 @@ class BackendBucketUsedBy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for UrlMaps referencing that
+     * Output only. [Output Only] Server-defined URL for UrlMaps referencing that
      * BackendBucket.
      *
      * Generated from protobuf field <code>optional string reference = 148586315;</code>

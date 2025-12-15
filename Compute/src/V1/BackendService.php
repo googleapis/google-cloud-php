@@ -99,7 +99,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     protected $consistent_hash = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -295,7 +295,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     protected $ip_address_selection_policy = null;
     /**
-     * [Output Only] Type of resource. Always compute#backendService
+     * Output only. [Output Only] Type of resource. Always compute#backendService
      * for backend services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -506,7 +506,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     protected $protocol = null;
     /**
-     * [Output Only] URL of the region where the regional backend service
+     * Output only. [Output Only] URL of the region where the regional backend service
      * resides. This field is not applicable to global backend services.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -602,7 +602,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     protected $tls_settings = null;
     /**
-     * [Output Only] List of resources referencing given backend service.
+     * Output only. [Output Only] List of resources referencing given backend service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceUsedBy used_by = 389320729;</code>
      */
@@ -654,7 +654,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *              - A global backend service with the
      *              load_balancing_scheme set to INTERNAL_SELF_MANAGED.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type array<\Google\Cloud\Compute\V1\BackendServiceCustomMetric>|\Google\Protobuf\Internal\RepeatedField $custom_metrics
      *           List of custom metrics that are used for theWEIGHTED_ROUND_ROBIN locality_lb_policy.
@@ -786,7 +786,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *              INTERNAL_SELF_MANAGED).
      *           Check the IpAddressSelectionPolicy enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#backendService
+     *           Output only. [Output Only] Type of resource. Always compute#backendService
      *           for backend services.
      *     @type string $load_balancing_scheme
      *           Specifies the load balancer type. A backend service
@@ -941,7 +941,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           that is bound to target gRPC proxy.
      *           Check the Protocol enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional backend service
+     *           Output only. [Output Only] URL of the region where the regional backend service
      *           resides. This field is not applicable to global backend services.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
@@ -993,7 +993,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           Configuration for Backend Authenticated TLS and mTLS. May only be specified
      *           when the backend protocol is SSL, HTTPS or HTTP2.
      *     @type array<\Google\Cloud\Compute\V1\BackendServiceUsedBy>|\Google\Protobuf\Internal\RepeatedField $used_by
-     *           [Output Only] List of resources referencing given backend service.
+     *           Output only. [Output Only] List of resources referencing given backend service.
      * }
      */
     public function __construct($data = NULL) {
@@ -1324,7 +1324,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -1346,7 +1346,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -2060,7 +2060,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#backendService
+     * Output only. [Output Only] Type of resource. Always compute#backendService
      * for backend services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -2082,7 +2082,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#backendService
+     * Output only. [Output Only] Type of resource. Always compute#backendService
      * for backend services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -2798,7 +2798,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional backend service
+     * Output only. [Output Only] URL of the region where the regional backend service
      * resides. This field is not applicable to global backend services.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -2822,7 +2822,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional backend service
+     * Output only. [Output Only] URL of the region where the regional backend service
      * resides. This field is not applicable to global backend services.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -3244,7 +3244,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] List of resources referencing given backend service.
+     * Output only. [Output Only] List of resources referencing given backend service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceUsedBy used_by = 389320729;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -3255,7 +3255,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] List of resources referencing given backend service.
+     * Output only. [Output Only] List of resources referencing given backend service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceUsedBy used_by = 389320729;</code>
      * @param array<\Google\Cloud\Compute\V1\BackendServiceUsedBy>|\Google\Protobuf\Internal\RepeatedField $var

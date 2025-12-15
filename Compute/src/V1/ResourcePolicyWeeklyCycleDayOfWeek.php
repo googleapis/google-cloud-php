@@ -24,7 +24,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      */
     protected $day = null;
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. [Output only] Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
@@ -50,7 +50,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      *           MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY.
      *           Check the Day enum for the list of possible values.
      *     @type string $duration
-     *           [Output only] Duration of the time window, automatically chosen to be
+     *           Output only. [Output only] Duration of the time window, automatically chosen to be
      *           smallest possible in the given scenario.
      *     @type string $start_time
      *           Time within the window to start the operations.
@@ -105,7 +105,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. [Output only] Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>
@@ -127,7 +127,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output only] Duration of the time window, automatically chosen to be
+     * Output only. [Output only] Duration of the time window, automatically chosen to be
      * smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional string duration = 155471252;</code>

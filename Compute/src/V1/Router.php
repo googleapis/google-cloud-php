@@ -32,7 +32,7 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $bgp_peers;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -73,7 +73,7 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $interfaces;
     /**
-     * [Output Only] Type of resource. Always compute#router for
+     * Output only. [Output Only] Type of resource. Always compute#router for
      * routers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -144,7 +144,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *           establish BGP peering. This information must specify the peer ASN and
      *           either the interface name, IP address, or peer IP address. Please refer toRFC4273.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -165,7 +165,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *           You can create a router interface without any of these fields specified.
      *           However, you cannot create a BGP peer that uses that interface.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#router for
+     *           Output only. [Output Only] Type of resource. Always compute#router for
      *           routers.
      *     @type array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $md5_authentication_keys
      *           Keys used for MD5 authentication.
@@ -264,7 +264,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -286,7 +286,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -456,7 +456,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#router for
+     * Output only. [Output Only] Type of resource. Always compute#router for
      * routers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -478,7 +478,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#router for
+     * Output only. [Output Only] Type of resource. Always compute#router for
      * routers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

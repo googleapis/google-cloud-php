@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] A predetermined duration for the window, automatically
+     * Output only. [Output only] A predetermined duration for the window, automatically
      * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
@@ -39,7 +39,7 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Duration $maintenance_duration
-     *           [Output only] A predetermined duration for the window, automatically
+     *           Output only. [Output only] A predetermined duration for the window, automatically
      *           chosen to be the smallest possible in the given scenario.
      *     @type string $start_time
      *           Start time of the window. This must be in UTC format that resolves to one
@@ -53,7 +53,7 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] A predetermined duration for the window, automatically
+     * Output only. [Output only] A predetermined duration for the window, automatically
      * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
@@ -75,7 +75,7 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] A predetermined duration for the window, automatically
+     * Output only. [Output only] A predetermined duration for the window, automatically
      * chosen to be the smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>

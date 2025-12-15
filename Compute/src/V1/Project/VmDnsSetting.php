@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Project;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Default internal DNS setting used by VMs running in
+ * Output only. [Output Only] Default internal DNS setting used by VMs running in
  * this project.
  *
  * Protobuf type <code>google.cloud.compute.v1.Project.VmDnsSetting</code>

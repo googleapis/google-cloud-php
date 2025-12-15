@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkAttachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] An array of connections for all the producers connected
+     * Output only. [Output Only] An array of connections for all the producers connected
      * to this network attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkAttachmentConnectedEndpoint connection_endpoints = 326078813;</code>
@@ -31,7 +31,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $connection_preference = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -53,14 +53,14 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource.
+     * Output only. [Output Only] Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -78,7 +78,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] The URL of the network which the Network Attachment
+     * Output only. [Output Only] The URL of the network which the Network Attachment
      * belongs to. Practically it is inferred by fetching the network of the first
      * subnetwork associated. Because it is required that all the subnetworks must
      * be from the same network, it is assured that the Network Attachment belongs
@@ -102,7 +102,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     private $producer_reject_lists;
     /**
-     * [Output Only] URL of the region where the network attachment resides.
+     * Output only. [Output Only] URL of the region where the network attachment resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -111,13 +111,13 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource's resource id.
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -138,13 +138,13 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\NetworkAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $connection_endpoints
-     *           [Output Only] An array of connections for all the producers connected
+     *           Output only. [Output Only] An array of connections for all the producers connected
      *           to this network attachment.
      *     @type string $connection_preference
      *           
      *           Check the ConnectionPreference enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -154,10 +154,10 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *           in this object. This field is used in optimistic locking. An up-to-date
      *           fingerprint must be provided in order to patch.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server
+     *           Output only. [Output Only] The unique identifier for the resource type. The server
      *           generates this identifier.
      *     @type string $kind
-     *           [Output Only] Type of the resource.
+     *           Output only. [Output Only] Type of the resource.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -167,7 +167,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $network
-     *           [Output Only] The URL of the network which the Network Attachment
+     *           Output only. [Output Only] The URL of the network which the Network Attachment
      *           belongs to. Practically it is inferred by fetching the network of the first
      *           subnetwork associated. Because it is required that all the subnetworks must
      *           be from the same network, it is assured that the Network Attachment belongs
@@ -179,14 +179,14 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *           Projects that are not allowed to connect to this network attachment.
      *           The project can be specified using its id or number.
      *     @type string $region
-     *           [Output Only] URL of the region where the network attachment resides.
+     *           Output only. [Output Only] URL of the region where the network attachment resides.
      *           This field applies only to the region resource. You must specify this
      *           field as part of the HTTP request URL. It is not settable as a field in
      *           the request body.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource's resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource's resource id.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           An array of URLs where each entry is the URL of a subnet
      *           provided by the service consumer to use for
@@ -199,7 +199,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An array of connections for all the producers connected
+     * Output only. [Output Only] An array of connections for all the producers connected
      * to this network attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkAttachmentConnectedEndpoint connection_endpoints = 326078813;</code>
@@ -211,7 +211,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An array of connections for all the producers connected
+     * Output only. [Output Only] An array of connections for all the producers connected
      * to this network attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkAttachmentConnectedEndpoint connection_endpoints = 326078813;</code>
@@ -265,7 +265,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -287,7 +287,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -381,7 +381,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -403,7 +403,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -419,7 +419,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource.
+     * Output only. [Output Only] Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -440,7 +440,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource.
+     * Output only. [Output Only] Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -503,7 +503,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the network which the Network Attachment
+     * Output only. [Output Only] The URL of the network which the Network Attachment
      * belongs to. Practically it is inferred by fetching the network of the first
      * subnetwork associated. Because it is required that all the subnetworks must
      * be from the same network, it is assured that the Network Attachment belongs
@@ -528,7 +528,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the network which the Network Attachment
+     * Output only. [Output Only] The URL of the network which the Network Attachment
      * belongs to. Practically it is inferred by fetching the network of the first
      * subnetwork associated. Because it is required that all the subnetworks must
      * be from the same network, it is assured that the Network Attachment belongs
@@ -603,7 +603,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the network attachment resides.
+     * Output only. [Output Only] URL of the region where the network attachment resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -627,7 +627,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the network attachment resides.
+     * Output only. [Output Only] URL of the region where the network attachment resides.
      * This field applies only to the region resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -645,7 +645,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -666,7 +666,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -681,7 +681,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource's resource id.
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -702,7 +702,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource's resource id.
+     * Output only. [Output Only] Server-defined URL for this resource's resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var

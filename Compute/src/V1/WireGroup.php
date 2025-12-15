@@ -25,7 +25,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      */
     protected $admin_enabled = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -47,14 +47,14 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      */
     private $endpoints;
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -72,19 +72,19 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Indicates whether there are wire changes yet to be processed.
+     * Output only. [Output Only] Indicates whether there are wire changes yet to be processed.
      *
      * Generated from protobuf field <code>optional bool reconciling = 432155787;</code>
      */
     protected $reconciling = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * Topology details for the wire group configuration.
+     * Output only. Topology details for the wire group configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.WireGroupTopology topology = 122274415;</code>
      */
@@ -96,7 +96,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      */
     protected $wire_properties = null;
     /**
-     * The single/redundant wire(s) managed by the wire group.
+     * Output only. The single/redundant wire(s) managed by the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Wire wires = 113139854;</code>
      */
@@ -114,7 +114,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      *           there is simultaneously no wire-specific override of `adminEnabled` to
      *           false, a given wire is enabled. Defaults to true.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of the wire group.
@@ -124,10 +124,10 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      *              - Key: an RFC1035 user-specified label.
      *              - Value: an Endpoint object.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server
+     *           Output only. [Output Only] The unique identifier for the resource type. The server
      *           generates this identifier.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -137,15 +137,15 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type bool $reconciling
-     *           [Output Only] Indicates whether there are wire changes yet to be processed.
+     *           Output only. [Output Only] Indicates whether there are wire changes yet to be processed.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\WireGroupTopology $topology
-     *           Topology details for the wire group configuration.
+     *           Output only. Topology details for the wire group configuration.
      *     @type \Google\Cloud\Compute\V1\WireProperties $wire_properties
      *           Properties for all wires in the wire group.
      *     @type array<\Google\Cloud\Compute\V1\Wire>|\Google\Protobuf\Internal\RepeatedField $wires
-     *           The single/redundant wire(s) managed by the wire group.
+     *           Output only. The single/redundant wire(s) managed by the wire group.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,7 +196,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -218,7 +218,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -302,7 +302,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -324,7 +324,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -340,7 +340,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -361,7 +361,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#wireGroups for wire groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -424,7 +424,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates whether there are wire changes yet to be processed.
+     * Output only. [Output Only] Indicates whether there are wire changes yet to be processed.
      *
      * Generated from protobuf field <code>optional bool reconciling = 432155787;</code>
      * @return bool
@@ -445,7 +445,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates whether there are wire changes yet to be processed.
+     * Output only. [Output Only] Indicates whether there are wire changes yet to be processed.
      *
      * Generated from protobuf field <code>optional bool reconciling = 432155787;</code>
      * @param bool $var
@@ -460,7 +460,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -481,7 +481,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -496,7 +496,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Topology details for the wire group configuration.
+     * Output only. Topology details for the wire group configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.WireGroupTopology topology = 122274415;</code>
      * @return \Google\Cloud\Compute\V1\WireGroupTopology|null
@@ -517,7 +517,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Topology details for the wire group configuration.
+     * Output only. Topology details for the wire group configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.WireGroupTopology topology = 122274415;</code>
      * @param \Google\Cloud\Compute\V1\WireGroupTopology $var
@@ -568,7 +568,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The single/redundant wire(s) managed by the wire group.
+     * Output only. The single/redundant wire(s) managed by the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Wire wires = 113139854;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -579,7 +579,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The single/redundant wire(s) managed by the wire group.
+     * Output only. The single/redundant wire(s) managed by the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Wire wires = 113139854;</code>
      * @param array<\Google\Cloud\Compute\V1\Wire>|\Google\Protobuf\Internal\RepeatedField $var

@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class WireGroupTopologyEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The InterconnectLocation.city (metropolitan area designator) that all
+     * Output only. The InterconnectLocation.city (metropolitan area designator) that all
      * interconnects are located in.
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
      */
     protected $city = null;
     /**
-     * Endpoint label from the wire group.
+     * Output only. Endpoint label from the wire group.
      *
      * Generated from protobuf field <code>optional string label = 102727412;</code>
      */
@@ -36,10 +36,10 @@ class WireGroupTopologyEndpoint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $city
-     *           The InterconnectLocation.city (metropolitan area designator) that all
+     *           Output only. The InterconnectLocation.city (metropolitan area designator) that all
      *           interconnects are located in.
      *     @type string $label
-     *           Endpoint label from the wire group.
+     *           Output only. Endpoint label from the wire group.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +48,7 @@ class WireGroupTopologyEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The InterconnectLocation.city (metropolitan area designator) that all
+     * Output only. The InterconnectLocation.city (metropolitan area designator) that all
      * interconnects are located in.
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
@@ -70,7 +70,7 @@ class WireGroupTopologyEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The InterconnectLocation.city (metropolitan area designator) that all
+     * Output only. The InterconnectLocation.city (metropolitan area designator) that all
      * interconnects are located in.
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
@@ -86,7 +86,7 @@ class WireGroupTopologyEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Endpoint label from the wire group.
+     * Output only. Endpoint label from the wire group.
      *
      * Generated from protobuf field <code>optional string label = 102727412;</code>
      * @return string
@@ -107,7 +107,7 @@ class WireGroupTopologyEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Endpoint label from the wire group.
+     * Output only. Endpoint label from the wire group.
      *
      * Generated from protobuf field <code>optional string label = 102727412;</code>
      * @param string $var

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerResizeRequestStatusLastAttempt extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Errors that prevented the ResizeRequest to be fulfilled.
+     * Output only. Errors that prevented the ResizeRequest to be fulfilled.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
@@ -28,7 +28,7 @@ class InstanceGroupManagerResizeRequestStatusLastAttempt extends \Google\Protobu
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Error $error
-     *           Errors that prevented the ResizeRequest to be fulfilled.
+     *           Output only. Errors that prevented the ResizeRequest to be fulfilled.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class InstanceGroupManagerResizeRequestStatusLastAttempt extends \Google\Protobu
     }
 
     /**
-     * Errors that prevented the ResizeRequest to be fulfilled.
+     * Output only. Errors that prevented the ResizeRequest to be fulfilled.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\Error|null
@@ -58,7 +58,7 @@ class InstanceGroupManagerResizeRequestStatusLastAttempt extends \Google\Protobu
     }
 
     /**
-     * Errors that prevented the ResizeRequest to be fulfilled.
+     * Output only. Errors that prevented the ResizeRequest to be fulfilled.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\Error $var

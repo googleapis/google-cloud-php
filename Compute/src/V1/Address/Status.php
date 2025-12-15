@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Address;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
+ * Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE.
  * An address that is RESERVING is currently in the process of
  * being reserved. A RESERVED address is currently reserved and
  * available to use. An IN_USE address is currently being used

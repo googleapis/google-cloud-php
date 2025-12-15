@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The machine type to be used for this instance.
+     * Output only. The machine type to be used for this instance.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
@@ -28,7 +28,7 @@ class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type string $machine_type
-     *           The machine type to be used for this instance.
+     *           Output only. The machine type to be used for this instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\In
     }
 
     /**
-     * The machine type to be used for this instance.
+     * Output only. The machine type to be used for this instance.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @return string
@@ -58,7 +58,7 @@ class ManagedInstancePropertiesFromFlexibilityPolicy extends \Google\Protobuf\In
     }
 
     /**
-     * The machine type to be used for this instance.
+     * Output only. The machine type to be used for this instance.
      *
      * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @param string $var

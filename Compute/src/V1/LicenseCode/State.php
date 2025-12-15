@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\LicenseCode;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Current state of this License Code.
+ * Output only. [Output Only] Current state of this License Code.
  *
  * Protobuf type <code>google.cloud.compute.v1.LicenseCode.State</code>
  */

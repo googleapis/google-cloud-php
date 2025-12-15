@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A bit indicating if all of the group's per-instance configurations
+     * Output only. A bit indicating if all of the group's per-instance configurations
      * (listed in the output of a listPerInstanceConfigs API call) have
      * status EFFECTIVE or there are no per-instance-configs.
      *
@@ -30,7 +30,7 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $all_effective
-     *           A bit indicating if all of the group's per-instance configurations
+     *           Output only. A bit indicating if all of the group's per-instance configurations
      *           (listed in the output of a listPerInstanceConfigs API call) have
      *           status EFFECTIVE or there are no per-instance-configs.
      * }
@@ -41,7 +41,7 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
     }
 
     /**
-     * A bit indicating if all of the group's per-instance configurations
+     * Output only. A bit indicating if all of the group's per-instance configurations
      * (listed in the output of a listPerInstanceConfigs API call) have
      * status EFFECTIVE or there are no per-instance-configs.
      *
@@ -64,7 +64,7 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
     }
 
     /**
-     * A bit indicating if all of the group's per-instance configurations
+     * Output only. A bit indicating if all of the group's per-instance configurations
      * (listed in the output of a listPerInstanceConfigs API call) have
      * status EFFECTIVE or there are no per-instance-configs.
      *
