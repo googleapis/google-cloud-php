@@ -1,27 +1,23 @@
-name: Major Version Approval Check
+name: Major Version Release Requires 2+ yoshi-php Approvals
 
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review, edited]
     branches: ['main']
-  pull_request_review:
-    types: [submitted, dismissed]
 
 permissions:
   contents: read
   pull-requests: read
-  checks: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
-  approval-check:
+  approval-count-check:
     runs-on: ubuntu-latest
-    # testing
-    # if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     if: contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
+    #if: github.event.pull_request.user.login == 'release-please[bot]' && contains(github.event.pull_request.body, 'MAJOR_VERSION_ALLOWED=')
     steps:
       - name: Run Approval Check
         uses: actions/github-script@v7
@@ -32,44 +28,35 @@ jobs:
             const { execSync } = require('child_process');
 
             const requiredApprovals = 2;
-            const checkName = `Major Version release requires ${requiredApprovals}+ yoshi-php approvals`;
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-
-            // Create the Check Run
-            const { data: check } = await github.rest.checks.create({
-              owner, repo,
-              name: checkName,
-              head_sha: context.payload.pull_request.head.sha,
-              status: 'in_progress',
-            });
-            const check_run_id = check.id;
-
-            let conclusion = 'failure';
-            let summary = 'An unexpected error occurred during the approval check.';
-            let log = '';
 
             try {
+              // 1. Get PR approvals
               const pull_number = context.payload.pull_request.number;
 
-              // 1. Get PR approvals
-              log += `\nFetching approvals for PR #${pull_number}...`;
+              core.info(`Fetching approvals for PR #${pull_number}...`);
               const reviews = await github.rest.pulls.listReviews({
-                owner, repo, pull_number
+                pull_number,
+                owner: context.repo.owner,
+                repo: context.repo.repo
               });
               const approvals = new Set(
                 reviews.data
                   .filter(review => review.state === 'APPROVED')
                   .map(review => review.user.login)
               );
-              log += `\nApprovals found: ${approvals.size}`;
+              if (approvals.size < requiredApprovals) {
+                core.setFailed(`Requires ${requiredApprovals}+ approvals from the yoshi-php team. Only ${approvals.size} total approvals found.`)
+                core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
+                return;
+              }
+              core.info(`Total approval count: ${approvals.size}`);
 
               // 2. Get team members
-              log += '\nFetching yoshi-php team members...';
+              core.info('Fetching yoshi-php team members...');
               const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login'`;
               const teamMembersOutput = execSync(teamMembersCmd, { encoding: 'utf8', env: process.env });
               if (!teamMembersOutput.trim()) {
-                log += '\nERROR: Could not fetch any members for the yoshi-php team.';
+                core.error('Could not fetch any members for the yoshi-php team.');
               }
               const teamMembers = new Set(teamMembersOutput.trim().split('\n'));
 
@@ -77,28 +64,14 @@ jobs:
               const matchingApprovals = [...approvals].filter(login => teamMembers.has(login));
               const count = matchingApprovals.length;
 
-              log += `\nFound ${count} approval(s) from the yoshi-php team.`;
+              core.info(`Found ${count} approval(s) from the yoshi-php team.`);
 
               if (count >= requiredApprovals) {
-                conclusion = 'success';
-                summary = `Success: Approval requirement of ${requiredApprovals} met with ${count} approvals.`;
+                core.info(`Success: Requirement of ${requiredApprovals}+ yoshi-php approvals met with ${count} approvals.`);
               } else {
-                conclusion = 'failure';
-                summary = `Error: Requires at least ${requiredApprovals} approvals from the yoshi-php team. Only ${count} found.`;
+                core.setFailed(`Requires ${requiredApprovals}+ approvals from the yoshi-php team. Only ${count} yoshi-php approvals found.`);
+                core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
               }
             } catch (error) {
-              summary = `An error occurred while checking approvals: ${error.message}`;
-              conclusion = 'failure';
-              log += `\n\nERROR: ${error.message}`;
+              core.setFailed(`${error.message}`);
             }
-
-            // Update the Check Run
-            await github.rest.checks.update({
-              owner, repo, conclusion, check_run_id,
-              status: 'completed',
-              output: {
-                summary,
-                title: checkName,
-                text: log
-              }
-            });
