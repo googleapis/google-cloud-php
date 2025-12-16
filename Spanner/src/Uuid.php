@@ -47,7 +47,7 @@ class Uuid implements ValueInterface
         $pattern = '/^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/';
         if (!preg_match($pattern, $value)) {
             throw new \InvalidArgumentException(
-                'Invalid UUID format. Expected canonical format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+                'Invalid UUID format. Expected canonical hexadecimal format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
             );
         }
         $this->value = strtolower($value);

@@ -139,9 +139,7 @@ class WriteTest extends SystemTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
 
-        if ($value instanceof Timestamp) {
-            $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
-        } elseif ($value instanceof Uuid) {
+        if ($value instanceof Timestamp || $value instanceof Uuid) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
             $this->assertValues($value, $row[$field]);
@@ -155,14 +153,12 @@ class WriteTest extends SystemTestCase
         ]);
 
         $row = $exec->rows()->current();
-        if ($value instanceof Timestamp) {
+        if ($value instanceof Timestamp || $value instanceof Uuid) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } elseif ($value instanceof Message) {
             $this->assertInstanceOf(Proto::class, $row[$field]);
             $this->assertEquals(base64_encode($value->serializeToString()), $row[$field]->getValue());
             $this->assertEquals($value, $row[$field]->get());
-        } elseif ($value instanceof Uuid) {
-            $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
             $this->assertValues($value, $row[$field]);
         }
