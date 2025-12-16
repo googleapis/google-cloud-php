@@ -30,7 +30,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      */
     protected $certificate_map = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -51,7 +51,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -121,7 +121,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *           If set, sslCertificates will be ignored.
      *            Accepted format is//certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificateMaps/{resourceName}.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -130,7 +130,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -210,7 +210,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -232,7 +232,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -324,7 +324,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -345,7 +345,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

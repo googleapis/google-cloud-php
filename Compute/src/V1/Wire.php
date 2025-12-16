@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Wire extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Indicates whether the wire is enabled.
+     * Output only. [Output Only] Indicates whether the wire is enabled.
      * When false, the wire is disabled. When true and when the wire group of
      * the wire is also enabled, the wire is enabled. Defaults to true.
      *
@@ -24,13 +24,13 @@ class Wire extends \Google\Protobuf\Internal\Message
      */
     protected $admin_enabled = null;
     /**
-     * Wire endpoints are specific Interconnect connections.
+     * Output only. Wire endpoints are specific Interconnect connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireEndpoint endpoints = 287085950;</code>
      */
     private $endpoints;
     /**
-     * [Output Only] A label that identifies the wire. The format of this label
+     * Output only. [Output Only] A label that identifies the wire. The format of this label
      * combines the existing labels of the wire group endpoints and Interconnect
      * connections used by this wire in alphabetical order as follows:
      * `ENDPOINT_A+CONNECTION_A1,ENDPOINT_B+CONNECTION_B1`, where:
@@ -45,7 +45,7 @@ class Wire extends \Google\Protobuf\Internal\Message
      */
     protected $label = null;
     /**
-     * [Output Only] Properties of the wire.
+     * Output only. [Output Only] Properties of the wire.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.WireProperties wire_properties = 303111469;</code>
      */
@@ -58,13 +58,13 @@ class Wire extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $admin_enabled
-     *           [Output Only] Indicates whether the wire is enabled.
+     *           Output only. [Output Only] Indicates whether the wire is enabled.
      *           When false, the wire is disabled. When true and when the wire group of
      *           the wire is also enabled, the wire is enabled. Defaults to true.
      *     @type array<\Google\Cloud\Compute\V1\WireEndpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
-     *           Wire endpoints are specific Interconnect connections.
+     *           Output only. Wire endpoints are specific Interconnect connections.
      *     @type string $label
-     *           [Output Only] A label that identifies the wire. The format of this label
+     *           Output only. [Output Only] A label that identifies the wire. The format of this label
      *           combines the existing labels of the wire group endpoints and Interconnect
      *           connections used by this wire in alphabetical order as follows:
      *           `ENDPOINT_A+CONNECTION_A1,ENDPOINT_B+CONNECTION_B1`, where:
@@ -75,7 +75,7 @@ class Wire extends \Google\Protobuf\Internal\Message
      *              labels that you entered as map keys when you specified the wire group
      *              Interconnect objects.
      *     @type \Google\Cloud\Compute\V1\WireProperties $wire_properties
-     *           [Output Only] Properties of the wire.
+     *           Output only. [Output Only] Properties of the wire.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,7 +84,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates whether the wire is enabled.
+     * Output only. [Output Only] Indicates whether the wire is enabled.
      * When false, the wire is disabled. When true and when the wire group of
      * the wire is also enabled, the wire is enabled. Defaults to true.
      *
@@ -107,7 +107,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates whether the wire is enabled.
+     * Output only. [Output Only] Indicates whether the wire is enabled.
      * When false, the wire is disabled. When true and when the wire group of
      * the wire is also enabled, the wire is enabled. Defaults to true.
      *
@@ -124,7 +124,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Wire endpoints are specific Interconnect connections.
+     * Output only. Wire endpoints are specific Interconnect connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireEndpoint endpoints = 287085950;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -135,7 +135,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Wire endpoints are specific Interconnect connections.
+     * Output only. Wire endpoints are specific Interconnect connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireEndpoint endpoints = 287085950;</code>
      * @param array<\Google\Cloud\Compute\V1\WireEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
@@ -150,7 +150,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A label that identifies the wire. The format of this label
+     * Output only. [Output Only] A label that identifies the wire. The format of this label
      * combines the existing labels of the wire group endpoints and Interconnect
      * connections used by this wire in alphabetical order as follows:
      * `ENDPOINT_A+CONNECTION_A1,ENDPOINT_B+CONNECTION_B1`, where:
@@ -180,7 +180,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A label that identifies the wire. The format of this label
+     * Output only. [Output Only] A label that identifies the wire. The format of this label
      * combines the existing labels of the wire group endpoints and Interconnect
      * connections used by this wire in alphabetical order as follows:
      * `ENDPOINT_A+CONNECTION_A1,ENDPOINT_B+CONNECTION_B1`, where:
@@ -204,7 +204,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Properties of the wire.
+     * Output only. [Output Only] Properties of the wire.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.WireProperties wire_properties = 303111469;</code>
      * @return \Google\Cloud\Compute\V1\WireProperties|null
@@ -225,7 +225,7 @@ class Wire extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Properties of the wire.
+     * Output only. [Output Only] Properties of the wire.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.WireProperties wire_properties = 303111469;</code>
      * @param \Google\Cloud\Compute\V1\WireProperties $var

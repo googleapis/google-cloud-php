@@ -39,7 +39,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      */
     protected $oauth2_client_secret = null;
     /**
-     * [Output Only] SHA256 hash value for the field oauth2_client_secret above.
+     * Output only. [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      *
      * Generated from protobuf field <code>optional string oauth2_client_secret_sha256 = 112903782;</code>
      */
@@ -63,7 +63,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      *           oauth2ClientSecretSha256 field.
      *           &#64;InputOnly
      *     @type string $oauth2_client_secret_sha256
-     *           [Output Only] SHA256 hash value for the field oauth2_client_secret above.
+     *           Output only. [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      * }
      */
     public function __construct($data = NULL) {
@@ -190,7 +190,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] SHA256 hash value for the field oauth2_client_secret above.
+     * Output only. [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      *
      * Generated from protobuf field <code>optional string oauth2_client_secret_sha256 = 112903782;</code>
      * @return string
@@ -211,7 +211,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] SHA256 hash value for the field oauth2_client_secret above.
+     * Output only. [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      *
      * Generated from protobuf field <code>optional string oauth2_client_secret_sha256 = 112903782;</code>
      * @param string $var

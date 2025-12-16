@@ -45,7 +45,7 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#region for
+     * Output only. [Output Only] Type of the resource. Always compute#region for
      * regions.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -58,7 +58,7 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Warning of fetching the `quotas` field for this region. This
+     * Output only. [Output Only] Warning of fetching the `quotas` field for this region. This
      * field is populated only if fetching of the `quotas` field fails.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaStatusWarning quota_status_warning = 302941430;</code>
@@ -84,7 +84,7 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      */
@@ -114,12 +114,12 @@ class Region extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#region for
+     *           Output only. [Output Only] Type of the resource. Always compute#region for
      *           regions.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type \Google\Cloud\Compute\V1\QuotaStatusWarning $quota_status_warning
-     *           [Output Only] Warning of fetching the `quotas` field for this region. This
+     *           Output only. [Output Only] Warning of fetching the `quotas` field for this region. This
      *           field is populated only if fetching of the `quotas` field fails.
      *     @type array<\Google\Cloud\Compute\V1\Quota>|\Google\Protobuf\Internal\RepeatedField $quotas
      *           [Output Only] Quotas assigned to this region.
@@ -129,7 +129,7 @@ class Region extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status of the region, either UP orDOWN.
      *           Check the Status enum for the list of possible values.
      *     @type bool $supports_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
      *           [Output Only] A list of zones available in this region, in the form of
      *           resource URLs.
@@ -289,7 +289,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#region for
+     * Output only. [Output Only] Type of the resource. Always compute#region for
      * regions.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -311,7 +311,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#region for
+     * Output only. [Output Only] Type of the resource. Always compute#region for
      * regions.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -363,7 +363,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Warning of fetching the `quotas` field for this region. This
+     * Output only. [Output Only] Warning of fetching the `quotas` field for this region. This
      * field is populated only if fetching of the `quotas` field fails.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaStatusWarning quota_status_warning = 302941430;</code>
@@ -385,7 +385,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Warning of fetching the `quotas` field for this region. This
+     * Output only. [Output Only] Warning of fetching the `quotas` field for this region. This
      * field is populated only if fetching of the `quotas` field fails.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaStatusWarning quota_status_warning = 302941430;</code>
@@ -501,7 +501,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @return bool
@@ -522,7 +522,7 @@ class Region extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @param bool $var

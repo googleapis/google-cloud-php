@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The name of a facility, like "iad-1234".
+     * Output only. [Output Only] The name of a facility, like "iad-1234".
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      */
@@ -34,7 +34,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Go
      *     Optional. Data for populating the Message object.
      *
      *     @type string $facility
-     *           [Output Only] The name of a facility, like "iad-1234".
+     *           Output only. [Output Only] The name of a facility, like "iad-1234".
      *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone>|\Google\Protobuf\Internal\RepeatedField $zones
      * }
      */
@@ -44,7 +44,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Go
     }
 
     /**
-     * [Output Only] The name of a facility, like "iad-1234".
+     * Output only. [Output Only] The name of a facility, like "iad-1234".
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      * @return string
@@ -65,7 +65,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Go
     }
 
     /**
-     * [Output Only] The name of a facility, like "iad-1234".
+     * Output only. [Output Only] The name of a facility, like "iad-1234".
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      * @param string $var

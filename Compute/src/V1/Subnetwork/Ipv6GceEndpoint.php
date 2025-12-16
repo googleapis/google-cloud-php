@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Subnetwork;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Possible endpoints of this subnetwork. It can be one of the
+ * Output only. [Output Only] Possible endpoints of this subnetwork. It can be one of the
  * following:
  *    - VM_ONLY: The subnetwork can be used for creating instances and
  *    IPv6 addresses with VM endpoint type. Such a subnetwork gets external IPv6

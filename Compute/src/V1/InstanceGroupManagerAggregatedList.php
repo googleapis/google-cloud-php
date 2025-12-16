@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
@@ -27,14 +27,14 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
      */
     private $items;
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
      * list of managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] This token allows you to get the next page of results for
+     * Output only. [Output Only] This token allows you to get the next page of results for
      * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
@@ -44,19 +44,19 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      */
     private $unreachables;
     /**
-     * [Output Only] Informational warning message.
+     * Output only. [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -69,24 +69,24 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           [Output Only] Unique identifier for the resource; defined by the server.
+     *           Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *     @type array|\Google\Protobuf\Internal\MapField $items
      *           A list of InstanceGroupManagersScopedList resources.
      *     @type string $kind
-     *           [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
+     *           Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
      *           list of managed instance groups.
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for
+     *           Output only. [Output Only] This token allows you to get the next page of results for
      *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      *           the query parameter pageToken in the next list request.
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           Output only. [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] Informational warning message.
+     *           Output only. [Output Only] Informational warning message.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,7 +95,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
@@ -116,7 +116,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
@@ -157,7 +157,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
      * list of managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -179,7 +179,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupManagerAggregatedList for an aggregated
      * list of managed instance groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -195,7 +195,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for
+     * Output only. [Output Only] This token allows you to get the next page of results for
      * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
@@ -220,7 +220,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for
+     * Output only. [Output Only] This token allows you to get the next page of results for
      * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
@@ -239,7 +239,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -260,7 +260,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -275,7 +275,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -286,7 +286,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -301,7 +301,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Informational warning message.
+     * Output only. [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -322,7 +322,7 @@ class InstanceGroupManagerAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Informational warning message.
+     * Output only. [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -42,14 +42,14 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
+     * Output only. [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
      * NetworkEdgeSecurityServices
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -68,7 +68,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] URL of the region where the resource resides. You must
+     * Output only. [Output Only] URL of the region where the resource resides. You must
      * specify this field as part of the HTTP request URL. It is not settable as a
      * field in the request body.
      *
@@ -83,13 +83,13 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
      */
     protected $security_policy = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -102,7 +102,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -116,10 +116,10 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to
      *           retrieve a NetworkEdgeSecurityService.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
+     *           Output only. [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
      *           NetworkEdgeSecurityServices
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
@@ -130,16 +130,16 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $region
-     *           [Output Only] URL of the region where the resource resides. You must
+     *           Output only. [Output Only] URL of the region where the resource resides. You must
      *           specify this field as part of the HTTP request URL. It is not settable as a
      *           field in the request body.
      *     @type string $security_policy
      *           The resource URL for the network edge security service associated with this
      *           network edge security service.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,7 +148,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -170,7 +170,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -272,7 +272,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -294,7 +294,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -310,7 +310,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
+     * Output only. [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
      * NetworkEdgeSecurityServices
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -332,7 +332,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
+     * Output only. [Output only] Type of the resource. Alwayscompute#networkEdgeSecurityService for
      * NetworkEdgeSecurityServices
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -396,7 +396,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the resource resides. You must
+     * Output only. [Output Only] URL of the region where the resource resides. You must
      * specify this field as part of the HTTP request URL. It is not settable as a
      * field in the request body.
      *
@@ -419,7 +419,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the resource resides. You must
+     * Output only. [Output Only] URL of the region where the resource resides. You must
      * specify this field as part of the HTTP request URL. It is not settable as a
      * field in the request body.
      *
@@ -474,7 +474,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -495,7 +495,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -510,7 +510,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -531,7 +531,7 @@ class NetworkEdgeSecurityService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var

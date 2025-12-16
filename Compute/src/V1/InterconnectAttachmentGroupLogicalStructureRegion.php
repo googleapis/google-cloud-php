@@ -20,7 +20,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
      */
     private $metros;
     /**
-     * [Output Only] The name of a region, like "us-central1".
+     * Output only. [Output Only] The name of a region, like "us-central1".
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -34,7 +34,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
      *
      *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetro>|\Google\Protobuf\Internal\RepeatedField $metros
      *     @type string $region
-     *           [Output Only] The name of a region, like "us-central1".
+     *           Output only. [Output Only] The name of a region, like "us-central1".
      * }
      */
     public function __construct($data = NULL) {
@@ -65,7 +65,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
     }
 
     /**
-     * [Output Only] The name of a region, like "us-central1".
+     * Output only. [Output Only] The name of a region, like "us-central1".
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -86,7 +86,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
     }
 
     /**
-     * [Output Only] The name of a region, like "us-central1".
+     * Output only. [Output Only] The name of a region, like "us-central1".
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var

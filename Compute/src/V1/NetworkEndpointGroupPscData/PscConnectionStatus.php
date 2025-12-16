@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NetworkEndpointGroupPscData;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The connection status of the PSC Forwarding Rule.
+ * Output only. [Output Only] The connection status of the PSC Forwarding Rule.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkEndpointGroupPscData.PscConnectionStatus</code>
  */

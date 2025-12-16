@@ -57,7 +57,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     protected $subnetwork = null;
     /**
-     * [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     * Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
      * IP was allocated from.
      *
      * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
@@ -88,7 +88,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           The subnetwork used to assign the IP to the producer
      *           instance network interface.
      *     @type string $subnetwork_cidr_range
-     *           [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     *           Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
      *           IP was allocated from.
      * }
      */
@@ -314,7 +314,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     * Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
      * IP was allocated from.
      *
      * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
@@ -336,7 +336,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     * Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
      * IP was allocated from.
      *
      * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>

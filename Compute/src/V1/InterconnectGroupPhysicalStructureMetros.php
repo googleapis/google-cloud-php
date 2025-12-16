@@ -20,7 +20,7 @@ class InterconnectGroupPhysicalStructureMetros extends \Google\Protobuf\Internal
      */
     private $facilities;
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase string
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase string
      * like "iad". This is the first component of the location of
      * Interconnects underneath this.
      *
@@ -36,7 +36,7 @@ class InterconnectGroupPhysicalStructureMetros extends \Google\Protobuf\Internal
      *
      *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilities>|\Google\Protobuf\Internal\RepeatedField $facilities
      *     @type string $metro
-     *           [Output Only] The name of the metro, as a three-letter lowercase string
+     *           Output only. [Output Only] The name of the metro, as a three-letter lowercase string
      *           like "iad". This is the first component of the location of
      *           Interconnects underneath this.
      * }
@@ -69,7 +69,7 @@ class InterconnectGroupPhysicalStructureMetros extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase string
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase string
      * like "iad". This is the first component of the location of
      * Interconnects underneath this.
      *
@@ -92,7 +92,7 @@ class InterconnectGroupPhysicalStructureMetros extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase string
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase string
      * like "iad". This is the first component of the location of
      * Interconnects underneath this.
      *

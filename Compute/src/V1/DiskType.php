@@ -58,7 +58,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#diskType
+     * Output only. [Output Only] Type of the resource. Always compute#diskType
      * for disk types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -120,7 +120,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#diskType
+     *           Output only. [Output Only] Type of the resource. Always compute#diskType
      *           for disk types.
      *     @type string $name
      *           [Output Only] Name of the resource.
@@ -330,7 +330,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#diskType
+     * Output only. [Output Only] Type of the resource. Always compute#diskType
      * for disk types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -352,7 +352,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#diskType
+     * Output only. [Output Only] Type of the resource. Always compute#diskType
      * for disk types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

@@ -27,7 +27,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
      */
     private $items;
     /**
-     * [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
+     * Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
      * lists of network endpoint groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -44,13 +44,13 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      */
@@ -73,7 +73,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
      *     @type array|\Google\Protobuf\Internal\MapField $items
      *           A list of NetworkEndpointGroupsScopedList resources.
      *     @type string $kind
-     *           [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
+     *           Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
      *           lists of network endpoint groups.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -82,9 +82,9 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           Output only. [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -157,7 +157,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
+     * Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
      * lists of network endpoint groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -179,7 +179,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
+     * Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupAggregatedList for aggregated
      * lists of network endpoint groups.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -239,7 +239,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -260,7 +260,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -275,7 +275,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -286,7 +286,7 @@ class NetworkEndpointGroupAggregatedList extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectLocationRegionInfo;
 use UnexpectedValueException;
 
 /**
- * Identifies the network presence of this location.
+ * Output only. Identifies the network presence of this location.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence</code>
  */

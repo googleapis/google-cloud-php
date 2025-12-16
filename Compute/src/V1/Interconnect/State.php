@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Interconnect;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current state of Interconnect functionality, which can
+ * Output only. [Output Only] The current state of Interconnect functionality, which can
  * take one of the following values:
  *    - ACTIVE: The Interconnect is valid, turned up and ready to use.
  *    Attachments may be provisioned on this Interconnect.

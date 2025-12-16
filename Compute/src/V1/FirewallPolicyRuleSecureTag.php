@@ -21,7 +21,7 @@ class FirewallPolicyRuleSecureTag extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] State of the secure tag, either `EFFECTIVE` or
+     * Output only. [Output Only] State of the secure tag, either `EFFECTIVE` or
      * `INEFFECTIVE`. A secure tag is `INEFFECTIVE` when it is deleted
      * or its network is deleted.
      * Check the State enum for the list of possible values.
@@ -39,7 +39,7 @@ class FirewallPolicyRuleSecureTag extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the secure tag, created with TagManager's TagValue API.
      *     @type string $state
-     *           [Output Only] State of the secure tag, either `EFFECTIVE` or
+     *           Output only. [Output Only] State of the secure tag, either `EFFECTIVE` or
      *           `INEFFECTIVE`. A secure tag is `INEFFECTIVE` when it is deleted
      *           or its network is deleted.
      *           Check the State enum for the list of possible values.
@@ -87,7 +87,7 @@ class FirewallPolicyRuleSecureTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] State of the secure tag, either `EFFECTIVE` or
+     * Output only. [Output Only] State of the secure tag, either `EFFECTIVE` or
      * `INEFFECTIVE`. A secure tag is `INEFFECTIVE` when it is deleted
      * or its network is deleted.
      * Check the State enum for the list of possible values.
@@ -111,7 +111,7 @@ class FirewallPolicyRuleSecureTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] State of the secure tag, either `EFFECTIVE` or
+     * Output only. [Output Only] State of the secure tag, either `EFFECTIVE` or
      * `INEFFECTIVE`. A secure tag is `INEFFECTIVE` when it is deleted
      * or its network is deleted.
      * Check the State enum for the list of possible values.

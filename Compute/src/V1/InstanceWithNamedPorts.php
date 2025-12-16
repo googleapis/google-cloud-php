@@ -15,19 +15,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The URL of the instance.
+     * Output only. [Output Only] The URL of the instance.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
     protected $instance = null;
     /**
-     * [Output Only] The named ports that belong to this instance group.
+     * Output only. [Output Only] The named ports that belong to this instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      */
     private $named_ports;
     /**
-     * [Output Only] The status of the instance.
+     * Output only. [Output Only] The status of the instance.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -41,11 +41,11 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance
-     *           [Output Only] The URL of the instance.
+     *           Output only. [Output Only] The URL of the instance.
      *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
-     *           [Output Only] The named ports that belong to this instance group.
+     *           Output only. [Output Only] The named ports that belong to this instance group.
      *     @type string $status
-     *           [Output Only] The status of the instance.
+     *           Output only. [Output Only] The status of the instance.
      *           Check the Status enum for the list of possible values.
      * }
      */
@@ -55,7 +55,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the instance.
+     * Output only. [Output Only] The URL of the instance.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
@@ -76,7 +76,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the instance.
+     * Output only. [Output Only] The URL of the instance.
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var
@@ -91,7 +91,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The named ports that belong to this instance group.
+     * Output only. [Output Only] The named ports that belong to this instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -102,7 +102,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The named ports that belong to this instance group.
+     * Output only. [Output Only] The named ports that belong to this instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
@@ -117,7 +117,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the instance.
+     * Output only. [Output Only] The status of the instance.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -139,7 +139,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the instance.
+     * Output only. [Output Only] The status of the instance.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

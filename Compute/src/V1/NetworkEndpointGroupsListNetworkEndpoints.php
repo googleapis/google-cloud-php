@@ -27,7 +27,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
      */
     private $items;
     /**
-     * [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
+     * Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
      * of network endpoints in the specified network endpoint group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -61,7 +61,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
      *     @type array<\Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of NetworkEndpointWithHealthStatus resources.
      *     @type string $kind
-     *           [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
+     *           Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
      *           of network endpoints in the specified network endpoint group.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -141,7 +141,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
+     * Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
      * of network endpoints in the specified network endpoint group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -163,7 +163,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
+     * Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
      * of network endpoints in the specified network endpoint group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

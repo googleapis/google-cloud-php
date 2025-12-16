@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class NatIpInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of all NAT IPs assigned to this NAT config.
+     * Output only. A list of all NAT IPs assigned to this NAT config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NatIpInfoNatIpInfoMapping nat_ip_info_mappings = 241401884;</code>
      */
     private $nat_ip_info_mappings;
     /**
-     * Name of the NAT config which the NAT IP belongs to.
+     * Output only. Name of the NAT config which the NAT IP belongs to.
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      */
@@ -35,9 +35,9 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping>|\Google\Protobuf\Internal\RepeatedField $nat_ip_info_mappings
-     *           A list of all NAT IPs assigned to this NAT config.
+     *           Output only. A list of all NAT IPs assigned to this NAT config.
      *     @type string $nat_name
-     *           Name of the NAT config which the NAT IP belongs to.
+     *           Output only. Name of the NAT config which the NAT IP belongs to.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of all NAT IPs assigned to this NAT config.
+     * Output only. A list of all NAT IPs assigned to this NAT config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NatIpInfoNatIpInfoMapping nat_ip_info_mappings = 241401884;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,7 +57,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of all NAT IPs assigned to this NAT config.
+     * Output only. A list of all NAT IPs assigned to this NAT config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NatIpInfoNatIpInfoMapping nat_ip_info_mappings = 241401884;</code>
      * @param array<\Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping>|\Google\Protobuf\Internal\RepeatedField $var
@@ -72,7 +72,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the NAT config which the NAT IP belongs to.
+     * Output only. Name of the NAT config which the NAT IP belongs to.
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      * @return string
@@ -93,7 +93,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the NAT config which the NAT IP belongs to.
+     * Output only. Name of the NAT config which the NAT IP belongs to.
      *
      * Generated from protobuf field <code>optional string nat_name = 425596649;</code>
      * @param string $var

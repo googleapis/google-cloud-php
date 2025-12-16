@@ -24,7 +24,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
      */
     protected $hostname = null;
     /**
-     * This field is only temporary. It will be removed. Do not use it.
+     * Output only. This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -40,7 +40,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
      *           Specifies the hostname of the instance. More details in:
      *           https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
      *     @type string $name
-     *           This field is only temporary. It will be removed. Do not use it.
+     *           Output only. This field is only temporary. It will be removed. Do not use it.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,7 +87,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     }
 
     /**
-     * This field is only temporary. It will be removed. Do not use it.
+     * Output only. This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -108,7 +108,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     }
 
     /**
-     * This field is only temporary. It will be removed. Do not use it.
+     * Output only. This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

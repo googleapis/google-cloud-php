@@ -15,14 +15,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The current detailed instance health state.
+     * Output only. [Output Only] The current detailed instance health state.
      * Check the DetailedHealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string detailed_health_state = 510470173;</code>
      */
     protected $detailed_health_state = null;
     /**
-     * [Output Only] The URL for the health check that verifies whether the
+     * Output only. [Output Only] The URL for the health check that verifies whether the
      * instance is healthy.
      *
      * Generated from protobuf field <code>optional string health_check = 308876645;</code>
@@ -36,10 +36,10 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $detailed_health_state
-     *           [Output Only] The current detailed instance health state.
+     *           Output only. [Output Only] The current detailed instance health state.
      *           Check the DetailedHealthState enum for the list of possible values.
      *     @type string $health_check
-     *           [Output Only] The URL for the health check that verifies whether the
+     *           Output only. [Output Only] The URL for the health check that verifies whether the
      *           instance is healthy.
      * }
      */
@@ -49,7 +49,7 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current detailed instance health state.
+     * Output only. [Output Only] The current detailed instance health state.
      * Check the DetailedHealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string detailed_health_state = 510470173;</code>
@@ -71,7 +71,7 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current detailed instance health state.
+     * Output only. [Output Only] The current detailed instance health state.
      * Check the DetailedHealthState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string detailed_health_state = 510470173;</code>
@@ -87,7 +87,7 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for the health check that verifies whether the
+     * Output only. [Output Only] The URL for the health check that verifies whether the
      * instance is healthy.
      *
      * Generated from protobuf field <code>optional string health_check = 308876645;</code>
@@ -109,7 +109,7 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for the health check that verifies whether the
+     * Output only. [Output Only] The URL for the health check that verifies whether the
      * instance is healthy.
      *
      * Generated from protobuf field <code>optional string health_check = 308876645;</code>

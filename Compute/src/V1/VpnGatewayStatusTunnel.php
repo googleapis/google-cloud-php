@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The VPN gateway interface this VPN tunnel is associated with.
+     * Output only. The VPN gateway interface this VPN tunnel is associated with.
      *
      * Generated from protobuf field <code>optional uint32 local_gateway_interface = 158764330;</code>
      */
     protected $local_gateway_interface = null;
     /**
-     * The peer gateway interface this VPN tunnel is connected to, the peer
+     * Output only. The peer gateway interface this VPN tunnel is connected to, the peer
      * gateway could either be an external VPN gateway or a Google Cloud
      * VPN gateway.
      *
@@ -30,7 +30,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      */
     protected $peer_gateway_interface = null;
     /**
-     * URL reference to the VPN tunnel.
+     * Output only. URL reference to the VPN tunnel.
      *
      * Generated from protobuf field <code>optional string tunnel_url = 78975256;</code>
      */
@@ -43,13 +43,13 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $local_gateway_interface
-     *           The VPN gateway interface this VPN tunnel is associated with.
+     *           Output only. The VPN gateway interface this VPN tunnel is associated with.
      *     @type int $peer_gateway_interface
-     *           The peer gateway interface this VPN tunnel is connected to, the peer
+     *           Output only. The peer gateway interface this VPN tunnel is connected to, the peer
      *           gateway could either be an external VPN gateway or a Google Cloud
      *           VPN gateway.
      *     @type string $tunnel_url
-     *           URL reference to the VPN tunnel.
+     *           Output only. URL reference to the VPN tunnel.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +58,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPN gateway interface this VPN tunnel is associated with.
+     * Output only. The VPN gateway interface this VPN tunnel is associated with.
      *
      * Generated from protobuf field <code>optional uint32 local_gateway_interface = 158764330;</code>
      * @return int
@@ -79,7 +79,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPN gateway interface this VPN tunnel is associated with.
+     * Output only. The VPN gateway interface this VPN tunnel is associated with.
      *
      * Generated from protobuf field <code>optional uint32 local_gateway_interface = 158764330;</code>
      * @param int $var
@@ -94,7 +94,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The peer gateway interface this VPN tunnel is connected to, the peer
+     * Output only. The peer gateway interface this VPN tunnel is connected to, the peer
      * gateway could either be an external VPN gateway or a Google Cloud
      * VPN gateway.
      *
@@ -117,7 +117,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The peer gateway interface this VPN tunnel is connected to, the peer
+     * Output only. The peer gateway interface this VPN tunnel is connected to, the peer
      * gateway could either be an external VPN gateway or a Google Cloud
      * VPN gateway.
      *
@@ -134,7 +134,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the VPN tunnel.
+     * Output only. URL reference to the VPN tunnel.
      *
      * Generated from protobuf field <code>optional string tunnel_url = 78975256;</code>
      * @return string
@@ -155,7 +155,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the VPN tunnel.
+     * Output only. URL reference to the VPN tunnel.
      *
      * Generated from protobuf field <code>optional string tunnel_url = 78975256;</code>
      * @param string $var

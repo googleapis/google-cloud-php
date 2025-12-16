@@ -27,7 +27,7 @@ class PublicDelegatedPrefixList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
      * prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -67,7 +67,7 @@ class PublicDelegatedPrefixList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\PublicDelegatedPrefix>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of PublicDelegatedPrefix resources.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
      *           prefixes.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -149,7 +149,7 @@ class PublicDelegatedPrefixList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
      * prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -171,7 +171,7 @@ class PublicDelegatedPrefixList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicDelegatedPrefixList for public delegated
      * prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

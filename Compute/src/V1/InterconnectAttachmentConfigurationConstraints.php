@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Whether the attachment's BGP session
+     * Output only. [Output Only] Whether the attachment's BGP session
      * requires/allows/disallows BGP MD5 authentication. This can take one of
      * the following values: MD5_OPTIONAL, MD5_REQUIRED, MD5_UNSUPPORTED.
      * For example, a Cross-Cloud Interconnect connection to a remote cloud
@@ -30,7 +30,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
      */
     protected $bgp_md5 = null;
     /**
-     * [Output Only] List of ASN ranges that the remote location is known to
+     * Output only. [Output Only] List of ASN ranges that the remote location is known to
      * support. Formatted as an array of inclusive ranges {min: min-value, max:
      * max-value}. For example, [{min: 123, max: 123}, {min: 64512, max: 65534}]
      * allows the peer ASN to be 123 or anything in the range 64512-65534.
@@ -48,7 +48,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type string $bgp_md5
-     *           [Output Only] Whether the attachment's BGP session
+     *           Output only. [Output Only] Whether the attachment's BGP session
      *           requires/allows/disallows BGP MD5 authentication. This can take one of
      *           the following values: MD5_OPTIONAL, MD5_REQUIRED, MD5_UNSUPPORTED.
      *           For example, a Cross-Cloud Interconnect connection to a remote cloud
@@ -59,7 +59,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
      *           returned if MD5 is requested.
      *           Check the BgpMd5 enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange>|\Google\Protobuf\Internal\RepeatedField $bgp_peer_asn_ranges
-     *           [Output Only] List of ASN ranges that the remote location is known to
+     *           Output only. [Output Only] List of ASN ranges that the remote location is known to
      *           support. Formatted as an array of inclusive ranges {min: min-value, max:
      *           max-value}. For example, [{min: 123, max: 123}, {min: 64512, max: 65534}]
      *           allows the peer ASN to be 123 or anything in the range 64512-65534.
@@ -73,7 +73,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] Whether the attachment's BGP session
+     * Output only. [Output Only] Whether the attachment's BGP session
      * requires/allows/disallows BGP MD5 authentication. This can take one of
      * the following values: MD5_OPTIONAL, MD5_REQUIRED, MD5_UNSUPPORTED.
      * For example, a Cross-Cloud Interconnect connection to a remote cloud
@@ -103,7 +103,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] Whether the attachment's BGP session
+     * Output only. [Output Only] Whether the attachment's BGP session
      * requires/allows/disallows BGP MD5 authentication. This can take one of
      * the following values: MD5_OPTIONAL, MD5_REQUIRED, MD5_UNSUPPORTED.
      * For example, a Cross-Cloud Interconnect connection to a remote cloud
@@ -127,7 +127,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] List of ASN ranges that the remote location is known to
+     * Output only. [Output Only] List of ASN ranges that the remote location is known to
      * support. Formatted as an array of inclusive ranges {min: min-value, max:
      * max-value}. For example, [{min: 123, max: 123}, {min: 64512, max: 65534}]
      * allows the peer ASN to be 123 or anything in the range 64512-65534.
@@ -143,7 +143,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] List of ASN ranges that the remote location is known to
+     * Output only. [Output Only] List of ASN ranges that the remote location is known to
      * support. Formatted as an array of inclusive ranges {min: min-value, max:
      * max-value}. For example, [{min: 123, max: 123}, {min: 64512, max: 65534}]
      * allows the peer ASN to be 123 or anything in the range 64512-65534.

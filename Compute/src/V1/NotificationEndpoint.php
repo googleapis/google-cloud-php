@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotificationEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -42,14 +42,14 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      */
     protected $grpc_settings = null;
     /**
-     * [Output Only] A unique identifier for this resource type. The server
+     * Output only. [Output Only] A unique identifier for this resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -67,7 +67,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] URL of the region where the notification endpoint resides.
+     * Output only. [Output Only] URL of the region where the notification endpoint resides.
      * This field applies only to the regional resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -76,7 +76,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -89,7 +89,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -98,10 +98,10 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      *           Settings of the gRPC notification endpoint including the endpoint URL and
      *           the retry duration.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this resource type. The server
+     *           Output only. [Output Only] A unique identifier for this resource type. The server
      *           generates this identifier.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -111,12 +111,12 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $region
-     *           [Output Only] URL of the region where the notification endpoint resides.
+     *           Output only. [Output Only] URL of the region where the notification endpoint resides.
      *           This field applies only to the regional resource. You must specify this
      *           field as part of the HTTP request URL. It is not settable as a field in
      *           the request body.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +125,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -147,7 +147,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -239,7 +239,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server
+     * Output only. [Output Only] A unique identifier for this resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -261,7 +261,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this resource type. The server
+     * Output only. [Output Only] A unique identifier for this resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -277,7 +277,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -298,7 +298,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#notificationEndpoint for notification endpoints.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -361,7 +361,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the notification endpoint resides.
+     * Output only. [Output Only] URL of the region where the notification endpoint resides.
      * This field applies only to the regional resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -385,7 +385,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the notification endpoint resides.
+     * Output only. [Output Only] URL of the region where the notification endpoint resides.
      * This field applies only to the regional resource. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
@@ -403,7 +403,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -424,7 +424,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

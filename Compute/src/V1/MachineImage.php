@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class MachineImage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The creation timestamp for this machine image inRFC3339
+     * Output only. [Output Only] The creation timestamp for this machine image inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -40,7 +40,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      */
     protected $guest_flush = null;
     /**
-     * [Output Only] A unique identifier for this machine image. The server
+     * Output only. [Output Only] A unique identifier for this machine image. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -53,7 +53,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      */
     protected $instance_properties = null;
     /**
-     * [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
+     * Output only. [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -112,20 +112,20 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      */
     protected $satisfies_pzi = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     protected $satisfies_pzs = null;
     /**
-     * An array of Machine Image specific properties for disks attached to the
+     * Output only. An array of Machine Image specific properties for disks attached to the
      * source instance
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SavedDisk saved_disks = 397424318;</code>
      */
     private $saved_disks;
     /**
-     * [Output Only] The URL for this machine image. The server defines this URL.
+     * Output only. [Output Only] The URL for this machine image. The server defines this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -149,7 +149,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      */
     protected $source_instance = null;
     /**
-     * [Output Only] DEPRECATED: Please use instance_properties
+     * Output only. [Output Only] DEPRECATED: Please use instance_properties
      * instead for source instance related properties. New properties will not be
      * added to this field.
      *
@@ -157,7 +157,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      */
     protected $source_instance_properties = null;
     /**
-     * [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
+     * Output only. [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -171,7 +171,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      */
     private $storage_locations;
     /**
-     * [Output Only] Total size of the storage used by the machine image.
+     * Output only. [Output Only] Total size of the storage used by the machine image.
      *
      * Generated from protobuf field <code>optional int64 total_storage_bytes = 81855468;</code>
      */
@@ -184,7 +184,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] The creation timestamp for this machine image inRFC3339
+     *           Output only. [Output Only] The creation timestamp for this machine image inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -193,12 +193,12 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      *           [Input Only] Whether to attempt an application consistent machine image by
      *           informing the OS to prepare for the snapshot process.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this machine image. The server
+     *           Output only. [Output Only] A unique identifier for this machine image. The server
      *           defines this identifier.
      *     @type \Google\Cloud\Compute\V1\InstanceProperties $instance_properties
      *           [Output Only] Properties of source instance
      *     @type string $kind
-     *           [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
+     *           Output only. [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this machine image, which is
      *           essentially a hash of the labels set used for optimistic locking. The
@@ -233,12 +233,12 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      *     @type array<\Google\Cloud\Compute\V1\SavedDisk>|\Google\Protobuf\Internal\RepeatedField $saved_disks
-     *           An array of Machine Image specific properties for disks attached to the
+     *           Output only. An array of Machine Image specific properties for disks attached to the
      *           source instance
      *     @type string $self_link
-     *           [Output Only] The URL for this machine image. The server defines this URL.
+     *           Output only. [Output Only] The URL for this machine image. The server defines this URL.
      *     @type array<\Google\Cloud\Compute\V1\SourceDiskEncryptionKey>|\Google\Protobuf\Internal\RepeatedField $source_disk_encryption_keys
      *           [Input Only] Thecustomer-supplied
      *           encryption key of the disks attached to the source instance. Required
@@ -250,17 +250,17 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      *                - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
      *              - projects/project/zones/zone/instances/instance
      *     @type \Google\Cloud\Compute\V1\SourceInstanceProperties $source_instance_properties
-     *           [Output Only] DEPRECATED: Please use instance_properties
+     *           Output only. [Output Only] DEPRECATED: Please use instance_properties
      *           instead for source instance related properties. New properties will not be
      *           added to this field.
      *     @type string $status
-     *           [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
+     *           Output only. [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
      *           Check the Status enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
      *           The regional or multi-regional Cloud Storage bucket location where themachine image is
      *           stored.
      *     @type int|string $total_storage_bytes
-     *           [Output Only] Total size of the storage used by the machine image.
+     *           Output only. [Output Only] Total size of the storage used by the machine image.
      * }
      */
     public function __construct($data = NULL) {
@@ -269,7 +269,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this machine image inRFC3339
+     * Output only. [Output Only] The creation timestamp for this machine image inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -291,7 +291,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this machine image inRFC3339
+     * Output only. [Output Only] The creation timestamp for this machine image inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -383,7 +383,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this machine image. The server
+     * Output only. [Output Only] A unique identifier for this machine image. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -405,7 +405,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this machine image. The server
+     * Output only. [Output Only] A unique identifier for this machine image. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -457,7 +457,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
+     * Output only. [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -478,7 +478,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
+     * Output only. [Output Only] The resource type, which is alwayscompute#machineImage for machine image.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -709,7 +709,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @return bool
@@ -730,7 +730,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      * @param bool $var
@@ -745,7 +745,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of Machine Image specific properties for disks attached to the
+     * Output only. An array of Machine Image specific properties for disks attached to the
      * source instance
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SavedDisk saved_disks = 397424318;</code>
@@ -757,7 +757,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An array of Machine Image specific properties for disks attached to the
+     * Output only. An array of Machine Image specific properties for disks attached to the
      * source instance
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SavedDisk saved_disks = 397424318;</code>
@@ -773,7 +773,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this machine image. The server defines this URL.
+     * Output only. [Output Only] The URL for this machine image. The server defines this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -794,7 +794,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this machine image. The server defines this URL.
+     * Output only. [Output Only] The URL for this machine image. The server defines this URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -883,7 +883,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] DEPRECATED: Please use instance_properties
+     * Output only. [Output Only] DEPRECATED: Please use instance_properties
      * instead for source instance related properties. New properties will not be
      * added to this field.
      *
@@ -906,7 +906,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] DEPRECATED: Please use instance_properties
+     * Output only. [Output Only] DEPRECATED: Please use instance_properties
      * instead for source instance related properties. New properties will not be
      * added to this field.
      *
@@ -923,7 +923,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
+     * Output only. [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -945,7 +945,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
+     * Output only. [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -989,7 +989,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Total size of the storage used by the machine image.
+     * Output only. [Output Only] Total size of the storage used by the machine image.
      *
      * Generated from protobuf field <code>optional int64 total_storage_bytes = 81855468;</code>
      * @return int|string
@@ -1010,7 +1010,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Total size of the storage used by the machine image.
+     * Output only. [Output Only] Total size of the storage used by the machine image.
      *
      * Generated from protobuf field <code>optional int64 total_storage_bytes = 81855468;</code>
      * @param int|string $var

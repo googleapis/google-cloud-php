@@ -16,34 +16,34 @@ use Google\Protobuf\Internal\GPBUtil;
 class SavedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The architecture of the attached disk.
+     * Output only. [Output Only] The architecture of the attached disk.
      * Check the Architecture enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string architecture = 302803283;</code>
      */
     protected $architecture = null;
     /**
-     * [Output Only] Type of the resource. Always compute#savedDisk
+     * Output only. [Output Only] Type of the resource. Always compute#savedDisk
      * for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * Specifies a URL of the disk attached to the source instance.
+     * Output only. Specifies a URL of the disk attached to the source instance.
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      */
     protected $source_disk = null;
     /**
-     * [Output Only] Size of the individual disk snapshot used by this machine
+     * Output only. [Output Only] Size of the individual disk snapshot used by this machine
      * image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
      */
     protected $storage_bytes = null;
     /**
-     * [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
      * reallocation. This status can either be UPDATING, meaning
      * the size of the snapshot is being updated, or UP_TO_DATE,
@@ -61,18 +61,18 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $architecture
-     *           [Output Only] The architecture of the attached disk.
+     *           Output only. [Output Only] The architecture of the attached disk.
      *           Check the Architecture enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#savedDisk
+     *           Output only. [Output Only] Type of the resource. Always compute#savedDisk
      *           for attached disks.
      *     @type string $source_disk
-     *           Specifies a URL of the disk attached to the source instance.
+     *           Output only. Specifies a URL of the disk attached to the source instance.
      *     @type int|string $storage_bytes
-     *           [Output Only] Size of the individual disk snapshot used by this machine
+     *           Output only. [Output Only] Size of the individual disk snapshot used by this machine
      *           image.
      *     @type string $storage_bytes_status
-     *           [Output Only] An indicator whether storageBytes is in a
+     *           Output only. [Output Only] An indicator whether storageBytes is in a
      *           stable state or it is being adjusted as a result of shared storage
      *           reallocation. This status can either be UPDATING, meaning
      *           the size of the snapshot is being updated, or UP_TO_DATE,
@@ -86,7 +86,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the attached disk.
+     * Output only. [Output Only] The architecture of the attached disk.
      * Check the Architecture enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string architecture = 302803283;</code>
@@ -108,7 +108,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The architecture of the attached disk.
+     * Output only. [Output Only] The architecture of the attached disk.
      * Check the Architecture enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string architecture = 302803283;</code>
@@ -124,7 +124,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#savedDisk
+     * Output only. [Output Only] Type of the resource. Always compute#savedDisk
      * for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -146,7 +146,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#savedDisk
+     * Output only. [Output Only] Type of the resource. Always compute#savedDisk
      * for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -162,7 +162,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a URL of the disk attached to the source instance.
+     * Output only. Specifies a URL of the disk attached to the source instance.
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      * @return string
@@ -183,7 +183,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a URL of the disk attached to the source instance.
+     * Output only. Specifies a URL of the disk attached to the source instance.
      *
      * Generated from protobuf field <code>optional string source_disk = 451753793;</code>
      * @param string $var
@@ -198,7 +198,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size of the individual disk snapshot used by this machine
+     * Output only. [Output Only] Size of the individual disk snapshot used by this machine
      * image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
@@ -220,7 +220,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Size of the individual disk snapshot used by this machine
+     * Output only. [Output Only] Size of the individual disk snapshot used by this machine
      * image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
@@ -236,7 +236,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
      * reallocation. This status can either be UPDATING, meaning
      * the size of the snapshot is being updated, or UP_TO_DATE,
@@ -262,7 +262,7 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An indicator whether storageBytes is in a
+     * Output only. [Output Only] An indicator whether storageBytes is in a
      * stable state or it is being adjusted as a result of shared storage
      * reallocation. This status can either be UPDATING, meaning
      * the size of the snapshot is being updated, or UP_TO_DATE,

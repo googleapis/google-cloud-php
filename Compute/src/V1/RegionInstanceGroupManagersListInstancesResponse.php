@@ -21,7 +21,7 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
      */
     private $managed_instances;
     /**
-     * [Output Only] This token allows you to get the next page of results for
+     * Output only. [Output Only] This token allows you to get the next page of results for
      * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
@@ -40,7 +40,7 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
      *     @type array<\Google\Cloud\Compute\V1\ManagedInstance>|\Google\Protobuf\Internal\RepeatedField $managed_instances
      *           A list of managed instances.
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for
+     *           Output only. [Output Only] This token allows you to get the next page of results for
      *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      *           the query parameter pageToken in the next list request.
      *           Subsequent list requests will have their own nextPageToken to
@@ -79,7 +79,7 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for
+     * Output only. [Output Only] This token allows you to get the next page of results for
      * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to
@@ -104,7 +104,7 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for
+     * Output only. [Output Only] This token allows you to get the next page of results for
      * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
      * the query parameter pageToken in the next list request.
      * Subsequent list requests will have their own nextPageToken to

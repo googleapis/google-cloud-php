@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetVpnGateway extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -48,7 +48,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
+     * Output only. [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -130,7 +130,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -143,7 +143,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
+     *           Output only. [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this TargetVpnGateway, which
      *           is essentially a hash of the labels set used for optimistic locking. The
@@ -189,7 +189,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -211,7 +211,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -333,7 +333,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
+     * Output only. [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -354,7 +354,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
+     * Output only. [Output Only] Type of resource. Alwayscompute#targetVpnGateway for target VPN gateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

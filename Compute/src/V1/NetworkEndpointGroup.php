@@ -43,7 +43,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     protected $cloud_run = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -66,14 +66,14 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -120,20 +120,20 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     protected $psc_target_service = null;
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output only] Number of network endpoints in the network endpoint group.
+     * Output only. [Output only] Number of network endpoints in the network endpoint group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
@@ -146,7 +146,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     protected $subnetwork = null;
     /**
-     * [Output Only] The URL of thezone
+     * Output only. [Output Only] The URL of thezone
      * where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -168,7 +168,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\NetworkEndpointGroupCloudRun $cloud_run
      *           Optional. Only valid when networkEndpointType isSERVERLESS. Only one of cloudRun,appEngine or cloudFunction may be set.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type int $default_port
      *           The default port used if the port number is not specified in the network
@@ -179,10 +179,10 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
      *     @type string $name
      *           Name of the resource; provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -205,17 +205,17 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *           An example value is: asia-northeast3-cloudkms.googleapis.com.
      *           Optional. Only valid when networkEndpointType isPRIVATE_SERVICE_CONNECT.
      *     @type string $region
-     *           [Output Only] The URL of theregion
+     *           Output only. [Output Only] The URL of theregion
      *           where the network endpoint group is located.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type int $size
-     *           [Output only] Number of network endpoints in the network endpoint group.
+     *           Output only. [Output only] Number of network endpoints in the network endpoint group.
      *     @type string $subnetwork
      *           Optional URL of the subnetwork to which all network endpoints in the NEG
      *           belong.
      *     @type string $zone
-     *           [Output Only] The URL of thezone
+     *           Output only. [Output Only] The URL of thezone
      *           where the network endpoint group is located.
      * }
      */
@@ -359,7 +359,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -381,7 +381,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -477,7 +477,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -499,7 +499,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -515,7 +515,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -536,7 +536,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#networkEndpointGroup for network endpoint group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -753,7 +753,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -775,7 +775,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of theregion
+     * Output only. [Output Only] The URL of theregion
      * where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -791,7 +791,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -812,7 +812,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -827,7 +827,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Number of network endpoints in the network endpoint group.
+     * Output only. [Output only] Number of network endpoints in the network endpoint group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @return int
@@ -848,7 +848,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Number of network endpoints in the network endpoint group.
+     * Output only. [Output only] Number of network endpoints in the network endpoint group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @param int $var
@@ -901,7 +901,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of thezone
+     * Output only. [Output Only] The URL of thezone
      * where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -923,7 +923,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of thezone
+     * Output only. [Output Only] The URL of thezone
      * where the network endpoint group is located.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>

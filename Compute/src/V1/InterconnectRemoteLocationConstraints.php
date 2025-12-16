@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Port pair remote location constraints, which can take one
+     * Output only. [Output Only] Port pair remote location constraints, which can take one
      * of the following values: PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION,
      * PORT_PAIR_MATCHING_REMOTE_LOCATION.
      * Google Cloud API refers only to individual ports, but the UI uses this
@@ -31,7 +31,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
      */
     protected $port_pair_remote_location = null;
     /**
-     * [Output Only] Port pair VLAN constraints, which can take one of the
+     * Output only. [Output Only] Port pair VLAN constraints, which can take one of the
      * following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
      * Check the PortPairVlan enum for the list of possible values.
      *
@@ -39,7 +39,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
      */
     protected $port_pair_vlan = null;
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * [min-length, max-length]
      * The minimum and maximum value (inclusive) for the IPv4 subnet
      * length.
@@ -62,7 +62,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $port_pair_remote_location
-     *           [Output Only] Port pair remote location constraints, which can take one
+     *           Output only. [Output Only] Port pair remote location constraints, which can take one
      *           of the following values: PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION,
      *           PORT_PAIR_MATCHING_REMOTE_LOCATION.
      *           Google Cloud API refers only to individual ports, but the UI uses this
@@ -74,11 +74,11 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
      *           both ports use the same remote location.
      *           Check the PortPairRemoteLocation enum for the list of possible values.
      *     @type string $port_pair_vlan
-     *           [Output Only] Port pair VLAN constraints, which can take one of the
+     *           Output only. [Output Only] Port pair VLAN constraints, which can take one of the
      *           following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
      *           Check the PortPairVlan enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InterconnectRemoteLocationConstraintsSubnetLengthRange $subnet_length_range
-     *           [Output Only]
+     *           Output only. [Output Only]
      *           [min-length, max-length]
      *           The minimum and maximum value (inclusive) for the IPv4 subnet
      *           length.
@@ -97,7 +97,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * [Output Only] Port pair remote location constraints, which can take one
+     * Output only. [Output Only] Port pair remote location constraints, which can take one
      * of the following values: PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION,
      * PORT_PAIR_MATCHING_REMOTE_LOCATION.
      * Google Cloud API refers only to individual ports, but the UI uses this
@@ -128,7 +128,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * [Output Only] Port pair remote location constraints, which can take one
+     * Output only. [Output Only] Port pair remote location constraints, which can take one
      * of the following values: PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION,
      * PORT_PAIR_MATCHING_REMOTE_LOCATION.
      * Google Cloud API refers only to individual ports, but the UI uses this
@@ -153,7 +153,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * [Output Only] Port pair VLAN constraints, which can take one of the
+     * Output only. [Output Only] Port pair VLAN constraints, which can take one of the
      * following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
      * Check the PortPairVlan enum for the list of possible values.
      *
@@ -176,7 +176,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * [Output Only] Port pair VLAN constraints, which can take one of the
+     * Output only. [Output Only] Port pair VLAN constraints, which can take one of the
      * following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
      * Check the PortPairVlan enum for the list of possible values.
      *
@@ -193,7 +193,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * [min-length, max-length]
      * The minimum and maximum value (inclusive) for the IPv4 subnet
      * length.
@@ -224,7 +224,7 @@ class InterconnectRemoteLocationConstraints extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * [Output Only]
+     * Output only. [Output Only]
      * [min-length, max-length]
      * The minimum and maximum value (inclusive) for the IPv4 subnet
      * length.

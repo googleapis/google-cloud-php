@@ -68,13 +68,18 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      */
     private $metadata_filters;
     /**
-     * If specified, the route is a pattern match expression that must match the
-     * :path header once the query string is removed.
-     *  A pattern match allows you to match
-     *       - The value must be between 1 and 1024 characters
-     *       - The pattern must start with a leading slash ("/")
-     *       - There may be no more than 5 operators in pattern
-     *  Precisely one ofprefix_match, full_path_match,regex_match or path_template_match must be set.
+     * If specified, this field defines a path template pattern that must match
+     * the :path header after the query string is removed.
+     * A path template pattern can include variables and wildcards.
+     * Variables are enclosed in curly braces, for example{variable_name}. Wildcards include * that
+     * matches a single path segment, and ** that matches zero or
+     * more path segments. The pattern must follow these rules:
+     *       - The value must be between 1 and 1024 characters.
+     *       - The pattern must start with a leading slash ("/").
+     *       - No more than 5 operators (variables or wildcards) may appear in
+     *       the pattern.
+     * Precisely one ofprefixMatch, fullPathMatch,regexMatch, or pathTemplateMatch must be
+     * set.
      *
      * Generated from protobuf field <code>optional string path_template_match = 292348186;</code>
      */
@@ -83,9 +88,10 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * For satisfying the matchRule condition, the request's
      * path must begin with the specified prefixMatch.prefixMatch must begin with a /.
      * The value must be from 1 to 1024 characters.
-     * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
-     * specified.
-     * specified.
+     * The * character inside a prefix match is
+     * treated as a literal character, not as a wildcard.
+     * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match can be
+     * used within a matchRule.
      *
      * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
      */
@@ -106,7 +112,8 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
      * specified.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      */
@@ -153,20 +160,26 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *           Not supported when the URL map is bound to a target gRPC proxy that
      *           has validateForProxyless field set to true.
      *     @type string $path_template_match
-     *           If specified, the route is a pattern match expression that must match the
-     *           :path header once the query string is removed.
-     *            A pattern match allows you to match
-     *                 - The value must be between 1 and 1024 characters
-     *                 - The pattern must start with a leading slash ("/")
-     *                 - There may be no more than 5 operators in pattern
-     *            Precisely one ofprefix_match, full_path_match,regex_match or path_template_match must be set.
+     *           If specified, this field defines a path template pattern that must match
+     *           the :path header after the query string is removed.
+     *           A path template pattern can include variables and wildcards.
+     *           Variables are enclosed in curly braces, for example{variable_name}. Wildcards include * that
+     *           matches a single path segment, and ** that matches zero or
+     *           more path segments. The pattern must follow these rules:
+     *                 - The value must be between 1 and 1024 characters.
+     *                 - The pattern must start with a leading slash ("/").
+     *                 - No more than 5 operators (variables or wildcards) may appear in
+     *                 the pattern.
+     *           Precisely one ofprefixMatch, fullPathMatch,regexMatch, or pathTemplateMatch must be
+     *           set.
      *     @type string $prefix_match
      *           For satisfying the matchRule condition, the request's
      *           path must begin with the specified prefixMatch.prefixMatch must begin with a /.
      *           The value must be from 1 to 1024 characters.
-     *           Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
-     *           specified.
-     *           specified.
+     *           The * character inside a prefix match is
+     *           treated as a literal character, not as a wildcard.
+     *           Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match can be
+     *           used within a matchRule.
      *     @type array<\Google\Cloud\Compute\V1\HttpQueryParameterMatch>|\Google\Protobuf\Internal\RepeatedField $query_parameter_matches
      *           Specifies a list of query parameter match criteria, all of which must
      *           match corresponding query parameters in the request.
@@ -179,7 +192,8 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *           Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
      *           specified.
      *           Regular expressions can only be used when the loadBalancingScheme is
-     *           set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     *           set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     *           (regional scope) or INTERNAL_MANAGED.
      * }
      */
     public function __construct($data = NULL) {
@@ -364,13 +378,18 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, the route is a pattern match expression that must match the
-     * :path header once the query string is removed.
-     *  A pattern match allows you to match
-     *       - The value must be between 1 and 1024 characters
-     *       - The pattern must start with a leading slash ("/")
-     *       - There may be no more than 5 operators in pattern
-     *  Precisely one ofprefix_match, full_path_match,regex_match or path_template_match must be set.
+     * If specified, this field defines a path template pattern that must match
+     * the :path header after the query string is removed.
+     * A path template pattern can include variables and wildcards.
+     * Variables are enclosed in curly braces, for example{variable_name}. Wildcards include * that
+     * matches a single path segment, and ** that matches zero or
+     * more path segments. The pattern must follow these rules:
+     *       - The value must be between 1 and 1024 characters.
+     *       - The pattern must start with a leading slash ("/").
+     *       - No more than 5 operators (variables or wildcards) may appear in
+     *       the pattern.
+     * Precisely one ofprefixMatch, fullPathMatch,regexMatch, or pathTemplateMatch must be
+     * set.
      *
      * Generated from protobuf field <code>optional string path_template_match = 292348186;</code>
      * @return string
@@ -391,13 +410,18 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, the route is a pattern match expression that must match the
-     * :path header once the query string is removed.
-     *  A pattern match allows you to match
-     *       - The value must be between 1 and 1024 characters
-     *       - The pattern must start with a leading slash ("/")
-     *       - There may be no more than 5 operators in pattern
-     *  Precisely one ofprefix_match, full_path_match,regex_match or path_template_match must be set.
+     * If specified, this field defines a path template pattern that must match
+     * the :path header after the query string is removed.
+     * A path template pattern can include variables and wildcards.
+     * Variables are enclosed in curly braces, for example{variable_name}. Wildcards include * that
+     * matches a single path segment, and ** that matches zero or
+     * more path segments. The pattern must follow these rules:
+     *       - The value must be between 1 and 1024 characters.
+     *       - The pattern must start with a leading slash ("/").
+     *       - No more than 5 operators (variables or wildcards) may appear in
+     *       the pattern.
+     * Precisely one ofprefixMatch, fullPathMatch,regexMatch, or pathTemplateMatch must be
+     * set.
      *
      * Generated from protobuf field <code>optional string path_template_match = 292348186;</code>
      * @param string $var
@@ -415,9 +439,10 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * For satisfying the matchRule condition, the request's
      * path must begin with the specified prefixMatch.prefixMatch must begin with a /.
      * The value must be from 1 to 1024 characters.
-     * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
-     * specified.
-     * specified.
+     * The * character inside a prefix match is
+     * treated as a literal character, not as a wildcard.
+     * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match can be
+     * used within a matchRule.
      *
      * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
      * @return string
@@ -441,9 +466,10 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * For satisfying the matchRule condition, the request's
      * path must begin with the specified prefixMatch.prefixMatch must begin with a /.
      * The value must be from 1 to 1024 characters.
-     * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
-     * specified.
-     * specified.
+     * The * character inside a prefix match is
+     * treated as a literal character, not as a wildcard.
+     * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match can be
+     * used within a matchRule.
      *
      * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
      * @param string $var
@@ -495,7 +521,8 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
      * specified.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @return string
@@ -523,7 +550,8 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
      * specified.
      * Regular expressions can only be used when the loadBalancingScheme is
-     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED orINTERNAL_MANAGED.
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @param string $var

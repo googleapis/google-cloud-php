@@ -38,7 +38,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UrlMap extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -160,7 +160,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#urlMaps for
+     * Output only. [Output Only] Type of the resource. Always compute#urlMaps for
      * url maps.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -185,7 +185,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     private $path_matchers;
     /**
-     * [Output Only] URL of the region where the regional URL map resides.
+     * Output only. [Output Only] URL of the region where the regional URL map resides.
      * This field is not applicable to global URL maps.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -216,7 +216,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type \Google\Cloud\Compute\V1\CustomErrorResponsePolicy $default_custom_error_response_policy
      *           defaultCustomErrorResponsePolicy specifies how the Load
@@ -298,7 +298,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#urlMaps for
+     *           Output only. [Output Only] Type of the resource. Always compute#urlMaps for
      *           url maps.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
@@ -311,7 +311,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\PathMatcher>|\Google\Protobuf\Internal\RepeatedField $path_matchers
      *           The list of named PathMatchers to use against the URL.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional URL map resides.
+     *           Output only. [Output Only] URL of the region where the regional URL map resides.
      *           This field is not applicable to global URL maps.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
@@ -330,7 +330,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -352,7 +352,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -804,7 +804,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#urlMaps for
+     * Output only. [Output Only] Type of the resource. Always compute#urlMaps for
      * url maps.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -826,7 +826,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#urlMaps for
+     * Output only. [Output Only] Type of the resource. Always compute#urlMaps for
      * url maps.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -916,7 +916,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional URL map resides.
+     * Output only. [Output Only] URL of the region where the regional URL map resides.
      * This field is not applicable to global URL maps.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -940,7 +940,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional URL map resides.
+     * Output only. [Output Only] URL of the region where the regional URL map resides.
      * This field is not applicable to global URL maps.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.

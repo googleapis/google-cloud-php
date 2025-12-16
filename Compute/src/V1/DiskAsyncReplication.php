@@ -15,14 +15,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
+     * Output only. [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
      * started on the disk as a member of a group.
      *
      * Generated from protobuf field <code>optional string consistency_group_policy = 1991097;</code>
      */
     protected $consistency_group_policy = null;
     /**
-     * [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
+     * Output only. [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
      * started on the disk as a member of a group.
      *
      * Generated from protobuf field <code>optional string consistency_group_policy_id = 261065057;</code>
@@ -40,7 +40,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
      */
     protected $disk = null;
     /**
-     * [Output Only] The unique ID of the other disk asynchronously replicated
+     * Output only. [Output Only] The unique ID of the other disk asynchronously replicated
      * to or from the current disk. This value identifies the exact disk that
      * was used to create this replication. For example, if you started
      * replicating the persistent disk from a disk that was later deleted and
@@ -58,10 +58,10 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $consistency_group_policy
-     *           [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
+     *           Output only. [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
      *           started on the disk as a member of a group.
      *     @type string $consistency_group_policy_id
-     *           [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
+     *           Output only. [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
      *           started on the disk as a member of a group.
      *     @type string $disk
      *           The other disk asynchronously replicated to or from the current disk.
@@ -71,7 +71,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
      *              - projects/project/zones/zone/disks/disk
      *              - zones/zone/disks/disk
      *     @type string $disk_id
-     *           [Output Only] The unique ID of the other disk asynchronously replicated
+     *           Output only. [Output Only] The unique ID of the other disk asynchronously replicated
      *           to or from the current disk. This value identifies the exact disk that
      *           was used to create this replication. For example, if you started
      *           replicating the persistent disk from a disk that was later deleted and
@@ -85,7 +85,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
+     * Output only. [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
      * started on the disk as a member of a group.
      *
      * Generated from protobuf field <code>optional string consistency_group_policy = 1991097;</code>
@@ -107,7 +107,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
+     * Output only. [Output Only] URL of the DiskConsistencyGroupPolicy if replication was
      * started on the disk as a member of a group.
      *
      * Generated from protobuf field <code>optional string consistency_group_policy = 1991097;</code>
@@ -123,7 +123,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
+     * Output only. [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
      * started on the disk as a member of a group.
      *
      * Generated from protobuf field <code>optional string consistency_group_policy_id = 261065057;</code>
@@ -145,7 +145,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
+     * Output only. [Output Only] ID of the DiskConsistencyGroupPolicy if replication was
      * started on the disk as a member of a group.
      *
      * Generated from protobuf field <code>optional string consistency_group_policy_id = 261065057;</code>
@@ -207,7 +207,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the other disk asynchronously replicated
+     * Output only. [Output Only] The unique ID of the other disk asynchronously replicated
      * to or from the current disk. This value identifies the exact disk that
      * was used to create this replication. For example, if you started
      * replicating the persistent disk from a disk that was later deleted and
@@ -233,7 +233,7 @@ class DiskAsyncReplication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique ID of the other disk asynchronously replicated
+     * Output only. [Output Only] The unique ID of the other disk asynchronously replicated
      * to or from the current disk. This value identifies the exact disk that
      * was used to create this replication. For example, if you started
      * replicating the persistent disk from a disk that was later deleted and

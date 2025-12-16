@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Numeric identifier for this VPN interface associated with
+     * Output only. [Output Only] Numeric identifier for this VPN interface associated with
      * the VPN gateway.
      *
      * Generated from protobuf field <code>optional uint32 id = 3355;</code>
@@ -33,7 +33,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      */
     protected $interconnect_attachment = null;
     /**
-     * [Output Only] IP address for this VPN interface associated with the VPN
+     * Output only. [Output Only] IP address for this VPN interface associated with the VPN
      * gateway.
      * The IP address could be either a regional external IP address or
      * a regional internal IP address. The two IP addresses for a VPN gateway
@@ -49,7 +49,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      */
     protected $ip_address = null;
     /**
-     * [Output Only] IPv6 address for this VPN interface associated with the VPN
+     * Output only. [Output Only] IPv6 address for this VPN interface associated with the VPN
      * gateway.
      * The IPv6 address must be a regional external IPv6 address. The format is
      * RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
@@ -65,7 +65,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $id
-     *           [Output Only] Numeric identifier for this VPN interface associated with
+     *           Output only. [Output Only] Numeric identifier for this VPN interface associated with
      *           the VPN gateway.
      *     @type string $interconnect_attachment
      *           URL of the VLAN attachment (interconnectAttachment) resource for this
@@ -74,7 +74,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *           or ingress traffic for this VPN gateway interface goes through the
      *           specified VLAN attachment resource.
      *     @type string $ip_address
-     *           [Output Only] IP address for this VPN interface associated with the VPN
+     *           Output only. [Output Only] IP address for this VPN interface associated with the VPN
      *           gateway.
      *           The IP address could be either a regional external IP address or
      *           a regional internal IP address. The two IP addresses for a VPN gateway
@@ -86,7 +86,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *           Interconnect) HA VPN tunnels, the IP address must be a regional external
      *           IP address.
      *     @type string $ipv6_address
-     *           [Output Only] IPv6 address for this VPN interface associated with the VPN
+     *           Output only. [Output Only] IPv6 address for this VPN interface associated with the VPN
      *           gateway.
      *           The IPv6 address must be a regional external IPv6 address. The format is
      *           RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
@@ -98,7 +98,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Numeric identifier for this VPN interface associated with
+     * Output only. [Output Only] Numeric identifier for this VPN interface associated with
      * the VPN gateway.
      *
      * Generated from protobuf field <code>optional uint32 id = 3355;</code>
@@ -120,7 +120,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Numeric identifier for this VPN interface associated with
+     * Output only. [Output Only] Numeric identifier for this VPN interface associated with
      * the VPN gateway.
      *
      * Generated from protobuf field <code>optional uint32 id = 3355;</code>
@@ -180,7 +180,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IP address for this VPN interface associated with the VPN
+     * Output only. [Output Only] IP address for this VPN interface associated with the VPN
      * gateway.
      * The IP address could be either a regional external IP address or
      * a regional internal IP address. The two IP addresses for a VPN gateway
@@ -211,7 +211,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IP address for this VPN interface associated with the VPN
+     * Output only. [Output Only] IP address for this VPN interface associated with the VPN
      * gateway.
      * The IP address could be either a regional external IP address or
      * a regional internal IP address. The two IP addresses for a VPN gateway
@@ -236,7 +236,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv6 address for this VPN interface associated with the VPN
+     * Output only. [Output Only] IPv6 address for this VPN interface associated with the VPN
      * gateway.
      * The IPv6 address must be a regional external IPv6 address. The format is
      * RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
@@ -260,7 +260,7 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] IPv6 address for this VPN interface associated with the VPN
+     * Output only. [Output Only] IPv6 address for this VPN interface associated with the VPN
      * gateway.
      * The IPv6 address must be a regional external IPv6 address. The format is
      * RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).

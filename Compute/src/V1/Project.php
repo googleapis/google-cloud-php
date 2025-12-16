@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Project extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The Cloud Armor tier for this project. It can be one of the
+     * Output only. [Output Only] The Cloud Armor tier for this project. It can be one of the
      * following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
      * If this field is not specified, it is assumed to beCA_STANDARD.
      * Check the CloudArmorTier enum for the list of possible values.
@@ -78,7 +78,7 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#project for
+     * Output only. [Output Only] Type of the resource. Always compute#project for
      * projects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -111,7 +111,7 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     protected $usage_export_location = null;
     /**
-     * [Output Only] Default internal DNS setting used by VMs running in
+     * Output only. [Output Only] Default internal DNS setting used by VMs running in
      * this project.
      * Check the VmDnsSetting enum for the list of possible values.
      *
@@ -135,7 +135,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cloud_armor_tier
-     *           [Output Only] The Cloud Armor tier for this project. It can be one of the
+     *           Output only. [Output Only] The Cloud Armor tier for this project. It can be one of the
      *           following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
      *           If this field is not specified, it is assumed to beCA_STANDARD.
      *           Check the CloudArmorTier enum for the list of possible values.
@@ -162,7 +162,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *           defined by the server. This is *not* the project ID, and is
      *           just a unique ID used by Compute Engine to identify resources.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#project for
+     *           Output only. [Output Only] Type of the resource. Always compute#project for
      *           projects.
      *     @type string $name
      *           The project ID. For example: my-example-project. Use the
@@ -175,7 +175,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *           An optional naming prefix for daily usage reports and the Google Cloud
      *           Storage bucket where they are stored.
      *     @type string $vm_dns_setting
-     *           [Output Only] Default internal DNS setting used by VMs running in
+     *           Output only. [Output Only] Default internal DNS setting used by VMs running in
      *           this project.
      *           Check the VmDnsSetting enum for the list of possible values.
      *     @type string $xpn_project_status
@@ -191,7 +191,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The Cloud Armor tier for this project. It can be one of the
+     * Output only. [Output Only] The Cloud Armor tier for this project. It can be one of the
      * following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
      * If this field is not specified, it is assumed to beCA_STANDARD.
      * Check the CloudArmorTier enum for the list of possible values.
@@ -215,7 +215,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The Cloud Armor tier for this project. It can be one of the
+     * Output only. [Output Only] The Cloud Armor tier for this project. It can be one of the
      * following values: CA_STANDARD,CA_ENTERPRISE_PAYGO.
      * If this field is not specified, it is assumed to beCA_STANDARD.
      * Check the CloudArmorTier enum for the list of possible values.
@@ -491,7 +491,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#project for
+     * Output only. [Output Only] Type of the resource. Always compute#project for
      * projects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -513,7 +513,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#project for
+     * Output only. [Output Only] Type of the resource. Always compute#project for
      * projects.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -667,7 +667,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Default internal DNS setting used by VMs running in
+     * Output only. [Output Only] Default internal DNS setting used by VMs running in
      * this project.
      * Check the VmDnsSetting enum for the list of possible values.
      *
@@ -690,7 +690,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Default internal DNS setting used by VMs running in
+     * Output only. [Output Only] Default internal DNS setting used by VMs running in
      * this project.
      * Check the VmDnsSetting enum for the list of possible values.
      *

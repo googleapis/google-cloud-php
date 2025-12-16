@@ -31,7 +31,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
+     * Output only. [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
      * Network Edge Security Services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -48,13 +48,13 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      */
@@ -78,7 +78,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
      *     @type array|\Google\Protobuf\Internal\MapField $items
      *           A list of NetworkEdgeSecurityServicesScopedList resources.
      *     @type string $kind
-     *           [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
+     *           Output only. [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
      *           Network Edge Security Services.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -87,9 +87,9 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           Output only. [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -194,7 +194,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
+     * Output only. [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
      * Network Edge Security Services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -216,7 +216,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
+     * Output only. [Output Only] Type of resource. Alwayscompute#networkEdgeSecurityServiceAggregatedList for lists of
      * Network Edge Security Services.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -276,7 +276,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -297,7 +297,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -312,7 +312,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -323,7 +323,7 @@ class NetworkEdgeSecurityServiceAggregatedList extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

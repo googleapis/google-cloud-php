@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterStatusResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -32,7 +32,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           Type of resource.
+     *           Output only. Type of resource.
      *     @type \Google\Cloud\Compute\V1\RouterStatus $result
      * }
      */
@@ -42,7 +42,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -63,7 +63,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of resource.
+     * Output only. Type of resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

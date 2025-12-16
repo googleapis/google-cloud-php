@@ -27,7 +27,7 @@ class PublicAdvertisedPrefixList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -66,7 +66,7 @@ class PublicAdvertisedPrefixList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\PublicAdvertisedPrefix>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of PublicAdvertisedPrefix resources.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
      *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
@@ -147,7 +147,7 @@ class PublicAdvertisedPrefixList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -168,7 +168,7 @@ class PublicAdvertisedPrefixList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Commitment;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Status of the commitment with regards to eventual expiration
+ * Output only. [Output Only] Status of the commitment with regards to eventual expiration
  * (each commitment has an end date defined). Status can be one of the
  * following values: NOT_YET_ACTIVE, ACTIVE, orEXPIRED.
  *

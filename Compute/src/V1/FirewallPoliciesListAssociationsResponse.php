@@ -21,7 +21,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      */
     private $associations;
     /**
-     * [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
+     * Output only. [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
      * firewallPolicy associations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -37,7 +37,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
      *           A list of associations.
      *     @type string $kind
-     *           [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
+     *           Output only. [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
      *           firewallPolicy associations.
      * }
      */
@@ -73,7 +73,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
+     * Output only. [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
      * firewallPolicy associations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -95,7 +95,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
+     * Output only. [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
      * firewallPolicy associations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

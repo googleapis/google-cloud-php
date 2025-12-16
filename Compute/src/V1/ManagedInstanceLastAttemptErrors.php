@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] Encountered errors during the last attempt to create or
+ * Output only. [Output Only] Encountered errors during the last attempt to create or
  * delete the instance.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ManagedInstanceLastAttemptErrors</code>

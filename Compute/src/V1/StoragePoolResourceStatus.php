@@ -22,7 +22,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      */
     protected $disk_count = null;
     /**
-     * [Output Only] Timestamp of the last successful resize inRFC3339 text format.
+     * Output only. [Output Only] Timestamp of the last successful resize inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_resize_timestamp = 500825556;</code>
      */
@@ -95,7 +95,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      *     @type int|string $disk_count
      *           [Output Only] Number of disks used.
      *     @type string $last_resize_timestamp
-     *           [Output Only] Timestamp of the last successful resize inRFC3339 text format.
+     *           Output only. [Output Only] Timestamp of the last successful resize inRFC3339 text format.
      *     @type int|string $max_total_provisioned_disk_capacity_gb
      *           [Output Only] Maximum allowed aggregate disk size in GiB.
      *     @type int|string $pool_used_capacity_bytes
@@ -166,7 +166,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Timestamp of the last successful resize inRFC3339 text format.
+     * Output only. [Output Only] Timestamp of the last successful resize inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_resize_timestamp = 500825556;</code>
      * @return string
@@ -187,7 +187,7 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Timestamp of the last successful resize inRFC3339 text format.
+     * Output only. [Output Only] Timestamp of the last successful resize inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_resize_timestamp = 500825556;</code>
      * @param string $var

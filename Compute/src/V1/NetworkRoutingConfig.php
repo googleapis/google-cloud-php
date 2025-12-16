@@ -44,14 +44,14 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
      */
     protected $bgp_inter_region_cost = null;
     /**
-     * [Output Only] Effective value of the bgp_always_compare_med
+     * Output only. [Output Only] Effective value of the bgp_always_compare_med
      * field.
      *
      * Generated from protobuf field <code>optional bool effective_bgp_always_compare_med = 214661838;</code>
      */
     protected $effective_bgp_always_compare_med = null;
     /**
-     * [Output Only] Effective value of the bgp_inter_region_cost
+     * Output only. [Output Only] Effective value of the bgp_inter_region_cost
      * field.
      * Check the EffectiveBgpInterRegionCost enum for the list of possible values.
      *
@@ -90,10 +90,10 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
      *           selection algorithm. Can be DEFAULT orADD_COST_TO_MED.
      *           Check the BgpInterRegionCost enum for the list of possible values.
      *     @type bool $effective_bgp_always_compare_med
-     *           [Output Only] Effective value of the bgp_always_compare_med
+     *           Output only. [Output Only] Effective value of the bgp_always_compare_med
      *           field.
      *     @type string $effective_bgp_inter_region_cost
-     *           [Output Only] Effective value of the bgp_inter_region_cost
+     *           Output only. [Output Only] Effective value of the bgp_inter_region_cost
      *           field.
      *           Check the EffectiveBgpInterRegionCost enum for the list of possible values.
      *     @type string $routing_mode
@@ -234,7 +234,7 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Effective value of the bgp_always_compare_med
+     * Output only. [Output Only] Effective value of the bgp_always_compare_med
      * field.
      *
      * Generated from protobuf field <code>optional bool effective_bgp_always_compare_med = 214661838;</code>
@@ -256,7 +256,7 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Effective value of the bgp_always_compare_med
+     * Output only. [Output Only] Effective value of the bgp_always_compare_med
      * field.
      *
      * Generated from protobuf field <code>optional bool effective_bgp_always_compare_med = 214661838;</code>
@@ -272,7 +272,7 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Effective value of the bgp_inter_region_cost
+     * Output only. [Output Only] Effective value of the bgp_inter_region_cost
      * field.
      * Check the EffectiveBgpInterRegionCost enum for the list of possible values.
      *
@@ -295,7 +295,7 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Effective value of the bgp_inter_region_cost
+     * Output only. [Output Only] Effective value of the bgp_inter_region_cost
      * field.
      * Check the EffectiveBgpInterRegionCost enum for the list of possible values.
      *

@@ -40,7 +40,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     protected $auto_create_subnetworks = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -62,7 +62,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     protected $enable_ula_internal_ipv6 = null;
     /**
-     * [Output Only] URL of the firewall policy the network is associated with.
+     * Output only. [Output Only] URL of the firewall policy the network is associated with.
      *
      * Generated from protobuf field <code>optional string firewall_policy = 498173265;</code>
      */
@@ -75,7 +75,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     protected $gateway_i_pv4 = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -94,7 +94,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     protected $internal_ipv6_range = null;
     /**
-     * [Output Only] Type of the resource. Always compute#network for
+     * Output only. [Output Only] Type of the resource. Always compute#network for
      * networks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -149,7 +149,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     protected $params = null;
     /**
-     * [Output Only] A list of network peerings for the resource.
+     * Output only. [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
      */
@@ -168,7 +168,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -202,7 +202,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           For custom mode VPC networks, you can add subnets using the subnetworksinsert
      *           method.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this field when you
@@ -212,12 +212,12 @@ class Network extends \Google\Protobuf\Internal\Message
      *           a /48 from google defined ULA prefix fd20::/20.
      *           .
      *     @type string $firewall_policy
-     *           [Output Only] URL of the firewall policy the network is associated with.
+     *           Output only. [Output Only] URL of the firewall policy the network is associated with.
      *     @type string $gateway_i_pv4
      *           [Output Only] The gateway address for default routing out of the network,
      *           selected by Google Cloud.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $internal_ipv6_range
      *           When enabling ula internal ipv6, caller optionally can specify the /48
@@ -228,7 +228,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           allocated from fd20::/20 and returned via this field.
      *           .
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#network for
+     *           Output only. [Output Only] Type of the resource. Always compute#network for
      *           networks.
      *     @type int $mtu
      *           Maximum Transmission Unit in bytes.
@@ -259,14 +259,14 @@ class Network extends \Google\Protobuf\Internal\Message
      *           Input only. [Input Only] Additional params passed with the request, but not persisted
      *           as part of resource payload.
      *     @type array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $peerings
-     *           [Output Only] A list of network peerings for the resource.
+     *           Output only. [Output Only] A list of network peerings for the resource.
      *     @type \Google\Cloud\Compute\V1\NetworkRoutingConfig $routing_config
      *           The network-level routing configuration for this network.  Used by Cloud
      *           Router to determine what type of network-wide routing behavior to enforce.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           [Output Only] Server-defined fully-qualified URLs for all subnetworks
      *           in this VPC network.
@@ -370,7 +370,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -392,7 +392,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -486,7 +486,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the firewall policy the network is associated with.
+     * Output only. [Output Only] URL of the firewall policy the network is associated with.
      *
      * Generated from protobuf field <code>optional string firewall_policy = 498173265;</code>
      * @return string
@@ -507,7 +507,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the firewall policy the network is associated with.
+     * Output only. [Output Only] URL of the firewall policy the network is associated with.
      *
      * Generated from protobuf field <code>optional string firewall_policy = 498173265;</code>
      * @param string $var
@@ -560,7 +560,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -582,7 +582,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -646,7 +646,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#network for
+     * Output only. [Output Only] Type of the resource. Always compute#network for
      * networks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -668,7 +668,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#network for
+     * Output only. [Output Only] Type of the resource. Always compute#network for
      * networks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -900,7 +900,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of network peerings for the resource.
+     * Output only. [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -911,7 +911,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of network peerings for the resource.
+     * Output only. [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
      * @param array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $var
@@ -1000,7 +1000,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -1021,7 +1021,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var

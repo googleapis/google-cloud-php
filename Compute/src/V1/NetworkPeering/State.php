@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NetworkPeering;
 use UnexpectedValueException;
 
 /**
- * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+ * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
  * peering is `ACTIVE` when there's a matching configuration in the peer
  * network.
  *

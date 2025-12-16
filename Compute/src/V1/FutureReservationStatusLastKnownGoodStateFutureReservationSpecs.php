@@ -16,20 +16,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The previous share settings of the Future Reservation.
+     * Output only. [Output Only] The previous share settings of the Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      */
     protected $share_settings = null;
     /**
-     * [Output Only] The previous instance related properties of the
+     * Output only. [Output Only] The previous instance related properties of the
      * Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationSpecificSKUProperties specific_sku_properties = 108887106;</code>
      */
     protected $specific_sku_properties = null;
     /**
-     * [Output Only] The previous time window of the Future Reservation.
+     * Output only. [Output Only] The previous time window of the Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationTimeWindow time_window = 422983074;</code>
      */
@@ -42,12 +42,12 @@ class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \G
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
-     *           [Output Only] The previous share settings of the Future Reservation.
+     *           Output only. [Output Only] The previous share settings of the Future Reservation.
      *     @type \Google\Cloud\Compute\V1\FutureReservationSpecificSKUProperties $specific_sku_properties
-     *           [Output Only] The previous instance related properties of the
+     *           Output only. [Output Only] The previous instance related properties of the
      *           Future Reservation.
      *     @type \Google\Cloud\Compute\V1\FutureReservationTimeWindow $time_window
-     *           [Output Only] The previous time window of the Future Reservation.
+     *           Output only. [Output Only] The previous time window of the Future Reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \G
     }
 
     /**
-     * [Output Only] The previous share settings of the Future Reservation.
+     * Output only. [Output Only] The previous share settings of the Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      * @return \Google\Cloud\Compute\V1\ShareSettings|null
@@ -77,7 +77,7 @@ class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \G
     }
 
     /**
-     * [Output Only] The previous share settings of the Future Reservation.
+     * Output only. [Output Only] The previous share settings of the Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      * @param \Google\Cloud\Compute\V1\ShareSettings $var
@@ -92,7 +92,7 @@ class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \G
     }
 
     /**
-     * [Output Only] The previous instance related properties of the
+     * Output only. [Output Only] The previous instance related properties of the
      * Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationSpecificSKUProperties specific_sku_properties = 108887106;</code>
@@ -114,7 +114,7 @@ class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \G
     }
 
     /**
-     * [Output Only] The previous instance related properties of the
+     * Output only. [Output Only] The previous instance related properties of the
      * Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationSpecificSKUProperties specific_sku_properties = 108887106;</code>
@@ -130,7 +130,7 @@ class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \G
     }
 
     /**
-     * [Output Only] The previous time window of the Future Reservation.
+     * Output only. [Output Only] The previous time window of the Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationTimeWindow time_window = 422983074;</code>
      * @return \Google\Cloud\Compute\V1\FutureReservationTimeWindow|null
@@ -151,7 +151,7 @@ class FutureReservationStatusLastKnownGoodStateFutureReservationSpecs extends \G
     }
 
     /**
-     * [Output Only] The previous time window of the Future Reservation.
+     * Output only. [Output Only] The previous time window of the Future Reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationTimeWindow time_window = 422983074;</code>
      * @param \Google\Cloud\Compute\V1\FutureReservationTimeWindow $var

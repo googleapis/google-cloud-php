@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpnGateway extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -43,14 +43,14 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      */
     protected $gateway_ip_version = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of resource. Always compute#vpnGateway for
+     * Output only. [Output Only] Type of resource. Always compute#vpnGateway for
      * VPN gateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -96,13 +96,13 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
-     * [Output Only] URL of the region where the VPN gateway resides.
+     * Output only. [Output Only] URL of the region where the VPN gateway resides.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     protected $region = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -129,7 +129,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -139,10 +139,10 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *           specified, IPV4 will be used.
      *           Check the GatewayIpVersion enum for the list of possible values.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#vpnGateway for
+     *           Output only. [Output Only] Type of resource. Always compute#vpnGateway for
      *           VPN gateways.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this VpnGateway, which
@@ -168,9 +168,9 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *           URL of the network to which this VPN gateway is attached. Provided by the
      *           client when the VPN gateway is created.
      *     @type string $region
-     *           [Output Only] URL of the region where the VPN gateway resides.
+     *           Output only. [Output Only] URL of the region where the VPN gateway resides.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $stack_type
      *           The stack type for this VPN gateway to identify the IP protocols that are
      *           enabled. Possible values are: IPV4_ONLY,IPV4_IPV6, IPV6_ONLY. If not specified,IPV4_ONLY is used if the gateway IP version isIPV4, or IPV4_IPV6 if the gateway IP version isIPV6.
@@ -185,7 +185,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -207,7 +207,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -301,7 +301,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -323,7 +323,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -339,7 +339,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#vpnGateway for
+     * Output only. [Output Only] Type of resource. Always compute#vpnGateway for
      * VPN gateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -361,7 +361,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#vpnGateway for
+     * Output only. [Output Only] Type of resource. Always compute#vpnGateway for
      * VPN gateways.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -541,7 +541,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the VPN gateway resides.
+     * Output only. [Output Only] URL of the region where the VPN gateway resides.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -562,7 +562,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the VPN gateway resides.
+     * Output only. [Output Only] URL of the region where the VPN gateway resides.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
@@ -577,7 +577,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -598,7 +598,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

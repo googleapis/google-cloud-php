@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Continent for this location, which can take one of the
+ * Output only. [Output Only] Continent for this location, which can take one of the
  * following values:
  *    - AFRICA
  *    - ASIA_PAC

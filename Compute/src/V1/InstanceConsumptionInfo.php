@@ -15,27 +15,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of virtual CPUs that are available to the instance.
+     * Output only. The number of virtual CPUs that are available to the instance.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      */
     protected $guest_cpus = null;
     /**
-     * The amount of local SSD storage available to the instance,
+     * Output only. The amount of local SSD storage available to the instance,
      * defined in GiB.
      *
      * Generated from protobuf field <code>optional int32 local_ssd_gb = 329237578;</code>
      */
     protected $local_ssd_gb = null;
     /**
-     * The amount of physical memory available to the instance,
+     * Output only. The amount of physical memory available to the instance,
      * defined in MiB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      */
     protected $memory_mb = null;
     /**
-     * The minimal guaranteed number of virtual CPUs that are reserved.
+     * Output only. The minimal guaranteed number of virtual CPUs that are reserved.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      */
@@ -48,15 +48,15 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $guest_cpus
-     *           The number of virtual CPUs that are available to the instance.
+     *           Output only. The number of virtual CPUs that are available to the instance.
      *     @type int $local_ssd_gb
-     *           The amount of local SSD storage available to the instance,
+     *           Output only. The amount of local SSD storage available to the instance,
      *           defined in GiB.
      *     @type int $memory_mb
-     *           The amount of physical memory available to the instance,
+     *           Output only. The amount of physical memory available to the instance,
      *           defined in MiB.
      *     @type int $min_node_cpus
-     *           The minimal guaranteed number of virtual CPUs that are reserved.
+     *           Output only. The minimal guaranteed number of virtual CPUs that are reserved.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,7 +65,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of virtual CPUs that are available to the instance.
+     * Output only. The number of virtual CPUs that are available to the instance.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      * @return int
@@ -86,7 +86,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of virtual CPUs that are available to the instance.
+     * Output only. The number of virtual CPUs that are available to the instance.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      * @param int $var
@@ -101,7 +101,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The amount of local SSD storage available to the instance,
+     * Output only. The amount of local SSD storage available to the instance,
      * defined in GiB.
      *
      * Generated from protobuf field <code>optional int32 local_ssd_gb = 329237578;</code>
@@ -123,7 +123,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The amount of local SSD storage available to the instance,
+     * Output only. The amount of local SSD storage available to the instance,
      * defined in GiB.
      *
      * Generated from protobuf field <code>optional int32 local_ssd_gb = 329237578;</code>
@@ -139,7 +139,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The amount of physical memory available to the instance,
+     * Output only. The amount of physical memory available to the instance,
      * defined in MiB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
@@ -161,7 +161,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The amount of physical memory available to the instance,
+     * Output only. The amount of physical memory available to the instance,
      * defined in MiB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
@@ -177,7 +177,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimal guaranteed number of virtual CPUs that are reserved.
+     * Output only. The minimal guaranteed number of virtual CPUs that are reserved.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      * @return int
@@ -198,7 +198,7 @@ class InstanceConsumptionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimal guaranteed number of virtual CPUs that are reserved.
+     * Output only. The minimal guaranteed number of virtual CPUs that are reserved.
      *
      * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
      * @param int $var

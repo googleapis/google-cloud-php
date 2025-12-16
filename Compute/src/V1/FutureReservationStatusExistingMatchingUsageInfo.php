@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class FutureReservationStatusExistingMatchingUsageInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Count to represent min(FR total_count,
+     * Output only. Count to represent min(FR total_count,
      * matching_reserved_capacity+matching_unreserved_instances)
      *
      * Generated from protobuf field <code>optional int64 count = 94851343;</code>
      */
     protected $count = null;
     /**
-     * Timestamp when the matching usage was calculated
+     * Output only. Timestamp when the matching usage was calculated
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      */
@@ -37,10 +37,10 @@ class FutureReservationStatusExistingMatchingUsageInfo extends \Google\Protobuf\
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $count
-     *           Count to represent min(FR total_count,
+     *           Output only. Count to represent min(FR total_count,
      *           matching_reserved_capacity+matching_unreserved_instances)
      *     @type string $timestamp
-     *           Timestamp when the matching usage was calculated
+     *           Output only. Timestamp when the matching usage was calculated
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +49,7 @@ class FutureReservationStatusExistingMatchingUsageInfo extends \Google\Protobuf\
     }
 
     /**
-     * Count to represent min(FR total_count,
+     * Output only. Count to represent min(FR total_count,
      * matching_reserved_capacity+matching_unreserved_instances)
      *
      * Generated from protobuf field <code>optional int64 count = 94851343;</code>
@@ -71,7 +71,7 @@ class FutureReservationStatusExistingMatchingUsageInfo extends \Google\Protobuf\
     }
 
     /**
-     * Count to represent min(FR total_count,
+     * Output only. Count to represent min(FR total_count,
      * matching_reserved_capacity+matching_unreserved_instances)
      *
      * Generated from protobuf field <code>optional int64 count = 94851343;</code>
@@ -87,7 +87,7 @@ class FutureReservationStatusExistingMatchingUsageInfo extends \Google\Protobuf\
     }
 
     /**
-     * Timestamp when the matching usage was calculated
+     * Output only. Timestamp when the matching usage was calculated
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      * @return string
@@ -108,7 +108,7 @@ class FutureReservationStatusExistingMatchingUsageInfo extends \Google\Protobuf\
     }
 
     /**
-     * Timestamp when the matching usage was calculated
+     * Output only. Timestamp when the matching usage was calculated
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      * @param string $var

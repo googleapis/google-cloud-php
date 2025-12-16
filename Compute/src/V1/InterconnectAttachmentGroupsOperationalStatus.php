@@ -23,7 +23,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
      */
     protected $configured = null;
     /**
-     * Summarizes the status of the group.
+     * Output only. Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
@@ -34,7 +34,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
      */
     protected $intent = null;
     /**
-     * The operational state of the group, including only active Attachments.
+     * Output only. The operational state of the group, including only active Attachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupConfigured operational = 129704914;</code>
      */
@@ -49,11 +49,11 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
      *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusAttachmentStatus>|\Google\Protobuf\Internal\RepeatedField $attachment_statuses
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfigured $configured
      *     @type string $group_status
-     *           Summarizes the status of the group.
+     *           Output only. Summarizes the status of the group.
      *           Check the GroupStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupIntent $intent
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfigured $operational
-     *           The operational state of the group, including only active Attachments.
+     *           Output only. The operational state of the group, including only active Attachments.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +116,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
     }
 
     /**
-     * Summarizes the status of the group.
+     * Output only. Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
@@ -138,7 +138,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
     }
 
     /**
-     * Summarizes the status of the group.
+     * Output only. Summarizes the status of the group.
      * Check the GroupStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string group_status = 338778546;</code>
@@ -186,7 +186,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
     }
 
     /**
-     * The operational state of the group, including only active Attachments.
+     * Output only. The operational state of the group, including only active Attachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupConfigured operational = 129704914;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfigured|null
@@ -207,7 +207,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
     }
 
     /**
-     * The operational state of the group, including only active Attachments.
+     * Output only. The operational state of the group, including only active Attachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentGroupConfigured operational = 129704914;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfigured $var

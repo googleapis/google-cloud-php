@@ -25,7 +25,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     protected $cipher_suite = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -60,7 +60,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      */
     protected $ike_version = null;
     /**
-     * [Output Only] Type of resource. Always compute#vpnTunnel for
+     * Output only. [Output Only] Type of resource. Always compute#vpnTunnel for
      * VPN tunnels.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -260,7 +260,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           User specified list of ciphers to use for the phase 1 and phase 2 of the
      *           IKE protocol.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -275,7 +275,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           VPN gateway. Acceptable IKE versions are 1 or 2.
      *           The default version is 2.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#vpnTunnel for
+     *           Output only. [Output Only] Type of resource. Always compute#vpnTunnel for
      *           VPN tunnels.
      *     @type string $label_fingerprint
      *           A fingerprint for the labels being applied to this VpnTunnel, which is
@@ -434,7 +434,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -456,7 +456,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -624,7 +624,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#vpnTunnel for
+     * Output only. [Output Only] Type of resource. Always compute#vpnTunnel for
      * VPN tunnels.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -646,7 +646,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#vpnTunnel for
+     * Output only. [Output Only] Type of resource. Always compute#vpnTunnel for
      * VPN tunnels.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>

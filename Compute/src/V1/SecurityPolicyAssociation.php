@@ -21,7 +21,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $attachment_id = null;
     /**
-     * [Output Only] The display name of the security policy of the association.
+     * Output only. [Output Only] The display name of the security policy of the association.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
@@ -45,13 +45,13 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] The security policy ID of the association.
+     * Output only. [Output Only] The security policy ID of the association.
      *
      * Generated from protobuf field <code>optional string security_policy_id = 203671817;</code>
      */
     protected $security_policy_id = null;
     /**
-     * [Output Only] The short name of the security policy of the association.
+     * Output only. [Output Only] The short name of the security policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      */
@@ -66,7 +66,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      *     @type string $attachment_id
      *           The resource that the security policy is attached to.
      *     @type string $display_name
-     *           [Output Only] The display name of the security policy of the association.
+     *           Output only. [Output Only] The display name of the security policy of the association.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_folders
      *           A list of folders to exclude from the security policy.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_projects
@@ -74,9 +74,9 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name for an association.
      *     @type string $security_policy_id
-     *           [Output Only] The security policy ID of the association.
+     *           Output only. [Output Only] The security policy ID of the association.
      *     @type string $short_name
-     *           [Output Only] The short name of the security policy of the association.
+     *           Output only. [Output Only] The short name of the security policy of the association.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,7 +121,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The display name of the security policy of the association.
+     * Output only. [Output Only] The display name of the security policy of the association.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @return string
@@ -142,7 +142,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The display name of the security policy of the association.
+     * Output only. [Output Only] The display name of the security policy of the association.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @param string $var
@@ -245,7 +245,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The security policy ID of the association.
+     * Output only. [Output Only] The security policy ID of the association.
      *
      * Generated from protobuf field <code>optional string security_policy_id = 203671817;</code>
      * @return string
@@ -266,7 +266,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The security policy ID of the association.
+     * Output only. [Output Only] The security policy ID of the association.
      *
      * Generated from protobuf field <code>optional string security_policy_id = 203671817;</code>
      * @param string $var
@@ -281,7 +281,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The short name of the security policy of the association.
+     * Output only. [Output Only] The short name of the security policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @return string
@@ -302,7 +302,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The short name of the security policy of the association.
+     * Output only. [Output Only] The short name of the security policy of the association.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @param string $var

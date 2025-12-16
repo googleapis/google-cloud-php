@@ -51,7 +51,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#zone for
+     * Output only. [Output Only] Type of the resource. Always compute#zone for
      * zones.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -83,7 +83,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      */
@@ -108,7 +108,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#zone for
+     *           Output only. [Output Only] Type of the resource. Always compute#zone for
      *           zones.
      *     @type string $name
      *           [Output Only] Name of the resource.
@@ -120,7 +120,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status of the zone, either UP orDOWN.
      *           Check the Status enum for the list of possible values.
      *     @type bool $supports_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -303,7 +303,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#zone for
+     * Output only. [Output Only] Type of the resource. Always compute#zone for
      * zones.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -325,7 +325,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#zone for
+     * Output only. [Output Only] Type of the resource. Always compute#zone for
      * zones.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -487,7 +487,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @return bool
@@ -508,7 +508,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @param bool $var

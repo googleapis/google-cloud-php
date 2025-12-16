@@ -26,7 +26,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The creation timestamp for this instance template inRFC3339
+     * Output only. [Output Only] The creation timestamp for this instance template inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -40,14 +40,14 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] A unique identifier for this instance template. The server
+     * Output only. [Output Only] A unique identifier for this instance template. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -71,14 +71,14 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
      */
     protected $properties = null;
     /**
-     * [Output Only] URL of the region where the instance template resides. Only
+     * Output only. [Output Only] URL of the region where the instance template resides. Only
      * applicable for regional resources.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     protected $region = null;
     /**
-     * [Output Only] The URL for this instance template. The server defines this
+     * Output only. [Output Only] The URL for this instance template. The server defines this
      * URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -108,16 +108,16 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] The creation timestamp for this instance template inRFC3339
+     *           Output only. [Output Only] The creation timestamp for this instance template inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type int|string $id
-     *           [Output Only] A unique identifier for this instance template. The server
+     *           Output only. [Output Only] A unique identifier for this instance template. The server
      *           defines this identifier.
      *     @type string $kind
-     *           [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
+     *           Output only. [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
      *     @type string $name
      *           Name of the resource; provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -129,10 +129,10 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InstanceProperties $properties
      *           The instance properties for this instance template.
      *     @type string $region
-     *           [Output Only] URL of the region where the instance template resides. Only
+     *           Output only. [Output Only] URL of the region where the instance template resides. Only
      *           applicable for regional resources.
      *     @type string $self_link
-     *           [Output Only] The URL for this instance template. The server defines this
+     *           Output only. [Output Only] The URL for this instance template. The server defines this
      *           URL.
      *     @type string $source_instance
      *           The source instance used to create the template. You can provide this as a
@@ -150,7 +150,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this instance template inRFC3339
+     * Output only. [Output Only] The creation timestamp for this instance template inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -172,7 +172,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The creation timestamp for this instance template inRFC3339
+     * Output only. [Output Only] The creation timestamp for this instance template inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -226,7 +226,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this instance template. The server
+     * Output only. [Output Only] A unique identifier for this instance template. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -248,7 +248,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A unique identifier for this instance template. The server
+     * Output only. [Output Only] A unique identifier for this instance template. The server
      * defines this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -264,7 +264,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -285,7 +285,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceTemplate for instance templates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -384,7 +384,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the instance template resides. Only
+     * Output only. [Output Only] URL of the region where the instance template resides. Only
      * applicable for regional resources.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -406,7 +406,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the instance template resides. Only
+     * Output only. [Output Only] URL of the region where the instance template resides. Only
      * applicable for regional resources.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -422,7 +422,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this instance template. The server defines this
+     * Output only. [Output Only] The URL for this instance template. The server defines this
      * URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -444,7 +444,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL for this instance template. The server defines this
+     * Output only. [Output Only] The URL for this instance template. The server defines this
      * URL.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>

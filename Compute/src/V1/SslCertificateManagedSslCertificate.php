@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] Detailed statuses of the domains specified for managed
+     * Output only. [Output only] Detailed statuses of the domains specified for managed
      * certificate resource.
      *
      * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
@@ -32,7 +32,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      */
     private $domains;
     /**
-     * [Output only] Status of the managed certificate resource.
+     * Output only. [Output only] Status of the managed certificate resource.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -46,7 +46,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $domain_status
-     *           [Output only] Detailed statuses of the domains specified for managed
+     *           Output only. [Output only] Detailed statuses of the domains specified for managed
      *           certificate resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
      *           The domains for which a managed SSL certificate will be generated. Each
@@ -54,7 +54,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      *           domains per Google-managed SSL
      *           certificate](/load-balancing/docs/quotas#ssl_certificates).
      *     @type string $status
-     *           [Output only] Status of the managed certificate resource.
+     *           Output only. [Output only] Status of the managed certificate resource.
      *           Check the Status enum for the list of possible values.
      * }
      */
@@ -64,7 +64,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output only] Detailed statuses of the domains specified for managed
+     * Output only. [Output only] Detailed statuses of the domains specified for managed
      * certificate resource.
      *
      * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
@@ -76,7 +76,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output only] Detailed statuses of the domains specified for managed
+     * Output only. [Output only] Detailed statuses of the domains specified for managed
      * certificate resource.
      *
      * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
@@ -124,7 +124,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output only] Status of the managed certificate resource.
+     * Output only. [Output only] Status of the managed certificate resource.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -146,7 +146,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * [Output only] Status of the managed certificate resource.
+     * Output only. [Output only] Status of the managed certificate resource.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

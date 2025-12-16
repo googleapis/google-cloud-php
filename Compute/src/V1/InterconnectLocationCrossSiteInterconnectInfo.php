@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectLocationCrossSiteInterconnectInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The remote location for Cross-Site Interconnect wires. This specifies an
+     * Output only. The remote location for Cross-Site Interconnect wires. This specifies an
      * InterconnectLocation city (metropolitan area designator), which itself
      * may match multiple InterconnectLocations.
      *
@@ -32,7 +32,7 @@ class InterconnectLocationCrossSiteInterconnectInfo extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $city
-     *           The remote location for Cross-Site Interconnect wires. This specifies an
+     *           Output only. The remote location for Cross-Site Interconnect wires. This specifies an
      *           InterconnectLocation city (metropolitan area designator), which itself
      *           may match multiple InterconnectLocations.
      * }
@@ -43,7 +43,7 @@ class InterconnectLocationCrossSiteInterconnectInfo extends \Google\Protobuf\Int
     }
 
     /**
-     * The remote location for Cross-Site Interconnect wires. This specifies an
+     * Output only. The remote location for Cross-Site Interconnect wires. This specifies an
      * InterconnectLocation city (metropolitan area designator), which itself
      * may match multiple InterconnectLocations.
      *
@@ -66,7 +66,7 @@ class InterconnectLocationCrossSiteInterconnectInfo extends \Google\Protobuf\Int
     }
 
     /**
-     * The remote location for Cross-Site Interconnect wires. This specifies an
+     * Output only. The remote location for Cross-Site Interconnect wires. This specifies an
      * InterconnectLocation city (metropolitan area designator), which itself
      * may match multiple InterconnectLocations.
      *

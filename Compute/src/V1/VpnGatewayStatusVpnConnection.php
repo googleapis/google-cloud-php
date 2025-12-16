@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URL reference to the peer external VPN gateways to which the VPN tunnels
+     * Output only. URL reference to the peer external VPN gateways to which the VPN tunnels
      * in this VPN connection are connected.
      * This field is mutually exclusive with peer_gcp_gateway.
      *
@@ -26,7 +26,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      */
     protected $peer_external_gateway = null;
     /**
-     * URL reference to the peer side VPN gateways to which the VPN tunnels in
+     * Output only. URL reference to the peer side VPN gateways to which the VPN tunnels in
      * this VPN connection are connected.
      * This field is mutually exclusive with peer_gcp_gateway.
      *
@@ -53,11 +53,11 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $peer_external_gateway
-     *           URL reference to the peer external VPN gateways to which the VPN tunnels
+     *           Output only. URL reference to the peer external VPN gateways to which the VPN tunnels
      *           in this VPN connection are connected.
      *           This field is mutually exclusive with peer_gcp_gateway.
      *     @type string $peer_gcp_gateway
-     *           URL reference to the peer side VPN gateways to which the VPN tunnels in
+     *           Output only. URL reference to the peer side VPN gateways to which the VPN tunnels in
      *           this VPN connection are connected.
      *           This field is mutually exclusive with peer_gcp_gateway.
      *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState $state
@@ -72,7 +72,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer external VPN gateways to which the VPN tunnels
+     * Output only. URL reference to the peer external VPN gateways to which the VPN tunnels
      * in this VPN connection are connected.
      * This field is mutually exclusive with peer_gcp_gateway.
      *
@@ -95,7 +95,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer external VPN gateways to which the VPN tunnels
+     * Output only. URL reference to the peer external VPN gateways to which the VPN tunnels
      * in this VPN connection are connected.
      * This field is mutually exclusive with peer_gcp_gateway.
      *
@@ -112,7 +112,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer side VPN gateways to which the VPN tunnels in
+     * Output only. URL reference to the peer side VPN gateways to which the VPN tunnels in
      * this VPN connection are connected.
      * This field is mutually exclusive with peer_gcp_gateway.
      *
@@ -135,7 +135,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL reference to the peer side VPN gateways to which the VPN tunnels in
+     * Output only. URL reference to the peer side VPN gateways to which the VPN tunnels in
      * this VPN connection are connected.
      * This field is mutually exclusive with peer_gcp_gateway.
      *

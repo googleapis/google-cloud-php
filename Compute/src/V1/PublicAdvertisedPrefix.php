@@ -18,14 +18,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The version of BYOIP API.
+     * Output only. [Output Only] The version of BYOIP API.
      * Check the ByoipApiVersion enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
      */
     protected $byoip_api_version = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -57,7 +57,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -78,7 +78,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $ipv6_access_type = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -111,14 +111,14 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      */
     protected $pdp_scope = null;
     /**
-     * [Output Only] The list of public delegated prefixes that exist for this
+     * Output only. [Output Only] The list of public delegated prefixes that exist for this
      * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
      */
     private $public_delegated_prefixs;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -152,10 +152,10 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $byoip_api_version
-     *           [Output Only] The version of BYOIP API.
+     *           Output only. [Output Only] The version of BYOIP API.
      *           Check the ByoipApiVersion enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -171,7 +171,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to
      *           retrieve a PublicAdvertisedPrefix.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource type. The server
+     *           Output only. [Output Only] The unique identifier for the resource type. The server
      *           generates this identifier.
      *     @type string $ip_cidr_range
      *           The address range, in CIDR format, represented by this public advertised
@@ -180,7 +180,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      *           The internet access type for IPv6 Public Advertised Prefixes.
      *           Check the Ipv6AccessType enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -201,10 +201,10 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      *                 supported in BYOIP V2.
      *           Check the PdpScope enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix>|\Google\Protobuf\Internal\RepeatedField $public_delegated_prefixs
-     *           [Output Only] The list of public delegated prefixes that exist for this
+     *           Output only. [Output Only] The list of public delegated prefixes that exist for this
      *           public advertised prefix.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $shared_secret
      *           [Output Only] The shared secret to be used for reverse DNS verification.
      *     @type string $status
@@ -226,7 +226,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The version of BYOIP API.
+     * Output only. [Output Only] The version of BYOIP API.
      * Check the ByoipApiVersion enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
@@ -248,7 +248,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The version of BYOIP API.
+     * Output only. [Output Only] The version of BYOIP API.
      * Check the ByoipApiVersion enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
@@ -264,7 +264,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -286,7 +286,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -424,7 +424,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -446,7 +446,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource type. The server
+     * Output only. [Output Only] The unique identifier for the resource type. The server
      * generates this identifier.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -538,7 +538,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -559,7 +559,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#publicAdvertisedPrefix for public advertised prefixes.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -676,7 +676,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of public delegated prefixes that exist for this
+     * Output only. [Output Only] The list of public delegated prefixes that exist for this
      * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
@@ -688,7 +688,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The list of public delegated prefixes that exist for this
+     * Output only. [Output Only] The list of public delegated prefixes that exist for this
      * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
@@ -704,7 +704,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -725,7 +725,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

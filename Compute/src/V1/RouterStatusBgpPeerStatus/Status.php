@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterStatusBgpPeerStatus;
 use UnexpectedValueException;
 
 /**
- * Status of the BGP peer: {UP, DOWN}
+ * Output only. Status of the BGP peer: {UP, DOWN}
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterStatusBgpPeerStatus.Status</code>
  */

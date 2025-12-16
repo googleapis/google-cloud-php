@@ -40,7 +40,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $check_interval_sec = null;
     /**
-     * [Output Only] Creation timestamp in3339
+     * Output only. [Output Only] Creation timestamp in3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -88,7 +88,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * Type of the resource.
+     * Output only. Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -112,7 +112,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] Region where the health check resides.  Not applicable to
+     * Output only. [Output Only] Region where the health check resides.  Not applicable to
      * global health checks.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -185,7 +185,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *           How often (in seconds) to send a health check. The default value is 5
      *           seconds.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in3339
+     *           Output only. [Output Only] Creation timestamp in3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -202,7 +202,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           Type of the resource.
+     *           Output only. Type of the resource.
      *     @type \Google\Cloud\Compute\V1\HealthCheckLogConfig $log_config
      *           Configure logging on this health check.
      *     @type string $name
@@ -214,7 +214,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *           character is a lowercase letter, and all following characters are a dash,
      *           lowercase letter, or digit, except the last character, which isn't a dash.
      *     @type string $region
-     *           [Output Only] Region where the health check resides.  Not applicable to
+     *           Output only. [Output Only] Region where the health check resides.  Not applicable to
      *           global health checks.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -292,7 +292,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in3339
+     * Output only. [Output Only] Creation timestamp in3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -314,7 +314,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in3339
+     * Output only. [Output Only] Creation timestamp in3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -604,7 +604,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the resource.
+     * Output only. Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -625,7 +625,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the resource.
+     * Output only. Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -724,7 +724,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Region where the health check resides.  Not applicable to
+     * Output only. [Output Only] Region where the health check resides.  Not applicable to
      * global health checks.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -746,7 +746,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Region where the health check resides.  Not applicable to
+     * Output only. [Output Only] Region where the health check resides.  Not applicable to
      * global health checks.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>

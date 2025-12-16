@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Effective metadata is a field that consolidates project,
+     * Output only. [Output Only] Effective metadata is a field that consolidates project,
      * zonal instance settings, and instance-level predefined metadata keys to
      * provide the overridden value for those metadata keys at the instance level.
      *
@@ -26,7 +26,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      */
     protected $effective_instance_metadata = null;
     /**
-     * [Output Only] The precise location of your instance within the zone's data
+     * Output only. [Output Only] The precise location of your instance within the zone's data
      * center, including the block, sub-block, and host. The field is formatted as
      * follows: blockId/subBlockId/hostId.
      *
@@ -34,7 +34,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      */
     protected $physical_host = null;
     /**
-     * [Output Only] A series of fields containing the global name of the Compute
+     * Output only. [Output Only] A series of fields containing the global name of the Compute
      * Engine cluster, as well as the ID of the block, sub-block, and host on
      * which the running instance is located.
      *
@@ -42,7 +42,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      */
     protected $physical_host_topology = null;
     /**
-     * [Output Only] Reservation information that the instance is consuming from.
+     * Output only. [Output Only] Reservation information that the instance is consuming from.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusReservationConsumptionInfo reservation_consumption_info = 201056997;</code>
      */
@@ -63,19 +63,19 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\ResourceStatusEffectiveInstanceMetadata $effective_instance_metadata
-     *           [Output Only] Effective metadata is a field that consolidates project,
+     *           Output only. [Output Only] Effective metadata is a field that consolidates project,
      *           zonal instance settings, and instance-level predefined metadata keys to
      *           provide the overridden value for those metadata keys at the instance level.
      *     @type string $physical_host
-     *           [Output Only] The precise location of your instance within the zone's data
+     *           Output only. [Output Only] The precise location of your instance within the zone's data
      *           center, including the block, sub-block, and host. The field is formatted as
      *           follows: blockId/subBlockId/hostId.
      *     @type \Google\Cloud\Compute\V1\ResourceStatusPhysicalHostTopology $physical_host_topology
-     *           [Output Only] A series of fields containing the global name of the Compute
+     *           Output only. [Output Only] A series of fields containing the global name of the Compute
      *           Engine cluster, as well as the ID of the block, sub-block, and host on
      *           which the running instance is located.
      *     @type \Google\Cloud\Compute\V1\ResourceStatusReservationConsumptionInfo $reservation_consumption_info
-     *           [Output Only] Reservation information that the instance is consuming from.
+     *           Output only. [Output Only] Reservation information that the instance is consuming from.
      *     @type \Google\Cloud\Compute\V1\ResourceStatusScheduling $scheduling
      *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
      * }
@@ -86,7 +86,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Effective metadata is a field that consolidates project,
+     * Output only. [Output Only] Effective metadata is a field that consolidates project,
      * zonal instance settings, and instance-level predefined metadata keys to
      * provide the overridden value for those metadata keys at the instance level.
      *
@@ -109,7 +109,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Effective metadata is a field that consolidates project,
+     * Output only. [Output Only] Effective metadata is a field that consolidates project,
      * zonal instance settings, and instance-level predefined metadata keys to
      * provide the overridden value for those metadata keys at the instance level.
      *
@@ -126,7 +126,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The precise location of your instance within the zone's data
+     * Output only. [Output Only] The precise location of your instance within the zone's data
      * center, including the block, sub-block, and host. The field is formatted as
      * follows: blockId/subBlockId/hostId.
      *
@@ -149,7 +149,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The precise location of your instance within the zone's data
+     * Output only. [Output Only] The precise location of your instance within the zone's data
      * center, including the block, sub-block, and host. The field is formatted as
      * follows: blockId/subBlockId/hostId.
      *
@@ -166,7 +166,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A series of fields containing the global name of the Compute
+     * Output only. [Output Only] A series of fields containing the global name of the Compute
      * Engine cluster, as well as the ID of the block, sub-block, and host on
      * which the running instance is located.
      *
@@ -189,7 +189,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A series of fields containing the global name of the Compute
+     * Output only. [Output Only] A series of fields containing the global name of the Compute
      * Engine cluster, as well as the ID of the block, sub-block, and host on
      * which the running instance is located.
      *
@@ -206,7 +206,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reservation information that the instance is consuming from.
+     * Output only. [Output Only] Reservation information that the instance is consuming from.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusReservationConsumptionInfo reservation_consumption_info = 201056997;</code>
      * @return \Google\Cloud\Compute\V1\ResourceStatusReservationConsumptionInfo|null
@@ -227,7 +227,7 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reservation information that the instance is consuming from.
+     * Output only. [Output Only] Reservation information that the instance is consuming from.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatusReservationConsumptionInfo reservation_consumption_info = 201056997;</code>
      * @param \Google\Cloud\Compute\V1\ResourceStatusReservationConsumptionInfo $var

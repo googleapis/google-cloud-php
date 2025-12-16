@@ -51,7 +51,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface:
      * MixerListResponseWithEtagBuilder
      *
@@ -86,7 +86,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           Output only. [Output Only] Unreachable resources.
      *           end_interface:
      *           MixerListResponseWithEtagBuilder
      *     @type \Google\Cloud\Compute\V1\Warning $warning
@@ -305,7 +305,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface:
      * MixerListResponseWithEtagBuilder
      *
@@ -318,7 +318,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface:
      * MixerListResponseWithEtagBuilder
      *

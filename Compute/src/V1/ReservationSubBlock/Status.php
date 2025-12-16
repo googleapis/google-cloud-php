@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ReservationSubBlock;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Status of the reservation subBlock.
+ * Output only. [Output Only] Status of the reservation subBlock.
  *
  * Protobuf type <code>google.cloud.compute.v1.ReservationSubBlock.Status</code>
  */

@@ -22,7 +22,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $associations;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -72,7 +72,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
+     * Output only. [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -92,7 +92,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $packet_mirroring_rules;
     /**
-     * [Output Only] The parent of the firewall policy.
+     * Output only. [Output Only] The parent of the firewall policy.
      * This field is not applicable to network firewall policies.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
@@ -107,7 +107,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $policy_type = null;
     /**
-     * [Output Only] URL of the region where the regional firewall policy resides.
+     * Output only. [Output Only] URL of the region where the regional firewall policy resides.
      * This field is not applicable to global firewall policies.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -116,7 +116,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $region = null;
     /**
-     * [Output Only] Total count of all firewall policy rule tuples. A firewall
+     * Output only. [Output Only] Total count of all firewall policy rule tuples. A firewall
      * policy can not exceed a set number of tuples.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -138,7 +138,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -168,7 +168,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
      *           A list of associations that belong to this firewall policy.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -198,7 +198,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
+     *           Output only. [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
      *     @type string $name
      *           Name of the resource. For Organization Firewall Policies it's a
      *           [Output Only] numeric ID allocated by Google Cloud which uniquely
@@ -206,19 +206,19 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
      *           A list of packet mirroring rules that belong to this policy.
      *     @type string $parent
-     *           [Output Only] The parent of the firewall policy.
+     *           Output only. [Output Only] The parent of the firewall policy.
      *           This field is not applicable to network firewall policies.
      *     @type string $policy_type
      *           The type of the firewall policy. This field can be eitherVPC_POLICY or RDMA_ROCE_POLICY.
      *           Note: if not specified then VPC_POLICY will be used.
      *           Check the PolicyType enum for the list of possible values.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional firewall policy resides.
+     *           Output only. [Output Only] URL of the region where the regional firewall policy resides.
      *           This field is not applicable to global firewall policies.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      *     @type int $rule_tuple_count
-     *           [Output Only] Total count of all firewall policy rule tuples. A firewall
+     *           Output only. [Output Only] Total count of all firewall policy rule tuples. A firewall
      *           policy can not exceed a set number of tuples.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of rules that belong to this policy.
@@ -228,7 +228,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *     @type string $short_name
      *           User-provided name of the Organization firewall policy. The name should be
      *           unique in the organization in which the firewall policy is created.
@@ -274,7 +274,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -296,7 +296,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -494,7 +494,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
+     * Output only. [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -515,7 +515,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
+     * Output only. [Output only] Type of the resource. Alwayscompute#firewallPolicyfor firewall policies
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -596,7 +596,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The parent of the firewall policy.
+     * Output only. [Output Only] The parent of the firewall policy.
      * This field is not applicable to network firewall policies.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
@@ -618,7 +618,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The parent of the firewall policy.
+     * Output only. [Output Only] The parent of the firewall policy.
      * This field is not applicable to network firewall policies.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
@@ -674,7 +674,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional firewall policy resides.
+     * Output only. [Output Only] URL of the region where the regional firewall policy resides.
      * This field is not applicable to global firewall policies.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -698,7 +698,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional firewall policy resides.
+     * Output only. [Output Only] URL of the region where the regional firewall policy resides.
      * This field is not applicable to global firewall policies.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -716,7 +716,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Total count of all firewall policy rule tuples. A firewall
+     * Output only. [Output Only] Total count of all firewall policy rule tuples. A firewall
      * policy can not exceed a set number of tuples.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -738,7 +738,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Total count of all firewall policy rule tuples. A firewall
+     * Output only. [Output Only] Total count of all firewall policy rule tuples. A firewall
      * policy can not exceed a set number of tuples.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -822,7 +822,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -843,7 +843,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var

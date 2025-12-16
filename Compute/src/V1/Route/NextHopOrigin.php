@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Route;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Indicates the origin of the route. Can be IGP
+ * Output only. [Output Only] Indicates the origin of the route. Can be IGP
  * (Interior Gateway Protocol), EGP (Exterior Gateway Protocol),
  * or INCOMPLETE.
  *

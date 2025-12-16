@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class UsableSubnetwork extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The external IPv6 address range that is assigned to this
+     * Output only. [Output Only] The external IPv6 address range that is assigned to this
      * subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
      */
     protected $external_ipv6_prefix = null;
     /**
-     * [Output Only] The internal IPv6 address range that is assigned to this
+     * Output only. [Output Only] The internal IPv6 address range that is assigned to this
      * subnetwork.
      *
      * Generated from protobuf field <code>optional string internal_ipv6_prefix = 506270056;</code>
@@ -99,10 +99,10 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $external_ipv6_prefix
-     *           [Output Only] The external IPv6 address range that is assigned to this
+     *           Output only. [Output Only] The external IPv6 address range that is assigned to this
      *           subnetwork.
      *     @type string $internal_ipv6_prefix
-     *           [Output Only] The internal IPv6 address range that is assigned to this
+     *           Output only. [Output Only] The internal IPv6 address range that is assigned to this
      *           subnetwork.
      *     @type string $ip_cidr_range
      *           The range of internal addresses that are owned by this subnetwork.
@@ -142,7 +142,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The external IPv6 address range that is assigned to this
+     * Output only. [Output Only] The external IPv6 address range that is assigned to this
      * subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
@@ -164,7 +164,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The external IPv6 address range that is assigned to this
+     * Output only. [Output Only] The external IPv6 address range that is assigned to this
      * subnetwork.
      *
      * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
@@ -180,7 +180,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The internal IPv6 address range that is assigned to this
+     * Output only. [Output Only] The internal IPv6 address range that is assigned to this
      * subnetwork.
      *
      * Generated from protobuf field <code>optional string internal_ipv6_prefix = 506270056;</code>
@@ -202,7 +202,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The internal IPv6 address range that is assigned to this
+     * Output only. [Output Only] The internal IPv6 address range that is assigned to this
      * subnetwork.
      *
      * Generated from protobuf field <code>optional string internal_ipv6_prefix = 506270056;</code>

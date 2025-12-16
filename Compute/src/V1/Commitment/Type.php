@@ -12,12 +12,11 @@ use UnexpectedValueException;
  * The choice of machine series affects the discount rate and the eligible
  * resource types.
  *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
- *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, MEMORY_OPTIMIZED,MEMORY_OPTIMIZED_M3, MEMORY_OPTIMIZED_X4,STORAGE_OPTIMIZED_Z3.
- * For example, type MEMORY_OPTIMIZED specifies a commitment
- * that applies only to eligible resources of memory optimized M1 and M2
- * machine series. Type GENERAL_PURPOSE specifies a commitment
- * that applies only to eligible resources of general purpose N1 machine
- * series.
+ *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+ * example, type MEMORY_OPTIMIZED specifies a commitment that
+ * applies only to eligible resources of memory optimized M1 and M2 machine
+ * series. Type GENERAL_PURPOSE specifies a commitment that
+ * applies only to eligible resources of general purpose N1 machine series.
  *
  * Protobuf type <code>google.cloud.compute.v1.Commitment.Type</code>
  */
@@ -118,6 +117,10 @@ class Type
      */
     const GRAPHICS_OPTIMIZED = 68500563;
     /**
+     * Generated from protobuf enum <code>GRAPHICS_OPTIMIZED_G4 = 54029369;</code>
+     */
+    const GRAPHICS_OPTIMIZED_G4 = 54029369;
+    /**
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED = 281753417;</code>
      */
     const MEMORY_OPTIMIZED = 281753417;
@@ -182,6 +185,7 @@ class Type
         self::GENERAL_PURPOSE_N4D => 'GENERAL_PURPOSE_N4D',
         self::GENERAL_PURPOSE_T2D => 'GENERAL_PURPOSE_T2D',
         self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
+        self::GRAPHICS_OPTIMIZED_G4 => 'GRAPHICS_OPTIMIZED_G4',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
         self::MEMORY_OPTIMIZED_M4 => 'MEMORY_OPTIMIZED_M4',

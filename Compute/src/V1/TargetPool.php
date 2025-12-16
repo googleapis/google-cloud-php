@@ -37,7 +37,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     protected $backup_pool = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -92,7 +92,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     private $instances;
     /**
-     * [Output Only] Type of the resource. Always compute#targetPool
+     * Output only. [Output Only] Type of the resource. Always compute#targetPool
      * for target pools.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -111,7 +111,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
-     * [Output Only] URL of the region where the target pool resides.
+     * Output only. [Output Only] URL of the region where the target pool resides.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -165,7 +165,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           mode, where traffic will be spread to the healthy instances with the
      *           best effort, or to all instances when no instance is healthy.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -196,7 +196,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           A list of resource URLs to the virtual machine instances serving this pool.
      *           They must live in zones contained in the same region as this pool.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#targetPool
+     *           Output only. [Output Only] Type of the resource. Always compute#targetPool
      *           for target pools.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
@@ -207,7 +207,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
      *     @type string $region
-     *           [Output Only] URL of the region where the target pool resides.
+     *           Output only. [Output Only] URL of the region where the target pool resides.
      *     @type string $security_policy
      *           [Output Only] The resource URL for the security policy associated with this
      *           target pool.
@@ -290,7 +290,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -312,7 +312,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -524,7 +524,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#targetPool
+     * Output only. [Output Only] Type of the resource. Always compute#targetPool
      * for target pools.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -546,7 +546,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#targetPool
+     * Output only. [Output Only] Type of the resource. Always compute#targetPool
      * for target pools.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -610,7 +610,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the target pool resides.
+     * Output only. [Output Only] URL of the region where the target pool resides.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -631,7 +631,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the target pool resides.
+     * Output only. [Output Only] URL of the region where the target pool resides.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var

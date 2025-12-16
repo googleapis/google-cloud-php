@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Disk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of disk creation.
+ * Output only. [Output Only] The status of disk creation.
  *      - CREATING: Disk is provisioning.
  *      - RESTORING: Source data is being copied into the
  *      disk.

@@ -23,27 +23,27 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
      */
     protected $activation_status = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] Description of the feature.
+     * Output only. [Output Only] Description of the feature.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output only] The type of the feature. Always "compute#previewFeature" for
+     * Output only. [Output only] The type of the feature. Always "compute#previewFeature" for
      * preview features.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -62,13 +62,13 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
      */
     protected $rollout_operation = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output only] Status of the feature.
+     * Output only. [Output only] Status of the feature.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreviewFeatureStatus status = 181260274;</code>
      */
@@ -84,24 +84,24 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
      *           Specifies whether the feature is enabled or disabled.
      *           Check the ActivationStatus enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
-     *           [Output Only] Description of the feature.
+     *           Output only. [Output Only] Description of the feature.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output only] The type of the feature. Always "compute#previewFeature" for
+     *           Output only. [Output only] The type of the feature. Always "compute#previewFeature" for
      *           preview features.
      *     @type string $name
      *           Name of the feature.
      *     @type \Google\Cloud\Compute\V1\PreviewFeatureRolloutOperation $rollout_operation
      *           Rollout operation of the feature.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\PreviewFeatureStatus $status
-     *           [Output only] Status of the feature.
+     *           Output only. [Output only] Status of the feature.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,7 +148,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -170,7 +170,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -186,7 +186,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Description of the feature.
+     * Output only. [Output Only] Description of the feature.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -207,7 +207,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Description of the feature.
+     * Output only. [Output Only] Description of the feature.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -222,7 +222,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -244,7 +244,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -260,7 +260,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The type of the feature. Always "compute#previewFeature" for
+     * Output only. [Output only] The type of the feature. Always "compute#previewFeature" for
      * preview features.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -282,7 +282,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The type of the feature. Always "compute#previewFeature" for
+     * Output only. [Output only] The type of the feature. Always "compute#previewFeature" for
      * preview features.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -370,7 +370,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -391,7 +391,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -406,7 +406,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Status of the feature.
+     * Output only. [Output only] Status of the feature.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreviewFeatureStatus status = 181260274;</code>
      * @return \Google\Cloud\Compute\V1\PreviewFeatureStatus|null
@@ -427,7 +427,7 @@ class PreviewFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Status of the feature.
+     * Output only. [Output only] Status of the feature.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreviewFeatureStatus status = 181260274;</code>
      * @param \Google\Cloud\Compute\V1\PreviewFeatureStatus $var

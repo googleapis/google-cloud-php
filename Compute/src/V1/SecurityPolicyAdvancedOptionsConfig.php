@@ -36,6 +36,14 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      */
     protected $log_level = null;
     /**
+     * The maximum request size chosen by the customer with Waf enabled.
+     * Values supported are "8KB", "16KB, "32KB", "48KB" and "64KB".
+     * Values are case insensitive.
+     *
+     * Generated from protobuf field <code>optional string request_body_inspection_size = 191268607;</code>
+     */
+    protected $request_body_inspection_size = null;
+    /**
      * An optional list of case-insensitive request header names to use for
      * resolving the callers client IP address.
      *
@@ -58,6 +66,10 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      *     @type string $log_level
      *           
      *           Check the LogLevel enum for the list of possible values.
+     *     @type string $request_body_inspection_size
+     *           The maximum request size chosen by the customer with Waf enabled.
+     *           Values supported are "8KB", "16KB, "32KB", "48KB" and "64KB".
+     *           Values are case insensitive.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $user_ip_request_headers
      *           An optional list of case-insensitive request header names to use for
      *           resolving the callers client IP address.
@@ -178,6 +190,46 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     {
         GPBUtil::checkString($var, True);
         $this->log_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * The maximum request size chosen by the customer with Waf enabled.
+     * Values supported are "8KB", "16KB, "32KB", "48KB" and "64KB".
+     * Values are case insensitive.
+     *
+     * Generated from protobuf field <code>optional string request_body_inspection_size = 191268607;</code>
+     * @return string
+     */
+    public function getRequestBodyInspectionSize()
+    {
+        return isset($this->request_body_inspection_size) ? $this->request_body_inspection_size : '';
+    }
+
+    public function hasRequestBodyInspectionSize()
+    {
+        return isset($this->request_body_inspection_size);
+    }
+
+    public function clearRequestBodyInspectionSize()
+    {
+        unset($this->request_body_inspection_size);
+    }
+
+    /**
+     * The maximum request size chosen by the customer with Waf enabled.
+     * Values supported are "8KB", "16KB, "32KB", "48KB" and "64KB".
+     * Values are case insensitive.
+     *
+     * Generated from protobuf field <code>optional string request_body_inspection_size = 191268607;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestBodyInspectionSize($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_body_inspection_size = $var;
 
         return $this;
     }

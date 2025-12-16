@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\AttachedDisk;
 use UnexpectedValueException;
 
 /**
- * For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
+ * Output only. For LocalSSD disks on VM Instances in STOPPED or SUSPENDED state, this
  * field is set to PRESERVED if the LocalSSD data has been saved
  * to a persistent location by customer request.  (see the
  * discard_local_ssd option on Stop/Suspend).

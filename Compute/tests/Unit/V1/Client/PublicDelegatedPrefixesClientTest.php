@@ -429,6 +429,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $byoipApiVersion = 'byoipApiVersion162683283';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $enableEnhancedIpv4Allocation = false;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $ipCidrRange = 'ipCidrRange-2049366326';
@@ -446,6 +447,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setByoipApiVersion($byoipApiVersion);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEnableEnhancedIpv4Allocation($enableEnhancedIpv4Allocation);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setIpCidrRange($ipCidrRange);

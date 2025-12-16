@@ -27,7 +27,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $autoscaling_policy = null;
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -45,14 +45,14 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $fingerprint = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -109,7 +109,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $node_template = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -121,7 +121,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $share_settings = null;
     /**
-     * [Output Only] The total number of nodes in the node group.
+     * Output only. [Output Only] The total number of nodes in the node group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
@@ -134,7 +134,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     protected $status = null;
     /**
-     * [Output Only] The name of the zone where the node group resides,
+     * Output only. [Output Only] The name of the zone where the node group resides,
      * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -150,17 +150,17 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\NodeGroupAutoscalingPolicy $autoscaling_policy
      *           Specifies how autoscaling should behave.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type string $fingerprint
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
+     *           Output only. [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *     @type string $location_hint
      *           An opaque location hint used to place the Node close to other
      *           resources.
@@ -190,16 +190,16 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *     @type string $node_template
      *           URL of the node template to create the node group from.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
      *           Share-settings for the node group
      *     @type int $size
-     *           [Output Only] The total number of nodes in the node group.
+     *           Output only. [Output Only] The total number of nodes in the node group.
      *     @type string $status
      *           
      *           Check the Status enum for the list of possible values.
      *     @type string $zone
-     *           [Output Only] The name of the zone where the node group resides,
+     *           Output only. [Output Only] The name of the zone where the node group resides,
      *           such as us-central1-a.
      * }
      */
@@ -245,7 +245,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -267,7 +267,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -353,7 +353,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -375,7 +375,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -391,7 +391,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -412,7 +412,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#nodeGroup for node group.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -673,7 +673,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -694,7 +694,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -745,7 +745,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The total number of nodes in the node group.
+     * Output only. [Output Only] The total number of nodes in the node group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @return int
@@ -766,7 +766,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The total number of nodes in the node group.
+     * Output only. [Output Only] The total number of nodes in the node group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @param int $var
@@ -819,7 +819,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node group resides,
+     * Output only. [Output Only] The name of the zone where the node group resides,
      * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
@@ -841,7 +841,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the node group resides,
+     * Output only. [Output Only] The name of the zone where the node group resides,
      * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>

@@ -77,7 +77,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * Type of the resource.
+     * Output only. Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -119,7 +119,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] List of resources referencing that backend bucket.
+     * Output only. [Output Only] List of resources referencing that backend bucket.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
      */
@@ -155,7 +155,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
      *     @type string $kind
-     *           Type of the resource.
+     *           Output only. Type of the resource.
      *     @type string $load_balancing_scheme
      *           The value can only be INTERNAL_MANAGED for cross-region internal layer 7
      *           load balancer.
@@ -177,7 +177,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type array<\Google\Cloud\Compute\V1\BackendBucketUsedBy>|\Google\Protobuf\Internal\RepeatedField $used_by
-     *           [Output Only] List of resources referencing that backend bucket.
+     *           Output only. [Output Only] List of resources referencing that backend bucket.
      * }
      */
     public function __construct($data = NULL) {
@@ -510,7 +510,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the resource.
+     * Output only. Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -531,7 +531,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the resource.
+     * Output only. Type of the resource.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -714,7 +714,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] List of resources referencing that backend bucket.
+     * Output only. [Output Only] List of resources referencing that backend bucket.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -725,7 +725,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] List of resources referencing that backend bucket.
+     * Output only. [Output Only] List of resources referencing that backend bucket.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
      * @param array<\Google\Cloud\Compute\V1\BackendBucketUsedBy>|\Google\Protobuf\Internal\RepeatedField $var

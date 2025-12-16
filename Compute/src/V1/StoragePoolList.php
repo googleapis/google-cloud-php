@@ -32,7 +32,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Always compute#storagePoolList
+     * Output only. [Output Only] Type of resource. Always compute#storagePoolList
      * for lists of storagePools.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -49,13 +49,13 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
@@ -80,7 +80,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\StoragePool>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of StoragePool resources.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#storagePoolList
+     *           Output only. [Output Only] Type of resource. Always compute#storagePoolList
      *           for lists of storagePools.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for
@@ -89,9 +89,9 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           Output only. [Output Only] Unreachable resources.
      *           end_interface: MixerListResponseWithEtagBuilder
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
@@ -197,7 +197,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#storagePoolList
+     * Output only. [Output Only] Type of resource. Always compute#storagePoolList
      * for lists of storagePools.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -219,7 +219,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#storagePoolList
+     * Output only. [Output Only] Type of resource. Always compute#storagePoolList
      * for lists of storagePools.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -279,7 +279,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -300,7 +300,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -315,7 +315,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
@@ -327,7 +327,7 @@ class StoragePoolList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * Output only. [Output Only] Unreachable resources.
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>

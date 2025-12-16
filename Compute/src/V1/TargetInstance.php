@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetInstance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -54,7 +54,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      */
     protected $instance = null;
     /**
-     * [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -102,7 +102,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] URL of the zone where the target instance resides.
+     * Output only. [Output Only] URL of the zone where the target instance resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -117,7 +117,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp inRFC3339
+     *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
@@ -134,7 +134,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *              - projects/project/zones/zone/instances/instance
      *              - zones/zone/instances/instance
      *     @type string $kind
-     *           [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
+     *           Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -158,7 +158,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
-     *           [Output Only] URL of the zone where the target instance resides.
+     *           Output only. [Output Only] URL of the zone where the target instance resides.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
      * }
@@ -169,7 +169,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -191,7 +191,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp inRFC3339
+     * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -331,7 +331,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -352,7 +352,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -571,7 +571,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the target instance resides.
+     * Output only. [Output Only] URL of the zone where the target instance resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *
@@ -594,7 +594,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the target instance resides.
+     * Output only. [Output Only] URL of the zone where the target instance resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
      *

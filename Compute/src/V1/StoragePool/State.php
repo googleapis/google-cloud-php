@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\StoragePool;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of storage pool creation.
+ * Output only. [Output Only] The status of storage pool creation.
  *      - CREATING: Storage pool is provisioning.
  *      storagePool.
  *      - FAILED: Storage pool creation failed.

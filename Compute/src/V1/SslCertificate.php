@@ -58,7 +58,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] Expire time of the certificate. RFC3339
+     * Output only. [Output Only] Expire time of the certificate. RFC3339
      *
      * Generated from protobuf field <code>optional string expire_time = 440691181;</code>
      */
@@ -71,7 +71,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -103,7 +103,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     protected $private_key = null;
     /**
-     * [Output Only] URL of the region where the regional SSL Certificate
+     * Output only. [Output Only] URL of the region where the regional SSL Certificate
      * resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -122,7 +122,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     protected $self_managed = null;
     /**
-     * [Output Only] Domains associated with the certificate via Subject
+     * Output only. [Output Only] Domains associated with the certificate via Subject
      * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
@@ -154,12 +154,12 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
      *     @type string $expire_time
-     *           [Output Only] Expire time of the certificate. RFC3339
+     *           Output only. [Output Only] Expire time of the certificate. RFC3339
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *     @type \Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate $managed
      *           Configuration and status of a managed SSL certificate.
      *     @type string $name
@@ -175,14 +175,14 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *           key file must be in PEM format. For security, only insert
      *           requests include this field.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional SSL Certificate
+     *           Output only. [Output Only] URL of the region where the regional SSL Certificate
      *           resides. This field is not applicable to global SSL Certificate.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\SslCertificateSelfManagedSslCertificate $self_managed
      *           Configuration and status of a self-managed SSL certificate.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_alternative_names
-     *           [Output Only] Domains associated with the certificate via Subject
+     *           Output only. [Output Only] Domains associated with the certificate via Subject
      *           Alternative Name.
      *     @type string $type
      *           (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or
@@ -312,7 +312,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Expire time of the certificate. RFC3339
+     * Output only. [Output Only] Expire time of the certificate. RFC3339
      *
      * Generated from protobuf field <code>optional string expire_time = 440691181;</code>
      * @return string
@@ -333,7 +333,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Expire time of the certificate. RFC3339
+     * Output only. [Output Only] Expire time of the certificate. RFC3339
      *
      * Generated from protobuf field <code>optional string expire_time = 440691181;</code>
      * @param string $var
@@ -386,7 +386,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -407,7 +407,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -546,7 +546,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional SSL Certificate
+     * Output only. [Output Only] URL of the region where the regional SSL Certificate
      * resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -568,7 +568,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional SSL Certificate
+     * Output only. [Output Only] URL of the region where the regional SSL Certificate
      * resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
@@ -656,7 +656,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Domains associated with the certificate via Subject
+     * Output only. [Output Only] Domains associated with the certificate via Subject
      * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
@@ -668,7 +668,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Domains associated with the certificate via Subject
+     * Output only. [Output Only] Domains associated with the certificate via Subject
      * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>

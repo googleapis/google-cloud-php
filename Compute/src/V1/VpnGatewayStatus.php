@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of VPN connection for this VpnGateway.
+     * Output only. List of VPN connection for this VpnGateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 439334538;</code>
      */
@@ -28,7 +28,7 @@ class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\VpnGatewayStatusVpnConnection>|\Google\Protobuf\Internal\RepeatedField $vpn_connections
-     *           List of VPN connection for this VpnGateway.
+     *           Output only. List of VPN connection for this VpnGateway.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of VPN connection for this VpnGateway.
+     * Output only. List of VPN connection for this VpnGateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 439334538;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +48,7 @@ class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of VPN connection for this VpnGateway.
+     * Output only. List of VPN connection for this VpnGateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 439334538;</code>
      * @param array<\Google\Cloud\Compute\V1\VpnGatewayStatusVpnConnection>|\Google\Protobuf\Internal\RepeatedField $var
