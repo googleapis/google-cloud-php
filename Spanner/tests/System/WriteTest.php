@@ -80,6 +80,8 @@ class WriteTest extends SystemTestCase
                 stringField STRING(MAX),
                 timestampField TIMESTAMP,
                 numericField NUMERIC,
+                uuidField STRING(36),
+                arrayUuidField ARRAY<STRING(36)>,
                 protoField `testing.data.User`,
             ) PRIMARY KEY (id)',
             'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
@@ -108,7 +110,8 @@ class WriteTest extends SystemTestCase
             [$this->randId(), 'intField', 787878787],
             [$this->randId(), 'stringField', 'foo bar'],
             [$this->randId(), 'timestampField', new Timestamp(new \DateTime())],
-            [$this->randId(), 'numericField', new Numeric('0.123456789')]
+            [$this->randId(), 'numericField', new Numeric('0.123456789')],
+            [$this->randId(), 'uuidField', new Uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479')]
         ];
     }
 
@@ -136,7 +139,7 @@ class WriteTest extends SystemTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
 
-        if ($value instanceof Timestamp) {
+        if ($value instanceof Timestamp || $value instanceof Uuid) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
             $this->assertValues($value, $row[$field]);
@@ -150,7 +153,7 @@ class WriteTest extends SystemTestCase
         ]);
 
         $row = $exec->rows()->current();
-        if ($value instanceof Timestamp) {
+        if ($value instanceof Timestamp || $value instanceof Uuid) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } elseif ($value instanceof Message) {
             $this->assertInstanceOf(Proto::class, $row[$field]);
@@ -305,6 +308,11 @@ class WriteTest extends SystemTestCase
                 new User(['name' => 'User 1']),
                 new User(['name' => 'User 2']),
             ]],
+            [$this->randId(), 'arrayUuidField', [
+                new Uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479'),
+                new Uuid('a47ac10b-58cc-4372-a567-0e02b2c3d479')
+            ]],
+            [$this->randId(), 'arrayUuidField', null],
         ];
     }
 
