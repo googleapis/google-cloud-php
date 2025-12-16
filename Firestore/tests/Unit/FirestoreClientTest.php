@@ -18,6 +18,7 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use ArrayIterator;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
@@ -38,6 +39,8 @@ use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
@@ -49,6 +52,7 @@ use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
+use Google\Rpc\Code;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -130,6 +134,19 @@ class FirestoreClientTest extends TestCase
         $this->assertEquals($arr[0]->id(), $collectionIds[0]);
         $this->assertEquals($arr[1]->id(), $collectionIds[1]);
         $this->assertEquals($arr[2]->id(), $collectionIds[2]);
+    }
+
+    public function testCollectionsThrowAServiceException()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $this->gapicClient->listCollectionIds(
+            Argument::any(),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willThrow(new ApiException('Transient error', Code::INVALID_ARGUMENT));
+
+        iterator_to_array($this->client->collections());
     }
 
     public function testCollectionsPaged()
@@ -433,6 +450,17 @@ class FirestoreClientTest extends TestCase
             }),
             Argument::any()
         )->shouldBeCalled();
+
+        $this->client->runTransaction($this->noop());
+    }
+
+    public function testRunTransactionRaisesAServiceException()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willThrow(new ApiException('Transient error.', Code::INVALID_ARGUMENT));
 
         $this->client->runTransaction($this->noop());
     }

@@ -19,9 +19,11 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use ArrayIterator;
 use DateTime;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -40,6 +42,7 @@ use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -326,6 +329,21 @@ class DocumentReferenceTest extends TestCase
         $this->assertEquals(self::NAME .'/c', $collections[0]->name());
         $this->assertEquals(self::NAME .'/d', $collections[1]->name());
         $this->assertEquals(self::NAME .'/e', $collections[2]->name());
+    }
+
+    public function testCollectionsRaiseAServiceException()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $this->gapicClient->listCollectionIds(
+            Argument::that(function (ListCollectionIdsRequest $request) {
+                $this->assertEquals(self::NAME, $request->getParent());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willThrow(new ApiException('Transient Error', Code::INVALID_ARGUMENT));
+
+        iterator_to_array($this->document->collections());
     }
 
     public function testWriteResult()

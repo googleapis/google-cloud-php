@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainOptions;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
@@ -42,6 +44,7 @@ class AggregateQuery
 {
     use ApiHelperTrait;
     use QueryTrait;
+    use RequestProcessorTrait;
 
     private FirestoreClient $gapicClient;
     private array $query;
@@ -130,7 +133,11 @@ class AggregateQuery
             CallOptions::class
         );
 
-        $snapshot = $this->gapicClient->runAggregationQuery($request, $callOptions)->readAll()->current();
+        try {
+            $snapshot = $this->gapicClient->runAggregationQuery($request, $callOptions)->readAll()->current();
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         return new AggregateQuerySnapshot($this->serializer->encodeMessage($snapshot));
     }

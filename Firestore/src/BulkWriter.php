@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -56,6 +58,7 @@ class BulkWriter
     use DebugInfoTrait;
     use TimeTrait;
     use ValidateTrait;
+    use RequestProcessorTrait;
 
     const TYPE_UPDATE = 'update';
     const TYPE_SET = 'set';
@@ -681,7 +684,11 @@ class BulkWriter
             CallOptions::class
         );
 
-        $response = $this->gapicClient->commit($request, $callOptions);
+        try {
+            $response = $this->gapicClient->commit($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         $responseArray = $this->serializer->encodeMessage($response);
 
@@ -736,7 +743,11 @@ class BulkWriter
             CallOptions::class
         );
 
-        $this->gapicClient->rollback($request, $callOptions);
+        try {
+            $this->gapicClient->rollback($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
     }
 
     /**
@@ -948,7 +959,11 @@ class BulkWriter
             CallOptions::class,
         );
 
-        $response = $this->gapicClient->batchWrite($request, $callOptions);
+        try {
+            $response = $this->gapicClient->batchWrite($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         $responseArray = $this->serializer->encodeMessage($response);
 

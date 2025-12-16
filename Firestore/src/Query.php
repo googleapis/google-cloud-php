@@ -17,11 +17,13 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainMetrics;
@@ -54,6 +56,7 @@ class Query
     use DebugInfoTrait;
     use SnapshotTrait;
     use QueryTrait;
+    use RequestProcessorTrait;
 
     /**
      * @deprecated
@@ -338,8 +341,11 @@ class Query
                 CallOptions::class
             );
 
-            // WHY WAS RETRIES HERE? Need to check the old GRPC
-            $generator = $this->gapicClient->runQuery($request, $callOptions)->readAll();
+            try {
+                $generator = $this->gapicClient->runQuery($request, $callOptions)->readAll();
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
 
             // cache collection references
             $collections = [];

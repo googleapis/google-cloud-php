@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\BadRequestException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -35,6 +37,7 @@ use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 use Google\Cloud\Firestore\V1\ListDocumentsResponse;
+use Google\Rpc\Code;
 
 /**
  * @group firestore
@@ -177,6 +180,20 @@ class CollectionReferenceTest extends TestCase
         $this->assertCount(1, $docs);
         $this->assertInstanceOf(DocumentReference::class, $docs[0]);
         $this->assertEquals($docName, $docs[0]->name());
+    }
+
+    public function testListDocumentsRaisesAServiceException()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $this->gapicClient->listDocuments(
+            Argument::any(),
+            Argument::any()
+        )->shouldBeCalled()->willThrow(new ApiException('Transient Error', Code::INVALID_ARGUMENT));
+
+
+        $res = $this->collection->listDocuments();
+        iterator_to_array($res);
     }
 
     public function testExtends()

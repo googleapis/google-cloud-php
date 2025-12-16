@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Options\CallOptions;
 use Google\Auth\FetchAuthTokenInterface;
@@ -29,6 +30,7 @@ use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
@@ -85,6 +87,7 @@ class FirestoreClient
     use SnapshotTrait;
     use ValidateTrait;
     use ClientOptionsTrait;
+    use RequestProcessorTrait;
 
     const VERSION = '1.54.3';
 
@@ -348,7 +351,12 @@ class FirestoreClient
                 CallOptions::class
             );
 
-            $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            try {
+                $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
+
             $page = $response->getPage();
             return $this->serializer->encodeMessage($page->getResponseObject());
         };
@@ -605,7 +613,12 @@ class FirestoreClient
                 $request->setOptions($transactionOptions);
             }
 
-            $response = $this->gapicClient->beginTransaction($request, $options);
+            try {
+                $response = $this->gapicClient->beginTransaction($request, $options);
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
+
             $transactionId = $response->getTransaction();
 
             $transaction = new Transaction(

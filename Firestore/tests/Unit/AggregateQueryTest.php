@@ -18,7 +18,10 @@
 namespace Google\Cloud\Firestore\Tests\Unit;
 
 use ArrayIterator;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
@@ -29,6 +32,7 @@ use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\ValueMapper;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -121,6 +125,29 @@ class AggregateQueryTest extends TestCase
         $response = $aggregateQuery->getSnapshot();
         $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
         $this->assertEquals(123456, $response->get($type));
+    }
+
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testGetSnapshotThrowsAServiceException($type, $arg, $expected)
+    {
+        $this->expectException(BadRequestException::class);
+        $aggregate = $arg ? Aggregate::$type($arg) : Aggregate::$type();
+        $aggregateQuery = new AggregateQuery(
+            $this->gapicClient->reveal(),
+            self::QUERY_PARENT,
+            ['query' => $this->queryObj],
+            $aggregate
+        );
+
+        $this->gapicClient->runAggregationQuery(
+            Argument::any(),
+            Argument::any()
+        )->shouldBeCalledTimes(1)
+            ->willThrow(new ApiException('Transient Error', Code::INVALID_ARGUMENT));
+
+        $aggregateQuery->getSnapshot();
     }
 
     /**

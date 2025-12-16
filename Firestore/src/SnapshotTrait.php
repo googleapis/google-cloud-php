@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\TimeTrait;
@@ -36,6 +38,7 @@ trait SnapshotTrait
     use PathTrait;
     use TimeTrait;
     use TimestampTrait;
+    use RequestProcessorTrait;
 
     /**
      * Execute a service request to retrieve a document snapshot.
@@ -124,7 +127,11 @@ trait SnapshotTrait
             CallOptions::class,
         );
 
-        $stream = $gapicClient->batchGetDocuments($request, $callOptions);
+        try {
+            $stream = $gapicClient->batchGetDocuments($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         /** @var BatchGetDocumentsResponse */
         $response = $stream->readAll()->current();
@@ -193,7 +200,11 @@ trait SnapshotTrait
             CallOptions::class
         );
 
-        $stream = $gapicClient->batchGetDocuments($request, $callOptions);
+        try {
+            $stream = $gapicClient->batchGetDocuments($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
 
         $res = [];
         /** @var BatchGetDocumentsResponse $response*/

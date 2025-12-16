@@ -17,11 +17,13 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 
@@ -40,6 +42,7 @@ class DocumentReference
 {
     use SnapshotTrait;
     use DebugInfoTrait;
+    use RequestProcessorTrait;
 
     private FirestoreClient $gapicClient;
     private ValueMapper $valueMapper;
@@ -395,7 +398,12 @@ class DocumentReference
         );
 
         $listCollectionCall = function (array $callOptions) use ($request) {
-            $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            try {
+                $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
+
             return $this->serializer->encodeMessage($response->getPage()->getResponseObject());
         };
 
