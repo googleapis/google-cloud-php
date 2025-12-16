@@ -97,6 +97,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
+     * Output only. Encryption information of the backup.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.EncryptionInfo encryption_info = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $encryption_info = null;
+    /**
      * Output only. System assigned unique identifier of the backup.
      *
      * Generated from protobuf field <code>string uid = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
@@ -138,6 +144,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Type of the backup.
      *     @type int $state
      *           Output only. State of the backup.
+     *     @type \Google\Cloud\Memorystore\V1\EncryptionInfo $encryption_info
+     *           Output only. Encryption information of the backup.
      *     @type string $uid
      *           Output only. System assigned unique identifier of the backup.
      * }
@@ -507,6 +515,42 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Memorystore\V1\Backup\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Encryption information of the backup.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.EncryptionInfo encryption_info = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Memorystore\V1\EncryptionInfo|null
+     */
+    public function getEncryptionInfo()
+    {
+        return $this->encryption_info;
+    }
+
+    public function hasEncryptionInfo()
+    {
+        return isset($this->encryption_info);
+    }
+
+    public function clearEncryptionInfo()
+    {
+        unset($this->encryption_info);
+    }
+
+    /**
+     * Output only. Encryption information of the backup.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.EncryptionInfo encryption_info = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Memorystore\V1\EncryptionInfo $var
+     * @return $this
+     */
+    public function setEncryptionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\EncryptionInfo::class);
+        $this->encryption_info = $var;
 
         return $this;
     }

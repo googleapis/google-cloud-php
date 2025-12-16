@@ -302,6 +302,8 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}',
                 'backupCollection' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
+                'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'forwardingRule' => 'projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}',
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
