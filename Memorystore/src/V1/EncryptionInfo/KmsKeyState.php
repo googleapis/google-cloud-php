@@ -102,6 +102,4 @@ class KmsKeyState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KmsKeyState::class, \Google\Cloud\Memorystore\V1\EncryptionInfo_KmsKeyState::class);
 
