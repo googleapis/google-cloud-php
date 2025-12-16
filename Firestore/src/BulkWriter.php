@@ -17,15 +17,22 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
 use Google\Cloud\Firestore\FieldValue\DocumentTransformInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Rpc\Code;
 
 /**
@@ -47,10 +54,11 @@ use Google\Rpc\Code;
  */
 class BulkWriter
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use DebugInfoTrait;
     use TimeTrait;
     use ValidateTrait;
+    use RequestProcessorTrait;
 
     const TYPE_UPDATE = 'update';
     const TYPE_SET = 'set';
@@ -60,7 +68,7 @@ class BulkWriter
 
     /**
      * @var array Holds default configurations for Bulkwriter.
-     * These values are experiementally derived after performance evaluations.
+     * These values are experimentally derived after performance evaluations.
      * The underlying constants may change in backwards-incompatible ways.
      * Please use with caution, and test thoroughly when upgrading.
      */
@@ -115,53 +123,17 @@ class BulkWriter
         'RATE_LIMITER_MULTIPLIER_MILLIS' => 1000,
     ];
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $database;
-
-    /**
-     * @var string|null
-     */
-    private $transaction;
-
-    /**
-     * @var bool
-     */
-    private $isLegacyWriteBatch;
-
-    /**
-     * @var int
-     */
-    private $maxBatchSize;
-
-    /**
-     * @var array
-     */
-    private $writes = [];
-
-    /**
-     * @var array
-     */
-    private $finalResponse = [];
-
-    /**
-     * Rate limiter used to throttle requests as per the 500/50/5 rule.
-     *
-     * @var RateLimiter
-     */
-    private $rateLimiter;
+    private FirestoreClient $gapicClient;
+    private ValueMapper $valueMapper;
+    private string $database;
+    private string|null $transaction = null;
+    private bool $isLegacyWriteBatch;
+    private int $maxBatchSize;
+    private array $writes = [];
+    private array $finalResponse = [];
+    private RateLimiter $rateLimiter;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * @var array {
@@ -181,35 +153,19 @@ class BulkWriter
      * be attempted to retry.
      */
     private $isRetryable;
-
-    /**
-     * @var array All unique documents added to mutate.
-     */
-    private $uniqueDocuments = [];
-
-    /**
-     * @var bool Whether this BulkWriter instance is closed.
-     * Once closed, it cannot be opened again.
-     */
-    private $closed;
+    private array $uniqueDocuments = [];
+    private bool $closed;
 
     /**
      * @var bool Whether BulkWriter greedily sends operations via
      * [https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#batchwriterequest](BatchWriteRequest)
      * as soon  as sufficient number of operations are enqueued.
      */
-    private $greedilySend;
+    private bool $greedilySend;
+    private int $maxDelayTime;
 
     /**
-     * @var int The maximum delay time in millis for rescheduling a failed
-     * mutation or awaiting a batch creation.
-     */
-    private $maxDelayTime;
-
-    /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
      * @param array $options [optional] {
@@ -238,9 +194,9 @@ class BulkWriter
      *           true if retryable.
      * }
      */
-    public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
+    public function __construct(FirestoreClient $firestoreClient, $valueMapper, $database, $options = null)
     {
-        $this->connection = $connection;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->closed = false;
@@ -317,6 +273,9 @@ class BulkWriter
                 $maxRate
             );
         }
+
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**
@@ -707,23 +666,39 @@ class BulkWriter
      * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
      * @codingStandardsIgnoreEnd
      */
-    public function commit(array $options = [])
+    public function commit(array $options = []): array
     {
         unset($options['merge'], $options['precondition']);
 
-        $response = $this->connection->commit(array_filter([
-            'database' => $this->database,
-            'writes' => $this->writes,
-            'transaction' => $this->transaction,
-        ]) + $options);
+        /**
+         * @var CommitRequest $request,
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'database' => $this->database,
+                'writes' => $this->writes,
+                'transaction' => $this->transaction
+            ] + $options,
+            new CommitRequest(),
+            CallOptions::class
+        );
 
-        if (isset($response['commitTime'])) {
-            $time = $this->parseTimeString($response['commitTime']);
-            $response['commitTime'] = new Timestamp($time[0], $time[1]);
+        try {
+            $response = $this->gapicClient->commit($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
         }
 
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
+        $responseArray = $this->serializer->encodeMessage($response);
+
+        if (!is_null($response->getCommitTime())) {
+            $time = $this->parseTimeString($responseArray['commitTime']);
+            $responseArray['commitTime'] = new Timestamp($time[0], $time[1]);
+        }
+
+        if (!is_null($response->getWriteResults())) {
+            foreach ($responseArray['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
                     $time = $this->parseTimeString($result['updateTime']);
                     $result['updateTime'] = new Timestamp($time[0], $time[1]);
@@ -731,7 +706,7 @@ class BulkWriter
             }
         }
 
-        return $response;
+        return $responseArray;
     }
 
     /**
@@ -749,16 +724,30 @@ class BulkWriter
      * @return void
      * @throws \RuntimeException If no transaction ID is provided at class construction.
      */
-    public function rollback(array $options = [])
+    public function rollback(array $options = []): void
     {
         if (!$this->transaction) {
             throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
         }
 
-        $this->connection->rollback([
-            'database' => $this->database,
-            'transaction' => $this->transaction,
-        ] + $options);
+        /**
+         * @var RollbackRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            [
+                'database' => $this->database,
+                'transaction' => $this->transaction
+            ] + $options,
+            new RollbackRequest(),
+            CallOptions::class
+        );
+
+        try {
+            $this->gapicClient->rollback($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
     }
 
     /**
@@ -955,14 +944,31 @@ class BulkWriter
 
         unset($options['merge'], $options['precondition']);
         $options += ['labels' => []];
-
-        $response = $this->connection->batchWrite(array_filter([
+        $options += [
             'database' => $this->database,
-            'writes' => $writes,
-        ]) + $options);
+            'writes' => $writes
+        ];
 
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
+        /**
+         * @var BatchWriteRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options,
+            new BatchWriteRequest(),
+            CallOptions::class,
+        );
+
+        try {
+            $response = $this->gapicClient->batchWrite($request, $callOptions);
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
+
+        $responseArray = $this->serializer->encodeMessage($response);
+
+        if (!empty($response->getWriteResults())) {
+            foreach ($responseArray['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
                     $time = $this->parseTimeString($result['updateTime']);
                     $result['updateTime'] = new Timestamp($time[0], $time[1]);
@@ -970,7 +976,7 @@ class BulkWriter
             }
         }
 
-        return $response;
+        return $responseArray;
     }
 
     /**
@@ -993,7 +999,7 @@ class BulkWriter
 
             $args = $transform->args();
             if (!$transform->sendRaw()) {
-                if (is_array($args) && !$this->isAssoc($args)) {
+                if (is_array($args) && (empty($args) || !$this->isAssoc($args))) {
                     $args = $this->valueMapper->encodeArrayValue($args);
                 } else {
                     $args = $this->valueMapper->encodeValue($args);

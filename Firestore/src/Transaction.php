@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Represents a Firestore transaction.
@@ -45,52 +47,38 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class Transaction
 {
+    use ApiHelperTrait;
     use SnapshotTrait;
     use DebugInfoTrait;
 
-    /**
-     * @var ConnectionInterface
-     */
-    private $connection;
+    private FirestoreClient $gapicClient;
+    private ValueMapper $valueMapper;
+    private string $transaction;
+    private string $database;
+    private BulkWriter $writer;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $transaction;
-
-    /**
-     * @var string
-     */
-    private $database;
-
-    /**
-     * @var BulkWriter
-     */
-    private $writer;
-
-    /**
-     * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $database The database name.
      * @param string $transaction The transaction ID.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         $database,
         $transaction
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->transaction = $transaction;
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
 
-        $this->writer = new BulkWriter($connection, $valueMapper, $database, $transaction);
+        $this->writer = new BulkWriter($this->gapicClient, $valueMapper, $database, $transaction);
     }
 
     /**
@@ -107,7 +95,7 @@ class Transaction
      */
     public function snapshot(DocumentReference $document, array $options = [])
     {
-        return $this->createSnapshot($this->connection, $this->valueMapper, $document, [
+        return $this->createSnapshot($this->gapicClient, $this->valueMapper, $document, [
             'transaction' => $this->transaction,
         ] + $options);
     }
@@ -189,7 +177,7 @@ class Transaction
     public function documents(array $paths, array $options = [])
     {
         return $this->getDocumentsByPaths(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectIdFromName($this->database),
             $this->databaseIdFromName($this->database),

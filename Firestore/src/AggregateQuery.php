@@ -17,8 +17,14 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainOptions;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 use InvalidArgumentException;
 
 /**
@@ -36,49 +42,37 @@ use InvalidArgumentException;
  */
 class AggregateQuery
 {
+    use ApiHelperTrait;
     use QueryTrait;
+    use RequestProcessorTrait;
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
-     * @var array
-     */
-    private $query;
-
-    /**
-     * @var string
-     */
-    private $parentName;
-
-    /**
-     * @var array
-     */
-    private $aggregates = [];
+    private FirestoreClient $gapicClient;
+    private array $query;
+    private string $parentName;
+    private array $aggregates = [];
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * Create an aggregation query.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param string $parent The parent of the query.
      * @param array $query Represents the underlying structured query.
      * @param Aggregate $aggregate Aggregation over the provided query.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $firestoreClient,
         $parent,
         array $query,
         Aggregate $aggregate
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $firestoreClient;
         $this->parentName = $parent;
         $this->query = $query;
         $this->aggregates[] = $aggregate;
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**
@@ -115,17 +109,37 @@ class AggregateQuery
             );
         }
 
+        /** @var Aggregate $aggregate */
         foreach ($this->aggregates as $aggregate) {
             $parsedAggregates[] = $aggregate->getProps();
         }
-        $snapshot = $this->connection->runAggregationQuery([
-            'parent' => $this->parentName,
-            'structuredAggregationQuery' => $this->aggregateQueryPrepare([
-                'aggregates' => $this->aggregates
-            ] + $this->query),
-        ] + $options)->current();
 
-        return new AggregateQuerySnapshot($snapshot);
+        $jsonStructuredAggregationQuery = $this->aggregateQueryPrepare([
+            'aggregates' => $this->aggregates
+        ] + $this->query);
+
+        $options += [
+            'structuredAggregationQuery' => $jsonStructuredAggregationQuery,
+            'parent' => $this->parentName
+        ];
+
+        /**
+         * @var RunAggregationQueryRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options,
+            new RunAggregationQueryRequest(),
+            CallOptions::class
+        );
+
+        try {
+            $snapshot = $this->gapicClient->runAggregationQuery($request, $callOptions)->readAll()->current();
+        } catch (ApiException $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
+
+        return new AggregateQuerySnapshot($this->serializer->encodeMessage($snapshot));
     }
 
     /**

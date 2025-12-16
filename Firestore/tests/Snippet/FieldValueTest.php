@@ -17,14 +17,21 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use ArgumentCountError;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as ClientFirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\CommitResponse;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+
+use function PHPUnit\Framework\assertEquals;
 
 /**
  * @group firestore
@@ -32,42 +39,50 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class FieldValueTest extends SnippetTestCase
 {
+    use GenerateProtoTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    private $connection;
+    private $gapicClient;
     private $firestore;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->firestore = TestHelpers::stub(FirestoreClient::class, [
-            ['projectId' => 'my-awesome-project'],
+        $this->gapicClient = $this->prophesize(ClientFirestoreClient::class);
+        $this->firestore = new FirestoreClient([
+            'projectId' => 'my-awesome-project',
+            'firestoreClient' => $this->gapicClient->reveal()
         ]);
     }
 
     public function testDeleteField()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "updateMask" => [
-                        "fieldPaths" => ["hometown"],
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    "database" => "projects/my-awesome-project/databases/(default)",
+                    "writes" => [
+                        [
+                            "updateMask" => [
+                                "fieldPaths" => ["hometown"],
+                            ],
+                            "currentDocument" => [
+                                "exists" => true,
+                            ],
+                            "update" => [
+                                "name" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                            ],
+                        ],
                     ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                    "update" => [
-                        "name" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                ]);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->willReturn(new CommitResponse())->shouldBeCalledTimes(1);
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'deleteField');
         $snippet->setLine(3, '');
@@ -78,27 +93,33 @@ class FieldValueTest extends SnippetTestCase
 
     public function testServerTimestamp()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "lastLogin",
-                                "setToServerValue" => ServerValue::REQUEST_TIME,
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    "database" => "projects/my-awesome-project/databases/(default)",
+                    "writes" => [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "lastLogin",
+                                        "setToServerValue" => ServerValue::REQUEST_TIME,
+                                    ],
+                                ],
+                            ],
+                            "currentDocument" => [
+                                "exists" => true,
                             ],
                         ],
                     ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                ]);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->willReturn(new CommitResponse())->shouldBeCalledTimes(1);
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'serverTimestamp');
         $snippet->setLine(3, '');
@@ -109,35 +130,41 @@ class FieldValueTest extends SnippetTestCase
 
     public function testArrayUnion()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "favoriteColors",
-                                'appendMissingElements' => [
-                                    'values' => [
-                                        [
-                                            'stringValue' => 'red',
-                                        ], [
-                                            'stringValue' => 'blue',
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    "database" => "projects/my-awesome-project/databases/(default)",
+                    "writes" => [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "favoriteColors",
+                                        'appendMissingElements' => [
+                                            'values' => [
+                                                [
+                                                    'stringValue' => 'red',
+                                                ], [
+                                                    'stringValue' => 'blue',
+                                                ],
+                                            ],
                                         ],
                                     ],
                                 ],
                             ],
+                            "currentDocument" => [
+                                "exists" => true,
+                            ],
                         ],
                     ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                ]);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->willReturn(new CommitResponse())->shouldBeCalledTimes(1);
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'arrayUnion');
         $snippet->setLine(3, '');
@@ -148,33 +175,39 @@ class FieldValueTest extends SnippetTestCase
 
     public function testArrayRemove()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "favoriteColors",
-                                'removeAllFromArray' => [
-                                    'values' => [
-                                        [
-                                            'stringValue' => 'green',
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    "database" => "projects/my-awesome-project/databases/(default)",
+                    "writes" => [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "favoriteColors",
+                                        'removeAllFromArray' => [
+                                            'values' => [
+                                                [
+                                                    'stringValue' => 'green',
+                                                ],
+                                            ],
                                         ],
                                     ],
                                 ],
                             ],
+                            "currentDocument" => [
+                                "exists" => true,
+                            ],
                         ],
                     ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                ]);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->willReturn(new CommitResponse())->shouldBeCalledTimes(1);
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'arrayRemove');
         $snippet->setLine(3, '');
@@ -185,29 +218,35 @@ class FieldValueTest extends SnippetTestCase
 
     public function testIncrement()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "loginCount",
-                                'increment' => [
-                                    'integerValue' => 1,
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    "database" => "projects/my-awesome-project/databases/(default)",
+                    "writes" => [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "loginCount",
+                                        'increment' => [
+                                            'integerValue' => 1,
+                                        ],
+                                    ],
                                 ],
+                            ],
+                            "currentDocument" => [
+                                "exists" => true,
                             ],
                         ],
                     ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                ]);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->willReturn(new CommitResponse())->shouldBeCalledTimes(1);
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'increment');
         $snippet->setLine(3, '');

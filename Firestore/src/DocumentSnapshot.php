@@ -42,30 +42,11 @@ use Google\Cloud\Core\Timestamp;
  */
 class DocumentSnapshot implements \ArrayAccess
 {
-    /**
-     * @var DocumentReference
-     */
-    private $reference;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var array
-     */
-    private $info;
-
-    /**
-     * @var array
-     */
-    private $data;
-
-    /**
-     * @var bool
-     */
-    private $exists;
+    private DocumentReference $reference;
+    private ValueMapper $valueMapper;
+    private array $info;
+    private array $data;
+    private bool $exists;
 
     /**
      * @param DocumentReference $reference The document which created the snapshot.

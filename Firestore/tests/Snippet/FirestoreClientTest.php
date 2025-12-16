@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -24,12 +26,23 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Tests\Unit\GenerateProtoTrait;
+use Google\Cloud\Firestore\Tests\Unit\ServerStreamMockTrait;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\BeginTransactionResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
+use Google\Cloud\Firestore\V1\CommitResponse;
+use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -40,22 +53,25 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class FirestoreClientTest extends SnippetTestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
 
-    private $connection;
+    private $gapicClient;
     private $client;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(FirestoreClient::class, [
-            ['projectId' => self::PROJECT]
+        $this->gapicClient = $this->prophesize(GapicFirestoreClient::class);
+        $this->client = new FirestoreClient([
+            'projectId' => self::PROJECT,
+            'firestoreClient' => $this->gapicClient->reveal()
         ]);
     }
 
@@ -74,14 +90,6 @@ class FirestoreClientTest extends SnippetTestCase
         $this->assertEquals('localhost:8900', getenv('FIRESTORE_EMULATOR_HOST'));
     }
 
-    public function testBatch()
-    {
-        $snippet = $this->snippetFromMethod(FirestoreClient::class, 'batch');
-        $snippet->addLocal('firestore', $this->client);
-        $res = $snippet->invoke('batch');
-        $this->assertInstanceOf(WriteBatch::class, $res->returnVal());
-    }
-
     public function testCollection()
     {
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'collection');
@@ -92,13 +100,22 @@ class FirestoreClientTest extends SnippetTestCase
 
     public function testCollections()
     {
-        $this->connection->listCollectionIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'collectionIds' => ['users', 'accounts']
-            ]);
+        $protoResponse = self::generateProto(ListCollectionIdsResponse::class, [
+            'collectionIds' => ['users', 'accounts']
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->willReturn($protoResponse);
+
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->shouldBeCalled(1)
+            ->willReturn($page->reveal());
+
+        $this->gapicClient->listCollectionIds(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($pagedListResponse->reveal());
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'collections');
         $snippet->addLocal('firestore', $this->client);
@@ -121,25 +138,31 @@ class FirestoreClientTest extends SnippetTestCase
     {
         $tpl = 'projects/%s/databases/%s/documents/users/%s';
 
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ], [
-                    'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ]
-            ]);
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
+                'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
+                'fields' => []
+            ],
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ]
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $protoResponse2 = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
+                'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
+                'fields' => []
+            ],
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ]
+        ]);
+
+        $this->gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse, $protoResponse2]));
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'documents');
         $snippet->addLocal('firestore', $this->client);
@@ -152,16 +175,18 @@ class FirestoreClientTest extends SnippetTestCase
     public function testDocumentsDoesntExist()
     {
         $tpl = 'projects/%s/databases/%s/documents/users/%s';
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ]
-            ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, [
+            'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
+            'readTime' => [
+                'nanos' => 321,
+                'seconds' => 123
+            ]
+        ]);
+
+        $this->gapicClient->batchGetDocuments(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'documents', 1);
         $snippet->addLocal('firestore', $this->client);
@@ -172,24 +197,23 @@ class FirestoreClientTest extends SnippetTestCase
 
     public function testCollectionGroup()
     {
-        $this->connection->runQuery(Argument::any())
-            ->willReturn(new \ArrayIterator([
-                [
-                    'document' => [
-                        'name' => 'a/b/c/d',
-                        'fields' => []
-                    ],
-                    'readTime' => null
-                ], [
-                    'document' => [
-                        'name' => 'c/d',
-                        'fields' => []
-                    ],
-                    'readTime' => null
+        $protoResponses = [
+            self::generateProto(RunQueryResponse::class, [
+                'document' => [
+                    'name' => 'a/b/c/d',
+                    'fields' => []
                 ]
-            ]));
+            ]),
+            self::generateProto(RunQueryResponse::class, [
+                'document' => [
+                    'name' => 'c/d',
+                    'fields' => []
+                ]
+            ])
+        ];
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runQuery(Argument::any(), Argument::any())
+            ->willReturn($this->getServerStreamMock($protoResponses));
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'collectionGroup');
         $snippet->addLocal('firestore', $this->client);
@@ -203,46 +227,59 @@ class FirestoreClientTest extends SnippetTestCase
         $from = sprintf('projects/%s/databases/%s/documents/users/john', self::PROJECT, self::DATABASE);
         $to = sprintf('projects/%s/databases/%s/documents/users/dave', self::PROJECT, self::DATABASE);
 
-        $this->connection->beginTransaction(Argument::any())
+        $this->gapicClient->beginTransaction(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['transaction' => 'foo']);
+            ->willReturn(new BeginTransactionResponse(['transaction' => 'foo']));
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', [$from]))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => $from,
-                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
-                        'fields' => [
-                            'balance' => [
-                                'doubleValue' => 1000.00
-                            ]
-                        ]
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
+                'name' => $from,
+                'fields' => [
+                    'balance' => [
+                        'doubleValue' => 1000.00
                     ]
                 ]
-            ]));
+            ],
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ],
+        ]);
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', [$to]))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => $to,
-                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
-                        'fields' => [
-                            'balance' => [
-                                'doubleValue' => 1000.00
-                            ]
-                        ]
+        $protoResponse2 = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
+                'name' => $to,
+                'fields' => [
+                    'balance' => [
+                        'doubleValue' => 1000.00
                     ]
                 ]
-            ]));
+            ],
+            'readTime' => [
+                'seconds' => 123,
+                'nanos' => 321
+            ],
+        ]);
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled();
+        $callNumber = 0;
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($from, $to, &$callNumber) {
+                $toAssert = [$from, $to];
+                $this->assertEquals($toAssert[$callNumber], $request->getDocuments()[0]);
+                $callNumber++;
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn(
+                $this->getServerStreamMock([$protoResponse]),
+                $this->getServerStreamMock([$protoResponse2])
+            );
+
+        $this->gapicClient->commit(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new CommitResponse());
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'runTransaction');
         $snippet->addLocal('firestore', $this->client);

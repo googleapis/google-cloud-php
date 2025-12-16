@@ -53,10 +53,10 @@ class FirestoreTestCase extends SystemTestCase
             self::markTestSkipped('Set the GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH env var to run the system tests');
         }
         self::$client = new FirestoreClient([
-            'keyFilePath' => $keyFilePath
+            'credentials' => $keyFilePath
         ]);
         self::$multiDbClient = new FirestoreClient([
-            'keyFilePath' => $keyFilePath,
+            'credentials' => $keyFilePath,
             'database' => self::TEST_DB_NAME
         ]);
         self::$collection = self::$client->collection(uniqid(self::COLLECTION_NAME));

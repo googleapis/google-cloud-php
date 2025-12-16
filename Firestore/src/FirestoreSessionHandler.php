@@ -16,8 +16,12 @@
  */
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Options\CallOptions;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use SessionHandlerInterface;
 
 /**
@@ -113,52 +117,25 @@ use SessionHandlerInterface;
  */
 class FirestoreSessionHandler implements SessionHandlerInterface
 {
+    use ApiHelperTrait;
     use SnapshotTrait;
 
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-    /**
-     * @var string
-     */
-    private $projectId;
-    /**
-     * @var string
-     */
-    private $database;
-    /**
-     * @var array
-     */
-    private $options;
-    /**
-     * @var string
-     */
-    private $savePath;
-    /**
-     * @var string
-     */
-    private $sessionName;
-    /**
-     * @var Transaction
-     */
-    private $transaction;
-    /**
-     * @var string
-     */
-    private $id;
+    private FirestoreClient $gapicClient;
+    private ValueMapper $valueMapper;
+    private string $projectId;
+    private string $database;
+    private array $options;
+    private string $savePath;
+    private string $sessionName;
+    private Transaction $transaction;
+    private string|null $id;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
      * Create a custom session handler backed by Cloud Firestore.
      *
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
-     *        This object is created by FirestoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param FirestoreClient $firestoreClient A FirestoreClient instance.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -181,13 +158,14 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * }
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         $projectId,
         $database,
         array $options = []
     ) {
-        $this->connection = $connection;
+        $this->id = null;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->projectId = $projectId;
         $this->database = $database;
@@ -203,6 +181,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
 
         // Cut down gcLimit to 500, as this is the Firestore batch limit.
         $this->options['gcLimit'] = min($this->options['gcLimit'], 500);
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**
@@ -219,12 +199,25 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     {
         $this->savePath = $savePath;
         $this->sessionName = $sessionName;
+        $beginTransactionOptions = $this->options['begin'] ?? [];
         $database = $this->databaseName($this->projectId, $this->database);
+        $options = [
+            'database' => $database
+        ] + $beginTransactionOptions;
+
+        /**
+         * @var BeginTransactionRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options,
+            new BeginTransactionRequest(),
+            CallOptions::class
+        );
 
         try {
-            $beginTransaction = $this->connection->beginTransaction([
-                'database' => $database
-            ] + $this->options['begin']);
+            $response = $this->gapicClient->beginTransaction($request, $callOptions);
+            $beginTransaction = $this->serializer->encodeMessage($response);
         } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore beginTransaction failed: %s', $e->getMessage()),
@@ -233,7 +226,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         }
 
         $this->transaction = new Transaction(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $database,
             $beginTransaction['transaction']
@@ -275,7 +268,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $this->id = $id;
         try {
             $docRef = $this->getDocumentReference(
-                $this->connection,
+                $this->gapicClient,
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,
@@ -308,7 +301,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function write($id, $data)
     {
         $docRef = $this->getDocumentReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -331,7 +324,7 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     public function destroy($id)
     {
         $docRef = $this->getDocumentReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -357,19 +350,32 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $deleteCount = 0;
         try {
             $database = $this->databaseName($this->projectId, $this->database);
-            $beginTransaction = $this->connection->beginTransaction([
+            $options = [
                 'database' => $database
-            ] + $this->options['begin']);
+            ] + $this->pluck('begin', $this->options);
+
+            /**
+             * @var BeginTransactionRequest $request
+             * @var CallOptions $callOptions
+             */
+            [$request, $callOptions] = $this->validateOptions(
+                $options,
+                new BeginTransactionRequest(),
+                CallOptions::class
+            );
+
+            $response = $this->gapicClient->beginTransaction($request, $callOptions);
+            $beginTransaction = $this->serializer->encodeMessage($response);
 
             $transaction = new Transaction(
-                $this->connection,
+                $this->gapicClient,
                 $this->valueMapper,
                 $database,
                 $beginTransaction['transaction']
             );
 
             $collectionRef = $this->getCollectionReference(
-                $this->connection,
+                $this->gapicClient,
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,

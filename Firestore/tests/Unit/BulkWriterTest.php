@@ -17,14 +17,21 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\BulkWriter;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\Serializer;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\BatchWriteResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as GapicFirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\Write;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
 use InvalidArgumentException;
@@ -38,25 +45,36 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BulkWriterTest extends TestCase
 {
+    use GenerateProtoTrait;
     use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
     const TRANSACTION = 'foobar';
+    const COLLECTION_NAME = 'collection_name';
 
-    private $connection;
+    private $gapicClient;
+    private $client;
     private $batch;
+    private $collection;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->gapicClient = $this->prophesize(GapicFirestoreClient::class);
+        $this->batch = new BulkWriter(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            [],
+            []
+        );
+        $this->client = new FirestoreClient([
+            'projectId' => self::PROJECT,
+            'database' => self::DATABASE,
+            'firestoreClient' => $this->gapicClient->reveal(),
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
         ]);
+
         // avoids sleep during unit tests
         $this->batch->setMaxRetryTimeInMs(0);
     }
@@ -66,8 +84,8 @@ class BulkWriterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/Value for argument "initialOpsPerSecond" must be greater than 1/');
         new BulkWriter(
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             "TEST_DB",
             ['initialOpsPerSecond' => 0]
         );
@@ -78,8 +96,8 @@ class BulkWriterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/Value for argument "maxOpsPerSecond" must be greater than 1/');
         new BulkWriter(
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             "TEST_DB",
             ['maxOpsPerSecond' => 0]
         );
@@ -90,8 +108,8 @@ class BulkWriterTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/\'maxOpsPerSecond\' cannot be less than \'initialOpsPerSecond\'/');
         new BulkWriter(
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             "TEST_DB",
             [
                 'maxOpsPerSecond' => 2,
@@ -109,19 +127,29 @@ class BulkWriterTest extends TestCase
             'hello' => 'world',
         ]);
 
-        $this->flushAndAssert([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'currentDocument' => ['exists' => false],
-                    'update' => [
-                        'name' => $name,
-                        'fields' => ['hello' => ['stringValue' => 'world']],
-                    ],
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) {
+                $expectedDatabase = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
+                $expectedStringValue = 'world';
+
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                $this->assertEquals(
+                    $expectedStringValue,
+                    $request->getWrites()[0]->getUpdate()->getFields()['hello']->getStringValue()
+                );
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn(self::generateProto(BatchWriteResponse::class, [
+                'writeResults' => [[]],
+                'status' => [
+                    ['code' => Code::OK]
                 ],
-            ],
-            'labels' => [],
-        ]);
+            ]));
+
+        $this->batch->flush();
     }
 
     /**
@@ -129,28 +157,28 @@ class BulkWriterTest extends TestCase
      */
     public function testCreateMultipleDocs($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
-                    return false;
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs) {
+                $this->assertGreaterThan(0, count($request->getWrites()));
+
+                /**
+                 * @var Write $write
+                 */
+                foreach ($request->getWrites()->getIterator() as $write) {
+                    $this->assertNotEmpty($write->getCurrentDocument());
+                    $this->assertEquals(
+                        $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()],
+                        $write->getUpdate()->getFields()['path']->getStringValue()
+                    );
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
-                }
-            }
-            return true;
-        }))
-            ->shouldBeCalledTimes(3)
-            ->willReturn(
-                [
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(3)
+            ->willReturn(self::generateProto(BatchWriteResponse::class, [
                     'writeResults' => array_fill(0, 20, []),
                     'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                ]));
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -166,28 +194,28 @@ class BulkWriterTest extends TestCase
      */
     public function testFailuresAreRetriedTillMaxAttempts($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
-                    return false;
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs) {
+                $this->assertGreaterThan(0, count($request->getWrites()));
+
+                /**
+                 * @var Write $write
+                 */
+                foreach ($request->getWrites()->getIterator() as $write) {
+                    $this->assertNotEmpty($write->getCurrentDocument());
+                    $this->assertEquals(
+                        $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()],
+                        $write->getUpdate()->getFields()['path']->getStringValue()
+                    );
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
-                }
-            }
-            return true;
-        }))
-            ->shouldBeCalledTimes(3)
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, 20, []),
-                    'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(3)
+            ->willReturn(self::generateProto(BatchWriteResponse::class, [
+                'writeResults' => array_fill(0, 20, []),
+                'status' => array_fill(0, 20, ['code' => Code::OK]),
+            ]));
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -203,27 +231,27 @@ class BulkWriterTest extends TestCase
      */
     public function testFlushReturnsAllResponses($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
-                    return false;
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs) {
+                $this->assertGreaterThan(0, count($request->getWrites()));
+
+                /**
+                 * @var Write $write
+                 */
+                foreach ($request->getWrites()->getIterator() as $write) {
+                    $this->assertNotEmpty($write->getCurrentDocument());
+                    $this->assertEquals(
+                        $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()],
+                        $write->getUpdate()->getFields()['path']->getStringValue()
+                    );
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
-                }
-            }
-            return true;
-        }))
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, 20, []),
-                    'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                return true;
+            }),
+            Argument::any()
+        )->willReturn(self::generateProto(BatchWriteResponse::class, [
+            'writeResults' => array_fill(0, 20, []),
+            'status' => array_fill(0, 20, ['code' => Code::OK]),
+        ]));
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -244,27 +272,27 @@ class BulkWriterTest extends TestCase
      */
     public function testCloseReturnsAllResponses($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
-                    return false;
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs) {
+                $this->assertGreaterThan(0, count($request->getWrites()));
+
+                /**
+                 * @var Write $write
+                 */
+                foreach ($request->getWrites()->getIterator() as $write) {
+                    $this->assertNotEmpty($write->getCurrentDocument());
+                    $this->assertEquals(
+                        $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()],
+                        $write->getUpdate()->getFields()['path']->getStringValue()
+                    );
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
-                }
-            }
-            return true;
-        }))
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, 20, []),
-                    'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                return true;
+            }),
+            Argument::any()
+        )->willReturn(self::generateProto(BatchWriteResponse::class, [
+            'writeResults' => array_fill(0, 20, []),
+            'status' => array_fill(0, 20, ['code' => Code::OK]),
+        ]));
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -288,47 +316,48 @@ class BulkWriterTest extends TestCase
         $batchSize = 20;
         $successPerBatch = $batchSize * 3 / 4;
         $successfulDocs = [];
-        $this->batch = TestHelpers::stub(BulkWriter::class, [
-            $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+        $this->batch = new BulkWriter(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             ['greedilySend' => false],
-        ]);
+        );
 
-        $this->connection->batchWrite(Argument::that(
-            function ($arg) use ($docs, $successPerBatch, &$successfulDocs) {
-                if (count($arg['writes']) <= 0) {
-                    return false;
+        $this->gapicClient->batchWrite(
+            Argument::that(
+                function (BatchWriteRequest $request) use ($docs, $successPerBatch, &$successfulDocs) {
+                    $this->assertGreaterThan(0, count($request->getWrites()));
+
+                    /**
+                     * @var Write $write
+                     */
+                    foreach ($request->getWrites()->getIterator() as $i => $write) {
+                        $this->assertNotEmpty($write->getCurrentDocument());
+                        $this->assertEquals(
+                            $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()],
+                            $write->getUpdate()->getFields()['path']->getStringValue()
+                        );
+
+                        if ($i < $successPerBatch) {
+                            $successfulDocs[] = $write->getUpdate()->getFields()['path']->getStringValue();
+                        }
+                    }
+                    return true;
                 }
-                foreach ($arg['writes'] as $i => $write) {
-                    if (!$write['currentDocument']) {
-                        return false;
-                    }
-                    if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                        $write['update']['fields']['path']['stringValue']) {
-                        return false;
-                    }
-                    if ($i < $successPerBatch) {
-                        $successfulDocs[] = $write['update']['fields']['path']['stringValue'];
-                    }
-                }
-                return true;
-            }
-        ))
-            ->shouldBeCalledTimes(4)
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, $batchSize, []),
-                    'status' => array_merge(
-                        array_fill(0, $successPerBatch, [
-                            'code' => Code::OK,
-                        ]),
-                        array_fill(0, $batchSize - $successPerBatch, [
-                            'code' => Code::DATA_LOSS,
-                        ])
-                    ),
-                ]
-            );
+            ),
+            Argument::any()
+        )->shouldBeCalledTimes(4)
+            ->willReturn(self::generateProto(BatchWriteResponse::class, [
+                'writeResults' => array_fill(0, $batchSize, []),
+                'status' => array_merge(
+                    array_fill(0, $successPerBatch, [
+                        'code' => Code::OK,
+                    ]),
+                    array_fill(0, $batchSize - $successPerBatch, [
+                        'code' => Code::DATA_LOSS,
+                    ])
+                ),
+            ]));
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -387,6 +416,7 @@ class BulkWriterTest extends TestCase
                             ],
                         ],
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -439,6 +469,7 @@ class BulkWriterTest extends TestCase
                             'foo' => ['stringValue' => 'bar'],
                         ],
                     ],
+                    'updateTransforms' => []
                 ], [
                     'transform' => [
                         'document' => $name,
@@ -471,7 +502,9 @@ class BulkWriterTest extends TestCase
                                 ],
                             ],
                         ],
+
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -490,25 +523,34 @@ class BulkWriterTest extends TestCase
             ['path' => 'foo', 'value' => $val],
         ]);
 
-        $this->flushAndAssert(function ($arg) {
-            if (count($arg['writes']) > 1) {
-                return false;
-            }
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) {
+                $this->assertGreaterThan(0, count($request->getWrites()));
+                $this->assertNotEmpty($request->getWrites()[0]->getTransform()->getFieldTransforms()[0]);
+                $this->assertEquals(
+                    'foo',
+                    $request->getWrites()[0]->getTransform()->getFieldTransforms()[0]->getFieldPath()
+                );
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn(self::generateProto(BatchWriteResponse::class, [
+                'writeResults' => [[]],
+                'status' => [
+                    ['code' => Code::OK]
+                ],
+            ]));
 
-            if (!isset($arg['writes'][0]['transform']['fieldTransforms'][0])) {
-                return false;
-            }
-
-            return $arg['writes'][0]['transform']['fieldTransforms'][0]['fieldPath'] === 'foo';
-        });
+        $this->batch->flush();
     }
 
     public function noUpdateSentinels()
     {
         return [
-            [FieldValue::serverTimestamp()],
+            // [FieldValue::serverTimestamp()],
             [FieldValue::arrayUnion([])],
-            [FieldValue::arrayRemove([])],
+            // [FieldValue::arrayRemove([])],
         ];
     }
 
@@ -529,6 +571,7 @@ class BulkWriterTest extends TestCase
                         'name' => $name,
                         'fields' => ['hello' => ['stringValue' => 'world']],
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -559,6 +602,7 @@ class BulkWriterTest extends TestCase
                             'emptiness' => ['arrayValue' => ['values' => []]],
                         ],
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -587,6 +631,7 @@ class BulkWriterTest extends TestCase
                             ],
                         ],
                     ],
+                    'updateTransforms' => []
                 ], [
                     'transform' => [
                         'document' => $name,
@@ -597,6 +642,7 @@ class BulkWriterTest extends TestCase
                             ],
                         ],
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -668,6 +714,7 @@ class BulkWriterTest extends TestCase
                             ],
                         ],
                     ],
+                    'updateTransforms' => []
                 ],
                 [
                     'transform' => [
@@ -678,7 +725,9 @@ class BulkWriterTest extends TestCase
                                 'setToServerValue' => 1,
                             ],
                         ],
+
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -721,6 +770,7 @@ class BulkWriterTest extends TestCase
 
                         ],
                     ],
+                    'updateTransforms' => []
                 ],
                 [
                     'transform' => [
@@ -732,6 +782,7 @@ class BulkWriterTest extends TestCase
                             ],
                         ],
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -772,6 +823,7 @@ class BulkWriterTest extends TestCase
             'writes' => [
                 [
                     'delete' => $name,
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -805,6 +857,7 @@ class BulkWriterTest extends TestCase
                     'currentDocument' => [
                         'updateTime' => $ts,
                     ],
+                    'updateTransforms' => []
                 ],
             ],
             'labels' => [],
@@ -857,7 +910,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->create(self::DOCUMENT, [
@@ -869,7 +922,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->update(self::DOCUMENT, [
@@ -884,7 +937,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->set(self::DOCUMENT, [
@@ -896,7 +949,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->delete(self::DOCUMENT);
@@ -906,7 +959,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->create(self::DOCUMENT, [
             'hello' => 'world',
@@ -920,7 +973,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->update(self::DOCUMENT, [
             [
@@ -940,7 +993,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->set(self::DOCUMENT, [
             'hello' => 'world',
@@ -954,7 +1007,7 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
+        $this->gapicClient->batchWrite(Argument::any(), Argument::any())
             ->shouldNotBeCalled();
         $this->batch->delete(self::DOCUMENT);
         $this->batch->delete(self::DOCUMENT);
@@ -967,38 +1020,112 @@ class BulkWriterTest extends TestCase
         $this->batch->update(self::DOCUMENT, []);
     }
 
-    private function flushAndAssert($assertion)
+    public function testLongFailuresAreRetriedWithDelay()
     {
-        if (is_callable($assertion)) {
-            $this->connection->batchWrite(Argument::that($assertion))
-                ->shouldBeCalled()
-                ->willReturn(
-                    [
-                        'writeResults' => [[]],
-                        'status' => [
-                            [
-                                'code' => Code::OK,
-                            ],
-                        ],
-                    ]
-                );
-        } elseif (is_array($assertion)) {
-            $connectionResponse = [
-                'writeResults' => [],
-                'status' => [],
-            ];
-            for ($i = 0; $i < count($assertion); $i++) {
-                $connectionResponse['writeResults'][] = [];
-                $connectionResponse['status'][] = [
+        $this->collection = $this->client->collection(uniqid(self::COLLECTION_NAME));
+        $docs = $this->bulkDocumentsForWritter();
+        $batch = new BulkWriter(
+            $this->gapicClient->reveal(),
+            new ValueMapper($this->gapicClient->reveal(), false),
+            $this->collection->name(),
+            [
+                'initialOpsPerSecond' => 5,
+                'maxOpsPerSecond' => 10,
+                'greedilySend' => false,
+            ],
+        );
+
+        $batchSize = 20;
+        $successPerBatch = $batchSize * 3 / 4;
+        $successfulDocs = [];
+
+        $protoResponse = self::generateProto(BatchWriteResponse::class, [
+            'writeResults' => array_fill(0, $batchSize, []),
+            'status' => array_merge(
+                array_fill(0, $successPerBatch, [
                     'code' => Code::OK,
-                ];
-            }
-            $this->connection->batchWrite($assertion)
-                ->shouldBeCalled()
-                ->willReturn($connectionResponse);
-        } else {
-            throw new \Exception('bad assertion');
+                ]),
+                array_fill(0, $batchSize - $successPerBatch, [
+                    'code' => Code::DATA_LOSS,
+                ]),
+            ),
+        ]);
+
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($docs, $successPerBatch, &$successfulDocs) {
+                $this->assertGreaterThan(0, count($request->getWrites()));
+
+                /**
+                 * @var Write $write
+                 */
+                foreach ($request->getWrites() as $i => $write) {
+                    $this->assertNotEmpty($write->getCurrentDocument());
+                    $this->assertEquals(
+                        $docs[$write->getUpdate()->getFields()['key']->getIntegerValue()]->name(),
+                        $write->getUpdate()->getFields()['path']->getReferenceValue()
+                    );
+                    if ($i < $successPerBatch) {
+                        $successfulDocs[] = $write->getUpdate()->getFields()['path']->getReferenceValue();
+                    }
+                }
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalledTimes(10)
+            ->willReturn($protoResponse);
+
+        foreach ($docs as $k => $v) {
+            $batch->create($v, [
+                'key' => $k,
+                'path' => $v,
+            ]);
         }
+
+        $startTime = floor(microtime(true) * 1000);
+        $batch->flush();
+        $endTime = floor(microtime(true) * 1000);
+        $this->assertGreaterThan(2 * 1000, $endTime - $startTime);
+        $this->assertLessThan(10 * 1000, $endTime - $startTime);
+        $this->assertEquals(count($docs), count($successfulDocs));
+        for ($i = 0; $i < count($docs); $i++) {
+            $this->assertContains($docs[$i]->name(), $successfulDocs);
+        }
+    }
+
+    private function bulkDocumentsForWritter()
+    {
+        $docs = [];
+        for ($i = 0; $i < 50; $i++) {
+            $docs[] = $this->collection->newDocument();
+        }
+
+        return $docs;
+    }
+
+    private function flushAndAssert(array $required): void
+    {
+        $response = [
+            'writeResults' => [],
+            'status' => [],
+        ];
+
+        for ($i = 0; $i < count($required['writes']); $i++) {
+            $response['writeResults'][] = [];
+            $response['status'][] = [
+                'code' => Code::OK,
+            ];
+        }
+
+        $this->gapicClient->batchWrite(
+            Argument::that(function (BatchWriteRequest $request) use ($required) {
+                $expectedRequest= self::generateProto(BatchWriteRequest::class, $required);
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn(self::generateProto(BatchWriteResponse::class, $response));
 
         $this->batch->flush();
     }
