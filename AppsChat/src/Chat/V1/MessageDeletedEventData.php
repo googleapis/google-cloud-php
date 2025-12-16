@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class MessageDeletedEventData extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The deleted message. Only the `name`, `createTime`, `deleteTime`, and
+     * The deleted message. Only the `name`, `createTime`, and
      * `deletionMetadata` fields are populated.
      *
      * Generated from protobuf field <code>.google.chat.v1.Message message = 1;</code>
@@ -31,7 +31,7 @@ class MessageDeletedEventData extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Chat\V1\Message $message
-     *           The deleted message. Only the `name`, `createTime`, `deleteTime`, and
+     *           The deleted message. Only the `name`, `createTime`, and
      *           `deletionMetadata` fields are populated.
      * }
      */
@@ -41,7 +41,7 @@ class MessageDeletedEventData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The deleted message. Only the `name`, `createTime`, `deleteTime`, and
+     * The deleted message. Only the `name`, `createTime`, and
      * `deletionMetadata` fields are populated.
      *
      * Generated from protobuf field <code>.google.chat.v1.Message message = 1;</code>
@@ -63,7 +63,7 @@ class MessageDeletedEventData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The deleted message. Only the `name`, `createTime`, `deleteTime`, and
+     * The deleted message. Only the `name`, `createTime`, and
      * `deletionMetadata` fields are populated.
      *
      * Generated from protobuf field <code>.google.chat.v1.Message message = 1;</code>

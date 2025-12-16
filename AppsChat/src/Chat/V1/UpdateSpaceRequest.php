@@ -27,8 +27,10 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated field paths, comma separated if there are
      * multiple.
      * You can update the following fields for a space:
-     * `space_details`: Updates the space's description. Supports up to 150
-     * characters.
+     * `space_details`: Updates the space's description and guidelines. You must
+     * pass both description and guidelines in the update request as
+     * [`SpaceDetails`][google.chat.v1.Space.SpaceDetails]. If you only want to
+     * update one of the fields, pass the existing value for the other field.
      * `display_name`: Only supports updating the display name for spaces where
      * `spaceType` field is `SPACE`.
      *  If you receive the error message `ALREADY_EXISTS`, try a different
@@ -67,8 +69,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * of a space.
      * When updating permission settings, you can only specify
      * `permissionSettings` field masks; you cannot update other field masks
-     * at the same time. `permissionSettings` is not supported with
-     * `useAdminAccess`.
+     * at the same time.
      * The supported field masks include:
      * - `permission_settings.manageMembersAndGroups`
      * - `permission_settings.modifySpaceDetails`
@@ -105,8 +106,10 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *
      *                                               You can update the following fields for a space:
      *
-     *                                               `space_details`: Updates the space's description. Supports up to 150
-     *                                               characters.
+     *                                               `space_details`: Updates the space's description and guidelines. You must
+     *                                               pass both description and guidelines in the update request as
+     *                                               [`SpaceDetails`][google.chat.v1.Space.SpaceDetails]. If you only want to
+     *                                               update one of the fields, pass the existing value for the other field.
      *
      *                                               `display_name`: Only supports updating the display name for spaces where
      *                                               `spaceType` field is `SPACE`.
@@ -150,8 +153,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *                                               of a space.
      *                                               When updating permission settings, you can only specify
      *                                               `permissionSettings` field masks; you cannot update other field masks
-     *                                               at the same time. `permissionSettings` is not supported with
-     *                                               `useAdminAccess`.
+     *                                               at the same time.
      *                                               The supported field masks include:
      *
      *                                               - `permission_settings.manageMembersAndGroups`
@@ -187,8 +189,10 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           Required. The updated field paths, comma separated if there are
      *           multiple.
      *           You can update the following fields for a space:
-     *           `space_details`: Updates the space's description. Supports up to 150
-     *           characters.
+     *           `space_details`: Updates the space's description and guidelines. You must
+     *           pass both description and guidelines in the update request as
+     *           [`SpaceDetails`][google.chat.v1.Space.SpaceDetails]. If you only want to
+     *           update one of the fields, pass the existing value for the other field.
      *           `display_name`: Only supports updating the display name for spaces where
      *           `spaceType` field is `SPACE`.
      *            If you receive the error message `ALREADY_EXISTS`, try a different
@@ -227,8 +231,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           of a space.
      *           When updating permission settings, you can only specify
      *           `permissionSettings` field masks; you cannot update other field masks
-     *           at the same time. `permissionSettings` is not supported with
-     *           `useAdminAccess`.
+     *           at the same time.
      *           The supported field masks include:
      *           - `permission_settings.manageMembersAndGroups`
      *           - `permission_settings.modifySpaceDetails`
@@ -298,8 +301,10 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated field paths, comma separated if there are
      * multiple.
      * You can update the following fields for a space:
-     * `space_details`: Updates the space's description. Supports up to 150
-     * characters.
+     * `space_details`: Updates the space's description and guidelines. You must
+     * pass both description and guidelines in the update request as
+     * [`SpaceDetails`][google.chat.v1.Space.SpaceDetails]. If you only want to
+     * update one of the fields, pass the existing value for the other field.
      * `display_name`: Only supports updating the display name for spaces where
      * `spaceType` field is `SPACE`.
      *  If you receive the error message `ALREADY_EXISTS`, try a different
@@ -338,8 +343,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * of a space.
      * When updating permission settings, you can only specify
      * `permissionSettings` field masks; you cannot update other field masks
-     * at the same time. `permissionSettings` is not supported with
-     * `useAdminAccess`.
+     * at the same time.
      * The supported field masks include:
      * - `permission_settings.manageMembersAndGroups`
      * - `permission_settings.modifySpaceDetails`
@@ -371,8 +375,10 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated field paths, comma separated if there are
      * multiple.
      * You can update the following fields for a space:
-     * `space_details`: Updates the space's description. Supports up to 150
-     * characters.
+     * `space_details`: Updates the space's description and guidelines. You must
+     * pass both description and guidelines in the update request as
+     * [`SpaceDetails`][google.chat.v1.Space.SpaceDetails]. If you only want to
+     * update one of the fields, pass the existing value for the other field.
      * `display_name`: Only supports updating the display name for spaces where
      * `spaceType` field is `SPACE`.
      *  If you receive the error message `ALREADY_EXISTS`, try a different
@@ -411,8 +417,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * of a space.
      * When updating permission settings, you can only specify
      * `permissionSettings` field masks; you cannot update other field masks
-     * at the same time. `permissionSettings` is not supported with
-     * `useAdminAccess`.
+     * at the same time.
      * The supported field masks include:
      * - `permission_settings.manageMembersAndGroups`
      * - `permission_settings.modifySpaceDetails`

@@ -31,7 +31,9 @@ use Google\Apps\Chat\V1\Space;
 
 /**
  * Returns a list of spaces in a Google Workspace organization based on an
- * administrator's search.
+ * administrator's search. In the request, set `use_admin_access` to `true`.
+ * For an example, see [Search for and manage
+ * spaces](https://developers.google.com/workspace/chat/search-manage-admin).
  *
  * Requires [user
  * authentication with administrator
@@ -41,8 +43,6 @@ use Google\Apps\Chat\V1\Space;
  *
  * - `https://www.googleapis.com/auth/chat.admin.spaces.readonly`
  * - `https://www.googleapis.com/auth/chat.admin.spaces`
- *
- * In the request, set `use_admin_access` to `true`.
  *
  * @param string $query A search query.
  *
