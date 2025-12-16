@@ -17,13 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class WafSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The WAF service that uses this key.
+     * Required. The Web Application Firewall (WAF) service that uses this key.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafService waf_service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $waf_service = 0;
     /**
-     * Required. The WAF feature for which this key is enabled.
+     * Required. The Web Application Firewall (WAF) feature for which this key is
+     * enabled.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafFeature waf_feature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,9 +37,10 @@ class WafSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $waf_service
-     *           Required. The WAF service that uses this key.
+     *           Required. The Web Application Firewall (WAF) service that uses this key.
      *     @type int $waf_feature
-     *           Required. The WAF feature for which this key is enabled.
+     *           Required. The Web Application Firewall (WAF) feature for which this key is
+     *           enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +49,7 @@ class WafSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The WAF service that uses this key.
+     * Required. The Web Application Firewall (WAF) service that uses this key.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafService waf_service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -58,7 +60,7 @@ class WafSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The WAF service that uses this key.
+     * Required. The Web Application Firewall (WAF) service that uses this key.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafService waf_service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -73,7 +75,8 @@ class WafSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The WAF feature for which this key is enabled.
+     * Required. The Web Application Firewall (WAF) feature for which this key is
+     * enabled.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafFeature waf_feature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -84,7 +87,8 @@ class WafSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The WAF feature for which this key is enabled.
+     * Required. The Web Application Firewall (WAF) feature for which this key is
+     * enabled.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings.WafFeature waf_feature = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Enum that represents the integration types for web keys.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.WebKeySettings.IntegrationType</code>
  */
@@ -42,12 +43,20 @@ class IntegrationType
      * Generated from protobuf enum <code>INVISIBLE = 3;</code>
      */
     const INVISIBLE = 3;
+    /**
+     * Displays a visual challenge or not depending on the user risk analysis
+     * score.
+     *
+     * Generated from protobuf enum <code>POLICY_BASED_CHALLENGE = 5;</code>
+     */
+    const POLICY_BASED_CHALLENGE = 5;
 
     private static $valueToName = [
         self::INTEGRATION_TYPE_UNSPECIFIED => 'INTEGRATION_TYPE_UNSPECIFIED',
         self::SCORE => 'SCORE',
         self::CHECKBOX => 'CHECKBOX',
         self::INVISIBLE => 'INVISIBLE',
+        self::POLICY_BASED_CHALLENGE => 'POLICY_BASED_CHALLENGE',
     ];
 
     public static function name($value)

@@ -74,7 +74,7 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     protected $requested_uri = '';
     /**
-     * Optional. Flag for running WAF token assessment.
+     * Optional. Flag for running Web Application Firewall (WAF) token assessment.
      * If enabled, the token must be specified, and have been created by a
      * WAF-enabled key.
      *
@@ -165,7 +165,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type string $requested_uri
      *           Optional. The URI resource the user requested that triggered an assessment.
      *     @type bool $waf_token_assessment
-     *           Optional. Flag for running WAF token assessment.
+     *           Optional. Flag for running Web Application Firewall (WAF) token assessment.
      *           If enabled, the token must be specified, and have been created by a
      *           WAF-enabled key.
      *     @type string $ja3
@@ -431,7 +431,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Flag for running WAF token assessment.
+     * Optional. Flag for running Web Application Firewall (WAF) token assessment.
      * If enabled, the token must be specified, and have been created by a
      * WAF-enabled key.
      *
@@ -444,7 +444,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Flag for running WAF token assessment.
+     * Optional. Flag for running Web Application Firewall (WAF) token assessment.
      * If enabled, the token must be specified, and have been created by a
      * WAF-enabled key.
      *

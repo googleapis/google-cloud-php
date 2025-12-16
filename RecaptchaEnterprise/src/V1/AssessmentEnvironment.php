@@ -20,10 +20,9 @@ class AssessmentEnvironment extends \Google\Protobuf\Internal\Message
      * Optional. Identifies the client module initiating the CreateAssessment
      * request. This can be the link to the client module's project. Examples
      * include:
-     * - "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
-     * - "cloud.google.com/recaptcha/docs/implement-waf-akamai"
-     * - "cloud.google.com/recaptcha/docs/implement-waf-cloudflare"
-     * - "wordpress.org/plugins/recaptcha-something"
+     *   -
+     *   "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
+     *   - "wordpress.org/plugins/recaptcha-something"
      *
      * Generated from protobuf field <code>string client = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -45,10 +44,9 @@ class AssessmentEnvironment extends \Google\Protobuf\Internal\Message
      *           Optional. Identifies the client module initiating the CreateAssessment
      *           request. This can be the link to the client module's project. Examples
      *           include:
-     *           - "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
-     *           - "cloud.google.com/recaptcha/docs/implement-waf-akamai"
-     *           - "cloud.google.com/recaptcha/docs/implement-waf-cloudflare"
-     *           - "wordpress.org/plugins/recaptcha-something"
+     *             -
+     *             "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
+     *             - "wordpress.org/plugins/recaptcha-something"
      *     @type string $version
      *           Optional. The version of the client module. For example, "1.0.0".
      * }
@@ -62,10 +60,9 @@ class AssessmentEnvironment extends \Google\Protobuf\Internal\Message
      * Optional. Identifies the client module initiating the CreateAssessment
      * request. This can be the link to the client module's project. Examples
      * include:
-     * - "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
-     * - "cloud.google.com/recaptcha/docs/implement-waf-akamai"
-     * - "cloud.google.com/recaptcha/docs/implement-waf-cloudflare"
-     * - "wordpress.org/plugins/recaptcha-something"
+     *   -
+     *   "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
+     *   - "wordpress.org/plugins/recaptcha-something"
      *
      * Generated from protobuf field <code>string client = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -79,10 +76,9 @@ class AssessmentEnvironment extends \Google\Protobuf\Internal\Message
      * Optional. Identifies the client module initiating the CreateAssessment
      * request. This can be the link to the client module's project. Examples
      * include:
-     * - "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
-     * - "cloud.google.com/recaptcha/docs/implement-waf-akamai"
-     * - "cloud.google.com/recaptcha/docs/implement-waf-cloudflare"
-     * - "wordpress.org/plugins/recaptcha-something"
+     *   -
+     *   "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager"
+     *   - "wordpress.org/plugins/recaptcha-something"
      *
      * Generated from protobuf field <code>string client = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

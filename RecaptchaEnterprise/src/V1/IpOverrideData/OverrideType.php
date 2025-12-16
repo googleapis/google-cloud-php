@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Enum that represents the type of IP override.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.IpOverrideData.OverrideType</code>
  */

@@ -22,8 +22,13 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      */
     protected $allow_all_bundle_ids = false;
     /**
-     * Optional. iOS bundle ids of apps allowed to use the key.
+     * Optional. iOS bundle IDs of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
+     * Each key supports a maximum of 250 bundle IDs. To use a key on more
+     * apps, set `allow_all_bundle_ids` to true. When this is set, you
+     * are responsible for validating the bundle id by checking the
+     * `token_properties.ios_bundle_id` field in each assessment response
+     * against your list of allowed bundle IDs.
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,8 +53,13 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *     @type bool $allow_all_bundle_ids
      *           Optional. If set to true, allowed_bundle_ids are not enforced.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
-     *           Optional. iOS bundle ids of apps allowed to use the key.
+     *           Optional. iOS bundle IDs of apps allowed to use the key.
      *           Example: 'com.companyname.productname.appname'
+     *           Each key supports a maximum of 250 bundle IDs. To use a key on more
+     *           apps, set `allow_all_bundle_ids` to true. When this is set, you
+     *           are responsible for validating the bundle id by checking the
+     *           `token_properties.ios_bundle_id` field in each assessment response
+     *           against your list of allowed bundle IDs.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AppleDeveloperId $apple_developer_id
      *           Optional. Apple Developer account details for the app that is protected by
      *           the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple
@@ -90,8 +100,13 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. iOS bundle ids of apps allowed to use the key.
+     * Optional. iOS bundle IDs of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
+     * Each key supports a maximum of 250 bundle IDs. To use a key on more
+     * apps, set `allow_all_bundle_ids` to true. When this is set, you
+     * are responsible for validating the bundle id by checking the
+     * `token_properties.ios_bundle_id` field in each assessment response
+     * against your list of allowed bundle IDs.
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -102,8 +117,13 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. iOS bundle ids of apps allowed to use the key.
+     * Optional. iOS bundle IDs of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
+     * Each key supports a maximum of 250 bundle IDs. To use a key on more
+     * apps, set `allow_all_bundle_ids` to true. When this is set, you
+     * are responsible for validating the bundle id by checking the
+     * `token_properties.ios_bundle_id` field in each assessment response
+     * against your list of allowed bundle IDs.
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

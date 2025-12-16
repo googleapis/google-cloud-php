@@ -26,6 +26,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      * subdomains of an allowed domain are automatically allowed. A valid domain
      * requires a host and must not include any path, port, query or fragment.
      * Examples: 'example.com' or 'subdomain.example.com'
+     * Each key supports a maximum of 250 domains. To use a key on more domains,
+     * set `allow_all_domains` to true. When this is set, you are responsible for
+     * validating the hostname by checking the `token_properties.hostname` field
+     * in each assessment response against your list of allowed domains.
      *
      * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,11 +50,17 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Settings for the frequency and difficulty at which this key
      * triggers captcha challenges. This should only be specified for
-     * IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
+     * `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $challenge_security_preference = 0;
+    /**
+     * Optional. Challenge settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSettings challenge_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $challenge_settings = null;
 
     /**
      * Constructor.
@@ -65,6 +75,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *           subdomains of an allowed domain are automatically allowed. A valid domain
      *           requires a host and must not include any path, port, query or fragment.
      *           Examples: 'example.com' or 'subdomain.example.com'
+     *           Each key supports a maximum of 250 domains. To use a key on more domains,
+     *           set `allow_all_domains` to true. When this is set, you are responsible for
+     *           validating the hostname by checking the `token_properties.hostname` field
+     *           in each assessment response against your list of allowed domains.
      *     @type bool $allow_amp_traffic
      *           Optional. If set to true, the key can be used on AMP (Accelerated Mobile
      *           Pages) websites. This is supported only for the SCORE integration type.
@@ -73,7 +87,9 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *     @type int $challenge_security_preference
      *           Optional. Settings for the frequency and difficulty at which this key
      *           triggers captcha challenges. This should only be specified for
-     *           IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
+     *           `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\ChallengeSettings $challenge_settings
+     *           Optional. Challenge settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,6 +128,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      * subdomains of an allowed domain are automatically allowed. A valid domain
      * requires a host and must not include any path, port, query or fragment.
      * Examples: 'example.com' or 'subdomain.example.com'
+     * Each key supports a maximum of 250 domains. To use a key on more domains,
+     * set `allow_all_domains` to true. When this is set, you are responsible for
+     * validating the hostname by checking the `token_properties.hostname` field
+     * in each assessment response against your list of allowed domains.
      *
      * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -126,6 +146,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      * subdomains of an allowed domain are automatically allowed. A valid domain
      * requires a host and must not include any path, port, query or fragment.
      * Examples: 'example.com' or 'subdomain.example.com'
+     * Each key supports a maximum of 250 domains. To use a key on more domains,
+     * set `allow_all_domains` to true. When this is set, you are responsible for
+     * validating the hostname by checking the `token_properties.hostname` field
+     * in each assessment response against your list of allowed domains.
      *
      * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -196,7 +220,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Settings for the frequency and difficulty at which this key
      * triggers captcha challenges. This should only be specified for
-     * IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
+     * `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -209,7 +233,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Settings for the frequency and difficulty at which this key
      * triggers captcha challenges. This should only be specified for
-     * IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
+     * `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSecurityPreference challenge_security_preference = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -219,6 +243,42 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\ChallengeSecurityPreference::class);
         $this->challenge_security_preference = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Challenge settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSettings challenge_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\ChallengeSettings|null
+     */
+    public function getChallengeSettings()
+    {
+        return $this->challenge_settings;
+    }
+
+    public function hasChallengeSettings()
+    {
+        return isset($this->challenge_settings);
+    }
+
+    public function clearChallengeSettings()
+    {
+        unset($this->challenge_settings);
+    }
+
+    /**
+     * Optional. Challenge settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings.ChallengeSettings challenge_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\ChallengeSettings $var
+     * @return $this
+     */
+    public function setChallengeSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings\ChallengeSettings::class);
+        $this->challenge_settings = $var;
 
         return $this;
     }

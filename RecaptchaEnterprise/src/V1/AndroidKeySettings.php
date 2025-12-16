@@ -24,6 +24,11 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
+     * Each key supports a maximum of 250 package names. To use a key on more
+     * apps, set `allow_all_package_names` to true. When this is set, you
+     * are responsible for validating the package name by checking the
+     * `token_properties.android_package_name` field in each assessment response
+     * against your list of allowed package names.
      *
      * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,6 +53,11 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
      *           Optional. Android package names of apps allowed to use the key.
      *           Example: 'com.companyname.appname'
+     *           Each key supports a maximum of 250 package names. To use a key on more
+     *           apps, set `allow_all_package_names` to true. When this is set, you
+     *           are responsible for validating the package name by checking the
+     *           `token_properties.android_package_name` field in each assessment response
+     *           against your list of allowed package names.
      *     @type bool $support_non_google_app_store_distribution
      *           Optional. Set to true for keys that are used in an Android application that
      *           is available for download in app stores in addition to the Google Play
@@ -88,6 +98,11 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
+     * Each key supports a maximum of 250 package names. To use a key on more
+     * apps, set `allow_all_package_names` to true. When this is set, you
+     * are responsible for validating the package name by checking the
+     * `token_properties.android_package_name` field in each assessment response
+     * against your list of allowed package names.
      *
      * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -100,6 +115,11 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
+     * Each key supports a maximum of 250 package names. To use a key on more
+     * apps, set `allow_all_package_names` to true. When this is set, you
+     * are responsible for validating the package name by checking the
+     * `token_properties.android_package_name` field in each assessment response
+     * against your list of allowed package names.
      *
      * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

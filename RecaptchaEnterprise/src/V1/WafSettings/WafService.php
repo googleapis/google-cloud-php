@@ -7,7 +7,8 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\WafSettings;
 use UnexpectedValueException;
 
 /**
- * Web Application Firewalls supported by reCAPTCHA.
+ * Web Application Firewalls that reCAPTCHA supports.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.WafSettings.WafService</code>
  */
