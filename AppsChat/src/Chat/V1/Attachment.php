@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Attachment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Resource name of the attachment, in the form
-     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
+     * Identifier. Resource name of the attachment.
+     * Format: `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -65,8 +65,8 @@ class Attachment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Resource name of the attachment, in the form
-     *           `spaces/{space}/messages/{message}/attachments/{attachment}`.
+     *           Identifier. Resource name of the attachment.
+     *           Format: `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *     @type string $content_name
      *           Output only. The original file name for the content, not the full path.
      *     @type string $content_type
@@ -96,10 +96,10 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of the attachment, in the form
-     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
+     * Identifier. Resource name of the attachment.
+     * Format: `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -108,10 +108,10 @@ class Attachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of the attachment, in the form
-     * `spaces/{space}/messages/{message}/attachments/{attachment}`.
+     * Identifier. Resource name of the attachment.
+     * Format: `spaces/{space}/messages/{message}/attachments/{attachment}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

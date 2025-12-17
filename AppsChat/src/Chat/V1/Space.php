@@ -165,7 +165,8 @@ class Space extends \Google\Protobuf\Internal\Message
      * resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
      * Private apps can also use the `customers/my_customer` alias to create
      * the space in the same Google Workspace organization as the app.
-     * For DMs, this field isn't populated.
+     * This field isn't populated for direct messages (DMs) or when the space is
+     * created by non-Google Workspace users.
      *
      * Generated from protobuf field <code>optional string customer = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -277,7 +278,8 @@ class Space extends \Google\Protobuf\Internal\Message
      *           resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
      *           Private apps can also use the `customers/my_customer` alias to create
      *           the space in the same Google Workspace organization as the app.
-     *           For DMs, this field isn't populated.
+     *           This field isn't populated for direct messages (DMs) or when the space is
+     *           created by non-Google Workspace users.
      *     @type string $space_uri
      *           Output only. The URI for a user to access the space.
      *     @type int $predefined_permission_settings
@@ -889,7 +891,8 @@ class Space extends \Google\Protobuf\Internal\Message
      * resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
      * Private apps can also use the `customers/my_customer` alias to create
      * the space in the same Google Workspace organization as the app.
-     * For DMs, this field isn't populated.
+     * This field isn't populated for direct messages (DMs) or when the space is
+     * created by non-Google Workspace users.
      *
      * Generated from protobuf field <code>optional string customer = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -919,7 +922,8 @@ class Space extends \Google\Protobuf\Internal\Message
      * resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers).
      * Private apps can also use the `customers/my_customer` alias to create
      * the space in the same Google Workspace organization as the app.
-     * For DMs, this field isn't populated.
+     * This field isn't populated for direct messages (DMs) or when the space is
+     * created by non-Google Workspace users.
      *
      * Generated from protobuf field <code>optional string customer = 24 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
