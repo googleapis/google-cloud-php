@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Message representing reference to an AlloyDB database and agent context.
+ * Only supported for the `QueryData` method.
  *
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.AlloyDbReference</code>
  */

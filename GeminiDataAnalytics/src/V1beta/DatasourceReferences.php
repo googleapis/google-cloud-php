@@ -30,11 +30,14 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReferences $looker
      *           References to Looker Explores.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\AlloyDbReference $alloydb
-     *           Reference to an AlloyDB database.
+     *           Reference to an AlloyDB database. Only supported for the `QueryData`
+     *           method.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\SpannerReference $spanner_reference
-     *           Reference to a Spanner database.
+     *           Reference to a Spanner database. Only supported for the `QueryData`
+     *           method.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference $cloud_sql_reference
-     *           Reference to a CloudSql database.
+     *           Reference to a CloudSql database. Only supported for the `QueryData`
+     *           method.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,7 +139,8 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to an AlloyDB database.
+     * Reference to an AlloyDB database. Only supported for the `QueryData`
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AlloyDbReference alloydb = 8;</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\AlloyDbReference|null
@@ -152,7 +156,8 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to an AlloyDB database.
+     * Reference to an AlloyDB database. Only supported for the `QueryData`
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.AlloyDbReference alloydb = 8;</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\AlloyDbReference $var
@@ -167,7 +172,8 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Spanner database.
+     * Reference to a Spanner database. Only supported for the `QueryData`
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.SpannerReference spanner_reference = 9;</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\SpannerReference|null
@@ -183,7 +189,8 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a Spanner database.
+     * Reference to a Spanner database. Only supported for the `QueryData`
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.SpannerReference spanner_reference = 9;</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\SpannerReference $var
@@ -198,7 +205,8 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a CloudSql database.
+     * Reference to a CloudSql database. Only supported for the `QueryData`
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.CloudSqlReference cloud_sql_reference = 10;</code>
      * @return \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference|null
@@ -214,7 +222,8 @@ class DatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to a CloudSql database.
+     * Reference to a CloudSql database. Only supported for the `QueryData`
+     * method.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.CloudSqlReference cloud_sql_reference = 10;</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference $var
