@@ -16,14 +16,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutoscalingTargets extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The target high priority cpu utilization percentage that the
+     * Optional. The target high priority cpu utilization percentage that the
      * autoscaler should be trying to achieve for the instance. This number is
      * on a scale from 0 (no utilization) to 100 (full utilization). The valid
-     * range is [10, 90] inclusive.
+     * range is [10, 90] inclusive. If not specified or set to 0, the autoscaler
+     * skips scaling based on high priority CPU utilization.
      *
-     * Generated from protobuf field <code>int32 high_priority_cpu_utilization_percent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int32 high_priority_cpu_utilization_percent = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $high_priority_cpu_utilization_percent = 0;
+    /**
+     * Optional. The target total CPU utilization percentage that the autoscaler
+     * should be trying to achieve for the instance. This number is on a scale
+     * from 0 (no utilization) to 100 (full utilization). The valid range is
+     * [10, 90] inclusive. If not specified or set to 0, the autoscaler skips
+     * scaling based on total CPU utilization. If both
+     * `high_priority_cpu_utilization_percent` and
+     * `total_cpu_utilization_percent` are specified, the autoscaler provisions
+     * the larger of the two required compute capacities to satisfy both
+     * targets.
+     *
+     * Generated from protobuf field <code>int32 total_cpu_utilization_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_cpu_utilization_percent = 0;
     /**
      * Required. The target storage utilization percentage that the autoscaler
      * should be trying to achieve for the instance. This number is on a scale
@@ -41,10 +56,21 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $high_priority_cpu_utilization_percent
-     *           Required. The target high priority cpu utilization percentage that the
+     *           Optional. The target high priority cpu utilization percentage that the
      *           autoscaler should be trying to achieve for the instance. This number is
      *           on a scale from 0 (no utilization) to 100 (full utilization). The valid
-     *           range is [10, 90] inclusive.
+     *           range is [10, 90] inclusive. If not specified or set to 0, the autoscaler
+     *           skips scaling based on high priority CPU utilization.
+     *     @type int $total_cpu_utilization_percent
+     *           Optional. The target total CPU utilization percentage that the autoscaler
+     *           should be trying to achieve for the instance. This number is on a scale
+     *           from 0 (no utilization) to 100 (full utilization). The valid range is
+     *           [10, 90] inclusive. If not specified or set to 0, the autoscaler skips
+     *           scaling based on total CPU utilization. If both
+     *           `high_priority_cpu_utilization_percent` and
+     *           `total_cpu_utilization_percent` are specified, the autoscaler provisions
+     *           the larger of the two required compute capacities to satisfy both
+     *           targets.
      *     @type int $storage_utilization_percent
      *           Required. The target storage utilization percentage that the autoscaler
      *           should be trying to achieve for the instance. This number is on a scale
@@ -58,12 +84,13 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target high priority cpu utilization percentage that the
+     * Optional. The target high priority cpu utilization percentage that the
      * autoscaler should be trying to achieve for the instance. This number is
      * on a scale from 0 (no utilization) to 100 (full utilization). The valid
-     * range is [10, 90] inclusive.
+     * range is [10, 90] inclusive. If not specified or set to 0, the autoscaler
+     * skips scaling based on high priority CPU utilization.
      *
-     * Generated from protobuf field <code>int32 high_priority_cpu_utilization_percent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int32 high_priority_cpu_utilization_percent = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getHighPriorityCpuUtilizationPercent()
@@ -72,12 +99,13 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target high priority cpu utilization percentage that the
+     * Optional. The target high priority cpu utilization percentage that the
      * autoscaler should be trying to achieve for the instance. This number is
      * on a scale from 0 (no utilization) to 100 (full utilization). The valid
-     * range is [10, 90] inclusive.
+     * range is [10, 90] inclusive. If not specified or set to 0, the autoscaler
+     * skips scaling based on high priority CPU utilization.
      *
-     * Generated from protobuf field <code>int32 high_priority_cpu_utilization_percent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int32 high_priority_cpu_utilization_percent = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -85,6 +113,48 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->high_priority_cpu_utilization_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The target total CPU utilization percentage that the autoscaler
+     * should be trying to achieve for the instance. This number is on a scale
+     * from 0 (no utilization) to 100 (full utilization). The valid range is
+     * [10, 90] inclusive. If not specified or set to 0, the autoscaler skips
+     * scaling based on total CPU utilization. If both
+     * `high_priority_cpu_utilization_percent` and
+     * `total_cpu_utilization_percent` are specified, the autoscaler provisions
+     * the larger of the two required compute capacities to satisfy both
+     * targets.
+     *
+     * Generated from protobuf field <code>int32 total_cpu_utilization_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTotalCpuUtilizationPercent()
+    {
+        return $this->total_cpu_utilization_percent;
+    }
+
+    /**
+     * Optional. The target total CPU utilization percentage that the autoscaler
+     * should be trying to achieve for the instance. This number is on a scale
+     * from 0 (no utilization) to 100 (full utilization). The valid range is
+     * [10, 90] inclusive. If not specified or set to 0, the autoscaler skips
+     * scaling based on total CPU utilization. If both
+     * `high_priority_cpu_utilization_percent` and
+     * `total_cpu_utilization_percent` are specified, the autoscaler provisions
+     * the larger of the two required compute capacities to satisfy both
+     * targets.
+     *
+     * Generated from protobuf field <code>int32 total_cpu_utilization_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalCpuUtilizationPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_cpu_utilization_percent = $var;
 
         return $this;
     }
