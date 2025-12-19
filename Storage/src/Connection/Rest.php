@@ -560,7 +560,7 @@ class Rest implements ConnectionInterface
 
         if (!empty($args['headers'])) {
             $args['uploaderOptions']['restOptions']['headers'] = array_merge(
-                $args['uploaderOptions']['restOptions']['headers'] ?? [],
+                $args['uploaderOptions']['restOptions']['headers'],
                 $args['headers']
             );
         }
@@ -748,7 +748,11 @@ class Rest implements ConnectionInterface
     private function chooseValidationMethod(array $args)
     {
         // If the user provided a hash, skip hashing.
-        if (isset($args['metadata']['md5Hash']) || isset($args['metadata']['crc32c']) || isset($args['headers']['x-goog-hash'])) {
+        if (
+            isset($args['metadata']['md5Hash'])
+            || isset($args['metadata']['crc32c'])
+            || isset($args['headers']['x-goog-hash'])
+        ) {
             return false;
         }
 

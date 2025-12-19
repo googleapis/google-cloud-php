@@ -213,7 +213,9 @@ class BucketTest extends TestCase
             return $request->getMethod() === 'PUT'
                 && $request->getHeaderLine('Content-Range') === 'bytes 6-11/12'
                 && $request->getHeaderLine('X-Goog-Hash') === $hash;
-        }), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Response(200, [], '{"name":"' . $name . '","generation":"1"}'));
+        }), Argument::any())->willReturn(
+            new \GuzzleHttp\Psr7\Response(200, [], '{"name":"' . $name . '","generation":"1"}')
+        );
 
         $this->connection->projectId()->willReturn(self::PROJECT_ID);
         $this->connection->requestWrapper()->willReturn($rw->reveal());
