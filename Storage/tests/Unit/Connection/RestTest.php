@@ -579,8 +579,6 @@ class RestTest extends TestCase
 
         list($contentType, $metadata) = $this->getContentTypeAndMetadata($actualRequest);
         $this->assertEquals($expectedMd5, $metadata['md5Hash']);
-
-        $this->assertEquals($expectedMd5, $metadata['md5Hash']);
         $this->assertArrayNotHasKey('crc32c', $metadata);
     }
 
@@ -752,7 +750,7 @@ class RestCrc32cStub extends Rest
 
     /**
      * Helper proxy to expose crcFromStream for testing.
-     * * @param StreamInterface $data
+     * @param StreamInterface $data
      * @return string
      */
     public function getCrcFromStreamForTest(StreamInterface $data)
