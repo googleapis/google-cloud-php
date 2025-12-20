@@ -1061,7 +1061,7 @@ final class ArtifactRegistryClient
     }
 
     /**
-     * Exports an artifact.
+     * Exports an artifact to a Cloud Storage bucket.
      *
      * The async variant is {@see ArtifactRegistryClient::exportArtifactAsync()} .
      *

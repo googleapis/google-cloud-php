@@ -31,7 +31,7 @@ use Google\Cloud\ArtifactRegistry\V1\ExportArtifactResponse;
 use Google\Rpc\Status;
 
 /**
- * Exports an artifact.
+ * Exports an artifact to a Cloud Storage bucket.
  *
  * @param string $formattedRepository The repository of the artifact to export.
  *                                    Format: projects/{project}/locations/{location}/repositories/{repository}

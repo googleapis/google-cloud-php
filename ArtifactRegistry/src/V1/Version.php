@@ -67,6 +67,14 @@ class Version extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> annotations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
+    /**
+     * Output only. Immutable reference for the version, calculated based on the
+     * version's content. Currently we only support dirsum_sha256 hash algorithm.
+     * Additional hash algorithms may be added in the future.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash fingerprints = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $fingerprints;
 
     /**
      * Constructor.
@@ -96,6 +104,10 @@ class Version extends \Google\Protobuf\Internal\Message
      *           [MavenArtifact][google.devtools.artifactregistry.v1.MavenArtifact]
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. Client specified annotations.
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $fingerprints
+     *           Output only. Immutable reference for the version, calculated based on the
+     *           version's content. Currently we only support dirsum_sha256 hash algorithm.
+     *           Additional hash algorithms may be added in the future.
      * }
      */
     public function __construct($data = NULL) {
@@ -327,6 +339,36 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Immutable reference for the version, calculated based on the
+     * version's content. Currently we only support dirsum_sha256 hash algorithm.
+     * Additional hash algorithms may be added in the future.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash fingerprints = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFingerprints()
+    {
+        return $this->fingerprints;
+    }
+
+    /**
+     * Output only. Immutable reference for the version, calculated based on the
+     * version's content. Currently we only support dirsum_sha256 hash algorithm.
+     * Additional hash algorithms may be added in the future.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash fingerprints = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFingerprints($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ArtifactRegistry\V1\Hash::class);
+        $this->fingerprints = $arr;
 
         return $this;
     }
