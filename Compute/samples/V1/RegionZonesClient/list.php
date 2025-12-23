@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionZonesClient;
 use Google\Cloud\Compute\V1\ListRegionZonesRequest;
 
 /**
- * Retrieves the list of Zone resources under the specific region available to the specified project.
+ * Retrieves the list of Zone resources under the specific region available to
+ * the specified project.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Region for this request.

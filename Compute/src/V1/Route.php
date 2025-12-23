@@ -9,50 +9,67 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Route resource. A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview.
+ * Represents a Route resource.
+ * A route defines a path from VM instances in the VPC network to a specific
+ * destination. This destination can be inside or outside the VPC network.
+ * For more information, read theRoutes overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Route</code>
  */
 class Route extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] AS path.
+     * Output only. [Output Only] AS path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
      */
     private $as_paths;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this field when you create the resource.
+     * An optional description of this resource. Provide this field when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
+     * The destination range of outgoing packets that this route applies to. Both
+     * IPv4 and IPv6 are supported.
+     * Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291
+     * format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952
+     * compressed format.
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      */
     protected $dest_range = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of this resource. Always compute#routes for Route resources.
+     * Output only. [Output Only] Type of this resource. Always compute#routes for
+     * Route resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     * lowercase letter, and all following characters (except for the last
+     * character) must be a dash, lowercase letter, or digit. The last character
+     * must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -64,43 +81,80 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
-     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
+     * The URL to a gateway that should handle matching packets.
+     * You can only specify the internet gateway using a full or
+     * partial valid URL: projects/project/global/gateways/default-internet-gateway
      *
      * Generated from protobuf field <code>optional string next_hop_gateway = 377175298;</code>
      */
     protected $next_hop_gateway = null;
     /**
-     * [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
+     * Output only. [Output Only] The full resource name of the Network Connectivity Center hub
+     * that will handle matching packets.
      *
      * Generated from protobuf field <code>optional string next_hop_hub = 198679219;</code>
      */
     protected $next_hop_hub = null;
     /**
-     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule If an IP address is provided, must specify an IPv4 address in dot-decimal notation or an IPv6 address in RFC 4291 format. For example, the following are all valid IP addresses: - 10.128.0.56 - 2001:db8::2d9:51:0:0 - 2001:db8:0:0:2d9:51:0:0 IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     * The URL to a forwarding rule of typeloadBalancingScheme=INTERNAL that should handle matching
+     * packets or the IP address of the forwarding Rule.
+     * For example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *    - regions/region/forwardingRules/forwardingRule
+     * If an IP address is provided, must specify an IPv4 address in dot-decimal
+     * notation or an IPv6 address in RFC 4291 format. For example, the following
+     * are all valid IP addresses:
+     *       - 10.128.0.56
+     *       - 2001:db8::2d9:51:0:0
+     *       - 2001:db8:0:0:2d9:51:0:0
+     * IPv6 addresses will be displayed using RFC 5952 compressed format (e.g.
+     * 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ilb = 198679901;</code>
      */
     protected $next_hop_ilb = null;
     /**
-     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     * The URL to an instance that should handle matching packets. You can specify
+     * this as a full or partial URL.
+     * For example:
+     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *
      * Generated from protobuf field <code>optional string next_hop_instance = 393508247;</code>
      */
     protected $next_hop_instance = null;
     /**
-     * [Output only] Internal fixed region-to-region cost that Google Cloud calculates based on factors such as network performance, distance, and available bandwidth between regions.
+     * Output only. [Output only] Internal fixed region-to-region cost that Google Cloud
+     * calculates based on factors such as network performance, distance, and
+     * available bandwidth between regions.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_inter_region_cost = 24442003;</code>
      */
     protected $next_hop_inter_region_cost = null;
     /**
-     * The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     * Output only. [Output Only] The URL to an InterconnectAttachment which is the next hop
+     * for the route.
+     * This field will only be populated for dynamic routes generated by
+     * Cloud Router with a linked interconnectAttachment or the static route
+     * generated by each L2 Interconnect Attachment.
+     *
+     * Generated from protobuf field <code>optional string next_hop_interconnect_attachment = 226852914;</code>
+     */
+    protected $next_hop_interconnect_attachment = null;
+    /**
+     * The network IP address of an instance that should handle matching packets.
+     * Both IPv6 address and IPv4 addresses are supported.
+     * Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or
+     * an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or
+     * 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952
+     * compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an
+     * IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ip = 110319529;</code>
      */
     protected $next_hop_ip = null;
     /**
-     * [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates the desirability of a particular route in a network.
+     * Output only. [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates
+     * the desirability of a particular route in a network.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_med = 198683530;</code>
      */
@@ -112,14 +166,17 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     protected $next_hop_network = null;
     /**
-     * [Output Only] Indicates the origin of the route. Can be IGP (Interior Gateway Protocol), EGP (Exterior Gateway Protocol), or INCOMPLETE.
+     * Output only. [Output Only] Indicates the origin of the route. Can be IGP
+     * (Interior Gateway Protocol), EGP (Exterior Gateway Protocol),
+     * or INCOMPLETE.
      * Check the NextHopOrigin enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string next_hop_origin = 48752808;</code>
      */
     protected $next_hop_origin = null;
     /**
-     * [Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.
+     * Output only. [Output Only] The network peering name that should handle matching packets,
+     * which should conform to RFC1035.
      *
      * Generated from protobuf field <code>optional string next_hop_peering = 412682750;</code>
      */
@@ -131,26 +188,39 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     protected $next_hop_vpn_tunnel = null;
     /**
-     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteParams params = 78313862;</code>
      */
     protected $params = null;
     /**
-     * The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
+     * The priority of this route. Priority is used to break ties in cases
+     * where there is more than one matching route of equal prefix length. In
+     * cases where multiple routes have equal prefix length, the one with the
+     * lowest-numbered priority value wins. The default value is `1000`. The
+     * priority value must be from `0` to `65535`, inclusive.
      *
      * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      */
     protected $priority = null;
     /**
-     * [Output only] The status of the route.
+     * [Output only] The status of the route. This status applies to
+     * dynamic routes learned by Cloud Routers. It is also applicable to routes
+     * undergoing migration.
      * Check the RouteStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_status = 418162344;</code>
      */
     protected $route_status = null;
     /**
-     * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+     * Output only. [Output Only] The type of this route, which can be one of the following
+     * values:
+     * - 'TRANSIT' for a transit route that this router learned from
+     * another Cloud Router and will readvertise to one of its BGP peers
+     * - 'SUBNET' for a route from a subnet of the VPC
+     * - 'BGP' for a route learned from a BGP peer of this router
+     * - 'STATIC' for a static route
      * Check the RouteType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_type = 375888752;</code>
@@ -169,7 +239,8 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $tags;
     /**
-     * [Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+     * Output only. [Output Only] If potential misconfigurations are detected for this
+     * route, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
      */
@@ -182,60 +253,124 @@ class Route extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\RouteAsPath>|\Google\Protobuf\Internal\RepeatedField $as_paths
-     *           [Output Only] AS path.
+     *           Output only. [Output Only] AS path.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           Output only. [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this field when you create the resource.
+     *           An optional description of this resource. Provide this field when you
+     *           create the resource.
      *     @type string $dest_range
-     *           The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
+     *           The destination range of outgoing packets that this route applies to. Both
+     *           IPv4 and IPv6 are supported.
+     *           Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291
+     *           format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952
+     *           compressed format.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of this resource. Always compute#routes for Route resources.
+     *           Output only. [Output Only] Type of this resource. Always compute#routes for
+     *           Route resources.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     *           lowercase letter, and all following characters (except for the last
+     *           character) must be a dash, lowercase letter, or digit. The last character
+     *           must be a lowercase letter or digit.
      *     @type string $network
      *           Fully-qualified URL of the network that this route applies to.
      *     @type string $next_hop_gateway
-     *           The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
+     *           The URL to a gateway that should handle matching packets.
+     *           You can only specify the internet gateway using a full or
+     *           partial valid URL: projects/project/global/gateways/default-internet-gateway
      *     @type string $next_hop_hub
-     *           [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
+     *           Output only. [Output Only] The full resource name of the Network Connectivity Center hub
+     *           that will handle matching packets.
      *     @type string $next_hop_ilb
-     *           The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule If an IP address is provided, must specify an IPv4 address in dot-decimal notation or an IPv6 address in RFC 4291 format. For example, the following are all valid IP addresses: - 10.128.0.56 - 2001:db8::2d9:51:0:0 - 2001:db8:0:0:2d9:51:0:0 IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     *           The URL to a forwarding rule of typeloadBalancingScheme=INTERNAL that should handle matching
+     *           packets or the IP address of the forwarding Rule.
+     *           For example, the following are all valid URLs:
+     *                 - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *              - regions/region/forwardingRules/forwardingRule
+     *           If an IP address is provided, must specify an IPv4 address in dot-decimal
+     *           notation or an IPv6 address in RFC 4291 format. For example, the following
+     *           are all valid IP addresses:
+     *                 - 10.128.0.56
+     *                 - 2001:db8::2d9:51:0:0
+     *                 - 2001:db8:0:0:2d9:51:0:0
+     *           IPv6 addresses will be displayed using RFC 5952 compressed format (e.g.
+     *           2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *     @type string $next_hop_instance
-     *           The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     *           The URL to an instance that should handle matching packets. You can specify
+     *           this as a full or partial URL.
+     *           For example:
+     *           https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *     @type int $next_hop_inter_region_cost
-     *           [Output only] Internal fixed region-to-region cost that Google Cloud calculates based on factors such as network performance, distance, and available bandwidth between regions.
+     *           Output only. [Output only] Internal fixed region-to-region cost that Google Cloud
+     *           calculates based on factors such as network performance, distance, and
+     *           available bandwidth between regions.
+     *     @type string $next_hop_interconnect_attachment
+     *           Output only. [Output Only] The URL to an InterconnectAttachment which is the next hop
+     *           for the route.
+     *           This field will only be populated for dynamic routes generated by
+     *           Cloud Router with a linked interconnectAttachment or the static route
+     *           generated by each L2 Interconnect Attachment.
      *     @type string $next_hop_ip
-     *           The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     *           The network IP address of an instance that should handle matching packets.
+     *           Both IPv6 address and IPv4 addresses are supported.
+     *           Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or
+     *           an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or
+     *           2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952
+     *           compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an
+     *           IPv4-mapped IPv6 address.
      *     @type int $next_hop_med
-     *           [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates the desirability of a particular route in a network.
+     *           Output only. [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates
+     *           the desirability of a particular route in a network.
      *     @type string $next_hop_network
      *           The URL of the local network if it should handle matching packets.
      *     @type string $next_hop_origin
-     *           [Output Only] Indicates the origin of the route. Can be IGP (Interior Gateway Protocol), EGP (Exterior Gateway Protocol), or INCOMPLETE.
+     *           Output only. [Output Only] Indicates the origin of the route. Can be IGP
+     *           (Interior Gateway Protocol), EGP (Exterior Gateway Protocol),
+     *           or INCOMPLETE.
      *           Check the NextHopOrigin enum for the list of possible values.
      *     @type string $next_hop_peering
-     *           [Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.
+     *           Output only. [Output Only] The network peering name that should handle matching packets,
+     *           which should conform to RFC1035.
      *     @type string $next_hop_vpn_tunnel
      *           The URL to a VpnTunnel that should handle matching packets.
      *     @type \Google\Cloud\Compute\V1\RouteParams $params
-     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type int $priority
-     *           The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
+     *           The priority of this route. Priority is used to break ties in cases
+     *           where there is more than one matching route of equal prefix length. In
+     *           cases where multiple routes have equal prefix length, the one with the
+     *           lowest-numbered priority value wins. The default value is `1000`. The
+     *           priority value must be from `0` to `65535`, inclusive.
      *     @type string $route_status
-     *           [Output only] The status of the route.
+     *           [Output only] The status of the route. This status applies to
+     *           dynamic routes learned by Cloud Routers. It is also applicable to routes
+     *           undergoing migration.
      *           Check the RouteStatus enum for the list of possible values.
      *     @type string $route_type
-     *           [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+     *           Output only. [Output Only] The type of this route, which can be one of the following
+     *           values:
+     *           - 'TRANSIT' for a transit route that this router learned from
+     *           another Cloud Router and will readvertise to one of its BGP peers
+     *           - 'SUBNET' for a route from a subnet of the VPC
+     *           - 'BGP' for a route learned from a BGP peer of this router
+     *           - 'STATIC' for a static route
      *           Check the RouteType enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           A list of instance tags to which this route applies.
      *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
-     *           [Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+     *           Output only. [Output Only] If potential misconfigurations are detected for this
+     *           route, this field will be populated with warning messages.
      * }
      */
     public function __construct($data = NULL) {
@@ -244,7 +379,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] AS path.
+     * Output only. [Output Only] AS path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -255,7 +390,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] AS path.
+     * Output only. [Output Only] AS path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
      * @param array<\Google\Cloud\Compute\V1\RouteAsPath>|\Google\Protobuf\Internal\RepeatedField $var
@@ -270,7 +405,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -291,7 +427,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -306,7 +443,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this field when you create the resource.
+     * An optional description of this resource. Provide this field when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -327,7 +465,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this field when you create the resource.
+     * An optional description of this resource. Provide this field when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -342,7 +481,11 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
+     * The destination range of outgoing packets that this route applies to. Both
+     * IPv4 and IPv6 are supported.
+     * Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291
+     * format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952
+     * compressed format.
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      * @return string
@@ -363,7 +506,11 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported. Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291 format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952 compressed format.
+     * The destination range of outgoing packets that this route applies to. Both
+     * IPv4 and IPv6 are supported.
+     * Must specify an IPv4 range (e.g. 192.0.2.0/24) or an IPv6 range in RFC 4291
+     * format (e.g. 2001:db8::/32). IPv6 range will be displayed using RFC 5952
+     * compressed format.
      *
      * Generated from protobuf field <code>optional string dest_range = 381327712;</code>
      * @param string $var
@@ -378,7 +525,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -399,7 +547,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -414,7 +563,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of this resource. Always compute#routes for Route resources.
+     * Output only. [Output Only] Type of this resource. Always compute#routes for
+     * Route resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -435,7 +585,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of this resource. Always compute#routes for Route resources.
+     * Output only. [Output Only] Type of this resource. Always compute#routes for
+     * Route resources.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -450,7 +601,13 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     * lowercase letter, and all following characters (except for the last
+     * character) must be a dash, lowercase letter, or digit. The last character
+     * must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -471,7 +628,13 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     * lowercase letter, and all following characters (except for the last
+     * character) must be a dash, lowercase letter, or digit. The last character
+     * must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -522,7 +685,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
+     * The URL to a gateway that should handle matching packets.
+     * You can only specify the internet gateway using a full or
+     * partial valid URL: projects/project/global/gateways/default-internet-gateway
      *
      * Generated from protobuf field <code>optional string next_hop_gateway = 377175298;</code>
      * @return string
@@ -543,7 +708,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
+     * The URL to a gateway that should handle matching packets.
+     * You can only specify the internet gateway using a full or
+     * partial valid URL: projects/project/global/gateways/default-internet-gateway
      *
      * Generated from protobuf field <code>optional string next_hop_gateway = 377175298;</code>
      * @param string $var
@@ -558,7 +725,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
+     * Output only. [Output Only] The full resource name of the Network Connectivity Center hub
+     * that will handle matching packets.
      *
      * Generated from protobuf field <code>optional string next_hop_hub = 198679219;</code>
      * @return string
@@ -579,7 +747,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The full resource name of the Network Connectivity Center hub that will handle matching packets.
+     * Output only. [Output Only] The full resource name of the Network Connectivity Center hub
+     * that will handle matching packets.
      *
      * Generated from protobuf field <code>optional string next_hop_hub = 198679219;</code>
      * @param string $var
@@ -594,7 +763,19 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule If an IP address is provided, must specify an IPv4 address in dot-decimal notation or an IPv6 address in RFC 4291 format. For example, the following are all valid IP addresses: - 10.128.0.56 - 2001:db8::2d9:51:0:0 - 2001:db8:0:0:2d9:51:0:0 IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     * The URL to a forwarding rule of typeloadBalancingScheme=INTERNAL that should handle matching
+     * packets or the IP address of the forwarding Rule.
+     * For example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *    - regions/region/forwardingRules/forwardingRule
+     * If an IP address is provided, must specify an IPv4 address in dot-decimal
+     * notation or an IPv6 address in RFC 4291 format. For example, the following
+     * are all valid IP addresses:
+     *       - 10.128.0.56
+     *       - 2001:db8::2d9:51:0:0
+     *       - 2001:db8:0:0:2d9:51:0:0
+     * IPv6 addresses will be displayed using RFC 5952 compressed format (e.g.
+     * 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ilb = 198679901;</code>
      * @return string
@@ -615,7 +796,19 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule If an IP address is provided, must specify an IPv4 address in dot-decimal notation or an IPv6 address in RFC 4291 format. For example, the following are all valid IP addresses: - 10.128.0.56 - 2001:db8::2d9:51:0:0 - 2001:db8:0:0:2d9:51:0:0 IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     * The URL to a forwarding rule of typeloadBalancingScheme=INTERNAL that should handle matching
+     * packets or the IP address of the forwarding Rule.
+     * For example, the following are all valid URLs:
+     *       - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
+     *    - regions/region/forwardingRules/forwardingRule
+     * If an IP address is provided, must specify an IPv4 address in dot-decimal
+     * notation or an IPv6 address in RFC 4291 format. For example, the following
+     * are all valid IP addresses:
+     *       - 10.128.0.56
+     *       - 2001:db8::2d9:51:0:0
+     *       - 2001:db8:0:0:2d9:51:0:0
+     * IPv6 addresses will be displayed using RFC 5952 compressed format (e.g.
+     * 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ilb = 198679901;</code>
      * @param string $var
@@ -630,7 +823,10 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     * The URL to an instance that should handle matching packets. You can specify
+     * this as a full or partial URL.
+     * For example:
+     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *
      * Generated from protobuf field <code>optional string next_hop_instance = 393508247;</code>
      * @return string
@@ -651,7 +847,10 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     * The URL to an instance that should handle matching packets. You can specify
+     * this as a full or partial URL.
+     * For example:
+     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *
      * Generated from protobuf field <code>optional string next_hop_instance = 393508247;</code>
      * @param string $var
@@ -666,7 +865,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Internal fixed region-to-region cost that Google Cloud calculates based on factors such as network performance, distance, and available bandwidth between regions.
+     * Output only. [Output only] Internal fixed region-to-region cost that Google Cloud
+     * calculates based on factors such as network performance, distance, and
+     * available bandwidth between regions.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_inter_region_cost = 24442003;</code>
      * @return int
@@ -687,7 +888,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Internal fixed region-to-region cost that Google Cloud calculates based on factors such as network performance, distance, and available bandwidth between regions.
+     * Output only. [Output only] Internal fixed region-to-region cost that Google Cloud
+     * calculates based on factors such as network performance, distance, and
+     * available bandwidth between regions.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_inter_region_cost = 24442003;</code>
      * @param int $var
@@ -702,7 +905,57 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     * Output only. [Output Only] The URL to an InterconnectAttachment which is the next hop
+     * for the route.
+     * This field will only be populated for dynamic routes generated by
+     * Cloud Router with a linked interconnectAttachment or the static route
+     * generated by each L2 Interconnect Attachment.
+     *
+     * Generated from protobuf field <code>optional string next_hop_interconnect_attachment = 226852914;</code>
+     * @return string
+     */
+    public function getNextHopInterconnectAttachment()
+    {
+        return isset($this->next_hop_interconnect_attachment) ? $this->next_hop_interconnect_attachment : '';
+    }
+
+    public function hasNextHopInterconnectAttachment()
+    {
+        return isset($this->next_hop_interconnect_attachment);
+    }
+
+    public function clearNextHopInterconnectAttachment()
+    {
+        unset($this->next_hop_interconnect_attachment);
+    }
+
+    /**
+     * Output only. [Output Only] The URL to an InterconnectAttachment which is the next hop
+     * for the route.
+     * This field will only be populated for dynamic routes generated by
+     * Cloud Router with a linked interconnectAttachment or the static route
+     * generated by each L2 Interconnect Attachment.
+     *
+     * Generated from protobuf field <code>optional string next_hop_interconnect_attachment = 226852914;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextHopInterconnectAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_hop_interconnect_attachment = $var;
+
+        return $this;
+    }
+
+    /**
+     * The network IP address of an instance that should handle matching packets.
+     * Both IPv6 address and IPv4 addresses are supported.
+     * Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or
+     * an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or
+     * 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952
+     * compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an
+     * IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ip = 110319529;</code>
      * @return string
@@ -723,7 +976,13 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network IP address of an instance that should handle matching packets. Both IPv6 address and IPv4 addresses are supported. Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952 compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an IPv4-mapped IPv6 address.
+     * The network IP address of an instance that should handle matching packets.
+     * Both IPv6 address and IPv4 addresses are supported.
+     * Must specify an IPv4 address in dot-decimal notation (e.g. 192.0.2.99) or
+     * an IPv6 address in RFC 4291 format (e.g. 2001:db8::2d9:51:0:0 or
+     * 2001:db8:0:0:2d9:51:0:0). IPv6 addresses will be displayed using RFC 5952
+     * compressed format (e.g. 2001:db8::2d9:51:0:0). Should never be an
+     * IPv4-mapped IPv6 address.
      *
      * Generated from protobuf field <code>optional string next_hop_ip = 110319529;</code>
      * @param string $var
@@ -738,7 +997,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates the desirability of a particular route in a network.
+     * Output only. [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates
+     * the desirability of a particular route in a network.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_med = 198683530;</code>
      * @return int
@@ -759,7 +1019,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates the desirability of a particular route in a network.
+     * Output only. [Output Only] Multi-Exit Discriminator, a BGP route metric that indicates
+     * the desirability of a particular route in a network.
      *
      * Generated from protobuf field <code>optional uint32 next_hop_med = 198683530;</code>
      * @param int $var
@@ -810,7 +1071,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates the origin of the route. Can be IGP (Interior Gateway Protocol), EGP (Exterior Gateway Protocol), or INCOMPLETE.
+     * Output only. [Output Only] Indicates the origin of the route. Can be IGP
+     * (Interior Gateway Protocol), EGP (Exterior Gateway Protocol),
+     * or INCOMPLETE.
      * Check the NextHopOrigin enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string next_hop_origin = 48752808;</code>
@@ -832,7 +1095,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates the origin of the route. Can be IGP (Interior Gateway Protocol), EGP (Exterior Gateway Protocol), or INCOMPLETE.
+     * Output only. [Output Only] Indicates the origin of the route. Can be IGP
+     * (Interior Gateway Protocol), EGP (Exterior Gateway Protocol),
+     * or INCOMPLETE.
      * Check the NextHopOrigin enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string next_hop_origin = 48752808;</code>
@@ -848,7 +1113,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.
+     * Output only. [Output Only] The network peering name that should handle matching packets,
+     * which should conform to RFC1035.
      *
      * Generated from protobuf field <code>optional string next_hop_peering = 412682750;</code>
      * @return string
@@ -869,7 +1135,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.
+     * Output only. [Output Only] The network peering name that should handle matching packets,
+     * which should conform to RFC1035.
      *
      * Generated from protobuf field <code>optional string next_hop_peering = 412682750;</code>
      * @param string $var
@@ -920,7 +1187,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteParams params = 78313862;</code>
      * @return \Google\Cloud\Compute\V1\RouteParams|null
@@ -941,7 +1209,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteParams params = 78313862;</code>
      * @param \Google\Cloud\Compute\V1\RouteParams $var
@@ -956,7 +1225,11 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
+     * The priority of this route. Priority is used to break ties in cases
+     * where there is more than one matching route of equal prefix length. In
+     * cases where multiple routes have equal prefix length, the one with the
+     * lowest-numbered priority value wins. The default value is `1000`. The
+     * priority value must be from `0` to `65535`, inclusive.
      *
      * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      * @return int
@@ -977,7 +1250,11 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
+     * The priority of this route. Priority is used to break ties in cases
+     * where there is more than one matching route of equal prefix length. In
+     * cases where multiple routes have equal prefix length, the one with the
+     * lowest-numbered priority value wins. The default value is `1000`. The
+     * priority value must be from `0` to `65535`, inclusive.
      *
      * Generated from protobuf field <code>optional uint32 priority = 445151652;</code>
      * @param int $var
@@ -992,7 +1269,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The status of the route.
+     * [Output only] The status of the route. This status applies to
+     * dynamic routes learned by Cloud Routers. It is also applicable to routes
+     * undergoing migration.
      * Check the RouteStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_status = 418162344;</code>
@@ -1014,7 +1293,9 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] The status of the route.
+     * [Output only] The status of the route. This status applies to
+     * dynamic routes learned by Cloud Routers. It is also applicable to routes
+     * undergoing migration.
      * Check the RouteStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_status = 418162344;</code>
@@ -1030,7 +1311,13 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+     * Output only. [Output Only] The type of this route, which can be one of the following
+     * values:
+     * - 'TRANSIT' for a transit route that this router learned from
+     * another Cloud Router and will readvertise to one of its BGP peers
+     * - 'SUBNET' for a route from a subnet of the VPC
+     * - 'BGP' for a route learned from a BGP peer of this router
+     * - 'STATIC' for a static route
      * Check the RouteType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_type = 375888752;</code>
@@ -1052,7 +1339,13 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+     * Output only. [Output Only] The type of this route, which can be one of the following
+     * values:
+     * - 'TRANSIT' for a transit route that this router learned from
+     * another Cloud Router and will readvertise to one of its BGP peers
+     * - 'SUBNET' for a route from a subnet of the VPC
+     * - 'BGP' for a route learned from a BGP peer of this router
+     * - 'STATIC' for a static route
      * Check the RouteType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string route_type = 375888752;</code>
@@ -1130,7 +1423,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+     * Output only. [Output Only] If potential misconfigurations are detected for this
+     * route, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1141,7 +1435,8 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+     * Output only. [Output Only] If potential misconfigurations are detected for this
+     * route, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
      * @param array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $var

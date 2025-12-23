@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Provides a localized error message that is safe to return to the user which can be attached to an RPC error.
+ * Provides a localized error message that is safe to return to the user
+ * which can be attached to an RPC error.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LocalizedMessage</code>
  */
 class LocalizedMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     * The locale used following the specification defined at
+     * https://www.rfc-editor.org/rfc/bcp/bcp47.txt.
+     * Examples are: "en-US", "fr-CH", "es-MX"
      *
      * Generated from protobuf field <code>optional string locale = 513150554;</code>
      */
@@ -35,7 +38,9 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $locale
-     *           The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     *           The locale used following the specification defined at
+     *           https://www.rfc-editor.org/rfc/bcp/bcp47.txt.
+     *           Examples are: "en-US", "fr-CH", "es-MX"
      *     @type string $message
      *           The localized error message in the above locale.
      * }
@@ -46,7 +51,9 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     * The locale used following the specification defined at
+     * https://www.rfc-editor.org/rfc/bcp/bcp47.txt.
+     * Examples are: "en-US", "fr-CH", "es-MX"
      *
      * Generated from protobuf field <code>optional string locale = 513150554;</code>
      * @return string
@@ -67,7 +74,9 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     * The locale used following the specification defined at
+     * https://www.rfc-editor.org/rfc/bcp/bcp47.txt.
+     * Examples are: "en-US", "fr-CH", "es-MX"
      *
      * Generated from protobuf field <code>optional string locale = 513150554;</code>
      * @param string $var

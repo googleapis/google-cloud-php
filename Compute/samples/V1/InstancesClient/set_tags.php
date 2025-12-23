@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\Tags;
 use Google\Rpc\Status;
 
 /**
- * Sets network tags for the specified instance to the data included in the request.
+ * Sets network tags
+ * for the specified instance to the data included in the request.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

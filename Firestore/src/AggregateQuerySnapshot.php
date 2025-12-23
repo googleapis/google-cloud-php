@@ -39,24 +39,9 @@ class AggregateQuerySnapshot
 {
     use TimeTrait;
 
-    /**
-     * @var Timestamp
-     */
-    private $readTime;
-
-    /**
-     * @var array
-     */
-    private $aggregateFields = [];
-
-    /**
-     * @var string
-     */
-    private $transaction;
-
-    /**
-     * @var null|ExplainMetrics
-     */
+    private Timestamp $readTime;
+    private array $aggregateFields = [];
+    private string $transaction;
     private null|ExplainMetrics $explainMetrics;
 
     /**

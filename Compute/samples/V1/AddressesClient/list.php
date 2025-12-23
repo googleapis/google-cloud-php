@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\AddressesClient;
 use Google\Cloud\Compute\V1\ListAddressesRequest;
 
 /**
- * Retrieves a list of addresses contained within the specified region.
+ * Retrieves a list of addresses contained within
+ * the specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.

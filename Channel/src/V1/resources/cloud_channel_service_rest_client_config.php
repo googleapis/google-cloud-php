@@ -432,10 +432,21 @@ return [
             'ListSubscribers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{account=accounts/*}:listSubscribers',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{integrator=integrators/*}:listSubscribers',
+                    ],
+                ],
                 'placeholders' => [
                     'account' => [
                         'getters' => [
                             'getAccount',
+                        ],
+                    ],
+                    'integrator' => [
+                        'getters' => [
+                            'getIntegrator',
                         ],
                     ],
                 ],
@@ -502,10 +513,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{account=accounts/*}:register',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{integrator=integrators/*}:registerSubscriber',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'account' => [
                         'getters' => [
                             'getAccount',
+                        ],
+                    ],
+                    'integrator' => [
+                        'getters' => [
+                            'getIntegrator',
                         ],
                     ],
                 ],
@@ -562,10 +585,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{account=accounts/*}:unregister',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{integrator=integrators/*}:unregisterSubscriber',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'account' => [
                         'getters' => [
                             'getAccount',
+                        ],
+                    ],
+                    'integrator' => [
+                        'getters' => [
+                            'getIntegrator',
                         ],
                     ],
                 ],

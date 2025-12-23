@@ -9,136 +9,172 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Cross-Cloud Interconnect Remote Location resource. You can use this resource to find remote location details about an Interconnect attachment (VLAN).
+ * Represents a Cross-Cloud Interconnect Remote Location resource.
+ * You can use this resource to find remote location details about an
+ * Interconnect attachment (VLAN).
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectRemoteLocation</code>
  */
 class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
+     * Output only. [Output Only] The postal address of the Point of Presence, each line in
+     * the address is separated by a newline character.
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
      */
     protected $address = null;
     /**
-     * [Output Only] Subset of fields from InterconnectAttachment's |configurationConstraints| field that apply to all attachments for this remote location.
+     * Output only. [Output Only] Subset of fields from InterconnectAttachment's
+     * |configurationConstraints| field that apply to all attachments for this
+     * remote location.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints attachment_configuration_constraints = 326825041;</code>
      */
     protected $attachment_configuration_constraints = null;
     /**
-     * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
+     * Output only. [Output Only] Metropolitan area designator that indicates which city an
+     * interconnect is located.
+     * For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
      */
     protected $city = null;
     /**
-     * [Output Only] Constraints on the parameters for creating Cross-Cloud Interconnect and associated InterconnectAttachments.
+     * Output only. [Output Only] Constraints on the parameters for creating Cross-Cloud
+     * Interconnect and associated InterconnectAttachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectRemoteLocationConstraints constraints = 3909174;</code>
      */
     protected $constraints = null;
     /**
-     * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA
+     * Output only. [Output Only] Continent for this location, which can take one of the
+     * following values:
+     *    - AFRICA
+     *    - ASIA_PAC
+     *    - EUROPE
+     *    - NORTH_AMERICA
+     *    - SOUTH_AMERICA
      * Check the Continent enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string continent = 133442996;</code>
      */
     protected $continent = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] An optional description of the resource.
+     * Output only. [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     * Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      */
     protected $facility_provider = null;
     /**
-     * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
+     * Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     * Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
      */
     protected $facility_provider_facility_id = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#interconnectRemoteLocation for interconnect remote locations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectRemoteLocation for interconnect remote
+     * locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] Link Aggregation Control Protocol (LACP) constraints, which can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
+     * Output only. [Output Only] Link Aggregation Control Protocol (LACP) constraints, which
+     * can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
      * Check the Lacp enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string lacp = 3313826;</code>
      */
     protected $lacp = null;
     /**
-     * [Output Only] The maximum number of 100 Gbps ports supported in a link aggregation group (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed max_lag_size_100_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 100 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_100_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size100_gbps = 245219253;</code>
      */
     protected $max_lag_size100_gbps = null;
     /**
-     * [Output Only] The maximum number of 10 Gbps ports supported in a link aggregation group (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed max_lag_size_10_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 10 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_10_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size10_gbps = 294007573;</code>
      */
     protected $max_lag_size10_gbps = null;
     /**
-     * [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 400 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_400_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size400_gbps = 104941138;</code>
      */
     protected $max_lag_size400_gbps = null;
     /**
-     * [Output Only] Name of the resource.
+     * Output only. [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
+     * Output only. [Output Only] The peeringdb identifier for this facility (corresponding
+     * with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
      */
     protected $peeringdb_facility_id = null;
     /**
-     * [Output Only] Permitted connections.
+     * Output only. [Output Only] Permitted connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectRemoteLocationPermittedConnections permitted_connections = 442063278;</code>
      */
     private $permitted_connections;
     /**
-     * [Output Only] Indicates the service provider present at the remote location. Example values: "Amazon Web Services", "Microsoft Azure".
+     * Output only. [Output Only] Indicates the service provider present at the remote
+     * location. Example values: "Amazon Web Services", "Microsoft Azure".
      *
      * Generated from protobuf field <code>optional string remote_service = 391954364;</code>
      */
     protected $remote_service = null;
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] The status of this InterconnectRemoteLocation, which can take one of the following values: - CLOSED: The InterconnectRemoteLocation is closed and is unavailable for provisioning new Cross-Cloud Interconnects. - AVAILABLE: The InterconnectRemoteLocation is available for provisioning new Cross-Cloud Interconnects.
+     * Output only. [Output Only] The status of this InterconnectRemoteLocation, which can take
+     * one of the following values:
+     *    - CLOSED: The InterconnectRemoteLocation is closed and is unavailable
+     *    for provisioning new Cross-Cloud Interconnects.
+     *    - AVAILABLE: The
+     *    InterconnectRemoteLocation is available for provisioning new
+     *    Cross-Cloud Interconnects.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -152,49 +188,83 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $address
-     *           [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
+     *           Output only. [Output Only] The postal address of the Point of Presence, each line in
+     *           the address is separated by a newline character.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraints $attachment_configuration_constraints
-     *           [Output Only] Subset of fields from InterconnectAttachment's |configurationConstraints| field that apply to all attachments for this remote location.
+     *           Output only. [Output Only] Subset of fields from InterconnectAttachment's
+     *           |configurationConstraints| field that apply to all attachments for this
+     *           remote location.
      *     @type string $city
-     *           [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
+     *           Output only. [Output Only] Metropolitan area designator that indicates which city an
+     *           interconnect is located.
+     *           For example: "Chicago, IL", "Amsterdam, Netherlands".
      *     @type \Google\Cloud\Compute\V1\InterconnectRemoteLocationConstraints $constraints
-     *           [Output Only] Constraints on the parameters for creating Cross-Cloud Interconnect and associated InterconnectAttachments.
+     *           Output only. [Output Only] Constraints on the parameters for creating Cross-Cloud
+     *           Interconnect and associated InterconnectAttachments.
      *     @type string $continent
-     *           [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA
+     *           Output only. [Output Only] Continent for this location, which can take one of the
+     *           following values:
+     *              - AFRICA
+     *              - ASIA_PAC
+     *              - EUROPE
+     *              - NORTH_AMERICA
+     *              - SOUTH_AMERICA
      *           Check the Continent enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           Output only. [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           [Output Only] An optional description of the resource.
+     *           Output only. [Output Only] An optional description of the resource.
      *     @type string $facility_provider
-     *           [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     *           Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *     @type string $facility_provider_facility_id
-     *           [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
+     *           Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     *           Ashburn-DC1).
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           Output only. [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#interconnectRemoteLocation for interconnect remote locations.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#interconnectRemoteLocation for interconnect remote
+     *           locations.
      *     @type string $lacp
-     *           [Output Only] Link Aggregation Control Protocol (LACP) constraints, which can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
+     *           Output only. [Output Only] Link Aggregation Control Protocol (LACP) constraints, which
+     *           can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
      *           Check the Lacp enum for the list of possible values.
      *     @type int $max_lag_size100_gbps
-     *           [Output Only] The maximum number of 100 Gbps ports supported in a link aggregation group (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed max_lag_size_100_gbps.
+     *           Output only. [Output Only]
+     *           The maximum number of 100 Gbps ports supported in a link aggregation group
+     *           (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed
+     *           max_lag_size_100_gbps.
      *     @type int $max_lag_size10_gbps
-     *           [Output Only] The maximum number of 10 Gbps ports supported in a link aggregation group (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed max_lag_size_10_gbps.
+     *           Output only. [Output Only]
+     *           The maximum number of 10 Gbps ports supported in a link aggregation group
+     *           (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed
+     *           max_lag_size_10_gbps.
      *     @type int $max_lag_size400_gbps
-     *           [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
+     *           Output only. [Output Only]
+     *           The maximum number of 400 Gbps ports supported in a link aggregation group
+     *           (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed
+     *           max_lag_size_400_gbps.
      *     @type string $name
-     *           [Output Only] Name of the resource.
+     *           Output only. [Output Only] Name of the resource.
      *     @type string $peeringdb_facility_id
-     *           [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
+     *           Output only. [Output Only] The peeringdb identifier for this facility (corresponding
+     *           with a netfac type in peeringdb).
      *     @type array<\Google\Cloud\Compute\V1\InterconnectRemoteLocationPermittedConnections>|\Google\Protobuf\Internal\RepeatedField $permitted_connections
-     *           [Output Only] Permitted connections.
+     *           Output only. [Output Only] Permitted connections.
      *     @type string $remote_service
-     *           [Output Only] Indicates the service provider present at the remote location. Example values: "Amazon Web Services", "Microsoft Azure".
+     *           Output only. [Output Only] Indicates the service provider present at the remote
+     *           location. Example values: "Amazon Web Services", "Microsoft Azure".
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for the resource.
+     *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $status
-     *           [Output Only] The status of this InterconnectRemoteLocation, which can take one of the following values: - CLOSED: The InterconnectRemoteLocation is closed and is unavailable for provisioning new Cross-Cloud Interconnects. - AVAILABLE: The InterconnectRemoteLocation is available for provisioning new Cross-Cloud Interconnects.
+     *           Output only. [Output Only] The status of this InterconnectRemoteLocation, which can take
+     *           one of the following values:
+     *              - CLOSED: The InterconnectRemoteLocation is closed and is unavailable
+     *              for provisioning new Cross-Cloud Interconnects.
+     *              - AVAILABLE: The
+     *              InterconnectRemoteLocation is available for provisioning new
+     *              Cross-Cloud Interconnects.
      *           Check the Status enum for the list of possible values.
      * }
      */
@@ -204,7 +274,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
+     * Output only. [Output Only] The postal address of the Point of Presence, each line in
+     * the address is separated by a newline character.
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
      * @return string
@@ -225,7 +296,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
+     * Output only. [Output Only] The postal address of the Point of Presence, each line in
+     * the address is separated by a newline character.
      *
      * Generated from protobuf field <code>optional string address = 462920692;</code>
      * @param string $var
@@ -240,7 +312,9 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Subset of fields from InterconnectAttachment's |configurationConstraints| field that apply to all attachments for this remote location.
+     * Output only. [Output Only] Subset of fields from InterconnectAttachment's
+     * |configurationConstraints| field that apply to all attachments for this
+     * remote location.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints attachment_configuration_constraints = 326825041;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraints|null
@@ -261,7 +335,9 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Subset of fields from InterconnectAttachment's |configurationConstraints| field that apply to all attachments for this remote location.
+     * Output only. [Output Only] Subset of fields from InterconnectAttachment's
+     * |configurationConstraints| field that apply to all attachments for this
+     * remote location.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraints attachment_configuration_constraints = 326825041;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraints $var
@@ -276,7 +352,9 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
+     * Output only. [Output Only] Metropolitan area designator that indicates which city an
+     * interconnect is located.
+     * For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
      * @return string
@@ -297,7 +375,9 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
+     * Output only. [Output Only] Metropolitan area designator that indicates which city an
+     * interconnect is located.
+     * For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
      * Generated from protobuf field <code>optional string city = 3053931;</code>
      * @param string $var
@@ -312,7 +392,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Constraints on the parameters for creating Cross-Cloud Interconnect and associated InterconnectAttachments.
+     * Output only. [Output Only] Constraints on the parameters for creating Cross-Cloud
+     * Interconnect and associated InterconnectAttachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectRemoteLocationConstraints constraints = 3909174;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectRemoteLocationConstraints|null
@@ -333,7 +414,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Constraints on the parameters for creating Cross-Cloud Interconnect and associated InterconnectAttachments.
+     * Output only. [Output Only] Constraints on the parameters for creating Cross-Cloud
+     * Interconnect and associated InterconnectAttachments.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectRemoteLocationConstraints constraints = 3909174;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectRemoteLocationConstraints $var
@@ -348,7 +430,13 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA
+     * Output only. [Output Only] Continent for this location, which can take one of the
+     * following values:
+     *    - AFRICA
+     *    - ASIA_PAC
+     *    - EUROPE
+     *    - NORTH_AMERICA
+     *    - SOUTH_AMERICA
      * Check the Continent enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string continent = 133442996;</code>
@@ -370,7 +458,13 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA
+     * Output only. [Output Only] Continent for this location, which can take one of the
+     * following values:
+     *    - AFRICA
+     *    - ASIA_PAC
+     *    - EUROPE
+     *    - NORTH_AMERICA
+     *    - SOUTH_AMERICA
      * Check the Continent enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string continent = 133442996;</code>
@@ -386,7 +480,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -407,7 +502,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -422,7 +518,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional description of the resource.
+     * Output only. [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -443,7 +539,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An optional description of the resource.
+     * Output only. [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -458,7 +554,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     * Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      * @return string
@@ -479,7 +575,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+     * Output only. [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
      * @param string $var
@@ -494,7 +590,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
+     * Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     * Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
      * @return string
@@ -515,7 +612,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
+     * Output only. [Output Only] A provider-assigned Identifier for this facility (e.g.,
+     * Ashburn-DC1).
      *
      * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
      * @param string $var
@@ -530,7 +628,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -551,7 +650,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * Output only. [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -566,7 +666,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#interconnectRemoteLocation for interconnect remote locations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectRemoteLocation for interconnect remote
+     * locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -587,7 +688,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#interconnectRemoteLocation for interconnect remote locations.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#interconnectRemoteLocation for interconnect remote
+     * locations.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -602,7 +704,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Link Aggregation Control Protocol (LACP) constraints, which can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
+     * Output only. [Output Only] Link Aggregation Control Protocol (LACP) constraints, which
+     * can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
      * Check the Lacp enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string lacp = 3313826;</code>
@@ -624,7 +727,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Link Aggregation Control Protocol (LACP) constraints, which can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
+     * Output only. [Output Only] Link Aggregation Control Protocol (LACP) constraints, which
+     * can take one of the following values: LACP_SUPPORTED, LACP_UNSUPPORTED
      * Check the Lacp enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string lacp = 3313826;</code>
@@ -640,7 +744,10 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The maximum number of 100 Gbps ports supported in a link aggregation group (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed max_lag_size_100_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 100 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_100_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size100_gbps = 245219253;</code>
      * @return int
@@ -661,7 +768,10 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The maximum number of 100 Gbps ports supported in a link aggregation group (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed max_lag_size_100_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 100 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 100 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_100_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size100_gbps = 245219253;</code>
      * @param int $var
@@ -676,7 +786,10 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The maximum number of 10 Gbps ports supported in a link aggregation group (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed max_lag_size_10_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 10 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_10_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size10_gbps = 294007573;</code>
      * @return int
@@ -697,7 +810,10 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The maximum number of 10 Gbps ports supported in a link aggregation group (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed max_lag_size_10_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 10 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 10 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_10_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size10_gbps = 294007573;</code>
      * @param int $var
@@ -712,7 +828,10 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 400 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_400_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size400_gbps = 104941138;</code>
      * @return int
@@ -733,7 +852,10 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The maximum number of 400 Gbps ports supported in a link aggregation group (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed max_lag_size_400_gbps.
+     * Output only. [Output Only]
+     * The maximum number of 400 Gbps ports supported in a link aggregation group
+     * (LAG). When linkType is 400 Gbps, requestedLinkCount cannot exceed
+     * max_lag_size_400_gbps.
      *
      * Generated from protobuf field <code>optional int32 max_lag_size400_gbps = 104941138;</code>
      * @param int $var
@@ -748,7 +870,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource.
+     * Output only. [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -769,7 +891,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource.
+     * Output only. [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -784,7 +906,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
+     * Output only. [Output Only] The peeringdb identifier for this facility (corresponding
+     * with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
      * @return string
@@ -805,7 +928,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
+     * Output only. [Output Only] The peeringdb identifier for this facility (corresponding
+     * with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
      * @param string $var
@@ -820,7 +944,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Permitted connections.
+     * Output only. [Output Only] Permitted connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectRemoteLocationPermittedConnections permitted_connections = 442063278;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -831,7 +955,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Permitted connections.
+     * Output only. [Output Only] Permitted connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectRemoteLocationPermittedConnections permitted_connections = 442063278;</code>
      * @param array<\Google\Cloud\Compute\V1\InterconnectRemoteLocationPermittedConnections>|\Google\Protobuf\Internal\RepeatedField $var
@@ -846,7 +970,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates the service provider present at the remote location. Example values: "Amazon Web Services", "Microsoft Azure".
+     * Output only. [Output Only] Indicates the service provider present at the remote
+     * location. Example values: "Amazon Web Services", "Microsoft Azure".
      *
      * Generated from protobuf field <code>optional string remote_service = 391954364;</code>
      * @return string
@@ -867,7 +992,8 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates the service provider present at the remote location. Example values: "Amazon Web Services", "Microsoft Azure".
+     * Output only. [Output Only] Indicates the service provider present at the remote
+     * location. Example values: "Amazon Web Services", "Microsoft Azure".
      *
      * Generated from protobuf field <code>optional string remote_service = 391954364;</code>
      * @param string $var
@@ -882,7 +1008,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -903,7 +1029,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for the resource.
+     * Output only. [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -918,7 +1044,13 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of this InterconnectRemoteLocation, which can take one of the following values: - CLOSED: The InterconnectRemoteLocation is closed and is unavailable for provisioning new Cross-Cloud Interconnects. - AVAILABLE: The InterconnectRemoteLocation is available for provisioning new Cross-Cloud Interconnects.
+     * Output only. [Output Only] The status of this InterconnectRemoteLocation, which can take
+     * one of the following values:
+     *    - CLOSED: The InterconnectRemoteLocation is closed and is unavailable
+     *    for provisioning new Cross-Cloud Interconnects.
+     *    - AVAILABLE: The
+     *    InterconnectRemoteLocation is available for provisioning new
+     *    Cross-Cloud Interconnects.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -940,7 +1072,13 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of this InterconnectRemoteLocation, which can take one of the following values: - CLOSED: The InterconnectRemoteLocation is closed and is unavailable for provisioning new Cross-Cloud Interconnects. - AVAILABLE: The InterconnectRemoteLocation is available for provisioning new Cross-Cloud Interconnects.
+     * Output only. [Output Only] The status of this InterconnectRemoteLocation, which can take
+     * one of the following values:
+     *    - CLOSED: The InterconnectRemoteLocation is closed and is unavailable
+     *    for provisioning new Cross-Cloud Interconnects.
+     *    - AVAILABLE: The
+     *    InterconnectRemoteLocation is available for provisioning new
+     *    Cross-Cloud Interconnects.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

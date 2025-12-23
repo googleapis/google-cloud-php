@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Cloud Router resource. For more information about Cloud Router, read the Cloud Router overview.
+ * Represents a Cloud Router resource.
+ * For more information about Cloud Router, read theCloud
+ * Router overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Router</code>
  */
@@ -22,43 +24,57 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     protected $bgp = null;
     /**
-     * BGP information that must be configured into the routing stack to establish BGP peering. This information must specify the peer ASN and either the interface name, IP address, or peer IP address. Please refer to RFC4273.
+     * BGP information that must be configured into the routing stack to
+     * establish BGP peering. This information must specify the peer ASN and
+     * either the interface name, IP address, or peer IP address. Please refer toRFC4273.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer bgp_peers = 452695773;</code>
      */
     private $bgp_peers;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
+     * Indicates if a router is dedicated for use with encrypted VLAN
+     * attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      */
     protected $encrypted_interconnect_router = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
+     * Router interfaces.
+     * To create a BGP peer that uses a router interface,
+     * the interface must have one of the following fields specified:
+     *    - linkedVpnTunnel
+     *    - linkedInterconnectAttachment
+     *    - subnetwork
+     * You can create a router interface without any of these fields specified.
+     * However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
      */
     private $interfaces;
     /**
-     * [Output Only] Type of resource. Always compute#router for routers.
+     * Output only. [Output Only] Type of resource. Always compute#router for
+     * routers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -70,7 +86,13 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $md5_authentication_keys;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -88,13 +110,16 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
-     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterParams params = 78313862;</code>
      */
     protected $params = null;
     /**
-     * [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URI of the region where the router resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -115,31 +140,54 @@ class Router extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\RouterBgp $bgp
      *           BGP information specific to this router.
      *     @type array<\Google\Cloud\Compute\V1\RouterBgpPeer>|\Google\Protobuf\Internal\RepeatedField $bgp_peers
-     *           BGP information that must be configured into the routing stack to establish BGP peering. This information must specify the peer ASN and either the interface name, IP address, or peer IP address. Please refer to RFC4273.
+     *           BGP information that must be configured into the routing stack to
+     *           establish BGP peering. This information must specify the peer ASN and
+     *           either the interface name, IP address, or peer IP address. Please refer toRFC4273.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           Output only. [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type bool $encrypted_interconnect_router
-     *           Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
+     *           Indicates if a router is dedicated for use with encrypted VLAN
+     *           attachments (interconnectAttachments).
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
-     *           Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
+     *           Router interfaces.
+     *           To create a BGP peer that uses a router interface,
+     *           the interface must have one of the following fields specified:
+     *              - linkedVpnTunnel
+     *              - linkedInterconnectAttachment
+     *              - subnetwork
+     *           You can create a router interface without any of these fields specified.
+     *           However, you cannot create a BGP peer that uses that interface.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#router for routers.
+     *           Output only. [Output Only] Type of resource. Always compute#router for
+     *           routers.
      *     @type array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $md5_authentication_keys
      *           Keys used for MD5 authentication.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type array<\Google\Cloud\Compute\V1\RouterNat>|\Google\Protobuf\Internal\RepeatedField $nats
      *           A list of NAT services created in this router.
      *     @type string $network
      *           URI of the network to which this router belongs.
      *     @type \Google\Cloud\Compute\V1\RouterParams $params
-     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type string $region
-     *           [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *           [Output Only] URI of the region where the router resides.
+     *           You must specify this field as part of the HTTP request URL. It is
+     *           not settable as a field in the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      * }
@@ -186,7 +234,9 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BGP information that must be configured into the routing stack to establish BGP peering. This information must specify the peer ASN and either the interface name, IP address, or peer IP address. Please refer to RFC4273.
+     * BGP information that must be configured into the routing stack to
+     * establish BGP peering. This information must specify the peer ASN and
+     * either the interface name, IP address, or peer IP address. Please refer toRFC4273.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer bgp_peers = 452695773;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -197,7 +247,9 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BGP information that must be configured into the routing stack to establish BGP peering. This information must specify the peer ASN and either the interface name, IP address, or peer IP address. Please refer to RFC4273.
+     * BGP information that must be configured into the routing stack to
+     * establish BGP peering. This information must specify the peer ASN and
+     * either the interface name, IP address, or peer IP address. Please refer toRFC4273.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer bgp_peers = 452695773;</code>
      * @param array<\Google\Cloud\Compute\V1\RouterBgpPeer>|\Google\Protobuf\Internal\RepeatedField $var
@@ -212,7 +264,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -233,7 +286,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -248,7 +302,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -269,7 +324,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -284,7 +340,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
+     * Indicates if a router is dedicated for use with encrypted VLAN
+     * attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      * @return bool
@@ -305,7 +362,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
+     * Indicates if a router is dedicated for use with encrypted VLAN
+     * attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      * @param bool $var
@@ -320,7 +378,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -341,7 +400,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -356,7 +416,14 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
+     * Router interfaces.
+     * To create a BGP peer that uses a router interface,
+     * the interface must have one of the following fields specified:
+     *    - linkedVpnTunnel
+     *    - linkedInterconnectAttachment
+     *    - subnetwork
+     * You can create a router interface without any of these fields specified.
+     * However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -367,7 +434,14 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Router interfaces. To create a BGP peer that uses a router interface, the interface must have one of the following fields specified: - linkedVpnTunnel - linkedInterconnectAttachment - subnetwork You can create a router interface without any of these fields specified. However, you cannot create a BGP peer that uses that interface.
+     * Router interfaces.
+     * To create a BGP peer that uses a router interface,
+     * the interface must have one of the following fields specified:
+     *    - linkedVpnTunnel
+     *    - linkedInterconnectAttachment
+     *    - subnetwork
+     * You can create a router interface without any of these fields specified.
+     * However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
      * @param array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $var
@@ -382,7 +456,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#router for routers.
+     * Output only. [Output Only] Type of resource. Always compute#router for
+     * routers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -403,7 +478,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#router for routers.
+     * Output only. [Output Only] Type of resource. Always compute#router for
+     * routers.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -444,7 +520,13 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -465,7 +547,13 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -542,7 +630,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterParams params = 78313862;</code>
      * @return \Google\Cloud\Compute\V1\RouterParams|null
@@ -563,7 +652,8 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterParams params = 78313862;</code>
      * @param \Google\Cloud\Compute\V1\RouterParams $var
@@ -578,7 +668,9 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URI of the region where the router resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -599,7 +691,9 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URI of the region where the router resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URI of the region where the router resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var

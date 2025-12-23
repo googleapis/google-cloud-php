@@ -41,6 +41,8 @@ use Google\Cloud\ArtifactRegistry\V1\DeleteRuleRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteTagRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteVersionRequest;
 use Google\Cloud\ArtifactRegistry\V1\DockerImage;
+use Google\Cloud\ArtifactRegistry\V1\ExportArtifactRequest;
+use Google\Cloud\ArtifactRegistry\V1\ExportArtifactResponse;
 use Google\Cloud\ArtifactRegistry\V1\File;
 use Google\Cloud\ArtifactRegistry\V1\GetAttachmentRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetDockerImageRequest;
@@ -1421,6 +1423,128 @@ class ArtifactRegistryClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function exportArtifactTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportArtifactTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new ExportArtifactResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/exportArtifactTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ExportArtifactRequest())->setRepository($formattedRepository);
+        $response = $gapicClient->exportArtifact($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.artifactregistry.v1.ArtifactRegistry/ExportArtifact', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getRepository();
+        $this->assertProtobufEquals($formattedRepository, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportArtifactTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function exportArtifactExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportArtifactTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new ExportArtifactRequest())->setRepository($formattedRepository);
+        $response = $gapicClient->exportArtifact($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportArtifactTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getAttachmentTest()
     {
         $transport = $this->createTransport();
@@ -1506,11 +1630,13 @@ class ArtifactRegistryClientTest extends GeneratedTest
         $uri = 'uri116076';
         $imageSizeBytes = 837030929;
         $mediaType = 'mediaType1939875509';
+        $artifactType = 'artifactType646190471';
         $expectedResponse = new DockerImage();
         $expectedResponse->setName($name2);
         $expectedResponse->setUri($uri);
         $expectedResponse->setImageSizeBytes($imageSizeBytes);
         $expectedResponse->setMediaType($mediaType);
+        $expectedResponse->setArtifactType($artifactType);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dockerImageName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[DOCKER_IMAGE]');

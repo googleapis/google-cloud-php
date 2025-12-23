@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\TargetSslProxiesClient;
 use Google\Cloud\Compute\V1\ListTargetSslProxiesRequest;
 
 /**
- * Retrieves the list of TargetSslProxy resources available to the specified project.
+ * Retrieves the list of TargetSslProxy resources
+ * available to the specified project.
  *
  * @param string $project Project ID for this request.
  */

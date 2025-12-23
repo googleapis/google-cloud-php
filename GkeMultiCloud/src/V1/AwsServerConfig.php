@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * AwsServerConfig is the configuration of GKE cluster on AWS.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsServerConfig</code>
  */
 class AwsServerConfig extends \Google\Protobuf\Internal\Message

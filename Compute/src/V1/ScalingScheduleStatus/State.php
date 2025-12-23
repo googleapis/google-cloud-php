@@ -20,7 +20,8 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * The current autoscaling recommendation is influenced by this scaling schedule.
+     * The current autoscaling recommendation is influenced by this scaling
+     * schedule.
      *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
@@ -38,7 +39,8 @@ class State
      */
     const OBSOLETE = 66532761;
     /**
-     * The current autoscaling recommendation is not influenced by this scaling schedule.
+     * The current autoscaling recommendation is not influenced by this scaling
+     * schedule.
      *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */

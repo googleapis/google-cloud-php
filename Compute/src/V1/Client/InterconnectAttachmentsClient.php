@@ -272,7 +272,10 @@ final class InterconnectAttachmentsClient
     }
 
     /**
-     * Retrieves an aggregated list of interconnect attachments. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of interconnect attachments.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see InterconnectAttachmentsClient::aggregatedListAsync()}
      * .
@@ -353,7 +356,8 @@ final class InterconnectAttachmentsClient
     }
 
     /**
-     * Creates an InterconnectAttachment in the specified project using the data included in the request.
+     * Creates an InterconnectAttachment in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see InterconnectAttachmentsClient::insertAsync()} .
      *
@@ -379,7 +383,8 @@ final class InterconnectAttachmentsClient
     }
 
     /**
-     * Retrieves the list of interconnect attachments contained within the specified region.
+     * Retrieves the list of interconnect attachments contained within
+     * the specified region.
      *
      * The async variant is {@see InterconnectAttachmentsClient::listAsync()} .
      *
@@ -405,7 +410,10 @@ final class InterconnectAttachmentsClient
     }
 
     /**
-     * Updates the specified interconnect attachment with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified interconnect attachment with the data included in the
+     * request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see InterconnectAttachmentsClient::patchAsync()} .
      *
@@ -431,7 +439,9 @@ final class InterconnectAttachmentsClient
     }
 
     /**
-     * Sets the labels on an InterconnectAttachment. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on an InterconnectAttachment. To learn more about labels,
+     * read the Labeling
+     * Resources documentation.
      *
      * The async variant is {@see InterconnectAttachmentsClient::setLabelsAsync()} .
      *

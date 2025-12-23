@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Machine Type resource. You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types.
+ * Represents a Machine Type resource.
+ * You can use specific machine types for your VM instances based on performance
+ * and pricing requirements. For more information, readMachine Types.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.MachineType</code>
  */
 class MachineType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] A list of accelerator configurations assigned to this machine type.
+     * [Output Only] A list of accelerator configurations assigned to this
+     * machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Accelerators accelerators = 269577064;</code>
      */
@@ -29,13 +32,15 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     protected $architecture = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] The deprecation status associated with this machine type. Only applicable if the machine type is unavailable.
+     * [Output Only] The deprecation status associated with this machine type.
+     * Only applicable if the machine type is unavailable.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
@@ -47,31 +52,35 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The number of virtual CPUs that are available to the instance.
+     * [Output Only] The number of virtual CPUs that are available to the
+     * instance.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      */
     protected $guest_cpus = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Deprecated] This property is deprecated and will never be populated with any relevant values.
+     * [Deprecated] This property is deprecated and will never be populated with
+     * any relevant values.
      *
      * Generated from protobuf field <code>optional int32 image_space_gb = 75331864;</code>
      */
     protected $image_space_gb = null;
     /**
-     * [Output Only] Whether this machine type has a shared CPU. See Shared-core machine types for more information.
+     * [Output Only] Whether this machine type has a shared CPU. SeeShared-core machine
+     * types for more information.
      *
      * Generated from protobuf field <code>optional bool is_shared_cpu = 521399555;</code>
      */
     protected $is_shared_cpu = null;
     /**
-     * [Output Only] The type of the resource. Always compute#machineType for machine types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -89,7 +98,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     protected $maximum_persistent_disks_size_gb = null;
     /**
-     * [Output Only] The amount of physical memory available to the instance, defined in MB.
+     * [Output Only] The amount of physical memory available to the instance,
+     * defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      */
@@ -107,7 +117,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the machine type resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -120,38 +131,47 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $accelerators
-     *           [Output Only] A list of accelerator configurations assigned to this machine type.
+     *           [Output Only] A list of accelerator configurations assigned to this
+     *           machine type.
      *     @type string $architecture
      *           [Output Only] The architecture of the machine type.
      *           Check the Architecture enum for the list of possible values.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
-     *           [Output Only] The deprecation status associated with this machine type. Only applicable if the machine type is unavailable.
+     *           [Output Only] The deprecation status associated with this machine type.
+     *           Only applicable if the machine type is unavailable.
      *     @type string $description
      *           [Output Only] An optional textual description of the resource.
      *     @type int $guest_cpus
-     *           [Output Only] The number of virtual CPUs that are available to the instance.
+     *           [Output Only] The number of virtual CPUs that are available to the
+     *           instance.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type int $image_space_gb
-     *           [Deprecated] This property is deprecated and will never be populated with any relevant values.
+     *           [Deprecated] This property is deprecated and will never be populated with
+     *           any relevant values.
      *     @type bool $is_shared_cpu
-     *           [Output Only] Whether this machine type has a shared CPU. See Shared-core machine types for more information.
+     *           [Output Only] Whether this machine type has a shared CPU. SeeShared-core machine
+     *           types for more information.
      *     @type string $kind
-     *           [Output Only] The type of the resource. Always compute#machineType for machine types.
+     *           Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *     @type int $maximum_persistent_disks
      *           [Output Only] Maximum persistent disks allowed.
      *     @type int|string $maximum_persistent_disks_size_gb
      *           [Output Only] Maximum total persistent disks size (GB) allowed.
      *     @type int $memory_mb
-     *           [Output Only] The amount of physical memory available to the instance, defined in MB.
+     *           [Output Only] The amount of physical memory available to the instance,
+     *           defined in MB.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
-     *           [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
+     *           [Output Only] The name of the zone where the machine type resides,
+     *           such as us-central1-a.
      * }
      */
     public function __construct($data = NULL) {
@@ -160,7 +180,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of accelerator configurations assigned to this machine type.
+     * [Output Only] A list of accelerator configurations assigned to this
+     * machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Accelerators accelerators = 269577064;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -171,7 +192,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A list of accelerator configurations assigned to this machine type.
+     * [Output Only] A list of accelerator configurations assigned to this
+     * machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Accelerators accelerators = 269577064;</code>
      * @param array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $var
@@ -224,7 +246,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -245,7 +268,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -260,7 +284,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The deprecation status associated with this machine type. Only applicable if the machine type is unavailable.
+     * [Output Only] The deprecation status associated with this machine type.
+     * Only applicable if the machine type is unavailable.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @return \Google\Cloud\Compute\V1\DeprecationStatus|null
@@ -281,7 +306,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The deprecation status associated with this machine type. Only applicable if the machine type is unavailable.
+     * [Output Only] The deprecation status associated with this machine type.
+     * Only applicable if the machine type is unavailable.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @param \Google\Cloud\Compute\V1\DeprecationStatus $var
@@ -332,7 +358,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The number of virtual CPUs that are available to the instance.
+     * [Output Only] The number of virtual CPUs that are available to the
+     * instance.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      * @return int
@@ -353,7 +380,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The number of virtual CPUs that are available to the instance.
+     * [Output Only] The number of virtual CPUs that are available to the
+     * instance.
      *
      * Generated from protobuf field <code>optional int32 guest_cpus = 393356754;</code>
      * @param int $var
@@ -368,7 +396,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -389,7 +418,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -404,7 +434,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Deprecated] This property is deprecated and will never be populated with any relevant values.
+     * [Deprecated] This property is deprecated and will never be populated with
+     * any relevant values.
      *
      * Generated from protobuf field <code>optional int32 image_space_gb = 75331864;</code>
      * @return int
@@ -425,7 +456,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Deprecated] This property is deprecated and will never be populated with any relevant values.
+     * [Deprecated] This property is deprecated and will never be populated with
+     * any relevant values.
      *
      * Generated from protobuf field <code>optional int32 image_space_gb = 75331864;</code>
      * @param int $var
@@ -440,7 +472,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Whether this machine type has a shared CPU. See Shared-core machine types for more information.
+     * [Output Only] Whether this machine type has a shared CPU. SeeShared-core machine
+     * types for more information.
      *
      * Generated from protobuf field <code>optional bool is_shared_cpu = 521399555;</code>
      * @return bool
@@ -461,7 +494,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Whether this machine type has a shared CPU. See Shared-core machine types for more information.
+     * [Output Only] Whether this machine type has a shared CPU. SeeShared-core machine
+     * types for more information.
      *
      * Generated from protobuf field <code>optional bool is_shared_cpu = 521399555;</code>
      * @param bool $var
@@ -476,7 +510,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#machineType for machine types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -497,7 +531,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#machineType for machine types.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#machineType for machine types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -584,7 +618,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The amount of physical memory available to the instance, defined in MB.
+     * [Output Only] The amount of physical memory available to the instance,
+     * defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      * @return int
@@ -605,7 +640,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The amount of physical memory available to the instance, defined in MB.
+     * [Output Only] The amount of physical memory available to the instance,
+     * defined in MB.
      *
      * Generated from protobuf field <code>optional int32 memory_mb = 116001171;</code>
      * @param int $var
@@ -692,7 +728,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the machine type resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -713,7 +750,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
+     * [Output Only] The name of the zone where the machine type resides,
+     * such as us-central1-a.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

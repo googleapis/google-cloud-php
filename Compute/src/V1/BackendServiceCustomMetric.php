@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Custom Metrics are used for WEIGHTED_ROUND_ROBIN locality_lb_policy.
+ * Custom Metrics are used for WEIGHTED_ROUND_ROBIN
+ * locality_lb_policy.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BackendServiceCustomMetric</code>
  */
@@ -22,7 +23,15 @@ class BackendServiceCustomMetric extends \Google\Protobuf\Internal\Message
      */
     protected $dry_run = null;
     /**
-     * Name of a custom utilization signal. The name must be 1-64 characters long and match the regular expression [a-z]([-_.a-z0-9]*[a-z0-9])? which means that the first character must be a lowercase letter, and all following characters must be a dash, period, underscore, lowercase letter, or digit, except the last character, which cannot be a dash, period, or underscore. For usage guidelines, see Custom Metrics balancing mode. This field can only be used for a global or regional backend service with the loadBalancingScheme set to EXTERNAL_MANAGED, INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
+     * Name of a custom utilization signal. The name must be 1-64 characters
+     * long and match the regular expression
+     * `[a-z]([-_.a-z0-9]*[a-z0-9])?` which means that the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, period, underscore, lowercase letter, or
+     * digit, except the last character, which cannot be a dash, period, or
+     * underscore. For usage guidelines, see Custom Metrics balancing mode. This
+     * field can only be used for a global or regional backend service with the
+     * loadBalancingScheme set to EXTERNAL_MANAGED,INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -37,7 +46,15 @@ class BackendServiceCustomMetric extends \Google\Protobuf\Internal\Message
      *     @type bool $dry_run
      *           If true, the metric data is not used for load balancing.
      *     @type string $name
-     *           Name of a custom utilization signal. The name must be 1-64 characters long and match the regular expression [a-z]([-_.a-z0-9]*[a-z0-9])? which means that the first character must be a lowercase letter, and all following characters must be a dash, period, underscore, lowercase letter, or digit, except the last character, which cannot be a dash, period, or underscore. For usage guidelines, see Custom Metrics balancing mode. This field can only be used for a global or regional backend service with the loadBalancingScheme set to EXTERNAL_MANAGED, INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
+     *           Name of a custom utilization signal. The name must be 1-64 characters
+     *           long and match the regular expression
+     *           `[a-z]([-_.a-z0-9]*[a-z0-9])?` which means that the
+     *           first character must be a lowercase letter, and all following
+     *           characters must be a dash, period, underscore, lowercase letter, or
+     *           digit, except the last character, which cannot be a dash, period, or
+     *           underscore. For usage guidelines, see Custom Metrics balancing mode. This
+     *           field can only be used for a global or regional backend service with the
+     *           loadBalancingScheme set to EXTERNAL_MANAGED,INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +99,15 @@ class BackendServiceCustomMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a custom utilization signal. The name must be 1-64 characters long and match the regular expression [a-z]([-_.a-z0-9]*[a-z0-9])? which means that the first character must be a lowercase letter, and all following characters must be a dash, period, underscore, lowercase letter, or digit, except the last character, which cannot be a dash, period, or underscore. For usage guidelines, see Custom Metrics balancing mode. This field can only be used for a global or regional backend service with the loadBalancingScheme set to EXTERNAL_MANAGED, INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
+     * Name of a custom utilization signal. The name must be 1-64 characters
+     * long and match the regular expression
+     * `[a-z]([-_.a-z0-9]*[a-z0-9])?` which means that the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, period, underscore, lowercase letter, or
+     * digit, except the last character, which cannot be a dash, period, or
+     * underscore. For usage guidelines, see Custom Metrics balancing mode. This
+     * field can only be used for a global or regional backend service with the
+     * loadBalancingScheme set to EXTERNAL_MANAGED,INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -103,7 +128,15 @@ class BackendServiceCustomMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of a custom utilization signal. The name must be 1-64 characters long and match the regular expression [a-z]([-_.a-z0-9]*[a-z0-9])? which means that the first character must be a lowercase letter, and all following characters must be a dash, period, underscore, lowercase letter, or digit, except the last character, which cannot be a dash, period, or underscore. For usage guidelines, see Custom Metrics balancing mode. This field can only be used for a global or regional backend service with the loadBalancingScheme set to EXTERNAL_MANAGED, INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
+     * Name of a custom utilization signal. The name must be 1-64 characters
+     * long and match the regular expression
+     * `[a-z]([-_.a-z0-9]*[a-z0-9])?` which means that the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, period, underscore, lowercase letter, or
+     * digit, except the last character, which cannot be a dash, period, or
+     * underscore. For usage guidelines, see Custom Metrics balancing mode. This
+     * field can only be used for a global or regional backend service with the
+     * loadBalancingScheme set to EXTERNAL_MANAGED,INTERNAL_MANAGED INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

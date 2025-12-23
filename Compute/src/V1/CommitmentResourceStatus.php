@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CommitmentResourceStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Indicates the end time of customer's eligibility to send custom term requests in RFC3339 text format. Term extension requests that (not the end time in the request) after this time will be rejected.
+     * Output only. [Output Only] Indicates the end time of customer's eligibility to send
+     * custom term requests in RFC3339 text format. Term extension requests that
+     * (not the end time in the request) after this time will be rejected.
      *
      * Generated from protobuf field <code>optional string custom_term_eligibility_end_timestamp = 363976187;</code>
      */
@@ -29,7 +31,9 @@ class CommitmentResourceStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $custom_term_eligibility_end_timestamp
-     *           [Output Only] Indicates the end time of customer's eligibility to send custom term requests in RFC3339 text format. Term extension requests that (not the end time in the request) after this time will be rejected.
+     *           Output only. [Output Only] Indicates the end time of customer's eligibility to send
+     *           custom term requests in RFC3339 text format. Term extension requests that
+     *           (not the end time in the request) after this time will be rejected.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +42,9 @@ class CommitmentResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates the end time of customer's eligibility to send custom term requests in RFC3339 text format. Term extension requests that (not the end time in the request) after this time will be rejected.
+     * Output only. [Output Only] Indicates the end time of customer's eligibility to send
+     * custom term requests in RFC3339 text format. Term extension requests that
+     * (not the end time in the request) after this time will be rejected.
      *
      * Generated from protobuf field <code>optional string custom_term_eligibility_end_timestamp = 363976187;</code>
      * @return string
@@ -59,7 +65,9 @@ class CommitmentResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates the end time of customer's eligibility to send custom term requests in RFC3339 text format. Term extension requests that (not the end time in the request) after this time will be rejected.
+     * Output only. [Output Only] Indicates the end time of customer's eligibility to send
+     * custom term requests in RFC3339 text format. Term extension requests that
+     * (not the end time in the request) after this time will be rejected.
      *
      * Generated from protobuf field <code>optional string custom_term_eligibility_end_timestamp = 363976187;</code>
      * @param string $var

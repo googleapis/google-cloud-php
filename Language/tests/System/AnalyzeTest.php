@@ -17,55 +17,50 @@
 
 namespace Google\Cloud\Language\Tests\System;
 
+use Google\Cloud\Language\V2\AnalyzeEntitiesRequest;
+use Google\Cloud\Language\V2\AnalyzeSentimentRequest;
+use Google\Cloud\Language\V2\ClassifyTextRequest;
+use Google\Cloud\Language\V2\Document;
+use Google\Cloud\Language\V2\EncodingType;
+use Google\Cloud\Language\V2\Entity;
+
 /**
  * @group language
  */
 class AnalyzeTest extends LanguageTestCase
 {
     /**
-     * @dataProvider analyzeSyntaxProvider
-     */
-    public function testAnalyzeSyntax($text, $expectedValues)
-    {
-        $result = self::$client->analyzeSyntax($text);
-        $info = $result->info();
-
-        foreach ($expectedValues as $key => $expected) {
-            $this->assertEquals($expected, $info[$key]);
-        }
-    }
-
-    public function analyzeSyntaxProvider()
-    {
-        return [
-            [
-                'Do you know the way to San Jose?',
-                [
-                    'sentences' => [
-                        [
-                            'text' => [
-                                'content' => 'Do you know the way to San Jose?',
-                                'beginOffset' => 0,
-                            ]
-                        ]
-                    ],
-                    'entities' => [],
-                    'language' => 'en'
-                ]
-            ]
-        ];
-    }
-
-    /**
      * @dataProvider analyzeSentimentProvider
      */
     public function testAnalyzeSentiment($text, $expectedValues)
     {
-        $result = self::$client->analyzeSentiment($text);
-        $info = $result->info();
+        $request = (new AnalyzeSentimentRequest())
+            ->setDocument(new Document([
+                'content' => $text,
+                'type' => Document\Type::PLAIN_TEXT
+            ]))
+            ->setEncodingType(EncodingType::UTF8);
+        $result = self::$client->analyzeSentiment($request);
 
-        foreach ($expectedValues as $key => $expected) {
-            $this->assertEqualsWithDelta($expected, $info[$key], 0.2);
+        $this->assertEqualsWithDelta($expectedValues['language'], $result->getLanguageCode(), 0.2);
+
+        $sentences = $result->getSentences();
+        $this->assertCount(count($expectedValues['sentences']), $sentences);
+
+        foreach ($expectedValues['sentences'] as $i => $expectedSentence) {
+            $sentence = $sentences[$i];
+            $this->assertEquals($expectedSentence['text']['content'], $sentence->getText()->getContent());
+            $this->assertEquals($expectedSentence['text']['beginOffset'], $sentence->getText()->getBeginOffset());
+            $this->assertEqualsWithDelta(
+                $expectedSentence['sentiment']['magnitude'],
+                $sentence->getSentiment()->getMagnitude(),
+                0.2
+            );
+            $this->assertEqualsWithDelta(
+                $expectedSentence['sentiment']['score'],
+                $sentence->getSentiment()->getScore(),
+                0.2
+            );
         }
     }
 
@@ -98,15 +93,21 @@ class AnalyzeTest extends LanguageTestCase
      */
     public function testAnalyzeEntities($text, $expectedEntities)
     {
-        $result = self::$client->analyzeEntities($text);
-        $info = $result->info();
+        $request = (new AnalyzeEntitiesRequest())
+            ->setDocument(new Document([
+                'content' => $text,
+                'type' => Document\Type::PLAIN_TEXT,
+            ]));
+
+        $result = self::$client->analyzeEntities($request);
+        $entities = $result->getEntities();
 
         foreach ($expectedEntities as $expectedEntity) {
             $exists = false;
-            foreach ($info['entities'] as $entity) {
-                if ($entity['name'] == $expectedEntity['name']) {
+            foreach ($entities as $entity) {
+                if ($entity->getName() == $expectedEntity['name']) {
                     $exists = true;
-                    $this->assertEquals($entity['type'], $expectedEntity['type']);
+                    $this->assertEquals(Entity\Type::value($expectedEntity['type']), $entity->getType());
                     break;
                 }
             }
@@ -133,98 +134,22 @@ class AnalyzeTest extends LanguageTestCase
         ];
     }
 
-    /**
-     * @dataProvider analyzeEntitySentimentProvider
-     */
-    public function testAnalyzeEntitySentiment($text, $expectedEntities)
-    {
-        $result = self::$client->analyzeEntitySentiment($text);
-        $info = $result->info();
-
-        foreach ($expectedEntities as $expectedEntity) {
-            $exists = false;
-            foreach ($info['entities'] as $entity) {
-                if ($entity['name'] == $expectedEntity['name']) {
-                    $exists = true;
-                    $this->assertEquals($entity['type'], $expectedEntity['type']);
-                    $this->assertEqualsWithDelta(
-                        $entity['sentiment']['score'],
-                        $expectedEntity['sentiment']['score'],
-                        0.2
-                    );
-
-                    $this->assertEqualsWithDelta(
-                        $entity['sentiment']['magnitude'],
-                        $expectedEntity['sentiment']['magnitude'],
-                        0.2
-                    );
-
-                    break;
-                }
-            }
-            $this->assertTrue($exists);
-        }
-    }
-
-    public function analyzeEntitySentimentProvider()
-    {
-        return [
-            [
-                'Do you know the way to San Jose?',
-                [
-                    [
-                        'name' => 'San Jose',
-                        'type' => 'LOCATION',
-                        'sentiment' => [
-                            'magnitude' => 0,
-                            'score' => 0,
-                        ],
-                    ],
-                    [
-                        'name' => 'way',
-                        'type' => 'OTHER',
-                        'sentiment' => [
-                            'magnitude' => 0,
-                            'score' => 0,
-                        ],
-                    ],
-                ]
-            ],
-            [
-                "The road to San Jose is great!",
-                [
-                    [
-                        'name' => 'San Jose',
-                        'type' => 'LOCATION',
-                        'sentiment' => [
-                            'magnitude' => 0.8,
-                            'score' => 0.8,
-                        ],
-                    ],
-                    [
-                        'name' => 'road',
-                        'type' => 'LOCATION',
-                        'sentiment' => [
-                            'magnitude' => 0.8,
-                            'score' => 0.8,
-                        ],
-                    ],
-                ]
-            ]
-        ];
-    }
-
     public function testClassifyText()
     {
-        $result = self::$client->classifyText(
-            'Rafael Montero Shines in Mets’ Victory Over the Reds.Montero, who ' .
+        $text = 'Rafael Montero Shines in Mets’ Victory Over the Reds.Montero, who ' .
             'was demoted at midseason, took a one-hitter into the ninth inning ' .
             'as the Mets continued to dominate Cincinnati with a win at Great ' .
-            'American Ball Park.'
-        );
-        $category = $result->categories()[0];
+            'American Ball Park.';
+        $request = (new ClassifyTextRequest())
+            ->setDocument(new Document([
+                'content' => $text,
+                'type' => Document\Type::PLAIN_TEXT,
+            ]));
+        $result = self::$client->classifyText($request);
+        $categories = $result->getCategories();
+        $category = $categories[0];
 
-        $this->assertEquals('/Sports/Team Sports/Baseball', $category['name']);
-        $this->assertGreaterThan(.9, $category['confidence']);
+        $this->assertEquals('/Sports/Team Sports/Baseball', $category->getName());
+        $this->assertGreaterThan(.9, $category->getConfidence());
     }
 }

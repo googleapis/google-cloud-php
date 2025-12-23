@@ -206,8 +206,10 @@ final class SqlConnectServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateEphemeralCert(GenerateEphemeralCertRequest $request, array $callOptions = []): GenerateEphemeralCertResponse
-    {
+    public function generateEphemeralCert(
+        GenerateEphemeralCertRequest $request,
+        array $callOptions = []
+    ): GenerateEphemeralCertResponse {
         return $this->startApiCall('GenerateEphemeralCert', $request, $callOptions)->wait();
     }
 

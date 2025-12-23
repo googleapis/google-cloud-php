@@ -25,9 +25,21 @@
 namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\AdUnit;
+use Google\Ads\AdManager\V1\BatchActivateAdUnitsRequest;
+use Google\Ads\AdManager\V1\BatchActivateAdUnitsResponse;
+use Google\Ads\AdManager\V1\BatchArchiveAdUnitsRequest;
+use Google\Ads\AdManager\V1\BatchArchiveAdUnitsResponse;
+use Google\Ads\AdManager\V1\BatchCreateAdUnitsRequest;
+use Google\Ads\AdManager\V1\BatchCreateAdUnitsResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateAdUnitsRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateAdUnitsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateAdUnitsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateAdUnitsResponse;
+use Google\Ads\AdManager\V1\CreateAdUnitRequest;
 use Google\Ads\AdManager\V1\GetAdUnitRequest;
 use Google\Ads\AdManager\V1\ListAdUnitSizesRequest;
 use Google\Ads\AdManager\V1\ListAdUnitsRequest;
+use Google\Ads\AdManager\V1\UpdateAdUnitRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -52,9 +64,16 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateAdUnitsResponse> batchActivateAdUnitsAsync(BatchActivateAdUnitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchArchiveAdUnitsResponse> batchArchiveAdUnitsAsync(BatchArchiveAdUnitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateAdUnitsResponse> batchCreateAdUnitsAsync(BatchCreateAdUnitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateAdUnitsResponse> batchDeactivateAdUnitsAsync(BatchDeactivateAdUnitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateAdUnitsResponse> batchUpdateAdUnitsAsync(BatchUpdateAdUnitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdUnit> createAdUnitAsync(CreateAdUnitRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AdUnit> getAdUnitAsync(GetAdUnitRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAdUnitSizesAsync(ListAdUnitSizesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAdUnitsAsync(ListAdUnitsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AdUnit> updateAdUnitAsync(UpdateAdUnitRequest $request, array $optionalArgs = [])
  */
 final class AdUnitServiceClient
 {
@@ -81,9 +100,7 @@ final class AdUnitServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -113,9 +130,7 @@ final class AdUnitServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -136,6 +151,23 @@ final class AdUnitServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a label
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $label
+     *
+     * @return string The formatted label resource.
+     */
+    public static function labelName(string $networkCode, string $label): string
+    {
+        return self::getPathTemplate('label')->render([
+            'network_code' => $networkCode,
+            'label' => $label,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a network
      * resource.
      *
@@ -151,11 +183,30 @@ final class AdUnitServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a team
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $team
+     *
+     * @return string The formatted team resource.
+     */
+    public static function teamName(string $networkCode, string $team): string
+    {
+        return self::getPathTemplate('team')->render([
+            'network_code' => $networkCode,
+            'team' => $team,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - adUnit: networks/{network_code}/adUnits/{ad_unit}
+     * - label: networks/{network_code}/labels/{label}
      * - network: networks/{network_code}
+     * - team: networks/{network_code}/teams/{team}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -258,6 +309,172 @@ final class AdUnitServiceClient
     }
 
     /**
+     * API to batch activate `AdUnit` objects.
+     *
+     * The async variant is {@see AdUnitServiceClient::batchActivateAdUnitsAsync()} .
+     *
+     * @example samples/V1/AdUnitServiceClient/batch_activate_ad_units.php
+     *
+     * @param BatchActivateAdUnitsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateAdUnitsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateAdUnits(
+        BatchActivateAdUnitsRequest $request,
+        array $callOptions = []
+    ): BatchActivateAdUnitsResponse {
+        return $this->startApiCall('BatchActivateAdUnits', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Archives a list of `AdUnit` objects.
+     *
+     * The async variant is {@see AdUnitServiceClient::batchArchiveAdUnitsAsync()} .
+     *
+     * @example samples/V1/AdUnitServiceClient/batch_archive_ad_units.php
+     *
+     * @param BatchArchiveAdUnitsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchArchiveAdUnitsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchArchiveAdUnits(
+        BatchArchiveAdUnitsRequest $request,
+        array $callOptions = []
+    ): BatchArchiveAdUnitsResponse {
+        return $this->startApiCall('BatchArchiveAdUnits', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch create `AdUnit` objects.
+     *
+     * The async variant is {@see AdUnitServiceClient::batchCreateAdUnitsAsync()} .
+     *
+     * @example samples/V1/AdUnitServiceClient/batch_create_ad_units.php
+     *
+     * @param BatchCreateAdUnitsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateAdUnitsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateAdUnits(
+        BatchCreateAdUnitsRequest $request,
+        array $callOptions = []
+    ): BatchCreateAdUnitsResponse {
+        return $this->startApiCall('BatchCreateAdUnits', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `AdUnit` objects.
+     *
+     * The async variant is {@see AdUnitServiceClient::batchDeactivateAdUnitsAsync()} .
+     *
+     * @example samples/V1/AdUnitServiceClient/batch_deactivate_ad_units.php
+     *
+     * @param BatchDeactivateAdUnitsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateAdUnitsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateAdUnits(
+        BatchDeactivateAdUnitsRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateAdUnitsResponse {
+        return $this->startApiCall('BatchDeactivateAdUnits', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch update `AdUnit` objects.
+     *
+     * The async variant is {@see AdUnitServiceClient::batchUpdateAdUnitsAsync()} .
+     *
+     * @example samples/V1/AdUnitServiceClient/batch_update_ad_units.php
+     *
+     * @param BatchUpdateAdUnitsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateAdUnitsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateAdUnits(
+        BatchUpdateAdUnitsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateAdUnitsResponse {
+        return $this->startApiCall('BatchUpdateAdUnits', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to create an `AdUnit` object.
+     *
+     * The async variant is {@see AdUnitServiceClient::createAdUnitAsync()} .
+     *
+     * @example samples/V1/AdUnitServiceClient/create_ad_unit.php
+     *
+     * @param CreateAdUnitRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdUnit
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAdUnit(CreateAdUnitRequest $request, array $callOptions = []): AdUnit
+    {
+        return $this->startApiCall('CreateAdUnit', $request, $callOptions)->wait();
+    }
+
+    /**
      * API to retrieve an AdUnit object.
      *
      * The async variant is {@see AdUnitServiceClient::getAdUnitAsync()} .
@@ -333,5 +550,31 @@ final class AdUnitServiceClient
     public function listAdUnits(ListAdUnitsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListAdUnits', $request, $callOptions);
+    }
+
+    /**
+     * API to update an `AdUnit` object.
+     *
+     * The async variant is {@see AdUnitServiceClient::updateAdUnitAsync()} .
+     *
+     * @example samples/V1/AdUnitServiceClient/update_ad_unit.php
+     *
+     * @param UpdateAdUnitRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AdUnit
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAdUnit(UpdateAdUnitRequest $request, array $callOptions = []): AdUnit
+    {
+        return $this->startApiCall('UpdateAdUnit', $request, $callOptions)->wait();
     }
 }

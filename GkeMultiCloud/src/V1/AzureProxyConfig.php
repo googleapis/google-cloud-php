@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Details of a proxy config stored in Azure Key Vault.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureProxyConfig</code>
  */
 class AzureProxyConfig extends \Google\Protobuf\Internal\Message

@@ -25,7 +25,7 @@ class AttachedService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∫(
+·(
 4google/cloud/gkemulticloud/v1/attached_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/gkemulticloud/v1/attached_resources.proto4google/cloud/gkemulticloud/v1/common_resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ö
 -GenerateAttachedClusterInstallManifestRequestD
 parent (	B4‡A˙A.,gkemulticloud.googleapis.com/AttachedCluster 
@@ -83,13 +83,15 @@ grant_type (	B‡A
 scope (	B‡A!
 requested_token_type	 (	B‡A
 options
- (	B‡A"i
-)GenerateAttachedClusterAgentTokenResponse
-access_token (	
+ (	B‡A"è
+)GenerateAttachedClusterAgentTokenResponse"
+access_token (	Raccess_token
 
-expires_in (
+expires_in (R
+expires_in
 
-token_type (	2›
+token_type (	R
+token_type2›
 AttachedClustersô
 CreateAttachedCluster;.google.cloud.gkemulticloud.v1.CreateAttachedClusterRequest.google.longrunning.Operation"£ A$
 AttachedClusterOperationMetadata⁄A+parent,attached_cluster,attached_cluster_idÇ”‰ìH"4/v1/{parent=projects/*/locations/*}/attachedClusters:attached_clusterõ

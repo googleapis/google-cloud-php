@@ -60,6 +60,13 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TransactionEvent transaction_event = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $transaction_event = null;
+    /**
+     * Optional. If using an external multi-factor authentication provider,
+     * provide phone authentication details for fraud detection purposes.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneAuthenticationEvent phone_authentication_event = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $phone_authentication_event = null;
 
     /**
      * @param string $name       Required. The resource name of the Assessment, in the format
@@ -108,6 +115,9 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent $transaction_event
      *           Optional. If the assessment is part of a payment transaction, provide
      *           details on payment lifecycle events that occur in the transaction.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\PhoneAuthenticationEvent $phone_authentication_event
+     *           Optional. If using an external multi-factor authentication provider,
+     *           provide phone authentication details for fraud detection purposes.
      * }
      */
     public function __construct($data = NULL) {
@@ -295,6 +305,44 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent::class);
         $this->transaction_event = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If using an external multi-factor authentication provider,
+     * provide phone authentication details for fraud detection purposes.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneAuthenticationEvent phone_authentication_event = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\PhoneAuthenticationEvent|null
+     */
+    public function getPhoneAuthenticationEvent()
+    {
+        return $this->phone_authentication_event;
+    }
+
+    public function hasPhoneAuthenticationEvent()
+    {
+        return isset($this->phone_authentication_event);
+    }
+
+    public function clearPhoneAuthenticationEvent()
+    {
+        unset($this->phone_authentication_event);
+    }
+
+    /**
+     * Optional. If using an external multi-factor authentication provider,
+     * provide phone authentication details for fraud detection purposes.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PhoneAuthenticationEvent phone_authentication_event = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\PhoneAuthenticationEvent $var
+     * @return $this
+     */
+    public function setPhoneAuthenticationEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\PhoneAuthenticationEvent::class);
+        $this->phone_authentication_event = $var;
 
         return $this;
     }

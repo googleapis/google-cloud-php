@@ -270,7 +270,10 @@ final class VpnTunnelsClient
     }
 
     /**
-     * Retrieves an aggregated list of VPN tunnels. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of VPN tunnels.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see VpnTunnelsClient::aggregatedListAsync()} .
      *
@@ -348,7 +351,8 @@ final class VpnTunnelsClient
     }
 
     /**
-     * Creates a VpnTunnel resource in the specified project and region using the data included in the request.
+     * Creates a VpnTunnel resource in the specified project and region using
+     * the data included in the request.
      *
      * The async variant is {@see VpnTunnelsClient::insertAsync()} .
      *
@@ -374,7 +378,8 @@ final class VpnTunnelsClient
     }
 
     /**
-     * Retrieves a list of VpnTunnel resources contained in the specified project and region.
+     * Retrieves a list of VpnTunnel resources contained in the specified
+     * project and region.
      *
      * The async variant is {@see VpnTunnelsClient::listAsync()} .
      *
@@ -400,7 +405,8 @@ final class VpnTunnelsClient
     }
 
     /**
-     * Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a VpnTunnel. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see VpnTunnelsClient::setLabelsAsync()} .
      *

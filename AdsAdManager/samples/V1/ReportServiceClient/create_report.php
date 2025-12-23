@@ -27,10 +27,10 @@ use Google\Ads\AdManager\V1\Client\ReportServiceClient;
 use Google\Ads\AdManager\V1\CreateReportRequest;
 use Google\Ads\AdManager\V1\Report;
 use Google\Ads\AdManager\V1\ReportDefinition;
-use Google\Ads\AdManager\V1\Report\DateRange;
-use Google\Ads\AdManager\V1\Report\Dimension;
-use Google\Ads\AdManager\V1\Report\Metric;
-use Google\Ads\AdManager\V1\Report\ReportType;
+use Google\Ads\AdManager\V1\ReportDefinition\DateRange;
+use Google\Ads\AdManager\V1\ReportDefinition\Dimension;
+use Google\Ads\AdManager\V1\ReportDefinition\Metric;
+use Google\Ads\AdManager\V1\ReportDefinition\ReportType;
 use Google\ApiCore\ApiException;
 
 /**

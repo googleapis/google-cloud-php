@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagersResumeInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URLs of one or more instances to resume. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to resume. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      */
@@ -28,7 +29,8 @@ class InstanceGroupManagersResumeInstancesRequest extends \Google\Protobuf\Inter
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
-     *           The URLs of one or more instances to resume. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     *           The URLs of one or more instances to resume. This can be a full URL or
+     *           a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class InstanceGroupManagersResumeInstancesRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * The URLs of one or more instances to resume. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to resume. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +51,8 @@ class InstanceGroupManagersResumeInstancesRequest extends \Google\Protobuf\Inter
     }
 
     /**
-     * The URLs of one or more instances to resume. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to resume. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -79,7 +79,7 @@ class SessionCache
             throw new RuntimeException('Invalid database name');
         }
 
-        $this->cacheKey = preg_replace(
+        $this->cacheKey = rtrim(preg_replace(
             self::CACHE_KEY_VALIDATION_REGEX,
             '',
             sprintf(
@@ -89,11 +89,11 @@ class SessionCache
                 $identity['database'],
                 $this->databaseRole,
             )
-        );
+        ), '.');
 
         $this->routeToLeader = $options['routeToLeader'] ?? false;
         $this->cacheItemPool = $options['cacheItemPool'] ?? (
-            extension_loaded('sysvshm')
+            extension_loaded('sysvshm') && extension_loaded('sysvsem')
                 ? new SysVCacheItemPool()
                 : new FileSystemCacheItemPool(sys_get_temp_dir() . '/spanner_cache/')
         );
@@ -207,6 +207,7 @@ class SessionCache
     {
         return [
             'session' => $this->session,
+            'cacheKey' => $this->cacheKey,
             'cacheItemPool' => $this->cacheItemPool,
         ];
     }

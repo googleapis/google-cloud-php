@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\GlobalNetworkEndpointGroupsClient;
 use Google\Cloud\Compute\V1\ListGlobalNetworkEndpointGroupsRequest;
 
 /**
- * Retrieves the list of network endpoint groups that are located in the specified project.
+ * Retrieves the list of network endpoint groups that are located in the
+ * specified project.
  *
  * @param string $project Project ID for this request.
  */

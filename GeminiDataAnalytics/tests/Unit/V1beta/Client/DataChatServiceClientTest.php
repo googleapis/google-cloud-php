@@ -31,17 +31,23 @@ use Google\Cloud\GeminiDataAnalytics\V1beta\ChatRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Client\DataChatServiceClient;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Conversation;
 use Google\Cloud\GeminiDataAnalytics\V1beta\CreateConversationRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceReferences;
+use Google\Cloud\GeminiDataAnalytics\V1beta\DeleteConversationRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\GetConversationRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListConversationsRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListConversationsResponse;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListMessagesRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListMessagesResponse;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Message;
+use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataContext;
+use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataResponse;
 use Google\Cloud\GeminiDataAnalytics\V1beta\StorageMessage;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -225,6 +231,71 @@ class DataChatServiceClientTest extends GeneratedTest
         $request = (new CreateConversationRequest())->setParent($formattedParent)->setConversation($conversation);
         try {
             $gapicClient->createConversation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteConversationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $request = (new DeleteConversationRequest())->setName($formattedName);
+        $gapicClient->deleteConversation($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.geminidataanalytics.v1beta.DataChatService/DeleteConversation',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteConversationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $request = (new DeleteConversationRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteConversation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -435,6 +506,93 @@ class DataChatServiceClientTest extends GeneratedTest
         $request = (new ListMessagesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listMessages($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryDataTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $generatedQuery = 'generatedQuery606760472';
+        $intentExplanation = 'intentExplanation-1406510858';
+        $naturalLanguageAnswer = 'naturalLanguageAnswer-645483921';
+        $expectedResponse = new QueryDataResponse();
+        $expectedResponse->setGeneratedQuery($generatedQuery);
+        $expectedResponse->setIntentExplanation($intentExplanation);
+        $expectedResponse->setNaturalLanguageAnswer($naturalLanguageAnswer);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $prompt = 'prompt-979805852';
+        $context = new QueryDataContext();
+        $contextDatasourceReferences = new DatasourceReferences();
+        $context->setDatasourceReferences($contextDatasourceReferences);
+        $request = (new QueryDataRequest())
+            ->setParent($formattedParent)
+            ->setPrompt($prompt)
+            ->setContext($context);
+        $response = $gapicClient->queryData($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.geminidataanalytics.v1beta.DataChatService/QueryData', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getPrompt();
+        $this->assertProtobufEquals($prompt, $actualValue);
+        $actualValue = $actualRequestObject->getContext();
+        $this->assertProtobufEquals($context, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryDataExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $prompt = 'prompt-979805852';
+        $context = new QueryDataContext();
+        $contextDatasourceReferences = new DatasourceReferences();
+        $context->setDatasourceReferences($contextDatasourceReferences);
+        $request = (new QueryDataRequest())
+            ->setParent($formattedParent)
+            ->setPrompt($prompt)
+            ->setContext($context);
+        try {
+            $gapicClient->queryData($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

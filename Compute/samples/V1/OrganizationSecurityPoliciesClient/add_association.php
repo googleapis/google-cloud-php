@@ -31,7 +31,16 @@ use Google\Cloud\Compute\V1\SecurityPolicyAssociation;
 use Google\Rpc\Status;
 
 /**
- * Inserts an association for the specified security policy. This has billing implications. Projects in the hierarchy with effective hierarchical security policies will be automatically enrolled into Cloud Armor Enterprise if not already enrolled. Use of this API to modify firewall policies is deprecated. Use firewallPolicies.addAssociation instead if possible.
+ * Inserts an association for the specified security policy.
+ *
+ * This has billing implications.  Projects in the hierarchy with effective
+ * hierarchical security policies will be automatically enrolled into Cloud
+ * Armor Enterprise if not already enrolled.
+ *
+ * Use this API to modify Cloud Armor policies. Previously, alpha and beta
+ * versions of this API were used to modify firewall policies. This usage is
+ * now disabled for most organizations. Use firewallPolicies.addAssociation
+ * instead.
  *
  * @param string $securityPolicy Name of the security policy to update.
  */

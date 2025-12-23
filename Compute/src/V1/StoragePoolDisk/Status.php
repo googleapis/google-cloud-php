@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\StoragePoolDisk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The disk status.
+ * Output only. [Output Only] The disk status.
  *
  * Protobuf type <code>google.cloud.compute.v1.StoragePoolDisk.Status</code>
  */
@@ -50,7 +50,8 @@ class Status
      */
     const RESTORING = 404263851;
     /**
-     * Disk is currently unavailable and cannot be accessed, attached or detached.
+     * Disk is currently unavailable and cannot be accessed, attached or
+     * detached.
      *
      * Generated from protobuf enum <code>UNAVAILABLE = 413756464;</code>
      */

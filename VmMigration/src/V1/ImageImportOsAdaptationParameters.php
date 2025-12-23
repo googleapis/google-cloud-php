@@ -40,6 +40,13 @@ class ImageImportOsAdaptationParameters extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.BootConversion boot_conversion = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $boot_conversion = 0;
+    /**
+     * Optional. Modifiers to be used as configuration of the OS adaptation
+     * process.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $adaptation_modifiers;
 
     /**
      * Constructor.
@@ -60,6 +67,9 @@ class ImageImportOsAdaptationParameters extends \Google\Protobuf\Internal\Messag
      *           this property will trigger an internal process which will convert the
      *           image from using the existing boot option to another.
      *           The size of the boot disk might be increased to allow the conversion
+     *     @type array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $adaptation_modifiers
+     *           Optional. Modifiers to be used as configuration of the OS adaptation
+     *           process.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +165,34 @@ class ImageImportOsAdaptationParameters extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\BootConversion::class);
         $this->boot_conversion = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Modifiers to be used as configuration of the OS adaptation
+     * process.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdaptationModifiers()
+    {
+        return $this->adaptation_modifiers;
+    }
+
+    /**
+     * Optional. Modifiers to be used as configuration of the OS adaptation
+     * process.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdaptationModifiers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\AdaptationModifier::class);
+        $this->adaptation_modifiers = $arr;
 
         return $this;
     }

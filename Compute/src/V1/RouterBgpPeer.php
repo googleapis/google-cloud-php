@@ -22,20 +22,34 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     protected $advertise_mode = null;
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode,
+     * which currently supports the following option:
+     *    - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This
+     *    excludes any routes learned for subnets that use
+     *    VPC Network Peering.
+     * Note that this field can only be populated if advertise_mode is CUSTOM
+     * and overrides the list defined for the router (in the "bgp" message).
+     * These groups are advertised in addition to any specified prefixes.
+     * Leave this field blank to advertise no custom groups.
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
      */
     private $advertised_groups;
     /**
-     * User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
+     * User-specified list of individual IP ranges to advertise in custom mode.
+     * This field can only be populated if advertise_mode is CUSTOM and
+     * overrides the list defined for the router (in the "bgp" message).
+     * These IP ranges are advertised in addition to any specified groups.
+     * Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
      */
     private $advertised_ip_ranges;
     /**
-     * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
+     * The priority of routes advertised to this BGP peer. Where there is more
+     * than one matching route of maximum length, the routes with the lowest
+     * priority value win.
      *
      * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
      */
@@ -47,44 +61,58 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     protected $bfd = null;
     /**
-     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     * A list of user-defined custom learned route IP address ranges for a BGP
+     * session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
      */
     private $custom_learned_ip_ranges;
     /**
-     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     * The user-defined custom learned route priority for a BGP session. This
+     * value is applied to all custom learned route ranges for the session.
+     * You can choose a value from `0` to `65335`. If you don't provide a
+     * value, Google Cloud assigns a priority of `100` to the ranges.
      *
      * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
      */
     protected $custom_learned_route_priority = null;
     /**
-     * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     * The status of the BGP peer connection.
+     * If set to FALSE, any active session with the peer is terminated and
+     * all associated routing information is removed. If set to TRUE, the
+     * peer connection can be established with routing information. The default
+     * is TRUE.
      * Check the Enable enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enable = 311764355;</code>
      */
     protected $enable = null;
     /**
-     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if
+     * the peerIpAddress is version 4.
      *
      * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
      */
     protected $enable_ipv4 = null;
     /**
-     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the
+     * peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      */
     protected $enable_ipv6 = null;
     /**
-     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
+     * List of export policies applied to this peer, in the order they must be
+     * evaluated. The name must correspond to an existing policy that has
+     * ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
      */
     private $export_policies;
     /**
-     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
+     * List of import policies applied to this peer, in the order they must be
+     * evaluated. The name must correspond to an existing policy that has
+     * ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
      */
@@ -114,26 +142,41 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     protected $ipv6_nexthop_address = null;
     /**
-     * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * Output only. [Output Only] The resource that configures and manages this BGP peer.
+     *    -  MANAGED_BY_USER is the default value and can be managed by you
+     *    or other users
+     *    - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
+     *    by Cloud Interconnect, specifically by an InterconnectAttachment of type
+     *    PARTNER. Google automatically creates, updates, and deletes this type of
+     *    BGP peer when the PARTNER InterconnectAttachment is created, updated,
+     *    or deleted.
      * Check the ManagementType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string management_type = 173703606;</code>
      */
     protected $management_type = null;
     /**
-     * Present if MD5 authentication is enabled for the peering. Must be the name of one of the entries in the Router.md5_authentication_keys. The field must comply with RFC1035.
+     * Present if MD5 authentication is enabled for the peering. Must be the
+     * name of one of the entries in the Router.md5_authentication_keys. The
+     * field must comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string md5_authentication_key_name = 281075345;</code>
      */
     protected $md5_authentication_key_name = null;
     /**
-     * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of this BGP peer.
+     * The name must be 1-63 characters long, and comply withRFC1035. Specifically, the name must be 1-63
+     * characters long and match the regular expression
+     * `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a
+     * lowercase letter, and all following characters must be a dash, lowercase
+     * letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
+     * Peer BGP Autonomous System Number (ASN). Each BGP interface may use
+     * a different value.
      *
      * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
      */
@@ -157,7 +200,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     protected $peer_ipv6_nexthop_address = null;
     /**
-     * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
+     * URI of the VM instance that is used as third-party router
+     * appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     * Appliances. The VM instance must be located in zones contained in the
+     * same region as this Cloud Router.
+     * The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
      */
@@ -173,29 +220,57 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *           User-specified flag to indicate which mode to use for advertisement.
      *           Check the AdvertiseMode enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertised_groups
-     *           User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     *           User-specified list of prefix groups to advertise in custom mode,
+     *           which currently supports the following option:
+     *              - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This
+     *              excludes any routes learned for subnets that use
+     *              VPC Network Peering.
+     *           Note that this field can only be populated if advertise_mode is CUSTOM
+     *           and overrides the list defined for the router (in the "bgp" message).
+     *           These groups are advertised in addition to any specified prefixes.
+     *           Leave this field blank to advertise no custom groups.
      *           Check the AdvertisedGroups enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
-     *           User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
+     *           User-specified list of individual IP ranges to advertise in custom mode.
+     *           This field can only be populated if advertise_mode is CUSTOM and
+     *           overrides the list defined for the router (in the "bgp" message).
+     *           These IP ranges are advertised in addition to any specified groups.
+     *           Leave this field blank to advertise no custom IP ranges.
      *     @type int $advertised_route_priority
-     *           The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
+     *           The priority of routes advertised to this BGP peer. Where there is more
+     *           than one matching route of maximum length, the routes with the lowest
+     *           priority value win.
      *     @type \Google\Cloud\Compute\V1\RouterBgpPeerBfd $bfd
      *           BFD configuration for the BGP peering.
      *     @type array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $custom_learned_ip_ranges
-     *           A list of user-defined custom learned route IP address ranges for a BGP session.
+     *           A list of user-defined custom learned route IP address ranges for a BGP
+     *           session.
      *     @type int $custom_learned_route_priority
-     *           The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     *           The user-defined custom learned route priority for a BGP session. This
+     *           value is applied to all custom learned route ranges for the session.
+     *           You can choose a value from `0` to `65335`. If you don't provide a
+     *           value, Google Cloud assigns a priority of `100` to the ranges.
      *     @type string $enable
-     *           The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     *           The status of the BGP peer connection.
+     *           If set to FALSE, any active session with the peer is terminated and
+     *           all associated routing information is removed. If set to TRUE, the
+     *           peer connection can be established with routing information. The default
+     *           is TRUE.
      *           Check the Enable enum for the list of possible values.
      *     @type bool $enable_ipv4
-     *           Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *           Enable IPv4 traffic over BGP Peer. It is enabled by default if
+     *           the peerIpAddress is version 4.
      *     @type bool $enable_ipv6
-     *           Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     *           Enable IPv6 traffic over BGP Peer. It is enabled by default if the
+     *           peerIpAddress is version 6.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $export_policies
-     *           List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
+     *           List of export policies applied to this peer, in the order they must be
+     *           evaluated. The name must correspond to an existing policy that has
+     *           ROUTE_POLICY_TYPE_EXPORT type.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $import_policies
-     *           List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
+     *           List of import policies applied to this peer, in the order they must be
+     *           evaluated. The name must correspond to an existing policy that has
+     *           ROUTE_POLICY_TYPE_IMPORT type.
      *     @type string $interface_name
      *           Name of the interface the BGP peer is associated with.
      *     @type string $ip_address
@@ -205,14 +280,29 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type string $ipv6_nexthop_address
      *           IPv6 address of the interface inside Google Cloud Platform.
      *     @type string $management_type
-     *           [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     *           Output only. [Output Only] The resource that configures and manages this BGP peer.
+     *              -  MANAGED_BY_USER is the default value and can be managed by you
+     *              or other users
+     *              - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
+     *              by Cloud Interconnect, specifically by an InterconnectAttachment of type
+     *              PARTNER. Google automatically creates, updates, and deletes this type of
+     *              BGP peer when the PARTNER InterconnectAttachment is created, updated,
+     *              or deleted.
      *           Check the ManagementType enum for the list of possible values.
      *     @type string $md5_authentication_key_name
-     *           Present if MD5 authentication is enabled for the peering. Must be the name of one of the entries in the Router.md5_authentication_keys. The field must comply with RFC1035.
+     *           Present if MD5 authentication is enabled for the peering. Must be the
+     *           name of one of the entries in the Router.md5_authentication_keys. The
+     *           field must comply with RFC1035.
      *     @type string $name
-     *           Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of this BGP peer.
+     *           The name must be 1-63 characters long, and comply withRFC1035. Specifically, the name must be 1-63
+     *           characters long and match the regular expression
+     *           `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a
+     *           lowercase letter, and all following characters must be a dash, lowercase
+     *           letter, or digit, except the last character, which cannot be a dash.
      *     @type int $peer_asn
-     *           Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
+     *           Peer BGP Autonomous System Number (ASN). Each BGP interface may use
+     *           a different value.
      *     @type string $peer_ip_address
      *           IP address of the BGP interface outside Google Cloud Platform.
      *     @type string $peer_ipv4_nexthop_address
@@ -220,7 +310,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type string $peer_ipv6_nexthop_address
      *           IPv6 address of the BGP interface outside Google Cloud Platform.
      *     @type string $router_appliance_instance
-     *           URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
+     *           URI of the VM instance that is used as third-party router
+     *           appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     *           Appliances. The VM instance must be located in zones contained in the
+     *           same region as this Cloud Router.
+     *           The VM instance is the peer side of the BGP session.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,7 +361,15 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode,
+     * which currently supports the following option:
+     *    - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This
+     *    excludes any routes learned for subnets that use
+     *    VPC Network Peering.
+     * Note that this field can only be populated if advertise_mode is CUSTOM
+     * and overrides the list defined for the router (in the "bgp" message).
+     * These groups are advertised in addition to any specified prefixes.
+     * Leave this field blank to advertise no custom groups.
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
@@ -279,7 +381,15 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which currently supports the following option: - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This excludes any routes learned for subnets that use VPC Network Peering. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode,
+     * which currently supports the following option:
+     *    - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This
+     *    excludes any routes learned for subnets that use
+     *    VPC Network Peering.
+     * Note that this field can only be populated if advertise_mode is CUSTOM
+     * and overrides the list defined for the router (in the "bgp" message).
+     * These groups are advertised in addition to any specified prefixes.
+     * Leave this field blank to advertise no custom groups.
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
@@ -295,7 +405,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
+     * User-specified list of individual IP ranges to advertise in custom mode.
+     * This field can only be populated if advertise_mode is CUSTOM and
+     * overrides the list defined for the router (in the "bgp" message).
+     * These IP ranges are advertised in addition to any specified groups.
+     * Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -306,7 +420,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
+     * User-specified list of individual IP ranges to advertise in custom mode.
+     * This field can only be populated if advertise_mode is CUSTOM and
+     * overrides the list defined for the router (in the "bgp" message).
+     * These IP ranges are advertised in addition to any specified groups.
+     * Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
      * @param array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
@@ -321,7 +439,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
+     * The priority of routes advertised to this BGP peer. Where there is more
+     * than one matching route of maximum length, the routes with the lowest
+     * priority value win.
      *
      * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
      * @return int
@@ -342,7 +462,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
+     * The priority of routes advertised to this BGP peer. Where there is more
+     * than one matching route of maximum length, the routes with the lowest
+     * priority value win.
      *
      * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
      * @param int $var
@@ -393,7 +515,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     * A list of user-defined custom learned route IP address ranges for a BGP
+     * session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -404,7 +527,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of user-defined custom learned route IP address ranges for a BGP session.
+     * A list of user-defined custom learned route IP address ranges for a BGP
+     * session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
      * @param array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
@@ -419,7 +543,10 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     * The user-defined custom learned route priority for a BGP session. This
+     * value is applied to all custom learned route ranges for the session.
+     * You can choose a value from `0` to `65335`. If you don't provide a
+     * value, Google Cloud assigns a priority of `100` to the ranges.
      *
      * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
      * @return int
@@ -440,7 +567,10 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The user-defined custom learned route priority for a BGP session. This value is applied to all custom learned route ranges for the session. You can choose a value from `0` to `65335`. If you don't provide a value, Google Cloud assigns a priority of `100` to the ranges.
+     * The user-defined custom learned route priority for a BGP session. This
+     * value is applied to all custom learned route ranges for the session.
+     * You can choose a value from `0` to `65335`. If you don't provide a
+     * value, Google Cloud assigns a priority of `100` to the ranges.
      *
      * Generated from protobuf field <code>optional int32 custom_learned_route_priority = 330412356;</code>
      * @param int $var
@@ -455,7 +585,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     * The status of the BGP peer connection.
+     * If set to FALSE, any active session with the peer is terminated and
+     * all associated routing information is removed. If set to TRUE, the
+     * peer connection can be established with routing information. The default
+     * is TRUE.
      * Check the Enable enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enable = 311764355;</code>
@@ -477,7 +611,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     * The status of the BGP peer connection.
+     * If set to FALSE, any active session with the peer is terminated and
+     * all associated routing information is removed. If set to TRUE, the
+     * peer connection can be established with routing information. The default
+     * is TRUE.
      * Check the Enable enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enable = 311764355;</code>
@@ -493,7 +631,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if
+     * the peerIpAddress is version 4.
      *
      * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
      * @return bool
@@ -514,7 +653,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if
+     * the peerIpAddress is version 4.
      *
      * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
      * @param bool $var
@@ -529,7 +669,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the
+     * peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @return bool
@@ -550,7 +691,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the
+     * peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @param bool $var
@@ -565,7 +707,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
+     * List of export policies applied to this peer, in the order they must be
+     * evaluated. The name must correspond to an existing policy that has
+     * ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -576,7 +720,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type.
+     * List of export policies applied to this peer, in the order they must be
+     * evaluated. The name must correspond to an existing policy that has
+     * ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -591,7 +737,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
+     * List of import policies applied to this peer, in the order they must be
+     * evaluated. The name must correspond to an existing policy that has
+     * ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -602,7 +750,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type.
+     * List of import policies applied to this peer, in the order they must be
+     * evaluated. The name must correspond to an existing policy that has
+     * ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -761,7 +911,14 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * Output only. [Output Only] The resource that configures and manages this BGP peer.
+     *    -  MANAGED_BY_USER is the default value and can be managed by you
+     *    or other users
+     *    - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
+     *    by Cloud Interconnect, specifically by an InterconnectAttachment of type
+     *    PARTNER. Google automatically creates, updates, and deletes this type of
+     *    BGP peer when the PARTNER InterconnectAttachment is created, updated,
+     *    or deleted.
      * Check the ManagementType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string management_type = 173703606;</code>
@@ -783,7 +940,14 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * Output only. [Output Only] The resource that configures and manages this BGP peer.
+     *    -  MANAGED_BY_USER is the default value and can be managed by you
+     *    or other users
+     *    - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed
+     *    by Cloud Interconnect, specifically by an InterconnectAttachment of type
+     *    PARTNER. Google automatically creates, updates, and deletes this type of
+     *    BGP peer when the PARTNER InterconnectAttachment is created, updated,
+     *    or deleted.
      * Check the ManagementType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string management_type = 173703606;</code>
@@ -799,7 +963,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Present if MD5 authentication is enabled for the peering. Must be the name of one of the entries in the Router.md5_authentication_keys. The field must comply with RFC1035.
+     * Present if MD5 authentication is enabled for the peering. Must be the
+     * name of one of the entries in the Router.md5_authentication_keys. The
+     * field must comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string md5_authentication_key_name = 281075345;</code>
      * @return string
@@ -820,7 +986,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Present if MD5 authentication is enabled for the peering. Must be the name of one of the entries in the Router.md5_authentication_keys. The field must comply with RFC1035.
+     * Present if MD5 authentication is enabled for the peering. Must be the
+     * name of one of the entries in the Router.md5_authentication_keys. The
+     * field must comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string md5_authentication_key_name = 281075345;</code>
      * @param string $var
@@ -835,7 +1003,12 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of this BGP peer.
+     * The name must be 1-63 characters long, and comply withRFC1035. Specifically, the name must be 1-63
+     * characters long and match the regular expression
+     * `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a
+     * lowercase letter, and all following characters must be a dash, lowercase
+     * letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -856,7 +1029,12 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of this BGP peer.
+     * The name must be 1-63 characters long, and comply withRFC1035. Specifically, the name must be 1-63
+     * characters long and match the regular expression
+     * `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a
+     * lowercase letter, and all following characters must be a dash, lowercase
+     * letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -871,7 +1049,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
+     * Peer BGP Autonomous System Number (ASN). Each BGP interface may use
+     * a different value.
      *
      * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
      * @return int
@@ -892,7 +1071,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
+     * Peer BGP Autonomous System Number (ASN). Each BGP interface may use
+     * a different value.
      *
      * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
      * @param int $var
@@ -1015,7 +1195,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
+     * URI of the VM instance that is used as third-party router
+     * appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     * Appliances. The VM instance must be located in zones contained in the
+     * same region as this Cloud Router.
+     * The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
      * @return string
@@ -1036,7 +1220,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
+     * URI of the VM instance that is used as third-party router
+     * appliances such as Next Gen Firewalls, Virtual Routers, or Router
+     * Appliances. The VM instance must be located in zones contained in the
+     * same region as this Cloud Router.
+     * The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
      * @param string $var

@@ -32,8 +32,10 @@ use Google\Cloud\Compute\V1\ReservationBlocksGetResponse;
  * Retrieves information about the specified reservation block.
  *
  * @param string $project          Project ID for this request.
- * @param string $reservation      The name of the reservation. Name should conform to RFC1035 or be a resource ID.
- * @param string $reservationBlock The name of the reservation block. Name should conform to RFC1035 or be a resource ID.
+ * @param string $reservation      The name of the reservation.
+ *                                 Name should conform to RFC1035 or be a resource ID.
+ * @param string $reservationBlock The name of the reservation block.
+ *                                 Name should conform to RFC1035 or be a resource ID.
  * @param string $zone             Name of the zone for this request. Zone name should conform to RFC1035.
  */
 function get_sample(

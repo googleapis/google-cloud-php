@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest;
 use UnexpectedValueException;
 
 /**
- * [Output only] Current state of the request.
+ * Output only. [Output only] Current state of the request.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerResizeRequest.State</code>
  */
@@ -20,7 +20,8 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * The request was created successfully and was accepted for provisioning when the capacity becomes available.
+     * The request was created successfully and was accepted for provisioning
+     * when the capacity becomes available.
      *
      * Generated from protobuf enum <code>ACCEPTED = 246714279;</code>
      */
@@ -38,7 +39,9 @@ class State
      */
     const CREATING = 455564985;
     /**
-     * The request failed before or during provisioning. If the request fails during provisioning, any VMs that were created during provisioning are rolled back and removed from the MIG.
+     * The request failed before or during provisioning. If the request fails
+     * during provisioning, any VMs that were created during provisioning are
+     * rolled back and removed from the MIG.
      *
      * Generated from protobuf enum <code>FAILED = 455706685;</code>
      */

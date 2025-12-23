@@ -15,19 +15,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Contents of the error.
+     * Output only. [Output Only] Contents of the error.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
      */
     protected $error = null;
     /**
-     * [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
+     * Output only. [Output Only] Details of the instance action that triggered this error.
+     * May be null, if the error was not caused by an action on an instance.
+     * This field is optional.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
      */
     protected $instance_action_details = null;
     /**
-     * [Output Only] The time that this error occurred. This value is in RFC3339 text format.
+     * Output only. [Output Only] The time that this error occurred.
+     * This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      */
@@ -40,11 +43,14 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorManagedInstanceError $error
-     *           [Output Only] Contents of the error.
+     *           Output only. [Output Only] Contents of the error.
      *     @type \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorInstanceActionDetails $instance_action_details
-     *           [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
+     *           Output only. [Output Only] Details of the instance action that triggered this error.
+     *           May be null, if the error was not caused by an action on an instance.
+     *           This field is optional.
      *     @type string $timestamp
-     *           [Output Only] The time that this error occurred. This value is in RFC3339 text format.
+     *           Output only. [Output Only] The time that this error occurred.
+     *           This value is in RFC3339 text format.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +59,7 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Contents of the error.
+     * Output only. [Output Only] Contents of the error.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorManagedInstanceError|null
@@ -74,7 +80,7 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Contents of the error.
+     * Output only. [Output Only] Contents of the error.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorManagedInstanceError $var
@@ -89,7 +95,9 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
+     * Output only. [Output Only] Details of the instance action that triggered this error.
+     * May be null, if the error was not caused by an action on an instance.
+     * This field is optional.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
      * @return \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorInstanceActionDetails|null
@@ -110,7 +118,9 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
+     * Output only. [Output Only] Details of the instance action that triggered this error.
+     * May be null, if the error was not caused by an action on an instance.
+     * This field is optional.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
      * @param \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorInstanceActionDetails $var
@@ -125,7 +135,8 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The time that this error occurred. This value is in RFC3339 text format.
+     * Output only. [Output Only] The time that this error occurred.
+     * This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      * @return string
@@ -146,7 +157,8 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The time that this error occurred. This value is in RFC3339 text format.
+     * Output only. [Output Only] The time that this error occurred.
+     * This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      * @param string $var

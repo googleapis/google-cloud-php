@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetLabelsSnapshotRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
+ * Sets the labels on a snapshot. To learn more about labels, read theLabeling
+ * Resources documentation.
  *
  * @param string $project  Project ID for this request.
  * @param string $resource Name or id of the resource for this request.

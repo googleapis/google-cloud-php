@@ -40,10 +40,13 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ChatRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Conversation;
 use Google\Cloud\GeminiDataAnalytics\V1beta\CreateConversationRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\DeleteConversationRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\GetConversationRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListConversationsRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\ListMessagesRequest;
 use Google\Cloud\GeminiDataAnalytics\V1beta\Message;
+use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataRequest;
+use Google\Cloud\GeminiDataAnalytics\V1beta\QueryDataResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -66,9 +69,11 @@ use Psr\Log\LoggerInterface;
  * @experimental
  *
  * @method PromiseInterface<Conversation> createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteConversationAsync(DeleteConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Conversation> getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<QueryDataResponse> queryDataAsync(QueryDataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -97,9 +102,7 @@ final class DataChatServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -369,6 +372,32 @@ final class DataChatServiceClient
     }
 
     /**
+     * Deletes a conversation.
+     *
+     * The async variant is {@see DataChatServiceClient::deleteConversationAsync()} .
+     *
+     * @example samples/V1beta/DataChatServiceClient/delete_conversation.php
+     *
+     * @param DeleteConversationRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteConversation(DeleteConversationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteConversation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single conversation by using conversation id and parent.
      *
      * The async variant is {@see DataChatServiceClient::getConversationAsync()} .
@@ -450,6 +479,34 @@ final class DataChatServiceClient
     public function listMessages(ListMessagesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListMessages', $request, $callOptions);
+    }
+
+    /**
+     * Queries data from a natural language user query.
+     *
+     * The async variant is {@see DataChatServiceClient::queryDataAsync()} .
+     *
+     * @example samples/V1beta/DataChatServiceClient/query_data.php
+     *
+     * @param QueryDataRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryDataResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryData(QueryDataRequest $request, array $callOptions = []): QueryDataResponse
+    {
+        return $this->startApiCall('QueryData', $request, $callOptions)->wait();
     }
 
     /**

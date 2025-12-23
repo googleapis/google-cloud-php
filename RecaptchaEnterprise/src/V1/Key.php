@@ -49,7 +49,7 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     protected $testing_options = null;
     /**
-     * Optional. Settings for WAF
+     * Optional. Settings for Web Application Firewall (WAF).
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -83,7 +83,7 @@ class Key extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
      *           Optional. Options for user acceptance testing.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $waf_settings
-     *           Optional. Settings for WAF
+     *           Optional. Settings for Web Application Firewall (WAF).
      * }
      */
     public function __construct($data = NULL) {
@@ -370,7 +370,7 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Settings for WAF
+     * Optional. Settings for Web Application Firewall (WAF).
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\WafSettings|null
@@ -391,7 +391,7 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Settings for WAF
+     * Optional. Settings for Web Application Firewall (WAF).
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WafSettings waf_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\WafSettings $var

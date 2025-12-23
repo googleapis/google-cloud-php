@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A metadata key/value items map. The total size of all keys and values must be less than 512KB.
+     * A metadata key/value items map.
+     * The total size of all keys and values must be less than 512KB.
      *
      * Generated from protobuf field <code>map<string, string> items = 100526016;</code>
      */
     private $items;
     /**
-     * [Output Only] Type of the resource. Always compute#metadata for metadata.
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
+     * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -34,9 +36,11 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $items
-     *           A metadata key/value items map. The total size of all keys and values must be less than 512KB.
+     *           A metadata key/value items map.
+     *           The total size of all keys and values must be less than 512KB.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#metadata for metadata.
+     *           Output only. [Output Only] Type of the resource. Always compute#metadata
+     *           for metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A metadata key/value items map. The total size of all keys and values must be less than 512KB.
+     * A metadata key/value items map.
+     * The total size of all keys and values must be less than 512KB.
      *
      * Generated from protobuf field <code>map<string, string> items = 100526016;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -56,7 +61,8 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A metadata key/value items map. The total size of all keys and values must be less than 512KB.
+     * A metadata key/value items map.
+     * The total size of all keys and values must be less than 512KB.
      *
      * Generated from protobuf field <code>map<string, string> items = 100526016;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -71,7 +77,8 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#metadata for metadata.
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
+     * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -92,7 +99,8 @@ class InstanceSettingsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#metadata for metadata.
+     * Output only. [Output Only] Type of the resource. Always compute#metadata
+     * for metadata.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

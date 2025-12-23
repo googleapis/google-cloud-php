@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the Operations resource to delete, or its unique numeric identifier.
+     * Name of the Operations resource to delete, or its unique numeric
+     * identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,7 +30,8 @@ class DeleteGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal
     protected $parent_id = null;
 
     /**
-     * @param string $operation Name of the Operations resource to delete, or its unique numeric identifier.
+     * @param string $operation Name of the Operations resource to delete, or its unique numeric
+     *                          identifier.
      *
      * @return \Google\Cloud\Compute\V1\DeleteGlobalOrganizationOperationRequest
      *
@@ -48,7 +50,8 @@ class DeleteGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation
-     *           Name of the Operations resource to delete, or its unique numeric identifier.
+     *           Name of the Operations resource to delete, or its unique numeric
+     *           identifier.
      *     @type string $parent_id
      *           Parent ID for this request.
      * }
@@ -59,7 +62,8 @@ class DeleteGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Name of the Operations resource to delete, or its unique numeric identifier.
+     * Name of the Operations resource to delete, or its unique numeric
+     * identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -70,7 +74,8 @@ class DeleteGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal
     }
 
     /**
-     * Name of the Operations resource to delete, or its unique numeric identifier.
+     * Name of the Operations resource to delete, or its unique numeric
+     * identifier.
      *
      * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

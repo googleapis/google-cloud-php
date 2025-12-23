@@ -23,6 +23,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "admanager"
     },
+    "AdsDataManager": {
+        "language": "php",
+        "distribution_name": "googleads/data-manager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/googleads/data-manager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "datamanager"
+    },
     "AdsMarketingPlatformAdmin": {
         "language": "php",
         "distribution_name": "googleads/marketingplatform-admin",
@@ -532,6 +540,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "datalabeling"
     },
+    "DatabaseCenter": {
+        "language": "php",
+        "distribution_name": "google/cloud-databasecenter",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-databasecenter/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "databasecenter"
+    },
     "Dataflow": {
         "language": "php",
         "distribution_name": "google/cloud-dataflow",
@@ -814,6 +830,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/grafeas/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "containeranalysis"
+    },
+    "HypercomputeCluster": {
+        "language": "php",
+        "distribution_name": "google/cloud-hypercomputecluster",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-hypercomputecluster/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "hypercomputecluster"
     },
     "Iam": {
         "language": "php",

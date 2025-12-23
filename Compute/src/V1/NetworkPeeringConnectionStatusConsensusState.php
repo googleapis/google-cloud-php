@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The status of update/delete for a consensus peering connection. Only set when connection_status.update_strategy is CONSENSUS or a network peering is proposing to update the strategy to CONSENSUS.
+ * The status of update/delete for a consensus peering connection. Only set
+ * when connection_status.update_strategy isCONSENSUS or a network peering is proposing to update the
+ * strategy to CONSENSUS.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NetworkPeeringConnectionStatusConsensusState</code>
  */

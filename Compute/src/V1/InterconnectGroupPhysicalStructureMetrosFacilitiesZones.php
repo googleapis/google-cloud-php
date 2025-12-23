@@ -9,20 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] The zones that Interconnects in this facility are present in.
+ * [Output Only] The zones that Interconnects in this facility are
+ * present in.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetrosFacilitiesZones</code>
  */
 class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] URLs of Interconnects in this redundancy group in the given metro, facility, and zone.
+     * Output only. [Output Only] URLs of Interconnects in this redundancy group in the
+     * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
      */
     private $interconnects;
     /**
-     * [Output Only] The name of the zone, either "zone1" or "zone2". This is the second component of the location of Interconnects in this facility.
+     * Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
+     * This is the second component of the location of Interconnects in
+     * this facility.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -35,9 +39,12 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnects
-     *           [Output Only] URLs of Interconnects in this redundancy group in the given metro, facility, and zone.
+     *           Output only. [Output Only] URLs of Interconnects in this redundancy group in the
+     *           given metro, facility, and zone.
      *     @type string $zone
-     *           [Output Only] The name of the zone, either "zone1" or "zone2". This is the second component of the location of Interconnects in this facility.
+     *           Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
+     *           This is the second component of the location of Interconnects in
+     *           this facility.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +53,8 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] URLs of Interconnects in this redundancy group in the given metro, facility, and zone.
+     * Output only. [Output Only] URLs of Interconnects in this redundancy group in the
+     * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,7 +65,8 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] URLs of Interconnects in this redundancy group in the given metro, facility, and zone.
+     * Output only. [Output Only] URLs of Interconnects in this redundancy group in the
+     * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -72,7 +81,9 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] The name of the zone, either "zone1" or "zone2". This is the second component of the location of Interconnects in this facility.
+     * Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
+     * This is the second component of the location of Interconnects in
+     * this facility.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -93,7 +104,9 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
     }
 
     /**
-     * [Output Only] The name of the zone, either "zone1" or "zone2". This is the second component of the location of Interconnects in this facility.
+     * Output only. [Output Only] The name of the zone, either "zone1" or "zone2".
+     * This is the second component of the location of Interconnects in
+     * this facility.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

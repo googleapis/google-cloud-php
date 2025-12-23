@@ -16,7 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class BfdStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer.
+     * The BFD session initialization mode for this BGP peer.
+     * If set to ACTIVE, the Cloud Router will initiate the BFD session for
+     * this BGP peer. If set to PASSIVE, the Cloud Router will wait for the
+     * peer router to initiate the BFD session for this BGP peer. If set to
+     * DISABLED, BFD is disabled for this BGP peer.
      * Check the BfdSessionInitializationMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bfd_session_initialization_mode = 218156954;</code>
@@ -41,14 +45,18 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      */
     private $control_packet_intervals;
     /**
-     * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     * The diagnostic code specifies the local system's reason for the last change
+     * in session state. This allows remote systems to determine the reason that
+     * the previous session failed, for example. These diagnostic codes are
+     * specified in section 4.1 ofRFC5880
      * Check the LocalDiagnostic enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string local_diagnostic = 463737083;</code>
      */
     protected $local_diagnostic = null;
     /**
-     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     * The current BFD session state as seen by the transmitting system. These
+     * states are specified in section 4.1 ofRFC5880
      * Check the LocalState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string local_state = 149195453;</code>
@@ -86,7 +94,11 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $bfd_session_initialization_mode
-     *           The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer.
+     *           The BFD session initialization mode for this BGP peer.
+     *           If set to ACTIVE, the Cloud Router will initiate the BFD session for
+     *           this BGP peer. If set to PASSIVE, the Cloud Router will wait for the
+     *           peer router to initiate the BFD session for this BGP peer. If set to
+     *           DISABLED, BFD is disabled for this BGP peer.
      *           Check the BfdSessionInitializationMode enum for the list of possible values.
      *     @type int|string $config_update_timestamp_micros
      *           Unix timestamp of the most recent config update.
@@ -95,10 +107,14 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\PacketIntervals>|\Google\Protobuf\Internal\RepeatedField $control_packet_intervals
      *           Inter-packet time interval statistics for control packets.
      *     @type string $local_diagnostic
-     *           The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     *           The diagnostic code specifies the local system's reason for the last change
+     *           in session state. This allows remote systems to determine the reason that
+     *           the previous session failed, for example. These diagnostic codes are
+     *           specified in section 4.1 ofRFC5880
      *           Check the LocalDiagnostic enum for the list of possible values.
      *     @type string $local_state
-     *           The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     *           The current BFD session state as seen by the transmitting system. These
+     *           states are specified in section 4.1 ofRFC5880
      *           Check the LocalState enum for the list of possible values.
      *     @type int $negotiated_local_control_tx_interval_ms
      *           Negotiated transmit interval for control packets.
@@ -116,7 +132,11 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer.
+     * The BFD session initialization mode for this BGP peer.
+     * If set to ACTIVE, the Cloud Router will initiate the BFD session for
+     * this BGP peer. If set to PASSIVE, the Cloud Router will wait for the
+     * peer router to initiate the BFD session for this BGP peer. If set to
+     * DISABLED, BFD is disabled for this BGP peer.
      * Check the BfdSessionInitializationMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bfd_session_initialization_mode = 218156954;</code>
@@ -138,7 +158,11 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer.
+     * The BFD session initialization mode for this BGP peer.
+     * If set to ACTIVE, the Cloud Router will initiate the BFD session for
+     * this BGP peer. If set to PASSIVE, the Cloud Router will wait for the
+     * peer router to initiate the BFD session for this BGP peer. If set to
+     * DISABLED, BFD is disabled for this BGP peer.
      * Check the BfdSessionInitializationMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bfd_session_initialization_mode = 218156954;</code>
@@ -252,7 +276,10 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     * The diagnostic code specifies the local system's reason for the last change
+     * in session state. This allows remote systems to determine the reason that
+     * the previous session failed, for example. These diagnostic codes are
+     * specified in section 4.1 ofRFC5880
      * Check the LocalDiagnostic enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string local_diagnostic = 463737083;</code>
@@ -274,7 +301,10 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
+     * The diagnostic code specifies the local system's reason for the last change
+     * in session state. This allows remote systems to determine the reason that
+     * the previous session failed, for example. These diagnostic codes are
+     * specified in section 4.1 ofRFC5880
      * Check the LocalDiagnostic enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string local_diagnostic = 463737083;</code>
@@ -290,7 +320,8 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     * The current BFD session state as seen by the transmitting system. These
+     * states are specified in section 4.1 ofRFC5880
      * Check the LocalState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string local_state = 149195453;</code>
@@ -312,7 +343,8 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880
+     * The current BFD session state as seen by the transmitting system. These
+     * states are specified in section 4.1 ofRFC5880
      * Check the LocalState enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string local_state = 149195453;</code>

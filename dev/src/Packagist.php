@@ -101,6 +101,22 @@ class Packagist
         );
     }
 
+    public function versionExists(string $packageName, string $version): bool
+    {
+        $rand = rand();
+        try {
+            $response = $this->client->get("https://packagist.org/packages/$packageName.json?cachebuster=$rand");
+            $data = json_decode($response->getBody()->getContents(), true);
+            return isset($data['package']['versions'][$version]);
+        } catch (GuzzleException $e) {
+            // Package does not exist
+            if ($e->getCode() === 404) {
+                return false;
+            }
+            throw $e;
+        }
+    }
+
     /**
      * Log an exception
      *

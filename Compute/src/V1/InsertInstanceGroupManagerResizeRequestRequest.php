@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the managed instance group to which the resize request will be added. Name should conform to RFC1035 or be a resource ID.
+     * The name of the managed instance group to which the resize request will
+     * be added.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,13 +36,25 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
      */
     protected $project = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
     protected $request_id = null;
     /**
-     * The name of the zone where the managed instance group is located and where the resize request will be created. Name should conform to RFC1035.
+     * The name of thezone where the managed
+     * instance group is located and where the resize request will be created.
+     * Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
@@ -48,8 +62,12 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
 
     /**
      * @param string                                                     $project                                   Project ID for this request.
-     * @param string                                                     $zone                                      The name of the zone where the managed instance group is located and where the resize request will be created. Name should conform to RFC1035.
-     * @param string                                                     $instanceGroupManager                      The name of the managed instance group to which the resize request will be added. Name should conform to RFC1035 or be a resource ID.
+     * @param string                                                     $zone                                      The name of thezone where the managed
+     *                                                                                                              instance group is located and where the resize request will be created.
+     *                                                                                                              Name should conform to RFC1035.
+     * @param string                                                     $instanceGroupManager                      The name of the managed instance group to which the resize request will
+     *                                                                                                              be added.
+     *                                                                                                              Name should conform to RFC1035 or be a resource ID.
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest $instanceGroupManagerResizeRequestResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\InsertInstanceGroupManagerResizeRequestRequest
@@ -72,15 +90,29 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_group_manager
-     *           The name of the managed instance group to which the resize request will be added. Name should conform to RFC1035 or be a resource ID.
+     *           The name of the managed instance group to which the resize request will
+     *           be added.
+     *           Name should conform to RFC1035 or be a resource ID.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest $instance_group_manager_resize_request_resource
      *           The body resource for this request
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      *     @type string $zone
-     *           The name of the zone where the managed instance group is located and where the resize request will be created. Name should conform to RFC1035.
+     *           The name of thezone where the managed
+     *           instance group is located and where the resize request will be created.
+     *           Name should conform to RFC1035.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +121,9 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
     }
 
     /**
-     * The name of the managed instance group to which the resize request will be added. Name should conform to RFC1035 or be a resource ID.
+     * The name of the managed instance group to which the resize request will
+     * be added.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,7 +134,9 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
     }
 
     /**
-     * The name of the managed instance group to which the resize request will be added. Name should conform to RFC1035 or be a resource ID.
+     * The name of the managed instance group to which the resize request will
+     * be added.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -177,7 +213,17 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -198,7 +244,17 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
@@ -213,7 +269,9 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
     }
 
     /**
-     * The name of the zone where the managed instance group is located and where the resize request will be created. Name should conform to RFC1035.
+     * The name of thezone where the managed
+     * instance group is located and where the resize request will be created.
+     * Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @return string
@@ -224,7 +282,9 @@ class InsertInstanceGroupManagerResizeRequestRequest extends \Google\Protobuf\In
     }
 
     /**
-     * The name of the zone where the managed instance group is located and where the resize request will be created. Name should conform to RFC1035.
+     * The name of thezone where the managed
+     * instance group is located and where the resize request will be created.
+     * Name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @param string $var

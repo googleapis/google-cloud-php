@@ -342,8 +342,10 @@ final class EncryptionSpecServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function initializeEncryptionSpec(InitializeEncryptionSpecRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function initializeEncryptionSpec(
+        InitializeEncryptionSpecRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('InitializeEncryptionSpec', $request, $callOptions)->wait();
     }
 

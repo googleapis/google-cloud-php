@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\NetworkRoutingConfig;
 use UnexpectedValueException;
 
 /**
- * The BGP best path selection algorithm to be employed within this network for dynamic routes learned by Cloud Routers. Can be LEGACY (default) or STANDARD.
+ * The BGP best path selection algorithm to be employed within this network
+ * for dynamic routes learned by Cloud Routers. Can be LEGACY
+ * (default) or STANDARD.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkRoutingConfig.BgpBestPathSelectionMode</code>
  */

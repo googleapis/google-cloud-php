@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration related to application-layer secrets encryption.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsDatabaseEncryption</code>
  */
 class AwsDatabaseEncryption extends \Google\Protobuf\Internal\Message

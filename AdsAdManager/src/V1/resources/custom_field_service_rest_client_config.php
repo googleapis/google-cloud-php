@@ -23,6 +23,66 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.CustomFieldService' => [
+            'BatchActivateCustomFields' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customFields:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateCustomFields' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customFields:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateCustomFields' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customFields:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCustomFields' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customFields:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCustomField' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customFields',
+                'body' => 'custom_field',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomField' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/customFields/*}',
@@ -43,6 +103,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdateCustomField' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{custom_field.name=networks/*/customFields/*}',
+                'body' => 'custom_field',
+                'placeholders' => [
+                    'custom_field.name' => [
+                        'getters' => [
+                            'getCustomField',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

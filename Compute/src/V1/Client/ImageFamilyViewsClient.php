@@ -189,7 +189,8 @@ final class ImageFamilyViewsClient
     }
 
     /**
-     * Returns the latest image that is part of an image family, is not deprecated and is rolled out in the specified zone.
+     * Returns the latest image that is part of an image family, is not
+     * deprecated and is rolled out in the specified zone.
      *
      * The async variant is {@see ImageFamilyViewsClient::getAsync()} .
      *

@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The value of the limit to set. For endpoint_url, the limit should be no more than 1.
+     * The value of the limit to set. For endpoint_url, the limit should be no
+     * more than 1.
      *
      * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
      */
@@ -40,7 +41,8 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type int $connection_limit
-     *           The value of the limit to set. For endpoint_url, the limit should be no more than 1.
+     *           The value of the limit to set. For endpoint_url, the limit should be no
+     *           more than 1.
      *     @type string $network_url
      *           The network URL for the network to set the limit for.
      *     @type string $project_id_or_num
@@ -53,7 +55,8 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The value of the limit to set. For endpoint_url, the limit should be no more than 1.
+     * The value of the limit to set. For endpoint_url, the limit should be no
+     * more than 1.
      *
      * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
      * @return int
@@ -74,7 +77,8 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The value of the limit to set. For endpoint_url, the limit should be no more than 1.
+     * The value of the limit to set. For endpoint_url, the limit should be no
+     * more than 1.
      *
      * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
      * @param int $var

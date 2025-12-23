@@ -26,7 +26,8 @@ class Type
      */
     const HIGH_AVAILABILITY = 409487576;
     /**
-     * MIG provisions instances as close to each other as possible for high throughput.
+     * MIG provisions instances as close to each other as possible for high
+     * throughput.
      *
      * Generated from protobuf enum <code>HIGH_THROUGHPUT = 146499815;</code>
      */

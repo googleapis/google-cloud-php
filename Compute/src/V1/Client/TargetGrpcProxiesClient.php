@@ -320,7 +320,8 @@ final class TargetGrpcProxiesClient
     }
 
     /**
-     * Creates a TargetGrpcProxy in the specified project in the given scope using the parameters that are included in the request.
+     * Creates a TargetGrpcProxy in the specified project in the given scope
+     * using the parameters that are included in the request.
      *
      * The async variant is {@see TargetGrpcProxiesClient::insertAsync()} .
      *
@@ -372,7 +373,10 @@ final class TargetGrpcProxiesClient
     }
 
     /**
-     * Patches the specified TargetGrpcProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.
+     * Patches the specified TargetGrpcProxy resource with the data included in
+     * the request. This method supports PATCH
+     * semantics and usesJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see TargetGrpcProxiesClient::patchAsync()} .
      *

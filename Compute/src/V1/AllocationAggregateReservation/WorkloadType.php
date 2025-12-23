@@ -20,13 +20,15 @@ class WorkloadType
      */
     const UNDEFINED_WORKLOAD_TYPE = 0;
     /**
-     * Reserved resources will be optimized for BATCH workloads, such as ML training.
+     * Reserved resources will be optimized for BATCH workloads, such as ML
+     * training.
      *
      * Generated from protobuf enum <code>BATCH = 62971674;</code>
      */
     const BATCH = 62971674;
     /**
-     * Reserved resources will be optimized for SERVING workloads, such as ML inference.
+     * Reserved resources will be optimized for SERVING workloads, such as ML
+     * inference.
      *
      * Generated from protobuf enum <code>SERVING = 17781740;</code>
      */

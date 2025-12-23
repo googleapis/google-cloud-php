@@ -15,7 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Server-defined URL for resources referencing given BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies and ForwardingRule.
+     * Output only. [Output Only] Server-defined URL for resources referencing given
+     * BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
+     * and ForwardingRule.
      *
      * Generated from protobuf field <code>optional string reference = 148586315;</code>
      */
@@ -28,7 +30,9 @@ class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $reference
-     *           [Output Only] Server-defined URL for resources referencing given BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies and ForwardingRule.
+     *           Output only. [Output Only] Server-defined URL for resources referencing given
+     *           BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
+     *           and ForwardingRule.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +41,9 @@ class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for resources referencing given BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies and ForwardingRule.
+     * Output only. [Output Only] Server-defined URL for resources referencing given
+     * BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
+     * and ForwardingRule.
      *
      * Generated from protobuf field <code>optional string reference = 148586315;</code>
      * @return string
@@ -58,7 +64,9 @@ class BackendServiceUsedBy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for resources referencing given BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies and ForwardingRule.
+     * Output only. [Output Only] Server-defined URL for resources referencing given
+     * BackendService like UrlMaps, TargetTcpProxies, TargetSslProxies
+     * and ForwardingRule.
      *
      * Generated from protobuf field <code>optional string reference = 148586315;</code>
      * @param string $var

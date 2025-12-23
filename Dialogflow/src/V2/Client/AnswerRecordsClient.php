@@ -252,8 +252,12 @@ final class AnswerRecordsClient
      *
      * @return string The formatted project_environment_user_session resource.
      */
-    public static function projectEnvironmentUserSessionName(string $project, string $environment, string $user, string $session): string
-    {
+    public static function projectEnvironmentUserSessionName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSession')->render([
             'project' => $project,
             'environment' => $environment,
@@ -274,8 +278,13 @@ final class AnswerRecordsClient
      *
      * @return string The formatted project_environment_user_session_context resource.
      */
-    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectEnvironmentUserSessionContextName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
             'project' => $project,
             'environment' => $environment,
@@ -329,8 +338,11 @@ final class AnswerRecordsClient
      *
      * @return string The formatted project_location_answer_record resource.
      */
-    public static function projectLocationAnswerRecordName(string $project, string $location, string $answerRecord): string
-    {
+    public static function projectLocationAnswerRecordName(
+        string $project,
+        string $location,
+        string $answerRecord
+    ): string {
         return self::getPathTemplate('projectLocationAnswerRecord')->render([
             'project' => $project,
             'location' => $location,
@@ -350,8 +362,13 @@ final class AnswerRecordsClient
      *
      * @return string The formatted project_location_environment_user_session resource.
      */
-    public static function projectLocationEnvironmentUserSessionName(string $project, string $location, string $environment, string $user, string $session): string
-    {
+    public static function projectLocationEnvironmentUserSessionName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSession')->render([
             'project' => $project,
             'location' => $location,
@@ -374,8 +391,14 @@ final class AnswerRecordsClient
      *
      * @return string The formatted project_location_environment_user_session_context resource.
      */
-    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectLocationEnvironmentUserSessionContextName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -435,8 +458,12 @@ final class AnswerRecordsClient
      *
      * @return string The formatted project_location_session_context resource.
      */
-    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
-    {
+    public static function projectLocationSessionContextName(
+        string $project,
+        string $location,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -499,6 +526,25 @@ final class AnswerRecordsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a tool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $tool
+     *
+     * @return string The formatted tool resource.
+     */
+    public static function toolName(string $project, string $location, string $tool): string
+    {
+        return self::getPathTemplate('tool')->render([
+            'project' => $project,
+            'location' => $location,
+            'tool' => $tool,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -523,6 +569,7 @@ final class AnswerRecordsClient
      * - projectSession: projects/{project}/agent/sessions/{session}
      * - projectSessionContext: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - session: projects/{project}/agent/sessions/{session}
+     * - tool: projects/{project}/locations/{location}/tools/{tool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

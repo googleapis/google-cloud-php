@@ -60,6 +60,11 @@
                                 "fetchBackupPlanAssociationsForResourceType"
                             ]
                         },
+                        "FetchBackupsForResourceType": {
+                            "methods": [
+                                "fetchBackupsForResourceType"
+                            ]
+                        },
                         "FetchDataSourceReferencesForResourceType": {
                             "methods": [
                                 "fetchDataSourceReferencesForResourceType"
@@ -138,6 +143,11 @@
                         "ListBackups": {
                             "methods": [
                                 "listBackups"
+                            ]
+                        },
+                        "ListDataSourceReferences": {
+                            "methods": [
+                                "listDataSourceReferences"
                             ]
                         },
                         "ListDataSources": {

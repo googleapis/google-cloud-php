@@ -7,7 +7,13 @@ namespace Google\Cloud\Compute\V1\Reservation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the reservation. - CREATING: Reservation resources are being allocated. - READY: Reservation resources have been allocated, and the reservation is ready for use. - DELETING: Reservation deletion is in progress. - UPDATING: Reservation update is in progress. 
+ * Output only. [Output Only] The status of the reservation.
+ *      - CREATING: Reservation resources are being
+ *        allocated.
+ *      - READY: Reservation resources have been allocated,
+ *        and the reservation is ready for use.
+ *      - DELETING: Reservation deletion is in progress.
+ *      - UPDATING: Reservation update is in progress.
  *
  * Protobuf type <code>google.cloud.compute.v1.Reservation.Status</code>
  */
@@ -36,7 +42,8 @@ class Status
      */
     const INVALID = 530283991;
     /**
-     * Reservation resources have been allocated, and the reservation is ready for use.
+     * Reservation resources have been allocated, and the reservation is ready
+     * for use.
      *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */

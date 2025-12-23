@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectRemoteLocationPermittedConnections extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] URL of an Interconnect location that is permitted to connect to this Interconnect remote location.
+     * Output only. [Output Only] URL of an Interconnect location that is permitted to
+     * connect to this Interconnect remote location.
      *
      * Generated from protobuf field <code>optional string interconnect_location = 492235846;</code>
      */
@@ -28,7 +29,8 @@ class InterconnectRemoteLocationPermittedConnections extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type string $interconnect_location
-     *           [Output Only] URL of an Interconnect location that is permitted to connect to this Interconnect remote location.
+     *           Output only. [Output Only] URL of an Interconnect location that is permitted to
+     *           connect to this Interconnect remote location.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class InterconnectRemoteLocationPermittedConnections extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] URL of an Interconnect location that is permitted to connect to this Interconnect remote location.
+     * Output only. [Output Only] URL of an Interconnect location that is permitted to
+     * connect to this Interconnect remote location.
      *
      * Generated from protobuf field <code>optional string interconnect_location = 492235846;</code>
      * @return string
@@ -58,7 +61,8 @@ class InterconnectRemoteLocationPermittedConnections extends \Google\Protobuf\In
     }
 
     /**
-     * [Output Only] URL of an Interconnect location that is permitted to connect to this Interconnect remote location.
+     * Output only. [Output Only] URL of an Interconnect location that is permitted to
+     * connect to this Interconnect remote location.
      *
      * Generated from protobuf field <code>optional string interconnect_location = 492235846;</code>
      * @param string $var

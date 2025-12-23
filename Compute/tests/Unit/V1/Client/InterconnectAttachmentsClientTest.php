@@ -298,6 +298,10 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $adminEnabled = false;
         $attachmentGroup = 'attachmentGroup600312931';
         $bandwidth = 'bandwidth-1965768527';
+        $candidateCloudRouterIpAddress = 'candidateCloudRouterIpAddress311379276';
+        $candidateCloudRouterIpv6Address = 'candidateCloudRouterIpv6Address-119371252';
+        $candidateCustomerRouterIpAddress = 'candidateCustomerRouterIpAddress1949726125';
+        $candidateCustomerRouterIpv6Address = 'candidateCustomerRouterIpv6Address-1921046995';
         $cloudRouterIpAddress = 'cloudRouterIpAddress1361134600';
         $cloudRouterIpv6Address = 'cloudRouterIpv6Address-621819448';
         $cloudRouterIpv6InterfaceId = 'cloudRouterIpv6InterfaceId1058153613';
@@ -333,6 +337,10 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $expectedResponse->setAdminEnabled($adminEnabled);
         $expectedResponse->setAttachmentGroup($attachmentGroup);
         $expectedResponse->setBandwidth($bandwidth);
+        $expectedResponse->setCandidateCloudRouterIpAddress($candidateCloudRouterIpAddress);
+        $expectedResponse->setCandidateCloudRouterIpv6Address($candidateCloudRouterIpv6Address);
+        $expectedResponse->setCandidateCustomerRouterIpAddress($candidateCustomerRouterIpAddress);
+        $expectedResponse->setCandidateCustomerRouterIpv6Address($candidateCustomerRouterIpv6Address);
         $expectedResponse->setCloudRouterIpAddress($cloudRouterIpAddress);
         $expectedResponse->setCloudRouterIpv6Address($cloudRouterIpv6Address);
         $expectedResponse->setCloudRouterIpv6InterfaceId($cloudRouterIpv6InterfaceId);

@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Changes the BackendService for TargetTcpProxy.
  *
  * @param string $project        Project ID for this request.
- * @param string $targetTcpProxy Name of the TargetTcpProxy resource whose BackendService resource is to be set.
+ * @param string $targetTcpProxy Name of the TargetTcpProxy resource whose BackendService resource
+ *                               is to be set.
  */
 function set_backend_service_sample(string $project, string $targetTcpProxy): void
 {

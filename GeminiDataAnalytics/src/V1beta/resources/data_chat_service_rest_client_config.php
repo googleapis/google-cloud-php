@@ -47,6 +47,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteConversation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/conversations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/conversations/*}',
@@ -72,6 +83,18 @@ return [
             'ListMessages' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/conversations/*}/messages',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}:queryData',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

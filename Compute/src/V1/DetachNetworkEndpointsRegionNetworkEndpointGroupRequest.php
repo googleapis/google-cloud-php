@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the network endpoint group you are detaching network endpoints from. It should comply with RFC1035.
+     * The name of the network endpoint group you are detaching network
+     * endpoints from. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -28,7 +29,9 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
      */
     protected $project = '';
     /**
-     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the region where
+     * the network endpoint group is located. It should comply with
+     * RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
@@ -40,7 +43,18 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
      */
     protected $region_network_endpoint_groups_detach_endpoints_request_resource = null;
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000). end_interface: MixerMutationRequestBuilder
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     * end_interface: MixerMutationRequestBuilder
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -48,8 +62,11 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
 
     /**
      * @param string                                                                     $project                                                   Project ID for this request.
-     * @param string                                                                     $region                                                    The name of the region where the network endpoint group is located. It should comply with RFC1035.
-     * @param string                                                                     $networkEndpointGroup                                      The name of the network endpoint group you are detaching network endpoints from. It should comply with RFC1035.
+     * @param string                                                                     $region                                                    The name of the region where
+     *                                                                                                                                              the network endpoint group is located. It should comply with
+     *                                                                                                                                              RFC1035.
+     * @param string                                                                     $networkEndpointGroup                                      The name of the network endpoint group you are detaching network
+     *                                                                                                                                              endpoints from. It should comply with RFC1035.
      * @param \Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsDetachEndpointsRequest $regionNetworkEndpointGroupsDetachEndpointsRequestResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\DetachNetworkEndpointsRegionNetworkEndpointGroupRequest
@@ -72,15 +89,29 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network_endpoint_group
-     *           The name of the network endpoint group you are detaching network endpoints from. It should comply with RFC1035.
+     *           The name of the network endpoint group you are detaching network
+     *           endpoints from. It should comply with RFC1035.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $region
-     *           The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     *           The name of the region where
+     *           the network endpoint group is located. It should comply with
+     *           RFC1035.
      *     @type \Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsDetachEndpointsRequest $region_network_endpoint_groups_detach_endpoints_request_resource
      *           The body resource for this request
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000). end_interface: MixerMutationRequestBuilder
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request. This
+     *           prevents clients from accidentally creating duplicate commitments.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
+     *           end_interface: MixerMutationRequestBuilder
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +120,8 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * The name of the network endpoint group you are detaching network endpoints from. It should comply with RFC1035.
+     * The name of the network endpoint group you are detaching network
+     * endpoints from. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,7 +132,8 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * The name of the network endpoint group you are detaching network endpoints from. It should comply with RFC1035.
+     * The name of the network endpoint group you are detaching network
+     * endpoints from. It should comply with RFC1035.
      *
      * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -141,7 +174,9 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the region where
+     * the network endpoint group is located. It should comply with
+     * RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
@@ -152,7 +187,9 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * The name of the region where the network endpoint group is located. It should comply with RFC1035.
+     * The name of the region where
+     * the network endpoint group is located. It should comply with
+     * RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
@@ -203,7 +240,18 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000). end_interface: MixerMutationRequestBuilder
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     * end_interface: MixerMutationRequestBuilder
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -224,7 +272,18 @@ class DetachNetworkEndpointsRegionNetworkEndpointGroupRequest extends \Google\Pr
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000). end_interface: MixerMutationRequestBuilder
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request. This
+     * prevents clients from accidentally creating duplicate commitments.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
+     * end_interface: MixerMutationRequestBuilder
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

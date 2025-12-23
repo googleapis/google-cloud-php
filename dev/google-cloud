@@ -22,17 +22,18 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
 
 require __DIR__ . '/vendor/autoload.php';
 
+use Google\Cloud\Dev\Command\ComponentAddVersionCommand;
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
+use Google\Cloud\Dev\Command\ComponentNewCommand;
+use Google\Cloud\Dev\Command\ComponentUpdateGencodeCommand;
+use Google\Cloud\Dev\Command\ComponentUpdateReadmeSampleCommand;
+use Google\Cloud\Dev\Command\ComponentUpdateDepsCommand;
 use Google\Cloud\Dev\Command\DocFxCommand;
 use Google\Cloud\Dev\Command\ListBrokenXrefsCommand;
-use Google\Cloud\Dev\Command\NewComponentCommand;
-use Google\Cloud\Dev\Command\AddVersionCommand;
-use Google\Cloud\Dev\Command\RepoInfoCommand;
 use Google\Cloud\Dev\Command\ReleaseInfoCommand;
-use Google\Cloud\Dev\Command\SplitCommand;
-use Google\Cloud\Dev\Command\UpdateComponentCommand;
-use Google\Cloud\Dev\Command\UpdateDepsCommand;
-use Google\Cloud\Dev\Command\UpdateReadmeSampleCommand;
+use Google\Cloud\Dev\Command\ReleaseVerifyCommand;
+use Google\Cloud\Dev\Command\RepoComplianceCommand;
+use Google\Cloud\Dev\Command\RepoSplitCommand;
 use Symfony\Component\Console\Application;
 
 if (!class_exists(Application::class)) {
@@ -47,14 +48,15 @@ $rootDirectory = realpath(__DIR__ . '/../') . '/';
 
 $app = new Application;
 $app->add(new ComponentInfoCommand());
+$app->add(new ComponentAddVersionCommand($rootDirectory));
+$app->add(new ComponentNewCommand($rootDirectory));
+$app->add(new ComponentUpdateGencodeCommand($rootDirectory));
+$app->add(new ComponentUpdateReadmeSampleCommand($rootDirectory));
+$app->add(new ComponentUpdateDepsCommand());
 $app->add(new DocFxCommand());
 $app->add(new ListBrokenXrefsCommand());
-$app->add(new NewComponentCommand($rootDirectory));
-$app->add(new AddVersionCommand($rootDirectory));
-$app->add(new RepoInfoCommand());
 $app->add(new ReleaseInfoCommand());
-$app->add(new SplitCommand($rootDirectory));
-$app->add(new UpdateComponentCommand($rootDirectory));
-$app->add(new UpdateDepsCommand());
-$app->add(new UpdateReadmeSampleCommand($rootDirectory));
+$app->add(new ReleaseVerifyCommand());
+$app->add(new RepoComplianceCommand());
+$app->add(new RepoSplitCommand($rootDirectory));
 $app->run();

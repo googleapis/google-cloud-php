@@ -29,10 +29,12 @@ use Google\Cloud\Compute\V1\Client\NetworkEndpointGroupsClient;
 use Google\Cloud\Compute\V1\ListNetworkEndpointGroupsRequest;
 
 /**
- * Retrieves the list of network endpoint groups that are located in the specified project and zone.
+ * Retrieves the list of network endpoint groups that are located in the
+ * specified project and zone.
  *
  * @param string $project Project ID for this request.
- * @param string $zone    The name of the zone where the network endpoint group is located. It should comply with RFC1035.
+ * @param string $zone    The name of thezone
+ *                        where the network endpoint group is located. It should comply with RFC1035.
  */
 function list_sample(string $project, string $zone): void
 {

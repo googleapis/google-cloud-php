@@ -29,7 +29,11 @@ use Google\Cloud\Compute\V1\AggregatedListBackendServicesRequest;
 use Google\Cloud\Compute\V1\Client\BackendServicesClient;
 
 /**
- * Retrieves the list of all BackendService resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves the list of all BackendService resources, regional and global,
+ * available to the specified project.
+ *
+ * To prevent failure, it is recommended that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Name of the project scoping this request.
  */

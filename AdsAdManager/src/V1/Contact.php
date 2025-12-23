@@ -26,11 +26,74 @@ class Contact extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. The display name of the Company.
+     * Required. The name of the contact. This attribute has a maximum length of
+     * 127 characters.
      *
-     * Generated from protobuf field <code>optional string company_display_name = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $company_display_name = null;
+    protected $display_name = null;
+    /**
+     * Required. Immutable. The resource name of the Company.
+     * Format: "networks/{network_code}/companies/{company_id}"
+     *
+     * Generated from protobuf field <code>optional string company = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $company = null;
+    /**
+     * Output only. The status of the contact. This attribute is assigned by
+     * Google.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContactStatusEnum.ContactStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $status = null;
+    /**
+     * Optional. The address of the contact. This attribute has a maximum length
+     * of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string address = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $address = null;
+    /**
+     * Optional. The cell phone number where the contact can be reached.
+     *
+     * Generated from protobuf field <code>optional string cell_phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cell_phone = null;
+    /**
+     * Optional. A free-form text comment for the contact. This attribute has a
+     * maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string comment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $comment = null;
+    /**
+     * Optional. The e-mail address where the contact can be reached. This
+     * attribute has a maximum length of 128 characters.
+     *
+     * Generated from protobuf field <code>optional string email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $email = null;
+    /**
+     * Optional. The fax number where the contact can be reached. This attribute
+     * has a maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string fax = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $fax = null;
+    /**
+     * Optional. The job title of the contact. This attribute has a maximum length
+     * of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string title = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $title = null;
+    /**
+     * Optional. The work phone number where the contact can be reached. This
+     * attribute has a maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string work_phone = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $work_phone = null;
 
     /**
      * Constructor.
@@ -41,8 +104,35 @@ class Contact extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the `Contact`.
      *           Format: `networks/{network_code}/contacts/{contact_id}`
-     *     @type string $company_display_name
-     *           Output only. The display name of the Company.
+     *     @type string $display_name
+     *           Required. The name of the contact. This attribute has a maximum length of
+     *           127 characters.
+     *     @type string $company
+     *           Required. Immutable. The resource name of the Company.
+     *           Format: "networks/{network_code}/companies/{company_id}"
+     *     @type int $status
+     *           Output only. The status of the contact. This attribute is assigned by
+     *           Google.
+     *     @type string $address
+     *           Optional. The address of the contact. This attribute has a maximum length
+     *           of 1024 characters.
+     *     @type string $cell_phone
+     *           Optional. The cell phone number where the contact can be reached.
+     *     @type string $comment
+     *           Optional. A free-form text comment for the contact. This attribute has a
+     *           maximum length of 1024 characters.
+     *     @type string $email
+     *           Optional. The e-mail address where the contact can be reached. This
+     *           attribute has a maximum length of 128 characters.
+     *     @type string $fax
+     *           Optional. The fax number where the contact can be reached. This attribute
+     *           has a maximum length of 1024 characters.
+     *     @type string $title
+     *           Optional. The job title of the contact. This attribute has a maximum length
+     *           of 1024 characters.
+     *     @type string $work_phone
+     *           Optional. The work phone number where the contact can be reached. This
+     *           attribute has a maximum length of 1024 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,37 +169,379 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The display name of the Company.
+     * Required. The name of the contact. This attribute has a maximum length of
+     * 127 characters.
      *
-     * Generated from protobuf field <code>optional string company_display_name = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getCompanyDisplayName()
+    public function getDisplayName()
     {
-        return isset($this->company_display_name) ? $this->company_display_name : '';
+        return isset($this->display_name) ? $this->display_name : '';
     }
 
-    public function hasCompanyDisplayName()
+    public function hasDisplayName()
     {
-        return isset($this->company_display_name);
+        return isset($this->display_name);
     }
 
-    public function clearCompanyDisplayName()
+    public function clearDisplayName()
     {
-        unset($this->company_display_name);
+        unset($this->display_name);
     }
 
     /**
-     * Output only. The display name of the Company.
+     * Required. The name of the contact. This attribute has a maximum length of
+     * 127 characters.
      *
-     * Generated from protobuf field <code>optional string company_display_name = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setCompanyDisplayName($var)
+    public function setDisplayName($var)
     {
         GPBUtil::checkString($var, True);
-        $this->company_display_name = $var;
+        $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Immutable. The resource name of the Company.
+     * Format: "networks/{network_code}/companies/{company_id}"
+     *
+     * Generated from protobuf field <code>optional string company = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCompany()
+    {
+        return isset($this->company) ? $this->company : '';
+    }
+
+    public function hasCompany()
+    {
+        return isset($this->company);
+    }
+
+    public function clearCompany()
+    {
+        unset($this->company);
+    }
+
+    /**
+     * Required. Immutable. The resource name of the Company.
+     * Format: "networks/{network_code}/companies/{company_id}"
+     *
+     * Generated from protobuf field <code>optional string company = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCompany($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->company = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of the contact. This attribute is assigned by
+     * Google.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContactStatusEnum.ContactStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. The status of the contact. This attribute is assigned by
+     * Google.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContactStatusEnum.ContactStatus status = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ContactStatusEnum\ContactStatus::class);
+        $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The address of the contact. This attribute has a maximum length
+     * of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string address = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAddress()
+    {
+        return isset($this->address) ? $this->address : '';
+    }
+
+    public function hasAddress()
+    {
+        return isset($this->address);
+    }
+
+    public function clearAddress()
+    {
+        unset($this->address);
+    }
+
+    /**
+     * Optional. The address of the contact. This attribute has a maximum length
+     * of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string address = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The cell phone number where the contact can be reached.
+     *
+     * Generated from protobuf field <code>optional string cell_phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCellPhone()
+    {
+        return isset($this->cell_phone) ? $this->cell_phone : '';
+    }
+
+    public function hasCellPhone()
+    {
+        return isset($this->cell_phone);
+    }
+
+    public function clearCellPhone()
+    {
+        unset($this->cell_phone);
+    }
+
+    /**
+     * Optional. The cell phone number where the contact can be reached.
+     *
+     * Generated from protobuf field <code>optional string cell_phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCellPhone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cell_phone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A free-form text comment for the contact. This attribute has a
+     * maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string comment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getComment()
+    {
+        return isset($this->comment) ? $this->comment : '';
+    }
+
+    public function hasComment()
+    {
+        return isset($this->comment);
+    }
+
+    public function clearComment()
+    {
+        unset($this->comment);
+    }
+
+    /**
+     * Optional. A free-form text comment for the contact. This attribute has a
+     * maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string comment = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setComment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->comment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The e-mail address where the contact can be reached. This
+     * attribute has a maximum length of 128 characters.
+     *
+     * Generated from protobuf field <code>optional string email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEmail()
+    {
+        return isset($this->email) ? $this->email : '';
+    }
+
+    public function hasEmail()
+    {
+        return isset($this->email);
+    }
+
+    public function clearEmail()
+    {
+        unset($this->email);
+    }
+
+    /**
+     * Optional. The e-mail address where the contact can be reached. This
+     * attribute has a maximum length of 128 characters.
+     *
+     * Generated from protobuf field <code>optional string email = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->email = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The fax number where the contact can be reached. This attribute
+     * has a maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string fax = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFax()
+    {
+        return isset($this->fax) ? $this->fax : '';
+    }
+
+    public function hasFax()
+    {
+        return isset($this->fax);
+    }
+
+    public function clearFax()
+    {
+        unset($this->fax);
+    }
+
+    /**
+     * Optional. The fax number where the contact can be reached. This attribute
+     * has a maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string fax = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFax($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fax = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The job title of the contact. This attribute has a maximum length
+     * of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string title = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTitle()
+    {
+        return isset($this->title) ? $this->title : '';
+    }
+
+    public function hasTitle()
+    {
+        return isset($this->title);
+    }
+
+    public function clearTitle()
+    {
+        unset($this->title);
+    }
+
+    /**
+     * Optional. The job title of the contact. This attribute has a maximum length
+     * of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string title = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The work phone number where the contact can be reached. This
+     * attribute has a maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string work_phone = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getWorkPhone()
+    {
+        return isset($this->work_phone) ? $this->work_phone : '';
+    }
+
+    public function hasWorkPhone()
+    {
+        return isset($this->work_phone);
+    }
+
+    public function clearWorkPhone()
+    {
+        unset($this->work_phone);
+    }
+
+    /**
+     * Optional. The work phone number where the contact can be reached. This
+     * attribute has a maximum length of 1024 characters.
+     *
+     * Generated from protobuf field <code>optional string work_phone = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWorkPhone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->work_phone = $var;
 
         return $this;
     }

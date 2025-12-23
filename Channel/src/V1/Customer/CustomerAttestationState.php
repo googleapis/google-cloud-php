@@ -7,7 +7,7 @@ namespace Google\Cloud\Channel\V1\Customer;
 use UnexpectedValueException;
 
 /**
- * The enum represents whether a customer belongs to public sector
+ * The enum represents if a customer belongs to public sector
  *
  * Protobuf type <code>google.cloud.channel.v1.Customer.CustomerAttestationState</code>
  */

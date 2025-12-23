@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStatusAllInstancesConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Current all-instances configuration revision. This value is in RFC3339 text format.
+     * Output only. [Output Only] Current all-instances configuration revision.
+     * This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string current_revision = 38355937;</code>
      */
     protected $current_revision = null;
     /**
-     * [Output Only] A bit indicating whether this configuration has been applied to all managed instances in the group.
+     * Output only. [Output Only] A bit indicating whether this configuration has
+     * been applied to all managed instances in the group.
      *
      * Generated from protobuf field <code>optional bool effective = 141961639;</code>
      */
@@ -34,9 +36,11 @@ class InstanceGroupManagerStatusAllInstancesConfig extends \Google\Protobuf\Inte
      *     Optional. Data for populating the Message object.
      *
      *     @type string $current_revision
-     *           [Output Only] Current all-instances configuration revision. This value is in RFC3339 text format.
+     *           Output only. [Output Only] Current all-instances configuration revision.
+     *           This value is in RFC3339 text format.
      *     @type bool $effective
-     *           [Output Only] A bit indicating whether this configuration has been applied to all managed instances in the group.
+     *           Output only. [Output Only] A bit indicating whether this configuration has
+     *           been applied to all managed instances in the group.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class InstanceGroupManagerStatusAllInstancesConfig extends \Google\Protobuf\Inte
     }
 
     /**
-     * [Output Only] Current all-instances configuration revision. This value is in RFC3339 text format.
+     * Output only. [Output Only] Current all-instances configuration revision.
+     * This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string current_revision = 38355937;</code>
      * @return string
@@ -66,7 +71,8 @@ class InstanceGroupManagerStatusAllInstancesConfig extends \Google\Protobuf\Inte
     }
 
     /**
-     * [Output Only] Current all-instances configuration revision. This value is in RFC3339 text format.
+     * Output only. [Output Only] Current all-instances configuration revision.
+     * This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string current_revision = 38355937;</code>
      * @param string $var
@@ -81,7 +87,8 @@ class InstanceGroupManagerStatusAllInstancesConfig extends \Google\Protobuf\Inte
     }
 
     /**
-     * [Output Only] A bit indicating whether this configuration has been applied to all managed instances in the group.
+     * Output only. [Output Only] A bit indicating whether this configuration has
+     * been applied to all managed instances in the group.
      *
      * Generated from protobuf field <code>optional bool effective = 141961639;</code>
      * @return bool
@@ -102,7 +109,8 @@ class InstanceGroupManagerStatusAllInstancesConfig extends \Google\Protobuf\Inte
     }
 
     /**
-     * [Output Only] A bit indicating whether this configuration has been applied to all managed instances in the group.
+     * Output only. [Output Only] A bit indicating whether this configuration has
+     * been applied to all managed instances in the group.
      *
      * Generated from protobuf field <code>optional bool effective = 141961639;</code>
      * @param bool $var

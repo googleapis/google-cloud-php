@@ -7,7 +7,11 @@ namespace Google\Cloud\Compute\V1\SavedDisk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+ * Output only. [Output Only] An indicator whether storageBytes is in a
+ * stable state or it is being adjusted as a result of shared storage
+ * reallocation. This status can either be UPDATING, meaning
+ * the size of the snapshot is being updated, or UP_TO_DATE,
+ * meaning the size of the snapshot is up-to-date.
  *
  * Protobuf type <code>google.cloud.compute.v1.SavedDisk.StorageBytesStatus</code>
  */

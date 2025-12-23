@@ -17,13 +17,19 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use ArrayIterator;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
+use Google\Cloud\Firestore\Serializer;
 use Google\Cloud\Firestore\SnapshotTrait;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -36,71 +42,88 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class SnapshotTraitTest extends TestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use ProphecyTrait;
 
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
+    private $gapicClient;
     private $mapper;
-    private $impl;
+    private TraitClass $traitClass;
     private $valueMapper;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->impl = TestHelpers::impl(SnapshotTrait::class);
-
-        $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->traitClass = new TraitClass();
+        $this->valueMapper = new ValueMapper($this->gapicClient->reveal(), false);
     }
 
     public function testCreateSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            ['found' => [
+        $response = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
                 'name' => self::NAME,
                 'fields' => [
                     'hello' => [
                         'stringValue' => 'world'
                     ]
                 ]
-            ]]
-        ]));
+            ]
+        ]);
+
+        $serverStream = $this->prophesize(ServerStream::class);
+        $serverStream->readAll()->willReturn(new ArrayIterator([$response]));
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->getDbName(), $request->getDatabase());
+                $this->assertEquals([self::NAME], iterator_to_array($request->getDocuments()));
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($serverStream->reveal());
 
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
-        $res = $this->impl->call('createSnapshot', [
-            $this->connection->reveal(),
+
+        $response = $this->traitClass->createSnapshot(
+            $this->gapicClient->reveal(),
             $this->valueMapper,
             $ref->reveal()
-        ]);
+        );
 
-        $this->assertInstanceOf(DocumentSnapshot::class, $res);
-        $this->assertEquals('world', $res['hello']);
-        $this->assertEquals(self::NAME, $res->name());
-        $this->assertTrue($res->exists());
+        $this->assertInstanceOf(DocumentSnapshot::class, $response);
+        $this->assertEquals('world', $response['hello']);
+        $this->assertEquals(self::NAME, $response->name());
+        $this->assertTrue($response->exists());
     }
 
     public function testCreateSnapshotNonExistence()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            ['missing' => self::NAME]
-        ]));
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, ['missing' => self::NAME]);
+
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->getDbName(), $request->getDatabase());
+                $this->assertEquals([self::NAME], iterator_to_array($request->getDocuments()));
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
-        $res = $this->impl->call('createSnapshot', [
-            $this->connection->reveal(),
+
+        $res = $this->traitClass->createSnapshot(
+            $this->gapicClient->reveal(),
             $this->valueMapper,
             $ref->reveal()
-        ]);
+        );
 
         $this->assertInstanceOf(DocumentSnapshot::class, $res);
         $this->assertEquals(self::NAME, $res->name());
@@ -109,17 +132,23 @@ class SnapshotTraitTest extends TestCase
 
     public function testGetSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            ['found' => 'foo']
-        ]));
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, ['found' => ['name' => 'foo']]);
 
-        $this->assertEquals('foo', $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->getDbName(), $request->getDatabase());
+                $this->assertEquals([self::NAME], iterator_to_array($request->getDocuments()));
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
+
+        $response = $this->traitClass->getSnapshot(
+            $this->gapicClient->reveal(),
             self::NAME
-        ]));
+        );
+
+        $this->assertEquals('foo', $response['name']);
     }
 
     public function testGetSnapshotReadTime()
@@ -129,14 +158,21 @@ class SnapshotTraitTest extends TestCase
             'nanos' => 501
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('readTime', $timestamp))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                ['found' => 'foo']
-            ]));
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, ['found' => ['name' => 'foo']]);
 
-        $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($timestamp) {
+                $this->assertEquals($timestamp['seconds'], $request->getReadTime()->getSeconds());
+                $this->assertEquals($timestamp['nanos'], $request->getReadTime()->getNanos());
+                return true;
+            }),
+            Argument::any()
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([$protoResponse]));
+
+        $this->traitClass->getSnapshot(
+            $this->gapicClient->reveal(),
             self::NAME,
             [
                 'readTime' => new Timestamp(
@@ -144,34 +180,62 @@ class SnapshotTraitTest extends TestCase
                     $timestamp['nanos']
                 )
             ]
-        ]);
+        );
     }
 
     public function testGetSnapshotReadTimeInvalidReadTime()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+        $this->traitClass->getSnapshot(
+            $this->gapicClient->reveal(),
             self::NAME,
             ['readTime' => 'foo']
-        ]);
+        );
     }
 
     public function testGetSnapshotNotFound()
     {
         $this->expectException(NotFoundException::class);
 
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            ['missing' => self::NAME]
-        ]));
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, ['missing' => self::NAME]);
 
-        $this->impl->call('getSnapshot', [
-            $this->connection->reveal(),
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->getDbName(), $request->getDatabase());
+                $this->assertEquals([self::NAME], iterator_to_array($request->getDocuments()));
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
+
+        $this->traitClass->getSnapshot(
+            $this->gapicClient->reveal(),
             self::NAME
-        ]);
+        );
+    }
+
+    private function getDbName(): string
+    {
+        return sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
     }
 }
+
+// phpcs:disable
+class TraitClass
+{
+    use SnapshotTrait {
+        createSnapshot as public;
+        getSnapshot as public;
+    }
+
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
+
+    public function __construct()
+    {
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
+    }
+}
+// phpcs:enable

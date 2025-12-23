@@ -7,7 +7,9 @@ namespace Google\Cloud\Compute\V1\SSLHealthCheck;
 use UnexpectedValueException;
 
 /**
- * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * Specifies the type of proxy header to append before sending data to the
+ * backend, either NONE or PROXY_V1. The default
+ * is NONE.
  *
  * Protobuf type <code>google.cloud.compute.v1.SSLHealthCheck.ProxyHeader</code>
  */

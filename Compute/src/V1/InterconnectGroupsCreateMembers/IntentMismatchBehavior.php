@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InterconnectGroupsCreateMembers;
 use UnexpectedValueException;
 
 /**
- * How to behave when configured.topologyCapability.supportedSLA would not equal intent.topologyCapability after this call.
+ * How to behave when configured.topologyCapability.supportedSLA would not
+ * equal intent.topologyCapability after this call.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectGroupsCreateMembers.IntentMismatchBehavior</code>
  */

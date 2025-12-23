@@ -84,6 +84,9 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
+     * If not specified, the default language configured at
+     * [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile] is
+     * used.
      *
      * Generated from protobuf field <code>string language_code = 8;</code>
      */
@@ -161,6 +164,9 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. Note that queries in
      *           the same session do not necessarily need to specify the same language.
+     *           If not specified, the default language configured at
+     *           [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile] is
+     *           used.
      *     @type bool $enable_word_info
      *           If `true`, Dialogflow returns
      *           [SpeechWordInfo][google.cloud.dialogflow.v2.SpeechWordInfo] in
@@ -378,6 +384,9 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
+     * If not specified, the default language configured at
+     * [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile] is
+     * used.
      *
      * Generated from protobuf field <code>string language_code = 8;</code>
      * @return string
@@ -393,6 +402,9 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      * Support](https://cloud.google.com/dialogflow/docs/reference/language)
      * for a list of the currently supported language codes. Note that queries in
      * the same session do not necessarily need to specify the same language.
+     * If not specified, the default language configured at
+     * [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile] is
+     * used.
      *
      * Generated from protobuf field <code>string language_code = 8;</code>
      * @param string $var

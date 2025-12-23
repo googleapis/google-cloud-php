@@ -15,37 +15,39 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The display name of the firewall policy.
+     * Output only. [Output Only] The display name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
     protected $display_name = null;
     /**
-     * [Output Only] The name of the firewall policy.
+     * Output only. [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output only] The packet mirroring rules that apply to the network.
+     * Output only. [Output only] The packet mirroring rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
      */
     private $packet_mirroring_rules;
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * Output only. [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
     protected $priority = null;
     /**
-     * [Output only] The rules that apply to the network.
+     * Output only. [Output only] The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      */
     private $rules;
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     * Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -59,17 +61,19 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *     Optional. Data for populating the Message object.
      *
      *     @type string $display_name
-     *           [Output Only] The display name of the firewall policy.
+     *           Output only. [Output Only] The display name of the firewall policy.
      *     @type string $name
-     *           [Output Only] The name of the firewall policy.
+     *           Output only. [Output Only] The name of the firewall policy.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
-     *           [Output only] The packet mirroring rules that apply to the network.
+     *           Output only. [Output only] The packet mirroring rules that apply to the network.
      *     @type int $priority
-     *           [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     *           Output only. [Output only] Priority of firewall policy association. Not applicable for
+     *           type=HIERARCHY.
      *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
-     *           [Output only] The rules that apply to the network.
+     *           Output only. [Output only] The rules that apply to the network.
      *     @type string $type
-     *           [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     *           Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     *           NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -79,7 +83,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The display name of the firewall policy.
+     * Output only. [Output Only] The display name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @return string
@@ -100,7 +104,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The display name of the firewall policy.
+     * Output only. [Output Only] The display name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @param string $var
@@ -115,7 +119,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The name of the firewall policy.
+     * Output only. [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -136,7 +140,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The name of the firewall policy.
+     * Output only. [Output Only] The name of the firewall policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -151,7 +155,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] The packet mirroring rules that apply to the network.
+     * Output only. [Output only] The packet mirroring rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -162,7 +166,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] The packet mirroring rules that apply to the network.
+     * Output only. [Output only] The packet mirroring rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
      * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
@@ -177,7 +181,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * Output only. [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @return int
@@ -198,7 +203,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] Priority of firewall policy association. Not applicable for type=HIERARCHY.
+     * Output only. [Output only] Priority of firewall policy association. Not applicable for
+     * type=HIERARCHY.
      *
      * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @param int $var
@@ -213,7 +219,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] The rules that apply to the network.
+     * Output only. [Output only] The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -224,7 +230,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output only] The rules that apply to the network.
+     * Output only. [Output only] The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
      * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
@@ -239,7 +245,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     * Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -261,7 +268,8 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
     }
 
     /**
-     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
+     * Output only. [Output Only] The type of the firewall policy. Can be one of HIERARCHY,
+     * NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

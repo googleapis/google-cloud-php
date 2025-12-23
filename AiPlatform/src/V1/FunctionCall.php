@@ -18,19 +18,35 @@ use Google\Protobuf\Internal\GPBUtil;
 class FunctionCall extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the function to call.
+     * Optional. The name of the function to call.
      * Matches [FunctionDeclaration.name].
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $name = '';
     /**
-     * Optional. Required. The function parameters and values in JSON object
-     * format. See [FunctionDeclaration.parameters] for parameter details.
+     * Optional. The function parameters and values in JSON object format.
+     * See [FunctionDeclaration.parameters] for parameter details.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $args = null;
+    /**
+     * Optional. The partial argument value of the function call.
+     * If provided, represents the arguments/fields that are streamed
+     * incrementally.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PartialArg partial_args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $partial_args;
+    /**
+     * Optional. Whether this is the last part of the FunctionCall.
+     * If true, another partial message for the current FunctionCall is expected
+     * to follow.
+     *
+     * Generated from protobuf field <code>bool will_continue = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $will_continue = false;
 
     /**
      * Constructor.
@@ -39,11 +55,19 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the function to call.
+     *           Optional. The name of the function to call.
      *           Matches [FunctionDeclaration.name].
      *     @type \Google\Protobuf\Struct $args
-     *           Optional. Required. The function parameters and values in JSON object
-     *           format. See [FunctionDeclaration.parameters] for parameter details.
+     *           Optional. The function parameters and values in JSON object format.
+     *           See [FunctionDeclaration.parameters] for parameter details.
+     *     @type array<\Google\Cloud\AIPlatform\V1\PartialArg>|\Google\Protobuf\Internal\RepeatedField $partial_args
+     *           Optional. The partial argument value of the function call.
+     *           If provided, represents the arguments/fields that are streamed
+     *           incrementally.
+     *     @type bool $will_continue
+     *           Optional. Whether this is the last part of the FunctionCall.
+     *           If true, another partial message for the current FunctionCall is expected
+     *           to follow.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,10 +76,10 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the function to call.
+     * Optional. The name of the function to call.
      * Matches [FunctionDeclaration.name].
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -64,10 +88,10 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the function to call.
+     * Optional. The name of the function to call.
      * Matches [FunctionDeclaration.name].
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -80,8 +104,8 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Required. The function parameters and values in JSON object
-     * format. See [FunctionDeclaration.parameters] for parameter details.
+     * Optional. The function parameters and values in JSON object format.
+     * See [FunctionDeclaration.parameters] for parameter details.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -102,8 +126,8 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Required. The function parameters and values in JSON object
-     * format. See [FunctionDeclaration.parameters] for parameter details.
+     * Optional. The function parameters and values in JSON object format.
+     * See [FunctionDeclaration.parameters] for parameter details.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
@@ -113,6 +137,66 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->args = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The partial argument value of the function call.
+     * If provided, represents the arguments/fields that are streamed
+     * incrementally.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PartialArg partial_args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPartialArgs()
+    {
+        return $this->partial_args;
+    }
+
+    /**
+     * Optional. The partial argument value of the function call.
+     * If provided, represents the arguments/fields that are streamed
+     * incrementally.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PartialArg partial_args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\PartialArg>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPartialArgs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\PartialArg::class);
+        $this->partial_args = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether this is the last part of the FunctionCall.
+     * If true, another partial message for the current FunctionCall is expected
+     * to follow.
+     *
+     * Generated from protobuf field <code>bool will_continue = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getWillContinue()
+    {
+        return $this->will_continue;
+    }
+
+    /**
+     * Optional. Whether this is the last part of the FunctionCall.
+     * If true, another partial message for the current FunctionCall is expected
+     * to follow.
+     *
+     * Generated from protobuf field <code>bool will_continue = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setWillContinue($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->will_continue = $var;
 
         return $this;
     }

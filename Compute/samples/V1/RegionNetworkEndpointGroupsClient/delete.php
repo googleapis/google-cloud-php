@@ -30,11 +30,14 @@ use Google\Cloud\Compute\V1\DeleteRegionNetworkEndpointGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified network endpoint group. Note that the NEG cannot be deleted if it is configured as a backend of a backend service.
+ * Deletes the specified network endpoint group. Note that the NEG cannot be
+ * deleted if it is configured as a backend of a backend service.
  *
- * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with RFC1035.
+ * @param string $networkEndpointGroup The name of the network endpoint group to delete. It should comply with
+ *                                     RFC1035.
  * @param string $project              Project ID for this request.
- * @param string $region               The name of the region where the network endpoint group is located. It should comply with RFC1035.
+ * @param string $region               The name of the region where
+ *                                     the network endpoint group is located. It should comply with RFC1035.
  */
 function delete_sample(string $networkEndpointGroup, string $project, string $region): void
 {

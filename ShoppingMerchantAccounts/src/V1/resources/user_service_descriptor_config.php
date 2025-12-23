@@ -92,6 +92,18 @@ return [
                     ],
                 ],
             ],
+            'VerifySelf' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Shopping\Merchant\Accounts\V1\User',
+                'headerParams' => [
+                    [
+                        'keyName' => 'account',
+                        'fieldAccessors' => [
+                            'getAccount',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'account' => 'accounts/{account}',
                 'user' => 'accounts/{account}/users/{email}',

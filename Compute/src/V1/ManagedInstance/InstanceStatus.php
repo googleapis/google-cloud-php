@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\ManagedInstance;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the instance. This field is empty when the instance does not exist.
+ * Output only. [Output Only] The status of the instance. This field is empty when
+ * the instance does not exist.
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
  * STOPPING
  * SUSPENDING
@@ -23,13 +24,15 @@ class InstanceStatus
      */
     const UNDEFINED_INSTANCE_STATUS = 0;
     /**
-     * The instance is halted and we are performing tear down tasks like network deprogramming, releasing quota, IP, tearing down disks etc.
+     * The instance is halted and we are performing tear down tasks like network
+     * deprogramming, releasing quota, IP, tearing down disks etc.
      *
      * Generated from protobuf enum <code>DEPROVISIONING = 428935662;</code>
      */
     const DEPROVISIONING = 428935662;
     /**
-     * For Flex Start provisioning instance is waiting for available capacity from Dynamic Workload Scheduler (DWS).
+     * For Flex Start provisioning instance is waiting for available capacity
+     * from Dynamic Workload Scheduler (DWS).
      *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */
@@ -53,7 +56,8 @@ class InstanceStatus
      */
     const RUNNING = 121282975;
     /**
-     * All required resources have been allocated and the instance is being started.
+     * All required resources have been allocated and the instance
+     * is being started.
      *
      * Generated from protobuf enum <code>STAGING = 431072283;</code>
      */
@@ -79,7 +83,8 @@ class InstanceStatus
      */
     const SUSPENDING = 514206246;
     /**
-     * The instance has stopped (either by explicit action or underlying failure).
+     * The instance has stopped (either by explicit action or underlying
+     * failure).
      *
      * Generated from protobuf enum <code>TERMINATED = 250018339;</code>
      */

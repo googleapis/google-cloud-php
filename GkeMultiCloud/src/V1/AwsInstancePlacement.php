@@ -14,6 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *  * T3 instances that use the unlimited CPU credit option don't support host
  *  tenancy.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsInstancePlacement</code>
  */
 class AwsInstancePlacement extends \Google\Protobuf\Internal\Message

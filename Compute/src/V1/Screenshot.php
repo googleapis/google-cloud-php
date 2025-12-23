@@ -22,7 +22,8 @@ class Screenshot extends \Google\Protobuf\Internal\Message
      */
     protected $contents = null;
     /**
-     * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
+     * Output only. [Output Only] Type of the resource. Always compute#screenshot
+     * for the screenshots.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -37,7 +38,8 @@ class Screenshot extends \Google\Protobuf\Internal\Message
      *     @type string $contents
      *           [Output Only] The Base64-encoded screenshot data.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
+     *           Output only. [Output Only] Type of the resource. Always compute#screenshot
+     *           for the screenshots.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +84,8 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
+     * Output only. [Output Only] Type of the resource. Always compute#screenshot
+     * for the screenshots.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -103,7 +106,8 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
+     * Output only. [Output Only] Type of the resource. Always compute#screenshot
+     * for the screenshots.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var

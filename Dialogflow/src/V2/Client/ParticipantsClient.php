@@ -248,8 +248,11 @@ final class ParticipantsClient
      *
      * @return string The formatted project_conversation_message resource.
      */
-    public static function projectConversationMessageName(string $project, string $conversation, string $message): string
-    {
+    public static function projectConversationMessageName(
+        string $project,
+        string $conversation,
+        string $message
+    ): string {
         return self::getPathTemplate('projectConversationMessage')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -267,8 +270,11 @@ final class ParticipantsClient
      *
      * @return string The formatted project_conversation_participant resource.
      */
-    public static function projectConversationParticipantName(string $project, string $conversation, string $participant): string
-    {
+    public static function projectConversationParticipantName(
+        string $project,
+        string $conversation,
+        string $participant
+    ): string {
         return self::getPathTemplate('projectConversationParticipant')->render([
             'project' => $project,
             'conversation' => $conversation,
@@ -287,8 +293,12 @@ final class ParticipantsClient
      *
      * @return string The formatted project_environment_user_session resource.
      */
-    public static function projectEnvironmentUserSessionName(string $project, string $environment, string $user, string $session): string
-    {
+    public static function projectEnvironmentUserSessionName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSession')->render([
             'project' => $project,
             'environment' => $environment,
@@ -309,8 +319,13 @@ final class ParticipantsClient
      *
      * @return string The formatted project_environment_user_session_context resource.
      */
-    public static function projectEnvironmentUserSessionContextName(string $project, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectEnvironmentUserSessionContextName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSessionContext')->render([
             'project' => $project,
             'environment' => $environment,
@@ -332,8 +347,13 @@ final class ParticipantsClient
      *
      * @return string The formatted project_environment_user_session_entity_type resource.
      */
-    public static function projectEnvironmentUserSessionEntityTypeName(string $project, string $environment, string $user, string $session, string $entityType): string
-    {
+    public static function projectEnvironmentUserSessionEntityTypeName(
+        string $project,
+        string $environment,
+        string $user,
+        string $session,
+        string $entityType
+    ): string {
         return self::getPathTemplate('projectEnvironmentUserSessionEntityType')->render([
             'project' => $project,
             'environment' => $environment,
@@ -353,8 +373,11 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_conversation resource.
      */
-    public static function projectLocationConversationName(string $project, string $location, string $conversation): string
-    {
+    public static function projectLocationConversationName(
+        string $project,
+        string $location,
+        string $conversation
+    ): string {
         return self::getPathTemplate('projectLocationConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -373,8 +396,12 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_conversation_message resource.
      */
-    public static function projectLocationConversationMessageName(string $project, string $location, string $conversation, string $message): string
-    {
+    public static function projectLocationConversationMessageName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $message
+    ): string {
         return self::getPathTemplate('projectLocationConversationMessage')->render([
             'project' => $project,
             'location' => $location,
@@ -394,8 +421,12 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_conversation_participant resource.
      */
-    public static function projectLocationConversationParticipantName(string $project, string $location, string $conversation, string $participant): string
-    {
+    public static function projectLocationConversationParticipantName(
+        string $project,
+        string $location,
+        string $conversation,
+        string $participant
+    ): string {
         return self::getPathTemplate('projectLocationConversationParticipant')->render([
             'project' => $project,
             'location' => $location,
@@ -416,8 +447,13 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_environment_user_session resource.
      */
-    public static function projectLocationEnvironmentUserSessionName(string $project, string $location, string $environment, string $user, string $session): string
-    {
+    public static function projectLocationEnvironmentUserSessionName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSession')->render([
             'project' => $project,
             'location' => $location,
@@ -440,8 +476,14 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_environment_user_session_context resource.
      */
-    public static function projectLocationEnvironmentUserSessionContextName(string $project, string $location, string $environment, string $user, string $session, string $context): string
-    {
+    public static function projectLocationEnvironmentUserSessionContextName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -465,8 +507,14 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_environment_user_session_entity_type resource.
      */
-    public static function projectLocationEnvironmentUserSessionEntityTypeName(string $project, string $location, string $environment, string $user, string $session, string $entityType): string
-    {
+    public static function projectLocationEnvironmentUserSessionEntityTypeName(
+        string $project,
+        string $location,
+        string $environment,
+        string $user,
+        string $session,
+        string $entityType
+    ): string {
         return self::getPathTemplate('projectLocationEnvironmentUserSessionEntityType')->render([
             'project' => $project,
             'location' => $location,
@@ -507,8 +555,12 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_session_context resource.
      */
-    public static function projectLocationSessionContextName(string $project, string $location, string $session, string $context): string
-    {
+    public static function projectLocationSessionContextName(
+        string $project,
+        string $location,
+        string $session,
+        string $context
+    ): string {
         return self::getPathTemplate('projectLocationSessionContext')->render([
             'project' => $project,
             'location' => $location,
@@ -528,8 +580,12 @@ final class ParticipantsClient
      *
      * @return string The formatted project_location_session_entity_type resource.
      */
-    public static function projectLocationSessionEntityTypeName(string $project, string $location, string $session, string $entityType): string
-    {
+    public static function projectLocationSessionEntityTypeName(
+        string $project,
+        string $location,
+        string $session,
+        string $entityType
+    ): string {
         return self::getPathTemplate('projectLocationSessionEntityType')->render([
             'project' => $project,
             'location' => $location,
@@ -955,8 +1011,10 @@ final class ParticipantsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestFaqAnswers(SuggestFaqAnswersRequest $request, array $callOptions = []): SuggestFaqAnswersResponse
-    {
+    public function suggestFaqAnswers(
+        SuggestFaqAnswersRequest $request,
+        array $callOptions = []
+    ): SuggestFaqAnswersResponse {
         return $this->startApiCall('SuggestFaqAnswers', $request, $callOptions)->wait();
     }
 
@@ -981,8 +1039,10 @@ final class ParticipantsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestKnowledgeAssist(SuggestKnowledgeAssistRequest $request, array $callOptions = []): SuggestKnowledgeAssistResponse
-    {
+    public function suggestKnowledgeAssist(
+        SuggestKnowledgeAssistRequest $request,
+        array $callOptions = []
+    ): SuggestKnowledgeAssistResponse {
         return $this->startApiCall('SuggestKnowledgeAssist', $request, $callOptions)->wait();
     }
 
@@ -1008,8 +1068,10 @@ final class ParticipantsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function suggestSmartReplies(SuggestSmartRepliesRequest $request, array $callOptions = []): SuggestSmartRepliesResponse
-    {
+    public function suggestSmartReplies(
+        SuggestSmartRepliesRequest $request,
+        array $callOptions = []
+    ): SuggestSmartRepliesResponse {
         return $this->startApiCall('SuggestSmartReplies', $request, $callOptions)->wait();
     }
 

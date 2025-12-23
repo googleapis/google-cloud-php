@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProtoData extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The protocol buffer schema used to serialize the data. Provide this value
-     * whenever:
+     * Optional. The protocol buffer schema used to serialize the data. Provide
+     * this value whenever:
      * * You send the first request of an RPC connection.
      * * You change the input schema.
      * * You specify a new destination table.
@@ -27,7 +27,7 @@ class ProtoData extends \Google\Protobuf\Internal\Message
      */
     protected $writer_schema = null;
     /**
-     * Serialized row data in protobuf message format.
+     * Required. Serialized row data in protobuf message format.
      * Currently, the backend expects the serialized rows to adhere to
      * proto2 semantics when appending rows, particularly with respect to
      * how default values are encoded.
@@ -43,13 +43,13 @@ class ProtoData extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BigQuery\Storage\V1\ProtoSchema $writer_schema
-     *           The protocol buffer schema used to serialize the data. Provide this value
-     *           whenever:
+     *           Optional. The protocol buffer schema used to serialize the data. Provide
+     *           this value whenever:
      *           * You send the first request of an RPC connection.
      *           * You change the input schema.
      *           * You specify a new destination table.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ProtoRows $rows
-     *           Serialized row data in protobuf message format.
+     *           Required. Serialized row data in protobuf message format.
      *           Currently, the backend expects the serialized rows to adhere to
      *           proto2 semantics when appending rows, particularly with respect to
      *           how default values are encoded.
@@ -61,8 +61,8 @@ class ProtoData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The protocol buffer schema used to serialize the data. Provide this value
-     * whenever:
+     * Optional. The protocol buffer schema used to serialize the data. Provide
+     * this value whenever:
      * * You send the first request of an RPC connection.
      * * You change the input schema.
      * * You specify a new destination table.
@@ -86,8 +86,8 @@ class ProtoData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The protocol buffer schema used to serialize the data. Provide this value
-     * whenever:
+     * Optional. The protocol buffer schema used to serialize the data. Provide
+     * this value whenever:
      * * You send the first request of an RPC connection.
      * * You change the input schema.
      * * You specify a new destination table.
@@ -105,7 +105,7 @@ class ProtoData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Serialized row data in protobuf message format.
+     * Required. Serialized row data in protobuf message format.
      * Currently, the backend expects the serialized rows to adhere to
      * proto2 semantics when appending rows, particularly with respect to
      * how default values are encoded.
@@ -129,7 +129,7 @@ class ProtoData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Serialized row data in protobuf message format.
+     * Required. Serialized row data in protobuf message format.
      * Currently, the backend expects the serialized rows to adhere to
      * proto2 semantics when appending rows, particularly with respect to
      * how default values are encoded.

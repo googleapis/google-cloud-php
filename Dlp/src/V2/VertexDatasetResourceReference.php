@@ -9,15 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Identifies a single Vertex AI dataset.
+ * Identifies a single Vertex AI resource. Only datasets are
+ * supported.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.VertexDatasetResourceReference</code>
  */
 class VertexDatasetResourceReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the dataset resource. If set within a project-level
+     * Required. The name of the Vertex AI resource. If set within a project-level
      * configuration, the specified resource must be within the project.
+     * Examples:
+     * * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>string dataset_resource_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +33,10 @@ class VertexDatasetResourceReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset_resource_name
-     *           Required. The name of the dataset resource. If set within a project-level
+     *           Required. The name of the Vertex AI resource. If set within a project-level
      *           configuration, the specified resource must be within the project.
+     *           Examples:
+     *           * `projects/{project}/locations/{location}/datasets/{dataset}`
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +45,10 @@ class VertexDatasetResourceReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the dataset resource. If set within a project-level
+     * Required. The name of the Vertex AI resource. If set within a project-level
      * configuration, the specified resource must be within the project.
+     * Examples:
+     * * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>string dataset_resource_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -52,8 +59,10 @@ class VertexDatasetResourceReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the dataset resource. If set within a project-level
+     * Required. The name of the Vertex AI resource. If set within a project-level
      * configuration, the specified resource must be within the project.
+     * Examples:
+     * * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>string dataset_resource_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

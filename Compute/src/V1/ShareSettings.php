@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ShareSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A map of project id and project config. This is only valid when share_type's value is SPECIFIC_PROJECTS.
+     * A map of project id and project config. This is only valid when
+     * share_type's value is SPECIFIC_PROJECTS.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ShareSettingsProjectConfig> project_map = 134212406;</code>
      */
@@ -36,7 +37,8 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $project_map
-     *           A map of project id and project config. This is only valid when share_type's value is SPECIFIC_PROJECTS.
+     *           A map of project id and project config. This is only valid when
+     *           share_type's value is SPECIFIC_PROJECTS.
      *     @type string $share_type
      *           Type of sharing for this shared-reservation
      *           Check the ShareType enum for the list of possible values.
@@ -48,7 +50,8 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map of project id and project config. This is only valid when share_type's value is SPECIFIC_PROJECTS.
+     * A map of project id and project config. This is only valid when
+     * share_type's value is SPECIFIC_PROJECTS.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ShareSettingsProjectConfig> project_map = 134212406;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -59,7 +62,8 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A map of project id and project config. This is only valid when share_type's value is SPECIFIC_PROJECTS.
+     * A map of project id and project config. This is only valid when
+     * share_type's value is SPECIFIC_PROJECTS.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ShareSettingsProjectConfig> project_map = 134212406;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

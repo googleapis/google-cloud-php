@@ -276,7 +276,11 @@ final class InstanceTemplatesClient
     }
 
     /**
-     * Retrieves the list of all InstanceTemplates resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of all InstanceTemplates resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see InstanceTemplatesClient::aggregatedListAsync()} .
      *
@@ -304,7 +308,9 @@ final class InstanceTemplatesClient
     }
 
     /**
-     * Deletes the specified instance template. Deleting an instance template is permanent and cannot be undone. It is not possible to delete templates that are already in use by a managed instance group.
+     * Deletes the specified instance template. Deleting an instance template is
+     * permanent and cannot be undone. It is not possible to delete templates
+     * that are already in use by a managed instance group.
      *
      * The async variant is {@see InstanceTemplatesClient::deleteAsync()} .
      *
@@ -356,7 +362,8 @@ final class InstanceTemplatesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see InstanceTemplatesClient::getIamPolicyAsync()} .
      *
@@ -382,7 +389,11 @@ final class InstanceTemplatesClient
     }
 
     /**
-     * Creates an instance template in the specified project using the data that is included in the request. If you are creating a new template to update an existing instance group, your new instance template must use the same network or, if applicable, the same subnetwork as the original template.
+     * Creates an instance template in the specified project using the
+     * data that is included in the request. If you are creating a new template to
+     * update an existing instance group, your new instance template must use the
+     * same network or, if applicable, the same subnetwork as the original
+     * template.
      *
      * The async variant is {@see InstanceTemplatesClient::insertAsync()} .
      *
@@ -408,7 +419,8 @@ final class InstanceTemplatesClient
     }
 
     /**
-     * Retrieves a list of instance templates that are contained within the specified project.
+     * Retrieves a list of instance templates that are contained within
+     * the specified project.
      *
      * The async variant is {@see InstanceTemplatesClient::listAsync()} .
      *
@@ -434,7 +446,8 @@ final class InstanceTemplatesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see InstanceTemplatesClient::setIamPolicyAsync()} .
      *

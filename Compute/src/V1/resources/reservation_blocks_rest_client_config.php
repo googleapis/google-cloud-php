@@ -49,6 +49,32 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{parent_resource}/reservationBlocks/{resource}/getIamPolicy',
+                'placeholders' => [
+                    'parent_resource' => [
+                        'getters' => [
+                            'getParentResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'List' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/reservationBlocks',
@@ -88,6 +114,60 @@ return [
                     'reservation_block' => [
                         'getters' => [
                             'getReservationBlock',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{parent_resource}/reservationBlocks/{resource}/setIamPolicy',
+                'body' => 'zone_set_nested_policy_request_resource',
+                'placeholders' => [
+                    'parent_resource' => [
+                        'getters' => [
+                            'getParentResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{parent_resource}/reservationBlocks/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'parent_resource' => [
+                        'getters' => [
+                            'getParentResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                     'zone' => [

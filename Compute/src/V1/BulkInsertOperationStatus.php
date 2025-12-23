@@ -27,13 +27,15 @@ class BulkInsertOperationStatus extends \Google\Protobuf\Internal\Message
      */
     protected $deleted_vm_count = null;
     /**
-     * [Output Only] Count of VMs that started creating but encountered an error.
+     * [Output Only] Count of VMs that started creating but encountered an
+     * error.
      *
      * Generated from protobuf field <code>optional int32 failed_to_create_vm_count = 58384104;</code>
      */
     protected $failed_to_create_vm_count = null;
     /**
-     * [Output Only] Creation status of BulkInsert operation - information if the flow is rolling forward or rolling back.
+     * [Output Only] Creation status of BulkInsert operation - information
+     * if the flow is rolling forward or rolling back.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -57,9 +59,11 @@ class BulkInsertOperationStatus extends \Google\Protobuf\Internal\Message
      *     @type int $deleted_vm_count
      *           [Output Only] Count of VMs that got deleted during rollback.
      *     @type int $failed_to_create_vm_count
-     *           [Output Only] Count of VMs that started creating but encountered an error.
+     *           [Output Only] Count of VMs that started creating but encountered an
+     *           error.
      *     @type string $status
-     *           [Output Only] Creation status of BulkInsert operation - information if the flow is rolling forward or rolling back.
+     *           [Output Only] Creation status of BulkInsert operation - information
+     *           if the flow is rolling forward or rolling back.
      *           Check the Status enum for the list of possible values.
      *     @type int $target_vm_count
      *           [Output Only] Count of VMs originally planned to be created.
@@ -143,7 +147,8 @@ class BulkInsertOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Count of VMs that started creating but encountered an error.
+     * [Output Only] Count of VMs that started creating but encountered an
+     * error.
      *
      * Generated from protobuf field <code>optional int32 failed_to_create_vm_count = 58384104;</code>
      * @return int
@@ -164,7 +169,8 @@ class BulkInsertOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Count of VMs that started creating but encountered an error.
+     * [Output Only] Count of VMs that started creating but encountered an
+     * error.
      *
      * Generated from protobuf field <code>optional int32 failed_to_create_vm_count = 58384104;</code>
      * @param int $var
@@ -179,7 +185,8 @@ class BulkInsertOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation status of BulkInsert operation - information if the flow is rolling forward or rolling back.
+     * [Output Only] Creation status of BulkInsert operation - information
+     * if the flow is rolling forward or rolling back.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -201,7 +208,8 @@ class BulkInsertOperationStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation status of BulkInsert operation - information if the flow is rolling forward or rolling back.
+     * [Output Only] Creation status of BulkInsert operation - information
+     * if the flow is rolling forward or rolling back.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

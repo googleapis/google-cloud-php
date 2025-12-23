@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PreviewFeatureStatusReleaseStatus;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The stage of the feature.
+ * Output only. [Output Only] The stage of the feature.
  *
  * Protobuf type <code>google.cloud.compute.v1.PreviewFeatureStatusReleaseStatus.Stage</code>
  */

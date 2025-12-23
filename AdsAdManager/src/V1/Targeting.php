@@ -64,6 +64,18 @@ class Targeting extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.admanager.v1.DataSegmentTargeting data_segment_targeting = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $data_segment_targeting = null;
+    /**
+     * Optional. Used to target content.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContentTargeting content_targeting = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $content_targeting = null;
+    /**
+     * Optional. Used to target mobile applications.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.MobileApplicationTargeting mobile_application_targeting = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mobile_application_targeting = null;
 
     /**
      * Constructor.
@@ -88,6 +100,10 @@ class Targeting extends \Google\Protobuf\Internal\Message
      *           Optional. Used to target video positions.
      *     @type \Google\Ads\AdManager\V1\DataSegmentTargeting $data_segment_targeting
      *           Optional. Used to target data segments.
+     *     @type \Google\Ads\AdManager\V1\ContentTargeting $content_targeting
+     *           Optional. Used to target content.
+     *     @type \Google\Ads\AdManager\V1\MobileApplicationTargeting $mobile_application_targeting
+     *           Optional. Used to target mobile applications.
      * }
      */
     public function __construct($data = NULL) {
@@ -381,6 +397,78 @@ class Targeting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DataSegmentTargeting::class);
         $this->data_segment_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target content.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContentTargeting content_targeting = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ContentTargeting|null
+     */
+    public function getContentTargeting()
+    {
+        return $this->content_targeting;
+    }
+
+    public function hasContentTargeting()
+    {
+        return isset($this->content_targeting);
+    }
+
+    public function clearContentTargeting()
+    {
+        unset($this->content_targeting);
+    }
+
+    /**
+     * Optional. Used to target content.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ContentTargeting content_targeting = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ContentTargeting $var
+     * @return $this
+     */
+    public function setContentTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ContentTargeting::class);
+        $this->content_targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Used to target mobile applications.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.MobileApplicationTargeting mobile_application_targeting = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\MobileApplicationTargeting|null
+     */
+    public function getMobileApplicationTargeting()
+    {
+        return $this->mobile_application_targeting;
+    }
+
+    public function hasMobileApplicationTargeting()
+    {
+        return isset($this->mobile_application_targeting);
+    }
+
+    public function clearMobileApplicationTargeting()
+    {
+        unset($this->mobile_application_targeting);
+    }
+
+    /**
+     * Optional. Used to target mobile applications.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.MobileApplicationTargeting mobile_application_targeting = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\MobileApplicationTargeting $var
+     * @return $this
+     */
+    public function setMobileApplicationTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\MobileApplicationTargeting::class);
+        $this->mobile_application_targeting = $var;
 
         return $this;
     }

@@ -33,7 +33,8 @@ use Google\Cloud\Compute\V1\NatIpInfoResponse;
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region for this request.
- * @param string $router  Name of the Router resource to query for Nat IP information. The name should conform to RFC1035.
+ * @param string $router  Name of the Router resource to query for Nat IP information. The name
+ *                        should conform to RFC1035.
  */
 function get_nat_ip_info_sample(string $project, string $region, string $router): void
 {

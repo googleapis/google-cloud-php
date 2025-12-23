@@ -8,7 +8,6 @@ use UnexpectedValueException;
 
 /**
  * Determines whether this configuration will be generating logs.
- * Setting state=DISABLED will pause the log generation for this config.
  *
  * Protobuf type <code>google.cloud.networkmanagement.v1.VpcFlowLogsConfig.State</code>
  */

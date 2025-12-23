@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate;
 use UnexpectedValueException;
 
 /**
- * [Output only] Status of the managed certificate resource.
+ * Output only. [Output only] Status of the managed certificate resource.
  *
  * Protobuf type <code>google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status</code>
  */
@@ -20,7 +20,8 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * The certificate management is working, and a certificate has been provisioned.
+     * The certificate management is working, and a certificate has been
+     * provisioned.
      *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
@@ -30,25 +31,35 @@ class Status
      */
     const MANAGED_CERTIFICATE_STATUS_UNSPECIFIED = 474800850;
     /**
-     * The certificate management is working. GCP will attempt to provision the first certificate.
+     * The certificate management is working. GCP will attempt to provision
+     * the first certificate.
      *
      * Generated from protobuf enum <code>PROVISIONING = 290896621;</code>
      */
     const PROVISIONING = 290896621;
     /**
-     * Certificate provisioning failed due to an issue with the DNS or load balancing configuration. For details of which domain failed, consult domain_status field.
+     * Certificate provisioning failed due to an issue with the DNS
+     * or load balancing configuration.
+     * For details of which domain failed, consult domain_status field.
      *
      * Generated from protobuf enum <code>PROVISIONING_FAILED = 76813775;</code>
      */
     const PROVISIONING_FAILED = 76813775;
     /**
-     * Certificate provisioning failed due to an issue with the DNS or load balancing configuration. It won't be retried. To try again delete and create a new managed SslCertificate resource. For details of which domain failed, consult domain_status field.
+     * Certificate provisioning failed due to an issue with the DNS
+     * or load balancing configuration. It won't be retried. To try again
+     * delete and create a new managed SslCertificate resource.
+     * For details of which domain failed, consult domain_status field.
      *
      * Generated from protobuf enum <code>PROVISIONING_FAILED_PERMANENTLY = 275036203;</code>
      */
     const PROVISIONING_FAILED_PERMANENTLY = 275036203;
     /**
-     * Renewal of the certificate has failed due to an issue with the DNS or load balancing configuration. The existing cert is still serving; however, it will expire shortly. To provision a renewed certificate, delete and create a new managed SslCertificate resource. For details on which domain failed, consult domain_status field.
+     * Renewal of the certificate has failed due to an issue with the DNS
+     * or load balancing configuration. The existing cert is still serving;
+     * however, it will expire shortly. To provision a renewed certificate,
+     * delete and create a new managed SslCertificate resource.
+     * For details on which domain failed, consult domain_status field.
      *
      * Generated from protobuf enum <code>RENEWAL_FAILED = 434659076;</code>
      */

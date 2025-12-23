@@ -20,7 +20,9 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
      */
     private $facilities;
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase string like "iad". This is the first component of the location of an Interconnect.
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase
+     * string like "iad". This is the first component of the location of an
+     * Interconnect.
      *
      * Generated from protobuf field <code>optional string metro = 103787801;</code>
      */
@@ -34,7 +36,9 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
      *
      *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacility>|\Google\Protobuf\Internal\RepeatedField $facilities
      *     @type string $metro
-     *           [Output Only] The name of the metro, as a three-letter lowercase string like "iad". This is the first component of the location of an Interconnect.
+     *           Output only. [Output Only] The name of the metro, as a three-letter lowercase
+     *           string like "iad". This is the first component of the location of an
+     *           Interconnect.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,7 +69,9 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
     }
 
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase string like "iad". This is the first component of the location of an Interconnect.
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase
+     * string like "iad". This is the first component of the location of an
+     * Interconnect.
      *
      * Generated from protobuf field <code>optional string metro = 103787801;</code>
      * @return string
@@ -86,7 +92,9 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetro extends \Google\Pro
     }
 
     /**
-     * [Output Only] The name of the metro, as a three-letter lowercase string like "iad". This is the first component of the location of an Interconnect.
+     * Output only. [Output Only] The name of the metro, as a three-letter lowercase
+     * string like "iad". This is the first component of the location of an
+     * Interconnect.
      *
      * Generated from protobuf field <code>optional string metro = 103787801;</code>
      * @param string $var

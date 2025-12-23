@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\BgpRoute;
 use UnexpectedValueException;
 
 /**
- * [Output only] BGP origin (EGP, IGP or INCOMPLETE)
+ * Output only. [Output only] BGP origin (EGP, IGP or INCOMPLETE)
  *
  * Protobuf type <code>google.cloud.compute.v1.BgpRoute.Origin</code>
  */

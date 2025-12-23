@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The version of BYOIP API.
+ * Output only. [Output Only] The version of BYOIP API.
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicDelegatedPrefix.ByoipApiVersion</code>
  */
@@ -20,13 +20,16 @@ class ByoipApiVersion
      */
     const UNDEFINED_BYOIP_API_VERSION = 0;
     /**
-     * This public delegated prefix usually takes 4 weeks to delete, and the BGP status cannot be changed. Announce and Withdraw APIs can not be used on this prefix.
+     * This public delegated prefix usually takes 4 weeks to delete, and the BGP
+     * status cannot be changed. Announce and Withdraw APIs can not be used on
+     * this prefix.
      *
      * Generated from protobuf enum <code>V1 = 2715;</code>
      */
     const V1 = 2715;
     /**
-     * This public delegated prefix takes minutes to delete. Announce and Withdraw APIs can be used on this prefix to change the BGP status.
+     * This public delegated prefix takes minutes to delete. Announce and
+     * Withdraw APIs can be used on this prefix to change the BGP status.
      *
      * Generated from protobuf enum <code>V2 = 2716;</code>
      */

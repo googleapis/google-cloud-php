@@ -7,7 +7,14 @@ namespace Google\Cloud\Compute\V1\MetadataFilter;
 use UnexpectedValueException;
 
 /**
- * Specifies how individual filter label matches within the list of filterLabels and contributes toward the overall metadataFilter match. Supported values are: - MATCH_ANY: at least one of the filterLabels must have a matching label in the provided metadata. - MATCH_ALL: all filterLabels must have matching labels in the provided metadata. 
+ * Specifies how individual filter label matches
+ * within the list of filterLabels and contributes toward the
+ * overall metadataFilter match.
+ *  Supported values are:
+ *    - MATCH_ANY: at least one of the filterLabels
+ *    must have a matching label in the provided metadata.
+ *    - MATCH_ALL: all filterLabels must have
+ *    matching labels in the provided metadata.
  *
  * Protobuf type <code>google.cloud.compute.v1.MetadataFilter.FilterMatchCriteria</code>
  */
@@ -20,19 +27,19 @@ class FilterMatchCriteria
      */
     const UNDEFINED_FILTER_MATCH_CRITERIA = 0;
     /**
-     * Specifies that all filterLabels must match for the metadataFilter to be considered a match.
+     * Specifies that all filterLabels must match for themetadataFilter to be considered a match.
      *
      * Generated from protobuf enum <code>MATCH_ALL = 180663271;</code>
      */
     const MATCH_ALL = 180663271;
     /**
-     * Specifies that any filterLabel must match for the metadataFilter to be considered a match.
+     * Specifies that any filterLabel must match for themetadataFilter to be considered a match.
      *
      * Generated from protobuf enum <code>MATCH_ANY = 180663346;</code>
      */
     const MATCH_ANY = 180663346;
     /**
-     * Indicates that the match criteria was not set. A metadataFilter must never be created with this value.
+     * Indicates that the match criteria was not set. AmetadataFilter must never be created with this value.
      *
      * Generated from protobuf enum <code>NOT_SET = 163646646;</code>
      */

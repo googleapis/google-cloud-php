@@ -31,7 +31,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ü&
+á(
 !google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Æ
 CreateServiceRequest2
 parent (	B"‡A˙Arun.googleapis.com/Service2
@@ -49,10 +49,11 @@ service_id (	B‡A
 	page_size (
 
 page_token (	
-show_deleted ("_
+show_deleted ("y
 ListServicesResponse.
 services (2.google.cloud.run.v2.Service
-next_page_token (	"E
+next_page_token (	
+unreachable (	B‡A"E
 GetServiceRequest0
 name (	B"‡A˙A
 run.googleapis.com/Service"m
@@ -60,9 +61,9 @@ page_token (	
 name (	B"‡A˙A
 run.googleapis.com/Service
 validate_only (
-etag (	"Ω
-Service
-name (	
+etag (	"§
+Service
+name (	B‡A
 description (	
 uid (	B‡A
 
@@ -87,6 +88,8 @@ generation (B‡A=
 invoker_iam_disabled (B‡A!
 default_uri_disabled (B‡A
 urls (	B‡A
+iap_enabled (B‡AT
+multi_region_settings (20.google.cloud.run.v2.Service.MultiRegionSettingsB‡A
 custom_audiences% (	 
 observed_generation (B‡A?
 terminal_condition (2.google.cloud.run.v2.ConditionB‡A7
@@ -98,10 +101,14 @@ conditions  (2.google.cloud.run.v2.ConditionB‡AB
 run.googleapis.com/RevisionG
 traffic_statuses# (2(.google.cloud.run.v2.TrafficTargetStatusB‡A
 uri$ (	B‡A
-satisfies_pzs& (B‡A;
+satisfies_pzs& (B‡A%
+threat_detection_enabled( (B‡A;
 build_config) (2 .google.cloud.run.v2.BuildConfigB‡A
 reconcilingb (B‡A
-etagc (	B‡A-
+etagc (	B‡AI
+MultiRegionSettings
+regions (	B‡A
+multi_region_id (	B‡A-
 LabelsEntry
 key (	
 value (	:82

@@ -25,8 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START admanager_v1_generated_NetworkService_ListNetworks_sync]
 use Google\Ads\AdManager\V1\Client\NetworkServiceClient;
 use Google\Ads\AdManager\V1\ListNetworksRequest;
-use Google\Ads\AdManager\V1\ListNetworksResponse;
 use Google\ApiCore\ApiException;
+use Google\ApiCore\PagedListResponse;
 
 /**
  * API to retrieve all the networks the current user has access to.
@@ -47,9 +47,12 @@ function list_networks_sample(): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var ListNetworksResponse $response */
+        /** @var PagedListResponse $response */
         $response = $networkServiceClient->listNetworks($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }

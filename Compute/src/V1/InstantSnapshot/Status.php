@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstantSnapshot;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the instantSnapshot. This can be CREATING, DELETING, FAILED, or READY.
+ * Output only. [Output Only] The status of the instantSnapshot. This can beCREATING, DELETING, FAILED, orREADY.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstantSnapshot.Status</code>
  */
@@ -44,7 +44,8 @@ class Status
      */
     const READY = 77848963;
     /**
-     * InstantSnapshot is currently unavailable and cannot be used for Disk restoration
+     * InstantSnapshot is currently unavailable and cannot be used for
+     * Disk restoration
      *
      * Generated from protobuf enum <code>UNAVAILABLE = 413756464;</code>
      */

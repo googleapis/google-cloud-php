@@ -32,6 +32,14 @@ class RichLinkType
      */
     const CHAT_SPACE = 2;
     /**
+     * A Gmail message rich link type. Specifically, a Gmail chip from [Share to
+     * Chat](https://support.google.com/chat?p=chat_gmail). The API only
+     * supports reading messages with GMAIL_MESSAGE rich links.
+     *
+     * Generated from protobuf enum <code>GMAIL_MESSAGE = 3;</code>
+     */
+    const GMAIL_MESSAGE = 3;
+    /**
      * A Meet message rich link type. For example, a Meet chip.
      *
      * Generated from protobuf enum <code>MEET_SPACE = 4;</code>
@@ -48,6 +56,7 @@ class RichLinkType
         self::RICH_LINK_TYPE_UNSPECIFIED => 'RICH_LINK_TYPE_UNSPECIFIED',
         self::DRIVE_FILE => 'DRIVE_FILE',
         self::CHAT_SPACE => 'CHAT_SPACE',
+        self::GMAIL_MESSAGE => 'GMAIL_MESSAGE',
         self::MEET_SPACE => 'MEET_SPACE',
         self::CALENDAR_EVENT => 'CALENDAR_EVENT',
     ];

@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class LicenseResourceRequirements extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Input Only] Deprecated. This field no longer reflects the minimum number of guest cpus required to use the Instance.
+     * [Input Only] Deprecated. This field no longer reflects the minimum number
+     * of guest cpus required to use the Instance.
      *
      * Generated from protobuf field <code>optional int32 min_guest_cpu_count = 477964836;</code>
      */
     protected $min_guest_cpu_count = null;
     /**
-     * [Input Only] Deprecated. This field no longer reflects the minimum memory required to use the Instance.
+     * [Input Only] Deprecated. This field no longer reflects the minimum memory
+     * required to use the Instance.
      *
      * Generated from protobuf field <code>optional int32 min_memory_mb = 504785894;</code>
      */
@@ -34,9 +36,11 @@ class LicenseResourceRequirements extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $min_guest_cpu_count
-     *           [Input Only] Deprecated. This field no longer reflects the minimum number of guest cpus required to use the Instance.
+     *           [Input Only] Deprecated. This field no longer reflects the minimum number
+     *           of guest cpus required to use the Instance.
      *     @type int $min_memory_mb
-     *           [Input Only] Deprecated. This field no longer reflects the minimum memory required to use the Instance.
+     *           [Input Only] Deprecated. This field no longer reflects the minimum memory
+     *           required to use the Instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class LicenseResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Deprecated. This field no longer reflects the minimum number of guest cpus required to use the Instance.
+     * [Input Only] Deprecated. This field no longer reflects the minimum number
+     * of guest cpus required to use the Instance.
      *
      * Generated from protobuf field <code>optional int32 min_guest_cpu_count = 477964836;</code>
      * @return int
@@ -66,7 +71,8 @@ class LicenseResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Deprecated. This field no longer reflects the minimum number of guest cpus required to use the Instance.
+     * [Input Only] Deprecated. This field no longer reflects the minimum number
+     * of guest cpus required to use the Instance.
      *
      * Generated from protobuf field <code>optional int32 min_guest_cpu_count = 477964836;</code>
      * @param int $var
@@ -81,7 +87,8 @@ class LicenseResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Deprecated. This field no longer reflects the minimum memory required to use the Instance.
+     * [Input Only] Deprecated. This field no longer reflects the minimum memory
+     * required to use the Instance.
      *
      * Generated from protobuf field <code>optional int32 min_memory_mb = 504785894;</code>
      * @return int
@@ -102,7 +109,8 @@ class LicenseResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Deprecated. This field no longer reflects the minimum memory required to use the Instance.
+     * [Input Only] Deprecated. This field no longer reflects the minimum memory
+     * required to use the Instance.
      *
      * Generated from protobuf field <code>optional int32 min_memory_mb = 504785894;</code>
      * @param int $var

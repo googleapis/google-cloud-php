@@ -31,7 +31,9 @@ use Google\Cloud\Compute\V1\InsertRegionBackendServiceRequest;
 use Google\Rpc\Status;
 
 /**
- * Creates a regional BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview.
+ * Creates a regional BackendService resource in the specified project using
+ * the data included in the request. For more information, see
+ * Backend services overview.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

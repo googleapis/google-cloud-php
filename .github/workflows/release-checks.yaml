@@ -11,7 +11,7 @@ jobs:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: "Install PHP"
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Parse allowed major versions
@@ -87,7 +87,11 @@ jobs:
             fi
           }; done
           if [[ "$FAIL" == "true" ]]; then
-            echo "Add \"MAJOR_VERSION_ALLOWED=component1,component2\" to the PR description to allow "
+            echo "⚠️ IMPORTANT ⚠️ This check is meant to prevent the accidental release of new major versions. New "
+            echo "major versions should only be released intentionally. If you are not explicitly trying to release a "
+            echo "new major version and you don't have explicit approval from the Language Lead, "
+            echo "⚠️ DO NOT BYPASS THIS CHECK ⚠️"
+            echo -e "\nAdd \"MAJOR_VERSION_ALLOWED=component1,component2\" to the PR description to allow "
             echo "major version releases for those components"
             exit 1
           fi
@@ -99,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: "Verify the subrepos exist for new components"

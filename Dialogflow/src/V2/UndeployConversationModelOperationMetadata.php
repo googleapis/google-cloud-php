@@ -31,6 +31,12 @@ class UndeployConversationModelOperationMetadata extends \Google\Protobuf\Intern
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
      */
     protected $create_time = null;
+    /**
+     * The time when the operation finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp done_time = 4;</code>
+     */
+    protected $done_time = null;
 
     /**
      * Constructor.
@@ -44,6 +50,8 @@ class UndeployConversationModelOperationMetadata extends \Google\Protobuf\Intern
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Timestamp when the request to undeploy conversation model was submitted.
      *           The time is measured on server side.
+     *     @type \Google\Protobuf\Timestamp $done_time
+     *           The time when the operation finished.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +121,42 @@ class UndeployConversationModelOperationMetadata extends \Google\Protobuf\Intern
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time when the operation finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp done_time = 4;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDoneTime()
+    {
+        return $this->done_time;
+    }
+
+    public function hasDoneTime()
+    {
+        return isset($this->done_time);
+    }
+
+    public function clearDoneTime()
+    {
+        unset($this->done_time);
+    }
+
+    /**
+     * The time when the operation finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp done_time = 4;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDoneTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->done_time = $var;
 
         return $this;
     }

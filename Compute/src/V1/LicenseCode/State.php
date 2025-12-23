@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\LicenseCode;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Current state of this License Code.
+ * Output only. [Output Only] Current state of this License Code.
  *
  * Protobuf type <code>google.cloud.compute.v1.LicenseCode.State</code>
  */
@@ -20,7 +20,8 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Machines are not allowed to attach boot disks with this License Code. Requests to create new resources with this license will be rejected.
+     * Machines are not allowed to attach boot disks with this License Code.
+     * Requests to create new resources with this license will be rejected.
      *
      * Generated from protobuf enum <code>DISABLED = 516696700;</code>
      */

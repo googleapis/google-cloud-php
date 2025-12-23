@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The set of permissions to check for the 'resource'. Permissions with wildcards (such as '*' or 'storage.*') are not allowed.
+     * The set of permissions to check for the 'resource'. Permissions with
+     * wildcards (such as '*' or 'storage.*') are not allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      */
@@ -28,7 +29,8 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
-     *           The set of permissions to check for the 'resource'. Permissions with wildcards (such as '*' or 'storage.*') are not allowed.
+     *           The set of permissions to check for the 'resource'. Permissions with
+     *           wildcards (such as '*' or 'storage.*') are not allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +39,8 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of permissions to check for the 'resource'. Permissions with wildcards (such as '*' or 'storage.*') are not allowed.
+     * The set of permissions to check for the 'resource'. Permissions with
+     * wildcards (such as '*' or 'storage.*') are not allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +51,8 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The set of permissions to check for the 'resource'. Permissions with wildcards (such as '*' or 'storage.*') are not allowed.
+     * The set of permissions to check for the 'resource'. Permissions with
+     * wildcards (such as '*' or 'storage.*') are not allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

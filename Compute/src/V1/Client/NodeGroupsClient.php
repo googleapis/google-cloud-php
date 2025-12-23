@@ -316,7 +316,11 @@ final class NodeGroupsClient
     }
 
     /**
-     * Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of node groups.
+     * Note: use nodeGroups.listNodes for more details about each group.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NodeGroupsClient::aggregatedListAsync()} .
      *
@@ -394,7 +398,10 @@ final class NodeGroupsClient
     }
 
     /**
-     * Returns the specified NodeGroup. Get a list of available NodeGroups by making a list() request. Note: the "nodes" field should not be used. Use nodeGroups.listNodes instead.
+     * Returns the specified NodeGroup. Get a list of available NodeGroups
+     * by making a list() request.
+     * Note: the "nodes" field should not be used. Use nodeGroups.listNodes
+     * instead.
      *
      * The async variant is {@see NodeGroupsClient::getAsync()} .
      *
@@ -420,7 +427,8 @@ final class NodeGroupsClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see NodeGroupsClient::getIamPolicyAsync()} .
      *
@@ -446,7 +454,8 @@ final class NodeGroupsClient
     }
 
     /**
-     * Creates a NodeGroup resource in the specified project using the data included in the request.
+     * Creates a NodeGroup resource in the specified project using the data
+     * included in the request.
      *
      * The async variant is {@see NodeGroupsClient::insertAsync()} .
      *
@@ -472,7 +481,8 @@ final class NodeGroupsClient
     }
 
     /**
-     * Retrieves a list of node groups available to the specified project. Note: use nodeGroups.listNodes for more details about each group.
+     * Retrieves a list of node groups available to the specified project.
+     * Note: use nodeGroups.listNodes for more details about each group.
      *
      * The async variant is {@see NodeGroupsClient::listAsync()} .
      *
@@ -578,7 +588,8 @@ final class NodeGroupsClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see NodeGroupsClient::setIamPolicyAsync()} .
      *

@@ -30,7 +30,14 @@ use Google\Cloud\Compute\V1\DeleteInstantSnapshotRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified InstantSnapshot resource. Keep in mind that deleting a single instantSnapshot might not necessarily delete all the data on that instantSnapshot. If any data on the instantSnapshot that is marked for deletion is needed for subsequent instantSnapshots, the data will be moved to the next corresponding instantSnapshot. For more information, see Deleting instantSnapshots.
+ * Deletes the specified InstantSnapshot resource. Keep in mind that deleting
+ * a single instantSnapshot might not necessarily delete all the data on that
+ * instantSnapshot. If any data on the instantSnapshot that is marked for
+ * deletion is needed for subsequent instantSnapshots, the data will be moved
+ * to the next corresponding instantSnapshot.
+ *
+ * For more information, seeDeleting
+ * instantSnapshots.
  *
  * @param string $instantSnapshot Name of the InstantSnapshot resource to delete.
  * @param string $project         Project ID for this request.

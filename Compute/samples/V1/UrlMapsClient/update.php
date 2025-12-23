@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\UrlMap;
 use Google\Rpc\Status;
 
 /**
- * Updates the specified UrlMap resource with the data included in the request.
+ * Updates the specified UrlMap resource with the data included in the
+ * request.
  *
  * @param string $project Project ID for this request.
  * @param string $urlMap  Name of the UrlMap resource to update.

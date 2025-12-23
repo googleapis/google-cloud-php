@@ -9,94 +9,125 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A network peering attached to a network resource. The message includes the peering name, peer network, peering state, and a flag indicating whether Google Compute Engine should automatically create routes for the peering.
+ * A network peering attached to a network resource. The message includes the
+ * peering name, peer network, peering state, and a flag indicating whether
+ * Google Compute Engine should automatically create routes for the peering.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NetworkPeering</code>
  */
 class NetworkPeering extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This field will be deprecated soon. Use the exchange_subnet_routes field instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * This field will be deprecated soon. Use theexchange_subnet_routes field instead.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool auto_create_routes = 57454941;</code>
      */
     protected $auto_create_routes = null;
     /**
-     * [Output Only] The effective state of the peering connection as a whole.
+     * Output only. [Output Only] The effective state of the peering connection
+     * as a whole.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
      */
     protected $connection_status = null;
     /**
-     * Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool exchange_subnet_routes = 26322256;</code>
      */
     protected $exchange_subnet_routes = null;
     /**
-     * Whether to export the custom routes to peer network. The default value is false.
+     * Whether to export the custom routes to peer network. The default value is
+     * false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      */
     protected $export_custom_routes = null;
     /**
-     * Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. IPv4 special-use ranges are always exported to peers and are not controlled by this field.
+     * Whether subnet routes with public IP range are exported. The default value
+     * is true, all subnet routes are exported.IPv4
+     * special-use ranges are always
+     * exported to peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>optional bool export_subnet_routes_with_public_ip = 97940834;</code>
      */
     protected $export_subnet_routes_with_public_ip = null;
     /**
-     * Whether to import the custom routes from peer network. The default value is false.
+     * Whether to import the custom routes from peer network. The default value is
+     * false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      */
     protected $import_custom_routes = null;
     /**
-     * Whether subnet routes with public IP range are imported. The default value is false. IPv4 special-use ranges are always imported from peers and are not controlled by this field.
+     * Whether subnet routes with public IP range are imported. The default value
+     * is false.IPv4
+     * special-use ranges are always
+     * imported from peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>optional bool import_subnet_routes_with_public_ip = 14419729;</code>
      */
     protected $import_subnet_routes_with_public_ip = null;
     /**
-     * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of this peering. Provided by the client when the peering is created.
+     * The name must comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     * lowercase letter, and all the following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     * The URL of the peer network. It can be either full URL or partial URL. The
+     * peer network may belong to a different project. If the partial URL does not
+     * contain project, it is assumed that the peer network is in the same project
+     * as the current network.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
     protected $network = null;
     /**
-     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     * Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      */
     protected $peer_mtu = null;
     /**
-     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Which IP version(s) of traffic and routes are allowed to be imported or
+     * exported between peer networks. The default value is IPV4_ONLY.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
      */
     protected $stack_type = null;
     /**
-     * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
+     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     * peering is `ACTIVE` when there's a matching configuration in the peer
+     * network.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
     protected $state = null;
     /**
-     * [Output Only] Details about the current state of the peering.
+     * Output only. [Output Only] Details about the current state of the peering.
      *
      * Generated from protobuf field <code>optional string state_details = 95566996;</code>
      */
     protected $state_details = null;
     /**
-     * The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     * The update strategy determines the semantics for updates and deletes to the
+     * peering connection configuration.
      * Check the UpdateStrategy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
@@ -110,35 +141,64 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $auto_create_routes
-     *           This field will be deprecated soon. Use the exchange_subnet_routes field instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     *           This field will be deprecated soon. Use theexchange_subnet_routes field instead.
+     *           Indicates whether full mesh connectivity is created and managed
+     *           automatically between peered networks. Currently this field should always
+     *           be true since Google Compute Engine will automatically create and manage
+     *           subnetwork routes between two networks when peering state isACTIVE.
      *     @type \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus $connection_status
-     *           [Output Only] The effective state of the peering connection as a whole.
+     *           Output only. [Output Only] The effective state of the peering connection
+     *           as a whole.
      *     @type bool $exchange_subnet_routes
-     *           Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     *           Indicates whether full mesh connectivity is created and managed
+     *           automatically between peered networks. Currently this field should always
+     *           be true since Google Compute Engine will automatically create and manage
+     *           subnetwork routes between two networks when peering state isACTIVE.
      *     @type bool $export_custom_routes
-     *           Whether to export the custom routes to peer network. The default value is false.
+     *           Whether to export the custom routes to peer network. The default value is
+     *           false.
      *     @type bool $export_subnet_routes_with_public_ip
-     *           Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. IPv4 special-use ranges are always exported to peers and are not controlled by this field.
+     *           Whether subnet routes with public IP range are exported. The default value
+     *           is true, all subnet routes are exported.IPv4
+     *           special-use ranges are always
+     *           exported to peers and are not controlled by this field.
      *     @type bool $import_custom_routes
-     *           Whether to import the custom routes from peer network. The default value is false.
+     *           Whether to import the custom routes from peer network. The default value is
+     *           false.
      *     @type bool $import_subnet_routes_with_public_ip
-     *           Whether subnet routes with public IP range are imported. The default value is false. IPv4 special-use ranges are always imported from peers and are not controlled by this field.
+     *           Whether subnet routes with public IP range are imported. The default value
+     *           is false.IPv4
+     *           special-use ranges are always
+     *           imported from peers and are not controlled by this field.
      *     @type string $name
-     *           Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of this peering. Provided by the client when the peering is created.
+     *           The name must comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     *           lowercase letter, and all the following characters must be a dash,
+     *           lowercase letter, or digit, except the last character, which cannot be a
+     *           dash.
      *     @type string $network
-     *           The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     *           The URL of the peer network. It can be either full URL or partial URL. The
+     *           peer network may belong to a different project. If the partial URL does not
+     *           contain project, it is assumed that the peer network is in the same project
+     *           as the current network.
      *     @type int $peer_mtu
-     *           [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     *           Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *     @type string $stack_type
-     *           Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     *           Which IP version(s) of traffic and routes are allowed to be imported or
+     *           exported between peer networks. The default value is IPV4_ONLY.
      *           Check the StackType enum for the list of possible values.
      *     @type string $state
-     *           [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
+     *           Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     *           peering is `ACTIVE` when there's a matching configuration in the peer
+     *           network.
      *           Check the State enum for the list of possible values.
      *     @type string $state_details
-     *           [Output Only] Details about the current state of the peering.
+     *           Output only. [Output Only] Details about the current state of the peering.
      *     @type string $update_strategy
-     *           The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     *           The update strategy determines the semantics for updates and deletes to the
+     *           peering connection configuration.
      *           Check the UpdateStrategy enum for the list of possible values.
      * }
      */
@@ -148,7 +208,11 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be deprecated soon. Use the exchange_subnet_routes field instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * This field will be deprecated soon. Use theexchange_subnet_routes field instead.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool auto_create_routes = 57454941;</code>
      * @return bool
@@ -169,7 +233,11 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will be deprecated soon. Use the exchange_subnet_routes field instead. Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * This field will be deprecated soon. Use theexchange_subnet_routes field instead.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool auto_create_routes = 57454941;</code>
      * @param bool $var
@@ -184,7 +252,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The effective state of the peering connection as a whole.
+     * Output only. [Output Only] The effective state of the peering connection
+     * as a whole.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
      * @return \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus|null
@@ -205,7 +274,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The effective state of the peering connection as a whole.
+     * Output only. [Output Only] The effective state of the peering connection
+     * as a whole.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatus connection_status = 525629555;</code>
      * @param \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatus $var
@@ -220,7 +290,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool exchange_subnet_routes = 26322256;</code>
      * @return bool
@@ -241,7 +314,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
+     * Indicates whether full mesh connectivity is created and managed
+     * automatically between peered networks. Currently this field should always
+     * be true since Google Compute Engine will automatically create and manage
+     * subnetwork routes between two networks when peering state isACTIVE.
      *
      * Generated from protobuf field <code>optional bool exchange_subnet_routes = 26322256;</code>
      * @param bool $var
@@ -256,7 +332,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to export the custom routes to peer network. The default value is false.
+     * Whether to export the custom routes to peer network. The default value is
+     * false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      * @return bool
@@ -277,7 +354,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to export the custom routes to peer network. The default value is false.
+     * Whether to export the custom routes to peer network. The default value is
+     * false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      * @param bool $var
@@ -292,7 +370,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. IPv4 special-use ranges are always exported to peers and are not controlled by this field.
+     * Whether subnet routes with public IP range are exported. The default value
+     * is true, all subnet routes are exported.IPv4
+     * special-use ranges are always
+     * exported to peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>optional bool export_subnet_routes_with_public_ip = 97940834;</code>
      * @return bool
@@ -313,7 +394,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. IPv4 special-use ranges are always exported to peers and are not controlled by this field.
+     * Whether subnet routes with public IP range are exported. The default value
+     * is true, all subnet routes are exported.IPv4
+     * special-use ranges are always
+     * exported to peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>optional bool export_subnet_routes_with_public_ip = 97940834;</code>
      * @param bool $var
@@ -328,7 +412,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to import the custom routes from peer network. The default value is false.
+     * Whether to import the custom routes from peer network. The default value is
+     * false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      * @return bool
@@ -349,7 +434,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to import the custom routes from peer network. The default value is false.
+     * Whether to import the custom routes from peer network. The default value is
+     * false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      * @param bool $var
@@ -364,7 +450,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether subnet routes with public IP range are imported. The default value is false. IPv4 special-use ranges are always imported from peers and are not controlled by this field.
+     * Whether subnet routes with public IP range are imported. The default value
+     * is false.IPv4
+     * special-use ranges are always
+     * imported from peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>optional bool import_subnet_routes_with_public_ip = 14419729;</code>
      * @return bool
@@ -385,7 +474,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether subnet routes with public IP range are imported. The default value is false. IPv4 special-use ranges are always imported from peers and are not controlled by this field.
+     * Whether subnet routes with public IP range are imported. The default value
+     * is false.IPv4
+     * special-use ranges are always
+     * imported from peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>optional bool import_subnet_routes_with_public_ip = 14419729;</code>
      * @param bool $var
@@ -400,7 +492,13 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of this peering. Provided by the client when the peering is created.
+     * The name must comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     * lowercase letter, and all the following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -421,7 +519,13 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of this peering. Provided by the client when the peering is created.
+     * The name must comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a
+     * lowercase letter, and all the following characters must be a dash,
+     * lowercase letter, or digit, except the last character, which cannot be a
+     * dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -436,7 +540,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     * The URL of the peer network. It can be either full URL or partial URL. The
+     * peer network may belong to a different project. If the partial URL does not
+     * contain project, it is assumed that the peer network is in the same project
+     * as the current network.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
@@ -457,7 +564,10 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+     * The URL of the peer network. It can be either full URL or partial URL. The
+     * peer network may belong to a different project. If the partial URL does not
+     * contain project, it is assumed that the peer network is in the same project
+     * as the current network.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var
@@ -472,7 +582,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     * Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      * @return int
@@ -493,7 +603,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Maximum Transmission Unit in bytes of the peer network.
+     * Output only. [Output Only] Maximum Transmission Unit in bytes of the peer network.
      *
      * Generated from protobuf field <code>optional int32 peer_mtu = 69584721;</code>
      * @param int $var
@@ -508,7 +618,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Which IP version(s) of traffic and routes are allowed to be imported or
+     * exported between peer networks. The default value is IPV4_ONLY.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -530,7 +641,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Which IP version(s) of traffic and routes are allowed to be imported or
+     * exported between peer networks. The default value is IPV4_ONLY.
      * Check the StackType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
@@ -546,7 +658,9 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
+     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     * peering is `ACTIVE` when there's a matching configuration in the peer
+     * network.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -568,7 +682,9 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
+     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
+     * peering is `ACTIVE` when there's a matching configuration in the peer
+     * network.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -584,7 +700,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Details about the current state of the peering.
+     * Output only. [Output Only] Details about the current state of the peering.
      *
      * Generated from protobuf field <code>optional string state_details = 95566996;</code>
      * @return string
@@ -605,7 +721,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Details about the current state of the peering.
+     * Output only. [Output Only] Details about the current state of the peering.
      *
      * Generated from protobuf field <code>optional string state_details = 95566996;</code>
      * @param string $var
@@ -620,7 +736,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     * The update strategy determines the semantics for updates and deletes to the
+     * peering connection configuration.
      * Check the UpdateStrategy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
@@ -642,7 +759,8 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update strategy determines the semantics for updates and deletes to the peering connection configuration.
+     * The update strategy determines the semantics for updates and deletes to the
+     * peering connection configuration.
      * Check the UpdateStrategy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>

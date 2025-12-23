@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\UpdatePreviewFeatureRequest;
 use Google\Rpc\Status;
 
 /**
- * Patches the given PreviewFeature. This method is used to enable or disable a PreviewFeature.
+ * Patches the given PreviewFeature. This method is used to enable or disable
+ * a PreviewFeature.
  *
  * @param string $previewFeature Name of the PreviewFeature for this request.
  * @param string $project        Project ID for this request.

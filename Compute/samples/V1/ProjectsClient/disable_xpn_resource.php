@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\ProjectsDisableXpnResourceRequest;
 use Google\Rpc\Status;
 
 /**
- * Disable a service resource (also known as service project) associated with this host project.
+ * Disable a service resource (also known as service project) associated with
+ * this host project.
  *
  * @param string $project Project ID for this request.
  */

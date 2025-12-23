@@ -16,20 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies whether NAT IP is auto or manual.
+     * Output only. Specifies whether NAT IP is auto or manual.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
     protected $mode = null;
     /**
-     * NAT IP address. For example: 203.0.113.11.
+     * Output only. NAT IP address. For example: 203.0.113.11.
      *
      * Generated from protobuf field <code>optional string nat_ip = 21113093;</code>
      */
     protected $nat_ip = null;
     /**
-     * Specifies whether NAT IP is currently serving at least one endpoint or not.
+     * Output only. Specifies whether NAT IP is currently serving at least one endpoint or
+     * not.
      * Check the Usage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string usage = 111574433;</code>
@@ -43,12 +44,13 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $mode
-     *           Specifies whether NAT IP is auto or manual.
+     *           Output only. Specifies whether NAT IP is auto or manual.
      *           Check the Mode enum for the list of possible values.
      *     @type string $nat_ip
-     *           NAT IP address. For example: 203.0.113.11.
+     *           Output only. NAT IP address. For example: 203.0.113.11.
      *     @type string $usage
-     *           Specifies whether NAT IP is currently serving at least one endpoint or not.
+     *           Output only. Specifies whether NAT IP is currently serving at least one endpoint or
+     *           not.
      *           Check the Usage enum for the list of possible values.
      * }
      */
@@ -58,7 +60,7 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether NAT IP is auto or manual.
+     * Output only. Specifies whether NAT IP is auto or manual.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -80,7 +82,7 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether NAT IP is auto or manual.
+     * Output only. Specifies whether NAT IP is auto or manual.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -96,7 +98,7 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * NAT IP address. For example: 203.0.113.11.
+     * Output only. NAT IP address. For example: 203.0.113.11.
      *
      * Generated from protobuf field <code>optional string nat_ip = 21113093;</code>
      * @return string
@@ -117,7 +119,7 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * NAT IP address. For example: 203.0.113.11.
+     * Output only. NAT IP address. For example: 203.0.113.11.
      *
      * Generated from protobuf field <code>optional string nat_ip = 21113093;</code>
      * @param string $var
@@ -132,7 +134,8 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether NAT IP is currently serving at least one endpoint or not.
+     * Output only. Specifies whether NAT IP is currently serving at least one endpoint or
+     * not.
      * Check the Usage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string usage = 111574433;</code>
@@ -154,7 +157,8 @@ class NatIpInfoNatIpInfoMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether NAT IP is currently serving at least one endpoint or not.
+     * Output only. Specifies whether NAT IP is currently serving at least one endpoint or
+     * not.
      * Check the Usage enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string usage = 111574433;</code>

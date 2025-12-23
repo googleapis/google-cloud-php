@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupManagersStopInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If this flag is set to true, the Instance Group Manager will proceed to stop the instances, skipping initialization on them.
+     * If this flag is set to true, the Instance Group Manager will proceed to
+     * stop the instances, skipping initialization on them.
      *
      * Generated from protobuf field <code>optional bool force_stop = 134762710;</code>
      */
     protected $force_stop = null;
     /**
-     * The URLs of one or more instances to stop. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to stop. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      */
@@ -34,9 +36,11 @@ class RegionInstanceGroupManagersStopInstancesRequest extends \Google\Protobuf\I
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $force_stop
-     *           If this flag is set to true, the Instance Group Manager will proceed to stop the instances, skipping initialization on them.
+     *           If this flag is set to true, the Instance Group Manager will proceed to
+     *           stop the instances, skipping initialization on them.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
-     *           The URLs of one or more instances to stop. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     *           The URLs of one or more instances to stop. This can be a full URL or
+     *           a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +49,8 @@ class RegionInstanceGroupManagersStopInstancesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * If this flag is set to true, the Instance Group Manager will proceed to stop the instances, skipping initialization on them.
+     * If this flag is set to true, the Instance Group Manager will proceed to
+     * stop the instances, skipping initialization on them.
      *
      * Generated from protobuf field <code>optional bool force_stop = 134762710;</code>
      * @return bool
@@ -66,7 +71,8 @@ class RegionInstanceGroupManagersStopInstancesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * If this flag is set to true, the Instance Group Manager will proceed to stop the instances, skipping initialization on them.
+     * If this flag is set to true, the Instance Group Manager will proceed to
+     * stop the instances, skipping initialization on them.
      *
      * Generated from protobuf field <code>optional bool force_stop = 134762710;</code>
      * @param bool $var
@@ -81,7 +87,8 @@ class RegionInstanceGroupManagersStopInstancesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * The URLs of one or more instances to stop. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to stop. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,7 +99,8 @@ class RegionInstanceGroupManagersStopInstancesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * The URLs of one or more instances to stop. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     * The URLs of one or more instances to stop. This can be a full URL or
+     * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

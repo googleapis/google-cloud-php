@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] The facilities Interconnects in this metro are present in.
+ * [Output Only] The facilities Interconnects in this metro are present
+ * in.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetrosFacilities</code>
  */
 class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The ID of this facility, as a numeric string like "5467". This is the third component of the location of Interconnects in this facility.
+     * Output only. [Output Only] The ID of this facility, as a numeric string like
+     * "5467". This is the third component of the location of Interconnects
+     * in this facility.
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      */
@@ -33,7 +36,9 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
      *     Optional. Data for populating the Message object.
      *
      *     @type string $facility
-     *           [Output Only] The ID of this facility, as a numeric string like "5467". This is the third component of the location of Interconnects in this facility.
+     *           Output only. [Output Only] The ID of this facility, as a numeric string like
+     *           "5467". This is the third component of the location of Interconnects
+     *           in this facility.
      *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilitiesZones>|\Google\Protobuf\Internal\RepeatedField $zones
      * }
      */
@@ -43,7 +48,9 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
     }
 
     /**
-     * [Output Only] The ID of this facility, as a numeric string like "5467". This is the third component of the location of Interconnects in this facility.
+     * Output only. [Output Only] The ID of this facility, as a numeric string like
+     * "5467". This is the third component of the location of Interconnects
+     * in this facility.
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      * @return string
@@ -64,7 +71,9 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
     }
 
     /**
-     * [Output Only] The ID of this facility, as a numeric string like "5467". This is the third component of the location of Interconnects in this facility.
+     * Output only. [Output Only] The ID of this facility, as a numeric string like
+     * "5467". This is the third component of the location of Interconnects
+     * in this facility.
      *
      * Generated from protobuf field <code>optional string facility = 501116579;</code>
      * @param string $var

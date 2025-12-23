@@ -53,7 +53,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity $entitlement_granularity
-     *           Applies the repricing configuration at the entitlement level.
+     *           Required. Applies the repricing configuration at the entitlement level.
      *           Note: If a
      *           [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
      *           using
@@ -94,7 +94,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies the repricing configuration at the entitlement level.
+     * Required. Applies the repricing configuration at the entitlement level.
      * Note: If a
      * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
      * using
@@ -108,7 +108,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      * and
      * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig].
      *
-     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.EntitlementGranularity entitlement_granularity = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.EntitlementGranularity entitlement_granularity = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity|null
      */
     public function getEntitlementGranularity()
@@ -122,7 +122,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Applies the repricing configuration at the entitlement level.
+     * Required. Applies the repricing configuration at the entitlement level.
      * Note: If a
      * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig]
      * using
@@ -136,7 +136,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      * and
      * [ChannelPartnerRepricingConfig][google.cloud.channel.v1.ChannelPartnerRepricingConfig].
      *
-     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.EntitlementGranularity entitlement_granularity = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.channel.v1.RepricingConfig.EntitlementGranularity entitlement_granularity = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity $var
      * @return $this
      */

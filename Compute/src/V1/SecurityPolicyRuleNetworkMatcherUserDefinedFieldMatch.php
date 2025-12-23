@@ -21,7 +21,9 @@ class SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch extends \Google\Prot
      */
     protected $name = null;
     /**
-     * Matching values of the field. Each element can be a 32-bit unsigned decimal or hexadecimal (starting with "0x") number (e.g. "64") or range (e.g. "0x400-0x7ff").
+     * Matching values of the field. Each element can be a 32-bit unsigned
+     * decimal or hexadecimal (starting with "0x") number (e.g. "64") or
+     * range (e.g.  "0x400-0x7ff").
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      */
@@ -36,7 +38,9 @@ class SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch extends \Google\Prot
      *     @type string $name
      *           Name of the user-defined field, as given in the definition.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
-     *           Matching values of the field. Each element can be a 32-bit unsigned decimal or hexadecimal (starting with "0x") number (e.g. "64") or range (e.g. "0x400-0x7ff").
+     *           Matching values of the field. Each element can be a 32-bit unsigned
+     *           decimal or hexadecimal (starting with "0x") number (e.g. "64") or
+     *           range (e.g.  "0x400-0x7ff").
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +85,9 @@ class SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch extends \Google\Prot
     }
 
     /**
-     * Matching values of the field. Each element can be a 32-bit unsigned decimal or hexadecimal (starting with "0x") number (e.g. "64") or range (e.g. "0x400-0x7ff").
+     * Matching values of the field. Each element can be a 32-bit unsigned
+     * decimal or hexadecimal (starting with "0x") number (e.g. "64") or
+     * range (e.g.  "0x400-0x7ff").
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,7 +98,9 @@ class SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch extends \Google\Prot
     }
 
     /**
-     * Matching values of the field. Each element can be a 32-bit unsigned decimal or hexadecimal (starting with "0x") number (e.g. "64") or range (e.g. "0x400-0x7ff").
+     * Matching values of the field. Each element can be a 32-bit unsigned
+     * decimal or hexadecimal (starting with "0x") number (e.g. "64") or
+     * range (e.g.  "0x400-0x7ff").
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

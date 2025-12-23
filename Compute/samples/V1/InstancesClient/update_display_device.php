@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\UpdateDisplayDeviceInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the Display config for a VM instance. You can only use this method on a stopped VM instance. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates the Display config for a VM instance. You can
+ * only use this method on a stopped VM instance. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

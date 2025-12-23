@@ -460,7 +460,8 @@ final class FirewallPoliciesClient
     }
 
     /**
-     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
      * The async variant is {@see FirewallPoliciesClient::getIamPolicyAsync()} .
      *
@@ -512,7 +513,8 @@ final class FirewallPoliciesClient
     }
 
     /**
-     * Creates a new policy in the specified project using the data included in the request.
+     * Creates a new policy in the specified project using the data included in
+     * the request.
      *
      * The async variant is {@see FirewallPoliciesClient::insertAsync()} .
      *
@@ -538,7 +540,8 @@ final class FirewallPoliciesClient
     }
 
     /**
-     * Lists all the policies that have been configured for the specified folder or organization.
+     * Lists all the policies that have been configured for the specified
+     * folder or organization.
      *
      * The async variant is {@see FirewallPoliciesClient::listAsync()} .
      *
@@ -724,7 +727,8 @@ final class FirewallPoliciesClient
     }
 
     /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
      * The async variant is {@see FirewallPoliciesClient::setIamPolicyAsync()} .
      *

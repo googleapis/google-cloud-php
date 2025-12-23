@@ -38,8 +38,18 @@ use Google\Apps\Chat\V1\Message;
  *
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
- * with the authorization scope:
- * - `https://www.googleapis.com/auth/chat.bot`
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.bot`: When using this
+ * authorization scope, this method returns details about a message the
+ * Chat app has access to, like direct messages and [slash
+ * commands](https://developers.google.com/workspace/chat/slash-commands)
+ * that invoke the Chat app.
+ * - `https://www.googleapis.com/auth/chat.app.messages.readonly`
+ * with [administrator
+ * approval](https://support.google.com/a?p=chat-app-auth) (available in
+ * [Developer Preview](https://developers.google.com/workspace/preview)).
+ * When using this authentication scope,
+ * this method returns details about a public message in a space.
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)

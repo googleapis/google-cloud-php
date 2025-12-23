@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AzureClusters.GetAzureClient` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GetAzureClientRequest</code>
  */
 class GetAzureClientRequest extends \Google\Protobuf\Internal\Message

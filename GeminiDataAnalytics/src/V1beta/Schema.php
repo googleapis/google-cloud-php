@@ -24,21 +24,23 @@ class Schema extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A textual description of the table's content and purpose.
      * For example: "Contains information about customer orders in our e-commerce
-     * store."
+     * store." Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
      * Optional. A list of alternative names or synonyms that can be used to refer
-     * to the table. For example: ["sales", "orders", "purchases"]
+     * to the table. For example: ["sales", "orders", "purchases"]. Currently only
+     * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $synonyms;
     /**
      * Optional. A list of tags or keywords associated with the table, used for
-     * categorization. For example: ["transaction", "revenue", "customer_data"]
+     * categorization. For example: ["transaction", "revenue", "customer_data"].
+     * Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -70,13 +72,15 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. A textual description of the table's content and purpose.
      *           For example: "Contains information about customer orders in our e-commerce
-     *           store."
+     *           store." Currently only used for BigQuery data sources.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
      *           Optional. A list of alternative names or synonyms that can be used to refer
-     *           to the table. For example: ["sales", "orders", "purchases"]
+     *           to the table. For example: ["sales", "orders", "purchases"]. Currently only
+     *           used for BigQuery data sources.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Optional. A list of tags or keywords associated with the table, used for
-     *           categorization. For example: ["transaction", "revenue", "customer_data"]
+     *           categorization. For example: ["transaction", "revenue", "customer_data"].
+     *           Currently only used for BigQuery data sources.
      *     @type string $display_name
      *           Optional. Table display_name (same as label in
      *           cloud/data_analytics/anarres/data/looker/proto/model_explore.proto), not
@@ -120,7 +124,7 @@ class Schema extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A textual description of the table's content and purpose.
      * For example: "Contains information about customer orders in our e-commerce
-     * store."
+     * store." Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -133,7 +137,7 @@ class Schema extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A textual description of the table's content and purpose.
      * For example: "Contains information about customer orders in our e-commerce
-     * store."
+     * store." Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -149,7 +153,8 @@ class Schema extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of alternative names or synonyms that can be used to refer
-     * to the table. For example: ["sales", "orders", "purchases"]
+     * to the table. For example: ["sales", "orders", "purchases"]. Currently only
+     * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -161,7 +166,8 @@ class Schema extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of alternative names or synonyms that can be used to refer
-     * to the table. For example: ["sales", "orders", "purchases"]
+     * to the table. For example: ["sales", "orders", "purchases"]. Currently only
+     * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -177,7 +183,8 @@ class Schema extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags or keywords associated with the table, used for
-     * categorization. For example: ["transaction", "revenue", "customer_data"]
+     * categorization. For example: ["transaction", "revenue", "customer_data"].
+     * Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -189,7 +196,8 @@ class Schema extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags or keywords associated with the table, used for
-     * categorization. For example: ["transaction", "revenue", "customer_data"]
+     * categorization. For example: ["transaction", "revenue", "customer_data"].
+     * Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

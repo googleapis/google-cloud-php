@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\ServiceAttachment;
 use UnexpectedValueException;
 
 /**
- * The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.
+ * The connection preference of service attachment. The value can be set
+ * to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC
+ * service attachment is one that always accepts the connection from consumer
+ * forwarding rules.
  *
  * Protobuf type <code>google.cloud.compute.v1.ServiceAttachment.ConnectionPreference</code>
  */

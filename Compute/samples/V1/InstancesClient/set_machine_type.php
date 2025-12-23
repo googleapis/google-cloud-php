@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\SetMachineTypeInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Changes the machine type for a stopped instance to the machine type specified in the request.
+ * Changes the machine type for a stopped instance to the machine
+ * type specified in the request.
  *
  * @param string $instance Name of the instance scoping this request.
  * @param string $project  Project ID for this request.

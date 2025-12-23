@@ -100,6 +100,12 @@ class NextHopType
      * Generated from protobuf enum <code>NEXT_HOP_NCC_HUB = 12;</code>
      */
     const NEXT_HOP_NCC_HUB = 12;
+    /**
+     * Next hop is Secure Web Proxy Gateway.
+     *
+     * Generated from protobuf enum <code>SECURE_WEB_PROXY_GATEWAY = 13;</code>
+     */
+    const SECURE_WEB_PROXY_GATEWAY = 13;
 
     private static $valueToName = [
         self::NEXT_HOP_TYPE_UNSPECIFIED => 'NEXT_HOP_TYPE_UNSPECIFIED',
@@ -115,6 +121,7 @@ class NextHopType
         self::NEXT_HOP_ILB => 'NEXT_HOP_ILB',
         self::NEXT_HOP_ROUTER_APPLIANCE => 'NEXT_HOP_ROUTER_APPLIANCE',
         self::NEXT_HOP_NCC_HUB => 'NEXT_HOP_NCC_HUB',
+        self::SECURE_WEB_PROXY_GATEWAY => 'SECURE_WEB_PROXY_GATEWAY',
     ];
 
     public static function name($value)

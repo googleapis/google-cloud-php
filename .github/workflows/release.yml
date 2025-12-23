@@ -41,7 +41,7 @@ jobs:
             go build -o splitsh-lite github.com/splitsh/lite
             mv splitsh-lite /usr/local/bin/splitsh-lite
         - name: Checkout google/cloud
-          uses: actions/checkout@v5
+          uses: actions/checkout@v6
           with:
             persist-credentials: false
             fetch-depth: 0
@@ -69,3 +69,10 @@ jobs:
               --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
               --packagist-token=${{ secrets.PACKAGIST_TOKEN }} \
               --packagist-safe-token=${{ secrets.PACKAGIST_SAFE_TOKEN }}
+        - name: Verify all releases made it to Packagist
+          uses: nick-fields/retry@v3
+          with:
+            command: |
+              ./dev/google-cloud release:verify
+            timeout_minutes: 1
+            max_attempts: 3

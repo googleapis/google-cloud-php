@@ -7,7 +7,50 @@ namespace Google\Cloud\Compute\V1\BackendService;
 use UnexpectedValueException;
 
 /**
- * The load balancing algorithm used within the scope of the locality. The possible values are: - ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default. - LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests. - RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests. - RANDOM: The load balancer selects a random healthy host. - ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer. - MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see Maglev: A Fast and Reliable Software Network Load Balancer. - WEIGHTED_ROUND_ROBIN: Per-endpoint Weighted Round Robin Load Balancing using weights computed from Backend reported Custom Metrics. If set, the Backend Service responses are expected to contain non-standard HTTP response header field Endpoint-Load-Metrics. The reported metrics to use for computing the weights are specified via the customMetrics field. This field is applicable to either: - A regional backend service with the service_protocol set to HTTP, HTTPS, HTTP2 or H2C, and load_balancing_scheme set to INTERNAL_MANAGED. - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or EXTERNAL_MANAGED. If sessionAffinity is not configured—that is, if session affinity remains at the default value of NONE—then the default value for localityLbPolicy is ROUND_ROBIN. If session affinity is set to a value other than NONE, then the default value for localityLbPolicy is MAGLEV. Only ROUND_ROBIN and RING_HASH are supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. localityLbPolicy cannot be specified with haPolicy.
+ * The load balancing algorithm used within the scope of the locality. The
+ * possible values are:
+ *    - ROUND_ROBIN: This is a simple policy in which each healthy
+ *    backend is selected in round robin order. This is the default.
+ *    - LEAST_REQUEST: An O(1) algorithm which
+ *    selects two random healthy hosts and picks the host which has fewer active
+ *    requests.
+ *    - RING_HASH: The ring/modulo hash load balancer implements
+ *    consistent hashing to backends. The algorithm has the property that the
+ *    addition/removal of a host from a set of N hosts only affects 1/N of the
+ *    requests.
+ *    - RANDOM: The load balancer selects a random healthy
+ *    host.
+ *    - ORIGINAL_DESTINATION: Backend host is selected
+ *    based on the client connection metadata, i.e., connections are opened to
+ *    the same address as the destination address of the incoming connection
+ *    before the connection was redirected to the load balancer.
+ *    - MAGLEV: used as a drop in replacement for the ring hash
+ *    load balancer. Maglev is not as stable as ring hash but has faster table
+ *    lookup build times and host selection times. For more information about
+ *    Maglev, see Maglev:
+ *    A Fast and Reliable Software Network Load Balancer.
+ *    - WEIGHTED_ROUND_ROBIN: Per-endpoint Weighted Round Robin
+ *    Load Balancing using weights computed from Backend reported Custom Metrics.
+ *    If set, the Backend Service responses are expected to contain non-standard
+ *    HTTP response header field Endpoint-Load-Metrics. The reported
+ *    metrics to use for computing the weights are specified via thecustomMetrics field.
+ *    This field is applicable to either:
+ *       - A regional backend service with the service_protocol set to HTTP,
+ *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
+ *       INTERNAL_MANAGED.
+ *       - A global backend service with the
+ *       load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
+ *       EXTERNAL_MANAGED.
+ *    If sessionAffinity is not configured—that is, if session
+ *    affinity remains at the default value of NONE—then the
+ *    default value for localityLbPolicy
+ *    is ROUND_ROBIN. If session affinity is set to a value other
+ *    than NONE,
+ *    then the default value for localityLbPolicy isMAGLEV.
+ *    Only ROUND_ROBIN and RING_HASH are supported
+ *    when the backend service is referenced by a URL map that is bound to
+ *    target gRPC proxy that has validateForProxyless field set to true.
+ *    localityLbPolicy cannot be specified with haPolicy.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendService.LocalityLbPolicy</code>
  */
@@ -24,19 +67,27 @@ class LocalityLbPolicy
      */
     const INVALID_LB_POLICY = 323318707;
     /**
-     * An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests.
+     * An O(1) algorithm which selects two random healthy hosts and
+     * picks the host which has fewer active requests.
      *
      * Generated from protobuf enum <code>LEAST_REQUEST = 46604921;</code>
      */
     const LEAST_REQUEST = 46604921;
     /**
-     * This algorithm implements consistent hashing to backends. Maglev can be used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see Maglev: A Fast and Reliable Software Network Load Balancer.
+     * This algorithm implements consistent hashing to backends. Maglev can be
+     * used as a drop in replacement for the ring hash load balancer. Maglev is
+     * not as stable as ring hash but has faster table lookup build times and
+     * host selection times. For more information about Maglev, seeMaglev:
+     * A Fast and Reliable Software Network Load Balancer.
      *
      * Generated from protobuf enum <code>MAGLEV = 119180266;</code>
      */
     const MAGLEV = 119180266;
     /**
-     * Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer.
+     * Backend host is selected based on the client connection metadata, i.e.,
+     * connections are opened to the same address as the destination address of
+     * the incoming connection before the connection was redirected to the load
+     * balancer.
      *
      * Generated from protobuf enum <code>ORIGINAL_DESTINATION = 166297216;</code>
      */
@@ -48,31 +99,52 @@ class LocalityLbPolicy
      */
     const RANDOM = 262527171;
     /**
-     * The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests.
+     * The ring/modulo hash load balancer implements consistent hashing to
+     * backends. The algorithm has the property that the addition/removal
+     * of a host from a set of N hosts only affects 1/N of the requests.
      *
      * Generated from protobuf enum <code>RING_HASH = 432795069;</code>
      */
     const RING_HASH = 432795069;
     /**
-     * This is a simple policy in which each healthy backend is selected in round robin order. This is the default.
+     * This is a simple policy in which each healthy backend is selected
+     * in round robin order. This is the default.
      *
      * Generated from protobuf enum <code>ROUND_ROBIN = 153895801;</code>
      */
     const ROUND_ROBIN = 153895801;
     /**
-     * Per-instance weighted Load Balancing via health check reported weights. In internal passthrough network load balancing, it is weighted rendezvous hashing. This option is only supported in internal passthrough network load balancing.
+     * Per-instance weighted Load Balancing via health check reported weights.
+     * In internal passthrough network load balancing, it is weighted
+     * rendezvous hashing.
+     * This option is only supported in internal passthrough network load
+     * balancing.
      *
      * Generated from protobuf enum <code>WEIGHTED_GCP_RENDEZVOUS = 82501640;</code>
      */
     const WEIGHTED_GCP_RENDEZVOUS = 82501640;
     /**
-     * Per-instance weighted Load Balancing via health check reported weights. If set, the Backend Service must configure a non legacy HTTP-based Health Check, and health check replies are expected to contain non-standard HTTP response header field X-Load-Balancing-Endpoint-Weight to specify the per-instance weights. If set, Load Balancing is weighted based on the per-instance weights reported in the last processed health check replies, as long as every instance either reported a valid weight or had UNAVAILABLE_WEIGHT. Otherwise, Load Balancing remains equal-weight. This option is only supported in Network Load Balancing.
+     * Per-instance weighted Load Balancing via health check reported weights.
+     * If set, the Backend Service must configure a non legacy HTTP-based Health
+     * Check, and health check replies are expected to contain non-standard HTTP
+     * response header field X-Load-Balancing-Endpoint-Weight to specify the
+     * per-instance weights.
+     * If set, Load Balancing is weighted based on the
+     * per-instance weights reported in the last processed health check replies,
+     * as long as every instance either reported a valid weight or had
+     * UNAVAILABLE_WEIGHT. Otherwise, Load Balancing remains equal-weight.
+     * This option is only supported in Network Load Balancing.
      *
      * Generated from protobuf enum <code>WEIGHTED_MAGLEV = 254930962;</code>
      */
     const WEIGHTED_MAGLEV = 254930962;
     /**
-     * Per-endpoint weighted round-robin Load Balancing using weights computed from Backend reported Custom Metrics. If set, the Backend Service responses are expected to contain non-standard HTTP response header field Endpoint-Load-Metrics. The reported metrics to use for computing the weights are specified via the customMetrics fields.
+     * Per-endpoint weighted round-robin Load Balancing using weights computed
+     * from Backend reported Custom Metrics. If set, the Backend Service
+     * responses are expected to contain non-standard HTTP response header field
+     * Endpoint-Load-Metrics. The reported metrics
+     * to use for computing the weights are specified via the
+     * customMetrics fields.
      *
      * Generated from protobuf enum <code>WEIGHTED_ROUND_ROBIN = 5584977;</code>
      */

@@ -23,7 +23,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
     /**
      * Required. registry_location, project_id, repository_name and image id forms
      * a unique image
-     * name:`projects/<project_id>/locations/<location>/repository/<repository_name>/dockerImages/<docker_image>`.
+     * name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      * For example,
      * "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
      * nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
@@ -88,6 +88,22 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
+    /**
+     * ArtifactType of this image, e.g. "application/vnd.example+type".
+     * If the `subject_digest` is set and no `artifact_type` is given, the
+     * `media_type` will be considered as the `artifact_type`. This field is
+     * returned as the `metadata.artifactType` field in the Version resource.
+     *
+     * Generated from protobuf field <code>string artifact_type = 9;</code>
+     */
+    protected $artifact_type = '';
+    /**
+     * Optional. For multi-arch images (manifest lists), this field contains the
+     * list of image manifests.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImageManifest image_manifests = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $image_manifests;
 
     /**
      * Constructor.
@@ -98,7 +114,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. registry_location, project_id, repository_name and image id forms
      *           a unique image
-     *           name:`projects/<project_id>/locations/<location>/repository/<repository_name>/dockerImages/<docker_image>`.
+     *           name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      *           For example,
      *           "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
      *           nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
@@ -131,6 +147,14 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *           be easily used with the JavaScript Date constructor.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the docker image was last updated.
+     *     @type string $artifact_type
+     *           ArtifactType of this image, e.g. "application/vnd.example+type".
+     *           If the `subject_digest` is set and no `artifact_type` is given, the
+     *           `media_type` will be considered as the `artifact_type`. This field is
+     *           returned as the `metadata.artifactType` field in the Version resource.
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1\ImageManifest>|\Google\Protobuf\Internal\RepeatedField $image_manifests
+     *           Optional. For multi-arch images (manifest lists), this field contains the
+     *           list of image manifests.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,7 +165,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
     /**
      * Required. registry_location, project_id, repository_name and image id forms
      * a unique image
-     * name:`projects/<project_id>/locations/<location>/repository/<repository_name>/dockerImages/<docker_image>`.
+     * name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      * For example,
      * "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
      * nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
@@ -161,7 +185,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
     /**
      * Required. registry_location, project_id, repository_name and image id forms
      * a unique image
-     * name:`projects/<project_id>/locations/<location>/repository/<repository_name>/dockerImages/<docker_image>`.
+     * name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      * For example,
      * "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
      * nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
@@ -412,6 +436,66 @@ class DockerImage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * ArtifactType of this image, e.g. "application/vnd.example+type".
+     * If the `subject_digest` is set and no `artifact_type` is given, the
+     * `media_type` will be considered as the `artifact_type`. This field is
+     * returned as the `metadata.artifactType` field in the Version resource.
+     *
+     * Generated from protobuf field <code>string artifact_type = 9;</code>
+     * @return string
+     */
+    public function getArtifactType()
+    {
+        return $this->artifact_type;
+    }
+
+    /**
+     * ArtifactType of this image, e.g. "application/vnd.example+type".
+     * If the `subject_digest` is set and no `artifact_type` is given, the
+     * `media_type` will be considered as the `artifact_type`. This field is
+     * returned as the `metadata.artifactType` field in the Version resource.
+     *
+     * Generated from protobuf field <code>string artifact_type = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArtifactType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->artifact_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. For multi-arch images (manifest lists), this field contains the
+     * list of image manifests.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImageManifest image_manifests = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getImageManifests()
+    {
+        return $this->image_manifests;
+    }
+
+    /**
+     * Optional. For multi-arch images (manifest lists), this field contains the
+     * list of image manifests.
+     *
+     * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImageManifest image_manifests = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\ArtifactRegistry\V1\ImageManifest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setImageManifests($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ArtifactRegistry\V1\ImageManifest::class);
+        $this->image_manifests = $arr;
 
         return $this;
     }

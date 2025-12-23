@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Anthos clusters on Azure encrypts your Kubernetes data at rest
  * in etcd using Azure Key Vault.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureDatabaseEncryption</code>
  */
 class AzureDatabaseEncryption extends \Google\Protobuf\Internal\Message

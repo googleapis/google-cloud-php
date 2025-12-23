@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Subsetting configuration for this BackendService. Currently this is applicable only for Internal TCP/UDP load balancing, Internal HTTP(S) load balancing and Traffic Director.
+ * Subsetting configuration for this BackendService.
+ * Currently this is applicable only for Internal TCP/UDP load balancing,
+ * Internal HTTP(S) load balancing and Traffic Director.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Subsetting</code>
  */

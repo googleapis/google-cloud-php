@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `AzureClusters.ListAzureClusters` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.ListAzureClustersResponse</code>
  */
 class ListAzureClustersResponse extends \Google\Protobuf\Internal\Message

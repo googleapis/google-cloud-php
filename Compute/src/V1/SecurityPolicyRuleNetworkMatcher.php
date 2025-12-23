@@ -9,26 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a match condition that incoming network traffic is evaluated against.
+ * Represents a match condition that incoming network traffic is evaluated
+ * against.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcher</code>
  */
 class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
+     * Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text
+     * format.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      */
     private $dest_ip_ranges;
     /**
-     * Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     * Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string dest_ports = 379902005;</code>
      */
     private $dest_ports;
     /**
-     * IPv4 protocol / IPv6 next header (after extension headers). Each element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g. "253-254"), or one of the following protocol names: "tcp", "udp", "icmp", "esp", "ah", "ipip", or "sctp".
+     * IPv4 protocol / IPv6 next header (after extension headers). Each
+     * element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g.
+     * "253-254"), or one of the following protocol names: "tcp", "udp",
+     * "icmp", "esp", "ah", "ipip", or "sctp".
      *
      * Generated from protobuf field <code>repeated string ip_protocols = 259213251;</code>
      */
@@ -46,19 +52,22 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      */
     private $src_ip_ranges;
     /**
-     * Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     * Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string src_ports = 445095415;</code>
      */
     private $src_ports;
     /**
-     * Two-letter ISO 3166-1 alpha-2 country code associated with the source IP address.
+     * Two-letter ISO 3166-1 alpha-2 country code associated with the source
+     * IP address.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
      */
     private $src_region_codes;
     /**
-     * User-defined fields. Each element names a defined field and lists the matching values for that field.
+     * User-defined fields. Each element names a defined field and lists the
+     * matching values for that field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch user_defined_fields = 28312739;</code>
      */
@@ -71,21 +80,29 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
-     *           Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
+     *           Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text
+     *           format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ports
-     *           Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     *           Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     *           unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_protocols
-     *           IPv4 protocol / IPv6 next header (after extension headers). Each element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g. "253-254"), or one of the following protocol names: "tcp", "udp", "icmp", "esp", "ah", "ipip", or "sctp".
+     *           IPv4 protocol / IPv6 next header (after extension headers). Each
+     *           element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g.
+     *           "253-254"), or one of the following protocol names: "tcp", "udp",
+     *           "icmp", "esp", "ah", "ipip", or "sctp".
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $src_asns
      *           BGP Autonomous System Number associated with the source IP address.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
      *           Source IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ports
-     *           Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     *           Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     *           unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_region_codes
-     *           Two-letter ISO 3166-1 alpha-2 country code associated with the source IP address.
+     *           Two-letter ISO 3166-1 alpha-2 country code associated with the source
+     *           IP address.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch>|\Google\Protobuf\Internal\RepeatedField $user_defined_fields
-     *           User-defined fields. Each element names a defined field and lists the matching values for that field.
+     *           User-defined fields. Each element names a defined field and lists the
+     *           matching values for that field.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +111,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
+     * Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text
+     * format.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -105,7 +123,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
+     * Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text
+     * format.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -120,7 +139,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     * Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string dest_ports = 379902005;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -131,7 +151,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     * Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string dest_ports = 379902005;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -146,7 +167,10 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IPv4 protocol / IPv6 next header (after extension headers). Each element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g. "253-254"), or one of the following protocol names: "tcp", "udp", "icmp", "esp", "ah", "ipip", or "sctp".
+     * IPv4 protocol / IPv6 next header (after extension headers). Each
+     * element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g.
+     * "253-254"), or one of the following protocol names: "tcp", "udp",
+     * "icmp", "esp", "ah", "ipip", or "sctp".
      *
      * Generated from protobuf field <code>repeated string ip_protocols = 259213251;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -157,7 +181,10 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IPv4 protocol / IPv6 next header (after extension headers). Each element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g. "253-254"), or one of the following protocol names: "tcp", "udp", "icmp", "esp", "ah", "ipip", or "sctp".
+     * IPv4 protocol / IPv6 next header (after extension headers). Each
+     * element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g.
+     * "253-254"), or one of the following protocol names: "tcp", "udp",
+     * "icmp", "esp", "ah", "ipip", or "sctp".
      *
      * Generated from protobuf field <code>repeated string ip_protocols = 259213251;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -224,7 +251,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     * Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string src_ports = 445095415;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -235,7 +263,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
+     * Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
+     * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string src_ports = 445095415;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -250,7 +279,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Two-letter ISO 3166-1 alpha-2 country code associated with the source IP address.
+     * Two-letter ISO 3166-1 alpha-2 country code associated with the source
+     * IP address.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -261,7 +291,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Two-letter ISO 3166-1 alpha-2 country code associated with the source IP address.
+     * Two-letter ISO 3166-1 alpha-2 country code associated with the source
+     * IP address.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -276,7 +307,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-defined fields. Each element names a defined field and lists the matching values for that field.
+     * User-defined fields. Each element names a defined field and lists the
+     * matching values for that field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch user_defined_fields = 28312739;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -287,7 +319,8 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-defined fields. Each element names a defined field and lists the matching values for that field.
+     * User-defined fields. Each element names a defined field and lists the
+     * matching values for that field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch user_defined_fields = 28312739;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch>|\Google\Protobuf\Internal\RepeatedField $var

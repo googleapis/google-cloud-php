@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specify bandwidth percentages [1-100] for various traffic classes in BandwidthPercentagePolicy. The sum of all percentages must equal 100. All traffic classes must have a percentage value specified.
+ * Specify bandwidth percentages [1-100] for various traffic classes in
+ * BandwidthPercentagePolicy. The sum of all percentages must equal 100.
+ * All traffic classes must have a percentage value specified.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage</code>
  */

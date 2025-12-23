@@ -7,7 +7,16 @@ namespace Google\Cloud\Compute\V1\AutoscalingPolicy;
 use UnexpectedValueException;
 
 /**
- * Defines the operating mode for this policy. The following modes are available: - OFF: Disables the autoscaler but maintains its configuration. - ONLY_SCALE_OUT: Restricts the autoscaler to add VM instances only. - ON: Enables all autoscaler activities according to its policy. For more information, see "Turning off or restricting an autoscaler"
+ * Defines the operating mode for this policy.
+ * The following modes are available:
+ *    - OFF: Disables the autoscaler but maintains its
+ *    configuration.
+ *    - ONLY_SCALE_OUT: Restricts the autoscaler to add
+ *    VM instances only.
+ *    - ON: Enables all autoscaler activities according to its
+ *    policy.
+ * For more information, see
+ * "Turning off or restricting an autoscaler"
  *
  * Protobuf type <code>google.cloud.compute.v1.AutoscalingPolicy.Mode</code>
  */
@@ -20,7 +29,9 @@ class Mode
      */
     const UNDEFINED_MODE = 0;
     /**
-     * Do not automatically scale the MIG in or out. The recommended_size field contains the size of MIG that would be set if the actuation mode was enabled.
+     * Do not automatically scale the MIG in or out.
+     * The recommended_size field contains the size of MIG that would be set if
+     * the actuation mode was enabled.
      *
      * Generated from protobuf enum <code>OFF = 78159;</code>
      */
@@ -32,13 +43,15 @@ class Mode
      */
     const ON = 2527;
     /**
-     * Automatically create VMs according to the policy, but do not scale the MIG in.
+     * Automatically create VMs according to the policy, but do not scale
+     * the MIG in.
      *
      * Generated from protobuf enum <code>ONLY_SCALE_OUT = 152713670;</code>
      */
     const ONLY_SCALE_OUT = 152713670;
     /**
-     * Automatically create VMs according to the policy, but do not scale the MIG in.
+     * Automatically create VMs according to the policy, but do not scale
+     * the MIG in.
      *
      * Generated from protobuf enum <code>ONLY_UP = 478095374;</code>
      */

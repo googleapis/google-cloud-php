@@ -23,6 +23,66 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.CustomTargetingKeyService' => [
+            'BatchActivateCustomTargetingKeys' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingKeys:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateCustomTargetingKeys' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingKeys:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateCustomTargetingKeys' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingKeys:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCustomTargetingKeys' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingKeys:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCustomTargetingKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingKeys',
+                'body' => 'custom_targeting_key',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomTargetingKey' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/customTargetingKeys/*}',
@@ -43,6 +103,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdateCustomTargetingKey' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{custom_targeting_key.name=networks/*/customTargetingKeys/*}',
+                'body' => 'custom_targeting_key',
+                'placeholders' => [
+                    'custom_targeting_key.name' => [
+                        'getters' => [
+                            'getCustomTargetingKey',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

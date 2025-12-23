@@ -61,6 +61,13 @@ class DataSourceReference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.backupdr.v1.DataSourceGcpResourceInfo data_source_gcp_resource_info = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $data_source_gcp_resource_info = null;
+    /**
+     * Output only. Total size of the storage used by all backup resources for the
+     * referenced datasource.
+     *
+     * Generated from protobuf field <code>optional int64 total_stored_bytes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_stored_bytes = null;
 
     /**
      * Constructor.
@@ -86,6 +93,9 @@ class DataSourceReference extends \Google\Protobuf\Internal\Message
      *           Output only. Information of backup configuration on the DataSource.
      *     @type \Google\Cloud\BackupDR\V1\DataSourceGcpResourceInfo $data_source_gcp_resource_info
      *           Output only. The GCP resource that the DataSource is associated with.
+     *     @type int|string $total_stored_bytes
+     *           Output only. Total size of the storage used by all backup resources for the
+     *           referenced datasource.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,6 +319,44 @@ class DataSourceReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\DataSourceGcpResourceInfo::class);
         $this->data_source_gcp_resource_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total size of the storage used by all backup resources for the
+     * referenced datasource.
+     *
+     * Generated from protobuf field <code>optional int64 total_stored_bytes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalStoredBytes()
+    {
+        return isset($this->total_stored_bytes) ? $this->total_stored_bytes : 0;
+    }
+
+    public function hasTotalStoredBytes()
+    {
+        return isset($this->total_stored_bytes);
+    }
+
+    public function clearTotalStoredBytes()
+    {
+        unset($this->total_stored_bytes);
+    }
+
+    /**
+     * Output only. Total size of the storage used by all backup resources for the
+     * referenced datasource.
+     *
+     * Generated from protobuf field <code>optional int64 total_stored_bytes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalStoredBytes($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_stored_bytes = $var;
 
         return $this;
     }

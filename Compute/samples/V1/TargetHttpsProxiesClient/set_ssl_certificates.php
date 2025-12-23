@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Replaces SslCertificates for TargetHttpsProxy.
  *
  * @param string $project          Project ID for this request.
- * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
+ * @param string $targetHttpsProxy Name of the TargetHttpsProxy resource to set an
+ *                                 SslCertificates resource for.
  */
 function set_ssl_certificates_sample(string $project, string $targetHttpsProxy): void
 {

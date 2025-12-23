@@ -302,7 +302,8 @@ final class InterconnectsClient
     }
 
     /**
-     * Returns the specified Interconnect. Get a list of available Interconnects by making a list() request.
+     * Returns the specified Interconnect. Get a list of available Interconnects
+     * by making a list() request.
      *
      * The async variant is {@see InterconnectsClient::getAsync()} .
      *
@@ -328,7 +329,16 @@ final class InterconnectsClient
     }
 
     /**
-     * Returns the interconnectDiagnostics for the specified Interconnect. In the event of a global outage, do not use this API to make decisions about where to redirect your network traffic. Unlike a VLAN attachment, which is regional, a Cloud Interconnect connection is a global resource. A global outage can prevent this API from functioning properly.
+     * Returns the interconnectDiagnostics for the specified
+     * Interconnect.
+     *
+     * In the event of a
+     * global outage, do not use this API to make decisions about where to
+     * redirect your network traffic.
+     *
+     * Unlike a VLAN attachment, which is regional, a Cloud Interconnect
+     * connection is a global resource. A global outage can prevent this
+     * API from functioning properly.
      *
      * The async variant is {@see InterconnectsClient::getDiagnosticsAsync()} .
      *
@@ -356,7 +366,8 @@ final class InterconnectsClient
     }
 
     /**
-     * Returns the interconnectMacsecConfig for the specified Interconnect.
+     * Returns the interconnectMacsecConfig for the specified
+     * Interconnect.
      *
      * The async variant is {@see InterconnectsClient::getMacsecConfigAsync()} .
      *
@@ -384,7 +395,8 @@ final class InterconnectsClient
     }
 
     /**
-     * Creates an Interconnect in the specified project using the data included in the request.
+     * Creates an Interconnect in the specified project using
+     * the data included in the request.
      *
      * The async variant is {@see InterconnectsClient::insertAsync()} .
      *
@@ -436,7 +448,10 @@ final class InterconnectsClient
     }
 
     /**
-     * Updates the specified Interconnect with the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+     * Updates the specified Interconnect with the data included in the request.
+     * This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
      *
      * The async variant is {@see InterconnectsClient::patchAsync()} .
      *
@@ -462,7 +477,9 @@ final class InterconnectsClient
     }
 
     /**
-     * Sets the labels on an Interconnect. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on an Interconnect. To learn more about labels,
+     * read the Labeling
+     * Resources documentation.
      *
      * The async variant is {@see InterconnectsClient::setLabelsAsync()} .
      *

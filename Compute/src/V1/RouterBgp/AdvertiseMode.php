@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\RouterBgp;
 use UnexpectedValueException;
 
 /**
- * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
+ * User-specified flag to indicate which mode to use for advertisement.
+ * The options are DEFAULT or CUSTOM.
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterBgp.AdvertiseMode</code>
  */

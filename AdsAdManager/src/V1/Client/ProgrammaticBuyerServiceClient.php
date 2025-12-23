@@ -79,9 +79,7 @@ final class ProgrammaticBuyerServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -96,7 +94,8 @@ final class ProgrammaticBuyerServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/programmatic_buyer_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/programmatic_buyer_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -111,9 +110,7 @@ final class ProgrammaticBuyerServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -277,8 +274,10 @@ final class ProgrammaticBuyerServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProgrammaticBuyer(GetProgrammaticBuyerRequest $request, array $callOptions = []): ProgrammaticBuyer
-    {
+    public function getProgrammaticBuyer(
+        GetProgrammaticBuyerRequest $request,
+        array $callOptions = []
+    ): ProgrammaticBuyer {
         return $this->startApiCall('GetProgrammaticBuyer', $request, $callOptions)->wait();
     }
 
@@ -304,8 +303,10 @@ final class ProgrammaticBuyerServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listProgrammaticBuyers(ListProgrammaticBuyersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listProgrammaticBuyers(
+        ListProgrammaticBuyersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListProgrammaticBuyers', $request, $callOptions);
     }
 }

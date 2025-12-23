@@ -35,11 +35,26 @@ class Price extends \Google\Protobuf\Internal\Message
      */
     protected $effective_price = null;
     /**
+     * The time period with respect to which base and effective prices are
+     * defined.
+     * Example: 1 month, 6 months, 1 year, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Period price_period = 6;</code>
+     */
+    protected $price_period = null;
+    /**
      * Link to external price list, such as link to Google Voice rate card.
      *
      * Generated from protobuf field <code>string external_price_uri = 4;</code>
      */
     protected $external_price_uri = '';
+    /**
+     * Breakdown of the discount into its components.
+     * This will be empty if there is no discount present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.channel.v1.DiscountComponent discount_components = 5;</code>
+     */
+    private $discount_components;
 
     /**
      * Constructor.
@@ -54,8 +69,15 @@ class Price extends \Google\Protobuf\Internal\Message
      *           For example, a 20% discount will be represent as 0.2.
      *     @type \Google\Type\Money $effective_price
      *           Effective Price after applying the discounts.
+     *     @type \Google\Cloud\Channel\V1\Period $price_period
+     *           The time period with respect to which base and effective prices are
+     *           defined.
+     *           Example: 1 month, 6 months, 1 year, etc.
      *     @type string $external_price_uri
      *           Link to external price list, such as link to Google Voice rate card.
+     *     @type array<\Google\Cloud\Channel\V1\DiscountComponent>|\Google\Protobuf\Internal\RepeatedField $discount_components
+     *           Breakdown of the discount into its components.
+     *           This will be empty if there is no discount present.
      * }
      */
     public function __construct($data = NULL) {
@@ -164,6 +186,46 @@ class Price extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The time period with respect to which base and effective prices are
+     * defined.
+     * Example: 1 month, 6 months, 1 year, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Period price_period = 6;</code>
+     * @return \Google\Cloud\Channel\V1\Period|null
+     */
+    public function getPricePeriod()
+    {
+        return $this->price_period;
+    }
+
+    public function hasPricePeriod()
+    {
+        return isset($this->price_period);
+    }
+
+    public function clearPricePeriod()
+    {
+        unset($this->price_period);
+    }
+
+    /**
+     * The time period with respect to which base and effective prices are
+     * defined.
+     * Example: 1 month, 6 months, 1 year, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Period price_period = 6;</code>
+     * @param \Google\Cloud\Channel\V1\Period $var
+     * @return $this
+     */
+    public function setPricePeriod($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\Period::class);
+        $this->price_period = $var;
+
+        return $this;
+    }
+
+    /**
      * Link to external price list, such as link to Google Voice rate card.
      *
      * Generated from protobuf field <code>string external_price_uri = 4;</code>
@@ -185,6 +247,34 @@ class Price extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->external_price_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Breakdown of the discount into its components.
+     * This will be empty if there is no discount present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.channel.v1.DiscountComponent discount_components = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDiscountComponents()
+    {
+        return $this->discount_components;
+    }
+
+    /**
+     * Breakdown of the discount into its components.
+     * This will be empty if there is no discount present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.channel.v1.DiscountComponent discount_components = 5;</code>
+     * @param array<\Google\Cloud\Channel\V1\DiscountComponent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDiscountComponents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Channel\V1\DiscountComponent::class);
+        $this->discount_components = $arr;
 
         return $this;
     }

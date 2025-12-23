@@ -24,9 +24,19 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchActivateCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\BatchCreateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchCreateCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\BatchUpdateCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\BatchUpdateCustomTargetingKeysResponse;
+use Google\Ads\AdManager\V1\CreateCustomTargetingKeyRequest;
 use Google\Ads\AdManager\V1\CustomTargetingKey;
 use Google\Ads\AdManager\V1\GetCustomTargetingKeyRequest;
 use Google\Ads\AdManager\V1\ListCustomTargetingKeysRequest;
+use Google\Ads\AdManager\V1\UpdateCustomTargetingKeyRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +61,14 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateCustomTargetingKeysResponse> batchActivateCustomTargetingKeysAsync(BatchActivateCustomTargetingKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateCustomTargetingKeysResponse> batchCreateCustomTargetingKeysAsync(BatchCreateCustomTargetingKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateCustomTargetingKeysResponse> batchDeactivateCustomTargetingKeysAsync(BatchDeactivateCustomTargetingKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateCustomTargetingKeysResponse> batchUpdateCustomTargetingKeysAsync(BatchUpdateCustomTargetingKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomTargetingKey> createCustomTargetingKeyAsync(CreateCustomTargetingKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CustomTargetingKey> getCustomTargetingKeyAsync(GetCustomTargetingKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCustomTargetingKeysAsync(ListCustomTargetingKeysRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomTargetingKey> updateCustomTargetingKeyAsync(UpdateCustomTargetingKeyRequest $request, array $optionalArgs = [])
  */
 final class CustomTargetingKeyServiceClient
 {
@@ -79,9 +95,7 @@ final class CustomTargetingKeyServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/admanager',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
 
     private static function getClientDefaults()
     {
@@ -96,7 +110,8 @@ final class CustomTargetingKeyServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/custom_targeting_key_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/custom_targeting_key_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -111,9 +126,7 @@ final class CustomTargetingKeyServiceClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -256,6 +269,153 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
+     * API to batch activate `CustomTargetingKey` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingKeyServiceClient::batchActivateCustomTargetingKeysAsync()}
+     * .
+     *
+     * @example samples/V1/CustomTargetingKeyServiceClient/batch_activate_custom_targeting_keys.php
+     *
+     * @param BatchActivateCustomTargetingKeysRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateCustomTargetingKeysResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateCustomTargetingKeys(
+        BatchActivateCustomTargetingKeysRequest $request,
+        array $callOptions = []
+    ): BatchActivateCustomTargetingKeysResponse {
+        return $this->startApiCall('BatchActivateCustomTargetingKeys', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch create `CustomTargetingKey` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingKeyServiceClient::batchCreateCustomTargetingKeysAsync()} .
+     *
+     * @example samples/V1/CustomTargetingKeyServiceClient/batch_create_custom_targeting_keys.php
+     *
+     * @param BatchCreateCustomTargetingKeysRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateCustomTargetingKeysResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateCustomTargetingKeys(
+        BatchCreateCustomTargetingKeysRequest $request,
+        array $callOptions = []
+    ): BatchCreateCustomTargetingKeysResponse {
+        return $this->startApiCall('BatchCreateCustomTargetingKeys', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `CustomTargetingKey` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingKeyServiceClient::batchDeactivateCustomTargetingKeysAsync()}
+     * .
+     *
+     * @example samples/V1/CustomTargetingKeyServiceClient/batch_deactivate_custom_targeting_keys.php
+     *
+     * @param BatchDeactivateCustomTargetingKeysRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateCustomTargetingKeysResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateCustomTargetingKeys(
+        BatchDeactivateCustomTargetingKeysRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateCustomTargetingKeysResponse {
+        return $this->startApiCall('BatchDeactivateCustomTargetingKeys', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch update `CustomTargetingKey` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingKeyServiceClient::batchUpdateCustomTargetingKeysAsync()} .
+     *
+     * @example samples/V1/CustomTargetingKeyServiceClient/batch_update_custom_targeting_keys.php
+     *
+     * @param BatchUpdateCustomTargetingKeysRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateCustomTargetingKeysResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateCustomTargetingKeys(
+        BatchUpdateCustomTargetingKeysRequest $request,
+        array $callOptions = []
+    ): BatchUpdateCustomTargetingKeysResponse {
+        return $this->startApiCall('BatchUpdateCustomTargetingKeys', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to create a `CustomTargetingKey` object.
+     *
+     * The async variant is
+     * {@see CustomTargetingKeyServiceClient::createCustomTargetingKeyAsync()} .
+     *
+     * @example samples/V1/CustomTargetingKeyServiceClient/create_custom_targeting_key.php
+     *
+     * @param CreateCustomTargetingKeyRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomTargetingKey
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCustomTargetingKey(
+        CreateCustomTargetingKeyRequest $request,
+        array $callOptions = []
+    ): CustomTargetingKey {
+        return $this->startApiCall('CreateCustomTargetingKey', $request, $callOptions)->wait();
+    }
+
+    /**
      * API to retrieve a `CustomTargetingKey` object.
      *
      * The async variant is
@@ -277,8 +437,10 @@ final class CustomTargetingKeyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCustomTargetingKey(GetCustomTargetingKeyRequest $request, array $callOptions = []): CustomTargetingKey
-    {
+    public function getCustomTargetingKey(
+        GetCustomTargetingKeyRequest $request,
+        array $callOptions = []
+    ): CustomTargetingKey {
         return $this->startApiCall('GetCustomTargetingKey', $request, $callOptions)->wait();
     }
 
@@ -304,8 +466,39 @@ final class CustomTargetingKeyServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCustomTargetingKeys(ListCustomTargetingKeysRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCustomTargetingKeys(
+        ListCustomTargetingKeysRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCustomTargetingKeys', $request, $callOptions);
+    }
+
+    /**
+     * API to update a `CustomTargetingKey` object.
+     *
+     * The async variant is
+     * {@see CustomTargetingKeyServiceClient::updateCustomTargetingKeyAsync()} .
+     *
+     * @example samples/V1/CustomTargetingKeyServiceClient/update_custom_targeting_key.php
+     *
+     * @param UpdateCustomTargetingKeyRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomTargetingKey
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCustomTargetingKey(
+        UpdateCustomTargetingKeyRequest $request,
+        array $callOptions = []
+    ): CustomTargetingKey {
+        return $this->startApiCall('UpdateCustomTargetingKey', $request, $callOptions)->wait();
     }
 }

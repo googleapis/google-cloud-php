@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\ForwardingRule;
 use Google\Cloud\Compute\V1\GetGlobalForwardingRuleRequest;
 
 /**
- * Returns the specified GlobalForwardingRule resource. Gets a list of available forwarding rules by making a list() request.
+ * Returns the specified GlobalForwardingRule resource. Gets a list of
+ * available forwarding rules by making a list() request.
  *
  * @param string $forwardingRule Name of the ForwardingRule resource to return.
  * @param string $project        Project ID for this request.

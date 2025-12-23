@@ -28,6 +28,12 @@ class ResponseParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string cluster_id = 2;</code>
      */
     protected $cluster_id = null;
+    /**
+     * The AFE ID for the AFE that is served this request.
+     *
+     * Generated from protobuf field <code>optional int64 afe_id = 3;</code>
+     */
+    protected $afe_id = null;
 
     /**
      * Constructor.
@@ -40,6 +46,8 @@ class ResponseParams extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_id
      *           Identifier for a cluster that represents set of
      *           bigtable resources.
+     *     @type int|string $afe_id
+     *           The AFE ID for the AFE that is served this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +125,42 @@ class ResponseParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The AFE ID for the AFE that is served this request.
+     *
+     * Generated from protobuf field <code>optional int64 afe_id = 3;</code>
+     * @return int|string
+     */
+    public function getAfeId()
+    {
+        return isset($this->afe_id) ? $this->afe_id : 0;
+    }
+
+    public function hasAfeId()
+    {
+        return isset($this->afe_id);
+    }
+
+    public function clearAfeId()
+    {
+        unset($this->afe_id);
+    }
+
+    /**
+     * The AFE ID for the AFE that is served this request.
+     *
+     * Generated from protobuf field <code>optional int64 afe_id = 3;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setAfeId($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->afe_id = $var;
 
         return $this;
     }

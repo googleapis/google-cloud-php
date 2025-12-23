@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * GetAzureOpenIdConfigRequest gets the OIDC discovery document for the
  * cluster. See the OpenID Connect Discovery 1.0 specification for details.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.GetAzureOpenIdConfigRequest</code>
  */
 class GetAzureOpenIdConfigRequest extends \Google\Protobuf\Internal\Message

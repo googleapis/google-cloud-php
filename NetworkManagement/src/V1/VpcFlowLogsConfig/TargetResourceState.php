@@ -7,8 +7,8 @@ namespace Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig;
 use UnexpectedValueException;
 
 /**
- * Optional states of the target resource that are used as part of the
- * diagnostic bit.
+ * Output only. Indicates whether the target resource exists, for diagnostic
+ * purposes.
  *
  * Protobuf type <code>google.cloud.networkmanagement.v1.VpcFlowLogsConfig.TargetResourceState</code>
  */

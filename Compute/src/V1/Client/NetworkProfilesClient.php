@@ -218,7 +218,8 @@ final class NetworkProfilesClient
     }
 
     /**
-     * Retrieves a list of network profiles available to the specified project.
+     * Retrieves a list of network profiles available to the specified
+     * project.
      *
      * The async variant is {@see NetworkProfilesClient::listAsync()} .
      *

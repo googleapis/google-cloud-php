@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] Which SLA this group is configured to support, and why this group does or does not meet that SLA's requirements.
+ * [Output Only] Which SLA this group is configured to support, and why this
+ * group does or does not meet that SLA's requirements.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLA</code>
  */

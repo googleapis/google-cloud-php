@@ -83,8 +83,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Default missing value interpretation for all columns in the
      * table. When a value is specified on an `AppendRowsRequest`, it is applied
-     * to all requests on the connection from that point forward, until a
-     * subsequent `AppendRowsRequest` sets it to a different value.
+     * to all requests from that point forward, until a subsequent
+     * `AppendRowsRequest` sets it to a different value.
      * `missing_value_interpretation` can override
      * `default_missing_value_interpretation`. For example, if you want to write
      * `NULL` instead of using default values for some columns, you can set
@@ -175,8 +175,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ProtoData $proto_rows
      *           Rows in proto format.
      *     @type \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData $arrow_rows
-     *           Rows in arrow format. This is an experimental feature only selected for
-     *           allowlisted customers.
+     *           Rows in arrow format.
      *     @type string $trace_id
      *           Id set by client to annotate its identity. Only initial request setting is
      *           respected.
@@ -198,8 +197,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $default_missing_value_interpretation
      *           Optional. Default missing value interpretation for all columns in the
      *           table. When a value is specified on an `AppendRowsRequest`, it is applied
-     *           to all requests on the connection from that point forward, until a
-     *           subsequent `AppendRowsRequest` sets it to a different value.
+     *           to all requests from that point forward, until a subsequent
+     *           `AppendRowsRequest` sets it to a different value.
      *           `missing_value_interpretation` can override
      *           `default_missing_value_interpretation`. For example, if you want to write
      *           `NULL` instead of using default values for some columns, you can set
@@ -381,8 +380,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rows in arrow format. This is an experimental feature only selected for
-     * allowlisted customers.
+     * Rows in arrow format.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.ArrowData arrow_rows = 5;</code>
      * @return \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData|null
@@ -398,8 +396,7 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rows in arrow format. This is an experimental feature only selected for
-     * allowlisted customers.
+     * Rows in arrow format.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AppendRowsRequest.ArrowData arrow_rows = 5;</code>
      * @param \Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest\ArrowData $var
@@ -496,8 +493,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Default missing value interpretation for all columns in the
      * table. When a value is specified on an `AppendRowsRequest`, it is applied
-     * to all requests on the connection from that point forward, until a
-     * subsequent `AppendRowsRequest` sets it to a different value.
+     * to all requests from that point forward, until a subsequent
+     * `AppendRowsRequest` sets it to a different value.
      * `missing_value_interpretation` can override
      * `default_missing_value_interpretation`. For example, if you want to write
      * `NULL` instead of using default values for some columns, you can set
@@ -515,8 +512,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Default missing value interpretation for all columns in the
      * table. When a value is specified on an `AppendRowsRequest`, it is applied
-     * to all requests on the connection from that point forward, until a
-     * subsequent `AppendRowsRequest` sets it to a different value.
+     * to all requests from that point forward, until a subsequent
+     * `AppendRowsRequest` sets it to a different value.
      * `missing_value_interpretation` can override
      * `default_missing_value_interpretation`. For example, if you want to write
      * `NULL` instead of using default values for some columns, you can set

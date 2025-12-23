@@ -30,7 +30,9 @@ class RegisterGcpRequest extends \Google\Protobuf\Internal\Message
      * updated to have the new "API notifications" preference. If the developer
      * email provided is not associated with any user we will just add it as a
      * contact. The email preference corresponding to that contact will have the
-     * new "API notifications" preference
+     * new "API notifications" preference. Make sure the email used is associated
+     * with a Google Account (Google Workspace account or Gmail account)
+     * and is not a service account as service accounts can't receive emails.
      *
      * Generated from protobuf field <code>string developer_email = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -53,7 +55,9 @@ class RegisterGcpRequest extends \Google\Protobuf\Internal\Message
      *           updated to have the new "API notifications" preference. If the developer
      *           email provided is not associated with any user we will just add it as a
      *           contact. The email preference corresponding to that contact will have the
-     *           new "API notifications" preference
+     *           new "API notifications" preference. Make sure the email used is associated
+     *           with a Google Account (Google Workspace account or Gmail account)
+     *           and is not a service account as service accounts can't receive emails.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,7 +102,9 @@ class RegisterGcpRequest extends \Google\Protobuf\Internal\Message
      * updated to have the new "API notifications" preference. If the developer
      * email provided is not associated with any user we will just add it as a
      * contact. The email preference corresponding to that contact will have the
-     * new "API notifications" preference
+     * new "API notifications" preference. Make sure the email used is associated
+     * with a Google Account (Google Workspace account or Gmail account)
+     * and is not a service account as service accounts can't receive emails.
      *
      * Generated from protobuf field <code>string developer_email = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -115,7 +121,9 @@ class RegisterGcpRequest extends \Google\Protobuf\Internal\Message
      * updated to have the new "API notifications" preference. If the developer
      * email provided is not associated with any user we will just add it as a
      * contact. The email preference corresponding to that contact will have the
-     * new "API notifications" preference
+     * new "API notifications" preference. Make sure the email used is associated
+     * with a Google Account (Google Workspace account or Gmail account)
+     * and is not a service account as service accounts can't receive emails.
      *
      * Generated from protobuf field <code>string developer_email = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

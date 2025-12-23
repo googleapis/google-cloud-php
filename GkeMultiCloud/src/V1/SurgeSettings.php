@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * SurgeSettings contains the parameters for Surge update.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.SurgeSettings</code>
  */
 class SurgeSettings extends \Google\Protobuf\Internal\Message

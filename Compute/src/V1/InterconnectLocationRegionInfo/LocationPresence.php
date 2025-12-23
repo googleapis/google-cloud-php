@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectLocationRegionInfo;
 use UnexpectedValueException;
 
 /**
- * Identifies the network presence of this location.
+ * Output only. Identifies the network presence of this location.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence</code>
  */
@@ -20,25 +20,29 @@ class LocationPresence
      */
     const UNDEFINED_LOCATION_PRESENCE = 0;
     /**
-     * This region is not in any common network presence with this InterconnectLocation.
+     * This region is not in any common network presence with this
+     * InterconnectLocation.
      *
      * Generated from protobuf enum <code>GLOBAL = 494663587;</code>
      */
     const PBGLOBAL = 494663587;
     /**
-     * This region shares the same regional network presence as this InterconnectLocation.
+     * This region shares the same regional network presence as this
+     * InterconnectLocation.
      *
      * Generated from protobuf enum <code>LOCAL_REGION = 403535464;</code>
      */
     const LOCAL_REGION = 403535464;
     /**
-     * [Deprecated] This region is not in any common network presence with this InterconnectLocation.
+     * [Deprecated] This region is not in any common network presence with
+     * this InterconnectLocation.
      *
      * Generated from protobuf enum <code>LP_GLOBAL = 429584062;</code>
      */
     const LP_GLOBAL = 429584062;
     /**
-     * [Deprecated] This region shares the same regional network presence as this InterconnectLocation.
+     * [Deprecated] This region shares the same regional network presence as
+     * this InterconnectLocation.
      *
      * Generated from protobuf enum <code>LP_LOCAL_REGION = 488598851;</code>
      */

@@ -7,8 +7,9 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\TestingOptions;
 use UnexpectedValueException;
 
 /**
- * Enum that represents the challenge option for challenge-based (CHECKBOX,
- * INVISIBLE) testing keys.
+ * Enum that represents the challenge option for challenge-based (for example,
+ * CHECKBOX and INVISIBLE) testing keys.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.TestingOptions.TestingChallenge</code>
  */

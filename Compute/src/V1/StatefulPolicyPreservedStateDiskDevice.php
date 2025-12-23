@@ -15,7 +15,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\Message
 {
     /**
-     * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * These stateful disks will never be deleted during autohealing,
+     * update or VM instance recreate operations.
+     * This flag is used to configure if the disk should be deleted after it
+     * is no longer used by the group, e.g. when the given instance or
+     * the whole group is deleted. Note: disks attached inREAD_ONLY mode cannot be auto-deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
@@ -29,7 +33,11 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type string $auto_delete
-     *           These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     *           These stateful disks will never be deleted during autohealing,
+     *           update or VM instance recreate operations.
+     *           This flag is used to configure if the disk should be deleted after it
+     *           is no longer used by the group, e.g. when the given instance or
+     *           the whole group is deleted. Note: disks attached inREAD_ONLY mode cannot be auto-deleted.
      *           Check the AutoDelete enum for the list of possible values.
      * }
      */
@@ -39,7 +47,11 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * These stateful disks will never be deleted during autohealing,
+     * update or VM instance recreate operations.
+     * This flag is used to configure if the disk should be deleted after it
+     * is no longer used by the group, e.g. when the given instance or
+     * the whole group is deleted. Note: disks attached inREAD_ONLY mode cannot be auto-deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
@@ -61,7 +73,11 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * These stateful disks will never be deleted during autohealing,
+     * update or VM instance recreate operations.
+     * This flag is used to configure if the disk should be deleted after it
+     * is no longer used by the group, e.g. when the given instance or
+     * the whole group is deleted. Note: disks attached inREAD_ONLY mode cannot be auto-deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>

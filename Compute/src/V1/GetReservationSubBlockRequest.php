@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *
      * Generated from protobuf field <code>string parent_name = 478151936 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -28,11 +29,19 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_sub_block = 22750491 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $reservation_sub_block = '';
+    /**
+     * View of the subBlock.
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     */
+    protected $view = null;
     /**
      * Name of the zone for this request. Zone name should conform to RFC1035.
      *
@@ -43,8 +52,10 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $project             Project ID for this request.
      * @param string $zone                Name of the zone for this request. Zone name should conform to RFC1035.
-     * @param string $parentName          The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
-     * @param string $reservationSubBlock The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * @param string $parentName          The name of the parent reservation and parent block. In the format of
+     *                                    reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * @param string $reservationSubBlock The name of the reservation subBlock.
+     *                                    Name should conform to RFC1035 or be a resource ID.
      *
      * @return \Google\Cloud\Compute\V1\GetReservationSubBlockRequest
      *
@@ -66,11 +77,16 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent_name
-     *           The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     *           The name of the parent reservation and parent block. In the format of
+     *           reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *     @type string $project
      *           Project ID for this request.
      *     @type string $reservation_sub_block
-     *           The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     *           The name of the reservation subBlock.
+     *           Name should conform to RFC1035 or be a resource ID.
+     *     @type string $view
+     *           View of the subBlock.
+     *           Check the View enum for the list of possible values.
      *     @type string $zone
      *           Name of the zone for this request. Zone name should conform to RFC1035.
      * }
@@ -81,7 +97,8 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *
      * Generated from protobuf field <code>string parent_name = 478151936 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -92,7 +109,8 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+     * The name of the parent reservation and parent block. In the format of
+     * reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
      *
      * Generated from protobuf field <code>string parent_name = 478151936 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -133,7 +151,8 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_sub_block = 22750491 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -144,7 +163,8 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+     * The name of the reservation subBlock.
+     * Name should conform to RFC1035 or be a resource ID.
      *
      * Generated from protobuf field <code>string reservation_sub_block = 22750491 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -154,6 +174,44 @@ class GetReservationSubBlockRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->reservation_sub_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * View of the subBlock.
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @return string
+     */
+    public function getView()
+    {
+        return isset($this->view) ? $this->view : '';
+    }
+
+    public function hasView()
+    {
+        return isset($this->view);
+    }
+
+    public function clearView()
+    {
+        unset($this->view);
+    }
+
+    /**
+     * View of the subBlock.
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->view = $var;
 
         return $this;
     }

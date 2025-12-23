@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusA
 use UnexpectedValueException;
 
 /**
- * Whether this Attachment is participating in the redundant configuration. This will be ACTIVE if and only if the status below is CONNECTION_UP. Any INACTIVE Attachments are excluded from the analysis that generates operational.availabilitySLA.
+ * Output only. Whether this Attachment is participating in the redundant configuration.
+ * This will be ACTIVE if and only if the status below is CONNECTION_UP.
+ * Any INACTIVE Attachments are excluded from the analysis that generates
+ * operational.availabilitySLA.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectAttachmentGroupsOperationalStatusAttachmentStatus.IsActive</code>
  */

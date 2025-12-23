@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\NetworkProfileNetworkFeatures;
 use UnexpectedValueException;
 
 /**
- * Specifies whether alias IP ranges (and secondary address ranges) are allowed.
+ * Specifies whether alias IP ranges (and secondary address ranges) are
+ * allowed.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkProfileNetworkFeatures.AllowAliasIpRanges</code>
  */

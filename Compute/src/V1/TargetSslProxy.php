@@ -9,50 +9,69 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target SSL Proxy resource. A target SSL proxy is a component of a Proxy Network Load Balancer. The forwarding rule references the target SSL proxy, and the target proxy then references a backend service. For more information, read Proxy Network Load Balancer overview.
+ * Represents a Target SSL Proxy resource.
+ * A target SSL proxy is a component of a Proxy Network Load Balancer.
+ * The forwarding rule references the target SSL proxy, and the target proxy
+ * then references a backend service. For more information, readProxy Network
+ * Load Balancer overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetSslProxy</code>
  */
 class TargetSslProxy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
+     * URL of a certificate map that identifies a certificate map associated with
+     * the given target proxy.
+     * This field can only be set for global target proxies.
+     * If set, sslCertificates will be ignored.
+     *  Accepted format is//certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificateMaps/{resourceName}.
      *
      * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
      */
     protected $certificate_map = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default
+     * is NONE.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
@@ -71,13 +90,19 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      */
     protected $service = null;
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
+     * URLs to SslCertificate resources that are used to
+     * authenticate connections to Backends. At least one SSL certificate
+     * must be specified. Currently, you may specify up to 15 SSL certificates.
+     * sslCertificates do not apply when the load balancing scheme is set to
+     * INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
     private $ssl_certificates;
     /**
-     * URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
+     * URL of SslPolicy resource that will be associated with the TargetSslProxy
+     * resource. If not set, the TargetSslProxy resource will not have any
+     * SSL policy configured.
      *
      * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      */
@@ -90,28 +115,49 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $certificate_map
-     *           URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
+     *           URL of a certificate map that identifies a certificate map associated with
+     *           the given target proxy.
+     *           This field can only be set for global target proxies.
+     *           If set, sslCertificates will be ignored.
+     *            Accepted format is//certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificateMaps/{resourceName}.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           Output only. [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type string $proxy_header
-     *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     *           Specifies the type of proxy header to append before sending data to the
+     *           backend, either NONE or PROXY_V1. The default
+     *           is NONE.
      *           Check the ProxyHeader enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $service
      *           URL to the BackendService resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
-     *           URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
+     *           URLs to SslCertificate resources that are used to
+     *           authenticate connections to Backends. At least one SSL certificate
+     *           must be specified. Currently, you may specify up to 15 SSL certificates.
+     *           sslCertificates do not apply when the load balancing scheme is set to
+     *           INTERNAL_SELF_MANAGED.
      *     @type string $ssl_policy
-     *           URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
+     *           URL of SslPolicy resource that will be associated with the TargetSslProxy
+     *           resource. If not set, the TargetSslProxy resource will not have any
+     *           SSL policy configured.
      * }
      */
     public function __construct($data = NULL) {
@@ -120,7 +166,11 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
+     * URL of a certificate map that identifies a certificate map associated with
+     * the given target proxy.
+     * This field can only be set for global target proxies.
+     * If set, sslCertificates will be ignored.
+     *  Accepted format is//certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificateMaps/{resourceName}.
      *
      * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
      * @return string
@@ -141,7 +191,11 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored. Accepted format is //certificatemanager.googleapis.com/projects/{project }/locations/{location}/certificateMaps/{resourceName}.
+     * URL of a certificate map that identifies a certificate map associated with
+     * the given target proxy.
+     * This field can only be set for global target proxies.
+     * If set, sslCertificates will be ignored.
+     *  Accepted format is//certificatemanager.googleapis.com/projects/{project}/locations/{location}/certificateMaps/{resourceName}.
      *
      * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
      * @param string $var
@@ -156,7 +210,8 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -177,7 +232,8 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -192,7 +248,8 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -213,7 +270,8 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -228,7 +286,8 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -249,7 +308,8 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -264,7 +324,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -285,7 +345,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#targetSslProxy for target SSL proxies.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -300,7 +360,13 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -321,7 +387,13 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -336,7 +408,9 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default
+     * is NONE.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
@@ -358,7 +432,9 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Specifies the type of proxy header to append before sending data to the
+     * backend, either NONE or PROXY_V1. The default
+     * is NONE.
      * Check the ProxyHeader enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
@@ -446,7 +522,11 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
+     * URLs to SslCertificate resources that are used to
+     * authenticate connections to Backends. At least one SSL certificate
+     * must be specified. Currently, you may specify up to 15 SSL certificates.
+     * sslCertificates do not apply when the load balancing scheme is set to
+     * INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -457,7 +537,11 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
+     * URLs to SslCertificate resources that are used to
+     * authenticate connections to Backends. At least one SSL certificate
+     * must be specified. Currently, you may specify up to 15 SSL certificates.
+     * sslCertificates do not apply when the load balancing scheme is set to
+     * INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -472,7 +556,9 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
+     * URL of SslPolicy resource that will be associated with the TargetSslProxy
+     * resource. If not set, the TargetSslProxy resource will not have any
+     * SSL policy configured.
      *
      * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      * @return string
@@ -493,7 +579,9 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
+     * URL of SslPolicy resource that will be associated with the TargetSslProxy
+     * resource. If not set, the TargetSslProxy resource will not have any
+     * SSL policy configured.
      *
      * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      * @param string $var

@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\Instance;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED. For more information about the status of the instance, see Instance life cycle.
+ * Output only. [Output Only] The status of the instance. One of the
+ * following values: PROVISIONING, STAGING,RUNNING, STOPPING, SUSPENDING,SUSPENDED, REPAIRING, andTERMINATED. For more information about the status of the
+ * instance, see
+ * Instance life cycle.
  *
  * Protobuf type <code>google.cloud.compute.v1.Instance.Status</code>
  */
@@ -20,13 +23,15 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * The instance is halted and we are performing tear down tasks like network deprogramming, releasing quota, IP, tearing down disks etc.
+     * The instance is halted and we are performing tear down tasks like network
+     * deprogramming, releasing quota, IP, tearing down disks etc.
      *
      * Generated from protobuf enum <code>DEPROVISIONING = 428935662;</code>
      */
     const DEPROVISIONING = 428935662;
     /**
-     * For Flex Start provisioning instance is waiting for available capacity from Dynamic Workload Scheduler (DWS).
+     * For Flex Start provisioning instance is waiting for available capacity
+     * from Dynamic Workload Scheduler (DWS).
      *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */
@@ -50,7 +55,8 @@ class Status
      */
     const RUNNING = 121282975;
     /**
-     * All required resources have been allocated and the instance is being started.
+     * All required resources have been allocated and the instance
+     * is being started.
      *
      * Generated from protobuf enum <code>STAGING = 431072283;</code>
      */
@@ -80,7 +86,8 @@ class Status
      */
     const SUSPENDING = 514206246;
     /**
-     * The instance has stopped (either by explicit action or underlying failure).
+     * The instance has stopped (either by explicit action or underlying
+     * failure).
      *
      * Generated from protobuf enum <code>TERMINATED = 250018339;</code>
      */

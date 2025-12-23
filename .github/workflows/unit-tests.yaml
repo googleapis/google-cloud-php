@@ -24,7 +24,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Setup cache environment
       id: extcache
       uses: shivammathur/cache-extensions@v1
@@ -33,7 +33,7 @@ jobs:
         extensions: sodium,${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
     - name: Cache extensions
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{ steps.extcache.outputs.dir }}
         key: ${{ steps.extcache.outputs.key }}
@@ -49,17 +49,7 @@ jobs:
         timeout_minutes: 10
         max_attempts: 3
         command: composer --no-interaction --no-ansi --no-progress update
-    - if: ${{ matrix.platform == 'windows-latest' }}
-      name: Run Unit Test Suite (Windows)
-      run: |
-        vendor/bin/phpunit -c phpunit.xml.dist
-        if ( "$?" -ne "0" )
-        {
-          echo "*** RETRYING FLAKEY PHPUNIT ON WINDOWS ***"
-          vendor/bin/phpunit -c phpunit.xml.dist
-        }
-    - if: ${{ matrix.platform != 'windows-latest' }}
-      name: Run Unit Test Suite
+    - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
       run: |
         vendor/bin/phpunit -c phpunit.xml.dist
     - if: ${{ matrix.platform != 'windows-latest' }}
@@ -71,7 +61,7 @@ jobs:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -84,7 +74,7 @@ jobs:
     name: Package Tests (Lowest Dependencies)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -99,7 +89,7 @@ jobs:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -108,3 +98,6 @@ jobs:
       run: composer  --no-interaction --no-ansi --no-progress update -d dev
     - name: Run Dev Unit Test Suite
       run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist
+    - name: Run Dev Snippet Test Suite
+      run: dev/vendor/bin/phpunit -c dev/phpunit-snippets.xml.dist
+

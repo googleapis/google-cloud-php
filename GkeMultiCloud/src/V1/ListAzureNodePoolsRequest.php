@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `AzureClusters.ListAzureNodePools` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.ListAzureNodePoolsRequest</code>
  */
 class ListAzureNodePoolsRequest extends \Google\Protobuf\Internal\Message

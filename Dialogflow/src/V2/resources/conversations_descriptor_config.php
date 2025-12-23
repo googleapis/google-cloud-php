@@ -242,6 +242,7 @@ return [
                 'projectLocationDataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'projectLocationKnowledgeBase' => 'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}',
                 'projectLocationKnowledgeBaseDocument' => 'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}',
+                'tool' => 'projects/{project}/locations/{location}/tools/{tool}',
             ],
         ],
     ],

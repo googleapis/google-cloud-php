@@ -61,6 +61,24 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      */
     protected $enable_query_suggestion_only = false;
     /**
+     * Optional. Enable returning detailed reasons for suggestion results.
+     * For example, with this field disabled, Knowledge Search feature returns
+     * NotFound error when no answer is found for the input query. Enabling this
+     * field will change the behavior to return an OK response with
+     * detailed information indicating the lack of results.
+     * Supported features: KNOWLEDGE_SEARCH, KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool enable_response_debug_info = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_response_debug_info = false;
+    /**
+     * Optional. Settings for Responsible AI checks.
+     * Supported features:  KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.RaiSettings rai_settings = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $rai_settings = null;
+    /**
      * Settings of suggestion trigger.
      * Currently, only ARTICLE_SUGGESTION and FAQ will use this field.
      *
@@ -113,6 +131,16 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_query_suggestion_only
      *           Optional. Enable query suggestion only.
      *           Supported features: KNOWLEDGE_ASSIST
+     *     @type bool $enable_response_debug_info
+     *           Optional. Enable returning detailed reasons for suggestion results.
+     *           For example, with this field disabled, Knowledge Search feature returns
+     *           NotFound error when no answer is found for the input query. Enabling this
+     *           field will change the behavior to return an OK response with
+     *           detailed information indicating the lack of results.
+     *           Supported features: KNOWLEDGE_SEARCH, KNOWLEDGE_ASSIST
+     *     @type \Google\Cloud\Dialogflow\V2\RaiSettings $rai_settings
+     *           Optional. Settings for Responsible AI checks.
+     *           Supported features:  KNOWLEDGE_ASSIST
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionTriggerSettings $suggestion_trigger_settings
      *           Settings of suggestion trigger.
      *           Currently, only ARTICLE_SUGGESTION and FAQ will use this field.
@@ -309,6 +337,80 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_query_suggestion_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enable returning detailed reasons for suggestion results.
+     * For example, with this field disabled, Knowledge Search feature returns
+     * NotFound error when no answer is found for the input query. Enabling this
+     * field will change the behavior to return an OK response with
+     * detailed information indicating the lack of results.
+     * Supported features: KNOWLEDGE_SEARCH, KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool enable_response_debug_info = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableResponseDebugInfo()
+    {
+        return $this->enable_response_debug_info;
+    }
+
+    /**
+     * Optional. Enable returning detailed reasons for suggestion results.
+     * For example, with this field disabled, Knowledge Search feature returns
+     * NotFound error when no answer is found for the input query. Enabling this
+     * field will change the behavior to return an OK response with
+     * detailed information indicating the lack of results.
+     * Supported features: KNOWLEDGE_SEARCH, KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool enable_response_debug_info = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableResponseDebugInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_response_debug_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for Responsible AI checks.
+     * Supported features:  KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.RaiSettings rai_settings = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\RaiSettings|null
+     */
+    public function getRaiSettings()
+    {
+        return $this->rai_settings;
+    }
+
+    public function hasRaiSettings()
+    {
+        return isset($this->rai_settings);
+    }
+
+    public function clearRaiSettings()
+    {
+        unset($this->rai_settings);
+    }
+
+    /**
+     * Optional. Settings for Responsible AI checks.
+     * Supported features:  KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.RaiSettings rai_settings = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\RaiSettings $var
+     * @return $this
+     */
+    public function setRaiSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\RaiSettings::class);
+        $this->rai_settings = $var;
 
         return $this;
     }

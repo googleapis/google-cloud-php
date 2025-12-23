@@ -49,6 +49,8 @@ use Google\Cloud\ArtifactRegistry\V1\DeleteRuleRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteTagRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeleteVersionRequest;
 use Google\Cloud\ArtifactRegistry\V1\DockerImage;
+use Google\Cloud\ArtifactRegistry\V1\ExportArtifactRequest;
+use Google\Cloud\ArtifactRegistry\V1\ExportArtifactResponse;
 use Google\Cloud\ArtifactRegistry\V1\File;
 use Google\Cloud\ArtifactRegistry\V1\GetAttachmentRequest;
 use Google\Cloud\ArtifactRegistry\V1\GetDockerImageRequest;
@@ -144,6 +146,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> deleteRuleAsync(DeleteRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteTagAsync(DeleteTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteVersionAsync(DeleteVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportArtifactAsync(ExportArtifactRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DockerImage> getDockerImageAsync(GetDockerImageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<File> getFileAsync(GetFileRequest $request, array $optionalArgs = [])
@@ -294,8 +297,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted attachment resource.
      */
-    public static function attachmentName(string $project, string $location, string $repository, string $attachment): string
-    {
+    public static function attachmentName(
+        string $project,
+        string $location,
+        string $repository,
+        string $attachment
+    ): string {
         return self::getPathTemplate('attachment')->render([
             'project' => $project,
             'location' => $location,
@@ -315,8 +322,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted docker_image resource.
      */
-    public static function dockerImageName(string $project, string $location, string $repository, string $dockerImage): string
-    {
+    public static function dockerImageName(
+        string $project,
+        string $location,
+        string $repository,
+        string $dockerImage
+    ): string {
         return self::getPathTemplate('dockerImage')->render([
             'project' => $project,
             'location' => $location,
@@ -374,8 +385,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted maven_artifact resource.
      */
-    public static function mavenArtifactName(string $project, string $location, string $repository, string $mavenArtifact): string
-    {
+    public static function mavenArtifactName(
+        string $project,
+        string $location,
+        string $repository,
+        string $mavenArtifact
+    ): string {
         return self::getPathTemplate('mavenArtifact')->render([
             'project' => $project,
             'location' => $location,
@@ -395,8 +410,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted npm_package resource.
      */
-    public static function npmPackageName(string $project, string $location, string $repository, string $npmPackage): string
-    {
+    public static function npmPackageName(
+        string $project,
+        string $location,
+        string $repository,
+        string $npmPackage
+    ): string {
         return self::getPathTemplate('npmPackage')->render([
             'project' => $project,
             'location' => $location,
@@ -452,8 +471,12 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted python_package resource.
      */
-    public static function pythonPackageName(string $project, string $location, string $repository, string $pythonPackage): string
-    {
+    public static function pythonPackageName(
+        string $project,
+        string $location,
+        string $repository,
+        string $pythonPackage
+    ): string {
         return self::getPathTemplate('pythonPackage')->render([
             'project' => $project,
             'location' => $location,
@@ -533,8 +556,13 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted tag resource.
      */
-    public static function tagName(string $project, string $location, string $repository, string $package, string $tag): string
-    {
+    public static function tagName(
+        string $project,
+        string $location,
+        string $repository,
+        string $package,
+        string $tag
+    ): string {
         return self::getPathTemplate('tag')->render([
             'project' => $project,
             'location' => $location,
@@ -556,8 +584,13 @@ final class ArtifactRegistryClient
      *
      * @return string The formatted version resource.
      */
-    public static function versionName(string $project, string $location, string $repository, string $package, string $version): string
-    {
+    public static function versionName(
+        string $project,
+        string $location,
+        string $repository,
+        string $package,
+        string $version
+    ): string {
         return self::getPathTemplate('version')->render([
             'project' => $project,
             'location' => $location,
@@ -1025,6 +1058,32 @@ final class ArtifactRegistryClient
     public function deleteVersion(DeleteVersionRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Exports an artifact to a Cloud Storage bucket.
+     *
+     * The async variant is {@see ArtifactRegistryClient::exportArtifactAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/export_artifact.php
+     *
+     * @param ExportArtifactRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ExportArtifactResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportArtifact(ExportArtifactRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportArtifact', $request, $callOptions)->wait();
     }
 
     /**
@@ -1782,8 +1841,10 @@ final class ArtifactRegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1861,8 +1922,10 @@ final class ArtifactRegistryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateProjectSettings(UpdateProjectSettingsRequest $request, array $callOptions = []): ProjectSettings
-    {
+    public function updateProjectSettings(
+        UpdateProjectSettingsRequest $request,
+        array $callOptions = []
+    ): ProjectSettings {
         return $this->startApiCall('UpdateProjectSettings', $request, $callOptions)->wait();
     }
 

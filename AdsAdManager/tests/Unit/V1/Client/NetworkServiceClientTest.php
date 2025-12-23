@@ -154,11 +154,21 @@ class NetworkServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $nextPageToken = '';
+        $totalSize = 705419236;
+        $networksElement = new Network();
+        $networks = [$networksElement];
         $expectedResponse = new ListNetworksResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTotalSize($totalSize);
+        $expectedResponse->setNetworks($networks);
         $transport->addResponse($expectedResponse);
         $request = new ListNetworksRequest();
         $response = $gapicClient->listNetworks($request);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getNetworks()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

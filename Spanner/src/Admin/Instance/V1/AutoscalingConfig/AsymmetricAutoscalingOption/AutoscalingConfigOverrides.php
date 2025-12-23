@@ -33,6 +33,60 @@ class AutoscalingConfigOverrides extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 autoscaling_target_high_priority_cpu_utilization_percent = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $autoscaling_target_high_priority_cpu_utilization_percent = 0;
+    /**
+     * Optional. If specified, overrides the
+     * autoscaling target `total_cpu_utilization_percent`
+     * in the top-level autoscaling configuration for the selected replicas.
+     *
+     * Generated from protobuf field <code>int32 autoscaling_target_total_cpu_utilization_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $autoscaling_target_total_cpu_utilization_percent = 0;
+    /**
+     * Optional. If true, disables high priority CPU autoscaling for the
+     * selected replicas and ignores
+     * [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     * in the top-level autoscaling configuration.
+     * When setting this field to true, setting
+     * [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     * field to a non-zero value for the same replica is not supported.
+     * If false, the
+     * [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     * field in the replica will be used if set to a non-zero value.
+     * Otherwise, the
+     * [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     * field in the top-level autoscaling configuration will be used.
+     * Setting both
+     * [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     * and
+     * [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     * to true for the same replica is not supported.
+     *
+     * Generated from protobuf field <code>bool disable_high_priority_cpu_autoscaling = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_high_priority_cpu_autoscaling = false;
+    /**
+     * Optional. If true, disables total CPU autoscaling for the selected
+     * replicas and ignores
+     * [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     * in the top-level autoscaling configuration.
+     * When setting this field to true, setting
+     * [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     * field to a non-zero value for the same replica is not supported.
+     * If false, the
+     * [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     * field in the replica will be used if set to a non-zero value.
+     * Otherwise, the
+     * [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     * field in the top-level autoscaling configuration will be used.
+     * Setting both
+     * [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     * and
+     * [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     * to true for the same replica is not supported.
+     *
+     * Generated from protobuf field <code>bool disable_total_cpu_autoscaling = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_total_cpu_autoscaling = false;
 
     /**
      * Constructor.
@@ -47,6 +101,48 @@ class AutoscalingConfigOverrides extends \Google\Protobuf\Internal\Message
      *           Optional. If specified, overrides the autoscaling target
      *           high_priority_cpu_utilization_percent in the top-level autoscaling
      *           configuration for the selected replicas.
+     *     @type int $autoscaling_target_total_cpu_utilization_percent
+     *           Optional. If specified, overrides the
+     *           autoscaling target `total_cpu_utilization_percent`
+     *           in the top-level autoscaling configuration for the selected replicas.
+     *     @type bool $disable_high_priority_cpu_autoscaling
+     *           Optional. If true, disables high priority CPU autoscaling for the
+     *           selected replicas and ignores
+     *           [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     *           in the top-level autoscaling configuration.
+     *           When setting this field to true, setting
+     *           [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     *           field to a non-zero value for the same replica is not supported.
+     *           If false, the
+     *           [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     *           field in the replica will be used if set to a non-zero value.
+     *           Otherwise, the
+     *           [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     *           field in the top-level autoscaling configuration will be used.
+     *           Setting both
+     *           [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     *           and
+     *           [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     *           to true for the same replica is not supported.
+     *     @type bool $disable_total_cpu_autoscaling
+     *           Optional. If true, disables total CPU autoscaling for the selected
+     *           replicas and ignores
+     *           [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     *           in the top-level autoscaling configuration.
+     *           When setting this field to true, setting
+     *           [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     *           field to a non-zero value for the same replica is not supported.
+     *           If false, the
+     *           [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     *           field in the replica will be used if set to a non-zero value.
+     *           Otherwise, the
+     *           [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     *           field in the top-level autoscaling configuration will be used.
+     *           Setting both
+     *           [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     *           and
+     *           [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     *           to true for the same replica is not supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,6 +214,156 @@ class AutoscalingConfigOverrides extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->autoscaling_target_high_priority_cpu_utilization_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If specified, overrides the
+     * autoscaling target `total_cpu_utilization_percent`
+     * in the top-level autoscaling configuration for the selected replicas.
+     *
+     * Generated from protobuf field <code>int32 autoscaling_target_total_cpu_utilization_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAutoscalingTargetTotalCpuUtilizationPercent()
+    {
+        return $this->autoscaling_target_total_cpu_utilization_percent;
+    }
+
+    /**
+     * Optional. If specified, overrides the
+     * autoscaling target `total_cpu_utilization_percent`
+     * in the top-level autoscaling configuration for the selected replicas.
+     *
+     * Generated from protobuf field <code>int32 autoscaling_target_total_cpu_utilization_percent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutoscalingTargetTotalCpuUtilizationPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->autoscaling_target_total_cpu_utilization_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, disables high priority CPU autoscaling for the
+     * selected replicas and ignores
+     * [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     * in the top-level autoscaling configuration.
+     * When setting this field to true, setting
+     * [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     * field to a non-zero value for the same replica is not supported.
+     * If false, the
+     * [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     * field in the replica will be used if set to a non-zero value.
+     * Otherwise, the
+     * [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     * field in the top-level autoscaling configuration will be used.
+     * Setting both
+     * [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     * and
+     * [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     * to true for the same replica is not supported.
+     *
+     * Generated from protobuf field <code>bool disable_high_priority_cpu_autoscaling = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableHighPriorityCpuAutoscaling()
+    {
+        return $this->disable_high_priority_cpu_autoscaling;
+    }
+
+    /**
+     * Optional. If true, disables high priority CPU autoscaling for the
+     * selected replicas and ignores
+     * [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     * in the top-level autoscaling configuration.
+     * When setting this field to true, setting
+     * [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     * field to a non-zero value for the same replica is not supported.
+     * If false, the
+     * [autoscaling_target_high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_high_priority_cpu_utilization_percent]
+     * field in the replica will be used if set to a non-zero value.
+     * Otherwise, the
+     * [high_priority_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.high_priority_cpu_utilization_percent]
+     * field in the top-level autoscaling configuration will be used.
+     * Setting both
+     * [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     * and
+     * [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     * to true for the same replica is not supported.
+     *
+     * Generated from protobuf field <code>bool disable_high_priority_cpu_autoscaling = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableHighPriorityCpuAutoscaling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_high_priority_cpu_autoscaling = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, disables total CPU autoscaling for the selected
+     * replicas and ignores
+     * [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     * in the top-level autoscaling configuration.
+     * When setting this field to true, setting
+     * [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     * field to a non-zero value for the same replica is not supported.
+     * If false, the
+     * [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     * field in the replica will be used if set to a non-zero value.
+     * Otherwise, the
+     * [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     * field in the top-level autoscaling configuration will be used.
+     * Setting both
+     * [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     * and
+     * [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     * to true for the same replica is not supported.
+     *
+     * Generated from protobuf field <code>bool disable_total_cpu_autoscaling = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableTotalCpuAutoscaling()
+    {
+        return $this->disable_total_cpu_autoscaling;
+    }
+
+    /**
+     * Optional. If true, disables total CPU autoscaling for the selected
+     * replicas and ignores
+     * [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     * in the top-level autoscaling configuration.
+     * When setting this field to true, setting
+     * [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     * field to a non-zero value for the same replica is not supported.
+     * If false, the
+     * [autoscaling_target_total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.autoscaling_target_total_cpu_utilization_percent]
+     * field in the replica will be used if set to a non-zero value.
+     * Otherwise, the
+     * [total_cpu_utilization_percent][google.spanner.admin.instance.v1.AutoscalingConfig.AutoscalingTargets.total_cpu_utilization_percent]
+     * field in the top-level autoscaling configuration will be used.
+     * Setting both
+     * [disable_high_priority_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_high_priority_cpu_autoscaling]
+     * and
+     * [disable_total_cpu_autoscaling][google.spanner.admin.instance.v1.AutoscalingConfig.AsymmetricAutoscalingOption.AutoscalingConfigOverrides.disable_total_cpu_autoscaling]
+     * to true for the same replica is not supported.
+     *
+     * Generated from protobuf field <code>bool disable_total_cpu_autoscaling = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableTotalCpuAutoscaling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_total_cpu_autoscaling = $var;
 
         return $this;
     }

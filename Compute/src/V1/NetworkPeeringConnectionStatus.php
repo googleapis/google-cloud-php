@@ -9,26 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] Describes the state of a peering connection, not just the local peering. This field provides information about the effective settings for the connection as a whole, including pending delete/update requests for CONSENSUS peerings.
+ * [Output Only] Describes the state of a peering connection, not just the
+ * local peering. This field provides information about the effective settings
+ * for the connection as a whole, including pending delete/update requests for
+ * CONSENSUS peerings.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NetworkPeeringConnectionStatus</code>
  */
 class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The consensus state contains information about the status of update and delete for a consensus peering connection.
+     * The consensus state contains information about the status of update
+     * and delete for a consensus peering connection.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusConsensusState consensus_state = 379772617;</code>
      */
     protected $consensus_state = null;
     /**
-     * The active connectivity settings for the peering connection based on the settings of the network peerings.
+     * The active connectivity settings for the peering connection based on the
+     * settings of the network peerings.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusTrafficConfiguration traffic_configuration = 133016116;</code>
      */
     protected $traffic_configuration = null;
     /**
-     * The update strategy determines the update/delete semantics for this peering connection.
+     * The update strategy determines the update/delete semantics for this
+     * peering connection.
      * Check the UpdateStrategy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
@@ -42,11 +48,14 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatusConsensusState $consensus_state
-     *           The consensus state contains information about the status of update and delete for a consensus peering connection.
+     *           The consensus state contains information about the status of update
+     *           and delete for a consensus peering connection.
      *     @type \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatusTrafficConfiguration $traffic_configuration
-     *           The active connectivity settings for the peering connection based on the settings of the network peerings.
+     *           The active connectivity settings for the peering connection based on the
+     *           settings of the network peerings.
      *     @type string $update_strategy
-     *           The update strategy determines the update/delete semantics for this peering connection.
+     *           The update strategy determines the update/delete semantics for this
+     *           peering connection.
      *           Check the UpdateStrategy enum for the list of possible values.
      * }
      */
@@ -56,7 +65,8 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The consensus state contains information about the status of update and delete for a consensus peering connection.
+     * The consensus state contains information about the status of update
+     * and delete for a consensus peering connection.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusConsensusState consensus_state = 379772617;</code>
      * @return \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatusConsensusState|null
@@ -77,7 +87,8 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The consensus state contains information about the status of update and delete for a consensus peering connection.
+     * The consensus state contains information about the status of update
+     * and delete for a consensus peering connection.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusConsensusState consensus_state = 379772617;</code>
      * @param \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatusConsensusState $var
@@ -92,7 +103,8 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The active connectivity settings for the peering connection based on the settings of the network peerings.
+     * The active connectivity settings for the peering connection based on the
+     * settings of the network peerings.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusTrafficConfiguration traffic_configuration = 133016116;</code>
      * @return \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatusTrafficConfiguration|null
@@ -113,7 +125,8 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The active connectivity settings for the peering connection based on the settings of the network peerings.
+     * The active connectivity settings for the peering connection based on the
+     * settings of the network peerings.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPeeringConnectionStatusTrafficConfiguration traffic_configuration = 133016116;</code>
      * @param \Google\Cloud\Compute\V1\NetworkPeeringConnectionStatusTrafficConfiguration $var
@@ -128,7 +141,8 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update strategy determines the update/delete semantics for this peering connection.
+     * The update strategy determines the update/delete semantics for this
+     * peering connection.
      * Check the UpdateStrategy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>
@@ -150,7 +164,8 @@ class NetworkPeeringConnectionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The update strategy determines the update/delete semantics for this peering connection.
+     * The update strategy determines the update/delete semantics for this
+     * peering connection.
      * Check the UpdateStrategy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string update_strategy = 6123049;</code>

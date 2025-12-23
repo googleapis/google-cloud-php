@@ -7,7 +7,16 @@ namespace Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the public delegated prefix, which can be one of following values: - `INITIALIZING` The public delegated prefix is being initialized and addresses cannot be created yet. - `READY_TO_ANNOUNCE` The public delegated prefix is a live migration prefix and is active. - `ANNOUNCED` The public delegated prefix is announced and ready to use. - `DELETING` The public delegated prefix is being deprovsioned. 
+ * [Output Only] The status of the public delegated prefix, which can be one
+ * of following values:
+ *      - `INITIALIZING` The public delegated prefix is being initialized and
+ *      addresses cannot be created yet.
+ *      - `READY_TO_ANNOUNCE` The public delegated prefix is a live migration
+ *      prefix and is active.
+ *      - `ANNOUNCED` The public delegated prefix is announced and ready to
+ *      use.
+ *      - `DELETING` The public delegated prefix is being deprovsioned.
+ *      - `ACTIVE` The public delegated prefix is ready to use.
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicDelegatedPrefix.Status</code>
  */
@@ -19,6 +28,12 @@ class Status
      * Generated from protobuf enum <code>UNDEFINED_STATUS = 0;</code>
      */
     const UNDEFINED_STATUS = 0;
+    /**
+     * The public delegated prefix is ready to use.
+     *
+     * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
+     */
+    const ACTIVE = 314733318;
     /**
      * The public delegated prefix is announced and ready to use.
      *
@@ -44,13 +59,15 @@ class Status
      */
     const DELETING = 528602024;
     /**
-     * The public delegated prefix is being initialized and addresses cannot be created yet.
+     * The public delegated prefix is being initialized and addresses cannot be
+     * created yet.
      *
      * Generated from protobuf enum <code>INITIALIZING = 306588749;</code>
      */
     const INITIALIZING = 306588749;
     /**
-     * The public delegated prefix is currently withdrawn but ready to be announced.
+     * The public delegated prefix is currently withdrawn but ready to be
+     * announced.
      *
      * Generated from protobuf enum <code>READY_TO_ANNOUNCE = 64641265;</code>
      */
@@ -58,6 +75,7 @@ class Status
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
+        self::ACTIVE => 'ACTIVE',
         self::ANNOUNCED => 'ANNOUNCED',
         self::ANNOUNCED_TO_GOOGLE => 'ANNOUNCED_TO_GOOGLE',
         self::ANNOUNCED_TO_INTERNET => 'ANNOUNCED_TO_INTERNET',

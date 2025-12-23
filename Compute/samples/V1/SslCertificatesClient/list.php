@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\SslCertificatesClient;
 use Google\Cloud\Compute\V1\ListSslCertificatesRequest;
 
 /**
- * Retrieves the list of SslCertificate resources available to the specified project.
+ * Retrieves the list of SslCertificate resources available to the specified
+ * project.
  *
  * @param string $project Project ID for this request.
  */

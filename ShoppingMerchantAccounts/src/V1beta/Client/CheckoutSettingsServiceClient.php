@@ -87,9 +87,7 @@ final class CheckoutSettingsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -104,7 +102,8 @@ final class CheckoutSettingsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/checkout_settings_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/checkout_settings_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -286,8 +285,10 @@ final class CheckoutSettingsServiceClient
      *
      * @experimental
      */
-    public function createCheckoutSettings(CreateCheckoutSettingsRequest $request, array $callOptions = []): CheckoutSettings
-    {
+    public function createCheckoutSettings(
+        CreateCheckoutSettingsRequest $request,
+        array $callOptions = []
+    ): CheckoutSettings {
         return $this->startApiCall('CreateCheckoutSettings', $request, $callOptions)->wait();
     }
 
@@ -373,8 +374,10 @@ final class CheckoutSettingsServiceClient
      *
      * @experimental
      */
-    public function updateCheckoutSettings(UpdateCheckoutSettingsRequest $request, array $callOptions = []): CheckoutSettings
-    {
+    public function updateCheckoutSettings(
+        UpdateCheckoutSettingsRequest $request,
+        array $callOptions = []
+    ): CheckoutSettings {
         return $this->startApiCall('UpdateCheckoutSettings', $request, $callOptions)->wait();
     }
 }

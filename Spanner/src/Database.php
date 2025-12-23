@@ -115,6 +115,7 @@ class Database
     public const TYPE_JSON = TypeCode::JSON;
     public const TYPE_PG_OID = 'pgOid';
     public const TYPE_INTERVAL = TypeCode::INTERVAL;
+    public const TYPE_UUID = TypeCode::UUID;
 
     private Operation $operation;
     private IamManager|null $iam = null;
@@ -2383,7 +2384,7 @@ class Database
         return function (OperationProto $operation) {
             return $this->resumeOperation(
                 $operation->getName(),
-                $this->handleResponse($operation)
+                $this->handleOperationProto($operation)
             );
         };
     }

@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. List of request and response for tool calls executed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo tool_call_info = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tool_call_info;
     protected $suggestion;
 
     /**
@@ -27,6 +33,10 @@ class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
      *           Optional. Free form suggestion.
      *     @type \Google\Cloud\Dialogflow\V2\SummarySuggestion $summary_suggestion
      *           Optional. Suggested summary.
+     *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion $agent_coaching_suggestion
+     *           Optional. Suggestion to coach the agent.
+     *     @type array<\Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo>|\Google\Protobuf\Internal\RepeatedField $tool_call_info
+     *           Optional. List of request and response for tool calls executed.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +102,63 @@ class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SummarySuggestion::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Suggestion to coach the agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentCoachingSuggestion agent_coaching_suggestion = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion|null
+     */
+    public function getAgentCoachingSuggestion()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasAgentCoachingSuggestion()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Optional. Suggestion to coach the agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentCoachingSuggestion agent_coaching_suggestion = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion $var
+     * @return $this
+     */
+    public function setAgentCoachingSuggestion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of request and response for tool calls executed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo tool_call_info = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getToolCallInfo()
+    {
+        return $this->tool_call_info;
+    }
+
+    /**
+     * Optional. List of request and response for tool calls executed.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo tool_call_info = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setToolCallInfo($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo::class);
+        $this->tool_call_info = $arr;
 
         return $this;
     }

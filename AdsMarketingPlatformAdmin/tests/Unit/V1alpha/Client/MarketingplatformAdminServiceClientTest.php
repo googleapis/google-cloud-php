@@ -27,10 +27,16 @@ use Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsServiceLevel;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\Client\MarketingplatformAdminServiceClient;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\CreateAnalyticsAccountLinkRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\DeleteAnalyticsAccountLinkRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\GetOrganizationRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\ListAnalyticsAccountLinksRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\ListAnalyticsAccountLinksResponse;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ListOrganizationsRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ListOrganizationsResponse;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\Organization;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageRequest;
+use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\SetPropertyServiceLevelRequest;
 use Google\Ads\MarketingPlatform\Admin\V1alpha\SetPropertyServiceLevelResponse;
 use Google\ApiCore\ApiException;
@@ -221,6 +227,72 @@ class MarketingplatformAdminServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function findSalesPartnerManagedClientsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new FindSalesPartnerManagedClientsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedOrganization = $gapicClient->organizationName('[ORGANIZATION]');
+        $request = (new FindSalesPartnerManagedClientsRequest())->setOrganization($formattedOrganization);
+        $response = $gapicClient->findSalesPartnerManagedClients($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/FindSalesPartnerManagedClients',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getOrganization();
+        $this->assertProtobufEquals($formattedOrganization, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function findSalesPartnerManagedClientsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedOrganization = $gapicClient->organizationName('[ORGANIZATION]');
+        $request = (new FindSalesPartnerManagedClientsRequest())->setOrganization($formattedOrganization);
+        try {
+            $gapicClient->findSalesPartnerManagedClients($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getOrganizationTest()
     {
         $transport = $this->createTransport();
@@ -353,6 +425,144 @@ class MarketingplatformAdminServiceClientTest extends GeneratedTest
         $request = (new ListAnalyticsAccountLinksRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAnalyticsAccountLinks($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listOrganizationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $organizationsElement = new Organization();
+        $organizations = [$organizationsElement];
+        $expectedResponse = new ListOrganizationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setOrganizations($organizations);
+        $transport->addResponse($expectedResponse);
+        $request = new ListOrganizationsRequest();
+        $response = $gapicClient->listOrganizations($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getOrganizations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/ListOrganizations',
+            $actualFuncCall
+        );
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listOrganizationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new ListOrganizationsRequest();
+        try {
+            $gapicClient->listOrganizations($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function reportPropertyUsageTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ReportPropertyUsageResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $organization = 'organization1178922291';
+        $month = 'month104080000';
+        $request = (new ReportPropertyUsageRequest())->setOrganization($organization)->setMonth($month);
+        $response = $gapicClient->reportPropertyUsage($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.marketingplatform.admin.v1alpha.MarketingplatformAdminService/ReportPropertyUsage',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getOrganization();
+        $this->assertProtobufEquals($organization, $actualValue);
+        $actualValue = $actualRequestObject->getMonth();
+        $this->assertProtobufEquals($month, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function reportPropertyUsageExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $organization = 'organization1178922291';
+        $month = 'month104080000';
+        $request = (new ReportPropertyUsageRequest())->setOrganization($organization)->setMonth($month);
+        try {
+            $gapicClient->reportPropertyUsage($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -7,7 +7,13 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of this InterconnectRemoteLocation, which can take one of the following values: - CLOSED: The InterconnectRemoteLocation is closed and is unavailable for provisioning new Cross-Cloud Interconnects. - AVAILABLE: The InterconnectRemoteLocation is available for provisioning new Cross-Cloud Interconnects. 
+ * Output only. [Output Only] The status of this InterconnectRemoteLocation, which can take
+ * one of the following values:
+ *    - CLOSED: The InterconnectRemoteLocation is closed and is unavailable
+ *    for provisioning new Cross-Cloud Interconnects.
+ *    - AVAILABLE: The
+ *    InterconnectRemoteLocation is available for provisioning new
+ *    Cross-Cloud Interconnects.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectRemoteLocation.Status</code>
  */
@@ -20,13 +26,15 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * The InterconnectRemoteLocation is available for provisioning new Cross-Cloud Interconnects.
+     * The InterconnectRemoteLocation is available for provisioning new
+     * Cross-Cloud Interconnects.
      *
      * Generated from protobuf enum <code>AVAILABLE = 442079913;</code>
      */
     const AVAILABLE = 442079913;
     /**
-     * The InterconnectRemoteLocation is closed for provisioning new Cross-Cloud Interconnects.
+     * The InterconnectRemoteLocation is closed for provisioning new
+     * Cross-Cloud Interconnects.
      *
      * Generated from protobuf enum <code>CLOSED = 380163436;</code>
      */

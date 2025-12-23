@@ -15,21 +15,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * These stateful disks will never be deleted during autohealing,
+     * update, instance recreate operations. This flag is used to configure
+     * if the disk should be deleted after it is no longer used by the group,
+     * e.g. when the given instance or the whole MIG is deleted.
+     * Note: disks attached in READ_ONLY mode cannot be
+     * auto-deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
      */
     protected $auto_delete = null;
     /**
-     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     * The mode in which to attach this disk, either READ_WRITE orREAD_ONLY. If not specified, the default is to attach the
+     * disk in READ_WRITE mode.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
     protected $mode = null;
     /**
-     * The URL of the disk resource that is stateful and should be attached to the VM instance.
+     * The URL of the disk resource that is stateful and should be attached
+     * to the VM instance.
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
@@ -42,13 +49,20 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $auto_delete
-     *           These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     *           These stateful disks will never be deleted during autohealing,
+     *           update, instance recreate operations. This flag is used to configure
+     *           if the disk should be deleted after it is no longer used by the group,
+     *           e.g. when the given instance or the whole MIG is deleted.
+     *           Note: disks attached in READ_ONLY mode cannot be
+     *           auto-deleted.
      *           Check the AutoDelete enum for the list of possible values.
      *     @type string $mode
-     *           The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     *           The mode in which to attach this disk, either READ_WRITE orREAD_ONLY. If not specified, the default is to attach the
+     *           disk in READ_WRITE mode.
      *           Check the Mode enum for the list of possible values.
      *     @type string $source
-     *           The URL of the disk resource that is stateful and should be attached to the VM instance.
+     *           The URL of the disk resource that is stateful and should be attached
+     *           to the VM instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +71,12 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * These stateful disks will never be deleted during autohealing,
+     * update, instance recreate operations. This flag is used to configure
+     * if the disk should be deleted after it is no longer used by the group,
+     * e.g. when the given instance or the whole MIG is deleted.
+     * Note: disks attached in READ_ONLY mode cannot be
+     * auto-deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
@@ -79,7 +98,12 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * These stateful disks will never be deleted during autohealing,
+     * update, instance recreate operations. This flag is used to configure
+     * if the disk should be deleted after it is no longer used by the group,
+     * e.g. when the given instance or the whole MIG is deleted.
+     * Note: disks attached in READ_ONLY mode cannot be
+     * auto-deleted.
      * Check the AutoDelete enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
@@ -95,7 +119,8 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     * The mode in which to attach this disk, either READ_WRITE orREAD_ONLY. If not specified, the default is to attach the
+     * disk in READ_WRITE mode.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -117,7 +142,8 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     * The mode in which to attach this disk, either READ_WRITE orREAD_ONLY. If not specified, the default is to attach the
+     * disk in READ_WRITE mode.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -133,7 +159,8 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the disk resource that is stateful and should be attached to the VM instance.
+     * The URL of the disk resource that is stateful and should be attached
+     * to the VM instance.
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @return string
@@ -154,7 +181,8 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the disk resource that is stateful and should be attached to the VM instance.
+     * The URL of the disk resource that is stateful and should be attached
+     * to the VM instance.
      *
      * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @param string $var

@@ -33,7 +33,8 @@ class ListSkuGroupBillableSkusRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListSkuGroupBillableSkus.next_page_token][] of the previous
+     * [ListSkuGroupBillableSkusResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusResponse.next_page_token]
+     * of the previous
      * [CloudChannelService.ListSkuGroupBillableSkus][google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]
      * call.
      *
@@ -72,7 +73,8 @@ class ListSkuGroupBillableSkusRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. A token identifying a page of results beyond the first page.
      *           Obtained through
-     *           [ListSkuGroupBillableSkus.next_page_token][] of the previous
+     *           [ListSkuGroupBillableSkusResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusResponse.next_page_token]
+     *           of the previous
      *           [CloudChannelService.ListSkuGroupBillableSkus][google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]
      *           call.
      * }
@@ -143,7 +145,8 @@ class ListSkuGroupBillableSkusRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListSkuGroupBillableSkus.next_page_token][] of the previous
+     * [ListSkuGroupBillableSkusResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusResponse.next_page_token]
+     * of the previous
      * [CloudChannelService.ListSkuGroupBillableSkus][google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]
      * call.
      *
@@ -158,7 +161,8 @@ class ListSkuGroupBillableSkusRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A token identifying a page of results beyond the first page.
      * Obtained through
-     * [ListSkuGroupBillableSkus.next_page_token][] of the previous
+     * [ListSkuGroupBillableSkusResponse.next_page_token][google.cloud.channel.v1.ListSkuGroupBillableSkusResponse.next_page_token]
+     * of the previous
      * [CloudChannelService.ListSkuGroupBillableSkus][google.cloud.channel.v1.CloudChannelService.ListSkuGroupBillableSkus]
      * call.
      *

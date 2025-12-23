@@ -66,16 +66,28 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
      */
     protected $probing_latency = null;
     /**
-     * The EdgeLocation from which a packet destined for/originating from the
-     * internet will egress/ingress the Google network.
+     * The EdgeLocation from which a packet, destined to the internet, will egress
+     * the Google network.
      * This will only be populated for a connectivity test which has an internet
-     * destination/source address.
+     * destination address.
      * The absence of this field *must not* be used as an indication that the
-     * destination/source is part of the Google network.
+     * destination is part of the Google network.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails.EdgeLocation destination_egress_location = 9;</code>
      */
     protected $destination_egress_location = null;
+    /**
+     * Probing results for all edge devices.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.ProbingDetails.SingleEdgeResponse edge_responses = 10;</code>
+     */
+    private $edge_responses;
+    /**
+     * Whether all relevant edge devices were probed.
+     *
+     * Generated from protobuf field <code>bool probed_all_devices = 11;</code>
+     */
+    protected $probed_all_devices = false;
 
     /**
      * Constructor.
@@ -102,12 +114,16 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
      *           Latency as measured by active probing in one direction:
      *           from the source to the destination endpoint.
      *     @type \Google\Cloud\NetworkManagement\V1\ProbingDetails\EdgeLocation $destination_egress_location
-     *           The EdgeLocation from which a packet destined for/originating from the
-     *           internet will egress/ingress the Google network.
+     *           The EdgeLocation from which a packet, destined to the internet, will egress
+     *           the Google network.
      *           This will only be populated for a connectivity test which has an internet
-     *           destination/source address.
+     *           destination address.
      *           The absence of this field *must not* be used as an indication that the
-     *           destination/source is part of the Google network.
+     *           destination is part of the Google network.
+     *     @type array<\Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse>|\Google\Protobuf\Internal\RepeatedField $edge_responses
+     *           Probing results for all edge devices.
+     *     @type bool $probed_all_devices
+     *           Whether all relevant edge devices were probed.
      * }
      */
     public function __construct($data = NULL) {
@@ -368,12 +384,12 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The EdgeLocation from which a packet destined for/originating from the
-     * internet will egress/ingress the Google network.
+     * The EdgeLocation from which a packet, destined to the internet, will egress
+     * the Google network.
      * This will only be populated for a connectivity test which has an internet
-     * destination/source address.
+     * destination address.
      * The absence of this field *must not* be used as an indication that the
-     * destination/source is part of the Google network.
+     * destination is part of the Google network.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails.EdgeLocation destination_egress_location = 9;</code>
      * @return \Google\Cloud\NetworkManagement\V1\ProbingDetails\EdgeLocation|null
@@ -394,12 +410,12 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The EdgeLocation from which a packet destined for/originating from the
-     * internet will egress/ingress the Google network.
+     * The EdgeLocation from which a packet, destined to the internet, will egress
+     * the Google network.
      * This will only be populated for a connectivity test which has an internet
-     * destination/source address.
+     * destination address.
      * The absence of this field *must not* be used as an indication that the
-     * destination/source is part of the Google network.
+     * destination is part of the Google network.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails.EdgeLocation destination_egress_location = 9;</code>
      * @param \Google\Cloud\NetworkManagement\V1\ProbingDetails\EdgeLocation $var
@@ -409,6 +425,58 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ProbingDetails\EdgeLocation::class);
         $this->destination_egress_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Probing results for all edge devices.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.ProbingDetails.SingleEdgeResponse edge_responses = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEdgeResponses()
+    {
+        return $this->edge_responses;
+    }
+
+    /**
+     * Probing results for all edge devices.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.ProbingDetails.SingleEdgeResponse edge_responses = 10;</code>
+     * @param array<\Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEdgeResponses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse::class);
+        $this->edge_responses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Whether all relevant edge devices were probed.
+     *
+     * Generated from protobuf field <code>bool probed_all_devices = 11;</code>
+     * @return bool
+     */
+    public function getProbedAllDevices()
+    {
+        return $this->probed_all_devices;
+    }
+
+    /**
+     * Whether all relevant edge devices were probed.
+     *
+     * Generated from protobuf field <code>bool probed_all_devices = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setProbedAllDevices($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->probed_all_devices = $var;
 
         return $this;
     }

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An InstanceSchedulePolicy specifies when and how frequent certain operations are performed on the instance.
+ * An InstanceSchedulePolicy specifies when and how frequent certain
+ * operations are performed on the instance.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy</code>
  */
@@ -28,7 +29,9 @@ class ResourcePolicyInstanceSchedulePolicy extends \Google\Protobuf\Internal\Mes
      */
     protected $start_time = null;
     /**
-     * Specifies the time zone to be used in interpreting Schedule.schedule. The value of this field must be a time zone name from the tz database: https://wikipedia.org/wiki/Tz_database.
+     * Specifies the time zone to be used in interpreting Schedule.schedule.
+     * The value of this field must be a time zone name from the tz database:
+     * https://wikipedia.org/wiki/Tz_database.
      *
      * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      */
@@ -57,7 +60,9 @@ class ResourcePolicyInstanceSchedulePolicy extends \Google\Protobuf\Internal\Mes
      *     @type string $start_time
      *           The start time of the schedule. The timestamp is an RFC3339 string.
      *     @type string $time_zone
-     *           Specifies the time zone to be used in interpreting Schedule.schedule. The value of this field must be a time zone name from the tz database: https://wikipedia.org/wiki/Tz_database.
+     *           Specifies the time zone to be used in interpreting Schedule.schedule.
+     *           The value of this field must be a time zone name from the tz database:
+     *           https://wikipedia.org/wiki/Tz_database.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicySchedule $vm_start_schedule
      *           Specifies the schedule for starting instances.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicySchedule $vm_stop_schedule
@@ -142,7 +147,9 @@ class ResourcePolicyInstanceSchedulePolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Specifies the time zone to be used in interpreting Schedule.schedule. The value of this field must be a time zone name from the tz database: https://wikipedia.org/wiki/Tz_database.
+     * Specifies the time zone to be used in interpreting Schedule.schedule.
+     * The value of this field must be a time zone name from the tz database:
+     * https://wikipedia.org/wiki/Tz_database.
      *
      * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      * @return string
@@ -163,7 +170,9 @@ class ResourcePolicyInstanceSchedulePolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Specifies the time zone to be used in interpreting Schedule.schedule. The value of this field must be a time zone name from the tz database: https://wikipedia.org/wiki/Tz_database.
+     * Specifies the time zone to be used in interpreting Schedule.schedule.
+     * The value of this field must be a time zone name from the tz database:
+     * https://wikipedia.org/wiki/Tz_database.
      *
      * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      * @param string $var

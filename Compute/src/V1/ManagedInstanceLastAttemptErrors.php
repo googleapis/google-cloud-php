@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] Encountered errors during the last attempt to create or delete the instance.
+ * Output only. [Output Only] Encountered errors during the last attempt to create or
+ * delete the instance.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ManagedInstanceLastAttemptErrors</code>
  */
 class ManagedInstanceLastAttemptErrors extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The array of errors encountered while processing this operation.
+     * [Output Only] The array of errors encountered while processing this
+     * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      */
@@ -29,7 +31,8 @@ class ManagedInstanceLastAttemptErrors extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $errors
-     *           [Output Only] The array of errors encountered while processing this operation.
+     *           [Output Only] The array of errors encountered while processing this
+     *           operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,8 @@ class ManagedInstanceLastAttemptErrors extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The array of errors encountered while processing this operation.
+     * [Output Only] The array of errors encountered while processing this
+     * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,7 +53,8 @@ class ManagedInstanceLastAttemptErrors extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The array of errors encountered while processing this operation.
+     * [Output Only] The array of errors encountered while processing this
+     * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @param array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $var

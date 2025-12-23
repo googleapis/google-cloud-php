@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Node Affinity: the configuration of desired nodes onto which this Instance could be scheduled.
+ * Node Affinity: the configuration of desired nodes onto which this Instance
+ *  could be scheduled.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SchedulingNodeAffinity</code>
  */
@@ -22,7 +23,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      */
     protected $key = null;
     /**
-     * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
+     * Defines the operation of node selection. Valid operators areIN for affinity and NOT_IN for anti-affinity.
      * Check the Operator enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string operator = 36317348;</code>
@@ -44,7 +45,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      *     @type string $key
      *           Corresponds to the label key of Node resource.
      *     @type string $operator
-     *           Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
+     *           Defines the operation of node selection. Valid operators areIN for affinity and NOT_IN for anti-affinity.
      *           Check the Operator enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Corresponds to the label values of Node resource.
@@ -92,7 +93,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
+     * Defines the operation of node selection. Valid operators areIN for affinity and NOT_IN for anti-affinity.
      * Check the Operator enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string operator = 36317348;</code>
@@ -114,7 +115,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
+     * Defines the operation of node selection. Valid operators areIN for affinity and NOT_IN for anti-affinity.
      * Check the Operator enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string operator = 36317348;</code>

@@ -31,7 +31,22 @@ use Google\Cloud\Compute\V1\StartInstancesRegionInstanceGroupManagerRequest;
 use Google\Rpc\Status;
 
 /**
- * Flags the specified instances in the managed instance group to be started. This method increases the targetSize and decreases the targetStoppedSize of the managed instance group by the number of instances that you start. The startInstances operation is marked DONE if the startInstances request is successful. The underlying actions take additional time. You must separately verify the status of the STARTING action with the listmanagedinstances method. In this request, you can only specify instances that are stopped. For example, if an instance was previously stopped using the stopInstances method, it can be started using the startInstances method. If a health check is attached to the managed instance group, the specified instances will be verified as healthy after they are started. You can specify a maximum of 1000 instances with this method per request.
+ * Flags the specified instances in the managed instance group to be
+ * started. This method increases thetargetSize and decreases the targetStoppedSize
+ * of the managed instance group by the number of instances that you start.
+ * The startInstances operation is marked DONE if
+ * the startInstances request is successful. The underlying
+ * actions take additional time. You must separately verify the status of theSTARTING action with thelistmanagedinstances
+ * method.
+ *
+ * In this request, you can only specify instances that are stopped. For
+ * example, if an instance was previously stopped using the stopInstances
+ * method, it can be started using the startInstances method.
+ *
+ * If a health check is attached to the managed instance group, the specified
+ * instances will be verified as healthy after they are started.
+ *
+ * You can specify a maximum of 1000 instances with this method per request.
  *
  * @param string $instanceGroupManager Name of the managed instance group.
  * @param string $project              Project ID for this request.

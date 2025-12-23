@@ -9,26 +9,42 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+ * Represents a whole or partial calendar date, such as a birthday. The time of
+ * day and time zone are either specified elsewhere or are insignificant. The
+ * date is relative to the Gregorian Calendar. This can represent one of the
+ * following:
+ * * A full date, with non-zero year, month, and day values.
+ * * A month and day, with a zero year (for example, an anniversary).
+ * * A year on its own, with a zero month and a zero day.
+ * * A year and month, with a zero day (for example, a credit card expiration
+ *   date).
+ * Related types:
+ * * google.type.TimeOfDay
+ * * google.type.DateTime
+ * * google.protobuf.Timestamp
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Date</code>
  */
 class Date extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0
+     * to specify a year by itself or a year and month where the day isn't
+     * significant.
      *
      * Generated from protobuf field <code>optional int32 day = 99228;</code>
      */
     protected $day = null;
     /**
-     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a
+     * month and day.
      *
      * Generated from protobuf field <code>optional int32 month = 104080000;</code>
      */
     protected $month = null;
     /**
-     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without
+     * a year.
      *
      * Generated from protobuf field <code>optional int32 year = 3704893;</code>
      */
@@ -41,11 +57,15 @@ class Date extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $day
-     *           Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     *           Day of a month. Must be from 1 to 31 and valid for the year and month, or 0
+     *           to specify a year by itself or a year and month where the day isn't
+     *           significant.
      *     @type int $month
-     *           Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     *           Month of a year. Must be from 1 to 12, or 0 to specify a year without a
+     *           month and day.
      *     @type int $year
-     *           Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     *           Year of the date. Must be from 1 to 9999, or 0 to specify a date without
+     *           a year.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +74,9 @@ class Date extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0
+     * to specify a year by itself or a year and month where the day isn't
+     * significant.
      *
      * Generated from protobuf field <code>optional int32 day = 99228;</code>
      * @return int
@@ -75,7 +97,9 @@ class Date extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0
+     * to specify a year by itself or a year and month where the day isn't
+     * significant.
      *
      * Generated from protobuf field <code>optional int32 day = 99228;</code>
      * @param int $var
@@ -90,7 +114,8 @@ class Date extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a
+     * month and day.
      *
      * Generated from protobuf field <code>optional int32 month = 104080000;</code>
      * @return int
@@ -111,7 +136,8 @@ class Date extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a
+     * month and day.
      *
      * Generated from protobuf field <code>optional int32 month = 104080000;</code>
      * @param int $var
@@ -126,7 +152,8 @@ class Date extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without
+     * a year.
      *
      * Generated from protobuf field <code>optional int32 year = 3704893;</code>
      * @return int
@@ -147,7 +174,8 @@ class Date extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without
+     * a year.
      *
      * Generated from protobuf field <code>optional int32 year = 3704893;</code>
      * @param int $var

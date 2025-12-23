@@ -38,7 +38,8 @@ class Status
      */
     const NEEDS_ATTENTION = 344491452;
     /**
-     * The consumer neither allows nor prohibits traffic from the producer to reach its VPC.
+     * The consumer neither allows nor prohibits traffic
+     * from the producer to reach its VPC.
      *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */

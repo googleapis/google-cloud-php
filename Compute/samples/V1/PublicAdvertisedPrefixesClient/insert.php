@@ -31,7 +31,8 @@ use Google\Cloud\Compute\V1\PublicAdvertisedPrefix;
 use Google\Rpc\Status;
 
 /**
- * Creates a PublicAdvertisedPrefix in the specified project using the parameters that are included in the request.
+ * Creates a PublicAdvertisedPrefix in the specified project
+ * using the parameters that are included in the request.
  *
  * @param string $project Project ID for this request.
  */

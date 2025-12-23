@@ -7,7 +7,24 @@ namespace Google\Cloud\Compute\V1\TargetHttpsProxy;
 use UnexpectedValueException;
 
 /**
- *  Specifies whether TLS 1.3 0-RTT Data ("Early Data") should be accepted for this service. Early Data allows a TLS resumption handshake to include the initial application payload (a HTTP request) alongside the handshake, reducing the effective round trips to "zero". This applies to TLS 1.3 connections over TCP (HTTP/2) as well as over UDP (QUIC/h3). This can improve application performance, especially on networks where interruptions may be common, such as on mobile. Requests with Early Data will have the "Early-Data" HTTP header set on the request, with a value of "1", to allow the backend to determine whether Early Data was included. Note: TLS Early Data may allow requests to be replayed, as the data is sent to the backend before the handshake has fully completed. Applications that allow idempotent HTTP methods to make non-idempotent changes, such as a GET request updating a database, should not accept Early Data on those requests, and reject requests with the "Early-Data: 1" HTTP header by returning a HTTP 425 (Too Early) status code, in order to remain RFC compliant. The default value is DISABLED.
+ * Specifies whether TLS 1.3 0-RTT Data ("Early Data") should be accepted
+ * for this service. Early Data allows a TLS resumption handshake to include
+ * the initial application payload (a HTTP request) alongside the handshake,
+ * reducing the effective round trips to "zero". This applies to TLS 1.3
+ * connections over TCP (HTTP/2) as well as over UDP (QUIC/h3).
+ * This can improve application performance, especially on networks where
+ * interruptions may be common, such as on mobile.
+ * Requests with Early Data will have the "Early-Data" HTTP header set on
+ * the request, with a value of "1", to allow the backend to determine whether
+ * Early Data was included.
+ * Note: TLS Early Data may allow requests to be replayed, as the data is
+ * sent to the backend before the handshake has fully completed. Applications
+ * that allow idempotent HTTP methods to make non-idempotent changes, such as
+ * a GET request updating a database, should not accept Early Data on those
+ * requests, and reject requests with the "Early-Data: 1" HTTP header by
+ * returning a HTTP 425 (Too Early) status code, in order to remain RFC
+ * compliant.
+ * The default value is DISABLED.
  *
  * Protobuf type <code>google.cloud.compute.v1.TargetHttpsProxy.TlsEarlyData</code>
  */
@@ -20,25 +37,37 @@ class TlsEarlyData
      */
     const UNDEFINED_TLS_EARLY_DATA = 0;
     /**
-     * TLS 1.3 Early Data is not advertised, and any (invalid) attempts to send Early Data will be rejected by closing the connection.
+     * TLS 1.3 Early Data is not advertised, and any (invalid) attempts to send
+     * Early Data will be rejected by closing the connection.
      *
      * Generated from protobuf enum <code>DISABLED = 516696700;</code>
      */
     const DISABLED = 516696700;
     /**
-     * This enables TLS 1.3 0-RTT, and only allows Early Data to be included on requests with safe HTTP methods (GET, HEAD, OPTIONS, TRACE). This mode does not enforce any other limitations for requests with Early Data. The application owner should validate that Early Data is acceptable for a given request path.
+     * This enables TLS 1.3 0-RTT, and only allows Early Data to be included on
+     * requests with safe HTTP methods (GET, HEAD, OPTIONS, TRACE). This mode
+     * does not enforce any other limitations for requests with Early Data. The
+     * application owner should validate that Early Data is acceptable for a
+     * given request path.
      *
      * Generated from protobuf enum <code>PERMISSIVE = 504345247;</code>
      */
     const PERMISSIVE = 504345247;
     /**
-     * This enables TLS 1.3 0-RTT, and only allows Early Data to be included on requests with safe HTTP methods (GET, HEAD, OPTIONS, TRACE) without query parameters. Requests that send Early Data with non-idempotent HTTP methods or with query parameters will be rejected with a HTTP 425.
+     * This enables TLS 1.3 0-RTT, and only allows Early Data to be included on
+     * requests with safe HTTP methods (GET, HEAD, OPTIONS, TRACE) without query
+     * parameters. Requests that send Early Data with non-idempotent HTTP
+     * methods or with query parameters will be rejected with a HTTP 425.
      *
      * Generated from protobuf enum <code>STRICT = 308826825;</code>
      */
     const STRICT = 308826825;
     /**
-     * This enables TLS 1.3 Early Data for requests with any HTTP method including non-idempotent methods list POST. This mode does not enforce any other limitations. This may be valuable for gRPC use cases. However, we do not recommend this method unless you have evaluated your security stance and mitigated the risk of replay attacks using other mechanisms.
+     * This enables TLS 1.3 Early Data for requests with any HTTP method
+     * including non-idempotent methods list POST. This mode does not enforce
+     * any other limitations. This may be valuable for gRPC use cases. However,
+     * we do not recommend this method unless you have evaluated your security
+     * stance and mitigated the risk of replay attacks using other mechanisms.
      *
      * Generated from protobuf enum <code>UNRESTRICTED = 457266100;</code>
      */

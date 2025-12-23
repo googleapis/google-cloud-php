@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the managed instance group. It should conform to RFC1035.
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -28,7 +29,9 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
      */
     protected $project = '';
     /**
-     * The name of the region where the managed instance group is located. It should conform to RFC1035.
+     * The name of theregion
+     * where the managed instance group is located.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
@@ -40,7 +43,16 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
      */
     protected $region_instance_group_managers_create_instances_request_resource = null;
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
@@ -48,8 +60,11 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
 
     /**
      * @param string                                                                     $project                                                   Project ID for this request.
-     * @param string                                                                     $region                                                    The name of the region where the managed instance group is located. It should conform to RFC1035.
-     * @param string                                                                     $instanceGroupManager                                      The name of the managed instance group. It should conform to RFC1035.
+     * @param string                                                                     $region                                                    The name of theregion
+     *                                                                                                                                              where the managed instance group is located.
+     *                                                                                                                                              It should conform to RFC1035.
+     * @param string                                                                     $instanceGroupManager                                      The name of the managed instance group.
+     *                                                                                                                                              It should conform to RFC1035.
      * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagersCreateInstancesRequest $regionInstanceGroupManagersCreateInstancesRequestResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\CreateInstancesRegionInstanceGroupManagerRequest
@@ -72,15 +87,27 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_group_manager
-     *           The name of the managed instance group. It should conform to RFC1035.
+     *           The name of the managed instance group.
+     *           It should conform to RFC1035.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $region
-     *           The name of the region where the managed instance group is located. It should conform to RFC1035.
+     *           The name of theregion
+     *           where the managed instance group is located.
+     *           It should conform to RFC1035.
      *     @type \Google\Cloud\Compute\V1\RegionInstanceGroupManagersCreateInstancesRequest $region_instance_group_managers_create_instances_request_resource
      *           The body resource for this request
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so
+     *           that if you must retry your request, the server will know to ignore the
+     *           request if it has already been completed.
+     *           For example, consider a situation where you make an initial request and
+     *           the request times out. If you make the request again with the same
+     *           request ID, the server can check if original operation with the same
+     *           request ID was received, and if so, will ignore the second request.
+     *           The request ID must be
+     *           a valid UUID with the exception that zero UUID is not supported
+     *           (00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +116,8 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     }
 
     /**
-     * The name of the managed instance group. It should conform to RFC1035.
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -100,7 +128,8 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     }
 
     /**
-     * The name of the managed instance group. It should conform to RFC1035.
+     * The name of the managed instance group.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string instance_group_manager = 249363395 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -141,7 +170,9 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     }
 
     /**
-     * The name of the region where the managed instance group is located. It should conform to RFC1035.
+     * The name of theregion
+     * where the managed instance group is located.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
@@ -152,7 +183,9 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     }
 
     /**
-     * The name of the region where the managed instance group is located. It should conform to RFC1035.
+     * The name of theregion
+     * where the managed instance group is located.
+     * It should conform to RFC1035.
      *
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
@@ -203,7 +236,16 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
@@ -224,7 +266,16 @@ class CreateInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so
+     * that if you must retry your request, the server will know to ignore the
+     * request if it has already been completed.
+     * For example, consider a situation where you make an initial request and
+     * the request times out. If you make the request again with the same
+     * request ID, the server can check if original operation with the same
+     * request ID was received, and if so, will ignore the second request.
+     * The request ID must be
+     * a valid UUID with the exception that zero UUID is not supported
+     * (00000000-0000-0000-0000-000000000000).
      *
      * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var

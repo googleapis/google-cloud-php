@@ -15,13 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class LicenseCodeLicenseAlias extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Description of this License Code.
+     * Output only. [Output Only] Description of this License Code.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] URL of license corresponding to this License Code.
+     * Output only. [Output Only] URL of license corresponding to this License Code.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
@@ -34,9 +34,9 @@ class LicenseCodeLicenseAlias extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $description
-     *           [Output Only] Description of this License Code.
+     *           Output only. [Output Only] Description of this License Code.
      *     @type string $self_link
-     *           [Output Only] URL of license corresponding to this License Code.
+     *           Output only. [Output Only] URL of license corresponding to this License Code.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class LicenseCodeLicenseAlias extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Description of this License Code.
+     * Output only. [Output Only] Description of this License Code.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -66,7 +66,7 @@ class LicenseCodeLicenseAlias extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Description of this License Code.
+     * Output only. [Output Only] Description of this License Code.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -81,7 +81,7 @@ class LicenseCodeLicenseAlias extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of license corresponding to this License Code.
+     * Output only. [Output Only] URL of license corresponding to this License Code.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -102,7 +102,7 @@ class LicenseCodeLicenseAlias extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of license corresponding to this License Code.
+     * Output only. [Output Only] URL of license corresponding to this License Code.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var

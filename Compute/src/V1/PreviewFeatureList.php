@@ -31,19 +31,24 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      */
@@ -67,11 +72,16 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\PreviewFeature>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of PreviewFeature resources.
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     *           [Output Only] This token allows you to get the next page of results for
+     *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     *           the query parameter pageToken in the next list request.
+     *           Subsequent list requests will have their own nextPageToken to
+     *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     *           Output only. [Output Only] Unreachable resources.
+     *           end_interface: MixerListResponseWithEtagBuilder
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -176,7 +186,11 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
@@ -197,7 +211,11 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
@@ -212,7 +230,7 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -233,7 +251,7 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -248,7 +266,8 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -259,7 +278,8 @@ class PreviewFeatureList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+     * Output only. [Output Only] Unreachable resources.
+     * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

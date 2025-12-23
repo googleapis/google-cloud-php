@@ -102,6 +102,7 @@ use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
 use Google\Cloud\Channel\V1\RepricingConfig;
+use Google\Cloud\Channel\V1\RepricingConfig\EntitlementGranularity;
 use Google\Cloud\Channel\V1\Sku;
 use Google\Cloud\Channel\V1\SkuGroup;
 use Google\Cloud\Channel\V1\StartPaidServiceRequest;
@@ -183,11 +184,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -435,11 +438,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer2 = 'offer2-1548812529';
         $purchaseOrderId2 = 'purchaseOrderId2-1437424035';
         $billingAccount2 = 'billingAccount2-596754980';
+        $priceReferenceId2 = 'priceReferenceId2-1545048008';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer2);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId2);
         $expectedResponse->setBillingAccount($billingAccount2);
+        $expectedResponse->setPriceReferenceId($priceReferenceId2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -569,11 +574,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId2 = 'purchaseOrderId2-1437424035';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId2);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -703,11 +710,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -992,6 +1001,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $channelPartnerRepricingConfigRepricingConfig->setEntitlementGranularity(
+            $repricingConfigEntitlementGranularity
+        );
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
         $request = (new CreateChannelPartnerRepricingConfigRequest())
             ->setParent($formattedParent)
@@ -1044,6 +1057,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $channelPartnerRepricingConfigRepricingConfig->setEntitlementGranularity(
+            $repricingConfigEntitlementGranularity
+        );
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
         $request = (new CreateChannelPartnerRepricingConfigRequest())
             ->setParent($formattedParent)
@@ -1179,6 +1196,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $customerRepricingConfigRepricingConfig->setEntitlementGranularity($repricingConfigEntitlementGranularity);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
         $request = (new CreateCustomerRepricingConfigRequest())
             ->setParent($formattedParent)
@@ -1231,6 +1250,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $customerRepricingConfigRepricingConfig->setEntitlementGranularity($repricingConfigEntitlementGranularity);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
         $request = (new CreateCustomerRepricingConfigRequest())
             ->setParent($formattedParent)
@@ -1273,11 +1294,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1906,11 +1929,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
@@ -3005,9 +3030,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServiceAccounts($serviceAccounts);
         $transport->addResponse($expectedResponse);
-        // Mock request
-        $account = 'account-1177318867';
-        $request = (new ListSubscribersRequest())->setAccount($account);
+        $request = new ListSubscribersRequest();
         $response = $gapicClient->listSubscribers($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -3018,8 +3041,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSubscribers', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3044,9 +3065,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        // Mock request
-        $account = 'account-1177318867';
-        $request = (new ListSubscribersRequest())->setAccount($account);
+        $request = new ListSubscribersRequest();
         try {
             $gapicClient->listSubscribers($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3492,9 +3511,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new RegisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
+        $request = (new RegisterSubscriberRequest())->setServiceAccount($serviceAccount);
         $response = $gapicClient->registerSubscriber($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3502,8 +3520,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/RegisterSubscriber', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
         $actualValue = $actualRequestObject->getServiceAccount();
         $this->assertProtobufEquals($serviceAccount, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -3531,9 +3547,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new RegisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
+        $request = (new RegisterSubscriberRequest())->setServiceAccount($serviceAccount);
         try {
             $gapicClient->registerSubscriber($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -3572,11 +3587,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3702,11 +3719,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -4076,9 +4095,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new UnregisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
+        $request = (new UnregisterSubscriberRequest())->setServiceAccount($serviceAccount);
         $response = $gapicClient->unregisterSubscriber($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4086,8 +4104,6 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UnregisterSubscriber', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAccount();
-        $this->assertProtobufEquals($account, $actualValue);
         $actualValue = $actualRequestObject->getServiceAccount();
         $this->assertProtobufEquals($serviceAccount, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -4115,9 +4131,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $request = (new UnregisterSubscriberRequest())->setAccount($account)->setServiceAccount($serviceAccount);
+        $request = (new UnregisterSubscriberRequest())->setServiceAccount($serviceAccount);
         try {
             $gapicClient->unregisterSubscriber($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -4246,6 +4261,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $channelPartnerRepricingConfigRepricingConfig->setEntitlementGranularity(
+            $repricingConfigEntitlementGranularity
+        );
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
         $request = (new UpdateChannelPartnerRepricingConfigRequest())->setChannelPartnerRepricingConfig(
             $channelPartnerRepricingConfig
@@ -4295,6 +4314,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $channelPartnerRepricingConfigRepricingConfig->setEntitlementGranularity(
+            $repricingConfigEntitlementGranularity
+        );
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
         $request = (new UpdateChannelPartnerRepricingConfigRequest())->setChannelPartnerRepricingConfig(
             $channelPartnerRepricingConfig
@@ -4425,6 +4448,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $customerRepricingConfigRepricingConfig->setEntitlementGranularity($repricingConfigEntitlementGranularity);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
         $request = (new UpdateCustomerRepricingConfigRequest())->setCustomerRepricingConfig($customerRepricingConfig);
         $response = $gapicClient->updateCustomerRepricingConfig($request);
@@ -4472,6 +4497,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerRepricingConfigRepricingConfig->setAdjustment($repricingConfigAdjustment);
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
+        $repricingConfigEntitlementGranularity = new EntitlementGranularity();
+        $customerRepricingConfigRepricingConfig->setEntitlementGranularity($repricingConfigEntitlementGranularity);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
         $request = (new UpdateCustomerRepricingConfigRequest())->setCustomerRepricingConfig($customerRepricingConfig);
         try {
@@ -4512,11 +4539,13 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $offer = 'offer105650780';
         $purchaseOrderId = 'purchaseOrderId548224298';
         $billingAccount = 'billingAccount-545871767';
+        $priceReferenceId = 'priceReferenceId-1320042043';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $expectedResponse->setBillingAccount($billingAccount);
+        $expectedResponse->setPriceReferenceId($priceReferenceId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

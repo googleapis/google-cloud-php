@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Visibility
 {
     /**
-     * Default value. Reports with hidden visibility will not appear in the Ad
+     * Default value. Reports with hidden visibility won't appear in the Ad
      * Manager UI.
      *
      * Generated from protobuf enum <code>HIDDEN = 0;</code>
@@ -29,16 +29,23 @@ class Visibility
     const DRAFT = 1;
     /**
      * Reports with saved visibility will appear in the Ad Manager UI by
-     * default.
+     * default. Alias for VISIBLE and will be replaced in the future.
      *
-     * Generated from protobuf enum <code>SAVED = 2;</code>
+     * Generated from protobuf enum <code>SAVED = 2 [deprecated = true];</code>
      */
     const SAVED = 2;
+    /**
+     * Reports with this visibility will appear in the Ad Manager UI.
+     *
+     * Generated from protobuf enum <code>VISIBLE = 2;</code>
+     */
+    const VISIBLE = 2;
 
     private static $valueToName = [
         self::HIDDEN => 'HIDDEN',
         self::DRAFT => 'DRAFT',
         self::SAVED => 'SAVED',
+        self::VISIBLE => 'VISIBLE',
     ];
 
     public static function name($value)

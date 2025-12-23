@@ -70,6 +70,20 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string psc_network_attachment_uri = 9;</code>
      */
     protected $psc_network_attachment_uri = '';
+    /**
+     * Indicates whether the Compute Engine instance is running.
+     * Deprecated: use the `status` field instead.
+     *
+     * Generated from protobuf field <code>bool running = 10 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $running = false;
+    /**
+     * The status of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.InstanceInfo.Status status = 11;</code>
+     */
+    protected $status = 0;
 
     /**
      * Constructor.
@@ -95,6 +109,11 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      *           Service account authorized for the instance.
      *     @type string $psc_network_attachment_uri
      *           URI of the PSC network attachment the NIC is attached to (if relevant).
+     *     @type bool $running
+     *           Indicates whether the Compute Engine instance is running.
+     *           Deprecated: use the `status` field instead.
+     *     @type int $status
+     *           The status of the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -338,6 +357,66 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->psc_network_attachment_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the Compute Engine instance is running.
+     * Deprecated: use the `status` field instead.
+     *
+     * Generated from protobuf field <code>bool running = 10 [deprecated = true];</code>
+     * @return bool
+     * @deprecated
+     */
+    public function getRunning()
+    {
+        if ($this->running !== false) {
+            @trigger_error('running is deprecated.', E_USER_DEPRECATED);
+        }
+        return $this->running;
+    }
+
+    /**
+     * Indicates whether the Compute Engine instance is running.
+     * Deprecated: use the `status` field instead.
+     *
+     * Generated from protobuf field <code>bool running = 10 [deprecated = true];</code>
+     * @param bool $var
+     * @return $this
+     * @deprecated
+     */
+    public function setRunning($var)
+    {
+        @trigger_error('running is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkBool($var);
+        $this->running = $var;
+
+        return $this;
+    }
+
+    /**
+     * The status of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.InstanceInfo.Status status = 11;</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * The status of the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.InstanceInfo.Status status = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\InstanceInfo\Status::class);
+        $this->status = $var;
 
         return $this;
     }

@@ -54,6 +54,24 @@ class BackupCollection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
+    /**
+     * Output only. Total size of all backups in the backup collection.
+     *
+     * Generated from protobuf field <code>int64 total_backup_size_bytes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_backup_size_bytes = 0;
+    /**
+     * Output only. Total number of backups in the backup collection.
+     *
+     * Generated from protobuf field <code>int64 total_backup_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_backup_count = 0;
+    /**
+     * Output only. The last time a backup was created in the backup collection.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_backup_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_backup_time = null;
 
     /**
      * Constructor.
@@ -76,6 +94,12 @@ class BackupCollection extends \Google\Protobuf\Internal\Message
      *           Output only. System assigned unique identifier of the backup collection.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the backup collection was created.
+     *     @type int|string $total_backup_size_bytes
+     *           Output only. Total size of all backups in the backup collection.
+     *     @type int|string $total_backup_count
+     *           Output only. Total number of backups in the backup collection.
+     *     @type \Google\Protobuf\Timestamp $last_backup_time
+     *           Output only. The last time a backup was created in the backup collection.
      * }
      */
     public function __construct($data = NULL) {
@@ -251,6 +275,94 @@ class BackupCollection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total size of all backups in the backup collection.
+     *
+     * Generated from protobuf field <code>int64 total_backup_size_bytes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalBackupSizeBytes()
+    {
+        return $this->total_backup_size_bytes;
+    }
+
+    /**
+     * Output only. Total size of all backups in the backup collection.
+     *
+     * Generated from protobuf field <code>int64 total_backup_size_bytes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalBackupSizeBytes($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_backup_size_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total number of backups in the backup collection.
+     *
+     * Generated from protobuf field <code>int64 total_backup_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalBackupCount()
+    {
+        return $this->total_backup_count;
+    }
+
+    /**
+     * Output only. Total number of backups in the backup collection.
+     *
+     * Generated from protobuf field <code>int64 total_backup_count = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalBackupCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_backup_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The last time a backup was created in the backup collection.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_backup_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastBackupTime()
+    {
+        return $this->last_backup_time;
+    }
+
+    public function hasLastBackupTime()
+    {
+        return isset($this->last_backup_time);
+    }
+
+    public function clearLastBackupTime()
+    {
+        unset($this->last_backup_time);
+    }
+
+    /**
+     * Output only. The last time a backup was created in the backup collection.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_backup_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastBackupTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_backup_time = $var;
 
         return $this;
     }

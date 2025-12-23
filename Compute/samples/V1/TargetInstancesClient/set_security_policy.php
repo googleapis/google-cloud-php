@@ -31,10 +31,13 @@ use Google\Cloud\Compute\V1\SetSecurityPolicyTargetInstanceRequest;
 use Google\Rpc\Status;
 
 /**
- * Sets the Google Cloud Armor security policy for the specified target instance. For more information, see Google Cloud Armor Overview
+ * Sets the Google Cloud Armor security policy for the specified target
+ * instance. For more information, seeGoogle
+ * Cloud Armor Overview
  *
  * @param string $project        Project ID for this request.
- * @param string $targetInstance Name of the TargetInstance resource to which the security policy should be set. The name should conform to RFC1035.
+ * @param string $targetInstance Name of the TargetInstance resource to which the security policy should be
+ *                               set. The name should conform to RFC1035.
  * @param string $zone           Name of the zone scoping this request.
  */
 function set_security_policy_sample(string $project, string $targetInstance, string $zone): void

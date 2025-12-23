@@ -19,11 +19,11 @@ class CustomTargetingKeyService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-à
-
-:google/ads/admanager/v1/custom_targeting_key_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"a
+Ï!
+:google/ads/admanager/v1/custom_targeting_key_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.proto"a
 GetCustomTargetingKeyRequestA
 name (	B3àAúA-
 +admanager.googleapis.com/CustomTargetingKey"Ê
@@ -40,10 +40,47 @@ page_token (	BàA
 custom_targeting_keys (2+.google.ads.admanager.v1.CustomTargetingKey
 next_page_token (	
 
-total_size (2ë
+total_size ("«
+CreateCustomTargetingKeyRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkN
+custom_targeting_key (2+.google.ads.admanager.v1.CustomTargetingKeyBàA"²
+%BatchCreateCustomTargetingKeysRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkO
+requests (28.google.ads.admanager.v1.CreateCustomTargetingKeyRequestBàA"t
+&BatchCreateCustomTargetingKeysResponseJ
+custom_targeting_keys (2+.google.ads.admanager.v1.CustomTargetingKey"§
+UpdateCustomTargetingKeyRequestN
+custom_targeting_key (2+.google.ads.admanager.v1.CustomTargetingKeyBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"²
+%BatchUpdateCustomTargetingKeysRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkO
+requests (28.google.ads.admanager.v1.UpdateCustomTargetingKeyRequestBàA"t
+&BatchUpdateCustomTargetingKeysResponseJ
+custom_targeting_keys (2+.google.ads.admanager.v1.CustomTargetingKey"§
+\'BatchActivateCustomTargetingKeysRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkB
+names (	B3àAúA-
++admanager.googleapis.com/CustomTargetingKey"*
+(BatchActivateCustomTargetingKeysResponse"©
+)BatchDeactivateCustomTargetingKeysRequest8
+parent (	B(àAúA"
+ admanager.googleapis.com/NetworkB
+names (	B3àAúA-
++admanager.googleapis.com/CustomTargetingKey",
+*BatchDeactivateCustomTargetingKeysResponse2Ú
 CustomTargetingKeyService·
 GetCustomTargetingKey5.google.ads.admanager.v1.GetCustomTargetingKeyRequest+.google.ads.admanager.v1.CustomTargetingKey":ÚAname‚Óä“-+/v1/{name=networks/*/customTargetingKeys/*}Ê
-ListCustomTargetingKeys7.google.ads.admanager.v1.ListCustomTargetingKeysRequest8.google.ads.admanager.v1.ListCustomTargetingKeysResponse"<ÚAparent‚Óä“-+/v1/{parent=networks/*}/customTargetingKeysGÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÒ
+ListCustomTargetingKeys7.google.ads.admanager.v1.ListCustomTargetingKeysRequest8.google.ads.admanager.v1.ListCustomTargetingKeysResponse"<ÚAparent‚Óä“-+/v1/{parent=networks/*}/customTargetingKeysê
+CreateCustomTargetingKey8.google.ads.admanager.v1.CreateCustomTargetingKeyRequest+.google.ads.admanager.v1.CustomTargetingKey"gÚAparent,custom_targeting_key‚Óä“C"+/v1/{parent=networks/*}/customTargetingKeys:custom_targeting_key÷
+BatchCreateCustomTargetingKeys>.google.ads.admanager.v1.BatchCreateCustomTargetingKeysRequest?.google.ads.admanager.v1.BatchCreateCustomTargetingKeysResponse"TÚAparent,requests‚Óä“<"7/v1/{parent=networks/*}/customTargetingKeys:batchCreate:*…
+UpdateCustomTargetingKey8.google.ads.admanager.v1.UpdateCustomTargetingKeyRequest+.google.ads.admanager.v1.CustomTargetingKey"ÚA custom_targeting_key,update_mask‚Óä“X2@/v1/{custom_targeting_key.name=networks/*/customTargetingKeys/*}:custom_targeting_key÷
+BatchUpdateCustomTargetingKeys>.google.ads.admanager.v1.BatchUpdateCustomTargetingKeysRequest?.google.ads.admanager.v1.BatchUpdateCustomTargetingKeysResponse"TÚAparent,requests‚Óä“<"7/v1/{parent=networks/*}/customTargetingKeys:batchUpdate:*ü
+ BatchActivateCustomTargetingKeys@.google.ads.admanager.v1.BatchActivateCustomTargetingKeysRequestA.google.ads.admanager.v1.BatchActivateCustomTargetingKeysResponse"SÚAparent,names‚Óä“>"9/v1/{parent=networks/*}/customTargetingKeys:batchActivate:*„
+"BatchDeactivateCustomTargetingKeysB.google.ads.admanager.v1.BatchDeactivateCustomTargetingKeysRequestC.google.ads.admanager.v1.BatchDeactivateCustomTargetingKeysResponse"UÚAparent,names‚Óä“@";/v1/{parent=networks/*}/customTargetingKeys:batchDeactivate:*GÊAadmanager.googleapis.comÒA)https://www.googleapis.com/auth/admanagerBÒ
 com.google.ads.admanager.v1BCustomTargetingKeyServiceProtoPZ@google.golang.org/genproto/googleapis/ads/admanager/v1;admanagerªGoogle.Ads.AdManager.V1ÊGoogle\\Ads\\AdManager\\V1êGoogle::Ads::AdManager::V1bproto3'
         , true);
 

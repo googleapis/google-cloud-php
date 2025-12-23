@@ -45,6 +45,18 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.TriggerEvent trigger_events = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $trigger_events;
+    /**
+     * Optional. Name of the CX SecuritySettings which is used to redact generated
+     * response. If this field is empty, try to fetch v2 security_settings, which
+     * is a project level setting. If this field is empty and no v2
+     * security_settings set up in this project, no redaction will be done.
+     * Format:
+     * `projects/<Project ID>/locations/<Location ID>/securitySettings/<Security
+     * Settings ID>`.
+     *
+     * Generated from protobuf field <code>string security_settings = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $security_settings = '';
     protected $generator_resource;
 
     /**
@@ -72,6 +84,14 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $trigger_events
      *           Optional. A list of trigger events. Generator will be triggered only if
      *           it's trigger event is included here.
+     *     @type string $security_settings
+     *           Optional. Name of the CX SecuritySettings which is used to redact generated
+     *           response. If this field is empty, try to fetch v2 security_settings, which
+     *           is a project level setting. If this field is empty and no v2
+     *           security_settings set up in this project, no redaction will be done.
+     *           Format:
+     *           `projects/<Project ID>/locations/<Location ID>/securitySettings/<Security
+     *           Settings ID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -265,6 +285,44 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dialogflow\V2\TriggerEvent::class);
         $this->trigger_events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Name of the CX SecuritySettings which is used to redact generated
+     * response. If this field is empty, try to fetch v2 security_settings, which
+     * is a project level setting. If this field is empty and no v2
+     * security_settings set up in this project, no redaction will be done.
+     * Format:
+     * `projects/<Project ID>/locations/<Location ID>/securitySettings/<Security
+     * Settings ID>`.
+     *
+     * Generated from protobuf field <code>string security_settings = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSecuritySettings()
+    {
+        return $this->security_settings;
+    }
+
+    /**
+     * Optional. Name of the CX SecuritySettings which is used to redact generated
+     * response. If this field is empty, try to fetch v2 security_settings, which
+     * is a project level setting. If this field is empty and no v2
+     * security_settings set up in this project, no redaction will be done.
+     * Format:
+     * `projects/<Project ID>/locations/<Location ID>/securitySettings/<Security
+     * Settings ID>`.
+     *
+     * Generated from protobuf field <code>string security_settings = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecuritySettings($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->security_settings = $var;
 
         return $this;
     }

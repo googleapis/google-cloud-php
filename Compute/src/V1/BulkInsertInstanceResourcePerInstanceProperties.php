@@ -9,20 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Per-instance properties to be set on individual instances. To be extended in the future.
+ * Per-instance properties to be set on individual instances.
+ * To be extended in the future.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BulkInsertInstanceResourcePerInstanceProperties</code>
  */
 class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
+     * Specifies the hostname of the instance. More details in:
+     * https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
      *
      * Generated from protobuf field <code>optional string hostname = 237067315;</code>
      */
     protected $hostname = null;
     /**
-     * This field is only temporary. It will be removed. Do not use it.
+     * Output only. This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -35,9 +37,10 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
      *     Optional. Data for populating the Message object.
      *
      *     @type string $hostname
-     *           Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
+     *           Specifies the hostname of the instance. More details in:
+     *           https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
      *     @type string $name
-     *           This field is only temporary. It will be removed. Do not use it.
+     *           Output only. This field is only temporary. It will be removed. Do not use it.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +49,8 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     }
 
     /**
-     * Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
+     * Specifies the hostname of the instance. More details in:
+     * https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
      *
      * Generated from protobuf field <code>optional string hostname = 237067315;</code>
      * @return string
@@ -67,7 +71,8 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     }
 
     /**
-     * Specifies the hostname of the instance. More details in: https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
+     * Specifies the hostname of the instance. More details in:
+     * https://cloud.google.com/compute/docs/instances/custom-hostname-vm#naming_convention
      *
      * Generated from protobuf field <code>optional string hostname = 237067315;</code>
      * @param string $var
@@ -82,7 +87,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     }
 
     /**
-     * This field is only temporary. It will be removed. Do not use it.
+     * Output only. This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -103,7 +108,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     }
 
     /**
-     * This field is only temporary. It will be removed. Do not use it.
+     * Output only. This field is only temporary. It will be removed. Do not use it.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var

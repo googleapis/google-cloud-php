@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * This reservation type is specified by total resource amounts (e.g. total count of CPUs) and can account for multiple instance SKUs. In other words, one can create instances of varying shapes against this reservation.
+ * This reservation type is specified by total resource amounts (e.g. total
+ * count of CPUs) and can account for multiple instance SKUs. In other words,
+ * one can create instances of varying shapes against this reservation.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationAggregateReservation</code>
  */
 class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] List of resources currently in use.
+     * Output only. [Output only] List of resources currently in use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfo in_use_resources = 409009107;</code>
      */
@@ -28,7 +30,8 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      */
     private $reserved_resources;
     /**
-     * The VM family that all instances scheduled against this reservation must belong to.
+     * The VM family that all instances scheduled against this reservation must
+     * belong to.
      * Check the VmFamily enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vm_family = 125017580;</code>
@@ -49,11 +52,12 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>|\Google\Protobuf\Internal\RepeatedField $in_use_resources
-     *           [Output only] List of resources currently in use.
+     *           Output only. [Output only] List of resources currently in use.
      *     @type array<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>|\Google\Protobuf\Internal\RepeatedField $reserved_resources
      *           List of reserved resources (CPUs, memory, accelerators).
      *     @type string $vm_family
-     *           The VM family that all instances scheduled against this reservation must belong to.
+     *           The VM family that all instances scheduled against this reservation must
+     *           belong to.
      *           Check the VmFamily enum for the list of possible values.
      *     @type string $workload_type
      *           The workload type of the instances that will target this reservation.
@@ -66,7 +70,7 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of resources currently in use.
+     * Output only. [Output only] List of resources currently in use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfo in_use_resources = 409009107;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -77,7 +81,7 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] List of resources currently in use.
+     * Output only. [Output only] List of resources currently in use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfo in_use_resources = 409009107;</code>
      * @param array<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>|\Google\Protobuf\Internal\RepeatedField $var
@@ -118,7 +122,8 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VM family that all instances scheduled against this reservation must belong to.
+     * The VM family that all instances scheduled against this reservation must
+     * belong to.
      * Check the VmFamily enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vm_family = 125017580;</code>
@@ -140,7 +145,8 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VM family that all instances scheduled against this reservation must belong to.
+     * The VM family that all instances scheduled against this reservation must
+     * belong to.
      * Check the VmFamily enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string vm_family = 125017580;</code>

@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] Reasons why configuration.topologyCapability.sla differs from intent.topologyCapability. This list is empty if and only if those are the same.
+ * [Output Only] Reasons why configuration.topologyCapability.sla differs
+ * from intent.topologyCapability. This list is empty if and only if those
+ * are the same.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers</code>
  */
@@ -23,37 +25,46 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      */
     protected $blocker_type = null;
     /**
-     * [Output Only] The url of Google Cloud public documentation explaining this requirement. This is set for every type of requirement.
+     * Output only. [Output Only] The url of Google Cloud public documentation explaining
+     * this requirement. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string documentation_link = 93465183;</code>
      */
     protected $documentation_link = null;
     /**
-     * [Output Only] A human-readable explanation of this requirement and why it's not met. This is set for every type of requirement.
+     * Output only. [Output Only] A human-readable explanation of this requirement and
+     * why it's not met. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string explanation = 504745497;</code>
      */
     protected $explanation = null;
     /**
-     * [Output Only] Facilities used to explain this blocker in more detail. Like physicalStructure.metros.facilities.facility, this is a numeric string like "5467".
+     * Output only. [Output Only] Facilities used to explain this blocker in more detail.
+     * Like physicalStructure.metros.facilities.facility, this is a numeric
+     * string like "5467".
      *
      * Generated from protobuf field <code>repeated string facilities = 536683137;</code>
      */
     private $facilities;
     /**
-     * [Output Only] Interconnects used to explain this blocker in more detail.
+     * Output only. [Output Only] Interconnects used to explain this blocker in more
+     * detail.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
      */
     private $interconnects;
     /**
-     * [Output Only] Metros used to explain this blocker in more detail. These are three-letter lowercase strings like "iad". A blocker like INCOMPATIBLE_METROS will specify the problematic metros in this field.
+     * Output only. [Output Only] Metros used to explain this blocker in more detail.
+     * These are three-letter lowercase strings like "iad". A blocker like
+     * INCOMPATIBLE_METROS will specify the problematic metros in this
+     * field.
      *
      * Generated from protobuf field <code>repeated string metros = 533067386;</code>
      */
     private $metros;
     /**
-     * [Output Only] Zones used to explain this blocker in more detail. Zone names are "zone1" and/or "zone2".
+     * Output only. [Output Only] Zones used to explain this blocker in more detail.
+     * Zone names are "zone1" and/or "zone2".
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
      */
@@ -69,17 +80,26 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      *           
      *           Check the BlockerType enum for the list of possible values.
      *     @type string $documentation_link
-     *           [Output Only] The url of Google Cloud public documentation explaining this requirement. This is set for every type of requirement.
+     *           Output only. [Output Only] The url of Google Cloud public documentation explaining
+     *           this requirement. This is set for every type of requirement.
      *     @type string $explanation
-     *           [Output Only] A human-readable explanation of this requirement and why it's not met. This is set for every type of requirement.
+     *           Output only. [Output Only] A human-readable explanation of this requirement and
+     *           why it's not met. This is set for every type of requirement.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $facilities
-     *           [Output Only] Facilities used to explain this blocker in more detail. Like physicalStructure.metros.facilities.facility, this is a numeric string like "5467".
+     *           Output only. [Output Only] Facilities used to explain this blocker in more detail.
+     *           Like physicalStructure.metros.facilities.facility, this is a numeric
+     *           string like "5467".
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnects
-     *           [Output Only] Interconnects used to explain this blocker in more detail.
+     *           Output only. [Output Only] Interconnects used to explain this blocker in more
+     *           detail.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metros
-     *           [Output Only] Metros used to explain this blocker in more detail. These are three-letter lowercase strings like "iad". A blocker like INCOMPATIBLE_METROS will specify the problematic metros in this field.
+     *           Output only. [Output Only] Metros used to explain this blocker in more detail.
+     *           These are three-letter lowercase strings like "iad". A blocker like
+     *           INCOMPATIBLE_METROS will specify the problematic metros in this
+     *           field.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
-     *           [Output Only] Zones used to explain this blocker in more detail. Zone names are "zone1" and/or "zone2".
+     *           Output only. [Output Only] Zones used to explain this blocker in more detail.
+     *           Zone names are "zone1" and/or "zone2".
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +146,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] The url of Google Cloud public documentation explaining this requirement. This is set for every type of requirement.
+     * Output only. [Output Only] The url of Google Cloud public documentation explaining
+     * this requirement. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string documentation_link = 93465183;</code>
      * @return string
@@ -147,7 +168,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] The url of Google Cloud public documentation explaining this requirement. This is set for every type of requirement.
+     * Output only. [Output Only] The url of Google Cloud public documentation explaining
+     * this requirement. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string documentation_link = 93465183;</code>
      * @param string $var
@@ -162,7 +184,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] A human-readable explanation of this requirement and why it's not met. This is set for every type of requirement.
+     * Output only. [Output Only] A human-readable explanation of this requirement and
+     * why it's not met. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string explanation = 504745497;</code>
      * @return string
@@ -183,7 +206,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] A human-readable explanation of this requirement and why it's not met. This is set for every type of requirement.
+     * Output only. [Output Only] A human-readable explanation of this requirement and
+     * why it's not met. This is set for every type of requirement.
      *
      * Generated from protobuf field <code>optional string explanation = 504745497;</code>
      * @param string $var
@@ -198,7 +222,9 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Facilities used to explain this blocker in more detail. Like physicalStructure.metros.facilities.facility, this is a numeric string like "5467".
+     * Output only. [Output Only] Facilities used to explain this blocker in more detail.
+     * Like physicalStructure.metros.facilities.facility, this is a numeric
+     * string like "5467".
      *
      * Generated from protobuf field <code>repeated string facilities = 536683137;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -209,7 +235,9 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Facilities used to explain this blocker in more detail. Like physicalStructure.metros.facilities.facility, this is a numeric string like "5467".
+     * Output only. [Output Only] Facilities used to explain this blocker in more detail.
+     * Like physicalStructure.metros.facilities.facility, this is a numeric
+     * string like "5467".
      *
      * Generated from protobuf field <code>repeated string facilities = 536683137;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -224,7 +252,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Interconnects used to explain this blocker in more detail.
+     * Output only. [Output Only] Interconnects used to explain this blocker in more
+     * detail.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -235,7 +264,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Interconnects used to explain this blocker in more detail.
+     * Output only. [Output Only] Interconnects used to explain this blocker in more
+     * detail.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -250,7 +280,10 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Metros used to explain this blocker in more detail. These are three-letter lowercase strings like "iad". A blocker like INCOMPATIBLE_METROS will specify the problematic metros in this field.
+     * Output only. [Output Only] Metros used to explain this blocker in more detail.
+     * These are three-letter lowercase strings like "iad". A blocker like
+     * INCOMPATIBLE_METROS will specify the problematic metros in this
+     * field.
      *
      * Generated from protobuf field <code>repeated string metros = 533067386;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -261,7 +294,10 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Metros used to explain this blocker in more detail. These are three-letter lowercase strings like "iad". A blocker like INCOMPATIBLE_METROS will specify the problematic metros in this field.
+     * Output only. [Output Only] Metros used to explain this blocker in more detail.
+     * These are three-letter lowercase strings like "iad". A blocker like
+     * INCOMPATIBLE_METROS will specify the problematic metros in this
+     * field.
      *
      * Generated from protobuf field <code>repeated string metros = 533067386;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -276,7 +312,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Zones used to explain this blocker in more detail. Zone names are "zone1" and/or "zone2".
+     * Output only. [Output Only] Zones used to explain this blocker in more detail.
+     * Zone names are "zone1" and/or "zone2".
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -287,7 +324,8 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
     }
 
     /**
-     * [Output Only] Zones used to explain this blocker in more detail. Zone names are "zone1" and/or "zone2".
+     * Output only. [Output Only] Zones used to explain this blocker in more detail.
+     * Zone names are "zone1" and/or "zone2".
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

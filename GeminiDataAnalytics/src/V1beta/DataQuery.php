@@ -37,6 +37,7 @@ class DataQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Datasource datasources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $datasources;
+    protected $query_type;
 
     /**
      * Constructor.
@@ -44,6 +45,8 @@ class DataQuery extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery $looker
+     *           Optional. A query for retrieving data from a Looker explore.
      *     @type string $question
      *           Optional. A natural language question to answer.
      *     @type string $name
@@ -59,6 +62,37 @@ class DataQuery extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Geminidataanalytics\V1Beta\DataChatService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. A query for retrieving data from a Looker explore.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.LookerQuery looker = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery|null
+     */
+    public function getLooker()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasLooker()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. A query for retrieving data from a Looker explore.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.LookerQuery looker = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery $var
+     * @return $this
+     */
+    public function setLooker($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
     }
 
     /**
@@ -145,6 +179,14 @@ class DataQuery extends \Google\Protobuf\Internal\Message
         $this->datasources = $arr;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQueryType()
+    {
+        return $this->whichOneof("query_type");
     }
 
 }

@@ -9,6 +9,8 @@ use UnexpectedValueException;
 /**
  * 
  * Additional supported values which may be not listed in the enum directly due to technical reasons:
+ * IF_CROSS_SITE_NETWORK
+ * IF_L2_FORWARDING
  * IF_MACSEC
  *
  * Protobuf type <code>google.cloud.compute.v1.Interconnect.AvailableFeatures</code>

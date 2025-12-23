@@ -16,43 +16,54 @@ use Google\Protobuf\Internal\GPBUtil;
 class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * Output only. List of all drain IP:port-range mappings assigned to this interface.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
      */
     private $drain_nat_ip_port_ranges;
     /**
-     * A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * Output only. A list of all IP:port-range mappings assigned to this interface.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
      */
     private $nat_ip_port_ranges;
     /**
-     * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
+     * Output only. Total number of drain ports across all NAT IPs allocated to this
+     * interface. It equals to the aggregated port number in the field
+     * drain_nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      */
     protected $num_total_drain_nat_ports = null;
     /**
-     * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
+     * Output only. Total number of ports across all NAT IPs allocated to this interface.
+     * It equals to the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      */
     protected $num_total_nat_ports = null;
     /**
-     * Information about mappings provided by rules in this NAT.
+     * Output only. Information about mappings provided by rules in this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings rule_mappings = 486192968;</code>
      */
     private $rule_mappings;
     /**
-     * Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: "10.33.4.55/32", or "192.168.5.0/24".
+     * Output only. Alias IP range for this interface endpoint.
+     * It will be a private (RFC 1918) IP range.
+     * Examples: "10.33.4.55/32", or "192.168.5.0/24".
      *
      * Generated from protobuf field <code>optional string source_alias_ip_range = 440340952;</code>
      */
     protected $source_alias_ip_range = null;
     /**
-     * Primary IP of the VM for this NIC.
+     * Output only. Primary IP of the VM for this NIC.
      *
      * Generated from protobuf field <code>optional string source_virtual_ip = 149836159;</code>
      */
@@ -65,19 +76,30 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ip_port_ranges
-     *           List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     *           Output only. List of all drain IP:port-range mappings assigned to this interface.
+     *           These ranges are inclusive, that is, both the first and the last
+     *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     *           "1.1.1.1:2234-2234"].
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ip_port_ranges
-     *           A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     *           Output only. A list of all IP:port-range mappings assigned to this interface.
+     *           These ranges are inclusive, that is, both the first and the last
+     *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     *           "1.1.1.1:2234-2234"].
      *     @type int $num_total_drain_nat_ports
-     *           Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
+     *           Output only. Total number of drain ports across all NAT IPs allocated to this
+     *           interface. It equals to the aggregated port number in the field
+     *           drain_nat_ip_port_ranges.
      *     @type int $num_total_nat_ports
-     *           Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
+     *           Output only. Total number of ports across all NAT IPs allocated to this interface.
+     *           It equals to the aggregated port number in the field nat_ip_port_ranges.
      *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings>|\Google\Protobuf\Internal\RepeatedField $rule_mappings
-     *           Information about mappings provided by rules in this NAT.
+     *           Output only. Information about mappings provided by rules in this NAT.
      *     @type string $source_alias_ip_range
-     *           Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: "10.33.4.55/32", or "192.168.5.0/24".
+     *           Output only. Alias IP range for this interface endpoint.
+     *           It will be a private (RFC 1918) IP range.
+     *           Examples: "10.33.4.55/32", or "192.168.5.0/24".
      *     @type string $source_virtual_ip
-     *           Primary IP of the VM for this NIC.
+     *           Output only. Primary IP of the VM for this NIC.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +108,10 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * Output only. List of all drain IP:port-range mappings assigned to this interface.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -97,7 +122,10 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * Output only. List of all drain IP:port-range mappings assigned to this interface.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -112,7 +140,10 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * Output only. A list of all IP:port-range mappings assigned to this interface.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -123,7 +154,10 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
+     * Output only. A list of all IP:port-range mappings assigned to this interface.
+     * These ranges are inclusive, that is, both the first and the last
+     * ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
+     * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -138,7 +172,9 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
+     * Output only. Total number of drain ports across all NAT IPs allocated to this
+     * interface. It equals to the aggregated port number in the field
+     * drain_nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      * @return int
@@ -159,7 +195,9 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
+     * Output only. Total number of drain ports across all NAT IPs allocated to this
+     * interface. It equals to the aggregated port number in the field
+     * drain_nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      * @param int $var
@@ -174,7 +212,8 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
+     * Output only. Total number of ports across all NAT IPs allocated to this interface.
+     * It equals to the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      * @return int
@@ -195,7 +234,8 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
+     * Output only. Total number of ports across all NAT IPs allocated to this interface.
+     * It equals to the aggregated port number in the field nat_ip_port_ranges.
      *
      * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      * @param int $var
@@ -210,7 +250,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Information about mappings provided by rules in this NAT.
+     * Output only. Information about mappings provided by rules in this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings rule_mappings = 486192968;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -221,7 +261,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Information about mappings provided by rules in this NAT.
+     * Output only. Information about mappings provided by rules in this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings rule_mappings = 486192968;</code>
      * @param array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings>|\Google\Protobuf\Internal\RepeatedField $var
@@ -236,7 +276,9 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: "10.33.4.55/32", or "192.168.5.0/24".
+     * Output only. Alias IP range for this interface endpoint.
+     * It will be a private (RFC 1918) IP range.
+     * Examples: "10.33.4.55/32", or "192.168.5.0/24".
      *
      * Generated from protobuf field <code>optional string source_alias_ip_range = 440340952;</code>
      * @return string
@@ -257,7 +299,9 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: "10.33.4.55/32", or "192.168.5.0/24".
+     * Output only. Alias IP range for this interface endpoint.
+     * It will be a private (RFC 1918) IP range.
+     * Examples: "10.33.4.55/32", or "192.168.5.0/24".
      *
      * Generated from protobuf field <code>optional string source_alias_ip_range = 440340952;</code>
      * @param string $var
@@ -272,7 +316,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Primary IP of the VM for this NIC.
+     * Output only. Primary IP of the VM for this NIC.
      *
      * Generated from protobuf field <code>optional string source_virtual_ip = 149836159;</code>
      * @return string
@@ -293,7 +337,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     }
 
     /**
-     * Primary IP of the VM for this NIC.
+     * Output only. Primary IP of the VM for this NIC.
      *
      * Generated from protobuf field <code>optional string source_virtual_ip = 149836159;</code>
      * @param string $var

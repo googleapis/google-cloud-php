@@ -82,9 +82,7 @@ final class TermsOfServiceAgreementStateServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -92,14 +90,16 @@ final class TermsOfServiceAgreementStateServiceClient
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_descriptor_config.php',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/terms_of_service_agreement_state_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/terms_of_service_agreement_state_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/terms_of_service_agreement_state_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -282,8 +282,10 @@ final class TermsOfServiceAgreementStateServiceClient
      *
      * @experimental
      */
-    public function getTermsOfServiceAgreementState(GetTermsOfServiceAgreementStateRequest $request, array $callOptions = []): TermsOfServiceAgreementState
-    {
+    public function getTermsOfServiceAgreementState(
+        GetTermsOfServiceAgreementStateRequest $request,
+        array $callOptions = []
+    ): TermsOfServiceAgreementState {
         return $this->startApiCall('GetTermsOfServiceAgreementState', $request, $callOptions)->wait();
     }
 
@@ -312,8 +314,14 @@ final class TermsOfServiceAgreementStateServiceClient
      *
      * @experimental
      */
-    public function retrieveForApplicationTermsOfServiceAgreementState(RetrieveForApplicationTermsOfServiceAgreementStateRequest $request, array $callOptions = []): TermsOfServiceAgreementState
-    {
-        return $this->startApiCall('RetrieveForApplicationTermsOfServiceAgreementState', $request, $callOptions)->wait();
+    public function retrieveForApplicationTermsOfServiceAgreementState(
+        RetrieveForApplicationTermsOfServiceAgreementStateRequest $request,
+        array $callOptions = []
+    ): TermsOfServiceAgreementState {
+        return $this->startApiCall(
+            'RetrieveForApplicationTermsOfServiceAgreementState',
+            $request,
+            $callOptions
+        )->wait();
     }
 }

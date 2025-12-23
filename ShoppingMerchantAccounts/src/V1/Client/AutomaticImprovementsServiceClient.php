@@ -80,9 +80,7 @@ final class AutomaticImprovementsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -97,7 +95,8 @@ final class AutomaticImprovementsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/automatic_improvements_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/automatic_improvements_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -249,8 +248,10 @@ final class AutomaticImprovementsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAutomaticImprovements(GetAutomaticImprovementsRequest $request, array $callOptions = []): AutomaticImprovements
-    {
+    public function getAutomaticImprovements(
+        GetAutomaticImprovementsRequest $request,
+        array $callOptions = []
+    ): AutomaticImprovements {
         return $this->startApiCall('GetAutomaticImprovements', $request, $callOptions)->wait();
     }
 
@@ -276,8 +277,10 @@ final class AutomaticImprovementsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAutomaticImprovements(UpdateAutomaticImprovementsRequest $request, array $callOptions = []): AutomaticImprovements
-    {
+    public function updateAutomaticImprovements(
+        UpdateAutomaticImprovementsRequest $request,
+        array $callOptions = []
+    ): AutomaticImprovements {
         return $this->startApiCall('UpdateAutomaticImprovements', $request, $callOptions)->wait();
     }
 }

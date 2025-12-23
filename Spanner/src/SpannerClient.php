@@ -38,6 +38,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
+use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
@@ -131,6 +132,8 @@ class SpannerClient
     private array $defaultQueryOptions;
     private int $isolationLevel;
     private CacheItemPoolInterface|null $cacheItemPool;
+    private static array $activeChannels = [];
+    private static int $totalActiveChannels = 0;
 
     /**
      * Create a Spanner client. Please note that this client requires
@@ -249,6 +252,15 @@ class SpannerClient
             ?? new InstanceAdminClient($clientOptions);
         $this->databaseAdminClient = $options['gapicSpannerDatabaseAdminClient']
             ?? new DatabaseAdminClient($clientOptions);
+
+        $channelId = $this->getChannelId($options);
+        // Add the RequestIdHeaderMiddleware to add an identifier to each rpc call made for debugging
+        $requestIdMiddleware = function (MiddlewareInterface $handler) use ($channelId) {
+            return new RequestIdHeaderMiddleware($handler, $channelId);
+        };
+        $this->spannerClient->prependMiddleware($requestIdMiddleware);
+        $this->instanceAdminClient->prependMiddleware($requestIdMiddleware);
+        $this->databaseAdminClient->prependMiddleware($requestIdMiddleware);
 
         // Add the SpannerMiddleware, which wraps API Exceptions, and adds
         // Resource Prefix and LAR headers
@@ -862,6 +874,26 @@ class SpannerClient
     }
 
     /**
+     * Create a UUID object.
+     *
+     * The string value must consists of 32 hexadecimal digits in five groups separated
+     * by hyphens in the form 8-4-4-4-12. The hexadecimal digits represent 122
+     * random bits and 6 fixed bits, in compliance with RFC 4122 section 4.4.
+     *
+     * Example:
+     * ```
+     * $uuid = $spanner->uuid('f47ac10b-58cc-4372-a567-0e02b2c3d479');
+     * ```
+     *
+     * @param string $value The UUID value.
+     * @return Uuid
+     */
+    public function uuid(string $value): Uuid
+    {
+        return new Uuid($value);
+    }
+
+    /**
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *
@@ -940,5 +972,34 @@ class SpannerClient
     private function isGrpcLoaded()
     {
         return extension_loaded('grpc');
+    }
+
+    /**
+     * Returns the chanel ID to be used for the RequestIdHeaderMiddleware
+     *
+     * @param array $options
+     * @return int
+     */
+    private function getChannelId(array $options): int
+    {
+        $channel = $options['transportOptions']['grpc']['channel'] ?? null;
+
+        // There was no shared channel configured. Grpc will create a new one
+        if (is_null($channel)) {
+            self::$totalActiveChannels++;
+            return self::$totalActiveChannels;
+        }
+
+        $channelObjectId = spl_object_id($channel);
+
+        // There is a shared channel and it is the first time we've seen this specific channel.
+        if (empty(self::$activeChannels[$channelObjectId])) {
+            self::$totalActiveChannels++;
+            self::$activeChannels[$channelObjectId] = self::$totalActiveChannels;
+            return self::$totalActiveChannels;
+        }
+
+        // We have seen this channel, get the ID assigned to the channel
+        return self::$activeChannels[$channelObjectId];
     }
 }

@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Setting that controls Fraud Prevention assessments.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.Event.FraudPrevention</code>
  */

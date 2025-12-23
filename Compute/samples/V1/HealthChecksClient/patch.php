@@ -31,7 +31,10 @@ use Google\Cloud\Compute\V1\PatchHealthCheckRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates a HealthCheck resource in the specified project using the data included in the request. This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
+ * Updates a HealthCheck resource in the specified project using the data
+ * included in the request. This method supportsPATCH
+ * semantics and uses theJSON merge
+ * patch format and processing rules.
  *
  * @param string $healthCheck Name of the HealthCheck resource to patch.
  * @param string $project     Project ID for this request.

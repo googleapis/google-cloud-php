@@ -9,26 +9,48 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specifies the mapping between the response code that will be returned along with the custom error content and the response code returned by the backend service.
+ * Specifies the mapping between the response code that will be returned along
+ * with the custom error content and the response code returned by the backend
+ * service.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.CustomErrorResponsePolicyCustomErrorResponseRule</code>
  */
 class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Valid values include: - A number between 400 and 599: For example 401 or 503, in which case the load balancer applies the policy if the error code exactly matches this value. - 5xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 500 to 599. - 4xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 400 to 499. Values must be unique within matchResponseCodes and across all errorResponseRules of CustomErrorResponsePolicy.
+     * Valid values include:
+     *      - A number between 400 and 599: For example
+     *      401 or 503, in which case the load balancer
+     *      applies the policy if the error code exactly matches this value.
+     *      - 5xx: Load Balancer will apply the policy if the
+     *      backend service responds with any response code in the range of
+     *      500 to 599.
+     *    - 4xx: Load
+     *      Balancer will apply the policy if the backend service responds with any
+     *      response code in the range of 400 to
+     *      499.
+     * Values must be unique within matchResponseCodes and across allerrorResponseRules ofCustomErrorResponsePolicy.
      *
      * Generated from protobuf field <code>repeated string match_response_codes = 104973410;</code>
      */
     private $match_response_codes;
     /**
-     * The HTTP status code returned with the response containing the custom error content. If overrideResponseCode is not supplied, the same response code returned by the original backend bucket or backend service is returned to the client.
+     * The HTTP status code returned with the response containing the custom
+     * error content. If overrideResponseCode is not supplied, the
+     * same response code returned by the original backend bucket or backend
+     * service is returned to the client.
      *
      * Generated from protobuf field <code>optional int32 override_response_code = 530328568;</code>
      */
     protected $override_response_code = null;
     /**
-     * The full path to a file within backendBucket . For example: /errors/defaultError.html path must start with a leading slash. path cannot have trailing slashes. If the file is not available in backendBucket or the load balancer cannot reach the BackendBucket, a simple Not Found Error is returned to the client. The value must be from 1 to 1024 characters
+     * The full path to a file within backendBucket . For example:/errors/defaultError.html
+     * path must start
+     * with a leading slash. path cannot have trailing slashes.
+     * If the file is not available in backendBucket  or the
+     * load balancer cannot reach the BackendBucket, a simpleNot Found Error is returned to the client.
+     * The value must
+     * be from 1 to 1024 characters
      *
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
@@ -41,11 +63,31 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $match_response_codes
-     *           Valid values include: - A number between 400 and 599: For example 401 or 503, in which case the load balancer applies the policy if the error code exactly matches this value. - 5xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 500 to 599. - 4xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 400 to 499. Values must be unique within matchResponseCodes and across all errorResponseRules of CustomErrorResponsePolicy.
+     *           Valid values include:
+     *                - A number between 400 and 599: For example
+     *                401 or 503, in which case the load balancer
+     *                applies the policy if the error code exactly matches this value.
+     *                - 5xx: Load Balancer will apply the policy if the
+     *                backend service responds with any response code in the range of
+     *                500 to 599.
+     *              - 4xx: Load
+     *                Balancer will apply the policy if the backend service responds with any
+     *                response code in the range of 400 to
+     *                499.
+     *           Values must be unique within matchResponseCodes and across allerrorResponseRules ofCustomErrorResponsePolicy.
      *     @type int $override_response_code
-     *           The HTTP status code returned with the response containing the custom error content. If overrideResponseCode is not supplied, the same response code returned by the original backend bucket or backend service is returned to the client.
+     *           The HTTP status code returned with the response containing the custom
+     *           error content. If overrideResponseCode is not supplied, the
+     *           same response code returned by the original backend bucket or backend
+     *           service is returned to the client.
      *     @type string $path
-     *           The full path to a file within backendBucket . For example: /errors/defaultError.html path must start with a leading slash. path cannot have trailing slashes. If the file is not available in backendBucket or the load balancer cannot reach the BackendBucket, a simple Not Found Error is returned to the client. The value must be from 1 to 1024 characters
+     *           The full path to a file within backendBucket . For example:/errors/defaultError.html
+     *           path must start
+     *           with a leading slash. path cannot have trailing slashes.
+     *           If the file is not available in backendBucket  or the
+     *           load balancer cannot reach the BackendBucket, a simpleNot Found Error is returned to the client.
+     *           The value must
+     *           be from 1 to 1024 characters
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +96,18 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
     }
 
     /**
-     * Valid values include: - A number between 400 and 599: For example 401 or 503, in which case the load balancer applies the policy if the error code exactly matches this value. - 5xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 500 to 599. - 4xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 400 to 499. Values must be unique within matchResponseCodes and across all errorResponseRules of CustomErrorResponsePolicy.
+     * Valid values include:
+     *      - A number between 400 and 599: For example
+     *      401 or 503, in which case the load balancer
+     *      applies the policy if the error code exactly matches this value.
+     *      - 5xx: Load Balancer will apply the policy if the
+     *      backend service responds with any response code in the range of
+     *      500 to 599.
+     *    - 4xx: Load
+     *      Balancer will apply the policy if the backend service responds with any
+     *      response code in the range of 400 to
+     *      499.
+     * Values must be unique within matchResponseCodes and across allerrorResponseRules ofCustomErrorResponsePolicy.
      *
      * Generated from protobuf field <code>repeated string match_response_codes = 104973410;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -65,7 +118,18 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
     }
 
     /**
-     * Valid values include: - A number between 400 and 599: For example 401 or 503, in which case the load balancer applies the policy if the error code exactly matches this value. - 5xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 500 to 599. - 4xx: Load Balancer will apply the policy if the backend service responds with any response code in the range of 400 to 499. Values must be unique within matchResponseCodes and across all errorResponseRules of CustomErrorResponsePolicy.
+     * Valid values include:
+     *      - A number between 400 and 599: For example
+     *      401 or 503, in which case the load balancer
+     *      applies the policy if the error code exactly matches this value.
+     *      - 5xx: Load Balancer will apply the policy if the
+     *      backend service responds with any response code in the range of
+     *      500 to 599.
+     *    - 4xx: Load
+     *      Balancer will apply the policy if the backend service responds with any
+     *      response code in the range of 400 to
+     *      499.
+     * Values must be unique within matchResponseCodes and across allerrorResponseRules ofCustomErrorResponsePolicy.
      *
      * Generated from protobuf field <code>repeated string match_response_codes = 104973410;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -80,7 +144,10 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
     }
 
     /**
-     * The HTTP status code returned with the response containing the custom error content. If overrideResponseCode is not supplied, the same response code returned by the original backend bucket or backend service is returned to the client.
+     * The HTTP status code returned with the response containing the custom
+     * error content. If overrideResponseCode is not supplied, the
+     * same response code returned by the original backend bucket or backend
+     * service is returned to the client.
      *
      * Generated from protobuf field <code>optional int32 override_response_code = 530328568;</code>
      * @return int
@@ -101,7 +168,10 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
     }
 
     /**
-     * The HTTP status code returned with the response containing the custom error content. If overrideResponseCode is not supplied, the same response code returned by the original backend bucket or backend service is returned to the client.
+     * The HTTP status code returned with the response containing the custom
+     * error content. If overrideResponseCode is not supplied, the
+     * same response code returned by the original backend bucket or backend
+     * service is returned to the client.
      *
      * Generated from protobuf field <code>optional int32 override_response_code = 530328568;</code>
      * @param int $var
@@ -116,7 +186,13 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
     }
 
     /**
-     * The full path to a file within backendBucket . For example: /errors/defaultError.html path must start with a leading slash. path cannot have trailing slashes. If the file is not available in backendBucket or the load balancer cannot reach the BackendBucket, a simple Not Found Error is returned to the client. The value must be from 1 to 1024 characters
+     * The full path to a file within backendBucket . For example:/errors/defaultError.html
+     * path must start
+     * with a leading slash. path cannot have trailing slashes.
+     * If the file is not available in backendBucket  or the
+     * load balancer cannot reach the BackendBucket, a simpleNot Found Error is returned to the client.
+     * The value must
+     * be from 1 to 1024 characters
      *
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @return string
@@ -137,7 +213,13 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
     }
 
     /**
-     * The full path to a file within backendBucket . For example: /errors/defaultError.html path must start with a leading slash. path cannot have trailing slashes. If the file is not available in backendBucket or the load balancer cannot reach the BackendBucket, a simple Not Found Error is returned to the client. The value must be from 1 to 1024 characters
+     * The full path to a file within backendBucket . For example:/errors/defaultError.html
+     * path must start
+     * with a leading slash. path cannot have trailing slashes.
+     * If the file is not available in backendBucket  or the
+     * load balancer cannot reach the BackendBucket, a simpleNot Found Error is returned to the client.
+     * The value must
+     * be from 1 to 1024 characters
      *
      * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @param string $var

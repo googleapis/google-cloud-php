@@ -31,7 +31,11 @@ use Google\Cloud\Compute\V1\Snapshot;
 use Google\Rpc\Status;
 
 /**
- * Creates a snapshot in the specified project using the data included in the request. For regular snapshot creation, consider using this method instead of disks.createSnapshot, as this method supports more features, such as creating snapshots in a project different from the source disk project.
+ * Creates a snapshot in the specified project using the data included
+ * in the request. For regular snapshot creation, consider using this method
+ * instead of disks.createSnapshot,
+ * as this method supports more features, such as creating snapshots in a
+ * project different from the source disk project.
  *
  * @param string $project Project ID for this request.
  */

@@ -187,6 +187,18 @@ return [
                     ],
                 ],
             ],
+            'ExportArtifact' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{repository=projects/*/locations/*/repositories/*}:exportArtifact',
+                'body' => '*',
+                'placeholders' => [
+                    'repository' => [
+                        'getters' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
             'GetAttachment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/repositories/*/attachments/*}',

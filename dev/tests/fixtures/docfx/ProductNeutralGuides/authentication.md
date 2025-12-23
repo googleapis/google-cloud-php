@@ -8,10 +8,10 @@ To review all of your authentication options see [Credential Lookup](#credential
 For more information about authentication at Google, see [the authentication guide](https://cloud.google.com/docs/authentication).
 Specific instructions and environment variables for each individual service are linked from the README documents listed below for each service.
 
-## Credential Lookup
+## Application Default Credentials (ADC)
 
 The Google Cloud PHP library provides several mechanisms to configure your system without providing
-**Service Account Credentials** directly in code.
+**Service Account Credentials** directly in code. These are known as Application Default Credentials.
 
 **Credentials** are discovered in the following order:
 
@@ -20,26 +20,18 @@ The Google Cloud PHP library provides several mechanisms to configure your syste
 3. Credentials specified in a local ADC file
 4. Credentials from an attached service account (for code running on Google Cloud Platform)
 
-### Google Cloud Platform environments
-
-While running on Google Cloud Platform environments such as Google Compute Engine, Google App Engine
-and Google Kubernetes Engine, no extra work is needed. The **Credentials** and are discovered
-automatically from the attached service account. Code should be written as if already authenticated.
-
-For more information, see
-[Set up ADC for Google Cloud services](https://cloud.google.com/docs/authentication/provide-credentials-adc#attached-sa).
-
 ### Environment Variables
 
-**NOTE**: This library uses [`getenv`](https://www.php.net/manual/en/function.getenv.php), so if
-your environment variables are set in PHP, they must use
-[`putenv`](https://www.php.net/manual/en/function.putenv.php),
+The **Credentials JSON** can be placed in environment variables instead of
+declaring them directly in code.
 
 ```php
 putenv("GOOGLE_APPLICATION_CREDENTIALS=" . __DIR__ . '/your-credentials-file.json');
 ```
-The **Credentials JSON** can be placed in environment variables instead of
-declaring them directly in code.
+
+**NOTE**: This library uses [`getenv`](https://www.php.net/manual/en/function.getenv.php), so if
+your environment variables are set in PHP, they must use
+[`putenv`](https://www.php.net/manual/en/function.putenv.php).
 
 Here are the environment variables that Google Cloud PHP checks for credentials:
 
@@ -53,6 +45,34 @@ The JSON file can contain credentials created for
 Note: Service account keys are a security risk if not managed correctly. You should
 [choose a more secure alternative to service account keys](https://cloud.google.com/docs/authentication#auth-decision-tree)
 whenever possible.
+
+### Local ADC file
+
+This option allows for an easy way to authenticate in a local environment during development. If
+credentials are not provided in code or in environment variables, then your user credentials can be
+discovered from your local ADC file.
+
+To set up a local ADC file:
+
+1. [Download, install, and initialize the Cloud SDK](https://cloud.google.com/sdk)
+2. Create your local ADC file:
+    ```sh
+    gcloud auth application-default login
+    ```
+
+3. Write code as if already authenticated.
+
+**NOTE:** Because this method relies on your user credentials, it is _not_ recommended for running
+in production.
+
+### Google Cloud Platform environments
+
+While running on Google Cloud Platform environments such as Google Compute Engine, Google App Engine
+and Google Kubernetes Engine, no extra work is needed. The **Credentials** and are discovered
+automatically from the attached service account. Code should be written as if already authenticated.
+
+For more information, see
+[Set up ADC for Google Cloud services](https://cloud.google.com/docs/authentication/provide-credentials-adc#attached-sa).
 
 ### Project ID detection
 
@@ -72,80 +92,49 @@ The libraries that support this environment variable are:
 - Trace
 - Translate
 
-### Client Authentication
+## Credentials Options
 
 Each Google Cloud PHP client may be authenticated in code when creating a client library instance.
-
-Most clients use the `credentials` option for providing credentials as a constructor option:
+Most clients use the `credentials` option for providing explicit credentials:
 
 ```php
-use Google\Cloud\VideoIntelligence\V1\VideoIntelligenceServiceClient;
+use Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient;
+use Google\Auth\Credentials\ServiceAccountCredentials;
+
+$scope = ['https://www.googleapis.com/auth/cloud-platform'];
+$keyFile = json_decode(file_get_contents('/path/to/service-account.json'), true);
 
 // Authenticating with keyfile data.
+$credentials = new ServiceAccountCredentials($scope, $keyFile);
 $video = new VideoIntelligenceServiceClient([
-    'credentials' => json_decode(file_get_contents('/path/to/credential-file.json'), true)
-]);
-
-// Authenticating with a keyfile path.
-$video = new VideoIntelligenceServiceClient([
-    'credentials' => '/path/to/credential-file.json'
+    'credentials' => $credentials,
 ]);
 ```
 
-#### Note:
-Some clients accept the `keyFilePath` and `keyFile` configuration options pointing to the credentials
-file. However, both of these options are deprecated in favor of using the `credentialsFetcher`
-option or
-[Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
+**Note**: Some clients use the `credentialsFetcher` client option instead:
 
 ```php
-require 'vendor/autoload.php';
-
 use Google\Cloud\Storage\StorageClient;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 
 // Create the service account credentials and pass them in using the "credentialsFile" option
+$scopes = ['https://www.googleapis.com/auth/devstorage.read_only'];
 $keyFile = json_decode(file_get_contents('/path/to/keyfile.json'), true);
 $storage = new StorageClient([
     'credentialsFetcher' => new ServiceAccountCredentials($scopes, $keyFile),
 ]);
 ```
+
 A list of clients that accept these parameters are:
 
 - [BigQuery](https://github.com/googleapis/google-cloud-php-bigquery)
-- [Datastore](https://github.com/googleapis/google-cloud-php-datastore)
-- [Firestore](https://github.com/googleapis/google-cloud-php-firestore)
 - [Logging](https://github.com/googleapis/google-cloud-php-logging)
-- [Spanner](https://github.com/googleapis/google-cloud-php-spanner)
 - [Storage](https://github.com/googleapis/google-cloud-php-storage)
 
 We recommend to visit the Check the [client documentation][php-ref-docs] for the client library you're using
 for more in depth information.
 
-### Local ADC file
-
-This option allows for an easy way to authenticate in a local environment during development. If
-credentials are not provided in code or in environment variables, then your user credentials can be
-discovered from your local ADC file.
-
-To set up a local ADC file:
-
-1. [Download, install, and initialize the Cloud SDK](https://cloud.google.com/sdk)
-2. Create your local ADC file:
-
-```sh
-gcloud auth application-default login
-```
-
-3. Write code as if already authenticated.
-
-**NOTE:** Because this method relies on your user credentials, it is _not_ recommended for running
-in production.
-
-For more information about setting up authentication for a local development environment, see
-[Set up Application Default Credentials](https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev).
-
-### API Keys
+## API Keys
 
 [API keys][api_keys] are a great way to quickly authenticate in a local environment during development. If
 you'd like to authenticate your client with API keys, use the `apiKey` client option when creating a new
@@ -176,4 +165,4 @@ If you're having trouble authenticating open a
 [Github Issue](https://github.com/googleapis/google-cloud-php/issues/new?title=Authentication+question)
 to get help. Also consider searching or asking
 [questions](http://stackoverflow.com/questions/tagged/google-cloud-platform+php) on
-[StackOverflow](http://stackoverflow.com).
+[StackOverflow](http://stackoverflow.com). See [Troubleshooting](DEBUG.md) for more details.

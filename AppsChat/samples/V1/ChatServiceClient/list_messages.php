@@ -31,21 +31,34 @@ use Google\Apps\Chat\V1\Message;
 
 /**
  * Lists messages in a space that the caller is a member of, including
- * messages from blocked members and spaces. If you list messages from a
+ * messages from blocked members and spaces. System messages, like those
+ * announcing new space members, aren't included. If you list messages from a
  * space with no messages, the response is an empty object. When using a
  * REST/HTTP interface, the response contains an empty JSON object, `{}`.
  * For an example, see
  * [List
  * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/list).
  *
- * Requires [user
- * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
- * with one of the following [authorization
- * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
  *
+ * - [App
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
+ * with [administrator
+ * approval](https://support.google.com/a?p=chat-app-auth) in
+ * [Developer Preview](https://developers.google.com/workspace/preview)
+ * with the authorization scope:
+ * - `https://www.googleapis.com/auth/chat.app.messages.readonly`. When
+ * using this authentication scope, this method only returns public
+ * messages in a space. It doesn't include private messages.
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
  * - `https://www.googleapis.com/auth/chat.messages.readonly`
  * - `https://www.googleapis.com/auth/chat.messages`
- * - `https://www.googleapis.com/auth/chat.import` (import mode spaces only)
+ * - `https://www.googleapis.com/auth/chat.import` (import mode spaces
+ * only)
  *
  * @param string $formattedParent The resource name of the space to list messages from.
  *

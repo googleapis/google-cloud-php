@@ -9,6 +9,7 @@ use UnexpectedValueException;
 /**
  * Result of the account verification as contained in the verdict token issued
  * at the end of the verification flow.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.AccountVerificationInfo.Result</code>
  */

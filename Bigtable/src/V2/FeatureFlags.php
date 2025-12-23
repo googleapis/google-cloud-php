@@ -84,6 +84,12 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool direct_access_requested = 10;</code>
      */
     protected $direct_access_requested = false;
+    /**
+     * If the client can support using BigtablePeerInfo.
+     *
+     * Generated from protobuf field <code>bool peer_info = 11;</code>
+     */
+    protected $peer_info = false;
 
     /**
      * Constructor.
@@ -117,6 +123,8 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *           Notify the server that the client using Traffic Director endpoint.
      *     @type bool $direct_access_requested
      *           Notify the server that the client explicitly opted in for Direct Access.
+     *     @type bool $peer_info
+     *           If the client can support using BigtablePeerInfo.
      * }
      */
     public function __construct($data = NULL) {
@@ -370,6 +378,32 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->direct_access_requested = $var;
+
+        return $this;
+    }
+
+    /**
+     * If the client can support using BigtablePeerInfo.
+     *
+     * Generated from protobuf field <code>bool peer_info = 11;</code>
+     * @return bool
+     */
+    public function getPeerInfo()
+    {
+        return $this->peer_info;
+    }
+
+    /**
+     * If the client can support using BigtablePeerInfo.
+     *
+     * Generated from protobuf field <code>bool peer_info = 11;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPeerInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->peer_info = $var;
 
         return $this;
     }

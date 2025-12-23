@@ -43,6 +43,12 @@ class Type
      * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 4;</code>
      */
     const PRIVATE_SERVICE_CONNECT = 4;
+    /**
+     * GKE Pod IP address masquerading.
+     *
+     * Generated from protobuf enum <code>GKE_POD_IP_MASQUERADING = 5;</code>
+     */
+    const GKE_POD_IP_MASQUERADING = 5;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class Type
         self::EXTERNAL_TO_INTERNAL => 'EXTERNAL_TO_INTERNAL',
         self::CLOUD_NAT => 'CLOUD_NAT',
         self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
+        self::GKE_POD_IP_MASQUERADING => 'GKE_POD_IP_MASQUERADING',
     ];
 
     public static function name($value)

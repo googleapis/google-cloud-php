@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `AwsClusters.ListAwsNodePools` method.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.ListAwsNodePoolsResponse</code>
  */
 class ListAwsNodePoolsResponse extends \Google\Protobuf\Internal\Message

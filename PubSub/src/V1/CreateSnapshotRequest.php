@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided
-     * in the request, the server will assign a random name for this snapshot on
-     * the same project as the subscription. Note that for REST API requests, you
-     * must specify a name.  See the [resource name
+     * Required. Identifier. User-provided name for this snapshot. If the name is
+     * not provided in the request, the server will assign a random name for this
+     * snapshot on the same project as the subscription. Note that for REST API
+     * requests, you must specify a name.  See the [resource name
      * rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -52,16 +52,18 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
+     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
+     * using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tags;
 
     /**
-     * @param string $name         Required. User-provided name for this snapshot. If the name is not provided
-     *                             in the request, the server will assign a random name for this snapshot on
-     *                             the same project as the subscription. Note that for REST API requests, you
-     *                             must specify a name.  See the [resource name
+     * @param string $name         Required. Identifier. User-provided name for this snapshot. If the name is
+     *                             not provided in the request, the server will assign a random name for this
+     *                             snapshot on the same project as the subscription. Note that for REST API
+     *                             requests, you must specify a name.  See the [resource name
      *                             rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      *                             Format is `projects/{project}/snapshots/{snap}`. Please see
      *                             {@see SubscriberClient::snapshotName()} for help formatting this field.
@@ -94,10 +96,10 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. User-provided name for this snapshot. If the name is not provided
-     *           in the request, the server will assign a random name for this snapshot on
-     *           the same project as the subscription. Note that for REST API requests, you
-     *           must specify a name.  See the [resource name
+     *           Required. Identifier. User-provided name for this snapshot. If the name is
+     *           not provided in the request, the server will assign a random name for this
+     *           snapshot on the same project as the subscription. Note that for REST API
+     *           requests, you must specify a name.  See the [resource name
      *           rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      *           Format is `projects/{project}/snapshots/{snap}`.
      *     @type string $subscription
@@ -118,6 +120,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *           resource. For example:
      *             "123/environment": "production",
      *             "123/costCenter": "marketing"
+     *           See https://docs.cloud.google.com/pubsub/docs/tags for more information on
+     *           using tags with Pub/Sub resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,14 +130,14 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided
-     * in the request, the server will assign a random name for this snapshot on
-     * the same project as the subscription. Note that for REST API requests, you
-     * must specify a name.  See the [resource name
+     * Required. Identifier. User-provided name for this snapshot. If the name is
+     * not provided in the request, the server will assign a random name for this
+     * snapshot on the same project as the subscription. Note that for REST API
+     * requests, you must specify a name.  See the [resource name
      * rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -142,14 +146,14 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided
-     * in the request, the server will assign a random name for this snapshot on
-     * the same project as the subscription. Note that for REST API requests, you
-     * must specify a name.  See the [resource name
+     * Required. Identifier. User-provided name for this snapshot. If the name is
+     * not provided in the request, the server will assign a random name for this
+     * snapshot on the same project as the subscription. Note that for REST API
+     * requests, you must specify a name.  See the [resource name
      * rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -236,6 +240,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
+     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
+     * using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -250,6 +256,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
+     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
+     * using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

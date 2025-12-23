@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\BgpRouteAsPath;
 use UnexpectedValueException;
 
 /**
- * [Output only] Type of AS-PATH segment (SEQUENCE or SET)
+ * Output only. [Output only] Type of AS-PATH segment (SEQUENCE or SET)
  *
  * Protobuf type <code>google.cloud.compute.v1.BgpRouteAsPath.Type</code>
  */

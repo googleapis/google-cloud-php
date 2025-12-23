@@ -15,13 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class StoragePoolType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] The deprecation status associated with this storage pool type.
+     * [Output Only] The deprecation status associated with this storage pool
+     * type.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
@@ -33,13 +35,14 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#storagePoolType for storage pool types.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -81,7 +84,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      */
     protected $min_pool_provisioned_throughput = null;
     /**
-     * [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb instead.
+     * [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb
+     * instead.
      *
      * Generated from protobuf field <code>optional int64 min_size_gb = 385278188;</code>
      */
@@ -99,7 +103,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
@@ -111,7 +115,9 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      */
     private $supported_disk_types;
     /**
-     * [Output Only] URL of the zone where the storage pool type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URL of the zone where the storage pool type resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -124,15 +130,18 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
-     *           [Output Only] The deprecation status associated with this storage pool type.
+     *           [Output Only] The deprecation status associated with this storage pool
+     *           type.
      *     @type string $description
      *           [Output Only] An optional description of this resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#storagePoolType for storage pool types.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *     @type int|string $max_pool_provisioned_capacity_gb
      *           [Output Only] Maximum storage pool size in GB.
      *     @type int|string $max_pool_provisioned_iops
@@ -146,17 +155,20 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      *     @type int|string $min_pool_provisioned_throughput
      *           [Output Only] Minimum provisioned throughput.
      *     @type int|string $min_size_gb
-     *           [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb instead.
+     *           [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb
+     *           instead.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
-     *           [Output Only] Server-defined URL for this resource with the resource id.
+     *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_disk_types
      *           [Output Only] The list of disk types supported in this storage pool type.
      *     @type string $zone
-     *           [Output Only] URL of the zone where the storage pool type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *           [Output Only] URL of the zone where the storage pool type resides.
+     *           You must specify this field as part of the HTTP request URL. It is
+     *           not settable as a field in the request body.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,7 +177,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -186,7 +199,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -201,7 +215,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The deprecation status associated with this storage pool type.
+     * [Output Only] The deprecation status associated with this storage pool
+     * type.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @return \Google\Cloud\Compute\V1\DeprecationStatus|null
@@ -222,7 +237,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The deprecation status associated with this storage pool type.
+     * [Output Only] The deprecation status associated with this storage pool
+     * type.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @param \Google\Cloud\Compute\V1\DeprecationStatus $var
@@ -273,7 +289,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -294,7 +311,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -309,7 +327,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#storagePoolType for storage pool types.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -330,7 +348,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#storagePoolType for storage pool types.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#storagePoolType for storage pool types.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -561,7 +579,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb instead.
+     * [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb
+     * instead.
      *
      * Generated from protobuf field <code>optional int64 min_size_gb = 385278188;</code>
      * @return int|string
@@ -582,7 +601,8 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb instead.
+     * [Deprecated] This field is deprecated. Use minPoolProvisionedCapacityGb
+     * instead.
      *
      * Generated from protobuf field <code>optional int64 min_size_gb = 385278188;</code>
      * @param int|string $var
@@ -669,7 +689,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
@@ -690,7 +710,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
+     * Output only. [Output Only] Server-defined URL for this resource with the resource id.
      *
      * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var
@@ -731,7 +751,9 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the storage pool type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URL of the zone where the storage pool type resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -752,7 +774,9 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the storage pool type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * [Output Only] URL of the zone where the storage pool type resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

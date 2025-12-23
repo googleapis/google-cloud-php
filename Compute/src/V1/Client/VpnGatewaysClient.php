@@ -276,7 +276,10 @@ final class VpnGatewaysClient
     }
 
     /**
-     * Retrieves an aggregated list of VPN gateways. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of VPN gateways.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see VpnGatewaysClient::aggregatedListAsync()} .
      *
@@ -384,7 +387,8 @@ final class VpnGatewaysClient
     }
 
     /**
-     * Creates a VPN gateway in the specified project and region using the data included in the request.
+     * Creates a VPN gateway in the specified project and region using
+     * the data included in the request.
      *
      * The async variant is {@see VpnGatewaysClient::insertAsync()} .
      *
@@ -410,7 +414,8 @@ final class VpnGatewaysClient
     }
 
     /**
-     * Retrieves a list of VPN gateways available to the specified project and region.
+     * Retrieves a list of VPN gateways available to the specified
+     * project and region.
      *
      * The async variant is {@see VpnGatewaysClient::listAsync()} .
      *
@@ -436,7 +441,8 @@ final class VpnGatewaysClient
     }
 
     /**
-     * Sets the labels on a VpnGateway. To learn more about labels, read the Labeling Resources documentation.
+     * Sets the labels on a VpnGateway. To learn more about labels, read theLabeling
+     * Resources documentation.
      *
      * The async variant is {@see VpnGatewaysClient::setLabelsAsync()} .
      *

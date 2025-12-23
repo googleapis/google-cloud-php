@@ -15,13 +15,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerResizeRequestStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output only] Fatal errors encountered during the queueing or provisioning phases of the ResizeRequest that caused the transition to the FAILED state. Contrary to the last_attempt errors, this field is final and errors are never removed from here, as the ResizeRequest is not going to retry.
+     * Output only. [Output only] Fatal errors encountered during the queueing or
+     * provisioning phases of the ResizeRequest that caused the transition to
+     * the FAILED state. Contrary to the last_attempt errors, this field is
+     * final and errors are never removed from here, as the ResizeRequest is not
+     * going to retry.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
     protected $error = null;
     /**
-     * [Output only] Information about the last attempt to fulfill the request. The value is temporary since the ResizeRequest can retry, as long as it's still active and the last attempt value can either be cleared or replaced with a different error. Since ResizeRequest retries infrequently, the value may be stale and no longer show an active problem. The value is cleared when ResizeRequest transitions to the final state (becomes inactive). If the final state is FAILED the error describing it will be storred in the "error" field only.
+     * Output only. [Output only] Information about the last attempt to fulfill the request.
+     * The value is temporary since the ResizeRequest can retry, as long as it's
+     * still active and the last attempt value can either be cleared or replaced
+     * with a different error. Since ResizeRequest retries infrequently, the
+     * value may be stale and no longer show an active problem. The value is
+     * cleared when ResizeRequest transitions to the final state (becomes
+     * inactive). If the final state is FAILED the error describing it will be
+     * storred in the "error" field only.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatusLastAttempt last_attempt = 434771492;</code>
      */
@@ -34,9 +45,20 @@ class InstanceGroupManagerResizeRequestStatus extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Error $error
-     *           [Output only] Fatal errors encountered during the queueing or provisioning phases of the ResizeRequest that caused the transition to the FAILED state. Contrary to the last_attempt errors, this field is final and errors are never removed from here, as the ResizeRequest is not going to retry.
+     *           Output only. [Output only] Fatal errors encountered during the queueing or
+     *           provisioning phases of the ResizeRequest that caused the transition to
+     *           the FAILED state. Contrary to the last_attempt errors, this field is
+     *           final and errors are never removed from here, as the ResizeRequest is not
+     *           going to retry.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestStatusLastAttempt $last_attempt
-     *           [Output only] Information about the last attempt to fulfill the request. The value is temporary since the ResizeRequest can retry, as long as it's still active and the last attempt value can either be cleared or replaced with a different error. Since ResizeRequest retries infrequently, the value may be stale and no longer show an active problem. The value is cleared when ResizeRequest transitions to the final state (becomes inactive). If the final state is FAILED the error describing it will be storred in the "error" field only.
+     *           Output only. [Output only] Information about the last attempt to fulfill the request.
+     *           The value is temporary since the ResizeRequest can retry, as long as it's
+     *           still active and the last attempt value can either be cleared or replaced
+     *           with a different error. Since ResizeRequest retries infrequently, the
+     *           value may be stale and no longer show an active problem. The value is
+     *           cleared when ResizeRequest transitions to the final state (becomes
+     *           inactive). If the final state is FAILED the error describing it will be
+     *           storred in the "error" field only.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +67,11 @@ class InstanceGroupManagerResizeRequestStatus extends \Google\Protobuf\Internal\
     }
 
     /**
-     * [Output only] Fatal errors encountered during the queueing or provisioning phases of the ResizeRequest that caused the transition to the FAILED state. Contrary to the last_attempt errors, this field is final and errors are never removed from here, as the ResizeRequest is not going to retry.
+     * Output only. [Output only] Fatal errors encountered during the queueing or
+     * provisioning phases of the ResizeRequest that caused the transition to
+     * the FAILED state. Contrary to the last_attempt errors, this field is
+     * final and errors are never removed from here, as the ResizeRequest is not
+     * going to retry.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\Error|null
@@ -66,7 +92,11 @@ class InstanceGroupManagerResizeRequestStatus extends \Google\Protobuf\Internal\
     }
 
     /**
-     * [Output only] Fatal errors encountered during the queueing or provisioning phases of the ResizeRequest that caused the transition to the FAILED state. Contrary to the last_attempt errors, this field is final and errors are never removed from here, as the ResizeRequest is not going to retry.
+     * Output only. [Output only] Fatal errors encountered during the queueing or
+     * provisioning phases of the ResizeRequest that caused the transition to
+     * the FAILED state. Contrary to the last_attempt errors, this field is
+     * final and errors are never removed from here, as the ResizeRequest is not
+     * going to retry.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\Error $var
@@ -81,7 +111,14 @@ class InstanceGroupManagerResizeRequestStatus extends \Google\Protobuf\Internal\
     }
 
     /**
-     * [Output only] Information about the last attempt to fulfill the request. The value is temporary since the ResizeRequest can retry, as long as it's still active and the last attempt value can either be cleared or replaced with a different error. Since ResizeRequest retries infrequently, the value may be stale and no longer show an active problem. The value is cleared when ResizeRequest transitions to the final state (becomes inactive). If the final state is FAILED the error describing it will be storred in the "error" field only.
+     * Output only. [Output only] Information about the last attempt to fulfill the request.
+     * The value is temporary since the ResizeRequest can retry, as long as it's
+     * still active and the last attempt value can either be cleared or replaced
+     * with a different error. Since ResizeRequest retries infrequently, the
+     * value may be stale and no longer show an active problem. The value is
+     * cleared when ResizeRequest transitions to the final state (becomes
+     * inactive). If the final state is FAILED the error describing it will be
+     * storred in the "error" field only.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatusLastAttempt last_attempt = 434771492;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestStatusLastAttempt|null
@@ -102,7 +139,14 @@ class InstanceGroupManagerResizeRequestStatus extends \Google\Protobuf\Internal\
     }
 
     /**
-     * [Output only] Information about the last attempt to fulfill the request. The value is temporary since the ResizeRequest can retry, as long as it's still active and the last attempt value can either be cleared or replaced with a different error. Since ResizeRequest retries infrequently, the value may be stale and no longer show an active problem. The value is cleared when ResizeRequest transitions to the final state (becomes inactive). If the final state is FAILED the error describing it will be storred in the "error" field only.
+     * Output only. [Output only] Information about the last attempt to fulfill the request.
+     * The value is temporary since the ResizeRequest can retry, as long as it's
+     * still active and the last attempt value can either be cleared or replaced
+     * with a different error. Since ResizeRequest retries infrequently, the
+     * value may be stale and no longer show an active problem. The value is
+     * cleared when ResizeRequest transitions to the final state (becomes
+     * inactive). If the final state is FAILED the error describing it will be
+     * storred in the "error" field only.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerResizeRequestStatusLastAttempt last_attempt = 434771492;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestStatusLastAttempt $var

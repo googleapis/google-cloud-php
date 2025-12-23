@@ -9,63 +9,88 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target Instance resource. You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances.
+ * Represents a Target Instance resource.
+ * You can use a target instance to handle traffic for one or more forwarding
+ * rules, which is ideal for forwarding protocol traffic that is managed by a
+ * single source. For example, ESP, AH, TCP, or UDP.
+ * For more information, readTarget
+ * instances.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetInstance</code>
  */
 class TargetInstance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
+     * A URL to the virtual machine instance that handles traffic for this target
+     * instance. When creating a target instance, you can provide the
+     * fully-qualified URL or a valid partial URL to the desired virtual machine.
+     * For example, the following are all valid URLs:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
+     *    - projects/project/zones/zone/instances/instance
+     *    - zones/zone/instances/instance
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
     protected $instance = null;
     /**
-     * [Output Only] The type of the resource. Always compute#targetInstance for target instances.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
+     * Must have a value of NO_NAT.
+     * Protocol forwarding delivers packets while preserving the destination IP
+     * address of the forwarding rule referencing the target instance.
      * Check the NatPolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nat_policy = 509780496;</code>
      */
     protected $nat_policy = null;
     /**
-     * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     * The URL of the network this target instance uses to forward traffic.
+     * If not specified, the traffic will be forwarded to the network that
+     * the default network interface belongs to.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
     protected $network = null;
     /**
-     * [Output Only] The resource URL for the security policy associated with this target instance.
+     * [Output Only] The resource URL for the security policy associated with this
+     * target instance.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      */
@@ -77,7 +102,9 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * Output only. [Output Only] URL of the zone where the target instance resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
@@ -90,28 +117,50 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           Output only. [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $instance
-     *           A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
+     *           A URL to the virtual machine instance that handles traffic for this target
+     *           instance. When creating a target instance, you can provide the
+     *           fully-qualified URL or a valid partial URL to the desired virtual machine.
+     *           For example, the following are all valid URLs:
+     *              - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
+     *              - projects/project/zones/zone/instances/instance
+     *              - zones/zone/instances/instance
      *     @type string $kind
-     *           [Output Only] The type of the resource. Always compute#targetInstance for target instances.
+     *           Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type string $nat_policy
-     *           Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
+     *           Must have a value of NO_NAT.
+     *           Protocol forwarding delivers packets while preserving the destination IP
+     *           address of the forwarding rule referencing the target instance.
      *           Check the NatPolicy enum for the list of possible values.
      *     @type string $network
-     *           The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     *           The URL of the network this target instance uses to forward traffic.
+     *           If not specified, the traffic will be forwarded to the network that
+     *           the default network interface belongs to.
      *     @type string $security_policy
-     *           [Output Only] The resource URL for the security policy associated with this target instance.
+     *           [Output Only] The resource URL for the security policy associated with this
+     *           target instance.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
-     *           [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *           Output only. [Output Only] URL of the zone where the target instance resides.
+     *           You must specify this field as part of the HTTP request URL. It is
+     *           not settable as a field in the request body.
      * }
      */
     public function __construct($data = NULL) {
@@ -120,7 +169,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -141,7 +191,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -156,7 +207,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -177,7 +229,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -192,7 +245,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -213,7 +267,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -228,7 +283,13 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
+     * A URL to the virtual machine instance that handles traffic for this target
+     * instance. When creating a target instance, you can provide the
+     * fully-qualified URL or a valid partial URL to the desired virtual machine.
+     * For example, the following are all valid URLs:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
+     *    - projects/project/zones/zone/instances/instance
+     *    - zones/zone/instances/instance
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
@@ -249,7 +310,13 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
+     * A URL to the virtual machine instance that handles traffic for this target
+     * instance. When creating a target instance, you can provide the
+     * fully-qualified URL or a valid partial URL to the desired virtual machine.
+     * For example, the following are all valid URLs:
+     *    - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
+     *    - projects/project/zones/zone/instances/instance
+     *    - zones/zone/instances/instance
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var
@@ -264,7 +331,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#targetInstance for target instances.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -285,7 +352,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The type of the resource. Always compute#targetInstance for target instances.
+     * Output only. [Output Only] The type of the resource. Alwayscompute#targetInstance for target instances.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -300,7 +367,13 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -321,7 +394,13 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -336,7 +415,9 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
+     * Must have a value of NO_NAT.
+     * Protocol forwarding delivers packets while preserving the destination IP
+     * address of the forwarding rule referencing the target instance.
      * Check the NatPolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nat_policy = 509780496;</code>
@@ -358,7 +439,9 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
+     * Must have a value of NO_NAT.
+     * Protocol forwarding delivers packets while preserving the destination IP
+     * address of the forwarding rule referencing the target instance.
      * Check the NatPolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nat_policy = 509780496;</code>
@@ -374,7 +457,9 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     * The URL of the network this target instance uses to forward traffic.
+     * If not specified, the traffic will be forwarded to the network that
+     * the default network interface belongs to.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
@@ -395,7 +480,9 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     * The URL of the network this target instance uses to forward traffic.
+     * If not specified, the traffic will be forwarded to the network that
+     * the default network interface belongs to.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var
@@ -410,7 +497,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource URL for the security policy associated with this target instance.
+     * [Output Only] The resource URL for the security policy associated with this
+     * target instance.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @return string
@@ -431,7 +519,8 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource URL for the security policy associated with this target instance.
+     * [Output Only] The resource URL for the security policy associated with this
+     * target instance.
      *
      * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
      * @param string $var
@@ -482,7 +571,9 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * Output only. [Output Only] URL of the zone where the target instance resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
@@ -503,7 +594,9 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the zone where the target instance resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     * Output only. [Output Only] URL of the zone where the target instance resides.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
      *
      * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var

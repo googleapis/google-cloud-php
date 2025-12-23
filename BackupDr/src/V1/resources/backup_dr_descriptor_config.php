@@ -371,6 +371,26 @@ return [
                     ],
                 ],
             ],
+            'FetchBackupsForResourceType' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackups',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1\FetchBackupsForResourceTypeResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'FetchDataSourceReferencesForResourceType' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -607,6 +627,26 @@ return [
                     ],
                 ],
             ],
+            'ListDataSourceReferences' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDataSourceReferences',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\BackupDR\V1\ListDataSourceReferencesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDataSources' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -726,6 +766,8 @@ return [
                 'backupPlanAssociation' => 'projects/{project}/locations/{location}/backupPlanAssociations/{backup_plan_association}',
                 'backupPlanRevision' => 'projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision}',
                 'backupVault' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}',
+                'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'dataSource' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}',
                 'dataSourceReference' => 'projects/{project}/locations/{location}/dataSourceReferences/{data_source_reference}',
                 'instance' => 'projects/{project}/instances/{instance}',

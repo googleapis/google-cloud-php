@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * AzureControlPlane represents the control plane configurations.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AzureControlPlane</code>
  */
 class AzureControlPlane extends \Google\Protobuf\Internal\Message

@@ -32,9 +32,11 @@ use Google\Rpc\Status;
 /**
  * Allows customers to perform maintenance on a reservation subBlock
  *
- * @param string $parentName          The name of the parent reservation and parent block. In the format of reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
+ * @param string $parentName          The name of the parent reservation and parent block. In the format of
+ *                                    reservations/{reservation_name}/reservationBlocks/{reservation_block_name}
  * @param string $project             Project ID for this request.
- * @param string $reservationSubBlock The name of the reservation subBlock. Name should conform to RFC1035 or be a resource ID.
+ * @param string $reservationSubBlock The name of the reservation subBlock.
+ *                                    Name should conform to RFC1035 or be a resource ID.
  * @param string $zone                Name of the zone for this request. Zone name should conform to RFC1035.
  */
 function perform_maintenance_sample(

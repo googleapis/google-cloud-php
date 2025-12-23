@@ -16,49 +16,89 @@ use Google\Protobuf\Internal\GPBUtil;
 class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The value should exactly match contents of exactMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value should exactly match contents of exactMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
      */
     protected $exact_match = null;
     /**
-     * The name of the HTTP header to match. For matching against the HTTP request's authority, use a headerMatch with the header name ":authority". For matching a request's method, use the headerName ":method". When the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true, only non-binary user-specified custom metadata and the `content-type` header are supported. The following transport-level headers cannot be used in header matching rules: `:authority`, `:method`, `:path`, `:scheme`, `user-agent`, `accept-encoding`, `content-encoding`, `grpc-accept-encoding`, `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`, `grpc-timeout` and `grpc-trace-bin`.
+     * The name of the HTTP header to match.
+     * For matching against the HTTP request's authority, use a headerMatch
+     * with the header name ":authority".
+     * For matching a request's method, use the headerName ":method".
+     * When the URL map is bound to a target gRPC proxy that has
+     * the validateForProxyless field set to true, only
+     * non-binary
+     * user-specified custom metadata and the `content-type` header are supported.
+     * The following transport-level headers cannot be used in header matching
+     * rules:
+     * `:authority`, `:method`, `:path`, `:scheme`, `user-agent`,
+     * `accept-encoding`, `content-encoding`, `grpc-accept-encoding`,
+     * `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`,
+     * `grpc-timeout` and `grpc-trace-bin`.
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      */
     protected $header_name = null;
     /**
-     * If set to false, the headerMatch is considered a match if the preceding match criteria are met. If set to true, the headerMatch is considered a match if the preceding match criteria are NOT met. The default setting is false. 
+     * If set to false, the headerMatch is considered a
+     * match if the preceding match criteria are met. If set to true,
+     * the headerMatch is considered a match if the preceding
+     * match criteria are NOT met.
+     * The default setting is false.
      *
      * Generated from protobuf field <code>optional bool invert_match = 501130268;</code>
      */
     protected $invert_match = null;
     /**
-     * The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must start with the contents ofprefixMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
      */
     protected $prefix_match = null;
     /**
-     * A header with the contents of headerName must exist. The match takes place whether or not the request's header has a value. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * A header with the contents of headerName must exist. The
+     * match takes place whether or not the request's header has a value.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
      */
     protected $present_match = null;
     /**
-     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0] - -3 will match. - 0 will not match. - 0.25 will not match. - -3someString will not match. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. rangeMatch is not supported for load balancers that have loadBalancingScheme set to EXTERNAL.
+     * The header value must be an integer and its value must be in the range
+     * specified in rangeMatch. If the header does not contain an
+     * integer, number or is empty, the match fails.
+     * For example for a range [-5, 0]
+     *       - -3 will match.
+     *       - 0 will not match.
+     *       - 0.25 will not match.
+     *       - -3someString will not match.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     * rangeMatch is not supported for load balancers
+     * that have loadBalancingScheme set to EXTERNAL.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Int64RangeMatch range_match = 97244227;</code>
      */
     protected $range_match = null;
     /**
-     * The value of the header must match the regular expression specified in regexMatch. For more information about regular expression syntax, see Syntax. For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header's port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     * The value of the header must match the regular expression specified inregexMatch.
+     * For more information about regular expression syntax, see Syntax.
+     * For matching against a port specified in the HTTP request, use a
+     * headerMatch with headerName set to PORT and a regular expression that
+     * satisfies the RFC2616 Host header's port specifier.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     * Regular expressions can only be used when the loadBalancingScheme is
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      */
     protected $regex_match = null;
     /**
-     * The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must end with the contents ofsuffixMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string suffix_match = 426488663;</code>
      */
@@ -71,21 +111,61 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $exact_match
-     *           The value should exactly match contents of exactMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     *           The value should exactly match contents of exactMatch.
+     *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *     @type string $header_name
-     *           The name of the HTTP header to match. For matching against the HTTP request's authority, use a headerMatch with the header name ":authority". For matching a request's method, use the headerName ":method". When the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true, only non-binary user-specified custom metadata and the `content-type` header are supported. The following transport-level headers cannot be used in header matching rules: `:authority`, `:method`, `:path`, `:scheme`, `user-agent`, `accept-encoding`, `content-encoding`, `grpc-accept-encoding`, `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`, `grpc-timeout` and `grpc-trace-bin`.
+     *           The name of the HTTP header to match.
+     *           For matching against the HTTP request's authority, use a headerMatch
+     *           with the header name ":authority".
+     *           For matching a request's method, use the headerName ":method".
+     *           When the URL map is bound to a target gRPC proxy that has
+     *           the validateForProxyless field set to true, only
+     *           non-binary
+     *           user-specified custom metadata and the `content-type` header are supported.
+     *           The following transport-level headers cannot be used in header matching
+     *           rules:
+     *           `:authority`, `:method`, `:path`, `:scheme`, `user-agent`,
+     *           `accept-encoding`, `content-encoding`, `grpc-accept-encoding`,
+     *           `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`,
+     *           `grpc-timeout` and `grpc-trace-bin`.
      *     @type bool $invert_match
-     *           If set to false, the headerMatch is considered a match if the preceding match criteria are met. If set to true, the headerMatch is considered a match if the preceding match criteria are NOT met. The default setting is false. 
+     *           If set to false, the headerMatch is considered a
+     *           match if the preceding match criteria are met. If set to true,
+     *           the headerMatch is considered a match if the preceding
+     *           match criteria are NOT met.
+     *           The default setting is false.
      *     @type string $prefix_match
-     *           The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     *           The value of the header must start with the contents ofprefixMatch.
+     *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *     @type bool $present_match
-     *           A header with the contents of headerName must exist. The match takes place whether or not the request's header has a value. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     *           A header with the contents of headerName must exist. The
+     *           match takes place whether or not the request's header has a value.
+     *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *     @type \Google\Cloud\Compute\V1\Int64RangeMatch $range_match
-     *           The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0] - -3 will match. - 0 will not match. - 0.25 will not match. - -3someString will not match. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. rangeMatch is not supported for load balancers that have loadBalancingScheme set to EXTERNAL.
+     *           The header value must be an integer and its value must be in the range
+     *           specified in rangeMatch. If the header does not contain an
+     *           integer, number or is empty, the match fails.
+     *           For example for a range [-5, 0]
+     *                 - -3 will match.
+     *                 - 0 will not match.
+     *                 - 0.25 will not match.
+     *                 - -3someString will not match.
+     *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     *           rangeMatch is not supported for load balancers
+     *           that have loadBalancingScheme set to EXTERNAL.
      *     @type string $regex_match
-     *           The value of the header must match the regular expression specified in regexMatch. For more information about regular expression syntax, see Syntax. For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header's port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     *           The value of the header must match the regular expression specified inregexMatch.
+     *           For more information about regular expression syntax, see Syntax.
+     *           For matching against a port specified in the HTTP request, use a
+     *           headerMatch with headerName set to PORT and a regular expression that
+     *           satisfies the RFC2616 Host header's port specifier.
+     *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     *           Regular expressions can only be used when the loadBalancingScheme is
+     *           set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     *           (regional scope) or INTERNAL_MANAGED.
      *     @type string $suffix_match
-     *           The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     *           The value of the header must end with the contents ofsuffixMatch.
+     *           Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +174,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value should exactly match contents of exactMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value should exactly match contents of exactMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
      * @return string
@@ -115,7 +196,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value should exactly match contents of exactMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value should exactly match contents of exactMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
      * @param string $var
@@ -130,7 +212,20 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the HTTP header to match. For matching against the HTTP request's authority, use a headerMatch with the header name ":authority". For matching a request's method, use the headerName ":method". When the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true, only non-binary user-specified custom metadata and the `content-type` header are supported. The following transport-level headers cannot be used in header matching rules: `:authority`, `:method`, `:path`, `:scheme`, `user-agent`, `accept-encoding`, `content-encoding`, `grpc-accept-encoding`, `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`, `grpc-timeout` and `grpc-trace-bin`.
+     * The name of the HTTP header to match.
+     * For matching against the HTTP request's authority, use a headerMatch
+     * with the header name ":authority".
+     * For matching a request's method, use the headerName ":method".
+     * When the URL map is bound to a target gRPC proxy that has
+     * the validateForProxyless field set to true, only
+     * non-binary
+     * user-specified custom metadata and the `content-type` header are supported.
+     * The following transport-level headers cannot be used in header matching
+     * rules:
+     * `:authority`, `:method`, `:path`, `:scheme`, `user-agent`,
+     * `accept-encoding`, `content-encoding`, `grpc-accept-encoding`,
+     * `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`,
+     * `grpc-timeout` and `grpc-trace-bin`.
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      * @return string
@@ -151,7 +246,20 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the HTTP header to match. For matching against the HTTP request's authority, use a headerMatch with the header name ":authority". For matching a request's method, use the headerName ":method". When the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true, only non-binary user-specified custom metadata and the `content-type` header are supported. The following transport-level headers cannot be used in header matching rules: `:authority`, `:method`, `:path`, `:scheme`, `user-agent`, `accept-encoding`, `content-encoding`, `grpc-accept-encoding`, `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`, `grpc-timeout` and `grpc-trace-bin`.
+     * The name of the HTTP header to match.
+     * For matching against the HTTP request's authority, use a headerMatch
+     * with the header name ":authority".
+     * For matching a request's method, use the headerName ":method".
+     * When the URL map is bound to a target gRPC proxy that has
+     * the validateForProxyless field set to true, only
+     * non-binary
+     * user-specified custom metadata and the `content-type` header are supported.
+     * The following transport-level headers cannot be used in header matching
+     * rules:
+     * `:authority`, `:method`, `:path`, `:scheme`, `user-agent`,
+     * `accept-encoding`, `content-encoding`, `grpc-accept-encoding`,
+     * `grpc-encoding`, `grpc-previous-rpc-attempts`, `grpc-tags-bin`,
+     * `grpc-timeout` and `grpc-trace-bin`.
      *
      * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      * @param string $var
@@ -166,7 +274,11 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to false, the headerMatch is considered a match if the preceding match criteria are met. If set to true, the headerMatch is considered a match if the preceding match criteria are NOT met. The default setting is false. 
+     * If set to false, the headerMatch is considered a
+     * match if the preceding match criteria are met. If set to true,
+     * the headerMatch is considered a match if the preceding
+     * match criteria are NOT met.
+     * The default setting is false.
      *
      * Generated from protobuf field <code>optional bool invert_match = 501130268;</code>
      * @return bool
@@ -187,7 +299,11 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to false, the headerMatch is considered a match if the preceding match criteria are met. If set to true, the headerMatch is considered a match if the preceding match criteria are NOT met. The default setting is false. 
+     * If set to false, the headerMatch is considered a
+     * match if the preceding match criteria are met. If set to true,
+     * the headerMatch is considered a match if the preceding
+     * match criteria are NOT met.
+     * The default setting is false.
      *
      * Generated from protobuf field <code>optional bool invert_match = 501130268;</code>
      * @param bool $var
@@ -202,7 +318,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must start with the contents ofprefixMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
      * @return string
@@ -223,7 +340,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must start with the contents ofprefixMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
      * @param string $var
@@ -238,7 +356,9 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A header with the contents of headerName must exist. The match takes place whether or not the request's header has a value. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * A header with the contents of headerName must exist. The
+     * match takes place whether or not the request's header has a value.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
      * @return bool
@@ -259,7 +379,9 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A header with the contents of headerName must exist. The match takes place whether or not the request's header has a value. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * A header with the contents of headerName must exist. The
+     * match takes place whether or not the request's header has a value.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
      * @param bool $var
@@ -274,7 +396,17 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0] - -3 will match. - 0 will not match. - 0.25 will not match. - -3someString will not match. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. rangeMatch is not supported for load balancers that have loadBalancingScheme set to EXTERNAL.
+     * The header value must be an integer and its value must be in the range
+     * specified in rangeMatch. If the header does not contain an
+     * integer, number or is empty, the match fails.
+     * For example for a range [-5, 0]
+     *       - -3 will match.
+     *       - 0 will not match.
+     *       - 0.25 will not match.
+     *       - -3someString will not match.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     * rangeMatch is not supported for load balancers
+     * that have loadBalancingScheme set to EXTERNAL.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Int64RangeMatch range_match = 97244227;</code>
      * @return \Google\Cloud\Compute\V1\Int64RangeMatch|null
@@ -295,7 +427,17 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0] - -3 will match. - 0 will not match. - 0.25 will not match. - -3someString will not match. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. rangeMatch is not supported for load balancers that have loadBalancingScheme set to EXTERNAL.
+     * The header value must be an integer and its value must be in the range
+     * specified in rangeMatch. If the header does not contain an
+     * integer, number or is empty, the match fails.
+     * For example for a range [-5, 0]
+     *       - -3 will match.
+     *       - 0 will not match.
+     *       - 0.25 will not match.
+     *       - -3someString will not match.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     * rangeMatch is not supported for load balancers
+     * that have loadBalancingScheme set to EXTERNAL.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Int64RangeMatch range_match = 97244227;</code>
      * @param \Google\Cloud\Compute\V1\Int64RangeMatch $var
@@ -310,7 +452,15 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the header must match the regular expression specified in regexMatch. For more information about regular expression syntax, see Syntax. For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header's port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     * The value of the header must match the regular expression specified inregexMatch.
+     * For more information about regular expression syntax, see Syntax.
+     * For matching against a port specified in the HTTP request, use a
+     * headerMatch with headerName set to PORT and a regular expression that
+     * satisfies the RFC2616 Host header's port specifier.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     * Regular expressions can only be used when the loadBalancingScheme is
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @return string
@@ -331,7 +481,15 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the header must match the regular expression specified in regexMatch. For more information about regular expression syntax, see Syntax. For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header's port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     * The value of the header must match the regular expression specified inregexMatch.
+     * For more information about regular expression syntax, see Syntax.
+     * For matching against a port specified in the HTTP request, use a
+     * headerMatch with headerName set to PORT and a regular expression that
+     * satisfies the RFC2616 Host header's port specifier.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
+     * Regular expressions can only be used when the loadBalancingScheme is
+     * set to INTERNAL_SELF_MANAGED, EXTERNAL_MANAGED
+     * (regional scope) or INTERNAL_MANAGED.
      *
      * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
      * @param string $var
@@ -346,7 +504,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must end with the contents ofsuffixMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string suffix_match = 426488663;</code>
      * @return string
@@ -367,7 +526,8 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+     * The value of the header must end with the contents ofsuffixMatch.
+     * Only one of exactMatch, prefixMatch,suffixMatch, regexMatch,presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>optional string suffix_match = 426488663;</code>
      * @param string $var

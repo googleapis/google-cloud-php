@@ -239,8 +239,11 @@ final class DocumentsClient
      *
      * @return string The formatted project_knowledge_base_document resource.
      */
-    public static function projectKnowledgeBaseDocumentName(string $project, string $knowledgeBase, string $document): string
-    {
+    public static function projectKnowledgeBaseDocumentName(
+        string $project,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectKnowledgeBaseDocument')->render([
             'project' => $project,
             'knowledge_base' => $knowledgeBase,
@@ -258,8 +261,11 @@ final class DocumentsClient
      *
      * @return string The formatted project_location_knowledge_base resource.
      */
-    public static function projectLocationKnowledgeBaseName(string $project, string $location, string $knowledgeBase): string
-    {
+    public static function projectLocationKnowledgeBaseName(
+        string $project,
+        string $location,
+        string $knowledgeBase
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBase')->render([
             'project' => $project,
             'location' => $location,
@@ -278,8 +284,12 @@ final class DocumentsClient
      *
      * @return string The formatted project_location_knowledge_base_document resource.
      */
-    public static function projectLocationKnowledgeBaseDocumentName(string $project, string $location, string $knowledgeBase, string $document): string
-    {
+    public static function projectLocationKnowledgeBaseDocumentName(
+        string $project,
+        string $location,
+        string $knowledgeBase,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationKnowledgeBaseDocument')->render([
             'project' => $project,
             'location' => $location,

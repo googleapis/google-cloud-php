@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\GetNodeGroupRequest;
 use Google\Cloud\Compute\V1\NodeGroup;
 
 /**
- * Returns the specified NodeGroup. Get a list of available NodeGroups by making a list() request. Note: the "nodes" field should not be used. Use nodeGroups.listNodes instead.
+ * Returns the specified NodeGroup. Get a list of available NodeGroups
+ * by making a list() request.
+ * Note: the "nodes" field should not be used. Use nodeGroups.listNodes
+ * instead.
  *
  * @param string $nodeGroup Name of the node group to return.
  * @param string $project   Project ID for this request.

@@ -15,13 +15,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceHAPolicyLeader extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A fully-qualified URL (starting with https://www.googleapis.com/) of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints that the leader is attached to. The leader's backendGroup must already be specified as a backend of this backend service. Removing a backend that is designated as the leader's backendGroup is not permitted.
+     * A fully-qualified URL (starting with https://www.googleapis.com/)
+     * of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints
+     * that the leader is attached to.
+     * The leader's backendGroup must already be specified as a backend of
+     * this backend service. Removing a backend that is designated as the
+     * leader's backendGroup is not permitted.
      *
      * Generated from protobuf field <code>optional string backend_group = 457777428;</code>
      */
     protected $backend_group = null;
     /**
-     * The network endpoint within the leader.backendGroup that is designated as the leader. This network endpoint cannot be detached from the NEG specified in the haPolicy.leader.backendGroup until the leader is updated with another network endpoint, or the leader is removed from the haPolicy.
+     * The network endpoint within the leader.backendGroup that is
+     * designated as the leader.
+     * This network endpoint cannot be detached from the NEG specified in
+     * the haPolicy.leader.backendGroup until the leader is updated with
+     * another network endpoint, or the leader is removed from the haPolicy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceHAPolicyLeaderNetworkEndpoint network_endpoint = 56789126;</code>
      */
@@ -34,9 +43,18 @@ class BackendServiceHAPolicyLeader extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $backend_group
-     *           A fully-qualified URL (starting with https://www.googleapis.com/) of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints that the leader is attached to. The leader's backendGroup must already be specified as a backend of this backend service. Removing a backend that is designated as the leader's backendGroup is not permitted.
+     *           A fully-qualified URL (starting with https://www.googleapis.com/)
+     *           of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints
+     *           that the leader is attached to.
+     *           The leader's backendGroup must already be specified as a backend of
+     *           this backend service. Removing a backend that is designated as the
+     *           leader's backendGroup is not permitted.
      *     @type \Google\Cloud\Compute\V1\BackendServiceHAPolicyLeaderNetworkEndpoint $network_endpoint
-     *           The network endpoint within the leader.backendGroup that is designated as the leader. This network endpoint cannot be detached from the NEG specified in the haPolicy.leader.backendGroup until the leader is updated with another network endpoint, or the leader is removed from the haPolicy.
+     *           The network endpoint within the leader.backendGroup that is
+     *           designated as the leader.
+     *           This network endpoint cannot be detached from the NEG specified in
+     *           the haPolicy.leader.backendGroup until the leader is updated with
+     *           another network endpoint, or the leader is removed from the haPolicy.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +63,12 @@ class BackendServiceHAPolicyLeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A fully-qualified URL (starting with https://www.googleapis.com/) of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints that the leader is attached to. The leader's backendGroup must already be specified as a backend of this backend service. Removing a backend that is designated as the leader's backendGroup is not permitted.
+     * A fully-qualified URL (starting with https://www.googleapis.com/)
+     * of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints
+     * that the leader is attached to.
+     * The leader's backendGroup must already be specified as a backend of
+     * this backend service. Removing a backend that is designated as the
+     * leader's backendGroup is not permitted.
      *
      * Generated from protobuf field <code>optional string backend_group = 457777428;</code>
      * @return string
@@ -66,7 +89,12 @@ class BackendServiceHAPolicyLeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A fully-qualified URL (starting with https://www.googleapis.com/) of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints that the leader is attached to. The leader's backendGroup must already be specified as a backend of this backend service. Removing a backend that is designated as the leader's backendGroup is not permitted.
+     * A fully-qualified URL (starting with https://www.googleapis.com/)
+     * of the zonal Network Endpoint Group (NEG) with `GCE_VM_IP` endpoints
+     * that the leader is attached to.
+     * The leader's backendGroup must already be specified as a backend of
+     * this backend service. Removing a backend that is designated as the
+     * leader's backendGroup is not permitted.
      *
      * Generated from protobuf field <code>optional string backend_group = 457777428;</code>
      * @param string $var
@@ -81,7 +109,11 @@ class BackendServiceHAPolicyLeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network endpoint within the leader.backendGroup that is designated as the leader. This network endpoint cannot be detached from the NEG specified in the haPolicy.leader.backendGroup until the leader is updated with another network endpoint, or the leader is removed from the haPolicy.
+     * The network endpoint within the leader.backendGroup that is
+     * designated as the leader.
+     * This network endpoint cannot be detached from the NEG specified in
+     * the haPolicy.leader.backendGroup until the leader is updated with
+     * another network endpoint, or the leader is removed from the haPolicy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceHAPolicyLeaderNetworkEndpoint network_endpoint = 56789126;</code>
      * @return \Google\Cloud\Compute\V1\BackendServiceHAPolicyLeaderNetworkEndpoint|null
@@ -102,7 +134,11 @@ class BackendServiceHAPolicyLeader extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The network endpoint within the leader.backendGroup that is designated as the leader. This network endpoint cannot be detached from the NEG specified in the haPolicy.leader.backendGroup until the leader is updated with another network endpoint, or the leader is removed from the haPolicy.
+     * The network endpoint within the leader.backendGroup that is
+     * designated as the leader.
+     * This network endpoint cannot be detached from the NEG specified in
+     * the haPolicy.leader.backendGroup until the leader is updated with
+     * another network endpoint, or the leader is removed from the haPolicy.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceHAPolicyLeaderNetworkEndpoint network_endpoint = 56789126;</code>
      * @param \Google\Cloud\Compute\V1\BackendServiceHAPolicyLeaderNetworkEndpoint $var

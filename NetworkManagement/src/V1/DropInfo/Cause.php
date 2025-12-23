@@ -106,11 +106,19 @@ class Cause
      */
     const ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID = 53;
     /**
-     * Packet is sent from the Internet to the private IPv6 address.
+     * Packet is sent from the Internet or Google service to the private IPv6
+     * address.
      *
      * Generated from protobuf enum <code>NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS = 44;</code>
      */
     const NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS = 44;
+    /**
+     * Packet is sent from the external IPv6 source address of an instance to
+     * the private IPv6 address of an instance.
+     *
+     * Generated from protobuf enum <code>NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS = 98;</code>
+     */
+    const NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS = 98;
     /**
      * The packet does not match a policy-based VPN tunnel local selector.
      *
@@ -130,8 +138,9 @@ class Cause
      */
     const PRIVATE_TRAFFIC_TO_INTERNET = 7;
     /**
-     * Instance with only an internal IP address tries to access Google API and
-     * services, but private Google access is not enabled in the subnet.
+     * Endpoint with only an internal IP address tries to access Google API and
+     * services, but Private Google Access is not enabled in the subnet or is
+     * not applicable.
      *
      * Generated from protobuf enum <code>PRIVATE_GOOGLE_ACCESS_DISALLOWED = 8;</code>
      */
@@ -145,9 +154,8 @@ class Cause
      */
     const PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED = 47;
     /**
-     * Instance with only an internal IP address tries to access external hosts,
-     * but Cloud NAT is not enabled in the subnet, unless special configurations
-     * on a VM allow this connection.
+     * Endpoint with only an internal IP address tries to access external hosts,
+     * but there is no matching Cloud NAT gateway in the subnet.
      *
      * Generated from protobuf enum <code>NO_EXTERNAL_ADDRESS = 9;</code>
      */
@@ -626,6 +634,77 @@ class Cause
      * Generated from protobuf enum <code>UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION = 88;</code>
      */
     const UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION = 88;
+    /**
+     * Packet could be dropped because hybrid endpoint like a VPN gateway or
+     * Interconnect is not allowed to send traffic to the Internet.
+     *
+     * Generated from protobuf enum <code>TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED = 89;</code>
+     */
+    const TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED = 89;
+    /**
+     * Packet with destination IP address within the reserved NAT64 range is
+     * dropped due to no matching NAT gateway in the subnet.
+     *
+     * Generated from protobuf enum <code>NO_MATCHING_NAT64_GATEWAY = 90;</code>
+     */
+    const NO_MATCHING_NAT64_GATEWAY = 90;
+    /**
+     * Packet is dropped due to being sent to a backend of a passthrough load
+     * balancer that doesn't use the same IP version as the frontend.
+     *
+     * Generated from protobuf enum <code>LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH = 96;</code>
+     */
+    const LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH = 96;
+    /**
+     * Packet from the unknown NCC network is dropped due to no known route
+     * from the source network to the destination IP address.
+     *
+     * Generated from protobuf enum <code>NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION = 97;</code>
+     */
+    const NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION = 97;
+    /**
+     * Packet is dropped by Cloud NAT due to using an unsupported protocol.
+     *
+     * Generated from protobuf enum <code>CLOUD_NAT_PROTOCOL_UNSUPPORTED = 99;</code>
+     */
+    const CLOUD_NAT_PROTOCOL_UNSUPPORTED = 99;
+    /**
+     * Packet is dropped due to using an unsupported protocol (any other than
+     * UDP) for L2 Interconnect.
+     *
+     * Generated from protobuf enum <code>L2_INTERCONNECT_UNSUPPORTED_PROTOCOL = 100;</code>
+     */
+    const L2_INTERCONNECT_UNSUPPORTED_PROTOCOL = 100;
+    /**
+     * Packet is dropped due to using an unsupported port (any other than
+     * 6081) for L2 Interconnect.
+     *
+     * Generated from protobuf enum <code>L2_INTERCONNECT_UNSUPPORTED_PORT = 101;</code>
+     */
+    const L2_INTERCONNECT_UNSUPPORTED_PORT = 101;
+    /**
+     * Packet is dropped due to destination IP not matching the appliance
+     * mapping IPs configured on the L2 Interconnect attachment.
+     *
+     * Generated from protobuf enum <code>L2_INTERCONNECT_DESTINATION_IP_MISMATCH = 102;</code>
+     */
+    const L2_INTERCONNECT_DESTINATION_IP_MISMATCH = 102;
+    /**
+     * Packet could be dropped because it matches a route associated with an NCC
+     * spoke in the hybrid subnet context, but such a configuration is not
+     * supported.
+     *
+     * Generated from protobuf enum <code>NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED = 104;</code>
+     */
+    const NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED = 104;
+    /**
+     * Packet is dropped because the region of the hybrid subnet is different
+     * from the region of the next hop of the route matched within this hybrid
+     * subnet.
+     *
+     * Generated from protobuf enum <code>HYBRID_SUBNET_REGION_MISMATCH = 105;</code>
+     */
+    const HYBRID_SUBNET_REGION_MISMATCH = 105;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -643,6 +722,7 @@ class Cause
         self::ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED => 'ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED',
         self::ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID => 'ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID',
         self::NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS => 'NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS',
+        self::NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS => 'NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS',
         self::VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH => 'VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH',
         self::VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH => 'VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH',
         self::PRIVATE_TRAFFIC_TO_INTERNET => 'PRIVATE_TRAFFIC_TO_INTERNET',
@@ -716,6 +796,16 @@ class Cause
         self::PSC_PORT_MAPPING_PORT_MISMATCH => 'PSC_PORT_MAPPING_PORT_MISMATCH',
         self::PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED => 'PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED',
         self::UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION => 'UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION',
+        self::TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED => 'TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED',
+        self::NO_MATCHING_NAT64_GATEWAY => 'NO_MATCHING_NAT64_GATEWAY',
+        self::LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH => 'LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH',
+        self::NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION => 'NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION',
+        self::CLOUD_NAT_PROTOCOL_UNSUPPORTED => 'CLOUD_NAT_PROTOCOL_UNSUPPORTED',
+        self::L2_INTERCONNECT_UNSUPPORTED_PROTOCOL => 'L2_INTERCONNECT_UNSUPPORTED_PROTOCOL',
+        self::L2_INTERCONNECT_UNSUPPORTED_PORT => 'L2_INTERCONNECT_UNSUPPORTED_PORT',
+        self::L2_INTERCONNECT_DESTINATION_IP_MISMATCH => 'L2_INTERCONNECT_DESTINATION_IP_MISMATCH',
+        self::NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED => 'NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED',
+        self::HYBRID_SUBNET_REGION_MISMATCH => 'HYBRID_SUBNET_REGION_MISMATCH',
     ];
 
     public static function name($value)

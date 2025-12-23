@@ -21,7 +21,8 @@ class StoragePoolTypesScopedList extends \Google\Protobuf\Internal\Message
      */
     private $storage_pool_types;
     /**
-     * [Output Only] Informational warning which replaces the list of storage pool types when the list is empty.
+     * [Output Only] Informational warning which replaces the list of storage pool
+     * types when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -36,7 +37,8 @@ class StoragePoolTypesScopedList extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\StoragePoolType>|\Google\Protobuf\Internal\RepeatedField $storage_pool_types
      *           [Output Only] A list of storage pool types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] Informational warning which replaces the list of storage pool types when the list is empty.
+     *           [Output Only] Informational warning which replaces the list of storage pool
+     *           types when the list is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,7 +73,8 @@ class StoragePoolTypesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Informational warning which replaces the list of storage pool types when the list is empty.
+     * [Output Only] Informational warning which replaces the list of storage pool
+     * types when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -92,7 +95,8 @@ class StoragePoolTypesScopedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Informational warning which replaces the list of storage pool types when the list is empty.
+     * [Output Only] Informational warning which replaces the list of storage pool
+     * types when the list is empty.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

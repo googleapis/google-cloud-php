@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\ListAvailableFeaturesSslPoliciesRequest;
 use Google\Cloud\Compute\V1\SslPoliciesListAvailableFeaturesResponse;
 
 /**
- * Lists all features that can be specified in the SSL policy when using custom profile.
+ * Lists all features that can be specified in the SSL policy when using
+ * custom profile.
  *
  * @param string $project Project ID for this request.
  */

@@ -15,14 +15,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies what address purposes are supported. If empty, all address purposes are supported.
+     * Specifies what address purposes are supported. If empty, all address
+     * purposes are supported.
      * Check the AddressPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string address_purposes = 433024768;</code>
      */
     private $address_purposes;
     /**
-     * Specifies whether alias IP ranges (and secondary address ranges) are allowed.
+     * Specifies whether alias IP ranges (and secondary address ranges) are
+     * allowed.
      * Check the AllowAliasIpRanges enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_alias_ip_ranges = 457984201;</code>
@@ -64,7 +66,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     protected $allow_default_nic_attachment = null;
     /**
-     * Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
+     * Specifies whether VMs are allowed to have external IP access on network
+     * interfaces connected to this VPC.
      * Check the AllowExternalIpAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_external_ip_access = 131538110;</code>
@@ -98,6 +101,13 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string allow_multi_nic_in_same_network = 88251004;</code>
      */
     protected $allow_multi_nic_in_same_network = null;
+    /**
+     * Specifies whether multicast is allowed.
+     * Check the AllowMulticast enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_multicast = 11002498;</code>
+     */
+    protected $allow_multicast = null;
     /**
      * Specifies whether NCC is allowed.
      * Check the AllowNcc enum for the list of possible values.
@@ -169,12 +179,20 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     protected $allow_vpn = null;
     /**
-     * If set, limits the interface types that the network supports. If empty, all interface types are supported.
+     * If set, limits the interface types that the network supports. If
+     * empty, all interface types are supported.
      * Check the InterfaceTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string interface_types = 157981171;</code>
      */
     private $interface_types;
+    /**
+     * Specifies which type of multicast is supported.
+     * Check the Multicast enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string multicast = 404098040;</code>
+     */
+    protected $multicast = null;
     /**
      * Specifies which subnetwork purposes are supported.
      * Check the SubnetPurposes enum for the list of possible values.
@@ -190,14 +208,14 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     private $subnet_stack_types;
     /**
-     * Specifies which subnetwork purposes are supported.
+     * Output only. Specifies which subnetwork purposes are supported.
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
      */
     private $subnetwork_purposes;
     /**
-     * Specifies which subnetwork stack types are supported.
+     * Output only. Specifies which subnetwork stack types are supported.
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
@@ -218,10 +236,12 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $address_purposes
-     *           Specifies what address purposes are supported. If empty, all address purposes are supported.
+     *           Specifies what address purposes are supported. If empty, all address
+     *           purposes are supported.
      *           Check the AddressPurposes enum for the list of possible values.
      *     @type string $allow_alias_ip_ranges
-     *           Specifies whether alias IP ranges (and secondary address ranges) are allowed.
+     *           Specifies whether alias IP ranges (and secondary address ranges) are
+     *           allowed.
      *           Check the AllowAliasIpRanges enum for the list of possible values.
      *     @type string $allow_auto_mode_subnet
      *           Specifies whether auto mode subnet creation is allowed.
@@ -239,7 +259,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *           Specifies whether default NIC attachment is allowed.
      *           Check the AllowDefaultNicAttachment enum for the list of possible values.
      *     @type string $allow_external_ip_access
-     *           Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
+     *           Specifies whether VMs are allowed to have external IP access on network
+     *           interfaces connected to this VPC.
      *           Check the AllowExternalIpAccess enum for the list of possible values.
      *     @type string $allow_interconnect
      *           Specifies whether Cloud Interconnect creation is allowed.
@@ -253,6 +274,9 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     @type string $allow_multi_nic_in_same_network
      *           Specifies whether multi-nic in the same network is allowed.
      *           Check the AllowMultiNicInSameNetwork enum for the list of possible values.
+     *     @type string $allow_multicast
+     *           Specifies whether multicast is allowed.
+     *           Check the AllowMulticast enum for the list of possible values.
      *     @type string $allow_ncc
      *           Specifies whether NCC is allowed.
      *           Check the AllowNcc enum for the list of possible values.
@@ -284,8 +308,12 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *           Specifies whether VPN creation is allowed.
      *           Check the AllowVpn enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interface_types
-     *           If set, limits the interface types that the network supports. If empty, all interface types are supported.
+     *           If set, limits the interface types that the network supports. If
+     *           empty, all interface types are supported.
      *           Check the InterfaceTypes enum for the list of possible values.
+     *     @type string $multicast
+     *           Specifies which type of multicast is supported.
+     *           Check the Multicast enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnet_purposes
      *           Specifies which subnetwork purposes are supported.
      *           Check the SubnetPurposes enum for the list of possible values.
@@ -293,10 +321,10 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *           Specifies which subnetwork stack types are supported.
      *           Check the SubnetStackTypes enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_purposes
-     *           Specifies which subnetwork purposes are supported.
+     *           Output only. Specifies which subnetwork purposes are supported.
      *           Check the SubnetworkPurposes enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_stack_types
-     *           Specifies which subnetwork stack types are supported.
+     *           Output only. Specifies which subnetwork stack types are supported.
      *           Check the SubnetworkStackTypes enum for the list of possible values.
      *     @type string $unicast
      *           Specifies which type of unicast is supported.
@@ -309,7 +337,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies what address purposes are supported. If empty, all address purposes are supported.
+     * Specifies what address purposes are supported. If empty, all address
+     * purposes are supported.
      * Check the AddressPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string address_purposes = 433024768;</code>
@@ -321,7 +350,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies what address purposes are supported. If empty, all address purposes are supported.
+     * Specifies what address purposes are supported. If empty, all address
+     * purposes are supported.
      * Check the AddressPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string address_purposes = 433024768;</code>
@@ -337,7 +367,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether alias IP ranges (and secondary address ranges) are allowed.
+     * Specifies whether alias IP ranges (and secondary address ranges) are
+     * allowed.
      * Check the AllowAliasIpRanges enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_alias_ip_ranges = 457984201;</code>
@@ -359,7 +390,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether alias IP ranges (and secondary address ranges) are allowed.
+     * Specifies whether alias IP ranges (and secondary address ranges) are
+     * allowed.
      * Check the AllowAliasIpRanges enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_alias_ip_ranges = 457984201;</code>
@@ -565,7 +597,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
+     * Specifies whether VMs are allowed to have external IP access on network
+     * interfaces connected to this VPC.
      * Check the AllowExternalIpAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_external_ip_access = 131538110;</code>
@@ -587,7 +620,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether VMs are allowed to have external IP access on network interfaces connected to this VPC.
+     * Specifies whether VMs are allowed to have external IP access on network
+     * interfaces connected to this VPC.
      * Check the AllowExternalIpAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string allow_external_ip_access = 131538110;</code>
@@ -750,6 +784,44 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->allow_multi_nic_in_same_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether multicast is allowed.
+     * Check the AllowMulticast enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_multicast = 11002498;</code>
+     * @return string
+     */
+    public function getAllowMulticast()
+    {
+        return isset($this->allow_multicast) ? $this->allow_multicast : '';
+    }
+
+    public function hasAllowMulticast()
+    {
+        return isset($this->allow_multicast);
+    }
+
+    public function clearAllowMulticast()
+    {
+        unset($this->allow_multicast);
+    }
+
+    /**
+     * Specifies whether multicast is allowed.
+     * Check the AllowMulticast enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_multicast = 11002498;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowMulticast($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_multicast = $var;
 
         return $this;
     }
@@ -1135,7 +1207,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, limits the interface types that the network supports. If empty, all interface types are supported.
+     * If set, limits the interface types that the network supports. If
+     * empty, all interface types are supported.
      * Check the InterfaceTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string interface_types = 157981171;</code>
@@ -1147,7 +1220,8 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, limits the interface types that the network supports. If empty, all interface types are supported.
+     * If set, limits the interface types that the network supports. If
+     * empty, all interface types are supported.
      * Check the InterfaceTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string interface_types = 157981171;</code>
@@ -1158,6 +1232,44 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->interface_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which type of multicast is supported.
+     * Check the Multicast enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string multicast = 404098040;</code>
+     * @return string
+     */
+    public function getMulticast()
+    {
+        return isset($this->multicast) ? $this->multicast : '';
+    }
+
+    public function hasMulticast()
+    {
+        return isset($this->multicast);
+    }
+
+    public function clearMulticast()
+    {
+        unset($this->multicast);
+    }
+
+    /**
+     * Specifies which type of multicast is supported.
+     * Check the Multicast enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string multicast = 404098040;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMulticast($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->multicast = $var;
 
         return $this;
     }
@@ -1219,7 +1331,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork purposes are supported.
+     * Output only. Specifies which subnetwork purposes are supported.
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
@@ -1231,7 +1343,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork purposes are supported.
+     * Output only. Specifies which subnetwork purposes are supported.
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
@@ -1247,7 +1359,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork stack types are supported.
+     * Output only. Specifies which subnetwork stack types are supported.
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
@@ -1259,7 +1371,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which subnetwork stack types are supported.
+     * Output only. Specifies which subnetwork stack types are supported.
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>

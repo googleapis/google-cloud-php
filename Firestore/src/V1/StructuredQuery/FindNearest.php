@@ -60,8 +60,8 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * `distance_measure` will affect the meaning of the distance threshold.
      * Since DOT_PRODUCT distances increase when the vectors are more similar,
      * the comparison is inverted.
-     * * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
-     * * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     * * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold`
+     * * For DOT_PRODUCT:       `WHERE distance >= distance_threshold`
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -95,8 +95,8 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      *           `distance_measure` will affect the meaning of the distance threshold.
      *           Since DOT_PRODUCT distances increase when the vectors are more similar,
      *           the comparison is inverted.
-     *           * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
-     *           * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     *           * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold`
+     *           * For DOT_PRODUCT:       `WHERE distance >= distance_threshold`
      * }
      */
     public function __construct($data = NULL) {
@@ -311,8 +311,8 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * `distance_measure` will affect the meaning of the distance threshold.
      * Since DOT_PRODUCT distances increase when the vectors are more similar,
      * the comparison is inverted.
-     * * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
-     * * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     * * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold`
+     * * For DOT_PRODUCT:       `WHERE distance >= distance_threshold`
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\DoubleValue|null
@@ -340,8 +340,8 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * `distance_measure` will affect the meaning of the distance threshold.
      * Since DOT_PRODUCT distances increase when the vectors are more similar,
      * the comparison is inverted.
-     * * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
-     * * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     * * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold`
+     * * For DOT_PRODUCT:       `WHERE distance >= distance_threshold`
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float|null
@@ -357,8 +357,8 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * `distance_measure` will affect the meaning of the distance threshold.
      * Since DOT_PRODUCT distances increase when the vectors are more similar,
      * the comparison is inverted.
-     * * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
-     * * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     * * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold`
+     * * For DOT_PRODUCT:       `WHERE distance >= distance_threshold`
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\DoubleValue $var
@@ -380,8 +380,8 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * `distance_measure` will affect the meaning of the distance threshold.
      * Since DOT_PRODUCT distances increase when the vectors are more similar,
      * the comparison is inverted.
-     * * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold
-     * * For DOT_PRODUCT:       WHERE distance >= distance_threshold
+     * * For EUCLIDEAN, COSINE: `WHERE distance <= distance_threshold`
+     * * For DOT_PRODUCT:       `WHERE distance >= distance_threshold`
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue distance_threshold = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float|null $var

@@ -319,7 +319,8 @@ final class RegionNotificationEndpointsClient
     }
 
     /**
-     * Create a NotificationEndpoint in the specified project in the given region using the parameters that are included in the request.
+     * Create a NotificationEndpoint in the specified project in the given region
+     * using the parameters that are included in the request.
      *
      * The async variant is {@see RegionNotificationEndpointsClient::insertAsync()} .
      *

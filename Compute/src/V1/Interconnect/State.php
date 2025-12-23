@@ -7,7 +7,15 @@ namespace Google\Cloud\Compute\V1\Interconnect;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current state of Interconnect functionality, which can take one of the following values: - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect. - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect. - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
+ * Output only. [Output Only] The current state of Interconnect functionality, which can
+ * take one of the following values:
+ *    - ACTIVE: The Interconnect is valid, turned up and ready to use.
+ *    Attachments may be provisioned on this Interconnect.
+ *    - UNPROVISIONED: The Interconnect has not completed turnup. No
+ *    attachments may be provisioned on this Interconnect.
+ *    - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance.
+ *    No attachments may be provisioned or updated on this
+ *    Interconnect.
  *
  * Protobuf type <code>google.cloud.compute.v1.Interconnect.State</code>
  */
@@ -20,13 +28,15 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * The interconnect is valid, turned up, and ready to use. Attachments may be provisioned on this interconnect.
+     * The interconnect is valid, turned up, and ready to use. Attachments may
+     * be provisioned on this interconnect.
      *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
     const ACTIVE = 314733318;
     /**
-     * The interconnect has not completed turnup. No attachments may be provisioned on this interconnect.
+     * The interconnect has not completed turnup. No attachments may be
+     * provisioned on this interconnect.
      *
      * Generated from protobuf enum <code>UNPROVISIONED = 517333979;</code>
      */

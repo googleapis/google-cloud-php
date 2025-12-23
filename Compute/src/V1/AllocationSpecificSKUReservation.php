@@ -9,14 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * This reservation type allows to pre allocate specific instance configuration.
+ * This reservation type allows to pre allocate specific instance
+ *  configuration.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationSpecificSKUReservation</code>
  */
 class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Indicates how many instances are actually usable currently.
+     * Output only. [Output Only] Indicates how many instances are actually usable currently.
      *
      * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
      */
@@ -28,7 +29,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      */
     protected $count = null;
     /**
-     * [Output Only] Indicates how many instances are in use.
+     * Output only. [Output Only] Indicates how many instances are in use.
      *
      * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      */
@@ -40,7 +41,13 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      */
     protected $instance_properties = null;
     /**
-     * Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
+     * Specifies the instance template to create the reservation. If you use
+     * this field, you must exclude the instanceProperties field.
+     * This field is optional, and it can be a full or partial URL. For example,
+     * the following are all valid URLs to an instance template:
+     *       - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate
+     *       - projects/project/global/instanceTemplates/instanceTemplate
+     *       - global/instanceTemplates/instanceTemplate
      *
      * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
      */
@@ -53,15 +60,21 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $assured_count
-     *           [Output Only] Indicates how many instances are actually usable currently.
+     *           Output only. [Output Only] Indicates how many instances are actually usable currently.
      *     @type int|string $count
      *           Specifies the number of resources that are allocated.
      *     @type int|string $in_use_count
-     *           [Output Only] Indicates how many instances are in use.
+     *           Output only. [Output Only] Indicates how many instances are in use.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationReservedInstanceProperties $instance_properties
      *           The instance properties for the reservation.
      *     @type string $source_instance_template
-     *           Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
+     *           Specifies the instance template to create the reservation. If you use
+     *           this field, you must exclude the instanceProperties field.
+     *           This field is optional, and it can be a full or partial URL. For example,
+     *           the following are all valid URLs to an instance template:
+     *                 - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate
+     *                 - projects/project/global/instanceTemplates/instanceTemplate
+     *                 - global/instanceTemplates/instanceTemplate
      * }
      */
     public function __construct($data = NULL) {
@@ -70,7 +83,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are actually usable currently.
+     * Output only. [Output Only] Indicates how many instances are actually usable currently.
      *
      * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
      * @return int|string
@@ -91,7 +104,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are actually usable currently.
+     * Output only. [Output Only] Indicates how many instances are actually usable currently.
      *
      * Generated from protobuf field <code>optional int64 assured_count = 281197645;</code>
      * @param int|string $var
@@ -142,7 +155,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are in use.
+     * Output only. [Output Only] Indicates how many instances are in use.
      *
      * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      * @return int|string
@@ -163,7 +176,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Indicates how many instances are in use.
+     * Output only. [Output Only] Indicates how many instances are in use.
      *
      * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      * @param int|string $var
@@ -214,7 +227,13 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
+     * Specifies the instance template to create the reservation. If you use
+     * this field, you must exclude the instanceProperties field.
+     * This field is optional, and it can be a full or partial URL. For example,
+     * the following are all valid URLs to an instance template:
+     *       - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate
+     *       - projects/project/global/instanceTemplates/instanceTemplate
+     *       - global/instanceTemplates/instanceTemplate
      *
      * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
      * @return string
@@ -235,7 +254,13 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field. This field is optional, and it can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate 
+     * Specifies the instance template to create the reservation. If you use
+     * this field, you must exclude the instanceProperties field.
+     * This field is optional, and it can be a full or partial URL. For example,
+     * the following are all valid URLs to an instance template:
+     *       - https://www.googleapis.com/compute/v1/projects/project/global/instanceTemplates/instanceTemplate
+     *       - projects/project/global/instanceTemplates/instanceTemplate
+     *       - global/instanceTemplates/instanceTemplate
      *
      * Generated from protobuf field <code>optional string source_instance_template = 332423616;</code>
      * @param string $var

@@ -277,7 +277,10 @@ final class NetworkEndpointGroupsClient
     }
 
     /**
-     * Retrieves the list of network endpoint groups and sorts them by zone. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves the list of network endpoint groups and sorts them by zone.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::aggregatedListAsync()} .
      *
@@ -334,7 +337,10 @@ final class NetworkEndpointGroupsClient
     }
 
     /**
-     * Deletes the specified network endpoint group. The network endpoints in the NEG and the VM instances they belong to are not terminated when the NEG is deleted. Note that the NEG cannot be deleted if there are backend services referencing it.
+     * Deletes the specified network endpoint group. The network endpoints in the
+     * NEG and the VM instances they belong to are not terminated when the NEG is
+     * deleted. Note that the NEG cannot be deleted if there are backend services
+     * referencing it.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::deleteAsync()} .
      *
@@ -360,7 +366,8 @@ final class NetworkEndpointGroupsClient
     }
 
     /**
-     * Detach a list of network endpoints from the specified network endpoint group.
+     * Detach a list of network endpoints from the specified network endpoint
+     * group.
      *
      * The async variant is
      * {@see NetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
@@ -415,7 +422,8 @@ final class NetworkEndpointGroupsClient
     }
 
     /**
-     * Creates a network endpoint group in the specified project using the parameters that are included in the request.
+     * Creates a network endpoint group in the specified project using the
+     * parameters that are included in the request.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::insertAsync()} .
      *
@@ -441,7 +449,8 @@ final class NetworkEndpointGroupsClient
     }
 
     /**
-     * Retrieves the list of network endpoint groups that are located in the specified project and zone.
+     * Retrieves the list of network endpoint groups that are located in the
+     * specified project and zone.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::listAsync()} .
      *

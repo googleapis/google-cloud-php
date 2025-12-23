@@ -28,6 +28,13 @@ class AvroSerializationOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_display_name_attribute = 1;</code>
      */
     protected $enable_display_name_attribute = false;
+    /**
+     * Optional. Set timestamp precision option. If not set, the default precision
+     * is microseconds.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AvroSerializationOptions.PicosTimestampPrecision picos_timestamp_precision = 2;</code>
+     */
+    protected $picos_timestamp_precision = 0;
 
     /**
      * Constructor.
@@ -44,6 +51,9 @@ class AvroSerializationOptions extends \Google\Protobuf\Internal\Message
      *           Setting this field to true, populates avro field names with a placeholder
      *           value and populates a "displayName" attribute for every avro field with the
      *           original column name.
+     *     @type int $picos_timestamp_precision
+     *           Optional. Set timestamp precision option. If not set, the default precision
+     *           is microseconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,6 +97,34 @@ class AvroSerializationOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_display_name_attribute = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set timestamp precision option. If not set, the default precision
+     * is microseconds.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AvroSerializationOptions.PicosTimestampPrecision picos_timestamp_precision = 2;</code>
+     * @return int
+     */
+    public function getPicosTimestampPrecision()
+    {
+        return $this->picos_timestamp_precision;
+    }
+
+    /**
+     * Optional. Set timestamp precision option. If not set, the default precision
+     * is microseconds.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AvroSerializationOptions.PicosTimestampPrecision picos_timestamp_precision = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPicosTimestampPrecision($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\AvroSerializationOptions\PicosTimestampPrecision::class);
+        $this->picos_timestamp_precision = $var;
 
         return $this;
     }

@@ -858,6 +858,45 @@
                 }
             }
         },
+        "GeneratorEvaluations": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GeneratorEvaluationsGapicClient",
+                    "rpcs": {
+                        "CreateGeneratorEvaluation": {
+                            "methods": [
+                                "createGeneratorEvaluation"
+                            ]
+                        },
+                        "DeleteGeneratorEvaluation": {
+                            "methods": [
+                                "deleteGeneratorEvaluation"
+                            ]
+                        },
+                        "GetGeneratorEvaluation": {
+                            "methods": [
+                                "getGeneratorEvaluation"
+                            ]
+                        },
+                        "ListGeneratorEvaluations": {
+                            "methods": [
+                                "listGeneratorEvaluations"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "KnowledgeBases": {
             "clients": {
                 "grpc": {
@@ -886,6 +925,94 @@
                         "UpdateKnowledgeBase": {
                             "methods": [
                                 "updateKnowledgeBase"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SipTrunks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SipTrunksGapicClient",
+                    "rpcs": {
+                        "CreateSipTrunk": {
+                            "methods": [
+                                "createSipTrunk"
+                            ]
+                        },
+                        "DeleteSipTrunk": {
+                            "methods": [
+                                "deleteSipTrunk"
+                            ]
+                        },
+                        "GetSipTrunk": {
+                            "methods": [
+                                "getSipTrunk"
+                            ]
+                        },
+                        "ListSipTrunks": {
+                            "methods": [
+                                "listSipTrunks"
+                            ]
+                        },
+                        "UpdateSipTrunk": {
+                            "methods": [
+                                "updateSipTrunk"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Tools": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ToolsGapicClient",
+                    "rpcs": {
+                        "CreateTool": {
+                            "methods": [
+                                "createTool"
+                            ]
+                        },
+                        "DeleteTool": {
+                            "methods": [
+                                "deleteTool"
+                            ]
+                        },
+                        "GetTool": {
+                            "methods": [
+                                "getTool"
+                            ]
+                        },
+                        "ListTools": {
+                            "methods": [
+                                "listTools"
+                            ]
+                        },
+                        "UpdateTool": {
+                            "methods": [
+                                "updateTool"
                             ]
                         },
                         "GetLocation": {

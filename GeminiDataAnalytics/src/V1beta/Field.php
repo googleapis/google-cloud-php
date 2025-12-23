@@ -41,14 +41,16 @@ class Field extends \Google\Protobuf\Internal\Message
     protected $mode = '';
     /**
      * Optional. A list of alternative names or synonyms that can be used to refer
-     * to this field. For example: ["id", "customerid", "cust_id"]
+     * to this field. For example: ["id", "customerid", "cust_id"]. Currently only
+     * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $synonyms;
     /**
      * Optional. A list of tags or keywords associated with the field, used for
-     * categorization. For example: ["identifier", "customer", "pii"]
+     * categorization. For example: ["identifier", "customer", "pii"]. Currently
+     * only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -98,10 +100,12 @@ class Field extends \Google\Protobuf\Internal\Message
      *           Optional. The mode of the field (e.g., NULLABLE, REPEATED).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
      *           Optional. A list of alternative names or synonyms that can be used to refer
-     *           to this field. For example: ["id", "customerid", "cust_id"]
+     *           to this field. For example: ["id", "customerid", "cust_id"]. Currently only
+     *           used for BigQuery data sources.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Optional. A list of tags or keywords associated with the field, used for
-     *           categorization. For example: ["identifier", "customer", "pii"]
+     *           categorization. For example: ["identifier", "customer", "pii"]. Currently
+     *           only used for BigQuery data sources.
      *     @type string $display_name
      *           Optional. Field display_name (same as label in
      *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>|\Google\Protobuf\Internal\RepeatedField $subfields
@@ -227,7 +231,8 @@ class Field extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of alternative names or synonyms that can be used to refer
-     * to this field. For example: ["id", "customerid", "cust_id"]
+     * to this field. For example: ["id", "customerid", "cust_id"]. Currently only
+     * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -239,7 +244,8 @@ class Field extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of alternative names or synonyms that can be used to refer
-     * to this field. For example: ["id", "customerid", "cust_id"]
+     * to this field. For example: ["id", "customerid", "cust_id"]. Currently only
+     * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -255,7 +261,8 @@ class Field extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags or keywords associated with the field, used for
-     * categorization. For example: ["identifier", "customer", "pii"]
+     * categorization. For example: ["identifier", "customer", "pii"]. Currently
+     * only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -267,7 +274,8 @@ class Field extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A list of tags or keywords associated with the field, used for
-     * categorization. For example: ["identifier", "customer", "pii"]
+     * categorization. For example: ["identifier", "customer", "pii"]. Currently
+     * only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\AttachedDiskInitializeParams;
 use UnexpectedValueException;
 
 /**
- * Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+ * Specifies which action to take on instance update with this disk. Default
+ * is to use the existing disk.
  *
  * Protobuf type <code>google.cloud.compute.v1.AttachedDiskInitializeParams.OnUpdateAction</code>
  */
@@ -26,7 +27,8 @@ class OnUpdateAction
      */
     const RECREATE_DISK = 494767853;
     /**
-     * Recreate the disk if source (image, snapshot) of this disk is different from source of existing disk.
+     * Recreate the disk if source (image, snapshot) of this disk is different
+     * from source of existing disk.
      *
      * Generated from protobuf enum <code>RECREATE_DISK_IF_SOURCE_CHANGED = 398099712;</code>
      */

@@ -292,7 +292,9 @@ final class RegionSslCertificatesClient
     }
 
     /**
-     * Returns the specified SslCertificate resource in the specified region. Get a list of available SSL certificates by making a list() request.
+     * Returns the specified SslCertificate resource in the specified region. Get
+     * a list of available SSL certificates by making a list()
+     * request.
      *
      * The async variant is {@see RegionSslCertificatesClient::getAsync()} .
      *
@@ -318,7 +320,8 @@ final class RegionSslCertificatesClient
     }
 
     /**
-     * Creates a SslCertificate resource in the specified project and region using the data included in the request
+     * Creates a SslCertificate resource in the specified project and region using
+     * the data included in the request
      *
      * The async variant is {@see RegionSslCertificatesClient::insertAsync()} .
      *
@@ -344,7 +347,8 @@ final class RegionSslCertificatesClient
     }
 
     /**
-     * Retrieves the list of SslCertificate resources available to the specified project in the specified region.
+     * Retrieves the list of SslCertificate resources available to the specified
+     * project in the specified region.
      *
      * The async variant is {@see RegionSslCertificatesClient::listAsync()} .
      *

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\SetCommonInstanceMetadataOperationMetadataPerL
 use UnexpectedValueException;
 
 /**
- * [Output Only] Status of the action, which can be one of the following: `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
+ * [Output Only] Status of the action, which can be one of the following:
+ * `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
  *
  * Protobuf type <code>google.cloud.compute.v1.SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo.State</code>
  */

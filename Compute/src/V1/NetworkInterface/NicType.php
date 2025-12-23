@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\NetworkInterface;
 use UnexpectedValueException;
 
 /**
- * The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+ * The type of vNIC to be used on this interface. This may be gVNIC or
+ * VirtioNet.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkInterface.NicType</code>
  */

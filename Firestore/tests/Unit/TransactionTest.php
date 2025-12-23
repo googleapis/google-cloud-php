@@ -19,7 +19,6 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
@@ -28,7 +27,18 @@ use Google\Cloud\Firestore\AggregateQuery;
 use Google\Cloud\Firestore\AggregateQuerySnapshot;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\Serializer;
 use Google\Cloud\Firestore\Transaction;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\CommitResponse;
+use Google\Cloud\Firestore\V1\Document;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
+use Google\Cloud\Firestore\V1\RunQueryRequest;
+use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -40,6 +50,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class TransactionTest extends TestCase
 {
+    use GenerateProtoTrait;
+    use ServerStreamMockTrait;
     use ProphecyTrait;
 
     const PROJECT = 'example_project';
@@ -47,21 +59,21 @@ class TransactionTest extends TestCase
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
     const TRANSACTION = 'foobar';
 
-    private $connection;
+    private $gapicClient;
     private $valueMapper;
     private $transaction;
     private $ref;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
-        $this->transaction = TestHelpers::stub(Transaction::class, [
-            $this->connection->reveal(),
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
+        $this->valueMapper = new ValueMapper($this->gapicClient->reveal(), false);
+        $this->transaction = new Transaction(
+            $this->gapicClient->reveal(),
             $this->valueMapper,
-            sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            $this->getDbName(),
             self::TRANSACTION
-        ]);
+        );
 
         $this->ref = $this->prophesize(DocumentReference::class);
         $this->ref->name()->willReturn(self::DOCUMENT);
@@ -69,24 +81,27 @@ class TransactionTest extends TestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::DOCUMENT],
-            'transaction' => self::TRANSACTION
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            [
-                'found' => [
-                    'name' => self::DOCUMENT,
-                    'fields' => [
-                        'hello' => [
-                            'stringValue' => 'world'
-                        ]
+        $protoResponse = self::generateProto(BatchGetDocumentsResponse::class, [
+            'found' => [
+                'name' => self::DOCUMENT,
+                'fields' => [
+                    'hello' => [
+                        'stringValue' => 'world'
                     ]
                 ]
             ]
-        ]));
+        ]);
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $this->assertEquals($this->getDbName(), $request->getDatabase());
+                $this->assertEquals([self::DOCUMENT], iterator_to_array($request->getDocuments()));
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $this->transaction->snapshot($this->ref->reveal());
         $this->assertInstanceOf(DocumentSnapshot::class, $res);
@@ -96,11 +111,16 @@ class TransactionTest extends TestCase
 
     public function testRunQuery()
     {
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([[]]));
+        $this->gapicClient->runQuery(
+            Argument::that(function (RunQueryRequest $request) {
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock([new RunQueryResponse()]));
 
-        $query = new Query($this->connection->reveal(), $this->valueMapper, '', ['from' => ['collectionId' => '']]);
+        $query = new Query($this->gapicClient->reveal(), $this->valueMapper, '', ['from' => [['collectionId' => '']]]);
 
         $res = $this->transaction->runQuery($query);
         $this->assertInstanceOf(QuerySnapshot::class, $res);
@@ -111,18 +131,16 @@ class TransactionTest extends TestCase
      */
     public function testRunAggregateQuery($type, $arg)
     {
-        $this->connection->runAggregationQuery(Argument::any())
+        $this->gapicClient->runAggregationQuery(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([]));
+            ->willReturn($this->getServerStreamMock([new RunAggregationQueryResponse()]));
 
         $aggregateQuery = new AggregateQuery(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             self::DOCUMENT,
             ['query' => []],
             $arg ? Aggregate::$type($arg) : Aggregate::$type()
         );
-
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->transaction->runAggregateQuery($aggregateQuery);
 
@@ -140,24 +158,28 @@ class TransactionTest extends TestCase
         ];
 
         $aggregateQuery = new AggregateQuery(
-            $this->connection->reveal(),
+            $this->gapicClient->reveal(),
             self::DOCUMENT,
             ['query' => []],
             $arg ? Aggregate::$type($arg) : Aggregate::$type()
         );
-        $this->connection->runAggregationQuery(
-            Argument::withEntry('readTime', $timestamp)
-        )->shouldBeCalled()->willReturn(new \ArrayIterator([
-            [
-                'result' => [
-                    'aggregateFields' => [
-                        $type => ['integerValue' => 1]
-                    ]
+
+        $protoResponse = self::generateProto(RunAggregationQueryResponse::class, [
+            'result' => [
+                'aggregateFields' => [
+                    $type => ['integerValue' => 1]
                 ]
             ]
-        ]));
+        ]);
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->runAggregationQuery(
+            Argument::that(function (RunAggregationQueryRequest $request) use ($timestamp) {
+                $this->assertEquals($timestamp['seconds'], $request->getReadTime()->getSeconds());
+                $this->assertEquals($timestamp['nanos'], $request->getReadTime()->getNanos());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock([$protoResponse]));
 
         $res = $this->transaction->runAggregateQuery($aggregateQuery, [
             'readTime' => new Timestamp(
@@ -191,7 +213,8 @@ class TransactionTest extends TestCase
                 'update' => [
                     'name' => self::DOCUMENT,
                     'fields' => ['hello' => ['stringValue' => 'world']]
-                ]
+                ],
+                'updateTransforms' => [],
             ]
         ]);
     }
@@ -207,7 +230,8 @@ class TransactionTest extends TestCase
                 'update' => [
                     'name' => self::DOCUMENT,
                     'fields' => ['hello' => ['stringValue' => 'world']]
-                ]
+                ],
+                'updateTransforms' => [],
             ]
         ]);
     }
@@ -224,7 +248,8 @@ class TransactionTest extends TestCase
                 'update' => [
                     'name' => self::DOCUMENT,
                     'fields' => ['hello' => ['stringValue' => 'world']]
-                ]
+                ],
+                'updateTransforms' => [],
             ]
         ]);
     }
@@ -266,7 +291,8 @@ class TransactionTest extends TestCase
                             ]
                         ]
                     ]
-                ]
+                ],
+                'updateTransforms' => [],
             ]
         ]);
     }
@@ -277,7 +303,8 @@ class TransactionTest extends TestCase
 
         $this->expectAndInvoke([
             [
-                'delete' => self::DOCUMENT
+                'delete' => self::DOCUMENT,
+                'updateTransforms' => []
             ]
         ]);
     }
@@ -287,10 +314,13 @@ class TransactionTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
-        $timestamp = (new Timestamp(new \DateTimeImmutable))->formatAsString();
+        $timestamp =  $timestamp = [
+            'seconds' => 100,
+            'nanos' => 501
+        ];
 
-        $res = [
-            [
+        $protoResponseArray = [
+            self::generateProto(BatchGetDocumentsResponse::class, [
                 'found' => [
                     'name' => $names[0],
                     'fields' => [
@@ -300,21 +330,27 @@ class TransactionTest extends TestCase
                     ]
                 ],
                 'readTime' => $timestamp
-            ], [
+            ]),
+            self::generateProto(BatchGetDocumentsResponse::class, [
                 'missing' => $names[1],
                 'readTime' => $timestamp
-            ], [
+            ]),
+            self::generateProto(BatchGetDocumentsResponse::class, [
                 'missing' => $names[2],
                 'readTime' => $timestamp
-            ]
+            ]),
         ];
 
-        $this->connection->batchGetDocuments(Argument::allOf(
-            Argument::withEntry('documents', $names),
-            Argument::withEntry('transaction', self::TRANSACTION)
-        ))->shouldBeCalled()->willReturn($res);
-
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($names) {
+                foreach ($request->getDocuments() as $i => $documentName) {
+                    $this->assertEquals($names[$i], $documentName);
+                }
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($this->getServerStreamMock($protoResponseArray));
 
         $res = $this->transaction->documents($input);
 
@@ -380,7 +416,10 @@ class TransactionTest extends TestCase
 
     public function testDocumentsOrdered()
     {
-        $timestamp = (new Timestamp(new \DateTimeImmutable))->formatAsString();
+        $timestamp = [
+            'seconds' => 123,
+            'nanos' => 321
+        ];
         $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
         $names = [
             sprintf($tpl, 'a'),
@@ -388,24 +427,32 @@ class TransactionTest extends TestCase
             sprintf($tpl, 'c'),
         ];
 
-        $res = [
-            [
+        $protoResponseArray = [
+            self::generateProto(BatchGetDocumentsResponse::class, [
                 'missing' => $names[2],
                 'readTime' => $timestamp
-            ], [
+            ]),
+            self::generateProto(BatchGetDocumentsResponse::class, [
                 'missing' => $names[1],
                 'readTime' => $timestamp
-            ], [
+            ]),
+            self::generateProto(BatchGetDocumentsResponse::class, [
                 'missing' => $names[0],
                 'readTime' => $timestamp
-            ]
+            ]),
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) use ($names) {
+                foreach ($request->getDocuments() as $i => $documentName) {
+                    $this->assertEquals($names[$i], $documentName);
+                }
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()
+            ->willReturn($this->getServerStreamMock($protoResponseArray));
 
         $res = $this->transaction->documents($names);
         $this->assertEquals($names[0], $res[0]->name());
@@ -415,12 +462,24 @@ class TransactionTest extends TestCase
 
     private function expectAndInvoke(array $writes)
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => $writes,
-            'transaction' => self::TRANSACTION
-        ])->shouldBeCalled();
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) use ($writes) {
+                $this->assertEquals($this->getDbName(), $request->getDatabase());
+                $this->assertEquals(self::TRANSACTION, $request->getTransaction());
+
+                $protoWrites = (new Serializer())->encodeMessage($request);
+
+                $this->assertEquals($writes, $protoWrites['writes']);
+
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(new CommitResponse());
         $this->transaction->writer()->commit();
+    }
+
+    private function getDbName(): string
+    {
+        return sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
     }
 }

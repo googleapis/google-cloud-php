@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatus;
 use UnexpectedValueException;
 
 /**
- * Summarizes the status of the group.
+ * Output only. Summarizes the status of the group.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectGroupsOperationalStatus.GroupStatus</code>
  */

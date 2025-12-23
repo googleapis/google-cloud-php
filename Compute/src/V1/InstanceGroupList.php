@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupList extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      */
@@ -28,25 +28,29 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupList for instance group lists.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
     protected $next_page_token = null;
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     protected $self_link = null;
     /**
-     * [Output Only] Informational warning message.
+     * Output only. [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
@@ -59,17 +63,21 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           [Output Only] Unique identifier for the resource; defined by the server.
+     *           Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroup>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of InstanceGroup resources.
      *     @type string $kind
-     *           [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
+     *           Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupList for instance group lists.
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     *           Output only. [Output Only] This token allows you to get the next page of results for
+     *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     *           the query parameter pageToken in the next list request.
+     *           Subsequent list requests will have their own nextPageToken to
+     *           continue paging through the results.
      *     @type string $self_link
-     *           [Output Only] Server-defined URL for this resource.
+     *           Output only. [Output Only] Server-defined URL for this resource.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
-     *           [Output Only] Informational warning message.
+     *           Output only. [Output Only] Informational warning message.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +86,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
@@ -99,7 +107,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unique identifier for the resource; defined by the server.
+     * Output only. [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
@@ -140,7 +148,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupList for instance group lists.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -161,7 +169,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
+     * Output only. [Output Only] The resource type, which is alwayscompute#instanceGroupList for instance group lists.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -176,7 +184,11 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
@@ -197,7 +209,11 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
@@ -212,7 +228,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
@@ -233,7 +249,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Server-defined URL for this resource.
+     * Output only. [Output Only] Server-defined URL for this resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
@@ -248,7 +264,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Informational warning message.
+     * Output only. [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
@@ -269,7 +285,7 @@ class InstanceGroupList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Informational warning message.
+     * Output only. [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var

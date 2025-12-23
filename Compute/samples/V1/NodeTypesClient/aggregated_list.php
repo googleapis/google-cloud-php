@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\AggregatedListNodeTypesRequest;
 use Google\Cloud\Compute\V1\Client\NodeTypesClient;
 
 /**
- * Retrieves an aggregated list of node types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of node types.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

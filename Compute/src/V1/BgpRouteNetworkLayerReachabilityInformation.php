@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class BgpRouteNetworkLayerReachabilityInformation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If the BGP session supports multiple paths (RFC 7911), the path identifier for this route.
+     * If the BGP session supports multiple paths (RFC 7911), the path
+     * identifier for this route.
      *
      * Generated from protobuf field <code>optional uint32 path_id = 282287989;</code>
      */
@@ -35,7 +36,8 @@ class BgpRouteNetworkLayerReachabilityInformation extends \Google\Protobuf\Inter
      *     Optional. Data for populating the Message object.
      *
      *     @type int $path_id
-     *           If the BGP session supports multiple paths (RFC 7911), the path identifier for this route.
+     *           If the BGP session supports multiple paths (RFC 7911), the path
+     *           identifier for this route.
      *     @type string $prefix
      *           Human readable CIDR notation for a prefix. E.g. 10.42.0.0/16.
      * }
@@ -46,7 +48,8 @@ class BgpRouteNetworkLayerReachabilityInformation extends \Google\Protobuf\Inter
     }
 
     /**
-     * If the BGP session supports multiple paths (RFC 7911), the path identifier for this route.
+     * If the BGP session supports multiple paths (RFC 7911), the path
+     * identifier for this route.
      *
      * Generated from protobuf field <code>optional uint32 path_id = 282287989;</code>
      * @return int
@@ -67,7 +70,8 @@ class BgpRouteNetworkLayerReachabilityInformation extends \Google\Protobuf\Inter
     }
 
     /**
-     * If the BGP session supports multiple paths (RFC 7911), the path identifier for this route.
+     * If the BGP session supports multiple paths (RFC 7911), the path
+     * identifier for this route.
      *
      * Generated from protobuf field <code>optional uint32 path_id = 282287989;</code>
      * @param int $var

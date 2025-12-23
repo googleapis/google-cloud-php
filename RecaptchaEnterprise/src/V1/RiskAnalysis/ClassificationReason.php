@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Reasons contributing to the risk analysis verdict.
+ * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason</code>
  */

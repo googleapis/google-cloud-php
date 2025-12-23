@@ -9,27 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration options for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+ * Configuration options for L7 DDoS detection.
+ * This field is only supported in Global Security Policies of type
+ * CLOUD_ARMOR.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig</code>
  */
 class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If set to true, enables CAAP for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     * If set to true, enables CAAP for L7 DDoS detection.
+     * This field is only supported in Global Security Policies of type
+     * CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
     protected $enable = null;
     /**
-     * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     * Rule visibility can be one of the following:
+     * STANDARD - opaque rules. (default)
+     * PREMIUM - transparent rules.
+     * This field is only supported in Global Security Policies of type
+     * CLOUD_ARMOR.
      * Check the RuleVisibility enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string rule_visibility = 453258293;</code>
      */
     protected $rule_visibility = null;
     /**
-     * Configuration options for layer7 adaptive protection for various customizable thresholds.
+     * Configuration options for layer7 adaptive protection for various
+     * customizable thresholds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
      */
@@ -42,12 +51,19 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enable
-     *           If set to true, enables CAAP for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     *           If set to true, enables CAAP for L7 DDoS detection.
+     *           This field is only supported in Global Security Policies of type
+     *           CLOUD_ARMOR.
      *     @type string $rule_visibility
-     *           Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     *           Rule visibility can be one of the following:
+     *           STANDARD - opaque rules. (default)
+     *           PREMIUM - transparent rules.
+     *           This field is only supported in Global Security Policies of type
+     *           CLOUD_ARMOR.
      *           Check the RuleVisibility enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig>|\Google\Protobuf\Internal\RepeatedField $threshold_configs
-     *           Configuration options for layer7 adaptive protection for various customizable thresholds.
+     *           Configuration options for layer7 adaptive protection for various
+     *           customizable thresholds.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +72,9 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     }
 
     /**
-     * If set to true, enables CAAP for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     * If set to true, enables CAAP for L7 DDoS detection.
+     * This field is only supported in Global Security Policies of type
+     * CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
@@ -77,7 +95,9 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     }
 
     /**
-     * If set to true, enables CAAP for L7 DDoS detection. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     * If set to true, enables CAAP for L7 DDoS detection.
+     * This field is only supported in Global Security Policies of type
+     * CLOUD_ARMOR.
      *
      * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var
@@ -92,7 +112,11 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     }
 
     /**
-     * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     * Rule visibility can be one of the following:
+     * STANDARD - opaque rules. (default)
+     * PREMIUM - transparent rules.
+     * This field is only supported in Global Security Policies of type
+     * CLOUD_ARMOR.
      * Check the RuleVisibility enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string rule_visibility = 453258293;</code>
@@ -114,7 +138,11 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     }
 
     /**
-     * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules. This field is only supported in Global Security Policies of type CLOUD_ARMOR.
+     * Rule visibility can be one of the following:
+     * STANDARD - opaque rules. (default)
+     * PREMIUM - transparent rules.
+     * This field is only supported in Global Security Policies of type
+     * CLOUD_ARMOR.
      * Check the RuleVisibility enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string rule_visibility = 453258293;</code>
@@ -130,7 +158,8 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     }
 
     /**
-     * Configuration options for layer7 adaptive protection for various customizable thresholds.
+     * Configuration options for layer7 adaptive protection for various
+     * customizable thresholds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -141,7 +170,8 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     }
 
     /**
-     * Configuration options for layer7 adaptive protection for various customizable thresholds.
+     * Configuration options for layer7 adaptive protection for various
+     * customizable thresholds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig>|\Google\Protobuf\Internal\RepeatedField $var

@@ -26,7 +26,8 @@ class FetchReportResultRowsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of rows to return. The service may return
      * fewer than this value. If unspecified, at most 1,000 rows will be returned.
-     * The maximum value is 10,000; values above 10,000 will be reduced to 10,000.
+     * The maximum value is 10,000; values greater than 10,000 will be reduced to
+     * 10,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,7 +68,8 @@ class FetchReportResultRowsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Optional. The maximum number of rows to return. The service may return
      *           fewer than this value. If unspecified, at most 1,000 rows will be returned.
-     *           The maximum value is 10,000; values above 10,000 will be reduced to 10,000.
+     *           The maximum value is 10,000; values greater than 10,000 will be reduced to
+     *           10,000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `FetchReportResultRows`
      *           call. Provide this to retrieve the second and subsequent batches of rows.
@@ -111,7 +113,8 @@ class FetchReportResultRowsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of rows to return. The service may return
      * fewer than this value. If unspecified, at most 1,000 rows will be returned.
-     * The maximum value is 10,000; values above 10,000 will be reduced to 10,000.
+     * The maximum value is 10,000; values greater than 10,000 will be reduced to
+     * 10,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -124,7 +127,8 @@ class FetchReportResultRowsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of rows to return. The service may return
      * fewer than this value. If unspecified, at most 1,000 rows will be returned.
-     * The maximum value is 10,000; values above 10,000 will be reduced to 10,000.
+     * The maximum value is 10,000; values greater than 10,000 will be reduced to
+     * 10,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

@@ -23,7 +23,6 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as SpannerGapicClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 trait SystemTestCaseTrait
 {
@@ -48,9 +47,29 @@ trait SystemTestCaseTrait
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
+        $databaseAdminClientConfig = [
+            'retrySettings' => [
+                'interfaces' => [
+                    'google.spanner.admin.database.v1.DatabaseAdmin' => [
+                        'retryableCodes' => [
+                            'DEADLINE_EXCEEDED',
+                            'UNAVAILABLE',
+                        ],
+                        'methods' => [
+                            'CreateBackup' => [
+                                'timeoutMillis' => 300000,
+                            ],
+                            'RestoreDatabase' => [
+                                'timeoutMillis' => 300000,
+                            ],
+                        ],
+                    ],
+                ],
+            ]
+        ];
+
         $clientConfig = [
             'keyFilePath' => $keyFilePath,
-            'cacheItemPool' => self::getCacheItemPool(),
         ];
 
         $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
@@ -61,11 +80,13 @@ trait SystemTestCaseTrait
 
             $clientConfig['gapicSpannerClient'] = new SpannerGapicClient($gapicConfig);
             $clientConfig['gapicSpannerDatabaseAdminClient'] =
-                new DatabaseAdminClient($gapicConfig);
+                new DatabaseAdminClient($gapicConfig + $databaseAdminClientConfig);
             $clientConfig['gapicSpannerInstanceAdminClient'] =
                 new InstanceAdminClient($gapicConfig);
 
             echo 'Using Service Address: ' . $serviceAddress . PHP_EOL;
+        } else {
+            $clientConfig['databaseAdminClientConfig'] = $databaseAdminClientConfig;
         }
 
         return self::$client = new SpannerClient($clientConfig);
@@ -168,12 +189,5 @@ trait SystemTestCaseTrait
     {
         $instance = self::getClient()->instance($instance);
         return $instance->database($dbName, $options);
-    }
-
-    private static function getCacheItemPool()
-    {
-        return new FilesystemAdapter(
-            directory: __DIR__ . '/../../../.cache'
-        );
     }
 }

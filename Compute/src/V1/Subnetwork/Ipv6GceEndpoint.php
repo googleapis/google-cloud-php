@@ -7,7 +7,15 @@ namespace Google\Cloud\Compute\V1\Subnetwork;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Possible endpoints of this subnetwork. It can be one of the following: - VM_ONLY: The subnetwork can be used for creating instances and IPv6 addresses with VM endpoint type. Such a subnetwork gets external IPv6 ranges from a public delegated prefix and cannot be used to create NetLb. - VM_AND_FR: The subnetwork can be used for creating both VM instances and Forwarding Rules. It can also be used to reserve IPv6 addresses with both VM and FR endpoint types. Such a subnetwork gets its IPv6 range from Google IP Pool directly. 
+ * Output only. [Output Only] Possible endpoints of this subnetwork. It can be one of the
+ * following:
+ *    - VM_ONLY: The subnetwork can be used for creating instances and
+ *    IPv6 addresses with VM endpoint type. Such a subnetwork gets external IPv6
+ *    ranges from a public delegated prefix and cannot be used to create NetLb.
+ *    - VM_AND_FR: The subnetwork can be used for creating both VM
+ *    instances and Forwarding Rules. It can also be used to reserve IPv6
+ *    addresses with both VM and FR endpoint types. Such a subnetwork gets its
+ *    IPv6 range from Google IP Pool directly.
  *
  * Protobuf type <code>google.cloud.compute.v1.Subnetwork.Ipv6GceEndpoint</code>
  */

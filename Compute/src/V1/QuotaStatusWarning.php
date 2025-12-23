@@ -9,21 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] Warning of fetching the `quotas` field for this region. This field is populated only if fetching of the `quotas` field fails.
+ * Output only. [Output Only] Warning of fetching the `quotas` field for this region. This
+ * field is populated only if fetching of the `quotas` field fails.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.QuotaStatusWarning</code>
  */
 class QuotaStatusWarning extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+     * [Output Only] A warning code, if applicable. For example, Compute
+     * Engine returns NO_RESULTS_ON_PAGE if there
+     * are no results in the response.
      * Check the Code enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
     protected $code = null;
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
+     * [Output Only] Metadata about this warning in key:
+     * value format. For example:
+     * "data": [
+     *   {
+     *    "key": "scope",
+     *    "value": "zones/us-east1-d"
+     *   }
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      */
@@ -42,10 +51,18 @@ class QuotaStatusWarning extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $code
-     *           [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+     *           [Output Only] A warning code, if applicable. For example, Compute
+     *           Engine returns NO_RESULTS_ON_PAGE if there
+     *           are no results in the response.
      *           Check the Code enum for the list of possible values.
      *     @type array<\Google\Cloud\Compute\V1\Data>|\Google\Protobuf\Internal\RepeatedField $data
-     *           [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
+     *           [Output Only] Metadata about this warning in key:
+     *           value format. For example:
+     *           "data": [
+     *             {
+     *              "key": "scope",
+     *              "value": "zones/us-east1-d"
+     *             }
      *     @type string $message
      *           [Output Only] A human-readable description of the warning code.
      * }
@@ -56,7 +73,9 @@ class QuotaStatusWarning extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+     * [Output Only] A warning code, if applicable. For example, Compute
+     * Engine returns NO_RESULTS_ON_PAGE if there
+     * are no results in the response.
      * Check the Code enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
@@ -78,7 +97,9 @@ class QuotaStatusWarning extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
+     * [Output Only] A warning code, if applicable. For example, Compute
+     * Engine returns NO_RESULTS_ON_PAGE if there
+     * are no results in the response.
      * Check the Code enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string code = 3059181;</code>
@@ -94,7 +115,13 @@ class QuotaStatusWarning extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
+     * [Output Only] Metadata about this warning in key:
+     * value format. For example:
+     * "data": [
+     *   {
+     *    "key": "scope",
+     *    "value": "zones/us-east1-d"
+     *   }
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -105,7 +132,13 @@ class QuotaStatusWarning extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
+     * [Output Only] Metadata about this warning in key:
+     * value format. For example:
+     * "data": [
+     *   {
+     *    "key": "scope",
+     *    "value": "zones/us-east1-d"
+     *   }
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      * @param array<\Google\Cloud\Compute\V1\Data>|\Google\Protobuf\Internal\RepeatedField $var

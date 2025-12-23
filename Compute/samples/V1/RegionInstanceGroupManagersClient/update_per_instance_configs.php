@@ -31,9 +31,12 @@ use Google\Cloud\Compute\V1\UpdatePerInstanceConfigsRegionInstanceGroupManagerRe
 use Google\Rpc\Status;
 
 /**
- * Inserts or updates per-instance configurations for the managed instance group. perInstanceConfig.name serves as a key used to distinguish whether to perform insert or patch.
+ * Inserts or updates per-instance configurations for the managed instance
+ * group. perInstanceConfig.name serves as a key used to
+ * distinguish whether to perform insert or patch.
  *
- * @param string $instanceGroupManager The name of the managed instance group. It should conform to RFC1035.
+ * @param string $instanceGroupManager The name of the managed instance group.
+ *                                     It should conform to RFC1035.
  * @param string $project              Project ID for this request.
  * @param string $region               Name of the region scoping this request, should conform to RFC1035.
  */

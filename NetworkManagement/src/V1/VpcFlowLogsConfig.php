@@ -16,8 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. Unique name of the configuration using the form:
-     *     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * Identifier. Unique name of the configuration. The name can have one of the
+     * following forms:
+     * - For project-level configurations:
+     * `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * - For organization-level configurations:
+     * `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -31,7 +35,8 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
     protected $description = null;
     /**
      * Optional. The state of the VPC Flow Log configuration. Default value is
-     * ENABLED. When creating a new configuration, it must be enabled.
+     * ENABLED. When creating a new configuration, it must be enabled. Setting
+     * state=DISABLED will pause the log generation for this config.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.State state = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,8 +80,16 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
      */
     protected $filter_expr = null;
     /**
-     * Output only. A diagnostic bit - describes the state of the configured
-     * target resource for diagnostic purposes.
+     * Optional. Determines whether to include cross project annotations in the
+     * logs. This field is available only for organization configurations. If not
+     * specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.CrossProjectMetadata cross_project_metadata = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cross_project_metadata = null;
+    /**
+     * Output only. Describes the state of the configured target resource for
+     * diagnostic purposes.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.TargetResourceState target_resource_state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -108,14 +121,19 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. Unique name of the configuration using the form:
-     *               `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     *           Identifier. Unique name of the configuration. The name can have one of the
+     *           following forms:
+     *           - For project-level configurations:
+     *           `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     *           - For organization-level configurations:
+     *           `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *     @type string $description
      *           Optional. The user-supplied description of the VPC Flow Logs configuration.
      *           Maximum of 512 characters.
      *     @type int $state
      *           Optional. The state of the VPC Flow Log configuration. Default value is
-     *           ENABLED. When creating a new configuration, it must be enabled.
+     *           ENABLED. When creating a new configuration, it must be enabled. Setting
+     *           state=DISABLED will pause the log generation for this config.
      *     @type int $aggregation_interval
      *           Optional. The aggregation interval for the logs. Default value is
      *           INTERVAL_5_SEC.
@@ -134,9 +152,20 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
      *     @type string $filter_expr
      *           Optional. Export filter used to define which VPC Flow Logs should be
      *           logged.
+     *     @type int $cross_project_metadata
+     *           Optional. Determines whether to include cross project annotations in the
+     *           logs. This field is available only for organization configurations. If not
+     *           specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
      *     @type int $target_resource_state
-     *           Output only. A diagnostic bit - describes the state of the configured
-     *           target resource for diagnostic purposes.
+     *           Output only. Describes the state of the configured target resource for
+     *           diagnostic purposes.
+     *     @type string $network
+     *           Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments
+     *           within the network.
+     *           Format: projects/{project_id}/global/networks/{name}
+     *     @type string $subnet
+     *           Traffic will be logged from VMs within the subnetwork.
+     *           Format: projects/{project_id}/regions/{region}/subnetworks/{name}
      *     @type string $interconnect_attachment
      *           Traffic will be logged from the Interconnect Attachment.
      *           Format:
@@ -158,8 +187,12 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. Unique name of the configuration using the form:
-     *     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * Identifier. Unique name of the configuration. The name can have one of the
+     * following forms:
+     * - For project-level configurations:
+     * `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * - For organization-level configurations:
+     * `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -170,8 +203,12 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. Unique name of the configuration using the form:
-     *     `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * Identifier. Unique name of the configuration. The name can have one of the
+     * following forms:
+     * - For project-level configurations:
+     * `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
+     * - For organization-level configurations:
+     * `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -225,7 +262,8 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The state of the VPC Flow Log configuration. Default value is
-     * ENABLED. When creating a new configuration, it must be enabled.
+     * ENABLED. When creating a new configuration, it must be enabled. Setting
+     * state=DISABLED will pause the log generation for this config.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.State state = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -247,7 +285,8 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The state of the VPC Flow Log configuration. Default value is
-     * ENABLED. When creating a new configuration, it must be enabled.
+     * ENABLED. When creating a new configuration, it must be enabled. Setting
+     * state=DISABLED will pause the log generation for this config.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.State state = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -448,8 +487,48 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A diagnostic bit - describes the state of the configured
-     * target resource for diagnostic purposes.
+     * Optional. Determines whether to include cross project annotations in the
+     * logs. This field is available only for organization configurations. If not
+     * specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.CrossProjectMetadata cross_project_metadata = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCrossProjectMetadata()
+    {
+        return isset($this->cross_project_metadata) ? $this->cross_project_metadata : 0;
+    }
+
+    public function hasCrossProjectMetadata()
+    {
+        return isset($this->cross_project_metadata);
+    }
+
+    public function clearCrossProjectMetadata()
+    {
+        unset($this->cross_project_metadata);
+    }
+
+    /**
+     * Optional. Determines whether to include cross project annotations in the
+     * logs. This field is available only for organization configurations. If not
+     * specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.CrossProjectMetadata cross_project_metadata = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCrossProjectMetadata($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig\CrossProjectMetadata::class);
+        $this->cross_project_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Describes the state of the configured target resource for
+     * diagnostic purposes.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.TargetResourceState target_resource_state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -470,8 +549,8 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A diagnostic bit - describes the state of the configured
-     * target resource for diagnostic purposes.
+     * Output only. Describes the state of the configured target resource for
+     * diagnostic purposes.
      *
      * Generated from protobuf field <code>optional .google.cloud.networkmanagement.v1.VpcFlowLogsConfig.TargetResourceState target_resource_state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -481,6 +560,74 @@ class VpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig\TargetResourceState::class);
         $this->target_resource_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments
+     * within the network.
+     * Format: projects/{project_id}/global/networks/{name}
+     *
+     * Generated from protobuf field <code>string network = 100;</code>
+     * @return string
+     */
+    public function getNetwork()
+    {
+        return $this->readOneof(100);
+    }
+
+    public function hasNetwork()
+    {
+        return $this->hasOneof(100);
+    }
+
+    /**
+     * Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments
+     * within the network.
+     * Format: projects/{project_id}/global/networks/{name}
+     *
+     * Generated from protobuf field <code>string network = 100;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(100, $var);
+
+        return $this;
+    }
+
+    /**
+     * Traffic will be logged from VMs within the subnetwork.
+     * Format: projects/{project_id}/regions/{region}/subnetworks/{name}
+     *
+     * Generated from protobuf field <code>string subnet = 101;</code>
+     * @return string
+     */
+    public function getSubnet()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasSubnet()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Traffic will be logged from VMs within the subnetwork.
+     * Format: projects/{project_id}/regions/{region}/subnetworks/{name}
+     *
+     * Generated from protobuf field <code>string subnet = 101;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSubnet($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(101, $var);
 
         return $this;
     }

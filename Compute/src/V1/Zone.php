@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Zone resource. A zone is a deployment area. These deployment areas are subsets of a region. For example the zone us-east1-b is located in the us-east1 region. For more information, read Regions and Zones.
+ * Represents a Zone resource.
+ * A zone is a deployment area. These deployment areas are subsets of a region.
+ * For example the zone us-east1-b is located in theus-east1 region. For more information, readRegions and
+ * Zones.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Zone</code>
  */
@@ -22,7 +25,8 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     private $available_cpu_platforms;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
@@ -40,13 +44,15 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#zone for zones.
+     * Output only. [Output Only] Type of the resource. Always compute#zone for
+     * zones.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -70,14 +76,14 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
-     * [Output Only] Status of the zone, either UP or DOWN.
+     * [Output Only] Status of the zone, either UP orDOWN.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     protected $status = null;
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      */
@@ -92,15 +98,18 @@ class Zone extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_cpu_platforms
      *           [Output Only] Available cpu/platform selections for the zone.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
      *           [Output Only] The deprecation status associated with this zone.
      *     @type string $description
      *           [Output Only] Textual description of the resource.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#zone for zones.
+     *           Output only. [Output Only] Type of the resource. Always compute#zone for
+     *           zones.
      *     @type string $name
      *           [Output Only] Name of the resource.
      *     @type string $region
@@ -108,10 +117,10 @@ class Zone extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $status
-     *           [Output Only] Status of the zone, either UP or DOWN.
+     *           [Output Only] Status of the zone, either UP orDOWN.
      *           Check the Status enum for the list of possible values.
      *     @type bool $supports_pzs
-     *           [Output Only] Reserved for future use.
+     *           Output only. [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,7 +155,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -167,7 +177,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -254,7 +265,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -275,7 +287,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -290,7 +303,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#zone for zones.
+     * Output only. [Output Only] Type of the resource. Always compute#zone for
+     * zones.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -311,7 +325,8 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#zone for zones.
+     * Output only. [Output Only] Type of the resource. Always compute#zone for
+     * zones.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -434,7 +449,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the zone, either UP or DOWN.
+     * [Output Only] Status of the zone, either UP orDOWN.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -456,7 +471,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Status of the zone, either UP or DOWN.
+     * [Output Only] Status of the zone, either UP orDOWN.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -472,7 +487,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @return bool
@@ -493,7 +508,7 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Reserved for future use.
+     * Output only. [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
      * @param bool $var

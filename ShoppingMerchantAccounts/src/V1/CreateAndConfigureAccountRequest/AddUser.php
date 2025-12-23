@@ -29,6 +29,13 @@ class AddUser extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.User user = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $user = null;
+    /**
+     * Optional. Settings related to configuring the verification email that is
+     * sent after adding a user.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.VerificationMailSettings verification_mail_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $verification_mail_settings = null;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class AddUser extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Accounts\V1\User $user
      *           Optional. Details about the user to be added. At the moment, only access
      *           rights may be specified.
+     *     @type \Google\Shopping\Merchant\Accounts\V1\VerificationMailSettings $verification_mail_settings
+     *           Optional. Settings related to configuring the verification email that is
+     *           sent after adding a user.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +121,44 @@ class AddUser extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\User::class);
         $this->user = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings related to configuring the verification email that is
+     * sent after adding a user.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.VerificationMailSettings verification_mail_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Shopping\Merchant\Accounts\V1\VerificationMailSettings|null
+     */
+    public function getVerificationMailSettings()
+    {
+        return $this->verification_mail_settings;
+    }
+
+    public function hasVerificationMailSettings()
+    {
+        return isset($this->verification_mail_settings);
+    }
+
+    public function clearVerificationMailSettings()
+    {
+        unset($this->verification_mail_settings);
+    }
+
+    /**
+     * Optional. Settings related to configuring the verification email that is
+     * sent after adding a user.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.accounts.v1.VerificationMailSettings verification_mail_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Accounts\V1\VerificationMailSettings $var
+     * @return $this
+     */
+    public function setVerificationMailSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Accounts\V1\VerificationMailSettings::class);
+        $this->verification_mail_settings = $var;
 
         return $this;
     }

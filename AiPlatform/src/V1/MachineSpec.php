@@ -45,6 +45,22 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      */
     protected $accelerator_count = 0;
     /**
+     * Optional. Immutable. The Nvidia GPU partition size.
+     * When specified, the requested accelerators will be partitioned into
+     * smaller GPU partitions. For example, if the request is for 8 units of
+     * NVIDIA A100 GPUs, and gpu_partition_size="1g.10gb", the service will
+     * create 8 * 7 = 56 partitioned MIG instances.
+     * The partition size must be a value supported by the requested accelerator.
+     * Refer to
+     * [Nvidia GPU
+     * Partitioning](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus-multi#multi-instance_gpu_partitions)
+     * for the available partition sizes.
+     * If set, the accelerator_count should be set to 1.
+     *
+     * Generated from protobuf field <code>string gpu_partition_size = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $gpu_partition_size = '';
+    /**
      * Immutable. The topology of the TPUs. Corresponds to the TPU topologies
      * available from GKE. (Example: tpu_topology: "2x2x1").
      *
@@ -82,6 +98,18 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *           [accelerator_count][google.cloud.aiplatform.v1.MachineSpec.accelerator_count].
      *     @type int $accelerator_count
      *           The number of accelerators to attach to the machine.
+     *     @type string $gpu_partition_size
+     *           Optional. Immutable. The Nvidia GPU partition size.
+     *           When specified, the requested accelerators will be partitioned into
+     *           smaller GPU partitions. For example, if the request is for 8 units of
+     *           NVIDIA A100 GPUs, and gpu_partition_size="1g.10gb", the service will
+     *           create 8 * 7 = 56 partitioned MIG instances.
+     *           The partition size must be a value supported by the requested accelerator.
+     *           Refer to
+     *           [Nvidia GPU
+     *           Partitioning](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus-multi#multi-instance_gpu_partitions)
+     *           for the available partition sizes.
+     *           If set, the accelerator_count should be set to 1.
      *     @type string $tpu_topology
      *           Immutable. The topology of the TPUs. Corresponds to the TPU topologies
      *           available from GKE. (Example: tpu_topology: "2x2x1").
@@ -191,6 +219,52 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->accelerator_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The Nvidia GPU partition size.
+     * When specified, the requested accelerators will be partitioned into
+     * smaller GPU partitions. For example, if the request is for 8 units of
+     * NVIDIA A100 GPUs, and gpu_partition_size="1g.10gb", the service will
+     * create 8 * 7 = 56 partitioned MIG instances.
+     * The partition size must be a value supported by the requested accelerator.
+     * Refer to
+     * [Nvidia GPU
+     * Partitioning](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus-multi#multi-instance_gpu_partitions)
+     * for the available partition sizes.
+     * If set, the accelerator_count should be set to 1.
+     *
+     * Generated from protobuf field <code>string gpu_partition_size = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getGpuPartitionSize()
+    {
+        return $this->gpu_partition_size;
+    }
+
+    /**
+     * Optional. Immutable. The Nvidia GPU partition size.
+     * When specified, the requested accelerators will be partitioned into
+     * smaller GPU partitions. For example, if the request is for 8 units of
+     * NVIDIA A100 GPUs, and gpu_partition_size="1g.10gb", the service will
+     * create 8 * 7 = 56 partitioned MIG instances.
+     * The partition size must be a value supported by the requested accelerator.
+     * Refer to
+     * [Nvidia GPU
+     * Partitioning](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus-multi#multi-instance_gpu_partitions)
+     * for the available partition sizes.
+     * If set, the accelerator_count should be set to 1.
+     *
+     * Generated from protobuf field <code>string gpu_partition_size = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGpuPartitionSize($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->gpu_partition_size = $var;
 
         return $this;
     }

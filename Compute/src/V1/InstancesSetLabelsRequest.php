@@ -15,7 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
+     * Fingerprint of the previous set of labels for this resource,
+     * used to prevent conflicts. Provide the latest fingerprint value when making
+     * a request to add or change labels.
      *
      * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      */
@@ -32,7 +34,9 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $label_fingerprint
-     *           Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
+     *           Fingerprint of the previous set of labels for this resource,
+     *           used to prevent conflicts. Provide the latest fingerprint value when making
+     *           a request to add or change labels.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      * }
      */
@@ -42,7 +46,9 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
+     * Fingerprint of the previous set of labels for this resource,
+     * used to prevent conflicts. Provide the latest fingerprint value when making
+     * a request to add or change labels.
      *
      * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      * @return string
@@ -63,7 +69,9 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
+     * Fingerprint of the previous set of labels for this resource,
+     * used to prevent conflicts. Provide the latest fingerprint value when making
+     * a request to add or change labels.
      *
      * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      * @param string $var

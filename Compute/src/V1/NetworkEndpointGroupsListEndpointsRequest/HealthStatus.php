@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\NetworkEndpointGroupsListEndpointsRequest;
 use UnexpectedValueException;
 
 /**
- * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+ * Optional query parameter for showing the health status of each network
+ * endpoint. Valid options are SKIP or SHOW. If you
+ * don't specify this parameter, the health status of network endpoints will
+ * not be provided.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus</code>
  */
@@ -20,7 +23,8 @@ class HealthStatus
      */
     const UNDEFINED_HEALTH_STATUS = 0;
     /**
-     * Show the health status for each network endpoint. Impacts latency of the call.
+     * Show the health status for each network endpoint. Impacts latency of the
+     * call.
      *
      * Generated from protobuf enum <code>SHOW = 2544381;</code>
      */

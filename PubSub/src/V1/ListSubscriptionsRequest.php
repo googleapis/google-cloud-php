@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the project in which to list subscriptions.
-     * Format is `projects/{project-id}`.
+     * Required. Identifier. The name of the project in which to list
+     * subscriptions. Format is `projects/{project-id}`.
      *
-     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     private $project = '';
     /**
@@ -38,8 +38,8 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $project Required. The name of the project in which to list subscriptions.
-     *                        Format is `projects/{project-id}`. Please see
+     * @param string $project Required. Identifier. The name of the project in which to list
+     *                        subscriptions. Format is `projects/{project-id}`. Please see
      *                        {@see SubscriberClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\PubSub\V1\ListSubscriptionsRequest
@@ -59,8 +59,8 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project
-     *           Required. The name of the project in which to list subscriptions.
-     *           Format is `projects/{project-id}`.
+     *           Required. Identifier. The name of the project in which to list
+     *           subscriptions. Format is `projects/{project-id}`.
      *     @type int $page_size
      *           Optional. Maximum number of subscriptions to return.
      *     @type string $page_token
@@ -75,10 +75,10 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project in which to list subscriptions.
-     * Format is `projects/{project-id}`.
+     * Required. Identifier. The name of the project in which to list
+     * subscriptions. Format is `projects/{project-id}`.
      *
-     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProject()
@@ -87,10 +87,10 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the project in which to list subscriptions.
-     * Format is `projects/{project-id}`.
+     * Required. Identifier. The name of the project in which to list
+     * subscriptions. Format is `projects/{project-id}`.
      *
-     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

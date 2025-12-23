@@ -21,7 +21,8 @@ class AllocationAggregateReservationReservedResourceInfoAccelerator extends \Goo
      */
     protected $accelerator_count = null;
     /**
-     * Full or partial URL to accelerator type. e.g. "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
+     * Full or partial URL to accelerator type. e.g.
+     * "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
@@ -36,7 +37,8 @@ class AllocationAggregateReservationReservedResourceInfoAccelerator extends \Goo
      *     @type int $accelerator_count
      *           Number of accelerators of specified type.
      *     @type string $accelerator_type
-     *           Full or partial URL to accelerator type. e.g. "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
+     *           Full or partial URL to accelerator type. e.g.
+     *           "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +83,8 @@ class AllocationAggregateReservationReservedResourceInfoAccelerator extends \Goo
     }
 
     /**
-     * Full or partial URL to accelerator type. e.g. "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
+     * Full or partial URL to accelerator type. e.g.
+     * "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @return string
@@ -102,7 +105,8 @@ class AllocationAggregateReservationReservedResourceInfoAccelerator extends \Goo
     }
 
     /**
-     * Full or partial URL to accelerator type. e.g. "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
+     * Full or partial URL to accelerator type. e.g.
+     * "projects/{PROJECT}/zones/{ZONE}/acceleratorTypes/ct4l"
      *
      * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @param string $var

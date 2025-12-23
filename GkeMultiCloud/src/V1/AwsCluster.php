@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * An Anthos cluster running on AWS.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.gkemulticloud.v1.AwsCluster</code>
  */
 class AwsCluster extends \Google\Protobuf\Internal\Message

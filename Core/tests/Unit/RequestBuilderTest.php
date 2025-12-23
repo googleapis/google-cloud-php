@@ -27,6 +27,8 @@ use PHPUnit\Framework\TestCase;
  */
 class RequestBuilderTest extends TestCase
 {
+    public $builder;
+
     public function setUp(): void
     {
         $this->builder = new RequestBuilder(

@@ -17,18 +17,37 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use ArrayIterator;
+use DateTime;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Page;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ServerStream;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Firestore\CollectionReference;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\CommitResponse;
+use Google\Cloud\Firestore\V1\Document;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
+use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\ValueMapper;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+
+use function PHPSTORM_META\map;
 
 /**
  * @group firestore
@@ -36,6 +55,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class DocumentReferenceTest extends TestCase
 {
+    use GenerateProtoTrait;
     use ProphecyTrait;
     use TimeTrait;
 
@@ -44,20 +64,20 @@ class DocumentReferenceTest extends TestCase
     const COLLECTION = 'projects/example_project/databases/(default)/documents/a';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
-    private $connection;
+    private $gapicClient;
     private $document;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->gapicClient = $this->prophesize(FirestoreClient::class);
 
-        $valueMapper = new ValueMapper($this->connection->reveal(), false);
-        $this->document = TestHelpers::stub(DocumentReference::class, [
-            $this->connection->reveal(),
+        $valueMapper = new ValueMapper($this->gapicClient->reveal(), false);
+        $this->document = new DocumentReference(
+            $this->gapicClient->reveal(),
             $valueMapper,
-            new CollectionReference($this->connection->reveal(), $valueMapper, self::COLLECTION),
+            new CollectionReference($this->gapicClient->reveal(), $valueMapper, self::COLLECTION),
             self::NAME
-        ]);
+        );
     }
 
     public function testParent()
@@ -83,90 +103,113 @@ class DocumentReferenceTest extends TestCase
 
     public function testCreate()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'currentDocument' => ['exists' => false],
-                    'update' => [
-                        'name' => self::NAME,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'currentDocument' => ['exists' => false],
+                            'update' => [
+                                'name' => self::NAME,
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ]
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
+                ]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
+            'writeResults' => [[]]
+        ]));
 
         $this->document->create(['hello' => 'world']);
     }
 
     public function testSet()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'update' => [
-                        'name' => self::NAME,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'update' => [
+                                'name' => self::NAME,
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ]
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
-
-        $this->document->___setProperty('connection', $this->connection->reveal());
+                ]);
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
+            'writeResults' => [[]]
+        ]));
 
         $this->document->set(['hello' => 'world']);
     }
 
     public function testUpdate()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'updateMask' => [
-                        'fieldPaths' => [
-                            "foo.bar",
-                            "foo.baz",
-                            "hello",
-                        ]
-                    ],
-                    'currentDocument' => ['exists' => true],
-                    'update' => [
-                        'name' => self::NAME,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'updateMask' => [
+                                'fieldPaths' => [
+                                    "foo.bar",
+                                    "foo.baz",
+                                    "hello",
+                                ]
                             ],
-                            'foo' => [
-                                'mapValue' => [
-                                    'fields' => [
-                                        'bar' => [
-                                            'stringValue' => 'val'
-                                        ],
-                                        'baz' => [
-                                            'stringValue' => 'val'
+                            'currentDocument' => ['exists' => true],
+                            'update' => [
+                                'name' => self::NAME,
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ],
+                                    'foo' => [
+                                        'mapValue' => [
+                                            'fields' => [
+                                                'bar' => [
+                                                    'stringValue' => 'val'
+                                                ],
+                                                'baz' => [
+                                                    'stringValue' => 'val'
+                                                ]
+                                            ]
                                         ]
                                     ]
                                 ]
                             ]
                         ]
                     ]
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
+                ]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled(1)->willReturn(self::generateProto(CommitResponse::class, [
+            'writeResults' => [[]]
+        ]));
 
         $this->document->update([
             ['path' => 'hello', 'value' => 'world'],
@@ -177,39 +220,53 @@ class DocumentReferenceTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'delete' => self::NAME
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
+        $this->gapicClient->commit(
+            Argument::that(function (CommitRequest $request) {
+                $expectedRequest = self::generateProto(CommitRequest::class, [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'delete' => self::NAME
+                        ]
+                    ]
+                ]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+                $this->assertEquals($expectedRequest, $request);
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(self::generateProto(CommitResponse::class, [
+            'writeResults' => [[]]
+        ]));
 
         $this->document->delete();
     }
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
-            [
-                'found' => [
+        $stream = $this->prophesize(ServerStream::class);
+        $stream->readAll()->willReturn(new ArrayIterator([
+            new BatchGetDocumentsResponse([
+                'found' => new Document([
                     'name' => self::NAME,
                     'fields' => [
-                        'hello' => [
-                            'stringValue' => 'world'
-                        ]
+                        'hello' => new Value([
+                            'string_value' => 'world'
+                        ])
                     ]
-                ]
-            ]
+                ])
+            ])
         ]));
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->gapicClient->batchGetDocuments(
+            Argument::that(function (BatchGetDocumentsRequest $request) {
+                $expectedDatabase = sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE);
+                $this->assertEquals($expectedDatabase, $request->getDatabase());
+                $this->assertEquals([self::NAME], iterator_to_array($request->getDocuments()));
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($stream->reveal());
 
         $snapshot = $this->document->snapshot();
         $this->assertInstanceOf(DocumentSnapshot::class, $snapshot);
@@ -227,23 +284,44 @@ class DocumentReferenceTest extends TestCase
 
     public function testCollections()
     {
-        $this->connection->listCollectionIds([
-            'parent' => self::NAME
-        ])->shouldBeCalled()->will(function ($args, $mock) {
-            $mock->listCollectionIds([
-                'parent' => self::NAME,
-                'pageToken' => 'token'
-            ])->shouldBeCalled()->willReturn([
-                'collectionIds' => ['e']
-            ]);
+        $currentPage = 0;
 
-            return [
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(ListCollectionIdsResponse::class, [
                 'collectionIds' => ['c', 'd'],
                 'nextPageToken' => 'token'
-            ];
-        });
+            ]));
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $page2 = $this->prophesize(Page::class);
+        $page2->getResponseObject()
+            ->shouldBeCalled(1)
+            ->willReturn(self::generateProto(ListCollectionIdsResponse::class, [
+                'collectionIds' => ['e'],
+            ]));
+
+
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->shouldBeCalled()
+            ->will(function () use (&$currentPage, $page, $page2) {
+                $currentPage++;
+
+                if ($currentPage == 1) {
+                    return $page->reveal();
+                }
+
+                return $page2->reveal();
+            });
+
+        $this->gapicClient->listCollectionIds(
+            Argument::that(function (ListCollectionIdsRequest $request) {
+                $this->assertEquals(self::NAME, $request->getParent());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($pagedListResponse->reveal());
 
         $collections = iterator_to_array($this->document->collections());
         $this->assertContainsOnlyInstancesOf(CollectionReference::class, $collections);
@@ -253,26 +331,39 @@ class DocumentReferenceTest extends TestCase
         $this->assertEquals(self::NAME .'/e', $collections[2]->name());
     }
 
+    public function testCollectionsRaiseAServiceException()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $this->gapicClient->listCollectionIds(
+            Argument::that(function (ListCollectionIdsRequest $request) {
+                $this->assertEquals(self::NAME, $request->getParent());
+                return true;
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willThrow(new ApiException('Transient Error', Code::INVALID_ARGUMENT));
+
+        iterator_to_array($this->document->collections());
+    }
+
     public function testWriteResult()
     {
         $time = time();
-        $ts = \DateTime::createFromFormat('U', $time)->format(Timestamp::FORMAT);
-        $ts2 = \DateTime::createFromFormat('U', $time+100)->format(Timestamp::FORMAT);
+        $ts = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $time));
+        $ts2 = new Timestamp(\DateTimeImmutable::createFromFormat('U', (string) $time + 100));
 
-        $this->connection->commit(Argument::any())
+        $this->gapicClient->commit(Argument::any(), Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(self::generateProto(CommitResponse::class, [
                 'writeResults' => [
                     [
-                        'updateTime' => $ts
+                        'updateTime' => new ProtobufTimestamp($ts->formatForApi())
                     ], [
-                        'updateTime' => $ts2
+                        'updateTime' => new ProtobufTimestamp($ts2->formatForApi())
                     ]
                 ],
-                'commitTime' => $ts
-            ]);
-
-        $this->document->___setProperty('connection', $this->connection->reveal());
+                'commitTime' => new ProtobufTimestamp($ts->formatForApi())
+            ]));
 
         $res = $this->document->set(['foo' => 'bar']);
         $this->assertInstanceOf(Timestamp::class, $res['updateTime']);

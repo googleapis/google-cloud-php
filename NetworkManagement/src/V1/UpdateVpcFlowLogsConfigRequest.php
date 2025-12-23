@@ -18,6 +18,12 @@ class UpdateVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field.
+     * For example, to change the state of the configuration to ENABLED, specify
+     *   `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be:
+     *   `vpc_flow_logs_config = {
+     *     name =
+     *     "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config"
+     *     state = "ENABLED" }`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,6 +39,12 @@ class UpdateVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig $vpcFlowLogsConfig Required. Only fields specified in update_mask are updated.
      * @param \Google\Protobuf\FieldMask                           $updateMask        Required. Mask of fields to update. At least one path must be supplied in
      *                                                                                this field.
+     *                                                                                For example, to change the state of the configuration to ENABLED, specify
+     *                                                                                `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be:
+     *                                                                                `vpc_flow_logs_config = {
+     *                                                                                name =
+     *                                                                                "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config"
+     *                                                                                state = "ENABLED" }`
      *
      * @return \Google\Cloud\NetworkManagement\V1\UpdateVpcFlowLogsConfigRequest
      *
@@ -54,6 +66,12 @@ class UpdateVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Mask of fields to update. At least one path must be supplied in
      *           this field.
+     *           For example, to change the state of the configuration to ENABLED, specify
+     *             `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be:
+     *             `vpc_flow_logs_config = {
+     *               name =
+     *               "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config"
+     *               state = "ENABLED" }`
      *     @type \Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig $vpc_flow_logs_config
      *           Required. Only fields specified in update_mask are updated.
      * }
@@ -66,6 +84,12 @@ class UpdateVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field.
+     * For example, to change the state of the configuration to ENABLED, specify
+     *   `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be:
+     *   `vpc_flow_logs_config = {
+     *     name =
+     *     "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config"
+     *     state = "ENABLED" }`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -88,6 +112,12 @@ class UpdateVpcFlowLogsConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Mask of fields to update. At least one path must be supplied in
      * this field.
+     * For example, to change the state of the configuration to ENABLED, specify
+     *   `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be:
+     *   `vpc_flow_logs_config = {
+     *     name =
+     *     "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config"
+     *     state = "ENABLED" }`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\Snapshot;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The architecture of the snapshot. Valid values are ARM64 or X86_64.
+ * Output only. [Output Only] The architecture of the snapshot. Valid values are
+ * ARM64 or X86_64.
  *
  * Protobuf type <code>google.cloud.compute.v1.Snapshot.Architecture</code>
  */

@@ -126,6 +126,9 @@
                     "retry_codes_name": "retry_policy_4_codes",
                     "retry_params_name": "retry_policy_4_params"
                 },
+                "ExecutePipeline": {
+                    "timeout_millis": 300000
+                },
                 "GetDocument": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_4_codes",

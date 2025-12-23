@@ -29,7 +29,8 @@ use Google\Cloud\Compute\V1\Client\RegionSslCertificatesClient;
 use Google\Cloud\Compute\V1\ListRegionSslCertificatesRequest;
 
 /**
- * Retrieves the list of SslCertificate resources available to the specified project in the specified region.
+ * Retrieves the list of SslCertificate resources available to the specified
+ * project in the specified region.
  *
  * @param string $project Project ID for this request.
  * @param string $region  Name of the region scoping this request.

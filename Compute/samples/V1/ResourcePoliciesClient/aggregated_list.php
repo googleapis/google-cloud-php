@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\AggregatedListResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\Client\ResourcePoliciesClient;
 
 /**
- * Retrieves an aggregated list of resource policies. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+ * Retrieves an aggregated list of resource policies.
+ *
+ * To prevent failure, Google recommends that you set the
+ * `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

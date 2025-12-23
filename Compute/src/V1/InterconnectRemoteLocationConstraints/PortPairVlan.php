@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\InterconnectRemoteLocationConstraints;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Port pair VLAN constraints, which can take one of the following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
+ * Output only. [Output Only] Port pair VLAN constraints, which can take one of the
+ * following values: PORT_PAIR_UNCONSTRAINED_VLAN, PORT_PAIR_MATCHING_VLAN
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectRemoteLocationConstraints.PortPairVlan</code>
  */
@@ -20,7 +21,12 @@ class PortPairVlan
      */
     const UNDEFINED_PORT_PAIR_VLAN = 0;
     /**
-     * If PORT_PAIR_MATCHING_VLAN, the Interconnect for this attachment is part of a pair of ports that should have matching VLAN allocations. This occurs with Cross-Cloud Interconnect to Azure remote locations. While GCP's API does not explicitly group pairs of ports, the UI uses this field to ensure matching VLAN ids when configuring a redundant VLAN pair.
+     * If PORT_PAIR_MATCHING_VLAN, the Interconnect for this attachment is
+     * part of a pair of ports that should have matching VLAN allocations.
+     * This occurs with Cross-Cloud Interconnect to Azure remote locations.
+     * While GCP's API does not explicitly group pairs of ports, the UI uses
+     * this field to ensure matching VLAN ids when configuring a redundant
+     * VLAN pair.
      *
      * Generated from protobuf enum <code>PORT_PAIR_MATCHING_VLAN = 250295358;</code>
      */

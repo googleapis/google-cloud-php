@@ -21,7 +21,8 @@ class PreservedStatePreservedNetworkIpIpAddress extends \Google\Protobuf\Interna
      */
     protected $address = null;
     /**
-     * An IPv4 internal network address to assign to the instance for this network interface.
+     * An IPv4 internal network address to assign to the instance for this
+     * network interface.
      *
      * Generated from protobuf field <code>optional string literal = 182460591;</code>
      */
@@ -36,7 +37,8 @@ class PreservedStatePreservedNetworkIpIpAddress extends \Google\Protobuf\Interna
      *     @type string $address
      *           The URL of the reservation for this IP address.
      *     @type string $literal
-     *           An IPv4 internal network address to assign to the instance for this network interface.
+     *           An IPv4 internal network address to assign to the instance for this
+     *           network interface.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +83,8 @@ class PreservedStatePreservedNetworkIpIpAddress extends \Google\Protobuf\Interna
     }
 
     /**
-     * An IPv4 internal network address to assign to the instance for this network interface.
+     * An IPv4 internal network address to assign to the instance for this
+     * network interface.
      *
      * Generated from protobuf field <code>optional string literal = 182460591;</code>
      * @return string
@@ -102,7 +105,8 @@ class PreservedStatePreservedNetworkIpIpAddress extends \Google\Protobuf\Interna
     }
 
     /**
-     * An IPv4 internal network address to assign to the instance for this network interface.
+     * An IPv4 internal network address to assign to the instance for this
+     * network interface.
      *
      * Generated from protobuf field <code>optional string literal = 182460591;</code>
      * @param string $var

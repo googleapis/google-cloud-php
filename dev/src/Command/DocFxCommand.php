@@ -19,7 +19,6 @@ namespace Google\Cloud\Dev\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
@@ -54,9 +53,12 @@ class DocFxCommand extends Command
     private static array $productNeutralGuides = [
         'README.md' => 'Getting Started',
         'AUTHENTICATION.md' => 'Authentication',
-        'DEBUG.md' => 'Debug Logging',
+        'CORE_CONCEPTS.md' => 'Core Concepts',
+        'CLIENT_CONFIGURATION.md' => 'Client Configuration',
+        'OCC_FOR_IAM.md' => 'OCC for IAM',
         'MIGRATING.md' => 'Migrating to V2',
-        'GRPC.md' => 'Installing gRPC',
+        'GRPC.md' => 'Installing gRPC and Protobuf',
+        'DEBUG.md' => 'Troubleshooting',
     ];
 
     protected function configure()

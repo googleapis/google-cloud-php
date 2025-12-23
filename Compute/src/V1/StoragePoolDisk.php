@@ -15,68 +15,70 @@ use Google\Protobuf\Internal\GPBUtil;
 class StoragePoolDisk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Instances this disk is attached to.
+     * Output only. [Output Only] Instances this disk is attached to.
      *
      * Generated from protobuf field <code>repeated string attached_instances = 65255843;</code>
      */
     private $attached_instances;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * [Output Only] The URL of the disk.
+     * Output only. [Output Only] The URL of the disk.
      *
      * Generated from protobuf field <code>optional string disk = 3083677;</code>
      */
     protected $disk = null;
     /**
-     * [Output Only] The name of the disk.
+     * Output only. [Output Only] The name of the disk.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * [Output Only] The number of IOPS provisioned for the disk.
+     * Output only. [Output Only] The number of IOPS provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
      */
     protected $provisioned_iops = null;
     /**
-     * [Output Only] The throughput provisioned for the disk.
+     * Output only. [Output Only] The throughput provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      */
     protected $provisioned_throughput = null;
     /**
-     * [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     * Output only. [Output Only] Resource policies applied to disk for automatic snapshot
+     * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      */
     private $resource_policies;
     /**
-     * [Output Only] The disk size, in GB.
+     * Output only. [Output Only] The disk size, in GB.
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      */
     protected $size_gb = null;
     /**
-     * [Output Only] The disk status.
+     * Output only. [Output Only] The disk status.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     protected $status = null;
     /**
-     * [Output Only] The disk type.
+     * Output only. [Output Only] The disk type.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
     protected $type = null;
     /**
-     * [Output Only] Amount of disk space used.
+     * Output only. [Output Only] Amount of disk space used.
      *
      * Generated from protobuf field <code>optional int64 used_bytes = 231640425;</code>
      */
@@ -89,28 +91,30 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attached_instances
-     *           [Output Only] Instances this disk is attached to.
+     *           Output only. [Output Only] Instances this disk is attached to.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           Output only. [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $disk
-     *           [Output Only] The URL of the disk.
+     *           Output only. [Output Only] The URL of the disk.
      *     @type string $name
-     *           [Output Only] The name of the disk.
+     *           Output only. [Output Only] The name of the disk.
      *     @type int|string $provisioned_iops
-     *           [Output Only] The number of IOPS provisioned for the disk.
+     *           Output only. [Output Only] The number of IOPS provisioned for the disk.
      *     @type int|string $provisioned_throughput
-     *           [Output Only] The throughput provisioned for the disk.
+     *           Output only. [Output Only] The throughput provisioned for the disk.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
-     *           [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     *           Output only. [Output Only] Resource policies applied to disk for automatic snapshot
+     *           creations.
      *     @type int|string $size_gb
-     *           [Output Only] The disk size, in GB.
+     *           Output only. [Output Only] The disk size, in GB.
      *     @type string $status
-     *           [Output Only] The disk status.
+     *           Output only. [Output Only] The disk status.
      *           Check the Status enum for the list of possible values.
      *     @type string $type
-     *           [Output Only] The disk type.
+     *           Output only. [Output Only] The disk type.
      *     @type int|string $used_bytes
-     *           [Output Only] Amount of disk space used.
+     *           Output only. [Output Only] Amount of disk space used.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,7 +123,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Instances this disk is attached to.
+     * Output only. [Output Only] Instances this disk is attached to.
      *
      * Generated from protobuf field <code>repeated string attached_instances = 65255843;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -130,7 +134,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Instances this disk is attached to.
+     * Output only. [Output Only] Instances this disk is attached to.
      *
      * Generated from protobuf field <code>repeated string attached_instances = 65255843;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -145,7 +149,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -166,7 +171,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * Output only. [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -181,7 +187,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the disk.
+     * Output only. [Output Only] The URL of the disk.
      *
      * Generated from protobuf field <code>optional string disk = 3083677;</code>
      * @return string
@@ -202,7 +208,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the disk.
+     * Output only. [Output Only] The URL of the disk.
      *
      * Generated from protobuf field <code>optional string disk = 3083677;</code>
      * @param string $var
@@ -217,7 +223,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the disk.
+     * Output only. [Output Only] The name of the disk.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -238,7 +244,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The name of the disk.
+     * Output only. [Output Only] The name of the disk.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -253,7 +259,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The number of IOPS provisioned for the disk.
+     * Output only. [Output Only] The number of IOPS provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
      * @return int|string
@@ -274,7 +280,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The number of IOPS provisioned for the disk.
+     * Output only. [Output Only] The number of IOPS provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_iops = 186769108;</code>
      * @param int|string $var
@@ -289,7 +295,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The throughput provisioned for the disk.
+     * Output only. [Output Only] The throughput provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      * @return int|string
@@ -310,7 +316,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The throughput provisioned for the disk.
+     * Output only. [Output Only] The throughput provisioned for the disk.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      * @param int|string $var
@@ -325,7 +331,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     * Output only. [Output Only] Resource policies applied to disk for automatic snapshot
+     * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -336,7 +343,8 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Resource policies applied to disk for automatic snapshot creations.
+     * Output only. [Output Only] Resource policies applied to disk for automatic snapshot
+     * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -351,7 +359,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The disk size, in GB.
+     * Output only. [Output Only] The disk size, in GB.
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      * @return int|string
@@ -372,7 +380,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The disk size, in GB.
+     * Output only. [Output Only] The disk size, in GB.
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      * @param int|string $var
@@ -387,7 +395,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The disk status.
+     * Output only. [Output Only] The disk status.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -409,7 +417,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The disk status.
+     * Output only. [Output Only] The disk status.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -425,7 +433,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The disk type.
+     * Output only. [Output Only] The disk type.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      * @return string
@@ -446,7 +454,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The disk type.
+     * Output only. [Output Only] The disk type.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      * @param string $var
@@ -461,7 +469,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Amount of disk space used.
+     * Output only. [Output Only] Amount of disk space used.
      *
      * Generated from protobuf field <code>optional int64 used_bytes = 231640425;</code>
      * @return int|string
@@ -482,7 +490,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Amount of disk space used.
+     * Output only. [Output Only] Amount of disk space used.
      *
      * Generated from protobuf field <code>optional int64 used_bytes = 231640425;</code>
      * @param int|string $var

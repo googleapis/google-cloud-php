@@ -47,6 +47,8 @@ use Google\Cloud\NetworkManagement\V1\CreateVpcFlowLogsConfigRequest;
 use Google\Cloud\NetworkManagement\V1\DeleteVpcFlowLogsConfigRequest;
 use Google\Cloud\NetworkManagement\V1\GetVpcFlowLogsConfigRequest;
 use Google\Cloud\NetworkManagement\V1\ListVpcFlowLogsConfigsRequest;
+use Google\Cloud\NetworkManagement\V1\QueryOrgVpcFlowLogsConfigsRequest;
+use Google\Cloud\NetworkManagement\V1\ShowEffectiveFlowLogsConfigsRequest;
 use Google\Cloud\NetworkManagement\V1\UpdateVpcFlowLogsConfigRequest;
 use Google\Cloud\NetworkManagement\V1\VpcFlowLogsConfig;
 use Google\LongRunning\Client\OperationsClient;
@@ -71,6 +73,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteVpcFlowLogsConfigAsync(DeleteVpcFlowLogsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<VpcFlowLogsConfig> getVpcFlowLogsConfigAsync(GetVpcFlowLogsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listVpcFlowLogsConfigsAsync(ListVpcFlowLogsConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryOrgVpcFlowLogsConfigsAsync(QueryOrgVpcFlowLogsConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> showEffectiveFlowLogsConfigsAsync(ShowEffectiveFlowLogsConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateVpcFlowLogsConfigAsync(UpdateVpcFlowLogsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -103,9 +107,7 @@ final class VpcFlowLogsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -195,6 +197,67 @@ final class VpcFlowLogsServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted organization_location resource.
+     */
+    public static function organizationLocationName(string $organization, string $location): string
+    {
+        return self::getPathTemplate('organizationLocation')->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_vpc_flow_logs_config resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $vpcFlowLogsConfig
+     *
+     * @return string The formatted organization_location_vpc_flow_logs_config resource.
+     */
+    public static function organizationLocationVpcFlowLogsConfigName(
+        string $organization,
+        string $location,
+        string $vpcFlowLogsConfig
+    ): string {
+        return self::getPathTemplate('organizationLocationVpcFlowLogsConfig')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'vpc_flow_logs_config' => $vpcFlowLogsConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_vpc_flow_logs_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $vpcFlowLogsConfig
+     *
+     * @return string The formatted project_location_vpc_flow_logs_config resource.
+     */
+    public static function projectLocationVpcFlowLogsConfigName(
+        string $project,
+        string $location,
+        string $vpcFlowLogsConfig
+    ): string {
+        return self::getPathTemplate('projectLocationVpcFlowLogsConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'vpc_flow_logs_config' => $vpcFlowLogsConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * vpc_flow_logs_config resource.
      *
      * @param string $project
@@ -217,6 +280,9 @@ final class VpcFlowLogsServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - location: projects/{project}/locations/{location}
+     * - organizationLocation: organizations/{organization}/locations/{location}
+     * - organizationLocationVpcFlowLogsConfig: organizations/{organization}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}
+     * - projectLocationVpcFlowLogsConfig: projects/{project}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}
      * - vpcFlowLogsConfig: projects/{project}/locations/{location}/vpcFlowLogsConfigs/{vpc_flow_logs_config}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -329,8 +395,8 @@ final class VpcFlowLogsServiceClient
      * ID is different), the creation fails.
      * Notes:
      *
-     * 1. Creating a configuration with state=DISABLED will fail
-     * 2. The following fields are not considered as `settings` for the purpose
+     * 1. Creating a configuration with `state=DISABLED` will fail
+     * 2. The following fields are not considered as settings for the purpose
      * of the check mentioned above, therefore - creating another configuration
      * with the same fields but different values for the following fields will
      * fail as well:
@@ -359,8 +425,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createVpcFlowLogsConfig(CreateVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createVpcFlowLogsConfig(
+        CreateVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -386,8 +454,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteVpcFlowLogsConfig(DeleteVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteVpcFlowLogsConfig(
+        DeleteVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -413,8 +483,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getVpcFlowLogsConfig(GetVpcFlowLogsConfigRequest $request, array $callOptions = []): VpcFlowLogsConfig
-    {
+    public function getVpcFlowLogsConfig(
+        GetVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): VpcFlowLogsConfig {
         return $this->startApiCall('GetVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -440,9 +512,71 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listVpcFlowLogsConfigs(ListVpcFlowLogsConfigsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listVpcFlowLogsConfigs(
+        ListVpcFlowLogsConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListVpcFlowLogsConfigs', $request, $callOptions);
+    }
+
+    /**
+     * QueryOrgVpcFlowLogsConfigs returns a list of all organization-level VPC
+     * Flow Logs configurations applicable to the specified project.
+     *
+     * The async variant is
+     * {@see VpcFlowLogsServiceClient::queryOrgVpcFlowLogsConfigsAsync()} .
+     *
+     * @example samples/V1/VpcFlowLogsServiceClient/query_org_vpc_flow_logs_configs.php
+     *
+     * @param QueryOrgVpcFlowLogsConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function queryOrgVpcFlowLogsConfigs(
+        QueryOrgVpcFlowLogsConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('QueryOrgVpcFlowLogsConfigs', $request, $callOptions);
+    }
+
+    /**
+     * ShowEffectiveFlowLogsConfigs returns a list of all VPC Flow Logs
+     * configurations applicable to a specified resource.
+     *
+     * The async variant is
+     * {@see VpcFlowLogsServiceClient::showEffectiveFlowLogsConfigsAsync()} .
+     *
+     * @example samples/V1/VpcFlowLogsServiceClient/show_effective_flow_logs_configs.php
+     *
+     * @param ShowEffectiveFlowLogsConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function showEffectiveFlowLogsConfigs(
+        ShowEffectiveFlowLogsConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ShowEffectiveFlowLogsConfigs', $request, $callOptions);
     }
 
     /**
@@ -451,8 +585,8 @@ final class VpcFlowLogsServiceClient
      * ID is different), the creation fails.
      * Notes:
      *
-     * 1. Updating a configuration with state=DISABLED will fail.
-     * 2. The following fields are not considered as `settings` for the purpose
+     * 1. Updating a configuration with `state=DISABLED` will fail.
+     * 2. The following fields are not considered as settings for the purpose
      * of the check mentioned above, therefore - updating another configuration
      * with the same fields but different values for the following fields will
      * fail as well:
@@ -481,8 +615,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateVpcFlowLogsConfig(UpdateVpcFlowLogsConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateVpcFlowLogsConfig(
+        UpdateVpcFlowLogsConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateVpcFlowLogsConfig', $request, $callOptions)->wait();
     }
 
@@ -623,8 +759,10 @@ final class VpcFlowLogsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

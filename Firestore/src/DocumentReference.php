@@ -17,10 +17,15 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ApiException;
+use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Core\RequestProcessorTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 
 /**
  * Represents a reference to a Firestore document.
@@ -37,30 +42,17 @@ class DocumentReference
 {
     use SnapshotTrait;
     use DebugInfoTrait;
+    use RequestProcessorTrait;
+
+    private FirestoreClient $gapicClient;
+    private ValueMapper $valueMapper;
+    private CollectionReference $parent;
+    private string $name;
+    private Serializer $serializer;
+    private OptionsValidator $optionsValidator;
 
     /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
-    /**
-     * @var ValueMapper
-     */
-    private $valueMapper;
-
-    /**
-     * @var CollectionReference
-     */
-    private $parent;
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param FirestoreClient $firestoreClient An instance of the Firestore client.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
@@ -68,15 +60,19 @@ class DocumentReference
      * @param string $name The fully-qualified document name.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        FirestoreClient $firestoreClient,
         ValueMapper $valueMapper,
         CollectionReference $parent,
         $name
     ) {
-        $this->connection = $connection;
+        $this->gapicClient = $firestoreClient;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->name = $name;
+
+        // Used in SnapshotTrait
+        $this->serializer = new Serializer();
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     /**
@@ -89,7 +85,7 @@ class DocumentReference
      *
      * @return CollectionReference
      */
-    public function parent()
+    public function parent(): CollectionReference
     {
         return $this->parent;
     }
@@ -111,7 +107,7 @@ class DocumentReference
      *
      * @return string
      */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
@@ -131,7 +127,7 @@ class DocumentReference
      *
      * @return string
      */
-    public function path()
+    public function path(): string
     {
         return $this->relativeName($this->name);
     }
@@ -150,7 +146,7 @@ class DocumentReference
      *
      * @return string
      */
-    public function id()
+    public function id(): string
     {
         return $this->pathId($this->name);
     }
@@ -179,7 +175,7 @@ class DocumentReference
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
-    public function create(array $fields = [], array $options = [])
+    public function create(array $fields = [], array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -222,7 +218,7 @@ class DocumentReference
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
-    public function set(array $fields, array $options = [])
+    public function set(array $fields, array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -297,7 +293,7 @@ class DocumentReference
      * @throws \InvalidArgumentException If field paths conflict.
      * @codingStandardsIgnoreEnd
      */
-    public function update(array $data, array $options = [])
+    public function update(array $data, array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -321,7 +317,7 @@ class DocumentReference
      * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
-    public function delete(array $options = [])
+    public function delete(array $options = []): array
     {
         return $this->writeResult(
             $this->batchFactory()
@@ -345,9 +341,9 @@ class DocumentReference
      * @param array $options Configuration Options
      * @return DocumentSnapshot
      */
-    public function snapshot(array $options = [])
+    public function snapshot(array $options = []): DocumentSnapshot
     {
-        return $this->createSnapshot($this->connection, $this->valueMapper, $this, $options);
+        return $this->createSnapshot($this->gapicClient, $this->valueMapper, $this, $options);
     }
 
     /**
@@ -361,10 +357,10 @@ class DocumentReference
      * @param string $collectionId The ID of the child collection.
      * @return CollectionReference
      */
-    public function collection($collectionId)
+    public function collection($collectionId): CollectionReference
     {
         return new CollectionReference(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->childPath($this->name, $collectionId)
         );
@@ -387,21 +383,41 @@ class DocumentReference
      * @throws \InvalidArgumentException if an invalid `$options.readTime` is
      *     specified.
      */
-    public function collections(array $options = [])
+    public function collections(array $options = []): ItemIterator
     {
         $options = $this->formatReadTimeOption($options);
+
+        /**
+         * @var ListCollectionIdsRequest $request
+         * @var CallOptions $callOptions
+         */
+        [$request, $callOptions] = $this->validateOptions(
+            $options + ['parent' => $this->name],
+            new ListCollectionIdsRequest(),
+            CallOptions::class
+        );
+
+        $listCollectionCall = function (array $callOptions) use ($request) {
+            try {
+                $response = $this->gapicClient->listCollectionIds($request, $callOptions);
+            } catch (ApiException $ex) {
+                throw $this->convertToGoogleException($ex);
+            }
+
+            return $this->serializer->encodeMessage($response->getPage()->getResponseObject());
+        };
 
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
                 function ($collectionId) {
                     return new CollectionReference(
-                        $this->connection,
+                        $this->gapicClient,
                         $this->valueMapper,
                         $this->childPath($this->name, $collectionId)
                     );
                 },
-                [$this->connection, 'listCollectionIds'],
+                $listCollectionCall,
                 $options + ['parent' => $this->name],
                 [
                     'itemsKey' => 'collectionIds',
@@ -414,15 +430,12 @@ class DocumentReference
     /**
      * Create a Batch Writer for single-use mutations in this class.
      *
-     * @return WriteBatch
+     * @return BulkWriter
      */
-    protected function batchFactory()
+    protected function batchFactory(): BulkWriter
     {
-        if (!class_exists(WriteBatch::class, false)) {
-            class_alias(BulkWriter::class, WriteBatch::class);
-        }
         return new BulkWriter(
-            $this->connection,
+            $this->gapicClient,
             $this->valueMapper,
             $this->databaseFromName($this->name)
         );
@@ -436,8 +449,10 @@ class DocumentReference
      */
     private function writeResult(array $commitResponse)
     {
-        return isset($commitResponse['writeResults']) && is_array($commitResponse['writeResults'])
-            ? array_pop($commitResponse['writeResults'])
-            : [];
+        if (empty($commitResponse['writeResults'])) {
+            return [];
+        }
+
+        return array_pop($commitResponse['writeResults']);
     }
 }

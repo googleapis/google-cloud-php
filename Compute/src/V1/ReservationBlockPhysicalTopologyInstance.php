@@ -22,7 +22,7 @@ class ReservationBlockPhysicalTopologyInstance extends \Google\Protobuf\Internal
      */
     protected $instance_id = null;
     /**
-     * The PhysicalHostTopology of instances within a Block resource.
+     * Output only. The PhysicalHostTopology of instances within a Block resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstancePhysicalHostTopology physical_host_topology = 390842814;</code>
      */
@@ -43,7 +43,7 @@ class ReservationBlockPhysicalTopologyInstance extends \Google\Protobuf\Internal
      *     @type int|string $instance_id
      *           The InstanceId of the instance
      *     @type \Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstancePhysicalHostTopology $physical_host_topology
-     *           The PhysicalHostTopology of instances within a Block resource.
+     *           Output only. The PhysicalHostTopology of instances within a Block resource.
      *     @type int|string $project_id
      *           Project where the instance lives
      * }
@@ -90,7 +90,7 @@ class ReservationBlockPhysicalTopologyInstance extends \Google\Protobuf\Internal
     }
 
     /**
-     * The PhysicalHostTopology of instances within a Block resource.
+     * Output only. The PhysicalHostTopology of instances within a Block resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstancePhysicalHostTopology physical_host_topology = 390842814;</code>
      * @return \Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstancePhysicalHostTopology|null
@@ -111,7 +111,7 @@ class ReservationBlockPhysicalTopologyInstance extends \Google\Protobuf\Internal
     }
 
     /**
-     * The PhysicalHostTopology of instances within a Block resource.
+     * Output only. The PhysicalHostTopology of instances within a Block resource.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstancePhysicalHostTopology physical_host_topology = 390842814;</code>
      * @param \Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstancePhysicalHostTopology $var

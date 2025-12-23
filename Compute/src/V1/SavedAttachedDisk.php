@@ -9,20 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * DEPRECATED: Please use compute#savedDisk instead. An instance-attached disk resource.
+ * DEPRECATED: Please use compute#savedDisk instead.
+ * An instance-attached disk resource.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SavedAttachedDisk</code>
  */
 class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+     * Specifies whether the disk will be auto-deleted when the instance is
+     * deleted (but not when the disk is detached from the instance).
      *
      * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      */
     protected $auto_delete = null;
     /**
-     * Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
+     * Indicates that this is a boot disk. The virtual machine will use the first
+     * partition of the disk for its root filesystem.
      *
      * Generated from protobuf field <code>optional bool boot = 3029746;</code>
      */
@@ -46,44 +49,50 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      */
     protected $disk_size_gb = null;
     /**
-     * [Output Only] URL of the disk type resource. For example: projects/project /zones/zone/diskTypes/pd-standard or pd-ssd
+     * Output only. [Output Only] URL of the disk type resource. For example:projects/project/zones/zone/diskTypes/pd-standard or
+     * pd-ssd
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
     protected $disk_type = null;
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only
+     * for bootable images. Read
+     * Enabling guest operating system features to see a list of available
+     * options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      */
     private $guest_os_features;
     /**
-     * Specifies zero-based index of the disk that is attached to the source instance.
+     * Output only. Specifies zero-based index of the disk that is attached to the source
+     * instance.
      *
      * Generated from protobuf field <code>optional int32 index = 100346066;</code>
      */
     protected $index = null;
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME.
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
      */
     protected $interface = null;
     /**
-     * [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] Any valid publicly visible licenses.
+     * Output only. [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      */
     private $licenses;
     /**
-     * The mode in which this disk is attached to the source instance, either READ_WRITE or READ_ONLY.
+     * The mode in which this disk is attached to the source instance, eitherREAD_WRITE or READ_ONLY.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -96,20 +105,25 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      */
     protected $source = null;
     /**
-     * [Output Only] A size of the storage used by the disk's snapshot by this machine image.
+     * Output only. [Output Only] A size of the storage used by the disk's snapshot by this
+     * machine image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
      */
     protected $storage_bytes = null;
     /**
-     * [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+     * Output only. [Output Only] An indicator whether storageBytes is in a
+     * stable state or it is being adjusted as a result of shared storage
+     * reallocation. This status can either be UPDATING, meaning
+     * the size of the snapshot is being updated, or UP_TO_DATE,
+     * meaning the size of the snapshot is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>
      */
     protected $storage_bytes_status = null;
     /**
-     * Specifies the type of the attached disk, either SCRATCH or PERSISTENT.
+     * Specifies the type of the attached disk, either SCRATCH orPERSISTENT.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -123,9 +137,11 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $auto_delete
-     *           Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+     *           Specifies whether the disk will be auto-deleted when the instance is
+     *           deleted (but not when the disk is detached from the instance).
      *     @type bool $boot
-     *           Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
+     *           Indicates that this is a boot disk. The virtual machine will use the first
+     *           partition of the disk for its root filesystem.
      *     @type string $device_name
      *           Specifies the name of the disk attached to the source instance.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $disk_encryption_key
@@ -133,30 +149,41 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      *     @type int|string $disk_size_gb
      *           The size of the disk in base-2 GB.
      *     @type string $disk_type
-     *           [Output Only] URL of the disk type resource. For example: projects/project /zones/zone/diskTypes/pd-standard or pd-ssd
+     *           Output only. [Output Only] URL of the disk type resource. For example:projects/project/zones/zone/diskTypes/pd-standard or
+     *           pd-ssd
      *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
-     *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *           A list of features to enable on the guest operating system. Applicable only
+     *           for bootable images. Read
+     *           Enabling guest operating system features to see a list of available
+     *           options.
      *     @type int $index
-     *           Specifies zero-based index of the disk that is attached to the source instance.
+     *           Output only. Specifies zero-based index of the disk that is attached to the source
+     *           instance.
      *     @type string $interface
-     *           Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME.
+     *           Specifies the disk interface to use for attaching this disk, which is
+     *           either SCSI or NVME.
      *           Check the Interface enum for the list of possible values.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
-     *           [Output Only] Any valid publicly visible licenses.
+     *           Output only. [Output Only] Any valid publicly visible licenses.
      *     @type string $mode
-     *           The mode in which this disk is attached to the source instance, either READ_WRITE or READ_ONLY.
+     *           The mode in which this disk is attached to the source instance, eitherREAD_WRITE or READ_ONLY.
      *           Check the Mode enum for the list of possible values.
      *     @type string $source
      *           Specifies a URL of the disk attached to the source instance.
      *     @type int|string $storage_bytes
-     *           [Output Only] A size of the storage used by the disk's snapshot by this machine image.
+     *           Output only. [Output Only] A size of the storage used by the disk's snapshot by this
+     *           machine image.
      *     @type string $storage_bytes_status
-     *           [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+     *           Output only. [Output Only] An indicator whether storageBytes is in a
+     *           stable state or it is being adjusted as a result of shared storage
+     *           reallocation. This status can either be UPDATING, meaning
+     *           the size of the snapshot is being updated, or UP_TO_DATE,
+     *           meaning the size of the snapshot is up-to-date.
      *           Check the StorageBytesStatus enum for the list of possible values.
      *     @type string $type
-     *           Specifies the type of the attached disk, either SCRATCH or PERSISTENT.
+     *           Specifies the type of the attached disk, either SCRATCH orPERSISTENT.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -166,7 +193,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+     * Specifies whether the disk will be auto-deleted when the instance is
+     * deleted (but not when the disk is detached from the instance).
      *
      * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      * @return bool
@@ -187,7 +215,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+     * Specifies whether the disk will be auto-deleted when the instance is
+     * deleted (but not when the disk is detached from the instance).
      *
      * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      * @param bool $var
@@ -202,7 +231,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
+     * Indicates that this is a boot disk. The virtual machine will use the first
+     * partition of the disk for its root filesystem.
      *
      * Generated from protobuf field <code>optional bool boot = 3029746;</code>
      * @return bool
@@ -223,7 +253,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
+     * Indicates that this is a boot disk. The virtual machine will use the first
+     * partition of the disk for its root filesystem.
      *
      * Generated from protobuf field <code>optional bool boot = 3029746;</code>
      * @param bool $var
@@ -346,7 +377,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the disk type resource. For example: projects/project /zones/zone/diskTypes/pd-standard or pd-ssd
+     * Output only. [Output Only] URL of the disk type resource. For example:projects/project/zones/zone/diskTypes/pd-standard or
+     * pd-ssd
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @return string
@@ -367,7 +399,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the disk type resource. For example: projects/project /zones/zone/diskTypes/pd-standard or pd-ssd
+     * Output only. [Output Only] URL of the disk type resource. For example:projects/project/zones/zone/diskTypes/pd-standard or
+     * pd-ssd
      *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @param string $var
@@ -382,7 +415,10 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only
+     * for bootable images. Read
+     * Enabling guest operating system features to see a list of available
+     * options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -393,7 +429,10 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only
+     * for bootable images. Read
+     * Enabling guest operating system features to see a list of available
+     * options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
@@ -408,7 +447,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies zero-based index of the disk that is attached to the source instance.
+     * Output only. Specifies zero-based index of the disk that is attached to the source
+     * instance.
      *
      * Generated from protobuf field <code>optional int32 index = 100346066;</code>
      * @return int
@@ -429,7 +469,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies zero-based index of the disk that is attached to the source instance.
+     * Output only. Specifies zero-based index of the disk that is attached to the source
+     * instance.
      *
      * Generated from protobuf field <code>optional int32 index = 100346066;</code>
      * @param int $var
@@ -444,7 +485,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME.
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
@@ -466,7 +508,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME.
+     * Specifies the disk interface to use for attaching this disk, which is
+     * either SCSI or NVME.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
@@ -482,7 +525,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -503,7 +546,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#attachedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -518,7 +561,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Any valid publicly visible licenses.
+     * Output only. [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -529,7 +572,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Any valid publicly visible licenses.
+     * Output only. [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -544,7 +587,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode in which this disk is attached to the source instance, either READ_WRITE or READ_ONLY.
+     * The mode in which this disk is attached to the source instance, eitherREAD_WRITE or READ_ONLY.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -566,7 +609,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The mode in which this disk is attached to the source instance, either READ_WRITE or READ_ONLY.
+     * The mode in which this disk is attached to the source instance, eitherREAD_WRITE or READ_ONLY.
      * Check the Mode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string mode = 3357091;</code>
@@ -618,7 +661,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A size of the storage used by the disk's snapshot by this machine image.
+     * Output only. [Output Only] A size of the storage used by the disk's snapshot by this
+     * machine image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
      * @return int|string
@@ -639,7 +683,8 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] A size of the storage used by the disk's snapshot by this machine image.
+     * Output only. [Output Only] A size of the storage used by the disk's snapshot by this
+     * machine image.
      *
      * Generated from protobuf field <code>optional int64 storage_bytes = 424631719;</code>
      * @param int|string $var
@@ -654,7 +699,11 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+     * Output only. [Output Only] An indicator whether storageBytes is in a
+     * stable state or it is being adjusted as a result of shared storage
+     * reallocation. This status can either be UPDATING, meaning
+     * the size of the snapshot is being updated, or UP_TO_DATE,
+     * meaning the size of the snapshot is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>
@@ -676,7 +725,11 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+     * Output only. [Output Only] An indicator whether storageBytes is in a
+     * stable state or it is being adjusted as a result of shared storage
+     * reallocation. This status can either be UPDATING, meaning
+     * the size of the snapshot is being updated, or UP_TO_DATE,
+     * meaning the size of the snapshot is up-to-date.
      * Check the StorageBytesStatus enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string storage_bytes_status = 490739082;</code>
@@ -692,7 +745,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of the attached disk, either SCRATCH or PERSISTENT.
+     * Specifies the type of the attached disk, either SCRATCH orPERSISTENT.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -714,7 +767,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of the attached disk, either SCRATCH or PERSISTENT.
+     * Specifies the type of the attached disk, either SCRATCH orPERSISTENT.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

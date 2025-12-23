@@ -127,4 +127,80 @@ class SnippetTestCase extends TestCase
 
         return clone $snippet;
     }
+
+    /**
+     * Retrieve a snippet from a markdown file.
+     *
+     * @param string $fileName The path to the file
+     * @param string $header The markdown header the snippet is under
+     * @param int $index The index of the snippet
+     * @return Snippet
+     *
+     * @experimental
+     * @internal
+     */
+    public static function snippetFromMarkdown(string $fileName, string $header = '', int $index = 0)
+    {
+        // Normalize line endings to \n to make regex handling consistent across platforms
+        $markdown = str_replace(
+            ["\r\n", "\r"],
+            "\n",
+            file_get_contents($fileName)
+        );
+
+        // select by header
+        if ($header) {
+            $pattern = '/^#+\s*' . preg_quote($header, '/') . '\s*\n([\s\S]*?)(?=^#+.*$|\Z)/m';
+            if (!preg_match($pattern, $markdown, $matches)) {
+                throw new \Exception('Heeader "' . $header . '" not found in markdown file ' . basename($fileName));
+            }
+            $markdown = trim($matches[1]);
+        }
+
+        /**
+         * Regex Explanation:
+         * * (?m)        : Enable multi-line mode (^ matches start of line).
+         * ^             : Start of a line.
+         * (\s*)         : Group 1: Capture indentation.
+         * (`{3,}|~{3,}) : Group 2: Capture the fence (3+ backticks or tildes).
+         * [ \t]* : Consume optional spaces.
+         * (.*?)         : Group 3: Capture the language (and/or extra info) non-greedily.
+         * \n            : End of the opening line.
+         * ([\s\S]*?)    : Group 4: Content (non-greedy).
+         * \n            : Newline before closing fence.
+         * \1            : Match exact indentation from Group 1.
+         * \2            : Match exact fence from Group 2.
+         * \s* : Consume any trailing whitespace/newlines on the closing line.
+         */
+        $pattern = '/^(?m)(\s*)(`{3,}|~{3,})[ \t]*(.*?)\n([\s\S]*?)\1\2\s*$/m';
+        $snippets = [];
+        if (!preg_match_all($pattern, $markdown, $matches, PREG_SET_ORDER)) {
+            throw new \Exception('No snippets found in markdown file ' . basename($fileName));
+        }
+        foreach ($matches as $i => $match) {
+            // Group 3 is the language info string. Trim it to remove extra spaces.
+            $language = isset($match[3]) ? trim($match[3]) : '';
+
+            // Fallback to 'text' if empty
+            if ($language === '') {
+                $language = 'text';
+            }
+
+            // Group 4 is the actual code content
+            $code = $match[4];
+
+            $snippets[] = new Snippet($fileName . '-' . $i, [
+                'content' => $code,
+                'file' => $fileName,
+                'index' => $i,
+                'name' => strtolower($language),
+            ]);
+        }
+
+        if (!isset($snippets[$index])) {
+            throw new \Exception('No snippet found in markdown file ' . basename($fileName) . ' at index ' . $index);
+        }
+
+        return clone $snippets[$index];
+    }
 }

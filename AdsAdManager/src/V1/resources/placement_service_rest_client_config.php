@@ -23,6 +23,78 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.PlacementService' => [
+            'BatchActivatePlacements' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/placements:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchArchivePlacements' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/placements:batchArchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreatePlacements' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/placements:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivatePlacements' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/placements:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdatePlacements' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/placements:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreatePlacement' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/placements',
+                'body' => 'placement',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetPlacement' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/placements/*}',
@@ -43,6 +115,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdatePlacement' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{placement.name=networks/*/placements/*}',
+                'body' => 'placement',
+                'placeholders' => [
+                    'placement.name' => [
+                        'getters' => [
+                            'getPlacement',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

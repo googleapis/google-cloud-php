@@ -16,13 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     * The IPv4 address assigned to the producer instance network interface.
+     * This value will be a range in case of Serverless.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     protected $ip_address = null;
     /**
-     * The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
+     * The IPv6 address assigned to the producer instance network interface.
+     * This is only assigned when the stack types of both the instance network
+     * interface and the consumer subnet are IPv4_IPv6.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      */
@@ -47,13 +50,15 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     protected $status = null;
     /**
-     * The subnetwork used to assign the IP to the producer instance network interface.
+     * The subnetwork used to assign the IP to the producer
+     * instance network interface.
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
     protected $subnetwork = null;
     /**
-     * [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
+     * Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     * IP was allocated from.
      *
      * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
      */
@@ -66,9 +71,12 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ip_address
-     *           The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     *           The IPv4 address assigned to the producer instance network interface.
+     *           This value will be a range in case of Serverless.
      *     @type string $ipv6_address
-     *           The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
+     *           The IPv6 address assigned to the producer instance network interface.
+     *           This is only assigned when the stack types of both the instance network
+     *           interface and the consumer subnet are IPv4_IPv6.
      *     @type string $project_id_or_num
      *           The project id or number of the interface to which the IP was assigned.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_cidr_ranges
@@ -77,9 +85,11 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           The status of a connected endpoint to this network attachment.
      *           Check the Status enum for the list of possible values.
      *     @type string $subnetwork
-     *           The subnetwork used to assign the IP to the producer instance network interface.
+     *           The subnetwork used to assign the IP to the producer
+     *           instance network interface.
      *     @type string $subnetwork_cidr_range
-     *           [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
+     *           Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     *           IP was allocated from.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +98,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     * The IPv4 address assigned to the producer instance network interface.
+     * This value will be a range in case of Serverless.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
@@ -109,7 +120,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The IPv4 address assigned to the producer instance network interface. This value will be a range in case of Serverless.
+     * The IPv4 address assigned to the producer instance network interface.
+     * This value will be a range in case of Serverless.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
@@ -124,7 +136,9 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
+     * The IPv6 address assigned to the producer instance network interface.
+     * This is only assigned when the stack types of both the instance network
+     * interface and the consumer subnet are IPv4_IPv6.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      * @return string
@@ -145,7 +159,9 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The IPv6 address assigned to the producer instance network interface. This is only assigned when the stack types of both the instance network interface and the consumer subnet are IPv4_IPv6.
+     * The IPv6 address assigned to the producer instance network interface.
+     * This is only assigned when the stack types of both the instance network
+     * interface and the consumer subnet are IPv4_IPv6.
      *
      * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
      * @param string $var
@@ -260,7 +276,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The subnetwork used to assign the IP to the producer instance network interface.
+     * The subnetwork used to assign the IP to the producer
+     * instance network interface.
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @return string
@@ -281,7 +298,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The subnetwork used to assign the IP to the producer instance network interface.
+     * The subnetwork used to assign the IP to the producer
+     * instance network interface.
      *
      * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @param string $var
@@ -296,7 +314,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
+     * Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     * IP was allocated from.
      *
      * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
      * @return string
@@ -317,7 +336,8 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The CIDR range of the subnet from which the IPv4 internal IP was allocated from.
+     * Output only. [Output Only] The CIDR range of the subnet from which the IPv4 internal
+     * IP was allocated from.
      *
      * Generated from protobuf field <code>optional string subnetwork_cidr_range = 383249827;</code>
      * @param string $var

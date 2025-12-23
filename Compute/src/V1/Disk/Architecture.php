@@ -7,7 +7,8 @@ namespace Google\Cloud\Compute\V1\Disk;
 use UnexpectedValueException;
 
 /**
- * The architecture of the disk. Valid values are ARM64 or X86_64.
+ * The architecture of the disk. Valid values are
+ * ARM64 or X86_64.
  *
  * Protobuf type <code>google.cloud.compute.v1.Disk.Architecture</code>
  */

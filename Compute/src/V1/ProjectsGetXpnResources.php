@@ -15,19 +15,25 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of service resources (a.k.a service projects)
+     * Output only. [Output Only] Type of resource. Alwayscompute#projectsGetXpnResources for lists of service resources
+     * (a.k.a service projects)
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     protected $kind = null;
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
     protected $next_page_token = null;
     /**
-     * Service resources (a.k.a service projects) attached to this project as their shared VPC host.
+     * Service resources (a.k.a service projects) attached to this project as
+     * their shared VPC host.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.XpnResourceId resources = 164412965;</code>
      */
@@ -40,11 +46,17 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of service resources (a.k.a service projects)
+     *           Output only. [Output Only] Type of resource. Alwayscompute#projectsGetXpnResources for lists of service resources
+     *           (a.k.a service projects)
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     *           Output only. [Output Only] This token allows you to get the next page of results for
+     *           list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     *           the query parameter pageToken in the next list request.
+     *           Subsequent list requests will have their own nextPageToken to
+     *           continue paging through the results.
      *     @type array<\Google\Cloud\Compute\V1\XpnResourceId>|\Google\Protobuf\Internal\RepeatedField $resources
-     *           Service resources (a.k.a service projects) attached to this project as their shared VPC host.
+     *           Service resources (a.k.a service projects) attached to this project as
+     *           their shared VPC host.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +65,8 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of service resources (a.k.a service projects)
+     * Output only. [Output Only] Type of resource. Alwayscompute#projectsGetXpnResources for lists of service resources
+     * (a.k.a service projects)
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -74,7 +87,8 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of service resources (a.k.a service projects)
+     * Output only. [Output Only] Type of resource. Alwayscompute#projectsGetXpnResources for lists of service resources
+     * (a.k.a service projects)
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -89,7 +103,11 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
@@ -110,7 +128,11 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * Output only. [Output Only] This token allows you to get the next page of results for
+     * list requests. If the number of results is larger thanmaxResults, use the nextPageToken as a value for
+     * the query parameter pageToken in the next list request.
+     * Subsequent list requests will have their own nextPageToken to
+     * continue paging through the results.
      *
      * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
@@ -125,7 +147,8 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service resources (a.k.a service projects) attached to this project as their shared VPC host.
+     * Service resources (a.k.a service projects) attached to this project as
+     * their shared VPC host.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.XpnResourceId resources = 164412965;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -136,7 +159,8 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service resources (a.k.a service projects) attached to this project as their shared VPC host.
+     * Service resources (a.k.a service projects) attached to this project as
+     * their shared VPC host.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.XpnResourceId resources = 164412965;</code>
      * @param array<\Google\Cloud\Compute\V1\XpnResourceId>|\Google\Protobuf\Internal\RepeatedField $var

@@ -9,44 +9,69 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an SSL certificate resource. Google Compute Engine has two SSL certificate resources: * [Global](/compute/docs/reference/rest/v1/sslCertificates) * [Regional](/compute/docs/reference/rest/v1/regionSslCertificates) The global SSL certificates (sslCertificates) are used by: - Global external Application Load Balancers - Classic Application Load Balancers - Proxy Network Load Balancers (with target SSL proxies) The regional SSL certificates (regionSslCertificates) are used by: - Regional external Application Load Balancers - Regional internal Application Load Balancers Optionally, certificate file contents that you upload can contain a set of up to five PEM-encoded certificates. The API call creates an object (sslCertificate) that holds this data. You can use SSL keys and certificates to secure connections to a load balancer. For more information, read Creating and using SSL certificates, SSL certificates quotas and limits, and Troubleshooting SSL certificates.
+ * Represents an SSL certificate resource.
+ * Google Compute Engine has two SSL certificate resources:
+ * * [Global](/compute/docs/reference/rest/v1/sslCertificates)
+ * * [Regional](/compute/docs/reference/rest/v1/regionSslCertificates)
+ * The global SSL certificates (sslCertificates) are used by:
+ *    - Global external Application Load Balancers
+ *    - Classic Application Load Balancers
+ *    - Proxy Network Load Balancers (with target SSL proxies)
+ * The regional SSL certificates (regionSslCertificates) are used
+ * by:
+ *    - Regional external Application Load Balancers
+ *    - Regional internal Application Load Balancers
+ * Optionally, certificate file contents that you upload can contain a set of up
+ * to five PEM-encoded certificates.
+ * The API call creates an object (sslCertificate) that holds this data.
+ * You can use SSL keys and certificates to secure connections to a load
+ * balancer.
+ * For more information, read
+ * Creating and using SSL certificates,SSL certificates
+ * quotas and limits, and
+ * Troubleshooting SSL certificates.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SslCertificate</code>
  */
 class SslCertificate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     * A value read into memory from a certificate file. The certificate file must
+     * be in PEM format. The certificate chain must be no greater than 5 certs
+     * long. The chain must include at least one intermediate cert.
      *
      * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      */
     protected $certificate = null;
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     protected $creation_timestamp = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     protected $description = null;
     /**
-     * [Output Only] Expire time of the certificate. RFC3339
+     * Output only. [Output Only] Expire time of the certificate. RFC3339
      *
      * Generated from protobuf field <code>optional string expire_time = 440691181;</code>
      */
     protected $expire_time = null;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     protected $id = null;
     /**
-     * [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
@@ -58,19 +83,28 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     protected $managed = null;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
     /**
-     * A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
+     * A value read into memory from a write-only private key file. The private
+     * key file must be in PEM format. For security, only insert
+     * requests include this field.
      *
      * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      */
     protected $private_key = null;
     /**
-     * [Output Only] URL of the region where the regional SSL Certificate resides. This field is not applicable to global SSL Certificate.
+     * Output only. [Output Only] URL of the region where the regional SSL Certificate
+     * resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
@@ -88,13 +122,15 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     protected $self_managed = null;
     /**
-     * [Output Only] Domains associated with the certificate via Subject Alternative Name.
+     * Output only. [Output Only] Domains associated with the certificate via Subject
+     * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
      */
     private $subject_alternative_names;
     /**
-     * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or "MANAGED". If not specified, the certificate is self-managed and the fields certificate and private_key are used.
+     * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or
+     * "MANAGED". If not specified, the certificate is self-managed and the fieldscertificate and private_key are used.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -108,33 +144,49 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $certificate
-     *           A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     *           A value read into memory from a certificate file. The certificate file must
+     *           be in PEM format. The certificate chain must be no greater than 5 certs
+     *           long. The chain must include at least one intermediate cert.
      *     @type string $creation_timestamp
-     *           [Output Only] Creation timestamp in RFC3339 text format.
+     *           [Output Only] Creation timestamp inRFC3339
+     *           text format.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource. Provide this property when you
+     *           create the resource.
      *     @type string $expire_time
-     *           [Output Only] Expire time of the certificate. RFC3339
+     *           Output only. [Output Only] Expire time of the certificate. RFC3339
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *           [Output Only] The unique identifier for the resource. This identifier is
+     *           defined by the server.
      *     @type string $kind
-     *           [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
+     *           Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *     @type \Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate $managed
      *           Configuration and status of a managed SSL certificate.
      *     @type string $name
-     *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Name of the resource. Provided by the client when the resource is created.
+     *           The name must be 1-63 characters long, and comply withRFC1035.
+     *           Specifically, the name must be 1-63 characters long and match the regular
+     *           expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     *           character must be a lowercase letter, and all following characters must
+     *           be a dash, lowercase letter, or digit, except the last character, which
+     *           cannot be a dash.
      *     @type string $private_key
-     *           A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
+     *           A value read into memory from a write-only private key file. The private
+     *           key file must be in PEM format. For security, only insert
+     *           requests include this field.
      *     @type string $region
-     *           [Output Only] URL of the region where the regional SSL Certificate resides. This field is not applicable to global SSL Certificate.
+     *           Output only. [Output Only] URL of the region where the regional SSL Certificate
+     *           resides. This field is not applicable to global SSL Certificate.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\SslCertificateSelfManagedSslCertificate $self_managed
      *           Configuration and status of a self-managed SSL certificate.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_alternative_names
-     *           [Output Only] Domains associated with the certificate via Subject Alternative Name.
+     *           Output only. [Output Only] Domains associated with the certificate via Subject
+     *           Alternative Name.
      *     @type string $type
-     *           (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or "MANAGED". If not specified, the certificate is self-managed and the fields certificate and private_key are used.
+     *           (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or
+     *           "MANAGED". If not specified, the certificate is self-managed and the fieldscertificate and private_key are used.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -144,7 +196,9 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     * A value read into memory from a certificate file. The certificate file must
+     * be in PEM format. The certificate chain must be no greater than 5 certs
+     * long. The chain must include at least one intermediate cert.
      *
      * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      * @return string
@@ -165,7 +219,9 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+     * A value read into memory from a certificate file. The certificate file must
+     * be in PEM format. The certificate chain must be no greater than 5 certs
+     * long. The chain must include at least one intermediate cert.
      *
      * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      * @param string $var
@@ -180,7 +236,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
@@ -201,7 +258,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Creation timestamp in RFC3339 text format.
+     * [Output Only] Creation timestamp inRFC3339
+     * text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
@@ -216,7 +274,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
@@ -237,7 +296,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource. Provide this property when you
+     * create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
@@ -252,7 +312,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Expire time of the certificate. RFC3339
+     * Output only. [Output Only] Expire time of the certificate. RFC3339
      *
      * Generated from protobuf field <code>optional string expire_time = 440691181;</code>
      * @return string
@@ -273,7 +333,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Expire time of the certificate. RFC3339
+     * Output only. [Output Only] Expire time of the certificate. RFC3339
      *
      * Generated from protobuf field <code>optional string expire_time = 440691181;</code>
      * @param string $var
@@ -288,7 +348,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
@@ -309,7 +370,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     * [Output Only] The unique identifier for the resource. This identifier is
+     * defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
@@ -324,7 +386,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
@@ -345,7 +407,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
+     * Output only. [Output Only] Type of the resource. Alwayscompute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
@@ -396,7 +458,13 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -417,7 +485,13 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Name of the resource. Provided by the client when the resource is created.
+     * The name must be 1-63 characters long, and comply withRFC1035.
+     * Specifically, the name must be 1-63 characters long and match the regular
+     * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first
+     * character must be a lowercase letter, and all following characters must
+     * be a dash, lowercase letter, or digit, except the last character, which
+     * cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -432,7 +506,9 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
+     * A value read into memory from a write-only private key file. The private
+     * key file must be in PEM format. For security, only insert
+     * requests include this field.
      *
      * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      * @return string
@@ -453,7 +529,9 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
+     * A value read into memory from a write-only private key file. The private
+     * key file must be in PEM format. For security, only insert
+     * requests include this field.
      *
      * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      * @param string $var
@@ -468,7 +546,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional SSL Certificate resides. This field is not applicable to global SSL Certificate.
+     * Output only. [Output Only] URL of the region where the regional SSL Certificate
+     * resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
@@ -489,7 +568,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] URL of the region where the regional SSL Certificate resides. This field is not applicable to global SSL Certificate.
+     * Output only. [Output Only] URL of the region where the regional SSL Certificate
+     * resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
@@ -576,7 +656,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Domains associated with the certificate via Subject Alternative Name.
+     * Output only. [Output Only] Domains associated with the certificate via Subject
+     * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -587,7 +668,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Domains associated with the certificate via Subject Alternative Name.
+     * Output only. [Output Only] Domains associated with the certificate via Subject
+     * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -602,7 +684,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or "MANAGED". If not specified, the certificate is self-managed and the fields certificate and private_key are used.
+     * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or
+     * "MANAGED". If not specified, the certificate is self-managed and the fieldscertificate and private_key are used.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -624,7 +707,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or "MANAGED". If not specified, the certificate is self-managed and the fields certificate and private_key are used.
+     * (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or
+     * "MANAGED". If not specified, the certificate is self-managed and the fieldscertificate and private_key are used.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

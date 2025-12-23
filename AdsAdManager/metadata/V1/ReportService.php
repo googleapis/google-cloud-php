@@ -14,6 +14,7 @@ class ReportService
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Ads\Admanager\V1\ReportDefinition::initOnce();
         \GPBMetadata\Google\Ads\Admanager\V1\ReportMessages::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
@@ -24,8 +25,8 @@ class ReportService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù
-,google/ads/admanager/v1/report_service.protogoogle.ads.admanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"I
+»
+,google/ads/admanager/v1/report_service.protogoogle.ads.admanager.v1-google/ads/admanager/v1/report_messages.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"I
 RunReportRequest5
 name (	B\'àAúA!
 admanager.googleapis.com/Report"c
@@ -63,12 +64,12 @@ total_size ("…
 name (	
 	page_size (BàA
 
-page_token (	BàA"å
-FetchReportResultRowsResponse;
-rows (2-.google.ads.admanager.v1.Report.DataTable.Row,
-run_time (2.google.protobuf.TimestampM
-date_ranges (28.google.ads.admanager.v1.Report.DateRange.FixedDateRangeX
-comparison_date_ranges (28.google.ads.admanager.v1.Report.DateRange.FixedDateRange
+page_token (	BàA"ø
+FetchReportResultRowsResponse:
+rows (2,.google.ads.admanager.v1.ReportDataTable.Row,
+run_time (2.google.protobuf.TimestampW
+date_ranges (2B.google.ads.admanager.v1.ReportDefinition.DateRange.FixedDateRangeb
+comparison_date_ranges (2B.google.ads.admanager.v1.ReportDefinition.DateRange.FixedDateRange
 total_row_count (
 next_page_token (	2Ò
 ReportService‡

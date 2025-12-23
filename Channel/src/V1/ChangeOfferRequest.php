@@ -70,6 +70,14 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string billing_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $billing_account = '';
+    /**
+     * Optional. Price reference ID for the offer. Only for offers that require
+     * additional price information. Used to guarantee that the pricing is
+     * consistent between quoting the offer and placing the order.
+     *
+     * Generated from protobuf field <code>string price_reference_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $price_reference_id = '';
 
     /**
      * Constructor.
@@ -107,6 +115,10 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *           entitlement when setting up billing on a trial subscription.
      *           This field is only relevant for multi-currency accounts. It should be
      *           left empty for single currency accounts.
+     *     @type string $price_reference_id
+     *           Optional. Price reference ID for the offer. Only for offers that require
+     *           additional price information. Used to guarantee that the pricing is
+     *           consistent between quoting the offer and placing the order.
      * }
      */
     public function __construct($data = NULL) {
@@ -302,6 +314,36 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->billing_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Price reference ID for the offer. Only for offers that require
+     * additional price information. Used to guarantee that the pricing is
+     * consistent between quoting the offer and placing the order.
+     *
+     * Generated from protobuf field <code>string price_reference_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPriceReferenceId()
+    {
+        return $this->price_reference_id;
+    }
+
+    /**
+     * Optional. Price reference ID for the offer. Only for offers that require
+     * additional price information. Used to guarantee that the pricing is
+     * consistent between quoting the offer and placing the order.
+     *
+     * Generated from protobuf field <code>string price_reference_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPriceReferenceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->price_reference_id = $var;
 
         return $this;
     }

@@ -194,7 +194,10 @@ final class NodeTypesClient
     }
 
     /**
-     * Retrieves an aggregated list of node types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
+     * Retrieves an aggregated list of node types.
+     *
+     * To prevent failure, Google recommends that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NodeTypesClient::aggregatedListAsync()} .
      *
@@ -246,7 +249,8 @@ final class NodeTypesClient
     }
 
     /**
-     * Retrieves a list of node types available to the specified project.
+     * Retrieves a list of node types available to the specified
+     * project.
      *
      * The async variant is {@see NodeTypesClient::listAsync()} .
      *

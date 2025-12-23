@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SchedulingNodeAffinity;
 use UnexpectedValueException;
 
 /**
- * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
+ * Defines the operation of node selection. Valid operators areIN for affinity and NOT_IN for anti-affinity.
  *
  * Protobuf type <code>google.cloud.compute.v1.SchedulingNodeAffinity.Operator</code>
  */

@@ -59,6 +59,12 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.VoiceSelectionParams voice = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $voice = null;
+    /**
+     * Optional. The custom pronunciations for the synthesized audio.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CustomPronunciationParams pronunciations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $pronunciations;
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *           each other in the order they are given.
      *     @type \Google\Cloud\Dialogflow\V2\VoiceSelectionParams $voice
      *           Optional. The desired voice of the synthesized audio.
+     *     @type array<\Google\Cloud\Dialogflow\V2\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $pronunciations
+     *           Optional. The custom pronunciations for the synthesized audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +269,32 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\VoiceSelectionParams::class);
         $this->voice = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The custom pronunciations for the synthesized audio.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CustomPronunciationParams pronunciations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPronunciations()
+    {
+        return $this->pronunciations;
+    }
+
+    /**
+     * Optional. The custom pronunciations for the synthesized audio.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CustomPronunciationParams pronunciations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Dialogflow\V2\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPronunciations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\CustomPronunciationParams::class);
+        $this->pronunciations = $arr;
 
         return $this;
     }
