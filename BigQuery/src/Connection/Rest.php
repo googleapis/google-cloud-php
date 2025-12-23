@@ -437,6 +437,13 @@ class Rest implements ConnectionInterface
         return new RequestWrapper($config);
     }
 
+    /**
+     * Returns a function that the RequestWrapper uses between retries. In our listener we modify the call options
+     * to add the `retryAttempt` field to the call options for our Auth httpHandler logging logic. This way, the logging
+     * logic has access to the retry attempt.
+     *
+     * @return callable
+     */
     private function getRetryListener(): callable
     {
         return function (Exception $ex, int $retryAttempt, array &$arguments) {
