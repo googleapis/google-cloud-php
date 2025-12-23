@@ -36,13 +36,11 @@ use Google\Rpc\Status;
 /**
  * Update a DeploymentResourcePool.
  *
- * @param int $deploymentResourcePoolDedicatedResourcesMinReplicaCount Immutable. The minimum number of machine replicas this
- *                                                                     DeployedModel will be always deployed on. This value must be greater than
- *                                                                     or equal to 1.
+ * @param int $deploymentResourcePoolDedicatedResourcesMinReplicaCount Immutable. The minimum number of machine replicas that will be
+ *                                                                     always deployed on. This value must be greater than or equal to 1.
  *
- *                                                                     If traffic against the DeployedModel increases, it may dynamically be
- *                                                                     deployed onto more replicas, and as traffic decreases, some of these extra
- *                                                                     replicas may be freed.
+ *                                                                     If traffic increases, it may dynamically be deployed onto more replicas,
+ *                                                                     and as traffic decreases, some of these extra replicas may be freed.
  */
 function update_deployment_resource_pool_sample(
     int $deploymentResourcePoolDedicatedResourcesMinReplicaCount

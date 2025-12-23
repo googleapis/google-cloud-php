@@ -9,39 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A description of resources that are dedicated to a DeployedModel, and
- * that need a higher degree of manual configuration.
+ * A description of resources that are dedicated to a DeployedModel or
+ * DeployedIndex, and that need a higher degree of manual configuration.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DedicatedResources</code>
  */
 class DedicatedResources extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Immutable. The specification of a single machine used by the
-     * prediction.
+     * Required. Immutable. The specification of a single machine being used.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $machine_spec = null;
     /**
-     * Required. Immutable. The minimum number of machine replicas this
-     * DeployedModel will be always deployed on. This value must be greater than
-     * or equal to 1.
-     * If traffic against the DeployedModel increases, it may dynamically be
-     * deployed onto more replicas, and as traffic decreases, some of these extra
-     * replicas may be freed.
+     * Required. Immutable. The minimum number of machine replicas that will be
+     * always deployed on. This value must be greater than or equal to 1.
+     * If traffic increases, it may dynamically be deployed onto more replicas,
+     * and as traffic decreases, some of these extra replicas may be freed.
      *
      * Generated from protobuf field <code>int32 min_replica_count = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $min_replica_count = 0;
     /**
-     * Immutable. The maximum number of replicas this DeployedModel may be
-     * deployed on when the traffic against it increases. If the requested value
-     * is too large, the deployment will error, but if deployment succeeds then
-     * the ability to scale the model to that many replicas is guaranteed (barring
-     * service outages). If traffic against the DeployedModel increases beyond
-     * what its replicas at maximum may handle, a portion of the traffic will be
-     * dropped. If this value is not provided, will use
+     * Immutable. The maximum number of replicas that may be deployed on when the
+     * traffic against it increases. If the requested value is too large, the
+     * deployment will error, but if deployment succeeds then the ability to scale
+     * to that many replicas is guaranteed (barring service outages). If traffic
+     * increases beyond what its replicas at maximum may handle, a portion of the
+     * traffic will be dropped. If this value is not provided, will use
      * [min_replica_count][google.cloud.aiplatform.v1.DedicatedResources.min_replica_count]
      * as the default value.
      * The value of this field impacts the charge against Vertex CPU and GPU
@@ -54,8 +50,8 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     protected $max_replica_count = 0;
     /**
      * Optional. Number of required available replicas for the deployment to
-     * succeed. This field is only needed when partial model deployment/mutation
-     * is desired. If set, the model deploy/mutate operation will succeed once
+     * succeed. This field is only needed when partial deployment/mutation is
+     * desired. If set, the deploy/mutate operation will succeed once
      * available_replica_count reaches required_replica_count, and the rest of
      * the replicas will be retried. If not set, the default
      * required_replica_count will be min_replica_count.
@@ -103,23 +99,19 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AIPlatform\V1\MachineSpec $machine_spec
-     *           Required. Immutable. The specification of a single machine used by the
-     *           prediction.
+     *           Required. Immutable. The specification of a single machine being used.
      *     @type int $min_replica_count
-     *           Required. Immutable. The minimum number of machine replicas this
-     *           DeployedModel will be always deployed on. This value must be greater than
-     *           or equal to 1.
-     *           If traffic against the DeployedModel increases, it may dynamically be
-     *           deployed onto more replicas, and as traffic decreases, some of these extra
-     *           replicas may be freed.
+     *           Required. Immutable. The minimum number of machine replicas that will be
+     *           always deployed on. This value must be greater than or equal to 1.
+     *           If traffic increases, it may dynamically be deployed onto more replicas,
+     *           and as traffic decreases, some of these extra replicas may be freed.
      *     @type int $max_replica_count
-     *           Immutable. The maximum number of replicas this DeployedModel may be
-     *           deployed on when the traffic against it increases. If the requested value
-     *           is too large, the deployment will error, but if deployment succeeds then
-     *           the ability to scale the model to that many replicas is guaranteed (barring
-     *           service outages). If traffic against the DeployedModel increases beyond
-     *           what its replicas at maximum may handle, a portion of the traffic will be
-     *           dropped. If this value is not provided, will use
+     *           Immutable. The maximum number of replicas that may be deployed on when the
+     *           traffic against it increases. If the requested value is too large, the
+     *           deployment will error, but if deployment succeeds then the ability to scale
+     *           to that many replicas is guaranteed (barring service outages). If traffic
+     *           increases beyond what its replicas at maximum may handle, a portion of the
+     *           traffic will be dropped. If this value is not provided, will use
      *           [min_replica_count][google.cloud.aiplatform.v1.DedicatedResources.min_replica_count]
      *           as the default value.
      *           The value of this field impacts the charge against Vertex CPU and GPU
@@ -128,8 +120,8 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *           number of GPUs per replica in the selected machine type).
      *     @type int $required_replica_count
      *           Optional. Number of required available replicas for the deployment to
-     *           succeed. This field is only needed when partial model deployment/mutation
-     *           is desired. If set, the model deploy/mutate operation will succeed once
+     *           succeed. This field is only needed when partial deployment/mutation is
+     *           desired. If set, the deploy/mutate operation will succeed once
      *           available_replica_count reaches required_replica_count, and the rest of
      *           the replicas will be retried. If not set, the default
      *           required_replica_count will be min_replica_count.
@@ -165,8 +157,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The specification of a single machine used by the
-     * prediction.
+     * Required. Immutable. The specification of a single machine being used.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\AIPlatform\V1\MachineSpec|null
@@ -187,8 +178,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The specification of a single machine used by the
-     * prediction.
+     * Required. Immutable. The specification of a single machine being used.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.MachineSpec machine_spec = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AIPlatform\V1\MachineSpec $var
@@ -203,12 +193,10 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The minimum number of machine replicas this
-     * DeployedModel will be always deployed on. This value must be greater than
-     * or equal to 1.
-     * If traffic against the DeployedModel increases, it may dynamically be
-     * deployed onto more replicas, and as traffic decreases, some of these extra
-     * replicas may be freed.
+     * Required. Immutable. The minimum number of machine replicas that will be
+     * always deployed on. This value must be greater than or equal to 1.
+     * If traffic increases, it may dynamically be deployed onto more replicas,
+     * and as traffic decreases, some of these extra replicas may be freed.
      *
      * Generated from protobuf field <code>int32 min_replica_count = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -219,12 +207,10 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The minimum number of machine replicas this
-     * DeployedModel will be always deployed on. This value must be greater than
-     * or equal to 1.
-     * If traffic against the DeployedModel increases, it may dynamically be
-     * deployed onto more replicas, and as traffic decreases, some of these extra
-     * replicas may be freed.
+     * Required. Immutable. The minimum number of machine replicas that will be
+     * always deployed on. This value must be greater than or equal to 1.
+     * If traffic increases, it may dynamically be deployed onto more replicas,
+     * and as traffic decreases, some of these extra replicas may be freed.
      *
      * Generated from protobuf field <code>int32 min_replica_count = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
@@ -239,13 +225,12 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The maximum number of replicas this DeployedModel may be
-     * deployed on when the traffic against it increases. If the requested value
-     * is too large, the deployment will error, but if deployment succeeds then
-     * the ability to scale the model to that many replicas is guaranteed (barring
-     * service outages). If traffic against the DeployedModel increases beyond
-     * what its replicas at maximum may handle, a portion of the traffic will be
-     * dropped. If this value is not provided, will use
+     * Immutable. The maximum number of replicas that may be deployed on when the
+     * traffic against it increases. If the requested value is too large, the
+     * deployment will error, but if deployment succeeds then the ability to scale
+     * to that many replicas is guaranteed (barring service outages). If traffic
+     * increases beyond what its replicas at maximum may handle, a portion of the
+     * traffic will be dropped. If this value is not provided, will use
      * [min_replica_count][google.cloud.aiplatform.v1.DedicatedResources.min_replica_count]
      * as the default value.
      * The value of this field impacts the charge against Vertex CPU and GPU
@@ -262,13 +247,12 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The maximum number of replicas this DeployedModel may be
-     * deployed on when the traffic against it increases. If the requested value
-     * is too large, the deployment will error, but if deployment succeeds then
-     * the ability to scale the model to that many replicas is guaranteed (barring
-     * service outages). If traffic against the DeployedModel increases beyond
-     * what its replicas at maximum may handle, a portion of the traffic will be
-     * dropped. If this value is not provided, will use
+     * Immutable. The maximum number of replicas that may be deployed on when the
+     * traffic against it increases. If the requested value is too large, the
+     * deployment will error, but if deployment succeeds then the ability to scale
+     * to that many replicas is guaranteed (barring service outages). If traffic
+     * increases beyond what its replicas at maximum may handle, a portion of the
+     * traffic will be dropped. If this value is not provided, will use
      * [min_replica_count][google.cloud.aiplatform.v1.DedicatedResources.min_replica_count]
      * as the default value.
      * The value of this field impacts the charge against Vertex CPU and GPU
@@ -290,8 +274,8 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Number of required available replicas for the deployment to
-     * succeed. This field is only needed when partial model deployment/mutation
-     * is desired. If set, the model deploy/mutate operation will succeed once
+     * succeed. This field is only needed when partial deployment/mutation is
+     * desired. If set, the deploy/mutate operation will succeed once
      * available_replica_count reaches required_replica_count, and the rest of
      * the replicas will be retried. If not set, the default
      * required_replica_count will be min_replica_count.
@@ -306,8 +290,8 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Number of required available replicas for the deployment to
-     * succeed. This field is only needed when partial model deployment/mutation
-     * is desired. If set, the model deploy/mutate operation will succeed once
+     * succeed. This field is only needed when partial deployment/mutation is
+     * desired. If set, the deploy/mutate operation will succeed once
      * available_replica_count reaches required_replica_count, and the rest of
      * the replicas will be retried. If not set, the default
      * required_replica_count will be min_replica_count.
