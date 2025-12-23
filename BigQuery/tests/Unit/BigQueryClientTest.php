@@ -774,13 +774,13 @@ class BigQueryClientTest extends TestCase
             new Response(200, [], json_encode(['access_token' => 'token']))
         ]);
 
-        $retryHeaderAppeared = false;
+        $retryCallOptionAppeared = false;
         $logger = $this->prophesize(LoggerInterface::class);
         $logger->debug(
-            Argument::that(function (string $jsonString) use (&$retryHeaderAppeared) {
+            Argument::that(function (string $jsonString) use (&$retryCallOptionAppeared) {
                 $jsonParsed = json_decode($jsonString, true);
                 if (isset($jsonParsed['jsonPayload']['retryAttempt'])) {
-                    $retryHeaderAppeared = true;
+                    $retryCallOptionAppeared = true;
                 }
                 return true;
             })
@@ -809,6 +809,6 @@ class BigQueryClientTest extends TestCase
         );
 
         $client->startQuery($queryConfig);
-        $this->assertTrue($retryHeaderAppeared);
+        $this->assertTrue($retryCallOptionAppeared);
     }
 }
