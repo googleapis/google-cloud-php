@@ -1,5 +1,138 @@
 # Changelog
 
+## 0.315.0
+
+<details><summary>google/cloud-ai-platform 1.48.0</summary>
+
+
+
+### Features
+
+* Add Lustre support to the Vertex Training Custom Job API ([#8822](https://github.com/googleapis/google-cloud-php/issues/8822)) ([212c87c](https://github.com/googleapis/google-cloud-php/commit/212c87c68df0cee9c987e7c3514971f20df468af))
+
+</details>
+
+<details><summary>google/apps-chat 0.16.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Addition of GMAIL_MESSAGE value for RichLinkType enum in the RichLinkMetadata proto ([#8809](https://github.com/googleapis/google-cloud-php/issues/8809)) ([b1c726b](https://github.com/googleapis/google-cloud-php/commit/b1c726b0047c0e5e9dc187dc66bba7d1515e0f51))
+
+
+### Documentation
+
+* Improve documentation of attachment.proto, event_payload.proto and space.proto ([#8815](https://github.com/googleapis/google-cloud-php/issues/8815)) ([e303ef6](https://github.com/googleapis/google-cloud-php/commit/e303ef6709cad0cf0e3afc0e4928b1dec212441f))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.6.0</summary>
+
+
+
+### Features
+
+* Add Fingerprint to Artifact Registry Version resource ([#8824](https://github.com/googleapis/google-cloud-php/issues/8824)) ([08eebe9](https://github.com/googleapis/google-cloud-php/commit/08eebe9683c45bf37e06d872dbb296dfe7fe2432))
+
+</details>
+
+<details><summary>google/cloud-compute 2.4.0</summary>
+
+
+
+### Features
+
+* [Compute] [DIREGAPIC] Update v1 API definitions to revision 20251202 ([#8806](https://github.com/googleapis/google-cloud-php/issues/8806)) ([204f20f](https://github.com/googleapis/google-cloud-php/commit/204f20fbc74398f2c48dc71c39c6bbe7376be64a))
+
+</details>
+
+<details><summary>google/cloud-core 1.70.0</summary>
+
+
+
+### Features
+
+* Update Firestore to V2 ([#8739](https://github.com/googleapis/google-cloud-php/issues/8739)) ([4a5f93d](https://github.com/googleapis/google-cloud-php/commit/4a5f93d4c8a8c2cd8e5477fe216d8188faba3eda))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.0-RC1</summary>
+
+
+
+### Features
+
+* Update Firestore to V2 ([#8739](https://github.com/googleapis/google-cloud-php/issues/8739)) ([4a5f93d](https://github.com/googleapis/google-cloud-php/commit/4a5f93d4c8a8c2cd8e5477fe216d8188faba3eda))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.6.0</summary>
+
+
+
+### Features
+
+* Add LookerGoldenQuery to Context ([#8818](https://github.com/googleapis/google-cloud-php/issues/8818)) ([17cc8f6](https://github.com/googleapis/google-cloud-php/commit/17cc8f6e284be5d907aeadc47c45fd39c22ea336))
+
+
+### Documentation
+
+* Specify the data sources supported only by the QueryData API ([#8813](https://github.com/googleapis/google-cloud-php/issues/8813)) ([29ff353](https://github.com/googleapis/google-cloud-php/commit/29ff353442d15f497710b8638ab474f0b1a41361))
+
+</details>
+
+<details><summary>google/cloud-maintenance 0.3.1</summary>
+
+
+
+### Documentation
+
+* A comment for field `filter` in message `.google.cloud.maintenance.api.v1.SummarizeMaintenancesRequest` is changed ([#8821](https://github.com/googleapis/google-cloud-php/issues/8821)) ([6fc5476](https://github.com/googleapis/google-cloud-php/commit/6fc5476b7ac78337e0f4a2783625c5505fcb3203))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.6.0</summary>
+
+
+
+### Features
+
+* [Memorystore] A new field `Instance.simulate_maintenance_event` is added to message `.google.cloud.memorystore.v1.` ([#8812](https://github.com/googleapis/google-cloud-php/issues/8812)) ([3af3b19](https://github.com/googleapis/google-cloud-php/commit/3af3b19f8e1a22a39a04b255131a91c96726f33b))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.16.2</summary>
+
+
+
+### Documentation
+
+* Add tags documentation links to Pub/Sub resource tags fields ([#8820](https://github.com/googleapis/google-cloud-php/issues/8820)) ([726f691](https://github.com/googleapis/google-cloud-php/commit/726f691fa9b780f3d297741b575e5a46b679a262))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.3.0</summary>
+
+
+
+### Features
+
+* [RecaptchaEnterprise] add verifiedBots field to RiskAnalysis and definitions for a Bot object to store metadata for a detected bot ([#8805](https://github.com/googleapis/google-cloud-php/issues/8805)) ([90d5b44](https://github.com/googleapis/google-cloud-php/commit/90d5b44ed75321eb885ffcf75a482b64a4c047fd))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.3.0</summary>
+
+
+
+### Features
+
+* Exposing total CPU related fields in AutoscalingConfig ([#8819](https://github.com/googleapis/google-cloud-php/issues/8819)) ([9c3be01](https://github.com/googleapis/google-cloud-php/commit/9c3be01b37e9865acb288a33456de44b3e61b8d7))
+* Support UUID data type ([#8800](https://github.com/googleapis/google-cloud-php/issues/8800)) ([d7ae76e](https://github.com/googleapis/google-cloud-php/commit/d7ae76e98ae82330b052919b309f51080bd2eab9))
+
+</details>
+
 ## 0.314.0
 
 <details><summary>googleads/ad-manager 0.6.0</summary>
