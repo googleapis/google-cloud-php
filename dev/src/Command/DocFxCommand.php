@@ -25,6 +25,8 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
 use Google\Auth\Cache\FileSystemCacheItemPool;
+use Google\Cloud\Core\Logger\AppEngineFlexFormatter;
+use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
 use Google\Cloud\Dev\Component;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
@@ -302,7 +304,7 @@ class DocFxCommand extends Command
             foreach ($this->getBrokenXrefs($node->getContent()) as [$brokenRef, $brokenRefText]) {
                 $brokenRef = $isGenerated ? $this->classnameToProtobufPath((string) $brokenRef, $brokenRefText) : $brokenRef;
                 $nodePath = $isGenerated
-                    ? $class->getProtoFileName($brokenRef) . ' (' . $node->getProtoPath($class->getName()) . ')'
+                    ? $this->getProtoFileName($class, $brokenRef) . ' (' . $node->getProtoPath($class->getName()) . ')'
                     : $node->getFullname();
                 $warnings[] = sprintf(
                     '[%s] Broken xref in <comment>%s</>: <options=bold>%s</>',
@@ -355,5 +357,84 @@ class DocFxCommand extends Command
             realpath($outDir) . '/docs.metadata'
         ]);
         $process->mustRun();
+    }
+
+    private function classnameToProtobufPath(string $ref, string $text): string
+    {
+        // remove leading and trailing slashes and parentheses
+        $ref = trim(trim($ref, '\\'), '()');
+        // convert methods to snake case
+        if (strpos($ref, '::set') !== false || strpos($ref, '::get') !== false) {
+            $parts = explode('::', $ref);
+            $ref = $parts[0] . '.' . strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', substr($parts[1], 3)));
+        }
+
+        // convert namespace separators and function calls to dots
+        $ref = str_replace(['\\', '::'], '.', $ref);
+
+        // lowercase the namespace
+        $parts = explode('.', $ref);
+        foreach ($parts as $i => $part) {
+            if (preg_match(Component::VERSION_REGEX, $part) || $part === 'Master') {
+                for ($j = 0; $j <= $i; $j++) {
+                    $parts[$j] = strtolower($parts[$j]);
+                }
+                $ref = implode('.', $parts);
+                break;
+            }
+        }
+
+        // convert namespace to lowercase
+        $ref = false === strpos($ref, '.') ? strtolower($ref) : $ref;
+
+        return sprintf('[%s][%s]', $text, $ref);
+    }
+
+    public function getProtoFileName(ClassNode $node, string $ref = null): string|null
+    {
+        if (!$node->isProtobufMessageClass()
+            && !$node->isProtobufEnumClass()
+            && !$node->isServiceClass()
+        ) {
+            return null;
+        }
+
+        $filename = (new \ReflectionClass($node->getFullName()))->getFileName();
+
+        if ($node->isProtobufMessageClass() || $node->isProtobufEnumClass()) {
+            $lines = explode("\n", file_get_contents($filename));
+            $proto = str_replace('# source: ', '', $lines[2]);
+        } else {
+            $lines = explode("\n", file_get_contents($filename));
+            $proto = str_replace(' * https://github.com/googleapis/googleapis/blob/master/', '', $lines[20]);
+        }
+
+        if (!$ref) {
+            return $proto;
+        }
+
+        $protoUrl = 'https://github.com/googleapis/googleapis/blob/master/' . $proto;
+        if (!$protoContents = file_get_contents($protoUrl)) {
+            // gracefully fail to retrieve proto contents
+            return $proto;
+        }
+
+        $lines = explode("\n", $protoContents);
+        $ref1 = $ref2 = null;
+        if (false !== strpos($ref, "\n")) {
+            [$ref1, $ref2] = explode("\n", $ref);
+        }
+        foreach ($lines as $i => $line) {
+            if ($ref1 && $ref2) {
+                if (false !== stripos($line, $ref1)
+                    && false !== stripos($lines[$i+1], $ref2)) {
+                    return $proto . '#L' . ($i + 1);
+                }
+            } elseif (false !== stripos($line, $ref)) {
+                return $proto . '#L' . ($i + 1);
+            }
+        }
+
+        return $proto;
     }
 }

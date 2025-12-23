@@ -23,7 +23,6 @@
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "swaggest/json-schema": "^0.12.0",
-        "googleapis/googleapis": "dev-master",
         "phpdocumentor/reflection": "^6.3",
         "erusev/parsedown": "^1.7",
         "dg/bypass-finals": "^1.7"
@@ -35,18 +34,6 @@
             "options": {
                 "versions": {
                     "google/cloud": "dev-parent"
-                }
-            }
-        },
-        "googleapis/googleapis": {
-            "type": "package",
-            "package": {
-                "name": "googleapis/googleapis",
-                "version": "dev-master",
-                "source": {
-                    "url": "https://github.com/googleapis/googleapis.git",
-                    "type": "git",
-                    "reference": "master"
                 }
             }
         }
