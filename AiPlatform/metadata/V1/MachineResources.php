@@ -19,7 +19,7 @@ class MachineResources
         \GPBMetadata\Google\Cloud\Aiplatform\V1\ReservationAffinity::initOnce();
         $pool->internalAddGeneratedFile(
             '
-·
+Ÿ
 2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto5google/cloud/aiplatform/v1/reservation_affinity.proto"•
 MachineSpec
 machine_type (	B‡AJ
@@ -53,7 +53,13 @@ class MachineResources
 NfsMount
 server (	B‡A
 path (	B‡A
-mount_point (	B‡A"A
+mount_point (	B‡A"v
+LustreMount
+instance_ip (	B‡A
+volume_handle (	B‡A
+
+filesystem (	B‡A
+mount_point (	B‡A"A
 AutoscalingMetricSpec
 metric_name (	B‡A
 target (".

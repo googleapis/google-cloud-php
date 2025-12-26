@@ -46,6 +46,14 @@ class Context extends \Google\Protobuf\Internal\Message
      */
     private $example_queries;
     /**
+     * Optional. A list of golden queries, providing examples of relevant and
+     * commonly used Looker queries and their corresponding natural language
+     * queries optionally present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $looker_golden_queries;
+    /**
      * Optional. Term definitions (currently, only user authored)
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.GlossaryTerm glossary_terms = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -79,6 +87,10 @@ class Context extends \Google\Protobuf\Internal\Message
      *           Optional. A list of example queries, providing examples of relevant and
      *           commonly used SQL queries and their corresponding natural language queries
      *           optionally present. Currently only used for BigQuery data sources.
+     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery>|\Google\Protobuf\Internal\RepeatedField $looker_golden_queries
+     *           Optional. A list of golden queries, providing examples of relevant and
+     *           commonly used Looker queries and their corresponding natural language
+     *           queries optionally present.
      *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm>|\Google\Protobuf\Internal\RepeatedField $glossary_terms
      *           Optional. Term definitions (currently, only user authored)
      *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship>|\Google\Protobuf\Internal\RepeatedField $schema_relationships
@@ -223,6 +235,36 @@ class Context extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery::class);
         $this->example_queries = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of golden queries, providing examples of relevant and
+     * commonly used Looker queries and their corresponding natural language
+     * queries optionally present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLookerGoldenQueries()
+    {
+        return $this->looker_golden_queries;
+    }
+
+    /**
+     * Optional. A list of golden queries, providing examples of relevant and
+     * commonly used Looker queries and their corresponding natural language
+     * queries optionally present.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLookerGoldenQueries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery::class);
+        $this->looker_golden_queries = $arr;
 
         return $this;
     }

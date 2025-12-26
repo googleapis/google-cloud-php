@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DiskSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Type of the boot disk (default is "pd-ssd").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Type of the boot disk. For non-A3U machines, the default value is
+     * "pd-ssd", for A3U machines, the default value is "hyperdisk-balanced".
+     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive),
+     * "pd-standard" (Persistent Disk Hard Disk Drive) or "hyperdisk-balanced".
      *
      * Generated from protobuf field <code>string boot_disk_type = 1;</code>
      */
@@ -37,9 +38,10 @@ class DiskSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $boot_disk_type
-     *           Type of the boot disk (default is "pd-ssd").
-     *           Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     *           "pd-standard" (Persistent Disk Hard Disk Drive).
+     *           Type of the boot disk. For non-A3U machines, the default value is
+     *           "pd-ssd", for A3U machines, the default value is "hyperdisk-balanced".
+     *           Valid values: "pd-ssd" (Persistent Disk Solid State Drive),
+     *           "pd-standard" (Persistent Disk Hard Disk Drive) or "hyperdisk-balanced".
      *     @type int $boot_disk_size_gb
      *           Size in GB of the boot disk (default is 100GB).
      * }
@@ -50,9 +52,10 @@ class DiskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the boot disk (default is "pd-ssd").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Type of the boot disk. For non-A3U machines, the default value is
+     * "pd-ssd", for A3U machines, the default value is "hyperdisk-balanced".
+     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive),
+     * "pd-standard" (Persistent Disk Hard Disk Drive) or "hyperdisk-balanced".
      *
      * Generated from protobuf field <code>string boot_disk_type = 1;</code>
      * @return string
@@ -63,9 +66,10 @@ class DiskSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the boot disk (default is "pd-ssd").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Type of the boot disk. For non-A3U machines, the default value is
+     * "pd-ssd", for A3U machines, the default value is "hyperdisk-balanced".
+     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive),
+     * "pd-standard" (Persistent Disk Hard Disk Drive) or "hyperdisk-balanced".
      *
      * Generated from protobuf field <code>string boot_disk_type = 1;</code>
      * @param string $var

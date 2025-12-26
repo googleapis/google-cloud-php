@@ -34,6 +34,12 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      */
     private $nfs_mounts;
     /**
+     * Optional. List of Lustre mounts.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LustreMount lustre_mounts = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $lustre_mounts;
+    /**
      * Disk spec.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DiskSpec disk_spec = 5;</code>
@@ -57,6 +63,8 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      *           Optional. The number of worker replicas to use for this worker pool.
      *     @type array<\Google\Cloud\AIPlatform\V1\NfsMount>|\Google\Protobuf\Internal\RepeatedField $nfs_mounts
      *           Optional. List of NFS mount spec.
+     *     @type array<\Google\Cloud\AIPlatform\V1\LustreMount>|\Google\Protobuf\Internal\RepeatedField $lustre_mounts
+     *           Optional. List of Lustre mounts.
      *     @type \Google\Cloud\AIPlatform\V1\DiskSpec $disk_spec
      *           Disk spec.
      * }
@@ -212,6 +220,32 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\NfsMount::class);
         $this->nfs_mounts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of Lustre mounts.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LustreMount lustre_mounts = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLustreMounts()
+    {
+        return $this->lustre_mounts;
+    }
+
+    /**
+     * Optional. List of Lustre mounts.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LustreMount lustre_mounts = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\LustreMount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLustreMounts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\LustreMount::class);
+        $this->lustre_mounts = $arr;
 
         return $this;
     }

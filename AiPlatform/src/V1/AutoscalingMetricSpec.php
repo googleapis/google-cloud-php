@@ -23,6 +23,7 @@ class AutoscalingMetricSpec extends \Google\Protobuf\Internal\Message
      * * For Online Prediction:
      * * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle`
      * * `aiplatform.googleapis.com/prediction/online/cpu/utilization`
+     * * `aiplatform.googleapis.com/prediction/online/request_count`
      *
      * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,6 +50,7 @@ class AutoscalingMetricSpec extends \Google\Protobuf\Internal\Message
      *           * For Online Prediction:
      *           * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle`
      *           * `aiplatform.googleapis.com/prediction/online/cpu/utilization`
+     *           * `aiplatform.googleapis.com/prediction/online/request_count`
      *     @type int $target
      *           The target resource utilization in percentage (1% - 100%) for the given
      *           metric; once the real usage deviates from the target by a certain
@@ -67,6 +69,7 @@ class AutoscalingMetricSpec extends \Google\Protobuf\Internal\Message
      * * For Online Prediction:
      * * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle`
      * * `aiplatform.googleapis.com/prediction/online/cpu/utilization`
+     * * `aiplatform.googleapis.com/prediction/online/request_count`
      *
      * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -82,6 +85,7 @@ class AutoscalingMetricSpec extends \Google\Protobuf\Internal\Message
      * * For Online Prediction:
      * * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle`
      * * `aiplatform.googleapis.com/prediction/online/cpu/utilization`
+     * * `aiplatform.googleapis.com/prediction/online/request_count`
      *
      * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

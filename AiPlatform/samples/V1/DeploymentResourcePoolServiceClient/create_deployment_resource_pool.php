@@ -38,13 +38,11 @@ use Google\Rpc\Status;
  * @param string $formattedParent                                         The parent location resource where this DeploymentResourcePool
  *                                                                        will be created. Format: `projects/{project}/locations/{location}`
  *                                                                        Please see {@see DeploymentResourcePoolServiceClient::locationName()} for help formatting this field.
- * @param int    $deploymentResourcePoolDedicatedResourcesMinReplicaCount Immutable. The minimum number of machine replicas this
- *                                                                        DeployedModel will be always deployed on. This value must be greater than
- *                                                                        or equal to 1.
+ * @param int    $deploymentResourcePoolDedicatedResourcesMinReplicaCount Immutable. The minimum number of machine replicas that will be
+ *                                                                        always deployed on. This value must be greater than or equal to 1.
  *
- *                                                                        If traffic against the DeployedModel increases, it may dynamically be
- *                                                                        deployed onto more replicas, and as traffic decreases, some of these extra
- *                                                                        replicas may be freed.
+ *                                                                        If traffic increases, it may dynamically be deployed onto more replicas,
+ *                                                                        and as traffic decreases, some of these extra replicas may be freed.
  * @param string $deploymentResourcePoolId                                The ID to use for the DeploymentResourcePool, which
  *                                                                        will become the final component of the DeploymentResourcePool's resource
  *                                                                        name.

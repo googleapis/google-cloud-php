@@ -39,21 +39,9 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      * Supported fields include:
-     * - `state`
-     * - `resource.location`
-     * - `resource.resourceName`
-     * - `resource.type`
      * - `maintenance.maintenanceName`
-     * - `maintenanceStartTime`
-     * - `maintenanceCompleteTime`
      * Examples:
-     * - `state="SCHEDULED"`
-     * - `resource.location="us-central1-c"`
-     * - `resource.resourceName=~"*&#47;instance-20241212-211259"`
-     * - `maintenanceStartTime>"2000-10-11T20:44:51Z"`
-     * - `state="SCHEDULED" OR resource.type="compute.googleapis.com/Instance"`
-     * - `maintenance.maitenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1" AND
-     * maintenanceCompleteTime>"2000-10-11T20:44:51Z"`
+     * - `maintenance.maintenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1"`
      *
      * Generated from protobuf field <code>string filter = 10507;</code>
      */
@@ -98,21 +86,9 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Filter the list as specified in https://google.aip.dev/160.
      *           Supported fields include:
-     *           - `state`
-     *           - `resource.location`
-     *           - `resource.resourceName`
-     *           - `resource.type`
      *           - `maintenance.maintenanceName`
-     *           - `maintenanceStartTime`
-     *           - `maintenanceCompleteTime`
      *           Examples:
-     *           - `state="SCHEDULED"`
-     *           - `resource.location="us-central1-c"`
-     *           - `resource.resourceName=~"*&#47;instance-20241212-211259"`
-     *           - `maintenanceStartTime>"2000-10-11T20:44:51Z"`
-     *           - `state="SCHEDULED" OR resource.type="compute.googleapis.com/Instance"`
-     *           - `maintenance.maitenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1" AND
-     *           maintenanceCompleteTime>"2000-10-11T20:44:51Z"`
+     *           - `maintenance.maintenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1"`
      *     @type string $order_by
      *           Order results as specified in https://google.aip.dev/132.
      * }
@@ -209,21 +185,9 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      * Supported fields include:
-     * - `state`
-     * - `resource.location`
-     * - `resource.resourceName`
-     * - `resource.type`
      * - `maintenance.maintenanceName`
-     * - `maintenanceStartTime`
-     * - `maintenanceCompleteTime`
      * Examples:
-     * - `state="SCHEDULED"`
-     * - `resource.location="us-central1-c"`
-     * - `resource.resourceName=~"*&#47;instance-20241212-211259"`
-     * - `maintenanceStartTime>"2000-10-11T20:44:51Z"`
-     * - `state="SCHEDULED" OR resource.type="compute.googleapis.com/Instance"`
-     * - `maintenance.maitenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1" AND
-     * maintenanceCompleteTime>"2000-10-11T20:44:51Z"`
+     * - `maintenance.maintenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1"`
      *
      * Generated from protobuf field <code>string filter = 10507;</code>
      * @return string
@@ -236,21 +200,9 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Filter the list as specified in https://google.aip.dev/160.
      * Supported fields include:
-     * - `state`
-     * - `resource.location`
-     * - `resource.resourceName`
-     * - `resource.type`
      * - `maintenance.maintenanceName`
-     * - `maintenanceStartTime`
-     * - `maintenanceCompleteTime`
      * Examples:
-     * - `state="SCHEDULED"`
-     * - `resource.location="us-central1-c"`
-     * - `resource.resourceName=~"*&#47;instance-20241212-211259"`
-     * - `maintenanceStartTime>"2000-10-11T20:44:51Z"`
-     * - `state="SCHEDULED" OR resource.type="compute.googleapis.com/Instance"`
-     * - `maintenance.maitenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1" AND
-     * maintenanceCompleteTime>"2000-10-11T20:44:51Z"`
+     * - `maintenance.maintenanceName="eb3b709c-9ca1-5472-9fb6-800a3849eda1"`
      *
      * Generated from protobuf field <code>string filter = 10507;</code>
      * @param string $var
