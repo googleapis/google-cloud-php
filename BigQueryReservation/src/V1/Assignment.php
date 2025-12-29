@@ -45,16 +45,14 @@ class Assignment extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Optional. This field controls if "Gemini in BigQuery"
+     * Optional. Deprecated: "Gemini in BigQuery" is now available by
+     * default for all BigQuery editions and should not be explicitly set.
+     * Controls if "Gemini in BigQuery"
      * (https://cloud.google.com/gemini/docs/bigquery/overview) features should be
-     * enabled for this reservation assignment, which is not on by default.
-     * "Gemini in BigQuery" has a distinct compliance posture from BigQuery.  If
-     * this field is set to true, the assignment job type is QUERY, and
-     * the parent reservation edition is ENTERPRISE_PLUS, then the assignment will
-     * give the grantee project/organization access to "Gemini in BigQuery"
-     * features.
+     * enabled for this reservation assignment.
      *
-     * Generated from protobuf field <code>bool enable_gemini_in_bigquery = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_gemini_in_bigquery = 10 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $enable_gemini_in_bigquery = false;
     /**
@@ -87,14 +85,11 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. State of the assignment.
      *     @type bool $enable_gemini_in_bigquery
-     *           Optional. This field controls if "Gemini in BigQuery"
+     *           Optional. Deprecated: "Gemini in BigQuery" is now available by
+     *           default for all BigQuery editions and should not be explicitly set.
+     *           Controls if "Gemini in BigQuery"
      *           (https://cloud.google.com/gemini/docs/bigquery/overview) features should be
-     *           enabled for this reservation assignment, which is not on by default.
-     *           "Gemini in BigQuery" has a distinct compliance posture from BigQuery.  If
-     *           this field is set to true, the assignment job type is QUERY, and
-     *           the parent reservation edition is ENTERPRISE_PLUS, then the assignment will
-     *           give the grantee project/organization access to "Gemini in BigQuery"
-     *           features.
+     *           enabled for this reservation assignment.
      *     @type \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy $scheduling_policy
      *           Optional. The scheduling policy to use for jobs and queries of this
      *           assignee when running under the associated reservation. The scheduling
@@ -221,39 +216,39 @@ class Assignment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field controls if "Gemini in BigQuery"
+     * Optional. Deprecated: "Gemini in BigQuery" is now available by
+     * default for all BigQuery editions and should not be explicitly set.
+     * Controls if "Gemini in BigQuery"
      * (https://cloud.google.com/gemini/docs/bigquery/overview) features should be
-     * enabled for this reservation assignment, which is not on by default.
-     * "Gemini in BigQuery" has a distinct compliance posture from BigQuery.  If
-     * this field is set to true, the assignment job type is QUERY, and
-     * the parent reservation edition is ENTERPRISE_PLUS, then the assignment will
-     * give the grantee project/organization access to "Gemini in BigQuery"
-     * features.
+     * enabled for this reservation assignment.
      *
-     * Generated from protobuf field <code>bool enable_gemini_in_bigquery = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_gemini_in_bigquery = 10 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnableGeminiInBigquery()
     {
+        if ($this->enable_gemini_in_bigquery !== false) {
+            @trigger_error('enable_gemini_in_bigquery is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->enable_gemini_in_bigquery;
     }
 
     /**
-     * Optional. This field controls if "Gemini in BigQuery"
+     * Optional. Deprecated: "Gemini in BigQuery" is now available by
+     * default for all BigQuery editions and should not be explicitly set.
+     * Controls if "Gemini in BigQuery"
      * (https://cloud.google.com/gemini/docs/bigquery/overview) features should be
-     * enabled for this reservation assignment, which is not on by default.
-     * "Gemini in BigQuery" has a distinct compliance posture from BigQuery.  If
-     * this field is set to true, the assignment job type is QUERY, and
-     * the parent reservation edition is ENTERPRISE_PLUS, then the assignment will
-     * give the grantee project/organization access to "Gemini in BigQuery"
-     * features.
+     * enabled for this reservation assignment.
      *
-     * Generated from protobuf field <code>bool enable_gemini_in_bigquery = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_gemini_in_bigquery = 10 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnableGeminiInBigquery($var)
     {
+        @trigger_error('enable_gemini_in_bigquery is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_gemini_in_bigquery = $var;
 
