@@ -23,6 +23,11 @@
 return [
     'interfaces' => [
         'google.cloud.databasecenter.v1beta.DatabaseCenter' => [
+            'QueryDatabaseResourceGroups' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta:queryDatabaseResourceGroups',
+                'body' => '*',
+            ],
             'QueryProducts' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta:queryProducts',

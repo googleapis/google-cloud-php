@@ -27,7 +27,10 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DatabaseCenter\V1beta\Client\DatabaseCenterClient;
+use Google\Cloud\DatabaseCenter\V1beta\DatabaseResourceGroup;
 use Google\Cloud\DatabaseCenter\V1beta\Product;
+use Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsRequest;
+use Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsResponse;
 use Google\Cloud\DatabaseCenter\V1beta\QueryProductsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryProductsResponse;
 use Google\Rpc\Code;
@@ -61,6 +64,80 @@ class DatabaseCenterClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DatabaseCenterClient($options);
+    }
+
+    /** @test */
+    public function queryDatabaseResourceGroupsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $resourceGroupsElement = new DatabaseResourceGroup();
+        $resourceGroups = [$resourceGroupsElement];
+        $expectedResponse = new QueryDatabaseResourceGroupsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResourceGroups($resourceGroups);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new QueryDatabaseResourceGroupsRequest())->setParent($parent);
+        $response = $gapicClient->queryDatabaseResourceGroups($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResourceGroups()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.databasecenter.v1beta.DatabaseCenter/QueryDatabaseResourceGroups',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryDatabaseResourceGroupsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new QueryDatabaseResourceGroupsRequest())->setParent($parent);
+        try {
+            $gapicClient->queryDatabaseResourceGroups($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -135,7 +212,7 @@ class DatabaseCenterClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function queryProductsAsyncTest()
+    public function queryDatabaseResourceGroupsAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -144,25 +221,28 @@ class DatabaseCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $productsElement = new Product();
-        $products = [$productsElement];
-        $expectedResponse = new QueryProductsResponse();
+        $resourceGroupsElement = new DatabaseResourceGroup();
+        $resourceGroups = [$resourceGroupsElement];
+        $expectedResponse = new QueryDatabaseResourceGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setProducts($products);
+        $expectedResponse->setResourceGroups($resourceGroups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new QueryProductsRequest())->setParent($parent);
-        $response = $gapicClient->queryProductsAsync($request)->wait();
+        $request = (new QueryDatabaseResourceGroupsRequest())->setParent($parent);
+        $response = $gapicClient->queryDatabaseResourceGroupsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getProducts()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getResourceGroups()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.databasecenter.v1beta.DatabaseCenter/QueryProducts', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.databasecenter.v1beta.DatabaseCenter/QueryDatabaseResourceGroups',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
