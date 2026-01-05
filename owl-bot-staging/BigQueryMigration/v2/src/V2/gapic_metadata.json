@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.bigquery.migration.v2",
+    "libraryPackage": "Google\\Cloud\\BigQuery\\Migration\\V2",
+    "services": {
+        "MigrationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MigrationServiceGapicClient",
+                    "rpcs": {
+                        "CreateMigrationWorkflow": {
+                            "methods": [
+                                "createMigrationWorkflow"
+                            ]
+                        },
+                        "DeleteMigrationWorkflow": {
+                            "methods": [
+                                "deleteMigrationWorkflow"
+                            ]
+                        },
+                        "GetMigrationSubtask": {
+                            "methods": [
+                                "getMigrationSubtask"
+                            ]
+                        },
+                        "GetMigrationWorkflow": {
+                            "methods": [
+                                "getMigrationWorkflow"
+                            ]
+                        },
+                        "ListMigrationSubtasks": {
+                            "methods": [
+                                "listMigrationSubtasks"
+                            ]
+                        },
+                        "ListMigrationWorkflows": {
+                            "methods": [
+                                "listMigrationWorkflows"
+                            ]
+                        },
+                        "StartMigrationWorkflow": {
+                            "methods": [
+                                "startMigrationWorkflow"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
