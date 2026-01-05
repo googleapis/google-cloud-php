@@ -114,9 +114,7 @@ final class StorageInsightsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -253,8 +251,12 @@ final class StorageInsightsClient
      *
      * @return string The formatted report_detail resource.
      */
-    public static function reportDetailName(string $project, string $location, string $reportConfig, string $reportDetail): string
-    {
+    public static function reportDetailName(
+        string $project,
+        string $location,
+        string $reportConfig,
+        string $reportDetail
+    ): string {
         return self::getPathTemplate('reportDetail')->render([
             'project' => $project,
             'location' => $location,

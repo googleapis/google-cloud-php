@@ -111,9 +111,7 @@ final class StorageTransferServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -471,8 +469,10 @@ final class StorageTransferServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGoogleServiceAccount(GetGoogleServiceAccountRequest $request, array $callOptions = []): GoogleServiceAccount
-    {
+    public function getGoogleServiceAccount(
+        GetGoogleServiceAccountRequest $request,
+        array $callOptions = []
+    ): GoogleServiceAccount {
         return $this->startApiCall('GetGoogleServiceAccount', $request, $callOptions)->wait();
     }
 
