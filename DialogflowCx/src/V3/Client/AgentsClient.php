@@ -251,8 +251,12 @@ final class AgentsClient
      *
      * @return string The formatted environment resource.
      */
-    public static function environmentName(string $project, string $location, string $agent, string $environment): string
-    {
+    public static function environmentName(
+        string $project,
+        string $location,
+        string $agent,
+        string $environment
+    ): string {
         return self::getPathTemplate('environment')->render([
             'project' => $project,
             'location' => $location,
@@ -591,8 +595,10 @@ final class AgentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAgentValidationResult(GetAgentValidationResultRequest $request, array $callOptions = []): AgentValidationResult
-    {
+    public function getAgentValidationResult(
+        GetAgentValidationResultRequest $request,
+        array $callOptions = []
+    ): AgentValidationResult {
         return $this->startApiCall('GetAgentValidationResult', $request, $callOptions)->wait();
     }
 
@@ -617,8 +623,10 @@ final class AgentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGenerativeSettings(GetGenerativeSettingsRequest $request, array $callOptions = []): GenerativeSettings
-    {
+    public function getGenerativeSettings(
+        GetGenerativeSettingsRequest $request,
+        array $callOptions = []
+    ): GenerativeSettings {
         return $this->startApiCall('GetGenerativeSettings', $request, $callOptions)->wait();
     }
 
@@ -741,8 +749,10 @@ final class AgentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGenerativeSettings(UpdateGenerativeSettingsRequest $request, array $callOptions = []): GenerativeSettings
-    {
+    public function updateGenerativeSettings(
+        UpdateGenerativeSettingsRequest $request,
+        array $callOptions = []
+    ): GenerativeSettings {
         return $this->startApiCall('UpdateGenerativeSettings', $request, $callOptions)->wait();
     }
 

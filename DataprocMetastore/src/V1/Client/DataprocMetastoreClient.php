@@ -150,9 +150,7 @@ final class DataprocMetastoreClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -272,8 +270,12 @@ final class DataprocMetastoreClient
      *
      * @return string The formatted metadata_import resource.
      */
-    public static function metadataImportName(string $project, string $location, string $service, string $metadataImport): string
-    {
+    public static function metadataImportName(
+        string $project,
+        string $location,
+        string $service,
+        string $metadataImport
+    ): string {
         return self::getPathTemplate('metadataImport')->render([
             'project' => $project,
             'location' => $location,
@@ -477,8 +479,10 @@ final class DataprocMetastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function alterMetadataResourceLocation(AlterMetadataResourceLocationRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function alterMetadataResourceLocation(
+        AlterMetadataResourceLocationRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AlterMetadataResourceLocation', $request, $callOptions)->wait();
     }
 
@@ -530,8 +534,10 @@ final class DataprocMetastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMetadataImport(CreateMetadataImportRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createMetadataImport(
+        CreateMetadataImportRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateMetadataImport', $request, $callOptions)->wait();
     }
 
@@ -898,8 +904,10 @@ final class DataprocMetastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateMetadataImport(UpdateMetadataImportRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateMetadataImport(
+        UpdateMetadataImportRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateMetadataImport', $request, $callOptions)->wait();
     }
 
@@ -1065,8 +1073,10 @@ final class DataprocMetastoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

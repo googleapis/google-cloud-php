@@ -211,8 +211,12 @@ final class EnvironmentsClient
      *
      * @return string The formatted environment resource.
      */
-    public static function environmentName(string $project, string $location, string $agent, string $environment): string
-    {
+    public static function environmentName(
+        string $project,
+        string $location,
+        string $agent,
+        string $environment
+    ): string {
         return self::getPathTemplate('environment')->render([
             'project' => $project,
             'location' => $location,
@@ -275,8 +279,13 @@ final class EnvironmentsClient
      *
      * @return string The formatted version resource.
      */
-    public static function versionName(string $project, string $location, string $agent, string $flow, string $version): string
-    {
+    public static function versionName(
+        string $project,
+        string $location,
+        string $agent,
+        string $flow,
+        string $version
+    ): string {
         return self::getPathTemplate('version')->render([
             'project' => $project,
             'location' => $location,
@@ -567,8 +576,10 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listContinuousTestResults(ListContinuousTestResultsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listContinuousTestResults(
+        ListContinuousTestResultsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListContinuousTestResults', $request, $callOptions);
     }
 
@@ -622,8 +633,10 @@ final class EnvironmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function lookupEnvironmentHistory(LookupEnvironmentHistoryRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function lookupEnvironmentHistory(
+        LookupEnvironmentHistoryRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('LookupEnvironmentHistory', $request, $callOptions);
     }
 
