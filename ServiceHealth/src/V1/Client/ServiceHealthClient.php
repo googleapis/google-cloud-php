@@ -94,9 +94,7 @@ final class ServiceHealthClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -182,8 +180,11 @@ final class ServiceHealthClient
      *
      * @return string The formatted organization_impact resource.
      */
-    public static function organizationImpactName(string $organization, string $location, string $organizationImpact): string
-    {
+    public static function organizationImpactName(
+        string $organization,
+        string $location,
+        string $organizationImpact
+    ): string {
         return self::getPathTemplate('organizationImpact')->render([
             'organization' => $organization,
             'location' => $location,
@@ -369,8 +370,10 @@ final class ServiceHealthClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOrganizationEvent(GetOrganizationEventRequest $request, array $callOptions = []): OrganizationEvent
-    {
+    public function getOrganizationEvent(
+        GetOrganizationEventRequest $request,
+        array $callOptions = []
+    ): OrganizationEvent {
         return $this->startApiCall('GetOrganizationEvent', $request, $callOptions)->wait();
     }
 
@@ -396,8 +399,10 @@ final class ServiceHealthClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOrganizationImpact(GetOrganizationImpactRequest $request, array $callOptions = []): OrganizationImpact
-    {
+    public function getOrganizationImpact(
+        GetOrganizationImpactRequest $request,
+        array $callOptions = []
+    ): OrganizationImpact {
         return $this->startApiCall('GetOrganizationImpact', $request, $callOptions)->wait();
     }
 
@@ -448,8 +453,10 @@ final class ServiceHealthClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOrganizationEvents(ListOrganizationEventsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOrganizationEvents(
+        ListOrganizationEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOrganizationEvents', $request, $callOptions);
     }
 
@@ -476,8 +483,10 @@ final class ServiceHealthClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listOrganizationImpacts(ListOrganizationImpactsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOrganizationImpacts(
+        ListOrganizationImpactsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOrganizationImpacts', $request, $callOptions);
     }
 

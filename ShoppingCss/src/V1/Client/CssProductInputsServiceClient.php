@@ -81,9 +81,7 @@ final class CssProductInputsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -98,7 +96,8 @@ final class CssProductInputsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/css_product_inputs_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/css_product_inputs_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -301,8 +300,10 @@ final class CssProductInputsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insertCssProductInput(InsertCssProductInputRequest $request, array $callOptions = []): CssProductInput
-    {
+    public function insertCssProductInput(
+        InsertCssProductInputRequest $request,
+        array $callOptions = []
+    ): CssProductInput {
         return $this->startApiCall('InsertCssProductInput', $request, $callOptions)->wait();
     }
 
@@ -331,8 +332,10 @@ final class CssProductInputsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCssProductInput(UpdateCssProductInputRequest $request, array $callOptions = []): CssProductInput
-    {
+    public function updateCssProductInput(
+        UpdateCssProductInputRequest $request,
+        array $callOptions = []
+    ): CssProductInput {
         return $this->startApiCall('UpdateCssProductInput', $request, $callOptions)->wait();
     }
 }

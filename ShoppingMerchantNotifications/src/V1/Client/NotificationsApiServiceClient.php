@@ -88,9 +88,7 @@ final class NotificationsApiServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -105,7 +103,8 @@ final class NotificationsApiServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/notifications_api_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/notifications_api_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -152,8 +151,10 @@ final class NotificationsApiServiceClient
      *
      * @return string The formatted notification_subscription_health_metrics resource.
      */
-    public static function notificationSubscriptionHealthMetricsName(string $account, string $notificationSubscription): string
-    {
+    public static function notificationSubscriptionHealthMetricsName(
+        string $account,
+        string $notificationSubscription
+    ): string {
         return self::getPathTemplate('notificationSubscriptionHealthMetrics')->render([
             'account' => $account,
             'notification_subscription' => $notificationSubscription,
@@ -315,8 +316,10 @@ final class NotificationsApiServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createNotificationSubscription(CreateNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
-    {
+    public function createNotificationSubscription(
+        CreateNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): NotificationSubscription {
         return $this->startApiCall('CreateNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -340,8 +343,10 @@ final class NotificationsApiServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteNotificationSubscription(DeleteNotificationSubscriptionRequest $request, array $callOptions = []): void
-    {
+    public function deleteNotificationSubscription(
+        DeleteNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -367,8 +372,10 @@ final class NotificationsApiServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationSubscription(GetNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
-    {
+    public function getNotificationSubscription(
+        GetNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): NotificationSubscription {
         return $this->startApiCall('GetNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -397,8 +404,10 @@ final class NotificationsApiServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getNotificationSubscriptionHealthMetrics(GetNotificationSubscriptionHealthMetricsRequest $request, array $callOptions = []): NotificationSubscriptionHealthMetrics
-    {
+    public function getNotificationSubscriptionHealthMetrics(
+        GetNotificationSubscriptionHealthMetricsRequest $request,
+        array $callOptions = []
+    ): NotificationSubscriptionHealthMetrics {
         return $this->startApiCall('GetNotificationSubscriptionHealthMetrics', $request, $callOptions)->wait();
     }
 
@@ -424,8 +433,10 @@ final class NotificationsApiServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNotificationSubscriptions(ListNotificationSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotificationSubscriptions(
+        ListNotificationSubscriptionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotificationSubscriptions', $request, $callOptions);
     }
 
@@ -451,8 +462,10 @@ final class NotificationsApiServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateNotificationSubscription(UpdateNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
-    {
+    public function updateNotificationSubscription(
+        UpdateNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): NotificationSubscription {
         return $this->startApiCall('UpdateNotificationSubscription', $request, $callOptions)->wait();
     }
 }
