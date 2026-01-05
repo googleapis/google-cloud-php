@@ -1,0 +1,313 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.dataform.v1",
+    "libraryPackage": "Google\\Cloud\\Dataform\\V1",
+    "services": {
+        "Dataform": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataformGapicClient",
+                    "rpcs": {
+                        "CancelWorkflowInvocation": {
+                            "methods": [
+                                "cancelWorkflowInvocation"
+                            ]
+                        },
+                        "CommitRepositoryChanges": {
+                            "methods": [
+                                "commitRepositoryChanges"
+                            ]
+                        },
+                        "CommitWorkspaceChanges": {
+                            "methods": [
+                                "commitWorkspaceChanges"
+                            ]
+                        },
+                        "ComputeRepositoryAccessTokenStatus": {
+                            "methods": [
+                                "computeRepositoryAccessTokenStatus"
+                            ]
+                        },
+                        "CreateCompilationResult": {
+                            "methods": [
+                                "createCompilationResult"
+                            ]
+                        },
+                        "CreateReleaseConfig": {
+                            "methods": [
+                                "createReleaseConfig"
+                            ]
+                        },
+                        "CreateRepository": {
+                            "methods": [
+                                "createRepository"
+                            ]
+                        },
+                        "CreateWorkflowConfig": {
+                            "methods": [
+                                "createWorkflowConfig"
+                            ]
+                        },
+                        "CreateWorkflowInvocation": {
+                            "methods": [
+                                "createWorkflowInvocation"
+                            ]
+                        },
+                        "CreateWorkspace": {
+                            "methods": [
+                                "createWorkspace"
+                            ]
+                        },
+                        "DeleteReleaseConfig": {
+                            "methods": [
+                                "deleteReleaseConfig"
+                            ]
+                        },
+                        "DeleteRepository": {
+                            "methods": [
+                                "deleteRepository"
+                            ]
+                        },
+                        "DeleteWorkflowConfig": {
+                            "methods": [
+                                "deleteWorkflowConfig"
+                            ]
+                        },
+                        "DeleteWorkflowInvocation": {
+                            "methods": [
+                                "deleteWorkflowInvocation"
+                            ]
+                        },
+                        "DeleteWorkspace": {
+                            "methods": [
+                                "deleteWorkspace"
+                            ]
+                        },
+                        "FetchFileDiff": {
+                            "methods": [
+                                "fetchFileDiff"
+                            ]
+                        },
+                        "FetchFileGitStatuses": {
+                            "methods": [
+                                "fetchFileGitStatuses"
+                            ]
+                        },
+                        "FetchGitAheadBehind": {
+                            "methods": [
+                                "fetchGitAheadBehind"
+                            ]
+                        },
+                        "FetchRemoteBranches": {
+                            "methods": [
+                                "fetchRemoteBranches"
+                            ]
+                        },
+                        "FetchRepositoryHistory": {
+                            "methods": [
+                                "fetchRepositoryHistory"
+                            ]
+                        },
+                        "GetCompilationResult": {
+                            "methods": [
+                                "getCompilationResult"
+                            ]
+                        },
+                        "GetConfig": {
+                            "methods": [
+                                "getConfig"
+                            ]
+                        },
+                        "GetReleaseConfig": {
+                            "methods": [
+                                "getReleaseConfig"
+                            ]
+                        },
+                        "GetRepository": {
+                            "methods": [
+                                "getRepository"
+                            ]
+                        },
+                        "GetWorkflowConfig": {
+                            "methods": [
+                                "getWorkflowConfig"
+                            ]
+                        },
+                        "GetWorkflowInvocation": {
+                            "methods": [
+                                "getWorkflowInvocation"
+                            ]
+                        },
+                        "GetWorkspace": {
+                            "methods": [
+                                "getWorkspace"
+                            ]
+                        },
+                        "InstallNpmPackages": {
+                            "methods": [
+                                "installNpmPackages"
+                            ]
+                        },
+                        "ListCompilationResults": {
+                            "methods": [
+                                "listCompilationResults"
+                            ]
+                        },
+                        "ListReleaseConfigs": {
+                            "methods": [
+                                "listReleaseConfigs"
+                            ]
+                        },
+                        "ListRepositories": {
+                            "methods": [
+                                "listRepositories"
+                            ]
+                        },
+                        "ListWorkflowConfigs": {
+                            "methods": [
+                                "listWorkflowConfigs"
+                            ]
+                        },
+                        "ListWorkflowInvocations": {
+                            "methods": [
+                                "listWorkflowInvocations"
+                            ]
+                        },
+                        "ListWorkspaces": {
+                            "methods": [
+                                "listWorkspaces"
+                            ]
+                        },
+                        "MakeDirectory": {
+                            "methods": [
+                                "makeDirectory"
+                            ]
+                        },
+                        "MoveDirectory": {
+                            "methods": [
+                                "moveDirectory"
+                            ]
+                        },
+                        "MoveFile": {
+                            "methods": [
+                                "moveFile"
+                            ]
+                        },
+                        "PullGitCommits": {
+                            "methods": [
+                                "pullGitCommits"
+                            ]
+                        },
+                        "PushGitCommits": {
+                            "methods": [
+                                "pushGitCommits"
+                            ]
+                        },
+                        "QueryCompilationResultActions": {
+                            "methods": [
+                                "queryCompilationResultActions"
+                            ]
+                        },
+                        "QueryDirectoryContents": {
+                            "methods": [
+                                "queryDirectoryContents"
+                            ]
+                        },
+                        "QueryRepositoryDirectoryContents": {
+                            "methods": [
+                                "queryRepositoryDirectoryContents"
+                            ]
+                        },
+                        "QueryWorkflowInvocationActions": {
+                            "methods": [
+                                "queryWorkflowInvocationActions"
+                            ]
+                        },
+                        "ReadFile": {
+                            "methods": [
+                                "readFile"
+                            ]
+                        },
+                        "ReadRepositoryFile": {
+                            "methods": [
+                                "readRepositoryFile"
+                            ]
+                        },
+                        "RemoveDirectory": {
+                            "methods": [
+                                "removeDirectory"
+                            ]
+                        },
+                        "RemoveFile": {
+                            "methods": [
+                                "removeFile"
+                            ]
+                        },
+                        "ResetWorkspaceChanges": {
+                            "methods": [
+                                "resetWorkspaceChanges"
+                            ]
+                        },
+                        "SearchFiles": {
+                            "methods": [
+                                "searchFiles"
+                            ]
+                        },
+                        "UpdateConfig": {
+                            "methods": [
+                                "updateConfig"
+                            ]
+                        },
+                        "UpdateReleaseConfig": {
+                            "methods": [
+                                "updateReleaseConfig"
+                            ]
+                        },
+                        "UpdateRepository": {
+                            "methods": [
+                                "updateRepository"
+                            ]
+                        },
+                        "UpdateWorkflowConfig": {
+                            "methods": [
+                                "updateWorkflowConfig"
+                            ]
+                        },
+                        "WriteFile": {
+                            "methods": [
+                                "writeFile"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
