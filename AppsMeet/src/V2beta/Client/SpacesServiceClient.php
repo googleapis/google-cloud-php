@@ -328,8 +328,10 @@ final class SpacesServiceClient
      *
      * @experimental
      */
-    public function connectActiveConference(ConnectActiveConferenceRequest $request, array $callOptions = []): ConnectActiveConferenceResponse
-    {
+    public function connectActiveConference(
+        ConnectActiveConferenceRequest $request,
+        array $callOptions = []
+    ): ConnectActiveConferenceResponse {
         return $this->startApiCall('ConnectActiveConference', $request, $callOptions)->wait();
     }
 
