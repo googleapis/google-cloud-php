@@ -99,9 +99,7 @@ final class AssuredWorkloadsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -118,7 +116,8 @@ final class AssuredWorkloadsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/assured_workloads_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/assured_workloads_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -200,8 +199,12 @@ final class AssuredWorkloadsServiceClient
      *
      * @return string The formatted violation resource.
      */
-    public static function violationName(string $organization, string $location, string $workload, string $violation): string
-    {
+    public static function violationName(
+        string $organization,
+        string $location,
+        string $workload,
+        string $violation
+    ): string {
         return self::getPathTemplate('violation')->render([
             'organization' => $organization,
             'location' => $location,
@@ -366,8 +369,10 @@ final class AssuredWorkloadsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function acknowledgeViolation(AcknowledgeViolationRequest $request, array $callOptions = []): AcknowledgeViolationResponse
-    {
+    public function acknowledgeViolation(
+        AcknowledgeViolationRequest $request,
+        array $callOptions = []
+    ): AcknowledgeViolationResponse {
         return $this->startApiCall('AcknowledgeViolation', $request, $callOptions)->wait();
     }
 
@@ -562,8 +567,10 @@ final class AssuredWorkloadsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restrictAllowedResources(RestrictAllowedResourcesRequest $request, array $callOptions = []): RestrictAllowedResourcesResponse
-    {
+    public function restrictAllowedResources(
+        RestrictAllowedResourcesRequest $request,
+        array $callOptions = []
+    ): RestrictAllowedResourcesResponse {
         return $this->startApiCall('RestrictAllowedResources', $request, $callOptions)->wait();
     }
 

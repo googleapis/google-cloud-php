@@ -130,9 +130,7 @@ final class AutoMlClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -214,8 +212,12 @@ final class AutoMlClient
      *
      * @return string The formatted annotation_spec resource.
      */
-    public static function annotationSpecName(string $project, string $location, string $dataset, string $annotationSpec): string
-    {
+    public static function annotationSpecName(
+        string $project,
+        string $location,
+        string $dataset,
+        string $annotationSpec
+    ): string {
         return self::getPathTemplate('annotationSpec')->render([
             'project' => $project,
             'location' => $location,
@@ -290,8 +292,12 @@ final class AutoMlClient
      *
      * @return string The formatted model_evaluation resource.
      */
-    public static function modelEvaluationName(string $project, string $location, string $model, string $modelEvaluation): string
-    {
+    public static function modelEvaluationName(
+        string $project,
+        string $location,
+        string $model,
+        string $modelEvaluation
+    ): string {
         return self::getPathTemplate('modelEvaluation')->render([
             'project' => $project,
             'location' => $location,
@@ -811,8 +817,10 @@ final class AutoMlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listModelEvaluations(ListModelEvaluationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listModelEvaluations(
+        ListModelEvaluationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListModelEvaluations', $request, $callOptions);
     }
 
