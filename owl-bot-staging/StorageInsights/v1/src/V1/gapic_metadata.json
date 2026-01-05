@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.storageinsights.v1",
+    "libraryPackage": "Google\\Cloud\\StorageInsights\\V1",
+    "services": {
+        "StorageInsights": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StorageInsightsGapicClient",
+                    "rpcs": {
+                        "CreateDatasetConfig": {
+                            "methods": [
+                                "createDatasetConfig"
+                            ]
+                        },
+                        "CreateReportConfig": {
+                            "methods": [
+                                "createReportConfig"
+                            ]
+                        },
+                        "DeleteDatasetConfig": {
+                            "methods": [
+                                "deleteDatasetConfig"
+                            ]
+                        },
+                        "DeleteReportConfig": {
+                            "methods": [
+                                "deleteReportConfig"
+                            ]
+                        },
+                        "GetDatasetConfig": {
+                            "methods": [
+                                "getDatasetConfig"
+                            ]
+                        },
+                        "GetReportConfig": {
+                            "methods": [
+                                "getReportConfig"
+                            ]
+                        },
+                        "GetReportDetail": {
+                            "methods": [
+                                "getReportDetail"
+                            ]
+                        },
+                        "LinkDataset": {
+                            "methods": [
+                                "linkDataset"
+                            ]
+                        },
+                        "ListDatasetConfigs": {
+                            "methods": [
+                                "listDatasetConfigs"
+                            ]
+                        },
+                        "ListReportConfigs": {
+                            "methods": [
+                                "listReportConfigs"
+                            ]
+                        },
+                        "ListReportDetails": {
+                            "methods": [
+                                "listReportDetails"
+                            ]
+                        },
+                        "UnlinkDataset": {
+                            "methods": [
+                                "unlinkDataset"
+                            ]
+                        },
+                        "UpdateDatasetConfig": {
+                            "methods": [
+                                "updateDatasetConfig"
+                            ]
+                        },
+                        "UpdateReportConfig": {
+                            "methods": [
+                                "updateReportConfig"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
