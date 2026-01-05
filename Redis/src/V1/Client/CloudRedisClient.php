@@ -120,9 +120,7 @@ final class CloudRedisClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -511,8 +509,10 @@ final class CloudRedisClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getInstanceAuthString(GetInstanceAuthStringRequest $request, array $callOptions = []): InstanceAuthString
-    {
+    public function getInstanceAuthString(
+        GetInstanceAuthStringRequest $request,
+        array $callOptions = []
+    ): InstanceAuthString {
         return $this->startApiCall('GetInstanceAuthString', $request, $callOptions)->wait();
     }
 
@@ -605,8 +605,10 @@ final class CloudRedisClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rescheduleMaintenance(RescheduleMaintenanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function rescheduleMaintenance(
+        RescheduleMaintenanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
     }
 

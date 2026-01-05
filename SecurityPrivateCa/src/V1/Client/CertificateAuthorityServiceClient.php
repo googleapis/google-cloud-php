@@ -157,9 +157,7 @@ final class CertificateAuthorityServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -176,7 +174,8 @@ final class CertificateAuthorityServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/certificate_authority_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/certificate_authority_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -260,8 +259,12 @@ final class CertificateAuthorityServiceClient
      *
      * @return string The formatted certificate resource.
      */
-    public static function certificateName(string $project, string $location, string $caPool, string $certificate): string
-    {
+    public static function certificateName(
+        string $project,
+        string $location,
+        string $caPool,
+        string $certificate
+    ): string {
         return self::getPathTemplate('certificate')->render([
             'project' => $project,
             'location' => $location,
@@ -281,8 +284,12 @@ final class CertificateAuthorityServiceClient
      *
      * @return string The formatted certificate_authority resource.
      */
-    public static function certificateAuthorityName(string $project, string $location, string $caPool, string $certificateAuthority): string
-    {
+    public static function certificateAuthorityName(
+        string $project,
+        string $location,
+        string $caPool,
+        string $certificateAuthority
+    ): string {
         return self::getPathTemplate('certificateAuthority')->render([
             'project' => $project,
             'location' => $location,
@@ -303,8 +310,13 @@ final class CertificateAuthorityServiceClient
      *
      * @return string The formatted certificate_revocation_list resource.
      */
-    public static function certificateRevocationListName(string $project, string $location, string $caPool, string $certificateAuthority, string $certificateRevocationList): string
-    {
+    public static function certificateRevocationListName(
+        string $project,
+        string $location,
+        string $caPool,
+        string $certificateAuthority,
+        string $certificateRevocationList
+    ): string {
         return self::getPathTemplate('certificateRevocationList')->render([
             'project' => $project,
             'location' => $location,
@@ -324,8 +336,11 @@ final class CertificateAuthorityServiceClient
      *
      * @return string The formatted certificate_template resource.
      */
-    public static function certificateTemplateName(string $project, string $location, string $certificateTemplate): string
-    {
+    public static function certificateTemplateName(
+        string $project,
+        string $location,
+        string $certificateTemplate
+    ): string {
         return self::getPathTemplate('certificateTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -496,8 +511,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function activateCertificateAuthority(ActivateCertificateAuthorityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function activateCertificateAuthority(
+        ActivateCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ActivateCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -581,8 +598,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateAuthority(CreateCertificateAuthorityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateAuthority(
+        CreateCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -610,8 +629,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCertificateTemplate(CreateCertificateTemplateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createCertificateTemplate(
+        CreateCertificateTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateCertificateTemplate', $request, $callOptions)->wait();
     }
 
@@ -665,8 +686,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateAuthority(DeleteCertificateAuthorityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateAuthority(
+        DeleteCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -693,8 +716,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteCertificateTemplate(DeleteCertificateTemplateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteCertificateTemplate(
+        DeleteCertificateTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteCertificateTemplate', $request, $callOptions)->wait();
     }
 
@@ -721,8 +746,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disableCertificateAuthority(DisableCertificateAuthorityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function disableCertificateAuthority(
+        DisableCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DisableCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -749,8 +776,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enableCertificateAuthority(EnableCertificateAuthorityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function enableCertificateAuthority(
+        EnableCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('EnableCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -816,8 +845,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function fetchCertificateAuthorityCsr(FetchCertificateAuthorityCsrRequest $request, array $callOptions = []): FetchCertificateAuthorityCsrResponse
-    {
+    public function fetchCertificateAuthorityCsr(
+        FetchCertificateAuthorityCsrRequest $request,
+        array $callOptions = []
+    ): FetchCertificateAuthorityCsrResponse {
         return $this->startApiCall('FetchCertificateAuthorityCsr', $request, $callOptions)->wait();
     }
 
@@ -898,8 +929,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateAuthority(GetCertificateAuthorityRequest $request, array $callOptions = []): CertificateAuthority
-    {
+    public function getCertificateAuthority(
+        GetCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): CertificateAuthority {
         return $this->startApiCall('GetCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -926,8 +959,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateRevocationList(GetCertificateRevocationListRequest $request, array $callOptions = []): CertificateRevocationList
-    {
+    public function getCertificateRevocationList(
+        GetCertificateRevocationListRequest $request,
+        array $callOptions = []
+    ): CertificateRevocationList {
         return $this->startApiCall('GetCertificateRevocationList', $request, $callOptions)->wait();
     }
 
@@ -954,8 +989,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getCertificateTemplate(GetCertificateTemplateRequest $request, array $callOptions = []): CertificateTemplate
-    {
+    public function getCertificateTemplate(
+        GetCertificateTemplateRequest $request,
+        array $callOptions = []
+    ): CertificateTemplate {
         return $this->startApiCall('GetCertificateTemplate', $request, $callOptions)->wait();
     }
 
@@ -1009,8 +1046,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCertificateAuthorities(ListCertificateAuthoritiesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCertificateAuthorities(
+        ListCertificateAuthoritiesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCertificateAuthorities', $request, $callOptions);
     }
 
@@ -1038,8 +1077,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCertificateRevocationLists(ListCertificateRevocationListsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCertificateRevocationLists(
+        ListCertificateRevocationListsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCertificateRevocationLists', $request, $callOptions);
     }
 
@@ -1066,8 +1107,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCertificateTemplates(ListCertificateTemplatesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCertificateTemplates(
+        ListCertificateTemplatesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCertificateTemplates', $request, $callOptions);
     }
 
@@ -1149,8 +1192,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function undeleteCertificateAuthority(UndeleteCertificateAuthorityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function undeleteCertificateAuthority(
+        UndeleteCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UndeleteCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -1233,8 +1278,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCertificateAuthority(UpdateCertificateAuthorityRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateCertificateAuthority(
+        UpdateCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateCertificateAuthority', $request, $callOptions)->wait();
     }
 
@@ -1262,8 +1309,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCertificateRevocationList(UpdateCertificateRevocationListRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateCertificateRevocationList(
+        UpdateCertificateRevocationListRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateCertificateRevocationList', $request, $callOptions)->wait();
     }
 
@@ -1290,8 +1339,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCertificateTemplate(UpdateCertificateTemplateRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateCertificateTemplate(
+        UpdateCertificateTemplateRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateCertificateTemplate', $request, $callOptions)->wait();
     }
 
@@ -1436,8 +1487,10 @@ final class CertificateAuthorityServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

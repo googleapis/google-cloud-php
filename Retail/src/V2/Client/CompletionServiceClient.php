@@ -85,9 +85,7 @@ final class CompletionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -346,8 +344,10 @@ final class CompletionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importCompletionData(ImportCompletionDataRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function importCompletionData(
+        ImportCompletionDataRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ImportCompletionData', $request, $callOptions)->wait();
     }
 }

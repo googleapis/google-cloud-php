@@ -92,9 +92,7 @@ final class UserEventServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -196,8 +194,13 @@ final class UserEventServiceClient
      *
      * @return string The formatted product resource.
      */
-    public static function productName(string $project, string $location, string $catalog, string $branch, string $product): string
-    {
+    public static function productName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $branch,
+        string $product
+    ): string {
         return self::getPathTemplate('product')->render([
             'project' => $project,
             'location' => $location,

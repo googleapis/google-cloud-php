@@ -107,9 +107,7 @@ final class RecommenderClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -140,8 +138,11 @@ final class RecommenderClient
      *
      * @return string The formatted billing_account_location_insight_type resource.
      */
-    public static function billingAccountLocationInsightTypeName(string $billingAccount, string $location, string $insightType): string
-    {
+    public static function billingAccountLocationInsightTypeName(
+        string $billingAccount,
+        string $location,
+        string $insightType
+    ): string {
         return self::getPathTemplate('billingAccountLocationInsightType')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -159,8 +160,11 @@ final class RecommenderClient
      *
      * @return string The formatted billing_account_location_insight_type_config resource.
      */
-    public static function billingAccountLocationInsightTypeConfigName(string $billingAccount, string $location, string $insightType): string
-    {
+    public static function billingAccountLocationInsightTypeConfigName(
+        string $billingAccount,
+        string $location,
+        string $insightType
+    ): string {
         return self::getPathTemplate('billingAccountLocationInsightTypeConfig')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -179,8 +183,12 @@ final class RecommenderClient
      *
      * @return string The formatted billing_account_location_insight_type_insight resource.
      */
-    public static function billingAccountLocationInsightTypeInsightName(string $billingAccount, string $location, string $insightType, string $insight): string
-    {
+    public static function billingAccountLocationInsightTypeInsightName(
+        string $billingAccount,
+        string $location,
+        string $insightType,
+        string $insight
+    ): string {
         return self::getPathTemplate('billingAccountLocationInsightTypeInsight')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -199,8 +207,11 @@ final class RecommenderClient
      *
      * @return string The formatted billing_account_location_recommender resource.
      */
-    public static function billingAccountLocationRecommenderName(string $billingAccount, string $location, string $recommender): string
-    {
+    public static function billingAccountLocationRecommenderName(
+        string $billingAccount,
+        string $location,
+        string $recommender
+    ): string {
         return self::getPathTemplate('billingAccountLocationRecommender')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -218,8 +229,11 @@ final class RecommenderClient
      *
      * @return string The formatted billing_account_location_recommender_config resource.
      */
-    public static function billingAccountLocationRecommenderConfigName(string $billingAccount, string $location, string $recommender): string
-    {
+    public static function billingAccountLocationRecommenderConfigName(
+        string $billingAccount,
+        string $location,
+        string $recommender
+    ): string {
         return self::getPathTemplate('billingAccountLocationRecommenderConfig')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -238,8 +252,12 @@ final class RecommenderClient
      *
      * @return string The formatted billing_account_location_recommender_recommendation resource.
      */
-    public static function billingAccountLocationRecommenderRecommendationName(string $billingAccount, string $location, string $recommender, string $recommendation): string
-    {
+    public static function billingAccountLocationRecommenderRecommendationName(
+        string $billingAccount,
+        string $location,
+        string $recommender,
+        string $recommendation
+    ): string {
         return self::getPathTemplate('billingAccountLocationRecommenderRecommendation')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -278,8 +296,12 @@ final class RecommenderClient
      *
      * @return string The formatted folder_location_insight_type_insight resource.
      */
-    public static function folderLocationInsightTypeInsightName(string $folder, string $location, string $insightType, string $insight): string
-    {
+    public static function folderLocationInsightTypeInsightName(
+        string $folder,
+        string $location,
+        string $insightType,
+        string $insight
+    ): string {
         return self::getPathTemplate('folderLocationInsightTypeInsight')->render([
             'folder' => $folder,
             'location' => $location,
@@ -318,8 +340,12 @@ final class RecommenderClient
      *
      * @return string The formatted folder_location_recommender_recommendation resource.
      */
-    public static function folderLocationRecommenderRecommendationName(string $folder, string $location, string $recommender, string $recommendation): string
-    {
+    public static function folderLocationRecommenderRecommendationName(
+        string $folder,
+        string $location,
+        string $recommender,
+        string $recommendation
+    ): string {
         return self::getPathTemplate('folderLocationRecommenderRecommendation')->render([
             'folder' => $folder,
             'location' => $location,
@@ -397,8 +423,11 @@ final class RecommenderClient
      *
      * @return string The formatted organization_location_insight_type resource.
      */
-    public static function organizationLocationInsightTypeName(string $organization, string $location, string $insightType): string
-    {
+    public static function organizationLocationInsightTypeName(
+        string $organization,
+        string $location,
+        string $insightType
+    ): string {
         return self::getPathTemplate('organizationLocationInsightType')->render([
             'organization' => $organization,
             'location' => $location,
@@ -416,8 +445,11 @@ final class RecommenderClient
      *
      * @return string The formatted organization_location_insight_type_config resource.
      */
-    public static function organizationLocationInsightTypeConfigName(string $organization, string $location, string $insightType): string
-    {
+    public static function organizationLocationInsightTypeConfigName(
+        string $organization,
+        string $location,
+        string $insightType
+    ): string {
         return self::getPathTemplate('organizationLocationInsightTypeConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -436,8 +468,12 @@ final class RecommenderClient
      *
      * @return string The formatted organization_location_insight_type_insight resource.
      */
-    public static function organizationLocationInsightTypeInsightName(string $organization, string $location, string $insightType, string $insight): string
-    {
+    public static function organizationLocationInsightTypeInsightName(
+        string $organization,
+        string $location,
+        string $insightType,
+        string $insight
+    ): string {
         return self::getPathTemplate('organizationLocationInsightTypeInsight')->render([
             'organization' => $organization,
             'location' => $location,
@@ -456,8 +492,11 @@ final class RecommenderClient
      *
      * @return string The formatted organization_location_recommender resource.
      */
-    public static function organizationLocationRecommenderName(string $organization, string $location, string $recommender): string
-    {
+    public static function organizationLocationRecommenderName(
+        string $organization,
+        string $location,
+        string $recommender
+    ): string {
         return self::getPathTemplate('organizationLocationRecommender')->render([
             'organization' => $organization,
             'location' => $location,
@@ -475,8 +514,11 @@ final class RecommenderClient
      *
      * @return string The formatted organization_location_recommender_config resource.
      */
-    public static function organizationLocationRecommenderConfigName(string $organization, string $location, string $recommender): string
-    {
+    public static function organizationLocationRecommenderConfigName(
+        string $organization,
+        string $location,
+        string $recommender
+    ): string {
         return self::getPathTemplate('organizationLocationRecommenderConfig')->render([
             'organization' => $organization,
             'location' => $location,
@@ -495,8 +537,12 @@ final class RecommenderClient
      *
      * @return string The formatted organization_location_recommender_recommendation resource.
      */
-    public static function organizationLocationRecommenderRecommendationName(string $organization, string $location, string $recommender, string $recommendation): string
-    {
+    public static function organizationLocationRecommenderRecommendationName(
+        string $organization,
+        string $location,
+        string $recommender,
+        string $recommendation
+    ): string {
         return self::getPathTemplate('organizationLocationRecommenderRecommendation')->render([
             'organization' => $organization,
             'location' => $location,
@@ -515,8 +561,11 @@ final class RecommenderClient
      *
      * @return string The formatted project_location_insight_type resource.
      */
-    public static function projectLocationInsightTypeName(string $project, string $location, string $insightType): string
-    {
+    public static function projectLocationInsightTypeName(
+        string $project,
+        string $location,
+        string $insightType
+    ): string {
         return self::getPathTemplate('projectLocationInsightType')->render([
             'project' => $project,
             'location' => $location,
@@ -534,8 +583,11 @@ final class RecommenderClient
      *
      * @return string The formatted project_location_insight_type_config resource.
      */
-    public static function projectLocationInsightTypeConfigName(string $project, string $location, string $insightType): string
-    {
+    public static function projectLocationInsightTypeConfigName(
+        string $project,
+        string $location,
+        string $insightType
+    ): string {
         return self::getPathTemplate('projectLocationInsightTypeConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -554,8 +606,12 @@ final class RecommenderClient
      *
      * @return string The formatted project_location_insight_type_insight resource.
      */
-    public static function projectLocationInsightTypeInsightName(string $project, string $location, string $insightType, string $insight): string
-    {
+    public static function projectLocationInsightTypeInsightName(
+        string $project,
+        string $location,
+        string $insightType,
+        string $insight
+    ): string {
         return self::getPathTemplate('projectLocationInsightTypeInsight')->render([
             'project' => $project,
             'location' => $location,
@@ -574,8 +630,11 @@ final class RecommenderClient
      *
      * @return string The formatted project_location_recommender resource.
      */
-    public static function projectLocationRecommenderName(string $project, string $location, string $recommender): string
-    {
+    public static function projectLocationRecommenderName(
+        string $project,
+        string $location,
+        string $recommender
+    ): string {
         return self::getPathTemplate('projectLocationRecommender')->render([
             'project' => $project,
             'location' => $location,
@@ -593,8 +652,11 @@ final class RecommenderClient
      *
      * @return string The formatted project_location_recommender_config resource.
      */
-    public static function projectLocationRecommenderConfigName(string $project, string $location, string $recommender): string
-    {
+    public static function projectLocationRecommenderConfigName(
+        string $project,
+        string $location,
+        string $recommender
+    ): string {
         return self::getPathTemplate('projectLocationRecommenderConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -613,8 +675,12 @@ final class RecommenderClient
      *
      * @return string The formatted project_location_recommender_recommendation resource.
      */
-    public static function projectLocationRecommenderRecommendationName(string $project, string $location, string $recommender, string $recommendation): string
-    {
+    public static function projectLocationRecommenderRecommendationName(
+        string $project,
+        string $location,
+        string $recommender,
+        string $recommendation
+    ): string {
         return self::getPathTemplate('projectLocationRecommenderRecommendation')->render([
             'project' => $project,
             'location' => $location,
@@ -634,8 +700,12 @@ final class RecommenderClient
      *
      * @return string The formatted recommendation resource.
      */
-    public static function recommendationName(string $project, string $location, string $recommender, string $recommendation): string
-    {
+    public static function recommendationName(
+        string $project,
+        string $location,
+        string $recommender,
+        string $recommendation
+    ): string {
         return self::getPathTemplate('recommendation')->render([
             'project' => $project,
             'location' => $location,
@@ -867,8 +937,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getInsightTypeConfig(GetInsightTypeConfigRequest $request, array $callOptions = []): InsightTypeConfig
-    {
+    public function getInsightTypeConfig(
+        GetInsightTypeConfigRequest $request,
+        array $callOptions = []
+    ): InsightTypeConfig {
         return $this->startApiCall('GetInsightTypeConfig', $request, $callOptions)->wait();
     }
 
@@ -921,8 +993,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRecommenderConfig(GetRecommenderConfigRequest $request, array $callOptions = []): RecommenderConfig
-    {
+    public function getRecommenderConfig(
+        GetRecommenderConfigRequest $request,
+        array $callOptions = []
+    ): RecommenderConfig {
         return $this->startApiCall('GetRecommenderConfig', $request, $callOptions)->wait();
     }
 
@@ -1042,8 +1116,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function markRecommendationClaimed(MarkRecommendationClaimedRequest $request, array $callOptions = []): Recommendation
-    {
+    public function markRecommendationClaimed(
+        MarkRecommendationClaimedRequest $request,
+        array $callOptions = []
+    ): Recommendation {
         return $this->startApiCall('MarkRecommendationClaimed', $request, $callOptions)->wait();
     }
 
@@ -1077,8 +1153,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function markRecommendationDismissed(MarkRecommendationDismissedRequest $request, array $callOptions = []): Recommendation
-    {
+    public function markRecommendationDismissed(
+        MarkRecommendationDismissedRequest $request,
+        array $callOptions = []
+    ): Recommendation {
         return $this->startApiCall('MarkRecommendationDismissed', $request, $callOptions)->wait();
     }
 
@@ -1113,8 +1191,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function markRecommendationFailed(MarkRecommendationFailedRequest $request, array $callOptions = []): Recommendation
-    {
+    public function markRecommendationFailed(
+        MarkRecommendationFailedRequest $request,
+        array $callOptions = []
+    ): Recommendation {
         return $this->startApiCall('MarkRecommendationFailed', $request, $callOptions)->wait();
     }
 
@@ -1150,8 +1230,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function markRecommendationSucceeded(MarkRecommendationSucceededRequest $request, array $callOptions = []): Recommendation
-    {
+    public function markRecommendationSucceeded(
+        MarkRecommendationSucceededRequest $request,
+        array $callOptions = []
+    ): Recommendation {
         return $this->startApiCall('MarkRecommendationSucceeded', $request, $callOptions)->wait();
     }
 
@@ -1177,8 +1259,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInsightTypeConfig(UpdateInsightTypeConfigRequest $request, array $callOptions = []): InsightTypeConfig
-    {
+    public function updateInsightTypeConfig(
+        UpdateInsightTypeConfigRequest $request,
+        array $callOptions = []
+    ): InsightTypeConfig {
         return $this->startApiCall('UpdateInsightTypeConfig', $request, $callOptions)->wait();
     }
 
@@ -1204,8 +1288,10 @@ final class RecommenderClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateRecommenderConfig(UpdateRecommenderConfigRequest $request, array $callOptions = []): RecommenderConfig
-    {
+    public function updateRecommenderConfig(
+        UpdateRecommenderConfigRequest $request,
+        array $callOptions = []
+    ): RecommenderConfig {
         return $this->startApiCall('UpdateRecommenderConfig', $request, $callOptions)->wait();
     }
 }

@@ -87,9 +87,7 @@ final class QuotaAdjusterSettingsManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -104,7 +102,8 @@ final class QuotaAdjusterSettingsManagerClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/quota_adjuster_settings_manager_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/quota_adjuster_settings_manager_rest_client_config.php',
                 ],
             ],
         ];
@@ -326,8 +325,10 @@ final class QuotaAdjusterSettingsManagerClient
      *
      * @experimental
      */
-    public function getQuotaAdjusterSettings(GetQuotaAdjusterSettingsRequest $request, array $callOptions = []): QuotaAdjusterSettings
-    {
+    public function getQuotaAdjusterSettings(
+        GetQuotaAdjusterSettingsRequest $request,
+        array $callOptions = []
+    ): QuotaAdjusterSettings {
         return $this->startApiCall('GetQuotaAdjusterSettings', $request, $callOptions)->wait();
     }
 
@@ -355,8 +356,10 @@ final class QuotaAdjusterSettingsManagerClient
      *
      * @experimental
      */
-    public function updateQuotaAdjusterSettings(UpdateQuotaAdjusterSettingsRequest $request, array $callOptions = []): QuotaAdjusterSettings
-    {
+    public function updateQuotaAdjusterSettings(
+        UpdateQuotaAdjusterSettingsRequest $request,
+        array $callOptions = []
+    ): QuotaAdjusterSettings {
         return $this->startApiCall('UpdateQuotaAdjusterSettings', $request, $callOptions)->wait();
     }
 }
