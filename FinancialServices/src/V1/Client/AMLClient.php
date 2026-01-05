@@ -172,9 +172,7 @@ final class AMLClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -256,8 +254,12 @@ final class AMLClient
      *
      * @return string The formatted backtest_result resource.
      */
-    public static function backtestResultName(string $projectNum, string $location, string $instance, string $backtestResult): string
-    {
+    public static function backtestResultName(
+        string $projectNum,
+        string $location,
+        string $instance,
+        string $backtestResult
+    ): string {
         return self::getPathTemplate('backtestResult')->render([
             'project_num' => $projectNum,
             'location' => $location,
@@ -298,8 +300,12 @@ final class AMLClient
      *
      * @return string The formatted engine_config resource.
      */
-    public static function engineConfigName(string $projectNum, string $location, string $instance, string $engineConfig): string
-    {
+    public static function engineConfigName(
+        string $projectNum,
+        string $location,
+        string $instance,
+        string $engineConfig
+    ): string {
         return self::getPathTemplate('engineConfig')->render([
             'project_num' => $projectNum,
             'location' => $location,
@@ -319,8 +325,12 @@ final class AMLClient
      *
      * @return string The formatted engine_version resource.
      */
-    public static function engineVersionName(string $projectNum, string $location, string $instance, string $engineVersion): string
-    {
+    public static function engineVersionName(
+        string $projectNum,
+        string $location,
+        string $instance,
+        string $engineVersion
+    ): string {
         return self::getPathTemplate('engineVersion')->render([
             'project_num' => $projectNum,
             'location' => $location,
@@ -397,8 +407,12 @@ final class AMLClient
      *
      * @return string The formatted prediction_result resource.
      */
-    public static function predictionResultName(string $projectNum, string $location, string $instance, string $predictionResult): string
-    {
+    public static function predictionResultName(
+        string $projectNum,
+        string $location,
+        string $instance,
+        string $predictionResult
+    ): string {
         return self::getPathTemplate('predictionResult')->render([
             'project_num' => $projectNum,
             'location' => $location,
@@ -545,8 +559,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createBacktestResult(CreateBacktestResultRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createBacktestResult(
+        CreateBacktestResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateBacktestResult', $request, $callOptions)->wait();
     }
 
@@ -675,8 +691,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPredictionResult(CreatePredictionResultRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPredictionResult(
+        CreatePredictionResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePredictionResult', $request, $callOptions)->wait();
     }
 
@@ -701,8 +719,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteBacktestResult(DeleteBacktestResultRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteBacktestResult(
+        DeleteBacktestResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteBacktestResult', $request, $callOptions)->wait();
     }
 
@@ -831,8 +851,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePredictionResult(DeletePredictionResultRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePredictionResult(
+        DeletePredictionResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePredictionResult', $request, $callOptions)->wait();
     }
 
@@ -860,8 +882,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function exportBacktestResultMetadata(ExportBacktestResultMetadataRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function exportBacktestResultMetadata(
+        ExportBacktestResultMetadataRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExportBacktestResultMetadata', $request, $callOptions)->wait();
     }
 
@@ -889,8 +913,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function exportEngineConfigMetadata(ExportEngineConfigMetadataRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function exportEngineConfigMetadata(
+        ExportEngineConfigMetadataRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExportEngineConfigMetadata', $request, $callOptions)->wait();
     }
 
@@ -947,8 +973,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function exportPredictionResultMetadata(ExportPredictionResultMetadataRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function exportPredictionResultMetadata(
+        ExportPredictionResultMetadataRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExportPredictionResultMetadata', $request, $callOptions)->wait();
     }
 
@@ -976,8 +1004,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function exportRegisteredParties(ExportRegisteredPartiesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function exportRegisteredParties(
+        ExportRegisteredPartiesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExportRegisteredParties', $request, $callOptions)->wait();
     }
 
@@ -1187,8 +1217,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importRegisteredParties(ImportRegisteredPartiesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function importRegisteredParties(
+        ImportRegisteredPartiesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ImportRegisteredParties', $request, $callOptions)->wait();
     }
 
@@ -1369,8 +1401,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPredictionResults(ListPredictionResultsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPredictionResults(
+        ListPredictionResultsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPredictionResults', $request, $callOptions);
     }
 
@@ -1395,8 +1429,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateBacktestResult(UpdateBacktestResultRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateBacktestResult(
+        UpdateBacktestResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateBacktestResult', $request, $callOptions)->wait();
     }
 
@@ -1525,8 +1561,10 @@ final class AMLClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePredictionResult(UpdatePredictionResultRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updatePredictionResult(
+        UpdatePredictionResultRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdatePredictionResult', $request, $callOptions)->wait();
     }
 

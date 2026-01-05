@@ -69,9 +69,7 @@ final class GatewayControlClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -101,9 +99,7 @@ final class GatewayControlClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -210,8 +206,10 @@ final class GatewayControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateCredentials(GenerateCredentialsRequest $request, array $callOptions = []): GenerateCredentialsResponse
-    {
+    public function generateCredentials(
+        GenerateCredentialsRequest $request,
+        array $callOptions = []
+    ): GenerateCredentialsResponse {
         return $this->startApiCall('GenerateCredentials', $request, $callOptions)->wait();
     }
 }

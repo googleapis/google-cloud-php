@@ -321,8 +321,10 @@ final class GrafeasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateNotes(BatchCreateNotesRequest $request, array $callOptions = []): BatchCreateNotesResponse
-    {
+    public function batchCreateNotes(
+        BatchCreateNotesRequest $request,
+        array $callOptions = []
+    ): BatchCreateNotesResponse {
         return $this->startApiCall('BatchCreateNotes', $request, $callOptions)->wait();
     }
 
@@ -347,8 +349,10 @@ final class GrafeasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateOccurrences(BatchCreateOccurrencesRequest $request, array $callOptions = []): BatchCreateOccurrencesResponse
-    {
+    public function batchCreateOccurrences(
+        BatchCreateOccurrencesRequest $request,
+        array $callOptions = []
+    ): BatchCreateOccurrencesResponse {
         return $this->startApiCall('BatchCreateOccurrences', $request, $callOptions)->wait();
     }
 

@@ -118,9 +118,7 @@ final class GkeHubClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -494,8 +492,10 @@ final class GkeHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateConnectManifest(GenerateConnectManifestRequest $request, array $callOptions = []): GenerateConnectManifestResponse
-    {
+    public function generateConnectManifest(
+        GenerateConnectManifestRequest $request,
+        array $callOptions = []
+    ): GenerateConnectManifestResponse {
         return $this->startApiCall('GenerateConnectManifest', $request, $callOptions)->wait();
     }
 

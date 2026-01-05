@@ -180,9 +180,7 @@ final class BackupForGKEClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -323,8 +321,12 @@ final class BackupForGKEClient
      *
      * @return string The formatted backup_plan_binding resource.
      */
-    public static function backupPlanBindingName(string $project, string $location, string $backupChannel, string $backupPlanBinding): string
-    {
+    public static function backupPlanBindingName(
+        string $project,
+        string $location,
+        string $backupChannel,
+        string $backupPlanBinding
+    ): string {
         return self::getPathTemplate('backupPlanBinding')->render([
             'project' => $project,
             'location' => $location,
@@ -460,8 +462,12 @@ final class BackupForGKEClient
      *
      * @return string The formatted restore_plan_binding resource.
      */
-    public static function restorePlanBindingName(string $project, string $location, string $restoreChannel, string $restorePlanBinding): string
-    {
+    public static function restorePlanBindingName(
+        string $project,
+        string $location,
+        string $restoreChannel,
+        string $restorePlanBinding
+    ): string {
         return self::getPathTemplate('restorePlanBinding')->render([
             'project' => $project,
             'location' => $location,
@@ -482,8 +488,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_backup resource.
      */
-    public static function volumeBackupName(string $project, string $location, string $backupPlan, string $backup, string $volumeBackup): string
-    {
+    public static function volumeBackupName(
+        string $project,
+        string $location,
+        string $backupPlan,
+        string $backup,
+        string $volumeBackup
+    ): string {
         return self::getPathTemplate('volumeBackup')->render([
             'project' => $project,
             'location' => $location,
@@ -505,8 +516,13 @@ final class BackupForGKEClient
      *
      * @return string The formatted volume_restore resource.
      */
-    public static function volumeRestoreName(string $project, string $location, string $restorePlan, string $restore, string $volumeRestore): string
-    {
+    public static function volumeRestoreName(
+        string $project,
+        string $location,
+        string $restorePlan,
+        string $restore,
+        string $volumeRestore
+    ): string {
         return self::getPathTemplate('volumeRestore')->render([
             'project' => $project,
             'location' => $location,
@@ -763,8 +779,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createRestoreChannel(CreateRestoreChannelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createRestoreChannel(
+        CreateRestoreChannelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateRestoreChannel', $request, $callOptions)->wait();
     }
 
@@ -919,8 +937,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteRestoreChannel(DeleteRestoreChannelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteRestoreChannel(
+        DeleteRestoreChannelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteRestoreChannel', $request, $callOptions)->wait();
     }
 
@@ -1024,8 +1044,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBackupIndexDownloadUrl(GetBackupIndexDownloadUrlRequest $request, array $callOptions = []): GetBackupIndexDownloadUrlResponse
-    {
+    public function getBackupIndexDownloadUrl(
+        GetBackupIndexDownloadUrlRequest $request,
+        array $callOptions = []
+    ): GetBackupIndexDownloadUrlResponse {
         return $this->startApiCall('GetBackupIndexDownloadUrl', $request, $callOptions)->wait();
     }
 
@@ -1076,8 +1098,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getBackupPlanBinding(GetBackupPlanBindingRequest $request, array $callOptions = []): BackupPlanBinding
-    {
+    public function getBackupPlanBinding(
+        GetBackupPlanBindingRequest $request,
+        array $callOptions = []
+    ): BackupPlanBinding {
         return $this->startApiCall('GetBackupPlanBinding', $request, $callOptions)->wait();
     }
 
@@ -1180,8 +1204,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getRestorePlanBinding(GetRestorePlanBindingRequest $request, array $callOptions = []): RestorePlanBinding
-    {
+    public function getRestorePlanBinding(
+        GetRestorePlanBindingRequest $request,
+        array $callOptions = []
+    ): RestorePlanBinding {
         return $this->startApiCall('GetRestorePlanBinding', $request, $callOptions)->wait();
     }
 
@@ -1284,8 +1310,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBackupPlanBindings(ListBackupPlanBindingsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listBackupPlanBindings(
+        ListBackupPlanBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListBackupPlanBindings', $request, $callOptions);
     }
 
@@ -1388,8 +1416,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listRestorePlanBindings(ListRestorePlanBindingsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRestorePlanBindings(
+        ListRestorePlanBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRestorePlanBindings', $request, $callOptions);
     }
 
@@ -1622,8 +1652,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateRestoreChannel(UpdateRestoreChannelRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateRestoreChannel(
+        UpdateRestoreChannelRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateRestoreChannel', $request, $callOptions)->wait();
     }
 
@@ -1789,8 +1821,10 @@ final class BackupForGKEClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
