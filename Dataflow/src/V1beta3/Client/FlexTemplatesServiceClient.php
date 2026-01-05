@@ -208,8 +208,10 @@ final class FlexTemplatesServiceClient
      *
      * @experimental
      */
-    public function launchFlexTemplate(LaunchFlexTemplateRequest $request, array $callOptions = []): LaunchFlexTemplateResponse
-    {
+    public function launchFlexTemplate(
+        LaunchFlexTemplateRequest $request,
+        array $callOptions = []
+    ): LaunchFlexTemplateResponse {
         return $this->startApiCall('LaunchFlexTemplate', $request, $callOptions)->wait();
     }
 }

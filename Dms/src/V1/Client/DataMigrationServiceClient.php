@@ -168,9 +168,7 @@ final class DataMigrationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -270,8 +268,11 @@ final class DataMigrationServiceClient
      *
      * @return string The formatted conversion_workspace resource.
      */
-    public static function conversionWorkspaceName(string $project, string $location, string $conversionWorkspace): string
-    {
+    public static function conversionWorkspaceName(
+        string $project,
+        string $location,
+        string $conversionWorkspace
+    ): string {
         return self::getPathTemplate('conversionWorkspace')->render([
             'project' => $project,
             'location' => $location,
@@ -307,8 +308,12 @@ final class DataMigrationServiceClient
      *
      * @return string The formatted mapping_rule resource.
      */
-    public static function mappingRuleName(string $project, string $location, string $conversionWorkspace, string $mappingRule): string
-    {
+    public static function mappingRuleName(
+        string $project,
+        string $location,
+        string $conversionWorkspace,
+        string $mappingRule
+    ): string {
         return self::getPathTemplate('mappingRule')->render([
             'project' => $project,
             'location' => $location,
@@ -510,8 +515,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function applyConversionWorkspace(ApplyConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function applyConversionWorkspace(
+        ApplyConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ApplyConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -537,8 +544,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function commitConversionWorkspace(CommitConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function commitConversionWorkspace(
+        CommitConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CommitConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -564,8 +573,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function convertConversionWorkspace(ConvertConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function convertConversionWorkspace(
+        ConvertConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ConvertConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -591,8 +602,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConnectionProfile(CreateConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConnectionProfile(
+        CreateConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -618,8 +631,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversionWorkspace(CreateConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createConversionWorkspace(
+        CreateConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -699,8 +714,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPrivateConnection(CreatePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPrivateConnection(
+        CreatePrivateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -728,8 +745,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConnectionProfile(DeleteConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConnectionProfile(
+        DeleteConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -755,8 +774,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteConversionWorkspace(DeleteConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteConversionWorkspace(
+        DeleteConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -834,8 +855,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePrivateConnection(DeletePrivateConnectionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePrivateConnection(
+        DeletePrivateConnectionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -862,8 +885,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function describeConversionWorkspaceRevisions(DescribeConversionWorkspaceRevisionsRequest $request, array $callOptions = []): DescribeConversionWorkspaceRevisionsResponse
-    {
+    public function describeConversionWorkspaceRevisions(
+        DescribeConversionWorkspaceRevisionsRequest $request,
+        array $callOptions = []
+    ): DescribeConversionWorkspaceRevisionsResponse {
         return $this->startApiCall('DescribeConversionWorkspaceRevisions', $request, $callOptions)->wait();
     }
 
@@ -894,8 +919,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function describeDatabaseEntities(DescribeDatabaseEntitiesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function describeDatabaseEntities(
+        DescribeDatabaseEntitiesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('DescribeDatabaseEntities', $request, $callOptions);
     }
 
@@ -977,8 +1004,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateTcpProxyScript(GenerateTcpProxyScriptRequest $request, array $callOptions = []): TcpProxyScript
-    {
+    public function generateTcpProxyScript(
+        GenerateTcpProxyScriptRequest $request,
+        array $callOptions = []
+    ): TcpProxyScript {
         return $this->startApiCall('GenerateTcpProxyScript', $request, $callOptions)->wait();
     }
 
@@ -1004,8 +1033,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConnectionProfile(GetConnectionProfileRequest $request, array $callOptions = []): ConnectionProfile
-    {
+    public function getConnectionProfile(
+        GetConnectionProfileRequest $request,
+        array $callOptions = []
+    ): ConnectionProfile {
         return $this->startApiCall('GetConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -1031,8 +1062,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getConversionWorkspace(GetConversionWorkspaceRequest $request, array $callOptions = []): ConversionWorkspace
-    {
+    public function getConversionWorkspace(
+        GetConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): ConversionWorkspace {
         return $this->startApiCall('GetConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -1110,8 +1143,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPrivateConnection(GetPrivateConnectionRequest $request, array $callOptions = []): PrivateConnection
-    {
+    public function getPrivateConnection(
+        GetPrivateConnectionRequest $request,
+        array $callOptions = []
+    ): PrivateConnection {
         return $this->startApiCall('GetPrivateConnection', $request, $callOptions)->wait();
     }
 
@@ -1166,8 +1201,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConnectionProfiles(ListConnectionProfilesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConnectionProfiles(
+        ListConnectionProfilesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConnectionProfiles', $request, $callOptions);
     }
 
@@ -1193,8 +1230,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversionWorkspaces(ListConversionWorkspacesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversionWorkspaces(
+        ListConversionWorkspacesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversionWorkspaces', $request, $callOptions);
     }
 
@@ -1274,8 +1313,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPrivateConnections(ListPrivateConnectionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPrivateConnections(
+        ListPrivateConnectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPrivateConnections', $request, $callOptions);
     }
 
@@ -1386,8 +1427,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function rollbackConversionWorkspace(RollbackConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function rollbackConversionWorkspace(
+        RollbackConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RollbackConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -1418,8 +1461,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchBackgroundJobs(SearchBackgroundJobsRequest $request, array $callOptions = []): SearchBackgroundJobsResponse
-    {
+    public function searchBackgroundJobs(
+        SearchBackgroundJobsRequest $request,
+        array $callOptions = []
+    ): SearchBackgroundJobsResponse {
         return $this->startApiCall('SearchBackgroundJobs', $request, $callOptions)->wait();
     }
 
@@ -1446,8 +1491,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function seedConversionWorkspace(SeedConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function seedConversionWorkspace(
+        SeedConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SeedConversionWorkspace', $request, $callOptions)->wait();
     }
 
@@ -1527,8 +1574,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConnectionProfile(UpdateConnectionProfileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateConnectionProfile(
+        UpdateConnectionProfileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateConnectionProfile', $request, $callOptions)->wait();
     }
 
@@ -1554,8 +1603,10 @@ final class DataMigrationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConversionWorkspace(UpdateConversionWorkspaceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateConversionWorkspace(
+        UpdateConversionWorkspaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateConversionWorkspace', $request, $callOptions)->wait();
     }
 

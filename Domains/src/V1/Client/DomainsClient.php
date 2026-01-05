@@ -112,9 +112,7 @@ final class DomainsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -354,8 +352,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function configureContactSettings(ConfigureContactSettingsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function configureContactSettings(
+        ConfigureContactSettingsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ConfigureContactSettings', $request, $callOptions)->wait();
     }
 
@@ -380,8 +380,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function configureDnsSettings(ConfigureDnsSettingsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function configureDnsSettings(
+        ConfigureDnsSettingsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ConfigureDnsSettings', $request, $callOptions)->wait();
     }
 
@@ -406,8 +408,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function configureManagementSettings(ConfigureManagementSettingsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function configureManagementSettings(
+        ConfigureManagementSettingsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ConfigureManagementSettings', $request, $callOptions)->wait();
     }
 
@@ -603,8 +607,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resetAuthorizationCode(ResetAuthorizationCodeRequest $request, array $callOptions = []): AuthorizationCode
-    {
+    public function resetAuthorizationCode(
+        ResetAuthorizationCodeRequest $request,
+        array $callOptions = []
+    ): AuthorizationCode {
         return $this->startApiCall('ResetAuthorizationCode', $request, $callOptions)->wait();
     }
 
@@ -633,8 +639,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveAuthorizationCode(RetrieveAuthorizationCodeRequest $request, array $callOptions = []): AuthorizationCode
-    {
+    public function retrieveAuthorizationCode(
+        RetrieveAuthorizationCodeRequest $request,
+        array $callOptions = []
+    ): AuthorizationCode {
         return $this->startApiCall('RetrieveAuthorizationCode', $request, $callOptions)->wait();
     }
 
@@ -660,8 +668,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveRegisterParameters(RetrieveRegisterParametersRequest $request, array $callOptions = []): RetrieveRegisterParametersResponse
-    {
+    public function retrieveRegisterParameters(
+        RetrieveRegisterParametersRequest $request,
+        array $callOptions = []
+    ): RetrieveRegisterParametersResponse {
         return $this->startApiCall('RetrieveRegisterParameters', $request, $callOptions)->wait();
     }
 
@@ -691,8 +701,10 @@ final class DomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function retrieveTransferParameters(RetrieveTransferParametersRequest $request, array $callOptions = []): RetrieveTransferParametersResponse
-    {
+    public function retrieveTransferParameters(
+        RetrieveTransferParametersRequest $request,
+        array $callOptions = []
+    ): RetrieveTransferParametersResponse {
         return $this->startApiCall('RetrieveTransferParameters', $request, $callOptions)->wait();
     }
 

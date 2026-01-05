@@ -129,8 +129,12 @@ final class ExperimentsClient
      *
      * @return string The formatted environment resource.
      */
-    public static function environmentName(string $project, string $location, string $agent, string $environment): string
-    {
+    public static function environmentName(
+        string $project,
+        string $location,
+        string $agent,
+        string $environment
+    ): string {
         return self::getPathTemplate('environment')->render([
             'project' => $project,
             'location' => $location,
@@ -151,8 +155,13 @@ final class ExperimentsClient
      *
      * @return string The formatted experiment resource.
      */
-    public static function experimentName(string $project, string $location, string $agent, string $environment, string $experiment): string
-    {
+    public static function experimentName(
+        string $project,
+        string $location,
+        string $agent,
+        string $environment,
+        string $experiment
+    ): string {
         return self::getPathTemplate('experiment')->render([
             'project' => $project,
             'location' => $location,
@@ -174,8 +183,13 @@ final class ExperimentsClient
      *
      * @return string The formatted version resource.
      */
-    public static function versionName(string $project, string $location, string $agent, string $flow, string $version): string
-    {
+    public static function versionName(
+        string $project,
+        string $location,
+        string $agent,
+        string $flow,
+        string $version
+    ): string {
         return self::getPathTemplate('version')->render([
             'project' => $project,
             'location' => $location,
