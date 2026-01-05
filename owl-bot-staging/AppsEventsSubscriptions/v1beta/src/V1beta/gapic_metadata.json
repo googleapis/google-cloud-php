@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.apps.events.subscriptions.v1beta",
+    "libraryPackage": "Google\\Apps\\Events\\Subscriptions\\V1beta",
+    "services": {
+        "SubscriptionsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SubscriptionsServiceGapicClient",
+                    "rpcs": {
+                        "CreateSubscription": {
+                            "methods": [
+                                "createSubscription"
+                            ]
+                        },
+                        "DeleteSubscription": {
+                            "methods": [
+                                "deleteSubscription"
+                            ]
+                        },
+                        "GetSubscription": {
+                            "methods": [
+                                "getSubscription"
+                            ]
+                        },
+                        "ListSubscriptions": {
+                            "methods": [
+                                "listSubscriptions"
+                            ]
+                        },
+                        "ReactivateSubscription": {
+                            "methods": [
+                                "reactivateSubscription"
+                            ]
+                        },
+                        "UpdateSubscription": {
+                            "methods": [
+                                "updateSubscription"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,251 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.appengine.v1",
+    "libraryPackage": "Google\\Cloud\\AppEngine\\V1",
+    "services": {
+        "Applications": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ApplicationsGapicClient",
+                    "rpcs": {
+                        "CreateApplication": {
+                            "methods": [
+                                "createApplication"
+                            ]
+                        },
+                        "GetApplication": {
+                            "methods": [
+                                "getApplication"
+                            ]
+                        },
+                        "RepairApplication": {
+                            "methods": [
+                                "repairApplication"
+                            ]
+                        },
+                        "UpdateApplication": {
+                            "methods": [
+                                "updateApplication"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Services": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServicesGapicClient",
+                    "rpcs": {
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "UpdateService": {
+                            "methods": [
+                                "updateService"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Versions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VersionsGapicClient",
+                    "rpcs": {
+                        "CreateVersion": {
+                            "methods": [
+                                "createVersion"
+                            ]
+                        },
+                        "DeleteVersion": {
+                            "methods": [
+                                "deleteVersion"
+                            ]
+                        },
+                        "GetVersion": {
+                            "methods": [
+                                "getVersion"
+                            ]
+                        },
+                        "ListVersions": {
+                            "methods": [
+                                "listVersions"
+                            ]
+                        },
+                        "UpdateVersion": {
+                            "methods": [
+                                "updateVersion"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Instances": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InstancesGapicClient",
+                    "rpcs": {
+                        "DebugInstance": {
+                            "methods": [
+                                "debugInstance"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Firewall": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FirewallGapicClient",
+                    "rpcs": {
+                        "BatchUpdateIngressRules": {
+                            "methods": [
+                                "batchUpdateIngressRules"
+                            ]
+                        },
+                        "CreateIngressRule": {
+                            "methods": [
+                                "createIngressRule"
+                            ]
+                        },
+                        "DeleteIngressRule": {
+                            "methods": [
+                                "deleteIngressRule"
+                            ]
+                        },
+                        "GetIngressRule": {
+                            "methods": [
+                                "getIngressRule"
+                            ]
+                        },
+                        "ListIngressRules": {
+                            "methods": [
+                                "listIngressRules"
+                            ]
+                        },
+                        "UpdateIngressRule": {
+                            "methods": [
+                                "updateIngressRule"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AuthorizedDomains": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AuthorizedDomainsGapicClient",
+                    "rpcs": {
+                        "ListAuthorizedDomains": {
+                            "methods": [
+                                "listAuthorizedDomains"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AuthorizedCertificates": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AuthorizedCertificatesGapicClient",
+                    "rpcs": {
+                        "CreateAuthorizedCertificate": {
+                            "methods": [
+                                "createAuthorizedCertificate"
+                            ]
+                        },
+                        "DeleteAuthorizedCertificate": {
+                            "methods": [
+                                "deleteAuthorizedCertificate"
+                            ]
+                        },
+                        "GetAuthorizedCertificate": {
+                            "methods": [
+                                "getAuthorizedCertificate"
+                            ]
+                        },
+                        "ListAuthorizedCertificates": {
+                            "methods": [
+                                "listAuthorizedCertificates"
+                            ]
+                        },
+                        "UpdateAuthorizedCertificate": {
+                            "methods": [
+                                "updateAuthorizedCertificate"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DomainMappings": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DomainMappingsGapicClient",
+                    "rpcs": {
+                        "CreateDomainMapping": {
+                            "methods": [
+                                "createDomainMapping"
+                            ]
+                        },
+                        "DeleteDomainMapping": {
+                            "methods": [
+                                "deleteDomainMapping"
+                            ]
+                        },
+                        "GetDomainMapping": {
+                            "methods": [
+                                "getDomainMapping"
+                            ]
+                        },
+                        "ListDomainMappings": {
+                            "methods": [
+                                "listDomainMappings"
+                            ]
+                        },
+                        "UpdateDomainMapping": {
+                            "methods": [
+                                "updateDomainMapping"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
