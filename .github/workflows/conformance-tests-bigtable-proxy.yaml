@@ -53,6 +53,10 @@ jobs:
       - name: Install Road Runner PHP
         run: |
           wget https://github.com/roadrunner-server/roadrunner/releases/download/v2024.3.1/roadrunner-2024.3.1-linux-amd64.deb
+          if ! echo "2b131bc21255a48544c636a233c03b6a859c15bb6714d4819874b8abdaacb5d8  roadrunner-2024.3.1-linux-amd64.deb" | sha256sum --check; then
+            echo "Checksum validation failed!"
+            exit 1
+          fi
           sudo dpkg -i roadrunner-2024.3.1-linux-amd64.deb
 
       - run: bash Bigtable/tests/Conformance/proxy/conformance.sh
