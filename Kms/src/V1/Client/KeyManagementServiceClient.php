@@ -228,8 +228,13 @@ final class KeyManagementServiceClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -435,8 +440,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function asymmetricDecrypt(AsymmetricDecryptRequest $request, array $callOptions = []): AsymmetricDecryptResponse
-    {
+    public function asymmetricDecrypt(
+        AsymmetricDecryptRequest $request,
+        array $callOptions = []
+    ): AsymmetricDecryptResponse {
         return $this->startApiCall('AsymmetricDecrypt', $request, $callOptions)->wait();
     }
 
@@ -528,8 +535,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createCryptoKeyVersion(CreateCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
-    {
+    public function createCryptoKeyVersion(
+        CreateCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKeyVersion {
         return $this->startApiCall('CreateCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -691,8 +700,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function destroyCryptoKeyVersion(DestroyCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
-    {
+    public function destroyCryptoKeyVersion(
+        DestroyCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKeyVersion {
         return $this->startApiCall('DestroyCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -748,8 +759,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateRandomBytes(GenerateRandomBytesRequest $request, array $callOptions = []): GenerateRandomBytesResponse
-    {
+    public function generateRandomBytes(
+        GenerateRandomBytesRequest $request,
+        array $callOptions = []
+    ): GenerateRandomBytesResponse {
         return $this->startApiCall('GenerateRandomBytes', $request, $callOptions)->wait();
     }
 
@@ -921,8 +934,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importCryptoKeyVersion(ImportCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
-    {
+    public function importCryptoKeyVersion(
+        ImportCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKeyVersion {
         return $this->startApiCall('ImportCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -948,8 +963,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listCryptoKeyVersions(ListCryptoKeyVersionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listCryptoKeyVersions(
+        ListCryptoKeyVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListCryptoKeyVersions', $request, $callOptions);
     }
 
@@ -1178,8 +1195,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function restoreCryptoKeyVersion(RestoreCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
-    {
+    public function restoreCryptoKeyVersion(
+        RestoreCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKeyVersion {
         return $this->startApiCall('RestoreCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -1236,8 +1255,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCryptoKeyPrimaryVersion(UpdateCryptoKeyPrimaryVersionRequest $request, array $callOptions = []): CryptoKey
-    {
+    public function updateCryptoKeyPrimaryVersion(
+        UpdateCryptoKeyPrimaryVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKey {
         return $this->startApiCall('UpdateCryptoKeyPrimaryVersion', $request, $callOptions)->wait();
     }
 
@@ -1274,8 +1295,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCryptoKeyVersion(UpdateCryptoKeyVersionRequest $request, array $callOptions = []): CryptoKeyVersion
-    {
+    public function updateCryptoKeyVersion(
+        UpdateCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKeyVersion {
         return $this->startApiCall('UpdateCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
@@ -1416,8 +1439,10 @@ final class KeyManagementServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

@@ -240,8 +240,10 @@ final class LanguageServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function analyzeSentiment(AnalyzeSentimentRequest $request, array $callOptions = []): AnalyzeSentimentResponse
-    {
+    public function analyzeSentiment(
+        AnalyzeSentimentRequest $request,
+        array $callOptions = []
+    ): AnalyzeSentimentResponse {
         return $this->startApiCall('AnalyzeSentiment', $request, $callOptions)->wait();
     }
 
