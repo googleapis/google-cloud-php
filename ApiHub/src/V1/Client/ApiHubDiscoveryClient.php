@@ -90,9 +90,7 @@ final class ApiHubDiscoveryClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -122,9 +120,7 @@ final class ApiHubDiscoveryClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -137,8 +133,11 @@ final class ApiHubDiscoveryClient
      *
      * @return string The formatted discovered_api_observation resource.
      */
-    public static function discoveredApiObservationName(string $project, string $location, string $discoveredApiObservation): string
-    {
+    public static function discoveredApiObservationName(
+        string $project,
+        string $location,
+        string $discoveredApiObservation
+    ): string {
         return self::getPathTemplate('discoveredApiObservation')->render([
             'project' => $project,
             'location' => $location,
@@ -157,8 +156,12 @@ final class ApiHubDiscoveryClient
      *
      * @return string The formatted discovered_api_operation resource.
      */
-    public static function discoveredApiOperationName(string $project, string $location, string $discoveredApiObservation, string $discoveredApiOperation): string
-    {
+    public static function discoveredApiOperationName(
+        string $project,
+        string $location,
+        string $discoveredApiObservation,
+        string $discoveredApiOperation
+    ): string {
         return self::getPathTemplate('discoveredApiOperation')->render([
             'project' => $project,
             'location' => $location,
@@ -315,8 +318,10 @@ final class ApiHubDiscoveryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiscoveredApiObservation(GetDiscoveredApiObservationRequest $request, array $callOptions = []): DiscoveredApiObservation
-    {
+    public function getDiscoveredApiObservation(
+        GetDiscoveredApiObservationRequest $request,
+        array $callOptions = []
+    ): DiscoveredApiObservation {
         return $this->startApiCall('GetDiscoveredApiObservation', $request, $callOptions)->wait();
     }
 
@@ -343,8 +348,10 @@ final class ApiHubDiscoveryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiscoveredApiOperation(GetDiscoveredApiOperationRequest $request, array $callOptions = []): DiscoveredApiOperation
-    {
+    public function getDiscoveredApiOperation(
+        GetDiscoveredApiOperationRequest $request,
+        array $callOptions = []
+    ): DiscoveredApiOperation {
         return $this->startApiCall('GetDiscoveredApiOperation', $request, $callOptions)->wait();
     }
 
@@ -370,8 +377,10 @@ final class ApiHubDiscoveryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDiscoveredApiObservations(ListDiscoveredApiObservationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDiscoveredApiObservations(
+        ListDiscoveredApiObservationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDiscoveredApiObservations', $request, $callOptions);
     }
 
@@ -398,8 +407,10 @@ final class ApiHubDiscoveryClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDiscoveredApiOperations(ListDiscoveredApiOperationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDiscoveredApiOperations(
+        ListDiscoveredApiOperationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDiscoveredApiOperations', $request, $callOptions);
     }
 

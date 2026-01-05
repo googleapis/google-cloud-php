@@ -122,7 +122,8 @@ final class ConferenceRecordsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/conference_records_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/conference_records_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -170,8 +171,11 @@ final class ConferenceRecordsServiceClient
      *
      * @return string The formatted participant_session resource.
      */
-    public static function participantSessionName(string $conferenceRecord, string $participant, string $participantSession): string
-    {
+    public static function participantSessionName(
+        string $conferenceRecord,
+        string $participant,
+        string $participantSession
+    ): string {
         return self::getPathTemplate('participantSession')->render([
             'conference_record' => $conferenceRecord,
             'participant' => $participant,
@@ -422,8 +426,10 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getParticipantSession(GetParticipantSessionRequest $request, array $callOptions = []): ParticipantSession
-    {
+    public function getParticipantSession(
+        GetParticipantSessionRequest $request,
+        array $callOptions = []
+    ): ParticipantSession {
         return $this->startApiCall('GetParticipantSession', $request, $callOptions)->wait();
     }
 
@@ -535,8 +541,10 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConferenceRecords(ListConferenceRecordsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConferenceRecords(
+        ListConferenceRecordsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConferenceRecords', $request, $callOptions);
     }
 
@@ -566,8 +574,10 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listParticipantSessions(ListParticipantSessionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listParticipantSessions(
+        ListParticipantSessionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListParticipantSessions', $request, $callOptions);
     }
 
@@ -657,8 +667,10 @@ final class ConferenceRecordsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listTranscriptEntries(ListTranscriptEntriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listTranscriptEntries(
+        ListTranscriptEntriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListTranscriptEntries', $request, $callOptions);
     }
 

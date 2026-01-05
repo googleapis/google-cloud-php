@@ -225,8 +225,10 @@ final class FirewallClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateIngressRules(BatchUpdateIngressRulesRequest $request, array $callOptions = []): BatchUpdateIngressRulesResponse
-    {
+    public function batchUpdateIngressRules(
+        BatchUpdateIngressRulesRequest $request,
+        array $callOptions = []
+    ): BatchUpdateIngressRulesResponse {
         return $this->startApiCall('BatchUpdateIngressRules', $request, $callOptions)->wait();
     }
 

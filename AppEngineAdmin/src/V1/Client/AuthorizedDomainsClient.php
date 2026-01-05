@@ -203,8 +203,10 @@ final class AuthorizedDomainsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAuthorizedDomains(ListAuthorizedDomainsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAuthorizedDomains(
+        ListAuthorizedDomainsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAuthorizedDomains', $request, $callOptions);
     }
 }

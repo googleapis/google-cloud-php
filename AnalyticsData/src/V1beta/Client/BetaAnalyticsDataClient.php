@@ -386,8 +386,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function batchRunPivotReports(BatchRunPivotReportsRequest $request, array $callOptions = []): BatchRunPivotReportsResponse
-    {
+    public function batchRunPivotReports(
+        BatchRunPivotReportsRequest $request,
+        array $callOptions = []
+    ): BatchRunPivotReportsResponse {
         return $this->startApiCall('BatchRunPivotReports', $request, $callOptions)->wait();
     }
 
@@ -452,8 +454,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function checkCompatibility(CheckCompatibilityRequest $request, array $callOptions = []): CheckCompatibilityResponse
-    {
+    public function checkCompatibility(
+        CheckCompatibilityRequest $request,
+        array $callOptions = []
+    ): CheckCompatibilityResponse {
         return $this->startApiCall('CheckCompatibility', $request, $callOptions)->wait();
     }
 
@@ -505,8 +509,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function createAudienceExport(CreateAudienceExportRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createAudienceExport(
+        CreateAudienceExportRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateAudienceExport', $request, $callOptions)->wait();
     }
 
@@ -671,8 +677,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function queryAudienceExport(QueryAudienceExportRequest $request, array $callOptions = []): QueryAudienceExportResponse
-    {
+    public function queryAudienceExport(
+        QueryAudienceExportRequest $request,
+        array $callOptions = []
+    ): QueryAudienceExportResponse {
         return $this->startApiCall('QueryAudienceExport', $request, $callOptions)->wait();
     }
 
@@ -739,8 +747,10 @@ final class BetaAnalyticsDataClient
      *
      * @experimental
      */
-    public function runRealtimeReport(RunRealtimeReportRequest $request, array $callOptions = []): RunRealtimeReportResponse
-    {
+    public function runRealtimeReport(
+        RunRealtimeReportRequest $request,
+        array $callOptions = []
+    ): RunRealtimeReportResponse {
         return $this->startApiCall('RunRealtimeReport', $request, $callOptions)->wait();
     }
 

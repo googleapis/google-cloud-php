@@ -509,8 +509,10 @@ final class SubscriptionsServiceClient
      *
      * @experimental
      */
-    public function reactivateSubscription(ReactivateSubscriptionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function reactivateSubscription(
+        ReactivateSubscriptionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ReactivateSubscription', $request, $callOptions)->wait();
     }
 

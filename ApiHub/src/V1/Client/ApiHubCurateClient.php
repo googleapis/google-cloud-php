@@ -91,9 +91,7 @@ final class ApiHubCurateClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -123,9 +121,7 @@ final class ApiHubCurateClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -175,8 +171,12 @@ final class ApiHubCurateClient
      *
      * @return string The formatted plugin_instance resource.
      */
-    public static function pluginInstanceName(string $project, string $location, string $plugin, string $instance): string
-    {
+    public static function pluginInstanceName(
+        string $project,
+        string $location,
+        string $plugin,
+        string $instance
+    ): string {
         return self::getPathTemplate('pluginInstance')->render([
             'project' => $project,
             'location' => $location,

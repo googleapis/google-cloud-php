@@ -92,9 +92,7 @@ final class ProvisioningClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -126,9 +124,7 @@ final class ProvisioningClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -344,8 +340,10 @@ final class ProvisioningClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createApiHubInstance(CreateApiHubInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createApiHubInstance(
+        CreateApiHubInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateApiHubInstance', $request, $callOptions)->wait();
     }
 
@@ -370,8 +368,10 @@ final class ProvisioningClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteApiHubInstance(DeleteApiHubInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteApiHubInstance(
+        DeleteApiHubInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteApiHubInstance', $request, $callOptions)->wait();
     }
 
@@ -423,8 +423,10 @@ final class ProvisioningClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function lookupApiHubInstance(LookupApiHubInstanceRequest $request, array $callOptions = []): LookupApiHubInstanceResponse
-    {
+    public function lookupApiHubInstance(
+        LookupApiHubInstanceRequest $request,
+        array $callOptions = []
+    ): LookupApiHubInstanceResponse {
         return $this->startApiCall('LookupApiHubInstance', $request, $callOptions)->wait();
     }
 

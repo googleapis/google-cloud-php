@@ -115,9 +115,7 @@ final class ApiHubPluginClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -149,9 +147,7 @@ final class ApiHubPluginClient
     /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
-        return [
-            'rest',
-        ];
+        return ['rest'];
     }
 
     /**
@@ -268,8 +264,12 @@ final class ApiHubPluginClient
      *
      * @return string The formatted plugin_instance resource.
      */
-    public static function pluginInstanceName(string $project, string $location, string $plugin, string $instance): string
-    {
+    public static function pluginInstanceName(
+        string $project,
+        string $location,
+        string $plugin,
+        string $instance
+    ): string {
         return self::getPathTemplate('pluginInstance')->render([
             'project' => $project,
             'location' => $location,
@@ -454,8 +454,10 @@ final class ApiHubPluginClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPluginInstance(CreatePluginInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPluginInstance(
+        CreatePluginInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePluginInstance', $request, $callOptions)->wait();
     }
 
@@ -507,8 +509,10 @@ final class ApiHubPluginClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePluginInstance(DeletePluginInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePluginInstance(
+        DeletePluginInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePluginInstance', $request, $callOptions)->wait();
     }
 
@@ -561,8 +565,10 @@ final class ApiHubPluginClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function disablePluginInstanceAction(DisablePluginInstanceActionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function disablePluginInstanceAction(
+        DisablePluginInstanceActionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DisablePluginInstanceAction', $request, $callOptions)->wait();
     }
 
@@ -615,8 +621,10 @@ final class ApiHubPluginClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function enablePluginInstanceAction(EnablePluginInstanceActionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function enablePluginInstanceAction(
+        EnablePluginInstanceActionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('EnablePluginInstanceAction', $request, $callOptions)->wait();
     }
 
@@ -642,8 +650,10 @@ final class ApiHubPluginClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function executePluginInstanceAction(ExecutePluginInstanceActionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function executePluginInstanceAction(
+        ExecutePluginInstanceActionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExecutePluginInstanceAction', $request, $callOptions)->wait();
     }
 

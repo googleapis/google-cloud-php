@@ -84,9 +84,7 @@ final class AdvisoryNotificationsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -101,7 +99,8 @@ final class AdvisoryNotificationsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/advisory_notifications_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/advisory_notifications_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -170,8 +169,11 @@ final class AdvisoryNotificationsServiceClient
      *
      * @return string The formatted organization_location_notification resource.
      */
-    public static function organizationLocationNotificationName(string $organization, string $location, string $notification): string
-    {
+    public static function organizationLocationNotificationName(
+        string $organization,
+        string $location,
+        string $notification
+    ): string {
         return self::getPathTemplate('organizationLocationNotification')->render([
             'organization' => $organization,
             'location' => $location,
@@ -223,8 +225,11 @@ final class AdvisoryNotificationsServiceClient
      *
      * @return string The formatted project_location_notification resource.
      */
-    public static function projectLocationNotificationName(string $project, string $location, string $notification): string
-    {
+    public static function projectLocationNotificationName(
+        string $project,
+        string $location,
+        string $notification
+    ): string {
         return self::getPathTemplate('projectLocationNotification')->render([
             'project' => $project,
             'location' => $location,

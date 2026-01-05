@@ -154,9 +154,7 @@ final class AppHubClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -347,8 +345,11 @@ final class AppHubClient
      *
      * @return string The formatted service_project_attachment resource.
      */
-    public static function serviceProjectAttachmentName(string $project, string $location, string $serviceProjectAttachment): string
-    {
+    public static function serviceProjectAttachmentName(
+        string $project,
+        string $location,
+        string $serviceProjectAttachment
+    ): string {
         return self::getPathTemplate('serviceProjectAttachment')->render([
             'project' => $project,
             'location' => $location,
@@ -367,8 +368,12 @@ final class AppHubClient
      *
      * @return string The formatted workload resource.
      */
-    public static function workloadName(string $project, string $location, string $application, string $workload): string
-    {
+    public static function workloadName(
+        string $project,
+        string $location,
+        string $application,
+        string $workload
+    ): string {
         return self::getPathTemplate('workload')->render([
             'project' => $project,
             'location' => $location,
@@ -568,8 +573,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServiceProjectAttachment(CreateServiceProjectAttachmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createServiceProjectAttachment(
+        CreateServiceProjectAttachmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateServiceProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -673,8 +680,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteServiceProjectAttachment(DeleteServiceProjectAttachmentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteServiceProjectAttachment(
+        DeleteServiceProjectAttachmentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteServiceProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -728,8 +737,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function detachServiceProjectAttachment(DetachServiceProjectAttachmentRequest $request, array $callOptions = []): DetachServiceProjectAttachmentResponse
-    {
+    public function detachServiceProjectAttachment(
+        DetachServiceProjectAttachmentRequest $request,
+        array $callOptions = []
+    ): DetachServiceProjectAttachmentResponse {
         return $this->startApiCall('DetachServiceProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -780,8 +791,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiscoveredService(GetDiscoveredServiceRequest $request, array $callOptions = []): DiscoveredService
-    {
+    public function getDiscoveredService(
+        GetDiscoveredServiceRequest $request,
+        array $callOptions = []
+    ): DiscoveredService {
         return $this->startApiCall('GetDiscoveredService', $request, $callOptions)->wait();
     }
 
@@ -806,8 +819,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDiscoveredWorkload(GetDiscoveredWorkloadRequest $request, array $callOptions = []): DiscoveredWorkload
-    {
+    public function getDiscoveredWorkload(
+        GetDiscoveredWorkloadRequest $request,
+        array $callOptions = []
+    ): DiscoveredWorkload {
         return $this->startApiCall('GetDiscoveredWorkload', $request, $callOptions)->wait();
     }
 
@@ -858,8 +873,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getServiceProjectAttachment(GetServiceProjectAttachmentRequest $request, array $callOptions = []): ServiceProjectAttachment
-    {
+    public function getServiceProjectAttachment(
+        GetServiceProjectAttachmentRequest $request,
+        array $callOptions = []
+    ): ServiceProjectAttachment {
         return $this->startApiCall('GetServiceProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -937,8 +954,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDiscoveredServices(ListDiscoveredServicesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDiscoveredServices(
+        ListDiscoveredServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDiscoveredServices', $request, $callOptions);
     }
 
@@ -964,8 +983,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDiscoveredWorkloads(ListDiscoveredWorkloadsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDiscoveredWorkloads(
+        ListDiscoveredWorkloadsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDiscoveredWorkloads', $request, $callOptions);
     }
 
@@ -990,8 +1011,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listServiceProjectAttachments(ListServiceProjectAttachmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listServiceProjectAttachments(
+        ListServiceProjectAttachmentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListServiceProjectAttachments', $request, $callOptions);
     }
 
@@ -1069,8 +1092,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function lookupDiscoveredService(LookupDiscoveredServiceRequest $request, array $callOptions = []): LookupDiscoveredServiceResponse
-    {
+    public function lookupDiscoveredService(
+        LookupDiscoveredServiceRequest $request,
+        array $callOptions = []
+    ): LookupDiscoveredServiceResponse {
         return $this->startApiCall('LookupDiscoveredService', $request, $callOptions)->wait();
     }
 
@@ -1096,8 +1121,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function lookupDiscoveredWorkload(LookupDiscoveredWorkloadRequest $request, array $callOptions = []): LookupDiscoveredWorkloadResponse
-    {
+    public function lookupDiscoveredWorkload(
+        LookupDiscoveredWorkloadRequest $request,
+        array $callOptions = []
+    ): LookupDiscoveredWorkloadResponse {
         return $this->startApiCall('LookupDiscoveredWorkload', $request, $callOptions)->wait();
     }
 
@@ -1124,8 +1151,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function lookupServiceProjectAttachment(LookupServiceProjectAttachmentRequest $request, array $callOptions = []): LookupServiceProjectAttachmentResponse
-    {
+    public function lookupServiceProjectAttachment(
+        LookupServiceProjectAttachmentRequest $request,
+        array $callOptions = []
+    ): LookupServiceProjectAttachmentResponse {
         return $this->startApiCall('LookupServiceProjectAttachment', $request, $callOptions)->wait();
     }
 
@@ -1343,8 +1372,10 @@ final class AppHubClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
