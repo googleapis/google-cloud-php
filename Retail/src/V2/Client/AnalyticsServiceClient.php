@@ -74,9 +74,7 @@ final class AnalyticsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -258,8 +256,10 @@ final class AnalyticsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function exportAnalyticsMetrics(ExportAnalyticsMetricsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function exportAnalyticsMetrics(
+        ExportAnalyticsMetricsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ExportAnalyticsMetrics', $request, $callOptions)->wait();
     }
 }

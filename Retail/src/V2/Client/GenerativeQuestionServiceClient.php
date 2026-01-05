@@ -87,9 +87,7 @@ final class GenerativeQuestionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -104,7 +102,8 @@ final class GenerativeQuestionServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/generative_question_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/generative_question_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -261,8 +260,10 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateGenerativeQuestionConfigs(BatchUpdateGenerativeQuestionConfigsRequest $request, array $callOptions = []): BatchUpdateGenerativeQuestionConfigsResponse
-    {
+    public function batchUpdateGenerativeQuestionConfigs(
+        BatchUpdateGenerativeQuestionConfigsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateGenerativeQuestionConfigsResponse {
         return $this->startApiCall('BatchUpdateGenerativeQuestionConfigs', $request, $callOptions)->wait();
     }
 
@@ -290,8 +291,10 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getGenerativeQuestionsFeatureConfig(GetGenerativeQuestionsFeatureConfigRequest $request, array $callOptions = []): GenerativeQuestionsFeatureConfig
-    {
+    public function getGenerativeQuestionsFeatureConfig(
+        GetGenerativeQuestionsFeatureConfigRequest $request,
+        array $callOptions = []
+    ): GenerativeQuestionsFeatureConfig {
         return $this->startApiCall('GetGenerativeQuestionsFeatureConfig', $request, $callOptions)->wait();
     }
 
@@ -317,8 +320,10 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listGenerativeQuestionConfigs(ListGenerativeQuestionConfigsRequest $request, array $callOptions = []): ListGenerativeQuestionConfigsResponse
-    {
+    public function listGenerativeQuestionConfigs(
+        ListGenerativeQuestionConfigsRequest $request,
+        array $callOptions = []
+    ): ListGenerativeQuestionConfigsResponse {
         return $this->startApiCall('ListGenerativeQuestionConfigs', $request, $callOptions)->wait();
     }
 
@@ -344,8 +349,10 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGenerativeQuestionConfig(UpdateGenerativeQuestionConfigRequest $request, array $callOptions = []): GenerativeQuestionConfig
-    {
+    public function updateGenerativeQuestionConfig(
+        UpdateGenerativeQuestionConfigRequest $request,
+        array $callOptions = []
+    ): GenerativeQuestionConfig {
         return $this->startApiCall('UpdateGenerativeQuestionConfig', $request, $callOptions)->wait();
     }
 
@@ -373,8 +380,10 @@ final class GenerativeQuestionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateGenerativeQuestionsFeatureConfig(UpdateGenerativeQuestionsFeatureConfigRequest $request, array $callOptions = []): GenerativeQuestionsFeatureConfig
-    {
+    public function updateGenerativeQuestionsFeatureConfig(
+        UpdateGenerativeQuestionsFeatureConfigRequest $request,
+        array $callOptions = []
+    ): GenerativeQuestionsFeatureConfig {
         return $this->startApiCall('UpdateGenerativeQuestionsFeatureConfig', $request, $callOptions)->wait();
     }
 }

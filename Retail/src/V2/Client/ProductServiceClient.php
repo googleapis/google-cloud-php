@@ -110,9 +110,7 @@ final class ProductServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -216,8 +214,13 @@ final class ProductServiceClient
      *
      * @return string The formatted product resource.
      */
-    public static function productName(string $project, string $location, string $catalog, string $branch, string $product): string
-    {
+    public static function productName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $branch,
+        string $product
+    ): string {
         return self::getPathTemplate('product')->render([
             'project' => $project,
             'location' => $location,
@@ -388,8 +391,10 @@ final class ProductServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function addFulfillmentPlaces(AddFulfillmentPlacesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function addFulfillmentPlaces(
+        AddFulfillmentPlacesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AddFulfillmentPlaces', $request, $callOptions)->wait();
     }
 
@@ -673,8 +678,10 @@ final class ProductServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeFulfillmentPlaces(RemoveFulfillmentPlacesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeFulfillmentPlaces(
+        RemoveFulfillmentPlacesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveFulfillmentPlaces', $request, $callOptions)->wait();
     }
 
@@ -725,8 +732,10 @@ final class ProductServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeLocalInventories(RemoveLocalInventoriesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeLocalInventories(
+        RemoveLocalInventoriesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveLocalInventories', $request, $callOptions)->wait();
     }
 

@@ -95,9 +95,7 @@ final class CatalogServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -206,8 +204,12 @@ final class CatalogServiceClient
      *
      * @experimental
      */
-    public static function catalogItemPathName(string $project, string $location, string $catalog, string $catalogItemPath): string
-    {
+    public static function catalogItemPathName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $catalogItemPath
+    ): string {
         return self::getPathTemplate('catalogItemPath')->render([
             'project' => $project,
             'location' => $location,

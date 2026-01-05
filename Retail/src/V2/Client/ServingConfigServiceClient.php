@@ -89,9 +89,7 @@ final class ServingConfigServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -142,8 +140,12 @@ final class ServingConfigServiceClient
      *
      * @return string The formatted serving_config resource.
      */
-    public static function servingConfigName(string $project, string $location, string $catalog, string $servingConfig): string
-    {
+    public static function servingConfigName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('servingConfig')->render([
             'project' => $project,
             'location' => $location,

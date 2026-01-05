@@ -94,9 +94,7 @@ final class CloudQuotasClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -144,8 +142,11 @@ final class CloudQuotasClient
      *
      * @return string The formatted folder_location_quota_preference resource.
      */
-    public static function folderLocationQuotaPreferenceName(string $folder, string $location, string $quotaPreference): string
-    {
+    public static function folderLocationQuotaPreferenceName(
+        string $folder,
+        string $location,
+        string $quotaPreference
+    ): string {
         return self::getPathTemplate('folderLocationQuotaPreference')->render([
             'folder' => $folder,
             'location' => $location,
@@ -183,8 +184,12 @@ final class CloudQuotasClient
      *
      * @return string The formatted folder_location_service_quota_info resource.
      */
-    public static function folderLocationServiceQuotaInfoName(string $folder, string $location, string $service, string $quotaInfo): string
-    {
+    public static function folderLocationServiceQuotaInfoName(
+        string $folder,
+        string $location,
+        string $service,
+        string $quotaInfo
+    ): string {
         return self::getPathTemplate('folderLocationServiceQuotaInfo')->render([
             'folder' => $folder,
             'location' => $location,
@@ -237,8 +242,11 @@ final class CloudQuotasClient
      *
      * @return string The formatted organization_location_quota_preference resource.
      */
-    public static function organizationLocationQuotaPreferenceName(string $organization, string $location, string $quotaPreference): string
-    {
+    public static function organizationLocationQuotaPreferenceName(
+        string $organization,
+        string $location,
+        string $quotaPreference
+    ): string {
         return self::getPathTemplate('organizationLocationQuotaPreference')->render([
             'organization' => $organization,
             'location' => $location,
@@ -256,8 +264,11 @@ final class CloudQuotasClient
      *
      * @return string The formatted organization_location_service resource.
      */
-    public static function organizationLocationServiceName(string $organization, string $location, string $service): string
-    {
+    public static function organizationLocationServiceName(
+        string $organization,
+        string $location,
+        string $service
+    ): string {
         return self::getPathTemplate('organizationLocationService')->render([
             'organization' => $organization,
             'location' => $location,
@@ -276,8 +287,12 @@ final class CloudQuotasClient
      *
      * @return string The formatted organization_location_service_quota_info resource.
      */
-    public static function organizationLocationServiceQuotaInfoName(string $organization, string $location, string $service, string $quotaInfo): string
-    {
+    public static function organizationLocationServiceQuotaInfoName(
+        string $organization,
+        string $location,
+        string $service,
+        string $quotaInfo
+    ): string {
         return self::getPathTemplate('organizationLocationServiceQuotaInfo')->render([
             'organization' => $organization,
             'location' => $location,
@@ -313,8 +328,11 @@ final class CloudQuotasClient
      *
      * @return string The formatted project_location_quota_preference resource.
      */
-    public static function projectLocationQuotaPreferenceName(string $project, string $location, string $quotaPreference): string
-    {
+    public static function projectLocationQuotaPreferenceName(
+        string $project,
+        string $location,
+        string $quotaPreference
+    ): string {
         return self::getPathTemplate('projectLocationQuotaPreference')->render([
             'project' => $project,
             'location' => $location,
@@ -352,8 +370,12 @@ final class CloudQuotasClient
      *
      * @return string The formatted project_location_service_quota_info resource.
      */
-    public static function projectLocationServiceQuotaInfoName(string $project, string $location, string $service, string $quotaInfo): string
-    {
+    public static function projectLocationServiceQuotaInfoName(
+        string $project,
+        string $location,
+        string $service,
+        string $quotaInfo
+    ): string {
         return self::getPathTemplate('projectLocationServiceQuotaInfo')->render([
             'project' => $project,
             'location' => $location,
@@ -566,8 +588,10 @@ final class CloudQuotasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createQuotaPreference(CreateQuotaPreferenceRequest $request, array $callOptions = []): QuotaPreference
-    {
+    public function createQuotaPreference(
+        CreateQuotaPreferenceRequest $request,
+        array $callOptions = []
+    ): QuotaPreference {
         return $this->startApiCall('CreateQuotaPreference', $request, $callOptions)->wait();
     }
 
@@ -670,8 +694,10 @@ final class CloudQuotasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listQuotaPreferences(ListQuotaPreferencesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listQuotaPreferences(
+        ListQuotaPreferencesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListQuotaPreferences', $request, $callOptions);
     }
 
@@ -697,8 +723,10 @@ final class CloudQuotasClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateQuotaPreference(UpdateQuotaPreferenceRequest $request, array $callOptions = []): QuotaPreference
-    {
+    public function updateQuotaPreference(
+        UpdateQuotaPreferenceRequest $request,
+        array $callOptions = []
+    ): QuotaPreference {
         return $this->startApiCall('UpdateQuotaPreference', $request, $callOptions)->wait();
     }
 }
