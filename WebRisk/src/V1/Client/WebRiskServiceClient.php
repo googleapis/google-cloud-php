@@ -91,9 +91,7 @@ final class WebRiskServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -315,8 +313,10 @@ final class WebRiskServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function computeThreatListDiff(ComputeThreatListDiffRequest $request, array $callOptions = []): ComputeThreatListDiffResponse
-    {
+    public function computeThreatListDiff(
+        ComputeThreatListDiffRequest $request,
+        array $callOptions = []
+    ): ComputeThreatListDiffResponse {
         return $this->startApiCall('ComputeThreatListDiff', $request, $callOptions)->wait();
     }
 

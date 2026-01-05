@@ -275,8 +275,12 @@ final class ProductSearchClient
      *
      * @return string The formatted reference_image resource.
      */
-    public static function referenceImageName(string $project, string $location, string $product, string $referenceImage): string
-    {
+    public static function referenceImageName(
+        string $project,
+        string $location,
+        string $product,
+        string $referenceImage
+    ): string {
         return self::getPathTemplate('referenceImage')->render([
             'project' => $project,
             'location' => $location,
@@ -837,8 +841,10 @@ final class ProductSearchClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listProductsInProductSet(ListProductsInProductSetRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listProductsInProductSet(
+        ListProductsInProductSetRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListProductsInProductSet', $request, $callOptions);
     }
 
@@ -943,8 +949,10 @@ final class ProductSearchClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeProductFromProductSet(RemoveProductFromProductSetRequest $request, array $callOptions = []): void
-    {
+    public function removeProductFromProductSet(
+        RemoveProductFromProductSetRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('RemoveProductFromProductSet', $request, $callOptions)->wait();
     }
 

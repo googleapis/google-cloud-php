@@ -322,8 +322,10 @@ final class ImageAnnotatorClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function asyncBatchAnnotateFiles(AsyncBatchAnnotateFilesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function asyncBatchAnnotateFiles(
+        AsyncBatchAnnotateFilesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AsyncBatchAnnotateFiles', $request, $callOptions)->wait();
     }
 
@@ -357,8 +359,10 @@ final class ImageAnnotatorClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function asyncBatchAnnotateImages(AsyncBatchAnnotateImagesRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function asyncBatchAnnotateImages(
+        AsyncBatchAnnotateImagesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AsyncBatchAnnotateImages', $request, $callOptions)->wait();
     }
 
@@ -389,8 +393,10 @@ final class ImageAnnotatorClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchAnnotateFiles(BatchAnnotateFilesRequest $request, array $callOptions = []): BatchAnnotateFilesResponse
-    {
+    public function batchAnnotateFiles(
+        BatchAnnotateFilesRequest $request,
+        array $callOptions = []
+    ): BatchAnnotateFilesResponse {
         return $this->startApiCall('BatchAnnotateFiles', $request, $callOptions)->wait();
     }
 
@@ -415,8 +421,10 @@ final class ImageAnnotatorClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchAnnotateImages(BatchAnnotateImagesRequest $request, array $callOptions = []): BatchAnnotateImagesResponse
-    {
+    public function batchAnnotateImages(
+        BatchAnnotateImagesRequest $request,
+        array $callOptions = []
+    ): BatchAnnotateImagesResponse {
         return $this->startApiCall('BatchAnnotateImages', $request, $callOptions)->wait();
     }
 }
