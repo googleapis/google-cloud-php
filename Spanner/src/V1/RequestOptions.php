@@ -52,6 +52,12 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string transaction_tag = 3;</code>
      */
     protected $transaction_tag = '';
+    /**
+     * Optional. Optional context that may be needed for some requests.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.ClientContext client_context = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_context = null;
 
     /**
      * Constructor.
@@ -84,6 +90,8 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      *           (ASCII 32 - 126) and the length of a `transaction_tag` is limited to 50
      *           characters. Values that exceed this limit are truncated.
      *           Any leading underscore (_) characters are removed from the string.
+     *     @type \Google\Cloud\Spanner\V1\RequestOptions\ClientContext $client_context
+     *           Optional. Optional context that may be needed for some requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,6 +211,42 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->transaction_tag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional context that may be needed for some requests.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.ClientContext client_context = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\RequestOptions\ClientContext|null
+     */
+    public function getClientContext()
+    {
+        return $this->client_context;
+    }
+
+    public function hasClientContext()
+    {
+        return isset($this->client_context);
+    }
+
+    public function clearClientContext()
+    {
+        unset($this->client_context);
+    }
+
+    /**
+     * Optional. Optional context that may be needed for some requests.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.ClientContext client_context = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\RequestOptions\ClientContext $var
+     * @return $this
+     */
+    public function setClientContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions\ClientContext::class);
+        $this->client_context = $var;
 
         return $this;
     }
