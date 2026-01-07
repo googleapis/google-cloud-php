@@ -22,6 +22,32 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      */
     protected $disk_count = null;
     /**
+     * Output only. [Output Only] Maximum allowed read IOPS for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_read_iops = 59241794;</code>
+     */
+    protected $exapool_max_read_iops = null;
+    /**
+     * Output only. [Output Only] Maximum allowed read throughput in MiB/s for
+     * this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_read_throughput = 390933251;</code>
+     */
+    protected $exapool_max_read_throughput = null;
+    /**
+     * Output only. [Output Only] Maximum allowed write IOPS for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_write_iops = 293212537;</code>
+     */
+    protected $exapool_max_write_iops = null;
+    /**
+     * Output only. [Output Only] Maximum allowed write throughput in MiB/s
+     * for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_write_throughput = 330367482;</code>
+     */
+    protected $exapool_max_write_throughput = null;
+    /**
      * Output only. [Output Only] Timestamp of the last successful resize inRFC3339 text format.
      *
      * Generated from protobuf field <code>optional string last_resize_timestamp = 500825556;</code>
@@ -94,6 +120,16 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $disk_count
      *           [Output Only] Number of disks used.
+     *     @type int|string $exapool_max_read_iops
+     *           Output only. [Output Only] Maximum allowed read IOPS for this Exapool.
+     *     @type int|string $exapool_max_read_throughput
+     *           Output only. [Output Only] Maximum allowed read throughput in MiB/s for
+     *           this Exapool.
+     *     @type int|string $exapool_max_write_iops
+     *           Output only. [Output Only] Maximum allowed write IOPS for this Exapool.
+     *     @type int|string $exapool_max_write_throughput
+     *           Output only. [Output Only] Maximum allowed write throughput in MiB/s
+     *           for this Exapool.
      *     @type string $last_resize_timestamp
      *           Output only. [Output Only] Timestamp of the last successful resize inRFC3339 text format.
      *     @type int|string $max_total_provisioned_disk_capacity_gb
@@ -161,6 +197,154 @@ class StoragePoolResourceStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->disk_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed read IOPS for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_read_iops = 59241794;</code>
+     * @return int|string
+     */
+    public function getExapoolMaxReadIops()
+    {
+        return isset($this->exapool_max_read_iops) ? $this->exapool_max_read_iops : 0;
+    }
+
+    public function hasExapoolMaxReadIops()
+    {
+        return isset($this->exapool_max_read_iops);
+    }
+
+    public function clearExapoolMaxReadIops()
+    {
+        unset($this->exapool_max_read_iops);
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed read IOPS for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_read_iops = 59241794;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setExapoolMaxReadIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->exapool_max_read_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed read throughput in MiB/s for
+     * this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_read_throughput = 390933251;</code>
+     * @return int|string
+     */
+    public function getExapoolMaxReadThroughput()
+    {
+        return isset($this->exapool_max_read_throughput) ? $this->exapool_max_read_throughput : 0;
+    }
+
+    public function hasExapoolMaxReadThroughput()
+    {
+        return isset($this->exapool_max_read_throughput);
+    }
+
+    public function clearExapoolMaxReadThroughput()
+    {
+        unset($this->exapool_max_read_throughput);
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed read throughput in MiB/s for
+     * this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_read_throughput = 390933251;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setExapoolMaxReadThroughput($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->exapool_max_read_throughput = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed write IOPS for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_write_iops = 293212537;</code>
+     * @return int|string
+     */
+    public function getExapoolMaxWriteIops()
+    {
+        return isset($this->exapool_max_write_iops) ? $this->exapool_max_write_iops : 0;
+    }
+
+    public function hasExapoolMaxWriteIops()
+    {
+        return isset($this->exapool_max_write_iops);
+    }
+
+    public function clearExapoolMaxWriteIops()
+    {
+        unset($this->exapool_max_write_iops);
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed write IOPS for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_write_iops = 293212537;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setExapoolMaxWriteIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->exapool_max_write_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed write throughput in MiB/s
+     * for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_write_throughput = 330367482;</code>
+     * @return int|string
+     */
+    public function getExapoolMaxWriteThroughput()
+    {
+        return isset($this->exapool_max_write_throughput) ? $this->exapool_max_write_throughput : 0;
+    }
+
+    public function hasExapoolMaxWriteThroughput()
+    {
+        return isset($this->exapool_max_write_throughput);
+    }
+
+    public function clearExapoolMaxWriteThroughput()
+    {
+        unset($this->exapool_max_write_throughput);
+    }
+
+    /**
+     * Output only. [Output Only] Maximum allowed write throughput in MiB/s
+     * for this Exapool.
+     *
+     * Generated from protobuf field <code>optional int64 exapool_max_write_throughput = 330367482;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setExapoolMaxWriteThroughput($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->exapool_max_write_throughput = $var;
 
         return $this;
     }

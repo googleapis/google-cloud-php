@@ -37,6 +37,12 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
+     * Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
+     */
+    protected $exapool_provisioned_capacity_gb = null;
+    /**
      * Output only. [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      *
@@ -177,6 +183,8 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
+     *     @type \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb $exapool_provisioned_capacity_gb
+     *           Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
      *     @type int|string $id
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
@@ -355,6 +363,42 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
+     * @return \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb|null
+     */
+    public function getExapoolProvisionedCapacityGb()
+    {
+        return $this->exapool_provisioned_capacity_gb;
+    }
+
+    public function hasExapoolProvisionedCapacityGb()
+    {
+        return isset($this->exapool_provisioned_capacity_gb);
+    }
+
+    public function clearExapoolProvisionedCapacityGb()
+    {
+        unset($this->exapool_provisioned_capacity_gb);
+    }
+
+    /**
+     * Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
+     * @param \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb $var
+     * @return $this
+     */
+    public function setExapoolProvisionedCapacityGb($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb::class);
+        $this->exapool_provisioned_capacity_gb = $var;
 
         return $this;
     }
