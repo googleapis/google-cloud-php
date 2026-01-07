@@ -102,6 +102,31 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.IpConfiguration.CaMode server_ca_mode = 10;</code>
      */
     protected $server_ca_mode = null;
+    /**
+     * Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $custom_subject_alternative_names;
+    /**
+     * Optional. The resource name of the server CA pool for an instance with
+     * `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`.
+     * Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID}
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $server_ca_pool = null;
+    /**
+     * Optional. Controls the automatic server certificate rotation feature. This
+     * feature is disabled by default. When enabled, the server certificate will
+     * be automatically rotated during Cloud SQL scheduled maintenance or
+     * self-service maintenance updates up to six months before it expires. This
+     * setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA
+     * or CUSTOMER_MANAGED_CAS_CA.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.IpConfiguration.ServerCertificateRotationMode server_certificate_rotation_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $server_certificate_rotation_mode = null;
 
     /**
      * Constructor.
@@ -160,6 +185,19 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *           PSC settings for this instance.
      *     @type int $server_ca_mode
      *           Specify what type of CA is used for the server certificate.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_subject_alternative_names
+     *           Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
+     *     @type string $server_ca_pool
+     *           Optional. The resource name of the server CA pool for an instance with
+     *           `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`.
+     *           Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID}
+     *     @type int $server_certificate_rotation_mode
+     *           Optional. Controls the automatic server certificate rotation feature. This
+     *           feature is disabled by default. When enabled, the server certificate will
+     *           be automatically rotated during Cloud SQL scheduled maintenance or
+     *           self-service maintenance updates up to six months before it expires. This
+     *           setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA
+     *           or CUSTOMER_MANAGED_CAS_CA.
      * }
      */
     public function __construct($data = NULL) {
@@ -610,6 +648,118 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\IpConfiguration\CaMode::class);
         $this->server_ca_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomSubjectAlternativeNames()
+    {
+        return $this->custom_subject_alternative_names;
+    }
+
+    /**
+     * Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomSubjectAlternativeNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->custom_subject_alternative_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the server CA pool for an instance with
+     * `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`.
+     * Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID}
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServerCaPool()
+    {
+        return isset($this->server_ca_pool) ? $this->server_ca_pool : '';
+    }
+
+    public function hasServerCaPool()
+    {
+        return isset($this->server_ca_pool);
+    }
+
+    public function clearServerCaPool()
+    {
+        unset($this->server_ca_pool);
+    }
+
+    /**
+     * Optional. The resource name of the server CA pool for an instance with
+     * `CUSTOMER_MANAGED_CAS_CA` as the `server_ca_mode`.
+     * Format: projects/{PROJECT}/locations/{REGION}/caPools/{CA_POOL_ID}
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServerCaPool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->server_ca_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls the automatic server certificate rotation feature. This
+     * feature is disabled by default. When enabled, the server certificate will
+     * be automatically rotated during Cloud SQL scheduled maintenance or
+     * self-service maintenance updates up to six months before it expires. This
+     * setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA
+     * or CUSTOMER_MANAGED_CAS_CA.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.IpConfiguration.ServerCertificateRotationMode server_certificate_rotation_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getServerCertificateRotationMode()
+    {
+        return isset($this->server_certificate_rotation_mode) ? $this->server_certificate_rotation_mode : 0;
+    }
+
+    public function hasServerCertificateRotationMode()
+    {
+        return isset($this->server_certificate_rotation_mode);
+    }
+
+    public function clearServerCertificateRotationMode()
+    {
+        unset($this->server_certificate_rotation_mode);
+    }
+
+    /**
+     * Optional. Controls the automatic server certificate rotation feature. This
+     * feature is disabled by default. When enabled, the server certificate will
+     * be automatically rotated during Cloud SQL scheduled maintenance or
+     * self-service maintenance updates up to six months before it expires. This
+     * setting can only be set if server_ca_mode is either GOOGLE_MANAGED_CAS_CA
+     * or CUSTOMER_MANAGED_CAS_CA.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.IpConfiguration.ServerCertificateRotationMode server_certificate_rotation_mode = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServerCertificateRotationMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\IpConfiguration\ServerCertificateRotationMode::class);
+        $this->server_certificate_rotation_mode = $var;
 
         return $this;
     }

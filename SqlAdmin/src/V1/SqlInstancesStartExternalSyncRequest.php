@@ -54,6 +54,15 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $migration_type = 0;
+    /**
+     * Optional. MySQL only. True if end-user has confirmed that this SES call
+     * will wipe replica databases overlapping with the proposed selected_objects.
+     * If this field is not set and there are both overlapping and additional
+     * databases proposed, an error will be returned.
+     *
+     * Generated from protobuf field <code>bool replica_overwrite_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $replica_overwrite_enabled = false;
     protected $sync_config;
 
     /**
@@ -79,6 +88,11 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      *           Optional. MigrationType configures the migration to use physical files or
      *           logical dump files. If not set, then the logical dump file configuration is
      *           used. Valid values are `LOGICAL` or `PHYSICAL`. Only applicable to MySQL.
+     *     @type bool $replica_overwrite_enabled
+     *           Optional. MySQL only. True if end-user has confirmed that this SES call
+     *           will wipe replica databases overlapping with the proposed selected_objects.
+     *           If this field is not set and there are both overlapping and additional
+     *           databases proposed, an error will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,6 +289,38 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType::class);
         $this->migration_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. MySQL only. True if end-user has confirmed that this SES call
+     * will wipe replica databases overlapping with the proposed selected_objects.
+     * If this field is not set and there are both overlapping and additional
+     * databases proposed, an error will be returned.
+     *
+     * Generated from protobuf field <code>bool replica_overwrite_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReplicaOverwriteEnabled()
+    {
+        return $this->replica_overwrite_enabled;
+    }
+
+    /**
+     * Optional. MySQL only. True if end-user has confirmed that this SES call
+     * will wipe replica databases overlapping with the proposed selected_objects.
+     * If this field is not set and there are both overlapping and additional
+     * databases proposed, an error will be returned.
+     *
+     * Generated from protobuf field <code>bool replica_overwrite_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReplicaOverwriteEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->replica_overwrite_enabled = $var;
 
         return $this;
     }

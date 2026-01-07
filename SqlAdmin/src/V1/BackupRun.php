@@ -106,6 +106,13 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      */
     protected $location = '';
     /**
+     * Output only. The instance database version at the time this backup was
+     * made.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $database_version = 0;
+    /**
      * Encryption configuration specific to a backup.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.DiskEncryptionConfiguration disk_encryption_configuration = 16;</code>
@@ -181,6 +188,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *           The URI of this resource.
      *     @type string $location
      *           Location of the backups.
+     *     @type int $database_version
+     *           Output only. The instance database version at the time this backup was
+     *           made.
      *     @type \Google\Cloud\Sql\V1\DiskEncryptionConfiguration $disk_encryption_configuration
      *           Encryption configuration specific to a backup.
      *     @type \Google\Cloud\Sql\V1\DiskEncryptionStatus $disk_encryption_status
@@ -607,6 +617,34 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The instance database version at the time this backup was
+     * made.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDatabaseVersion()
+    {
+        return $this->database_version;
+    }
+
+    /**
+     * Output only. The instance database version at the time this backup was
+     * made.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlDatabaseVersion database_version = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseVersion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlDatabaseVersion::class);
+        $this->database_version = $var;
 
         return $this;
     }

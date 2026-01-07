@@ -89,6 +89,13 @@ class Flag extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated int64 allowed_int_values = 10;</code>
      */
     private $allowed_int_values;
+    /**
+     * Scope of flag.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFlagScope flag_scope = 15;</code>
+     */
+    protected $flag_scope = 0;
+    protected $recommended_value;
 
     /**
      * Constructor.
@@ -130,6 +137,12 @@ class Flag extends \Google\Protobuf\Internal\Message
      *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_int_values
      *           Use this field if only certain integers are accepted. Can be combined
      *           with min_value and max_value to add additional values.
+     *     @type int $flag_scope
+     *           Scope of flag.
+     *     @type string $recommended_string_value
+     *           Recommended string value in string format for UI display.
+     *     @type \Google\Protobuf\Int64Value $recommended_int_value
+     *           Recommended int value in integer format for UI display.
      * }
      */
     public function __construct($data = NULL) {
@@ -573,6 +586,129 @@ class Flag extends \Google\Protobuf\Internal\Message
         $this->allowed_int_values = $arr;
 
         return $this;
+    }
+
+    /**
+     * Scope of flag.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFlagScope flag_scope = 15;</code>
+     * @return int
+     */
+    public function getFlagScope()
+    {
+        return $this->flag_scope;
+    }
+
+    /**
+     * Scope of flag.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlFlagScope flag_scope = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFlagScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlFlagScope::class);
+        $this->flag_scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Recommended string value in string format for UI display.
+     *
+     * Generated from protobuf field <code>string recommended_string_value = 16;</code>
+     * @return string
+     */
+    public function getRecommendedStringValue()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasRecommendedStringValue()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * Recommended string value in string format for UI display.
+     *
+     * Generated from protobuf field <code>string recommended_string_value = 16;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRecommendedStringValue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Recommended int value in integer format for UI display.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_int_value = 17;</code>
+     * @return \Google\Protobuf\Int64Value|null
+     */
+    public function getRecommendedIntValue()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasRecommendedIntValue()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getRecommendedIntValue()</code>
+
+     * Recommended int value in integer format for UI display.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_int_value = 17;</code>
+     * @return int|string|null
+     */
+    public function getRecommendedIntValueUnwrapped()
+    {
+        return $this->readWrapperValue("recommended_int_value");
+    }
+
+    /**
+     * Recommended int value in integer format for UI display.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_int_value = 17;</code>
+     * @param \Google\Protobuf\Int64Value $var
+     * @return $this
+     */
+    public function setRecommendedIntValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int64Value::class);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
+
+     * Recommended int value in integer format for UI display.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int64Value recommended_int_value = 17;</code>
+     * @param int|string|null $var
+     * @return $this
+     */
+    public function setRecommendedIntValueUnwrapped($var)
+    {
+        $this->writeWrapperValue("recommended_int_value", $var);
+        return $this;}
+
+    /**
+     * @return string
+     */
+    public function getRecommendedValue()
+    {
+        return $this->whichOneof("recommended_value");
     }
 
 }

@@ -34,8 +34,8 @@ use Google\Cloud\Sql\V1\SqlInstancesAddServerCaRequest;
  * was previously added but never used in a certificate rotation, this
  * operation replaces that version. There cannot be more than one CA version
  * waiting to be rotated in. For instances that have enabled Certificate
- * Authority Service (CAS) based server CA, please use AddServerCertificate to
- * add a new server certificate.
+ * Authority Service (CAS) based server CA, use AddServerCertificate to add a
+ * new server certificate.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

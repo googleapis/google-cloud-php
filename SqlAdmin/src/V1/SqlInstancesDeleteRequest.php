@@ -27,6 +27,19 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project = 2;</code>
      */
     protected $project = '';
+    /**
+     * Flag to opt-in for final backup. By default, it is turned off.
+     *
+     * Generated from protobuf field <code>optional bool enable_final_backup = 7;</code>
+     */
+    protected $enable_final_backup = null;
+    /**
+     * Optional. The description of the final backup.
+     *
+     * Generated from protobuf field <code>string final_backup_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $final_backup_description = '';
+    protected $expiration;
 
     /**
      * Constructor.
@@ -38,6 +51,15 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
      *           Cloud SQL instance ID. This does not include the project ID.
      *     @type string $project
      *           Project ID of the project that contains the instance to be deleted.
+     *     @type bool $enable_final_backup
+     *           Flag to opt-in for final backup. By default, it is turned off.
+     *     @type int|string $final_backup_ttl_days
+     *           Optional. Retention period of the final backup.
+     *     @type \Google\Protobuf\Timestamp $final_backup_expiry_time
+     *           Optional. Final Backup expiration time.
+     *           Timestamp in UTC of when this resource is considered expired.
+     *     @type string $final_backup_description
+     *           Optional. The description of the final backup.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,6 +117,140 @@ class SqlInstancesDeleteRequest extends \Google\Protobuf\Internal\Message
         $this->project = $var;
 
         return $this;
+    }
+
+    /**
+     * Flag to opt-in for final backup. By default, it is turned off.
+     *
+     * Generated from protobuf field <code>optional bool enable_final_backup = 7;</code>
+     * @return bool
+     */
+    public function getEnableFinalBackup()
+    {
+        return isset($this->enable_final_backup) ? $this->enable_final_backup : false;
+    }
+
+    public function hasEnableFinalBackup()
+    {
+        return isset($this->enable_final_backup);
+    }
+
+    public function clearEnableFinalBackup()
+    {
+        unset($this->enable_final_backup);
+    }
+
+    /**
+     * Flag to opt-in for final backup. By default, it is turned off.
+     *
+     * Generated from protobuf field <code>optional bool enable_final_backup = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableFinalBackup($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_final_backup = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Retention period of the final backup.
+     *
+     * Generated from protobuf field <code>int64 final_backup_ttl_days = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getFinalBackupTtlDays()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasFinalBackupTtlDays()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. Retention period of the final backup.
+     *
+     * Generated from protobuf field <code>int64 final_backup_ttl_days = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setFinalBackupTtlDays($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Final Backup expiration time.
+     * Timestamp in UTC of when this resource is considered expired.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp final_backup_expiry_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getFinalBackupExpiryTime()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasFinalBackupExpiryTime()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Final Backup expiration time.
+     * Timestamp in UTC of when this resource is considered expired.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp final_backup_expiry_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setFinalBackupExpiryTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The description of the final backup.
+     *
+     * Generated from protobuf field <code>string final_backup_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFinalBackupDescription()
+    {
+        return $this->final_backup_description;
+    }
+
+    /**
+     * Optional. The description of the final backup.
+     *
+     * Generated from protobuf field <code>string final_backup_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFinalBackupDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->final_backup_description = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpiration()
+    {
+        return $this->whichOneof("expiration");
     }
 
 }

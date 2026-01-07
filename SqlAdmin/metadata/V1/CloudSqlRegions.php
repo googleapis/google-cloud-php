@@ -17,10 +17,11 @@ class CloudSqlRegions
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-š
-+google/cloud/sql/v1/cloud_sql_regions.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto2/
+µ
++google/cloud/sql/v1/cloud_sql_regions.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2/
 SqlRegionsServiceÊAsqladmin.googleapis.comBc
 com.google.cloud.sql.v1BCloudSqlRegionsServiceProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
         , true);

@@ -40,9 +40,41 @@ return [
                     ],
                 ],
             ],
+            'AddEntraIdCertificate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/addEntraIdCertificate',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'AddServerCa' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/addServerCa',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'AddServerCertificate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/addServerCertificate',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [
@@ -126,6 +158,23 @@ return [
             'DemoteMaster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/demoteMaster',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteSql' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/executeSql',
                 'body' => 'body',
                 'placeholders' => [
                     'instance' => [
@@ -262,9 +311,41 @@ return [
                     ],
                 ],
             ],
+            'ListEntraIdCertificates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/listEntraIdCertificates',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'ListServerCas' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/listServerCas',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'ListServerCertificates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/listServerCertificates',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [
@@ -298,6 +379,35 @@ return [
             'PerformDiskShrink' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/performDiskShrink',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'PointInTimeRestore' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}:pointInTimeRestore',
+                'body' => 'context',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PreCheckMajorVersionUpgrade' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/preCheckMajorVersionUpgrade',
                 'body' => 'body',
                 'placeholders' => [
                     'instance' => [
@@ -444,9 +554,43 @@ return [
                     ],
                 ],
             ],
+            'RotateEntraIdCertificate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/rotateEntraIdCertificate',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'RotateServerCa' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project}/instances/{instance}/rotateServerCa',
+                'body' => 'body',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'RotateServerCertificate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project}/instances/{instance}/rotateServerCertificate',
                 'body' => 'body',
                 'placeholders' => [
                     'instance' => [

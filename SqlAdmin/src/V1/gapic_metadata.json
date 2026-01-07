@@ -41,6 +41,264 @@
                 }
             }
         },
+        "SqlInstancesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlInstancesServiceGapicClient",
+                    "rpcs": {
+                        "AcquireSsrsLease": {
+                            "methods": [
+                                "acquireSsrsLease"
+                            ]
+                        },
+                        "AddEntraIdCertificate": {
+                            "methods": [
+                                "addEntraIdCertificate"
+                            ]
+                        },
+                        "AddServerCa": {
+                            "methods": [
+                                "addServerCa"
+                            ]
+                        },
+                        "AddServerCertificate": {
+                            "methods": [
+                                "addServerCertificate"
+                            ]
+                        },
+                        "Clone": {
+                            "methods": [
+                                "clone"
+                            ]
+                        },
+                        "CreateEphemeral": {
+                            "methods": [
+                                "createEphemeral"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Demote": {
+                            "methods": [
+                                "demote"
+                            ]
+                        },
+                        "DemoteMaster": {
+                            "methods": [
+                                "demoteMaster"
+                            ]
+                        },
+                        "ExecuteSql": {
+                            "methods": [
+                                "executeSql"
+                            ]
+                        },
+                        "Export": {
+                            "methods": [
+                                "export"
+                            ]
+                        },
+                        "Failover": {
+                            "methods": [
+                                "failover"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetDiskShrinkConfig": {
+                            "methods": [
+                                "getDiskShrinkConfig"
+                            ]
+                        },
+                        "GetLatestRecoveryTime": {
+                            "methods": [
+                                "getLatestRecoveryTime"
+                            ]
+                        },
+                        "Import": {
+                            "methods": [
+                                "import"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "ListEntraIdCertificates": {
+                            "methods": [
+                                "listEntraIdCertificates"
+                            ]
+                        },
+                        "ListServerCas": {
+                            "methods": [
+                                "listServerCas"
+                            ]
+                        },
+                        "ListServerCertificates": {
+                            "methods": [
+                                "listServerCertificates"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "PerformDiskShrink": {
+                            "methods": [
+                                "performDiskShrink"
+                            ]
+                        },
+                        "PointInTimeRestore": {
+                            "methods": [
+                                "pointInTimeRestore"
+                            ]
+                        },
+                        "PreCheckMajorVersionUpgrade": {
+                            "methods": [
+                                "preCheckMajorVersionUpgrade"
+                            ]
+                        },
+                        "PromoteReplica": {
+                            "methods": [
+                                "promoteReplica"
+                            ]
+                        },
+                        "Reencrypt": {
+                            "methods": [
+                                "reencrypt"
+                            ]
+                        },
+                        "ReleaseSsrsLease": {
+                            "methods": [
+                                "releaseSsrsLease"
+                            ]
+                        },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
+                            ]
+                        },
+                        "ResetReplicaSize": {
+                            "methods": [
+                                "resetReplicaSize"
+                            ]
+                        },
+                        "ResetSslConfig": {
+                            "methods": [
+                                "resetSslConfig"
+                            ]
+                        },
+                        "Restart": {
+                            "methods": [
+                                "restart"
+                            ]
+                        },
+                        "RestoreBackup": {
+                            "methods": [
+                                "restoreBackup"
+                            ]
+                        },
+                        "RotateEntraIdCertificate": {
+                            "methods": [
+                                "rotateEntraIdCertificate"
+                            ]
+                        },
+                        "RotateServerCa": {
+                            "methods": [
+                                "rotateServerCa"
+                            ]
+                        },
+                        "RotateServerCertificate": {
+                            "methods": [
+                                "rotateServerCertificate"
+                            ]
+                        },
+                        "StartExternalSync": {
+                            "methods": [
+                                "startExternalSync"
+                            ]
+                        },
+                        "StartReplica": {
+                            "methods": [
+                                "startReplica"
+                            ]
+                        },
+                        "StopReplica": {
+                            "methods": [
+                                "stopReplica"
+                            ]
+                        },
+                        "Switchover": {
+                            "methods": [
+                                "switchover"
+                            ]
+                        },
+                        "TruncateLog": {
+                            "methods": [
+                                "truncateLog"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
+                            ]
+                        },
+                        "VerifyExternalSyncSettings": {
+                            "methods": [
+                                "verifyExternalSyncSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlBackupsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlBackupsServiceGapicClient",
+                    "rpcs": {
+                        "CreateBackup": {
+                            "methods": [
+                                "createBackup"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "UpdateBackup": {
+                            "methods": [
+                                "updateBackup"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SqlConnectService": {
             "clients": {
                 "grpc": {
@@ -106,6 +364,13 @@
                 }
             }
         },
+        "SqlFeatureEligibilityService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlFeatureEligibilityServiceGapicClient"
+                }
+            }
+        },
         "SqlFlagsService": {
             "clients": {
                 "grpc": {
@@ -131,185 +396,6 @@
             "clients": {
                 "grpc": {
                     "libraryClient": "SqlInstanceNamesServiceGapicClient"
-                }
-            }
-        },
-        "SqlInstancesService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "SqlInstancesServiceGapicClient",
-                    "rpcs": {
-                        "AcquireSsrsLease": {
-                            "methods": [
-                                "acquireSsrsLease"
-                            ]
-                        },
-                        "AddServerCa": {
-                            "methods": [
-                                "addServerCa"
-                            ]
-                        },
-                        "Clone": {
-                            "methods": [
-                                "clone"
-                            ]
-                        },
-                        "CreateEphemeral": {
-                            "methods": [
-                                "createEphemeral"
-                            ]
-                        },
-                        "Delete": {
-                            "methods": [
-                                "delete"
-                            ]
-                        },
-                        "Demote": {
-                            "methods": [
-                                "demote"
-                            ]
-                        },
-                        "DemoteMaster": {
-                            "methods": [
-                                "demoteMaster"
-                            ]
-                        },
-                        "Export": {
-                            "methods": [
-                                "export"
-                            ]
-                        },
-                        "Failover": {
-                            "methods": [
-                                "failover"
-                            ]
-                        },
-                        "Get": {
-                            "methods": [
-                                "get"
-                            ]
-                        },
-                        "GetDiskShrinkConfig": {
-                            "methods": [
-                                "getDiskShrinkConfig"
-                            ]
-                        },
-                        "GetLatestRecoveryTime": {
-                            "methods": [
-                                "getLatestRecoveryTime"
-                            ]
-                        },
-                        "Import": {
-                            "methods": [
-                                "import"
-                            ]
-                        },
-                        "Insert": {
-                            "methods": [
-                                "insert"
-                            ]
-                        },
-                        "List": {
-                            "methods": [
-                                "list"
-                            ]
-                        },
-                        "ListServerCas": {
-                            "methods": [
-                                "listServerCas"
-                            ]
-                        },
-                        "Patch": {
-                            "methods": [
-                                "patch"
-                            ]
-                        },
-                        "PerformDiskShrink": {
-                            "methods": [
-                                "performDiskShrink"
-                            ]
-                        },
-                        "PromoteReplica": {
-                            "methods": [
-                                "promoteReplica"
-                            ]
-                        },
-                        "Reencrypt": {
-                            "methods": [
-                                "reencrypt"
-                            ]
-                        },
-                        "ReleaseSsrsLease": {
-                            "methods": [
-                                "releaseSsrsLease"
-                            ]
-                        },
-                        "RescheduleMaintenance": {
-                            "methods": [
-                                "rescheduleMaintenance"
-                            ]
-                        },
-                        "ResetReplicaSize": {
-                            "methods": [
-                                "resetReplicaSize"
-                            ]
-                        },
-                        "ResetSslConfig": {
-                            "methods": [
-                                "resetSslConfig"
-                            ]
-                        },
-                        "Restart": {
-                            "methods": [
-                                "restart"
-                            ]
-                        },
-                        "RestoreBackup": {
-                            "methods": [
-                                "restoreBackup"
-                            ]
-                        },
-                        "RotateServerCa": {
-                            "methods": [
-                                "rotateServerCa"
-                            ]
-                        },
-                        "StartExternalSync": {
-                            "methods": [
-                                "startExternalSync"
-                            ]
-                        },
-                        "StartReplica": {
-                            "methods": [
-                                "startReplica"
-                            ]
-                        },
-                        "StopReplica": {
-                            "methods": [
-                                "stopReplica"
-                            ]
-                        },
-                        "Switchover": {
-                            "methods": [
-                                "switchover"
-                            ]
-                        },
-                        "TruncateLog": {
-                            "methods": [
-                                "truncateLog"
-                            ]
-                        },
-                        "Update": {
-                            "methods": [
-                                "update"
-                            ]
-                        },
-                        "VerifyExternalSyncSettings": {
-                            "methods": [
-                                "verifyExternalSyncSettings"
-                            ]
-                        }
-                    }
                 }
             }
         },

@@ -37,7 +37,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
     protected $record_application_tags = false;
     /**
      * Maximum query length stored in bytes. Default value: 1024 bytes.
-     * Range: 256-4500 bytes. Query length more than this field value will be
+     * Range: 256-4500 bytes. Query lengths greater than this field value will be
      * truncated to this value. When unset, query length will be the default
      * value. Changing query length will restart the database.
      *
@@ -51,6 +51,12 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value query_plans_per_minute = 5;</code>
      */
     protected $query_plans_per_minute = null;
+    /**
+     * Optional. Whether enhanced query insights feature is enabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enhanced_query_insights_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enhanced_query_insights_enabled = null;
 
     /**
      * Constructor.
@@ -67,12 +73,14 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      *           enabled.
      *     @type \Google\Protobuf\Int32Value $query_string_length
      *           Maximum query length stored in bytes. Default value: 1024 bytes.
-     *           Range: 256-4500 bytes. Query length more than this field value will be
+     *           Range: 256-4500 bytes. Query lengths greater than this field value will be
      *           truncated to this value. When unset, query length will be the default
      *           value. Changing query length will restart the database.
      *     @type \Google\Protobuf\Int32Value $query_plans_per_minute
      *           Number of query execution plans captured by Insights per minute
      *           for all queries combined. Default is 5.
+     *     @type \Google\Protobuf\BoolValue $enhanced_query_insights_enabled
+     *           Optional. Whether enhanced query insights feature is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -162,7 +170,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum query length stored in bytes. Default value: 1024 bytes.
-     * Range: 256-4500 bytes. Query length more than this field value will be
+     * Range: 256-4500 bytes. Query lengths greater than this field value will be
      * truncated to this value. When unset, query length will be the default
      * value. Changing query length will restart the database.
      *
@@ -188,7 +196,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getQueryStringLength()</code>
 
      * Maximum query length stored in bytes. Default value: 1024 bytes.
-     * Range: 256-4500 bytes. Query length more than this field value will be
+     * Range: 256-4500 bytes. Query lengths greater than this field value will be
      * truncated to this value. When unset, query length will be the default
      * value. Changing query length will restart the database.
      *
@@ -202,7 +210,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum query length stored in bytes. Default value: 1024 bytes.
-     * Range: 256-4500 bytes. Query length more than this field value will be
+     * Range: 256-4500 bytes. Query lengths greater than this field value will be
      * truncated to this value. When unset, query length will be the default
      * value. Changing query length will restart the database.
      *
@@ -222,7 +230,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
 
      * Maximum query length stored in bytes. Default value: 1024 bytes.
-     * Range: 256-4500 bytes. Query length more than this field value will be
+     * Range: 256-4500 bytes. Query lengths greater than this field value will be
      * truncated to this value. When unset, query length will be the default
      * value. Changing query length will restart the database.
      *
@@ -300,6 +308,69 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
     public function setQueryPlansPerMinuteUnwrapped($var)
     {
         $this->writeWrapperValue("query_plans_per_minute", $var);
+        return $this;}
+
+    /**
+     * Optional. Whether enhanced query insights feature is enabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enhanced_query_insights_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnhancedQueryInsightsEnabled()
+    {
+        return $this->enhanced_query_insights_enabled;
+    }
+
+    public function hasEnhancedQueryInsightsEnabled()
+    {
+        return isset($this->enhanced_query_insights_enabled);
+    }
+
+    public function clearEnhancedQueryInsightsEnabled()
+    {
+        unset($this->enhanced_query_insights_enabled);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnhancedQueryInsightsEnabled()</code>
+
+     * Optional. Whether enhanced query insights feature is enabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enhanced_query_insights_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getEnhancedQueryInsightsEnabledUnwrapped()
+    {
+        return $this->readWrapperValue("enhanced_query_insights_enabled");
+    }
+
+    /**
+     * Optional. Whether enhanced query insights feature is enabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enhanced_query_insights_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnhancedQueryInsightsEnabled($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enhanced_query_insights_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. Whether enhanced query insights feature is enabled.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enhanced_query_insights_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnhancedQueryInsightsEnabledUnwrapped($var)
+    {
+        $this->writeWrapperValue("enhanced_query_insights_enabled", $var);
         return $this;}
 
 }

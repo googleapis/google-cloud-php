@@ -28,9 +28,9 @@ class SqlInstancesSwitchoverRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * Optional. (MySQL only) Cloud SQL instance operations timeout, which is a
-     * sum of all database operations. Default value is 10 minutes and can be
-     * modified to a maximum value of 24 hours.
+     * Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations
+     * timeout, which is a sum of all database operations. Default value is 10
+     * minutes and can be modified to a maximum value of 24 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration db_timeout = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,9 +47,9 @@ class SqlInstancesSwitchoverRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           ID of the project that contains the replica.
      *     @type \Google\Protobuf\Duration $db_timeout
-     *           Optional. (MySQL only) Cloud SQL instance operations timeout, which is a
-     *           sum of all database operations. Default value is 10 minutes and can be
-     *           modified to a maximum value of 24 hours.
+     *           Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations
+     *           timeout, which is a sum of all database operations. Default value is 10
+     *           minutes and can be modified to a maximum value of 24 hours.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,9 +110,9 @@ class SqlInstancesSwitchoverRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. (MySQL only) Cloud SQL instance operations timeout, which is a
-     * sum of all database operations. Default value is 10 minutes and can be
-     * modified to a maximum value of 24 hours.
+     * Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations
+     * timeout, which is a sum of all database operations. Default value is 10
+     * minutes and can be modified to a maximum value of 24 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration db_timeout = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -133,9 +133,9 @@ class SqlInstancesSwitchoverRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. (MySQL only) Cloud SQL instance operations timeout, which is a
-     * sum of all database operations. Default value is 10 minutes and can be
-     * modified to a maximum value of 24 hours.
+     * Optional. (MySQL and PostgreSQL only) Cloud SQL instance operations
+     * timeout, which is a sum of all database operations. Default value is 10
+     * minutes and can be modified to a maximum value of 24 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration db_timeout = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var

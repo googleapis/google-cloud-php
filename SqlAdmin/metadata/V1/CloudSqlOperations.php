@@ -21,11 +21,11 @@ class CloudSqlOperations
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”	
-.google/cloud/sql/v1/cloud_sql_operations.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto-google/cloud/sql/v1/cloud_sql_resources.protogoogle/protobuf/empty.proto"=
-SqlOperationsGetRequest
-	operation (	
-project (	"f
+›	
+.google/cloud/sql/v1/cloud_sql_operations.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto-google/cloud/sql/v1/cloud_sql_resources.protogoogle/protobuf/empty.proto"G
+SqlOperationsGetRequest
+	operation (	B‡A
+project (	B‡A"f
 SqlOperationsListRequest
 instance (	
 max_results (

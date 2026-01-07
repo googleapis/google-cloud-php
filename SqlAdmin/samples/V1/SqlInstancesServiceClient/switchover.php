@@ -29,7 +29,7 @@ use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlInstancesSwitchoverRequest;
 
 /**
- * Switches over from the primary instance to the designated DR replica
+ * Switches over from the primary instance to the DR replica
  * instance.
  *
  * This sample has been automatically generated and should be regarded as a code

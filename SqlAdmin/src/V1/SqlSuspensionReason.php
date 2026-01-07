@@ -20,7 +20,7 @@ class SqlSuspensionReason
      */
     const SQL_SUSPENSION_REASON_UNSPECIFIED = 0;
     /**
-     * The instance is suspended due to billing issues (for example:, GCP account
+     * The instance is suspended due to billing issues (for example:, account
      * issue)
      *
      * Generated from protobuf enum <code>BILLING_ISSUE = 2;</code>

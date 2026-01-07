@@ -49,6 +49,26 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue differential_base = 6;</code>
      */
     protected $differential_base = null;
+    /**
+     * Optional. The begin timestamp when transaction log will be included in
+     * the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339)
+     * format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     * available logs from the beginning of retention period will be included.
+     * Only applied to Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp export_log_start_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $export_log_start_time = null;
+    /**
+     * Optional. The end timestamp when transaction log will be included in the
+     * export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format
+     * (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     * available logs until current time will be included. Only applied to Cloud
+     * SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp export_log_end_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $export_log_end_time = null;
 
     /**
      * Constructor.
@@ -69,6 +89,18 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\BoolValue $differential_base
      *           Whether or not the backup can be used as a differential base
      *           copy_only backup can not be served as differential base
+     *     @type \Google\Protobuf\Timestamp $export_log_start_time
+     *           Optional. The begin timestamp when transaction log will be included in
+     *           the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339)
+     *           format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     *           available logs from the beginning of retention period will be included.
+     *           Only applied to Cloud SQL for SQL Server.
+     *     @type \Google\Protobuf\Timestamp $export_log_end_time
+     *           Optional. The end timestamp when transaction log will be included in the
+     *           export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format
+     *           (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     *           available logs until current time will be included. Only applied to Cloud
+     *           SQL for SQL Server.
      * }
      */
     public function __construct($data = NULL) {
@@ -378,6 +410,94 @@ class SqlBakExportOptions extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("differential_base", $var);
         return $this;}
+
+    /**
+     * Optional. The begin timestamp when transaction log will be included in
+     * the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339)
+     * format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     * available logs from the beginning of retention period will be included.
+     * Only applied to Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp export_log_start_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExportLogStartTime()
+    {
+        return $this->export_log_start_time;
+    }
+
+    public function hasExportLogStartTime()
+    {
+        return isset($this->export_log_start_time);
+    }
+
+    public function clearExportLogStartTime()
+    {
+        unset($this->export_log_start_time);
+    }
+
+    /**
+     * Optional. The begin timestamp when transaction log will be included in
+     * the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339)
+     * format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     * available logs from the beginning of retention period will be included.
+     * Only applied to Cloud SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp export_log_start_time = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExportLogStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->export_log_start_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The end timestamp when transaction log will be included in the
+     * export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format
+     * (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     * available logs until current time will be included. Only applied to Cloud
+     * SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp export_log_end_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExportLogEndTime()
+    {
+        return $this->export_log_end_time;
+    }
+
+    public function hasExportLogEndTime()
+    {
+        return isset($this->export_log_end_time);
+    }
+
+    public function clearExportLogEndTime()
+    {
+        unset($this->export_log_end_time);
+    }
+
+    /**
+     * Optional. The end timestamp when transaction log will be included in the
+     * export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format
+     * (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all
+     * available logs until current time will be included. Only applied to Cloud
+     * SQL for SQL Server.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp export_log_end_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExportLogEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->export_log_end_time = $var;
+
+        return $this;
+    }
 
 }
 

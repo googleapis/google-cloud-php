@@ -75,6 +75,13 @@ class User extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
+     * Optional. The full email for an IAM user. For normal database users, this
+     * will not be filled. Only applicable to MySQL database users.
+     *
+     * Generated from protobuf field <code>string iam_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $iam_email = '';
+    /**
      * User level password validation policy.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.UserPasswordValidationPolicy password_policy = 12;</code>
@@ -86,6 +93,18 @@ class User extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.User.DualPasswordType dual_password_type = 13;</code>
      */
     protected $dual_password_type = null;
+    /**
+     * Indicates if a group is active or inactive for IAM database authentication.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.User.IamStatus iam_status = 14;</code>
+     */
+    protected $iam_status = null;
+    /**
+     * Optional. Role memberships of the user
+     *
+     * Generated from protobuf field <code>repeated string database_roles = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $database_roles;
     protected $user_details;
 
     /**
@@ -122,10 +141,17 @@ class User extends \Google\Protobuf\Internal\Message
      *           The user type. It determines the method to authenticate the user during
      *           login. The default is the database's built-in user type.
      *     @type \Google\Cloud\Sql\V1\SqlServerUserDetails $sqlserver_user_details
+     *     @type string $iam_email
+     *           Optional. The full email for an IAM user. For normal database users, this
+     *           will not be filled. Only applicable to MySQL database users.
      *     @type \Google\Cloud\Sql\V1\UserPasswordValidationPolicy $password_policy
      *           User level password validation policy.
      *     @type int $dual_password_type
      *           Dual password status for the user.
+     *     @type int $iam_status
+     *           Indicates if a group is active or inactive for IAM database authentication.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_roles
+     *           Optional. Role memberships of the user
      * }
      */
     public function __construct($data = NULL) {
@@ -391,6 +417,34 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The full email for an IAM user. For normal database users, this
+     * will not be filled. Only applicable to MySQL database users.
+     *
+     * Generated from protobuf field <code>string iam_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getIamEmail()
+    {
+        return $this->iam_email;
+    }
+
+    /**
+     * Optional. The full email for an IAM user. For normal database users, this
+     * will not be filled. Only applicable to MySQL database users.
+     *
+     * Generated from protobuf field <code>string iam_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIamEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->iam_email = $var;
+
+        return $this;
+    }
+
+    /**
      * User level password validation policy.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.UserPasswordValidationPolicy password_policy = 12;</code>
@@ -458,6 +512,68 @@ class User extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\User\DualPasswordType::class);
         $this->dual_password_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates if a group is active or inactive for IAM database authentication.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.User.IamStatus iam_status = 14;</code>
+     * @return int
+     */
+    public function getIamStatus()
+    {
+        return isset($this->iam_status) ? $this->iam_status : 0;
+    }
+
+    public function hasIamStatus()
+    {
+        return isset($this->iam_status);
+    }
+
+    public function clearIamStatus()
+    {
+        unset($this->iam_status);
+    }
+
+    /**
+     * Indicates if a group is active or inactive for IAM database authentication.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.User.IamStatus iam_status = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIamStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\User\IamStatus::class);
+        $this->iam_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Role memberships of the user
+     *
+     * Generated from protobuf field <code>repeated string database_roles = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDatabaseRoles()
+    {
+        return $this->database_roles;
+    }
+
+    /**
+     * Optional. Role memberships of the user
+     *
+     * Generated from protobuf field <code>repeated string database_roles = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDatabaseRoles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->database_roles = $arr;
 
         return $this;
     }

@@ -155,6 +155,7 @@ class SqlUsersServiceClientTest extends GeneratedTest
         $host2 = 'host2-1211484325';
         $instance2 = 'instance2902024968';
         $project2 = 'project2-894831476';
+        $iamEmail = 'iamEmail1514762546';
         $expectedResponse = new User();
         $expectedResponse->setKind($kind);
         $expectedResponse->setPassword($password);
@@ -163,6 +164,7 @@ class SqlUsersServiceClientTest extends GeneratedTest
         $expectedResponse->setHost($host2);
         $expectedResponse->setInstance($instance2);
         $expectedResponse->setProject($project2);
+        $expectedResponse->setIamEmail($iamEmail);
         $transport->addResponse($expectedResponse);
         $request = new SqlUsersGetRequest();
         $response = $gapicClient->get($request);

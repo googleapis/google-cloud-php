@@ -37,12 +37,19 @@ class SqlInstanceType
      * Generated from protobuf enum <code>READ_REPLICA_INSTANCE = 3;</code>
      */
     const READ_REPLICA_INSTANCE = 3;
+    /**
+     * A Cloud SQL read pool.
+     *
+     * Generated from protobuf enum <code>READ_POOL_INSTANCE = 5;</code>
+     */
+    const READ_POOL_INSTANCE = 5;
 
     private static $valueToName = [
         self::SQL_INSTANCE_TYPE_UNSPECIFIED => 'SQL_INSTANCE_TYPE_UNSPECIFIED',
         self::CLOUD_SQL_INSTANCE => 'CLOUD_SQL_INSTANCE',
         self::ON_PREMISES_INSTANCE => 'ON_PREMISES_INSTANCE',
         self::READ_REPLICA_INSTANCE => 'READ_REPLICA_INSTANCE',
+        self::READ_POOL_INSTANCE => 'READ_POOL_INSTANCE',
     ];
 
     public static function name($value)

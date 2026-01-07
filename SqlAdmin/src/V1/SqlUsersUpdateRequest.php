@@ -38,6 +38,13 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
+     * Optional. List of database roles to grant to the user. body.database_roles
+     * will be ignored for update request.
+     *
+     * Generated from protobuf field <code>repeated string database_roles = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $database_roles;
+    /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.User body = 100;</code>
      */
     protected $body = null;
@@ -56,6 +63,9 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      *           Name of the user in the instance.
      *     @type string $project
      *           Project ID of the project that contains the instance.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_roles
+     *           Optional. List of database roles to grant to the user. body.database_roles
+     *           will be ignored for update request.
      *     @type \Google\Cloud\Sql\V1\User $body
      * }
      */
@@ -164,6 +174,34 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of database roles to grant to the user. body.database_roles
+     * will be ignored for update request.
+     *
+     * Generated from protobuf field <code>repeated string database_roles = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDatabaseRoles()
+    {
+        return $this->database_roles;
+    }
+
+    /**
+     * Optional. List of database roles to grant to the user. body.database_roles
+     * will be ignored for update request.
+     *
+     * Generated from protobuf field <code>repeated string database_roles = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDatabaseRoles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->database_roles = $arr;
 
         return $this;
     }

@@ -63,7 +63,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     protected $client_certificate = '';
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 8;</code>
@@ -115,7 +115,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *     @type string $client_certificate
      *           PEM representation of the replica's x509 certificate.
      *     @type string $client_key
-     *           PEM representation of the replica's private key. The corresponsing public
+     *           PEM representation of the replica's private key. The corresponding public
      *           key is encoded in the client's certificate.
      *     @type string $ssl_cipher
      *           A list of permissible ciphers to use for SSL encryption.
@@ -398,7 +398,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 8;</code>
@@ -410,7 +410,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 8;</code>

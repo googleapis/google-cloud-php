@@ -33,12 +33,19 @@ class SqlFileType
      * Generated from protobuf enum <code>BAK = 4;</code>
      */
     const BAK = 4;
+    /**
+     * TDE certificate.
+     *
+     * Generated from protobuf enum <code>TDE = 8;</code>
+     */
+    const TDE = 8;
 
     private static $valueToName = [
         self::SQL_FILE_TYPE_UNSPECIFIED => 'SQL_FILE_TYPE_UNSPECIFIED',
         self::SQL => 'SQL',
         self::CSV => 'CSV',
         self::BAK => 'BAK',
+        self::TDE => 'TDE',
     ];
 
     public static function name($value)

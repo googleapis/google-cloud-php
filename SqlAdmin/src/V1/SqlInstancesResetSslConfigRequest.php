@@ -27,6 +27,12 @@ class SqlInstancesResetSslConfigRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>string project = 2;</code>
      */
     protected $project = '';
+    /**
+     * Optional. Reset SSL mode to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesResetSslConfigRequest.ResetSslMode mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mode = 0;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class SqlInstancesResetSslConfigRequest extends \Google\Protobuf\Internal\Messag
      *           Cloud SQL instance ID. This does not include the project ID.
      *     @type string $project
      *           Project ID of the project that contains the instance.
+     *     @type int $mode
+     *           Optional. Reset SSL mode to use.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class SqlInstancesResetSslConfigRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reset SSL mode to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesResetSslConfigRequest.ResetSslMode mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
+
+    /**
+     * Optional. Reset SSL mode to use.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlInstancesResetSslConfigRequest.ResetSslMode mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlInstancesResetSslConfigRequest\ResetSslMode::class);
+        $this->mode = $var;
 
         return $this;
     }

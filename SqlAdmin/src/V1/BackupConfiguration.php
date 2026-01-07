@@ -79,6 +79,12 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $transactional_log_storage_state = null;
+    /**
+     * Output only. Backup tier that manages the backups for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.BackupTier backup_tier = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backup_tier = null;
 
     /**
      * Constructor.
@@ -110,6 +116,8 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      *     @type int $transactional_log_storage_state
      *           Output only. This value contains the storage location of transactional logs
      *           used to perform point-in-time recovery (PITR) for the database.
+     *     @type int $backup_tier
+     *           Output only. Backup tier that manages the backups for the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -590,6 +598,42 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\BackupConfiguration\TransactionalLogStorageState::class);
         $this->transactional_log_storage_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Backup tier that manages the backups for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.BackupTier backup_tier = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getBackupTier()
+    {
+        return isset($this->backup_tier) ? $this->backup_tier : 0;
+    }
+
+    public function hasBackupTier()
+    {
+        return isset($this->backup_tier);
+    }
+
+    public function clearBackupTier()
+    {
+        unset($this->backup_tier);
+    }
+
+    /**
+     * Output only. Backup tier that manages the backups for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.BackupTier backup_tier = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBackupTier($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\BackupConfiguration\BackupTier::class);
+        $this->backup_tier = $var;
 
         return $this;
     }

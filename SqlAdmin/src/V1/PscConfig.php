@@ -31,6 +31,22 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_consumer_projects;
+    /**
+     * Optional. The list of settings for requested Private Service Connect
+     * consumer endpoints that can be used to connect to this Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PscAutoConnectionConfig psc_auto_connections = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $psc_auto_connections;
+    /**
+     * Optional. The network attachment of the consumer network that the
+     * Private Service Connect enabled Cloud SQL instance is
+     * authorized to connect via PSC interface.
+     * format: projects/PROJECT/regions/REGION/networkAttachments/ID
+     *
+     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $network_attachment_uri = '';
 
     /**
      * Constructor.
@@ -46,6 +62,14 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *           from any network in these projects.
      *           Each consumer project in this list may be represented by a project number
      *           (numeric) or by a project id (alphanumeric).
+     *     @type array<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $psc_auto_connections
+     *           Optional. The list of settings for requested Private Service Connect
+     *           consumer endpoints that can be used to connect to this Cloud SQL instance.
+     *     @type string $network_attachment_uri
+     *           Optional. The network attachment of the consumer network that the
+     *           Private Service Connect enabled Cloud SQL instance is
+     *           authorized to connect via PSC interface.
+     *           format: projects/PROJECT/regions/REGION/networkAttachments/ID
      * }
      */
     public function __construct($data = NULL) {
@@ -119,6 +143,66 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->allowed_consumer_projects = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of settings for requested Private Service Connect
+     * consumer endpoints that can be used to connect to this Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PscAutoConnectionConfig psc_auto_connections = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPscAutoConnections()
+    {
+        return $this->psc_auto_connections;
+    }
+
+    /**
+     * Optional. The list of settings for requested Private Service Connect
+     * consumer endpoints that can be used to connect to this Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PscAutoConnectionConfig psc_auto_connections = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPscAutoConnections($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\PscAutoConnectionConfig::class);
+        $this->psc_auto_connections = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The network attachment of the consumer network that the
+     * Private Service Connect enabled Cloud SQL instance is
+     * authorized to connect via PSC interface.
+     * format: projects/PROJECT/regions/REGION/networkAttachments/ID
+     *
+     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getNetworkAttachmentUri()
+    {
+        return $this->network_attachment_uri;
+    }
+
+    /**
+     * Optional. The network attachment of the consumer network that the
+     * Private Service Connect enabled Cloud SQL instance is
+     * authorized to connect via PSC interface.
+     * format: projects/PROJECT/regions/REGION/networkAttachments/ID
+     *
+     * Generated from protobuf field <code>string network_attachment_uri = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetworkAttachmentUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network_attachment_uri = $var;
 
         return $this;
     }

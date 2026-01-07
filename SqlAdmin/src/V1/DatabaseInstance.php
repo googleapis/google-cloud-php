@@ -310,7 +310,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Optional. A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * experiences regional failure. Only applicable to MySQL.
+     * experiences regional failure.
+     * Applicable to MySQL and PostgreSQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -335,6 +336,48 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.protobuf.BoolValue switch_transaction_logs_to_cloud_storage_enabled = 57 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $switch_transaction_logs_to_cloud_storage_enabled = null;
+    /**
+     * Input only. Determines whether an in-place major version upgrade of
+     * replicas happens when an in-place major version upgrade of a primary
+     * instance is initiated.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue include_replicas_for_major_version_upgrade = 59 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $include_replicas_for_major_version_upgrade = null;
+    /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     * this instance. You must represent each item in the map as:
+     * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     * For example, a single resource can have the following tags:
+     * ```
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing",
+     * ```
+     * For more information on tag creation and management, see
+     * https://cloud.google.com/resource-manager/docs/tags/tags-overview.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 60 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
+    /**
+     * The number of read pool nodes in a read pool.
+     *
+     * Generated from protobuf field <code>optional int32 node_count = 63;</code>
+     */
+    protected $node_count = null;
+    /**
+     * Output only. Entries containing information about each read pool node of
+     * the read pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $nodes;
+    /**
+     * Output only. The list of DNS names used by this instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 67 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $dns_names;
 
     /**
      * Constructor.
@@ -466,7 +509,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Optional. A primary instance and disaster recovery (DR) replica pair.
      *           A DR replica is a cross-region replica that you designate
      *           for failover in the event that the primary instance
-     *           experiences regional failure. Only applicable to MySQL.
+     *           experiences regional failure.
+     *           Applicable to MySQL and PostgreSQL.
      *     @type \Google\Cloud\Sql\V1\GeminiInstanceConfig $gemini_config
      *           Gemini instance configuration.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzi
@@ -475,6 +519,28 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\BoolValue $switch_transaction_logs_to_cloud_storage_enabled
      *           Input only. Whether Cloud SQL is enabled to switch storing point-in-time
      *           recovery log files from a data disk to Cloud Storage.
+     *     @type \Google\Protobuf\BoolValue $include_replicas_for_major_version_upgrade
+     *           Input only. Determines whether an in-place major version upgrade of
+     *           replicas happens when an in-place major version upgrade of a primary
+     *           instance is initiated.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     *           this instance. You must represent each item in the map as:
+     *           `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     *           For example, a single resource can have the following tags:
+     *           ```
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing",
+     *           ```
+     *           For more information on tag creation and management, see
+     *           https://cloud.google.com/resource-manager/docs/tags/tags-overview.
+     *     @type int $node_count
+     *           The number of read pool nodes in a read pool.
+     *     @type array<\Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *           Output only. Entries containing information about each read pool node of
+     *           the read pool.
+     *     @type array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $dns_names
+     *           Output only. The list of DNS names used by this instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -1963,7 +2029,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Optional. A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * experiences regional failure. Only applicable to MySQL.
+     * experiences regional failure.
+     * Applicable to MySQL and PostgreSQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Sql\V1\ReplicationCluster|null
@@ -1987,7 +2054,8 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Optional. A primary instance and disaster recovery (DR) replica pair.
      * A DR replica is a cross-region replica that you designate
      * for failover in the event that the primary instance
-     * experiences regional failure. Only applicable to MySQL.
+     * experiences regional failure.
+     * Applicable to MySQL and PostgreSQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Sql\V1\ReplicationCluster $var
@@ -2170,6 +2238,211 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("switch_transaction_logs_to_cloud_storage_enabled", $var);
         return $this;}
+
+    /**
+     * Input only. Determines whether an in-place major version upgrade of
+     * replicas happens when an in-place major version upgrade of a primary
+     * instance is initiated.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue include_replicas_for_major_version_upgrade = 59 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getIncludeReplicasForMajorVersionUpgrade()
+    {
+        return $this->include_replicas_for_major_version_upgrade;
+    }
+
+    public function hasIncludeReplicasForMajorVersionUpgrade()
+    {
+        return isset($this->include_replicas_for_major_version_upgrade);
+    }
+
+    public function clearIncludeReplicasForMajorVersionUpgrade()
+    {
+        unset($this->include_replicas_for_major_version_upgrade);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getIncludeReplicasForMajorVersionUpgrade()</code>
+
+     * Input only. Determines whether an in-place major version upgrade of
+     * replicas happens when an in-place major version upgrade of a primary
+     * instance is initiated.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue include_replicas_for_major_version_upgrade = 59 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool|null
+     */
+    public function getIncludeReplicasForMajorVersionUpgradeUnwrapped()
+    {
+        return $this->readWrapperValue("include_replicas_for_major_version_upgrade");
+    }
+
+    /**
+     * Input only. Determines whether an in-place major version upgrade of
+     * replicas happens when an in-place major version upgrade of a primary
+     * instance is initiated.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue include_replicas_for_major_version_upgrade = 59 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setIncludeReplicasForMajorVersionUpgrade($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->include_replicas_for_major_version_upgrade = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Input only. Determines whether an in-place major version upgrade of
+     * replicas happens when an in-place major version upgrade of a primary
+     * instance is initiated.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.BoolValue include_replicas_for_major_version_upgrade = 59 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setIncludeReplicasForMajorVersionUpgradeUnwrapped($var)
+    {
+        $this->writeWrapperValue("include_replicas_for_major_version_upgrade", $var);
+        return $this;}
+
+    /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     * this instance. You must represent each item in the map as:
+     * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     * For example, a single resource can have the following tags:
+     * ```
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing",
+     * ```
+     * For more information on tag creation and management, see
+     * https://cloud.google.com/resource-manager/docs/tags/tags-overview.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 60 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     * this instance. You must represent each item in the map as:
+     * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     * For example, a single resource can have the following tags:
+     * ```
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing",
+     * ```
+     * For more information on tag creation and management, see
+     * https://cloud.google.com/resource-manager/docs/tags/tags-overview.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 60 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The number of read pool nodes in a read pool.
+     *
+     * Generated from protobuf field <code>optional int32 node_count = 63;</code>
+     * @return int
+     */
+    public function getNodeCount()
+    {
+        return isset($this->node_count) ? $this->node_count : 0;
+    }
+
+    public function hasNodeCount()
+    {
+        return isset($this->node_count);
+    }
+
+    public function clearNodeCount()
+    {
+        unset($this->node_count);
+    }
+
+    /**
+     * The number of read pool nodes in a read pool.
+     *
+     * Generated from protobuf field <code>optional int32 node_count = 63;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNodeCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->node_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Entries containing information about each read pool node of
+     * the read pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNodes()
+    {
+        return $this->nodes;
+    }
+
+    /**
+     * Output only. Entries containing information about each read pool node of
+     * the read pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig::class);
+        $this->nodes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of DNS names used by this instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 67 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDnsNames()
+    {
+        return $this->dns_names;
+    }
+
+    /**
+     * Output only. The list of DNS names used by this instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 67 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDnsNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\DnsNameMapping::class);
+        $this->dns_names = $arr;
+
+        return $this;
+    }
 
 }
 

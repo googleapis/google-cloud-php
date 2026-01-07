@@ -83,6 +83,41 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.ConnectSettings.CaMode server_ca_mode = 35;</code>
      */
     protected $server_ca_mode = 0;
+    /**
+     * Custom subject alternative names for the server certificate.
+     *
+     * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 37;</code>
+     */
+    private $custom_subject_alternative_names;
+    /**
+     * Output only. The list of DNS names used by this instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $dns_names;
+    /**
+     * The number of read pool nodes in a read pool.
+     *
+     * Generated from protobuf field <code>optional int32 node_count = 63;</code>
+     */
+    protected $node_count = null;
+    /**
+     * Output only. Entries containing information about each read pool node of
+     * the read pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.ConnectPoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $nodes;
+    /**
+     * Optional. Output only. mdx_protocol_support controls how the client uses
+     * metadata exchange when connecting to the instance. The values in the list
+     * representing parts of the MDX protocol that are supported by this instance.
+     * When the list is empty, the instance does not support MDX, so the client
+     * must not send an MDX request. The default is empty.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.MdxProtocolSupport mdx_protocol_support = 39 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $mdx_protocol_support;
 
     /**
      * Constructor.
@@ -122,6 +157,21 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           The dns name of the instance.
      *     @type int $server_ca_mode
      *           Specify what type of CA is used for the server certificate.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_subject_alternative_names
+     *           Custom subject alternative names for the server certificate.
+     *     @type array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $dns_names
+     *           Output only. The list of DNS names used by this instance.
+     *     @type int $node_count
+     *           The number of read pool nodes in a read pool.
+     *     @type array<\Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *           Output only. Entries containing information about each read pool node of
+     *           the read pool.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $mdx_protocol_support
+     *           Optional. Output only. mdx_protocol_support controls how the client uses
+     *           metadata exchange when connecting to the instance. The values in the list
+     *           representing parts of the MDX protocol that are supported by this instance.
+     *           When the list is empty, the instance does not support MDX, so the client
+     *           must not send an MDX request. The default is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -397,6 +447,156 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\ConnectSettings\CaMode::class);
         $this->server_ca_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Custom subject alternative names for the server certificate.
+     *
+     * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 37;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomSubjectAlternativeNames()
+    {
+        return $this->custom_subject_alternative_names;
+    }
+
+    /**
+     * Custom subject alternative names for the server certificate.
+     *
+     * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 37;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomSubjectAlternativeNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->custom_subject_alternative_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of DNS names used by this instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDnsNames()
+    {
+        return $this->dns_names;
+    }
+
+    /**
+     * Output only. The list of DNS names used by this instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDnsNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\DnsNameMapping::class);
+        $this->dns_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The number of read pool nodes in a read pool.
+     *
+     * Generated from protobuf field <code>optional int32 node_count = 63;</code>
+     * @return int
+     */
+    public function getNodeCount()
+    {
+        return isset($this->node_count) ? $this->node_count : 0;
+    }
+
+    public function hasNodeCount()
+    {
+        return isset($this->node_count);
+    }
+
+    public function clearNodeCount()
+    {
+        unset($this->node_count);
+    }
+
+    /**
+     * The number of read pool nodes in a read pool.
+     *
+     * Generated from protobuf field <code>optional int32 node_count = 63;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNodeCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->node_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Entries containing information about each read pool node of
+     * the read pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.ConnectPoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNodes()
+    {
+        return $this->nodes;
+    }
+
+    /**
+     * Output only. Entries containing information about each read pool node of
+     * the read pool.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.ConnectPoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig::class);
+        $this->nodes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. mdx_protocol_support controls how the client uses
+     * metadata exchange when connecting to the instance. The values in the list
+     * representing parts of the MDX protocol that are supported by this instance.
+     * When the list is empty, the instance does not support MDX, so the client
+     * must not send an MDX request. The default is empty.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.MdxProtocolSupport mdx_protocol_support = 39 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMdxProtocolSupport()
+    {
+        return $this->mdx_protocol_support;
+    }
+
+    /**
+     * Optional. Output only. mdx_protocol_support controls how the client uses
+     * metadata exchange when connecting to the instance. The values in the list
+     * representing parts of the MDX protocol that are supported by this instance.
+     * When the list is empty, the instance does not support MDX, so the client
+     * must not send an MDX request. The default is empty.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.MdxProtocolSupport mdx_protocol_support = 39 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMdxProtocolSupport($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Sql\V1\ConnectSettings\MdxProtocolSupport::class);
+        $this->mdx_protocol_support = $arr;
 
         return $this;
     }

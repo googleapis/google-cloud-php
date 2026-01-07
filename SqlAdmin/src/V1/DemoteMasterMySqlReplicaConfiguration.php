@@ -34,7 +34,7 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
      */
     protected $password = '';
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate. The format of the replica's
      * private key can be either PKCS #1 or PKCS #8.
      *
@@ -67,7 +67,7 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
      *     @type string $password
      *           The password for the replication connection.
      *     @type string $client_key
-     *           PEM representation of the replica's private key. The corresponsing public
+     *           PEM representation of the replica's private key. The corresponding public
      *           key is encoded in the client's certificate. The format of the replica's
      *           private key can be either PKCS #1 or PKCS #8.
      *     @type string $client_certificate
@@ -160,7 +160,7 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate. The format of the replica's
      * private key can be either PKCS #1 or PKCS #8.
      *
@@ -173,7 +173,7 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate. The format of the replica's
      * private key can be either PKCS #1 or PKCS #8.
      *

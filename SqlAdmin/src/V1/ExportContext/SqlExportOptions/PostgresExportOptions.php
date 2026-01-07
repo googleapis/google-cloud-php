@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class PostgresExportOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Use this option to include DROP <object> SQL statements.
-     * These statements are used to delete database objects before running the
-     * import operation.
+     * Optional. Use this option to include DROP <code>&lt;object&gt;</code>
+     * SQL statements. Use these statements to delete database objects before
+     * running the import operation.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue clean = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,9 +38,9 @@ class PostgresExportOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\BoolValue $clean
-     *           Optional. Use this option to include DROP <object> SQL statements.
-     *           These statements are used to delete database objects before running the
-     *           import operation.
+     *           Optional. Use this option to include DROP <code>&lt;object&gt;</code>
+     *           SQL statements. Use these statements to delete database objects before
+     *           running the import operation.
      *     @type \Google\Protobuf\BoolValue $if_exists
      *           Optional. Option to include an IF EXISTS SQL statement with each DROP
      *           statement produced by clean.
@@ -52,9 +52,9 @@ class PostgresExportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this option to include DROP <object> SQL statements.
-     * These statements are used to delete database objects before running the
-     * import operation.
+     * Optional. Use this option to include DROP <code>&lt;object&gt;</code>
+     * SQL statements. Use these statements to delete database objects before
+     * running the import operation.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue clean = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -77,9 +77,9 @@ class PostgresExportOptions extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getClean()</code>
 
-     * Optional. Use this option to include DROP <object> SQL statements.
-     * These statements are used to delete database objects before running the
-     * import operation.
+     * Optional. Use this option to include DROP <code>&lt;object&gt;</code>
+     * SQL statements. Use these statements to delete database objects before
+     * running the import operation.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue clean = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
@@ -90,9 +90,9 @@ class PostgresExportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Use this option to include DROP <object> SQL statements.
-     * These statements are used to delete database objects before running the
-     * import operation.
+     * Optional. Use this option to include DROP <code>&lt;object&gt;</code>
+     * SQL statements. Use these statements to delete database objects before
+     * running the import operation.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue clean = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -109,9 +109,9 @@ class PostgresExportOptions extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Optional. Use this option to include DROP <object> SQL statements.
-     * These statements are used to delete database objects before running the
-     * import operation.
+     * Optional. Use this option to include DROP <code>&lt;object&gt;</code>
+     * SQL statements. Use these statements to delete database objects before
+     * running the import operation.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue clean = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool|null $var

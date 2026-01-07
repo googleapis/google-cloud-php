@@ -125,7 +125,8 @@ class SqlExternalSyncSettingErrorType
     const SQLSERVER_AGENT_NOT_RUNNING = 19;
     /**
      * The table definition is not support due to missing primary key or replica
-     * identity, applicable for postgres.
+     * identity, applicable for postgres. Note that this is a warning and won't
+     * block the migration.
      *
      * Generated from protobuf enum <code>UNSUPPORTED_TABLE_DEFINITION = 20;</code>
      */
@@ -322,6 +323,74 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>UNSUPPORTED_COLUMNS = 49;</code>
      */
     const UNSUPPORTED_COLUMNS = 49;
+    /**
+     * The source database has users that aren't created in the replica.
+     * First, create all users, which are in the pg_user_mappings table
+     * of the source database, in the destination instance. Then, perform the
+     * migration.
+     *
+     * Generated from protobuf enum <code>USERS_NOT_CREATED_IN_REPLICA = 50;</code>
+     */
+    const USERS_NOT_CREATED_IN_REPLICA = 50;
+    /**
+     * The selected objects include system objects that aren't supported for
+     * migration.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_SYSTEM_OBJECTS = 51;</code>
+     */
+    const UNSUPPORTED_SYSTEM_OBJECTS = 51;
+    /**
+     * The source database has tables with the FULL or NOTHING replica identity.
+     * Before starting your migration, either remove the identity or change it
+     * to DEFAULT. Note that this is an error and will block the migration.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY = 52;</code>
+     */
+    const UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY = 52;
+    /**
+     * The selected objects don't exist on the source instance.
+     *
+     * Generated from protobuf enum <code>SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE = 53;</code>
+     */
+    const SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE = 53;
+    /**
+     * PSC only destination instance does not have a network attachment URI.
+     *
+     * Generated from protobuf enum <code>PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI = 54;</code>
+     */
+    const PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI = 54;
+    /**
+     * Selected objects reference unselected objects. Based on their object type
+     * (foreign key constraint or view), selected objects will fail during
+     * migration.
+     *
+     * Generated from protobuf enum <code>SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS = 55;</code>
+     */
+    const SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS = 55;
+    /**
+     * The migration will delete existing data in the replica; set
+     * [replica_overwrite_enabled][google.cloud.sql.v1.SqlInstancesStartExternalSyncRequest.replica_overwrite_enabled]
+     * in the request to acknowledge this. This is an error. MySQL only.
+     *
+     * Generated from protobuf enum <code>PROMPT_DELETE_EXISTING = 56;</code>
+     */
+    const PROMPT_DELETE_EXISTING = 56;
+    /**
+     * The migration will delete existing data in the replica;
+     * [replica_overwrite_enabled][google.cloud.sql.v1.SqlInstancesStartExternalSyncRequest.replica_overwrite_enabled]
+     * was set in the request acknowledging this. This is a warning rather than
+     * an error. MySQL only.
+     *
+     * Generated from protobuf enum <code>WILL_DELETE_EXISTING = 57;</code>
+     */
+    const WILL_DELETE_EXISTING = 57;
+    /**
+     * The replication user is missing specific privileges to setup DDL
+     * replication. (e.g. CREATE EVENT TRIGGER, CREATE SCHEMA) for PostgreSQL.
+     *
+     * Generated from protobuf enum <code>PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE = 58;</code>
+     */
+    const PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE = 58;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -374,6 +443,15 @@ class SqlExternalSyncSettingErrorType
         self::PG_CRON_FLAG_ENABLED_IN_REPLICA => 'PG_CRON_FLAG_ENABLED_IN_REPLICA',
         self::EXTENSIONS_NOT_ENABLED_IN_REPLICA => 'EXTENSIONS_NOT_ENABLED_IN_REPLICA',
         self::UNSUPPORTED_COLUMNS => 'UNSUPPORTED_COLUMNS',
+        self::USERS_NOT_CREATED_IN_REPLICA => 'USERS_NOT_CREATED_IN_REPLICA',
+        self::UNSUPPORTED_SYSTEM_OBJECTS => 'UNSUPPORTED_SYSTEM_OBJECTS',
+        self::UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY => 'UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY',
+        self::SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE => 'SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE',
+        self::PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI => 'PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI',
+        self::SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS => 'SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS',
+        self::PROMPT_DELETE_EXISTING => 'PROMPT_DELETE_EXISTING',
+        self::WILL_DELETE_EXISTING => 'WILL_DELETE_EXISTING',
+        self::PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE => 'PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE',
     ];
 
     public static function name($value)

@@ -25,6 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START sqladmin_v1_generated_SqlInstancesService_Clone_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Sql\V1\Client\SqlInstancesServiceClient;
+use Google\Cloud\Sql\V1\CloneContext;
+use Google\Cloud\Sql\V1\InstancesCloneRequest;
 use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
 
@@ -32,19 +34,28 @@ use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
  * Creates a Cloud SQL instance as a clone of the source instance. Using this
  * operation might cause your instance to restart.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instance                                The ID of the Cloud SQL instance to be cloned (source). This does
+ *                                                        not include the project ID.
+ * @param string $project                                 Project ID of the source as well as the clone Cloud SQL instance.
+ * @param string $bodyCloneContextDestinationInstanceName Name of the Cloud SQL instance to be created as a clone.
  */
-function clone_sample(): void
-{
+function clone_sample(
+    string $instance,
+    string $project,
+    string $bodyCloneContextDestinationInstanceName
+): void {
     // Create a client.
     $sqlInstancesServiceClient = new SqlInstancesServiceClient();
 
     // Prepare the request message.
-    $request = new SqlInstancesCloneRequest();
+    $bodyCloneContext = (new CloneContext())
+        ->setDestinationInstanceName($bodyCloneContextDestinationInstanceName);
+    $body = (new InstancesCloneRequest())
+        ->setCloneContext($bodyCloneContext);
+    $request = (new SqlInstancesCloneRequest())
+        ->setInstance($instance)
+        ->setProject($project)
+        ->setBody($body);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +65,23 @@ function clone_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instance = '[INSTANCE]';
+    $project = '[PROJECT]';
+    $bodyCloneContextDestinationInstanceName = '[DESTINATION_INSTANCE_NAME]';
+
+    clone_sample($instance, $project, $bodyCloneContextDestinationInstanceName);
 }
 // [END sqladmin_v1_generated_SqlInstancesService_Clone_sync]

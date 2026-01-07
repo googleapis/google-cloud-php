@@ -35,6 +35,12 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string pvk_password = 3;</code>
      */
     protected $pvk_password = '';
+    /**
+     * Optional. Whether the imported file remains encrypted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue keep_encrypted = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $keep_encrypted = null;
 
     /**
      * Constructor.
@@ -52,6 +58,8 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
      *           write permissions to the bucket and read access to the file.
      *     @type string $pvk_password
      *           Password that encrypts the private key
+     *     @type \Google\Protobuf\BoolValue $keep_encrypted
+     *           Optional. Whether the imported file remains encrypted.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,6 +152,69 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Optional. Whether the imported file remains encrypted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue keep_encrypted = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getKeepEncrypted()
+    {
+        return $this->keep_encrypted;
+    }
+
+    public function hasKeepEncrypted()
+    {
+        return isset($this->keep_encrypted);
+    }
+
+    public function clearKeepEncrypted()
+    {
+        unset($this->keep_encrypted);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getKeepEncrypted()</code>
+
+     * Optional. Whether the imported file remains encrypted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue keep_encrypted = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getKeepEncryptedUnwrapped()
+    {
+        return $this->readWrapperValue("keep_encrypted");
+    }
+
+    /**
+     * Optional. Whether the imported file remains encrypted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue keep_encrypted = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setKeepEncrypted($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->keep_encrypted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. Whether the imported file remains encrypted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue keep_encrypted = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setKeepEncryptedUnwrapped($var)
+    {
+        $this->writeWrapperValue("keep_encrypted", $var);
+        return $this;}
 
 }
 

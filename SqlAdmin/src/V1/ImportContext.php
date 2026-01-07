@@ -27,7 +27,9 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     /**
      * The target database for the import. If `fileType` is `SQL`, this field
      * is required only if the import file does not specify a database, and is
-     * overridden by any database specification in the import file. If
+     * overridden by any database specification in the import file. For entire
+     * instance parallel import operations, the database is overridden by the
+     * database name stored in subdirectory name. If
      * `fileType` is `CSV`, one database must be specified.
      *
      * Generated from protobuf field <code>string database = 2;</code>
@@ -70,6 +72,12 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlImportOptions sql_import_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $sql_import_options = null;
+    /**
+     * Optional. Import parameters specific to SQL Server TDE certificates
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlTdeImportOptions tde_import_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tde_import_options = null;
 
     /**
      * Constructor.
@@ -85,7 +93,9 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           The target database for the import. If `fileType` is `SQL`, this field
      *           is required only if the import file does not specify a database, and is
-     *           overridden by any database specification in the import file. If
+     *           overridden by any database specification in the import file. For entire
+     *           instance parallel import operations, the database is overridden by the
+     *           database name stored in subdirectory name. If
      *           `fileType` is `CSV`, one database must be specified.
      *     @type string $kind
      *           This is always `sql#importContext`.
@@ -100,6 +110,8 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      *           Import parameters specific to SQL Server .BAK files
      *     @type \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions $sql_import_options
      *           Optional. Options for importing data from SQL statements.
+     *     @type \Google\Cloud\Sql\V1\ImportContext\SqlTdeImportOptions $tde_import_options
+     *           Optional. Import parameters specific to SQL Server TDE certificates
      * }
      */
     public function __construct($data = NULL) {
@@ -142,7 +154,9 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     /**
      * The target database for the import. If `fileType` is `SQL`, this field
      * is required only if the import file does not specify a database, and is
-     * overridden by any database specification in the import file. If
+     * overridden by any database specification in the import file. For entire
+     * instance parallel import operations, the database is overridden by the
+     * database name stored in subdirectory name. If
      * `fileType` is `CSV`, one database must be specified.
      *
      * Generated from protobuf field <code>string database = 2;</code>
@@ -156,7 +170,9 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     /**
      * The target database for the import. If `fileType` is `SQL`, this field
      * is required only if the import file does not specify a database, and is
-     * overridden by any database specification in the import file. If
+     * overridden by any database specification in the import file. For entire
+     * instance parallel import operations, the database is overridden by the
+     * database name stored in subdirectory name. If
      * `fileType` is `CSV`, one database must be specified.
      *
      * Generated from protobuf field <code>string database = 2;</code>
@@ -355,6 +371,42 @@ class ImportContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ImportContext\SqlImportOptions::class);
         $this->sql_import_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Import parameters specific to SQL Server TDE certificates
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlTdeImportOptions tde_import_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ImportContext\SqlTdeImportOptions|null
+     */
+    public function getTdeImportOptions()
+    {
+        return $this->tde_import_options;
+    }
+
+    public function hasTdeImportOptions()
+    {
+        return isset($this->tde_import_options);
+    }
+
+    public function clearTdeImportOptions()
+    {
+        unset($this->tde_import_options);
+    }
+
+    /**
+     * Optional. Import parameters specific to SQL Server TDE certificates
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ImportContext.SqlTdeImportOptions tde_import_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ImportContext\SqlTdeImportOptions $var
+     * @return $this
+     */
+    public function setTdeImportOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ImportContext\SqlTdeImportOptions::class);
+        $this->tde_import_options = $var;
 
         return $this;
     }

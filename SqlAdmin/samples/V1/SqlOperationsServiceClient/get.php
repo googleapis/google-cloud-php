@@ -31,19 +31,18 @@ use Google\Cloud\Sql\V1\SqlOperationsGetRequest;
 /**
  * Retrieves an instance operation that has been performed on an instance.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $operation Instance operation ID.
+ * @param string $project   Project ID of the project that contains the instance.
  */
-function get_sample(): void
+function get_sample(string $operation, string $project): void
 {
     // Create a client.
     $sqlOperationsServiceClient = new SqlOperationsServiceClient();
 
     // Prepare the request message.
-    $request = new SqlOperationsGetRequest();
+    $request = (new SqlOperationsGetRequest())
+        ->setOperation($operation)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,22 @@ function get_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $operation = '[OPERATION]';
+    $project = '[PROJECT]';
+
+    get_sample($operation, $project);
 }
 // [END sqladmin_v1_generated_SqlOperationsService_Get_sync]

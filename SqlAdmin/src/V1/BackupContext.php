@@ -27,6 +27,13 @@ class BackupContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kind = 2;</code>
      */
     protected $kind = '';
+    /**
+     * The name of the backup.
+     * Format: projects/{project}/backups/{backup}
+     *
+     * Generated from protobuf field <code>string name = 3;</code>
+     */
+    protected $name = '';
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class BackupContext extends \Google\Protobuf\Internal\Message
      *           The identifier of the backup.
      *     @type string $kind
      *           This is always `sql#backupContext`.
+     *     @type string $name
+     *           The name of the backup.
+     *           Format: projects/{project}/backups/{backup}
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class BackupContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the backup.
+     * Format: projects/{project}/backups/{backup}
+     *
+     * Generated from protobuf field <code>string name = 3;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The name of the backup.
+     * Format: projects/{project}/backups/{backup}
+     *
+     * Generated from protobuf field <code>string name = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

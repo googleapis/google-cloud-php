@@ -131,7 +131,8 @@ class SqlOperationType
      */
     const DELETE_USER = 20;
     /**
-     * Updates an existing user in a Cloud SQL instance.
+     * Updates an existing user in a Cloud SQL instance. If a user with the
+     * specified username doesn't exist, a new user is created.
      *
      * Generated from protobuf enum <code>UPDATE_USER = 21;</code>
      */
@@ -247,6 +248,12 @@ class SqlOperationType
      */
     const SWITCHOVER = 39;
     /**
+     * Update a backup.
+     *
+     * Generated from protobuf enum <code>UPDATE_BACKUP = 40;</code>
+     */
+    const UPDATE_BACKUP = 40;
+    /**
      * Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
      *
      * Generated from protobuf enum <code>ACQUIRE_SSRS_LEASE = 42;</code>
@@ -274,7 +281,7 @@ class SqlOperationType
      * instance, maintenance typically causes the instance to be unavailable for
      * 1-3 minutes.
      *
-     * Generated from protobuf enum <code>CLUSTER_MAINTENANCE = 45;</code>
+     * Generated from protobuf enum <code>CLUSTER_MAINTENANCE = 45 [deprecated = true];</code>
      */
     const CLUSTER_MAINTENANCE = 45;
     /**
@@ -283,7 +290,7 @@ class SqlOperationType
      * Maintenance typically causes the instance to be unavailable for 1-3
      * minutes.
      *
-     * Generated from protobuf enum <code>SELF_SERVICE_MAINTENANCE = 46;</code>
+     * Generated from protobuf enum <code>SELF_SERVICE_MAINTENANCE = 46 [deprecated = true];</code>
      */
     const SELF_SERVICE_MAINTENANCE = 46;
     /**
@@ -299,6 +306,36 @@ class SqlOperationType
      * Generated from protobuf enum <code>MAJOR_VERSION_UPGRADE = 48;</code>
      */
     const MAJOR_VERSION_UPGRADE = 48;
+    /**
+     * Deprecated: ADVANCED_BACKUP is deprecated. Use ENHANCED_BACKUP instead.
+     *
+     * Generated from protobuf enum <code>ADVANCED_BACKUP = 49 [deprecated = true];</code>
+     */
+    const ADVANCED_BACKUP = 49;
+    /**
+     * Changes the BackupTier of a Cloud SQL instance.
+     *
+     * Generated from protobuf enum <code>MANAGE_BACKUP = 50;</code>
+     */
+    const MANAGE_BACKUP = 50;
+    /**
+     * Creates a backup for an Enhanced BackupTier Cloud SQL instance.
+     *
+     * Generated from protobuf enum <code>ENHANCED_BACKUP = 51;</code>
+     */
+    const ENHANCED_BACKUP = 51;
+    /**
+     * Repairs entire read pool or specified read pool nodes in the read pool.
+     *
+     * Generated from protobuf enum <code>REPAIR_READ_POOL = 52;</code>
+     */
+    const REPAIR_READ_POOL = 52;
+    /**
+     * Creates a Cloud SQL read pool instance.
+     *
+     * Generated from protobuf enum <code>CREATE_READ_POOL = 53;</code>
+     */
+    const CREATE_READ_POOL = 53;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -340,6 +377,7 @@ class SqlOperationType
         self::AUTO_RESTART => 'AUTO_RESTART',
         self::REENCRYPT => 'REENCRYPT',
         self::SWITCHOVER => 'SWITCHOVER',
+        self::UPDATE_BACKUP => 'UPDATE_BACKUP',
         self::ACQUIRE_SSRS_LEASE => 'ACQUIRE_SSRS_LEASE',
         self::RELEASE_SSRS_LEASE => 'RELEASE_SSRS_LEASE',
         self::RECONFIGURE_OLD_PRIMARY => 'RECONFIGURE_OLD_PRIMARY',
@@ -347,6 +385,11 @@ class SqlOperationType
         self::SELF_SERVICE_MAINTENANCE => 'SELF_SERVICE_MAINTENANCE',
         self::SWITCHOVER_TO_REPLICA => 'SWITCHOVER_TO_REPLICA',
         self::MAJOR_VERSION_UPGRADE => 'MAJOR_VERSION_UPGRADE',
+        self::ADVANCED_BACKUP => 'ADVANCED_BACKUP',
+        self::MANAGE_BACKUP => 'MANAGE_BACKUP',
+        self::ENHANCED_BACKUP => 'ENHANCED_BACKUP',
+        self::REPAIR_READ_POOL => 'REPAIR_READ_POOL',
+        self::CREATE_READ_POOL => 'CREATE_READ_POOL',
     ];
 
     public static function name($value)
