@@ -35,6 +35,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DatabaseCenter\V1beta\AggregateFleetRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryProductsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -48,6 +49,7 @@ use Psr\Log\LoggerInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<PagedListResponse> aggregateFleetAsync(AggregateFleetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryDatabaseResourceGroupsAsync(QueryDatabaseResourceGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryProductsAsync(QueryProductsRequest $request, array $optionalArgs = [])
  */
@@ -181,6 +183,35 @@ final class DatabaseCenterClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * AggregateFleet provides statistics about the fleet grouped by various
+     * fields.
+     *
+     * The async variant is {@see DatabaseCenterClient::aggregateFleetAsync()} .
+     *
+     * @example samples/V1beta/DatabaseCenterClient/aggregate_fleet.php
+     *
+     * @param AggregateFleetRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function aggregateFleet(AggregateFleetRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('AggregateFleet', $request, $callOptions);
     }
 
     /**
