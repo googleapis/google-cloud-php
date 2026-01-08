@@ -58,7 +58,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * explicitly set, it will not appear in get listings. If not set
      * the default behavior is determined by the org policy, if there is no org
      * policy specified, then it will default to disabled. This field isn't
-     * supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY.
+     * supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY. It is recommended to uselogConfig.enable field instead.
      *
      * Generated from protobuf field <code>optional bool enable_flow_logs = 151544420;</code>
      */
@@ -341,7 +341,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           explicitly set, it will not appear in get listings. If not set
      *           the default behavior is determined by the org policy, if there is no org
      *           policy specified, then it will default to disabled. This field isn't
-     *           supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY.
+     *           supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY. It is recommended to uselogConfig.enable field instead.
      *     @type string $external_ipv6_prefix
      *           The external IPv6 address range that is owned by this
      *           subnetwork.
@@ -626,7 +626,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * explicitly set, it will not appear in get listings. If not set
      * the default behavior is determined by the org policy, if there is no org
      * policy specified, then it will default to disabled. This field isn't
-     * supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY.
+     * supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY. It is recommended to uselogConfig.enable field instead.
      *
      * Generated from protobuf field <code>optional bool enable_flow_logs = 151544420;</code>
      * @return bool
@@ -651,7 +651,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * explicitly set, it will not appear in get listings. If not set
      * the default behavior is determined by the org policy, if there is no org
      * policy specified, then it will default to disabled. This field isn't
-     * supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY.
+     * supported if the subnet purpose field is set toREGIONAL_MANAGED_PROXY. It is recommended to uselogConfig.enable field instead.
      *
      * Generated from protobuf field <code>optional bool enable_flow_logs = 151544420;</code>
      * @param bool $var
