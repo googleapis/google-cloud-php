@@ -315,8 +315,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function showEffectiveAutokeyConfig(ShowEffectiveAutokeyConfigRequest $request, array $callOptions = []): ShowEffectiveAutokeyConfigResponse
-    {
+    public function showEffectiveAutokeyConfig(
+        ShowEffectiveAutokeyConfigRequest $request,
+        array $callOptions = []
+    ): ShowEffectiveAutokeyConfigResponse {
         return $this->startApiCall('ShowEffectiveAutokeyConfig', $request, $callOptions)->wait();
     }
 
@@ -488,8 +490,10 @@ final class AutokeyAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
