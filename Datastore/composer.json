@@ -13,7 +13,7 @@
         "phpspec/prophecy-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^5.3.3||^6.0",
-        "phpdocumentor/reflection-docblock": "^6.0",
+        "phpdocumentor/reflection-docblock": "^5.3.3||^6.0",
         "erusev/parsedown": "^1.6",
         "dg/bypass-finals": "^1.9"
     },
