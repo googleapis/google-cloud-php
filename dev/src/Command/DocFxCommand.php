@@ -62,8 +62,9 @@ class DocFxCommand extends Command
 
     protected function configure()
     {
-        $this->setName('docfx')
+        $this->setName('docs:docfx')
             ->setDescription('Generate DocFX yaml from a phpdoc strucutre.xml')
+            ->setAliases(['docfx'])
             ->addOption('xml', '', InputOption::VALUE_REQUIRED, 'Path to phpdoc structure.xml')
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'Generate docs for a specific component.', '')
             ->addOption('out', '', InputOption::VALUE_REQUIRED, 'Path where to store the generated output.', 'out')
@@ -136,6 +137,9 @@ class DocFxCommand extends Command
 
         $componentPath = $input->getOption('path');
         $componentName = rtrim($input->getOption('component'), '/') ?: basename($componentPath ?: getcwd());
+        if ($componentName === 'dev' || $componentName === 'google-cloud-php') {
+            throw new \Exception('You must provide a --path option or use a component as your working directory');
+        }
         $component = new Component($componentName, $componentPath);
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $componentName));
         $xml = $input->getOption('xml');
