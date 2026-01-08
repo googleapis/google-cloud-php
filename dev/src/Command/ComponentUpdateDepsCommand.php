@@ -35,6 +35,7 @@ class ComponentUpdateDepsCommand extends Command
     protected function configure()
     {
         $this->setName('component:update:deps')
+            ->setAliases(['update-deps'])
             ->setDescription('update a dependency across all components')
             ->addArgument('package', InputArgument::REQUIRED, 'Package name to update, e.g. "google/gax"')
             ->addArgument('version', InputArgument::OPTIONAL, 'Package version to update to, e.g. "1.4.0"', '')
