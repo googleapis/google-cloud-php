@@ -28,6 +28,16 @@
                 }
             },
             "methods": {
+                "AggregateFleet": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "QueryDatabaseResourceGroups": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "QueryProducts": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",

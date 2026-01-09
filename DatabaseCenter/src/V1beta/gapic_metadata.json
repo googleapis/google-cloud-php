@@ -10,6 +10,16 @@
                 "grpc": {
                     "libraryClient": "DatabaseCenterGapicClient",
                     "rpcs": {
+                        "AggregateFleet": {
+                            "methods": [
+                                "aggregateFleet"
+                            ]
+                        },
+                        "QueryDatabaseResourceGroups": {
+                            "methods": [
+                                "queryDatabaseResourceGroups"
+                            ]
+                        },
                         "QueryProducts": {
                             "methods": [
                                 "queryProducts"

@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.cloud.databasecenter.v1beta.DatabaseCenter' => [
+            'AggregateFleet' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRows',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DatabaseCenter\V1beta\AggregateFleetResponse',
+            ],
+            'QueryDatabaseResourceGroups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceGroups',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsResponse',
+            ],
             'QueryProducts' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

@@ -23,6 +23,15 @@
 return [
     'interfaces' => [
         'google.cloud.databasecenter.v1beta.DatabaseCenter' => [
+            'AggregateFleet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta:aggregateFleet',
+            ],
+            'QueryDatabaseResourceGroups' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta:queryDatabaseResourceGroups',
+                'body' => '*',
+            ],
             'QueryProducts' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta:queryProducts',
