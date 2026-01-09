@@ -16,17 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The system automatically determines the number of speakers. This
-     * value is not currently used.
+     * Required. Minimum number of speakers in the conversation. This range gives
+     * you more flexibility by allowing the system to automatically determine the
+     * correct number of speakers.
+     * To fix the number of speakers detected in the audio, set
+     * `min_speaker_count` = `max_speaker_count`.
      *
-     * Generated from protobuf field <code>int32 min_speaker_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 min_speaker_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $min_speaker_count = 0;
     /**
-     * Optional. The system automatically determines the number of speakers. This
-     * value is not currently used.
+     * Required. Maximum number of speakers in the conversation. Valid values are:
+     * 1-6. Must be >= `min_speaker_count`. This range gives you more flexibility
+     * by allowing the system to automatically determine the correct number of
+     * speakers.
      *
-     * Generated from protobuf field <code>int32 max_speaker_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 max_speaker_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $max_speaker_count = 0;
 
@@ -37,11 +42,16 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $min_speaker_count
-     *           Optional. The system automatically determines the number of speakers. This
-     *           value is not currently used.
+     *           Required. Minimum number of speakers in the conversation. This range gives
+     *           you more flexibility by allowing the system to automatically determine the
+     *           correct number of speakers.
+     *           To fix the number of speakers detected in the audio, set
+     *           `min_speaker_count` = `max_speaker_count`.
      *     @type int $max_speaker_count
-     *           Optional. The system automatically determines the number of speakers. This
-     *           value is not currently used.
+     *           Required. Maximum number of speakers in the conversation. Valid values are:
+     *           1-6. Must be >= `min_speaker_count`. This range gives you more flexibility
+     *           by allowing the system to automatically determine the correct number of
+     *           speakers.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,10 +60,13 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The system automatically determines the number of speakers. This
-     * value is not currently used.
+     * Required. Minimum number of speakers in the conversation. This range gives
+     * you more flexibility by allowing the system to automatically determine the
+     * correct number of speakers.
+     * To fix the number of speakers detected in the audio, set
+     * `min_speaker_count` = `max_speaker_count`.
      *
-     * Generated from protobuf field <code>int32 min_speaker_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 min_speaker_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getMinSpeakerCount()
@@ -62,10 +75,13 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The system automatically determines the number of speakers. This
-     * value is not currently used.
+     * Required. Minimum number of speakers in the conversation. This range gives
+     * you more flexibility by allowing the system to automatically determine the
+     * correct number of speakers.
+     * To fix the number of speakers detected in the audio, set
+     * `min_speaker_count` = `max_speaker_count`.
      *
-     * Generated from protobuf field <code>int32 min_speaker_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 min_speaker_count = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -78,10 +94,12 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The system automatically determines the number of speakers. This
-     * value is not currently used.
+     * Required. Maximum number of speakers in the conversation. Valid values are:
+     * 1-6. Must be >= `min_speaker_count`. This range gives you more flexibility
+     * by allowing the system to automatically determine the correct number of
+     * speakers.
      *
-     * Generated from protobuf field <code>int32 max_speaker_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 max_speaker_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getMaxSpeakerCount()
@@ -90,10 +108,12 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The system automatically determines the number of speakers. This
-     * value is not currently used.
+     * Required. Maximum number of speakers in the conversation. Valid values are:
+     * 1-6. Must be >= `min_speaker_count`. This range gives you more flexibility
+     * by allowing the system to automatically determine the correct number of
+     * speakers.
      *
-     * Generated from protobuf field <code>int32 max_speaker_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 max_speaker_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
