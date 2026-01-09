@@ -80,9 +80,7 @@ final class KeyTrackingServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -131,9 +129,16 @@ final class KeyTrackingServiceClient
      *
      * @return string The formatted project_location_key_ring_crypto_key_crypto_key_version_protectedResourcesSummary resource.
      */
-    public static function projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummaryName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
-        return self::getPathTemplate('projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummary')->render([
+    public static function projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummaryName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate(
+            'projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummary'
+        )->render([
             'project' => $project,
             'location' => $location,
             'key_ring' => $keyRing,
@@ -153,8 +158,12 @@ final class KeyTrackingServiceClient
      *
      * @return string The formatted project_location_key_ring_crypto_key_protectedResourcesSummary resource.
      */
-    public static function projectLocationKeyRingCryptoKeyProtectedResourcesSummaryName(string $project, string $location, string $keyRing, string $cryptoKey): string
-    {
+    public static function projectLocationKeyRingCryptoKeyProtectedResourcesSummaryName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey
+    ): string {
         return self::getPathTemplate('projectLocationKeyRingCryptoKeyProtectedResourcesSummary')->render([
             'project' => $project,
             'location' => $location,
@@ -174,8 +183,12 @@ final class KeyTrackingServiceClient
      *
      * @return string The formatted protected_resources_summary resource.
      */
-    public static function protectedResourcesSummaryName(string $project, string $location, string $keyRing, string $cryptoKey): string
-    {
+    public static function protectedResourcesSummaryName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey
+    ): string {
         return self::getPathTemplate('protectedResourcesSummary')->render([
             'project' => $project,
             'location' => $location,
@@ -322,8 +335,10 @@ final class KeyTrackingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProtectedResourcesSummary(GetProtectedResourcesSummaryRequest $request, array $callOptions = []): ProtectedResourcesSummary
-    {
+    public function getProtectedResourcesSummary(
+        GetProtectedResourcesSummaryRequest $request,
+        array $callOptions = []
+    ): ProtectedResourcesSummary {
         return $this->startApiCall('GetProtectedResourcesSummary', $request, $callOptions)->wait();
     }
 
@@ -350,8 +365,10 @@ final class KeyTrackingServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchProtectedResources(SearchProtectedResourcesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchProtectedResources(
+        SearchProtectedResourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchProtectedResources', $request, $callOptions);
     }
 }
