@@ -78,9 +78,7 @@ final class LfpInventoryServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -127,8 +125,12 @@ final class LfpInventoryServiceClient
      *
      * @return string The formatted lfp_inventory resource.
      */
-    public static function lfpInventoryName(string $account, string $targetMerchant, string $storeCode, string $offer): string
-    {
+    public static function lfpInventoryName(
+        string $account,
+        string $targetMerchant,
+        string $storeCode,
+        string $offer
+    ): string {
         return self::getPathTemplate('lfpInventory')->render([
             'account' => $account,
             'target_merchant' => $targetMerchant,

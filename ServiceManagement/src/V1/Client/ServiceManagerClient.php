@@ -376,8 +376,10 @@ final class ServiceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createServiceRollout(CreateServiceRolloutRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createServiceRollout(
+        CreateServiceRolloutRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateServiceRollout', $request, $callOptions)->wait();
     }
 
@@ -445,8 +447,10 @@ final class ServiceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateConfigReport(GenerateConfigReportRequest $request, array $callOptions = []): GenerateConfigReportResponse
-    {
+    public function generateConfigReport(
+        GenerateConfigReportRequest $request,
+        array $callOptions = []
+    ): GenerateConfigReportResponse {
         return $this->startApiCall('GenerateConfigReport', $request, $callOptions)->wait();
     }
 
@@ -768,8 +772,10 @@ final class ServiceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

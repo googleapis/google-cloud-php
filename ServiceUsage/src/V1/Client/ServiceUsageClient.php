@@ -302,8 +302,10 @@ final class ServiceUsageClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchGetServices(BatchGetServicesRequest $request, array $callOptions = []): BatchGetServicesResponse
-    {
+    public function batchGetServices(
+        BatchGetServicesRequest $request,
+        array $callOptions = []
+    ): BatchGetServicesResponse {
         return $this->startApiCall('BatchGetServices', $request, $callOptions)->wait();
     }
 

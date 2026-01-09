@@ -81,9 +81,7 @@ final class LfpMerchantStateServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -98,7 +96,8 @@ final class LfpMerchantStateServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/lfp_merchant_state_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/lfp_merchant_state_service_rest_client_config.php',
                 ],
             ],
         ];

@@ -76,9 +76,7 @@ final class OrderTrackingSignalsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -93,7 +91,8 @@ final class OrderTrackingSignalsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/order_tracking_signals_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/order_tracking_signals_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -245,8 +244,10 @@ final class OrderTrackingSignalsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createOrderTrackingSignal(CreateOrderTrackingSignalRequest $request, array $callOptions = []): OrderTrackingSignal
-    {
+    public function createOrderTrackingSignal(
+        CreateOrderTrackingSignalRequest $request,
+        array $callOptions = []
+    ): OrderTrackingSignal {
         return $this->startApiCall('CreateOrderTrackingSignal', $request, $callOptions)->wait();
     }
 }

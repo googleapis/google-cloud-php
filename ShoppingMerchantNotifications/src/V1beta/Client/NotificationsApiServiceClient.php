@@ -89,9 +89,7 @@ final class NotificationsApiServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -106,7 +104,8 @@ final class NotificationsApiServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/notifications_api_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/notifications_api_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -297,8 +296,10 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function createNotificationSubscription(CreateNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
-    {
+    public function createNotificationSubscription(
+        CreateNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): NotificationSubscription {
         return $this->startApiCall('CreateNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -324,8 +325,10 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function deleteNotificationSubscription(DeleteNotificationSubscriptionRequest $request, array $callOptions = []): void
-    {
+    public function deleteNotificationSubscription(
+        DeleteNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): void {
         $this->startApiCall('DeleteNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -353,8 +356,10 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function getNotificationSubscription(GetNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
-    {
+    public function getNotificationSubscription(
+        GetNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): NotificationSubscription {
         return $this->startApiCall('GetNotificationSubscription', $request, $callOptions)->wait();
     }
 
@@ -382,8 +387,10 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function listNotificationSubscriptions(ListNotificationSubscriptionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listNotificationSubscriptions(
+        ListNotificationSubscriptionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListNotificationSubscriptions', $request, $callOptions);
     }
 
@@ -411,8 +418,10 @@ final class NotificationsApiServiceClient
      *
      * @experimental
      */
-    public function updateNotificationSubscription(UpdateNotificationSubscriptionRequest $request, array $callOptions = []): NotificationSubscription
-    {
+    public function updateNotificationSubscription(
+        UpdateNotificationSubscriptionRequest $request,
+        array $callOptions = []
+    ): NotificationSubscription {
         return $this->startApiCall('UpdateNotificationSubscription', $request, $callOptions)->wait();
     }
 }

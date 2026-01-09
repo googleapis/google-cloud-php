@@ -87,9 +87,7 @@ final class ConversionSourcesServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -104,7 +102,8 @@ final class ConversionSourcesServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/conversion_sources_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/conversion_sources_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -274,8 +273,10 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createConversionSource(CreateConversionSourceRequest $request, array $callOptions = []): ConversionSource
-    {
+    public function createConversionSource(
+        CreateConversionSourceRequest $request,
+        array $callOptions = []
+    ): ConversionSource {
         return $this->startApiCall('CreateConversionSource', $request, $callOptions)->wait();
     }
 
@@ -356,8 +357,10 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listConversionSources(ListConversionSourcesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listConversionSources(
+        ListConversionSourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListConversionSources', $request, $callOptions);
     }
 
@@ -384,8 +387,10 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function undeleteConversionSource(UndeleteConversionSourceRequest $request, array $callOptions = []): ConversionSource
-    {
+    public function undeleteConversionSource(
+        UndeleteConversionSourceRequest $request,
+        array $callOptions = []
+    ): ConversionSource {
         return $this->startApiCall('UndeleteConversionSource', $request, $callOptions)->wait();
     }
 
@@ -412,8 +417,10 @@ final class ConversionSourcesServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateConversionSource(UpdateConversionSourceRequest $request, array $callOptions = []): ConversionSource
-    {
+    public function updateConversionSource(
+        UpdateConversionSourceRequest $request,
+        array $callOptions = []
+    ): ConversionSource {
         return $this->startApiCall('UpdateConversionSource', $request, $callOptions)->wait();
     }
 }
