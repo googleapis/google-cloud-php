@@ -12,20 +12,21 @@ use Google\Protobuf\Internal\GPBUtil;
  * A primary instance and disaster recovery (DR) replica pair.
  * A DR replica is a cross-region replica that you designate for failover in
  * the event that the primary instance experiences regional failure.
- * Only applicable to MySQL.
+ * Applicable to MySQL and PostgreSQL.
  *
  * Generated from protobuf message <code>google.cloud.sql.v1.ReplicationCluster</code>
  */
 class ReplicationCluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. If set, it indicates this instance has a private service
-     * access (PSA) dns endpoint that is pointing to the primary instance of the
-     * cluster. If this instance is the primary, the dns should be pointing to
-     * this instance. After Switchover or Replica failover, this DNS endpoint
-     * points to the promoted instance. This is a read-only field, returned to the
-     * user as information. This field can exist even if a standalone instance
-     * does not yet have a replica, or had a DR replica that was deleted.
+     * Output only. If set, this field indicates this instance has a private
+     * service access (PSA) DNS endpoint that is pointing to the primary instance
+     * of the cluster. If this instance is the primary, then the DNS endpoint
+     * points to this instance. After a switchover or replica failover operation,
+     * this DNS endpoint points to the promoted instance. This is a read-only
+     * field, returned to the user as information. This field can exist even if a
+     * standalone instance doesn't have a DR replica yet or the DR replica is
+     * deleted.
      *
      * Generated from protobuf field <code>string psa_write_endpoint = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -56,13 +57,14 @@ class ReplicationCluster extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $psa_write_endpoint
-     *           Output only. If set, it indicates this instance has a private service
-     *           access (PSA) dns endpoint that is pointing to the primary instance of the
-     *           cluster. If this instance is the primary, the dns should be pointing to
-     *           this instance. After Switchover or Replica failover, this DNS endpoint
-     *           points to the promoted instance. This is a read-only field, returned to the
-     *           user as information. This field can exist even if a standalone instance
-     *           does not yet have a replica, or had a DR replica that was deleted.
+     *           Output only. If set, this field indicates this instance has a private
+     *           service access (PSA) DNS endpoint that is pointing to the primary instance
+     *           of the cluster. If this instance is the primary, then the DNS endpoint
+     *           points to this instance. After a switchover or replica failover operation,
+     *           this DNS endpoint points to the promoted instance. This is a read-only
+     *           field, returned to the user as information. This field can exist even if a
+     *           standalone instance doesn't have a DR replica yet or the DR replica is
+     *           deleted.
      *     @type string $failover_dr_replica_name
      *           Optional. If the instance is a primary instance, then this field identifies
      *           the disaster recovery (DR) replica. A DR replica is an optional
@@ -81,13 +83,14 @@ class ReplicationCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, it indicates this instance has a private service
-     * access (PSA) dns endpoint that is pointing to the primary instance of the
-     * cluster. If this instance is the primary, the dns should be pointing to
-     * this instance. After Switchover or Replica failover, this DNS endpoint
-     * points to the promoted instance. This is a read-only field, returned to the
-     * user as information. This field can exist even if a standalone instance
-     * does not yet have a replica, or had a DR replica that was deleted.
+     * Output only. If set, this field indicates this instance has a private
+     * service access (PSA) DNS endpoint that is pointing to the primary instance
+     * of the cluster. If this instance is the primary, then the DNS endpoint
+     * points to this instance. After a switchover or replica failover operation,
+     * this DNS endpoint points to the promoted instance. This is a read-only
+     * field, returned to the user as information. This field can exist even if a
+     * standalone instance doesn't have a DR replica yet or the DR replica is
+     * deleted.
      *
      * Generated from protobuf field <code>string psa_write_endpoint = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -98,13 +101,14 @@ class ReplicationCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If set, it indicates this instance has a private service
-     * access (PSA) dns endpoint that is pointing to the primary instance of the
-     * cluster. If this instance is the primary, the dns should be pointing to
-     * this instance. After Switchover or Replica failover, this DNS endpoint
-     * points to the promoted instance. This is a read-only field, returned to the
-     * user as information. This field can exist even if a standalone instance
-     * does not yet have a replica, or had a DR replica that was deleted.
+     * Output only. If set, this field indicates this instance has a private
+     * service access (PSA) DNS endpoint that is pointing to the primary instance
+     * of the cluster. If this instance is the primary, then the DNS endpoint
+     * points to this instance. After a switchover or replica failover operation,
+     * this DNS endpoint points to the promoted instance. This is a read-only
+     * field, returned to the user as information. This field can exist even if a
+     * standalone instance doesn't have a DR replica yet or the DR replica is
+     * deleted.
      *
      * Generated from protobuf field <code>string psa_write_endpoint = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

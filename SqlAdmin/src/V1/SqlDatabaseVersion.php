@@ -44,90 +44,6 @@ class SqlDatabaseVersion
      */
     const MYSQL_5_7 = 6;
     /**
-     * The database version is SQL Server 2017 Standard.
-     *
-     * Generated from protobuf enum <code>SQLSERVER_2017_STANDARD = 11;</code>
-     */
-    const SQLSERVER_2017_STANDARD = 11;
-    /**
-     * The database version is SQL Server 2017 Enterprise.
-     *
-     * Generated from protobuf enum <code>SQLSERVER_2017_ENTERPRISE = 14;</code>
-     */
-    const SQLSERVER_2017_ENTERPRISE = 14;
-    /**
-     * The database version is SQL Server 2017 Express.
-     *
-     * Generated from protobuf enum <code>SQLSERVER_2017_EXPRESS = 15;</code>
-     */
-    const SQLSERVER_2017_EXPRESS = 15;
-    /**
-     * The database version is SQL Server 2017 Web.
-     *
-     * Generated from protobuf enum <code>SQLSERVER_2017_WEB = 16;</code>
-     */
-    const SQLSERVER_2017_WEB = 16;
-    /**
-     * The database version is PostgreSQL 9.6.
-     *
-     * Generated from protobuf enum <code>POSTGRES_9_6 = 9;</code>
-     */
-    const POSTGRES_9_6 = 9;
-    /**
-     * The database version is PostgreSQL 10.
-     *
-     * Generated from protobuf enum <code>POSTGRES_10 = 18;</code>
-     */
-    const POSTGRES_10 = 18;
-    /**
-     * The database version is PostgreSQL 11.
-     *
-     * Generated from protobuf enum <code>POSTGRES_11 = 10;</code>
-     */
-    const POSTGRES_11 = 10;
-    /**
-     * The database version is PostgreSQL 12.
-     *
-     * Generated from protobuf enum <code>POSTGRES_12 = 19;</code>
-     */
-    const POSTGRES_12 = 19;
-    /**
-     * The database version is PostgreSQL 13.
-     *
-     * Generated from protobuf enum <code>POSTGRES_13 = 23;</code>
-     */
-    const POSTGRES_13 = 23;
-    /**
-     * The database version is PostgreSQL 14.
-     *
-     * Generated from protobuf enum <code>POSTGRES_14 = 110;</code>
-     */
-    const POSTGRES_14 = 110;
-    /**
-     * The database version is PostgreSQL 15.
-     *
-     * Generated from protobuf enum <code>POSTGRES_15 = 172;</code>
-     */
-    const POSTGRES_15 = 172;
-    /**
-     * The database version is PostgreSQL 16.
-     *
-     * Generated from protobuf enum <code>POSTGRES_16 = 272;</code>
-     */
-    const POSTGRES_16 = 272;
-    /**
-     * The database version is PostgreSQL 17.
-     *
-     * Generated from protobuf enum <code>POSTGRES_17 = 408;</code>
-     */
-    const POSTGRES_17 = 408;
-    /**
-     * The database version is PostgreSQL 18.
-     *
-     * Generated from protobuf enum <code>POSTGRES_18 = 557;</code>
-     */
-    const POSTGRES_18 = 557;
-    /**
      * The database version is MySQL 8.
      *
      * Generated from protobuf enum <code>MYSQL_8_0 = 20;</code>
@@ -212,12 +128,6 @@ class SqlDatabaseVersion
      */
     const MYSQL_8_0_37 = 355;
     /**
-     * The database major version is MySQL 8.0 and the minor version is 38.
-     *
-     * Generated from protobuf enum <code>MYSQL_8_0_38 = 356;</code>
-     */
-    const MYSQL_8_0_38 = 356;
-    /**
      * The database major version is MySQL 8.0 and the minor version is 39.
      *
      * Generated from protobuf enum <code>MYSQL_8_0_39 = 357;</code>
@@ -230,17 +140,131 @@ class SqlDatabaseVersion
      */
     const MYSQL_8_0_40 = 358;
     /**
+     * The database major version is MySQL 8.0 and the minor version is 41.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_41 = 488;</code>
+     */
+    const MYSQL_8_0_41 = 488;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 42.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_42 = 489;</code>
+     */
+    const MYSQL_8_0_42 = 489;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 43.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_43 = 553;</code>
+     */
+    const MYSQL_8_0_43 = 553;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 44.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_44 = 554;</code>
+     */
+    const MYSQL_8_0_44 = 554;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 45.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_45 = 555;</code>
+     */
+    const MYSQL_8_0_45 = 555;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 46.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_46 = 556;</code>
+     */
+    const MYSQL_8_0_46 = 556;
+    /**
      * The database version is MySQL 8.4.
      *
      * Generated from protobuf enum <code>MYSQL_8_4 = 398;</code>
      */
     const MYSQL_8_4 = 398;
     /**
-     * The database version is MySQL 8.4 and the patch version is 0.
+     * The database version is SQL Server 2017 Standard.
      *
-     * Generated from protobuf enum <code>MYSQL_8_4_0 = 399;</code>
+     * Generated from protobuf enum <code>SQLSERVER_2017_STANDARD = 11;</code>
      */
-    const MYSQL_8_4_0 = 399;
+    const SQLSERVER_2017_STANDARD = 11;
+    /**
+     * The database version is SQL Server 2017 Enterprise.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2017_ENTERPRISE = 14;</code>
+     */
+    const SQLSERVER_2017_ENTERPRISE = 14;
+    /**
+     * The database version is SQL Server 2017 Express.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2017_EXPRESS = 15;</code>
+     */
+    const SQLSERVER_2017_EXPRESS = 15;
+    /**
+     * The database version is SQL Server 2017 Web.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2017_WEB = 16;</code>
+     */
+    const SQLSERVER_2017_WEB = 16;
+    /**
+     * The database version is PostgreSQL 9.6.
+     *
+     * Generated from protobuf enum <code>POSTGRES_9_6 = 9;</code>
+     */
+    const POSTGRES_9_6 = 9;
+    /**
+     * The database version is PostgreSQL 10.
+     *
+     * Generated from protobuf enum <code>POSTGRES_10 = 18;</code>
+     */
+    const POSTGRES_10 = 18;
+    /**
+     * The database version is PostgreSQL 11.
+     *
+     * Generated from protobuf enum <code>POSTGRES_11 = 10;</code>
+     */
+    const POSTGRES_11 = 10;
+    /**
+     * The database version is PostgreSQL 12.
+     *
+     * Generated from protobuf enum <code>POSTGRES_12 = 19;</code>
+     */
+    const POSTGRES_12 = 19;
+    /**
+     * The database version is PostgreSQL 13.
+     *
+     * Generated from protobuf enum <code>POSTGRES_13 = 23;</code>
+     */
+    const POSTGRES_13 = 23;
+    /**
+     * The database version is PostgreSQL 14.
+     *
+     * Generated from protobuf enum <code>POSTGRES_14 = 110;</code>
+     */
+    const POSTGRES_14 = 110;
+    /**
+     * The database version is PostgreSQL 15.
+     *
+     * Generated from protobuf enum <code>POSTGRES_15 = 172;</code>
+     */
+    const POSTGRES_15 = 172;
+    /**
+     * The database version is PostgreSQL 16.
+     *
+     * Generated from protobuf enum <code>POSTGRES_16 = 272;</code>
+     */
+    const POSTGRES_16 = 272;
+    /**
+     * The database version is PostgreSQL 17.
+     *
+     * Generated from protobuf enum <code>POSTGRES_17 = 408;</code>
+     */
+    const POSTGRES_17 = 408;
+    /**
+     * The database version is PostgreSQL 18.
+     *
+     * Generated from protobuf enum <code>POSTGRES_18 = 557;</code>
+     */
+    const POSTGRES_18 = 557;
     /**
      * The database version is SQL Server 2019 Standard.
      *
@@ -296,20 +320,6 @@ class SqlDatabaseVersion
         self::MYSQL_5_5 => 'MYSQL_5_5',
         self::MYSQL_5_6 => 'MYSQL_5_6',
         self::MYSQL_5_7 => 'MYSQL_5_7',
-        self::SQLSERVER_2017_STANDARD => 'SQLSERVER_2017_STANDARD',
-        self::SQLSERVER_2017_ENTERPRISE => 'SQLSERVER_2017_ENTERPRISE',
-        self::SQLSERVER_2017_EXPRESS => 'SQLSERVER_2017_EXPRESS',
-        self::SQLSERVER_2017_WEB => 'SQLSERVER_2017_WEB',
-        self::POSTGRES_9_6 => 'POSTGRES_9_6',
-        self::POSTGRES_10 => 'POSTGRES_10',
-        self::POSTGRES_11 => 'POSTGRES_11',
-        self::POSTGRES_12 => 'POSTGRES_12',
-        self::POSTGRES_13 => 'POSTGRES_13',
-        self::POSTGRES_14 => 'POSTGRES_14',
-        self::POSTGRES_15 => 'POSTGRES_15',
-        self::POSTGRES_16 => 'POSTGRES_16',
-        self::POSTGRES_17 => 'POSTGRES_17',
-        self::POSTGRES_18 => 'POSTGRES_18',
         self::MYSQL_8_0 => 'MYSQL_8_0',
         self::MYSQL_8_0_18 => 'MYSQL_8_0_18',
         self::MYSQL_8_0_26 => 'MYSQL_8_0_26',
@@ -324,11 +334,29 @@ class SqlDatabaseVersion
         self::MYSQL_8_0_35 => 'MYSQL_8_0_35',
         self::MYSQL_8_0_36 => 'MYSQL_8_0_36',
         self::MYSQL_8_0_37 => 'MYSQL_8_0_37',
-        self::MYSQL_8_0_38 => 'MYSQL_8_0_38',
         self::MYSQL_8_0_39 => 'MYSQL_8_0_39',
         self::MYSQL_8_0_40 => 'MYSQL_8_0_40',
+        self::MYSQL_8_0_41 => 'MYSQL_8_0_41',
+        self::MYSQL_8_0_42 => 'MYSQL_8_0_42',
+        self::MYSQL_8_0_43 => 'MYSQL_8_0_43',
+        self::MYSQL_8_0_44 => 'MYSQL_8_0_44',
+        self::MYSQL_8_0_45 => 'MYSQL_8_0_45',
+        self::MYSQL_8_0_46 => 'MYSQL_8_0_46',
         self::MYSQL_8_4 => 'MYSQL_8_4',
-        self::MYSQL_8_4_0 => 'MYSQL_8_4_0',
+        self::SQLSERVER_2017_STANDARD => 'SQLSERVER_2017_STANDARD',
+        self::SQLSERVER_2017_ENTERPRISE => 'SQLSERVER_2017_ENTERPRISE',
+        self::SQLSERVER_2017_EXPRESS => 'SQLSERVER_2017_EXPRESS',
+        self::SQLSERVER_2017_WEB => 'SQLSERVER_2017_WEB',
+        self::POSTGRES_9_6 => 'POSTGRES_9_6',
+        self::POSTGRES_10 => 'POSTGRES_10',
+        self::POSTGRES_11 => 'POSTGRES_11',
+        self::POSTGRES_12 => 'POSTGRES_12',
+        self::POSTGRES_13 => 'POSTGRES_13',
+        self::POSTGRES_14 => 'POSTGRES_14',
+        self::POSTGRES_15 => 'POSTGRES_15',
+        self::POSTGRES_16 => 'POSTGRES_16',
+        self::POSTGRES_17 => 'POSTGRES_17',
+        self::POSTGRES_18 => 'POSTGRES_18',
         self::SQLSERVER_2019_STANDARD => 'SQLSERVER_2019_STANDARD',
         self::SQLSERVER_2019_ENTERPRISE => 'SQLSERVER_2019_ENTERPRISE',
         self::SQLSERVER_2019_EXPRESS => 'SQLSERVER_2019_EXPRESS',

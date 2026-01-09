@@ -17,10 +17,11 @@ class CloudSqlEvents
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
-*google/cloud/sql/v1/cloud_sql_events.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto2.
+´
+*google/cloud/sql/v1/cloud_sql_events.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2.
 SqlEventsService Asqladmin.googleapis.comB[
 com.google.cloud.sql.v1BCloudSqlEventsProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
         , true);

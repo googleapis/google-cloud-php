@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Database instance local user password validation policy
+ * Database instance local user password validation policy.
+ * This message defines the password policy for local database users.
+ * When enabled, it enforces constraints on password complexity, length,
+ * and reuse. Keep this policy enabled to help prevent unauthorized access.
  *
  * Generated from protobuf message <code>google.cloud.sql.v1.PasswordValidationPolicy</code>
  */
@@ -47,7 +50,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $password_change_interval = null;
     /**
-     * Whether the password policy is enabled or not.
+     * Whether to enable the password policy or not. When enabled, passwords must
+     * meet complexity requirements. Keep this policy enabled to help prevent
+     * unauthorized access. Disabling this policy allows weak passwords.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      */
@@ -79,7 +84,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      *           Minimum interval after which the password can be changed. This flag is only
      *           supported for PostgreSQL.
      *     @type \Google\Protobuf\BoolValue $enable_password_policy
-     *           Whether the password policy is enabled or not.
+     *           Whether to enable the password policy or not. When enabled, passwords must
+     *           meet complexity requirements. Keep this policy enabled to help prevent
+     *           unauthorized access. Disabling this policy allows weak passwords.
      *     @type \Google\Protobuf\BoolValue $disallow_compromised_credentials
      *           This field is deprecated and will be removed in a future version of the
      *           API.
@@ -344,7 +351,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the password policy is enabled or not.
+     * Whether to enable the password policy or not. When enabled, passwords must
+     * meet complexity requirements. Keep this policy enabled to help prevent
+     * unauthorized access. Disabling this policy allows weak passwords.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -367,7 +376,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getEnablePasswordPolicy()</code>
 
-     * Whether the password policy is enabled or not.
+     * Whether to enable the password policy or not. When enabled, passwords must
+     * meet complexity requirements. Keep this policy enabled to help prevent
+     * unauthorized access. Disabling this policy allows weak passwords.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      * @return bool|null
@@ -378,7 +389,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the password policy is enabled or not.
+     * Whether to enable the password policy or not. When enabled, passwords must
+     * meet complexity requirements. Keep this policy enabled to help prevent
+     * unauthorized access. Disabling this policy allows weak passwords.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -395,7 +408,9 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Whether the password policy is enabled or not.
+     * Whether to enable the password policy or not. When enabled, passwords must
+     * meet complexity requirements. Keep this policy enabled to help prevent
+     * unauthorized access. Disabling this policy allows weak passwords.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
      * @param bool|null $var

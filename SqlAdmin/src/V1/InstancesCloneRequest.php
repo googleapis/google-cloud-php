@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancesCloneRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Contains details about the clone operation.
+     * Required. Contains details about the clone operation.
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1.CloneContext clone_context = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.sql.v1.CloneContext clone_context = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $clone_context = null;
 
@@ -29,7 +29,7 @@ class InstancesCloneRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Sql\V1\CloneContext $clone_context
-     *           Contains details about the clone operation.
+     *           Required. Contains details about the clone operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class InstancesCloneRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains details about the clone operation.
+     * Required. Contains details about the clone operation.
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1.CloneContext clone_context = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.sql.v1.CloneContext clone_context = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Sql\V1\CloneContext|null
      */
     public function getCloneContext()
@@ -59,9 +59,9 @@ class InstancesCloneRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains details about the clone operation.
+     * Required. Contains details about the clone operation.
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1.CloneContext clone_context = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.sql.v1.CloneContext clone_context = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Sql\V1\CloneContext $var
      * @return $this
      */

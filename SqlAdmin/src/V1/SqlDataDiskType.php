@@ -38,12 +38,19 @@ class SqlDataDiskType
      * Generated from protobuf enum <code>OBSOLETE_LOCAL_SSD = 3 [deprecated = true];</code>
      */
     const OBSOLETE_LOCAL_SSD = 3;
+    /**
+     * A Hyperdisk Balanced data disk.
+     *
+     * Generated from protobuf enum <code>HYPERDISK_BALANCED = 4;</code>
+     */
+    const HYPERDISK_BALANCED = 4;
 
     private static $valueToName = [
         self::SQL_DATA_DISK_TYPE_UNSPECIFIED => 'SQL_DATA_DISK_TYPE_UNSPECIFIED',
         self::PD_SSD => 'PD_SSD',
         self::PD_HDD => 'PD_HDD',
         self::OBSOLETE_LOCAL_SSD => 'OBSOLETE_LOCAL_SSD',
+        self::HYPERDISK_BALANCED => 'HYPERDISK_BALANCED',
     ];
 
     public static function name($value)

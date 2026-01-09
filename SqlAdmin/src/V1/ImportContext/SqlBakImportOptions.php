@@ -26,7 +26,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
     protected $striped = null;
     /**
      * Whether or not the backup importing will restore database
-     * with NORECOVERY option
+     * with NORECOVERY option.
      * Applies only to Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue no_recovery = 4;</code>
@@ -77,7 +77,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      *           Applies only to Cloud SQL for SQL Server.
      *     @type \Google\Protobuf\BoolValue $no_recovery
      *           Whether or not the backup importing will restore database
-     *           with NORECOVERY option
+     *           with NORECOVERY option.
      *           Applies only to Cloud SQL for SQL Server.
      *     @type \Google\Protobuf\BoolValue $recovery_only
      *           Whether or not the backup importing request will just bring database
@@ -203,7 +203,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether or not the backup importing will restore database
-     * with NORECOVERY option
+     * with NORECOVERY option.
      * Applies only to Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue no_recovery = 4;</code>
@@ -228,7 +228,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getNoRecovery()</code>
 
      * Whether or not the backup importing will restore database
-     * with NORECOVERY option
+     * with NORECOVERY option.
      * Applies only to Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue no_recovery = 4;</code>
@@ -241,7 +241,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether or not the backup importing will restore database
-     * with NORECOVERY option
+     * with NORECOVERY option.
      * Applies only to Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue no_recovery = 4;</code>
@@ -260,7 +260,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
      * Whether or not the backup importing will restore database
-     * with NORECOVERY option
+     * with NORECOVERY option.
      * Applies only to Cloud SQL for SQL Server.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue no_recovery = 4;</code>

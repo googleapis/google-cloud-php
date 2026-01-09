@@ -28,22 +28,29 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Sql\V1\DatabaseInstance;
+use Google\Cloud\Sql\V1\InstancesListEntraIdCertificatesResponse;
 use Google\Cloud\Sql\V1\InstancesListResponse;
 use Google\Cloud\Sql\V1\InstancesListServerCasResponse;
+use Google\Cloud\Sql\V1\InstancesListServerCertificatesResponse;
 use Google\Cloud\Sql\V1\Operation;
 use Google\Cloud\Sql\V1\SqlInstancesAcquireSsrsLeaseRequest;
 use Google\Cloud\Sql\V1\SqlInstancesAcquireSsrsLeaseResponse;
+use Google\Cloud\Sql\V1\SqlInstancesAddEntraIdCertificateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesAddServerCaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesAddServerCertificateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCreateEphemeralCertRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDeleteRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteMasterRequest;
 use Google\Cloud\Sql\V1\SqlInstancesDemoteRequest;
+use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlRequest;
+use Google\Cloud\Sql\V1\SqlInstancesExecuteSqlResponse;
 use Google\Cloud\Sql\V1\SqlInstancesExportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesFailoverRequest;
 use Google\Cloud\Sql\V1\SqlInstancesGetDiskShrinkConfigRequest;
@@ -53,10 +60,14 @@ use Google\Cloud\Sql\V1\SqlInstancesGetLatestRecoveryTimeResponse;
 use Google\Cloud\Sql\V1\SqlInstancesGetRequest;
 use Google\Cloud\Sql\V1\SqlInstancesImportRequest;
 use Google\Cloud\Sql\V1\SqlInstancesInsertRequest;
+use Google\Cloud\Sql\V1\SqlInstancesListEntraIdCertificatesRequest;
 use Google\Cloud\Sql\V1\SqlInstancesListRequest;
 use Google\Cloud\Sql\V1\SqlInstancesListServerCasRequest;
+use Google\Cloud\Sql\V1\SqlInstancesListServerCertificatesRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPatchRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPerformDiskShrinkRequest;
+use Google\Cloud\Sql\V1\SqlInstancesPointInTimeRestoreRequest;
+use Google\Cloud\Sql\V1\SqlInstancesPreCheckMajorVersionUpgradeRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPromoteReplicaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReencryptRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseRequest;
@@ -66,7 +77,9 @@ use Google\Cloud\Sql\V1\SqlInstancesResetReplicaSizeRequest;
 use Google\Cloud\Sql\V1\SqlInstancesResetSslConfigRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRestartRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRestoreBackupRequest;
+use Google\Cloud\Sql\V1\SqlInstancesRotateEntraIdCertificateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesRotateServerCaRequest;
+use Google\Cloud\Sql\V1\SqlInstancesRotateServerCertificateRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartExternalSyncRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStartReplicaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesStopReplicaRequest;
@@ -80,18 +93,26 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Service to manage Cloud SQL instances.
+ * Service Description:
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
+ *
  * @method PromiseInterface<SqlInstancesAcquireSsrsLeaseResponse> acquireSsrsLeaseAsync(SqlInstancesAcquireSsrsLeaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> addEntraIdCertificateAsync(SqlInstancesAddEntraIdCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> addServerCaAsync(SqlInstancesAddServerCaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> addServerCertificateAsync(SqlInstancesAddServerCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> cloneAsync(SqlInstancesCloneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SslCert> createEphemeralAsync(SqlInstancesCreateEphemeralCertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> deleteAsync(SqlInstancesDeleteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> demoteAsync(SqlInstancesDemoteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> demoteMasterAsync(SqlInstancesDemoteMasterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SqlInstancesExecuteSqlResponse> executeSqlAsync(SqlInstancesExecuteSqlRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> exportAsync(SqlInstancesExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> failoverAsync(SqlInstancesFailoverRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DatabaseInstance> getAsync(SqlInstancesGetRequest $request, array $optionalArgs = [])
@@ -100,9 +121,13 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Operation> importAsync(SqlInstancesImportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> insertAsync(SqlInstancesInsertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<InstancesListResponse> listAsync(SqlInstancesListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancesListEntraIdCertificatesResponse> listEntraIdCertificatesAsync(SqlInstancesListEntraIdCertificatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<InstancesListServerCasResponse> listServerCasAsync(SqlInstancesListServerCasRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstancesListServerCertificatesResponse> listServerCertificatesAsync(SqlInstancesListServerCertificatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> patchAsync(SqlInstancesPatchRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> performDiskShrinkAsync(SqlInstancesPerformDiskShrinkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> pointInTimeRestoreAsync(SqlInstancesPointInTimeRestoreRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> preCheckMajorVersionUpgradeAsync(SqlInstancesPreCheckMajorVersionUpgradeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SqlInstancesReleaseSsrsLeaseResponse> releaseSsrsLeaseAsync(SqlInstancesReleaseSsrsLeaseRequest $request, array $optionalArgs = [])
@@ -111,7 +136,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Operation> resetSslConfigAsync(SqlInstancesResetSslConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> restartAsync(SqlInstancesRestartRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> restoreBackupAsync(SqlInstancesRestoreBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rotateEntraIdCertificateAsync(SqlInstancesRotateEntraIdCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> rotateServerCaAsync(SqlInstancesRotateServerCaRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> rotateServerCertificateAsync(SqlInstancesRotateServerCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> startExternalSyncAsync(SqlInstancesStartExternalSyncRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> startReplicaAsync(SqlInstancesStartReplicaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> stopReplicaAsync(SqlInstancesStopReplicaRequest $request, array $optionalArgs = [])
@@ -123,6 +150,7 @@ use Psr\Log\LoggerInterface;
 final class SqlInstancesServiceClient
 {
     use GapicClientTrait;
+    use ResourceHelperTrait;
 
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.sql.v1.SqlInstancesService';
@@ -166,6 +194,47 @@ final class SqlInstancesServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     */
+    public static function backupName(string $project, string $backup): string
+    {
+        return self::getPathTemplate('backup')->render([
+            'project' => $project,
+            'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - backup: projects/{project}/backups/{backup}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName(string $formattedName, ?string $template = null): array
+    {
+        return self::parseFormattedName($formattedName, $template);
     }
 
     /**
@@ -282,13 +351,44 @@ final class SqlInstancesServiceClient
     }
 
     /**
+     * Adds a new Entra ID certificate for the specified instance. If an Entra ID
+     * certificate was previously added but never used in a certificate rotation,
+     * this operation replaces that version.
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::addEntraIdCertificateAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/add_entra_id_certificate.php
+     *
+     * @param SqlInstancesAddEntraIdCertificateRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addEntraIdCertificate(
+        SqlInstancesAddEntraIdCertificateRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('AddEntraIdCertificate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Adds a new trusted Certificate Authority (CA) version for the specified
      * instance. Required to prepare for a certificate rotation. If a CA version
      * was previously added but never used in a certificate rotation, this
      * operation replaces that version. There cannot be more than one CA version
      * waiting to be rotated in. For instances that have enabled Certificate
-     * Authority Service (CAS) based server CA, please use AddServerCertificate to
-     * add a new server certificate.
+     * Authority Service (CAS) based server CA, use AddServerCertificate to add a
+     * new server certificate.
      *
      * The async variant is {@see SqlInstancesServiceClient::addServerCaAsync()} .
      *
@@ -311,6 +411,41 @@ final class SqlInstancesServiceClient
     public function addServerCa(SqlInstancesAddServerCaRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('AddServerCa', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Add a new trusted server certificate version for the specified instance
+     * using Certificate Authority Service (CAS) server CA. Required to prepare
+     * for a certificate rotation. If a server certificate version was previously
+     * added but never used in a certificate rotation, this operation replaces
+     * that version. There cannot be more than one certificate version waiting to
+     * be rotated in. For instances not using CAS server CA, use AddServerCa
+     * instead.
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::addServerCertificateAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/add_server_certificate.php
+     *
+     * @param SqlInstancesAddServerCertificateRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function addServerCertificate(
+        SqlInstancesAddServerCertificateRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('AddServerCertificate', $request, $callOptions)->wait();
     }
 
     /**
@@ -447,6 +582,34 @@ final class SqlInstancesServiceClient
     public function demoteMaster(SqlInstancesDemoteMasterRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('DemoteMaster', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Execute SQL statements.
+     *
+     * The async variant is {@see SqlInstancesServiceClient::executeSqlAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/execute_sql.php
+     *
+     * @param SqlInstancesExecuteSqlRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SqlInstancesExecuteSqlResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeSql(
+        SqlInstancesExecuteSqlRequest $request,
+        array $callOptions = []
+    ): SqlInstancesExecuteSqlResponse {
+        return $this->startApiCall('ExecuteSql', $request, $callOptions)->wait();
     }
 
     /**
@@ -673,6 +836,38 @@ final class SqlInstancesServiceClient
     }
 
     /**
+     * Lists all versions of EntraID certificates for the specified instance.
+     * There can be up to three sets of certificates listed: the certificate that
+     * is currently in use, a future that has been added but not yet used to sign
+     * a certificate, and a certificate that has been rotated out.
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::listEntraIdCertificatesAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/list_entra_id_certificates.php
+     *
+     * @param SqlInstancesListEntraIdCertificatesRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return InstancesListEntraIdCertificatesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listEntraIdCertificates(
+        SqlInstancesListEntraIdCertificatesRequest $request,
+        array $callOptions = []
+    ): InstancesListEntraIdCertificatesResponse {
+        return $this->startApiCall('ListEntraIdCertificates', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists all of the trusted Certificate Authorities (CAs) for the specified
      * instance. There can be up to three CAs listed: the CA that was used to sign
      * the certificate that is currently in use, a CA that has been added but not
@@ -702,6 +897,40 @@ final class SqlInstancesServiceClient
         array $callOptions = []
     ): InstancesListServerCasResponse {
         return $this->startApiCall('ListServerCas', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all versions of server certificates and certificate authorities (CAs)
+     * for the specified instance. There can be up to three sets of certs listed:
+     * the certificate that is currently in use, a future that has been added but
+     * not yet used to sign a certificate, and a certificate that has been rotated
+     * out. For instances not using Certificate Authority Service (CAS) server CA,
+     * use ListServerCas instead.
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::listServerCertificatesAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/list_server_certificates.php
+     *
+     * @param SqlInstancesListServerCertificatesRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return InstancesListServerCertificatesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listServerCertificates(
+        SqlInstancesListServerCertificatesRequest $request,
+        array $callOptions = []
+    ): InstancesListServerCertificatesResponse {
+        return $this->startApiCall('ListServerCertificates', $request, $callOptions)->wait();
     }
 
     /**
@@ -756,6 +985,65 @@ final class SqlInstancesServiceClient
     public function performDiskShrink(SqlInstancesPerformDiskShrinkRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('PerformDiskShrink', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Point in time restore for an instance managed by Google Cloud Backup and
+     * Disaster Recovery.
+     *
+     * The async variant is {@see SqlInstancesServiceClient::pointInTimeRestoreAsync()}
+     * .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/point_in_time_restore.php
+     *
+     * @param SqlInstancesPointInTimeRestoreRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function pointInTimeRestore(
+        SqlInstancesPointInTimeRestoreRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('PointInTimeRestore', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Execute MVU Pre-checks
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::preCheckMajorVersionUpgradeAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/pre_check_major_version_upgrade.php
+     *
+     * @param SqlInstancesPreCheckMajorVersionUpgradeRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function preCheckMajorVersionUpgrade(
+        SqlInstancesPreCheckMajorVersionUpgradeRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('PreCheckMajorVersionUpgrade', $request, $callOptions)->wait();
     }
 
     /**
@@ -976,10 +1264,40 @@ final class SqlInstancesServiceClient
     }
 
     /**
+     * Rotates the server certificate version to one previously added with the
+     * addEntraIdCertificate method.
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::rotateEntraIdCertificateAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/rotate_entra_id_certificate.php
+     *
+     * @param SqlInstancesRotateEntraIdCertificateRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rotateEntraIdCertificate(
+        SqlInstancesRotateEntraIdCertificateRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('RotateEntraIdCertificate', $request, $callOptions)->wait();
+    }
+
+    /**
      * Rotates the server certificate to one signed by the Certificate Authority
      * (CA) version previously added with the addServerCA method. For instances
      * that have enabled Certificate Authority Service (CAS) based server CA,
-     * please use RotateServerCertificate to rotate the server certificate.
+     * use RotateServerCertificate to rotate the server certificate.
      *
      * The async variant is {@see SqlInstancesServiceClient::rotateServerCaAsync()} .
      *
@@ -1002,6 +1320,37 @@ final class SqlInstancesServiceClient
     public function rotateServerCa(SqlInstancesRotateServerCaRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('RotateServerCa', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rotates the server certificate version to one previously added with the
+     * addServerCertificate method. For instances not using Certificate Authority
+     * Service (CAS) server CA, use RotateServerCa instead.
+     *
+     * The async variant is
+     * {@see SqlInstancesServiceClient::rotateServerCertificateAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/rotate_server_certificate.php
+     *
+     * @param SqlInstancesRotateServerCertificateRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rotateServerCertificate(
+        SqlInstancesRotateServerCertificateRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('RotateServerCertificate', $request, $callOptions)->wait();
     }
 
     /**
@@ -1084,7 +1433,7 @@ final class SqlInstancesServiceClient
     }
 
     /**
-     * Switches over from the primary instance to the designated DR replica
+     * Switches over from the primary instance to the DR replica
      * instance.
      *
      * The async variant is {@see SqlInstancesServiceClient::switchoverAsync()} .

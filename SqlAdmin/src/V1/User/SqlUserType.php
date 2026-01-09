@@ -32,23 +32,30 @@ class SqlUserType
      */
     const CLOUD_IAM_SERVICE_ACCOUNT = 2;
     /**
-     * Cloud IAM group non-login user.
+     * Cloud IAM group. Not used for login.
      *
      * Generated from protobuf enum <code>CLOUD_IAM_GROUP = 3;</code>
      */
     const CLOUD_IAM_GROUP = 3;
     /**
-     * Cloud IAM group login user.
+     * Read-only. Login for a user that belongs to the Cloud IAM group.
      *
      * Generated from protobuf enum <code>CLOUD_IAM_GROUP_USER = 4;</code>
      */
     const CLOUD_IAM_GROUP_USER = 4;
     /**
-     * Cloud IAM group login service account.
+     * Read-only. Login for a service account that belongs to the
+     * Cloud IAM group.
      *
      * Generated from protobuf enum <code>CLOUD_IAM_GROUP_SERVICE_ACCOUNT = 5;</code>
      */
     const CLOUD_IAM_GROUP_SERVICE_ACCOUNT = 5;
+    /**
+     * Microsoft Entra ID user.
+     *
+     * Generated from protobuf enum <code>ENTRAID_USER = 7;</code>
+     */
+    const ENTRAID_USER = 7;
 
     private static $valueToName = [
         self::BUILT_IN => 'BUILT_IN',
@@ -57,6 +64,7 @@ class SqlUserType
         self::CLOUD_IAM_GROUP => 'CLOUD_IAM_GROUP',
         self::CLOUD_IAM_GROUP_USER => 'CLOUD_IAM_GROUP_USER',
         self::CLOUD_IAM_GROUP_SERVICE_ACCOUNT => 'CLOUD_IAM_GROUP_SERVICE_ACCOUNT',
+        self::ENTRAID_USER => 'ENTRAID_USER',
     ];
 
     public static function name($value)

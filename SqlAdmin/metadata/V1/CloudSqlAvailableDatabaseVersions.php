@@ -17,10 +17,11 @@ class CloudSqlAvailableDatabaseVersions
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë
-?google/cloud/sql/v1/cloud_sql_available_database_versions.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto2A
+æ
+?google/cloud/sql/v1/cloud_sql_available_database_versions.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2A
 #SqlAvailableDatabaseVersionsServiceÊAsqladmin.googleapis.comBn
 com.google.cloud.sql.v1B&CloudSqlAvailableDatabaseVersionsProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
         , true);

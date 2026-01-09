@@ -20,13 +20,13 @@ class SqlBackupKind
      */
     const SQL_BACKUP_KIND_UNSPECIFIED = 0;
     /**
-     * The snapshot based backups
+     * Snapshot-based backups.
      *
      * Generated from protobuf enum <code>SNAPSHOT = 1;</code>
      */
     const SNAPSHOT = 1;
     /**
-     * Physical backups
+     * Physical backups.
      *
      * Generated from protobuf enum <code>PHYSICAL = 2;</code>
      */

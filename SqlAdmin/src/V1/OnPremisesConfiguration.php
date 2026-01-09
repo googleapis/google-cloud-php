@@ -52,7 +52,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      */
     protected $client_certificate = '';
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 7;</code>
@@ -70,6 +70,19 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.InstanceReference source_instance = 15;</code>
      */
     protected $source_instance = null;
+    /**
+     * Optional. A list of objects that the user selects for replication from an
+     * external source instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SelectedObjects selected_objects = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $selected_objects;
+    /**
+     * Optional. SSL option for replica connection to the on-premises source.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.OnPremisesConfiguration.SslOption ssl_option = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ssl_option = 0;
 
     /**
      * Constructor.
@@ -90,12 +103,17 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      *     @type string $client_certificate
      *           PEM representation of the replica's x509 certificate.
      *     @type string $client_key
-     *           PEM representation of the replica's private key. The corresponsing public
+     *           PEM representation of the replica's private key. The corresponding public
      *           key is encoded in the client's certificate.
      *     @type string $dump_file_path
      *           The dump file to create the Cloud SQL replica.
      *     @type \Google\Cloud\Sql\V1\InstanceReference $source_instance
      *           The reference to Cloud SQL instance if the source is Cloud SQL.
+     *     @type array<\Google\Cloud\Sql\V1\SelectedObjects>|\Google\Protobuf\Internal\RepeatedField $selected_objects
+     *           Optional. A list of objects that the user selects for replication from an
+     *           external source instance.
+     *     @type int $ssl_option
+     *           Optional. SSL option for replica connection to the on-premises source.
      * }
      */
     public function __construct($data = NULL) {
@@ -260,7 +278,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 7;</code>
@@ -272,7 +290,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PEM representation of the replica's private key. The corresponsing public
+     * PEM representation of the replica's private key. The corresponding public
      * key is encoded in the client's certificate.
      *
      * Generated from protobuf field <code>string client_key = 7;</code>
@@ -345,6 +363,60 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\InstanceReference::class);
         $this->source_instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of objects that the user selects for replication from an
+     * external source instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SelectedObjects selected_objects = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSelectedObjects()
+    {
+        return $this->selected_objects;
+    }
+
+    /**
+     * Optional. A list of objects that the user selects for replication from an
+     * external source instance.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SelectedObjects selected_objects = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Sql\V1\SelectedObjects>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSelectedObjects($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Sql\V1\SelectedObjects::class);
+        $this->selected_objects = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. SSL option for replica connection to the on-premises source.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.OnPremisesConfiguration.SslOption ssl_option = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSslOption()
+    {
+        return $this->ssl_option;
+    }
+
+    /**
+     * Optional. SSL option for replica connection to the on-premises source.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.OnPremisesConfiguration.SslOption ssl_option = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSslOption($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\OnPremisesConfiguration\SslOption::class);
+        $this->ssl_option = $var;
 
         return $this;
     }

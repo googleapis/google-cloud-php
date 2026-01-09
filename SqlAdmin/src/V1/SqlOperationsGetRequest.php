@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SqlOperationsGetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Instance operation ID.
+     * Required. Instance operation ID.
      *
-     * Generated from protobuf field <code>string operation = 1;</code>
+     * Generated from protobuf field <code>string operation = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $operation = '';
     /**
-     * Project ID of the project that contains the instance.
+     * Required. Project ID of the project that contains the instance.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $project = '';
 
@@ -35,9 +35,9 @@ class SqlOperationsGetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation
-     *           Instance operation ID.
+     *           Required. Instance operation ID.
      *     @type string $project
-     *           Project ID of the project that contains the instance.
+     *           Required. Project ID of the project that contains the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class SqlOperationsGetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instance operation ID.
+     * Required. Instance operation ID.
      *
-     * Generated from protobuf field <code>string operation = 1;</code>
+     * Generated from protobuf field <code>string operation = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getOperation()
@@ -57,9 +57,9 @@ class SqlOperationsGetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Instance operation ID.
+     * Required. Instance operation ID.
      *
-     * Generated from protobuf field <code>string operation = 1;</code>
+     * Generated from protobuf field <code>string operation = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class SqlOperationsGetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID of the project that contains the instance.
+     * Required. Project ID of the project that contains the instance.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getProject()
@@ -83,9 +83,9 @@ class SqlOperationsGetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Project ID of the project that contains the instance.
+     * Required. Project ID of the project that contains the instance.
      *
-     * Generated from protobuf field <code>string project = 2;</code>
+     * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

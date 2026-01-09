@@ -22,6 +22,13 @@ class SqlFlagsListRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string database_version = 1;</code>
      */
     protected $database_version = '';
+    /**
+     * Optional. Specify the scope of flags to be returned by SqlFlagsListService.
+     * Return list of database flags if unspecified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.SqlFlagScope flag_scope = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $flag_scope = null;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class SqlFlagsListRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database_version
      *           Database type and version you want to retrieve flags for. By default, this
      *           method returns flags for all database types and versions.
+     *     @type int $flag_scope
+     *           Optional. Specify the scope of flags to be returned by SqlFlagsListService.
+     *           Return list of database flags if unspecified.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +73,44 @@ class SqlFlagsListRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specify the scope of flags to be returned by SqlFlagsListService.
+     * Return list of database flags if unspecified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.SqlFlagScope flag_scope = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFlagScope()
+    {
+        return isset($this->flag_scope) ? $this->flag_scope : 0;
+    }
+
+    public function hasFlagScope()
+    {
+        return isset($this->flag_scope);
+    }
+
+    public function clearFlagScope()
+    {
+        unset($this->flag_scope);
+    }
+
+    /**
+     * Optional. Specify the scope of flags to be returned by SqlFlagsListService.
+     * Return list of database flags if unspecified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.SqlFlagScope flag_scope = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFlagScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\SqlFlagScope::class);
+        $this->flag_scope = $var;
 
         return $this;
     }

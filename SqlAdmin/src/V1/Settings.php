@@ -253,10 +253,17 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     protected $data_cache_config = null;
     /**
+     * Optional. Configuration value for recreation of replica after certain
+     * replication lag
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value replication_lag_max_seconds = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $replication_lag_max_seconds = null;
+    /**
      * Optional. When this parameter is set to true, Cloud SQL instances can
      * connect to Vertex AI to pass requests for real-time predictions and
      * insights to the AI. The default value is false. This applies only to Cloud
-     * SQL for PostgreSQL instances.
+     * SQL for MySQL and Cloud SQL for PostgreSQL instances.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -270,6 +277,47 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     protected $enable_dataplex_integration = null;
     /**
+     * Optional. When this parameter is set to true, Cloud SQL retains backups of
+     * the instance even after the instance is deleted. The ON_DEMAND backup will
+     * be retained until customer deletes the backup or the project. The AUTOMATED
+     * backup will be retained based on the backups retention setting.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue retain_backups_on_delete = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retain_backups_on_delete = null;
+    /**
+     * Optional. Provisioned number of I/O operations per second for the data
+     * disk. This field is only used for hyperdisk-balanced disk types.
+     *
+     * Generated from protobuf field <code>optional int64 data_disk_provisioned_iops = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $data_disk_provisioned_iops = null;
+    /**
+     * Optional. Provisioned throughput measured in MiB per second for the data
+     * disk. This field is only used for hyperdisk-balanced disk types.
+     *
+     * Generated from protobuf field <code>optional int64 data_disk_provisioned_throughput = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $data_disk_provisioned_throughput = null;
+    /**
+     * Optional. The managed connection pooling configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.ConnectionPoolConfig connection_pool_config = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $connection_pool_config = null;
+    /**
+     * Optional. The final backup configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.FinalBackupConfig final_backup_config = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $final_backup_config = null;
+    /**
+     * Optional. The read pool auto-scale configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.ReadPoolAutoScaleConfig read_pool_auto_scale_config = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $read_pool_auto_scale_config = null;
+    /**
      * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
      * parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
      * versions. The MySQL version must be 8.0.35 or higher.
@@ -277,6 +325,26 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool auto_upgrade_enabled = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $auto_upgrade_enabled = null;
+    /**
+     * Optional. The Microsoft Entra ID configuration for the SQL Server instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlServerEntraIdConfig entraid_config = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $entraid_config = null;
+    /**
+     * This parameter controls whether to allow using ExecuteSql API to connect to
+     * the instance. Not allowed by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.Settings.DataApiAccess data_api_access = 53;</code>
+     */
+    protected $data_api_access = null;
+    /**
+     * Optional. Configuration for Performance Capture, provides diagnostic
+     * metrics during high load situations.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PerformanceCaptureConfig performance_capture_config = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $performance_capture_config = null;
 
     /**
      * Constructor.
@@ -390,19 +458,47 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           for SQL Server.
      *     @type \Google\Cloud\Sql\V1\DataCacheConfig $data_cache_config
      *           Configuration for data cache.
+     *     @type \Google\Protobuf\Int32Value $replication_lag_max_seconds
+     *           Optional. Configuration value for recreation of replica after certain
+     *           replication lag
      *     @type \Google\Protobuf\BoolValue $enable_google_ml_integration
      *           Optional. When this parameter is set to true, Cloud SQL instances can
      *           connect to Vertex AI to pass requests for real-time predictions and
      *           insights to the AI. The default value is false. This applies only to Cloud
-     *           SQL for PostgreSQL instances.
+     *           SQL for MySQL and Cloud SQL for PostgreSQL instances.
      *     @type \Google\Protobuf\BoolValue $enable_dataplex_integration
      *           Optional. By default, Cloud SQL instances have schema extraction disabled
      *           for Dataplex. When this parameter is set to true, schema extraction for
      *           Dataplex on Cloud SQL instances is activated.
+     *     @type \Google\Protobuf\BoolValue $retain_backups_on_delete
+     *           Optional. When this parameter is set to true, Cloud SQL retains backups of
+     *           the instance even after the instance is deleted. The ON_DEMAND backup will
+     *           be retained until customer deletes the backup or the project. The AUTOMATED
+     *           backup will be retained based on the backups retention setting.
+     *     @type int|string $data_disk_provisioned_iops
+     *           Optional. Provisioned number of I/O operations per second for the data
+     *           disk. This field is only used for hyperdisk-balanced disk types.
+     *     @type int|string $data_disk_provisioned_throughput
+     *           Optional. Provisioned throughput measured in MiB per second for the data
+     *           disk. This field is only used for hyperdisk-balanced disk types.
+     *     @type \Google\Cloud\Sql\V1\ConnectionPoolConfig $connection_pool_config
+     *           Optional. The managed connection pooling configuration for the instance.
+     *     @type \Google\Cloud\Sql\V1\FinalBackupConfig $final_backup_config
+     *           Optional. The final backup configuration for the instance.
+     *     @type \Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig $read_pool_auto_scale_config
+     *           Optional. The read pool auto-scale configuration for the instance.
      *     @type bool $auto_upgrade_enabled
      *           Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
      *           parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
      *           versions. The MySQL version must be 8.0.35 or higher.
+     *     @type \Google\Cloud\Sql\V1\SqlServerEntraIdConfig $entraid_config
+     *           Optional. The Microsoft Entra ID configuration for the SQL Server instance.
+     *     @type int $data_api_access
+     *           This parameter controls whether to allow using ExecuteSql API to connect to
+     *           the instance. Not allowed by default.
+     *     @type \Google\Cloud\Sql\V1\PerformanceCaptureConfig $performance_capture_config
+     *           Optional. Configuration for Performance Capture, provides diagnostic
+     *           metrics during high load situations.
      * }
      */
     public function __construct($data = NULL) {
@@ -1731,10 +1827,77 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration value for recreation of replica after certain
+     * replication lag
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value replication_lag_max_seconds = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Int32Value|null
+     */
+    public function getReplicationLagMaxSeconds()
+    {
+        return $this->replication_lag_max_seconds;
+    }
+
+    public function hasReplicationLagMaxSeconds()
+    {
+        return isset($this->replication_lag_max_seconds);
+    }
+
+    public function clearReplicationLagMaxSeconds()
+    {
+        unset($this->replication_lag_max_seconds);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getReplicationLagMaxSeconds()</code>
+
+     * Optional. Configuration value for recreation of replica after certain
+     * replication lag
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value replication_lag_max_seconds = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|null
+     */
+    public function getReplicationLagMaxSecondsUnwrapped()
+    {
+        return $this->readWrapperValue("replication_lag_max_seconds");
+    }
+
+    /**
+     * Optional. Configuration value for recreation of replica after certain
+     * replication lag
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value replication_lag_max_seconds = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Int32Value $var
+     * @return $this
+     */
+    public function setReplicationLagMaxSeconds($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int32Value::class);
+        $this->replication_lag_max_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * Optional. Configuration value for recreation of replica after certain
+     * replication lag
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value replication_lag_max_seconds = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setReplicationLagMaxSecondsUnwrapped($var)
+    {
+        $this->writeWrapperValue("replication_lag_max_seconds", $var);
+        return $this;}
+
+    /**
      * Optional. When this parameter is set to true, Cloud SQL instances can
      * connect to Vertex AI to pass requests for real-time predictions and
      * insights to the AI. The default value is false. This applies only to Cloud
-     * SQL for PostgreSQL instances.
+     * SQL for MySQL and Cloud SQL for PostgreSQL instances.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -1760,7 +1923,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Optional. When this parameter is set to true, Cloud SQL instances can
      * connect to Vertex AI to pass requests for real-time predictions and
      * insights to the AI. The default value is false. This applies only to Cloud
-     * SQL for PostgreSQL instances.
+     * SQL for MySQL and Cloud SQL for PostgreSQL instances.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
@@ -1774,7 +1937,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Optional. When this parameter is set to true, Cloud SQL instances can
      * connect to Vertex AI to pass requests for real-time predictions and
      * insights to the AI. The default value is false. This applies only to Cloud
-     * SQL for PostgreSQL instances.
+     * SQL for MySQL and Cloud SQL for PostgreSQL instances.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -1794,7 +1957,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Optional. When this parameter is set to true, Cloud SQL instances can
      * connect to Vertex AI to pass requests for real-time predictions and
      * insights to the AI. The default value is false. This applies only to Cloud
-     * SQL for PostgreSQL instances.
+     * SQL for MySQL and Cloud SQL for PostgreSQL instances.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool|null $var
@@ -1877,6 +2040,265 @@ class Settings extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
+     * Optional. When this parameter is set to true, Cloud SQL retains backups of
+     * the instance even after the instance is deleted. The ON_DEMAND backup will
+     * be retained until customer deletes the backup or the project. The AUTOMATED
+     * backup will be retained based on the backups retention setting.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue retain_backups_on_delete = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getRetainBackupsOnDelete()
+    {
+        return $this->retain_backups_on_delete;
+    }
+
+    public function hasRetainBackupsOnDelete()
+    {
+        return isset($this->retain_backups_on_delete);
+    }
+
+    public function clearRetainBackupsOnDelete()
+    {
+        unset($this->retain_backups_on_delete);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getRetainBackupsOnDelete()</code>
+
+     * Optional. When this parameter is set to true, Cloud SQL retains backups of
+     * the instance even after the instance is deleted. The ON_DEMAND backup will
+     * be retained until customer deletes the backup or the project. The AUTOMATED
+     * backup will be retained based on the backups retention setting.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue retain_backups_on_delete = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getRetainBackupsOnDeleteUnwrapped()
+    {
+        return $this->readWrapperValue("retain_backups_on_delete");
+    }
+
+    /**
+     * Optional. When this parameter is set to true, Cloud SQL retains backups of
+     * the instance even after the instance is deleted. The ON_DEMAND backup will
+     * be retained until customer deletes the backup or the project. The AUTOMATED
+     * backup will be retained based on the backups retention setting.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue retain_backups_on_delete = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setRetainBackupsOnDelete($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->retain_backups_on_delete = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. When this parameter is set to true, Cloud SQL retains backups of
+     * the instance even after the instance is deleted. The ON_DEMAND backup will
+     * be retained until customer deletes the backup or the project. The AUTOMATED
+     * backup will be retained based on the backups retention setting.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue retain_backups_on_delete = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setRetainBackupsOnDeleteUnwrapped($var)
+    {
+        $this->writeWrapperValue("retain_backups_on_delete", $var);
+        return $this;}
+
+    /**
+     * Optional. Provisioned number of I/O operations per second for the data
+     * disk. This field is only used for hyperdisk-balanced disk types.
+     *
+     * Generated from protobuf field <code>optional int64 data_disk_provisioned_iops = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getDataDiskProvisionedIops()
+    {
+        return isset($this->data_disk_provisioned_iops) ? $this->data_disk_provisioned_iops : 0;
+    }
+
+    public function hasDataDiskProvisionedIops()
+    {
+        return isset($this->data_disk_provisioned_iops);
+    }
+
+    public function clearDataDiskProvisionedIops()
+    {
+        unset($this->data_disk_provisioned_iops);
+    }
+
+    /**
+     * Optional. Provisioned number of I/O operations per second for the data
+     * disk. This field is only used for hyperdisk-balanced disk types.
+     *
+     * Generated from protobuf field <code>optional int64 data_disk_provisioned_iops = 43 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDataDiskProvisionedIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->data_disk_provisioned_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Provisioned throughput measured in MiB per second for the data
+     * disk. This field is only used for hyperdisk-balanced disk types.
+     *
+     * Generated from protobuf field <code>optional int64 data_disk_provisioned_throughput = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getDataDiskProvisionedThroughput()
+    {
+        return isset($this->data_disk_provisioned_throughput) ? $this->data_disk_provisioned_throughput : 0;
+    }
+
+    public function hasDataDiskProvisionedThroughput()
+    {
+        return isset($this->data_disk_provisioned_throughput);
+    }
+
+    public function clearDataDiskProvisionedThroughput()
+    {
+        unset($this->data_disk_provisioned_throughput);
+    }
+
+    /**
+     * Optional. Provisioned throughput measured in MiB per second for the data
+     * disk. This field is only used for hyperdisk-balanced disk types.
+     *
+     * Generated from protobuf field <code>optional int64 data_disk_provisioned_throughput = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDataDiskProvisionedThroughput($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->data_disk_provisioned_throughput = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The managed connection pooling configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.ConnectionPoolConfig connection_pool_config = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ConnectionPoolConfig|null
+     */
+    public function getConnectionPoolConfig()
+    {
+        return $this->connection_pool_config;
+    }
+
+    public function hasConnectionPoolConfig()
+    {
+        return isset($this->connection_pool_config);
+    }
+
+    public function clearConnectionPoolConfig()
+    {
+        unset($this->connection_pool_config);
+    }
+
+    /**
+     * Optional. The managed connection pooling configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.ConnectionPoolConfig connection_pool_config = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ConnectionPoolConfig $var
+     * @return $this
+     */
+    public function setConnectionPoolConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ConnectionPoolConfig::class);
+        $this->connection_pool_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The final backup configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.FinalBackupConfig final_backup_config = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\FinalBackupConfig|null
+     */
+    public function getFinalBackupConfig()
+    {
+        return $this->final_backup_config;
+    }
+
+    public function hasFinalBackupConfig()
+    {
+        return isset($this->final_backup_config);
+    }
+
+    public function clearFinalBackupConfig()
+    {
+        unset($this->final_backup_config);
+    }
+
+    /**
+     * Optional. The final backup configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.FinalBackupConfig final_backup_config = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\FinalBackupConfig $var
+     * @return $this
+     */
+    public function setFinalBackupConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\FinalBackupConfig::class);
+        $this->final_backup_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The read pool auto-scale configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.ReadPoolAutoScaleConfig read_pool_auto_scale_config = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig|null
+     */
+    public function getReadPoolAutoScaleConfig()
+    {
+        return $this->read_pool_auto_scale_config;
+    }
+
+    public function hasReadPoolAutoScaleConfig()
+    {
+        return isset($this->read_pool_auto_scale_config);
+    }
+
+    public function clearReadPoolAutoScaleConfig()
+    {
+        unset($this->read_pool_auto_scale_config);
+    }
+
+    /**
+     * Optional. The read pool auto-scale configuration for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.ReadPoolAutoScaleConfig read_pool_auto_scale_config = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig $var
+     * @return $this
+     */
+    public function setReadPoolAutoScaleConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig::class);
+        $this->read_pool_auto_scale_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
      * parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
      * versions. The MySQL version must be 8.0.35 or higher.
@@ -1912,6 +2334,118 @@ class Settings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->auto_upgrade_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Microsoft Entra ID configuration for the SQL Server instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlServerEntraIdConfig entraid_config = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\SqlServerEntraIdConfig|null
+     */
+    public function getEntraidConfig()
+    {
+        return $this->entraid_config;
+    }
+
+    public function hasEntraidConfig()
+    {
+        return isset($this->entraid_config);
+    }
+
+    public function clearEntraidConfig()
+    {
+        unset($this->entraid_config);
+    }
+
+    /**
+     * Optional. The Microsoft Entra ID configuration for the SQL Server instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlServerEntraIdConfig entraid_config = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\SqlServerEntraIdConfig $var
+     * @return $this
+     */
+    public function setEntraidConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\SqlServerEntraIdConfig::class);
+        $this->entraid_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * This parameter controls whether to allow using ExecuteSql API to connect to
+     * the instance. Not allowed by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.Settings.DataApiAccess data_api_access = 53;</code>
+     * @return int
+     */
+    public function getDataApiAccess()
+    {
+        return isset($this->data_api_access) ? $this->data_api_access : 0;
+    }
+
+    public function hasDataApiAccess()
+    {
+        return isset($this->data_api_access);
+    }
+
+    public function clearDataApiAccess()
+    {
+        unset($this->data_api_access);
+    }
+
+    /**
+     * This parameter controls whether to allow using ExecuteSql API to connect to
+     * the instance. Not allowed by default.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.Settings.DataApiAccess data_api_access = 53;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDataApiAccess($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\Settings\DataApiAccess::class);
+        $this->data_api_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for Performance Capture, provides diagnostic
+     * metrics during high load situations.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PerformanceCaptureConfig performance_capture_config = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\PerformanceCaptureConfig|null
+     */
+    public function getPerformanceCaptureConfig()
+    {
+        return $this->performance_capture_config;
+    }
+
+    public function hasPerformanceCaptureConfig()
+    {
+        return isset($this->performance_capture_config);
+    }
+
+    public function clearPerformanceCaptureConfig()
+    {
+        unset($this->performance_capture_config);
+    }
+
+    /**
+     * Optional. Configuration for Performance Capture, provides diagnostic
+     * metrics during high load situations.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PerformanceCaptureConfig performance_capture_config = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\PerformanceCaptureConfig $var
+     * @return $this
+     */
+    public function setPerformanceCaptureConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\PerformanceCaptureConfig::class);
+        $this->performance_capture_config = $var;
 
         return $this;
     }

@@ -113,6 +113,16 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $backup_context = null;
     /**
+     * This field is only populated when the operation_type is
+     * PRE_CHECK_MAJOR_VERSION_UPGRADE.
+     * The PreCheckMajorVersionUpgradeContext message itself contains the details
+     * for that pre-check, such as the target database version for the upgrade
+     * and the results of the check (including any warnings or errors found).
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PreCheckMajorVersionUpgradeContext pre_check_major_version_upgrade_context = 50;</code>
+     */
+    protected $pre_check_major_version_upgrade_context = null;
+    /**
      * An identifier that uniquely identifies the operation. You can use this
      * identifier to retrieve the Operations resource that has information about
      * the operation.
@@ -121,7 +131,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Name of the database instance related to this operation.
+     * Name of the resource on which this operation runs.
      *
      * Generated from protobuf field <code>string target_id = 13;</code>
      */
@@ -144,6 +154,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
      */
     protected $acquire_ssrs_lease_context = null;
+    /**
+     * Optional. The sub operation based on the operation type.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlSubOperationType sub_operation_type = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sub_operation_type = null;
 
     /**
      * Constructor.
@@ -195,18 +211,26 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           The context for export operation, if applicable.
      *     @type \Google\Cloud\Sql\V1\BackupContext $backup_context
      *           The context for backup operation, if applicable.
+     *     @type \Google\Cloud\Sql\V1\PreCheckMajorVersionUpgradeContext $pre_check_major_version_upgrade_context
+     *           This field is only populated when the operation_type is
+     *           PRE_CHECK_MAJOR_VERSION_UPGRADE.
+     *           The PreCheckMajorVersionUpgradeContext message itself contains the details
+     *           for that pre-check, such as the target database version for the upgrade
+     *           and the results of the check (including any warnings or errors found).
      *     @type string $name
      *           An identifier that uniquely identifies the operation. You can use this
      *           identifier to retrieve the Operations resource that has information about
      *           the operation.
      *     @type string $target_id
-     *           Name of the database instance related to this operation.
+     *           Name of the resource on which this operation runs.
      *     @type string $self_link
      *           The URI of this resource.
      *     @type string $target_project
      *           The project ID of the target instance related to this operation.
      *     @type \Google\Cloud\Sql\V1\AcquireSsrsLeaseContext $acquire_ssrs_lease_context
      *           The context for acquire SSRS lease operation, if applicable.
+     *     @type \Google\Cloud\Sql\V1\SqlSubOperationType $sub_operation_type
+     *           Optional. The sub operation based on the operation type.
      * }
      */
     public function __construct($data = NULL) {
@@ -667,6 +691,50 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is only populated when the operation_type is
+     * PRE_CHECK_MAJOR_VERSION_UPGRADE.
+     * The PreCheckMajorVersionUpgradeContext message itself contains the details
+     * for that pre-check, such as the target database version for the upgrade
+     * and the results of the check (including any warnings or errors found).
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PreCheckMajorVersionUpgradeContext pre_check_major_version_upgrade_context = 50;</code>
+     * @return \Google\Cloud\Sql\V1\PreCheckMajorVersionUpgradeContext|null
+     */
+    public function getPreCheckMajorVersionUpgradeContext()
+    {
+        return $this->pre_check_major_version_upgrade_context;
+    }
+
+    public function hasPreCheckMajorVersionUpgradeContext()
+    {
+        return isset($this->pre_check_major_version_upgrade_context);
+    }
+
+    public function clearPreCheckMajorVersionUpgradeContext()
+    {
+        unset($this->pre_check_major_version_upgrade_context);
+    }
+
+    /**
+     * This field is only populated when the operation_type is
+     * PRE_CHECK_MAJOR_VERSION_UPGRADE.
+     * The PreCheckMajorVersionUpgradeContext message itself contains the details
+     * for that pre-check, such as the target database version for the upgrade
+     * and the results of the check (including any warnings or errors found).
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.PreCheckMajorVersionUpgradeContext pre_check_major_version_upgrade_context = 50;</code>
+     * @param \Google\Cloud\Sql\V1\PreCheckMajorVersionUpgradeContext $var
+     * @return $this
+     */
+    public function setPreCheckMajorVersionUpgradeContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\PreCheckMajorVersionUpgradeContext::class);
+        $this->pre_check_major_version_upgrade_context = $var;
+
+        return $this;
+    }
+
+    /**
      * An identifier that uniquely identifies the operation. You can use this
      * identifier to retrieve the Operations resource that has information about
      * the operation.
@@ -697,7 +765,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the database instance related to this operation.
+     * Name of the resource on which this operation runs.
      *
      * Generated from protobuf field <code>string target_id = 13;</code>
      * @return string
@@ -708,7 +776,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the database instance related to this operation.
+     * Name of the resource on which this operation runs.
      *
      * Generated from protobuf field <code>string target_id = 13;</code>
      * @param string $var
@@ -806,6 +874,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\AcquireSsrsLeaseContext::class);
         $this->acquire_ssrs_lease_context = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The sub operation based on the operation type.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlSubOperationType sub_operation_type = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\SqlSubOperationType|null
+     */
+    public function getSubOperationType()
+    {
+        return $this->sub_operation_type;
+    }
+
+    public function hasSubOperationType()
+    {
+        return isset($this->sub_operation_type);
+    }
+
+    public function clearSubOperationType()
+    {
+        unset($this->sub_operation_type);
+    }
+
+    /**
+     * Optional. The sub operation based on the operation type.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.SqlSubOperationType sub_operation_type = 48 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\SqlSubOperationType $var
+     * @return $this
+     */
+    public function setSubOperationType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\SqlSubOperationType::class);
+        $this->sub_operation_type = $var;
 
         return $this;
     }

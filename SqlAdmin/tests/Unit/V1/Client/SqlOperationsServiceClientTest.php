@@ -147,7 +147,10 @@ class SqlOperationsServiceClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTargetProject($targetProject);
         $transport->addResponse($expectedResponse);
-        $request = new SqlOperationsGetRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new SqlOperationsGetRequest())->setOperation($operation)->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -155,6 +158,10 @@ class SqlOperationsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.sql.v1.SqlOperationsService/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOperation();
+        $this->assertProtobufEquals($operation, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -179,7 +186,10 @@ class SqlOperationsServiceClientTest extends GeneratedTest
             JSON_PRETTY_PRINT
         );
         $transport->addResponse(null, $status);
-        $request = new SqlOperationsGetRequest();
+        // Mock request
+        $operation = 'operation1662702951';
+        $project = 'project-309310695';
+        $request = (new SqlOperationsGetRequest())->setOperation($operation)->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test

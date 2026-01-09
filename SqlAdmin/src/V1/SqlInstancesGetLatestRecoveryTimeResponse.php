@@ -27,6 +27,12 @@ class SqlInstancesGetLatestRecoveryTimeResponse extends \Google\Protobuf\Interna
      * Generated from protobuf field <code>.google.protobuf.Timestamp latest_recovery_time = 2;</code>
      */
     protected $latest_recovery_time = null;
+    /**
+     * Timestamp, identifies the earliest recovery time of the source instance.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_recovery_time = 3;</code>
+     */
+    protected $earliest_recovery_time = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class SqlInstancesGetLatestRecoveryTimeResponse extends \Google\Protobuf\Interna
      *           This is always `sql#getLatestRecoveryTime`.
      *     @type \Google\Protobuf\Timestamp $latest_recovery_time
      *           Timestamp, identifies the latest recovery time of the source instance.
+     *     @type \Google\Protobuf\Timestamp $earliest_recovery_time
+     *           Timestamp, identifies the earliest recovery time of the source instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +111,42 @@ class SqlInstancesGetLatestRecoveryTimeResponse extends \Google\Protobuf\Interna
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->latest_recovery_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Timestamp, identifies the earliest recovery time of the source instance.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_recovery_time = 3;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getEarliestRecoveryTime()
+    {
+        return $this->earliest_recovery_time;
+    }
+
+    public function hasEarliestRecoveryTime()
+    {
+        return isset($this->earliest_recovery_time);
+    }
+
+    public function clearEarliestRecoveryTime()
+    {
+        unset($this->earliest_recovery_time);
+    }
+
+    /**
+     * Timestamp, identifies the earliest recovery time of the source instance.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_recovery_time = 3;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setEarliestRecoveryTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->earliest_recovery_time = $var;
 
         return $this;
     }

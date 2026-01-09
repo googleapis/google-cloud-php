@@ -27,6 +27,13 @@ class SqlInstancesGetLatestRecoveryTimeRequest extends \Google\Protobuf\Internal
      * Generated from protobuf field <code>string project = 2;</code>
      */
     protected $project = '';
+    /**
+     * The timestamp used to identify the time when the source instance is
+     * deleted. If this instance is deleted, then you must set the timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp source_instance_deletion_time = 3;</code>
+     */
+    protected $source_instance_deletion_time = null;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class SqlInstancesGetLatestRecoveryTimeRequest extends \Google\Protobuf\Internal
      *           Cloud SQL instance ID. This does not include the project ID.
      *     @type string $project
      *           Project ID of the project that contains the instance.
+     *     @type \Google\Protobuf\Timestamp $source_instance_deletion_time
+     *           The timestamp used to identify the time when the source instance is
+     *           deleted. If this instance is deleted, then you must set the timestamp.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,44 @@ class SqlInstancesGetLatestRecoveryTimeRequest extends \Google\Protobuf\Internal
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * The timestamp used to identify the time when the source instance is
+     * deleted. If this instance is deleted, then you must set the timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp source_instance_deletion_time = 3;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSourceInstanceDeletionTime()
+    {
+        return $this->source_instance_deletion_time;
+    }
+
+    public function hasSourceInstanceDeletionTime()
+    {
+        return isset($this->source_instance_deletion_time);
+    }
+
+    public function clearSourceInstanceDeletionTime()
+    {
+        unset($this->source_instance_deletion_time);
+    }
+
+    /**
+     * The timestamp used to identify the time when the source instance is
+     * deleted. If this instance is deleted, then you must set the timestamp.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp source_instance_deletion_time = 3;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSourceInstanceDeletionTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->source_instance_deletion_time = $var;
 
         return $this;
     }

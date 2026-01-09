@@ -62,6 +62,13 @@ class SqlInstanceState
      * Generated from protobuf enum <code>ONLINE_MAINTENANCE = 7 [deprecated = true];</code>
      */
     const ONLINE_MAINTENANCE = 7;
+    /**
+     * (Applicable to read pool nodes only.) The read pool node needs to be
+     * repaired. The database might be unavailable.
+     *
+     * Generated from protobuf enum <code>REPAIRING = 8;</code>
+     */
+    const REPAIRING = 8;
 
     private static $valueToName = [
         self::SQL_INSTANCE_STATE_UNSPECIFIED => 'SQL_INSTANCE_STATE_UNSPECIFIED',
@@ -72,6 +79,7 @@ class SqlInstanceState
         self::MAINTENANCE => 'MAINTENANCE',
         self::FAILED => 'FAILED',
         self::ONLINE_MAINTENANCE => 'ONLINE_MAINTENANCE',
+        self::REPAIRING => 'REPAIRING',
     ];
 
     public static function name($value)

@@ -31,19 +31,18 @@ use Google\Cloud\Sql\V1\SqlInstancesGetRequest;
 /**
  * Retrieves a resource containing information about a Cloud SQL instance.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $instance Database instance ID. This does not include the project ID.
+ * @param string $project  Project ID of the project that contains the instance.
  */
-function get_sample(): void
+function get_sample(string $instance, string $project): void
 {
     // Create a client.
     $sqlInstancesServiceClient = new SqlInstancesServiceClient();
 
     // Prepare the request message.
-    $request = new SqlInstancesGetRequest();
+    $request = (new SqlInstancesGetRequest())
+        ->setInstance($instance)
+        ->setProject($project);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,22 @@ function get_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $instance = '[INSTANCE]';
+    $project = '[PROJECT]';
+
+    get_sample($instance, $project);
 }
 // [END sqladmin_v1_generated_SqlInstancesService_Get_sync]

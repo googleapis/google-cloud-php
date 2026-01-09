@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class CaMode
 {
     /**
-     * CA mode is unknown.
+     * CA mode is unspecified. It is effectively the same as
+     * `GOOGLE_MANAGED_INTERNAL_CA`.
      *
      * Generated from protobuf enum <code>CA_MODE_UNSPECIFIED = 0;</code>
      */
@@ -32,11 +33,19 @@ class CaMode
      * Generated from protobuf enum <code>GOOGLE_MANAGED_CAS_CA = 2;</code>
      */
     const GOOGLE_MANAGED_CAS_CA = 2;
+    /**
+     * Customer-managed CA hosted on Google Cloud's Certificate Authority
+     * Service (CAS).
+     *
+     * Generated from protobuf enum <code>CUSTOMER_MANAGED_CAS_CA = 3;</code>
+     */
+    const CUSTOMER_MANAGED_CAS_CA = 3;
 
     private static $valueToName = [
         self::CA_MODE_UNSPECIFIED => 'CA_MODE_UNSPECIFIED',
         self::GOOGLE_MANAGED_INTERNAL_CA => 'GOOGLE_MANAGED_INTERNAL_CA',
         self::GOOGLE_MANAGED_CAS_CA => 'GOOGLE_MANAGED_CAS_CA',
+        self::CUSTOMER_MANAGED_CAS_CA => 'CUSTOMER_MANAGED_CAS_CA',
     ];
 
     public static function name($value)

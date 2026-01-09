@@ -32,8 +32,11 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * If `fileType` is `CSV`, you can specify one database,
      * either by using this property or by using the
      * `csvExportOptions.selectQuery` property, which takes precedence
-     * over this property. <br /> `PostgreSQL instances:` You must specify
-     * one database to be exported. If `fileType` is `CSV`,
+     * over this property. <br /> `PostgreSQL instances:` If you don't specify a
+     * database by name, all user databases in the instance are exported.
+     * This excludes system databases and Cloud SQL databases used to manage
+     * internal operations. Exporting all user databases is only available for
+     * directory-formatted parallel export. If `fileType` is `CSV`,
      * this database must match the one specified in the
      * `csvExportOptions.selectQuery` property. <br /> `SQL Server
      * instances:` You must specify one database to be exported, and the
@@ -68,7 +71,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      */
     protected $file_type = 0;
     /**
-     * Option for export offload.
+     * Whether to perform a serverless export.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      */
@@ -79,6 +82,12 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlBakExportOptions bak_export_options = 9;</code>
      */
     protected $bak_export_options = null;
+    /**
+     * Optional. Export parameters specific to SQL Server TDE certificates
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlTdeExportOptions tde_export_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $tde_export_options = null;
 
     /**
      * Constructor.
@@ -99,8 +108,11 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      *           If `fileType` is `CSV`, you can specify one database,
      *           either by using this property or by using the
      *           `csvExportOptions.selectQuery` property, which takes precedence
-     *           over this property. <br /> `PostgreSQL instances:` You must specify
-     *           one database to be exported. If `fileType` is `CSV`,
+     *           over this property. <br /> `PostgreSQL instances:` If you don't specify a
+     *           database by name, all user databases in the instance are exported.
+     *           This excludes system databases and Cloud SQL databases used to manage
+     *           internal operations. Exporting all user databases is only available for
+     *           directory-formatted parallel export. If `fileType` is `CSV`,
      *           this database must match the one specified in the
      *           `csvExportOptions.selectQuery` property. <br /> `SQL Server
      *           instances:` You must specify one database to be exported, and the
@@ -115,9 +127,11 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      *     @type int $file_type
      *           The file type for the specified uri.
      *     @type \Google\Protobuf\BoolValue $offload
-     *           Option for export offload.
+     *           Whether to perform a serverless export.
      *     @type \Google\Cloud\Sql\V1\ExportContext\SqlBakExportOptions $bak_export_options
      *           Options for exporting data as BAK files.
+     *     @type \Google\Cloud\Sql\V1\ExportContext\SqlTdeExportOptions $tde_export_options
+     *           Optional. Export parameters specific to SQL Server TDE certificates
      * }
      */
     public function __construct($data = NULL) {
@@ -166,8 +180,11 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * If `fileType` is `CSV`, you can specify one database,
      * either by using this property or by using the
      * `csvExportOptions.selectQuery` property, which takes precedence
-     * over this property. <br /> `PostgreSQL instances:` You must specify
-     * one database to be exported. If `fileType` is `CSV`,
+     * over this property. <br /> `PostgreSQL instances:` If you don't specify a
+     * database by name, all user databases in the instance are exported.
+     * This excludes system databases and Cloud SQL databases used to manage
+     * internal operations. Exporting all user databases is only available for
+     * directory-formatted parallel export. If `fileType` is `CSV`,
      * this database must match the one specified in the
      * `csvExportOptions.selectQuery` property. <br /> `SQL Server
      * instances:` You must specify one database to be exported, and the
@@ -188,8 +205,11 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * If `fileType` is `CSV`, you can specify one database,
      * either by using this property or by using the
      * `csvExportOptions.selectQuery` property, which takes precedence
-     * over this property. <br /> `PostgreSQL instances:` You must specify
-     * one database to be exported. If `fileType` is `CSV`,
+     * over this property. <br /> `PostgreSQL instances:` If you don't specify a
+     * database by name, all user databases in the instance are exported.
+     * This excludes system databases and Cloud SQL databases used to manage
+     * internal operations. Exporting all user databases is only available for
+     * directory-formatted parallel export. If `fileType` is `CSV`,
      * this database must match the one specified in the
      * `csvExportOptions.selectQuery` property. <br /> `SQL Server
      * instances:` You must specify one database to be exported, and the
@@ -334,7 +354,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option for export offload.
+     * Whether to perform a serverless export.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -357,7 +377,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getOffload()</code>
 
-     * Option for export offload.
+     * Whether to perform a serverless export.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      * @return bool|null
@@ -368,7 +388,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Option for export offload.
+     * Whether to perform a serverless export.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -385,7 +405,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Option for export offload.
+     * Whether to perform a serverless export.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue offload = 8;</code>
      * @param bool|null $var
@@ -428,6 +448,42 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ExportContext\SqlBakExportOptions::class);
         $this->bak_export_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Export parameters specific to SQL Server TDE certificates
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlTdeExportOptions tde_export_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ExportContext\SqlTdeExportOptions|null
+     */
+    public function getTdeExportOptions()
+    {
+        return $this->tde_export_options;
+    }
+
+    public function hasTdeExportOptions()
+    {
+        return isset($this->tde_export_options);
+    }
+
+    public function clearTdeExportOptions()
+    {
+        unset($this->tde_export_options);
+    }
+
+    /**
+     * Optional. Export parameters specific to SQL Server TDE certificates
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlTdeExportOptions tde_export_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ExportContext\SqlTdeExportOptions $var
+     * @return $this
+     */
+    public function setTdeExportOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ExportContext\SqlTdeExportOptions::class);
+        $this->tde_export_options = $var;
 
         return $this;
     }
