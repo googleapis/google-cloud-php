@@ -93,9 +93,7 @@ final class IAMCredentialsClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -263,8 +261,10 @@ final class IAMCredentialsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateAccessToken(GenerateAccessTokenRequest $request, array $callOptions = []): GenerateAccessTokenResponse
-    {
+    public function generateAccessToken(
+        GenerateAccessTokenRequest $request,
+        array $callOptions = []
+    ): GenerateAccessTokenResponse {
         return $this->startApiCall('GenerateAccessToken', $request, $callOptions)->wait();
     }
 

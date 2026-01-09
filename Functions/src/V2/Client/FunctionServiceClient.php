@@ -112,9 +112,7 @@ final class FunctionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -593,8 +591,10 @@ final class FunctionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateDownloadUrl(GenerateDownloadUrlRequest $request, array $callOptions = []): GenerateDownloadUrlResponse
-    {
+    public function generateDownloadUrl(
+        GenerateDownloadUrlRequest $request,
+        array $callOptions = []
+    ): GenerateDownloadUrlResponse {
         return $this->startApiCall('GenerateDownloadUrl', $request, $callOptions)->wait();
     }
 
@@ -641,8 +641,10 @@ final class FunctionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateUploadUrl(GenerateUploadUrlRequest $request, array $callOptions = []): GenerateUploadUrlResponse
-    {
+    public function generateUploadUrl(
+        GenerateUploadUrlRequest $request,
+        array $callOptions = []
+    ): GenerateUploadUrlResponse {
         return $this->startApiCall('GenerateUploadUrl', $request, $callOptions)->wait();
     }
 
@@ -860,8 +862,10 @@ final class FunctionServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
