@@ -133,9 +133,7 @@ final class AssetServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -529,8 +527,10 @@ final class AssetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function analyzeIamPolicy(AnalyzeIamPolicyRequest $request, array $callOptions = []): AnalyzeIamPolicyResponse
-    {
+    public function analyzeIamPolicy(
+        AnalyzeIamPolicyRequest $request,
+        array $callOptions = []
+    ): AnalyzeIamPolicyResponse {
         return $this->startApiCall('AnalyzeIamPolicy', $request, $callOptions)->wait();
     }
 
@@ -565,8 +565,10 @@ final class AssetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function analyzeIamPolicyLongrunning(AnalyzeIamPolicyLongrunningRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function analyzeIamPolicyLongrunning(
+        AnalyzeIamPolicyLongrunningRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('AnalyzeIamPolicyLongrunning', $request, $callOptions)->wait();
     }
 
@@ -696,8 +698,10 @@ final class AssetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function analyzeOrgPolicyGovernedAssets(AnalyzeOrgPolicyGovernedAssetsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function analyzeOrgPolicyGovernedAssets(
+        AnalyzeOrgPolicyGovernedAssetsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AnalyzeOrgPolicyGovernedAssets', $request, $callOptions);
     }
 
@@ -724,8 +728,10 @@ final class AssetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function analyzeOrgPolicyGovernedContainers(AnalyzeOrgPolicyGovernedContainersRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function analyzeOrgPolicyGovernedContainers(
+        AnalyzeOrgPolicyGovernedContainersRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('AnalyzeOrgPolicyGovernedContainers', $request, $callOptions);
     }
 
@@ -756,8 +762,10 @@ final class AssetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchGetAssetsHistory(BatchGetAssetsHistoryRequest $request, array $callOptions = []): BatchGetAssetsHistoryResponse
-    {
+    public function batchGetAssetsHistory(
+        BatchGetAssetsHistoryRequest $request,
+        array $callOptions = []
+    ): BatchGetAssetsHistoryResponse {
         return $this->startApiCall('BatchGetAssetsHistory', $request, $callOptions)->wait();
     }
 
@@ -783,8 +791,10 @@ final class AssetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchGetEffectiveIamPolicies(BatchGetEffectiveIamPoliciesRequest $request, array $callOptions = []): BatchGetEffectiveIamPoliciesResponse
-    {
+    public function batchGetEffectiveIamPolicies(
+        BatchGetEffectiveIamPoliciesRequest $request,
+        array $callOptions = []
+    ): BatchGetEffectiveIamPoliciesResponse {
         return $this->startApiCall('BatchGetEffectiveIamPolicies', $request, $callOptions)->wait();
     }
 
@@ -1117,8 +1127,10 @@ final class AssetServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchAllIamPolicies(SearchAllIamPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchAllIamPolicies(
+        SearchAllIamPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchAllIamPolicies', $request, $callOptions);
     }
 

@@ -116,9 +116,7 @@ final class AppConnectionsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -508,8 +506,10 @@ final class AppConnectionsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resolveAppConnections(ResolveAppConnectionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function resolveAppConnections(
+        ResolveAppConnectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ResolveAppConnections', $request, $callOptions);
     }
 
@@ -677,8 +677,10 @@ final class AppConnectionsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

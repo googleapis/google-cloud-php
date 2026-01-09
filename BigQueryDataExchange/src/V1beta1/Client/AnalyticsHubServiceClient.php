@@ -621,8 +621,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function listOrgDataExchanges(ListOrgDataExchangesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listOrgDataExchanges(
+        ListOrgDataExchangesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListOrgDataExchanges', $request, $callOptions);
     }
 
@@ -682,8 +684,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function subscribeListing(SubscribeListingRequest $request, array $callOptions = []): SubscribeListingResponse
-    {
+    public function subscribeListing(
+        SubscribeListingRequest $request,
+        array $callOptions = []
+    ): SubscribeListingResponse {
         return $this->startApiCall('SubscribeListing', $request, $callOptions)->wait();
     }
 
@@ -711,8 +715,10 @@ final class AnalyticsHubServiceClient
      *
      * @experimental
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

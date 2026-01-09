@@ -98,9 +98,7 @@ final class AssuredWorkloadsServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -117,7 +115,8 @@ final class AssuredWorkloadsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/assured_workloads_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/assured_workloads_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -355,8 +354,10 @@ final class AssuredWorkloadsServiceClient
      *
      * @experimental
      */
-    public function analyzeWorkloadMove(AnalyzeWorkloadMoveRequest $request, array $callOptions = []): AnalyzeWorkloadMoveResponse
-    {
+    public function analyzeWorkloadMove(
+        AnalyzeWorkloadMoveRequest $request,
+        array $callOptions = []
+    ): AnalyzeWorkloadMoveResponse {
         return $this->startApiCall('AnalyzeWorkloadMove', $request, $callOptions)->wait();
     }
 
@@ -507,8 +508,10 @@ final class AssuredWorkloadsServiceClient
      *
      * @experimental
      */
-    public function restrictAllowedResources(RestrictAllowedResourcesRequest $request, array $callOptions = []): RestrictAllowedResourcesResponse
-    {
+    public function restrictAllowedResources(
+        RestrictAllowedResourcesRequest $request,
+        array $callOptions = []
+    ): RestrictAllowedResourcesResponse {
         return $this->startApiCall('RestrictAllowedResources', $request, $callOptions)->wait();
     }
 
