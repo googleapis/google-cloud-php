@@ -474,8 +474,10 @@ final class SubscriptionsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reactivateSubscription(ReactivateSubscriptionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function reactivateSubscription(
+        ReactivateSubscriptionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ReactivateSubscription', $request, $callOptions)->wait();
     }
 

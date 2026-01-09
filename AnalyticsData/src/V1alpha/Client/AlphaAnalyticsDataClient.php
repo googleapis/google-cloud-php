@@ -501,8 +501,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function createRecurringAudienceList(CreateRecurringAudienceListRequest $request, array $callOptions = []): RecurringAudienceList
-    {
+    public function createRecurringAudienceList(
+        CreateRecurringAudienceListRequest $request,
+        array $callOptions = []
+    ): RecurringAudienceList {
         return $this->startApiCall('CreateRecurringAudienceList', $request, $callOptions)->wait();
     }
 
@@ -607,8 +609,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function getPropertyQuotasSnapshot(GetPropertyQuotasSnapshotRequest $request, array $callOptions = []): PropertyQuotasSnapshot
-    {
+    public function getPropertyQuotasSnapshot(
+        GetPropertyQuotasSnapshotRequest $request,
+        array $callOptions = []
+    ): PropertyQuotasSnapshot {
         return $this->startApiCall('GetPropertyQuotasSnapshot', $request, $callOptions)->wait();
     }
 
@@ -646,8 +650,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function getRecurringAudienceList(GetRecurringAudienceListRequest $request, array $callOptions = []): RecurringAudienceList
-    {
+    public function getRecurringAudienceList(
+        GetRecurringAudienceListRequest $request,
+        array $callOptions = []
+    ): RecurringAudienceList {
         return $this->startApiCall('GetRecurringAudienceList', $request, $callOptions)->wait();
     }
 
@@ -757,8 +763,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function listRecurringAudienceLists(ListRecurringAudienceListsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRecurringAudienceLists(
+        ListRecurringAudienceListsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRecurringAudienceLists', $request, $callOptions);
     }
 
@@ -830,8 +838,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function queryAudienceList(QueryAudienceListRequest $request, array $callOptions = []): QueryAudienceListResponse
-    {
+    public function queryAudienceList(
+        QueryAudienceListRequest $request,
+        array $callOptions = []
+    ): QueryAudienceListResponse {
         return $this->startApiCall('QueryAudienceList', $request, $callOptions)->wait();
     }
 
@@ -952,8 +962,10 @@ final class AlphaAnalyticsDataClient
      *
      * @experimental
      */
-    public function sheetExportAudienceList(SheetExportAudienceListRequest $request, array $callOptions = []): SheetExportAudienceListResponse
-    {
+    public function sheetExportAudienceList(
+        SheetExportAudienceListRequest $request,
+        array $callOptions = []
+    ): SheetExportAudienceListResponse {
         return $this->startApiCall('SheetExportAudienceList', $request, $callOptions)->wait();
     }
 }
