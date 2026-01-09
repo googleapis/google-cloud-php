@@ -120,8 +120,13 @@ final class DeploymentsClient
      *
      * @return string The formatted deployment resource.
      */
-    public static function deploymentName(string $project, string $location, string $agent, string $environment, string $deployment): string
-    {
+    public static function deploymentName(
+        string $project,
+        string $location,
+        string $agent,
+        string $environment,
+        string $deployment
+    ): string {
         return self::getPathTemplate('deployment')->render([
             'project' => $project,
             'location' => $location,
@@ -142,8 +147,12 @@ final class DeploymentsClient
      *
      * @return string The formatted environment resource.
      */
-    public static function environmentName(string $project, string $location, string $agent, string $environment): string
-    {
+    public static function environmentName(
+        string $project,
+        string $location,
+        string $agent,
+        string $environment
+    ): string {
         return self::getPathTemplate('environment')->render([
             'project' => $project,
             'location' => $location,

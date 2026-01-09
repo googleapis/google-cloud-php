@@ -108,7 +108,8 @@ final class SecuritySettingsServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/security_settings_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/security_settings_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -124,8 +125,11 @@ final class SecuritySettingsServiceClient
      *
      * @return string The formatted deidentify_template resource.
      */
-    public static function deidentifyTemplateName(string $organization, string $location, string $deidentifyTemplate): string
-    {
+    public static function deidentifyTemplateName(
+        string $organization,
+        string $location,
+        string $deidentifyTemplate
+    ): string {
         return self::getPathTemplate('deidentifyTemplate')->render([
             'organization' => $organization,
             'location' => $location,
@@ -179,8 +183,11 @@ final class SecuritySettingsServiceClient
      *
      * @return string The formatted organization_location_deidentify_template resource.
      */
-    public static function organizationLocationDeidentifyTemplateName(string $organization, string $location, string $deidentifyTemplate): string
-    {
+    public static function organizationLocationDeidentifyTemplateName(
+        string $organization,
+        string $location,
+        string $deidentifyTemplate
+    ): string {
         return self::getPathTemplate('organizationLocationDeidentifyTemplate')->render([
             'organization' => $organization,
             'location' => $location,
@@ -198,8 +205,11 @@ final class SecuritySettingsServiceClient
      *
      * @return string The formatted organization_location_inspect_template resource.
      */
-    public static function organizationLocationInspectTemplateName(string $organization, string $location, string $inspectTemplate): string
-    {
+    public static function organizationLocationInspectTemplateName(
+        string $organization,
+        string $location,
+        string $inspectTemplate
+    ): string {
         return self::getPathTemplate('organizationLocationInspectTemplate')->render([
             'organization' => $organization,
             'location' => $location,
@@ -217,8 +227,11 @@ final class SecuritySettingsServiceClient
      *
      * @return string The formatted project_location_deidentify_template resource.
      */
-    public static function projectLocationDeidentifyTemplateName(string $project, string $location, string $deidentifyTemplate): string
-    {
+    public static function projectLocationDeidentifyTemplateName(
+        string $project,
+        string $location,
+        string $deidentifyTemplate
+    ): string {
         return self::getPathTemplate('projectLocationDeidentifyTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -236,8 +249,11 @@ final class SecuritySettingsServiceClient
      *
      * @return string The formatted project_location_inspect_template resource.
      */
-    public static function projectLocationInspectTemplateName(string $project, string $location, string $inspectTemplate): string
-    {
+    public static function projectLocationInspectTemplateName(
+        string $project,
+        string $location,
+        string $inspectTemplate
+    ): string {
         return self::getPathTemplate('projectLocationInspectTemplate')->render([
             'project' => $project,
             'location' => $location,
@@ -402,8 +418,10 @@ final class SecuritySettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createSecuritySettings(CreateSecuritySettingsRequest $request, array $callOptions = []): SecuritySettings
-    {
+    public function createSecuritySettings(
+        CreateSecuritySettingsRequest $request,
+        array $callOptions = []
+    ): SecuritySettings {
         return $this->startApiCall('CreateSecuritySettings', $request, $callOptions)->wait();
     }
 
@@ -484,8 +502,10 @@ final class SecuritySettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listSecuritySettings(ListSecuritySettingsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listSecuritySettings(
+        ListSecuritySettingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListSecuritySettings', $request, $callOptions);
     }
 
@@ -512,8 +532,10 @@ final class SecuritySettingsServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateSecuritySettings(UpdateSecuritySettingsRequest $request, array $callOptions = []): SecuritySettings
-    {
+    public function updateSecuritySettings(
+        UpdateSecuritySettingsRequest $request,
+        array $callOptions = []
+    ): SecuritySettings {
         return $this->startApiCall('UpdateSecuritySettings', $request, $callOptions)->wait();
     }
 

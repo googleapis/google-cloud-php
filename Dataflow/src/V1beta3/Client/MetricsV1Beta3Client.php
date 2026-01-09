@@ -216,8 +216,10 @@ final class MetricsV1Beta3Client
      *
      * @experimental
      */
-    public function getJobExecutionDetails(GetJobExecutionDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function getJobExecutionDetails(
+        GetJobExecutionDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('GetJobExecutionDetails', $request, $callOptions);
     }
 
@@ -282,8 +284,10 @@ final class MetricsV1Beta3Client
      *
      * @experimental
      */
-    public function getStageExecutionDetails(GetStageExecutionDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function getStageExecutionDetails(
+        GetStageExecutionDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('GetStageExecutionDetails', $request, $callOptions);
     }
 }

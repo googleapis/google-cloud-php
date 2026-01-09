@@ -207,8 +207,13 @@ final class VersionsClient
      *
      * @return string The formatted version resource.
      */
-    public static function versionName(string $project, string $location, string $agent, string $flow, string $version): string
-    {
+    public static function versionName(
+        string $project,
+        string $location,
+        string $agent,
+        string $flow,
+        string $version
+    ): string {
         return self::getPathTemplate('version')->render([
             'project' => $project,
             'location' => $location,
