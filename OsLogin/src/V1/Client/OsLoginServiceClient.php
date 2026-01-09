@@ -429,8 +429,10 @@ final class OsLoginServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importSshPublicKey(ImportSshPublicKeyRequest $request, array $callOptions = []): ImportSshPublicKeyResponse
-    {
+    public function importSshPublicKey(
+        ImportSshPublicKeyRequest $request,
+        array $callOptions = []
+    ): ImportSshPublicKeyResponse {
         return $this->startApiCall('ImportSshPublicKey', $request, $callOptions)->wait();
     }
 

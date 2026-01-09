@@ -103,9 +103,7 @@ final class OsConfigServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -335,8 +333,10 @@ final class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPatchDeployment(CreatePatchDeploymentRequest $request, array $callOptions = []): PatchDeployment
-    {
+    public function createPatchDeployment(
+        CreatePatchDeploymentRequest $request,
+        array $callOptions = []
+    ): PatchDeployment {
         return $this->startApiCall('CreatePatchDeployment', $request, $callOptions)->wait();
     }
 
@@ -465,8 +465,10 @@ final class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPatchDeployments(ListPatchDeploymentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPatchDeployments(
+        ListPatchDeploymentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPatchDeployments', $request, $callOptions);
     }
 
@@ -492,8 +494,10 @@ final class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPatchJobInstanceDetails(ListPatchJobInstanceDetailsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPatchJobInstanceDetails(
+        ListPatchJobInstanceDetailsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPatchJobInstanceDetails', $request, $callOptions);
     }
 
@@ -573,8 +577,10 @@ final class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resumePatchDeployment(ResumePatchDeploymentRequest $request, array $callOptions = []): PatchDeployment
-    {
+    public function resumePatchDeployment(
+        ResumePatchDeploymentRequest $request,
+        array $callOptions = []
+    ): PatchDeployment {
         return $this->startApiCall('ResumePatchDeployment', $request, $callOptions)->wait();
     }
 
@@ -600,8 +606,10 @@ final class OsConfigServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePatchDeployment(UpdatePatchDeploymentRequest $request, array $callOptions = []): PatchDeployment
-    {
+    public function updatePatchDeployment(
+        UpdatePatchDeploymentRequest $request,
+        array $callOptions = []
+    ): PatchDeployment {
         return $this->startApiCall('UpdatePatchDeployment', $request, $callOptions)->wait();
     }
 }

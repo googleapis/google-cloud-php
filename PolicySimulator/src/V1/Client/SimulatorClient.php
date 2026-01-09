@@ -95,9 +95,7 @@ final class SimulatorClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -197,8 +195,11 @@ final class SimulatorClient
      *
      * @return string The formatted organization_location_replay resource.
      */
-    public static function organizationLocationReplayName(string $organization, string $location, string $replay): string
-    {
+    public static function organizationLocationReplayName(
+        string $organization,
+        string $location,
+        string $replay
+    ): string {
         return self::getPathTemplate('organizationLocationReplay')->render([
             'organization' => $organization,
             'location' => $location,

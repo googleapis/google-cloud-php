@@ -165,9 +165,7 @@ final class NotebookServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -776,8 +774,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getInstanceHealth(GetInstanceHealthRequest $request, array $callOptions = []): GetInstanceHealthResponse
-    {
+    public function getInstanceHealth(
+        GetInstanceHealthRequest $request,
+        array $callOptions = []
+    ): GetInstanceHealthResponse {
         return $this->startApiCall('GetInstanceHealth', $request, $callOptions)->wait();
     }
 
@@ -829,8 +829,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function isInstanceUpgradeable(IsInstanceUpgradeableRequest $request, array $callOptions = []): IsInstanceUpgradeableResponse
-    {
+    public function isInstanceUpgradeable(
+        IsInstanceUpgradeableRequest $request,
+        array $callOptions = []
+    ): IsInstanceUpgradeableResponse {
         return $this->startApiCall('IsInstanceUpgradeable', $request, $callOptions)->wait();
     }
 
@@ -1070,8 +1072,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceAccelerator(SetInstanceAcceleratorRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setInstanceAccelerator(
+        SetInstanceAcceleratorRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetInstanceAccelerator', $request, $callOptions)->wait();
     }
 
@@ -1123,8 +1127,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function setInstanceMachineType(SetInstanceMachineTypeRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function setInstanceMachineType(
+        SetInstanceMachineTypeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('SetInstanceMachineType', $request, $callOptions)->wait();
     }
 
@@ -1227,8 +1233,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInstanceConfig(UpdateInstanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateInstanceConfig(
+        UpdateInstanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateInstanceConfig', $request, $callOptions)->wait();
     }
 
@@ -1254,8 +1262,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInstanceMetadataItems(UpdateInstanceMetadataItemsRequest $request, array $callOptions = []): UpdateInstanceMetadataItemsResponse
-    {
+    public function updateInstanceMetadataItems(
+        UpdateInstanceMetadataItemsRequest $request,
+        array $callOptions = []
+    ): UpdateInstanceMetadataItemsResponse {
         return $this->startApiCall('UpdateInstanceMetadataItems', $request, $callOptions)->wait();
     }
 
@@ -1281,8 +1291,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateShieldedInstanceConfig(UpdateShieldedInstanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateShieldedInstanceConfig(
+        UpdateShieldedInstanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateShieldedInstanceConfig', $request, $callOptions)->wait();
     }
 
@@ -1335,8 +1347,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function upgradeInstanceInternal(UpgradeInstanceInternalRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function upgradeInstanceInternal(
+        UpgradeInstanceInternalRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpgradeInstanceInternal', $request, $callOptions)->wait();
     }
 
@@ -1476,8 +1490,10 @@ final class NotebookServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
