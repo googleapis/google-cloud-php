@@ -100,9 +100,7 @@ final class CatalogServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -437,8 +435,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDefaultBranch(GetDefaultBranchRequest $request, array $callOptions = []): GetDefaultBranchResponse
-    {
+    public function getDefaultBranch(
+        GetDefaultBranchRequest $request,
+        array $callOptions = []
+    ): GetDefaultBranchResponse {
         return $this->startApiCall('GetDefaultBranch', $request, $callOptions)->wait();
     }
 
@@ -496,8 +496,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeCatalogAttribute(RemoveCatalogAttributeRequest $request, array $callOptions = []): AttributesConfig
-    {
+    public function removeCatalogAttribute(
+        RemoveCatalogAttributeRequest $request,
+        array $callOptions = []
+    ): AttributesConfig {
         return $this->startApiCall('RemoveCatalogAttribute', $request, $callOptions)->wait();
     }
 
@@ -530,8 +532,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function replaceCatalogAttribute(ReplaceCatalogAttributeRequest $request, array $callOptions = []): AttributesConfig
-    {
+    public function replaceCatalogAttribute(
+        ReplaceCatalogAttributeRequest $request,
+        array $callOptions = []
+    ): AttributesConfig {
         return $this->startApiCall('ReplaceCatalogAttribute', $request, $callOptions)->wait();
     }
 
@@ -621,8 +625,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAttributesConfig(UpdateAttributesConfigRequest $request, array $callOptions = []): AttributesConfig
-    {
+    public function updateAttributesConfig(
+        UpdateAttributesConfigRequest $request,
+        array $callOptions = []
+    ): AttributesConfig {
         return $this->startApiCall('UpdateAttributesConfig', $request, $callOptions)->wait();
     }
 
@@ -674,8 +680,10 @@ final class CatalogServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateCompletionConfig(UpdateCompletionConfigRequest $request, array $callOptions = []): CompletionConfig
-    {
+    public function updateCompletionConfig(
+        UpdateCompletionConfigRequest $request,
+        array $callOptions = []
+    ): CompletionConfig {
         return $this->startApiCall('UpdateCompletionConfig', $request, $callOptions)->wait();
     }
 }

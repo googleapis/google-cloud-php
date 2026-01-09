@@ -80,9 +80,7 @@ final class PredictionServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -117,8 +115,13 @@ final class PredictionServiceClient
      *
      * @experimental
      */
-    public static function placementName(string $project, string $location, string $catalog, string $eventStore, string $placement): string
-    {
+    public static function placementName(
+        string $project,
+        string $location,
+        string $catalog,
+        string $eventStore,
+        string $placement
+    ): string {
         return self::getPathTemplate('placement')->render([
             'project' => $project,
             'location' => $location,

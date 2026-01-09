@@ -205,9 +205,7 @@ final class SecureSourceManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -289,8 +287,12 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted branch_rule resource.
      */
-    public static function branchRuleName(string $project, string $location, string $repository, string $branchRule): string
-    {
+    public static function branchRuleName(
+        string $project,
+        string $location,
+        string $repository,
+        string $branchRule
+    ): string {
         return self::getPathTemplate('branchRule')->render([
             'project' => $project,
             'location' => $location,
@@ -412,8 +414,13 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted issue_comment resource.
      */
-    public static function issueCommentName(string $project, string $location, string $repository, string $issue, string $comment): string
-    {
+    public static function issueCommentName(
+        string $project,
+        string $location,
+        string $repository,
+        string $issue,
+        string $comment
+    ): string {
         return self::getPathTemplate('issueComment')->render([
             'project' => $project,
             'location' => $location,
@@ -451,8 +458,12 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted pull_request resource.
      */
-    public static function pullRequestName(string $project, string $location, string $repository, string $pullRequest): string
-    {
+    public static function pullRequestName(
+        string $project,
+        string $location,
+        string $repository,
+        string $pullRequest
+    ): string {
         return self::getPathTemplate('pullRequest')->render([
             'project' => $project,
             'location' => $location,
@@ -473,8 +484,13 @@ final class SecureSourceManagerClient
      *
      * @return string The formatted pull_request_comment resource.
      */
-    public static function pullRequestCommentName(string $project, string $location, string $repository, string $pullRequest, string $comment): string
-    {
+    public static function pullRequestCommentName(
+        string $project,
+        string $location,
+        string $repository,
+        string $pullRequest,
+        string $comment
+    ): string {
         return self::getPathTemplate('pullRequestComment')->render([
             'project' => $project,
             'location' => $location,
@@ -669,8 +685,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreatePullRequestComments(BatchCreatePullRequestCommentsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchCreatePullRequestComments(
+        BatchCreatePullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchCreatePullRequestComments', $request, $callOptions)->wait();
     }
 
@@ -910,8 +928,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createPullRequestComment(CreatePullRequestCommentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createPullRequestComment(
+        CreatePullRequestCommentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreatePullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -1097,8 +1117,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deletePullRequestComment(DeletePullRequestCommentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deletePullRequestComment(
+        DeletePullRequestCommentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeletePullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -1384,8 +1406,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getPullRequestComment(GetPullRequestCommentRequest $request, array $callOptions = []): PullRequestComment
-    {
+    public function getPullRequestComment(
+        GetPullRequestCommentRequest $request,
+        array $callOptions = []
+    ): PullRequestComment {
         return $this->startApiCall('GetPullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -1568,8 +1592,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPullRequestComments(ListPullRequestCommentsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPullRequestComments(
+        ListPullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPullRequestComments', $request, $callOptions);
     }
 
@@ -1595,8 +1621,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listPullRequestFileDiffs(ListPullRequestFileDiffsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listPullRequestFileDiffs(
+        ListPullRequestFileDiffsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListPullRequestFileDiffs', $request, $callOptions);
     }
 
@@ -1758,8 +1786,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function resolvePullRequestComments(ResolvePullRequestCommentsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function resolvePullRequestComments(
+        ResolvePullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('ResolvePullRequestComments', $request, $callOptions)->wait();
     }
 
@@ -1812,8 +1842,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissionsRepo(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissionsRepo(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissionsRepo', $request, $callOptions)->wait();
     }
 
@@ -1842,8 +1874,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function unresolvePullRequestComments(UnresolvePullRequestCommentsRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function unresolvePullRequestComments(
+        UnresolvePullRequestCommentsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UnresolvePullRequestComments', $request, $callOptions)->wait();
     }
 
@@ -2001,8 +2035,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updatePullRequestComment(UpdatePullRequestCommentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updatePullRequestComment(
+        UpdatePullRequestCommentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdatePullRequestComment', $request, $callOptions)->wait();
     }
 
@@ -2117,8 +2153,10 @@ final class SecureSourceManagerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
