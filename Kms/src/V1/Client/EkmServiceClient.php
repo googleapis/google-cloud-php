@@ -503,8 +503,10 @@ final class EkmServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function verifyConnectivity(VerifyConnectivityRequest $request, array $callOptions = []): VerifyConnectivityResponse
-    {
+    public function verifyConnectivity(
+        VerifyConnectivityRequest $request,
+        array $callOptions = []
+    ): VerifyConnectivityResponse {
         return $this->startApiCall('VerifyConnectivity', $request, $callOptions)->wait();
     }
 
@@ -644,8 +646,10 @@ final class EkmServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }
