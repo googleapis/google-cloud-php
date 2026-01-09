@@ -99,9 +99,7 @@ final class WebSecurityScannerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -383,8 +381,10 @@ final class WebSecurityScannerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listFindingTypeStats(ListFindingTypeStatsRequest $request, array $callOptions = []): ListFindingTypeStatsResponse
-    {
+    public function listFindingTypeStats(
+        ListFindingTypeStatsRequest $request,
+        array $callOptions = []
+    ): ListFindingTypeStatsResponse {
         return $this->startApiCall('ListFindingTypeStats', $request, $callOptions)->wait();
     }
 
