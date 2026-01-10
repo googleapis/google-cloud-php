@@ -137,6 +137,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateAutoMigrationConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\AutoMigrationConfig',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'auto_migration_config.name',
+                        'fieldAccessors' => [
+                            'getAutoMigrationConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDeployment' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Config\V1\Deployment',
@@ -213,6 +233,18 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAutoMigrationConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\AutoMigrationConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -527,6 +559,7 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'autoMigrationConfig' => 'projects/{project}/locations/{location}/autoMigrationConfig',
                 'deployment' => 'projects/{project}/locations/{location}/deployments/{deployment}',
                 'location' => 'projects/{project}/locations/{location}',
                 'preview' => 'projects/{project}/locations/{location}/previews/{preview}',
