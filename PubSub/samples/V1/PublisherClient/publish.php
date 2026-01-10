@@ -33,8 +33,8 @@ use Google\Cloud\PubSub\V1\PubsubMessage;
  * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
  * does not exist.
  *
- * @param string $formattedTopic Identifier. The messages in the request will be published on this
- *                               topic. Format is `projects/{project}/topics/{topic}`. Please see
+ * @param string $formattedTopic The messages in the request will be published on this topic.
+ *                               Format is `projects/{project}/topics/{topic}`. Please see
  *                               {@see PublisherClient::topicName()} for help formatting this field.
  */
 function publish_sample(string $formattedTopic): void

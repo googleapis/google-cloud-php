@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier. The name of the project in which to list snapshots.
+     * Required. The name of the project in which to list snapshots.
      * Format is `projects/{project-id}`.
      *
-     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $project = '';
     /**
@@ -38,7 +38,7 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $project Required. Identifier. The name of the project in which to list snapshots.
+     * @param string $project Required. The name of the project in which to list snapshots.
      *                        Format is `projects/{project-id}`. Please see
      *                        {@see SubscriberClient::projectName()} for help formatting this field.
      *
@@ -59,7 +59,7 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project
-     *           Required. Identifier. The name of the project in which to list snapshots.
+     *           Required. The name of the project in which to list snapshots.
      *           Format is `projects/{project-id}`.
      *     @type int $page_size
      *           Optional. Maximum number of snapshots to return.
@@ -75,10 +75,10 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the project in which to list snapshots.
+     * Required. The name of the project in which to list snapshots.
      * Format is `projects/{project-id}`.
      *
-     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getProject()
@@ -87,10 +87,10 @@ class ListSnapshotsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the project in which to list snapshots.
+     * Required. The name of the project in which to list snapshots.
      * Format is `projects/{project-id}`.
      *
-     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

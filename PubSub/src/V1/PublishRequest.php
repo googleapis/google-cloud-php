@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class PublishRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier. The messages in the request will be published on this
-     * topic. Format is `projects/{project}/topics/{topic}`.
+     * Required. The messages in the request will be published on this topic.
+     * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $topic = '';
     /**
@@ -30,8 +30,8 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
     private $messages;
 
     /**
-     * @param string                                  $topic    Required. Identifier. The messages in the request will be published on this
-     *                                                          topic. Format is `projects/{project}/topics/{topic}`. Please see
+     * @param string                                  $topic    Required. The messages in the request will be published on this topic.
+     *                                                          Format is `projects/{project}/topics/{topic}`. Please see
      *                                                          {@see PublisherClient::topicName()} for help formatting this field.
      * @param \Google\Cloud\PubSub\V1\PubsubMessage[] $messages Required. The messages to publish.
      *
@@ -53,8 +53,8 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic
-     *           Required. Identifier. The messages in the request will be published on this
-     *           topic. Format is `projects/{project}/topics/{topic}`.
+     *           Required. The messages in the request will be published on this topic.
+     *           Format is `projects/{project}/topics/{topic}`.
      *     @type array<\Google\Cloud\PubSub\V1\PubsubMessage>|\Google\Protobuf\Internal\RepeatedField $messages
      *           Required. The messages to publish.
      * }
@@ -65,10 +65,10 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The messages in the request will be published on this
-     * topic. Format is `projects/{project}/topics/{topic}`.
+     * Required. The messages in the request will be published on this topic.
+     * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTopic()
@@ -77,10 +77,10 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The messages in the request will be published on this
-     * topic. Format is `projects/{project}/topics/{topic}`.
+     * Required. The messages in the request will be published on this topic.
+     * Format is `projects/{project}/topics/{topic}`.
      *
-     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string topic = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

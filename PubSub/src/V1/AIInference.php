@@ -23,7 +23,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string endpoint = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $endpoint = '';
+    private $endpoint = '';
     /**
      * Optional. The service account to use to make prediction requests against
      * endpoints. The resource creator or updater that specifies this field must
@@ -34,7 +34,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $service_account_email = '';
+    private $service_account_email = '';
     protected $inference_mode;
 
     /**

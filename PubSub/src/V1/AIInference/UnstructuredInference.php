@@ -22,7 +22,7 @@ class UnstructuredInference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $parameters = null;
+    private $parameters = null;
 
     /**
      * Constructor.
@@ -83,6 +83,4 @@ class UnstructuredInference extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UnstructuredInference::class, \Google\Cloud\PubSub\V1\AIInference_UnstructuredInference::class);
 
