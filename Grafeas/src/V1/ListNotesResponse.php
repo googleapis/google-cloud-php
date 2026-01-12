@@ -29,6 +29,14 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Unreachable regions. Populated for requests from the global region
+     * when `return_partial_success` is set.
+     * Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -42,6 +50,10 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
      *           The next pagination token in the list response. It should be used as
      *           `page_token` for the following request. An empty value means no more
      *           results.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Unreachable regions. Populated for requests from the global region
+     *           when `return_partial_success` is set.
+     *           Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +113,36 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unreachable regions. Populated for requests from the global region
+     * when `return_partial_success` is set.
+     * Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Unreachable regions. Populated for requests from the global region
+     * when `return_partial_success` is set.
+     * Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }

@@ -41,6 +41,15 @@ class ListOccurrencesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
     protected $page_token = '';
+    /**
+     * If set, the request will return all reachable Occurrences
+     * and report all unreachable regions in the `unreachable` field in
+     * the response.
+     * Only applicable for requests in the global region.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 5;</code>
+     */
+    protected $return_partial_success = false;
 
     /**
      * @param string $parent The name of the project to list occurrences for in the form of
@@ -75,6 +84,11 @@ class ListOccurrencesRequest extends \Google\Protobuf\Internal\Message
      *           page size is 1000. If not specified, page size defaults to 20.
      *     @type string $page_token
      *           Token to provide to skip to a particular spot in the list.
+     *     @type bool $return_partial_success
+     *           If set, the request will return all reachable Occurrences
+     *           and report all unreachable regions in the `unreachable` field in
+     *           the response.
+     *           Only applicable for requests in the global region.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,6 +200,38 @@ class ListOccurrencesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set, the request will return all reachable Occurrences
+     * and report all unreachable regions in the `unreachable` field in
+     * the response.
+     * Only applicable for requests in the global region.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 5;</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * If set, the request will return all reachable Occurrences
+     * and report all unreachable regions in the `unreachable` field in
+     * the response.
+     * Only applicable for requests in the global region.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }

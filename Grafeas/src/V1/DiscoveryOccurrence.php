@@ -76,6 +76,12 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.VulnerabilityAttestation vulnerability_attestation = 10;</code>
      */
     protected $vulnerability_attestation = null;
+    /**
+     * Files that make up the resource described by the occurrence.
+     *
+     * Generated from protobuf field <code>repeated .grafeas.v1.DiscoveryOccurrence.File files = 11;</code>
+     */
+    private $files;
 
     /**
      * Constructor.
@@ -105,6 +111,8 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           The status of an SBOM generation.
      *     @type \Grafeas\V1\DiscoveryOccurrence\VulnerabilityAttestation $vulnerability_attestation
      *           The status of an vulnerability attestation generation.
+     *     @type array<\Grafeas\V1\DiscoveryOccurrence\File>|\Google\Protobuf\Internal\RepeatedField $files
+     *           Files that make up the resource described by the occurrence.
      * }
      */
     public function __construct($data = NULL) {
@@ -430,6 +438,32 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\DiscoveryOccurrence\VulnerabilityAttestation::class);
         $this->vulnerability_attestation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Files that make up the resource described by the occurrence.
+     *
+     * Generated from protobuf field <code>repeated .grafeas.v1.DiscoveryOccurrence.File files = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * Files that make up the resource described by the occurrence.
+     *
+     * Generated from protobuf field <code>repeated .grafeas.v1.DiscoveryOccurrence.File files = 11;</code>
+     * @param array<\Grafeas\V1\DiscoveryOccurrence\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFiles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Grafeas\V1\DiscoveryOccurrence\File::class);
+        $this->files = $arr;
 
         return $this;
     }
