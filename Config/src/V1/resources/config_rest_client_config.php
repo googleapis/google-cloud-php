@@ -131,6 +131,17 @@ return [
                     ],
                 ],
             ],
+            'GetAutoMigrationConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autoMigrationConfig}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDeployment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deployments/*}',
@@ -316,6 +327,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAutoMigrationConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{auto_migration_config.name=projects/*/locations/*/autoMigrationConfig}',
+                'body' => 'auto_migration_config',
+                'placeholders' => [
+                    'auto_migration_config.name' => [
+                        'getters' => [
+                            'getAutoMigrationConfig',
                             'getName',
                         ],
                     ],

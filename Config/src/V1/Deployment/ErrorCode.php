@@ -58,6 +58,12 @@ class ErrorCode
      * Generated from protobuf enum <code>BUCKET_CREATION_FAILED = 8;</code>
      */
     const BUCKET_CREATION_FAILED = 8;
+    /**
+     * Failed to import values from an external source.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_VALUE_SOURCE_IMPORT_FAILED = 10;</code>
+     */
+    const EXTERNAL_VALUE_SOURCE_IMPORT_FAILED = 10;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
@@ -67,6 +73,7 @@ class ErrorCode
         self::DELETE_BUILD_RUN_FAILED => 'DELETE_BUILD_RUN_FAILED',
         self::BUCKET_CREATION_PERMISSION_DENIED => 'BUCKET_CREATION_PERMISSION_DENIED',
         self::BUCKET_CREATION_FAILED => 'BUCKET_CREATION_FAILED',
+        self::EXTERNAL_VALUE_SOURCE_IMPORT_FAILED => 'EXTERNAL_VALUE_SOURCE_IMPORT_FAILED',
     ];
 
     public static function name($value)

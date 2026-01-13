@@ -35,6 +35,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Config\V1\AutoMigrationConfig;
 use Google\Cloud\Config\V1\CreateDeploymentRequest;
 use Google\Cloud\Config\V1\CreatePreviewRequest;
 use Google\Cloud\Config\V1\DeleteDeploymentRequest;
@@ -46,6 +47,7 @@ use Google\Cloud\Config\V1\ExportLockInfoRequest;
 use Google\Cloud\Config\V1\ExportPreviewResultRequest;
 use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 use Google\Cloud\Config\V1\ExportRevisionStatefileRequest;
+use Google\Cloud\Config\V1\GetAutoMigrationConfigRequest;
 use Google\Cloud\Config\V1\GetDeploymentRequest;
 use Google\Cloud\Config\V1\GetPreviewRequest;
 use Google\Cloud\Config\V1\GetResourceChangeRequest;
@@ -71,6 +73,7 @@ use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
 use Google\Cloud\Config\V1\TerraformVersion;
 use Google\Cloud\Config\V1\UnlockDeploymentRequest;
+use Google\Cloud\Config\V1\UpdateAutoMigrationConfigRequest;
 use Google\Cloud\Config\V1\UpdateDeploymentRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -106,6 +109,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<LockInfo> exportLockInfoAsync(ExportLockInfoRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ExportPreviewResultResponse> exportPreviewResultAsync(ExportPreviewResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Statefile> exportRevisionStatefileAsync(ExportRevisionStatefileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutoMigrationConfig> getAutoMigrationConfigAsync(GetAutoMigrationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Deployment> getDeploymentAsync(GetDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Preview> getPreviewAsync(GetPreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Resource> getResourceAsync(GetResourceRequest $request, array $optionalArgs = [])
@@ -123,6 +127,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listTerraformVersionsAsync(ListTerraformVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> lockDeploymentAsync(LockDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> unlockDeploymentAsync(UnlockDeploymentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAutoMigrationConfigAsync(UpdateAutoMigrationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -224,6 +229,23 @@ final class ConfigClient
         }
 
         return new OperationsClient($options);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * auto_migration_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted auto_migration_config resource.
+     */
+    public static function autoMigrationConfigName(string $project, string $location): string
+    {
+        return self::getPathTemplate('autoMigrationConfig')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -439,6 +461,7 @@ final class ConfigClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - autoMigrationConfig: projects/{project}/locations/{location}/autoMigrationConfig
      * - deployment: projects/{project}/locations/{location}/deployments/{deployment}
      * - location: projects/{project}/locations/{location}
      * - preview: projects/{project}/locations/{location}/previews/{preview}
@@ -788,6 +811,34 @@ final class ConfigClient
     public function exportRevisionStatefile(ExportRevisionStatefileRequest $request, array $callOptions = []): Statefile
     {
         return $this->startApiCall('ExportRevisionStatefile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get the AutoMigrationConfig for a given project and location.
+     *
+     * The async variant is {@see ConfigClient::getAutoMigrationConfigAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_auto_migration_config.php
+     *
+     * @param GetAutoMigrationConfigRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AutoMigrationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAutoMigrationConfig(
+        GetAutoMigrationConfigRequest $request,
+        array $callOptions = []
+    ): AutoMigrationConfig {
+        return $this->startApiCall('GetAutoMigrationConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -1238,6 +1289,34 @@ final class ConfigClient
     public function unlockDeployment(UnlockDeploymentRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UnlockDeployment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the AutoMigrationConfig for a given project and location.
+     *
+     * The async variant is {@see ConfigClient::updateAutoMigrationConfigAsync()} .
+     *
+     * @example samples/V1/ConfigClient/update_auto_migration_config.php
+     *
+     * @param UpdateAutoMigrationConfigRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutoMigrationConfig>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAutoMigrationConfig(
+        UpdateAutoMigrationConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateAutoMigrationConfig', $request, $callOptions)->wait();
     }
 
     /**

@@ -46,6 +46,12 @@ class ErrorCode
      * Generated from protobuf enum <code>QUOTA_VALIDATION_FAILED = 7;</code>
      */
     const QUOTA_VALIDATION_FAILED = 7;
+    /**
+     * Failed to import values from an external source.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_VALUE_SOURCE_IMPORT_FAILED = 8;</code>
+     */
+    const EXTERNAL_VALUE_SOURCE_IMPORT_FAILED = 8;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
@@ -53,6 +59,7 @@ class ErrorCode
         self::APPLY_BUILD_API_FAILED => 'APPLY_BUILD_API_FAILED',
         self::APPLY_BUILD_RUN_FAILED => 'APPLY_BUILD_RUN_FAILED',
         self::QUOTA_VALIDATION_FAILED => 'QUOTA_VALIDATION_FAILED',
+        self::EXTERNAL_VALUE_SOURCE_IMPORT_FAILED => 'EXTERNAL_VALUE_SOURCE_IMPORT_FAILED',
     ];
 
     public static function name($value)

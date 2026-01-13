@@ -55,6 +55,12 @@ class ErrorCode
      * Generated from protobuf enum <code>PREVIEW_BUILD_RUN_FAILED = 6;</code>
      */
     const PREVIEW_BUILD_RUN_FAILED = 6;
+    /**
+     * Failed to import values from an external source.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_VALUE_SOURCE_IMPORT_FAILED = 7;</code>
+     */
+    const EXTERNAL_VALUE_SOURCE_IMPORT_FAILED = 7;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
@@ -64,6 +70,7 @@ class ErrorCode
         self::DEPLOYMENT_LOCK_ACQUIRE_FAILED => 'DEPLOYMENT_LOCK_ACQUIRE_FAILED',
         self::PREVIEW_BUILD_API_FAILED => 'PREVIEW_BUILD_API_FAILED',
         self::PREVIEW_BUILD_RUN_FAILED => 'PREVIEW_BUILD_RUN_FAILED',
+        self::EXTERNAL_VALUE_SOURCE_IMPORT_FAILED => 'EXTERNAL_VALUE_SOURCE_IMPORT_FAILED',
     ];
 
     public static function name($value)
