@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/apiregistry/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/ApiRegistry/$1/$2
+api-name: ApiRegistry
