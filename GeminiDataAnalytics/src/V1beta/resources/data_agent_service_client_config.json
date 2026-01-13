@@ -33,7 +33,17 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "CreateDataAgentSync": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "DeleteDataAgent": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteDataAgentSync": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -64,6 +74,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "UpdateDataAgent": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateDataAgentSync": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
