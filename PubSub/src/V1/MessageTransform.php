@@ -41,6 +41,10 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\JavaScriptUDF $javascript_udf
      *           Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's
      *           are specified on a resource, each must have a unique `function_name`.
+     *     @type \Google\Cloud\PubSub\V1\AIInference $ai_inference
+     *           Optional. AI Inference. Specifies the Vertex AI endpoint that inference
+     *           requests built from the Pub/Sub message data and provided parameters will
+     *           be sent to.
      *     @type bool $enabled
      *           Optional. This field is deprecated, use the `disabled` field to disable
      *           transforms.
@@ -83,6 +87,41 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\JavaScriptUDF::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. AI Inference. Specifies the Vertex AI endpoint that inference
+     * requests built from the Pub/Sub message data and provided parameters will
+     * be sent to.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.AIInference ai_inference = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\AIInference|null
+     */
+    public function getAiInference()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasAiInference()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. AI Inference. Specifies the Vertex AI endpoint that inference
+     * requests built from the Pub/Sub message data and provided parameters will
+     * be sent to.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.AIInference ai_inference = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\AIInference $var
+     * @return $this
+     */
+    public function setAiInference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\AIInference::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

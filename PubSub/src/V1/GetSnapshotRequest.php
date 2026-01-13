@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier. The name of the snapshot to get.
+     * Required. The name of the snapshot to get.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $snapshot = '';
 
     /**
-     * @param string $snapshot Required. Identifier. The name of the snapshot to get.
+     * @param string $snapshot Required. The name of the snapshot to get.
      *                         Format is `projects/{project}/snapshots/{snap}`. Please see
      *                         {@see SubscriberClient::snapshotName()} for help formatting this field.
      *
@@ -45,7 +45,7 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $snapshot
-     *           Required. Identifier. The name of the snapshot to get.
+     *           Required. The name of the snapshot to get.
      *           Format is `projects/{project}/snapshots/{snap}`.
      * }
      */
@@ -55,10 +55,10 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the snapshot to get.
+     * Required. The name of the snapshot to get.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSnapshot()
@@ -67,10 +67,10 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the snapshot to get.
+     * Required. The name of the snapshot to get.
      * Format is `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string snapshot = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

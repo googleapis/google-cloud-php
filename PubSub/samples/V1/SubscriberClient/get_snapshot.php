@@ -35,7 +35,7 @@ use Google\Cloud\PubSub\V1\Snapshot;
  * set the acknowledgment state of messages in an existing subscription to the
  * state captured by a snapshot.
  *
- * @param string $formattedSnapshot Identifier. The name of the snapshot to get.
+ * @param string $formattedSnapshot The name of the snapshot to get.
  *                                  Format is `projects/{project}/snapshots/{snap}`. Please see
  *                                  {@see SubscriberClient::snapshotName()} for help formatting this field.
  */

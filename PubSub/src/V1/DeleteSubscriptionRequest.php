@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier. The subscription to delete.
+     * Required. The subscription to delete.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $subscription = '';
 
     /**
-     * @param string $subscription Required. Identifier. The subscription to delete.
+     * @param string $subscription Required. The subscription to delete.
      *                             Format is `projects/{project}/subscriptions/{sub}`. Please see
      *                             {@see SubscriberClient::subscriptionName()} for help formatting this field.
      *
@@ -45,7 +45,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $subscription
-     *           Required. Identifier. The subscription to delete.
+     *           Required. The subscription to delete.
      *           Format is `projects/{project}/subscriptions/{sub}`.
      * }
      */
@@ -55,10 +55,10 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The subscription to delete.
+     * Required. The subscription to delete.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubscription()
@@ -67,10 +67,10 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The subscription to delete.
+     * Required. The subscription to delete.
      * Format is `projects/{project}/subscriptions/{sub}`.
      *
-     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string subscription = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

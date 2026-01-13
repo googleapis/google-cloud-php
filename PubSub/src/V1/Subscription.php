@@ -206,7 +206,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
     private $state = 0;
     /**
      * Output only. Information about the associated Analytics Hub subscription.
-     * Only set if the subscritpion is created by Analytics Hub.
+     * Only set if the subscription is created by Analytics Hub.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -400,7 +400,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           subscription can receive messages.
      *     @type \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $analytics_hub_subscription_info
      *           Output only. Information about the associated Analytics Hub subscription.
-     *           Only set if the subscritpion is created by Analytics Hub.
+     *           Only set if the subscription is created by Analytics Hub.
      *     @type array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $message_transforms
      *           Optional. Transforms to be applied to messages before they are delivered to
      *           subscribers. Transforms are applied in the order specified.
@@ -1126,7 +1126,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Information about the associated Analytics Hub subscription.
-     * Only set if the subscritpion is created by Analytics Hub.
+     * Only set if the subscription is created by Analytics Hub.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo|null
@@ -1148,7 +1148,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Information about the associated Analytics Hub subscription.
-     * Only set if the subscritpion is created by Analytics Hub.
+     * Only set if the subscription is created by Analytics Hub.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription.AnalyticsHubSubscriptionInfo analytics_hub_subscription_info = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $var
