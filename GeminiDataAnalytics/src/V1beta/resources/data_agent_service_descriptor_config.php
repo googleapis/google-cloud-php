@@ -81,6 +81,30 @@ return [
                     ],
                 ],
             ],
+            'CreateDataAgentSync' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDataAgentSync' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDataAgent' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent',
@@ -153,6 +177,19 @@ return [
                         'keyName' => 'resource',
                         'fieldAccessors' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDataAgentSync' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'data_agent.name',
+                        'fieldAccessors' => [
+                            'getDataAgent',
+                            'getName',
                         ],
                     ],
                 ],
