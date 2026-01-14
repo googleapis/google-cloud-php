@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * KmsConfig is the customer managed encryption key(CMEK) configuration.
+ * KmsConfig is the customer-managed encryption key(CMEK) configuration.
  *
  * Generated from protobuf message <code>google.cloud.netapp.v1.KmsConfig</code>
  */
@@ -17,13 +17,14 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the KmsConfig.
+     * Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Required. Customer managed crypto key resource full name. Format:
-     * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+     * Required. Customer-managed crypto key resource full name. Format:
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *
      * Generated from protobuf field <code>string crypto_key_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -81,9 +82,10 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the KmsConfig.
+     *           Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
      *     @type string $crypto_key_name
-     *           Required. Customer managed crypto key resource full name. Format:
-     *           projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+     *           Required. Customer-managed crypto key resource full name. Format:
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *     @type int $state
      *           Output only. State of the KmsConfig.
      *     @type string $state_details
@@ -109,6 +111,7 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the KmsConfig.
+     * Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -120,6 +123,7 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the KmsConfig.
+     * Format: `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -134,8 +138,8 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Customer managed crypto key resource full name. Format:
-     * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+     * Required. Customer-managed crypto key resource full name. Format:
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *
      * Generated from protobuf field <code>string crypto_key_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -146,8 +150,8 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Customer managed crypto key resource full name. Format:
-     * projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+     * Required. Customer-managed crypto key resource full name. Format:
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *
      * Generated from protobuf field <code>string crypto_key_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -220,6 +220,16 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $hot_tier_size_used_gib = 0;
+    /**
+     * Optional. Type of the storage pool. This field is used to control whether
+     * the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
+     * `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
+     * volumes with large capacity. If not specified during creation, it defaults
+     * to `FILE`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.StoragePoolType type = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $type = null;
 
     /**
      * Constructor.
@@ -305,6 +315,12 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type int|string $hot_tier_size_used_gib
      *           Output only. Total hot tier data rounded down to the nearest GiB used by
      *           the storage pool.
+     *     @type int $type
+     *           Optional. Type of the storage pool. This field is used to control whether
+     *           the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
+     *           `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
+     *           volumes with large capacity. If not specified during creation, it defaults
+     *           to `FILE`.
      * }
      */
     public function __construct($data = NULL) {
@@ -1186,6 +1202,50 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->hot_tier_size_used_gib = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Type of the storage pool. This field is used to control whether
+     * the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
+     * `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
+     * volumes with large capacity. If not specified during creation, it defaults
+     * to `FILE`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.StoragePoolType type = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
+    }
+
+    /**
+     * Optional. Type of the storage pool. This field is used to control whether
+     * the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
+     * `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
+     * volumes with large capacity. If not specified during creation, it defaults
+     * to `FILE`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.StoragePoolType type = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\StoragePoolType::class);
+        $this->type = $var;
 
         return $this;
     }

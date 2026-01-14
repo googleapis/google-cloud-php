@@ -85,11 +85,33 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      */
     protected $destination_backup_vault = '';
     /**
-     * Optional. Backup retention policy defining the retenton of backups.
+     * Optional. Backup retention policy defining the retention of backups.
      *
      * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy backup_retention_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $backup_retention_policy = null;
+    /**
+     * Optional. Specifies the Key Management System (KMS) configuration to be
+     * used for backup encryption. Format:
+     * `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
+     *
+     * Generated from protobuf field <code>string kms_config = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $kms_config = '';
+    /**
+     * Output only. Field indicating encryption state of CMEK backups.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.EncryptionState encryption_state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $encryption_state = 0;
+    /**
+     * Output only. The crypto key version used to encrypt the backup vault.
+     * Format:
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`
+     *
+     * Generated from protobuf field <code>string backups_crypto_key_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backups_crypto_key_version = '';
 
     /**
      * Constructor.
@@ -127,7 +149,17 @@ class BackupVault extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}`
      *     @type \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy $backup_retention_policy
-     *           Optional. Backup retention policy defining the retenton of backups.
+     *           Optional. Backup retention policy defining the retention of backups.
+     *     @type string $kms_config
+     *           Optional. Specifies the Key Management System (KMS) configuration to be
+     *           used for backup encryption. Format:
+     *           `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
+     *     @type int $encryption_state
+     *           Output only. Field indicating encryption state of CMEK backups.
+     *     @type string $backups_crypto_key_version
+     *           Output only. The crypto key version used to encrypt the backup vault.
+     *           Format:
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`
      * }
      */
     public function __construct($data = NULL) {
@@ -424,7 +456,7 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Backup retention policy defining the retenton of backups.
+     * Optional. Backup retention policy defining the retention of backups.
      *
      * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy backup_retention_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy|null
@@ -445,7 +477,7 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Backup retention policy defining the retenton of backups.
+     * Optional. Backup retention policy defining the retention of backups.
      *
      * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.BackupRetentionPolicy backup_retention_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy $var
@@ -455,6 +487,92 @@ class BackupVault extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\BackupVault\BackupRetentionPolicy::class);
         $this->backup_retention_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the Key Management System (KMS) configuration to be
+     * used for backup encryption. Format:
+     * `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
+     *
+     * Generated from protobuf field <code>string kms_config = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getKmsConfig()
+    {
+        return $this->kms_config;
+    }
+
+    /**
+     * Optional. Specifies the Key Management System (KMS) configuration to be
+     * used for backup encryption. Format:
+     * `projects/{project}/locations/{location}/kmsConfigs/{kms_config}`
+     *
+     * Generated from protobuf field <code>string kms_config = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsConfig($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Field indicating encryption state of CMEK backups.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.EncryptionState encryption_state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getEncryptionState()
+    {
+        return $this->encryption_state;
+    }
+
+    /**
+     * Output only. Field indicating encryption state of CMEK backups.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.BackupVault.EncryptionState encryption_state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEncryptionState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\BackupVault\EncryptionState::class);
+        $this->encryption_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The crypto key version used to encrypt the backup vault.
+     * Format:
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`
+     *
+     * Generated from protobuf field <code>string backups_crypto_key_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getBackupsCryptoKeyVersion()
+    {
+        return $this->backups_crypto_key_version;
+    }
+
+    /**
+     * Output only. The crypto key version used to encrypt the backup vault.
+     * Format:
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`
+     *
+     * Generated from protobuf field <code>string backups_crypto_key_version = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBackupsCryptoKeyVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->backups_crypto_key_version = $var;
 
         return $this;
     }

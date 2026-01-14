@@ -99,6 +99,25 @@ return [
                     ],
                 ],
             ],
+            'CreateHostGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\HostGroup',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateKmsConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\KmsConfig',
@@ -289,6 +308,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteHostGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteKmsConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -425,6 +463,25 @@ return [
             'EstablishPeering' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\Replication',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RestoreBackupFiles' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\RestoreBackupFilesResponse',
                     'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -635,6 +692,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateHostGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\HostGroup',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'host_group.name',
+                        'fieldAccessors' => [
+                            'getHostGroup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateKmsConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\KmsConfig',
@@ -822,6 +899,18 @@ return [
                     ],
                 ],
             ],
+            'GetHostGroup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\HostGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetKmsConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetApp\V1\KmsConfig',
@@ -965,6 +1054,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\NetApp\V1\ListBackupsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListHostGroups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getHostGroups',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ListHostGroupsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -1145,6 +1254,7 @@ return [
                 'backup' => 'projects/{project}/locations/{location}/backupVaults/{backup_vault}/backups/{backup}',
                 'backupPolicy' => 'projects/{project}/locations/{location}/backupPolicies/{backup_policy}',
                 'backupVault' => 'projects/{project}/locations/{location}/backupVaults/{backup_vault}',
+                'hostGroup' => 'projects/{project}/locations/{location}/hostGroups/{host_group}',
                 'kmsConfig' => 'projects/{project}/locations/{location}/kmsConfigs/{kms_config}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',

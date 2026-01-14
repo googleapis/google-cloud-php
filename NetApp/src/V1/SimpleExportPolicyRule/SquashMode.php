@@ -7,16 +7,16 @@ namespace Google\Cloud\NetApp\V1\SimpleExportPolicyRule;
 use UnexpectedValueException;
 
 /**
- * SquashMode defines how remote user privileges are restricted when accessing
- * an NFS export. It controls how user identities (like root) are mapped to
- * anonymous users to limit access and enforce security.
+ * `SquashMode` defines how remote user privileges are restricted when
+ * accessing an NFS export. It controls how user identities (like root) are
+ * mapped to anonymous users to limit access and enforce security.
  *
  * Protobuf type <code>google.cloud.netapp.v1.SimpleExportPolicyRule.SquashMode</code>
  */
 class SquashMode
 {
     /**
-     * Defaults to NO_ROOT_SQUASH.
+     * Defaults to `NO_ROOT_SQUASH`.
      *
      * Generated from protobuf enum <code>SQUASH_MODE_UNSPECIFIED = 0;</code>
      */
