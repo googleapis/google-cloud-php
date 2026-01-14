@@ -1100,10 +1100,7 @@ class BigQueryClient
             return ApplicationDefaultCredentials::getDefaultLogger();
         }
 
-        if ($configuration !== null
-            && $configuration !== false
-            && !$configuration instanceof LoggerInterface
-        ) {
+        if ($configuration !== false && !$configuration instanceof LoggerInterface) {
             throw new ValidationException(
                 'The "logger" option in the options array should be PSR-3 LoggerInterface compatible.'
             );
