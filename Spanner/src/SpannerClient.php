@@ -118,6 +118,7 @@ class SpannerClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
+    private const GRPC_KEEPALIVE_MILLISECONDS = 120 * 1000;
 
     private const SERVICE_NAME = 'google.spanner.v1.Spanner';
 
@@ -204,7 +205,7 @@ class SpannerClient
             'directedReadOptions' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
             'routeToLeader' => true,
-            'cacheItemPool' => null,
+            'cacheItemPool' => null
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -212,6 +213,8 @@ class SpannerClient
         $this->routeToLeader = $options['routeToLeader'];
         $this->defaultQueryOptions = $options['queryOptions'];
         $this->isolationLevel = $options['isolationLevel'];
+
+        $options = $this->configureKeepAlive($options);
 
         // Configure GAPIC client options
         $options = $this->buildClientOptions($options);
@@ -1001,5 +1004,24 @@ class SpannerClient
 
         // We have seen this channel, get the ID assigned to the channel
         return self::$activeChannels[$channelObjectId];
+    }
+
+    /**
+     * Configures the GRPC KeepAlive time
+     *
+     * @param array $config The Configuration array
+     * @return array<mixed>
+     */
+    private function configureKeepAlive(array $config): array
+    {
+        if (!isset($config['transportConfig']['grpc']['stubOpts'])) {
+            $config['transportConfig']['grpc']['stubOpts'] = [];
+        }
+
+        $config['transportConfig']['grpc']['stubOpts'] += [
+            'grpc.keepalive_time_ms' => self::GRPC_KEEPALIVE_MILLISECONDS
+        ];
+
+        return $config;
     }
 }
