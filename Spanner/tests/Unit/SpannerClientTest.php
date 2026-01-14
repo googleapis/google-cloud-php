@@ -773,7 +773,10 @@ class SpannerClientTest extends TestCase
 
     public function testConfigureKeepAlive()
     {
-        $client = new SpannerClient(['projectId' => 'test-project']);
+        $client = new SpannerClient([
+            'projectId' => 'test-project',
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+        ]);
         $reflection = new ReflectionClass($client);
         $method = $reflection->getMethod('configureKeepAlive');
         $method->setAccessible(true);
