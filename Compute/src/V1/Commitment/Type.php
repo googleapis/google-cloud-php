@@ -137,9 +137,21 @@ class Type
      */
     const MEMORY_OPTIMIZED_M4_6TB = 210543650;
     /**
+     * CUD bucket for X4 machine with 1440 vCPUs and 24TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_1440_24T = 206669823;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_1440_24T = 206669823;
+    /**
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_16TB = 183089120;</code>
      */
     const MEMORY_OPTIMIZED_X4_16TB = 183089120;
+    /**
+     * CUD bucket for X4 machine with 1920 vCPUs and 32TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_1920_32T = 291963529;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_1920_32T = 291963529;
     /**
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_24TB = 183116989;</code>
      */
@@ -148,6 +160,30 @@ class Type
      * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_32TB = 183144858;</code>
      */
     const MEMORY_OPTIMIZED_X4_32TB = 183144858;
+    /**
+     * CUD bucket for X4 machine with 480 vCPUs and 6TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_480_6T = 478547742;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_480_6T = 478547742;
+    /**
+     * CUD bucket for X4 machine with 480 vCPUs and 8TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_480_8T = 478547804;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_480_8T = 478547804;
+    /**
+     * CUD bucket for X4 machine with 960 vCPUs and 12TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_960_12T = 424752410;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_960_12T = 424752410;
+    /**
+     * CUD bucket for X4 machine with 960 vCPUs and 16TB of memory.
+     *
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_X4_960_16T = 424752534;</code>
+     */
+    const MEMORY_OPTIMIZED_X4_960_16T = 424752534;
     /**
      * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z3 = 316796085;</code>
      */
@@ -190,9 +226,15 @@ class Type
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
         self::MEMORY_OPTIMIZED_M4 => 'MEMORY_OPTIMIZED_M4',
         self::MEMORY_OPTIMIZED_M4_6TB => 'MEMORY_OPTIMIZED_M4_6TB',
+        self::MEMORY_OPTIMIZED_X4_1440_24T => 'MEMORY_OPTIMIZED_X4_1440_24T',
         self::MEMORY_OPTIMIZED_X4_16TB => 'MEMORY_OPTIMIZED_X4_16TB',
+        self::MEMORY_OPTIMIZED_X4_1920_32T => 'MEMORY_OPTIMIZED_X4_1920_32T',
         self::MEMORY_OPTIMIZED_X4_24TB => 'MEMORY_OPTIMIZED_X4_24TB',
         self::MEMORY_OPTIMIZED_X4_32TB => 'MEMORY_OPTIMIZED_X4_32TB',
+        self::MEMORY_OPTIMIZED_X4_480_6T => 'MEMORY_OPTIMIZED_X4_480_6T',
+        self::MEMORY_OPTIMIZED_X4_480_8T => 'MEMORY_OPTIMIZED_X4_480_8T',
+        self::MEMORY_OPTIMIZED_X4_960_12T => 'MEMORY_OPTIMIZED_X4_960_12T',
+        self::MEMORY_OPTIMIZED_X4_960_16T => 'MEMORY_OPTIMIZED_X4_960_16T',
         self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];

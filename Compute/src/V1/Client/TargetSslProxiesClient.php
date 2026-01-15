@@ -44,6 +44,8 @@ use Google\Cloud\Compute\V1\SetProxyHeaderTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\SetSslCertificatesTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\SetSslPolicyTargetSslProxyRequest;
 use Google\Cloud\Compute\V1\TargetSslProxy;
+use Google\Cloud\Compute\V1\TestIamPermissionsTargetSslProxyRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -62,6 +64,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> setProxyHeaderAsync(SetProxyHeaderTargetSslProxyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setSslCertificatesAsync(SetSslCertificatesTargetSslProxyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setSslPolicyAsync(SetSslPolicyTargetSslProxyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsTargetSslProxyRequest $request, array $optionalArgs = [])
  */
 final class TargetSslProxiesClient
 {
@@ -520,5 +523,33 @@ final class TargetSslProxiesClient
     public function setSslPolicy(SetSslPolicyTargetSslProxyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('SetSslPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see TargetSslProxiesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/TargetSslProxiesClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsTargetSslProxyRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsTargetSslProxyRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

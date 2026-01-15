@@ -103,6 +103,13 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $network_interfaces;
     /**
+     * PostKeyRevocationActionType of the instance.
+     * Check the PostKeyRevocationActionType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string post_key_revocation_action_type = 292972897;</code>
+     */
+    protected $post_key_revocation_action_type = null;
+    /**
      * Specifies the scheduling options for the instances that are created from
      * this machine image.
      *
@@ -176,6 +183,9 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *           Minimum CPU Platform.
      *     @type array<\Google\Cloud\Compute\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           An array of network access configurations for this interface.
+     *     @type string $post_key_revocation_action_type
+     *           PostKeyRevocationActionType of the instance.
+     *           Check the PostKeyRevocationActionType enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
      *           Specifies the scheduling options for the instances that are created from
      *           this machine image.
@@ -588,6 +598,44 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\NetworkInterface::class);
         $this->network_interfaces = $arr;
+
+        return $this;
+    }
+
+    /**
+     * PostKeyRevocationActionType of the instance.
+     * Check the PostKeyRevocationActionType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string post_key_revocation_action_type = 292972897;</code>
+     * @return string
+     */
+    public function getPostKeyRevocationActionType()
+    {
+        return isset($this->post_key_revocation_action_type) ? $this->post_key_revocation_action_type : '';
+    }
+
+    public function hasPostKeyRevocationActionType()
+    {
+        return isset($this->post_key_revocation_action_type);
+    }
+
+    public function clearPostKeyRevocationActionType()
+    {
+        unset($this->post_key_revocation_action_type);
+    }
+
+    /**
+     * PostKeyRevocationActionType of the instance.
+     * Check the PostKeyRevocationActionType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string post_key_revocation_action_type = 292972897;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPostKeyRevocationActionType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->post_key_revocation_action_type = $var;
 
         return $this;
     }

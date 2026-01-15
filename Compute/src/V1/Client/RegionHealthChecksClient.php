@@ -40,6 +40,8 @@ use Google\Cloud\Compute\V1\HealthCheck;
 use Google\Cloud\Compute\V1\InsertRegionHealthCheckRequest;
 use Google\Cloud\Compute\V1\ListRegionHealthChecksRequest;
 use Google\Cloud\Compute\V1\PatchRegionHealthCheckRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionHealthCheckRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateRegionHealthCheckRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -55,6 +57,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionHealthCheckRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRegionHealthChecksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionHealthCheckRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionHealthCheckRequest $request, array $optionalArgs = [])
  */
 final class RegionHealthChecksClient
@@ -402,6 +405,35 @@ final class RegionHealthChecksClient
     public function patch(PatchRegionHealthCheckRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see RegionHealthChecksClient::testIamPermissionsAsync()}
+     * .
+     *
+     * @example samples/V1/RegionHealthChecksClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRegionHealthCheckRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRegionHealthCheckRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**
