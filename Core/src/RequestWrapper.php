@@ -84,6 +84,12 @@ class RequestWrapper
     private $retryFunction;
 
     /**
+     * @var callable|null Lets the user listen for retries and
+     * modify the next retry arguments
+     */
+    private $retryListener;
+
+    /**
      * @var callable Executes a delay.
      */
     private $delayFunction;
@@ -136,6 +142,8 @@ class RequestWrapper
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
      *     @type string $universeDomain The expected universe of the credentials. Defaults to "googleapis.com".
+     *     @type callable $restRetryListener A function to run custom logic between retries. This function can modify
+     *           the next server call arguments for the next retry.
      * }
      */
     public function __construct(array $config = [])
@@ -151,6 +159,7 @@ class RequestWrapper
             'componentVersion' => null,
             'restRetryFunction' => null,
             'restDelayFunction' => null,
+            'restRetryListener' => null,
             'restCalcDelayFunction' => null,
             'universeDomain' => GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
         ];
@@ -160,6 +169,7 @@ class RequestWrapper
         $this->restOptions = $config['restOptions'];
         $this->shouldSignRequest = $config['shouldSignRequest'];
         $this->retryFunction = $config['restRetryFunction'] ?: $this->getRetryFunction();
+        $this->retryListener = $config['restRetryListener'];
         $this->delayFunction = $config['restDelayFunction'] ?: function ($delay) {
             usleep($delay);
         };
@@ -362,7 +372,7 @@ class RequestWrapper
      */
     private function addAuthHeaders(RequestInterface $request, FetchAuthTokenInterface $fetcher)
     {
-        $backoff = new ExponentialBackoff($this->retries, $this->getRetryFunction());
+        $backoff = new ExponentialBackoff($this->retries, $this->getRetryFunction(), $this->retryListener);
 
         try {
             return $backoff->execute(
@@ -485,7 +495,7 @@ class RequestWrapper
                 : $this->retryFunction,
             'retryListener' => isset($options['restRetryListener'])
                 ? $options['restRetryListener']
-                : null,
+                : $this->retryListener,
             'delayFunction' => isset($options['restDelayFunction'])
                 ? $options['restDelayFunction']
                 : $this->delayFunction,

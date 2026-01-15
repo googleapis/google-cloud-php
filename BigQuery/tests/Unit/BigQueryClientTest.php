@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
+use Google\ApiCore\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
@@ -36,11 +39,20 @@ use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Exception\RequestException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Log\LoggerInterface;
+use stdClass;
 
 /**
  * @group bigquery
@@ -697,5 +709,106 @@ class BigQueryClientTest extends TestCase
         $json = $this->getClient()->json(json_encode(['id' => 1]));
 
         $this->assertInstanceOf(Json::class, $json);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testEnablingLoggerWithFlagLogsToStdOut()
+    {
+        putenv('GOOGLE_SDK_PHP_LOGGING=true');
+        $client = new BigQueryClient([
+            'projectId' => self::PROJECT_ID,
+            'keyFilePath' => Fixtures::KEYFILE_STUB_FIXTURE()
+        ]);
+
+        $output = $this->getActualOutput();
+        $parsed = json_decode($output, true);
+        $this->assertNotFalse($parsed);
+        $this->assertArrayHasKey('severity', $parsed);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testDisableLoggerWithOptionsDoesNotLogToStdOut()
+    {
+        putenv('GOOGLE_SDK_PHP_LOGGING=true');
+        $client = new BigQueryClient([
+            'projectId' => self::PROJECT_ID,
+            'keyFilePath' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'logger' => false
+        ]);
+
+        $output = $this->getActualOutput();
+        $this->assertEmpty($output);
+    }
+
+    public function testPassingTheWrongLoggerRaisesAnException()
+    {
+        $this->expectException(ValidationException::class);
+
+        $client = new BigQueryClient([
+            'projectId' => self::PROJECT_ID,
+            'keyFilePath' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'logger' => new stdClass()
+        ]);
+    }
+
+    public function testRetryLogging()
+    {
+        $doneJobResponse = $this->jobResponse;
+        $doneJobResponse['status']['state'] = 'DONE';
+
+        $apiMockHandler = new MockHandler([
+            new RequestException(
+                'Transient error',
+                new Request('POST', ''),
+                new Response(502)
+            ),
+            new Response(200, [], json_encode($this->jobResponse)),
+            new Response(200, [], json_encode($doneJobResponse))
+        ]);
+
+        $authMockHandler = new MockHandler([
+            new Response(200, [], json_encode(['access_token' => 'token']))
+        ]);
+
+        $retryCallOptionAppeared = false;
+        $logger = $this->prophesize(LoggerInterface::class);
+        $logger->debug(
+            Argument::that(function (string $jsonString) use (&$retryCallOptionAppeared) {
+                $jsonParsed = json_decode($jsonString, true);
+                if (isset($jsonParsed['jsonPayload']['retryAttempt'])) {
+                    $retryCallOptionAppeared = true;
+                }
+                return true;
+            })
+        )->shouldBeCalled();
+
+        $credentials = $this->prophesize(FetchAuthTokenInterface::class);
+        $credentials->fetchAuthToken(Argument::any())
+            ->willReturn(['access_token' => 'foo']);
+
+        $apiHandlerStack = HandlerStack::create($apiMockHandler);
+        $apiHttpClient = new Client(['handler' => $apiHandlerStack]);
+
+        $authHandlerStack = HandlerStack::create($authMockHandler);
+        $authHttpClient = new Client(['handler' => $authHandlerStack]);
+
+        $client = new BigQueryClient([
+            'credentials' => $credentials->reveal(),
+            'projectId' => self::PROJECT_ID,
+            'logger' => $logger->reveal(),
+            'httpHandler' => new Guzzle6HttpHandler($apiHttpClient, $logger->reveal()),
+            'authHttpHandler' => new Guzzle6HttpHandler($authHttpClient)
+        ]);
+
+        $queryConfig = $client->query(
+            'SELECT * FROM `random_project.random_dataset.random_table`'
+        );
+
+        $client->startQuery($queryConfig);
+        $this->assertTrue($retryCallOptionAppeared);
     }
 }

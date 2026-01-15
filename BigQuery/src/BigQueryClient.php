@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\ApiCore\ValidationException;
+use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
@@ -29,6 +31,8 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RetryDeciderTrait;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 
 /**
  * Google Cloud BigQuery allows you to create, manage, share and query data.
@@ -53,7 +57,7 @@ class BigQueryClient
     const VERSION = '1.34.7';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
-
+    const SERVICE_NAME = 'bigquery';
     const SCOPE = 'https://www.googleapis.com/auth/bigquery';
     const INSERT_SCOPE = 'https://www.googleapis.com/auth/bigquery.insertdata';
 
@@ -154,6 +158,9 @@ class BigQueryClient
      *           fetched over the network it will take precedent over this
      *           setting (by calling
      *           {@see Table::reload()}, for example).
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
      * }
      */
     public function __construct(array $config = [])
@@ -175,9 +182,13 @@ class BigQueryClient
                     mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
                     self::MAX_DELAY_MICROSECONDS
                 );
-            }
+            },
             //@codeCoverageIgnoreEnd
+            'logger' => null
         ];
+
+        $config['logger'] = $this->getLogger($config);
+        $this->logConfiguration($config['logger'], $config);
 
         $this->connection = new Rest($this->configureAuthentication($config));
         $this->mapper = new ValueMapper($config['returnInt64AsObject']);
@@ -1072,5 +1083,55 @@ class BigQueryClient
             $options,
             $this->location
         );
+    }
+
+    /**
+     * Gets the appropriate logger depending on the configuration passed by the user.
+     *
+     * @param array $config The client configuration
+     * @return LoggerInterface|false|null
+     * @throws ValidationException
+     */
+    private function getLogger(array $config): LoggerInterface|false|null
+    {
+        $configuration = $config['logger'];
+
+        if (is_null($configuration)) {
+            return ApplicationDefaultCredentials::getDefaultLogger();
+        }
+
+        if ($configuration !== false && !$configuration instanceof LoggerInterface) {
+            throw new ValidationException(
+                'The "logger" option in the options array should be PSR-3 LoggerInterface compatible.'
+            );
+        }
+
+        return $configuration;
+    }
+
+    /**
+     * Log the current configuration for the client
+     *
+     * @param LoggerInterface|false|null $logger The logger to be used.
+     * @param array $config The client configuration
+     * @return void
+     */
+    private function logConfiguration(LoggerInterface|false|null $logger, array $config): void
+    {
+        if (!$logger) {
+            return;
+        }
+
+        $configurationLog = [
+            'timestamp' => date(DATE_RFC3339),
+            'severity' => strtoupper(LogLevel::DEBUG),
+            'processId' => getmypid(),
+            'jsonPayload' => [
+                'serviceName' => self::SERVICE_NAME,
+                'clientConfiguration' => $config,
+            ]
+        ];
+
+        $logger->debug(json_encode($configurationLog));
     }
 }
