@@ -770,4 +770,44 @@ class SpannerClientTest extends TestCase
 
         return $property->getValue($client);
     }
+
+    public function testConfigureKeepAlive()
+    {
+        $client = new SpannerClient([
+            'projectId' => 'test-project',
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+        ]);
+        $reflection = new ReflectionClass($client);
+        $method = $reflection->getMethod('configureKeepAlive');
+        $method->setAccessible(true);
+
+        $config = [];
+        $newConfig = $method->invoke($client, $config);
+
+        $this->assertArrayHasKey('transportConfig', $newConfig);
+        $this->assertArrayHasKey('grpc', $newConfig['transportConfig']);
+        $this->assertArrayHasKey('stubOpts', $newConfig['transportConfig']['grpc']);
+        $this->assertArrayHasKey('grpc.keepalive_time_ms', $newConfig['transportConfig']['grpc']['stubOpts']);
+        $this->assertEquals(
+            120 * 1000, // 120 seconds x 1000
+            $newConfig['transportConfig']['grpc']['stubOpts']['grpc.keepalive_time_ms']
+        );
+
+        // Test that it doesn't overwrite existing config
+        $config = [
+            'transportConfig' => [
+                'grpc' => [
+                    'stubOpts' => [
+                        'foo' => 'bar'
+                    ]
+                ]
+            ]
+        ];
+        $newConfig = $method->invoke($client, $config);
+        $this->assertEquals('bar', $newConfig['transportConfig']['grpc']['stubOpts']['foo']);
+        $this->assertEquals(
+            120 * 1000, // 120 seconds x 1000
+            $newConfig['transportConfig']['grpc']['stubOpts']['grpc.keepalive_time_ms']
+        );
+    }
 }
