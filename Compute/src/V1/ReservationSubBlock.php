@@ -55,6 +55,13 @@ class ReservationSubBlock extends \Google\Protobuf\Internal\Message
      */
     protected $in_use_count = null;
     /**
+     * Output only. Number of hosts currently in use. If there is one or more Instances running
+     * on the host, it is considered in use.
+     *
+     * Generated from protobuf field <code>optional int32 in_use_host_count = 364069834;</code>
+     */
+    protected $in_use_host_count = null;
+    /**
      * Output only. [Output Only] Type of the resource. Alwayscompute#reservationSubBlock for reservation subBlocks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -127,6 +134,9 @@ class ReservationSubBlock extends \Google\Protobuf\Internal\Message
      *     @type int $in_use_count
      *           Output only. [Output Only] The number of instances that are currently in use on this
      *           reservation subBlock.
+     *     @type int $in_use_host_count
+     *           Output only. Number of hosts currently in use. If there is one or more Instances running
+     *           on the host, it is considered in use.
      *     @type string $kind
      *           Output only. [Output Only] Type of the resource. Alwayscompute#reservationSubBlock for reservation subBlocks.
      *     @type string $name
@@ -371,6 +381,44 @@ class ReservationSubBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->in_use_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of hosts currently in use. If there is one or more Instances running
+     * on the host, it is considered in use.
+     *
+     * Generated from protobuf field <code>optional int32 in_use_host_count = 364069834;</code>
+     * @return int
+     */
+    public function getInUseHostCount()
+    {
+        return isset($this->in_use_host_count) ? $this->in_use_host_count : 0;
+    }
+
+    public function hasInUseHostCount()
+    {
+        return isset($this->in_use_host_count);
+    }
+
+    public function clearInUseHostCount()
+    {
+        unset($this->in_use_host_count);
+    }
+
+    /**
+     * Output only. Number of hosts currently in use. If there is one or more Instances running
+     * on the host, it is considered in use.
+     *
+     * Generated from protobuf field <code>optional int32 in_use_host_count = 364069834;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInUseHostCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->in_use_host_count = $var;
 
         return $this;
     }

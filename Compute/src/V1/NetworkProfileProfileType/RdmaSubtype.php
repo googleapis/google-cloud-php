@@ -30,11 +30,18 @@ class RdmaSubtype
      * Generated from protobuf enum <code>ROCE = 2520927;</code>
      */
     const ROCE = 2520927;
+    /**
+     * RDMA over Converged Ethernet (RoCE) for Bare Metal.
+     *
+     * Generated from protobuf enum <code>ROCE_METAL = 421218823;</code>
+     */
+    const ROCE_METAL = 421218823;
 
     private static $valueToName = [
         self::UNDEFINED_RDMA_SUBTYPE => 'UNDEFINED_RDMA_SUBTYPE',
         self::FALCON => 'FALCON',
         self::ROCE => 'ROCE',
+        self::ROCE_METAL => 'ROCE_METAL',
     ];
 
     public static function name($value)

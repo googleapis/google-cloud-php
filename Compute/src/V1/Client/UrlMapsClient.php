@@ -41,6 +41,8 @@ use Google\Cloud\Compute\V1\InsertUrlMapRequest;
 use Google\Cloud\Compute\V1\InvalidateCacheUrlMapRequest;
 use Google\Cloud\Compute\V1\ListUrlMapsRequest;
 use Google\Cloud\Compute\V1\PatchUrlMapRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsUrlMapRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateUrlMapRequest;
 use Google\Cloud\Compute\V1\UrlMap;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
@@ -61,6 +63,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> invalidateCacheAsync(InvalidateCacheUrlMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListUrlMapsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchUrlMapRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsUrlMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateUrlMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<UrlMapsValidateResponse> validateAsync(ValidateUrlMapRequest $request, array $optionalArgs = [])
  */
@@ -469,6 +472,34 @@ final class UrlMapsClient
     public function patch(PatchUrlMapRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see UrlMapsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/UrlMapsClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsUrlMapRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsUrlMapRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**

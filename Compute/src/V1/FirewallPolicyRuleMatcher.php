@@ -39,6 +39,16 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      */
     private $dest_ip_ranges;
     /**
+     * Network context of the traffic destination. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - NON_INTERNET
+     * Check the DestNetworkContext enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string dest_network_context = 76347649;</code>
+     */
+    protected $dest_network_context = null;
+    /**
      * Network type of the traffic destination. Allowed values are:
      *      - UNSPECIFIED
      *      - INTERNET
@@ -92,6 +102,18 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      */
     private $src_ip_ranges;
+    /**
+     * Network context of the traffic source. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - INTRA_VPC
+     *      - NON_INTERNET
+     *      - VPC_NETWORKS
+     * Check the SrcNetworkContext enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string src_network_context = 147649603;</code>
+     */
+    protected $src_network_context = null;
     /**
      * Network type of the traffic source. Allowed values are:
      *      - UNSPECIFIED
@@ -153,6 +175,12 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
      *           CIDR IP address range.
      *           Maximum number of destination CIDR IP ranges allowed is 5000.
+     *     @type string $dest_network_context
+     *           Network context of the traffic destination. Allowed values are:
+     *                - UNSPECIFIED
+     *                - INTERNET
+     *                - NON_INTERNET
+     *           Check the DestNetworkContext enum for the list of possible values.
      *     @type string $dest_network_type
      *           Network type of the traffic destination. Allowed values are:
      *                - UNSPECIFIED
@@ -179,6 +207,14 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
      *           CIDR IP address range.
      *           Maximum number of source CIDR IP ranges allowed is 5000.
+     *     @type string $src_network_context
+     *           Network context of the traffic source. Allowed values are:
+     *                - UNSPECIFIED
+     *                - INTERNET
+     *                - INTRA_VPC
+     *                - NON_INTERNET
+     *                - VPC_NETWORKS
+     *           Check the SrcNetworkContext enum for the list of possible values.
      *     @type string $src_network_type
      *           Network type of the traffic source. Allowed values are:
      *                - UNSPECIFIED
@@ -292,6 +328,50 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->dest_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Network context of the traffic destination. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - NON_INTERNET
+     * Check the DestNetworkContext enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string dest_network_context = 76347649;</code>
+     * @return string
+     */
+    public function getDestNetworkContext()
+    {
+        return isset($this->dest_network_context) ? $this->dest_network_context : '';
+    }
+
+    public function hasDestNetworkContext()
+    {
+        return isset($this->dest_network_context);
+    }
+
+    public function clearDestNetworkContext()
+    {
+        unset($this->dest_network_context);
+    }
+
+    /**
+     * Network context of the traffic destination. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - NON_INTERNET
+     * Check the DestNetworkContext enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string dest_network_context = 76347649;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestNetworkContext($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dest_network_context = $var;
 
         return $this;
     }
@@ -508,6 +588,54 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->src_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Network context of the traffic source. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - INTRA_VPC
+     *      - NON_INTERNET
+     *      - VPC_NETWORKS
+     * Check the SrcNetworkContext enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string src_network_context = 147649603;</code>
+     * @return string
+     */
+    public function getSrcNetworkContext()
+    {
+        return isset($this->src_network_context) ? $this->src_network_context : '';
+    }
+
+    public function hasSrcNetworkContext()
+    {
+        return isset($this->src_network_context);
+    }
+
+    public function clearSrcNetworkContext()
+    {
+        unset($this->src_network_context);
+    }
+
+    /**
+     * Network context of the traffic source. Allowed values are:
+     *      - UNSPECIFIED
+     *      - INTERNET
+     *      - INTRA_VPC
+     *      - NON_INTERNET
+     *      - VPC_NETWORKS
+     * Check the SrcNetworkContext enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string src_network_context = 147649603;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSrcNetworkContext($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->src_network_context = $var;
 
         return $this;
     }
