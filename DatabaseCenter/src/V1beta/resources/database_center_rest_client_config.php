@@ -27,6 +27,11 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta:aggregateFleet',
             ],
+            'AggregateIssueStats' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta:aggregateIssueStats',
+                'body' => '*',
+            ],
             'QueryDatabaseResourceGroups' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta:queryDatabaseResourceGroups',
