@@ -429,6 +429,14 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
+     * Configures traffic steering properties of internal passthrough Network
+     * Load Balancers.
+     * networkPassThroughLbTrafficPolicy cannot be specified with haPolicy.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceNetworkPassThroughLbTrafficPolicy network_pass_through_lb_traffic_policy = 230323750;</code>
+     */
+    protected $network_pass_through_lb_traffic_policy = null;
+    /**
      * Settings controlling the ejection of unhealthy backend endpoints from the
      * load balancing pool of each individual proxy instance that processes the
      * traffic for the given backend service. If not set, this feature is
@@ -883,6 +891,10 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           the haPolicy is enabled, and for External Passthrough Network Load
      *           Balancers when the haPolicy fastIpMove is enabled.
      *           This field can only be specified when the load balancing scheme is set toINTERNAL, or when the load balancing scheme is set toEXTERNAL and haPolicy fastIpMove is enabled.
+     *     @type \Google\Cloud\Compute\V1\BackendServiceNetworkPassThroughLbTrafficPolicy $network_pass_through_lb_traffic_policy
+     *           Configures traffic steering properties of internal passthrough Network
+     *           Load Balancers.
+     *           networkPassThroughLbTrafficPolicy cannot be specified with haPolicy.
      *     @type \Google\Cloud\Compute\V1\OutlierDetection $outlier_detection
      *           Settings controlling the ejection of unhealthy backend endpoints from the
      *           load balancing pool of each individual proxy instance that processes the
@@ -2519,6 +2531,46 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configures traffic steering properties of internal passthrough Network
+     * Load Balancers.
+     * networkPassThroughLbTrafficPolicy cannot be specified with haPolicy.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceNetworkPassThroughLbTrafficPolicy network_pass_through_lb_traffic_policy = 230323750;</code>
+     * @return \Google\Cloud\Compute\V1\BackendServiceNetworkPassThroughLbTrafficPolicy|null
+     */
+    public function getNetworkPassThroughLbTrafficPolicy()
+    {
+        return $this->network_pass_through_lb_traffic_policy;
+    }
+
+    public function hasNetworkPassThroughLbTrafficPolicy()
+    {
+        return isset($this->network_pass_through_lb_traffic_policy);
+    }
+
+    public function clearNetworkPassThroughLbTrafficPolicy()
+    {
+        unset($this->network_pass_through_lb_traffic_policy);
+    }
+
+    /**
+     * Configures traffic steering properties of internal passthrough Network
+     * Load Balancers.
+     * networkPassThroughLbTrafficPolicy cannot be specified with haPolicy.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceNetworkPassThroughLbTrafficPolicy network_pass_through_lb_traffic_policy = 230323750;</code>
+     * @param \Google\Cloud\Compute\V1\BackendServiceNetworkPassThroughLbTrafficPolicy $var
+     * @return $this
+     */
+    public function setNetworkPassThroughLbTrafficPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendServiceNetworkPassThroughLbTrafficPolicy::class);
+        $this->network_pass_through_lb_traffic_policy = $var;
 
         return $this;
     }

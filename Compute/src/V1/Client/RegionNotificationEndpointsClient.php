@@ -39,6 +39,8 @@ use Google\Cloud\Compute\V1\GetRegionNotificationEndpointRequest;
 use Google\Cloud\Compute\V1\InsertRegionNotificationEndpointRequest;
 use Google\Cloud\Compute\V1\ListRegionNotificationEndpointsRequest;
 use Google\Cloud\Compute\V1\NotificationEndpoint;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionNotificationEndpointRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -52,6 +54,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<NotificationEndpoint> getAsync(GetRegionNotificationEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNotificationEndpointRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNotificationEndpointsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionNotificationEndpointRequest $request, array $optionalArgs = [])
  */
 final class RegionNotificationEndpointsClient
 {
@@ -369,5 +372,34 @@ final class RegionNotificationEndpointsClient
     public function list(ListRegionNotificationEndpointsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is
+     * {@see RegionNotificationEndpointsClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RegionNotificationEndpointsClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRegionNotificationEndpointRequest $request     A request to house fields associated with the call.
+     * @param array                                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRegionNotificationEndpointRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

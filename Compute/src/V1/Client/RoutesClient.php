@@ -39,6 +39,8 @@ use Google\Cloud\Compute\V1\GetRouteRequest;
 use Google\Cloud\Compute\V1\InsertRouteRequest;
 use Google\Cloud\Compute\V1\ListRoutesRequest;
 use Google\Cloud\Compute\V1\Route;
+use Google\Cloud\Compute\V1\TestIamPermissionsRouteRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -52,6 +54,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Route> getAsync(GetRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRoutesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRouteRequest $request, array $optionalArgs = [])
  */
 final class RoutesClient
 {
@@ -368,5 +371,33 @@ final class RoutesClient
     public function list(ListRoutesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see RoutesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RoutesClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRouteRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRouteRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

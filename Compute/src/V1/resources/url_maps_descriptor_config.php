@@ -245,6 +245,24 @@ return [
                     ],
                 ],
             ],
+            'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\TestPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'Validate' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Compute\V1\UrlMapsValidateResponse',

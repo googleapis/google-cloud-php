@@ -106,6 +106,23 @@ return [
                     ],
                 ],
             ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/healthChecks/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'Update' => [
                 'method' => 'put',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/healthChecks/{health_check}',

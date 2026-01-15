@@ -126,6 +126,28 @@ return [
                     ],
                 ],
             ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'Update' => [
                 'method' => 'put',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/autoscalers',
