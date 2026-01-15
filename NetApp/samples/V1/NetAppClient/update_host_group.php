@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,42 +22,51 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START netapp_v1_generated_NetApp_UpdateKmsConfig_sync]
+// [START netapp_v1_generated_NetApp_UpdateHostGroup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
-use Google\Cloud\NetApp\V1\KmsConfig;
-use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
-use Google\Protobuf\FieldMask;
+use Google\Cloud\NetApp\V1\HostGroup;
+use Google\Cloud\NetApp\V1\HostGroup\Type;
+use Google\Cloud\NetApp\V1\OsType;
+use Google\Cloud\NetApp\V1\UpdateHostGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the Kms config properties with the full spec
+ * Updates an existing host group.
  *
- * @param string $kmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
- *                                       `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
+ * @param int    $hostGroupType         Type of the host group.
+ * @param string $hostGroupHostsElement The list of hosts associated with the host group.
+ * @param int    $hostGroupOsType       The OS type of the host group. It indicates the type of operating
+ *                                      system used by all of the hosts in the HostGroup. All hosts in a HostGroup
+ *                                      must be of the same OS type. This can be set only when creating a
+ *                                      HostGroup.
  */
-function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
-{
+function update_host_group_sample(
+    int $hostGroupType,
+    string $hostGroupHostsElement,
+    int $hostGroupOsType
+): void {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $kmsConfig = (new KmsConfig())
-        ->setCryptoKeyName($kmsConfigCryptoKeyName);
-    $request = (new UpdateKmsConfigRequest())
-        ->setUpdateMask($updateMask)
-        ->setKmsConfig($kmsConfig);
+    $hostGroupHosts = [$hostGroupHostsElement,];
+    $hostGroup = (new HostGroup())
+        ->setType($hostGroupType)
+        ->setHosts($hostGroupHosts)
+        ->setOsType($hostGroupOsType);
+    $request = (new UpdateHostGroupRequest())
+        ->setHostGroup($hostGroup);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $netAppClient->updateKmsConfig($request);
+        $response = $netAppClient->updateHostGroup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var KmsConfig $result */
+            /** @var HostGroup $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -81,8 +90,10 @@ function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
  */
 function callSample(): void
 {
-    $kmsConfigCryptoKeyName = '[CRYPTO_KEY_NAME]';
+    $hostGroupType = Type::TYPE_UNSPECIFIED;
+    $hostGroupHostsElement = '[HOSTS]';
+    $hostGroupOsType = OsType::OS_TYPE_UNSPECIFIED;
 
-    update_kms_config_sample($kmsConfigCryptoKeyName);
+    update_host_group_sample($hostGroupType, $hostGroupHostsElement, $hostGroupOsType);
 }
-// [END netapp_v1_generated_NetApp_UpdateKmsConfig_sync]
+// [END netapp_v1_generated_NetApp_UpdateHostGroup_sync]

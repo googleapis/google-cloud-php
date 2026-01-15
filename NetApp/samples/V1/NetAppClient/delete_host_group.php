@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,44 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START netapp_v1_generated_NetApp_UpdateKmsConfig_sync]
+// [START netapp_v1_generated_NetApp_DeleteHostGroup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetApp\V1\Client\NetAppClient;
-use Google\Cloud\NetApp\V1\KmsConfig;
-use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
-use Google\Protobuf\FieldMask;
+use Google\Cloud\NetApp\V1\DeleteHostGroupRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates the Kms config properties with the full spec
+ * Deletes a host group.
  *
- * @param string $kmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
- *                                       `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
+ * @param string $formattedName The resource name of the host group.
+ *                              Format:
+ *                              `projects/{project_number}/locations/{location_id}/hostGroups/{host_group_id}`. Please see
+ *                              {@see NetAppClient::hostGroupName()} for help formatting this field.
  */
-function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
+function delete_host_group_sample(string $formattedName): void
 {
     // Create a client.
     $netAppClient = new NetAppClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
-    $kmsConfig = (new KmsConfig())
-        ->setCryptoKeyName($kmsConfigCryptoKeyName);
-    $request = (new UpdateKmsConfigRequest())
-        ->setUpdateMask($updateMask)
-        ->setKmsConfig($kmsConfig);
+    $request = (new DeleteHostGroupRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $netAppClient->updateKmsConfig($request);
+        $response = $netAppClient->deleteHostGroup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var KmsConfig $result */
-            $result = $response->getResult();
-            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+            printf('Operation completed successfully.' . PHP_EOL);
         } else {
             /** @var Status $error */
             $error = $response->getError();
@@ -81,8 +75,8 @@ function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
  */
 function callSample(): void
 {
-    $kmsConfigCryptoKeyName = '[CRYPTO_KEY_NAME]';
+    $formattedName = NetAppClient::hostGroupName('[PROJECT]', '[LOCATION]', '[HOST_GROUP]');
 
-    update_kms_config_sample($kmsConfigCryptoKeyName);
+    delete_host_group_sample($formattedName);
 }
-// [END netapp_v1_generated_NetApp_UpdateKmsConfig_sync]
+// [END netapp_v1_generated_NetApp_DeleteHostGroup_sync]

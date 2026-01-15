@@ -34,6 +34,12 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool has_vcp = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $has_vcp = false;
+    /**
+     * Output only. Indicates if the location has ONTAP Proxy support.
+     *
+     * Generated from protobuf field <code>bool has_ontap_proxy = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $has_ontap_proxy = false;
 
     /**
      * Constructor.
@@ -47,6 +53,8 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. Supported flex performance in a location.
      *     @type bool $has_vcp
      *           Output only. Indicates if the location has VCP support.
+     *     @type bool $has_ontap_proxy
+     *           Output only. Indicates if the location has ONTAP Proxy support.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +136,32 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->has_vcp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates if the location has ONTAP Proxy support.
+     *
+     * Generated from protobuf field <code>bool has_ontap_proxy = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getHasOntapProxy()
+    {
+        return $this->has_ontap_proxy;
+    }
+
+    /**
+     * Output only. Indicates if the location has ONTAP Proxy support.
+     *
+     * Generated from protobuf field <code>bool has_ontap_proxy = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHasOntapProxy($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->has_ontap_proxy = $var;
 
         return $this;
     }

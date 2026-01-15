@@ -39,8 +39,8 @@ use Google\Rpc\Status;
  *                                       resource. Must contain only letters, numbers and hyphen, with the first
  *                                       character a letter, the last a letter or a
  *                                       number, and a 63 character maximum.
- * @param string $kmsConfigCryptoKeyName Customer managed crypto key resource full name. Format:
- *                                       projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+ * @param string $kmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
+ *                                       `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
  */
 function create_kms_config_sample(
     string $formattedParent,

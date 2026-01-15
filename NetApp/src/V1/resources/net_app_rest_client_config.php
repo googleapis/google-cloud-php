@@ -107,6 +107,21 @@ return [
                     'backup_vault_id',
                 ],
             ],
+            'CreateHostGroup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/hostGroups',
+                'body' => 'host_group',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'host_group_id',
+                ],
+            ],
             'CreateKmsConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/kmsConfigs',
@@ -233,6 +248,17 @@ return [
             'DeleteBackupVault' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteHostGroup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/hostGroups/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -375,6 +401,17 @@ return [
                     ],
                 ],
             ],
+            'GetHostGroup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/hostGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetKmsConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/kmsConfigs/*}',
@@ -485,6 +522,17 @@ return [
                     ],
                 ],
             ],
+            'ListHostGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/hostGroups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListKmsConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/kmsConfigs',
@@ -547,6 +595,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RestoreBackupFiles' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*}:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -685,6 +745,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateHostGroup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{host_group.name=projects/*/locations/*/hostGroups/*}',
+                'body' => 'host_group',
+                'placeholders' => [
+                    'host_group.name' => [
+                        'getters' => [
+                            'getHostGroup',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateKmsConfig' => [
