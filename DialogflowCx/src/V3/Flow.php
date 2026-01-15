@@ -116,6 +116,18 @@ class Flow extends \Google\Protobuf\Internal\Message
      */
     protected $knowledge_connector_settings = null;
     /**
+     * Optional. Defined structured input parameters for this flow.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition input_parameter_definitions = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $input_parameter_definitions;
+    /**
+     * Optional. Defined structured output parameters for this flow.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition output_parameter_definitions = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $output_parameter_definitions;
+    /**
      * Optional. Multi-lingual agent settings for this flow.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Flow.MultiLanguageSettings multi_language_settings = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -188,6 +200,10 @@ class Flow extends \Google\Protobuf\Internal\Message
      *           lower level overrides the settings exposed at the higher level.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\KnowledgeConnectorSettings $knowledge_connector_settings
      *           Optional. Knowledge connector configuration.
+     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $input_parameter_definitions
+     *           Optional. Defined structured input parameters for this flow.
+     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $output_parameter_definitions
+     *           Optional. Defined structured output parameters for this flow.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Flow\MultiLanguageSettings $multi_language_settings
      *           Optional. Multi-lingual agent settings for this flow.
      *     @type bool $locked
@@ -530,6 +546,58 @@ class Flow extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\KnowledgeConnectorSettings::class);
         $this->knowledge_connector_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defined structured input parameters for this flow.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition input_parameter_definitions = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getInputParameterDefinitions()
+    {
+        return $this->input_parameter_definitions;
+    }
+
+    /**
+     * Optional. Defined structured input parameters for this flow.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition input_parameter_definitions = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setInputParameterDefinitions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition::class);
+        $this->input_parameter_definitions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defined structured output parameters for this flow.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition output_parameter_definitions = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOutputParameterDefinitions()
+    {
+        return $this->output_parameter_definitions;
+    }
+
+    /**
+     * Optional. Defined structured output parameters for this flow.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition output_parameter_definitions = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOutputParameterDefinitions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition::class);
+        $this->output_parameter_definitions = $arr;
 
         return $this;
     }

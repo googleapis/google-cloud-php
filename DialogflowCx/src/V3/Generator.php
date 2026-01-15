@@ -51,6 +51,12 @@ class Generator extends \Google\Protobuf\Internal\Message
      */
     private $placeholders;
     /**
+     * The LLM model settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 9;</code>
+     */
+    protected $llm_model_settings = null;
+    /**
      * Parameters passed to the LLM to configure its behavior.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Generator.ModelParameter model_parameter = 8;</code>
@@ -79,6 +85,8 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           Required. Prompt for the LLM model.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder>|\Google\Protobuf\Internal\RepeatedField $placeholders
      *           Optional. List of custom placeholders in the prompt text.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $llm_model_settings
+     *           The LLM model settings.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Generator\ModelParameter $model_parameter
      *           Parameters passed to the LLM to configure its behavior.
      * }
@@ -214,6 +222,42 @@ class Generator extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder::class);
         $this->placeholders = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The LLM model settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 9;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings|null
+     */
+    public function getLlmModelSettings()
+    {
+        return $this->llm_model_settings;
+    }
+
+    public function hasLlmModelSettings()
+    {
+        return isset($this->llm_model_settings);
+    }
+
+    public function clearLlmModelSettings()
+    {
+        unset($this->llm_model_settings);
+    }
+
+    /**
+     * The LLM model settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 9;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $var
+     * @return $this
+     */
+    public function setLlmModelSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings::class);
+        $this->llm_model_settings = $var;
 
         return $this;
     }

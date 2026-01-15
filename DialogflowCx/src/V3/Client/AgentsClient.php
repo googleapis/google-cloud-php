@@ -304,6 +304,27 @@ final class AgentsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a playbook
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agent
+     * @param string $playbook
+     *
+     * @return string The formatted playbook resource.
+     */
+    public static function playbookName(string $project, string $location, string $agent, string $playbook): string
+    {
+        return self::getPathTemplate('playbook')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent' => $agent,
+            'playbook' => $playbook,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * secret_version resource.
      *
@@ -351,6 +372,7 @@ final class AgentsClient
      * - environment: projects/{project}/locations/{location}/agents/{agent}/environments/{environment}
      * - flow: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}
      * - location: projects/{project}/locations/{location}
+     * - playbook: projects/{project}/locations/{location}/agents/{agent}/playbooks/{playbook}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - securitySettings: projects/{project}/locations/{location}/securitySettings/{security_settings}
      *

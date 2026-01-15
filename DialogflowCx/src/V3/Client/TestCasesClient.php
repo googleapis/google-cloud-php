@@ -349,6 +349,27 @@ final class TestCasesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a playbook
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agent
+     * @param string $playbook
+     *
+     * @return string The formatted playbook resource.
+     */
+    public static function playbookName(string $project, string $location, string $agent, string $playbook): string
+    {
+        return self::getPathTemplate('playbook')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent' => $agent,
+            'playbook' => $playbook,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_agent_flow_transition_route_group resource.
      *
@@ -451,6 +472,27 @@ final class TestCasesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a tool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agent
+     * @param string $tool
+     *
+     * @return string The formatted tool resource.
+     */
+    public static function toolName(string $project, string $location, string $agent, string $tool): string
+    {
+        return self::getPathTemplate('tool')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent' => $agent,
+            'tool' => $tool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * transition_route_group resource.
      *
@@ -510,10 +552,12 @@ final class TestCasesClient
      * - generator: projects/{project}/locations/{location}/agents/{agent}/generators/{generator}
      * - intent: projects/{project}/locations/{location}/agents/{agent}/intents/{intent}
      * - page: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/pages/{page}
+     * - playbook: projects/{project}/locations/{location}/agents/{agent}/playbooks/{playbook}
      * - projectLocationAgentFlowTransitionRouteGroup: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}
      * - projectLocationAgentTransitionRouteGroup: projects/{project}/locations/{location}/agents/{agent}/transitionRouteGroups/{transition_route_group}
      * - testCase: projects/{project}/locations/{location}/agents/{agent}/testCases/{test_case}
      * - testCaseResult: projects/{project}/locations/{location}/agents/{agent}/testCases/{test_case}/results/{result}
+     * - tool: projects/{project}/locations/{location}/agents/{agent}/tools/{tool}
      * - transitionRouteGroup: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}
      * - webhook: projects/{project}/locations/{location}/agents/{agent}/webhooks/{webhook}
      *

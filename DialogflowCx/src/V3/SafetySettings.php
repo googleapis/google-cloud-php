@@ -16,11 +16,37 @@ use Google\Protobuf\Internal\GPBUtil;
 class SafetySettings extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. Default phrase match strategy for banned phrases.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.PhraseMatchStrategy default_banned_phrase_match_strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $default_banned_phrase_match_strategy = 0;
+    /**
      * Banned phrases for generated text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SafetySettings.Phrase banned_phrases = 1;</code>
      */
     private $banned_phrases;
+    /**
+     * Optional. Settings for Responsible AI checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings rai_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $rai_settings = null;
+    /**
+     * Optional. Immutable. Default RAI settings to be annotated on the agent, so
+     * that users will be able to restore their RAI configurations to the default
+     * settings. Read-only field for the API proto only.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings default_rai_settings = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $default_rai_settings = null;
+    /**
+     * Optional. Settings for prompt security checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.PromptSecuritySettings prompt_security_settings = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $prompt_security_settings = null;
 
     /**
      * Constructor.
@@ -28,13 +54,49 @@ class SafetySettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $default_banned_phrase_match_strategy
+     *           Optional. Default phrase match strategy for banned phrases.
      *     @type array<\Google\Cloud\Dialogflow\Cx\V3\SafetySettings\Phrase>|\Google\Protobuf\Internal\RepeatedField $banned_phrases
      *           Banned phrases for generated text.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings $rai_settings
+     *           Optional. Settings for Responsible AI checks.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings $default_rai_settings
+     *           Optional. Immutable. Default RAI settings to be annotated on the agent, so
+     *           that users will be able to restore their RAI configurations to the default
+     *           settings. Read-only field for the API proto only.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\PromptSecuritySettings $prompt_security_settings
+     *           Optional. Settings for prompt security checks.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dialogflow\Cx\V3\SafetySettings::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Default phrase match strategy for banned phrases.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.PhraseMatchStrategy default_banned_phrase_match_strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDefaultBannedPhraseMatchStrategy()
+    {
+        return $this->default_banned_phrase_match_strategy;
+    }
+
+    /**
+     * Optional. Default phrase match strategy for banned phrases.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.PhraseMatchStrategy default_banned_phrase_match_strategy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDefaultBannedPhraseMatchStrategy($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\PhraseMatchStrategy::class);
+        $this->default_banned_phrase_match_strategy = $var;
+
+        return $this;
     }
 
     /**
@@ -59,6 +121,118 @@ class SafetySettings extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\Phrase::class);
         $this->banned_phrases = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for Responsible AI checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings rai_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings|null
+     */
+    public function getRaiSettings()
+    {
+        return $this->rai_settings;
+    }
+
+    public function hasRaiSettings()
+    {
+        return isset($this->rai_settings);
+    }
+
+    public function clearRaiSettings()
+    {
+        unset($this->rai_settings);
+    }
+
+    /**
+     * Optional. Settings for Responsible AI checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings rai_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings $var
+     * @return $this
+     */
+    public function setRaiSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings::class);
+        $this->rai_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Default RAI settings to be annotated on the agent, so
+     * that users will be able to restore their RAI configurations to the default
+     * settings. Read-only field for the API proto only.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings default_rai_settings = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings|null
+     */
+    public function getDefaultRaiSettings()
+    {
+        return $this->default_rai_settings;
+    }
+
+    public function hasDefaultRaiSettings()
+    {
+        return isset($this->default_rai_settings);
+    }
+
+    public function clearDefaultRaiSettings()
+    {
+        unset($this->default_rai_settings);
+    }
+
+    /**
+     * Optional. Immutable. Default RAI settings to be annotated on the agent, so
+     * that users will be able to restore their RAI configurations to the default
+     * settings. Read-only field for the API proto only.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings default_rai_settings = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings $var
+     * @return $this
+     */
+    public function setDefaultRaiSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings::class);
+        $this->default_rai_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Settings for prompt security checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.PromptSecuritySettings prompt_security_settings = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\PromptSecuritySettings|null
+     */
+    public function getPromptSecuritySettings()
+    {
+        return $this->prompt_security_settings;
+    }
+
+    public function hasPromptSecuritySettings()
+    {
+        return isset($this->prompt_security_settings);
+    }
+
+    public function clearPromptSecuritySettings()
+    {
+        unset($this->prompt_security_settings);
+    }
+
+    /**
+     * Optional. Settings for prompt security checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.SafetySettings.PromptSecuritySettings prompt_security_settings = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\PromptSecuritySettings $var
+     * @return $this
+     */
+    public function setPromptSecuritySettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\PromptSecuritySettings::class);
+        $this->prompt_security_settings = $var;
 
         return $this;
     }

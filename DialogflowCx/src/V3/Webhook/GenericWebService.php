@@ -37,11 +37,29 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      */
     protected $password = '';
     /**
+     * Optional. The SecretManager secret version resource storing the
+     * username:password pair for HTTP Basic authentication. Format:
+     * `projects/{project}/secrets/{secret}/versions/{version}`
+     *
+     * Generated from protobuf field <code>string secret_version_for_username_password = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $secret_version_for_username_password = '';
+    /**
      * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
      */
     private $request_headers;
+    /**
+     * Optional. The HTTP request headers to send together with webhook
+     * requests. Header values are stored in SecretManager secret versions.
+     * When the same header name is specified in both `request_headers` and
+     * `secret_versions_for_request_headers`, the value in
+     * `secret_versions_for_request_headers` will be used.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.SecretVersionHeaderValue> secret_versions_for_request_headers = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $secret_versions_for_request_headers;
     /**
      * Optional. Specifies a list of allowed custom CA certificates (in DER
      * format) for HTTPS verification. This overrides the default SSL trust
@@ -76,6 +94,12 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAgentAuth service_agent_auth = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service_agent_auth = 0;
+    /**
+     * Optional. Configuration for service account authentication.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAccountAuthConfig service_account_auth_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_account_auth_config = null;
     /**
      * Optional. Type of the webhook.
      *
@@ -119,8 +143,18 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *           The user name for HTTP Basic authentication.
      *     @type string $password
      *           The password for HTTP Basic authentication.
+     *     @type string $secret_version_for_username_password
+     *           Optional. The SecretManager secret version resource storing the
+     *           username:password pair for HTTP Basic authentication. Format:
+     *           `projects/{project}/secrets/{secret}/versions/{version}`
      *     @type array|\Google\Protobuf\Internal\MapField $request_headers
      *           The HTTP request headers to send together with webhook requests.
+     *     @type array|\Google\Protobuf\Internal\MapField $secret_versions_for_request_headers
+     *           Optional. The HTTP request headers to send together with webhook
+     *           requests. Header values are stored in SecretManager secret versions.
+     *           When the same header name is specified in both `request_headers` and
+     *           `secret_versions_for_request_headers`, the value in
+     *           `secret_versions_for_request_headers` will be used.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_ca_certs
      *           Optional. Specifies a list of allowed custom CA certificates (in DER
      *           format) for HTTPS verification. This overrides the default SSL trust
@@ -143,6 +177,8 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *           service
      *           agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent).
      *           The generated token is sent in the Authorization header.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\ServiceAccountAuthConfig $service_account_auth_config
+     *           Optional. Configuration for service account authentication.
      *     @type int $webhook_type
      *           Optional. Type of the webhook.
      *     @type int $http_method
@@ -256,6 +292,36 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The SecretManager secret version resource storing the
+     * username:password pair for HTTP Basic authentication. Format:
+     * `projects/{project}/secrets/{secret}/versions/{version}`
+     *
+     * Generated from protobuf field <code>string secret_version_for_username_password = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSecretVersionForUsernamePassword()
+    {
+        return $this->secret_version_for_username_password;
+    }
+
+    /**
+     * Optional. The SecretManager secret version resource storing the
+     * username:password pair for HTTP Basic authentication. Format:
+     * `projects/{project}/secrets/{secret}/versions/{version}`
+     *
+     * Generated from protobuf field <code>string secret_version_for_username_password = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecretVersionForUsernamePassword($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secret_version_for_username_password = $var;
+
+        return $this;
+    }
+
+    /**
      * The HTTP request headers to send together with webhook requests.
      *
      * Generated from protobuf field <code>map<string, string> request_headers = 4;</code>
@@ -277,6 +343,40 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->request_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The HTTP request headers to send together with webhook
+     * requests. Header values are stored in SecretManager secret versions.
+     * When the same header name is specified in both `request_headers` and
+     * `secret_versions_for_request_headers`, the value in
+     * `secret_versions_for_request_headers` will be used.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.SecretVersionHeaderValue> secret_versions_for_request_headers = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getSecretVersionsForRequestHeaders()
+    {
+        return $this->secret_versions_for_request_headers;
+    }
+
+    /**
+     * Optional. The HTTP request headers to send together with webhook
+     * requests. Header values are stored in SecretManager secret versions.
+     * When the same header name is specified in both `request_headers` and
+     * `secret_versions_for_request_headers`, the value in
+     * `secret_versions_for_request_headers` will be used.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.SecretVersionHeaderValue> secret_versions_for_request_headers = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setSecretVersionsForRequestHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\SecretVersionHeaderValue::class);
+        $this->secret_versions_for_request_headers = $arr;
 
         return $this;
     }
@@ -397,6 +497,42 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\ServiceAgentAuth::class);
         $this->service_agent_auth = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for service account authentication.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAccountAuthConfig service_account_auth_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\ServiceAccountAuthConfig|null
+     */
+    public function getServiceAccountAuthConfig()
+    {
+        return $this->service_account_auth_config;
+    }
+
+    public function hasServiceAccountAuthConfig()
+    {
+        return isset($this->service_account_auth_config);
+    }
+
+    public function clearServiceAccountAuthConfig()
+    {
+        unset($this->service_account_auth_config);
+    }
+
+    /**
+     * Optional. Configuration for service account authentication.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Webhook.GenericWebService.ServiceAccountAuthConfig service_account_auth_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\ServiceAccountAuthConfig $var
+     * @return $this
+     */
+    public function setServiceAccountAuthConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService\ServiceAccountAuthConfig::class);
+        $this->service_account_auth_config = $var;
 
         return $this;
     }

@@ -221,6 +221,7 @@ return [
             'templateMap' => [
                 'agent' => 'projects/{project}/locations/{location}/agents/{agent}',
                 'environment' => 'projects/{project}/locations/{location}/agents/{agent}/environments/{environment}',
+                'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
                 'service' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}',
                 'testCase' => 'projects/{project}/locations/{location}/agents/{agent}/testCases/{test_case}',
                 'version' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/versions/{version}',

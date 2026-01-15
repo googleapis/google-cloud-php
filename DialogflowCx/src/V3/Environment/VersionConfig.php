@@ -16,11 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class VersionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Both flow and playbook versions are supported.
+     * Required. Flow, playbook and tool versions are supported.
      * Format for flow version:
      * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>.
      * Format for playbook version:
      * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>/versions/<VersionID>.
+     * Format for tool version:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/tools/<ToolID>/versions/<VersionID>.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,11 +35,13 @@ class VersionConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $version
-     *           Required. Both flow and playbook versions are supported.
+     *           Required. Flow, playbook and tool versions are supported.
      *           Format for flow version:
      *           projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>.
      *           Format for playbook version:
      *           projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>/versions/<VersionID>.
+     *           Format for tool version:
+     *           projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/tools/<ToolID>/versions/<VersionID>.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,11 +50,13 @@ class VersionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Both flow and playbook versions are supported.
+     * Required. Flow, playbook and tool versions are supported.
      * Format for flow version:
      * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>.
      * Format for playbook version:
      * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>/versions/<VersionID>.
+     * Format for tool version:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/tools/<ToolID>/versions/<VersionID>.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -61,11 +67,13 @@ class VersionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Both flow and playbook versions are supported.
+     * Required. Flow, playbook and tool versions are supported.
      * Format for flow version:
      * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>.
      * Format for playbook version:
      * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>/versions/<VersionID>.
+     * Format for tool version:
+     * projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/tools/<ToolID>/versions/<VersionID>.
      *
      * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
