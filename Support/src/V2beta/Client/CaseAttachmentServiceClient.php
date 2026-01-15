@@ -83,9 +83,7 @@ final class CaseAttachmentServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -177,8 +175,11 @@ final class CaseAttachmentServiceClient
      *
      * @experimental
      */
-    public static function organizationCaseAttachmentIdName(string $organization, string $case, string $attachmentId): string
-    {
+    public static function organizationCaseAttachmentIdName(
+        string $organization,
+        string $case,
+        string $attachmentId
+    ): string {
         return self::getPathTemplate('organizationCaseAttachmentId')->render([
             'organization' => $organization,
             'case' => $case,

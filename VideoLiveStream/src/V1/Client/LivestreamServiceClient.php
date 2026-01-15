@@ -163,9 +163,7 @@ final class LivestreamServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -306,8 +304,12 @@ final class LivestreamServiceClient
      *
      * @return string The formatted dvr_session resource.
      */
-    public static function dvrSessionName(string $project, string $location, string $channel, string $dvrSession): string
-    {
+    public static function dvrSessionName(
+        string $project,
+        string $location,
+        string $channel,
+        string $dvrSession
+    ): string {
         return self::getPathTemplate('dvrSession')->render([
             'project' => $project,
             'location' => $location,
