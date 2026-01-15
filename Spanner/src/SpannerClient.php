@@ -204,7 +204,7 @@ class SpannerClient
             'directedReadOptions' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
             'routeToLeader' => true,
-            'cacheItemPool' => null,
+            'cacheItemPool' => null
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
