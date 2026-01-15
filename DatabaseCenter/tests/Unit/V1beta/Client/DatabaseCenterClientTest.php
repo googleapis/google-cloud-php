@@ -29,6 +29,8 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateFleetRequest;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateFleetResponse;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateFleetRow;
+use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsRequest;
+use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsResponse;
 use Google\Cloud\DatabaseCenter\V1beta\Client\DatabaseCenterClient;
 use Google\Cloud\DatabaseCenter\V1beta\DatabaseResourceGroup;
 use Google\Cloud\DatabaseCenter\V1beta\Product;
@@ -133,6 +135,73 @@ class DatabaseCenterClientTest extends GeneratedTest
         $request = (new AggregateFleetRequest())->setParent($parent);
         try {
             $gapicClient->aggregateFleet($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function aggregateIssueStatsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $totalResourcesCount = 1148081286;
+        $totalResourceGroupsCount = 1586193222;
+        $expectedResponse = new AggregateIssueStatsResponse();
+        $expectedResponse->setTotalResourcesCount($totalResourcesCount);
+        $expectedResponse->setTotalResourceGroupsCount($totalResourceGroupsCount);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new AggregateIssueStatsRequest())->setParent($parent);
+        $response = $gapicClient->aggregateIssueStats($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.databasecenter.v1beta.DatabaseCenter/AggregateIssueStats', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function aggregateIssueStatsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new AggregateIssueStatsRequest())->setParent($parent);
+        try {
+            $gapicClient->aggregateIssueStats($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

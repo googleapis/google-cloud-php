@@ -35,6 +35,10 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\DatabaseCenter\V1beta\AggregateFleetResponse',
             ],
+            'AggregateIssueStats' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsResponse',
+            ],
             'QueryDatabaseResourceGroups' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

@@ -36,6 +36,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateFleetRequest;
+use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsRequest;
+use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsResponse;
 use Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryProductsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -50,6 +52,7 @@ use Psr\Log\LoggerInterface;
  * @experimental
  *
  * @method PromiseInterface<PagedListResponse> aggregateFleetAsync(AggregateFleetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AggregateIssueStatsResponse> aggregateIssueStatsAsync(AggregateIssueStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryDatabaseResourceGroupsAsync(QueryDatabaseResourceGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryProductsAsync(QueryProductsRequest $request, array $optionalArgs = [])
  */
@@ -212,6 +215,36 @@ final class DatabaseCenterClient
     public function aggregateFleet(AggregateFleetRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('AggregateFleet', $request, $callOptions);
+    }
+
+    /**
+     * AggregateIssueStats provides database resource issues statistics.
+     *
+     * The async variant is {@see DatabaseCenterClient::aggregateIssueStatsAsync()} .
+     *
+     * @example samples/V1beta/DatabaseCenterClient/aggregate_issue_stats.php
+     *
+     * @param AggregateIssueStatsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AggregateIssueStatsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function aggregateIssueStats(
+        AggregateIssueStatsRequest $request,
+        array $callOptions = []
+    ): AggregateIssueStatsResponse {
+        return $this->startApiCall('AggregateIssueStats', $request, $callOptions)->wait();
     }
 
     /**
