@@ -48,6 +48,45 @@
                 }
             }
         },
+        "Instances": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InstancesGapicClient",
+                    "rpcs": {
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "StartInstance": {
+                            "methods": [
+                                "startInstance"
+                            ]
+                        },
+                        "StopInstance": {
+                            "methods": [
+                                "stopInstance"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Jobs": {
             "clients": {
                 "grpc": {
