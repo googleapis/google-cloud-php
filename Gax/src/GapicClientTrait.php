@@ -261,7 +261,7 @@ trait GapicClientTrait
         if (isset($options['serviceAddress'])) {
             $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
         }
-        $this->validateNotNull($options, [
+        self::validateNotNull($options, [
             'apiEndpoint',
             'serviceName',
             'descriptorsConfigPath',
@@ -270,7 +270,7 @@ trait GapicClientTrait
             'credentialsConfig',
             'transportConfig',
         ]);
-        $this->traitValidate($options, [
+        self::traitValidate($options, [
             'credentials',
             'transport',
             'gapicVersion',
