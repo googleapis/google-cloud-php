@@ -74,14 +74,8 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      */
     protected $multi_channel_mode = 0;
     /**
-     * Configuration to enable speaker diarization and set additional
-     * parameters to make diarization better suited for your application.
-     * When this is enabled, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive STREAMING responses.
-     * This is done in order to improve our speaker tags as our models learn to
-     * identify the speakers in the conversation over time.
-     * For non-streaming requests, the diarization results will be provided only
-     * in the top alternative of the FINAL SpeechRecognitionResult.
+     * Configuration to enable speaker diarization. To enable diarization, set
+     * this field to an empty SpeakerDiarizationConfig message.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SpeakerDiarizationConfig diarization_config = 9;</code>
      */
@@ -95,6 +89,12 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_alternatives = 16;</code>
      */
     protected $max_alternatives = 0;
+    /**
+     * Optional. Configuration to enable custom prompt for chirp3.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.CustomPromptConfig custom_prompt_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_prompt_config = null;
 
     /**
      * Constructor.
@@ -133,19 +133,15 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
      *     @type int $multi_channel_mode
      *           Mode for recognizing multi-channel audio.
      *     @type \Google\Cloud\Speech\V2\SpeakerDiarizationConfig $diarization_config
-     *           Configuration to enable speaker diarization and set additional
-     *           parameters to make diarization better suited for your application.
-     *           When this is enabled, we send all the words from the beginning of the
-     *           audio for the top alternative in every consecutive STREAMING responses.
-     *           This is done in order to improve our speaker tags as our models learn to
-     *           identify the speakers in the conversation over time.
-     *           For non-streaming requests, the diarization results will be provided only
-     *           in the top alternative of the FINAL SpeechRecognitionResult.
+     *           Configuration to enable speaker diarization. To enable diarization, set
+     *           this field to an empty SpeakerDiarizationConfig message.
      *     @type int $max_alternatives
      *           Maximum number of recognition hypotheses to be returned.
      *           The server may return fewer than `max_alternatives`.
      *           Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
      *           one. If omitted, will return a maximum of one.
+     *     @type \Google\Cloud\Speech\V2\CustomPromptConfig $custom_prompt_config
+     *           Optional. Configuration to enable custom prompt for chirp3.
      * }
      */
     public function __construct($data = NULL) {
@@ -368,14 +364,8 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration to enable speaker diarization and set additional
-     * parameters to make diarization better suited for your application.
-     * When this is enabled, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive STREAMING responses.
-     * This is done in order to improve our speaker tags as our models learn to
-     * identify the speakers in the conversation over time.
-     * For non-streaming requests, the diarization results will be provided only
-     * in the top alternative of the FINAL SpeechRecognitionResult.
+     * Configuration to enable speaker diarization. To enable diarization, set
+     * this field to an empty SpeakerDiarizationConfig message.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SpeakerDiarizationConfig diarization_config = 9;</code>
      * @return \Google\Cloud\Speech\V2\SpeakerDiarizationConfig|null
@@ -396,14 +386,8 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration to enable speaker diarization and set additional
-     * parameters to make diarization better suited for your application.
-     * When this is enabled, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive STREAMING responses.
-     * This is done in order to improve our speaker tags as our models learn to
-     * identify the speakers in the conversation over time.
-     * For non-streaming requests, the diarization results will be provided only
-     * in the top alternative of the FINAL SpeechRecognitionResult.
+     * Configuration to enable speaker diarization. To enable diarization, set
+     * this field to an empty SpeakerDiarizationConfig message.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v2.SpeakerDiarizationConfig diarization_config = 9;</code>
      * @param \Google\Cloud\Speech\V2\SpeakerDiarizationConfig $var
@@ -445,6 +429,42 @@ class RecognitionFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_alternatives = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration to enable custom prompt for chirp3.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.CustomPromptConfig custom_prompt_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Speech\V2\CustomPromptConfig|null
+     */
+    public function getCustomPromptConfig()
+    {
+        return $this->custom_prompt_config;
+    }
+
+    public function hasCustomPromptConfig()
+    {
+        return isset($this->custom_prompt_config);
+    }
+
+    public function clearCustomPromptConfig()
+    {
+        unset($this->custom_prompt_config);
+    }
+
+    /**
+     * Optional. Configuration to enable custom prompt for chirp3.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.CustomPromptConfig custom_prompt_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Speech\V2\CustomPromptConfig $var
+     * @return $this
+     */
+    public function setCustomPromptConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\CustomPromptConfig::class);
+        $this->custom_prompt_config = $var;
 
         return $this;
     }
