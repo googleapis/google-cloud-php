@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.40.1](https://github.com/googleapis/gax-php/compare/v1.40.0...v1.40.1) (2026-01-16)
+
+
+### Bug Fixes
+
+* Use self:: instead of $this-&gt; for static validation methods in GapicClientTrait validation  ([#643](https://github.com/googleapis/gax-php/issues/643)) ([5ba2b20](https://github.com/googleapis/gax-php/commit/5ba2b200c16b78b10e3dddf5ac6a2c5cd7eb8641))
+
 ## [1.40.0](https://github.com/googleapis/gax-php/compare/v1.39.0...v1.40.0) (2025-12-04)
 
 
