@@ -27,6 +27,9 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
     protected $gcs_bucket = '';
     /**
      * Filename pattern for exported audio.
+     * {conversation} and {timestamp} are placeholders that will be replaced
+     * with the conversation ID and epoch micros of the conversation.
+     * For example, "{conversation}/recording_{timestamp}.mulaw".
      *
      * Generated from protobuf field <code>string audio_export_pattern = 2;</code>
      */
@@ -68,6 +71,9 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
      *           storage.buckets.setIamPolicy.
      *     @type string $audio_export_pattern
      *           Filename pattern for exported audio.
+     *           {conversation} and {timestamp} are placeholders that will be replaced
+     *           with the conversation ID and epoch micros of the conversation.
+     *           For example, "{conversation}/recording_{timestamp}.mulaw".
      *     @type bool $enable_audio_redaction
      *           Enable audio redaction if it is true.
      *           Note that this only redacts end-user audio data;
@@ -121,6 +127,9 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Filename pattern for exported audio.
+     * {conversation} and {timestamp} are placeholders that will be replaced
+     * with the conversation ID and epoch micros of the conversation.
+     * For example, "{conversation}/recording_{timestamp}.mulaw".
      *
      * Generated from protobuf field <code>string audio_export_pattern = 2;</code>
      * @return string
@@ -132,6 +141,9 @@ class AudioExportSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Filename pattern for exported audio.
+     * {conversation} and {timestamp} are placeholders that will be replaced
+     * with the conversation ID and epoch micros of the conversation.
+     * For example, "{conversation}/recording_{timestamp}.mulaw".
      *
      * Generated from protobuf field <code>string audio_export_pattern = 2;</code>
      * @param string $var

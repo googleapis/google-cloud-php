@@ -46,6 +46,12 @@ class GenerativeSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string language_code = 4;</code>
      */
     protected $language_code = '';
+    /**
+     * LLM model settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 8;</code>
+     */
+    protected $llm_model_settings = null;
 
     /**
      * Constructor.
@@ -64,6 +70,8 @@ class GenerativeSettings extends \Google\Protobuf\Internal\Message
      *           Settings for knowledge connector.
      *     @type string $language_code
      *           Language for this settings.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $llm_model_settings
+     *           LLM model settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +237,42 @@ class GenerativeSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * LLM model settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 8;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings|null
+     */
+    public function getLlmModelSettings()
+    {
+        return $this->llm_model_settings;
+    }
+
+    public function hasLlmModelSettings()
+    {
+        return isset($this->llm_model_settings);
+    }
+
+    public function clearLlmModelSettings()
+    {
+        unset($this->llm_model_settings);
+    }
+
+    /**
+     * LLM model settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 8;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $var
+     * @return $this
+     */
+    public function setLlmModelSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings::class);
+        $this->llm_model_settings = $var;
 
         return $this;
     }

@@ -86,6 +86,9 @@ class ResponseMessage extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\KnowledgeInfoCard $knowledge_info_card
      *           Represents info card for knowledge answers, to be better rendered in
      *           Dialogflow Messenger.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ToolCall $tool_call
+     *           Returns the definition of a tool call that should be executed by the
+     *           client.
      *     @type int $response_type
      *           Response type.
      *     @type string $channel
@@ -436,6 +439,39 @@ class ResponseMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\KnowledgeInfoCard::class);
         $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * Returns the definition of a tool call that should be executed by the
+     * client.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.ToolCall tool_call = 22;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ToolCall|null
+     */
+    public function getToolCall()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasToolCall()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * Returns the definition of a tool call that should be executed by the
+     * client.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.ToolCall tool_call = 22;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ToolCall $var
+     * @return $this
+     */
+    public function setToolCall($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\ToolCall::class);
+        $this->writeOneof(22, $var);
 
         return $this;
     }

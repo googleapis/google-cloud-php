@@ -53,6 +53,14 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.OutputAudioConfig output_audio_config = 4;</code>
      */
     protected $output_audio_config = null;
+    /**
+     * Optional. Specifies which fields in the
+     * [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     * set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DetectIntentResponseView response_view = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_view = 0;
 
     /**
      * Constructor.
@@ -82,6 +90,10 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The input specification.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\OutputAudioConfig $output_audio_config
      *           Instructs the speech synthesizer how to generate the output audio.
+     *     @type int $response_view
+     *           Optional. Specifies which fields in the
+     *           [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     *           set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
      * }
      */
     public function __construct($data = NULL) {
@@ -247,6 +259,36 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\OutputAudioConfig::class);
         $this->output_audio_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies which fields in the
+     * [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     * set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DetectIntentResponseView response_view = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getResponseView()
+    {
+        return $this->response_view;
+    }
+
+    /**
+     * Optional. Specifies which fields in the
+     * [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     * set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DetectIntentResponseView response_view = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResponseView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\DetectIntentResponseView::class);
+        $this->response_view = $var;
 
         return $this;
     }

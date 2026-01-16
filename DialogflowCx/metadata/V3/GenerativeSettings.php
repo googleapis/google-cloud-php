@@ -18,14 +18,16 @@ class GenerativeSettings
         \GPBMetadata\Google\Cloud\Dialogflow\Cx\V3\SafetySettings::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–	
-7google/cloud/dialogflow/cx/v3/generative_settings.protogoogle.cloud.dialogflow.cx.v33google/cloud/dialogflow/cx/v3/safety_settings.proto"˚
+’
+
+7google/cloud/dialogflow/cx/v3/generative_settings.protogoogle.cloud.dialogflow.cx.v33google/cloud/dialogflow/cx/v3/safety_settings.proto"»
 GenerativeSettings
 name (	]
 fallback_settings (2B.google.cloud.dialogflow.cx.v3.GenerativeSettings.FallbackSettingsQ
 generative_safety_settings (2-.google.cloud.dialogflow.cx.v3.SafetySettingsr
 knowledge_connector_settings (2L.google.cloud.dialogflow.cx.v3.GenerativeSettings.KnowledgeConnectorSettings
-language_code (	Â
+language_code (	K
+llm_model_settings (2/.google.cloud.dialogflow.cx.v3.LlmModelSettingsÂ
 FallbackSettings
 selected_prompt (	k
 prompt_templates (2Q.google.cloud.dialogflow.cx.v3.GenerativeSettings.FallbackSettings.PromptTemplateK
@@ -40,7 +42,10 @@ class GenerativeSettings
 business_description (	
 agent_scope (	#
 disable_data_store_fallback (:ÅÍA~
-1dialogflow.googleapis.com/AgentGenerativeSettingsIprojects/{project}/locations/{location}/agents/{agent}/generativeSettingsB∫
+1dialogflow.googleapis.com/AgentGenerativeSettingsIprojects/{project}/locations/{location}/agents/{agent}/generativeSettings"6
+LlmModelSettings
+model (	
+prompt_text (	B∫
 !com.google.cloud.dialogflow.cx.v3BGenerativeSettingsProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¢DF™Google.Cloud.Dialogflow.Cx.V3Í!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 

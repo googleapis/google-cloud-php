@@ -134,6 +134,7 @@ return [
                 'page' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/pages/{page}',
                 'projectLocationAgentFlowTransitionRouteGroup' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}',
                 'projectLocationAgentTransitionRouteGroup' => 'projects/{project}/locations/{location}/agents/{agent}/transitionRouteGroups/{transition_route_group}',
+                'tool' => 'projects/{project}/locations/{location}/agents/{agent}/tools/{tool}',
                 'transitionRouteGroup' => 'projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/transitionRouteGroups/{transition_route_group}',
                 'webhook' => 'projects/{project}/locations/{location}/agents/{agent}/webhooks/{webhook}',
             ],

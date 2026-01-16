@@ -25,6 +25,7 @@ class AudioEncoding
     const AUDIO_ENCODING_UNSPECIFIED = 0;
     /**
      * Uncompressed 16-bit signed little-endian samples (Linear PCM).
+     * LINT: LEGACY_NAMES
      *
      * Generated from protobuf enum <code>AUDIO_ENCODING_LINEAR_16 = 1;</code>
      */

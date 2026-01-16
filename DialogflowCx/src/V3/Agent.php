@@ -94,15 +94,6 @@ class Agent extends \Google\Protobuf\Internal\Message
      */
     protected $speech_to_text_settings = null;
     /**
-     * Immutable. Name of the start flow in this agent. A start flow will be
-     * automatically created when the agent is created, and can only be deleted by
-     * deleting the agent. Format:
-     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
-     *
-     * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
-     */
-    protected $start_flow = '';
-    /**
      * Name of the
      * [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
      * reference for the agent. Format:
@@ -200,6 +191,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool satisfies_pzi = 46 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $satisfies_pzi = null;
+    protected $session_entry_resource;
 
     /**
      * Constructor.
@@ -243,10 +235,22 @@ class Agent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\SpeechToTextSettings $speech_to_text_settings
      *           Speech recognition related settings.
      *     @type string $start_flow
-     *           Immutable. Name of the start flow in this agent. A start flow will be
-     *           automatically created when the agent is created, and can only be deleted by
-     *           deleting the agent. Format:
+     *           Name of the start flow in this agent. A start flow will be automatically
+     *           created when the agent is created, and can only be deleted by deleting
+     *           the agent.
+     *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
+     *           Currently only the default start flow with id
+     *           "00000000-0000-0000-0000-000000000000" is allowed.
+     *     @type string $start_playbook
+     *           Name of the start playbook in this agent. A start playbook will be
+     *           automatically created when the agent is created, and can only be deleted
+     *           by deleting the agent.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>`.
+     *           Currently only the
+     *            default playbook with id
+     *            "00000000-0000-0000-0000-000000000000" is allowed.
      *     @type string $security_settings
      *           Name of the
      *           [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
@@ -552,33 +556,89 @@ class Agent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Name of the start flow in this agent. A start flow will be
-     * automatically created when the agent is created, and can only be deleted by
-     * deleting the agent. Format:
+     * Name of the start flow in this agent. A start flow will be automatically
+     * created when the agent is created, and can only be deleted by deleting
+     * the agent.
+     * Format:
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
+     * Currently only the default start flow with id
+     * "00000000-0000-0000-0000-000000000000" is allowed.
      *
-     * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string start_flow = 16 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getStartFlow()
     {
-        return $this->start_flow;
+        return $this->readOneof(16);
+    }
+
+    public function hasStartFlow()
+    {
+        return $this->hasOneof(16);
     }
 
     /**
-     * Immutable. Name of the start flow in this agent. A start flow will be
-     * automatically created when the agent is created, and can only be deleted by
-     * deleting the agent. Format:
+     * Name of the start flow in this agent. A start flow will be automatically
+     * created when the agent is created, and can only be deleted by deleting
+     * the agent.
+     * Format:
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
+     * Currently only the default start flow with id
+     * "00000000-0000-0000-0000-000000000000" is allowed.
      *
-     * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string start_flow = 16 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
     public function setStartFlow($var)
     {
         GPBUtil::checkString($var, True);
-        $this->start_flow = $var;
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Name of the start playbook in this agent. A start playbook will be
+     * automatically created when the agent is created, and can only be deleted
+     * by deleting the agent.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>`.
+     * Currently only the
+     *  default playbook with id
+     *  "00000000-0000-0000-0000-000000000000" is allowed.
+     *
+     * Generated from protobuf field <code>string start_playbook = 39 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getStartPlaybook()
+    {
+        return $this->readOneof(39);
+    }
+
+    public function hasStartPlaybook()
+    {
+        return $this->hasOneof(39);
+    }
+
+    /**
+     * Name of the start playbook in this agent. A start playbook will be
+     * automatically created when the agent is created, and can only be deleted
+     * by deleting the agent.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>`.
+     * Currently only the
+     *  default playbook with id
+     *  "00000000-0000-0000-0000-000000000000" is allowed.
+     *
+     * Generated from protobuf field <code>string start_playbook = 39 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStartPlaybook($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(39, $var);
 
         return $this;
     }
@@ -1067,6 +1127,14 @@ class Agent extends \Google\Protobuf\Internal\Message
         $this->satisfies_pzi = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSessionEntryResource()
+    {
+        return $this->whichOneof("session_entry_resource");
     }
 
 }

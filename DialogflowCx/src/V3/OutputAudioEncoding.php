@@ -22,6 +22,7 @@ class OutputAudioEncoding
     /**
      * Uncompressed 16-bit signed little-endian samples (Linear PCM).
      * Audio content returned as LINEAR16 also contains a WAV header.
+     * LINT: LEGACY_NAMES
      *
      * Generated from protobuf enum <code>OUTPUT_AUDIO_ENCODING_LINEAR_16 = 1;</code>
      */
@@ -34,6 +35,7 @@ class OutputAudioEncoding
     const OUTPUT_AUDIO_ENCODING_MP3 = 2;
     /**
      * MP3 audio at 64kbps.
+     * LINT: LEGACY_NAMES
      *
      * Generated from protobuf enum <code>OUTPUT_AUDIO_ENCODING_MP3_64_KBPS = 4;</code>
      */
