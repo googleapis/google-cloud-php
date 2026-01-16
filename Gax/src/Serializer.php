@@ -53,18 +53,6 @@ class Serializer
     private static array $snakeCaseMap = [];
     private static array $camelCaseMap = [];
 
-    private static $metadataKnownTypes = [
-        'google.rpc.retryinfo-bin' => \Google\Rpc\RetryInfo::class,
-        'google.rpc.debuginfo-bin' => \Google\Rpc\DebugInfo::class,
-        'google.rpc.quotafailure-bin' => \Google\Rpc\QuotaFailure::class,
-        'google.rpc.badrequest-bin' => \Google\Rpc\BadRequest::class,
-        'google.rpc.requestinfo-bin' => \Google\Rpc\RequestInfo::class,
-        'google.rpc.resourceinfo-bin' => \Google\Rpc\ResourceInfo::class,
-        'google.rpc.errorinfo-bin' => \Google\Rpc\ErrorInfo::class,
-        'google.rpc.help-bin' => \Google\Rpc\Help::class,
-        'google.rpc.localizedmessage-bin' => \Google\Rpc\LocalizedMessage::class,
-    ];
-
     private $fieldTransformers;
     private $messageTypeTransformers;
     private $decodeFieldTransformers;
@@ -178,9 +166,10 @@ class Serializer
      * Decode metadata received from gRPC status object
      *
      * @param array $metadata
+     * @param null|array $errors
      * @return array
      */
-    public static function decodeMetadata(array $metadata)
+    public static function decodeMetadata(array $metadata, ?array &$errors = null)
     {
         if (count($metadata) == 0) {
             return [];
@@ -192,13 +181,16 @@ class Serializer
                     '@type' => $key,
                 ];
                 if (self::hasBinaryHeaderSuffix($key)) {
-                    if (isset(self::$metadataKnownTypes[$key])) {
-                        $class = self::$metadataKnownTypes[$key];
+                    if (isset(KnownTypes::GRPC_TYPES[$key])) {
+                        $class = KnownTypes::GRPC_TYPES[$key];
                         /** @var Message $message */
                         $message = new $class();
                         try {
                             $message->mergeFromString($value);
                             $decodedValue += self::serializeToPhpArray($message);
+                            if (!is_null($errors)) {
+                                $errors[] = $message;
+                            }
                         } catch (\Exception $e) {
                             // We encountered an error trying to deserialize the data
                             $decodedValue += [
@@ -527,7 +519,7 @@ class Serializer
 
     public static function loadKnownMetadataTypes()
     {
-        foreach (self::$metadataKnownTypes as $key => $class) {
+        foreach (KnownTypes::GRPC_TYPES as $key => $class) {
             new $class();
         }
     }
