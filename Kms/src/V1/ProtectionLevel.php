@@ -45,6 +45,12 @@ class ProtectionLevel
      * Generated from protobuf enum <code>EXTERNAL_VPC = 4;</code>
      */
     const EXTERNAL_VPC = 4;
+    /**
+     * Crypto operations are performed in a single-tenant HSM.
+     *
+     * Generated from protobuf enum <code>HSM_SINGLE_TENANT = 5;</code>
+     */
+    const HSM_SINGLE_TENANT = 5;
 
     private static $valueToName = [
         self::PROTECTION_LEVEL_UNSPECIFIED => 'PROTECTION_LEVEL_UNSPECIFIED',
@@ -52,6 +58,7 @@ class ProtectionLevel
         self::HSM => 'HSM',
         self::EXTERNAL => 'EXTERNAL',
         self::EXTERNAL_VPC => 'EXTERNAL_VPC',
+        self::HSM_SINGLE_TENANT => 'HSM_SINGLE_TENANT',
     ];
 
     public static function name($value)
