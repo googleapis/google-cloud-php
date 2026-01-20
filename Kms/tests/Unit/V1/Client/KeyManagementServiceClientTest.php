@@ -468,8 +468,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $cryptoKeyBackend = 'cryptoKeyBackend-1526615498';
         $expectedResponse = new ImportJob();
         $expectedResponse->setName($name);
+        $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
@@ -1169,8 +1171,10 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $cryptoKeyBackend = 'cryptoKeyBackend-1526615498';
         $expectedResponse = new ImportJob();
         $expectedResponse->setName($name2);
+        $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->importJobName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[IMPORT_JOB]');

@@ -34,6 +34,15 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ekm_available = 2;</code>
      */
     protected $ekm_available = false;
+    /**
+     * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT]
+     * can be created in this location.
+     *
+     * Generated from protobuf field <code>bool hsm_single_tenant_available = 3;</code>
+     */
+    protected $hsm_single_tenant_available = false;
 
     /**
      * Constructor.
@@ -51,6 +60,11 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
      *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] can be created in
      *           this location.
+     *     @type bool $hsm_single_tenant_available
+     *           Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     *           [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT]
+     *           can be created in this location.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,6 +132,38 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ekm_available = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT]
+     * can be created in this location.
+     *
+     * Generated from protobuf field <code>bool hsm_single_tenant_available = 3;</code>
+     * @return bool
+     */
+    public function getHsmSingleTenantAvailable()
+    {
+        return $this->hsm_single_tenant_available;
+    }
+
+    /**
+     * Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey] with
+     * [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT]
+     * can be created in this location.
+     *
+     * Generated from protobuf field <code>bool hsm_single_tenant_available = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHsmSingleTenantAvailable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->hsm_single_tenant_available = $var;
 
         return $this;
     }
