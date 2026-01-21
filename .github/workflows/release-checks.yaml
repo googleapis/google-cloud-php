@@ -133,3 +133,21 @@ jobs:
     if: github.event.pull_request.user.login == 'release-please[bot]'
     with:
       next-release-label-check: true
+
+  # Ensure all repos are in compliance
+  repo-compliance-check:
+    name: Repo Compliance Check
+    runs-on: ubuntu-latest
+    # if: github.event.pull_request.user.login == 'release-please[bot]'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: "Install PHP"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+      - name: "Install dependencies"
+        run: composer install -d dev
+      - name: "Verify the subrepos exist for new components"
+        run: ./dev/google-cloud repo:compliance --format=ci

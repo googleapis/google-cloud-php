@@ -29,6 +29,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use GuzzleHttp\Client;
+use InvalidArgumentException;
 
 /**
  * List repo details
@@ -49,6 +50,7 @@ class RepoComplianceCommand extends Command
             ->addOption('page', 'p', InputOption::VALUE_REQUIRED, 'page to start from', '1')
             ->addOption('results-per-page', 'r', InputOption::VALUE_REQUIRED, 'results to display per page (0 for all)', '10')
             ->addOption('new-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
+            ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
         ;
     }
 
@@ -72,6 +74,10 @@ class RepoComplianceCommand extends Command
         }
         $page = (int) $input->getOption('page');
         $resultsPerPage = (int) $input->getOption('results-per-page');
+        $format = $input->getOption('format');
+        if (!in_array($format, ['ci', 'table'])) {
+            throw new InvalidArgumentException('Invalid format "' . $format . '", must be "table" or "ci"');
+        }
         $components = $componentName ? [new Component($componentName)] : Component::getComponents();
 
         if (!$input->getOption('token')) {
@@ -81,7 +87,7 @@ class RepoComplianceCommand extends Command
             if ($i < (($page-1) * $resultsPerPage)) {
                 continue;
             }
-            if (0 !== $resultsPerPage && $i >= ($page * $resultsPerPage)) {
+            if ($format == 'table' && 0 !== $resultsPerPage && $i >= ($page * $resultsPerPage)) {
                 $table->render();
                 if (!$this->getHelper('question')->ask($input, $output, $nextPageQuestion)) {
                     return 0;
@@ -135,6 +141,13 @@ class RepoComplianceCommand extends Command
                 }
             }
 
+            if ($format == 'ci' ) {
+                $output->writeln($component->getName() . ': ' . $details['compliant']);
+                if (!$isCompliant) {
+                    return 1;
+                }
+            }
+
             if (!$isCompliant) {
                 $details['compliant'] .= PHP_EOL . implode("\n", array_map(
                     fn ($k, $v) => $k . ': ' . (is_null($v) ? '???' : var_export($v, true)),
@@ -142,10 +155,11 @@ class RepoComplianceCommand extends Command
                     array_values($compliance)
                 ));
             }
-
             $table->addRow($details);
         }
-        $table->render();
+        if ($format == 'table') {
+            $table->render();
+        }
 
         return 0;
     }
