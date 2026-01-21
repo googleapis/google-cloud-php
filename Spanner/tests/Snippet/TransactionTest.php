@@ -265,7 +265,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('insert', $mutations[0]);
     }
@@ -277,7 +276,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('insert', $mutations[0]);
     }
@@ -289,7 +287,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('update', $mutations[0]);
     }
@@ -301,7 +298,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('update', $mutations[0]);
     }
@@ -313,7 +309,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
     }
@@ -325,7 +320,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('insertOrUpdate', $mutations[0]);
     }
@@ -337,7 +331,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('replace', $mutations[0]);
     }
@@ -349,7 +342,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('replace', $mutations[0]);
     }
@@ -362,7 +354,6 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
 
         $reflProp = new \ReflectionProperty($this->transaction, 'mutationData');
-        $reflProp->setAccessible(true);
         $mutations = $reflProp->getValue($this->transaction);
         $this->assertArrayHasKey('delete', $mutations[0]);
     }

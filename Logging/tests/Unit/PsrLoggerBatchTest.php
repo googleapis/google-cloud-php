@@ -80,7 +80,6 @@ class PsrLoggerBatchTest extends TestCase
         $class =
             new \ReflectionClass('\\Google\\Cloud\\Logging\\PsrLogger');
         $prop = $class->getProperty('loggers');
-        $prop->setAccessible(true);
         $prop = $prop->setValue(null, [$logName => $logger]);
         $psrBatchLogger->send([new Entry()]);
         rewind($temp);

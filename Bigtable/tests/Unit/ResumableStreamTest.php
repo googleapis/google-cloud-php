@@ -86,7 +86,6 @@ class ResumableStreamTest extends TestCase
             }, $delayFactor);
         };
         $prop = (new \ReflectionObject($resumableStream))->getProperty('delayFunction');
-        $prop->setAccessible(true);
         $prop->setValue($resumableStream, $delayFunction);
 
         $rows = iterator_to_array($resumableStream->readAll());

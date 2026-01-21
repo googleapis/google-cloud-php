@@ -2260,7 +2260,6 @@ class DatabaseTest extends TestCase
 
                 // Simulate calling Transaction::commmit()
                 $prop = new \ReflectionProperty($t, 'state');
-                $prop->setAccessible(true);
                 $prop->setValue($t, Transaction::STATE_COMMITTED);
             },
             [
@@ -2347,7 +2346,6 @@ class DatabaseTest extends TestCase
 
                 // Simulate calling Transaction::commmit()
                 $prop = new \ReflectionProperty($t, 'state');
-                $prop->setAccessible(true);
                 $prop->setValue($t, Transaction::STATE_COMMITTED);
             },
             ['transactionOptions' => ['isolationLevel' => IsolationLevel::REPEATABLE_READ]]
@@ -2385,7 +2383,6 @@ class DatabaseTest extends TestCase
 
                 // Simulate calling Transaction::commmit()
                 $prop = new \ReflectionProperty($t, 'state');
-                $prop->setAccessible(true);
                 $prop->setValue($t, Transaction::STATE_COMMITTED);
             },
             ['transactionOptions' => ['readLockMode' => ReadLockMode::OPTIMISTIC]]

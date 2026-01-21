@@ -246,7 +246,6 @@ class PsrLoggerTest extends TestCase
         $psrLogger = unserialize(serialize($psrLogger));
         $reflection = new \ReflectionClass($psrLogger);
         $debugOutpoutResourceAttr = $reflection->getProperty('debugOutputResource');
-        $debugOutpoutResourceAttr->setAccessible(true);
         $debugResourceMetadata = stream_get_meta_data(
             $debugOutpoutResourceAttr->getValue($psrLogger)
         );
@@ -265,7 +264,6 @@ class PsrLoggerTest extends TestCase
         ];
         foreach ($attributes as $attributeName) {
             $attr = $reflection->getProperty($attributeName);
-            $attr->setAccessible(true);
             $this->assertEquals(
                 $attr->getValue($psrLogger),
                 $attributeName === 'clientConfig'&& class_exists(OpisClosureSerializerV4::class)

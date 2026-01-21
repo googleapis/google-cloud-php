@@ -325,7 +325,6 @@ class TransactionStub extends Transaction
     {
         $reflection = new ReflectionClass(Transaction::class);
         $reflectionProperty = $reflection->getProperty('writer');
-        $reflectionProperty->setAccessible(true);
         $reflectionProperty->setValue($this, $writer);
     }
 }
