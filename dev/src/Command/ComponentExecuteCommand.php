@@ -25,6 +25,14 @@ use Google\Cloud\Dev\Component;
 
 /**
  * Execute commands for every Component
+ *
+ * ```bash
+ * // execute PHP code directly (don't forget to escape `$` for bash
+ * ./dev/google-cloud component:execute "copy('SECURITY.md', \$component->getPath() . '/SECURITY.md');"
+ * // execute a PHP file (don't forget to escape `$` for bash
+ * ./dev/google-cloud component:execute copy_file.php
+ * ```
+ *
  * @internal
  */
 class ComponentExecuteCommand extends Command
@@ -43,6 +51,9 @@ class ComponentExecuteCommand extends Command
         $components = Component::getComponents();
 
         $codeToExecute = file_exists($code) ? file_get_contents($code) : $code;
+        if (0 === strpos($codeToExecute, '<?php')) {
+            $codeToExecute = substr($codeToExecute, 5);
+        }
         $output->writeln('<info>' . $codeToExecute . '</>');
         foreach ($components as $component) {
             $output->writeln('Executing for ' . $component->getName());
