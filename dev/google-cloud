@@ -23,6 +23,7 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
 require __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\Dev\Command\ComponentAddVersionCommand;
+use Google\Cloud\Dev\Command\ComponentExecuteCommand;
 use Google\Cloud\Dev\Command\ComponentInfoCommand;
 use Google\Cloud\Dev\Command\ComponentNewCommand;
 use Google\Cloud\Dev\Command\ComponentUpdateGencodeCommand;
@@ -48,6 +49,7 @@ $rootDirectory = realpath(__DIR__ . '/../') . '/';
 $app = new Application;
 $app->add(new ComponentInfoCommand());
 $app->add(new ComponentAddVersionCommand($rootDirectory));
+$app->add(new ComponentExecuteCommand());
 $app->add(new ComponentNewCommand($rootDirectory));
 $app->add(new ComponentUpdateGencodeCommand($rootDirectory));
 $app->add(new ComponentUpdateReadmeSampleCommand($rootDirectory));
