@@ -150,4 +150,4 @@ jobs:
       - name: "Install dependencies"
         run: composer install -d dev
       - name: "Verify the subrepos exist for new components"
-        run: ./dev/google-cloud repo:compliance --format=ci
+        run: ./dev/google-cloud repo:compliance --format=ci -t $GH_TOKEN
