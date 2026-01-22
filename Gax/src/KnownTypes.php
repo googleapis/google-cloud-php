@@ -33,6 +33,8 @@ namespace Google\ApiCore;
 
 class KnownTypes
 {
+    private static bool $initialized = false;
+
     public const GRPC_TYPES = [
         'google.rpc.retryinfo-bin' => \Google\Rpc\RetryInfo::class,
         'google.rpc.debuginfo-bin' => \Google\Rpc\DebugInfo::class,
@@ -62,5 +64,16 @@ class KnownTypes
     public static function allKnownTypes(): array
     {
         return self::GRPC_TYPES + self::JSON_TYPES;
+    }
+
+    public static function addKnownTypesToDescriptorPool()
+    {
+        if (self::$initialized) {
+            return;
+        }
+
+        // adds all the above protobuf classes to the descriptor pool
+        \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
+        self::$initialized = true;
     }
 }
