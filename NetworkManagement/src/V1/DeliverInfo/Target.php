@@ -124,6 +124,12 @@ class Target
      * Generated from protobuf enum <code>REDIS_CLUSTER = 17;</code>
      */
     const REDIS_CLUSTER = 17;
+    /**
+     * Target is a GKE Pod.
+     *
+     * Generated from protobuf enum <code>GKE_POD = 19;</code>
+     */
+    const GKE_POD = 19;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -144,6 +150,7 @@ class Target
         self::GOOGLE_MANAGED_SERVICE => 'GOOGLE_MANAGED_SERVICE',
         self::REDIS_INSTANCE => 'REDIS_INSTANCE',
         self::REDIS_CLUSTER => 'REDIS_CLUSTER',
+        self::GKE_POD => 'GKE_POD',
     ];
 
     public static function name($value)

@@ -100,6 +100,11 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of a Google Cloud network.
      *     @type \Google\Cloud\NetworkManagement\V1\GKEMasterInfo $gke_master
      *           Display information of a Google Kubernetes Engine cluster master.
+     *     @type \Google\Cloud\NetworkManagement\V1\GkePodInfo $gke_pod
+     *           Display information of a Google Kubernetes Engine Pod.
+     *     @type \Google\Cloud\NetworkManagement\V1\IpMasqueradingSkippedInfo $ip_masquerading_skipped
+     *           Display information of the reason why GKE Pod IP masquerading was
+     *           skipped.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudSQLInstanceInfo $cloud_sql_instance
      *           Display information of a Cloud SQL instance.
      *     @type \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo $redis_instance
@@ -867,6 +872,70 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\GKEMasterInfo::class);
         $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Google Kubernetes Engine Pod.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GkePodInfo gke_pod = 37;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\GkePodInfo|null
+     */
+    public function getGkePod()
+    {
+        return $this->readOneof(37);
+    }
+
+    public function hasGkePod()
+    {
+        return $this->hasOneof(37);
+    }
+
+    /**
+     * Display information of a Google Kubernetes Engine Pod.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GkePodInfo gke_pod = 37;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\GkePodInfo $var
+     * @return $this
+     */
+    public function setGkePod($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\GkePodInfo::class);
+        $this->writeOneof(37, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of the reason why GKE Pod IP masquerading was
+     * skipped.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.IpMasqueradingSkippedInfo ip_masquerading_skipped = 38;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\IpMasqueradingSkippedInfo|null
+     */
+    public function getIpMasqueradingSkipped()
+    {
+        return $this->readOneof(38);
+    }
+
+    public function hasIpMasqueradingSkipped()
+    {
+        return $this->hasOneof(38);
+    }
+
+    /**
+     * Display information of the reason why GKE Pod IP masquerading was
+     * skipped.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.IpMasqueradingSkippedInfo ip_masquerading_skipped = 38;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\IpMasqueradingSkippedInfo $var
+     * @return $this
+     */
+    public function setIpMasqueradingSkipped($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\IpMasqueradingSkippedInfo::class);
+        $this->writeOneof(38, $var);
 
         return $this;
     }
