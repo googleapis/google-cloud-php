@@ -43,7 +43,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      *           - my.customdomain.com
      *           - 10.0.1.2:5000
      *     @type \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig\GCPSecretManagerCertificateConfig $gcp_secret_manager_certificate_config
-     *           Google Secret Manager (GCP) certificate configuration.
+     *           Secret Manager certificate configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +88,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Secret Manager (GCP) certificate configuration.
+     * Secret Manager certificate configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig.GCPSecretManagerCertificateConfig gcp_secret_manager_certificate_config = 2;</code>
      * @return \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig\GCPSecretManagerCertificateConfig|null
@@ -104,7 +104,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Secret Manager (GCP) certificate configuration.
+     * Secret Manager certificate configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig.GCPSecretManagerCertificateConfig gcp_secret_manager_certificate_config = 2;</code>
      * @param \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig\GCPSecretManagerCertificateConfig $var

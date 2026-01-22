@@ -29,6 +29,14 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ContainerdConfig.WritableCgroups writable_cgroups = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $writable_cgroups = null;
+    /**
+     * RegistryHostConfig configures containerd registry host configuration.
+     * Each registry_hosts represents a hosts.toml file.
+     * At most 25 registry_hosts are allowed.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig registry_hosts = 3;</code>
+     */
+    private $registry_hosts;
 
     /**
      * Constructor.
@@ -42,6 +50,10 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ContainerdConfig\WritableCgroups $writable_cgroups
      *           Optional. WritableCgroups defines writable cgroups configuration for the
      *           node pool.
+     *     @type array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig>|\Google\Protobuf\Internal\RepeatedField $registry_hosts
+     *           RegistryHostConfig configures containerd registry host configuration.
+     *           Each registry_hosts represents a hosts.toml file.
+     *           At most 25 registry_hosts are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +133,36 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ContainerdConfig\WritableCgroups::class);
         $this->writable_cgroups = $var;
+
+        return $this;
+    }
+
+    /**
+     * RegistryHostConfig configures containerd registry host configuration.
+     * Each registry_hosts represents a hosts.toml file.
+     * At most 25 registry_hosts are allowed.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig registry_hosts = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRegistryHosts()
+    {
+        return $this->registry_hosts;
+    }
+
+    /**
+     * RegistryHostConfig configures containerd registry host configuration.
+     * Each registry_hosts represents a hosts.toml file.
+     * At most 25 registry_hosts are allowed.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig registry_hosts = 3;</code>
+     * @param array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRegistryHosts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig::class);
+        $this->registry_hosts = $arr;
 
         return $this;
     }

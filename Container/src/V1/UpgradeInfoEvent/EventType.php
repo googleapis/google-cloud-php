@@ -40,12 +40,19 @@ class EventType
      * Generated from protobuf enum <code>UPGRADE_LIFECYCLE = 3;</code>
      */
     const UPGRADE_LIFECYCLE = 3;
+    /**
+     * DISRUPTION_EVENT indicates the event is about the disruption.
+     *
+     * Generated from protobuf enum <code>DISRUPTION_EVENT = 4;</code>
+     */
+    const DISRUPTION_EVENT = 4;
 
     private static $valueToName = [
         self::EVENT_TYPE_UNSPECIFIED => 'EVENT_TYPE_UNSPECIFIED',
         self::END_OF_SUPPORT => 'END_OF_SUPPORT',
         self::COS_MILESTONE_VERSION_UPDATE => 'COS_MILESTONE_VERSION_UPDATE',
         self::UPGRADE_LIFECYCLE => 'UPGRADE_LIFECYCLE',
+        self::DISRUPTION_EVENT => 'DISRUPTION_EVENT',
     ];
 
     public static function name($value)

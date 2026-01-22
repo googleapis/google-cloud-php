@@ -58,6 +58,13 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.DefaultComputeClassConfig default_compute_class_config = 9;</code>
      */
     protected $default_compute_class_config = null;
+    /**
+     * Autopilot general profile for the cluster, which defines the
+     * configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling.AutopilotGeneralProfile autopilot_general_profile = 14;</code>
+     */
+    protected $autopilot_general_profile = 0;
 
     /**
      * Constructor.
@@ -81,6 +88,9 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *           in which the NodePool's nodes can be created by NAP.
      *     @type \Google\Cloud\Container\V1\DefaultComputeClassConfig $default_compute_class_config
      *           Default compute class is a configuration for default compute class.
+     *     @type int $autopilot_general_profile
+     *           Autopilot general profile for the cluster, which defines the
+     *           configuration for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -268,6 +278,34 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DefaultComputeClassConfig::class);
         $this->default_compute_class_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Autopilot general profile for the cluster, which defines the
+     * configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling.AutopilotGeneralProfile autopilot_general_profile = 14;</code>
+     * @return int
+     */
+    public function getAutopilotGeneralProfile()
+    {
+        return $this->autopilot_general_profile;
+    }
+
+    /**
+     * Autopilot general profile for the cluster, which defines the
+     * configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling.AutopilotGeneralProfile autopilot_general_profile = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutopilotGeneralProfile($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\ClusterAutoscaling\AutopilotGeneralProfile::class);
+        $this->autopilot_general_profile = $var;
 
         return $this;
     }

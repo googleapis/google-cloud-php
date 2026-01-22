@@ -89,6 +89,13 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.UpgradeInfoEvent.EventType event_type = 12;</code>
      */
     protected $event_type = 0;
+    /**
+     * The information about the disruption event. This field is only populated
+     * when event_type is DISRUPTION_EVENT.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.DisruptionEvent disruption_event = 14;</code>
+     */
+    protected $disruption_event = null;
 
     /**
      * Constructor.
@@ -121,6 +128,9 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
      *           A brief description of the event.
      *     @type int $event_type
      *           The type of the event.
+     *     @type \Google\Cloud\Container\V1\DisruptionEvent $disruption_event
+     *           The information about the disruption event. This field is only populated
+     *           when event_type is DISRUPTION_EVENT.
      * }
      */
     public function __construct($data = NULL) {
@@ -478,6 +488,44 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\UpgradeInfoEvent\EventType::class);
         $this->event_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The information about the disruption event. This field is only populated
+     * when event_type is DISRUPTION_EVENT.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.DisruptionEvent disruption_event = 14;</code>
+     * @return \Google\Cloud\Container\V1\DisruptionEvent|null
+     */
+    public function getDisruptionEvent()
+    {
+        return $this->disruption_event;
+    }
+
+    public function hasDisruptionEvent()
+    {
+        return isset($this->disruption_event);
+    }
+
+    public function clearDisruptionEvent()
+    {
+        unset($this->disruption_event);
+    }
+
+    /**
+     * The information about the disruption event. This field is only populated
+     * when event_type is DISRUPTION_EVENT.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.DisruptionEvent disruption_event = 14;</code>
+     * @param \Google\Cloud\Container\V1\DisruptionEvent $var
+     * @return $this
+     */
+    public function setDisruptionEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DisruptionEvent::class);
+        $this->disruption_event = $var;
 
         return $this;
     }

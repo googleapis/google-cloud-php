@@ -1024,6 +1024,7 @@ return [
             'templateMap' => [
                 'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
+                'subnetwork' => 'projects/{project}/regions/{region}/subnetworks/{subnetwork}',
                 'topic' => 'projects/{project}/topics/{topic}',
             ],
         ],

@@ -350,6 +350,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     protected $secondary_boot_disk_update_strategy = null;
     /**
+     * The configuration for GPU Direct
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.GPUDirectConfig gpu_direct_config = 51;</code>
+     */
+    protected $gpu_direct_config = null;
+    /**
      * The maximum duration for the nodes to exist.
      * If unspecified, the nodes can exist indefinitely.
      *
@@ -384,6 +390,14 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 57;</code>
      */
     protected $boot_disk = null;
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can
+     * scale down underutilized nodes. If not set, nodes are scaled down by
+     * default behavior, i.e. according to the chosen autoscaling profile.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 60;</code>
+     */
+    protected $consolidation_delay = null;
 
     /**
      * Constructor.
@@ -561,6 +575,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           List of Storage Pools where boot disks are provisioned.
      *     @type \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $secondary_boot_disk_update_strategy
      *           Secondary boot disk update strategy.
+     *     @type \Google\Cloud\Container\V1\GPUDirectConfig $gpu_direct_config
+     *           The configuration for GPU Direct
      *     @type \Google\Protobuf\Duration $max_run_duration
      *           The maximum duration for the nodes to exist.
      *           If unspecified, the nodes can exist indefinitely.
@@ -576,6 +592,10 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Flex Start flag for enabling Flex Start VM.
      *     @type \Google\Cloud\Container\V1\BootDisk $boot_disk
      *           The boot disk configuration for the node pool.
+     *     @type \Google\Protobuf\Duration $consolidation_delay
+     *           Consolidation delay defines duration after which the Cluster Autoscaler can
+     *           scale down underutilized nodes. If not set, nodes are scaled down by
+     *           default behavior, i.e. according to the chosen autoscaling profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -1994,6 +2014,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The configuration for GPU Direct
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.GPUDirectConfig gpu_direct_config = 51;</code>
+     * @return \Google\Cloud\Container\V1\GPUDirectConfig|null
+     */
+    public function getGpuDirectConfig()
+    {
+        return $this->gpu_direct_config;
+    }
+
+    public function hasGpuDirectConfig()
+    {
+        return isset($this->gpu_direct_config);
+    }
+
+    public function clearGpuDirectConfig()
+    {
+        unset($this->gpu_direct_config);
+    }
+
+    /**
+     * The configuration for GPU Direct
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.GPUDirectConfig gpu_direct_config = 51;</code>
+     * @param \Google\Cloud\Container\V1\GPUDirectConfig $var
+     * @return $this
+     */
+    public function setGpuDirectConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GPUDirectConfig::class);
+        $this->gpu_direct_config = $var;
+
+        return $this;
+    }
+
+    /**
      * The maximum duration for the nodes to exist.
      * If unspecified, the nodes can exist indefinitely.
      *
@@ -2169,6 +2225,46 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BootDisk::class);
         $this->boot_disk = $var;
+
+        return $this;
+    }
+
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can
+     * scale down underutilized nodes. If not set, nodes are scaled down by
+     * default behavior, i.e. according to the chosen autoscaling profile.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 60;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getConsolidationDelay()
+    {
+        return $this->consolidation_delay;
+    }
+
+    public function hasConsolidationDelay()
+    {
+        return isset($this->consolidation_delay);
+    }
+
+    public function clearConsolidationDelay()
+    {
+        unset($this->consolidation_delay);
+    }
+
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can
+     * scale down underutilized nodes. If not set, nodes are scaled down by
+     * default behavior, i.e. according to the chosen autoscaling profile.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 60;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setConsolidationDelay($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->consolidation_delay = $var;
 
         return $this;
     }

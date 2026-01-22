@@ -125,6 +125,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.LustreCsiDriverConfig lustre_csi_driver_config = 23;</code>
      */
     protected $lustre_csi_driver_config = null;
+    /**
+     * Optional. Configuration for the slice controller add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SliceControllerConfig slice_controller_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $slice_controller_config = null;
 
     /**
      * Constructor.
@@ -176,6 +182,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the High Scale Checkpointing add-on.
      *     @type \Google\Cloud\Container\V1\LustreCsiDriverConfig $lustre_csi_driver_config
      *           Configuration for the Lustre CSI driver.
+     *     @type \Google\Cloud\Container\V1\SliceControllerConfig $slice_controller_config
+     *           Optional. Configuration for the slice controller add-on.
      * }
      */
     public function __construct($data = NULL) {
@@ -789,6 +797,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LustreCsiDriverConfig::class);
         $this->lustre_csi_driver_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the slice controller add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SliceControllerConfig slice_controller_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\SliceControllerConfig|null
+     */
+    public function getSliceControllerConfig()
+    {
+        return $this->slice_controller_config;
+    }
+
+    public function hasSliceControllerConfig()
+    {
+        return isset($this->slice_controller_config);
+    }
+
+    public function clearSliceControllerConfig()
+    {
+        unset($this->slice_controller_config);
+    }
+
+    /**
+     * Optional. Configuration for the slice controller add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SliceControllerConfig slice_controller_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\SliceControllerConfig $var
+     * @return $this
+     */
+    public function setSliceControllerConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SliceControllerConfig::class);
+        $this->slice_controller_config = $var;
 
         return $this;
     }
