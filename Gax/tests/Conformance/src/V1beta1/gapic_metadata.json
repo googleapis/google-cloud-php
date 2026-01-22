@@ -1,0 +1,333 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.showcase.v1beta1",
+    "libraryPackage": "Google\\Showcase\\V1beta1",
+    "services": {
+        "Compliance": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ComplianceGapicClient",
+                    "rpcs": {
+                        "GetEnum": {
+                            "methods": [
+                                "getEnum"
+                            ]
+                        },
+                        "RepeatDataBody": {
+                            "methods": [
+                                "repeatDataBody"
+                            ]
+                        },
+                        "RepeatDataBodyInfo": {
+                            "methods": [
+                                "repeatDataBodyInfo"
+                            ]
+                        },
+                        "RepeatDataBodyPatch": {
+                            "methods": [
+                                "repeatDataBodyPatch"
+                            ]
+                        },
+                        "RepeatDataBodyPut": {
+                            "methods": [
+                                "repeatDataBodyPut"
+                            ]
+                        },
+                        "RepeatDataPathResource": {
+                            "methods": [
+                                "repeatDataPathResource"
+                            ]
+                        },
+                        "RepeatDataPathTrailingResource": {
+                            "methods": [
+                                "repeatDataPathTrailingResource"
+                            ]
+                        },
+                        "RepeatDataQuery": {
+                            "methods": [
+                                "repeatDataQuery"
+                            ]
+                        },
+                        "RepeatDataSimplePath": {
+                            "methods": [
+                                "repeatDataSimplePath"
+                            ]
+                        },
+                        "VerifyEnum": {
+                            "methods": [
+                                "verifyEnum"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Echo": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EchoGapicClient",
+                    "rpcs": {
+                        "Block": {
+                            "methods": [
+                                "block"
+                            ]
+                        },
+                        "Chat": {
+                            "methods": [
+                                "chat"
+                            ]
+                        },
+                        "Collect": {
+                            "methods": [
+                                "collect"
+                            ]
+                        },
+                        "Echo": {
+                            "methods": [
+                                "echo"
+                            ]
+                        },
+                        "EchoErrorDetails": {
+                            "methods": [
+                                "echoErrorDetails"
+                            ]
+                        },
+                        "Expand": {
+                            "methods": [
+                                "expand"
+                            ]
+                        },
+                        "FailEchoWithDetails": {
+                            "methods": [
+                                "failEchoWithDetails"
+                            ]
+                        },
+                        "PagedExpand": {
+                            "methods": [
+                                "pagedExpand"
+                            ]
+                        },
+                        "PagedExpandLegacy": {
+                            "methods": [
+                                "pagedExpandLegacy"
+                            ]
+                        },
+                        "PagedExpandLegacyMapped": {
+                            "methods": [
+                                "pagedExpandLegacyMapped"
+                            ]
+                        },
+                        "Wait": {
+                            "methods": [
+                                "wait"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Identity": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "IdentityGapicClient",
+                    "rpcs": {
+                        "CreateUser": {
+                            "methods": [
+                                "createUser"
+                            ]
+                        },
+                        "DeleteUser": {
+                            "methods": [
+                                "deleteUser"
+                            ]
+                        },
+                        "GetUser": {
+                            "methods": [
+                                "getUser"
+                            ]
+                        },
+                        "ListUsers": {
+                            "methods": [
+                                "listUsers"
+                            ]
+                        },
+                        "UpdateUser": {
+                            "methods": [
+                                "updateUser"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Messaging": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MessagingGapicClient",
+                    "rpcs": {
+                        "Connect": {
+                            "methods": [
+                                "connect"
+                            ]
+                        },
+                        "CreateBlurb": {
+                            "methods": [
+                                "createBlurb"
+                            ]
+                        },
+                        "CreateRoom": {
+                            "methods": [
+                                "createRoom"
+                            ]
+                        },
+                        "DeleteBlurb": {
+                            "methods": [
+                                "deleteBlurb"
+                            ]
+                        },
+                        "DeleteRoom": {
+                            "methods": [
+                                "deleteRoom"
+                            ]
+                        },
+                        "GetBlurb": {
+                            "methods": [
+                                "getBlurb"
+                            ]
+                        },
+                        "GetRoom": {
+                            "methods": [
+                                "getRoom"
+                            ]
+                        },
+                        "ListBlurbs": {
+                            "methods": [
+                                "listBlurbs"
+                            ]
+                        },
+                        "ListRooms": {
+                            "methods": [
+                                "listRooms"
+                            ]
+                        },
+                        "SearchBlurbs": {
+                            "methods": [
+                                "searchBlurbs"
+                            ]
+                        },
+                        "SendBlurbs": {
+                            "methods": [
+                                "sendBlurbs"
+                            ]
+                        },
+                        "StreamBlurbs": {
+                            "methods": [
+                                "streamBlurbs"
+                            ]
+                        },
+                        "UpdateBlurb": {
+                            "methods": [
+                                "updateBlurb"
+                            ]
+                        },
+                        "UpdateRoom": {
+                            "methods": [
+                                "updateRoom"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SequenceService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SequenceServiceGapicClient",
+                    "rpcs": {
+                        "AttemptSequence": {
+                            "methods": [
+                                "attemptSequence"
+                            ]
+                        },
+                        "AttemptStreamingSequence": {
+                            "methods": [
+                                "attemptStreamingSequence"
+                            ]
+                        },
+                        "CreateSequence": {
+                            "methods": [
+                                "createSequence"
+                            ]
+                        },
+                        "CreateStreamingSequence": {
+                            "methods": [
+                                "createStreamingSequence"
+                            ]
+                        },
+                        "GetSequenceReport": {
+                            "methods": [
+                                "getSequenceReport"
+                            ]
+                        },
+                        "GetStreamingSequenceReport": {
+                            "methods": [
+                                "getStreamingSequenceReport"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Testing": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TestingGapicClient",
+                    "rpcs": {
+                        "CreateSession": {
+                            "methods": [
+                                "createSession"
+                            ]
+                        },
+                        "DeleteSession": {
+                            "methods": [
+                                "deleteSession"
+                            ]
+                        },
+                        "DeleteTest": {
+                            "methods": [
+                                "deleteTest"
+                            ]
+                        },
+                        "GetSession": {
+                            "methods": [
+                                "getSession"
+                            ]
+                        },
+                        "ListSessions": {
+                            "methods": [
+                                "listSessions"
+                            ]
+                        },
+                        "ListTests": {
+                            "methods": [
+                                "listTests"
+                            ]
+                        },
+                        "ReportSession": {
+                            "methods": [
+                                "reportSession"
+                            ]
+                        },
+                        "VerifyTest": {
+                            "methods": [
+                                "verifyTest"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

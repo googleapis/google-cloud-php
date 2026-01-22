@@ -36,7 +36,9 @@
         "psr-4": {
             "Google\\ApiCore\\Dev\\": "dev/src",
             "Google\\ApiCore\\Tests\\": "tests",
-            "GPBMetadata\\Google\\": "metadata/Google"
+            "GPBMetadata\\Google\\": "metadata/Google",
+            "Google\\Showcase\\": "tests/Conformance/src",
+            "GPBMetadata\\Google\\Showcase\\": "tests/Conformance/metadata"
         }
     },
     "scripts": {

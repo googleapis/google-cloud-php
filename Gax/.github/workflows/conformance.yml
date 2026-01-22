@@ -1,0 +1,44 @@
+name: Conformance
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+permissions:
+  contents: read
+jobs:
+    gapic-showcase:
+        runs-on: ubuntu-latest
+        env:
+            GAPIC_SHOWCASE_VERSION: 0.36.2
+            OS: linux
+            ARCH: amd64
+        name: GAPIC Showcase Conformance Tests
+        steps:
+        - uses: actions/checkout@v4
+        - name: Clone googleapis/google-cloud-php
+          uses: actions/checkout@master
+          with:
+            repository: googleapis/google-cloud-php
+            path: google-cloud-php
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '8.1'
+            extensions: grpc
+        - name: Install and run GAPIC Showcase
+          run: |
+            curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
+            ./gapic-showcase run &
+        - name: Install composer dependencies
+          uses: nick-invision/retry@v3
+          with:
+            timeout_minutes: 10
+            max_attempts: 3
+            command: composer update ${{ matrix.composerflags }}
+        - name: Run PHPUnit
+          run: vendor/bin/phpunit -c phpunit-conformance.xml.dist
+
+
+
+
