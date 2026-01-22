@@ -125,12 +125,34 @@ class Cause
      */
     const PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS = 36;
     /**
-     * Aborted because no valid source or destination endpoint is derived from
-     * the input test request.
+     * Aborted because no valid source or destination endpoint can be derived
+     * from the test request.
      *
      * Generated from protobuf enum <code>NO_SOURCE_LOCATION = 5;</code>
      */
     const NO_SOURCE_LOCATION = 5;
+    /**
+     * Aborted because the source IP address is not contained within the subnet
+     * ranges of the provided VPC network.
+     *
+     * Generated from protobuf enum <code>NO_SOURCE_GCP_NETWORK_LOCATION = 42;</code>
+     */
+    const NO_SOURCE_GCP_NETWORK_LOCATION = 42;
+    /**
+     * Aborted because the source IP address is not contained within the
+     * destination ranges of the routes towards non-GCP networks in the provided
+     * VPC network.
+     *
+     * Generated from protobuf enum <code>NO_SOURCE_NON_GCP_NETWORK_LOCATION = 43;</code>
+     */
+    const NO_SOURCE_NON_GCP_NETWORK_LOCATION = 43;
+    /**
+     * Aborted because the source IP address can't be resolved as an Internet
+     * IP address.
+     *
+     * Generated from protobuf enum <code>NO_SOURCE_INTERNET_LOCATION = 44;</code>
+     */
+    const NO_SOURCE_INTERNET_LOCATION = 44;
     /**
      * Aborted because the source or destination endpoint specified in
      * the request is invalid. Some examples:
@@ -229,6 +251,14 @@ class Cause
      */
     const SOURCE_PSC_CLOUD_SQL_UNSUPPORTED = 20;
     /**
+     * Aborted because tests with the external database as a source are not
+     * supported. In such replication scenarios, the connection is initiated by
+     * the Cloud SQL replica instance.
+     *
+     * Generated from protobuf enum <code>SOURCE_EXTERNAL_CLOUD_SQL_UNSUPPORTED = 45;</code>
+     */
+    const SOURCE_EXTERNAL_CLOUD_SQL_UNSUPPORTED = 45;
+    /**
      * Aborted because tests with a Redis Cluster as a source are not supported.
      *
      * Generated from protobuf enum <code>SOURCE_REDIS_CLUSTER_UNSUPPORTED = 34;</code>
@@ -282,6 +312,14 @@ class Cause
      * Generated from protobuf enum <code>IP_VERSION_PROTOCOL_MISMATCH = 40;</code>
      */
     const IP_VERSION_PROTOCOL_MISMATCH = 40;
+    /**
+     * Aborted because selected GKE Pod endpoint location is unknown. This is
+     * often the case for "Pending" Pods, which don't have assigned IP addresses
+     * yet.
+     *
+     * Generated from protobuf enum <code>GKE_POD_UNKNOWN_ENDPOINT_LOCATION = 41;</code>
+     */
+    const GKE_POD_UNKNOWN_ENDPOINT_LOCATION = 41;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -301,6 +339,9 @@ class Cause
         self::PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS => 'PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS',
         self::PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS => 'PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS',
         self::NO_SOURCE_LOCATION => 'NO_SOURCE_LOCATION',
+        self::NO_SOURCE_GCP_NETWORK_LOCATION => 'NO_SOURCE_GCP_NETWORK_LOCATION',
+        self::NO_SOURCE_NON_GCP_NETWORK_LOCATION => 'NO_SOURCE_NON_GCP_NETWORK_LOCATION',
+        self::NO_SOURCE_INTERNET_LOCATION => 'NO_SOURCE_INTERNET_LOCATION',
         self::INVALID_ARGUMENT => 'INVALID_ARGUMENT',
         self::TRACE_TOO_LONG => 'TRACE_TOO_LONG',
         self::INTERNAL_ERROR => 'INTERNAL_ERROR',
@@ -315,6 +356,7 @@ class Cause
         self::GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT',
         self::GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT',
         self::SOURCE_PSC_CLOUD_SQL_UNSUPPORTED => 'SOURCE_PSC_CLOUD_SQL_UNSUPPORTED',
+        self::SOURCE_EXTERNAL_CLOUD_SQL_UNSUPPORTED => 'SOURCE_EXTERNAL_CLOUD_SQL_UNSUPPORTED',
         self::SOURCE_REDIS_CLUSTER_UNSUPPORTED => 'SOURCE_REDIS_CLUSTER_UNSUPPORTED',
         self::SOURCE_REDIS_INSTANCE_UNSUPPORTED => 'SOURCE_REDIS_INSTANCE_UNSUPPORTED',
         self::SOURCE_FORWARDING_RULE_UNSUPPORTED => 'SOURCE_FORWARDING_RULE_UNSUPPORTED',
@@ -323,6 +365,7 @@ class Cause
         self::UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG => 'UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG',
         self::NO_SERVERLESS_IP_RANGES => 'NO_SERVERLESS_IP_RANGES',
         self::IP_VERSION_PROTOCOL_MISMATCH => 'IP_VERSION_PROTOCOL_MISMATCH',
+        self::GKE_POD_UNKNOWN_ENDPOINT_LOCATION => 'GKE_POD_UNKNOWN_ENDPOINT_LOCATION',
     ];
 
     public static function name($value)

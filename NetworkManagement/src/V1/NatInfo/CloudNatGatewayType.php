@@ -80,6 +80,4 @@ class CloudNatGatewayType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudNatGatewayType::class, \Google\Cloud\NetworkManagement\V1\NatInfo_CloudNatGatewayType::class);
 
