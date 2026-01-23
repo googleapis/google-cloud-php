@@ -47,8 +47,8 @@ class RepoComplianceCommand extends Command
             ->setDescription('ensure all github repositories meet compliance')
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
-            ->addOption('new-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
+            ->addOption('new-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
         ;
     }
 

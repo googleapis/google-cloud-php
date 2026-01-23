@@ -138,7 +138,7 @@ jobs:
   repo-compliance-check:
     name: Repo Compliance Check
     runs-on: ubuntu-latest
-    # if: github.event.pull_request.user.login == 'release-please[bot]'
+    if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
       - uses: actions/checkout@v6
         with:
@@ -149,7 +149,7 @@ jobs:
           php-version: "8.1"
       - name: "Install dependencies"
         run: composer install -d dev
-      - name: "Verify the subrepos exist for new components"
+      - name: "Check repo compliance"
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
         run: ./dev/google-cloud repo:compliance --format=ci -t $GH_TOKEN

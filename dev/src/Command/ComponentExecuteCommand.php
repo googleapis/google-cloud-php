@@ -41,6 +41,16 @@ class ComponentExecuteCommand extends Command
     {
         $this->setName('component:execute')
             ->setDescription('Execute a command for each component')
+            ->setHelp(<<<EOF
+Execute PHP code directly (don't forget to escape `$` for bash):
+
+    ./dev/google-cloud component:execute "copy('SECURITY.md', \\\$component->getPath() . '/SECURITY.md');"
+
+Execute a PHP file:
+
+    ./dev/google-cloud component:execute copy_file.php
+
+EOF)
             ->addArgument('code', InputArgument::REQUIRED, 'Path to a file or PHP code to execute')
         ;
     }
