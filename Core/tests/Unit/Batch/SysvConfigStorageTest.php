@@ -113,13 +113,10 @@ class SysvConfigStorageTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_PROJECT');
         $r = new \ReflectionObject($this->storage);
         $p = $r->getProperty('shmSize');
-        $p->setAccessible(true);
         $this->assertEquals(200000, $p->getValue($this->storage));
         $p = $r->getProperty('perm');
-        $p->setAccessible(true);
         $this->assertEquals(0600, $p->getValue($this->storage));
         $p = $r->getProperty('project');
-        $p->setAccessible(true);
         $this->assertEquals('A', $p->getValue($this->storage));
     }
 
@@ -131,13 +128,10 @@ class SysvConfigStorageTest extends TestCase
         $storage = new SysvConfigStorage();
         $r = new \ReflectionObject($storage);
         $p = $r->getProperty('shmSize');
-        $p->setAccessible(true);
         $this->assertEquals(10, $p->getValue($storage));
         $p = $r->getProperty('perm');
-        $p->setAccessible(true);
         $this->assertEquals(0666, $p->getValue($storage));
         $p = $r->getProperty('project');
-        $p->setAccessible(true);
         $this->assertEquals('B', $p->getValue($storage));
     }
 }

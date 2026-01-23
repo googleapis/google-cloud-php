@@ -85,7 +85,6 @@ class PageTest extends TestCase
 
         $classNodeReflection = new \ReflectionClass($classNode);
         $protoPackagesProperty = $classNodeReflection->getProperty('protoPackages');
-        $protoPackagesProperty->setAccessible(true);
 
         $this->assertEquals(
             $protoPackages,

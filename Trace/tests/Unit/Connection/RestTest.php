@@ -56,7 +56,6 @@ class RestTest extends TestCase
         $rb = $rest->___getProperty('requestBuilder');
         $r = new \ReflectionObject($rb);
         $p = $r->getProperty('baseUri');
-        $p->setAccessible(true);
 
         $this->assertEquals($endpoint, $p->getValue($rb));
     }

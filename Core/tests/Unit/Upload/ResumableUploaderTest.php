@@ -300,7 +300,6 @@ class ResumableUploaderTest extends TestCase
     public function testGetRangeStart($rangeHeader, $expectedRangeStart)
     {
         $method = new \ReflectionMethod(ResumableUploader::class, 'getRangeStart');
-        $method->setAccessible(true);
 
         $uploader = $this->createMock(ResumableUploader::class);
 

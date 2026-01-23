@@ -91,7 +91,6 @@ class ServiceBuilderTest extends TestCase
 
         $ref = new \ReflectionClass($client);
         $prop = $ref->getProperty('connection');
-        $prop->setAccessible(true);
         $conn = $prop->getValue($client);
         $conn->requestWrapper()
             ->getCredentialsFetcher()
@@ -129,7 +128,6 @@ class ServiceBuilderTest extends TestCase
 
         $ref = new \ReflectionClass($client);
         $prop = $ref->getProperty('connection');
-        $prop->setAccessible(true);
         $conn = $prop->getValue($client);
         $conn->requestWrapper()
             ->getCredentialsFetcher()

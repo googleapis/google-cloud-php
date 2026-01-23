@@ -100,13 +100,10 @@ class DatastoreClientTest extends SnippetTestCase
 
         $ref = new \ReflectionClass($ds);
         $opProp = $ref->getProperty('operation');
-        $opProp->setAccessible(true);
-
         $op = $opProp->getValue($ds);
 
         $opRef = new \ReflectionClass($op);
         $nsProp = $opRef->getProperty('namespaceId');
-        $nsProp->setAccessible(true);
 
         $this->assertEquals('my-application-namespace', $nsProp->getValue($op));
     }
@@ -122,13 +119,10 @@ class DatastoreClientTest extends SnippetTestCase
 
         $ref = new \ReflectionClass($ds);
         $opProp = $ref->getProperty('operation');
-        $opProp->setAccessible(true);
-
         $op = $opProp->getValue($ds);
 
         $opRef = new \ReflectionClass($op);
         $dsProp = $opRef->getProperty('databaseId');
-        $dsProp->setAccessible(true);
 
         $this->assertEquals('my-database', $dsProp->getValue($op));
     }

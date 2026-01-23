@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
-use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\RepeatedField;
 use Google\Rpc\Status;
 use Grpc\ChannelCredentials;
 use Monolog\Level;
@@ -638,7 +638,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         $mutations = new Mutations();
         $reflection = new \ReflectionClass($mutations);
         $property = $reflection->getProperty('mutations');
-        $property->setAccessible(true);
         $property->setValue($mutations, $protoMutations);
 
         return $mutations;
@@ -653,7 +652,6 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
         $rowRules = new ReadModifyWriteRowRules();
         $reflection = new \ReflectionClass($rowRules);
         $property = $reflection->getProperty('rules');
-        $property->setAccessible(true);
         $property->setValue($rowRules, $protoRowRules);
 
         return $rowRules;

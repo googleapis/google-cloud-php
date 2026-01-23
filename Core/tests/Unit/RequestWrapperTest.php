@@ -586,14 +586,12 @@ class RequestWrapperTest extends TestCase
         // Assert Service Account Credentials
         $cacheRefClass = new \ReflectionClass($fetcherCache);
         $cacheProp = $cacheRefClass->getProperty('fetcher');
-        $cacheProp->setAccessible(true);
         $fetcher = $cacheProp->getValue($fetcherCache);
         $this->assertInstanceOf(ServiceAccountCredentials::class, $fetcher);
 
         // Assert "JWT Access With Scope" is enabled by default
         $fetcherRefClass = new \ReflectionClass($fetcher);
         $fetcherProp = $fetcherRefClass->getProperty('useJwtAccessWithScope');
-        $fetcherProp->setAccessible(true);
         $this->assertTrue($fetcherProp->getValue($fetcher));
 
         // Assert a JWT token is created without using HTTP
@@ -871,8 +869,6 @@ class RequestWrapperTest extends TestCase
 
         $reflectionClass = new ReflectionClass($wrapper);
         $property = $reflectionClass->getProperty('retryListener');
-        $property->setAccessible(true);
-
         $this->assertNotEmpty($property->getValue($wrapper), 'The retryListener property should be set.');
         $this->assertEquals(
             $listener,

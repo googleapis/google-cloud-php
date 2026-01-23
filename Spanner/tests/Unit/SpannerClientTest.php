@@ -125,7 +125,6 @@ class SpannerClientTest extends TestCase
 
         $ref = new ReflectionClass($batch);
         $prop = $ref->getProperty('session');
-        $prop->setAccessible(true);
 
         $this->assertEquals(
             self::SESSION,
@@ -560,7 +559,6 @@ class SpannerClientTest extends TestCase
 
         $reflectedClient = new ReflectionClass($client);
         $property = $reflectedClient->getProperty('isolationLevel');
-        $property->setAccessible(true);
         $this->assertEquals(
             IsolationLevel::REPEATABLE_READ,
             $property->getValue($client)
@@ -569,7 +567,6 @@ class SpannerClientTest extends TestCase
         $instance = $client->instance('test');
         $reflectedInstance = new ReflectionClass($instance);
         $property = $reflectedInstance->getProperty('isolationLevel');
-        $property->setAccessible(true);
         $this->assertEquals(
             IsolationLevel::REPEATABLE_READ,
             $property->getValue($instance)
@@ -578,7 +575,6 @@ class SpannerClientTest extends TestCase
         $database = $instance->database('test');
         $reflectedDb = new ReflectionClass($database);
         $property = $reflectedDb->getProperty('isolationLevel');
-        $property->setAccessible(true);
         $this->assertEquals(
             IsolationLevel::REPEATABLE_READ,
             $property->getValue($database)
@@ -597,7 +593,6 @@ class SpannerClientTest extends TestCase
 
         $reflectedClient = new ReflectionClass($client);
         $property = $reflectedClient->getProperty('isolationLevel');
-        $property->setAccessible(true);
         $this->assertEquals(
             IsolationLevel::REPEATABLE_READ,
             $property->getValue($client)
@@ -606,7 +601,6 @@ class SpannerClientTest extends TestCase
         $instance = $client->instance('test');
         $reflectedInstance = new ReflectionClass($instance);
         $property = $reflectedInstance->getProperty('isolationLevel');
-        $property->setAccessible(true);
         $this->assertEquals(
             IsolationLevel::REPEATABLE_READ,
             $property->getValue($instance)
@@ -615,7 +609,6 @@ class SpannerClientTest extends TestCase
         $database = $instance->database('test');
         $reflectedDb = new ReflectionClass($database);
         $property = $reflectedDb->getProperty('isolationLevel');
-        $property->setAccessible(true);
         $this->assertEquals(
             IsolationLevel::REPEATABLE_READ,
             $property->getValue($database)
@@ -766,8 +759,6 @@ class SpannerClientTest extends TestCase
     {
         $reflection = new ReflectionClass($client);
         $property = $reflection->getProperty('totalActiveChannels');
-        $property->setAccessible('true');
-
         return $property->getValue($client);
     }
 
@@ -779,7 +770,6 @@ class SpannerClientTest extends TestCase
         ]);
         $reflection = new ReflectionClass($client);
         $method = $reflection->getMethod('configureKeepAlive');
-        $method->setAccessible(true);
 
         $config = [];
         $newConfig = $method->invoke($client, $config);
