@@ -15,7 +15,7 @@ jobs:
             ARCH: amd64
         name: GAPIC Showcase Conformance Tests
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v6
         - name: Clone googleapis/google-cloud-php
           uses: actions/checkout@master
           with:
