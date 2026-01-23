@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.apiregistry.v1beta",
+    "libraryPackage": "Google\\Cloud\\ApiRegistry\\V1beta",
+    "services": {
+        "CloudApiRegistry": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudApiRegistryGapicClient",
+                    "rpcs": {
+                        "GetMcpServer": {
+                            "methods": [
+                                "getMcpServer"
+                            ]
+                        },
+                        "GetMcpTool": {
+                            "methods": [
+                                "getMcpTool"
+                            ]
+                        },
+                        "ListMcpServers": {
+                            "methods": [
+                                "listMcpServers"
+                            ]
+                        },
+                        "ListMcpTools": {
+                            "methods": [
+                                "listMcpTools"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

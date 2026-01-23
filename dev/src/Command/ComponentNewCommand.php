@@ -298,7 +298,7 @@ class ComponentNewCommand extends Command
 
     private function getHomePageFromDocsUrl(?string $url): ?string
     {
-        $productHomePage = !empty($url) ? explode('/docs', $url)[0] : null;
+	$productHomePage = !empty($url) ? explode('/docs/', $url)[0] : null;
         $response = $this->httpClient->get($productHomePage, ['http_errors' => false]);
         return $response->getStatusCode() >= 400 ? null : $productHomePage;
     }
