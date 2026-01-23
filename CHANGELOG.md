@@ -1,5 +1,597 @@
 # Changelog
 
+## 0.317.0
+
+<details><summary>googleads/ad-manager 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>googleads/data-manager 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>googleads/marketingplatform-admin 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-advisorynotifications 1.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.6.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apihub 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apphub 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-chat 0.16.1</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-meet 0.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.35.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.20.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-capacityplanner 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-chronicle 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 1.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-configdelivery 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 2.8.0</summary>
+
+
+
+### Features
+
+* [Container] Add SwapConfig to enable and configure swap memory for node pools ([#8880](https://github.com/googleapis/google-cloud-php/issues/8880)) ([4ee4389](https://github.com/googleapis/google-cloud-php/commit/4ee4389b757f813365eebbfbee66104aac3ebf16))
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-core 1.71.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-devicestreaming 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.5.1</summary>
+
+
+
+### Documentation
+
+* [DocumentAi] Regenerated REST and RPC Document AI documentation to include missing changes from September 2024 to November 2025 ([#8878](https://github.com/googleapis/google-cloud-php/issues/8878)) ([3a6af11](https://github.com/googleapis/google-cloud-php/commit/3a6af110a040feb3eac3c5aeebda0dc781ec0589))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-financialservices 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.2-RC1
+
+</summary>
+
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.316.0...v0.317.0) (2026-01-23)
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/geo-common-protos 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 2.6.0</summary>
+
+
+
+### Features
+
+* [Kms] add the SingleTenantHsm functionality including the management API and resource types ([#8871](https://github.com/googleapis/google-cloud-php/issues/8871)) ([0980b8f](https://github.com/googleapis/google-cloud-php/commit/0980b8fb85059b4337095397de919201f973546a))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 1.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-licensemanager 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-locationfinder 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.34.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-lustre 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-maintenance 0.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managedkafka-schemaregistry 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-netapp 1.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.5.2</summary>
+
+
+
+### Documentation
+
+* [NetworkConnectivity] Added OUTPUT_ONLY annotations to create_time and update_time in InternalRange to reflect existing service behavior ([#8869](https://github.com/googleapis/google-cloud-php/issues/8869)) ([278bfc7](https://github.com/googleapis/google-cloud-php/commit/278bfc7c034442837b0294b15a5272f64a70e0c7))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.8.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] add fields and messages for GKE Pods and IP masquerading ([#8879](https://github.com/googleapis/google-cloud-php/issues/8879)) ([d1fdcdd](https://github.com/googleapis/google-cloud-php/commit/d1fdcddb99f2c42052a14ae6a956f4f5251fec8b))
+
+
+### Documentation
+
+* Update comments ([d1fdcdd](https://github.com/googleapis/google-cloud-php/commit/d1fdcddb99f2c42052a14ae6a956f4f5251fec8b))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policysimulator 1.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-privilegedaccessmanager 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-quotas 1.5.3</summary>
+
+
+
+### Documentation
+
+* [Quotas] Correct typo in comment for field `quota_id` ([#8876](https://github.com/googleapis/google-cloud-php/issues/8876)) ([798a1c7](https://github.com/googleapis/google-cloud-php/commit/798a1c74f8c5cabddf01a2a98d9c317619cef3b5))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 1.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.6.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.6.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 1.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css 0.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.49.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.6.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-support 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-telcoautomation 1.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.9.5</summary>
+
+
+
+</details>
+
 ## 0.316.0
 
 <details><summary>google/cloud-backupdr 0.11.0</summary>
