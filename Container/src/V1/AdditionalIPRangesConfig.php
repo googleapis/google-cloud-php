@@ -34,6 +34,12 @@ class AdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string pod_ipv4_range_names = 2;</code>
      */
     private $pod_ipv4_range_names;
+    /**
+     * Draining status of the additional subnet.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalIPRangesConfig.Status status = 3;</code>
+     */
+    protected $status = 0;
 
     /**
      * Constructor.
@@ -51,6 +57,8 @@ class AdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      *           pod IPs.
      *           Example1: gke-pod-range1
      *           Example2: gke-pod-range1,gke-pod-range2
+     *     @type int $status
+     *           Draining status of the additional subnet.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,6 +126,32 @@ class AdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->pod_ipv4_range_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Draining status of the additional subnet.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalIPRangesConfig.Status status = 3;</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Draining status of the additional subnet.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdditionalIPRangesConfig.Status status = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\AdditionalIPRangesConfig\Status::class);
+        $this->status = $var;
 
         return $this;
     }

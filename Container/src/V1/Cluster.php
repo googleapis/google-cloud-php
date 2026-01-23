@@ -113,7 +113,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $network = '';
     /**
      * The IP address range of the container pods in this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `10.96.0.0/14`). Leave blank to have
      * one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      *
@@ -427,7 +427,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The IP address range of the Kubernetes services in
      * this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`). Service addresses are
      * typically put in the last `/16` from the container CIDR.
      *
@@ -477,7 +477,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     protected $enable_tpu = false;
     /**
      * Output only. The IP address range of the Cloud TPUs in this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
      * This field is deprecated due to the deprecation of 2VM TPU. The end of life
      * date for 2VM TPU is 2025-04-25.
@@ -627,6 +627,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.AnonymousAuthenticationConfig anonymous_authentication_config = 164;</code>
      */
     protected $anonymous_authentication_config = null;
+    /**
+     * Configuration for Managed OpenTelemetry pipeline.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig managed_opentelemetry_config = 168;</code>
+     */
+    protected $managed_opentelemetry_config = null;
 
     /**
      * Constructor.
@@ -698,7 +704,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           network will be used.
      *     @type string $cluster_ipv4_cidr
      *           The IP address range of the container pods in this cluster, in
-     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `10.96.0.0/14`). Leave blank to have
      *           one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      *     @type \Google\Cloud\Container\V1\AddonsConfig $addons_config
@@ -844,7 +850,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string $services_ipv4_cidr
      *           Output only. The IP address range of the Kubernetes services in
      *           this cluster, in
-     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `1.2.3.4/29`). Service addresses are
      *           typically put in the last `/16` from the container CIDR.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
@@ -867,7 +873,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           date for 2VM TPU is 2025-04-25.
      *     @type string $tpu_ipv4_cidr_block
      *           Output only. The IP address range of the Cloud TPUs in this cluster, in
-     *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     *           [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `1.2.3.4/29`).
      *           This field is deprecated due to the deprecation of 2VM TPU. The end of life
      *           date for 2VM TPU is 2025-04-25.
@@ -923,6 +929,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\AnonymousAuthenticationConfig $anonymous_authentication_config
      *           Configuration for limiting anonymous access to all endpoints except the
      *           health checks.
+     *     @type \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig $managed_opentelemetry_config
+     *           Configuration for Managed OpenTelemetry pipeline.
      * }
      */
     public function __construct($data = NULL) {
@@ -1268,7 +1276,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP address range of the container pods in this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `10.96.0.0/14`). Leave blank to have
      * one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      *
@@ -1282,7 +1290,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP address range of the container pods in this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `10.96.0.0/14`). Leave blank to have
      * one automatically chosen or specify a `/14` block in `10.0.0.0/8`.
      *
@@ -2719,7 +2727,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The IP address range of the Kubernetes services in
      * this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`). Service addresses are
      * typically put in the last `/16` from the container CIDR.
      *
@@ -2734,7 +2742,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The IP address range of the Kubernetes services in
      * this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`). Service addresses are
      * typically put in the last `/16` from the container CIDR.
      *
@@ -2918,7 +2926,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The IP address range of the Cloud TPUs in this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
      * This field is deprecated due to the deprecation of 2VM TPU. The end of life
      * date for 2VM TPU is 2025-04-25.
@@ -2937,7 +2945,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The IP address range of the Cloud TPUs in this cluster, in
-     * [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
+     * [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      * notation (e.g. `1.2.3.4/29`).
      * This field is deprecated due to the deprecation of 2VM TPU. The end of life
      * date for 2VM TPU is 2025-04-25.
@@ -3740,6 +3748,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AnonymousAuthenticationConfig::class);
         $this->anonymous_authentication_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for Managed OpenTelemetry pipeline.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig managed_opentelemetry_config = 168;</code>
+     * @return \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig|null
+     */
+    public function getManagedOpentelemetryConfig()
+    {
+        return $this->managed_opentelemetry_config;
+    }
+
+    public function hasManagedOpentelemetryConfig()
+    {
+        return isset($this->managed_opentelemetry_config);
+    }
+
+    public function clearManagedOpentelemetryConfig()
+    {
+        unset($this->managed_opentelemetry_config);
+    }
+
+    /**
+     * Configuration for Managed OpenTelemetry pipeline.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig managed_opentelemetry_config = 168;</code>
+     * @param \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig $var
+     * @return $this
+     */
+    public function setManagedOpentelemetryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig::class);
+        $this->managed_opentelemetry_config = $var;
 
         return $this;
     }

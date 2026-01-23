@@ -106,13 +106,17 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      */
     protected $pod_ipv4_range_utilization = 0.0;
     /**
-     * Output only. The subnetwork path for the node pool.
+     * Optional. The subnetwork name/path for the node pool.
      * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * If the cluster is associated with multiple subnetworks, the subnetwork for
-     * the node pool is picked based on the IP utilization during node pool
-     * creation and is immutable.
+     * If the cluster is associated with multiple subnetworks, the subnetwork can
+     * be either:
+     * 1. A user supplied subnetwork name/full path during node pool creation.
+     *    Example1: my-subnet
+     *    Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
+     * 2. A subnetwork path picked based on the IP utilization during node pool
+     *    creation and is immutable.
      *
-     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $subnetwork = '';
     /**
@@ -185,11 +189,15 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           The ratio is Usage/[Total number of IPs in the secondary range],
      *           Usage=numNodes*numZones*podIPsPerNode.
      *     @type string $subnetwork
-     *           Output only. The subnetwork path for the node pool.
+     *           Optional. The subnetwork name/path for the node pool.
      *           Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     *           If the cluster is associated with multiple subnetworks, the subnetwork for
-     *           the node pool is picked based on the IP utilization during node pool
-     *           creation and is immutable.
+     *           If the cluster is associated with multiple subnetworks, the subnetwork can
+     *           be either:
+     *           1. A user supplied subnetwork name/full path during node pool creation.
+     *              Example1: my-subnet
+     *              Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
+     *           2. A subnetwork path picked based on the IP utilization during node pool
+     *              creation and is immutable.
      *     @type \Google\Cloud\Container\V1\NetworkTierConfig $network_tier_config
      *           Output only. The network tier configuration for the node pool inherits from
      *           the cluster-level configuration and remains immutable throughout the node
@@ -538,13 +546,17 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The subnetwork path for the node pool.
+     * Optional. The subnetwork name/path for the node pool.
      * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * If the cluster is associated with multiple subnetworks, the subnetwork for
-     * the node pool is picked based on the IP utilization during node pool
-     * creation and is immutable.
+     * If the cluster is associated with multiple subnetworks, the subnetwork can
+     * be either:
+     * 1. A user supplied subnetwork name/full path during node pool creation.
+     *    Example1: my-subnet
+     *    Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
+     * 2. A subnetwork path picked based on the IP utilization during node pool
+     *    creation and is immutable.
      *
-     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSubnetwork()
@@ -553,13 +565,17 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The subnetwork path for the node pool.
+     * Optional. The subnetwork name/path for the node pool.
      * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
-     * If the cluster is associated with multiple subnetworks, the subnetwork for
-     * the node pool is picked based on the IP utilization during node pool
-     * creation and is immutable.
+     * If the cluster is associated with multiple subnetworks, the subnetwork can
+     * be either:
+     * 1. A user supplied subnetwork name/full path during node pool creation.
+     *    Example1: my-subnet
+     *    Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
+     * 2. A subnetwork path picked based on the IP utilization during node pool
+     *    creation and is immutable.
      *
-     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -289,6 +289,20 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.BootDisk boot_disk = 47;</code>
      */
     protected $boot_disk = null;
+    /**
+     * The desired node drain configuration for nodes in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodeDrainConfig node_drain_config = 48;</code>
+     */
+    protected $node_drain_config = null;
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can
+     * scale down underutilized nodes. If not set, nodes are scaled down by
+     * default behavior, i.e. according to the chosen autoscaling profile.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 49;</code>
+     */
+    protected $consolidation_delay = null;
 
     /**
      * Constructor.
@@ -426,6 +440,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           The desired boot disk config for nodes in the node pool.
      *           Initiates an upgrade operation that migrates the nodes in the
      *           node pool to the specified boot disk config.
+     *     @type \Google\Cloud\Container\V1\NodePool\NodeDrainConfig $node_drain_config
+     *           The desired node drain configuration for nodes in the node pool.
+     *     @type \Google\Protobuf\Duration $consolidation_delay
+     *           Consolidation delay defines duration after which the Cluster Autoscaler can
+     *           scale down underutilized nodes. If not set, nodes are scaled down by
+     *           default behavior, i.e. according to the chosen autoscaling profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -1693,6 +1713,82 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BootDisk::class);
         $this->boot_disk = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired node drain configuration for nodes in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodeDrainConfig node_drain_config = 48;</code>
+     * @return \Google\Cloud\Container\V1\NodePool\NodeDrainConfig|null
+     */
+    public function getNodeDrainConfig()
+    {
+        return $this->node_drain_config;
+    }
+
+    public function hasNodeDrainConfig()
+    {
+        return isset($this->node_drain_config);
+    }
+
+    public function clearNodeDrainConfig()
+    {
+        unset($this->node_drain_config);
+    }
+
+    /**
+     * The desired node drain configuration for nodes in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodeDrainConfig node_drain_config = 48;</code>
+     * @param \Google\Cloud\Container\V1\NodePool\NodeDrainConfig $var
+     * @return $this
+     */
+    public function setNodeDrainConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\NodeDrainConfig::class);
+        $this->node_drain_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can
+     * scale down underutilized nodes. If not set, nodes are scaled down by
+     * default behavior, i.e. according to the chosen autoscaling profile.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 49;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getConsolidationDelay()
+    {
+        return $this->consolidation_delay;
+    }
+
+    public function hasConsolidationDelay()
+    {
+        return isset($this->consolidation_delay);
+    }
+
+    public function clearConsolidationDelay()
+    {
+        unset($this->consolidation_delay);
+    }
+
+    /**
+     * Consolidation delay defines duration after which the Cluster Autoscaler can
+     * scale down underutilized nodes. If not set, nodes are scaled down by
+     * default behavior, i.e. according to the chosen autoscaling profile.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 49;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setConsolidationDelay($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->consolidation_delay = $var;
 
         return $this;
     }
