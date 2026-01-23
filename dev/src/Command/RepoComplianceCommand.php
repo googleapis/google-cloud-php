@@ -47,8 +47,6 @@ class RepoComplianceCommand extends Command
             ->setDescription('ensure all github repositories meet compliance')
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
-            ->addOption('page', 'p', InputOption::VALUE_REQUIRED, 'page to start from', '1')
-            ->addOption('results-per-page', 'r', InputOption::VALUE_REQUIRED, 'results to display per page (0 for all)', '10')
             ->addOption('new-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
         ;
@@ -61,58 +59,44 @@ class RepoComplianceCommand extends Command
         $this->github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
         $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('new-packagist-token') ?? '');
 
-        $nextPageQuestion = new ConfirmationQuestion('Next Page (enter), "n" to quit: ', true);
-        $table = (new Table($output))->setHeaders([
-            'name' => 'Name',
-            'repo_config' => 'Repo Config',
-            'packagist_config' => 'Packagist Config',
-            'teams' => 'Teams',
-            'compliant' => 'Compliant?'
-        ]);
-        if ($componentName = $input->getOption('component')) {
-            $table->setVertical();
-        }
-        $page = (int) $input->getOption('page');
-        $resultsPerPage = (int) $input->getOption('results-per-page');
         $format = $input->getOption('format');
         if (!in_array($format, ['ci', 'table'])) {
             throw new InvalidArgumentException('Invalid format "' . $format . '", must be "table" or "ci"');
         }
+
+        $table = (new Table($output));
+        $table->setColumnWidths([55, 20, 20, 25, 50]);
+        $table->setStyle('compact');
+        $headers = $format == 'ci' ? ['Name', 'Compliance'] : [
+            'Name',
+            'Repo Config',
+            'Packagist Config',
+            'Teams',
+            'Compliance'
+        ];
+        (clone $table)->setHeaders($headers)->render();
+
+        $componentName = $input->getOption('component');
         $components = $componentName ? [new Component($componentName)] : Component::getComponents();
 
-        if (!$input->getOption('token')) {
-            $output->writeln('<error>No token provided - please provide token to update compliance</error>');
-        }
+        $isCompliant = true;
         foreach ($components as $i => $component) {
-            if ($i < (($page-1) * $resultsPerPage)) {
-                continue;
-            }
-            if ($format == 'table' && 0 !== $resultsPerPage && $i >= ($page * $resultsPerPage)) {
-                $table->render();
-                if (!$this->getHelper('question')->ask($input, $output, $nextPageQuestion)) {
-                    return 0;
-                }
-                $table->setRows([]);
-                $page++;
-            }
             $details = $this->getRepoDetails($component);
-            $compliance = [
-                'settings' => true,
-                'packagist' => true,
-                'teams' => true,
-            ];
+            $settingsCheck = true;
+            $packagistCheck = true;
+            $teamCheck = true;
 
             $refreshDetails = false;
             if (!$this->checkSettingsCompliance($details)) {
-                $compliance['settings'] = false;
+                $settingsCheck = false;
                 $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
             }
             if (!$this->checkPackagistCompliance($details)) {
-                $compliance['packagist'] = false;
+                $packagistCheck = false;
                 $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $component->getRepoName());
             }
             if (!$this->checkTeamCompliance($details)) {
-                $compliance['teams'] = $this->github->token ? false : null;
+                $teamCheck = $this->github->token ? false : null;
                 $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
             }
             if ($refreshDetails) {
@@ -129,39 +113,23 @@ class RepoComplianceCommand extends Command
                     $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook token updated.', $repoName));
                 }
             }
-            $isCompliant = true;
-            $details['compliant'] = '<info>REPO IS COMPLIANT</info>';
-            foreach ($compliance as $key => $val) {
-                if ($val === false) {
-                    $isCompliant = false;
-                    $details['compliant'] = '<error>NOT COMPLIANT</error>';
-                } elseif ($isCompliant && $val === null) {
-                    $details['compliant'] = '<error>???</error> (token required)';
-                    $isCompliant = null;
-                }
-            }
 
-            if ($format == 'ci' ) {
-                $output->writeln($component->getName() . ': ' . $details['compliant']);
-                if (!$isCompliant) {
-                    return 1;
-                }
-            }
+            $emoji = fn (?bool $check) => match ($check) { null => '❓', true => '✅', false => '❌'};
+            $details['compliant'] = implode("\n", [
+                sprintf('%s Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($settingsCheck)),
+                sprintf('%s Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
+                sprintf('%s Github teams permissions are configured correctly', $emoji($teamCheck)),
+                '',
+            ]);
 
-            if (!$isCompliant) {
-                $details['compliant'] .= PHP_EOL . implode("\n", array_map(
-                    fn ($k, $v) => $k . ': ' . (is_null($v) ? '???' : var_export($v, true)),
-                    array_keys($compliance),
-                    array_values($compliance)
-                ));
+            $isCompliant = $isCompliant && $settingsCheck && $packagistCheck && $teamCheck;
+            if ($format == 'ci') {
+                unset($details['repo_config'], $details['packagist_config'], $details['teams']);
             }
-            $table->addRow($details);
-        }
-        if ($format == 'table') {
-            $table->render();
+            (clone $table)->addRow($details)->render();
         }
 
-        return 0;
+        return $isCompliant ? Command::SUCCESS : Command::FAILURE;
     }
 
     private function checkSettingsCompliance(array $details)
@@ -183,8 +151,8 @@ discussions: false";
 
     private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$this->github->token) {
-            // without a token, don't ask to fix compliance
+        if (!$this->github->token || $input->getOption('format') == 'ci') {
+            // without a token, or in CI mode, don't ask to fix compliance
             return false;
         }
         $explodedConfig = array_map(fn ($line) => explode(': ', $line), explode("\n", $details['repo_config']));
@@ -218,8 +186,8 @@ discussions: false";
 
     private function askFixPackagistCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$this->github->token) {
-            // without a token, don't ask to fix compliance
+        if (!$this->github->token || $input->getOption('format') == 'ci') {
+            // without a token, or in CI mode, don't ask to fix compliance
             return false;
         }
         throw new \Exception('not implemented');
@@ -227,8 +195,8 @@ discussions: false";
 
     private function askFixTeamCompliance(InputInterface $input, OutputInterface $output, string $repoName)
     {
-        if (!$this->github->token) {
-            // without a token, don't ask to fix compliance
+        if (!$this->github->token || $input->getOption('format') == 'ci') {
+            // without a token, or in CI mode, don't ask to fix compliance
             return false;
         }
         $question = new ConfirmationQuestion(sprintf(
