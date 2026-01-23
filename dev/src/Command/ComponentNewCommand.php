@@ -48,7 +48,8 @@ class ComponentNewCommand extends Command
         '.gitattributes',
         'CONTRIBUTING.md',
         'LICENSE',
-        'VERSION'
+        'SECURITY.md',
+        'VERSION',
     ];
     private const TEMPLATE_FILES = [
         '.github/pull_request_template.md.twig',
