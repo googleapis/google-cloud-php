@@ -172,6 +172,85 @@
                 }
             }
         },
+        "HsmManagement": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "HsmManagementGapicClient",
+                    "rpcs": {
+                        "ApproveSingleTenantHsmInstanceProposal": {
+                            "methods": [
+                                "approveSingleTenantHsmInstanceProposal"
+                            ]
+                        },
+                        "CreateSingleTenantHsmInstance": {
+                            "methods": [
+                                "createSingleTenantHsmInstance"
+                            ]
+                        },
+                        "CreateSingleTenantHsmInstanceProposal": {
+                            "methods": [
+                                "createSingleTenantHsmInstanceProposal"
+                            ]
+                        },
+                        "DeleteSingleTenantHsmInstanceProposal": {
+                            "methods": [
+                                "deleteSingleTenantHsmInstanceProposal"
+                            ]
+                        },
+                        "ExecuteSingleTenantHsmInstanceProposal": {
+                            "methods": [
+                                "executeSingleTenantHsmInstanceProposal"
+                            ]
+                        },
+                        "GetSingleTenantHsmInstance": {
+                            "methods": [
+                                "getSingleTenantHsmInstance"
+                            ]
+                        },
+                        "GetSingleTenantHsmInstanceProposal": {
+                            "methods": [
+                                "getSingleTenantHsmInstanceProposal"
+                            ]
+                        },
+                        "ListSingleTenantHsmInstanceProposals": {
+                            "methods": [
+                                "listSingleTenantHsmInstanceProposals"
+                            ]
+                        },
+                        "ListSingleTenantHsmInstances": {
+                            "methods": [
+                                "listSingleTenantHsmInstances"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "KeyManagementService": {
             "clients": {
                 "grpc": {

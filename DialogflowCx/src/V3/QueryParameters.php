@@ -79,6 +79,16 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     protected $parameters = null;
     /**
+     * Scope for the parameters. If not specified, parameters will be treated as
+     * session parameters. Parameters with custom scope will not be put into
+     * [session parameters][google.cloud.dialogflow.cx.v3.SessionInfo.parameters].
+     * You can reference the parameters with custom scope in the agent with the
+     * following format: $parameter-scope.params.parameter-id.
+     *
+     * Generated from protobuf field <code>string parameter_scope = 12;</code>
+     */
+    protected $parameter_scope = '';
+    /**
      * The unique identifier of the [page][google.cloud.dialogflow.cx.v3.Page] to
      * override the [current page][QueryResult.current_page] in the session.
      * Format:
@@ -133,6 +143,23 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string flow_versions = 14 [(.google.api.resource_reference) = {</code>
      */
     private $flow_versions;
+    /**
+     * Optional. The unique identifier of the
+     * [playbook][google.cloud.dialogflow.cx.v3.Playbook] to start or continue the
+     * session with. If `current_playbook` is specified, the previous state of the
+     * session will be ignored by Dialogflow.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>`.
+     *
+     * Generated from protobuf field <code>string current_playbook = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $current_playbook = '';
+    /**
+     * Optional. Use the specified LLM model settings for processing the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $llm_model_settings = null;
     /**
      * The channel which this query is for.
      * If specified, only the
@@ -243,6 +270,12 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           * MapValue value: If parameter's entity type is a composite entity then use
      *           map from composite entity property names to property values, otherwise,
      *           use parameter value.
+     *     @type string $parameter_scope
+     *           Scope for the parameters. If not specified, parameters will be treated as
+     *           session parameters. Parameters with custom scope will not be put into
+     *           [session parameters][google.cloud.dialogflow.cx.v3.SessionInfo.parameters].
+     *           You can reference the parameters with custom scope in the agent with the
+     *           following format: $parameter-scope.params.parameter-id.
      *     @type string $current_page
      *           The unique identifier of the [page][google.cloud.dialogflow.cx.v3.Page] to
      *           override the [current page][QueryResult.current_page] in the session.
@@ -278,6 +311,15 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           flow X will go through version 1 regardless of the version configuration in
      *           the environment. Each flow can have at most one version specified in this
      *           list.
+     *     @type string $current_playbook
+     *           Optional. The unique identifier of the
+     *           [playbook][google.cloud.dialogflow.cx.v3.Playbook] to start or continue the
+     *           session with. If `current_playbook` is specified, the previous state of the
+     *           session will be ignored by Dialogflow.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>`.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $llm_model_settings
+     *           Optional. Use the specified LLM model settings for processing the request.
      *     @type string $channel
      *           The channel which this query is for.
      *           If specified, only the
@@ -551,6 +593,40 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Scope for the parameters. If not specified, parameters will be treated as
+     * session parameters. Parameters with custom scope will not be put into
+     * [session parameters][google.cloud.dialogflow.cx.v3.SessionInfo.parameters].
+     * You can reference the parameters with custom scope in the agent with the
+     * following format: $parameter-scope.params.parameter-id.
+     *
+     * Generated from protobuf field <code>string parameter_scope = 12;</code>
+     * @return string
+     */
+    public function getParameterScope()
+    {
+        return $this->parameter_scope;
+    }
+
+    /**
+     * Scope for the parameters. If not specified, parameters will be treated as
+     * session parameters. Parameters with custom scope will not be put into
+     * [session parameters][google.cloud.dialogflow.cx.v3.SessionInfo.parameters].
+     * You can reference the parameters with custom scope in the agent with the
+     * following format: $parameter-scope.params.parameter-id.
+     *
+     * Generated from protobuf field <code>string parameter_scope = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParameterScope($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parameter_scope = $var;
+
+        return $this;
+    }
+
+    /**
      * The unique identifier of the [page][google.cloud.dialogflow.cx.v3.Page] to
      * override the [current page][QueryResult.current_page] in the session.
      * Format:
@@ -726,6 +802,78 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->flow_versions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The unique identifier of the
+     * [playbook][google.cloud.dialogflow.cx.v3.Playbook] to start or continue the
+     * session with. If `current_playbook` is specified, the previous state of the
+     * session will be ignored by Dialogflow.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>`.
+     *
+     * Generated from protobuf field <code>string current_playbook = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCurrentPlaybook()
+    {
+        return $this->current_playbook;
+    }
+
+    /**
+     * Optional. The unique identifier of the
+     * [playbook][google.cloud.dialogflow.cx.v3.Playbook] to start or continue the
+     * session with. If `current_playbook` is specified, the previous state of the
+     * session will be ignored by Dialogflow.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>`.
+     *
+     * Generated from protobuf field <code>string current_playbook = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCurrentPlaybook($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->current_playbook = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Use the specified LLM model settings for processing the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings|null
+     */
+    public function getLlmModelSettings()
+    {
+        return $this->llm_model_settings;
+    }
+
+    public function hasLlmModelSettings()
+    {
+        return isset($this->llm_model_settings);
+    }
+
+    public function clearLlmModelSettings()
+    {
+        unset($this->llm_model_settings);
+    }
+
+    /**
+     * Optional. Use the specified LLM model settings for processing the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.LlmModelSettings llm_model_settings = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $var
+     * @return $this
+     */
+    public function setLlmModelSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings::class);
+        $this->llm_model_settings = $var;
 
         return $this;
     }

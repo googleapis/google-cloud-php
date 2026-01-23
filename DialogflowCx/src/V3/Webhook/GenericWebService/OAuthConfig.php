@@ -29,6 +29,15 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      */
     protected $client_secret = '';
     /**
+     * Optional. The name of the SecretManager secret version resource storing
+     * the client secret. If this field is set, the `client_secret` field will
+     * be ignored. Format:
+     * `projects/{project}/secrets/{secret}/versions/{version}`
+     *
+     * Generated from protobuf field <code>string secret_version_for_client_secret = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $secret_version_for_client_secret = '';
+    /**
      * Required. The token endpoint provided by the 3rd party platform to
      * exchange an access token.
      *
@@ -52,6 +61,11 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      *           Required. The client ID provided by the 3rd party platform.
      *     @type string $client_secret
      *           Optional. The client secret provided by the 3rd party platform.
+     *     @type string $secret_version_for_client_secret
+     *           Optional. The name of the SecretManager secret version resource storing
+     *           the client secret. If this field is set, the `client_secret` field will
+     *           be ignored. Format:
+     *           `projects/{project}/secrets/{secret}/versions/{version}`
      *     @type string $token_endpoint
      *           Required. The token endpoint provided by the 3rd party platform to
      *           exchange an access token.
@@ -112,6 +126,38 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->client_secret = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the SecretManager secret version resource storing
+     * the client secret. If this field is set, the `client_secret` field will
+     * be ignored. Format:
+     * `projects/{project}/secrets/{secret}/versions/{version}`
+     *
+     * Generated from protobuf field <code>string secret_version_for_client_secret = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSecretVersionForClientSecret()
+    {
+        return $this->secret_version_for_client_secret;
+    }
+
+    /**
+     * Optional. The name of the SecretManager secret version resource storing
+     * the client secret. If this field is set, the `client_secret` field will
+     * be ignored. Format:
+     * `projects/{project}/secrets/{secret}/versions/{version}`
+     *
+     * Generated from protobuf field <code>string secret_version_for_client_secret = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecretVersionForClientSecret($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secret_version_for_client_secret = $var;
 
         return $this;
     }

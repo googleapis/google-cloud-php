@@ -106,12 +106,17 @@ class Cause
      */
     const ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID = 53;
     /**
-     * Packet is sent from the Internet or Google service to the private IPv6
-     * address.
+     * Packet is sent from the Internet to the private IPv6 address.
      *
      * Generated from protobuf enum <code>NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS = 44;</code>
      */
     const NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS = 44;
+    /**
+     * Packet is sent from the Internet to the private IPv4 address.
+     *
+     * Generated from protobuf enum <code>NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV4_ADDRESS = 109;</code>
+     */
+    const NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV4_ADDRESS = 109;
     /**
      * Packet is sent from the external IPv6 source address of an instance to
      * the private IPv6 address of an instance.
@@ -211,6 +216,12 @@ class Cause
      * Generated from protobuf enum <code>GKE_CLUSTER_NOT_RUNNING = 27;</code>
      */
     const GKE_CLUSTER_NOT_RUNNING = 27;
+    /**
+     * Packet sent from or to a GKE Pod that is not in running state.
+     *
+     * Generated from protobuf enum <code>GKE_POD_NOT_RUNNING = 103;</code>
+     */
+    const GKE_POD_NOT_RUNNING = 103;
     /**
      * Packet sent from or to a Cloud SQL instance that is not in running state.
      *
@@ -649,6 +660,13 @@ class Cause
      */
     const NO_MATCHING_NAT64_GATEWAY = 90;
     /**
+     * Packet is dropped due to matching a Private NAT64 gateway with no rules
+     * for source IPv6 addresses.
+     *
+     * Generated from protobuf enum <code>NO_CONFIGURED_PRIVATE_NAT64_RULE = 107;</code>
+     */
+    const NO_CONFIGURED_PRIVATE_NAT64_RULE = 107;
+    /**
      * Packet is dropped due to being sent to a backend of a passthrough load
      * balancer that doesn't use the same IP version as the frontend.
      *
@@ -705,6 +723,13 @@ class Cause
      * Generated from protobuf enum <code>HYBRID_SUBNET_REGION_MISMATCH = 105;</code>
      */
     const HYBRID_SUBNET_REGION_MISMATCH = 105;
+    /**
+     * Packet is dropped because no matching route was found in the hybrid
+     * subnet.
+     *
+     * Generated from protobuf enum <code>HYBRID_SUBNET_NO_ROUTE = 106;</code>
+     */
+    const HYBRID_SUBNET_NO_ROUTE = 106;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -722,6 +747,7 @@ class Cause
         self::ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED => 'ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED',
         self::ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID => 'ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID',
         self::NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS => 'NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS',
+        self::NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV4_ADDRESS => 'NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV4_ADDRESS',
         self::NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS => 'NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS',
         self::VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH => 'VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH',
         self::VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH => 'VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH',
@@ -736,6 +762,7 @@ class Cause
         self::INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS => 'INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS',
         self::INSTANCE_NOT_RUNNING => 'INSTANCE_NOT_RUNNING',
         self::GKE_CLUSTER_NOT_RUNNING => 'GKE_CLUSTER_NOT_RUNNING',
+        self::GKE_POD_NOT_RUNNING => 'GKE_POD_NOT_RUNNING',
         self::CLOUD_SQL_INSTANCE_NOT_RUNNING => 'CLOUD_SQL_INSTANCE_NOT_RUNNING',
         self::REDIS_INSTANCE_NOT_RUNNING => 'REDIS_INSTANCE_NOT_RUNNING',
         self::REDIS_CLUSTER_NOT_RUNNING => 'REDIS_CLUSTER_NOT_RUNNING',
@@ -798,6 +825,7 @@ class Cause
         self::UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION => 'UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION',
         self::TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED => 'TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED',
         self::NO_MATCHING_NAT64_GATEWAY => 'NO_MATCHING_NAT64_GATEWAY',
+        self::NO_CONFIGURED_PRIVATE_NAT64_RULE => 'NO_CONFIGURED_PRIVATE_NAT64_RULE',
         self::LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH => 'LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH',
         self::NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION => 'NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION',
         self::CLOUD_NAT_PROTOCOL_UNSUPPORTED => 'CLOUD_NAT_PROTOCOL_UNSUPPORTED',
@@ -806,6 +834,7 @@ class Cause
         self::L2_INTERCONNECT_DESTINATION_IP_MISMATCH => 'L2_INTERCONNECT_DESTINATION_IP_MISMATCH',
         self::NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED => 'NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED',
         self::HYBRID_SUBNET_REGION_MISMATCH => 'HYBRID_SUBNET_REGION_MISMATCH',
+        self::HYBRID_SUBNET_NO_ROUTE => 'HYBRID_SUBNET_NO_ROUTE',
     ];
 
     public static function name($value)

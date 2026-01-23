@@ -26,7 +26,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * The id of the quota, which is unquie within the service.
+     * The id of the quota, which is unique within the service.
      * For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 2;</code>
@@ -140,7 +140,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      *           For example,
      *           `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
      *     @type string $quota_id
-     *           The id of the quota, which is unquie within the service.
+     *           The id of the quota, which is unique within the service.
      *           For example, `CpusPerProjectPerRegion`
      *     @type string $metric
      *           The metric of the quota. It specifies the resources consumption the quota
@@ -221,7 +221,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id of the quota, which is unquie within the service.
+     * The id of the quota, which is unique within the service.
      * For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 2;</code>
@@ -233,7 +233,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id of the quota, which is unquie within the service.
+     * The id of the quota, which is unique within the service.
      * For example, `CpusPerProjectPerRegion`
      *
      * Generated from protobuf field <code>string quota_id = 2;</code>

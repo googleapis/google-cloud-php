@@ -53,7 +53,7 @@ class FirewallRuleType
      */
     const SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE = 4;
     /**
-     * Global network firewall policy rule.
+     * User-defined global network firewall policy rule.
      * For details, see [Network firewall
      * policies](https://cloud.google.com/vpc/docs/network-firewall-policies).
      *
@@ -61,13 +61,25 @@ class FirewallRuleType
      */
     const NETWORK_FIREWALL_POLICY_RULE = 5;
     /**
-     * Regional network firewall policy rule.
+     * User-defined regional network firewall policy rule.
      * For details, see [Regional network firewall
      * policies](https://cloud.google.com/firewall/docs/regional-firewall-policies).
      *
      * Generated from protobuf enum <code>NETWORK_REGIONAL_FIREWALL_POLICY_RULE = 6;</code>
      */
     const NETWORK_REGIONAL_FIREWALL_POLICY_RULE = 6;
+    /**
+     * System-defined global network firewall policy rule.
+     *
+     * Generated from protobuf enum <code>SYSTEM_NETWORK_FIREWALL_POLICY_RULE = 7;</code>
+     */
+    const SYSTEM_NETWORK_FIREWALL_POLICY_RULE = 7;
+    /**
+     * System-defined regional network firewall policy rule.
+     *
+     * Generated from protobuf enum <code>SYSTEM_REGIONAL_NETWORK_FIREWALL_POLICY_RULE = 8;</code>
+     */
+    const SYSTEM_REGIONAL_NETWORK_FIREWALL_POLICY_RULE = 8;
     /**
      * Firewall policy rule containing attributes not yet supported in
      * Connectivity tests. Firewall analysis is skipped if such a rule can
@@ -102,6 +114,8 @@ class FirewallRuleType
         self::SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE => 'SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE',
         self::NETWORK_FIREWALL_POLICY_RULE => 'NETWORK_FIREWALL_POLICY_RULE',
         self::NETWORK_REGIONAL_FIREWALL_POLICY_RULE => 'NETWORK_REGIONAL_FIREWALL_POLICY_RULE',
+        self::SYSTEM_NETWORK_FIREWALL_POLICY_RULE => 'SYSTEM_NETWORK_FIREWALL_POLICY_RULE',
+        self::SYSTEM_REGIONAL_NETWORK_FIREWALL_POLICY_RULE => 'SYSTEM_REGIONAL_NETWORK_FIREWALL_POLICY_RULE',
         self::UNSUPPORTED_FIREWALL_POLICY_RULE => 'UNSUPPORTED_FIREWALL_POLICY_RULE',
         self::TRACKING_STATE => 'TRACKING_STATE',
         self::ANALYSIS_SKIPPED => 'ANALYSIS_SKIPPED',

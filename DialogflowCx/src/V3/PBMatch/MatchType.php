@@ -62,7 +62,8 @@ class MatchType
      */
     const KNOWLEDGE_CONNECTOR = 8;
     /**
-     * The query was handled by a [`Playbook`][Playbook].
+     * The query was handled by a
+     * [`Playbook`][google.cloud.dialogflow.cx.v3.Playbook].
      *
      * Generated from protobuf enum <code>PLAYBOOK = 9;</code>
      */

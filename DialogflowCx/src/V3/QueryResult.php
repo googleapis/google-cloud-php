@@ -51,30 +51,6 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     private $response_messages;
     /**
-     * The list of webhook ids in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_ids = 25;</code>
-     */
-    private $webhook_ids;
-    /**
-     * The list of webhook display names in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_display_names = 26;</code>
-     */
-    private $webhook_display_names;
-    /**
-     * The list of webhook latencies in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated .google.protobuf.Duration webhook_latencies = 27;</code>
-     */
-    private $webhook_latencies;
-    /**
-     * The list of webhook tags in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_tags = 29;</code>
-     */
-    private $webhook_tags;
-    /**
      * The list of webhook call status in the order of call sequence.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status webhook_statuses = 13;</code>
@@ -240,14 +216,6 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           The list of rich messages returned to the client. Responses vary from
      *           simple text messages to more sophisticated, structured payloads used
      *           to drive complex logic.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $webhook_ids
-     *           The list of webhook ids in the order of call sequence.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $webhook_display_names
-     *           The list of webhook display names in the order of call sequence.
-     *     @type array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $webhook_latencies
-     *           The list of webhook latencies in the order of call sequence.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $webhook_tags
-     *           The list of webhook tags in the order of call sequence.
      *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $webhook_statuses
      *           The list of webhook call status in the order of call sequence.
      *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $webhook_payloads
@@ -611,110 +579,6 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage::class);
         $this->response_messages = $arr;
-
-        return $this;
-    }
-
-    /**
-     * The list of webhook ids in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_ids = 25;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getWebhookIds()
-    {
-        return $this->webhook_ids;
-    }
-
-    /**
-     * The list of webhook ids in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_ids = 25;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setWebhookIds($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->webhook_ids = $arr;
-
-        return $this;
-    }
-
-    /**
-     * The list of webhook display names in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_display_names = 26;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getWebhookDisplayNames()
-    {
-        return $this->webhook_display_names;
-    }
-
-    /**
-     * The list of webhook display names in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_display_names = 26;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setWebhookDisplayNames($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->webhook_display_names = $arr;
-
-        return $this;
-    }
-
-    /**
-     * The list of webhook latencies in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated .google.protobuf.Duration webhook_latencies = 27;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getWebhookLatencies()
-    {
-        return $this->webhook_latencies;
-    }
-
-    /**
-     * The list of webhook latencies in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated .google.protobuf.Duration webhook_latencies = 27;</code>
-     * @param array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setWebhookLatencies($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Duration::class);
-        $this->webhook_latencies = $arr;
-
-        return $this;
-    }
-
-    /**
-     * The list of webhook tags in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_tags = 29;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getWebhookTags()
-    {
-        return $this->webhook_tags;
-    }
-
-    /**
-     * The list of webhook tags in the order of call sequence.
-     *
-     * Generated from protobuf field <code>repeated string webhook_tags = 29;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setWebhookTags($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->webhook_tags = $arr;
 
         return $this;
     }

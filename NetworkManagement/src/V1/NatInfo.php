@@ -95,6 +95,12 @@ class NatInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string nat_gateway_name = 13;</code>
      */
     protected $nat_gateway_name = '';
+    /**
+     * Type of Cloud NAT gateway. Only valid when `type` is CLOUD_NAT.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo.CloudNatGatewayType cloud_nat_gateway_type = 14;</code>
+     */
+    protected $cloud_nat_gateway_type = 0;
 
     /**
      * Constructor.
@@ -130,6 +136,8 @@ class NatInfo extends \Google\Protobuf\Internal\Message
      *           Uri of the Cloud Router. Only valid when type is CLOUD_NAT.
      *     @type string $nat_gateway_name
      *           The name of Cloud NAT Gateway. Only valid when type is CLOUD_NAT.
+     *     @type int $cloud_nat_gateway_type
+     *           Type of Cloud NAT gateway. Only valid when `type` is CLOUD_NAT.
      * }
      */
     public function __construct($data = NULL) {
@@ -475,6 +483,32 @@ class NatInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->nat_gateway_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of Cloud NAT gateway. Only valid when `type` is CLOUD_NAT.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo.CloudNatGatewayType cloud_nat_gateway_type = 14;</code>
+     * @return int
+     */
+    public function getCloudNatGatewayType()
+    {
+        return $this->cloud_nat_gateway_type;
+    }
+
+    /**
+     * Type of Cloud NAT gateway. Only valid when `type` is CLOUD_NAT.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo.CloudNatGatewayType cloud_nat_gateway_type = 14;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCloudNatGatewayType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkManagement\V1\NatInfo\CloudNatGatewayType::class);
+        $this->cloud_nat_gateway_type = $var;
 
         return $this;
     }

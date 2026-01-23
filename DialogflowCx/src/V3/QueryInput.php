@@ -48,6 +48,8 @@ class QueryInput extends \Google\Protobuf\Internal\Message
      *           The event to be triggered.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\DtmfInput $dtmf
      *           The DTMF event to be handled.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ToolCallResult $tool_call_result
+     *           The results of a tool executed by the client.
      *     @type string $language_code
      *           Required. The language of the input. See [Language
      *           Support](https://cloud.google.com/dialogflow/cx/docs/reference/language)
@@ -211,6 +213,37 @@ class QueryInput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\DtmfInput::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The results of a tool executed by the client.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.ToolCallResult tool_call_result = 11;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\ToolCallResult|null
+     */
+    public function getToolCallResult()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasToolCallResult()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * The results of a tool executed by the client.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.ToolCallResult tool_call_result = 11;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ToolCallResult $var
+     * @return $this
+     */
+    public function setToolCallResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\ToolCallResult::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }

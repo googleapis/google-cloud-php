@@ -1,5 +1,287 @@
 # Changelog
 
+## 0.316.0
+
+<details><summary>google/cloud-backupdr 0.11.0</summary>
+
+
+
+### Features
+
+* [BackupDr] A new service `BackupDrProtectionSummary` is added ([#8854](https://github.com/googleapis/google-cloud-php/issues/8854)) ([34a6b14](https://github.com/googleapis/google-cloud-php/commit/34a6b148c88d7a5b6d7560c6cbfda322ad23c382))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.35.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Add debug logging ([#8790](https://github.com/googleapis/google-cloud-php/issues/8790)) ([cabed91](https://github.com/googleapis/google-cloud-php/commit/cabed9130d9fa687f818bea5e60ba86d78275565))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.20.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute 2.5.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20251230 ([#1144](https://github.com/googleapis/google-cloud-php/issues/1144)) ([#8864](https://github.com/googleapis/google-cloud-php/issues/8864)) ([e948ad3](https://github.com/googleapis/google-cloud-php/commit/e948ad3ae4ab944b9f3b9778840542ea90244eac))
+
+</details>
+
+<details><summary>google/cloud-config 1.7.0</summary>
+
+
+
+### Features
+
+* [Config] add support for enabling automigration from deprecated Terraform versions ([#8855](https://github.com/googleapis/google-cloud-php/issues/8855)) ([206c37d](https://github.com/googleapis/google-cloud-php/commit/206c37d99881e5234f96ebe5b78f5bac110d8e98))
+
+</details>
+
+<details><summary>google/cloud-core 1.71.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Add debug logging ([#8790](https://github.com/googleapis/google-cloud-php/issues/8790)) ([cabed91](https://github.com/googleapis/google-cloud-php/commit/cabed9130d9fa687f818bea5e60ba86d78275565))
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.3.0</summary>
+
+
+
+### Features
+
+* [DatabaseCenter] Adding Method AggregateIssueStats of Database Center API v1beta ([#8865](https://github.com/googleapis/google-cloud-php/issues/8865)) ([eaad63b](https://github.com/googleapis/google-cloud-php/commit/eaad63b569f41236958fde57fb0109a79ee02059))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.10.0</summary>
+
+
+
+### Features
+
+* [DialogflowCx] updated v3 dialogflow client libraries ([#8866](https://github.com/googleapis/google-cloud-php/issues/8866)) ([c86ba03](https://github.com/googleapis/google-cloud-php/commit/c86ba03a9a814e98be8fc5e433ce6d5cc4bf3510))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.1-RC1
+</summary>
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.315.0...v0.316.0) (2026-01-16)
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.7.0</summary>
+
+
+
+### Features
+
+* [GeminiDataAnalytics] added sync APIs for the CRUD operations of Data Agent ([#8858](https://github.com/googleapis/google-cloud-php/issues/8858)) ([345514e](https://github.com/googleapis/google-cloud-php/commit/345514e953670d65711f2a47c37c7dcfac9ca05f))
+
+</details>
+
+<details><summary>google/grafeas 1.4.0</summary>
+
+
+
+### Features
+
+* [Grafeas] A new message `File` is added ([#8857](https://github.com/googleapis/google-cloud-php/issues/8857)) ([2b83ca8](https://github.com/googleapis/google-cloud-php/commit/2b83ca8a4f4612b4f56f2dea1f8c928e55f2c98b))
+
+</details>
+
+<details><summary>google/cloud-language 1.1.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.34.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-netapp 1.10.0</summary>
+
+
+
+### Features
+
+* [NetApp] Update NetApp v1 API with Host Groups, Block Volumes, Cache Volumes, and Backup Restore ([#8862](https://github.com/googleapis/google-cloud-php/issues/8862)) ([ecf54be](https://github.com/googleapis/google-cloud-php/commit/ecf54be05fc16cdbe99f138c58374c006c94a6ce))
+
+
+### Documentation
+
+* A comment for field `backup_retention_policy` in message `.google.cloud.netapp.v1.BackupVault` is changed ([ecf54be](https://github.com/googleapis/google-cloud-php/commit/ecf54be05fc16cdbe99f138c58374c006c94a6ce))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.17.0</summary>
+
+
+
+### Features
+
+* [PubSub] Add AIInference MessageTransform type ([#8852](https://github.com/googleapis/google-cloud-php/issues/8852)) ([136a356](https://github.com/googleapis/google-cloud-php/commit/136a356fc2da14454b57b75b8ba60d8e035d2407))
+
+</details>
+
+<details><summary>google/cloud-run 1.12.0</summary>
+
+
+
+### Features
+
+* [Run] add instances client library ([#8867](https://github.com/googleapis/google-cloud-php/issues/8867)) ([296b7c8](https://github.com/googleapis/google-cloud-php/commit/296b7c8eaea483d3ad8e7f0fe2cde0356c9b11c3))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.4.0</summary>
+
+
+
+### Features
+
+* **Spanner:** set default grpc.keepalive_time_ms to 120 seconds ([#8863](https://github.com/googleapis/google-cloud-php/issues/8863)) ([2158b82](https://github.com/googleapis/google-cloud-php/commit/2158b82f6a146c83f3d197ed304944529b76dfd0))
+
+</details>
+
+<details><summary>google/cloud-speech 2.3.0</summary>
+
+
+
+### Features
+
+* [Speech] add custom prompt config in the request and return prompt in the response ([#8851](https://github.com/googleapis/google-cloud-php/issues/8851)) ([7dcc34d](https://github.com/googleapis/google-cloud-php/commit/7dcc34d74f7c88ec44398167be61dca8a924d415))
+* Add custom prompt config in the request and return prompt in the response ([7dcc34d](https://github.com/googleapis/google-cloud-php/commit/7dcc34d74f7c88ec44398167be61dca8a924d415))
+* Update min_speaker_count and max_speaker_count to be optional ([7dcc34d](https://github.com/googleapis/google-cloud-php/commit/7dcc34d74f7c88ec44398167be61dca8a924d415))
+
+
+### Documentation
+
+* Clarify that min_speaker_count and max_speaker_count in SpeakerDiarizationConfig are not currently used ([7dcc34d](https://github.com/googleapis/google-cloud-php/commit/7dcc34d74f7c88ec44398167be61dca8a924d415))
+* Update guidance on how to enable speaker diarization; to enable, set the diarization_config field to an empty SpeakerDiarizationConfig message ([7dcc34d](https://github.com/googleapis/google-cloud-php/commit/7dcc34d74f7c88ec44398167be61dca8a924d415))
+
+</details>
+
+<details><summary>google/cloud-storage 1.49.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-support 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tasks 2.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-telcoautomation 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tpu 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.9.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 2.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 1.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 2.1.3</summary>
+
+
+
+</details>
+
 ## 0.315.0
 
 <details><summary>google/cloud-access-approval 2.1.2</summary>
