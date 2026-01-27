@@ -82,6 +82,12 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .grafeas.v1.DiscoveryOccurrence.File files = 11;</code>
      */
     private $files;
+    /**
+     * The last time vulnerability scan results changed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_vulnerability_update_time = 12;</code>
+     */
+    protected $last_vulnerability_update_time = null;
 
     /**
      * Constructor.
@@ -113,6 +119,8 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           The status of an vulnerability attestation generation.
      *     @type array<\Grafeas\V1\DiscoveryOccurrence\File>|\Google\Protobuf\Internal\RepeatedField $files
      *           Files that make up the resource described by the occurrence.
+     *     @type \Google\Protobuf\Timestamp $last_vulnerability_update_time
+     *           The last time vulnerability scan results changed.
      * }
      */
     public function __construct($data = NULL) {
@@ -464,6 +472,42 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Grafeas\V1\DiscoveryOccurrence\File::class);
         $this->files = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The last time vulnerability scan results changed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_vulnerability_update_time = 12;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastVulnerabilityUpdateTime()
+    {
+        return $this->last_vulnerability_update_time;
+    }
+
+    public function hasLastVulnerabilityUpdateTime()
+    {
+        return isset($this->last_vulnerability_update_time);
+    }
+
+    public function clearLastVulnerabilityUpdateTime()
+    {
+        unset($this->last_vulnerability_update_time);
+    }
+
+    /**
+     * The last time vulnerability scan results changed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_vulnerability_update_time = 12;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastVulnerabilityUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_vulnerability_update_time = $var;
 
         return $this;
     }
