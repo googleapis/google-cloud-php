@@ -50,6 +50,14 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExecuteSqlPayload.PartialResultMode partial_result_mode = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $partial_result_mode = 0;
+    /**
+     * Optional. Specifies the name of the application that is making the request.
+     * This field is used for telemetry. Only alphanumeric characters, dashes, and
+     * underscores are allowed. The maximum length is 32 characters.
+     *
+     * Generated from protobuf field <code>string application = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $application = '';
     protected $user_password;
 
     /**
@@ -77,6 +85,10 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
      *           Optional. Controls how the API should respond when the SQL execution result
      *           is incomplete due to the size limit or another error. The default mode is
      *           to throw an error.
+     *     @type string $application
+     *           Optional. Specifies the name of the application that is making the request.
+     *           This field is used for telemetry. Only alphanumeric characters, dashes, and
+     *           underscores are allowed. The maximum length is 32 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -255,6 +267,36 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\ExecuteSqlPayload\PartialResultMode::class);
         $this->partial_result_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the name of the application that is making the request.
+     * This field is used for telemetry. Only alphanumeric characters, dashes, and
+     * underscores are allowed. The maximum length is 32 characters.
+     *
+     * Generated from protobuf field <code>string application = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getApplication()
+    {
+        return $this->application;
+    }
+
+    /**
+     * Optional. Specifies the name of the application that is making the request.
+     * This field is used for telemetry. Only alphanumeric characters, dashes, and
+     * underscores are allowed. The maximum length is 32 characters.
+     *
+     * Generated from protobuf field <code>string application = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setApplication($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->application = $var;
 
         return $this;
     }

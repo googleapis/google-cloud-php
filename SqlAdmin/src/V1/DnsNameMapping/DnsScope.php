@@ -14,21 +14,28 @@ use UnexpectedValueException;
 class DnsScope
 {
     /**
-     * Unknown DNS scope.
+     * DNS scope not set. This value should not be used.
      *
      * Generated from protobuf enum <code>DNS_SCOPE_UNSPECIFIED = 0;</code>
      */
     const DNS_SCOPE_UNSPECIFIED = 0;
     /**
-     * Indicates a instance-level DNS name.
+     * Indicates an instance-level DNS name.
      *
      * Generated from protobuf enum <code>INSTANCE = 1;</code>
      */
     const INSTANCE = 1;
+    /**
+     * Indicates a cluster-level DNS name.
+     *
+     * Generated from protobuf enum <code>CLUSTER = 2;</code>
+     */
+    const CLUSTER = 2;
 
     private static $valueToName = [
         self::DNS_SCOPE_UNSPECIFIED => 'DNS_SCOPE_UNSPECIFIED',
         self::INSTANCE => 'INSTANCE',
+        self::CLUSTER => 'CLUSTER',
     ];
 
     public static function name($value)
