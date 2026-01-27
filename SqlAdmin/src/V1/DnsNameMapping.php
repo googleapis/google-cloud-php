@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class DnsNameMapping extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The DNS name.
+     * Output only. The DNS name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -33,6 +33,12 @@ class DnsNameMapping extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.DnsNameMapping.DnsScope dns_scope = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $dns_scope = 0;
+    /**
+     * Output only. The manager for this DNS record.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DnsNameMapping.RecordManager record_manager = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $record_manager = 0;
 
     /**
      * Constructor.
@@ -41,11 +47,13 @@ class DnsNameMapping extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The DNS name.
+     *           Output only. The DNS name.
      *     @type int $connection_type
      *           Output only. The connection type of the DNS name.
      *     @type int $dns_scope
      *           Output only. The scope that the DNS name applies to.
+     *     @type int $record_manager
+     *           Output only. The manager for this DNS record.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,9 +62,9 @@ class DnsNameMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS name.
+     * Output only. The DNS name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -65,9 +73,9 @@ class DnsNameMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS name.
+     * Output only. The DNS name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -127,6 +135,32 @@ class DnsNameMapping extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\DnsNameMapping\DnsScope::class);
         $this->dns_scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The manager for this DNS record.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DnsNameMapping.RecordManager record_manager = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getRecordManager()
+    {
+        return $this->record_manager;
+    }
+
+    /**
+     * Output only. The manager for this DNS record.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DnsNameMapping.RecordManager record_manager = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRecordManager($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\DnsNameMapping\RecordManager::class);
+        $this->record_manager = $var;
 
         return $this;
     }

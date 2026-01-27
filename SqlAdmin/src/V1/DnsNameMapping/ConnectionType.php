@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * The connection type of the DNS name.
+ * This enum is not frozen, and new values may be added in the future.
  *
  * Protobuf type <code>google.cloud.sql.v1.DnsNameMapping.ConnectionType</code>
  */
