@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.318.0
+
+<details><summary>google/grafeas 1.5.0</summary>
+
+
+
+### Features
+
+* [Grafeas] A new field `last_vulnerability_update_time` is added to message `.grafeas.v1.DiscoveryOccurrence` ([#8881](https://github.com/googleapis/google-cloud-php/issues/8881)) ([7b104e0](https://github.com/googleapis/google-cloud-php/commit/7b104e0b9c9e3e6513e2207640e8f743e188af6c))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.7.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] added an optional `application` field to `ExecuteSqlRequest` to support application-level telemetry and audit logging ([#8882](https://github.com/googleapis/google-cloud-php/issues/8882)) ([c118627](https://github.com/googleapis/google-cloud-php/commit/c118627657ffeeb49228708fc056525fe11f7c6f))
+
+</details>
+
 ## 0.317.0
 
 <details><summary>googleads/ad-manager 0.6.1</summary>
