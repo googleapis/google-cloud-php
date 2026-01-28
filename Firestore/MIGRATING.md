@@ -8,6 +8,9 @@ The most significant change in v2 is the removal of the `ConnectionInterface` an
 
 This change simplifies the library's architecture but requires updates to how you instantiate several core classes.
 
+**Note**: If you primarily use factory methods (e.g. `$firestore->collection(...)`, `$collection->document(...)`), your
+code likely requires no changes, as the library handles these dependencies internally.
+
 ## 2. Constructor Changes
 
 Due to the removal of the `Connection` layer, the constructors for the following classes have changed. They no longer accept a `ConnectionInterface` instance and instead require a `Google\Cloud\Firestore\V1\Client\FirestoreClient` instance.
