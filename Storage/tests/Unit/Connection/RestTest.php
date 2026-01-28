@@ -532,6 +532,55 @@ class RestTest extends TestCase
         ];
     }
 
+    public function testInsertObjectWithCalculatedXGoogHashHeader()
+    {
+        $rest = new RestCrc32cStub();
+        $testData = 'some test data';
+        $testStream = Utils::streamFor($testData);
+        $expectedCrc32c = $rest->getCrcFromStreamForTest($testStream);
+        $expectedMd5 = base64_encode(Utils::hash($testStream, 'md5', true));
+        $expectedHashHeader = 'crc32c=' . $expectedCrc32c . ',md5=' . $expectedMd5;
+
+        $actualRequest = null;
+        $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
+
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(
+            function ($args) use (&$actualRequest, $response) {
+                $actualRequest = $args[0];
+                return $response;
+            }
+        );
+
+        $rest->extensionLoaded = false;
+        $rest->supportsBuiltin = true;
+
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $uploadStream = Utils::streamFor($testData);
+
+        $options = [
+            'bucket' => 'my-test-bucket',
+            'name' => 'test-calculated-hash-file.txt',
+            'data' => $uploadStream,
+            'validate' => 'md5'
+        ];
+
+        $uploader = $rest->insertObject($options);
+        $this->assertInstanceOf(MultipartUploader::class, $uploader);
+        $uploader->upload();
+
+        $this->assertNotNull($actualRequest);
+        $this->assertTrue($actualRequest->hasHeader('X-Goog-Hash'));
+        $this->assertEquals([$expectedHashHeader], $actualRequest->getHeader('X-Goog-Hash'));
+
+        list($contentType, $metadata) = $this->getContentTypeAndMetadata($actualRequest);
+        $this->assertEquals($expectedMd5, $metadata['md5Hash']);
+        $this->assertArrayNotHasKey('crc32c', $metadata);
+    }
+
     /**
      * @dataProvider validationMethod
      */
@@ -589,6 +638,11 @@ class RestTest extends TestCase
                 false
             ], [
                 ['validate' => 'md5', 'metadata' => ['crc32c' => 'foo']],
+                true,
+                true,
+                false
+            ], [
+                ['validate' => true, 'headers' => ['x-goog-hash' => 'crc32c=abc']],
                 true,
                 true,
                 false
@@ -691,5 +745,22 @@ class RestCrc32cStub extends Rest
 
         $call = $chooseValidationMethod->bindTo($this, Rest::class);
         return $call($args);
+    }
+
+    /**
+     * Helper proxy to expose crcFromStream for testing.
+     * @param StreamInterface $data
+     * @return string
+     */
+    public function getCrcFromStreamForTest(StreamInterface $data)
+    {
+        $data->rewind();
+
+        $crcFromStream = function (StreamInterface $data) {
+            return call_user_func_array([$this, 'crcFromStream'], func_get_args());
+        };
+
+        $call = $crcFromStream->bindTo($this, Rest::class);
+        return $call($data);
     }
 }
