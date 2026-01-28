@@ -59,6 +59,9 @@ class DataSourceGcpResource extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BackupDR\V1\CloudSqlInstanceDataSourceProperties $cloud_sql_instance_datasource_properties
      *           Output only. CloudSqlInstanceDataSourceProperties has a subset of Cloud
      *           SQL Instance properties that are useful at the Datasource level.
+     *     @type \Google\Cloud\BackupDR\V1\AlloyDBClusterDataSourceProperties $alloy_db_cluster_datasource_properties
+     *           Output only. AlloyDBClusterDataSourceProperties has a subset of AlloyDB
+     *           cluster properties that are useful at the Datasource level.
      *     @type \Google\Cloud\BackupDR\V1\DiskDataSourceProperties $disk_datasource_properties
      *           DiskDataSourceProperties has a subset of Disk properties that are useful
      *           at the Datasource level.
@@ -213,6 +216,39 @@ class DataSourceGcpResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\CloudSqlInstanceDataSourceProperties::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. AlloyDBClusterDataSourceProperties has a subset of AlloyDB
+     * cluster properties that are useful at the Datasource level.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.AlloyDBClusterDataSourceProperties alloy_db_cluster_datasource_properties = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\AlloyDBClusterDataSourceProperties|null
+     */
+    public function getAlloyDbClusterDatasourceProperties()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasAlloyDbClusterDatasourceProperties()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Output only. AlloyDBClusterDataSourceProperties has a subset of AlloyDB
+     * cluster properties that are useful at the Datasource level.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.AlloyDBClusterDataSourceProperties alloy_db_cluster_datasource_properties = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\AlloyDBClusterDataSourceProperties $var
+     * @return $this
+     */
+    public function setAlloyDbClusterDatasourceProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\AlloyDBClusterDataSourceProperties::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

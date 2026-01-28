@@ -359,6 +359,25 @@ final class BackupDRClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a cluster
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cluster
+     *
+     * @return string The formatted cluster resource.
+     */
+    public static function clusterName(string $project, string $location, string $cluster): string
+    {
+        return self::getPathTemplate('cluster')->render([
+            'project' => $project,
+            'location' => $location,
+            'cluster' => $cluster,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a crypto_key
      * resource.
      *
@@ -535,6 +554,7 @@ final class BackupDRClient
      * - backupPlanAssociation: projects/{project}/locations/{location}/backupPlanAssociations/{backup_plan_association}
      * - backupPlanRevision: projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision}
      * - backupVault: projects/{project}/locations/{location}/backupVaults/{backupvault}
+     * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - dataSource: projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
