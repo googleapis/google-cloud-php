@@ -57,6 +57,4 @@ class QuoteType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QuoteType::class, \Google\Apps\Chat\V1\QuotedMessageMetadata_QuoteType::class);
 
