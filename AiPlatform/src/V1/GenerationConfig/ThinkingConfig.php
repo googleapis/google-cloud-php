@@ -29,6 +29,12 @@ class ThinkingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 thinking_budget = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $thinking_budget = null;
+    /**
+     * Optional. The number of thoughts tokens that the model should generate.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig.ThinkingLevel thinking_level = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thinking_level = null;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class ThinkingConfig extends \Google\Protobuf\Internal\Message
      *     @type int $thinking_budget
      *           Optional. Indicates the thinking budget in tokens.
      *           This is only applied when enable_thinking is true.
+     *     @type int $thinking_level
+     *           Optional. The number of thoughts tokens that the model should generate.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +129,42 @@ class ThinkingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->thinking_budget = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The number of thoughts tokens that the model should generate.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig.ThinkingLevel thinking_level = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getThinkingLevel()
+    {
+        return isset($this->thinking_level) ? $this->thinking_level : 0;
+    }
+
+    public function hasThinkingLevel()
+    {
+        return isset($this->thinking_level);
+    }
+
+    public function clearThinkingLevel()
+    {
+        unset($this->thinking_level);
+    }
+
+    /**
+     * Optional. The number of thoughts tokens that the model should generate.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.ThinkingConfig.ThinkingLevel thinking_level = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setThinkingLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig\ThinkingLevel::class);
+        $this->thinking_level = $var;
 
         return $this;
     }
