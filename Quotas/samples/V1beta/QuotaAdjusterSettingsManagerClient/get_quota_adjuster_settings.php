@@ -29,7 +29,7 @@ use Google\Cloud\CloudQuotas\V1beta\GetQuotaAdjusterSettingsRequest;
 use Google\Cloud\CloudQuotas\V1beta\QuotaAdjusterSettings;
 
 /**
- * RPC Method for getting QuotaAdjusterSettings based on the request
+ * Gets the QuotaAdjusterSettings for the specified resource.
  *
  * @param string $formattedName Name of the `quotaAdjusterSettings` configuration. Only a single
  *                              setting per project is supported. Please see
