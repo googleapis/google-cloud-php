@@ -40,6 +40,26 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $last_update_time = null;
+    /**
+     * Optional. Specifies the quote type. If not set, defaults to REPLY in the
+     * message read/write path for backward compatibility.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata.QuoteType quote_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $quote_type = 0;
+    /**
+     * Output only. A snapshot of the quoted message's content.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageSnapshot quoted_message_snapshot = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $quoted_message_snapshot = null;
+    /**
+     * Output only. Metadata about the source space of the quoted message.
+     * Populated only for FORWARD quote type.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.ForwardedMetadata forwarded_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $forwarded_metadata = null;
 
     /**
      * Constructor.
@@ -57,6 +77,14 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
      *           If the message was never edited, use `create_time`.
      *           If `last_update_time` doesn't match the latest version of the quoted
      *           message, the request fails.
+     *     @type int $quote_type
+     *           Optional. Specifies the quote type. If not set, defaults to REPLY in the
+     *           message read/write path for backward compatibility.
+     *     @type \Google\Apps\Chat\V1\QuotedMessageSnapshot $quoted_message_snapshot
+     *           Output only. A snapshot of the quoted message's content.
+     *     @type \Google\Apps\Chat\V1\ForwardedMetadata $forwarded_metadata
+     *           Output only. Metadata about the source space of the quoted message.
+     *           Populated only for FORWARD quote type.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,6 +162,108 @@ class QuotedMessageMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the quote type. If not set, defaults to REPLY in the
+     * message read/write path for backward compatibility.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata.QuoteType quote_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getQuoteType()
+    {
+        return $this->quote_type;
+    }
+
+    /**
+     * Optional. Specifies the quote type. If not set, defaults to REPLY in the
+     * message read/write path for backward compatibility.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageMetadata.QuoteType quote_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQuoteType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Chat\V1\QuotedMessageMetadata\QuoteType::class);
+        $this->quote_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A snapshot of the quoted message's content.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageSnapshot quoted_message_snapshot = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Apps\Chat\V1\QuotedMessageSnapshot|null
+     */
+    public function getQuotedMessageSnapshot()
+    {
+        return $this->quoted_message_snapshot;
+    }
+
+    public function hasQuotedMessageSnapshot()
+    {
+        return isset($this->quoted_message_snapshot);
+    }
+
+    public function clearQuotedMessageSnapshot()
+    {
+        unset($this->quoted_message_snapshot);
+    }
+
+    /**
+     * Output only. A snapshot of the quoted message's content.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.QuotedMessageSnapshot quoted_message_snapshot = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Apps\Chat\V1\QuotedMessageSnapshot $var
+     * @return $this
+     */
+    public function setQuotedMessageSnapshot($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\QuotedMessageSnapshot::class);
+        $this->quoted_message_snapshot = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata about the source space of the quoted message.
+     * Populated only for FORWARD quote type.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.ForwardedMetadata forwarded_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Apps\Chat\V1\ForwardedMetadata|null
+     */
+    public function getForwardedMetadata()
+    {
+        return $this->forwarded_metadata;
+    }
+
+    public function hasForwardedMetadata()
+    {
+        return isset($this->forwarded_metadata);
+    }
+
+    public function clearForwardedMetadata()
+    {
+        unset($this->forwarded_metadata);
+    }
+
+    /**
+     * Output only. Metadata about the source space of the quoted message.
+     * Populated only for FORWARD quote type.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.ForwardedMetadata forwarded_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Apps\Chat\V1\ForwardedMetadata $var
+     * @return $this
+     */
+    public function setForwardedMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\ForwardedMetadata::class);
+        $this->forwarded_metadata = $var;
 
         return $this;
     }
