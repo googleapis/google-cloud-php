@@ -27,6 +27,8 @@ trait JobConfigurationTrait
 {
     use ArrayTrait;
 
+    private const JOB_CREATION_MODE_OPTIONAL = 'JOB_CREATION_OPTIONAL';
+
     /**
      * @var string $jobIdPrefix
      */
@@ -182,6 +184,64 @@ trait JobConfigurationTrait
         }
 
         return $this->config;
+    }
+
+    /**
+     * Returns an array that represents a QueryRequest for a stateless query.
+     * Returns null if one of the conditions are not met for a stateless query.
+     *
+     * @return array<mixed>|null
+     */
+    public function getQueryRequest(): array|null
+    {
+        if(
+            isset($this->config['configuration']['destination']) ||
+            isset($this->config['configuration']['tableDefinitions']) ||
+            isset($this->config['configuration']['createDisposition']) ||
+            isset($this->config['configuration']['writeDisposition']) ||
+            (
+                isset($this->config['configuration']['priority']) &&
+                $this->config['configuration']['priority'] !== 'INTERACTIVE'
+            ) ||
+            isset($this->config['configuration']['useLegacySql']) ||
+            isset($this->config['configuration']['maximumBillingTier']) ||
+            isset($this->config['configuration']['timePartitioning']) ||
+            isset($this->config['configuration']['rangePartitioning']) ||
+            isset($this->config['configuration']['clustering']) ||
+            isset($this->config['configuration']['destinationEncryptionConfiguration']) ||
+            isset($this->config['configuration']['schemaUpdateOptions']) ||
+            isset($this->config['configuration']['jobTimeoutMs']) ||
+            isset($this->config['configuration']['jobId'])
+        ) {
+            return null;
+        }
+
+        if (isset($this->config['configuration']['dryRun']) && $this->config['configuration']['dryRun']) {
+            return null;
+        }
+
+        if (isset($this->config['configuration']['job'])) {
+            return null;
+        }
+
+        return [
+            'useCacheQuery' => $this->config['configuration']['useCacheQuery'],
+            'labels' => $this->config['configuration']['labels'],
+            'defaultDataset' => $this->config['configuration']['default'],
+            'createSession' => $this->config['configuration']['createSession'],
+            'maximumBytesBilled' => $this->config['configuration']['maximumBytesBilled'],
+            'timeoutMs' => $this->config['configuration']['timeoutMs'],
+            'location' => $this->config['configuration']['timeoutMs'],
+            'formatOptions' => [
+                'useInt64Timestamp' => true
+            ],
+            'maxResults' => $this->config['configuration']['maxResults'],
+            'maxResults' => $this->config['configuration']['maxResults'],
+            'query' => $this->config['configuration']['query'],
+            'useLegacySql' => false,
+            'requestId' => $this->generateJobId(),
+            'jobCreationMode' => self::JOB_CREATION_MODE_OPTIONAL
+        ];
     }
 
     /**
