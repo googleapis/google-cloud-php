@@ -148,6 +148,34 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      */
     protected $routing_config = null;
     /**
+     * Optional. If enabled, audio timestamps will be included in the request to
+     * the model. This can be useful for synchronizing audio with other modalities
+     * in the response.
+     *
+     * Generated from protobuf field <code>optional bool audio_timestamp = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $audio_timestamp = null;
+    /**
+     * Optional. The modalities of the response. The model will generate a
+     * response that includes all the specified modalities. For example, if this
+     * is set to `[TEXT, IMAGE]`, the response will include both text and an
+     * image.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GenerationConfig.Modality response_modalities = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $response_modalities;
+    /**
+     * Optional. The token resolution at which input media content is sampled.
+     * This is used to control the trade-off between the quality of the response
+     * and the number of tokens used to represent the media. A higher resolution
+     * allows the model to perceive more detail, which can lead to a more nuanced
+     * response, but it will also use more tokens. This does not affect the
+     * image dimensions sent to the model.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.MediaResolution media_resolution = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $media_resolution = null;
+    /**
      * Optional. The speech generation config.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SpeechConfig speech_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -246,6 +274,22 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           for than those starting as a `$`, may be set.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig $routing_config
      *           Optional. Routing configuration.
+     *     @type bool $audio_timestamp
+     *           Optional. If enabled, audio timestamps will be included in the request to
+     *           the model. This can be useful for synchronizing audio with other modalities
+     *           in the response.
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $response_modalities
+     *           Optional. The modalities of the response. The model will generate a
+     *           response that includes all the specified modalities. For example, if this
+     *           is set to `[TEXT, IMAGE]`, the response will include both text and an
+     *           image.
+     *     @type int $media_resolution
+     *           Optional. The token resolution at which input media content is sampled.
+     *           This is used to control the trade-off between the quality of the response
+     *           and the number of tokens used to represent the media. A higher resolution
+     *           allows the model to perceive more detail, which can lead to a more nuanced
+     *           response, but it will also use more tokens. This does not affect the
+     *           image dimensions sent to the model.
      *     @type \Google\Cloud\AIPlatform\V1\SpeechConfig $speech_config
      *           Optional. The speech generation config.
      *     @type \Google\Cloud\AIPlatform\V1\GenerationConfig\ThinkingConfig $thinking_config
@@ -861,6 +905,124 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig::class);
         $this->routing_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If enabled, audio timestamps will be included in the request to
+     * the model. This can be useful for synchronizing audio with other modalities
+     * in the response.
+     *
+     * Generated from protobuf field <code>optional bool audio_timestamp = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAudioTimestamp()
+    {
+        return isset($this->audio_timestamp) ? $this->audio_timestamp : false;
+    }
+
+    public function hasAudioTimestamp()
+    {
+        return isset($this->audio_timestamp);
+    }
+
+    public function clearAudioTimestamp()
+    {
+        unset($this->audio_timestamp);
+    }
+
+    /**
+     * Optional. If enabled, audio timestamps will be included in the request to
+     * the model. This can be useful for synchronizing audio with other modalities
+     * in the response.
+     *
+     * Generated from protobuf field <code>optional bool audio_timestamp = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAudioTimestamp($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->audio_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The modalities of the response. The model will generate a
+     * response that includes all the specified modalities. For example, if this
+     * is set to `[TEXT, IMAGE]`, the response will include both text and an
+     * image.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GenerationConfig.Modality response_modalities = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResponseModalities()
+    {
+        return $this->response_modalities;
+    }
+
+    /**
+     * Optional. The modalities of the response. The model will generate a
+     * response that includes all the specified modalities. For example, if this
+     * is set to `[TEXT, IMAGE]`, the response will include both text and an
+     * image.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GenerationConfig.Modality response_modalities = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResponseModalities($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\AIPlatform\V1\GenerationConfig\Modality::class);
+        $this->response_modalities = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The token resolution at which input media content is sampled.
+     * This is used to control the trade-off between the quality of the response
+     * and the number of tokens used to represent the media. A higher resolution
+     * allows the model to perceive more detail, which can lead to a more nuanced
+     * response, but it will also use more tokens. This does not affect the
+     * image dimensions sent to the model.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.MediaResolution media_resolution = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMediaResolution()
+    {
+        return isset($this->media_resolution) ? $this->media_resolution : 0;
+    }
+
+    public function hasMediaResolution()
+    {
+        return isset($this->media_resolution);
+    }
+
+    public function clearMediaResolution()
+    {
+        unset($this->media_resolution);
+    }
+
+    /**
+     * Optional. The token resolution at which input media content is sampled.
+     * This is used to control the trade-off between the quality of the response
+     * and the number of tokens used to represent the media. A higher resolution
+     * allows the model to perceive more detail, which can lead to a more nuanced
+     * response, but it will also use more tokens. This does not affect the
+     * image dimensions sent to the model.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.GenerationConfig.MediaResolution media_resolution = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMediaResolution($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\GenerationConfig\MediaResolution::class);
+        $this->media_resolution = $var;
 
         return $this;
     }
