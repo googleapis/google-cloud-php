@@ -77,6 +77,18 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     protected $deletion_protection = false;
     /**
+     * Rules to specify what data is stored in each storage tier.
+     * Different tiers store data differently, providing different trade-offs
+     * between cost and performance. Different parts of a table can be stored
+     * separately on different tiers.
+     * If a config is specified, tiered storage is enabled for this table.
+     * Otherwise, tiered storage is disabled.
+     * Only SSD instances can configure tiered storage.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.TieredStorageConfig tiered_storage_config = 14;</code>
+     */
+    protected $tiered_storage_config = null;
+    /**
      * The row key schema for this table. The schema is used to decode the raw row
      * key bytes into a structured format. The order of field declarations in this
      * schema is important, as it reflects how the raw row key bytes are
@@ -175,6 +187,14 @@ class Table extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $automated_backup_policy
      *           If specified, automated backups are enabled for this table.
      *           Otherwise, automated backups are disabled.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\TieredStorageConfig $tiered_storage_config
+     *           Rules to specify what data is stored in each storage tier.
+     *           Different tiers store data differently, providing different trade-offs
+     *           between cost and performance. Different parts of a table can be stored
+     *           separately on different tiers.
+     *           If a config is specified, tiered storage is enabled for this table.
+     *           Otherwise, tiered storage is disabled.
+     *           Only SSD instances can configure tiered storage.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Struct $row_key_schema
      *           The row key schema for this table. The schema is used to decode the raw row
      *           key bytes into a structured format. The order of field declarations in this
@@ -501,6 +521,54 @@ class Table extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy::class);
         $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Rules to specify what data is stored in each storage tier.
+     * Different tiers store data differently, providing different trade-offs
+     * between cost and performance. Different parts of a table can be stored
+     * separately on different tiers.
+     * If a config is specified, tiered storage is enabled for this table.
+     * Otherwise, tiered storage is disabled.
+     * Only SSD instances can configure tiered storage.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.TieredStorageConfig tiered_storage_config = 14;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\TieredStorageConfig|null
+     */
+    public function getTieredStorageConfig()
+    {
+        return $this->tiered_storage_config;
+    }
+
+    public function hasTieredStorageConfig()
+    {
+        return isset($this->tiered_storage_config);
+    }
+
+    public function clearTieredStorageConfig()
+    {
+        unset($this->tiered_storage_config);
+    }
+
+    /**
+     * Rules to specify what data is stored in each storage tier.
+     * Different tiers store data differently, providing different trade-offs
+     * between cost and performance. Different parts of a table can be stored
+     * separately on different tiers.
+     * If a config is specified, tiered storage is enabled for this table.
+     * Otherwise, tiered storage is disabled.
+     * Only SSD instances can configure tiered storage.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.TieredStorageConfig tiered_storage_config = 14;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\TieredStorageConfig $var
+     * @return $this
+     */
+    public function setTieredStorageConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\TieredStorageConfig::class);
+        $this->tiered_storage_config = $var;
 
         return $this;
     }
