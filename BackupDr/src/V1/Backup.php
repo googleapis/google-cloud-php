@@ -184,6 +184,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Cloud SQL specific backup properties.
      *     @type \Google\Cloud\BackupDR\V1\BackupApplianceBackupProperties $backup_appliance_backup_properties
      *           Output only. Backup Appliance specific backup properties.
+     *     @type \Google\Cloud\BackupDR\V1\AlloyDbClusterBackupProperties $alloy_db_backup_properties
+     *           Output only. AlloyDB specific backup properties.
      *     @type \Google\Cloud\BackupDR\V1\DiskBackupProperties $disk_backup_properties
      *           Output only. Disk specific backup properties.
      *     @type int $backup_type
@@ -734,6 +736,37 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\BackupApplianceBackupProperties::class);
         $this->writeOneof(21, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. AlloyDB specific backup properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.AlloyDbClusterBackupProperties alloy_db_backup_properties = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\AlloyDbClusterBackupProperties|null
+     */
+    public function getAlloyDbBackupProperties()
+    {
+        return $this->readOneof(27);
+    }
+
+    public function hasAlloyDbBackupProperties()
+    {
+        return $this->hasOneof(27);
+    }
+
+    /**
+     * Output only. AlloyDB specific backup properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.AlloyDbClusterBackupProperties alloy_db_backup_properties = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\AlloyDbClusterBackupProperties $var
+     * @return $this
+     */
+    public function setAlloyDbBackupProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\AlloyDbClusterBackupProperties::class);
+        $this->writeOneof(27, $var);
 
         return $this;
     }
