@@ -32,6 +32,13 @@ class Part extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes thought_signature = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $thought_signature = '';
+    /**
+     * per part media resolution.
+     * Media resolution for the input media.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Part.MediaResolution media_resolution = 12;</code>
+     */
+    protected $media_resolution = null;
     protected $data;
     protected $metadata;
 
@@ -68,6 +75,9 @@ class Part extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\VideoMetadata $video_metadata
      *           Optional. Video metadata. The metadata should only be specified while the
      *           video data is presented in inline_data or file_data.
+     *     @type \Google\Cloud\AIPlatform\V1\Part\MediaResolution $media_resolution
+     *           per part media resolution.
+     *           Media resolution for the input media.
      * }
      */
     public function __construct($data = NULL) {
@@ -385,6 +395,44 @@ class Part extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\VideoMetadata::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * per part media resolution.
+     * Media resolution for the input media.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Part.MediaResolution media_resolution = 12;</code>
+     * @return \Google\Cloud\AIPlatform\V1\Part\MediaResolution|null
+     */
+    public function getMediaResolution()
+    {
+        return $this->media_resolution;
+    }
+
+    public function hasMediaResolution()
+    {
+        return isset($this->media_resolution);
+    }
+
+    public function clearMediaResolution()
+    {
+        unset($this->media_resolution);
+    }
+
+    /**
+     * per part media resolution.
+     * Media resolution for the input media.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Part.MediaResolution media_resolution = 12;</code>
+     * @param \Google\Cloud\AIPlatform\V1\Part\MediaResolution $var
+     * @return $this
+     */
+    public function setMediaResolution($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Part\MediaResolution::class);
+        $this->media_resolution = $var;
 
         return $this;
     }
