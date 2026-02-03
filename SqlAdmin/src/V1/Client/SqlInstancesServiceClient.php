@@ -214,10 +214,28 @@ final class SqlInstancesServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a network
+     * resource.
+     *
+     * @param string $project
+     * @param string $network
+     *
+     * @return string The formatted network resource.
+     */
+    public static function networkName(string $project, string $network): string
+    {
+        return self::getPathTemplate('network')->render([
+            'project' => $project,
+            'network' => $network,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/backups/{backup}
+     * - network: projects/{project}/global/networks/{network}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
