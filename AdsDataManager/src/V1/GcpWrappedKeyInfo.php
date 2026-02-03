@@ -34,7 +34,9 @@ class GcpWrappedKeyInfo extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Platform [Cloud Key Management Service resource
      * ID](//cloud.google.com/kms/docs/getting-resource-ids).  Should be in the
      * format of
-     * "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}".
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
+     * or
+     * `gcp-kms://projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kek_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -62,7 +64,9 @@ class GcpWrappedKeyInfo extends \Google\Protobuf\Internal\Message
      *           Required. Google Cloud Platform [Cloud Key Management Service resource
      *           ID](//cloud.google.com/kms/docs/getting-resource-ids).  Should be in the
      *           format of
-     *           "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}".
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
+     *           or
+     *           `gcp-kms://projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
      *     @type string $encrypted_dek
      *           Required. The base64 encoded encrypted data encryption key.
      * }
@@ -132,7 +136,9 @@ class GcpWrappedKeyInfo extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Platform [Cloud Key Management Service resource
      * ID](//cloud.google.com/kms/docs/getting-resource-ids).  Should be in the
      * format of
-     * "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}".
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
+     * or
+     * `gcp-kms://projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kek_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -146,7 +152,9 @@ class GcpWrappedKeyInfo extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Platform [Cloud Key Management Service resource
      * ID](//cloud.google.com/kms/docs/getting-resource-ids).  Should be in the
      * format of
-     * "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}".
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
+     * or
+     * `gcp-kms://projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kek_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

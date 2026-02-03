@@ -17,15 +17,15 @@ class DeviceInfo
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
+ß
 +google/ads/datamanager/v1/device_info.protogoogle.ads.datamanager.v1">
 
 DeviceInfo
 
 user_agent (	BàA
 
-ip_address (	BàABÏ
-com.google.ads.datamanager.v1BDeviceInfoProtoPZDgoogle.golang.org/genproto/googleapis/ads/datamanager/v1;datamanagerªGoogle.Ads.DataManager.V1ÊGoogle\\Ads\\DataManager\\V1êGoogle::Ads::DataManager::V1bproto3'
+ip_address (	BàABÌ
+com.google.ads.datamanager.v1BDeviceInfoProtoPZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpbªGoogle.Ads.DataManager.V1ÊGoogle\\Ads\\DataManager\\V1êGoogle::Ads::DataManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;
