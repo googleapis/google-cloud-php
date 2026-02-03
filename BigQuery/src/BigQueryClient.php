@@ -34,6 +34,8 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
+use function PHPUnit\Framework\isNull;
+
 /**
  * Google Cloud BigQuery allows you to create, manage, share and query data.
  * Find more information at the
@@ -416,6 +418,13 @@ class BigQueryClient
             'formatOptions.useInt64Timestamp'
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
+
+        // Check if we can build a query Request
+        $queryRequest = $query->getQueryRequest();
+
+        if (!isNull($queryRequest)) {
+            $this->connection->statelessQuery($queryRequest);
+        }
 
         $queryResults = $this->startQuery(
             $query,
