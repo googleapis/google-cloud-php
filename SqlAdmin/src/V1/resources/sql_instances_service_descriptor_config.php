@@ -781,6 +781,7 @@ return [
             ],
             'templateMap' => [
                 'backup' => 'projects/{project}/backups/{backup}',
+                'network' => 'projects/{project}/global/networks/{network}',
             ],
         ],
     ],

@@ -45,6 +45,14 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      */
     private $database_roles;
     /**
+     * Optional. Specifies whether to revoke existing roles that are not present
+     * in the `database_roles` field. If `false` or unset, the database roles
+     * specified in `database_roles` are added to the user's existing roles.
+     *
+     * Generated from protobuf field <code>optional bool revoke_existing_roles = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $revoke_existing_roles = null;
+    /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.User body = 100;</code>
      */
     protected $body = null;
@@ -66,6 +74,10 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_roles
      *           Optional. List of database roles to grant to the user. body.database_roles
      *           will be ignored for update request.
+     *     @type bool $revoke_existing_roles
+     *           Optional. Specifies whether to revoke existing roles that are not present
+     *           in the `database_roles` field. If `false` or unset, the database roles
+     *           specified in `database_roles` are added to the user's existing roles.
      *     @type \Google\Cloud\Sql\V1\User $body
      * }
      */
@@ -202,6 +214,46 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->database_roles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present
+     * in the `database_roles` field. If `false` or unset, the database roles
+     * specified in `database_roles` are added to the user's existing roles.
+     *
+     * Generated from protobuf field <code>optional bool revoke_existing_roles = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRevokeExistingRoles()
+    {
+        return isset($this->revoke_existing_roles) ? $this->revoke_existing_roles : false;
+    }
+
+    public function hasRevokeExistingRoles()
+    {
+        return isset($this->revoke_existing_roles);
+    }
+
+    public function clearRevokeExistingRoles()
+    {
+        unset($this->revoke_existing_roles);
+    }
+
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present
+     * in the `database_roles` field. If `false` or unset, the database roles
+     * specified in `database_roles` are added to the user's existing roles.
+     *
+     * Generated from protobuf field <code>optional bool revoke_existing_roles = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRevokeExistingRoles($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->revoke_existing_roles = $var;
 
         return $this;
     }

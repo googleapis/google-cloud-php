@@ -7,7 +7,7 @@ namespace Google\Cloud\Sql\V1\Settings;
 use UnexpectedValueException;
 
 /**
- * The edition of the instance, can be ENTERPRISE or ENTERPRISE_PLUS.
+ * The edition of the instance.
  *
  * Protobuf type <code>google.cloud.sql.v1.Settings.Edition</code>
  */
