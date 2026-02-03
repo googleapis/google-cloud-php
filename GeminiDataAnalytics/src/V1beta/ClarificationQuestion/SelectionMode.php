@@ -59,6 +59,4 @@ class SelectionMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SelectionMode::class, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion_SelectionMode::class);
 

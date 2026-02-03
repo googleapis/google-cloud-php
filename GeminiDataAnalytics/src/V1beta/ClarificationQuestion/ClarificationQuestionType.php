@@ -62,6 +62,4 @@ class ClarificationQuestionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClarificationQuestionType::class, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion_ClarificationQuestionType::class);
 

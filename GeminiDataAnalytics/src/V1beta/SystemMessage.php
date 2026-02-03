@@ -47,6 +47,8 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
      *           An error message.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQueries $example_queries
      *           Optional. A message containing example queries.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage $clarification
+     *           Optional. A message containing clarification questions.
      *     @type int $group_id
      *           Identifies the group that the event belongs to. Similar events are deemed
      *           to be logically relevant to each other and should be shown together in
@@ -271,6 +273,37 @@ class SystemMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQueries::class);
         $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A message containing clarification questions.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationMessage clarification = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage|null
+     */
+    public function getClarification()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasClarification()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * Optional. A message containing clarification questions.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationMessage clarification = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage $var
+     * @return $this
+     */
+    public function setClarification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationMessage::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }
