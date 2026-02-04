@@ -17,8 +17,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Identifier. The resource name of the Dataset.
+     * Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
@@ -150,6 +152,8 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Identifier. The resource name of the Dataset.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type string $display_name
      *           Required. The user-defined name of the Dataset.
      *           The name can be up to 128 characters long and can consist of any UTF-8
@@ -219,8 +223,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The resource name of the Dataset.
+     * Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -230,8 +236,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The resource name of the Dataset.
+     * Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

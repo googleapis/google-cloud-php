@@ -20,10 +20,11 @@ class DatasetVersion
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˘
-0google/cloud/aiplatform/v1/dataset_version.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Ú
-DatasetVersion
-name (	B‡A‡A4
+¶
+0google/cloud/aiplatform/v1/dataset_version.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"ü
+DatasetVersionA
+name (	B3‡A‡A˙A*
+(aiplatform.googleapis.com/DatasetVersion4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A
 etag (	#

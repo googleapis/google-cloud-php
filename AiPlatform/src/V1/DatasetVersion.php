@@ -17,8 +17,10 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Identifier. The resource name of the DatasetVersion.
+     * Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
     /**
@@ -88,6 +90,8 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Identifier. The resource name of the DatasetVersion.
+     *           Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this DatasetVersion was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -119,8 +123,10 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The resource name of the DatasetVersion.
+     * Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -130,8 +136,10 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Identifier. The resource name of the DatasetVersion.
+     * Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
