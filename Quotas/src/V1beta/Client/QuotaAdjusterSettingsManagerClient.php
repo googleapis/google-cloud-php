@@ -302,7 +302,7 @@ final class QuotaAdjusterSettingsManagerClient
     }
 
     /**
-     * RPC Method for getting QuotaAdjusterSettings based on the request
+     * Gets the QuotaAdjusterSettings for the specified resource.
      *
      * The async variant is
      * {@see QuotaAdjusterSettingsManagerClient::getQuotaAdjusterSettingsAsync()} .
@@ -333,7 +333,7 @@ final class QuotaAdjusterSettingsManagerClient
     }
 
     /**
-     * RPC Method for updating QuotaAdjusterSettings based on the request
+     * Updates the QuotaAdjusterSettings for the specified resource.
      *
      * The async variant is
      * {@see QuotaAdjusterSettingsManagerClient::updateQuotaAdjusterSettingsAsync()} .
