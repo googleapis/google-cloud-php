@@ -1,5 +1,119 @@
 # Changelog
 
+## 0.318.0
+
+<details><summary>googleads/data-manager 0.1.2</summary>
+
+
+
+### Documentation
+
+* [AdsDataManager] describe additional URI format for kek_uri in GcpEncryptionInfo and AwsKmsEncryptionInfo ([#8888](https://github.com/googleapis/google-cloud-php/issues/8888)) ([19c1500](https://github.com/googleapis/google-cloud-php/commit/19c15001c8cebb4814323b02b0f33fd2aa3c2c2f))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.49.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add `fps` to message `VideoMetadata` ([#8889](https://github.com/googleapis/google-cloud-php/issues/8889)) ([2ba060f](https://github.com/googleapis/google-cloud-php/commit/2ba060ff73ddc8f62b8eb77037cfe3b3150abaec))
+
+</details>
+
+<details><summary>google/apps-chat 0.17.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Addition of QuoteType enum, QuotedMessageSnapshot & ForwardMetadata in the QuotedMessageMetadata proto ([2c8b1b8](https://github.com/googleapis/google-cloud-php/commit/2c8b1b843a9180256fa9080afe67042ae69c8804))
+
+
+### Documentation
+
+* Update reference documentation for `SelectionInput.DROPDOWN` to include dynamic data sources and autosuggestion ([2c8b1b8](https://github.com/googleapis/google-cloud-php/commit/2c8b1b843a9180256fa9080afe67042ae69c8804))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.12.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Add support for AlloyDB backup and restore ([#8884](https://github.com/googleapis/google-cloud-php/issues/8884)) ([f542362](https://github.com/googleapis/google-cloud-php/commit/f542362b2a387471cd5070c535ff856b4918139e))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.21.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add TieredStorageConfig to table admin api ([#8890](https://github.com/googleapis/google-cloud-php/issues/8890)) ([467c22f](https://github.com/googleapis/google-cloud-php/commit/467c22f8e479ad044a946256e07289d3d365784e))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.25.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.8.0</summary>
+
+
+
+### Features
+
+* [GeminiDataAnalytics] add ClarificationMessage, thought-signature, formatted-data ([#8891](https://github.com/googleapis/google-cloud-php/issues/8891)) ([4be4995](https://github.com/googleapis/google-cloud-php/commit/4be49958f47c24304cd556f7964ff34aac64dbbe))
+
+</details>
+
+<details><summary>google/grafeas 1.5.0</summary>
+
+
+
+### Features
+
+* [Grafeas] A new field `last_vulnerability_update_time` is added to message `.grafeas.v1.DiscoveryOccurrence` ([#8881](https://github.com/googleapis/google-cloud-php/issues/8881)) ([7b104e0](https://github.com/googleapis/google-cloud-php/commit/7b104e0b9c9e3e6513e2207640e8f743e188af6c))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.18.0</summary>
+
+
+
+### Features
+
+* **PubSub:** Add php docblock for the logger option ([#8886](https://github.com/googleapis/google-cloud-php/issues/8886)) ([6a19f52](https://github.com/googleapis/google-cloud-php/commit/6a19f523822b630a63f35f11648e222146a84c82))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.5.4</summary>
+
+
+
+### Documentation
+
+* [Quotas] Hierarchical Quota Adjuster ([#8887](https://github.com/googleapis/google-cloud-php/issues/8887)) ([8ef088f](https://github.com/googleapis/google-cloud-php/commit/8ef088f9a956b1cf9f4648ee28b1997966ad4649))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.7.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] added an optional `application` field to `ExecuteSqlRequest` to support application-level telemetry and audit logging ([#8882](https://github.com/googleapis/google-cloud-php/issues/8882)) ([c118627](https://github.com/googleapis/google-cloud-php/commit/c118627657ffeeb49228708fc056525fe11f7c6f))
+* [SqlAdmin] Added cross-project cloning support and enhanced database user role management to the v1 API ([#8894](https://github.com/googleapis/google-cloud-php/issues/8894)) ([e18020b](https://github.com/googleapis/google-cloud-php/commit/e18020b8bfbabbf19749cd0ed7abcaf496176e80))
+
+</details>
+
 ## 0.317.0
 
 <details><summary>googleads/ad-manager 0.6.1</summary>
