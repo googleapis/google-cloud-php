@@ -30,7 +30,11 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
     protected $status = null;
     /**
      * The commit timestamp of the transaction that applied this batch.
-     * Present if `status` is `OK`, absent otherwise.
+     * Present if status is OK and the mutation groups were applied, absent
+     * otherwise.
+     * For mutation groups with conditions, a status=OK and missing
+     * commit_timestamp means that the mutation groups were not applied due to the
+     * condition not being satisfied after evaluation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 3;</code>
      */
@@ -49,7 +53,11 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      *           An `OK` status indicates success. Any other status indicates a failure.
      *     @type \Google\Protobuf\Timestamp $commit_timestamp
      *           The commit timestamp of the transaction that applied this batch.
-     *           Present if `status` is `OK`, absent otherwise.
+     *           Present if status is OK and the mutation groups were applied, absent
+     *           otherwise.
+     *           For mutation groups with conditions, a status=OK and missing
+     *           commit_timestamp means that the mutation groups were not applied due to the
+     *           condition not being satisfied after evaluation.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +131,11 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The commit timestamp of the transaction that applied this batch.
-     * Present if `status` is `OK`, absent otherwise.
+     * Present if status is OK and the mutation groups were applied, absent
+     * otherwise.
+     * For mutation groups with conditions, a status=OK and missing
+     * commit_timestamp means that the mutation groups were not applied due to the
+     * condition not being satisfied after evaluation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -145,7 +157,11 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The commit timestamp of the transaction that applied this batch.
-     * Present if `status` is `OK`, absent otherwise.
+     * Present if status is OK and the mutation groups were applied, absent
+     * otherwise.
+     * For mutation groups with conditions, a status=OK and missing
+     * commit_timestamp means that the mutation groups were not applied due to the
+     * condition not being satisfied after evaluation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
