@@ -837,7 +837,7 @@ class FirestoreAdminGapicClient
      *                                   with first character a letter and the last a letter or a number. Must not
      *                                   be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
      *
-     *                                   "(default)" database ID is also valid.
+     *                                   "(default)" database ID is also valid if the database is Standard edition.
      * @param PitrSnapshot $pitrSnapshot Required. Specification of the PITR data to clone from. The source database
      *                                   must exist.
      *
@@ -986,7 +986,7 @@ class FirestoreAdminGapicClient
      *                               with first character a letter and the last a letter or a number. Must not
      *                               be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
      *
-     *                               "(default)" database ID is also valid.
+     *                               "(default)" database ID is also valid if the database is Standard edition.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -1499,8 +1499,8 @@ class FirestoreAdminGapicClient
      *     Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection IDs to export. Unspecified means all collections. Each
-     *           collection ID in this list must be unique.
+     *           IDs of the collection groups to export. Unspecified means all
+     *           collection groups. Each collection group in this list must be unique.
      *     @type string $outputUriPrefix
      *           The output URI. Currently only supports Google Cloud Storage URIs of the
      *           form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name
@@ -1853,8 +1853,9 @@ class FirestoreAdminGapicClient
      *     Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection IDs to import. Unspecified means all collections included
-     *           in the import. Each collection ID in this list must be unique.
+     *           IDs of the collection groups to import. Unspecified means all collection
+     *           groups that were included in the export. Each collection group in this list
+     *           must be unique.
      *     @type string $inputUriPrefix
      *           Location of the exported files.
      *           This must match the output_uri_prefix of an ExportDocumentsResponse from
@@ -2361,7 +2362,7 @@ class FirestoreAdminGapicClient
      *                             with first character a letter and the last a letter or a number. Must not
      *                             be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
      *
-     *                             "(default)" database ID is also valid.
+     *                             "(default)" database ID is also valid if the database is Standard edition.
      * @param string $backup       Required. Backup to restore from. Must be from the same project as the
      *                             parent.
      *

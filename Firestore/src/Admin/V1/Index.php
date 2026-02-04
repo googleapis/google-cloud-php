@@ -86,6 +86,13 @@ class Index extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 shard_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $shard_count = 0;
+    /**
+     * Optional. Whether it is an unique index. Unique index ensures all values
+     * for the indexed field(s) are unique across documents.
+     *
+     * Generated from protobuf field <code>bool unique = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $unique = false;
 
     /**
      * Constructor.
@@ -131,6 +138,9 @@ class Index extends \Google\Protobuf\Internal\Message
      *           Note this field only applies to index with MONGODB_COMPATIBLE_API ApiScope.
      *     @type int $shard_count
      *           Optional. The number of shards for the index.
+     *     @type bool $unique
+     *           Optional. Whether it is an unique index. Unique index ensures all values
+     *           for the indexed field(s) are unique across documents.
      * }
      */
     public function __construct($data = NULL) {
@@ -386,6 +396,34 @@ class Index extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->shard_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether it is an unique index. Unique index ensures all values
+     * for the indexed field(s) are unique across documents.
+     *
+     * Generated from protobuf field <code>bool unique = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUnique()
+    {
+        return $this->unique;
+    }
+
+    /**
+     * Optional. Whether it is an unique index. Unique index ensures all values
+     * for the indexed field(s) are unique across documents.
+     *
+     * Generated from protobuf field <code>bool unique = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUnique($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->unique = $var;
 
         return $this;
     }

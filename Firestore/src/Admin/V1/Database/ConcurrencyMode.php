@@ -22,6 +22,8 @@ class ConcurrencyMode
     /**
      * Use optimistic concurrency control by default. This mode is available
      * for Cloud Firestore databases.
+     * This is the default setting for Cloud Firestore Enterprise Edition
+     * databases.
      *
      * Generated from protobuf enum <code>OPTIMISTIC = 1;</code>
      */
@@ -29,16 +31,18 @@ class ConcurrencyMode
     /**
      * Use pessimistic concurrency control by default. This mode is available
      * for Cloud Firestore databases.
-     * This is the default setting for Cloud Firestore.
+     * This is the default setting for Cloud Firestore Standard Edition
+     * databases.
      *
      * Generated from protobuf enum <code>PESSIMISTIC = 2;</code>
      */
     const PESSIMISTIC = 2;
     /**
      * Use optimistic concurrency control with entity groups by default.
-     * This is the only available mode for Cloud Datastore.
-     * This mode is also available for Cloud Firestore with Datastore Mode but
-     * is not recommended.
+     * This mode is enabled for some databases that were automatically upgraded
+     * from Cloud Datastore to Cloud Firestore with Datastore Mode.
+     * It is not recommended for any new databases, and not supported for
+     * Firestore Native databases.
      *
      * Generated from protobuf enum <code>OPTIMISTIC_WITH_ENTITY_GROUPS = 3;</code>
      */
