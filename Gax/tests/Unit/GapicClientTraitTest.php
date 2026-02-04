@@ -645,7 +645,7 @@ class GapicClientTraitTest extends TestCase
     public function testCreateTransport($apiEndpoint, $transport, $transportConfig, $expectedTransportClass)
     {
         if ($expectedTransportClass == GrpcTransport::class) {
-            $this->requiresGrpcExtension();
+            self::requiresGrpcExtension();
         }
         $client = new StubGapicClient();
         $transport = $client->createTransport(

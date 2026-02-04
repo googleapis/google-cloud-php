@@ -54,7 +54,7 @@ class InsecureCredentialsWrapperTest extends TestCase
             }
         };
 
-        $headers = $httpImpl->buildCommonHeaders([
+        $headers = $httpImpl::buildCommonHeaders([
             'credentialsWrapper' => new InsecureCredentialsWrapper(),
         ]);
 
@@ -63,7 +63,7 @@ class InsecureCredentialsWrapperTest extends TestCase
 
     public function testInsecureCredentialsWrapperWithGrpcTransport()
     {
-        $this->requiresGrpcExtension();
+        self::requiresGrpcExtension();
 
         $message = $this->createMockRequest();
         $call = $this->prophesize(Call::class);

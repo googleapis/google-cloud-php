@@ -67,7 +67,7 @@ class GrpcTransportTest extends TestCase
 
     public function setUp(): void
     {
-        $this->requiresGrpcExtension();
+        self::requiresGrpcExtension();
     }
 
     private function callCredentialsCallback(MockGrpcTransport $transport)
@@ -455,7 +455,7 @@ class GrpcTransportTest extends TestCase
 
     public function testClientCertSourceOptionInvalid()
     {
-        $this->requiresPhp7();
+        self::requiresPhp7();
 
         $mockClientCertSource = 'foo';
 

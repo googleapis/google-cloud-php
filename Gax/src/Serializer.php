@@ -331,7 +331,7 @@ class Serializer
         list($fields, $fieldsToOneof) = $this->getDescriptorMaps($messageType);
         foreach ($fields as $field) {
             $key = $field->getName();
-            $getter = $this->getGetter($key);
+            $getter = self::getGetter($key);
             $v = $message->$getter();
 
             if (is_null($v)) {
@@ -341,7 +341,7 @@ class Serializer
             // Check and skip unset fields inside oneofs
             if (isset($fieldsToOneof[$key])) {
                 $oneofName = $fieldsToOneof[$key];
-                $oneofGetter =  $this->getGetter($oneofName);
+                $oneofGetter =  self::getGetter($oneofName);
                 if ($message->$oneofGetter() !== $key) {
                     continue;
                 }
@@ -449,7 +449,7 @@ class Serializer
                 $value = $this->decodeElement($field, $v);
             }
 
-            $setter = $this->getSetter($field->getName());
+            $setter = self::getSetter($field->getName());
             $message->$setter($value);
 
             // We must unset $value here, otherwise the protobuf c extension will mix up the references

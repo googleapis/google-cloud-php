@@ -64,13 +64,13 @@ class ClientOptionsTraitTest extends TestCase
         require_once __DIR__ . '/testdata/src/GapicClientStub.php';
         $version = '1.2.3-dev';
         $client = new \GapicClientStub();
-        $this->assertEquals($version, $client->getGapicVersion([]));
+        $this->assertEquals($version, $client::getGapicVersion([]));
     }
 
     public function testGetGapicVersionWithNoAvailableVersion()
     {
         $client = new StubClientOptionsClient();
-        $this->assertSame('', $client->getGapicVersion([]));
+        $this->assertSame('', $client::getGapicVersion([]));
     }
 
     public function testGetGapicVersionWithLibVersion()
@@ -79,7 +79,7 @@ class ClientOptionsTraitTest extends TestCase
         $client = new StubClientOptionsClient();
         $client->set('gapicVersionFromFile', $version, true);
         $options = ['libVersion' => $version];
-        $this->assertEquals($version, $client->getGapicVersion(
+        $this->assertEquals($version, $client::getGapicVersion(
             $options
         ));
     }
@@ -356,7 +356,7 @@ class ClientOptionsTraitTest extends TestCase
 
         $this->assertEquals(
             $expected,
-            $client->determineMtlsEndpoint($apiEndpoint)
+            $client::determineMtlsEndpoint($apiEndpoint)
         );
     }
 
