@@ -40,7 +40,7 @@ class ValidationTraitTest extends TestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Missing required argument');
 
-        $this->stub->validate($input, ['bar', 'baz']);
+        $this->stub::validate($input, ['bar', 'baz']);
     }
 
     public function testValidateValidArray()
@@ -50,7 +50,7 @@ class ValidationTraitTest extends TestCase
             'bar' => 2
         ];
 
-        $arr = $this->stub->validate($input, ['foo', 'bar']);
+        $arr = $this->stub::validate($input, ['foo', 'bar']);
 
         $this->assertEquals($input, $arr);
     }
@@ -64,7 +64,7 @@ class ValidationTraitTest extends TestCase
 
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Missing required argument');
-        $this->stub->validateNotNull($input, ['foo', 'bar']);
+        $this->stub::validateNotNull($input, ['foo', 'bar']);
     }
 
     public function testValidateValidArrayWithNotNull()
@@ -74,7 +74,7 @@ class ValidationTraitTest extends TestCase
             'bar' => 2
         ];
 
-        $arr = $this->stub->validateNotNull($input, ['foo', 'bar']);
+        $arr = $this->stub::validateNotNull($input, ['foo', 'bar']);
 
         $this->assertEquals($input, $arr);
     }

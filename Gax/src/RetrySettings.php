@@ -269,7 +269,7 @@ class RetrySettings
      */
     public function __construct(array $settings)
     {
-        $this->validateNotNull($settings, [
+        self::validateNotNull($settings, [
             'initialRetryDelayMillis',
             'retryDelayMultiplier',
             'maxRetryDelayMillis',

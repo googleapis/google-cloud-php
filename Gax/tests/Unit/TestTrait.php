@@ -81,7 +81,7 @@ trait TestTrait
 
     public function createOperationsClient($transport = null)
     {
-        $this->requiresGrpcExtension();
+        self::requiresGrpcExtension();
 
         $client = new OperationsClient([
             'apiEndpoint' => '',
