@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Encryption configuration for a new database being created from another
  * source.
- * The source could be a [Backup][google.firestore.admin.v1.Backup] .
+ * The source could be a [Backup][google.firestore.admin.v1.Backup] or a
+ * [PitrSnapshot][google.firestore.admin.v1.PitrSnapshot].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Database.EncryptionConfig</code>
  */

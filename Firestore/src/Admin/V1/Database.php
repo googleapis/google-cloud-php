@@ -67,6 +67,9 @@ class Database extends \Google\Protobuf\Internal\Message
     private $type = 0;
     /**
      * The concurrency control mode to use for this database.
+     * If unspecified in a CreateDatabase request, this will default based on the
+     * database edition: Optimistic for Enterprise and Pessimistic for all other
+     * databases.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.ConcurrencyMode concurrency_mode = 15;</code>
      */
@@ -181,6 +184,30 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseEdition database_edition = 28 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $database_edition = 0;
+    /**
+     * Immutable. The default Realtime Updates mode to use for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.RealtimeUpdatesMode realtime_updates_mode = 31 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $realtime_updates_mode = 0;
+    /**
+     * Optional. The Firestore API data access mode to use for this database. If
+     * not set on write:
+     * - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise Edition.
+     * - the default value is DATA_ACCESS_MODE_ENABLED for Standard Edition.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DataAccessMode firestore_data_access_mode = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $firestore_data_access_mode = 0;
+    /**
+     * Optional. The MongoDB compatible API data access mode to use for this
+     * database. If not set on write, the default value is
+     * DATA_ACCESS_MODE_ENABLED for Enterprise Edition. The value is always
+     * DATA_ACCESS_MODE_DISABLED for Standard Edition.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DataAccessMode mongodb_compatible_data_access_mode = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $mongodb_compatible_data_access_mode = 0;
 
     /**
      * Constructor.
@@ -212,6 +239,9 @@ class Database extends \Google\Protobuf\Internal\Message
      *           information about how to choose.
      *     @type int $concurrency_mode
      *           The concurrency control mode to use for this database.
+     *           If unspecified in a CreateDatabase request, this will default based on the
+     *           database edition: Optimistic for Enterprise and Pessimistic for all other
+     *           databases.
      *     @type \Google\Protobuf\Duration $version_retention_period
      *           Output only. The period during which past versions of data are retained in
      *           the database.
@@ -270,6 +300,18 @@ class Database extends \Google\Protobuf\Internal\Message
      *           client has an up-to-date value before proceeding.
      *     @type int $database_edition
      *           Immutable. The edition of the database.
+     *     @type int $realtime_updates_mode
+     *           Immutable. The default Realtime Updates mode to use for this database.
+     *     @type int $firestore_data_access_mode
+     *           Optional. The Firestore API data access mode to use for this database. If
+     *           not set on write:
+     *           - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise Edition.
+     *           - the default value is DATA_ACCESS_MODE_ENABLED for Standard Edition.
+     *     @type int $mongodb_compatible_data_access_mode
+     *           Optional. The MongoDB compatible API data access mode to use for this
+     *           database. If not set on write, the default value is
+     *           DATA_ACCESS_MODE_ENABLED for Enterprise Edition. The value is always
+     *           DATA_ACCESS_MODE_DISABLED for Standard Edition.
      * }
      */
     public function __construct($data = NULL) {
@@ -507,6 +549,9 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * The concurrency control mode to use for this database.
+     * If unspecified in a CreateDatabase request, this will default based on the
+     * database edition: Optimistic for Enterprise and Pessimistic for all other
+     * databases.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.ConcurrencyMode concurrency_mode = 15;</code>
      * @return int
@@ -518,6 +563,9 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * The concurrency control mode to use for this database.
+     * If unspecified in a CreateDatabase request, this will default based on the
+     * database edition: Optimistic for Enterprise and Pessimistic for all other
+     * databases.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.ConcurrencyMode concurrency_mode = 15;</code>
      * @param int $var
@@ -979,6 +1027,96 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\DatabaseEdition::class);
         $this->database_edition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The default Realtime Updates mode to use for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.RealtimeUpdatesMode realtime_updates_mode = 31 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getRealtimeUpdatesMode()
+    {
+        return $this->realtime_updates_mode;
+    }
+
+    /**
+     * Immutable. The default Realtime Updates mode to use for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.RealtimeUpdatesMode realtime_updates_mode = 31 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRealtimeUpdatesMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\RealtimeUpdatesMode::class);
+        $this->realtime_updates_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Firestore API data access mode to use for this database. If
+     * not set on write:
+     * - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise Edition.
+     * - the default value is DATA_ACCESS_MODE_ENABLED for Standard Edition.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DataAccessMode firestore_data_access_mode = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFirestoreDataAccessMode()
+    {
+        return $this->firestore_data_access_mode;
+    }
+
+    /**
+     * Optional. The Firestore API data access mode to use for this database. If
+     * not set on write:
+     * - the default value is DATA_ACCESS_MODE_DISABLED for Enterprise Edition.
+     * - the default value is DATA_ACCESS_MODE_ENABLED for Standard Edition.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DataAccessMode firestore_data_access_mode = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFirestoreDataAccessMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\DataAccessMode::class);
+        $this->firestore_data_access_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The MongoDB compatible API data access mode to use for this
+     * database. If not set on write, the default value is
+     * DATA_ACCESS_MODE_ENABLED for Enterprise Edition. The value is always
+     * DATA_ACCESS_MODE_DISABLED for Standard Edition.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DataAccessMode mongodb_compatible_data_access_mode = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMongodbCompatibleDataAccessMode()
+    {
+        return $this->mongodb_compatible_data_access_mode;
+    }
+
+    /**
+     * Optional. The MongoDB compatible API data access mode to use for this
+     * database. If not set on write, the default value is
+     * DATA_ACCESS_MODE_ENABLED for Enterprise Edition. The value is always
+     * DATA_ACCESS_MODE_DISABLED for Standard Edition.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DataAccessMode mongodb_compatible_data_access_mode = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMongodbCompatibleDataAccessMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\DataAccessMode::class);
+        $this->mongodb_compatible_data_access_mode = $var;
 
         return $this;
     }

@@ -30,7 +30,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      * with first character a letter and the last a letter or a number. Must not
      * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     * "(default)" database ID is also valid.
+     * "(default)" database ID is also valid if the database is Standard edition.
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -79,7 +79,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *           This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      *           with first character a letter and the last a letter or a number. Must not
      *           be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     *           "(default)" database ID is also valid.
+     *           "(default)" database ID is also valid if the database is Standard edition.
      *     @type string $backup
      *           Required. Backup to restore from. Must be from the same project as the
      *           parent.
@@ -137,7 +137,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      * with first character a letter and the last a letter or a number. Must not
      * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     * "(default)" database ID is also valid.
+     * "(default)" database ID is also valid if the database is Standard edition.
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -154,7 +154,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
      * with first character a letter and the last a letter or a number. Must not
      * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
-     * "(default)" database ID is also valid.
+     * "(default)" database ID is also valid if the database is Standard edition.
      *
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
