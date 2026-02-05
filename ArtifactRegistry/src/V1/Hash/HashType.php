@@ -31,11 +31,18 @@ class HashType
      * Generated from protobuf enum <code>MD5 = 2;</code>
      */
     const MD5 = 2;
+    /**
+     * Dirsum SHA256 hash.
+     *
+     * Generated from protobuf enum <code>DIRSUM_SHA256 = 3;</code>
+     */
+    const DIRSUM_SHA256 = 3;
 
     private static $valueToName = [
         self::HASH_TYPE_UNSPECIFIED => 'HASH_TYPE_UNSPECIFIED',
         self::SHA256 => 'SHA256',
         self::MD5 => 'MD5',
+        self::DIRSUM_SHA256 => 'DIRSUM_SHA256',
     ];
 
     public static function name($value)
