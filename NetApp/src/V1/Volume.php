@@ -263,12 +263,25 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     protected $throughput_mibps = 0.0;
     /**
+     * Optional. Cache parameters for the volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.CacheParameters cache_parameters = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cache_parameters = null;
+    /**
      * Output only. Total hot tier data rounded down to the nearest GiB used by
      * the Volume. This field is only used for flex Service Level
      *
      * Generated from protobuf field <code>int64 hot_tier_size_used_gib = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $hot_tier_size_used_gib = 0;
+    /**
+     * Optional. Block devices for the volume.
+     * Currently, only one block device is permitted per Volume.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BlockDevice block_devices = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $block_devices;
 
     /**
      * Constructor.
@@ -367,9 +380,14 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           Optional. The Hybrid Replication parameters for the volume.
      *     @type float $throughput_mibps
      *           Optional. Throughput of the volume (in MiB/s)
+     *     @type \Google\Cloud\NetApp\V1\CacheParameters $cache_parameters
+     *           Optional. Cache parameters for the volume.
      *     @type int|string $hot_tier_size_used_gib
      *           Output only. Total hot tier data rounded down to the nearest GiB used by
      *           the Volume. This field is only used for flex Service Level
+     *     @type array<\Google\Cloud\NetApp\V1\BlockDevice>|\Google\Protobuf\Internal\RepeatedField $block_devices
+     *           Optional. Block devices for the volume.
+     *           Currently, only one block device is permitted per Volume.
      * }
      */
     public function __construct($data = NULL) {
@@ -1488,6 +1506,42 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Cache parameters for the volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.CacheParameters cache_parameters = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetApp\V1\CacheParameters|null
+     */
+    public function getCacheParameters()
+    {
+        return $this->cache_parameters;
+    }
+
+    public function hasCacheParameters()
+    {
+        return isset($this->cache_parameters);
+    }
+
+    public function clearCacheParameters()
+    {
+        unset($this->cache_parameters);
+    }
+
+    /**
+     * Optional. Cache parameters for the volume.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.CacheParameters cache_parameters = 42 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetApp\V1\CacheParameters $var
+     * @return $this
+     */
+    public function setCacheParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\CacheParameters::class);
+        $this->cache_parameters = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Total hot tier data rounded down to the nearest GiB used by
      * the Volume. This field is only used for flex Service Level
      *
@@ -1511,6 +1565,34 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->hot_tier_size_used_gib = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Block devices for the volume.
+     * Currently, only one block device is permitted per Volume.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BlockDevice block_devices = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getBlockDevices()
+    {
+        return $this->block_devices;
+    }
+
+    /**
+     * Optional. Block devices for the volume.
+     * Currently, only one block device is permitted per Volume.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BlockDevice block_devices = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\NetApp\V1\BlockDevice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setBlockDevices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetApp\V1\BlockDevice::class);
+        $this->block_devices = $arr;
 
         return $this;
     }

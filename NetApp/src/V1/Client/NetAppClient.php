@@ -46,6 +46,7 @@ use Google\Cloud\NetApp\V1\CreateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\CreateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\CreateBackupRequest;
 use Google\Cloud\NetApp\V1\CreateBackupVaultRequest;
+use Google\Cloud\NetApp\V1\CreateHostGroupRequest;
 use Google\Cloud\NetApp\V1\CreateKmsConfigRequest;
 use Google\Cloud\NetApp\V1\CreateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\CreateReplicationRequest;
@@ -56,6 +57,7 @@ use Google\Cloud\NetApp\V1\DeleteActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupVaultRequest;
+use Google\Cloud\NetApp\V1\DeleteHostGroupRequest;
 use Google\Cloud\NetApp\V1\DeleteKmsConfigRequest;
 use Google\Cloud\NetApp\V1\DeleteQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\DeleteReplicationRequest;
@@ -68,17 +70,20 @@ use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
 use Google\Cloud\NetApp\V1\GetBackupVaultRequest;
+use Google\Cloud\NetApp\V1\GetHostGroupRequest;
 use Google\Cloud\NetApp\V1\GetKmsConfigRequest;
 use Google\Cloud\NetApp\V1\GetQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\GetReplicationRequest;
 use Google\Cloud\NetApp\V1\GetSnapshotRequest;
 use Google\Cloud\NetApp\V1\GetStoragePoolRequest;
 use Google\Cloud\NetApp\V1\GetVolumeRequest;
+use Google\Cloud\NetApp\V1\HostGroup;
 use Google\Cloud\NetApp\V1\KmsConfig;
 use Google\Cloud\NetApp\V1\ListActiveDirectoriesRequest;
 use Google\Cloud\NetApp\V1\ListBackupPoliciesRequest;
 use Google\Cloud\NetApp\V1\ListBackupVaultsRequest;
 use Google\Cloud\NetApp\V1\ListBackupsRequest;
+use Google\Cloud\NetApp\V1\ListHostGroupsRequest;
 use Google\Cloud\NetApp\V1\ListKmsConfigsRequest;
 use Google\Cloud\NetApp\V1\ListQuotaRulesRequest;
 use Google\Cloud\NetApp\V1\ListReplicationsRequest;
@@ -87,6 +92,8 @@ use Google\Cloud\NetApp\V1\ListStoragePoolsRequest;
 use Google\Cloud\NetApp\V1\ListVolumesRequest;
 use Google\Cloud\NetApp\V1\QuotaRule;
 use Google\Cloud\NetApp\V1\Replication;
+use Google\Cloud\NetApp\V1\RestoreBackupFilesRequest;
+use Google\Cloud\NetApp\V1\RestoreBackupFilesResponse;
 use Google\Cloud\NetApp\V1\ResumeReplicationRequest;
 use Google\Cloud\NetApp\V1\ReverseReplicationDirectionRequest;
 use Google\Cloud\NetApp\V1\RevertVolumeRequest;
@@ -99,6 +106,7 @@ use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupVaultRequest;
+use Google\Cloud\NetApp\V1\UpdateHostGroupRequest;
 use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
 use Google\Cloud\NetApp\V1\UpdateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\UpdateReplicationRequest;
@@ -129,6 +137,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupPolicyAsync(CreateBackupPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createBackupVaultAsync(CreateBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createHostGroupAsync(CreateHostGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createKmsConfigAsync(CreateKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createQuotaRuleAsync(CreateQuotaRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createReplicationAsync(CreateReplicationRequest $request, array $optionalArgs = [])
@@ -139,6 +148,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupPolicyAsync(DeleteBackupPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteBackupVaultAsync(DeleteBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteHostGroupAsync(DeleteHostGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteKmsConfigAsync(DeleteKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteQuotaRuleAsync(DeleteQuotaRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteReplicationAsync(DeleteReplicationRequest $request, array $optionalArgs = [])
@@ -151,6 +161,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPolicy> getBackupPolicyAsync(GetBackupPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupVault> getBackupVaultAsync(GetBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HostGroup> getHostGroupAsync(GetHostGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<KmsConfig> getKmsConfigAsync(GetKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<QuotaRule> getQuotaRuleAsync(GetQuotaRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Replication> getReplicationAsync(GetReplicationRequest $request, array $optionalArgs = [])
@@ -161,12 +172,14 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listBackupPoliciesAsync(ListBackupPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupVaultsAsync(ListBackupVaultsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listHostGroupsAsync(ListHostGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listKmsConfigsAsync(ListKmsConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listQuotaRulesAsync(ListQuotaRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listReplicationsAsync(ListReplicationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listStoragePoolsAsync(ListStoragePoolsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listVolumesAsync(ListVolumesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> restoreBackupFilesAsync(RestoreBackupFilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> resumeReplicationAsync(ResumeReplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> reverseReplicationDirectionAsync(ReverseReplicationDirectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> revertVolumeAsync(RevertVolumeRequest $request, array $optionalArgs = [])
@@ -177,6 +190,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupPolicyAsync(UpdateBackupPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateBackupVaultAsync(UpdateBackupVaultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateHostGroupAsync(UpdateHostGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateKmsConfigAsync(UpdateKmsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateQuotaRuleAsync(UpdateQuotaRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateReplicationAsync(UpdateReplicationRequest $request, array $optionalArgs = [])
@@ -363,6 +377,25 @@ final class NetAppClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a host_group
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $hostGroup
+     *
+     * @return string The formatted host_group resource.
+     */
+    public static function hostGroupName(string $project, string $location, string $hostGroup): string
+    {
+        return self::getPathTemplate('hostGroup')->render([
+            'project' => $project,
+            'location' => $location,
+            'host_group' => $hostGroup,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a kms_config
      * resource.
      *
@@ -528,6 +561,7 @@ final class NetAppClient
      * - backup: projects/{project}/locations/{location}/backupVaults/{backup_vault}/backups/{backup}
      * - backupPolicy: projects/{project}/locations/{location}/backupPolicies/{backup_policy}
      * - backupVault: projects/{project}/locations/{location}/backupVaults/{backup_vault}
+     * - hostGroup: projects/{project}/locations/{location}/hostGroups/{host_group}
      * - kmsConfig: projects/{project}/locations/{location}/kmsConfigs/{kms_config}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
@@ -749,6 +783,32 @@ final class NetAppClient
     public function createBackupVault(CreateBackupVaultRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateBackupVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new host group.
+     *
+     * The async variant is {@see NetAppClient::createHostGroupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/create_host_group.php
+     *
+     * @param CreateHostGroupRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<HostGroup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createHostGroup(CreateHostGroupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateHostGroup', $request, $callOptions)->wait();
     }
 
     /**
@@ -1011,6 +1071,32 @@ final class NetAppClient
     public function deleteBackupVault(DeleteBackupVaultRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteBackupVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a host group.
+     *
+     * The async variant is {@see NetAppClient::deleteHostGroupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/delete_host_group.php
+     *
+     * @param DeleteHostGroupRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteHostGroup(DeleteHostGroupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteHostGroup', $request, $callOptions)->wait();
     }
 
     /**
@@ -1327,6 +1413,32 @@ final class NetAppClient
     }
 
     /**
+     * Returns details of the specified host group.
+     *
+     * The async variant is {@see NetAppClient::getHostGroupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/get_host_group.php
+     *
+     * @param GetHostGroupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return HostGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getHostGroup(GetHostGroupRequest $request, array $callOptions = []): HostGroup
+    {
+        return $this->startApiCall('GetHostGroup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the description of the specified KMS config by kms_config_id.
      *
      * The async variant is {@see NetAppClient::getKmsConfigAsync()} .
@@ -1589,6 +1701,33 @@ final class NetAppClient
     }
 
     /**
+     * Returns a list of host groups in a `location`. Use `-` as location to list
+     * host groups across all locations.
+     *
+     * The async variant is {@see NetAppClient::listHostGroupsAsync()} .
+     *
+     * @example samples/V1/NetAppClient/list_host_groups.php
+     *
+     * @param ListHostGroupsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listHostGroups(ListHostGroupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListHostGroups', $request, $callOptions);
+    }
+
+    /**
      * Returns descriptions of all KMS configs owned by the caller.
      *
      * The async variant is {@see NetAppClient::listKmsConfigsAsync()} .
@@ -1742,6 +1881,32 @@ final class NetAppClient
     public function listVolumes(ListVolumesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListVolumes', $request, $callOptions);
+    }
+
+    /**
+     * Restore files from a backup to a volume.
+     *
+     * The async variant is {@see NetAppClient::restoreBackupFilesAsync()} .
+     *
+     * @example samples/V1/NetAppClient/restore_backup_files.php
+     *
+     * @param RestoreBackupFilesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RestoreBackupFilesResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function restoreBackupFiles(RestoreBackupFilesRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RestoreBackupFiles', $request, $callOptions)->wait();
     }
 
     /**
@@ -2013,6 +2178,32 @@ final class NetAppClient
     public function updateBackupVault(UpdateBackupVaultRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateBackupVault', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an existing host group.
+     *
+     * The async variant is {@see NetAppClient::updateHostGroupAsync()} .
+     *
+     * @example samples/V1/NetAppClient/update_host_group.php
+     *
+     * @param UpdateHostGroupRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<HostGroup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateHostGroup(UpdateHostGroupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateHostGroup', $request, $callOptions)->wait();
     }
 
     /**

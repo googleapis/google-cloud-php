@@ -182,6 +182,12 @@ class SqlDatabaseVersion
      */
     const MYSQL_8_4 = 398;
     /**
+     * The database version is MySQL 9.7.
+     *
+     * Generated from protobuf enum <code>MYSQL_9_7 = 654;</code>
+     */
+    const MYSQL_9_7 = 654;
+    /**
      * The database version is SQL Server 2017 Standard.
      *
      * Generated from protobuf enum <code>SQLSERVER_2017_STANDARD = 11;</code>
@@ -343,6 +349,7 @@ class SqlDatabaseVersion
         self::MYSQL_8_0_45 => 'MYSQL_8_0_45',
         self::MYSQL_8_0_46 => 'MYSQL_8_0_46',
         self::MYSQL_8_4 => 'MYSQL_8_4',
+        self::MYSQL_9_7 => 'MYSQL_9_7',
         self::SQLSERVER_2017_STANDARD => 'SQLSERVER_2017_STANDARD',
         self::SQLSERVER_2017_ENTERPRISE => 'SQLSERVER_2017_ENTERPRISE',
         self::SQLSERVER_2017_EXPRESS => 'SQLSERVER_2017_EXPRESS',

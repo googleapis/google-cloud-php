@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * MachineConfig describes the configuration of a machine specific to a Database
  * Resource.
- * NextID: 5
  *
  * Generated from protobuf message <code>google.cloud.databasecenter.v1beta.MachineConfig</code>
  */

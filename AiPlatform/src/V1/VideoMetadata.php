@@ -27,6 +27,13 @@ class VideoMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration end_offset = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $end_offset = null;
+    /**
+     * Optional. The frame rate of the video sent to the model. If not specified,
+     * the default value is 1.0. The valid range is (0.0, 24.0].
+     *
+     * Generated from protobuf field <code>double fps = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $fps = 0.0;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class VideoMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. The start offset of the video.
      *     @type \Google\Protobuf\Duration $end_offset
      *           Optional. The end offset of the video.
+     *     @type float $fps
+     *           Optional. The frame rate of the video sent to the model. If not specified,
+     *           the default value is 1.0. The valid range is (0.0, 24.0].
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +123,34 @@ class VideoMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->end_offset = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The frame rate of the video sent to the model. If not specified,
+     * the default value is 1.0. The valid range is (0.0, 24.0].
+     *
+     * Generated from protobuf field <code>double fps = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getFps()
+    {
+        return $this->fps;
+    }
+
+    /**
+     * Optional. The frame rate of the video sent to the model. If not specified,
+     * the default value is 1.0. The valid range is (0.0, 24.0].
+     *
+     * Generated from protobuf field <code>double fps = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFps($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->fps = $var;
 
         return $this;
     }

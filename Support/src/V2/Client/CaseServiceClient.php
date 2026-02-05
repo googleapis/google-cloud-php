@@ -91,9 +91,7 @@ final class CaseServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -483,8 +481,10 @@ final class CaseServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function searchCaseClassifications(SearchCaseClassificationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function searchCaseClassifications(
+        SearchCaseClassificationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('SearchCaseClassifications', $request, $callOptions);
     }
 

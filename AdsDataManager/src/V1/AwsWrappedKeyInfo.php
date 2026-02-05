@@ -24,14 +24,15 @@ class AwsWrappedKeyInfo extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Amazon Resource Name of the IAM Role to assume for KMS
      * decryption access. Should be in the format of
-     * "arn:{partition}:iam::{account_id}:role/{role_name}"
+     * `arn:{partition}:iam::{account_id}:role/{role_name}`
      *
      * Generated from protobuf field <code>string role_arn = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $role_arn = '';
     /**
      * Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in
-     * the format of "arn:{partition}:kms:{region}:{account_id}:key/{key_id}"
+     * the format of `arn:{partition}:kms:{region}:{account_id}:key/{key_id}` or
+     * `aws-kms://arn:{partition}:kms:{region}:{account_id}:key/{key_id}`
      *
      * Generated from protobuf field <code>string kek_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,10 +55,11 @@ class AwsWrappedKeyInfo extends \Google\Protobuf\Internal\Message
      *     @type string $role_arn
      *           Required. The Amazon Resource Name of the IAM Role to assume for KMS
      *           decryption access. Should be in the format of
-     *           "arn:{partition}:iam::{account_id}:role/{role_name}"
+     *           `arn:{partition}:iam::{account_id}:role/{role_name}`
      *     @type string $kek_uri
      *           Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in
-     *           the format of "arn:{partition}:kms:{region}:{account_id}:key/{key_id}"
+     *           the format of `arn:{partition}:kms:{region}:{account_id}:key/{key_id}` or
+     *           `aws-kms://arn:{partition}:kms:{region}:{account_id}:key/{key_id}`
      *     @type string $encrypted_dek
      *           Required. The base64 encoded encrypted data encryption key.
      * }
@@ -96,7 +98,7 @@ class AwsWrappedKeyInfo extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Amazon Resource Name of the IAM Role to assume for KMS
      * decryption access. Should be in the format of
-     * "arn:{partition}:iam::{account_id}:role/{role_name}"
+     * `arn:{partition}:iam::{account_id}:role/{role_name}`
      *
      * Generated from protobuf field <code>string role_arn = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -109,7 +111,7 @@ class AwsWrappedKeyInfo extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Amazon Resource Name of the IAM Role to assume for KMS
      * decryption access. Should be in the format of
-     * "arn:{partition}:iam::{account_id}:role/{role_name}"
+     * `arn:{partition}:iam::{account_id}:role/{role_name}`
      *
      * Generated from protobuf field <code>string role_arn = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -125,7 +127,8 @@ class AwsWrappedKeyInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in
-     * the format of "arn:{partition}:kms:{region}:{account_id}:key/{key_id}"
+     * the format of `arn:{partition}:kms:{region}:{account_id}:key/{key_id}` or
+     * `aws-kms://arn:{partition}:kms:{region}:{account_id}:key/{key_id}`
      *
      * Generated from protobuf field <code>string kek_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -137,7 +140,8 @@ class AwsWrappedKeyInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The URI of the AWS KMS key used to decrypt the DEK. Should be in
-     * the format of "arn:{partition}:kms:{region}:{account_id}:key/{key_id}"
+     * the format of `arn:{partition}:kms:{region}:{account_id}:key/{key_id}` or
+     * `aws-kms://arn:{partition}:kms:{region}:{account_id}:key/{key_id}`
      *
      * Generated from protobuf field <code>string kek_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

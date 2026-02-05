@@ -332,8 +332,12 @@ final class TranslationServiceClient
      *
      * @return string The formatted glossary_entry resource.
      */
-    public static function glossaryEntryName(string $project, string $location, string $glossary, string $glossaryEntry): string
-    {
+    public static function glossaryEntryName(
+        string $project,
+        string $location,
+        string $glossary,
+        string $glossaryEntry
+    ): string {
         return self::getPathTemplate('glossaryEntry')->render([
             'project' => $project,
             'location' => $location,
@@ -516,8 +520,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function adaptiveMtTranslate(AdaptiveMtTranslateRequest $request, array $callOptions = []): AdaptiveMtTranslateResponse
-    {
+    public function adaptiveMtTranslate(
+        AdaptiveMtTranslateRequest $request,
+        array $callOptions = []
+    ): AdaptiveMtTranslateResponse {
         return $this->startApiCall('AdaptiveMtTranslate', $request, $callOptions)->wait();
     }
 
@@ -549,8 +555,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchTranslateDocument(BatchTranslateDocumentRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function batchTranslateDocument(
+        BatchTranslateDocumentRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('BatchTranslateDocument', $request, $callOptions)->wait();
     }
 
@@ -609,8 +617,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAdaptiveMtDataset(CreateAdaptiveMtDatasetRequest $request, array $callOptions = []): AdaptiveMtDataset
-    {
+    public function createAdaptiveMtDataset(
+        CreateAdaptiveMtDatasetRequest $request,
+        array $callOptions = []
+    ): AdaptiveMtDataset {
         return $this->startApiCall('CreateAdaptiveMtDataset', $request, $callOptions)->wait();
     }
 
@@ -950,8 +960,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getAdaptiveMtDataset(GetAdaptiveMtDatasetRequest $request, array $callOptions = []): AdaptiveMtDataset
-    {
+    public function getAdaptiveMtDataset(
+        GetAdaptiveMtDatasetRequest $request,
+        array $callOptions = []
+    ): AdaptiveMtDataset {
         return $this->startApiCall('GetAdaptiveMtDataset', $request, $callOptions)->wait();
     }
 
@@ -1108,8 +1120,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getSupportedLanguages(GetSupportedLanguagesRequest $request, array $callOptions = []): SupportedLanguages
-    {
+    public function getSupportedLanguages(
+        GetSupportedLanguagesRequest $request,
+        array $callOptions = []
+    ): SupportedLanguages {
         return $this->startApiCall('GetSupportedLanguages', $request, $callOptions)->wait();
     }
 
@@ -1136,8 +1150,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function importAdaptiveMtFile(ImportAdaptiveMtFileRequest $request, array $callOptions = []): ImportAdaptiveMtFileResponse
-    {
+    public function importAdaptiveMtFile(
+        ImportAdaptiveMtFileRequest $request,
+        array $callOptions = []
+    ): ImportAdaptiveMtFileResponse {
         return $this->startApiCall('ImportAdaptiveMtFile', $request, $callOptions)->wait();
     }
 
@@ -1189,8 +1205,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAdaptiveMtDatasets(ListAdaptiveMtDatasetsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAdaptiveMtDatasets(
+        ListAdaptiveMtDatasetsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAdaptiveMtDatasets', $request, $callOptions);
     }
 
@@ -1243,8 +1261,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listAdaptiveMtSentences(ListAdaptiveMtSentencesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listAdaptiveMtSentences(
+        ListAdaptiveMtSentencesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListAdaptiveMtSentences', $request, $callOptions);
     }
 
@@ -1427,8 +1447,10 @@ final class TranslationServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function translateDocument(TranslateDocumentRequest $request, array $callOptions = []): TranslateDocumentResponse
-    {
+    public function translateDocument(
+        TranslateDocumentRequest $request,
+        array $callOptions = []
+    ): TranslateDocumentResponse {
         return $this->startApiCall('TranslateDocument', $request, $callOptions)->wait();
     }
 

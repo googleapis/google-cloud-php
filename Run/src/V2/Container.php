@@ -106,6 +106,12 @@ class Container extends \Google\Protobuf\Internal\Message
      */
     protected $startup_probe = null;
     /**
+     * Readiness probe to be used for health checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe readiness_probe = 14;</code>
+     */
+    protected $readiness_probe = null;
+    /**
      * Names of the containers that must start before this container.
      *
      * Generated from protobuf field <code>repeated string depends_on = 12;</code>
@@ -169,6 +175,8 @@ class Container extends \Google\Protobuf\Internal\Message
      *           All other probes are disabled if a startup probe is provided, until it
      *           succeeds. Container will not be added to service endpoints if the probe
      *           fails.
+     *     @type \Google\Cloud\Run\V2\Probe $readiness_probe
+     *           Readiness probe to be used for health checks.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $depends_on
      *           Names of the containers that must start before this container.
      *     @type string $base_image_uri
@@ -559,6 +567,42 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\Probe::class);
         $this->startup_probe = $var;
+
+        return $this;
+    }
+
+    /**
+     * Readiness probe to be used for health checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe readiness_probe = 14;</code>
+     * @return \Google\Cloud\Run\V2\Probe|null
+     */
+    public function getReadinessProbe()
+    {
+        return $this->readiness_probe;
+    }
+
+    public function hasReadinessProbe()
+    {
+        return isset($this->readiness_probe);
+    }
+
+    public function clearReadinessProbe()
+    {
+        unset($this->readiness_probe);
+    }
+
+    /**
+     * Readiness probe to be used for health checks.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe readiness_probe = 14;</code>
+     * @param \Google\Cloud\Run\V2\Probe $var
+     * @return $this
+     */
+    public function setReadinessProbe($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\Probe::class);
+        $this->readiness_probe = $var;
 
         return $this;
     }

@@ -34,8 +34,8 @@ use Google\Rpc\Status;
 /**
  * Updates the Kms config properties with the full spec
  *
- * @param string $kmsConfigCryptoKeyName Customer managed crypto key resource full name. Format:
- *                                       projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
+ * @param string $kmsConfigCryptoKeyName Customer-managed crypto key resource full name. Format:
+ *                                       `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
  */
 function update_kms_config_sample(string $kmsConfigCryptoKeyName): void
 {

@@ -26,17 +26,160 @@ class SecretKind
      */
     const SECRET_KIND_UNKNOWN = 1;
     /**
-     * A GCP service account key per:
+     * A Google Cloud service account key per:
      * https://cloud.google.com/iam/docs/creating-managing-service-account-keys
      *
      * Generated from protobuf enum <code>SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY = 2;</code>
      */
     const SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY = 2;
+    /**
+     * A Google Cloud API key per:
+     * https://cloud.google.com/docs/authentication/api-keys
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GCP_API_KEY = 3;</code>
+     */
+    const SECRET_KIND_GCP_API_KEY = 3;
+    /**
+     * A Google Cloud OAuth2 client credentials per:
+     * https://developers.google.com/identity/protocols/oauth2
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS = 4;</code>
+     */
+    const SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS = 4;
+    /**
+     * A Google Cloud OAuth2 access token per:
+     * https://cloud.google.com/docs/authentication/token-types#access
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN = 5;</code>
+     */
+    const SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN = 5;
+    /**
+     * An Anthropic Admin API key.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_ANTHROPIC_ADMIN_API_KEY = 6;</code>
+     */
+    const SECRET_KIND_ANTHROPIC_ADMIN_API_KEY = 6;
+    /**
+     * An Anthropic API key.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_ANTHROPIC_API_KEY = 7;</code>
+     */
+    const SECRET_KIND_ANTHROPIC_API_KEY = 7;
+    /**
+     * An Azure access token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_AZURE_ACCESS_TOKEN = 8;</code>
+     */
+    const SECRET_KIND_AZURE_ACCESS_TOKEN = 8;
+    /**
+     * An Azure Identity Platform ID token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_AZURE_IDENTITY_TOKEN = 9;</code>
+     */
+    const SECRET_KIND_AZURE_IDENTITY_TOKEN = 9;
+    /**
+     * A Docker Hub personal access token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN = 10;</code>
+     */
+    const SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN = 10;
+    /**
+     * A GitHub App refresh token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GITHUB_APP_REFRESH_TOKEN = 11;</code>
+     */
+    const SECRET_KIND_GITHUB_APP_REFRESH_TOKEN = 11;
+    /**
+     * A GitHub App server-to-server token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN = 12;</code>
+     */
+    const SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN = 12;
+    /**
+     * A GitHub App user-to-server token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN = 13;</code>
+     */
+    const SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN = 13;
+    /**
+     * A GitHub personal access token (classic).
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN = 14;</code>
+     */
+    const SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN = 14;
+    /**
+     * A GitHub fine-grained personal access token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN = 15;</code>
+     */
+    const SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN = 15;
+    /**
+     * A GitHub OAuth token.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_GITHUB_OAUTH_TOKEN = 16;</code>
+     */
+    const SECRET_KIND_GITHUB_OAUTH_TOKEN = 16;
+    /**
+     * A Hugging Face API key.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_HUGGINGFACE_API_KEY = 17;</code>
+     */
+    const SECRET_KIND_HUGGINGFACE_API_KEY = 17;
+    /**
+     * An OpenAI API key.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_OPENAI_API_KEY = 18;</code>
+     */
+    const SECRET_KIND_OPENAI_API_KEY = 18;
+    /**
+     * A Perplexity API key.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_PERPLEXITY_API_KEY = 19;</code>
+     */
+    const SECRET_KIND_PERPLEXITY_API_KEY = 19;
+    /**
+     * A Stripe secret key.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_STRIPE_SECRET_KEY = 20;</code>
+     */
+    const SECRET_KIND_STRIPE_SECRET_KEY = 20;
+    /**
+     * A Stripe restricted key.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_STRIPE_RESTRICTED_KEY = 21;</code>
+     */
+    const SECRET_KIND_STRIPE_RESTRICTED_KEY = 21;
+    /**
+     * A Stripe webhook secret.
+     *
+     * Generated from protobuf enum <code>SECRET_KIND_STRIPE_WEBHOOK_SECRET = 22;</code>
+     */
+    const SECRET_KIND_STRIPE_WEBHOOK_SECRET = 22;
 
     private static $valueToName = [
         self::SECRET_KIND_UNSPECIFIED => 'SECRET_KIND_UNSPECIFIED',
         self::SECRET_KIND_UNKNOWN => 'SECRET_KIND_UNKNOWN',
         self::SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY => 'SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY',
+        self::SECRET_KIND_GCP_API_KEY => 'SECRET_KIND_GCP_API_KEY',
+        self::SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS => 'SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS',
+        self::SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN => 'SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN',
+        self::SECRET_KIND_ANTHROPIC_ADMIN_API_KEY => 'SECRET_KIND_ANTHROPIC_ADMIN_API_KEY',
+        self::SECRET_KIND_ANTHROPIC_API_KEY => 'SECRET_KIND_ANTHROPIC_API_KEY',
+        self::SECRET_KIND_AZURE_ACCESS_TOKEN => 'SECRET_KIND_AZURE_ACCESS_TOKEN',
+        self::SECRET_KIND_AZURE_IDENTITY_TOKEN => 'SECRET_KIND_AZURE_IDENTITY_TOKEN',
+        self::SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN => 'SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN',
+        self::SECRET_KIND_GITHUB_APP_REFRESH_TOKEN => 'SECRET_KIND_GITHUB_APP_REFRESH_TOKEN',
+        self::SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN => 'SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN',
+        self::SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN => 'SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN',
+        self::SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN => 'SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN',
+        self::SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN => 'SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN',
+        self::SECRET_KIND_GITHUB_OAUTH_TOKEN => 'SECRET_KIND_GITHUB_OAUTH_TOKEN',
+        self::SECRET_KIND_HUGGINGFACE_API_KEY => 'SECRET_KIND_HUGGINGFACE_API_KEY',
+        self::SECRET_KIND_OPENAI_API_KEY => 'SECRET_KIND_OPENAI_API_KEY',
+        self::SECRET_KIND_PERPLEXITY_API_KEY => 'SECRET_KIND_PERPLEXITY_API_KEY',
+        self::SECRET_KIND_STRIPE_SECRET_KEY => 'SECRET_KIND_STRIPE_SECRET_KEY',
+        self::SECRET_KIND_STRIPE_RESTRICTED_KEY => 'SECRET_KIND_STRIPE_RESTRICTED_KEY',
+        self::SECRET_KIND_STRIPE_WEBHOOK_SECRET => 'SECRET_KIND_STRIPE_WEBHOOK_SECRET',
     ];
 
     public static function name($value)

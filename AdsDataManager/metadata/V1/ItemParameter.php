@@ -17,12 +17,12 @@ class ItemParameter
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
+ç
 .google/ads/datamanager/v1/item_parameter.protogoogle.ads.datamanager.v1"@
 ItemParameter
 parameter_name (	BàA
-value (	BàABÒ
-com.google.ads.datamanager.v1BItemParameterProtoPZDgoogle.golang.org/genproto/googleapis/ads/datamanager/v1;datamanagerªGoogle.Ads.DataManager.V1ÊGoogle\\Ads\\DataManager\\V1êGoogle::Ads::DataManager::V1bproto3'
+value (	BàABÏ
+com.google.ads.datamanager.v1BItemParameterProtoPZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpbªGoogle.Ads.DataManager.V1ÊGoogle\\Ads\\DataManager\\V1êGoogle::Ads::DataManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

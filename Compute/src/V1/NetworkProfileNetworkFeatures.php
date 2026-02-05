@@ -23,6 +23,13 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     private $address_purposes;
     /**
+     * Specifies whether address creation is allowed.
+     * Check the AllowAddressCreation enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_address_creation = 450941184;</code>
+     */
+    protected $allow_address_creation = null;
+    /**
      * Specifies whether alias IP ranges (and secondary address ranges) are
      * allowed.
      * Check the AllowAliasIpRanges enum for the list of possible values.
@@ -74,6 +81,13 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     protected $allow_external_ip_access = null;
     /**
+     * Specifies whether firewall policy can be attached to the network.
+     * Check the AllowFirewallPolicy enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_firewall_policy = 254200923;</code>
+     */
+    protected $allow_firewall_policy = null;
+    /**
      * Specifies whether Cloud Interconnect creation is allowed.
      * Check the AllowInterconnect enum for the list of possible values.
      *
@@ -101,6 +115,13 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string allow_multi_nic_in_same_network = 88251004;</code>
      */
     protected $allow_multi_nic_in_same_network = null;
+    /**
+     * Specifies whether multi-nic in the same subnetwork is allowed.
+     * Check the AllowMultiNicInSameSubnetwork enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_multi_nic_in_same_subnetwork = 278087904;</code>
+     */
+    protected $allow_multi_nic_in_same_subnetwork = null;
     /**
      * Specifies whether multicast is allowed.
      * Check the AllowMulticast enum for the list of possible values.
@@ -165,6 +186,20 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      */
     protected $allow_sub_interfaces = null;
     /**
+     * Specifies whether subnetwork creation is allowed.
+     * Check the AllowSubnetworkCreation enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_subnetwork_creation = 459328026;</code>
+     */
+    protected $allow_subnetwork_creation = null;
+    /**
+     * Specifies whether VPC firewall rules can be created under the network.
+     * Check the AllowVpcFirewallRules enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_vpc_firewall_rules = 509076420;</code>
+     */
+    protected $allow_vpc_firewall_rules = null;
+    /**
      * Specifies whether VPC peering is allowed.
      * Check the AllowVpcPeering enum for the list of possible values.
      *
@@ -178,6 +213,13 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string allow_vpn = 372363006;</code>
      */
     protected $allow_vpn = null;
+    /**
+     * 
+     * Check the FirewallPolicyTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string firewall_policy_types = 390742027;</code>
+     */
+    private $firewall_policy_types;
     /**
      * If set, limits the interface types that the network supports. If
      * empty, all interface types are supported.
@@ -193,6 +235,18 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string multicast = 404098040;</code>
      */
     protected $multicast = null;
+    /**
+     * Specifies a predefined internal IPv6 range for the network.
+     *
+     * Generated from protobuf field <code>optional string predefined_network_internal_ipv6_range = 527810909;</code>
+     */
+    protected $predefined_network_internal_ipv6_range = null;
+    /**
+     * Predefined subnetwork ranges for the network.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkProfileNetworkFeaturesPredefinedSubnetworkRange predefined_subnetwork_ranges = 408740430;</code>
+     */
+    private $predefined_subnetwork_ranges;
     /**
      * Specifies which subnetwork purposes are supported.
      * Check the SubnetPurposes enum for the list of possible values.
@@ -239,6 +293,9 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *           Specifies what address purposes are supported. If empty, all address
      *           purposes are supported.
      *           Check the AddressPurposes enum for the list of possible values.
+     *     @type string $allow_address_creation
+     *           Specifies whether address creation is allowed.
+     *           Check the AllowAddressCreation enum for the list of possible values.
      *     @type string $allow_alias_ip_ranges
      *           Specifies whether alias IP ranges (and secondary address ranges) are
      *           allowed.
@@ -262,6 +319,9 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *           Specifies whether VMs are allowed to have external IP access on network
      *           interfaces connected to this VPC.
      *           Check the AllowExternalIpAccess enum for the list of possible values.
+     *     @type string $allow_firewall_policy
+     *           Specifies whether firewall policy can be attached to the network.
+     *           Check the AllowFirewallPolicy enum for the list of possible values.
      *     @type string $allow_interconnect
      *           Specifies whether Cloud Interconnect creation is allowed.
      *           Check the AllowInterconnect enum for the list of possible values.
@@ -274,6 +334,9 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     @type string $allow_multi_nic_in_same_network
      *           Specifies whether multi-nic in the same network is allowed.
      *           Check the AllowMultiNicInSameNetwork enum for the list of possible values.
+     *     @type string $allow_multi_nic_in_same_subnetwork
+     *           Specifies whether multi-nic in the same subnetwork is allowed.
+     *           Check the AllowMultiNicInSameSubnetwork enum for the list of possible values.
      *     @type string $allow_multicast
      *           Specifies whether multicast is allowed.
      *           Check the AllowMulticast enum for the list of possible values.
@@ -301,12 +364,21 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     @type string $allow_sub_interfaces
      *           Specifies whether sub interfaces are allowed.
      *           Check the AllowSubInterfaces enum for the list of possible values.
+     *     @type string $allow_subnetwork_creation
+     *           Specifies whether subnetwork creation is allowed.
+     *           Check the AllowSubnetworkCreation enum for the list of possible values.
+     *     @type string $allow_vpc_firewall_rules
+     *           Specifies whether VPC firewall rules can be created under the network.
+     *           Check the AllowVpcFirewallRules enum for the list of possible values.
      *     @type string $allow_vpc_peering
      *           Specifies whether VPC peering is allowed.
      *           Check the AllowVpcPeering enum for the list of possible values.
      *     @type string $allow_vpn
      *           Specifies whether VPN creation is allowed.
      *           Check the AllowVpn enum for the list of possible values.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $firewall_policy_types
+     *           
+     *           Check the FirewallPolicyTypes enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interface_types
      *           If set, limits the interface types that the network supports. If
      *           empty, all interface types are supported.
@@ -314,6 +386,10 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     @type string $multicast
      *           Specifies which type of multicast is supported.
      *           Check the Multicast enum for the list of possible values.
+     *     @type string $predefined_network_internal_ipv6_range
+     *           Specifies a predefined internal IPv6 range for the network.
+     *     @type array<\Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange>|\Google\Protobuf\Internal\RepeatedField $predefined_subnetwork_ranges
+     *           Predefined subnetwork ranges for the network.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnet_purposes
      *           Specifies which subnetwork purposes are supported.
      *           Check the SubnetPurposes enum for the list of possible values.
@@ -362,6 +438,44 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->address_purposes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether address creation is allowed.
+     * Check the AllowAddressCreation enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_address_creation = 450941184;</code>
+     * @return string
+     */
+    public function getAllowAddressCreation()
+    {
+        return isset($this->allow_address_creation) ? $this->allow_address_creation : '';
+    }
+
+    public function hasAllowAddressCreation()
+    {
+        return isset($this->allow_address_creation);
+    }
+
+    public function clearAllowAddressCreation()
+    {
+        unset($this->allow_address_creation);
+    }
+
+    /**
+     * Specifies whether address creation is allowed.
+     * Check the AllowAddressCreation enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_address_creation = 450941184;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowAddressCreation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_address_creation = $var;
 
         return $this;
     }
@@ -637,6 +751,44 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies whether firewall policy can be attached to the network.
+     * Check the AllowFirewallPolicy enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_firewall_policy = 254200923;</code>
+     * @return string
+     */
+    public function getAllowFirewallPolicy()
+    {
+        return isset($this->allow_firewall_policy) ? $this->allow_firewall_policy : '';
+    }
+
+    public function hasAllowFirewallPolicy()
+    {
+        return isset($this->allow_firewall_policy);
+    }
+
+    public function clearAllowFirewallPolicy()
+    {
+        unset($this->allow_firewall_policy);
+    }
+
+    /**
+     * Specifies whether firewall policy can be attached to the network.
+     * Check the AllowFirewallPolicy enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_firewall_policy = 254200923;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowFirewallPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_firewall_policy = $var;
+
+        return $this;
+    }
+
+    /**
      * Specifies whether Cloud Interconnect creation is allowed.
      * Check the AllowInterconnect enum for the list of possible values.
      *
@@ -784,6 +936,44 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->allow_multi_nic_in_same_network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether multi-nic in the same subnetwork is allowed.
+     * Check the AllowMultiNicInSameSubnetwork enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_multi_nic_in_same_subnetwork = 278087904;</code>
+     * @return string
+     */
+    public function getAllowMultiNicInSameSubnetwork()
+    {
+        return isset($this->allow_multi_nic_in_same_subnetwork) ? $this->allow_multi_nic_in_same_subnetwork : '';
+    }
+
+    public function hasAllowMultiNicInSameSubnetwork()
+    {
+        return isset($this->allow_multi_nic_in_same_subnetwork);
+    }
+
+    public function clearAllowMultiNicInSameSubnetwork()
+    {
+        unset($this->allow_multi_nic_in_same_subnetwork);
+    }
+
+    /**
+     * Specifies whether multi-nic in the same subnetwork is allowed.
+     * Check the AllowMultiNicInSameSubnetwork enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_multi_nic_in_same_subnetwork = 278087904;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowMultiNicInSameSubnetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_multi_nic_in_same_subnetwork = $var;
 
         return $this;
     }
@@ -1131,6 +1321,82 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies whether subnetwork creation is allowed.
+     * Check the AllowSubnetworkCreation enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_subnetwork_creation = 459328026;</code>
+     * @return string
+     */
+    public function getAllowSubnetworkCreation()
+    {
+        return isset($this->allow_subnetwork_creation) ? $this->allow_subnetwork_creation : '';
+    }
+
+    public function hasAllowSubnetworkCreation()
+    {
+        return isset($this->allow_subnetwork_creation);
+    }
+
+    public function clearAllowSubnetworkCreation()
+    {
+        unset($this->allow_subnetwork_creation);
+    }
+
+    /**
+     * Specifies whether subnetwork creation is allowed.
+     * Check the AllowSubnetworkCreation enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_subnetwork_creation = 459328026;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowSubnetworkCreation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_subnetwork_creation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether VPC firewall rules can be created under the network.
+     * Check the AllowVpcFirewallRules enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_vpc_firewall_rules = 509076420;</code>
+     * @return string
+     */
+    public function getAllowVpcFirewallRules()
+    {
+        return isset($this->allow_vpc_firewall_rules) ? $this->allow_vpc_firewall_rules : '';
+    }
+
+    public function hasAllowVpcFirewallRules()
+    {
+        return isset($this->allow_vpc_firewall_rules);
+    }
+
+    public function clearAllowVpcFirewallRules()
+    {
+        unset($this->allow_vpc_firewall_rules);
+    }
+
+    /**
+     * Specifies whether VPC firewall rules can be created under the network.
+     * Check the AllowVpcFirewallRules enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string allow_vpc_firewall_rules = 509076420;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAllowVpcFirewallRules($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->allow_vpc_firewall_rules = $var;
+
+        return $this;
+    }
+
+    /**
      * Specifies whether VPC peering is allowed.
      * Check the AllowVpcPeering enum for the list of possible values.
      *
@@ -1207,6 +1473,34 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * 
+     * Check the FirewallPolicyTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string firewall_policy_types = 390742027;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFirewallPolicyTypes()
+    {
+        return $this->firewall_policy_types;
+    }
+
+    /**
+     * 
+     * Check the FirewallPolicyTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string firewall_policy_types = 390742027;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFirewallPolicyTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->firewall_policy_types = $arr;
+
+        return $this;
+    }
+
+    /**
      * If set, limits the interface types that the network supports. If
      * empty, all interface types are supported.
      * Check the InterfaceTypes enum for the list of possible values.
@@ -1270,6 +1564,68 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->multicast = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies a predefined internal IPv6 range for the network.
+     *
+     * Generated from protobuf field <code>optional string predefined_network_internal_ipv6_range = 527810909;</code>
+     * @return string
+     */
+    public function getPredefinedNetworkInternalIpv6Range()
+    {
+        return isset($this->predefined_network_internal_ipv6_range) ? $this->predefined_network_internal_ipv6_range : '';
+    }
+
+    public function hasPredefinedNetworkInternalIpv6Range()
+    {
+        return isset($this->predefined_network_internal_ipv6_range);
+    }
+
+    public function clearPredefinedNetworkInternalIpv6Range()
+    {
+        unset($this->predefined_network_internal_ipv6_range);
+    }
+
+    /**
+     * Specifies a predefined internal IPv6 range for the network.
+     *
+     * Generated from protobuf field <code>optional string predefined_network_internal_ipv6_range = 527810909;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPredefinedNetworkInternalIpv6Range($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->predefined_network_internal_ipv6_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Predefined subnetwork ranges for the network.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkProfileNetworkFeaturesPredefinedSubnetworkRange predefined_subnetwork_ranges = 408740430;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPredefinedSubnetworkRanges()
+    {
+        return $this->predefined_subnetwork_ranges;
+    }
+
+    /**
+     * Predefined subnetwork ranges for the network.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkProfileNetworkFeaturesPredefinedSubnetworkRange predefined_subnetwork_ranges = 408740430;</code>
+     * @param array<\Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPredefinedSubnetworkRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange::class);
+        $this->predefined_subnetwork_ranges = $arr;
 
         return $this;
     }

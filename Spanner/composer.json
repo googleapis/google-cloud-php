@@ -14,7 +14,7 @@
         "phpspec/prophecy-phpunit": "^2.1",
         "squizlabs/php_codesniffer": "3.*",
         "phpdocumentor/reflection": "^5.3.3||^6.0",
-        "phpdocumentor/reflection-docblock": "^5.3",
+        "phpdocumentor/reflection-docblock": "^5.3.3||^6.0",
         "erusev/parsedown": "^1.6",
         "google/cloud-pubsub": "^2.0",
         "dg/bypass-finals": "^1.7",

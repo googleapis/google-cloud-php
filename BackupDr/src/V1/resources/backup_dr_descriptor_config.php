@@ -766,6 +766,7 @@ return [
                 'backupPlanAssociation' => 'projects/{project}/locations/{location}/backupPlanAssociations/{backup_plan_association}',
                 'backupPlanRevision' => 'projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision}',
                 'backupVault' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}',
+                'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'dataSource' => 'projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}',

@@ -18,7 +18,7 @@ jobs:
     runs-on: 'ubuntu-24.04'
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.46
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.47
         ports:
           - 9010:9010
           - 9020:9020

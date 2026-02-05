@@ -35,9 +35,32 @@ return [
                     ],
                 ],
             ],
+            'CreateDataAgentSync' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/dataAgents:createSync',
+                'body' => 'data_agent',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDataAgent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/dataAgents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDataAgentSync' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/dataAgents/*}:deleteSync',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -106,6 +129,19 @@ return [
             'UpdateDataAgent' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta/{data_agent.name=projects/*/locations/*/dataAgents/*}',
+                'body' => 'data_agent',
+                'placeholders' => [
+                    'data_agent.name' => [
+                        'getters' => [
+                            'getDataAgent',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDataAgentSync' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta/{data_agent.name=projects/*/locations/*/dataAgents/*}:updateSync',
                 'body' => 'data_agent',
                 'placeholders' => [
                     'data_agent.name' => [

@@ -41,6 +41,8 @@ use Google\Cloud\Compute\V1\GetAutoscalerRequest;
 use Google\Cloud\Compute\V1\InsertAutoscalerRequest;
 use Google\Cloud\Compute\V1\ListAutoscalersRequest;
 use Google\Cloud\Compute\V1\PatchAutoscalerRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsAutoscalerRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateAutoscalerRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -57,6 +59,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertAutoscalerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListAutoscalersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchAutoscalerRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsAutoscalerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateAutoscalerRequest $request, array $optionalArgs = [])
  */
 final class AutoscalersClient
@@ -435,6 +438,34 @@ final class AutoscalersClient
     public function patch(PatchAutoscalerRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is {@see AutoscalersClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/AutoscalersClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsAutoscalerRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsAutoscalerRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**

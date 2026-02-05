@@ -69,13 +69,16 @@ use Psr\Log\LoggerInterface;
  * @experimental
  *
  * @method PromiseInterface<OperationResponse> createDataAgentAsync(CreateDataAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataAgent> createDataAgentSyncAsync(CreateDataAgentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteDataAgentAsync(DeleteDataAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteDataAgentSyncAsync(DeleteDataAgentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DataAgent> getDataAgentAsync(GetDataAgentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccessibleDataAgentsAsync(ListAccessibleDataAgentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDataAgentsAsync(ListDataAgentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateDataAgentAsync(UpdateDataAgentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DataAgent> updateDataAgentSyncAsync(UpdateDataAgentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -363,6 +366,34 @@ final class DataAgentServiceClient
     }
 
     /**
+     * Creates a new DataAgent in a given project and location synchronously.
+     *
+     * The async variant is {@see DataAgentServiceClient::createDataAgentSyncAsync()} .
+     *
+     * @example samples/V1beta/DataAgentServiceClient/create_data_agent_sync.php
+     *
+     * @param CreateDataAgentRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DataAgent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createDataAgentSync(CreateDataAgentRequest $request, array $callOptions = []): DataAgent
+    {
+        return $this->startApiCall('CreateDataAgentSync', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single DataAgent.
      *
      * The async variant is {@see DataAgentServiceClient::deleteDataAgentAsync()} .
@@ -388,6 +419,32 @@ final class DataAgentServiceClient
     public function deleteDataAgent(DeleteDataAgentRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteDataAgent', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single DataAgent synchronously.
+     *
+     * The async variant is {@see DataAgentServiceClient::deleteDataAgentSyncAsync()} .
+     *
+     * @example samples/V1beta/DataAgentServiceClient/delete_data_agent_sync.php
+     *
+     * @param DeleteDataAgentRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteDataAgentSync(DeleteDataAgentRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteDataAgentSync', $request, $callOptions)->wait();
     }
 
     /**
@@ -563,6 +620,34 @@ final class DataAgentServiceClient
     }
 
     /**
+     * Updates the parameters of a single DataAgent synchronously.
+     *
+     * The async variant is {@see DataAgentServiceClient::updateDataAgentSyncAsync()} .
+     *
+     * @example samples/V1beta/DataAgentServiceClient/update_data_agent_sync.php
+     *
+     * @param UpdateDataAgentRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DataAgent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateDataAgentSync(UpdateDataAgentRequest $request, array $callOptions = []): DataAgent
+    {
+        return $this->startApiCall('UpdateDataAgentSync', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see DataAgentServiceClient::getLocationAsync()} .
@@ -592,6 +677,13 @@ final class DataAgentServiceClient
 
     /**
      * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
      *
      * The async variant is {@see DataAgentServiceClient::listLocationsAsync()} .
      *

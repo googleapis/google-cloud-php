@@ -106,7 +106,7 @@ class SimpleExportPolicyRule extends \Google\Protobuf\Internal\Message
     protected $squash_mode = null;
     /**
      * Optional. An integer representing the anonymous user ID. Range is 0 to
-     * 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     * `4294967295`. Required when `squash_mode` is `ROOT_SQUASH` or `ALL_SQUASH`.
      *
      * Generated from protobuf field <code>optional int64 anon_uid = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -161,7 +161,7 @@ class SimpleExportPolicyRule extends \Google\Protobuf\Internal\Message
      *           takes precedence over `has_root_access` if both are provided.
      *     @type int|string $anon_uid
      *           Optional. An integer representing the anonymous user ID. Range is 0 to
-     *           4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     *           `4294967295`. Required when `squash_mode` is `ROOT_SQUASH` or `ALL_SQUASH`.
      * }
      */
     public function __construct($data = NULL) {
@@ -637,7 +637,7 @@ class SimpleExportPolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An integer representing the anonymous user ID. Range is 0 to
-     * 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     * `4294967295`. Required when `squash_mode` is `ROOT_SQUASH` or `ALL_SQUASH`.
      *
      * Generated from protobuf field <code>optional int64 anon_uid = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -659,7 +659,7 @@ class SimpleExportPolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An integer representing the anonymous user ID. Range is 0 to
-     * 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     * `4294967295`. Required when `squash_mode` is `ROOT_SQUASH` or `ALL_SQUASH`.
      *
      * Generated from protobuf field <code>optional int64 anon_uid = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var

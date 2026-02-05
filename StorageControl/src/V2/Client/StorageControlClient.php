@@ -722,8 +722,10 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getFolderIntelligenceConfig(GetFolderIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
-    {
+    public function getFolderIntelligenceConfig(
+        GetFolderIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
         return $this->startApiCall('GetFolderIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -805,8 +807,10 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getOrganizationIntelligenceConfig(GetOrganizationIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
-    {
+    public function getOrganizationIntelligenceConfig(
+        GetOrganizationIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
         return $this->startApiCall('GetOrganizationIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -832,8 +836,10 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getProjectIntelligenceConfig(GetProjectIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
-    {
+    public function getProjectIntelligenceConfig(
+        GetProjectIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
         return $this->startApiCall('GetProjectIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -1080,8 +1086,10 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1134,8 +1142,10 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateFolderIntelligenceConfig(UpdateFolderIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
-    {
+    public function updateFolderIntelligenceConfig(
+        UpdateFolderIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
         return $this->startApiCall('UpdateFolderIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -1161,8 +1171,10 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateOrganizationIntelligenceConfig(UpdateOrganizationIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
-    {
+    public function updateOrganizationIntelligenceConfig(
+        UpdateOrganizationIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
         return $this->startApiCall('UpdateOrganizationIntelligenceConfig', $request, $callOptions)->wait();
     }
 
@@ -1188,8 +1200,10 @@ final class StorageControlClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateProjectIntelligenceConfig(UpdateProjectIntelligenceConfigRequest $request, array $callOptions = []): IntelligenceConfig
-    {
+    public function updateProjectIntelligenceConfig(
+        UpdateProjectIntelligenceConfigRequest $request,
+        array $callOptions = []
+    ): IntelligenceConfig {
         return $this->startApiCall('UpdateProjectIntelligenceConfig', $request, $callOptions)->wait();
     }
 }

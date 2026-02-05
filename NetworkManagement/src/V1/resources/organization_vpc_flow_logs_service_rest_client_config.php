@@ -169,7 +169,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}:cancel',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/global/operations/*}:cancel',
                         'body' => '*',
                     ],
                 ],
@@ -187,7 +187,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/global/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -204,7 +204,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/global/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -221,7 +221,7 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{name=organizations/*/locations/*}/operations',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/global}/operations',
                     ],
                 ],
                 'placeholders' => [

@@ -39,6 +39,7 @@ use Google\Cloud\NetApp\V1\CreateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\CreateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\CreateBackupRequest;
 use Google\Cloud\NetApp\V1\CreateBackupVaultRequest;
+use Google\Cloud\NetApp\V1\CreateHostGroupRequest;
 use Google\Cloud\NetApp\V1\CreateKmsConfigRequest;
 use Google\Cloud\NetApp\V1\CreateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\CreateReplicationRequest;
@@ -49,6 +50,7 @@ use Google\Cloud\NetApp\V1\DeleteActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupRequest;
 use Google\Cloud\NetApp\V1\DeleteBackupVaultRequest;
+use Google\Cloud\NetApp\V1\DeleteHostGroupRequest;
 use Google\Cloud\NetApp\V1\DeleteKmsConfigRequest;
 use Google\Cloud\NetApp\V1\DeleteQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\DeleteReplicationRequest;
@@ -62,12 +64,15 @@ use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
 use Google\Cloud\NetApp\V1\GetBackupVaultRequest;
+use Google\Cloud\NetApp\V1\GetHostGroupRequest;
 use Google\Cloud\NetApp\V1\GetKmsConfigRequest;
 use Google\Cloud\NetApp\V1\GetQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\GetReplicationRequest;
 use Google\Cloud\NetApp\V1\GetSnapshotRequest;
 use Google\Cloud\NetApp\V1\GetStoragePoolRequest;
 use Google\Cloud\NetApp\V1\GetVolumeRequest;
+use Google\Cloud\NetApp\V1\HostGroup;
+use Google\Cloud\NetApp\V1\HostGroup\Type;
 use Google\Cloud\NetApp\V1\KmsConfig;
 use Google\Cloud\NetApp\V1\ListActiveDirectoriesRequest;
 use Google\Cloud\NetApp\V1\ListActiveDirectoriesResponse;
@@ -77,6 +82,8 @@ use Google\Cloud\NetApp\V1\ListBackupVaultsRequest;
 use Google\Cloud\NetApp\V1\ListBackupVaultsResponse;
 use Google\Cloud\NetApp\V1\ListBackupsRequest;
 use Google\Cloud\NetApp\V1\ListBackupsResponse;
+use Google\Cloud\NetApp\V1\ListHostGroupsRequest;
+use Google\Cloud\NetApp\V1\ListHostGroupsResponse;
 use Google\Cloud\NetApp\V1\ListKmsConfigsRequest;
 use Google\Cloud\NetApp\V1\ListKmsConfigsResponse;
 use Google\Cloud\NetApp\V1\ListQuotaRulesRequest;
@@ -89,10 +96,12 @@ use Google\Cloud\NetApp\V1\ListStoragePoolsRequest;
 use Google\Cloud\NetApp\V1\ListStoragePoolsResponse;
 use Google\Cloud\NetApp\V1\ListVolumesRequest;
 use Google\Cloud\NetApp\V1\ListVolumesResponse;
+use Google\Cloud\NetApp\V1\OsType;
 use Google\Cloud\NetApp\V1\QuotaRule;
-use Google\Cloud\NetApp\V1\QuotaRule\Type;
 use Google\Cloud\NetApp\V1\Replication;
 use Google\Cloud\NetApp\V1\Replication\ReplicationSchedule;
+use Google\Cloud\NetApp\V1\RestoreBackupFilesRequest;
+use Google\Cloud\NetApp\V1\RestoreBackupFilesResponse;
 use Google\Cloud\NetApp\V1\ResumeReplicationRequest;
 use Google\Cloud\NetApp\V1\ReverseReplicationDirectionRequest;
 use Google\Cloud\NetApp\V1\RevertVolumeRequest;
@@ -106,6 +115,7 @@ use Google\Cloud\NetApp\V1\UpdateActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupRequest;
 use Google\Cloud\NetApp\V1\UpdateBackupVaultRequest;
+use Google\Cloud\NetApp\V1\UpdateHostGroupRequest;
 use Google\Cloud\NetApp\V1\UpdateKmsConfigRequest;
 use Google\Cloud\NetApp\V1\UpdateQuotaRuleRequest;
 use Google\Cloud\NetApp\V1\UpdateReplicationRequest;
@@ -676,6 +686,8 @@ class NetAppClientTest extends GeneratedTest
         $backupRegion = 'backupRegion-2028072943';
         $sourceBackupVault = 'sourceBackupVault1668478745';
         $destinationBackupVault = 'destinationBackupVault1650417158';
+        $kmsConfig = 'kmsConfig917255152';
+        $backupsCryptoKeyVersion = 'backupsCryptoKeyVersion1869896840';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -683,6 +695,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setBackupRegion($backupRegion);
         $expectedResponse->setSourceBackupVault($sourceBackupVault);
         $expectedResponse->setDestinationBackupVault($destinationBackupVault);
+        $expectedResponse->setKmsConfig($kmsConfig);
+        $expectedResponse->setBackupsCryptoKeyVersion($backupsCryptoKeyVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -780,6 +794,158 @@ class NetAppClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupVaultTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createHostGroupTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createHostGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new HostGroup();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createHostGroupTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $hostGroup = new HostGroup();
+        $hostGroupType = Type::TYPE_UNSPECIFIED;
+        $hostGroup->setType($hostGroupType);
+        $hostGroupHosts = [];
+        $hostGroup->setHosts($hostGroupHosts);
+        $hostGroupOsType = OsType::OS_TYPE_UNSPECIFIED;
+        $hostGroup->setOsType($hostGroupOsType);
+        $hostGroupId = 'hostGroupId-220688494';
+        $request = (new CreateHostGroupRequest())
+            ->setParent($formattedParent)
+            ->setHostGroup($hostGroup)
+            ->setHostGroupId($hostGroupId);
+        $response = $gapicClient->createHostGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/CreateHostGroup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getHostGroup();
+        $this->assertProtobufEquals($hostGroup, $actualValue);
+        $actualValue = $actualApiRequestObject->getHostGroupId();
+        $this->assertProtobufEquals($hostGroupId, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createHostGroupTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createHostGroupExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createHostGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $hostGroup = new HostGroup();
+        $hostGroupType = Type::TYPE_UNSPECIFIED;
+        $hostGroup->setType($hostGroupType);
+        $hostGroupHosts = [];
+        $hostGroup->setHosts($hostGroupHosts);
+        $hostGroupOsType = OsType::OS_TYPE_UNSPECIFIED;
+        $hostGroup->setOsType($hostGroupOsType);
+        $hostGroupId = 'hostGroupId-220688494';
+        $request = (new CreateHostGroupRequest())
+            ->setParent($formattedParent)
+            ->setHostGroup($hostGroup)
+            ->setHostGroupId($hostGroupId);
+        $response = $gapicClient->createHostGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createHostGroupTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -991,7 +1157,7 @@ class NetAppClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $quotaRule = new QuotaRule();
-        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRuleType = \Google\Cloud\NetApp\V1\QuotaRule\Type::TYPE_UNSPECIFIED;
         $quotaRule->setType($quotaRuleType);
         $quotaRuleDiskLimitMib = 217148668;
         $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);
@@ -1072,7 +1238,7 @@ class NetAppClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $quotaRule = new QuotaRule();
-        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRuleType = \Google\Cloud\NetApp\V1\QuotaRule\Type::TYPE_UNSPECIFIED;
         $quotaRule->setType($quotaRuleType);
         $quotaRuleDiskLimitMib = 217148668;
         $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);
@@ -2286,6 +2452,128 @@ class NetAppClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteBackupVaultTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteHostGroupTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteHostGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteHostGroupTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->hostGroupName('[PROJECT]', '[LOCATION]', '[HOST_GROUP]');
+        $request = (new DeleteHostGroupRequest())->setName($formattedName);
+        $response = $gapicClient->deleteHostGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/DeleteHostGroup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteHostGroupTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteHostGroupExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteHostGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->hostGroupName('[PROJECT]', '[LOCATION]', '[HOST_GROUP]');
+        $request = (new DeleteHostGroupRequest())->setName($formattedName);
+        $response = $gapicClient->deleteHostGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteHostGroupTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -3595,6 +3883,8 @@ class NetAppClientTest extends GeneratedTest
         $backupRegion = 'backupRegion-2028072943';
         $sourceBackupVault = 'sourceBackupVault1668478745';
         $destinationBackupVault = 'destinationBackupVault1650417158';
+        $kmsConfig = 'kmsConfig917255152';
+        $backupsCryptoKeyVersion = 'backupsCryptoKeyVersion1869896840';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -3602,6 +3892,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setBackupRegion($backupRegion);
         $expectedResponse->setSourceBackupVault($sourceBackupVault);
         $expectedResponse->setDestinationBackupVault($destinationBackupVault);
+        $expectedResponse->setKmsConfig($kmsConfig);
+        $expectedResponse->setBackupsCryptoKeyVersion($backupsCryptoKeyVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupVaultName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]');
@@ -3644,6 +3936,73 @@ class NetAppClientTest extends GeneratedTest
         $request = (new GetBackupVaultRequest())->setName($formattedName);
         try {
             $gapicClient->getBackupVault($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getHostGroupTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $expectedResponse = new HostGroup();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->hostGroupName('[PROJECT]', '[LOCATION]', '[HOST_GROUP]');
+        $request = (new GetHostGroupRequest())->setName($formattedName);
+        $response = $gapicClient->getHostGroup($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/GetHostGroup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getHostGroupExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->hostGroupName('[PROJECT]', '[LOCATION]', '[HOST_GROUP]');
+        $request = (new GetHostGroupRequest())->setName($formattedName);
+        try {
+            $gapicClient->getHostGroup($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4460,6 +4819,77 @@ class NetAppClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listHostGroupsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $hostGroupsElement = new HostGroup();
+        $hostGroups = [$hostGroupsElement];
+        $expectedResponse = new ListHostGroupsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setHostGroups($hostGroups);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListHostGroupsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listHostGroups($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getHostGroups()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/ListHostGroups', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listHostGroupsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListHostGroupsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listHostGroups($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listKmsConfigsTest()
     {
         $transport = $this->createTransport();
@@ -4883,6 +5313,142 @@ class NetAppClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function restoreBackupFilesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/restoreBackupFilesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new RestoreBackupFilesResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/restoreBackupFilesTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
+        $fileList = [];
+        $request = (new RestoreBackupFilesRequest())
+            ->setName($formattedName)
+            ->setBackup($formattedBackup)
+            ->setFileList($fileList);
+        $response = $gapicClient->restoreBackupFiles($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/RestoreBackupFiles', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackup();
+        $this->assertProtobufEquals($formattedBackup, $actualValue);
+        $actualValue = $actualApiRequestObject->getFileList();
+        $this->assertProtobufEquals($fileList, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/restoreBackupFilesTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function restoreBackupFilesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/restoreBackupFilesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_VAULT]', '[BACKUP]');
+        $fileList = [];
+        $request = (new RestoreBackupFilesRequest())
+            ->setName($formattedName)
+            ->setBackup($formattedBackup)
+            ->setFileList($fileList);
+        $response = $gapicClient->restoreBackupFiles($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/restoreBackupFilesTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -6270,6 +6836,8 @@ class NetAppClientTest extends GeneratedTest
         $backupRegion = 'backupRegion-2028072943';
         $sourceBackupVault = 'sourceBackupVault1668478745';
         $destinationBackupVault = 'destinationBackupVault1650417158';
+        $kmsConfig = 'kmsConfig917255152';
+        $backupsCryptoKeyVersion = 'backupsCryptoKeyVersion1869896840';
         $expectedResponse = new BackupVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -6277,6 +6845,8 @@ class NetAppClientTest extends GeneratedTest
         $expectedResponse->setBackupRegion($backupRegion);
         $expectedResponse->setSourceBackupVault($sourceBackupVault);
         $expectedResponse->setDestinationBackupVault($destinationBackupVault);
+        $expectedResponse->setKmsConfig($kmsConfig);
+        $expectedResponse->setBackupsCryptoKeyVersion($backupsCryptoKeyVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -6364,6 +6934,144 @@ class NetAppClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBackupVaultTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateHostGroupTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateHostGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new HostGroup();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateHostGroupTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $hostGroup = new HostGroup();
+        $hostGroupType = Type::TYPE_UNSPECIFIED;
+        $hostGroup->setType($hostGroupType);
+        $hostGroupHosts = [];
+        $hostGroup->setHosts($hostGroupHosts);
+        $hostGroupOsType = OsType::OS_TYPE_UNSPECIFIED;
+        $hostGroup->setOsType($hostGroupOsType);
+        $request = (new UpdateHostGroupRequest())->setHostGroup($hostGroup);
+        $response = $gapicClient->updateHostGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/UpdateHostGroup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHostGroup();
+        $this->assertProtobufEquals($hostGroup, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateHostGroupTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateHostGroupExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateHostGroupTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $hostGroup = new HostGroup();
+        $hostGroupType = Type::TYPE_UNSPECIFIED;
+        $hostGroup->setType($hostGroupType);
+        $hostGroupHosts = [];
+        $hostGroup->setHosts($hostGroupHosts);
+        $hostGroupOsType = OsType::OS_TYPE_UNSPECIFIED;
+        $hostGroup->setOsType($hostGroupOsType);
+        $request = (new UpdateHostGroupRequest())->setHostGroup($hostGroup);
+        $response = $gapicClient->updateHostGroup($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateHostGroupTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -6564,7 +7272,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $quotaRule = new QuotaRule();
-        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRuleType = \Google\Cloud\NetApp\V1\QuotaRule\Type::TYPE_UNSPECIFIED;
         $quotaRule->setType($quotaRuleType);
         $quotaRuleDiskLimitMib = 217148668;
         $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);
@@ -6636,7 +7344,7 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $quotaRule = new QuotaRule();
-        $quotaRuleType = Type::TYPE_UNSPECIFIED;
+        $quotaRuleType = \Google\Cloud\NetApp\V1\QuotaRule\Type::TYPE_UNSPECIFIED;
         $quotaRule->setType($quotaRuleType);
         $quotaRuleDiskLimitMib = 217148668;
         $quotaRule->setDiskLimitMib($quotaRuleDiskLimitMib);

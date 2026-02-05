@@ -70,6 +70,13 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      */
     protected $control_plane_disk_encryption_key = '';
     /**
+     * Output only. All of the versions of the Cloud KMS cryptoKey that are used
+     * by Confidential Hyperdisks on the control plane nodes.
+     *
+     * Generated from protobuf field <code>repeated string control_plane_disk_encryption_key_versions = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $control_plane_disk_encryption_key_versions;
+    /**
      * Resource path of the Cloud KMS cryptoKey to use for encryption of internal
      * etcd backups.
      *
@@ -108,6 +115,9 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      *     @type string $control_plane_disk_encryption_key
      *           The Cloud KMS cryptoKey to use for Confidential Hyperdisk on the control
      *           plane nodes.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $control_plane_disk_encryption_key_versions
+     *           Output only. All of the versions of the Cloud KMS cryptoKey that are used
+     *           by Confidential Hyperdisks on the control plane nodes.
      *     @type string $gkeops_etcd_backup_encryption_key
      *           Resource path of the Cloud KMS cryptoKey to use for encryption of internal
      *           etcd backups.
@@ -318,6 +328,34 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->control_plane_disk_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. All of the versions of the Cloud KMS cryptoKey that are used
+     * by Confidential Hyperdisks on the control plane nodes.
+     *
+     * Generated from protobuf field <code>repeated string control_plane_disk_encryption_key_versions = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getControlPlaneDiskEncryptionKeyVersions()
+    {
+        return $this->control_plane_disk_encryption_key_versions;
+    }
+
+    /**
+     * Output only. All of the versions of the Cloud KMS cryptoKey that are used
+     * by Confidential Hyperdisks on the control plane nodes.
+     *
+     * Generated from protobuf field <code>repeated string control_plane_disk_encryption_key_versions = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setControlPlaneDiskEncryptionKeyVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->control_plane_disk_encryption_key_versions = $arr;
 
         return $this;
     }

@@ -682,6 +682,50 @@
                 }
             }
         },
+        "Examples": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ExamplesGapicClient",
+                    "rpcs": {
+                        "CreateExample": {
+                            "methods": [
+                                "createExample"
+                            ]
+                        },
+                        "DeleteExample": {
+                            "methods": [
+                                "deleteExample"
+                            ]
+                        },
+                        "GetExample": {
+                            "methods": [
+                                "getExample"
+                            ]
+                        },
+                        "ListExamples": {
+                            "methods": [
+                                "listExamples"
+                            ]
+                        },
+                        "UpdateExample": {
+                            "methods": [
+                                "updateExample"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Experiments": {
             "clients": {
                 "grpc": {
@@ -780,6 +824,85 @@
                 }
             }
         },
+        "Playbooks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PlaybooksGapicClient",
+                    "rpcs": {
+                        "CreatePlaybook": {
+                            "methods": [
+                                "createPlaybook"
+                            ]
+                        },
+                        "CreatePlaybookVersion": {
+                            "methods": [
+                                "createPlaybookVersion"
+                            ]
+                        },
+                        "DeletePlaybook": {
+                            "methods": [
+                                "deletePlaybook"
+                            ]
+                        },
+                        "DeletePlaybookVersion": {
+                            "methods": [
+                                "deletePlaybookVersion"
+                            ]
+                        },
+                        "ExportPlaybook": {
+                            "methods": [
+                                "exportPlaybook"
+                            ]
+                        },
+                        "GetPlaybook": {
+                            "methods": [
+                                "getPlaybook"
+                            ]
+                        },
+                        "GetPlaybookVersion": {
+                            "methods": [
+                                "getPlaybookVersion"
+                            ]
+                        },
+                        "ImportPlaybook": {
+                            "methods": [
+                                "importPlaybook"
+                            ]
+                        },
+                        "ListPlaybookVersions": {
+                            "methods": [
+                                "listPlaybookVersions"
+                            ]
+                        },
+                        "ListPlaybooks": {
+                            "methods": [
+                                "listPlaybooks"
+                            ]
+                        },
+                        "RestorePlaybookVersion": {
+                            "methods": [
+                                "restorePlaybookVersion"
+                            ]
+                        },
+                        "UpdatePlaybook": {
+                            "methods": [
+                                "updatePlaybook"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SecuritySettingsService": {
             "clients": {
                 "grpc": {
@@ -808,6 +931,75 @@
                         "UpdateSecuritySettings": {
                             "methods": [
                                 "updateSecuritySettings"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Tools": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ToolsGapicClient",
+                    "rpcs": {
+                        "CreateTool": {
+                            "methods": [
+                                "createTool"
+                            ]
+                        },
+                        "CreateToolVersion": {
+                            "methods": [
+                                "createToolVersion"
+                            ]
+                        },
+                        "DeleteTool": {
+                            "methods": [
+                                "deleteTool"
+                            ]
+                        },
+                        "DeleteToolVersion": {
+                            "methods": [
+                                "deleteToolVersion"
+                            ]
+                        },
+                        "GetTool": {
+                            "methods": [
+                                "getTool"
+                            ]
+                        },
+                        "GetToolVersion": {
+                            "methods": [
+                                "getToolVersion"
+                            ]
+                        },
+                        "ListToolVersions": {
+                            "methods": [
+                                "listToolVersions"
+                            ]
+                        },
+                        "ListTools": {
+                            "methods": [
+                                "listTools"
+                            ]
+                        },
+                        "RestoreToolVersion": {
+                            "methods": [
+                                "restoreToolVersion"
+                            ]
+                        },
+                        "UpdateTool": {
+                            "methods": [
+                                "updateTool"
                             ]
                         },
                         "GetLocation": {

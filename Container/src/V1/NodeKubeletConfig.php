@@ -226,6 +226,30 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool single_process_oom_kill = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $single_process_oom_kill = null;
+    /**
+     * Optional. shutdown_grace_period_seconds is the maximum allowed grace period
+     * (in seconds) the total duration that the node should delay the shutdown
+     * during a graceful shutdown. This is the total grace period for pod
+     * termination for both regular and critical pods.
+     * https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     * If set to 0, node will not enable the graceful node shutdown functionality.
+     * This field is only valid for Spot VMs.
+     * Allowed values: 0, 30, 120.
+     *
+     * Generated from protobuf field <code>optional int32 shutdown_grace_period_seconds = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $shutdown_grace_period_seconds = null;
+    /**
+     * Optional. shutdown_grace_period_critical_pods_seconds is the maximum
+     * allowed grace period (in seconds) used to terminate critical pods during a
+     * node shutdown. This value should be <= shutdown_grace_period_seconds, and
+     * is only valid if shutdown_grace_period_seconds is set.
+     * https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     * Range: [0, 120].
+     *
+     * Generated from protobuf field <code>optional int32 shutdown_grace_period_critical_pods_seconds = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $shutdown_grace_period_critical_pods_seconds = null;
 
     /**
      * Constructor.
@@ -364,6 +388,22 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           If true, will prevent the memory.oom.group flag from being set for
      *           container cgroups in cgroups v2. This causes processes in the container to
      *           be OOM killed individually instead of as a group.
+     *     @type int $shutdown_grace_period_seconds
+     *           Optional. shutdown_grace_period_seconds is the maximum allowed grace period
+     *           (in seconds) the total duration that the node should delay the shutdown
+     *           during a graceful shutdown. This is the total grace period for pod
+     *           termination for both regular and critical pods.
+     *           https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     *           If set to 0, node will not enable the graceful node shutdown functionality.
+     *           This field is only valid for Spot VMs.
+     *           Allowed values: 0, 30, 120.
+     *     @type int $shutdown_grace_period_critical_pods_seconds
+     *           Optional. shutdown_grace_period_critical_pods_seconds is the maximum
+     *           allowed grace period (in seconds) used to terminate critical pods during a
+     *           node shutdown. This value should be <= shutdown_grace_period_seconds, and
+     *           is only valid if shutdown_grace_period_seconds is set.
+     *           https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     *           Range: [0, 120].
      * }
      */
     public function __construct($data = NULL) {
@@ -1190,6 +1230,102 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->single_process_oom_kill = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. shutdown_grace_period_seconds is the maximum allowed grace period
+     * (in seconds) the total duration that the node should delay the shutdown
+     * during a graceful shutdown. This is the total grace period for pod
+     * termination for both regular and critical pods.
+     * https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     * If set to 0, node will not enable the graceful node shutdown functionality.
+     * This field is only valid for Spot VMs.
+     * Allowed values: 0, 30, 120.
+     *
+     * Generated from protobuf field <code>optional int32 shutdown_grace_period_seconds = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getShutdownGracePeriodSeconds()
+    {
+        return isset($this->shutdown_grace_period_seconds) ? $this->shutdown_grace_period_seconds : 0;
+    }
+
+    public function hasShutdownGracePeriodSeconds()
+    {
+        return isset($this->shutdown_grace_period_seconds);
+    }
+
+    public function clearShutdownGracePeriodSeconds()
+    {
+        unset($this->shutdown_grace_period_seconds);
+    }
+
+    /**
+     * Optional. shutdown_grace_period_seconds is the maximum allowed grace period
+     * (in seconds) the total duration that the node should delay the shutdown
+     * during a graceful shutdown. This is the total grace period for pod
+     * termination for both regular and critical pods.
+     * https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     * If set to 0, node will not enable the graceful node shutdown functionality.
+     * This field is only valid for Spot VMs.
+     * Allowed values: 0, 30, 120.
+     *
+     * Generated from protobuf field <code>optional int32 shutdown_grace_period_seconds = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setShutdownGracePeriodSeconds($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->shutdown_grace_period_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. shutdown_grace_period_critical_pods_seconds is the maximum
+     * allowed grace period (in seconds) used to terminate critical pods during a
+     * node shutdown. This value should be <= shutdown_grace_period_seconds, and
+     * is only valid if shutdown_grace_period_seconds is set.
+     * https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     * Range: [0, 120].
+     *
+     * Generated from protobuf field <code>optional int32 shutdown_grace_period_critical_pods_seconds = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getShutdownGracePeriodCriticalPodsSeconds()
+    {
+        return isset($this->shutdown_grace_period_critical_pods_seconds) ? $this->shutdown_grace_period_critical_pods_seconds : 0;
+    }
+
+    public function hasShutdownGracePeriodCriticalPodsSeconds()
+    {
+        return isset($this->shutdown_grace_period_critical_pods_seconds);
+    }
+
+    public function clearShutdownGracePeriodCriticalPodsSeconds()
+    {
+        unset($this->shutdown_grace_period_critical_pods_seconds);
+    }
+
+    /**
+     * Optional. shutdown_grace_period_critical_pods_seconds is the maximum
+     * allowed grace period (in seconds) used to terminate critical pods during a
+     * node shutdown. This value should be <= shutdown_grace_period_seconds, and
+     * is only valid if shutdown_grace_period_seconds is set.
+     * https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/
+     * Range: [0, 120].
+     *
+     * Generated from protobuf field <code>optional int32 shutdown_grace_period_critical_pods_seconds = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setShutdownGracePeriodCriticalPodsSeconds($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->shutdown_grace_period_critical_pods_seconds = $var;
 
         return $this;
     }

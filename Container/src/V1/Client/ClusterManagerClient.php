@@ -226,6 +226,25 @@ final class ClusterManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subnetwork
+     * resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $subnetwork
+     *
+     * @return string The formatted subnetwork resource.
+     */
+    public static function subnetworkName(string $project, string $region, string $subnetwork): string
+    {
+        return self::getPathTemplate('subnetwork')->render([
+            'project' => $project,
+            'region' => $region,
+            'subnetwork' => $subnetwork,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a topic
      * resource.
      *
@@ -248,6 +267,7 @@ final class ClusterManagerClient
      * Template: Pattern
      * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      * - topic: projects/{project}/topics/{topic}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

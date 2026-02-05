@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\BigQuery\Connection;
 
+use Exception;
 use Google\Auth\GetUniverseDomainInterface;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
@@ -71,6 +73,7 @@ class Rest implements ConnectionInterface
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/bigquery-v2.json',
             'componentVersion' => BigQueryClient::VERSION,
             'apiEndpoint' => null,
+            'logger' => null,
             // If the user has not supplied a universe domain, use the environment variable if set.
             // Otherwise, use the default ("googleapis.com").
             'universeDomain' => getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
@@ -79,7 +82,7 @@ class Rest implements ConnectionInterface
 
         $apiEndpoint = $this->getApiEndpoint(null, $config, self::DEFAULT_API_ENDPOINT_TEMPLATE);
 
-        $this->setRequestWrapper(new RequestWrapper($config));
+        $this->setRequestWrapper($this->getRequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
             $apiEndpoint
@@ -418,5 +421,34 @@ class Rest implements ConnectionInterface
     public function testTableIamPermissions(array $args = [])
     {
         return $this->send('tables', 'testIamPermissions', $args);
+    }
+
+    /**
+     * Creates a request wrapper and sets the HTTP Handler logger to the configured one.
+     *
+     * @param array $config
+     * @return RequestWrapper
+     */
+    private function getRequestWrapper(array $config): RequestWrapper
+    {
+        // Because we are setting a logger, we build a handler here instead of using the default
+        $config['httpHandler'] ??= HttpHandlerFactory::build(logger: $config['logger']);
+        $config['restRetryListener'] = $this->getRetryListener();
+        return new RequestWrapper($config);
+    }
+
+    /**
+     * Returns a function that the RequestWrapper uses between retries. In our listener we modify the call options
+     * to add the `retryAttempt` field to the call options for our Auth httpHandler logging logic. This way, the logging
+     * logic has access to the retry attempt.
+     *
+     * @return callable
+     */
+    private function getRetryListener(): callable
+    {
+        return function (Exception $ex, int $retryAttempt, array &$arguments) {
+            // The REST calls are [$request, $options]. We need to modify the options.
+            $arguments[1]['retryAttempt'] = $retryAttempt;
+        };
     }
 }

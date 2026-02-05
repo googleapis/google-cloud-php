@@ -33,6 +33,19 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .grafeas.v1.SecretStatus statuses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $statuses;
+    /**
+     * Scan result of the secret.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Any data = 4;</code>
+     */
+    protected $data = null;
+    /**
+     * Hash value, typically a digest for the secret data, that allows unique
+     * identification of a specific secret.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Digest digest = 5;</code>
+     */
+    protected $digest = null;
 
     /**
      * Constructor.
@@ -46,6 +59,11 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
      *           Locations where the secret is detected.
      *     @type array<\Grafeas\V1\SecretStatus>|\Google\Protobuf\Internal\RepeatedField $statuses
      *           Status of the secret.
+     *     @type \Google\Protobuf\Any $data
+     *           Scan result of the secret.
+     *     @type \Grafeas\V1\Digest $digest
+     *           Hash value, typically a digest for the secret data, that allows unique
+     *           identification of a specific secret.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +145,80 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Grafeas\V1\SecretStatus::class);
         $this->statuses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Scan result of the secret.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Any data = 4;</code>
+     * @return \Google\Protobuf\Any|null
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function hasData()
+    {
+        return isset($this->data);
+    }
+
+    public function clearData()
+    {
+        unset($this->data);
+    }
+
+    /**
+     * Scan result of the secret.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Any data = 4;</code>
+     * @param \Google\Protobuf\Any $var
+     * @return $this
+     */
+    public function setData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Any::class);
+        $this->data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Hash value, typically a digest for the secret data, that allows unique
+     * identification of a specific secret.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Digest digest = 5;</code>
+     * @return \Grafeas\V1\Digest|null
+     */
+    public function getDigest()
+    {
+        return $this->digest;
+    }
+
+    public function hasDigest()
+    {
+        return isset($this->digest);
+    }
+
+    public function clearDigest()
+    {
+        unset($this->digest);
+    }
+
+    /**
+     * Hash value, typically a digest for the secret data, that allows unique
+     * identification of a specific secret.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Digest digest = 5;</code>
+     * @param \Grafeas\V1\Digest $var
+     * @return $this
+     */
+    public function setDigest($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\Digest::class);
+        $this->digest = $var;
 
         return $this;
     }

@@ -32,7 +32,7 @@ use Google\Cloud\PubSub\V1\Topic;
 /**
  * Lists matching topics.
  *
- * @param string $formattedProject Identifier. The name of the project in which to list topics.
+ * @param string $formattedProject The name of the project in which to list topics.
  *                                 Format is `projects/{project-id}`. Please see
  *                                 {@see PublisherClient::projectName()} for help formatting this field.
  */

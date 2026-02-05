@@ -18,7 +18,7 @@ class CartData
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œ
+À
 )google/ads/datamanager/v1/cart_data.protogoogle.ads.datamanager.v1google/api/field_behavior.proto"»
 CartData
 merchant_id (	B‡A 
@@ -32,8 +32,8 @@ class CartData
 
 unit_price (B‡A
 item_id (	B‡AQ
-additional_item_parameters (2(.google.ads.datamanager.v1.ItemParameterB‡ABÕ
-com.google.ads.datamanager.v1BCartDataProtoPZDgoogle.golang.org/genproto/googleapis/ads/datamanager/v1;datamanager™Google.Ads.DataManager.V1 Google\\Ads\\DataManager\\V1ÍGoogle::Ads::DataManager::V1bproto3'
+additional_item_parameters (2(.google.ads.datamanager.v1.ItemParameterB‡AB 
+com.google.ads.datamanager.v1BCartDataProtoPZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb™Google.Ads.DataManager.V1 Google\\Ads\\DataManager\\V1ÍGoogle::Ads::DataManager::V1bproto3'
         , true);
 
         static::$is_initialized = true;

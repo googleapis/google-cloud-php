@@ -172,6 +172,12 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.BestEffortProvisioning best_effort_provisioning = 113;</code>
      */
     protected $best_effort_provisioning = null;
+    /**
+     * Specifies the node drain configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodeDrainConfig node_drain_config = 116;</code>
+     */
+    protected $node_drain_config = null;
 
     /**
      * Constructor.
@@ -246,6 +252,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Specifies the configuration of queued provisioning.
      *     @type \Google\Cloud\Container\V1\BestEffortProvisioning $best_effort_provisioning
      *           Enable best effort provisioning for nodes
+     *     @type \Google\Cloud\Container\V1\NodePool\NodeDrainConfig $node_drain_config
+     *           Specifies the node drain configuration for this node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -951,6 +959,42 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\BestEffortProvisioning::class);
         $this->best_effort_provisioning = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the node drain configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodeDrainConfig node_drain_config = 116;</code>
+     * @return \Google\Cloud\Container\V1\NodePool\NodeDrainConfig|null
+     */
+    public function getNodeDrainConfig()
+    {
+        return $this->node_drain_config;
+    }
+
+    public function hasNodeDrainConfig()
+    {
+        return isset($this->node_drain_config);
+    }
+
+    public function clearNodeDrainConfig()
+    {
+        unset($this->node_drain_config);
+    }
+
+    /**
+     * Specifies the node drain configuration for this node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodeDrainConfig node_drain_config = 116;</code>
+     * @param \Google\Cloud\Container\V1\NodePool\NodeDrainConfig $var
+     * @return $this
+     */
+    public function setNodeDrainConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\NodeDrainConfig::class);
+        $this->node_drain_config = $var;
 
         return $this;
     }

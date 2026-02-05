@@ -89,6 +89,13 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolParams params = 78313862;</code>
+     */
+    protected $params = null;
+    /**
      * Provisioning type of the performance-related parameters of the pool,
      * such as throughput and IOPS.
      * Check the PerformanceProvisioningType enum for the list of possible values.
@@ -211,6 +218,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *           which means the first character must be a lowercase letter, and all
      *           following characters must be a dash, lowercase letter, or digit, except
      *           the last character, which cannot be a dash.
+     *     @type \Google\Cloud\Compute\V1\StoragePoolParams $params
+     *           Input only. Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type string $performance_provisioning_type
      *           Provisioning type of the performance-related parameters of the pool,
      *           such as throughput and IOPS.
@@ -601,6 +611,44 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\StoragePoolParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\StoragePoolParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\StoragePoolParams::class);
+        $this->params = $var;
 
         return $this;
     }

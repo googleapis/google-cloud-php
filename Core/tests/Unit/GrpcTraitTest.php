@@ -222,7 +222,6 @@ class GrpcTraitTest extends TestCase
         $config = $impl->getGaxConfig('1.2.3', null, $universeDomain);
         $refl = new \ReflectionClass($config['credentials']);
         $prop = $refl->getProperty('universeDomain');
-        $prop->setAccessible(true);
         $universeDomain = $prop->getValue($config['credentials']);
 
         if ($envUniverse) {

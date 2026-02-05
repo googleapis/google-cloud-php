@@ -65,6 +65,13 @@ class State
      */
     const START_FROM_CLOUD_SQL_INSTANCE = 22;
     /**
+     * Initial state: packet originating from a Google Kubernetes Engine Pod.
+     * A GkePodInfo is populated with starting Pod information.
+     *
+     * Generated from protobuf enum <code>START_FROM_GKE_POD = 39;</code>
+     */
+    const START_FROM_GKE_POD = 39;
+    /**
      * Initial state: packet originating from a Redis instance.
      * A RedisInstanceInfo is populated with starting instance information.
      *
@@ -230,6 +237,13 @@ class State
      */
     const NAT = 14;
     /**
+     * Transition state: GKE Pod IP masquerading is skipped. The
+     * `ip_masquerading_skipped` field is populated with the reason.
+     *
+     * Generated from protobuf enum <code>SKIP_GKE_POD_IP_MASQUERADING = 40;</code>
+     */
+    const SKIP_GKE_POD_IP_MASQUERADING = 40;
+    /**
      * Transition state: original connection is terminated and a new proxied
      * connection is initiated.
      *
@@ -277,6 +291,7 @@ class State
         self::START_FROM_PRIVATE_NETWORK => 'START_FROM_PRIVATE_NETWORK',
         self::START_FROM_GKE_MASTER => 'START_FROM_GKE_MASTER',
         self::START_FROM_CLOUD_SQL_INSTANCE => 'START_FROM_CLOUD_SQL_INSTANCE',
+        self::START_FROM_GKE_POD => 'START_FROM_GKE_POD',
         self::START_FROM_REDIS_INSTANCE => 'START_FROM_REDIS_INSTANCE',
         self::START_FROM_REDIS_CLUSTER => 'START_FROM_REDIS_CLUSTER',
         self::START_FROM_CLOUD_FUNCTION => 'START_FROM_CLOUD_FUNCTION',
@@ -302,6 +317,7 @@ class State
         self::DIRECT_VPC_EGRESS_CONNECTION => 'DIRECT_VPC_EGRESS_CONNECTION',
         self::SERVERLESS_EXTERNAL_CONNECTION => 'SERVERLESS_EXTERNAL_CONNECTION',
         self::NAT => 'NAT',
+        self::SKIP_GKE_POD_IP_MASQUERADING => 'SKIP_GKE_POD_IP_MASQUERADING',
         self::PROXY_CONNECTION => 'PROXY_CONNECTION',
         self::DELIVER => 'DELIVER',
         self::DROP => 'DROP',

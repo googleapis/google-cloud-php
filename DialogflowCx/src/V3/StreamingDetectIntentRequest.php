@@ -95,6 +95,14 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_debugging_info = 8;</code>
      */
     protected $enable_debugging_info = false;
+    /**
+     * Optional. Specifies which fields in the
+     * [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     * set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DetectIntentResponseView response_view = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $response_view = 0;
 
     /**
      * Constructor.
@@ -132,6 +140,10 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           responses.
      *     @type bool $enable_debugging_info
      *           If true, `StreamingDetectIntentResponse.debugging_info` will get populated.
+     *     @type int $response_view
+     *           Optional. Specifies which fields in the
+     *           [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     *           set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
      * }
      */
     public function __construct($data = NULL) {
@@ -357,6 +369,36 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_debugging_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies which fields in the
+     * [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     * set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DetectIntentResponseView response_view = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getResponseView()
+    {
+        return $this->response_view;
+    }
+
+    /**
+     * Optional. Specifies which fields in the
+     * [QueryResult][google.cloud.dialogflow.cx.v3.QueryResult] to return. If not
+     * set, the default is DETECT_INTENT_RESPONSE_VIEW_FULL.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DetectIntentResponseView response_view = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResponseView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\Cx\V3\DetectIntentResponseView::class);
+        $this->response_view = $var;
 
         return $this;
     }

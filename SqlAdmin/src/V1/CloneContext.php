@@ -91,6 +91,24 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp source_instance_deletion_time = 12;</code>
      */
     protected $source_instance_deletion_time = null;
+    /**
+     * Optional. The project ID of the destination project where the cloned
+     * instance will be created. To perform a cross-project clone, this field is
+     * required. If not specified, the clone is created in the same project
+     * as the source instance.
+     *
+     * Generated from protobuf field <code>optional string destination_project = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $destination_project = null;
+    /**
+     * Optional. The fully qualified URI of the VPC network to which the cloned
+     * instance will be connected via Private Services Access for private IP. For
+     * example:`projects/my-network-project/global/networks/my-network`. This
+     * field is only required for cross-project cloning.
+     *
+     * Generated from protobuf field <code>optional string destination_network = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $destination_network = null;
 
     /**
      * Constructor.
@@ -134,6 +152,16 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $source_instance_deletion_time
      *           The timestamp used to identify the time when the source instance is
      *           deleted. If this instance is deleted, then you must set the timestamp.
+     *     @type string $destination_project
+     *           Optional. The project ID of the destination project where the cloned
+     *           instance will be created. To perform a cross-project clone, this field is
+     *           required. If not specified, the clone is created in the same project
+     *           as the source instance.
+     *     @type string $destination_network
+     *           Optional. The fully qualified URI of the VPC network to which the cloned
+     *           instance will be connected via Private Services Access for private IP. For
+     *           example:`projects/my-network-project/global/networks/my-network`. This
+     *           field is only required for cross-project cloning.
      * }
      */
     public function __construct($data = NULL) {
@@ -479,6 +507,90 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->source_instance_deletion_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The project ID of the destination project where the cloned
+     * instance will be created. To perform a cross-project clone, this field is
+     * required. If not specified, the clone is created in the same project
+     * as the source instance.
+     *
+     * Generated from protobuf field <code>optional string destination_project = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDestinationProject()
+    {
+        return isset($this->destination_project) ? $this->destination_project : '';
+    }
+
+    public function hasDestinationProject()
+    {
+        return isset($this->destination_project);
+    }
+
+    public function clearDestinationProject()
+    {
+        unset($this->destination_project);
+    }
+
+    /**
+     * Optional. The project ID of the destination project where the cloned
+     * instance will be created. To perform a cross-project clone, this field is
+     * required. If not specified, the clone is created in the same project
+     * as the source instance.
+     *
+     * Generated from protobuf field <code>optional string destination_project = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The fully qualified URI of the VPC network to which the cloned
+     * instance will be connected via Private Services Access for private IP. For
+     * example:`projects/my-network-project/global/networks/my-network`. This
+     * field is only required for cross-project cloning.
+     *
+     * Generated from protobuf field <code>optional string destination_network = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getDestinationNetwork()
+    {
+        return isset($this->destination_network) ? $this->destination_network : '';
+    }
+
+    public function hasDestinationNetwork()
+    {
+        return isset($this->destination_network);
+    }
+
+    public function clearDestinationNetwork()
+    {
+        unset($this->destination_network);
+    }
+
+    /**
+     * Optional. The fully qualified URI of the VPC network to which the cloned
+     * instance will be connected via Private Services Access for private IP. For
+     * example:`projects/my-network-project/global/networks/my-network`. This
+     * field is only required for cross-project cloning.
+     *
+     * Generated from protobuf field <code>optional string destination_network = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_network = $var;
 
         return $this;
     }

@@ -46,10 +46,10 @@ use Google\Cloud\PubSub\V1\Snapshot;
  * generated name is populated in the returned Snapshot object. Note that for
  * REST API requests, you must specify a name in the request.
  *
- * @param string $formattedName         Identifier. User-provided name for this snapshot. If the name is
- *                                      not provided in the request, the server will assign a random name for this
- *                                      snapshot on the same project as the subscription. Note that for REST API
- *                                      requests, you must specify a name.  See the [resource name
+ * @param string $formattedName         User-provided name for this snapshot. If the name is not provided
+ *                                      in the request, the server will assign a random name for this snapshot on
+ *                                      the same project as the subscription. Note that for REST API requests, you
+ *                                      must specify a name.  See the [resource name
  *                                      rules](https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
  *                                      Format is `projects/{project}/snapshots/{snap}`. Please see
  *                                      {@see SubscriberClient::snapshotName()} for help formatting this field.

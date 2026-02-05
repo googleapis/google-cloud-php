@@ -29,15 +29,15 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Time when the internal range was created.
+     * Output only. Time when the internal range was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Time when the internal range was updated.
+     * Output only. Time when the internal range was updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
@@ -101,10 +101,11 @@ class InternalRange extends \Google\Protobuf\Internal\Message
     protected $prefix_length = 0;
     /**
      * Optional. Can be set to narrow down or pick a different address space while
-     * searching for a free range. If not set, defaults to the "10.0.0.0/8"
-     * address space. This can be used to search in other rfc-1918 address
-     * spaces like "172.16.0.0/12" and "192.168.0.0/16" or non-rfc-1918
-     * address spaces used in the VPC.
+     * searching for a free range. If not set, defaults to the ["10.0.0.0/8",
+     * "172.16.0.0/12", "192.168.0.0/16"] address space (for auto-mode networks,
+     * the "10.0.0.0/9" range is used instead of "10.0.0.0/8"). This can be used
+     * to target the search in other rfc-1918 address spaces like "172.16.0.0/12"
+     * and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      *
      * Generated from protobuf field <code>repeated string target_cidr_range = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -169,9 +170,9 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/internalRanges/{internal_range}
      *           See: https://google.aip.dev/122#fields-representing-resource-names
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Time when the internal range was created.
+     *           Output only. Time when the internal range was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Time when the internal range was updated.
+     *           Output only. Time when the internal range was updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined labels.
      *     @type string $description
@@ -205,10 +206,11 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      *           a redundant parameter.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_cidr_range
      *           Optional. Can be set to narrow down or pick a different address space while
-     *           searching for a free range. If not set, defaults to the "10.0.0.0/8"
-     *           address space. This can be used to search in other rfc-1918 address
-     *           spaces like "172.16.0.0/12" and "192.168.0.0/16" or non-rfc-1918
-     *           address spaces used in the VPC.
+     *           searching for a free range. If not set, defaults to the ["10.0.0.0/8",
+     *           "172.16.0.0/12", "192.168.0.0/16"] address space (for auto-mode networks,
+     *           the "10.0.0.0/9" range is used instead of "10.0.0.0/8"). This can be used
+     *           to target the search in other rfc-1918 address spaces like "172.16.0.0/12"
+     *           and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
      *           Output only. The list of resources that refer to this internal range.
      *           Resources that use the internal range for their range allocation
@@ -272,9 +274,9 @@ class InternalRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the internal range was created.
+     * Output only. Time when the internal range was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -293,9 +295,9 @@ class InternalRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the internal range was created.
+     * Output only. Time when the internal range was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -308,9 +310,9 @@ class InternalRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the internal range was updated.
+     * Output only. Time when the internal range was updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -329,9 +331,9 @@ class InternalRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the internal range was updated.
+     * Output only. Time when the internal range was updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -561,10 +563,11 @@ class InternalRange extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Can be set to narrow down or pick a different address space while
-     * searching for a free range. If not set, defaults to the "10.0.0.0/8"
-     * address space. This can be used to search in other rfc-1918 address
-     * spaces like "172.16.0.0/12" and "192.168.0.0/16" or non-rfc-1918
-     * address spaces used in the VPC.
+     * searching for a free range. If not set, defaults to the ["10.0.0.0/8",
+     * "172.16.0.0/12", "192.168.0.0/16"] address space (for auto-mode networks,
+     * the "10.0.0.0/9" range is used instead of "10.0.0.0/8"). This can be used
+     * to target the search in other rfc-1918 address spaces like "172.16.0.0/12"
+     * and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      *
      * Generated from protobuf field <code>repeated string target_cidr_range = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -576,10 +579,11 @@ class InternalRange extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Can be set to narrow down or pick a different address space while
-     * searching for a free range. If not set, defaults to the "10.0.0.0/8"
-     * address space. This can be used to search in other rfc-1918 address
-     * spaces like "172.16.0.0/12" and "192.168.0.0/16" or non-rfc-1918
-     * address spaces used in the VPC.
+     * searching for a free range. If not set, defaults to the ["10.0.0.0/8",
+     * "172.16.0.0/12", "192.168.0.0/16"] address space (for auto-mode networks,
+     * the "10.0.0.0/9" range is used instead of "10.0.0.0/8"). This can be used
+     * to target the search in other rfc-1918 address spaces like "172.16.0.0/12"
+     * and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      *
      * Generated from protobuf field <code>repeated string target_cidr_range = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

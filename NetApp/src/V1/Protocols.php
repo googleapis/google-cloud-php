@@ -37,12 +37,19 @@ class Protocols
      * Generated from protobuf enum <code>SMB = 3;</code>
      */
     const SMB = 3;
+    /**
+     * ISCSI protocol
+     *
+     * Generated from protobuf enum <code>ISCSI = 4;</code>
+     */
+    const ISCSI = 4;
 
     private static $valueToName = [
         self::PROTOCOLS_UNSPECIFIED => 'PROTOCOLS_UNSPECIFIED',
         self::NFSV3 => 'NFSV3',
         self::NFSV4 => 'NFSV4',
         self::SMB => 'SMB',
+        self::ISCSI => 'ISCSI',
     ];
 
     public static function name($value)

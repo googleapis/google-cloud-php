@@ -134,6 +134,25 @@ final class WebhooksClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $version
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName(string $project, string $secret, string $version): string
+    {
+        return self::getPathTemplate('secretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'version' => $version,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a service
      * resource.
      *
@@ -180,6 +199,7 @@ final class WebhooksClient
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/locations/{location}/agents/{agent}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
      * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      * - webhook: projects/{project}/locations/{location}/agents/{agent}/webhooks/{webhook}
      *

@@ -27,6 +27,13 @@ class TextMessage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.TextMessage.TextType text_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $text_type = 0;
+    /**
+     * Optional. An opaque signature for a thought so it can be reused in
+     * subsequent requests.
+     *
+     * Generated from protobuf field <code>bytes thought_signature = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thought_signature = '';
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class TextMessage extends \Google\Protobuf\Internal\Message
      *           Optional. The parts of the message.
      *     @type int $text_type
      *           Optional. The type of the text message.
+     *     @type string $thought_signature
+     *           Optional. An opaque signature for a thought so it can be reused in
+     *           subsequent requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class TextMessage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\TextMessage\TextType::class);
         $this->text_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An opaque signature for a thought so it can be reused in
+     * subsequent requests.
+     *
+     * Generated from protobuf field <code>bytes thought_signature = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getThoughtSignature()
+    {
+        return $this->thought_signature;
+    }
+
+    /**
+     * Optional. An opaque signature for a thought so it can be reused in
+     * subsequent requests.
+     *
+     * Generated from protobuf field <code>bytes thought_signature = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setThoughtSignature($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->thought_signature = $var;
 
         return $this;
     }

@@ -716,9 +716,7 @@ final class DatasetServiceClient
     }
 
     /**
-     * Lists Annotations belongs to a dataitem
-     * This RPC is only available in InternalDatasetService. It is only used for
-     * exporting conversation data to CCAI Insights.
+     * Lists Annotations belongs to a dataitem.
      *
      * The async variant is {@see DatasetServiceClient::listAnnotationsAsync()} .
      *

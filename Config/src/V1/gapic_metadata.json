@@ -55,6 +55,11 @@
                                 "exportRevisionStatefile"
                             ]
                         },
+                        "GetAutoMigrationConfig": {
+                            "methods": [
+                                "getAutoMigrationConfig"
+                            ]
+                        },
                         "GetDeployment": {
                             "methods": [
                                 "getDeployment"
@@ -138,6 +143,11 @@
                         "UnlockDeployment": {
                             "methods": [
                                 "unlockDeployment"
+                            ]
+                        },
+                        "UpdateAutoMigrationConfig": {
+                            "methods": [
+                                "updateAutoMigrationConfig"
                             ]
                         },
                         "UpdateDeployment": {

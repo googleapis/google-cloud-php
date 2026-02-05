@@ -33,6 +33,12 @@ class SearchSnippet extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string text = 3;</code>
      */
     protected $text = '';
+    /**
+     * Metadata associated with the document.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
+     */
+    protected $metadata = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class SearchSnippet extends \Google\Protobuf\Internal\Message
      *           Uri for the document. Present if specified for the document.
      *     @type string $text
      *           Text included in the prompt.
+     *     @type \Google\Protobuf\Struct $metadata
+     *           Metadata associated with the document.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,42 @@ class SearchSnippet extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Metadata associated with the document.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Metadata associated with the document.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 5;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->metadata = $var;
 
         return $this;
     }

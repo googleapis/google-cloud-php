@@ -23,7 +23,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
     protected $window = null;
     /**
      * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how
-     * this window reccurs. They go on for the span of time between the start and
+     * this window recurs. They go on for the span of time between the start and
      * end time.
      * For example, to have something repeat every weekday, you'd use:
      * `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`
@@ -63,7 +63,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      *           The window of the first recurrence.
      *     @type string $recurrence
      *           An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how
-     *           this window reccurs. They go on for the span of time between the start and
+     *           this window recurs. They go on for the span of time between the start and
      *           end time.
      *           For example, to have something repeat every weekday, you'd use:
      *           `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`
@@ -133,7 +133,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how
-     * this window reccurs. They go on for the span of time between the start and
+     * this window recurs. They go on for the span of time between the start and
      * end time.
      * For example, to have something repeat every weekday, you'd use:
      * `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`
@@ -169,7 +169,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
 
     /**
      * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how
-     * this window reccurs. They go on for the span of time between the start and
+     * this window recurs. They go on for the span of time between the start and
      * end time.
      * For example, to have something repeat every weekday, you'd use:
      * `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`

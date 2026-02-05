@@ -33,11 +33,20 @@ class NodePoolUpdateStrategy
      * Generated from protobuf enum <code>SURGE = 3;</code>
      */
     const SURGE = 3;
+    /**
+     * SHORT_LIVED is the dedicated upgrade strategy for
+     * QueuedProvisioning and flex start nodepools scaled up only by enqueueing to
+     * the Dynamic Workload Scheduler (DWS).
+     *
+     * Generated from protobuf enum <code>SHORT_LIVED = 5;</code>
+     */
+    const SHORT_LIVED = 5;
 
     private static $valueToName = [
         self::NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED => 'NODE_POOL_UPDATE_STRATEGY_UNSPECIFIED',
         self::BLUE_GREEN => 'BLUE_GREEN',
         self::SURGE => 'SURGE',
+        self::SHORT_LIVED => 'SHORT_LIVED',
     ];
 
     public static function name($value)

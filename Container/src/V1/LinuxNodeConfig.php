@@ -31,7 +31,12 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * net.ipv4.tcp_mtu_probing
      * net.ipv4.tcp_max_orphans
+     * net.ipv4.tcp_max_tw_buckets
+     * net.ipv4.tcp_syn_retries
+     * net.ipv4.tcp_ecn
+     * net.ipv4.tcp_congestion_control
      * net.netfilter.nf_conntrack_max
      * net.netfilter.nf_conntrack_buckets
      * net.netfilter.nf_conntrack_tcp_timeout_close_wait
@@ -41,14 +46,23 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * kernel.perf_event_paranoid
+     * kernel.sched_rt_runtime_us
+     * kernel.softlockup_panic
+     * kernel.yama.ptrace_scope
+     * kernel.kptr_restrict
+     * kernel.dmesg_restrict
+     * kernel.sysrq
      * fs.aio-max-nr
      * fs.file-max
      * fs.inotify.max_user_instances
      * fs.inotify.max_user_watches
      * fs.nr_open
      * vm.dirty_background_ratio
+     * vm.dirty_background_bytes
      * vm.dirty_expire_centisecs
      * vm.dirty_ratio
+     * vm.dirty_bytes
      * vm.dirty_writeback_centisecs
      * vm.max_map_count
      * vm.overcommit_memory
@@ -96,6 +110,13 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      */
     protected $transparent_hugepage_defrag = 0;
     /**
+     * Optional. Enables and configures swap space on nodes.
+     * If omitted, swap is disabled.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.SwapConfig swap_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $swap_config = null;
+    /**
      * Optional. Configuration for kernel module loading on nodes.
      * When enabled, the node pool will be provisioned with a Container-Optimized
      * OS image that enforces kernel module signature verification.
@@ -126,7 +147,12 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           net.ipv4.tcp_rmem
      *           net.ipv4.tcp_wmem
      *           net.ipv4.tcp_tw_reuse
+     *           net.ipv4.tcp_mtu_probing
      *           net.ipv4.tcp_max_orphans
+     *           net.ipv4.tcp_max_tw_buckets
+     *           net.ipv4.tcp_syn_retries
+     *           net.ipv4.tcp_ecn
+     *           net.ipv4.tcp_congestion_control
      *           net.netfilter.nf_conntrack_max
      *           net.netfilter.nf_conntrack_buckets
      *           net.netfilter.nf_conntrack_tcp_timeout_close_wait
@@ -136,14 +162,23 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           kernel.shmmni
      *           kernel.shmmax
      *           kernel.shmall
+     *           kernel.perf_event_paranoid
+     *           kernel.sched_rt_runtime_us
+     *           kernel.softlockup_panic
+     *           kernel.yama.ptrace_scope
+     *           kernel.kptr_restrict
+     *           kernel.dmesg_restrict
+     *           kernel.sysrq
      *           fs.aio-max-nr
      *           fs.file-max
      *           fs.inotify.max_user_instances
      *           fs.inotify.max_user_watches
      *           fs.nr_open
      *           vm.dirty_background_ratio
+     *           vm.dirty_background_bytes
      *           vm.dirty_expire_centisecs
      *           vm.dirty_ratio
+     *           vm.dirty_bytes
      *           vm.dirty_writeback_centisecs
      *           vm.max_map_count
      *           vm.overcommit_memory
@@ -170,6 +205,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           immediate allocation only.
      *           See https://docs.kernel.org/admin-guide/mm/transhuge.html
      *           for more details.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig $swap_config
+     *           Optional. Enables and configures swap space on nodes.
+     *           If omitted, swap is disabled.
      *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\NodeKernelModuleLoading $node_kernel_module_loading
      *           Optional. Configuration for kernel module loading on nodes.
      *           When enabled, the node pool will be provisioned with a Container-Optimized
@@ -197,7 +235,12 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * net.ipv4.tcp_mtu_probing
      * net.ipv4.tcp_max_orphans
+     * net.ipv4.tcp_max_tw_buckets
+     * net.ipv4.tcp_syn_retries
+     * net.ipv4.tcp_ecn
+     * net.ipv4.tcp_congestion_control
      * net.netfilter.nf_conntrack_max
      * net.netfilter.nf_conntrack_buckets
      * net.netfilter.nf_conntrack_tcp_timeout_close_wait
@@ -207,14 +250,23 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * kernel.perf_event_paranoid
+     * kernel.sched_rt_runtime_us
+     * kernel.softlockup_panic
+     * kernel.yama.ptrace_scope
+     * kernel.kptr_restrict
+     * kernel.dmesg_restrict
+     * kernel.sysrq
      * fs.aio-max-nr
      * fs.file-max
      * fs.inotify.max_user_instances
      * fs.inotify.max_user_watches
      * fs.nr_open
      * vm.dirty_background_ratio
+     * vm.dirty_background_bytes
      * vm.dirty_expire_centisecs
      * vm.dirty_ratio
+     * vm.dirty_bytes
      * vm.dirty_writeback_centisecs
      * vm.max_map_count
      * vm.overcommit_memory
@@ -248,7 +300,12 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
+     * net.ipv4.tcp_mtu_probing
      * net.ipv4.tcp_max_orphans
+     * net.ipv4.tcp_max_tw_buckets
+     * net.ipv4.tcp_syn_retries
+     * net.ipv4.tcp_ecn
+     * net.ipv4.tcp_congestion_control
      * net.netfilter.nf_conntrack_max
      * net.netfilter.nf_conntrack_buckets
      * net.netfilter.nf_conntrack_tcp_timeout_close_wait
@@ -258,14 +315,23 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * kernel.perf_event_paranoid
+     * kernel.sched_rt_runtime_us
+     * kernel.softlockup_panic
+     * kernel.yama.ptrace_scope
+     * kernel.kptr_restrict
+     * kernel.dmesg_restrict
+     * kernel.sysrq
      * fs.aio-max-nr
      * fs.file-max
      * fs.inotify.max_user_instances
      * fs.inotify.max_user_watches
      * fs.nr_open
      * vm.dirty_background_ratio
+     * vm.dirty_background_bytes
      * vm.dirty_expire_centisecs
      * vm.dirty_ratio
+     * vm.dirty_bytes
      * vm.dirty_writeback_centisecs
      * vm.max_map_count
      * vm.overcommit_memory
@@ -417,6 +483,44 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\LinuxNodeConfig\TransparentHugepageDefrag::class);
         $this->transparent_hugepage_defrag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enables and configures swap space on nodes.
+     * If omitted, swap is disabled.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.SwapConfig swap_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig|null
+     */
+    public function getSwapConfig()
+    {
+        return $this->swap_config;
+    }
+
+    public function hasSwapConfig()
+    {
+        return isset($this->swap_config);
+    }
+
+    public function clearSwapConfig()
+    {
+        unset($this->swap_config);
+    }
+
+    /**
+     * Optional. Enables and configures swap space on nodes.
+     * If omitted, swap is disabled.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.SwapConfig swap_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig $var
+     * @return $this
+     */
+    public function setSwapConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig::class);
+        $this->swap_config = $var;
 
         return $this;
     }

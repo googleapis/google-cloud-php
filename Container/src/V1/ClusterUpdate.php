@@ -538,6 +538,18 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig desired_network_tier_config = 155;</code>
      */
     protected $desired_network_tier_config = null;
+    /**
+     * The desired privileged admission config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig desired_privileged_admission_config = 159;</code>
+     */
+    protected $desired_privileged_admission_config = null;
+    /**
+     * The desired managed open telemetry configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig desired_managed_opentelemetry_config = 163;</code>
+     */
+    protected $desired_managed_opentelemetry_config = null;
 
     /**
      * Constructor.
@@ -773,6 +785,10 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           Configuration for GKE auto upgrade.
      *     @type \Google\Cloud\Container\V1\NetworkTierConfig $desired_network_tier_config
      *           The desired network tier configuration for the cluster.
+     *     @type \Google\Cloud\Container\V1\PrivilegedAdmissionConfig $desired_privileged_admission_config
+     *           The desired privileged admission config for the cluster.
+     *     @type \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig $desired_managed_opentelemetry_config
+     *           The desired managed open telemetry configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -3476,6 +3492,78 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTierConfig::class);
         $this->desired_network_tier_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired privileged admission config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig desired_privileged_admission_config = 159;</code>
+     * @return \Google\Cloud\Container\V1\PrivilegedAdmissionConfig|null
+     */
+    public function getDesiredPrivilegedAdmissionConfig()
+    {
+        return $this->desired_privileged_admission_config;
+    }
+
+    public function hasDesiredPrivilegedAdmissionConfig()
+    {
+        return isset($this->desired_privileged_admission_config);
+    }
+
+    public function clearDesiredPrivilegedAdmissionConfig()
+    {
+        unset($this->desired_privileged_admission_config);
+    }
+
+    /**
+     * The desired privileged admission config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig desired_privileged_admission_config = 159;</code>
+     * @param \Google\Cloud\Container\V1\PrivilegedAdmissionConfig $var
+     * @return $this
+     */
+    public function setDesiredPrivilegedAdmissionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivilegedAdmissionConfig::class);
+        $this->desired_privileged_admission_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired managed open telemetry configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig desired_managed_opentelemetry_config = 163;</code>
+     * @return \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig|null
+     */
+    public function getDesiredManagedOpentelemetryConfig()
+    {
+        return $this->desired_managed_opentelemetry_config;
+    }
+
+    public function hasDesiredManagedOpentelemetryConfig()
+    {
+        return isset($this->desired_managed_opentelemetry_config);
+    }
+
+    public function clearDesiredManagedOpentelemetryConfig()
+    {
+        unset($this->desired_managed_opentelemetry_config);
+    }
+
+    /**
+     * The desired managed open telemetry configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig desired_managed_opentelemetry_config = 163;</code>
+     * @param \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig $var
+     * @return $this
+     */
+    public function setDesiredManagedOpentelemetryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig::class);
+        $this->desired_managed_opentelemetry_config = $var;
 
         return $this;
     }

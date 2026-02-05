@@ -125,6 +125,19 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $attestation = null;
+    /**
+     * Immutable. The resource name of the backend environment where the key
+     * material for the wrapping key resides and where all related cryptographic
+     * operations are performed. Currently, this field is only populated for keys
+     * stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
+     * apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
+     * in the future.
+     * Supported resources:
+     * * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
+     *
+     * Generated from protobuf field <code>string crypto_key_backend = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $crypto_key_backend = '';
 
     /**
      * Constructor.
@@ -174,6 +187,15 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      *           Only present if the chosen
      *           [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod] is one with a
      *           protection level of [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
+     *     @type string $crypto_key_backend
+     *           Immutable. The resource name of the backend environment where the key
+     *           material for the wrapping key resides and where all related cryptographic
+     *           operations are performed. Currently, this field is only populated for keys
+     *           stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
+     *           apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
+     *           in the future.
+     *           Supported resources:
+     *           * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
      * }
      */
     public function __construct($data = NULL) {
@@ -541,6 +563,46 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\KeyOperationAttestation::class);
         $this->attestation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The resource name of the backend environment where the key
+     * material for the wrapping key resides and where all related cryptographic
+     * operations are performed. Currently, this field is only populated for keys
+     * stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
+     * apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
+     * in the future.
+     * Supported resources:
+     * * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
+     *
+     * Generated from protobuf field <code>string crypto_key_backend = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCryptoKeyBackend()
+    {
+        return $this->crypto_key_backend;
+    }
+
+    /**
+     * Immutable. The resource name of the backend environment where the key
+     * material for the wrapping key resides and where all related cryptographic
+     * operations are performed. Currently, this field is only populated for keys
+     * stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
+     * apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
+     * in the future.
+     * Supported resources:
+     * * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
+     *
+     * Generated from protobuf field <code>string crypto_key_backend = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCryptoKeyBackend($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->crypto_key_backend = $var;
 
         return $this;
     }

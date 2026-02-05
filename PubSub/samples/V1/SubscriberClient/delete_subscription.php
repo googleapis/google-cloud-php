@@ -34,7 +34,7 @@ use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
  * the same name, but the new one has no association with the old
  * subscription or its topic unless the same topic is specified.
  *
- * @param string $formattedSubscription Identifier. The subscription to delete.
+ * @param string $formattedSubscription The subscription to delete.
  *                                      Format is `projects/{project}/subscriptions/{sub}`. Please see
  *                                      {@see SubscriberClient::subscriptionName()} for help formatting this field.
  */

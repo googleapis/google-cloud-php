@@ -128,6 +128,7 @@ return [
             ],
             'templateMap' => [
                 'agent' => 'projects/{project}/locations/{location}/agents/{agent}',
+                'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
                 'service' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}',
                 'webhook' => 'projects/{project}/locations/{location}/agents/{agent}/webhooks/{webhook}',
             ],

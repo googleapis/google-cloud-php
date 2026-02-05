@@ -29,7 +29,7 @@ use Google\Cloud\CloudQuotas\V1beta\QuotaAdjusterSettings;
 use Google\Cloud\CloudQuotas\V1beta\UpdateQuotaAdjusterSettingsRequest;
 
 /**
- * RPC Method for updating QuotaAdjusterSettings based on the request
+ * Updates the QuotaAdjusterSettings for the specified resource.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

@@ -101,7 +101,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      */
     protected $backup_vault_service_account = '';
     /**
-     * Optional. Applicable only for CloudSQL resource_type.
+     * Optional. Applicable only for CloudSQL and AlloyDB resource_type.
      * Configures how long logs will be stored. It is defined in “days”. This
      * value should be greater than or equal to minimum enforced log retention
      * duration of the backup vault.
@@ -176,7 +176,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *           BackupVault for taking backups. Specify the email address of the Backup
      *           Vault Service Account.
      *     @type int|string $log_retention_days
-     *           Optional. Applicable only for CloudSQL resource_type.
+     *           Optional. Applicable only for CloudSQL and AlloyDB resource_type.
      *           Configures how long logs will be stored. It is defined in “days”. This
      *           value should be greater than or equal to minimum enforced log retention
      *           duration of the backup vault.
@@ -535,7 +535,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Applicable only for CloudSQL resource_type.
+     * Optional. Applicable only for CloudSQL and AlloyDB resource_type.
      * Configures how long logs will be stored. It is defined in “days”. This
      * value should be greater than or equal to minimum enforced log retention
      * duration of the backup vault.
@@ -549,7 +549,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Applicable only for CloudSQL resource_type.
+     * Optional. Applicable only for CloudSQL and AlloyDB resource_type.
      * Configures how long logs will be stored. It is defined in “days”. This
      * value should be greater than or equal to minimum enforced log retention
      * duration of the backup vault.

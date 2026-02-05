@@ -52,6 +52,14 @@ class State
      * Generated from protobuf enum <code>SCHEMA_MISMATCH = 5;</code>
      */
     const SCHEMA_MISMATCH = 5;
+    /**
+     * Cannot write to the Cloud Storage bucket because the bucket is not in the
+     * same location as where Vertex AI models used in `message_transform`s are
+     * deployed.
+     *
+     * Generated from protobuf enum <code>VERTEX_AI_LOCATION_RESTRICTION = 6;</code>
+     */
+    const VERTEX_AI_LOCATION_RESTRICTION = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -60,6 +68,7 @@ class State
         self::NOT_FOUND => 'NOT_FOUND',
         self::IN_TRANSIT_LOCATION_RESTRICTION => 'IN_TRANSIT_LOCATION_RESTRICTION',
         self::SCHEMA_MISMATCH => 'SCHEMA_MISMATCH',
+        self::VERTEX_AI_LOCATION_RESTRICTION => 'VERTEX_AI_LOCATION_RESTRICTION',
     ];
 
     public static function name($value)

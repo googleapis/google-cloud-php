@@ -31,7 +31,7 @@ use Google\Cloud\PubSub\V1\Subscription;
 /**
  * Gets the configuration details of a subscription.
  *
- * @param string $formattedSubscription Identifier. The name of the subscription to get.
+ * @param string $formattedSubscription The name of the subscription to get.
  *                                      Format is `projects/{project}/subscriptions/{sub}`. Please see
  *                                      {@see SubscriberClient::subscriptionName()} for help formatting this field.
  */

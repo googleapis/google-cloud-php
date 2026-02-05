@@ -18,7 +18,7 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource of the VpcFlowLogsConfig,
      * in one of the following formats:
-     * - For project-level resourcs: `projects/{project_id}/locations/global`
+     * - For project-level resources: `projects/{project_id}/locations/global`
      * - For organization-level resources:
      * `organizations/{organization_id}/locations/global`
      *
@@ -57,7 +57,7 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The parent resource of the VpcFlowLogsConfig,
      *                       in one of the following formats:
      *
-     *                       - For project-level resourcs: `projects/{project_id}/locations/global`
+     *                       - For project-level resources: `projects/{project_id}/locations/global`
      *
      *                       - For organization-level resources:
      *                       `organizations/{organization_id}/locations/global`
@@ -82,7 +82,7 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource of the VpcFlowLogsConfig,
      *           in one of the following formats:
-     *           - For project-level resourcs: `projects/{project_id}/locations/global`
+     *           - For project-level resources: `projects/{project_id}/locations/global`
      *           - For organization-level resources:
      *           `organizations/{organization_id}/locations/global`
      *     @type int $page_size
@@ -106,7 +106,7 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource of the VpcFlowLogsConfig,
      * in one of the following formats:
-     * - For project-level resourcs: `projects/{project_id}/locations/global`
+     * - For project-level resources: `projects/{project_id}/locations/global`
      * - For organization-level resources:
      * `organizations/{organization_id}/locations/global`
      *
@@ -121,7 +121,7 @@ class ListVpcFlowLogsConfigsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent resource of the VpcFlowLogsConfig,
      * in one of the following formats:
-     * - For project-level resourcs: `projects/{project_id}/locations/global`
+     * - For project-level resources: `projects/{project_id}/locations/global`
      * - For organization-level resources:
      * `organizations/{organization_id}/locations/global`
      *

@@ -30,9 +30,7 @@ use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\ListAnnotationsRequest;
 
 /**
- * Lists Annotations belongs to a dataitem
- * This RPC is only available in InternalDatasetService. It is only used for
- * exporting conversation data to CCAI Insights.
+ * Lists Annotations belongs to a dataitem.
  *
  * @param string $formattedParent The resource name of the DataItem to list Annotations from.
  *                                Format:

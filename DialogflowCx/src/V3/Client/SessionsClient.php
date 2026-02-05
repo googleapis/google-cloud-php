@@ -229,6 +229,27 @@ final class SessionsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a playbook
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agent
+     * @param string $playbook
+     *
+     * @return string The formatted playbook resource.
+     */
+    public static function playbookName(string $project, string $location, string $agent, string $playbook): string
+    {
+        return self::getPathTemplate('playbook')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent' => $agent,
+            'playbook' => $playbook,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_agent_environment_session resource.
      *
@@ -434,6 +455,27 @@ final class SessionsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a tool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agent
+     * @param string $tool
+     *
+     * @return string The formatted tool resource.
+     */
+    public static function toolName(string $project, string $location, string $agent, string $tool): string
+    {
+        return self::getPathTemplate('tool')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent' => $agent,
+            'tool' => $tool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a version
      * resource.
      *
@@ -470,6 +512,7 @@ final class SessionsClient
      * - entityType: projects/{project}/locations/{location}/agents/{agent}/entityTypes/{entity_type}
      * - intent: projects/{project}/locations/{location}/agents/{agent}/intents/{intent}
      * - page: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/pages/{page}
+     * - playbook: projects/{project}/locations/{location}/agents/{agent}/playbooks/{playbook}
      * - projectLocationAgentEnvironmentSession: projects/{project}/locations/{location}/agents/{agent}/environments/{environment}/sessions/{session}
      * - projectLocationAgentEnvironmentSessionEntityType: projects/{project}/locations/{location}/agents/{agent}/environments/{environment}/sessions/{session}/entityTypes/{entity_type}
      * - projectLocationAgentSession: projects/{project}/locations/{location}/agents/{agent}/sessions/{session}
@@ -478,6 +521,7 @@ final class SessionsClient
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - session: projects/{project}/locations/{location}/agents/{agent}/sessions/{session}
      * - sessionEntityType: projects/{project}/locations/{location}/agents/{agent}/sessions/{session}/entityTypes/{entity_type}
+     * - tool: projects/{project}/locations/{location}/agents/{agent}/tools/{tool}
      * - version: projects/{project}/locations/{location}/agents/{agent}/flows/{flow}/versions/{version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

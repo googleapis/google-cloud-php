@@ -61,7 +61,6 @@ class RestTest extends TestCase
 
         $r = new \ReflectionClass($rest);
         $p = $r->getProperty('apiEndpoint');
-        $p->setAccessible(true);
 
         if ($envUniverse) {
             // We have to do this instead of using "@runInSeparateProcess" because in the case of

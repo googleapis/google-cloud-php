@@ -111,6 +111,13 @@ class License extends \Google\Protobuf\Internal\Message
      */
     protected $os_license = null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseParams params = 78313862;</code>
+     */
+    protected $params = null;
+    /**
      * If true, this license can be removed from a disk's set of licenses, with no
      * replacement license needed.
      *
@@ -209,6 +216,9 @@ class License extends \Google\Protobuf\Internal\Message
      *     @type bool $os_license
      *           If true, indicates this is an OS license. Only one OS license can be
      *           attached to a disk or image at a time.
+     *     @type \Google\Cloud\Compute\V1\LicenseParams $params
+     *           Input only. Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type bool $removable_from_disk
      *           If true, this license can be removed from a disk's set of licenses, with no
      *           replacement license needed.
@@ -707,6 +717,44 @@ class License extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->os_license = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\LicenseParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\LicenseParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\LicenseParams::class);
+        $this->params = $var;
 
         return $this;
     }

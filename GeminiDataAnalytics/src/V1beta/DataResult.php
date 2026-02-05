@@ -39,6 +39,18 @@ class DataResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.protobuf.Struct data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $data;
+    /**
+     * Optional. Formatted representation of the data, when applicable.
+     * Each row is a struct that directly corresponds to the row at the same index
+     * within the `data` field. Its values are string representations of the
+     * original data, formatted according to data source specifications (e.g.,
+     * "$1,234.56" for currency). Columns without formatting will default to
+     * their raw value representation. If no columns have formatting rules, this
+     * field will be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Struct formatted_data = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $formatted_data;
 
     /**
      * Constructor.
@@ -58,6 +70,14 @@ class DataResult extends \Google\Protobuf\Internal\Message
      *           Optional. The content of the data. Each row is a struct that matches the
      *           schema. Simple values are represented as strings, while nested structures
      *           are represented as lists or structs.
+     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $formatted_data
+     *           Optional. Formatted representation of the data, when applicable.
+     *           Each row is a struct that directly corresponds to the row at the same index
+     *           within the `data` field. Its values are string representations of the
+     *           original data, formatted according to data source specifications (e.g.,
+     *           "$1,234.56" for currency). Columns without formatting will default to
+     *           their raw value representation. If no columns have formatting rules, this
+     *           field will be empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +181,44 @@ class DataResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Struct::class);
         $this->data = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Formatted representation of the data, when applicable.
+     * Each row is a struct that directly corresponds to the row at the same index
+     * within the `data` field. Its values are string representations of the
+     * original data, formatted according to data source specifications (e.g.,
+     * "$1,234.56" for currency). Columns without formatting will default to
+     * their raw value representation. If no columns have formatting rules, this
+     * field will be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Struct formatted_data = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFormattedData()
+    {
+        return $this->formatted_data;
+    }
+
+    /**
+     * Optional. Formatted representation of the data, when applicable.
+     * Each row is a struct that directly corresponds to the row at the same index
+     * within the `data` field. Its values are string representations of the
+     * original data, formatted according to data source specifications (e.g.,
+     * "$1,234.56" for currency). Columns without formatting will default to
+     * their raw value representation. If no columns have formatting rules, this
+     * field will be empty.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Struct formatted_data = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFormattedData($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Struct::class);
+        $this->formatted_data = $arr;
 
         return $this;
     }
