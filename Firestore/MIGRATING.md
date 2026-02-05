@@ -2,7 +2,23 @@
 
 This document outlines the key breaking changes introduced in version 2 of the google-cloud-php Firestore library and provides guidance on how to update your code.
 
-## 1. Removal of the `Connection` Layer
+## 1. Client Options changes
+
+The following client options are removed/replaced with other options present in
+[`ClientOptions`][ClientOptions]. This was done to ensure client options are consistent across all
+Google Cloud clients.
+
+- `authCache` -> Moved to `credentialsConfig.authCache`
+- `authCacheOptions` -> Moved to `credentialsConfig.authCacheOptions`
+- `credentialsFetcher` -> Moved to `credentials`
+- `keyFile` -> Moved to `credentials`
+- `keyFilePath` -> Moved to `credentials`
+- `scopes` -> Moved to `credentialsConfig.scopes`
+- `quotaProject` -> Moved to `credentialsConfig.quotaProject`
+- `httpHandler` -> Moved to `transportConfig.rest.httpHandler`
+- `authHttpHandler` -> Moved to `credentialsConfig.authHttpHandler`
+
+## 2. Removal of the `Connection` Layer
 
 The most significant change in v2 is the removal of the `ConnectionInterface` and its `Grpc` implementation. All classes that previously depended on the connection layer now interact directly with the auto generated client for Firestore (`Google\Cloud\Firestore\V1\Client\FirestoreClient`).
 
@@ -11,7 +27,7 @@ This change simplifies the library's architecture but requires updates to how yo
 **Note**: If you primarily use factory methods (e.g. `$firestore->collection(...)`, `$collection->document(...)`), your
 code likely requires no changes, as the library handles these dependencies internally.
 
-## 2. Constructor Changes
+## 3. Constructor Changes
 
 Due to the removal of the `Connection` layer, the constructors for the following classes have changed. They no longer accept a `ConnectionInterface` instance and instead require a `Google\Cloud\Firestore\V1\Client\FirestoreClient` instance.
 
@@ -61,7 +77,7 @@ $docRef = new DocumentReference(
 
 You will need to apply similar changes wherever you instantiate the classes listed above. The main `FirestoreClient` will now manage the GAPIC client instance.
 
-## 3. `WriteBatch` Class Removed
+## 4. `WriteBatch` Class Removed
 
 The `WriteBatch` class, which was previously a deprecated alias for `BulkWriter`, has been completely removed.
 
