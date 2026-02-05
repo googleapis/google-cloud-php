@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
@@ -98,6 +99,7 @@ class AggregateQuery
      *           {@see \Google\Cloud\Firestore\ExplainOptions}
      * }
      * @return AggregateQuerySnapshot
+     * @throws ServiceException
      */
     public function getSnapshot($options = [])
     {

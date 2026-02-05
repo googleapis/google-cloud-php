@@ -177,7 +177,6 @@ class FirestoreClient
      *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      * @throws \InvalidArgumentException
-     * @throws GoogleException If the gRPC extension is not enabled.
      */
     public function __construct(array $config = [])
     {
