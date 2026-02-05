@@ -25,7 +25,6 @@ use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\AbortedException;
-use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
