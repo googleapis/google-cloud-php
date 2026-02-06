@@ -25,6 +25,12 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string challenge = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $challenge = '';
+    /**
+     * Optional. A collection of fields that modify the token output.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialGkeRequest.ConfidentialGkeOptions options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $options = null;
     protected $tee_attestation;
 
     /**
@@ -40,6 +46,8 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Challenge whose nonce was used to generate the
      *           attestation, in the format projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;. The
      *           provided Challenge will be consumed, and cannot be used again.
+     *     @type \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\ConfidentialGkeOptions $options
+     *           Optional. A collection of fields that modify the token output.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,6 +114,42 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->challenge = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A collection of fields that modify the token output.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialGkeRequest.ConfidentialGkeOptions options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\ConfidentialGkeOptions|null
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    public function hasOptions()
+    {
+        return isset($this->options);
+    }
+
+    public function clearOptions()
+    {
+        unset($this->options);
+    }
+
+    /**
+     * Optional. A collection of fields that modify the token output.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialGkeRequest.ConfidentialGkeOptions options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\ConfidentialGkeOptions $var
+     * @return $this
+     */
+    public function setOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\ConfidentialGkeOptions::class);
+        $this->options = $var;
 
         return $this;
     }

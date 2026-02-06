@@ -66,6 +66,4 @@ class MultiGpuSecurePassthroughAttestation extends \Google\Protobuf\Internal\Mes
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MultiGpuSecurePassthroughAttestation::class, \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation_MultiGpuSecurePassthroughAttestation::class);
 

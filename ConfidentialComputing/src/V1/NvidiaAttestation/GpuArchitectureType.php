@@ -59,6 +59,4 @@ class GpuArchitectureType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GpuArchitectureType::class, \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation_GpuArchitectureType::class);
 

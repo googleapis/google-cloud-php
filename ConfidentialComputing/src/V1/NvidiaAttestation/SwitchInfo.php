@@ -141,6 +141,4 @@ class SwitchInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SwitchInfo::class, \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation_SwitchInfo::class);
 
