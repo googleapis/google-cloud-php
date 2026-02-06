@@ -79,6 +79,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           instance schema, followed by a single "errors" column, which as values
      *           has [google.rpc.Status][google.rpc.Status]
      *           represented as a STRUCT, and containing only `code` and `message`.
+     *     @type \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetDestination $vertex_multimodal_dataset_destination
+     *           The details for a Vertex Multimodal Dataset that will be created for
+     *           the output.
      *     @type string $predictions_format
      *           Required. The format in which Vertex AI gives the predictions, must be
      *           one of the [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
@@ -228,6 +231,39 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BigQueryDestination::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * The details for a Vertex Multimodal Dataset that will be created for
+     * the output.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexMultimodalDatasetDestination vertex_multimodal_dataset_destination = 6;</code>
+     * @return \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetDestination|null
+     */
+    public function getVertexMultimodalDatasetDestination()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasVertexMultimodalDatasetDestination()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * The details for a Vertex Multimodal Dataset that will be created for
+     * the output.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexMultimodalDatasetDestination vertex_multimodal_dataset_destination = 6;</code>
+     * @param \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetDestination $var
+     * @return $this
+     */
+    public function setVertexMultimodalDatasetDestination($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetDestination::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

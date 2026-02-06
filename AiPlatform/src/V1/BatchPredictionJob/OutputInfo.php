@@ -41,6 +41,10 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
      *           Output only. The path of the BigQuery dataset created, in
      *           `bq://projectId.bqDatasetId`
      *           format, into which the prediction output is written.
+     *     @type string $vertex_multimodal_dataset_name
+     *           Output only. The resource name of the Vertex Managed Dataset created,
+     *           into which the prediction output is written. Format:
+     *           `projects/{project}/locations/{location}/datasets/{dataset}`
      *     @type string $bigquery_output_table
      *           Output only. The name of the BigQuery table created, in
      *           `predictions_<timestamp>`
@@ -117,6 +121,41 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the Vertex Managed Dataset created,
+     * into which the prediction output is written. Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}`
+     *
+     * Generated from protobuf field <code>string vertex_multimodal_dataset_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getVertexMultimodalDatasetName()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasVertexMultimodalDatasetName()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Output only. The resource name of the Vertex Managed Dataset created,
+     * into which the prediction output is written. Format:
+     * `projects/{project}/locations/{location}/datasets/{dataset}`
+     *
+     * Generated from protobuf field <code>string vertex_multimodal_dataset_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVertexMultimodalDatasetName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
