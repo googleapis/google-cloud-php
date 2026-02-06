@@ -21,6 +21,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Timestamp;
@@ -665,6 +666,7 @@ class BulkWriter
      * @param array $options Configuration Options
      * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
      * @codingStandardsIgnoreEnd
+     * @throws ServiceException
      */
     public function commit(array $options = []): array
     {
@@ -723,6 +725,7 @@ class BulkWriter
      * @param array $options Configuration Options
      * @return void
      * @throws \RuntimeException If no transaction ID is provided at class construction.
+     * @throws ServiceException
      */
     public function rollback(array $options = []): void
     {
@@ -928,6 +931,7 @@ class BulkWriter
      *           Labels associated with this batch write.
      * }
      * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     * @throws ServiceException
      */
     private function sendBatch(array $writes, array $options = [])
     {
