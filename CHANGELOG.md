@@ -1,5 +1,68 @@
 # Changelog
 
+## 0.319.0
+
+<details><summary>google/cloud-ai-platform 1.50.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add Vertex Multimodal Datasets as input and output types in `google.cloud.aiplatform.v1beta1.BatchPredictionJob` ([#8908](https://github.com/googleapis/google-cloud-php/issues/8908)) ([5d89b6b](https://github.com/googleapis/google-cloud-php/commit/5d89b6b0a0eb2cecc2b6f6c7f2d27d00323c3034))
+
+
+### Documentation
+
+* [AiPlatform] update documentation of `.google.cloud.aiplatform.v1.DatasetService`, `.google.cloud.aiplatform.v1.Dataset`, and `.google.cloud.aiplatform.v1.DatasetVersion` ([#8898](https://github.com/googleapis/google-cloud-php/issues/8898)) ([8d1736d](https://github.com/googleapis/google-cloud-php/commit/8d1736dbcce78038f5952ccce973793d7806d450))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.7.0</summary>
+
+
+
+### Features
+
+* [ArtifactRegistry] add DIRSUM_SHA256 hash type ([#8902](https://github.com/googleapis/google-cloud-php/issues/8902)) ([7edd367](https://github.com/googleapis/google-cloud-php/commit/7edd3675a572c3085e99e1b6958f51f830058e6d))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.7.0</summary>
+
+
+
+### Features
+
+* [ConfidentialComputing] add Nvidia Attestation proto message with its relevant fields and ConfidentialGke options ([#8906](https://github.com/googleapis/google-cloud-php/issues/8906)) ([dd1f19f](https://github.com/googleapis/google-cloud-php/commit/dd1f19f32943fb8cbd8338d5d78987882d302f1b))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.1.0-RC1
+
+
+</summary>
+
+
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.318.0...v0.319.0) (2026-02-06)
+
+
+### Features
+
+* [Firestore] Expose the `Database.firestore_data_access_mode` parameter ([#8900](https://github.com/googleapis/google-cloud-php/issues/8900)) ([7cfa10f](https://github.com/googleapis/google-cloud-php/commit/7cfa10fdcc662e889b2d74f80852bed93e2aed11))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.5.0</summary>
+
+
+
+### Features
+
+* **spanner:** [Spanner] include cache updates into the ResultSet response ([#8901](https://github.com/googleapis/google-cloud-php/issues/8901)) ([e07ae1f](https://github.com/googleapis/google-cloud-php/commit/e07ae1f2b3f10364345c1e932da630b22645428b))
+
+</details>
+
 ## 0.318.0
 
 <details><summary>googleads/data-manager 0.1.2</summary>
