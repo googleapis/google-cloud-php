@@ -59,6 +59,7 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      */
     protected $attester = '';
     protected $tee_attestation;
+    protected $device_attestation;
 
     /**
      * Constructor.
@@ -70,6 +71,8 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      *           Optional. A TDX with CCEL and RTMR Attestation Quote.
      *     @type \Google\Cloud\ConfidentialComputing\V1\SevSnpAttestation $sev_snp_attestation
      *           Optional. An SEV-SNP Attestation Report.
+     *     @type \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation $nvidia_attestation
+     *           Optional. An Nvidia attestation report for GPU and NVSwitch devices.
      *     @type string $challenge
      *           Required. The name of the Challenge whose nonce was used to generate the
      *           attestation, in the format `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`. The
@@ -153,6 +156,37 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\SevSnpAttestation::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An Nvidia attestation report for GPU and NVSwitch devices.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.NvidiaAttestation nvidia_attestation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation|null
+     */
+    public function getNvidiaAttestation()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasNvidiaAttestation()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Optional. An Nvidia attestation report for GPU and NVSwitch devices.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.NvidiaAttestation nvidia_attestation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation $var
+     * @return $this
+     */
+    public function setNvidiaAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }
@@ -371,6 +405,14 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
     public function getTeeAttestation()
     {
         return $this->whichOneof("tee_attestation");
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeviceAttestation()
+    {
+        return $this->whichOneof("device_attestation");
     }
 
 }
