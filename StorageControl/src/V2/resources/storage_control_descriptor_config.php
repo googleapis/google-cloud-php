@@ -45,6 +45,31 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'DeleteFolderRecursive' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\DeleteFolderRecursiveMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
             'RenameFolder' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Storage\Control\V2\Folder',
