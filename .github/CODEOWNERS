@@ -7,11 +7,11 @@
 
 # The yoshi-php team is the default owner for anything not
 # explicitly taken by someone else.
-*                               @googleapis/cloud-sdk-php-team @googleapis/cicd
+*                               @googleapis/cloud-sdk-php-team
 
-/Bigtable       @googleapis/api-bigtable @googleapis/cloud-sdk-php-team @googleapis/cicd
-/Datastore/     @googleapis/api-datastore-sdk @googleapis/cloud-sdk-php-team @googleapis/cicd
-/Firestore/     @googleapis/api-firestore @googleapis/cloud-sdk-php-team @googleapis/cicd
-/Storage/       @googleapis/gcs-sdk-team @googleapis/cloud-sdk-php-team @googleapis/cicd
-/BigQuery*/.    @googleapis/api-bigquery @googleapis/cloud-sdk-php-team @googleapis/cicd
-/PubSub/        @googleapis/api-pubsub @googleapis/cloud-sdk-php-team @googleapis/cicd
+/Bigtable       @googleapis/api-bigtable @googleapis/cloud-sdk-php-team
+/Datastore/     @googleapis/api-datastore-sdk @googleapis/cloud-sdk-php-team
+/Firestore/     @googleapis/api-firestore @googleapis/cloud-sdk-php-team
+/Storage/       @googleapis/gcs-sdk-team @googleapis/cloud-sdk-php-team
+/BigQuery*/.    @googleapis/api-bigquery @googleapis/cloud-sdk-php-team
+/PubSub/        @googleapis/api-pubsub @googleapis/cloud-sdk-php-team
