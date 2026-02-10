@@ -61,6 +61,14 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string internal_metadata = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $internal_metadata = null;
+    /**
+     * Output only. Metadata indicating whether this resource is user-scoped.
+     * `WorkflowInvocation` resource is `user_scoped` only if it is sourced
+     * from a compilation result and the compilation result is user-scoped.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $private_resource_metadata = null;
     protected $compilation_source;
 
     /**
@@ -94,6 +102,10 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      *           Output only. All the metadata information that is used internally to serve
      *           the resource. For example: timestamps, flags, status fields, etc. The
      *           format of this field is a JSON string.
+     *     @type \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata $private_resource_metadata
+     *           Output only. Metadata indicating whether this resource is user-scoped.
+     *           `WorkflowInvocation` resource is `user_scoped` only if it is sourced
+     *           from a compilation result and the compilation result is user-scoped.
      * }
      */
     public function __construct($data = NULL) {
@@ -395,6 +407,46 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->internal_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata indicating whether this resource is user-scoped.
+     * `WorkflowInvocation` resource is `user_scoped` only if it is sourced
+     * from a compilation result and the compilation result is user-scoped.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata|null
+     */
+    public function getPrivateResourceMetadata()
+    {
+        return $this->private_resource_metadata;
+    }
+
+    public function hasPrivateResourceMetadata()
+    {
+        return isset($this->private_resource_metadata);
+    }
+
+    public function clearPrivateResourceMetadata()
+    {
+        unset($this->private_resource_metadata);
+    }
+
+    /**
+     * Output only. Metadata indicating whether this resource is user-scoped.
+     * `WorkflowInvocation` resource is `user_scoped` only if it is sourced
+     * from a compilation result and the compilation result is user-scoped.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata $var
+     * @return $this
+     */
+    public function setPrivateResourceMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata::class);
+        $this->private_resource_metadata = $var;
 
         return $this;
     }

@@ -82,6 +82,18 @@ return [
                     ],
                 ],
             ],
+            'CreateFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/folders',
+                'body' => 'folder',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateReleaseConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/repositories/*}/releaseConfigs',
@@ -110,6 +122,18 @@ return [
                 ],
                 'queryParams' => [
                     'repository_id',
+                ],
+            ],
+            'CreateTeamFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/teamFolders',
+                'body' => 'team_folder',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
                 ],
             ],
             'CreateWorkflowConfig' => [
@@ -154,6 +178,17 @@ return [
                     'workspace_id',
                 ],
             ],
+            'DeleteFolder' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/folders/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteReleaseConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
@@ -168,6 +203,17 @@ return [
             'DeleteRepository' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTeamFolder' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/teamFolders/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -286,6 +332,42 @@ return [
                     ],
                 ],
             ],
+            'GetFolder' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/folders/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/folders/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/teamFolders/*}:getIamPolicy',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'GetReleaseConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
@@ -300,6 +382,17 @@ return [
             'GetRepository' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTeamFolder' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/teamFolders/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -455,6 +548,30 @@ return [
                     ],
                 ],
             ],
+            'MoveFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/folders/*}:move',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveRepository' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:move',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'PullGitCommits' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:pull',
@@ -501,6 +618,17 @@ return [
                     ],
                 ],
             ],
+            'QueryFolderContents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{folder=projects/*/locations/*/folders/*}:queryFolderContents',
+                'placeholders' => [
+                    'folder' => [
+                        'getters' => [
+                            'getFolder',
+                        ],
+                    ],
+                ],
+            ],
             'QueryRepositoryDirectoryContents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:queryDirectoryContents',
@@ -508,6 +636,28 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryTeamFolderContents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{team_folder=projects/*/locations/*/teamFolders/*}:queryContents',
+                'placeholders' => [
+                    'team_folder' => [
+                        'getters' => [
+                            'getTeamFolder',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryUserRootContents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{location=projects/*/locations/*}:queryUserRootContents',
+                'placeholders' => [
+                    'location' => [
+                        'getters' => [
+                            'getLocation',
                         ],
                     ],
                 ],
@@ -592,6 +742,75 @@ return [
                     ],
                 ],
             ],
+            'SearchTeamFolders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{location=projects/*/locations/*}/teamFolders:search',
+                'placeholders' => [
+                    'location' => [
+                        'getters' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:setIamPolicy',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/folders/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/teamFolders/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:testIamPermissions',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/folders/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/teamFolders/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConfig' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta1/{config.name=projects/*/locations/*/config}',
@@ -600,6 +819,19 @@ return [
                     'config.name' => [
                         'getters' => [
                             'getConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateFolder' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{folder.name=projects/*/locations/*/folders/*}',
+                'body' => 'folder',
+                'placeholders' => [
+                    'folder.name' => [
+                        'getters' => [
+                            'getFolder',
                             'getName',
                         ],
                     ],
@@ -626,6 +858,19 @@ return [
                     'repository.name' => [
                         'getters' => [
                             'getRepository',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTeamFolder' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{team_folder.name=projects/*/locations/*/teamFolders/*}',
+                'body' => 'team_folder',
+                'placeholders' => [
+                    'team_folder.name' => [
+                        'getters' => [
+                            'getTeamFolder',
                             'getName',
                         ],
                     ],
@@ -681,58 +926,48 @@ return [
                 ],
             ],
         ],
-        'google.iam.v1.IAMPolicy' => [
-            'GetIamPolicy' => [
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:getIamPolicy',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:getIamPolicy',
-                    ],
-                ],
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
                 'placeholders' => [
-                    'resource' => [
+                    'name' => [
                         'getters' => [
-                            'getResource',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'SetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:setIamPolicy',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
-                    'resource' => [
+                    'name' => [
                         'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'TestIamPermissions' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:testIamPermissions',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
+                            'getName',
                         ],
                     ],
                 ],

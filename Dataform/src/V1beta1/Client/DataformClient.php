@@ -29,6 +29,7 @@ namespace Google\Cloud\Dataform\V1beta1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -47,13 +48,17 @@ use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusRequest;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
 use Google\Cloud\Dataform\V1beta1\Config;
 use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\CreateFolderRequest;
 use Google\Cloud\Dataform\V1beta1\CreateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\CreateTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteFolderRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
@@ -66,10 +71,13 @@ use Google\Cloud\Dataform\V1beta1\FetchGitAheadBehindResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
+use Google\Cloud\Dataform\V1beta1\Folder;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
+use Google\Cloud\Dataform\V1beta1\GetFolderRequest;
 use Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\GetTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkspaceRequest;
@@ -87,13 +95,18 @@ use Google\Cloud\Dataform\V1beta1\MoveDirectoryRequest;
 use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\MoveFileRequest;
 use Google\Cloud\Dataform\V1beta1\MoveFileResponse;
+use Google\Cloud\Dataform\V1beta1\MoveFolderRequest;
+use Google\Cloud\Dataform\V1beta1\MoveRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
 use Google\Cloud\Dataform\V1beta1\PushGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryFolderContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryTeamFolderContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsRequest;
 use Google\Cloud\Dataform\V1beta1\ReadFileRequest;
 use Google\Cloud\Dataform\V1beta1\ReadFileResponse;
@@ -108,9 +121,13 @@ use Google\Cloud\Dataform\V1beta1\Repository;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesRequest;
 use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesResponse;
 use Google\Cloud\Dataform\V1beta1\SearchFilesRequest;
+use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersRequest;
+use Google\Cloud\Dataform\V1beta1\TeamFolder;
 use Google\Cloud\Dataform\V1beta1\UpdateConfigRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateFolderRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\WorkflowConfig;
 use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
@@ -125,6 +142,12 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\DeleteOperationRequest;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -147,13 +170,17 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CommitWorkspaceChangesResponse> commitWorkspaceChangesAsync(CommitWorkspaceChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ComputeRepositoryAccessTokenStatusResponse> computeRepositoryAccessTokenStatusAsync(ComputeRepositoryAccessTokenStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> createCompilationResultAsync(CreateCompilationResultRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Folder> createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReleaseConfig> createReleaseConfigAsync(CreateReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Repository> createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TeamFolder> createTeamFolderAsync(CreateTeamFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowConfig> createWorkflowConfigAsync(CreateWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowInvocation> createWorkflowInvocationAsync(CreateWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Workspace> createWorkspaceAsync(CreateWorkspaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReleaseConfigAsync(DeleteReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTeamFolderAsync(DeleteTeamFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkflowConfigAsync(DeleteWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkflowInvocationAsync(DeleteWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkspaceAsync(DeleteWorkspaceRequest $request, array $optionalArgs = [])
@@ -164,8 +191,11 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> fetchRepositoryHistoryAsync(FetchRepositoryHistoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CompilationResult> getCompilationResultAsync(GetCompilationResultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Config> getConfigAsync(GetConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReleaseConfig> getReleaseConfigAsync(GetReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Repository> getRepositoryAsync(GetRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TeamFolder> getTeamFolderAsync(GetTeamFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowConfig> getWorkflowConfigAsync(GetWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowInvocation> getWorkflowInvocationAsync(GetWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Workspace> getWorkspaceAsync(GetWorkspaceRequest $request, array $optionalArgs = [])
@@ -179,11 +209,16 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<MakeDirectoryResponse> makeDirectoryAsync(MakeDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MoveDirectoryResponse> moveDirectoryAsync(MoveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MoveFileResponse> moveFileAsync(MoveFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveFolderAsync(MoveFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> moveRepositoryAsync(MoveRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PullGitCommitsResponse> pullGitCommitsAsync(PullGitCommitsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PushGitCommitsResponse> pushGitCommitsAsync(PushGitCommitsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryCompilationResultActionsAsync(QueryCompilationResultActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryDirectoryContentsAsync(QueryDirectoryContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryFolderContentsAsync(QueryFolderContentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryRepositoryDirectoryContentsAsync(QueryRepositoryDirectoryContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryTeamFolderContentsAsync(QueryTeamFolderContentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> queryUserRootContentsAsync(QueryUserRootContentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryWorkflowInvocationActionsAsync(QueryWorkflowInvocationActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReadFileResponse> readFileAsync(ReadFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReadRepositoryFileResponse> readRepositoryFileAsync(ReadRepositoryFileRequest $request, array $optionalArgs = [])
@@ -191,16 +226,22 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<RemoveFileResponse> removeFileAsync(RemoveFileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ResetWorkspaceChangesResponse> resetWorkspaceChangesAsync(ResetWorkspaceChangesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchFilesAsync(SearchFilesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Config> updateConfigAsync(UpdateConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<ReleaseConfig> updateReleaseConfigAsync(UpdateReleaseConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Repository> updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<WorkflowConfig> updateWorkflowConfigAsync(UpdateWorkflowConfigRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<WriteFileResponse> writeFileAsync(WriteFileRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchTeamFoldersAsync(SearchTeamFoldersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Config> updateConfigAsync(UpdateConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Folder> updateFolderAsync(UpdateFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReleaseConfig> updateReleaseConfigAsync(UpdateReleaseConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Repository> updateRepositoryAsync(UpdateRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TeamFolder> updateTeamFolderAsync(UpdateTeamFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WorkflowConfig> updateWorkflowConfigAsync(UpdateWorkflowConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<WriteFileResponse> writeFileAsync(WriteFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteOperationAsync(DeleteOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getOperationAsync(GetOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DataformClient
 {
@@ -232,6 +273,8 @@ final class DataformClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -249,6 +292,58 @@ final class DataformClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     *
+     * @experimental
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     *
+     * @experimental
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -347,6 +442,27 @@ final class DataformClient
             'key_ring' => $keyRing,
             'crypto_key' => $cryptoKey,
             'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a folder
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $folder
+     *
+     * @return string The formatted folder resource.
+     *
+     * @experimental
+     */
+    public static function folderName(string $project, string $location, string $folder): string
+    {
+        return self::getPathTemplate('folder')->render([
+            'project' => $project,
+            'location' => $location,
+            'folder' => $folder,
         ]);
     }
 
@@ -463,6 +579,27 @@ final class DataformClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a team_folder
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $teamFolder
+     *
+     * @return string The formatted team_folder resource.
+     *
+     * @experimental
+     */
+    public static function teamFolderName(string $project, string $location, string $teamFolder): string
+    {
+        return self::getPathTemplate('teamFolder')->render([
+            'project' => $project,
+            'location' => $location,
+            'team_folder' => $teamFolder,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * workflow_config resource.
      *
@@ -551,11 +688,13 @@ final class DataformClient
      * - config: projects/{project}/locations/{location}/config
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - folder: projects/{project}/locations/{location}/folders/{folder}
      * - location: projects/{project}/locations/{location}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{version}
+     * - teamFolder: projects/{project}/locations/{location}/teamFolders/{team_folder}
      * - workflowConfig: projects/{project}/locations/{location}/repositories/{repository}/workflowConfigs/{workflow_config}
      * - workflowInvocation: projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}
      * - workspace: projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}
@@ -654,6 +793,7 @@ final class DataformClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -820,6 +960,34 @@ final class DataformClient
     }
 
     /**
+     * Creates a new Folder in a given project and location.
+     *
+     * The async variant is {@see DataformClient::createFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_folder.php
+     *
+     * @param CreateFolderRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Folder
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createFolder(CreateFolderRequest $request, array $callOptions = []): Folder
+    {
+        return $this->startApiCall('CreateFolder', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new ReleaseConfig in a given Repository.
      *
      * The async variant is {@see DataformClient::createReleaseConfigAsync()} .
@@ -873,6 +1041,34 @@ final class DataformClient
     public function createRepository(CreateRepositoryRequest $request, array $callOptions = []): Repository
     {
         return $this->startApiCall('CreateRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new TeamFolder in a given project and location.
+     *
+     * The async variant is {@see DataformClient::createTeamFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/create_team_folder.php
+     *
+     * @param CreateTeamFolderRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TeamFolder
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createTeamFolder(CreateTeamFolderRequest $request, array $callOptions = []): TeamFolder
+    {
+        return $this->startApiCall('CreateTeamFolder', $request, $callOptions)->wait();
     }
 
     /**
@@ -962,6 +1158,32 @@ final class DataformClient
     }
 
     /**
+     * Deletes a single Folder.
+     *
+     * The async variant is {@see DataformClient::deleteFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_folder.php
+     *
+     * @param DeleteFolderRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteFolder(DeleteFolderRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteFolder', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single ReleaseConfig.
      *
      * The async variant is {@see DataformClient::deleteReleaseConfigAsync()} .
@@ -1011,6 +1233,32 @@ final class DataformClient
     public function deleteRepository(DeleteRepositoryRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single TeamFolder.
+     *
+     * The async variant is {@see DataformClient::deleteTeamFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_team_folder.php
+     *
+     * @param DeleteTeamFolderRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteTeamFolder(DeleteTeamFolderRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTeamFolder', $request, $callOptions)->wait();
     }
 
     /**
@@ -1299,6 +1547,64 @@ final class DataformClient
     }
 
     /**
+     * Fetches a single Folder.
+     *
+     * The async variant is {@see DataformClient::getFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_folder.php
+     *
+     * @param GetFolderRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Folder
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getFolder(GetFolderRequest $request, array $callOptions = []): Folder
+    {
+        return $this->startApiCall('GetFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the access control policy for a resource.
+     * Returns an empty policy if the resource exists and does not have a policy
+     * set.
+     *
+     * The async variant is {@see DataformClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Fetches a single ReleaseConfig.
      *
      * The async variant is {@see DataformClient::getReleaseConfigAsync()} .
@@ -1352,6 +1658,34 @@ final class DataformClient
     public function getRepository(GetRepositoryRequest $request, array $callOptions = []): Repository
     {
         return $this->startApiCall('GetRepository', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches a single TeamFolder.
+     *
+     * The async variant is {@see DataformClient::getTeamFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_team_folder.php
+     *
+     * @param GetTeamFolderRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TeamFolder
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getTeamFolder(GetTeamFolderRequest $request, array $callOptions = []): TeamFolder
+    {
+        return $this->startApiCall('GetTeamFolder', $request, $callOptions)->wait();
     }
 
     /**
@@ -1731,6 +2065,62 @@ final class DataformClient
     }
 
     /**
+     * Moves a Folder to a new Folder, TeamFolder, or the root location.
+     *
+     * The async variant is {@see DataformClient::moveFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/move_folder.php
+     *
+     * @param MoveFolderRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function moveFolder(MoveFolderRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('MoveFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Moves a Repository to a new location.
+     *
+     * The async variant is {@see DataformClient::moveRepositoryAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/move_repository.php
+     *
+     * @param MoveRepositoryRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function moveRepository(MoveRepositoryRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('MoveRepository', $request, $callOptions)->wait();
+    }
+
+    /**
      * Pulls Git commits from the Repository's remote into a Workspace.
      *
      * The async variant is {@see DataformClient::pullGitCommitsAsync()} .
@@ -1848,6 +2238,34 @@ final class DataformClient
     }
 
     /**
+     * Returns the contents of a given Folder.
+     *
+     * The async variant is {@see DataformClient::queryFolderContentsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_folder_contents.php
+     *
+     * @param QueryFolderContentsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryFolderContents(QueryFolderContentsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('QueryFolderContents', $request, $callOptions);
+    }
+
+    /**
      * Returns the contents of a given Repository directory. The Repository must
      * not have a value for `git_remote_settings.url`.
      *
@@ -1877,6 +2295,68 @@ final class DataformClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('QueryRepositoryDirectoryContents', $request, $callOptions);
+    }
+
+    /**
+     * Returns the contents of a given TeamFolder.
+     *
+     * The async variant is {@see DataformClient::queryTeamFolderContentsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_team_folder_contents.php
+     *
+     * @param QueryTeamFolderContentsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryTeamFolderContents(
+        QueryTeamFolderContentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('QueryTeamFolderContents', $request, $callOptions);
+    }
+
+    /**
+     * Returns the contents of a caller's root folder in a given location.
+     * The root folder contains all resources that are created by the user and not
+     * contained in any other folder.
+     *
+     * The async variant is {@see DataformClient::queryUserRootContentsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/query_user_root_contents.php
+     *
+     * @param QueryUserRootContentsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryUserRootContents(
+        QueryUserRootContentsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('QueryUserRootContents', $request, $callOptions);
     }
 
     /**
@@ -2084,6 +2564,102 @@ final class DataformClient
     }
 
     /**
+     * Returns all TeamFolders in a given location that the caller has access to
+     * and match the provided filter.
+     *
+     * The async variant is {@see DataformClient::searchTeamFoldersAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/search_team_folders.php
+     *
+     * @param SearchTeamFoldersRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function searchTeamFolders(SearchTeamFoldersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchTeamFolders', $request, $callOptions);
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any
+     * existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * The async variant is {@see DataformClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     * If the resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building permission-aware
+     * UIs and command-line tools, not for authorization checking. This operation
+     * may "fail open" without warning.
+     *
+     * The async variant is {@see DataformClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
      * Update default config for a given project and location.
      *
      * **Note:** *This method does not fully implement
@@ -2114,6 +2690,34 @@ final class DataformClient
     public function updateConfig(UpdateConfigRequest $request, array $callOptions = []): Config
     {
         return $this->startApiCall('UpdateConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a single Folder.
+     *
+     * The async variant is {@see DataformClient::updateFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/update_folder.php
+     *
+     * @param UpdateFolderRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Folder
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateFolder(UpdateFolderRequest $request, array $callOptions = []): Folder
+    {
+        return $this->startApiCall('UpdateFolder', $request, $callOptions)->wait();
     }
 
     /**
@@ -2183,6 +2787,34 @@ final class DataformClient
     }
 
     /**
+     * Updates a single TeamFolder.
+     *
+     * The async variant is {@see DataformClient::updateTeamFolderAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/update_team_folder.php
+     *
+     * @param UpdateTeamFolderRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TeamFolder
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateTeamFolder(UpdateTeamFolderRequest $request, array $callOptions = []): TeamFolder
+    {
+        return $this->startApiCall('UpdateTeamFolder', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a single WorkflowConfig.
      *
      * **Note:** *This method does not fully implement
@@ -2244,6 +2876,130 @@ final class DataformClient
     }
 
     /**
+     * Starts asynchronous cancellation on a long-running operation.  The server
+     * makes a best effort to cancel the operation, but success is not
+     * guaranteed.  If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
+     * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
+     * other methods to check whether the cancellation succeeded or whether the
+     * operation completed despite cancellation. On successful cancellation,
+     * the operation is not deleted; instead, it becomes an operation with
+     * an [Operation.error][google.longrunning.Operation.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of `1`, corresponding to
+     * `Code.CANCELLED`.
+     *
+     * The async variant is {@see DataformClient::cancelOperationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/cancel_operation.php
+     *
+     * @param CancelOperationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('CancelOperation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is
+     * no longer interested in the operation result. It does not cancel the
+     * operation. If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * The async variant is {@see DataformClient::deleteOperationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_operation.php
+     *
+     * @param DeleteOperationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteOperation(DeleteOperationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteOperation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the latest state of a long-running operation.  Clients can use this
+     * method to poll the operation result at intervals as recommended by the API
+     * service.
+     *
+     * The async variant is {@see DataformClient::getOperationAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/get_operation.php
+     *
+     * @param GetOperationRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('GetOperation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the
+     * server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * The async variant is {@see DataformClient::listOperationsAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/list_operations.php
+     *
+     * @param ListOperationsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listOperations(ListOperationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListOperations', $request, $callOptions);
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see DataformClient::getLocationAsync()} .
@@ -2273,6 +3029,13 @@ final class DataformClient
 
     /**
      * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
      *
      * The async variant is {@see DataformClient::listLocationsAsync()} .
      *
@@ -2297,102 +3060,5 @@ final class DataformClient
     public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListLocations', $request, $callOptions);
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
-     *
-     * The async variant is {@see DataformClient::getIamPolicyAsync()} .
-     *
-     * @example samples/V1beta1/DataformClient/get_iam_policy.php
-     *
-     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
-     * @param array               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Policy
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
-    {
-        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
-     *
-     * The async variant is {@see DataformClient::setIamPolicyAsync()} .
-     *
-     * @example samples/V1beta1/DataformClient/set_iam_policy.php
-     *
-     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
-     * @param array               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Policy
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
-    {
-        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
-     *
-     * The async variant is {@see DataformClient::testIamPermissionsAsync()} .
-     *
-     * @example samples/V1beta1/DataformClient/test_iam_permissions.php
-     *
-     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
-     * @param array                     $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return TestIamPermissionsResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     *
-     * @experimental
-     */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
-        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

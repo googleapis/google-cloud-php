@@ -23,6 +23,44 @@
 return [
     'interfaces' => [
         'google.cloud.dataform.v1beta1.Dataform' => [
+            'MoveFolder' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Dataform\V1beta1\MoveFolderMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveRepository' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Dataform\V1beta1\MoveRepositoryMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CancelWorkflowInvocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\CancelWorkflowInvocationResponse',
@@ -83,6 +121,18 @@ return [
                     ],
                 ],
             ],
+            'CreateFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\Folder',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateReleaseConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\ReleaseConfig',
@@ -98,6 +148,18 @@ return [
             'CreateRepository' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\Repository',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateTeamFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\TeamFolder',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -143,6 +205,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteReleaseConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -156,6 +230,18 @@ return [
                 ],
             ],
             'DeleteRepository' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTeamFolder' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -295,6 +381,30 @@ return [
                     ],
                 ],
             ],
+            'GetFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\Folder',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'GetReleaseConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\ReleaseConfig',
@@ -310,6 +420,18 @@ return [
             'GetRepository' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\Repository',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTeamFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\TeamFolder',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -587,6 +709,26 @@ return [
                     ],
                 ],
             ],
+            'QueryFolderContents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEntries',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'folder',
+                        'fieldAccessors' => [
+                            'getFolder',
+                        ],
+                    ],
+                ],
+            ],
             'QueryRepositoryDirectoryContents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -603,6 +745,46 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryTeamFolderContents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEntries',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\QueryTeamFolderContentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'team_folder',
+                        'fieldAccessors' => [
+                            'getTeamFolder',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryUserRootContents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEntries',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\QueryUserRootContentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'location',
+                        'fieldAccessors' => [
+                            'getLocation',
                         ],
                     ],
                 ],
@@ -707,6 +889,50 @@ return [
                     ],
                 ],
             ],
+            'SearchTeamFolders' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResults',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'location',
+                        'fieldAccessors' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'resource',
+                        'fieldAccessors' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\Config',
@@ -715,6 +941,19 @@ return [
                         'keyName' => 'config.name',
                         'fieldAccessors' => [
                             'getConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\Folder',
+                'headerParams' => [
+                    [
+                        'keyName' => 'folder.name',
+                        'fieldAccessors' => [
+                            'getFolder',
                             'getName',
                         ],
                     ],
@@ -746,6 +985,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateTeamFolder' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataform\V1beta1\TeamFolder',
+                'headerParams' => [
+                    [
+                        'keyName' => 'team_folder.name',
+                        'fieldAccessors' => [
+                            'getTeamFolder',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateWorkflowConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataform\V1beta1\WorkflowConfig',
@@ -770,6 +1022,66 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'CancelOperation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.longrunning.Operations',
+            ],
+            'DeleteOperation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.longrunning.Operations',
+            ],
+            'GetOperation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\LongRunning\Operation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.longrunning.Operations',
+            ],
+            'ListOperations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOperations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\LongRunning\ListOperationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.longrunning.Operations',
             ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -805,55 +1117,18 @@ return [
                 ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
-            'GetIamPolicy' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Iam\V1\Policy',
-                'headerParams' => [
-                    [
-                        'keyName' => 'resource',
-                        'fieldAccessors' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
-            ],
-            'SetIamPolicy' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Iam\V1\Policy',
-                'headerParams' => [
-                    [
-                        'keyName' => 'resource',
-                        'fieldAccessors' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
-            ],
-            'TestIamPermissions' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'resource',
-                        'fieldAccessors' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-                'interfaceOverride' => 'google.iam.v1.IAMPolicy',
-            ],
             'templateMap' => [
                 'compilationResult' => 'projects/{project}/locations/{location}/repositories/{repository}/compilationResults/{compilation_result}',
                 'config' => 'projects/{project}/locations/{location}/config',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
+                'folder' => 'projects/{project}/locations/{location}/folders/{folder}',
                 'location' => 'projects/{project}/locations/{location}',
                 'notebookRuntimeTemplate' => 'projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}',
                 'releaseConfig' => 'projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{version}',
+                'teamFolder' => 'projects/{project}/locations/{location}/teamFolders/{team_folder}',
                 'workflowConfig' => 'projects/{project}/locations/{location}/repositories/{repository}/workflowConfigs/{workflow_config}',
                 'workflowInvocation' => 'projects/{project}/locations/{location}/repositories/{repository}/workflowInvocations/{workflow_invocation}',
                 'workspace' => 'projects/{project}/locations/{location}/repositories/{repository}/workspaces/{workspace}',

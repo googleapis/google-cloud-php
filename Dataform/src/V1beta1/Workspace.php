@@ -42,6 +42,20 @@ class Workspace extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string internal_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $internal_metadata = null;
+    /**
+     * Optional. If set to true, workspaces will not be moved if its linked
+     * Repository is moved. Instead, it will be deleted.
+     *
+     * Generated from protobuf field <code>optional bool disable_moves = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_moves = null;
+    /**
+     * Output only. Metadata indicating whether this resource is user-scoped. For
+     * `Workspace` resources, the `user_scoped` field is always `true`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $private_resource_metadata = null;
 
     /**
      * Constructor.
@@ -60,6 +74,12 @@ class Workspace extends \Google\Protobuf\Internal\Message
      *           Output only. All the metadata information that is used internally to serve
      *           the resource. For example: timestamps, flags, status fields, etc. The
      *           format of this field is a JSON string.
+     *     @type bool $disable_moves
+     *           Optional. If set to true, workspaces will not be moved if its linked
+     *           Repository is moved. Instead, it will be deleted.
+     *     @type \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata $private_resource_metadata
+     *           Output only. Metadata indicating whether this resource is user-scoped. For
+     *           `Workspace` resources, the `user_scoped` field is always `true`.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,6 +223,82 @@ class Workspace extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->internal_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, workspaces will not be moved if its linked
+     * Repository is moved. Instead, it will be deleted.
+     *
+     * Generated from protobuf field <code>optional bool disable_moves = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableMoves()
+    {
+        return isset($this->disable_moves) ? $this->disable_moves : false;
+    }
+
+    public function hasDisableMoves()
+    {
+        return isset($this->disable_moves);
+    }
+
+    public function clearDisableMoves()
+    {
+        unset($this->disable_moves);
+    }
+
+    /**
+     * Optional. If set to true, workspaces will not be moved if its linked
+     * Repository is moved. Instead, it will be deleted.
+     *
+     * Generated from protobuf field <code>optional bool disable_moves = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableMoves($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_moves = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata indicating whether this resource is user-scoped. For
+     * `Workspace` resources, the `user_scoped` field is always `true`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata|null
+     */
+    public function getPrivateResourceMetadata()
+    {
+        return $this->private_resource_metadata;
+    }
+
+    public function hasPrivateResourceMetadata()
+    {
+        return isset($this->private_resource_metadata);
+    }
+
+    public function clearPrivateResourceMetadata()
+    {
+        unset($this->private_resource_metadata);
+    }
+
+    /**
+     * Output only. Metadata indicating whether this resource is user-scoped. For
+     * `Workspace` resources, the `user_scoped` field is always `true`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata $var
+     * @return $this
+     */
+    public function setPrivateResourceMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata::class);
+        $this->private_resource_metadata = $var;
 
         return $this;
     }
