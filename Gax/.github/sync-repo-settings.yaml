@@ -20,9 +20,7 @@ branchProtectionRules:
   requiresCodeOwnerReviews: true
   requiresStrictStatusChecks: true
 permissionRules:
-  - team: actools
+  - team: cloud-sdk-platform-team
     permission: admin
-  - team: yoshi-php
-    permission: push
-  - team: actools-php
+  - team: cloud-sdk-php-team
     permission: push
