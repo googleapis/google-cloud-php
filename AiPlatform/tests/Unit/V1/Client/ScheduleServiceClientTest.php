@@ -99,6 +99,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $maxRunCount = 845001408;
         $startedRunCount = 479303651;
         $maxConcurrentRunCount = 1478623794;
+        $maxConcurrentActiveRunCount = 2066355825;
         $allowQueueing = false;
         $catchUp = false;
         $expectedResponse = new Schedule();
@@ -108,6 +109,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxRunCount($maxRunCount);
         $expectedResponse->setStartedRunCount($startedRunCount);
         $expectedResponse->setMaxConcurrentRunCount($maxConcurrentRunCount);
+        $expectedResponse->setMaxConcurrentActiveRunCount($maxConcurrentActiveRunCount);
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);
@@ -312,6 +314,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $maxRunCount = 845001408;
         $startedRunCount = 479303651;
         $maxConcurrentRunCount = 1478623794;
+        $maxConcurrentActiveRunCount = 2066355825;
         $allowQueueing = false;
         $catchUp = false;
         $expectedResponse = new Schedule();
@@ -321,6 +324,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxRunCount($maxRunCount);
         $expectedResponse->setStartedRunCount($startedRunCount);
         $expectedResponse->setMaxConcurrentRunCount($maxConcurrentRunCount);
+        $expectedResponse->setMaxConcurrentActiveRunCount($maxConcurrentActiveRunCount);
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);
@@ -586,6 +590,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $maxRunCount = 845001408;
         $startedRunCount = 479303651;
         $maxConcurrentRunCount = 1478623794;
+        $maxConcurrentActiveRunCount = 2066355825;
         $allowQueueing = false;
         $catchUp = false;
         $expectedResponse = new Schedule();
@@ -595,6 +600,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxRunCount($maxRunCount);
         $expectedResponse->setStartedRunCount($startedRunCount);
         $expectedResponse->setMaxConcurrentRunCount($maxConcurrentRunCount);
+        $expectedResponse->setMaxConcurrentActiveRunCount($maxConcurrentActiveRunCount);
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);
@@ -1010,6 +1016,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $maxRunCount = 845001408;
         $startedRunCount = 479303651;
         $maxConcurrentRunCount = 1478623794;
+        $maxConcurrentActiveRunCount = 2066355825;
         $allowQueueing = false;
         $catchUp = false;
         $expectedResponse = new Schedule();
@@ -1019,6 +1026,7 @@ class ScheduleServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxRunCount($maxRunCount);
         $expectedResponse->setStartedRunCount($startedRunCount);
         $expectedResponse->setMaxConcurrentRunCount($maxConcurrentRunCount);
+        $expectedResponse->setMaxConcurrentActiveRunCount($maxConcurrentActiveRunCount);
         $expectedResponse->setAllowQueueing($allowQueueing);
         $expectedResponse->setCatchUp($catchUp);
         $transport->addResponse($expectedResponse);

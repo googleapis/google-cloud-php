@@ -114,6 +114,16 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     protected $max_concurrent_run_count = 0;
     /**
+     * Optional. Specifies the maximum number of active runs that can be executed
+     * concurrently for this Schedule. This limits the number of runs that can be
+     * in a non-terminal state at the same time.
+     * Currently, this field is only supported for requests of type
+     * CreatePipelineJobRequest.
+     *
+     * Generated from protobuf field <code>int64 max_concurrent_active_run_count = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_concurrent_active_run_count = 0;
+    /**
      * Optional. Whether new scheduled runs can be queued when max_concurrent_runs
      * limit is reached. If set to true, new runs will be queued instead of
      * skipped. Default to false.
@@ -207,6 +217,12 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *           Required. Maximum number of runs that can be started concurrently for this
      *           Schedule. This is the limit for starting the scheduled requests and not the
      *           execution of the operations/jobs created by the requests (if applicable).
+     *     @type int|string $max_concurrent_active_run_count
+     *           Optional. Specifies the maximum number of active runs that can be executed
+     *           concurrently for this Schedule. This limits the number of runs that can be
+     *           in a non-terminal state at the same time.
+     *           Currently, this field is only supported for requests of type
+     *           CreatePipelineJobRequest.
      *     @type bool $allow_queueing
      *           Optional. Whether new scheduled runs can be queued when max_concurrent_runs
      *           limit is reached. If set to true, new runs will be queued instead of
@@ -780,6 +796,40 @@ class Schedule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->max_concurrent_run_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the maximum number of active runs that can be executed
+     * concurrently for this Schedule. This limits the number of runs that can be
+     * in a non-terminal state at the same time.
+     * Currently, this field is only supported for requests of type
+     * CreatePipelineJobRequest.
+     *
+     * Generated from protobuf field <code>int64 max_concurrent_active_run_count = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxConcurrentActiveRunCount()
+    {
+        return $this->max_concurrent_active_run_count;
+    }
+
+    /**
+     * Optional. Specifies the maximum number of active runs that can be executed
+     * concurrently for this Schedule. This limits the number of runs that can be
+     * in a non-terminal state at the same time.
+     * Currently, this field is only supported for requests of type
+     * CreatePipelineJobRequest.
+     *
+     * Generated from protobuf field <code>int64 max_concurrent_active_run_count = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxConcurrentActiveRunCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_concurrent_active_run_count = $var;
 
         return $this;
     }
