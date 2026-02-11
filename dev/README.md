@@ -14,8 +14,8 @@ Available commands:
   component:add-version           Add a new version to an existing Component
   component:info                  [info] list info of a component or the whole library
   component:new                   Add a new Component
+  component:update                Update one or all components using Owlbot
   component:update:deps           update a dependency across all components
-  component:update:gencode        Update one or all components using Owlbot
   component:update:readme-sample  Add a sample to a component
  release
   release:info                    list information for a google-cloud-php release
