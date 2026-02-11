@@ -23,6 +23,44 @@
 return [
     'interfaces' => [
         'google.cloud.kms.v1.KeyManagementService' => [
+            'DeleteCryptoKey' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Kms\V1\DeleteCryptoKeyMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCryptoKeyVersion' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Kms\V1\DeleteCryptoKeyVersionMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'AsymmetricDecrypt' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\AsymmetricDecryptResponse',
@@ -215,6 +253,18 @@ return [
                     ],
                 ],
             ],
+            'GetRetiredResource' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Kms\V1\RetiredResource',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ImportCryptoKeyVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\CryptoKeyVersion',
@@ -298,6 +348,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\ListKeyRingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRetiredResources' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRetiredResources',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Kms\V1\ListRetiredResourcesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -484,6 +554,7 @@ return [
                 'importJob' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}',
                 'keyRing' => 'projects/{project}/locations/{location}/keyRings/{key_ring}',
                 'location' => 'projects/{project}/locations/{location}',
+                'retiredResource' => 'projects/{project}/locations/{location}/retiredResources/{retired_resource}',
             ],
         ],
     ],

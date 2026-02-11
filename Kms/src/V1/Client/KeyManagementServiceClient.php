@@ -27,6 +27,7 @@ namespace Google\Cloud\Kms\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -53,6 +54,8 @@ use Google\Cloud\Kms\V1\DecapsulateRequest;
 use Google\Cloud\Kms\V1\DecapsulateResponse;
 use Google\Cloud\Kms\V1\DecryptRequest;
 use Google\Cloud\Kms\V1\DecryptResponse;
+use Google\Cloud\Kms\V1\DeleteCryptoKeyRequest;
+use Google\Cloud\Kms\V1\DeleteCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\EncryptRequest;
 use Google\Cloud\Kms\V1\EncryptResponse;
@@ -63,6 +66,7 @@ use Google\Cloud\Kms\V1\GetCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\GetImportJobRequest;
 use Google\Cloud\Kms\V1\GetKeyRingRequest;
 use Google\Cloud\Kms\V1\GetPublicKeyRequest;
+use Google\Cloud\Kms\V1\GetRetiredResourceRequest;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\ImportJob;
 use Google\Cloud\Kms\V1\KeyRing;
@@ -70,6 +74,7 @@ use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
 use Google\Cloud\Kms\V1\ListImportJobsRequest;
 use Google\Cloud\Kms\V1\ListKeyRingsRequest;
+use Google\Cloud\Kms\V1\ListRetiredResourcesRequest;
 use Google\Cloud\Kms\V1\MacSignRequest;
 use Google\Cloud\Kms\V1\MacSignResponse;
 use Google\Cloud\Kms\V1\MacVerifyRequest;
@@ -80,12 +85,15 @@ use Google\Cloud\Kms\V1\RawDecryptResponse;
 use Google\Cloud\Kms\V1\RawEncryptRequest;
 use Google\Cloud\Kms\V1\RawEncryptResponse;
 use Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\RetiredResource;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -119,6 +127,8 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<KeyRing> createKeyRingAsync(CreateKeyRingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DecapsulateResponse> decapsulateAsync(DecapsulateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DecryptResponse> decryptAsync(DecryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCryptoKeyAsync(DeleteCryptoKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteCryptoKeyVersionAsync(DeleteCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> destroyCryptoKeyVersionAsync(DestroyCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EncryptResponse> encryptAsync(EncryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateRandomBytesResponse> generateRandomBytesAsync(GenerateRandomBytesRequest $request, array $optionalArgs = [])
@@ -127,11 +137,13 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ImportJob> getImportJobAsync(GetImportJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<KeyRing> getKeyRingAsync(GetKeyRingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PublicKey> getPublicKeyAsync(GetPublicKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RetiredResource> getRetiredResourceAsync(GetRetiredResourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> importCryptoKeyVersionAsync(ImportCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCryptoKeyVersionsAsync(ListCryptoKeyVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCryptoKeysAsync(ListCryptoKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listImportJobsAsync(ListImportJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listKeyRingsAsync(ListKeyRingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listRetiredResourcesAsync(ListRetiredResourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MacSignResponse> macSignAsync(MacSignRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MacVerifyResponse> macVerifyAsync(MacVerifyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RawDecryptResponse> rawDecryptAsync(RawDecryptRequest $request, array $optionalArgs = [])
@@ -176,6 +188,8 @@ final class KeyManagementServiceClient
         'https://www.googleapis.com/auth/cloudkms',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -193,6 +207,54 @@ final class KeyManagementServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -302,6 +364,25 @@ final class KeyManagementServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * retired_resource resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $retiredResource
+     *
+     * @return string The formatted retired_resource resource.
+     */
+    public static function retiredResourceName(string $project, string $location, string $retiredResource): string
+    {
+        return self::getPathTemplate('retiredResource')->render([
+            'project' => $project,
+            'location' => $location,
+            'retired_resource' => $retiredResource,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -310,6 +391,7 @@ final class KeyManagementServiceClient
      * - importJob: projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}
      * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
      * - location: projects/{project}/locations/{location}
+     * - retiredResource: projects/{project}/locations/{location}/retiredResources/{retired_resource}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -401,6 +483,7 @@ final class KeyManagementServiceClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -659,6 +742,76 @@ final class KeyManagementServiceClient
     }
 
     /**
+     * Permanently deletes the given [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * All child [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] must
+     * have been previously deleted using
+     * [KeyManagementService.DeleteCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DeleteCryptoKeyVersion].
+     * The specified crypto key will be immediately and permanently deleted upon
+     * calling this method. This action cannot be undone.
+     *
+     * The async variant is {@see KeyManagementServiceClient::deleteCryptoKeyAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/delete_crypto_key.php
+     *
+     * @param DeleteCryptoKeyRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteCryptoKey(DeleteCryptoKeyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteCryptoKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Permanently deletes the given
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only possible if
+     * the version has not been previously imported and if its
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is one of
+     * [DESTROYED][CryptoKeyVersionState.DESTROYED],
+     * [IMPORT_FAILED][CryptoKeyVersionState.IMPORT_FAILED], or
+     * [GENERATION_FAILED][CryptoKeyVersionState.GENERATION_FAILED].
+     * Successfully imported
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] cannot be deleted
+     * at this time. The specified version will be immediately and permanently
+     * deleted upon calling this method. This action cannot be undone.
+     *
+     * The async variant is
+     * {@see KeyManagementServiceClient::deleteCryptoKeyVersionAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/delete_crypto_key_version.php
+     *
+     * @param DeleteCryptoKeyVersionRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteCryptoKeyVersion(
+        DeleteCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteCryptoKeyVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
      * destruction.
      *
@@ -906,6 +1059,35 @@ final class KeyManagementServiceClient
     }
 
     /**
+     * Retrieves a specific [RetiredResource][google.cloud.kms.v1.RetiredResource]
+     * resource, which represents the record of a deleted
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *
+     * The async variant is
+     * {@see KeyManagementServiceClient::getRetiredResourceAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/get_retired_resource.php
+     *
+     * @param GetRetiredResourceRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RetiredResource
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getRetiredResource(GetRetiredResourceRequest $request, array $callOptions = []): RetiredResource
+    {
+        return $this->startApiCall('GetRetiredResource', $request, $callOptions)->wait();
+    }
+
+    /**
      * Import wrapped key material into a
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
@@ -1046,6 +1228,37 @@ final class KeyManagementServiceClient
     public function listKeyRings(ListKeyRingsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListKeyRings', $request, $callOptions);
+    }
+
+    /**
+     * Lists the [RetiredResources][google.cloud.kms.v1.RetiredResource] which are
+     * the records of deleted [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * RetiredResources prevent the reuse of these resource names after deletion.
+     *
+     * The async variant is
+     * {@see KeyManagementServiceClient::listRetiredResourcesAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/list_retired_resources.php
+     *
+     * @param ListRetiredResourcesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listRetiredResources(
+        ListRetiredResourcesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListRetiredResources', $request, $callOptions);
     }
 
     /**
