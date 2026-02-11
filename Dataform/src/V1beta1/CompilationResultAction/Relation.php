@@ -104,6 +104,36 @@ class Relation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> additional_options = 14;</code>
      */
     private $additional_options;
+    /**
+     * Optional. The connection specifying the credentials to be used to read
+     * and write to external storage, such as Cloud Storage. The connection can
+     * have the form `{project}.{location}.{connection_id}` or
+     * `projects/{project}/locations/{location}/connections/{connection_id}`,
+     * or be set to DEFAULT.
+     *
+     * Generated from protobuf field <code>string connection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $connection = '';
+    /**
+     * Optional. The table format for the BigQuery table.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.TableFormat table_format = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $table_format = 0;
+    /**
+     * Optional. The file format for the BigQuery table.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.FileFormat file_format = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $file_format = 0;
+    /**
+     * Optional. The fully qualified location prefix of the external folder
+     * where table data is stored. The URI should be in the format
+     * `gs://bucket/path_to_table/`.
+     *
+     * Generated from protobuf field <code>string storage_uri = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $storage_uri = '';
 
     /**
      * Constructor.
@@ -144,6 +174,20 @@ class Relation extends \Google\Protobuf\Internal\Message
      *           options clause of a create table/view statement. See
      *           https://cloud.google.com/bigquery/docs/reference/standard-sql/data-definition-language
      *           for more information on which options are supported.
+     *     @type string $connection
+     *           Optional. The connection specifying the credentials to be used to read
+     *           and write to external storage, such as Cloud Storage. The connection can
+     *           have the form `{project}.{location}.{connection_id}` or
+     *           `projects/{project}/locations/{location}/connections/{connection_id}`,
+     *           or be set to DEFAULT.
+     *     @type int $table_format
+     *           Optional. The table format for the BigQuery table.
+     *     @type int $file_format
+     *           Optional. The file format for the BigQuery table.
+     *     @type string $storage_uri
+     *           Optional. The fully qualified location prefix of the external folder
+     *           where table data is stored. The URI should be in the format
+     *           `gs://bucket/path_to_table/`.
      * }
      */
     public function __construct($data = NULL) {
@@ -541,6 +585,122 @@ class Relation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->additional_options = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The connection specifying the credentials to be used to read
+     * and write to external storage, such as Cloud Storage. The connection can
+     * have the form `{project}.{location}.{connection_id}` or
+     * `projects/{project}/locations/{location}/connections/{connection_id}`,
+     * or be set to DEFAULT.
+     *
+     * Generated from protobuf field <code>string connection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getConnection()
+    {
+        return $this->connection;
+    }
+
+    /**
+     * Optional. The connection specifying the credentials to be used to read
+     * and write to external storage, such as Cloud Storage. The connection can
+     * have the form `{project}.{location}.{connection_id}` or
+     * `projects/{project}/locations/{location}/connections/{connection_id}`,
+     * or be set to DEFAULT.
+     *
+     * Generated from protobuf field <code>string connection = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConnection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->connection = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The table format for the BigQuery table.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.TableFormat table_format = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTableFormat()
+    {
+        return $this->table_format;
+    }
+
+    /**
+     * Optional. The table format for the BigQuery table.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.TableFormat table_format = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTableFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Relation\TableFormat::class);
+        $this->table_format = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The file format for the BigQuery table.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.FileFormat file_format = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFileFormat()
+    {
+        return $this->file_format;
+    }
+
+    /**
+     * Optional. The file format for the BigQuery table.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResultAction.Relation.FileFormat file_format = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFileFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Relation\FileFormat::class);
+        $this->file_format = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The fully qualified location prefix of the external folder
+     * where table data is stored. The URI should be in the format
+     * `gs://bucket/path_to_table/`.
+     *
+     * Generated from protobuf field <code>string storage_uri = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getStorageUri()
+    {
+        return $this->storage_uri;
+    }
+
+    /**
+     * Optional. The fully qualified location prefix of the external folder
+     * where table data is stored. The URI should be in the format
+     * `gs://bucket/path_to_table/`.
+     *
+     * Generated from protobuf field <code>string storage_uri = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStorageUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->storage_uri = $var;
 
         return $this;
     }

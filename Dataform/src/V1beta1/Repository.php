@@ -22,6 +22,25 @@ class Repository extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * Optional. The name of the containing folder of the repository.
+     * The field is immutable and it can be modified via a MoveRepository
+     * operation.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
+     * `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     *
+     * Generated from protobuf field <code>optional string containing_folder = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $containing_folder = null;
+    /**
+     * Output only. The resource name of the TeamFolder that this Repository is
+     * associated with. This should take the format:
+     * projects/{project}/locations/{location}/teamFolders/{teamFolder}. If this
+     * is not set, the Repository is not associated with a TeamFolder.
+     *
+     * Generated from protobuf field <code>optional string team_folder_name = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $team_folder_name = null;
+    /**
      * Output only. The timestamp of when the repository was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -112,6 +131,17 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The repository's name.
+     *     @type string $containing_folder
+     *           Optional. The name of the containing folder of the repository.
+     *           The field is immutable and it can be modified via a MoveRepository
+     *           operation.
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
+     *           `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     *     @type string $team_folder_name
+     *           Output only. The resource name of the TeamFolder that this Repository is
+     *           associated with. This should take the format:
+     *           projects/{project}/locations/{location}/teamFolders/{teamFolder}. If this
+     *           is not set, the Repository is not associated with a TeamFolder.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp of when the repository was created.
      *     @type string $display_name
@@ -179,6 +209,92 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the containing folder of the repository.
+     * The field is immutable and it can be modified via a MoveRepository
+     * operation.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
+     * `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     *
+     * Generated from protobuf field <code>optional string containing_folder = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getContainingFolder()
+    {
+        return isset($this->containing_folder) ? $this->containing_folder : '';
+    }
+
+    public function hasContainingFolder()
+    {
+        return isset($this->containing_folder);
+    }
+
+    public function clearContainingFolder()
+    {
+        unset($this->containing_folder);
+    }
+
+    /**
+     * Optional. The name of the containing folder of the repository.
+     * The field is immutable and it can be modified via a MoveRepository
+     * operation.
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
+     * `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     *
+     * Generated from protobuf field <code>optional string containing_folder = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContainingFolder($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->containing_folder = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the TeamFolder that this Repository is
+     * associated with. This should take the format:
+     * projects/{project}/locations/{location}/teamFolders/{teamFolder}. If this
+     * is not set, the Repository is not associated with a TeamFolder.
+     *
+     * Generated from protobuf field <code>optional string team_folder_name = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTeamFolderName()
+    {
+        return isset($this->team_folder_name) ? $this->team_folder_name : '';
+    }
+
+    public function hasTeamFolderName()
+    {
+        return isset($this->team_folder_name);
+    }
+
+    public function clearTeamFolderName()
+    {
+        unset($this->team_folder_name);
+    }
+
+    /**
+     * Output only. The resource name of the TeamFolder that this Repository is
+     * associated with. This should take the format:
+     * projects/{project}/locations/{location}/teamFolders/{teamFolder}. If this
+     * is not set, the Repository is not associated with a TeamFolder.
+     *
+     * Generated from protobuf field <code>optional string team_folder_name = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTeamFolderName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->team_folder_name = $var;
 
         return $this;
     }

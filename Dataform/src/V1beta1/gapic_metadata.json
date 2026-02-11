@@ -35,6 +35,11 @@
                                 "createCompilationResult"
                             ]
                         },
+                        "CreateFolder": {
+                            "methods": [
+                                "createFolder"
+                            ]
+                        },
                         "CreateReleaseConfig": {
                             "methods": [
                                 "createReleaseConfig"
@@ -43,6 +48,11 @@
                         "CreateRepository": {
                             "methods": [
                                 "createRepository"
+                            ]
+                        },
+                        "CreateTeamFolder": {
+                            "methods": [
+                                "createTeamFolder"
                             ]
                         },
                         "CreateWorkflowConfig": {
@@ -60,6 +70,11 @@
                                 "createWorkspace"
                             ]
                         },
+                        "DeleteFolder": {
+                            "methods": [
+                                "deleteFolder"
+                            ]
+                        },
                         "DeleteReleaseConfig": {
                             "methods": [
                                 "deleteReleaseConfig"
@@ -68,6 +83,11 @@
                         "DeleteRepository": {
                             "methods": [
                                 "deleteRepository"
+                            ]
+                        },
+                        "DeleteTeamFolder": {
+                            "methods": [
+                                "deleteTeamFolder"
                             ]
                         },
                         "DeleteWorkflowConfig": {
@@ -120,6 +140,16 @@
                                 "getConfig"
                             ]
                         },
+                        "GetFolder": {
+                            "methods": [
+                                "getFolder"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "GetReleaseConfig": {
                             "methods": [
                                 "getReleaseConfig"
@@ -128,6 +158,11 @@
                         "GetRepository": {
                             "methods": [
                                 "getRepository"
+                            ]
+                        },
+                        "GetTeamFolder": {
+                            "methods": [
+                                "getTeamFolder"
                             ]
                         },
                         "GetWorkflowConfig": {
@@ -195,6 +230,16 @@
                                 "moveFile"
                             ]
                         },
+                        "MoveFolder": {
+                            "methods": [
+                                "moveFolder"
+                            ]
+                        },
+                        "MoveRepository": {
+                            "methods": [
+                                "moveRepository"
+                            ]
+                        },
                         "PullGitCommits": {
                             "methods": [
                                 "pullGitCommits"
@@ -215,9 +260,24 @@
                                 "queryDirectoryContents"
                             ]
                         },
+                        "QueryFolderContents": {
+                            "methods": [
+                                "queryFolderContents"
+                            ]
+                        },
                         "QueryRepositoryDirectoryContents": {
                             "methods": [
                                 "queryRepositoryDirectoryContents"
+                            ]
+                        },
+                        "QueryTeamFolderContents": {
+                            "methods": [
+                                "queryTeamFolderContents"
+                            ]
+                        },
+                        "QueryUserRootContents": {
+                            "methods": [
+                                "queryUserRootContents"
                             ]
                         },
                         "QueryWorkflowInvocationActions": {
@@ -255,9 +315,29 @@
                                 "searchFiles"
                             ]
                         },
+                        "SearchTeamFolders": {
+                            "methods": [
+                                "searchTeamFolders"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
                         "UpdateConfig": {
                             "methods": [
                                 "updateConfig"
+                            ]
+                        },
+                        "UpdateFolder": {
+                            "methods": [
+                                "updateFolder"
                             ]
                         },
                         "UpdateReleaseConfig": {
@@ -270,6 +350,11 @@
                                 "updateRepository"
                             ]
                         },
+                        "UpdateTeamFolder": {
+                            "methods": [
+                                "updateTeamFolder"
+                            ]
+                        },
                         "UpdateWorkflowConfig": {
                             "methods": [
                                 "updateWorkflowConfig"
@@ -280,6 +365,26 @@
                                 "writeFile"
                             ]
                         },
+                        "CancelOperation": {
+                            "methods": [
+                                "cancelOperation"
+                            ]
+                        },
+                        "DeleteOperation": {
+                            "methods": [
+                                "deleteOperation"
+                            ]
+                        },
+                        "GetOperation": {
+                            "methods": [
+                                "getOperation"
+                            ]
+                        },
+                        "ListOperations": {
+                            "methods": [
+                                "listOperations"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -288,21 +393,6 @@
                         "ListLocations": {
                             "methods": [
                                 "listLocations"
-                            ]
-                        },
-                        "GetIamPolicy": {
-                            "methods": [
-                                "getIamPolicy"
-                            ]
-                        },
-                        "SetIamPolicy": {
-                            "methods": [
-                                "setIamPolicy"
-                            ]
-                        },
-                        "TestIamPermissions": {
-                            "methods": [
-                                "testIamPermissions"
                             ]
                         }
                     }

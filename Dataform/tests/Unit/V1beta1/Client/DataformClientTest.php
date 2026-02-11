@@ -42,13 +42,17 @@ use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusRequest;
 use Google\Cloud\Dataform\V1beta1\ComputeRepositoryAccessTokenStatusResponse;
 use Google\Cloud\Dataform\V1beta1\Config;
 use Google\Cloud\Dataform\V1beta1\CreateCompilationResultRequest;
+use Google\Cloud\Dataform\V1beta1\CreateFolderRequest;
 use Google\Cloud\Dataform\V1beta1\CreateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\CreateTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteFolderRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
@@ -63,10 +67,13 @@ use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRemoteBranchesResponse;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryRequest;
 use Google\Cloud\Dataform\V1beta1\FetchRepositoryHistoryResponse;
+use Google\Cloud\Dataform\V1beta1\Folder;
 use Google\Cloud\Dataform\V1beta1\GetCompilationResultRequest;
 use Google\Cloud\Dataform\V1beta1\GetConfigRequest;
+use Google\Cloud\Dataform\V1beta1\GetFolderRequest;
 use Google\Cloud\Dataform\V1beta1\GetReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\GetTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\GetWorkspaceRequest;
@@ -90,6 +97,8 @@ use Google\Cloud\Dataform\V1beta1\MoveDirectoryRequest;
 use Google\Cloud\Dataform\V1beta1\MoveDirectoryResponse;
 use Google\Cloud\Dataform\V1beta1\MoveFileRequest;
 use Google\Cloud\Dataform\V1beta1\MoveFileResponse;
+use Google\Cloud\Dataform\V1beta1\MoveFolderRequest;
+use Google\Cloud\Dataform\V1beta1\MoveRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsRequest;
 use Google\Cloud\Dataform\V1beta1\PullGitCommitsResponse;
 use Google\Cloud\Dataform\V1beta1\PushGitCommitsRequest;
@@ -98,8 +107,17 @@ use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryCompilationResultActionsResponse;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryDirectoryContentsResponse;
+use Google\Cloud\Dataform\V1beta1\QueryFolderContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse;
+use Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse\FolderContentsEntry;
 use Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryRepositoryDirectoryContentsResponse;
+use Google\Cloud\Dataform\V1beta1\QueryTeamFolderContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryTeamFolderContentsResponse;
+use Google\Cloud\Dataform\V1beta1\QueryTeamFolderContentsResponse\TeamFolderContentsEntry;
+use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsRequest;
+use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsResponse;
+use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsResponse\RootContentsEntry;
 use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsRequest;
 use Google\Cloud\Dataform\V1beta1\QueryWorkflowInvocationActionsResponse;
 use Google\Cloud\Dataform\V1beta1\ReadFileRequest;
@@ -117,9 +135,15 @@ use Google\Cloud\Dataform\V1beta1\ResetWorkspaceChangesResponse;
 use Google\Cloud\Dataform\V1beta1\SearchFilesRequest;
 use Google\Cloud\Dataform\V1beta1\SearchFilesResponse;
 use Google\Cloud\Dataform\V1beta1\SearchResult;
+use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersRequest;
+use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse;
+use Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse\TeamFolderSearchResult;
+use Google\Cloud\Dataform\V1beta1\TeamFolder;
 use Google\Cloud\Dataform\V1beta1\UpdateConfigRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateFolderRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateReleaseConfigRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateRepositoryRequest;
+use Google\Cloud\Dataform\V1beta1\UpdateTeamFolderRequest;
 use Google\Cloud\Dataform\V1beta1\UpdateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\WorkflowConfig;
 use Google\Cloud\Dataform\V1beta1\WorkflowInvocation;
@@ -136,6 +160,14 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\DeleteOperationRequest;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\ListOperationsRequest;
+use Google\LongRunning\ListOperationsResponse;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -547,6 +579,89 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $containingFolder = 'containingFolder2137746239';
+        $teamFolderName = 'teamFolderName-1375688486';
+        $internalMetadata = 'internalMetadata-1087755663';
+        $creatorIamPrincipal = 'creatorIamPrincipal866086897';
+        $expectedResponse = new Folder();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setContainingFolder($containingFolder);
+        $expectedResponse->setTeamFolderName($teamFolderName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setCreatorIamPrincipal($creatorIamPrincipal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $folder = new Folder();
+        $folderDisplayName = 'folderDisplayName1703145759';
+        $folder->setDisplayName($folderDisplayName);
+        $request = (new CreateFolderRequest())->setParent($formattedParent)->setFolder($folder);
+        $response = $gapicClient->createFolder($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFolder();
+        $this->assertProtobufEquals($folder, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $folder = new Folder();
+        $folderDisplayName = 'folderDisplayName1703145759';
+        $folder->setDisplayName($folderDisplayName);
+        $request = (new CreateFolderRequest())->setParent($formattedParent)->setFolder($folder);
+        try {
+            $gapicClient->createFolder($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function createReleaseConfigTest()
     {
         $transport = $this->createTransport();
@@ -651,6 +766,8 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $containingFolder = 'containingFolder2137746239';
+        $teamFolderName = 'teamFolderName-1375688486';
         $displayName = 'displayName1615086568';
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
@@ -659,6 +776,8 @@ class DataformClientTest extends GeneratedTest
         $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
+        $expectedResponse->setContainingFolder($containingFolder);
+        $expectedResponse->setTeamFolderName($teamFolderName);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
@@ -721,6 +840,85 @@ class DataformClientTest extends GeneratedTest
             ->setRepositoryId($repositoryId);
         try {
             $gapicClient->createRepository($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createTeamFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $internalMetadata = 'internalMetadata-1087755663';
+        $creatorIamPrincipal = 'creatorIamPrincipal866086897';
+        $expectedResponse = new TeamFolder();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setCreatorIamPrincipal($creatorIamPrincipal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $teamFolder = new TeamFolder();
+        $teamFolderDisplayName = 'teamFolderDisplayName136139842';
+        $teamFolder->setDisplayName($teamFolderDisplayName);
+        $request = (new CreateTeamFolderRequest())->setParent($formattedParent)->setTeamFolder($teamFolder);
+        $response = $gapicClient->createTeamFolder($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/CreateTeamFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTeamFolder();
+        $this->assertProtobufEquals($teamFolder, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createTeamFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $teamFolder = new TeamFolder();
+        $teamFolderDisplayName = 'teamFolderDisplayName136139842';
+        $teamFolder->setDisplayName($teamFolderDisplayName);
+        $request = (new CreateTeamFolderRequest())->setParent($formattedParent)->setTeamFolder($teamFolder);
+        try {
+            $gapicClient->createTeamFolder($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -925,9 +1123,11 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $internalMetadata = 'internalMetadata-1087755663';
+        $disableMoves = false;
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name);
         $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setDisableMoves($disableMoves);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -984,6 +1184,68 @@ class DataformClientTest extends GeneratedTest
             ->setWorkspaceId($workspaceId);
         try {
             $gapicClient->createWorkspace($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new DeleteFolderRequest())->setName($formattedName);
+        $gapicClient->deleteFolder($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new DeleteFolderRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteFolder($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1108,6 +1370,68 @@ class DataformClientTest extends GeneratedTest
         $request = (new DeleteRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->deleteRepository($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTeamFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new DeleteTeamFolderRequest())->setName($formattedName);
+        $gapicClient->deleteTeamFolder($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/DeleteTeamFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTeamFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new DeleteTeamFolderRequest())->setName($formattedName);
+        try {
+            $gapicClient->deleteTeamFolder($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1752,9 +2076,11 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $defaultKmsKeyName = 'defaultKmsKeyName-635012393';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Config();
         $expectedResponse->setName($name2);
         $expectedResponse->setDefaultKmsKeyName($defaultKmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
@@ -1797,6 +2123,148 @@ class DataformClientTest extends GeneratedTest
         $request = (new GetConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $containingFolder = 'containingFolder2137746239';
+        $teamFolderName = 'teamFolderName-1375688486';
+        $internalMetadata = 'internalMetadata-1087755663';
+        $creatorIamPrincipal = 'creatorIamPrincipal866086897';
+        $expectedResponse = new Folder();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setContainingFolder($containingFolder);
+        $expectedResponse->setTeamFolderName($teamFolderName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setCreatorIamPrincipal($creatorIamPrincipal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new GetFolderRequest())->setName($formattedName);
+        $response = $gapicClient->getFolder($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new GetFolderRequest())->setName($formattedName);
+        try {
+            $gapicClient->getFolder($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        $response = $gapicClient->getIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())->setResource($resource);
+        try {
+            $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1895,6 +2363,8 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $containingFolder = 'containingFolder2137746239';
+        $teamFolderName = 'teamFolderName-1375688486';
         $displayName = 'displayName1615086568';
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
@@ -1903,6 +2373,8 @@ class DataformClientTest extends GeneratedTest
         $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
+        $expectedResponse->setContainingFolder($containingFolder);
+        $expectedResponse->setTeamFolderName($teamFolderName);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
@@ -1951,6 +2423,77 @@ class DataformClientTest extends GeneratedTest
         $request = (new GetRepositoryRequest())->setName($formattedName);
         try {
             $gapicClient->getRepository($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTeamFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $internalMetadata = 'internalMetadata-1087755663';
+        $creatorIamPrincipal = 'creatorIamPrincipal866086897';
+        $expectedResponse = new TeamFolder();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setCreatorIamPrincipal($creatorIamPrincipal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new GetTeamFolderRequest())->setName($formattedName);
+        $response = $gapicClient->getTeamFolder($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/GetTeamFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTeamFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new GetTeamFolderRequest())->setName($formattedName);
+        try {
+            $gapicClient->getTeamFolder($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2139,9 +2682,11 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $internalMetadata = 'internalMetadata-1087755663';
+        $disableMoves = false;
         $expectedResponse = new Workspace();
         $expectedResponse->setName($name2);
         $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setDisableMoves($disableMoves);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workspaceName('[PROJECT]', '[LOCATION]', '[REPOSITORY]', '[WORKSPACE]');
@@ -2906,6 +3451,250 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function moveFolderTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/moveFolderTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/moveFolderTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new MoveFolderRequest())->setName($formattedName);
+        $response = $gapicClient->moveFolder($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/MoveFolder', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/moveFolderTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function moveFolderExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/moveFolderTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new MoveFolderRequest())->setName($formattedName);
+        $response = $gapicClient->moveFolder($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/moveFolderTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function moveRepositoryTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/moveRepositoryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/moveRepositoryTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new MoveRepositoryRequest())->setName($formattedName);
+        $response = $gapicClient->moveRepository($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/MoveRepository', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/moveRepositoryTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function moveRepositoryExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/moveRepositoryTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new MoveRepositoryRequest())->setName($formattedName);
+        $response = $gapicClient->moveRepository($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/moveRepositoryTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function pullGitCommitsTest()
     {
         $transport = $this->createTransport();
@@ -3196,6 +3985,77 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function queryFolderContentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $entriesElement = new FolderContentsEntry();
+        $entries = [$entriesElement];
+        $expectedResponse = new QueryFolderContentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEntries($entries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedFolder = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new QueryFolderContentsRequest())->setFolder($formattedFolder);
+        $response = $gapicClient->queryFolderContents($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEntries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/QueryFolderContents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFolder();
+        $this->assertProtobufEquals($formattedFolder, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryFolderContentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedFolder = $gapicClient->folderName('[PROJECT]', '[LOCATION]', '[FOLDER]');
+        $request = (new QueryFolderContentsRequest())->setFolder($formattedFolder);
+        try {
+            $gapicClient->queryFolderContents($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function queryRepositoryDirectoryContentsTest()
     {
         $transport = $this->createTransport();
@@ -3255,6 +4115,148 @@ class DataformClientTest extends GeneratedTest
         $request = (new QueryRepositoryDirectoryContentsRequest())->setName($formattedName);
         try {
             $gapicClient->queryRepositoryDirectoryContents($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryTeamFolderContentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $entriesElement = new TeamFolderContentsEntry();
+        $entries = [$entriesElement];
+        $expectedResponse = new QueryTeamFolderContentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEntries($entries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedTeamFolder = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new QueryTeamFolderContentsRequest())->setTeamFolder($formattedTeamFolder);
+        $response = $gapicClient->queryTeamFolderContents($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEntries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/QueryTeamFolderContents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTeamFolder();
+        $this->assertProtobufEquals($formattedTeamFolder, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryTeamFolderContentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedTeamFolder = $gapicClient->teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
+        $request = (new QueryTeamFolderContentsRequest())->setTeamFolder($formattedTeamFolder);
+        try {
+            $gapicClient->queryTeamFolderContents($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryUserRootContentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $entriesElement = new RootContentsEntry();
+        $entries = [$entriesElement];
+        $expectedResponse = new QueryUserRootContentsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setEntries($entries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new QueryUserRootContentsRequest())->setLocation($formattedLocation);
+        $response = $gapicClient->queryUserRootContents($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getEntries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/QueryUserRootContents', $actualFuncCall);
+        $actualValue = $actualRequestObject->getLocation();
+        $this->assertProtobufEquals($formattedLocation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryUserRootContentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new QueryUserRootContentsRequest())->setLocation($formattedLocation);
+        try {
+            $gapicClient->queryUserRootContents($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3754,6 +4756,215 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function searchTeamFoldersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $resultsElement = new TeamFolderSearchResult();
+        $results = [$resultsElement];
+        $expectedResponse = new SearchTeamFoldersResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResults($results);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new SearchTeamFoldersRequest())->setLocation($formattedLocation);
+        $response = $gapicClient->searchTeamFolders($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResults()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/SearchTeamFolders', $actualFuncCall);
+        $actualValue = $actualRequestObject->getLocation();
+        $this->assertProtobufEquals($formattedLocation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchTeamFoldersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new SearchTeamFoldersRequest())->setLocation($formattedLocation);
+        try {
+            $gapicClient->searchTeamFolders($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        $response = $gapicClient->setIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
+        try {
+            $gapicClient->setIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestIamPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
+        $response = $gapicClient->testIamPermissions($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
+        try {
+            $gapicClient->testIamPermissions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateConfigTest()
     {
         $transport = $this->createTransport();
@@ -3764,9 +4975,11 @@ class DataformClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $defaultKmsKeyName = 'defaultKmsKeyName-635012393';
+        $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Config();
         $expectedResponse->setName($name);
         $expectedResponse->setDefaultKmsKeyName($defaultKmsKeyName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
         $transport->addResponse($expectedResponse);
         // Mock request
         $config = new Config();
@@ -3809,6 +5022,85 @@ class DataformClientTest extends GeneratedTest
         $request = (new UpdateConfigRequest())->setConfig($config);
         try {
             $gapicClient->updateConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $containingFolder = 'containingFolder2137746239';
+        $teamFolderName = 'teamFolderName-1375688486';
+        $internalMetadata = 'internalMetadata-1087755663';
+        $creatorIamPrincipal = 'creatorIamPrincipal866086897';
+        $expectedResponse = new Folder();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setContainingFolder($containingFolder);
+        $expectedResponse->setTeamFolderName($teamFolderName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setCreatorIamPrincipal($creatorIamPrincipal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $folder = new Folder();
+        $folderDisplayName = 'folderDisplayName1703145759';
+        $folder->setDisplayName($folderDisplayName);
+        $request = (new UpdateFolderRequest())->setFolder($folder);
+        $response = $gapicClient->updateFolder($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/UpdateFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFolder();
+        $this->assertProtobufEquals($folder, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $folder = new Folder();
+        $folderDisplayName = 'folderDisplayName1703145759';
+        $folder->setDisplayName($folderDisplayName);
+        $request = (new UpdateFolderRequest())->setFolder($folder);
+        try {
+            $gapicClient->updateFolder($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3911,6 +5203,8 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $containingFolder = 'containingFolder2137746239';
+        $teamFolderName = 'teamFolderName-1375688486';
         $displayName = 'displayName1615086568';
         $npmrcEnvironmentVariablesSecretVersion = 'npmrcEnvironmentVariablesSecretVersion-2118517056';
         $setAuthenticatedUserAdmin = true;
@@ -3919,6 +5213,8 @@ class DataformClientTest extends GeneratedTest
         $internalMetadata = 'internalMetadata-1087755663';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
+        $expectedResponse->setContainingFolder($containingFolder);
+        $expectedResponse->setTeamFolderName($teamFolderName);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNpmrcEnvironmentVariablesSecretVersion($npmrcEnvironmentVariablesSecretVersion);
         $expectedResponse->setSetAuthenticatedUserAdmin($setAuthenticatedUserAdmin);
@@ -3967,6 +5263,81 @@ class DataformClientTest extends GeneratedTest
         $request = (new UpdateRepositoryRequest())->setRepository($repository);
         try {
             $gapicClient->updateRepository($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateTeamFolderTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $internalMetadata = 'internalMetadata-1087755663';
+        $creatorIamPrincipal = 'creatorIamPrincipal866086897';
+        $expectedResponse = new TeamFolder();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setInternalMetadata($internalMetadata);
+        $expectedResponse->setCreatorIamPrincipal($creatorIamPrincipal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $teamFolder = new TeamFolder();
+        $teamFolderDisplayName = 'teamFolderDisplayName136139842';
+        $teamFolder->setDisplayName($teamFolderDisplayName);
+        $request = (new UpdateTeamFolderRequest())->setTeamFolder($teamFolder);
+        $response = $gapicClient->updateTeamFolder($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataform.v1beta1.Dataform/UpdateTeamFolder', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTeamFolder();
+        $this->assertProtobufEquals($teamFolder, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateTeamFolderExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $teamFolder = new TeamFolder();
+        $teamFolderDisplayName = 'teamFolderDisplayName136139842';
+        $teamFolder->setDisplayName($teamFolderDisplayName);
+        $request = (new UpdateTeamFolderRequest())->setTeamFolder($teamFolder);
+        try {
+            $gapicClient->updateTeamFolder($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4145,6 +5516,272 @@ class DataformClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function cancelOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new CancelOperationRequest())->setName($name);
+        $gapicClient->cancelOperation($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/CancelOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new CancelOperationRequest())->setName($name);
+        try {
+            $gapicClient->cancelOperation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new DeleteOperationRequest())->setName($name);
+        $gapicClient->deleteOperation($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/DeleteOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new DeleteOperationRequest())->setName($name);
+        try {
+            $gapicClient->deleteOperation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $done = true;
+        $expectedResponse = new Operation();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDone($done);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new GetOperationRequest())->setName($name);
+        $response = $gapicClient->getOperation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new GetOperationRequest())->setName($name);
+        try {
+            $gapicClient->getOperation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listOperationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $operationsElement = new Operation();
+        $operations = [$operationsElement];
+        $expectedResponse = new ListOperationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setOperations($operations);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $filter = 'filter-1274492040';
+        $request = (new ListOperationsRequest())->setName($name)->setFilter($filter);
+        $response = $gapicClient->listOperations($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getOperations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/ListOperations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getFilter();
+        $this->assertProtobufEquals($filter, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listOperationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $filter = 'filter-1274492040';
+        $request = (new ListOperationsRequest())->setName($name)->setFilter($filter);
+        try {
+            $gapicClient->listOperations($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -4261,211 +5898,6 @@ class DataformClientTest extends GeneratedTest
         $request = new ListLocationsRequest();
         try {
             $gapicClient->listLocations($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getIamPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $version = 351608024;
-        $etag = '21';
-        $expectedResponse = new Policy();
-        $expectedResponse->setVersion($version);
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())->setResource($resource);
-        $response = $gapicClient->getIamPolicy($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getIamPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())->setResource($resource);
-        try {
-            $gapicClient->getIamPolicy($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function setIamPolicyTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $version = 351608024;
-        $etag = '21';
-        $expectedResponse = new Policy();
-        $expectedResponse->setVersion($version);
-        $expectedResponse->setEtag($etag);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
-        $response = $gapicClient->setIamPolicy($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function setIamPolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $policy = new Policy();
-        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
-        try {
-            $gapicClient->setIamPolicy($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function testIamPermissionsTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new TestIamPermissionsResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
-        $response = $gapicClient->testIamPermissions($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
-        $actualValue = $actualRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getPermissions();
-        $this->assertProtobufEquals($permissions, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function testIamPermissionsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $resource = 'resource-341064690';
-        $permissions = [];
-        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
-        try {
-            $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
