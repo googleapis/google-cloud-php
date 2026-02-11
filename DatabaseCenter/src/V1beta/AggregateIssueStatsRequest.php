@@ -38,10 +38,10 @@ class AggregateIssueStatsRequest extends \Google\Protobuf\Internal\Message
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,10 +85,10 @@ class AggregateIssueStatsRequest extends \Google\Protobuf\Internal\Message
      *           operators `AND` and `OR`. When `AND` and `OR` are both used in the
      *           expression, parentheses must be appropriately used to group the
      *           combinations.
-     *           Example: location="us-east1"
-     *           Example: container="projects/123" OR container="projects/456"
-     *           Example: (container="projects/123" OR
-     *                     container="projects/456") AND location="us-east1"
+     *           Example: `location="us-east1"`
+     *           Example: `container="projects/123" OR container="projects/456"`
+     *           Example: `(container="projects/123" OR
+     *                     container="projects/456") AND location="us-east1"`
      *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>|\Google\Protobuf\Internal\RepeatedField $signal_type_groups
      *           Optional. Lists of signal types that are issues.
      *     @type \Google\Type\Date $baseline_date
@@ -150,10 +150,10 @@ class AggregateIssueStatsRequest extends \Google\Protobuf\Internal\Message
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -173,10 +173,10 @@ class AggregateIssueStatsRequest extends \Google\Protobuf\Internal\Message
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
