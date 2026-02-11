@@ -59,6 +59,15 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
     protected $order_by = '';
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field in Feature proto
+     * will be populated. If set to false, the request will fail when some regions
+     * are unreachable.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_partial_success = false;
 
     /**
      * @param string $parent Required. The parent (project and location) where the Features will be
@@ -104,6 +113,11 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $order_by
      *           One or more fields to compare and use to sort the output.
      *           See https://google.aip.dev/132#ordering.
+     *     @type bool $return_partial_success
+     *           Optional. If set to true, the response will return partial results when
+     *           some regions are unreachable and the unreachable field in Feature proto
+     *           will be populated. If set to false, the request will fail when some regions
+     *           are unreachable.
      * }
      */
     public function __construct($data = NULL) {
@@ -265,6 +279,38 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field in Feature proto
+     * will be populated. If set to false, the request will fail when some regions
+     * are unreachable.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * Optional. If set to true, the response will return partial results when
+     * some regions are unreachable and the unreachable field in Feature proto
+     * will be populated. If set to false, the request will fail when some regions
+     * are unreachable.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }
