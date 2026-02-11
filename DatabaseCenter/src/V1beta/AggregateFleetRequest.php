@@ -38,10 +38,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,9 +79,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      * descending order. Add "ASC" after the field name to indicate ascending
      * order. It supports ordering using multiple fields.
      * For example:
-     *  order_by = "resource_groups_count" sorts response in ascending order
-     *  order_by = "resource_groups_count DESC" sorts response in descending order
-     *  order_by = "product.type, product.version DESC, location" orders by type
+     *  `order_by = "resource_groups_count"` sorts response in ascending order
+     *  `order_by = "resource_groups_count DESC"` sorts response in descending
+     *  order
+     *  `order_by = "product.type, product.version DESC, location"` orders by type
      *  in ascending order, version in descending order and location in ascending
      *  order
      *
@@ -138,10 +139,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      *           operators `AND` and `OR`. When `AND` and `OR` are both used in the
      *           expression, parentheses must be appropriately used to group the
      *           combinations.
-     *           Example: location="us-east1"
-     *           Example: container="projects/123" OR container="projects/456"
-     *           Example: (container="projects/123" OR
-     *                     container="projects/456") AND location="us-east1"
+     *           Example: `location="us-east1"`
+     *           Example: `container="projects/123" OR container="projects/456"`
+     *           Example: `(container="projects/123" OR
+     *                     container="projects/456") AND location="us-east1"`
      *     @type string $group_by
      *           Optional. A field that statistics are grouped by.
      *           Valid values are any combination of the following:
@@ -171,9 +172,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      *           descending order. Add "ASC" after the field name to indicate ascending
      *           order. It supports ordering using multiple fields.
      *           For example:
-     *            order_by = "resource_groups_count" sorts response in ascending order
-     *            order_by = "resource_groups_count DESC" sorts response in descending order
-     *            order_by = "product.type, product.version DESC, location" orders by type
+     *            `order_by = "resource_groups_count"` sorts response in ascending order
+     *            `order_by = "resource_groups_count DESC"` sorts response in descending
+     *            order
+     *            `order_by = "product.type, product.version DESC, location"` orders by type
      *            in ascending order, version in descending order and location in ascending
      *            order
      *     @type int $page_size
@@ -245,10 +247,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -268,10 +270,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -356,9 +358,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      * descending order. Add "ASC" after the field name to indicate ascending
      * order. It supports ordering using multiple fields.
      * For example:
-     *  order_by = "resource_groups_count" sorts response in ascending order
-     *  order_by = "resource_groups_count DESC" sorts response in descending order
-     *  order_by = "product.type, product.version DESC, location" orders by type
+     *  `order_by = "resource_groups_count"` sorts response in ascending order
+     *  `order_by = "resource_groups_count DESC"` sorts response in descending
+     *  order
+     *  `order_by = "product.type, product.version DESC, location"` orders by type
      *  in ascending order, version in descending order and location in ascending
      *  order
      *
@@ -379,9 +382,10 @@ class AggregateFleetRequest extends \Google\Protobuf\Internal\Message
      * descending order. Add "ASC" after the field name to indicate ascending
      * order. It supports ordering using multiple fields.
      * For example:
-     *  order_by = "resource_groups_count" sorts response in ascending order
-     *  order_by = "resource_groups_count DESC" sorts response in descending order
-     *  order_by = "product.type, product.version DESC, location" orders by type
+     *  `order_by = "resource_groups_count"` sorts response in ascending order
+     *  `order_by = "resource_groups_count DESC"` sorts response in descending
+     *  order
+     *  `order_by = "product.type, product.version DESC, location"` orders by type
      *  in ascending order, version in descending order and location in ascending
      *  order
      *

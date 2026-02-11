@@ -25,6 +25,11 @@
                                 "queryDatabaseResourceGroups"
                             ]
                         },
+                        "QueryIssues": {
+                            "methods": [
+                                "queryIssues"
+                            ]
+                        },
                         "QueryProducts": {
                             "methods": [
                                 "queryProducts"

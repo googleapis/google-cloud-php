@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message to aggregate a fleet by some group by fields.
+ * The response message to aggregate a fleet by some group by
+ * fields.
  *
  * Generated from protobuf message <code>google.cloud.databasecenter.v1beta.AggregateFleetResponse</code>
  */

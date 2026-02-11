@@ -51,6 +51,18 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsResponse',
             ],
+            'QueryIssues' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceIssues',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DatabaseCenter\V1beta\QueryIssuesResponse',
+            ],
             'QueryProducts' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

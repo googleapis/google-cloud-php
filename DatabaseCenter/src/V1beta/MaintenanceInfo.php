@@ -28,10 +28,10 @@ class MaintenanceInfo extends \Google\Protobuf\Internal\Message
      */
     private $deny_maintenance_schedules;
     /**
-     * Optional. Current Maintenance version of the database resource. Example:
+     * Output only. Current Maintenance version of the database resource. Example:
      * "MYSQL_8_0_41.R20250531.01_15"
      *
-     * Generated from protobuf field <code>string maintenance_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string maintenance_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $maintenance_version = '';
 
@@ -46,7 +46,7 @@ class MaintenanceInfo extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceDenySchedule>|\Google\Protobuf\Internal\RepeatedField $deny_maintenance_schedules
      *           Optional. List of Deny maintenance period for the database resource.
      *     @type string $maintenance_version
-     *           Optional. Current Maintenance version of the database resource. Example:
+     *           Output only. Current Maintenance version of the database resource. Example:
      *           "MYSQL_8_0_41.R20250531.01_15"
      * }
      */
@@ -118,10 +118,10 @@ class MaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Current Maintenance version of the database resource. Example:
+     * Output only. Current Maintenance version of the database resource. Example:
      * "MYSQL_8_0_41.R20250531.01_15"
      *
-     * Generated from protobuf field <code>string maintenance_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string maintenance_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getMaintenanceVersion()
@@ -130,10 +130,10 @@ class MaintenanceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Current Maintenance version of the database resource. Example:
+     * Output only. Current Maintenance version of the database resource. Example:
      * "MYSQL_8_0_41.R20250531.01_15"
      *
-     * Generated from protobuf field <code>string maintenance_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string maintenance_version = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
