@@ -21,20 +21,20 @@ class State
     const STATE_UNSPECIFIED = 0;
     /**
      * The Feature is being enabled, and the Feature resource is being created.
-     * Once complete, the corresponding Feature will be enabled in this Hub.
+     * Once complete, the corresponding Feature will be enabled in this Fleet.
      *
      * Generated from protobuf enum <code>ENABLING = 1;</code>
      */
     const ENABLING = 1;
     /**
-     * The Feature is enabled in this Hub, and the Feature resource is fully
+     * The Feature is enabled in this Fleet, and the Feature resource is fully
      * available.
      *
      * Generated from protobuf enum <code>ACTIVE = 2;</code>
      */
     const ACTIVE = 2;
     /**
-     * The Feature is being disabled in this Hub, and the Feature resource
+     * The Feature is being disabled in this Fleet, and the Feature resource
      * is being deleted.
      *
      * Generated from protobuf enum <code>DISABLING = 3;</code>

@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CreateFleet' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/fleets',
+                'body' => 'fleet',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMembership' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/memberships',
@@ -50,9 +62,95 @@ return [
                     'membership_id',
                 ],
             ],
+            'CreateMembershipBinding' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/memberships/*}/bindings',
+                'body' => 'membership_binding',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'membership_binding_id',
+                ],
+            ],
+            'CreateMembershipRBACRoleBinding' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/memberships/*}/rbacrolebindings',
+                'body' => 'rbacrolebinding',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'rbacrolebinding_id',
+                ],
+            ],
+            'CreateScope' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/scopes',
+                'body' => 'scope',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'scope_id',
+                ],
+            ],
+            'CreateScopeNamespace' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/scopes/*}/namespaces',
+                'body' => 'scope_namespace',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'scope_namespace_id',
+                ],
+            ],
+            'CreateScopeRBACRoleBinding' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/scopes/*}/rbacrolebindings',
+                'body' => 'rbacrolebinding',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'rbacrolebinding_id',
+                ],
+            ],
             'DeleteFeature' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/features/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFleet' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/fleets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -72,6 +170,61 @@ return [
                     ],
                 ],
             ],
+            'DeleteMembershipBinding' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/memberships/*/bindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMembershipRBACRoleBinding' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/memberships/*/rbacrolebindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteScope' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/scopes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteScopeNamespace' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/scopes/*/namespaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteScopeRBACRoleBinding' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/scopes/*/rbacrolebindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateConnectManifest' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/memberships/*}:generateConnectManifest',
@@ -83,9 +236,32 @@ return [
                     ],
                 ],
             ],
+            'GenerateMembershipRBACRoleBindingYAML' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/memberships/*}/rbacrolebindings:generateMembershipRBACRoleBindingYAML',
+                'body' => 'rbacrolebinding',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetFeature' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/features/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFleet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/fleets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -105,6 +281,72 @@ return [
                     ],
                 ],
             ],
+            'GetMembershipBinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/memberships/*/bindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMembershipRBACRoleBinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/memberships/*/rbacrolebindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetScope' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/scopes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetScopeNamespace' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/scopes/*/namespaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetScopeRBACRoleBinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/scopes/*/rbacrolebindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBoundMemberships' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope_name=projects/*/locations/*/scopes/*}:listMemberships',
+                'placeholders' => [
+                    'scope_name' => [
+                        'getters' => [
+                            'getScopeName',
+                        ],
+                    ],
+                ],
+            ],
             'ListFeatures' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/features',
@@ -116,9 +358,92 @@ return [
                     ],
                 ],
             ],
+            'ListFleets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/fleets',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/fleets',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMembershipBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/memberships/*}/bindings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMembershipRBACRoleBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/memberships/*}/rbacrolebindings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMemberships' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/memberships',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPermittedScopes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/scopes:listPermitted',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListScopeNamespaces' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/scopes/*}/namespaces',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListScopeRBACRoleBindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/scopes/*}/rbacrolebindings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListScopes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/scopes',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -139,6 +464,22 @@ return [
                     ],
                 ],
             ],
+            'UpdateFleet' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{fleet.name=projects/*/locations/*/fleets/*}',
+                'body' => 'fleet',
+                'placeholders' => [
+                    'fleet.name' => [
+                        'getters' => [
+                            'getFleet',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateMembership' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/memberships/*}',
@@ -146,6 +487,86 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateMembershipBinding' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{membership_binding.name=projects/*/locations/*/memberships/*/bindings/*}',
+                'body' => 'membership_binding',
+                'placeholders' => [
+                    'membership_binding.name' => [
+                        'getters' => [
+                            'getMembershipBinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateMembershipRBACRoleBinding' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{rbacrolebinding.name=projects/*/locations/*/memberships/*/rbacrolebindings/*}',
+                'body' => 'rbacrolebinding',
+                'placeholders' => [
+                    'rbacrolebinding.name' => [
+                        'getters' => [
+                            'getRbacrolebinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateScope' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{scope.name=projects/*/locations/*/scopes/*}',
+                'body' => 'scope',
+                'placeholders' => [
+                    'scope.name' => [
+                        'getters' => [
+                            'getScope',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateScopeNamespace' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{scope_namespace.name=projects/*/locations/*/scopes/*/namespaces/*}',
+                'body' => 'scope_namespace',
+                'placeholders' => [
+                    'scope_namespace.name' => [
+                        'getters' => [
+                            'getScopeNamespace',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateScopeRBACRoleBinding' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{rbacrolebinding.name=projects/*/locations/*/scopes/*/rbacrolebindings/*}',
+                'body' => 'rbacrolebinding',
+                'placeholders' => [
+                    'rbacrolebinding.name' => [
+                        'getters' => [
+                            'getRbacrolebinding',
                             'getName',
                         ],
                     ],

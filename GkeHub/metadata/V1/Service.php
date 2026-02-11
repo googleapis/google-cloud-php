@@ -19,28 +19,164 @@ class Service
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Gkehub\V1\Feature::initOnce();
+        \GPBMetadata\Google\Cloud\Gkehub\V1\Fleet::initOnce();
         \GPBMetadata\Google\Cloud\Gkehub\V1\Membership::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-—)
-$google/cloud/gkehub/v1/service.protogoogle.cloud.gkehub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/gkehub/v1/feature.proto\'google/cloud/gkehub/v1/membership.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¯
+‚
+$google/cloud/gkehub/v1/service.protogoogle.cloud.gkehub.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/gkehub/v1/feature.proto"google/cloud/gkehub/v1/fleet.proto\'google/cloud/gkehub/v1/membership.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Q
+GetScopeNamespaceRequest5
+name (	B\'àAúA!
+gkehub.googleapis.com/Namespace"¸
+CreateScopeNamespaceRequest7
+parent (	B\'àAúA!gkehub.googleapis.com/Namespace
+scope_namespace_id (	BàA?
+scope_namespace (2!.google.cloud.gkehub.v1.NamespaceBàA"”
+UpdateScopeNamespaceRequest?
+scope_namespace (2!.google.cloud.gkehub.v1.NamespaceBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"T
+DeleteScopeNamespaceRequest5
+name (	B\'àAúA!
+gkehub.googleapis.com/Namespace"†
+ListScopeNamespacesRequest7
+parent (	B\'àAúA!gkehub.googleapis.com/Namespace
+	page_size (BàA
+
+page_token (	BàA"s
+ListScopeNamespacesResponse;
+scope_namespaces (2!.google.cloud.gkehub.v1.Namespace
+next_page_token (	"]
+GetScopeRBACRoleBindingRequest;
+name (	B-àAúA\'
+%gkehub.googleapis.com/RBACRoleBinding"Ê
+!CreateScopeRBACRoleBindingRequest=
+parent (	B-àAúA\'%gkehub.googleapis.com/RBACRoleBinding
+rbacrolebinding_id (	BàAE
+rbacrolebinding (2\'.google.cloud.gkehub.v1.RBACRoleBindingBàA" 
+!UpdateScopeRBACRoleBindingRequestE
+rbacrolebinding (2\'.google.cloud.gkehub.v1.RBACRoleBindingBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"`
+!DeleteScopeRBACRoleBindingRequest;
+name (	B-àAúA\'
+%gkehub.googleapis.com/RBACRoleBinding"’
+ ListScopeRBACRoleBindingsRequest=
+parent (	B-àAúA\'%gkehub.googleapis.com/RBACRoleBinding
+	page_size (BàA
+
+page_token (	BàA"
+!ListScopeRBACRoleBindingsResponseA
+rbacrolebindings (2\'.google.cloud.gkehub.v1.RBACRoleBinding
+next_page_token (	"D
+GetScopeRequest1
+name (	B#àAúA
+gkehub.googleapis.com/Scope"“
+CreateScopeRequest3
+parent (	B#àAúAgkehub.googleapis.com/Scope
+scope_id (	BàA1
+scope (2.google.cloud.gkehub.v1.ScopeBàA"}
+UpdateScopeRequest1
+scope (2.google.cloud.gkehub.v1.ScopeBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"G
+DeleteScopeRequest1
+name (	B#àAúA
+gkehub.googleapis.com/Scope"y
+ListScopesRequest3
+parent (	B#àAúAgkehub.googleapis.com/Scope
+	page_size (BàA
+
+page_token (	BàA"\\
+ListScopesResponse-
+scopes (2.google.cloud.gkehub.v1.Scope
+next_page_token (	"‚
+ListPermittedScopesRequest3
+parent (	B#àAúAgkehub.googleapis.com/Scope
+	page_size (BàA
+
+page_token (	BàA"e
+ListPermittedScopesResponse-
+scopes (2.google.cloud.gkehub.v1.Scope
+next_page_token (	"\\
+GetMembershipBindingRequest=
+name (	B/àAúA)
+\'gkehub.googleapis.com/MembershipBinding"Ñ
+CreateMembershipBindingRequest?
+parent (	B/àAúA)\'gkehub.googleapis.com/MembershipBindingJ
+membership_binding (2).google.cloud.gkehub.v1.MembershipBindingBàA"
+membership_binding_id (	BàA"¢
+UpdateMembershipBindingRequestJ
+membership_binding (2).google.cloud.gkehub.v1.MembershipBindingBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"_
+DeleteMembershipBindingRequest=
+name (	B/àAúA)
+\'gkehub.googleapis.com/MembershipBinding"¦
+ListMembershipBindingsRequest?
+parent (	B/àAúA)\'gkehub.googleapis.com/MembershipBinding
+	page_size (BàA
+
+page_token (	BàA
+filter (	BàA"–
+ListMembershipBindingsResponseF
+membership_bindings (2).google.cloud.gkehub.v1.MembershipBinding
+next_page_token (	
+unreachable (	"¯
 ListMembershipsRequest8
 parent (	B(àAúA" gkehub.googleapis.com/Membership
 	page_size (BàA
 
 page_token (	BàA
 filter (	BàA
-order_by (	BàA"~
+order_by (	BàA"b
+#GetMembershipRBACRoleBindingRequest;
+name (	B-àAúA\'
+%gkehub.googleapis.com/RBACRoleBinding"Ï
+&CreateMembershipRBACRoleBindingRequest=
+parent (	B-àAúA\'%gkehub.googleapis.com/RBACRoleBinding
+rbacrolebinding_id (	BàAE
+rbacrolebinding (2\'.google.cloud.gkehub.v1.RBACRoleBindingBàA"¥
+&UpdateMembershipRBACRoleBindingRequestE
+rbacrolebinding (2\'.google.cloud.gkehub.v1.RBACRoleBindingBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"e
+&DeleteMembershipRBACRoleBindingRequest;
+name (	B-àAúA\'
+%gkehub.googleapis.com/RBACRoleBinding"—
+%ListMembershipRBACRoleBindingsRequest=
+parent (	B-àAúA\'%gkehub.googleapis.com/RBACRoleBinding
+	page_size (BàA
+
+page_token (	BàA"™
+&ListMembershipRBACRoleBindingsResponseA
+rbacrolebindings (2\'.google.cloud.gkehub.v1.RBACRoleBinding
+next_page_token (	
+unreachable (	"Ğ
+,GenerateMembershipRBACRoleBindingYAMLRequest8
+parent (	B(àAúA"
+ gkehub.googleapis.com/Membership
+rbacrolebinding_id (	BàAE
+rbacrolebinding (2\'.google.cloud.gkehub.v1.RBACRoleBindingBàA"K
+-GenerateMembershipRBACRoleBindingYAMLResponse
+role_bindings_yaml (	"~
 ListMembershipsResponse5
 	resources (2".google.cloud.gkehub.v1.Membership
 next_page_token (	
 unreachable (	"N
 GetMembershipRequest6
 name (	B(àAúA"
- gkehub.googleapis.com/Membership"Ã
+ gkehub.googleapis.com/Membership"œ
+ListBoundMembershipsRequest7
+
+scope_name (	B#àAúA
+gkehub.googleapis.com/Scope
+filter (	BàA
+	page_size (BàA
+
+page_token (	BàA"…
+ListBoundMembershipsResponse7
+memberships (2".google.cloud.gkehub.v1.Membership
+unreachable (	
+next_page_token (	"Ã
 CreateMembershipRequest8
 parent (	B(àAúA" gkehub.googleapis.com/Membership
 membership_id (	BàA9
@@ -77,20 +213,22 @@ is_upgrade (BàA
 manifest (	"-
 TypeMeta
 kind (	
-api_version (	"’
+api_version (	"·
 ListFeaturesRequest2
 parent (	B"úAgkehub.googleapis.com/Feature
 	page_size (
 
 page_token (	
 filter (	
-order_by (	"c
+order_by (	#
+return_partial_success (BàA"c
 ListFeaturesResponse2
 	resources (2.google.cloud.gkehub.v1.Feature
-next_page_token (	"E
+next_page_token (	"j
 GetFeatureRequest0
 name (	B"úA
-gkehub.googleapis.com/Feature"¥
+gkehub.googleapis.com/Feature#
+return_partial_success (BàA"¥
 CreateFeatureRequest2
 parent (	B"úAgkehub.googleapis.com/Feature
 
@@ -110,7 +248,29 @@ request_id (	BàA"À
 update_mask (2.google.protobuf.FieldMask1
 resource (2.google.cloud.gkehub.v1.Feature
 
-request_id (	"ù
+request_id (	"‚
+CreateFleetRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location1
+fleet (2.google.cloud.gkehub.v1.FleetBàA"D
+GetFleetRequest1
+name (	B#àAúA
+gkehub.googleapis.com/Fleet"}
+UpdateFleetRequest1
+fleet (2.google.cloud.gkehub.v1.FleetBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"G
+DeleteFleetRequest1
+name (	B#àAúA
+gkehub.googleapis.com/Fleet"
+ListFleetsRequest9
+parent (	B)àAúA#
+!locations.googleapis.com/Location
+
+page_token (	BàA
+	page_size (BàA"\\
+ListFleetsResponse-
+fleets (2.google.cloud.gkehub.v1.Fleet
+next_page_token (	"ù
 OperationMetadata4
 create_time (2.google.protobuf.TimestampBàA1
 end_time (2.google.protobuf.TimestampBàA
@@ -118,9 +278,11 @@ request_id (	"ù
 verb (	BàA
 status_detail (	BàA
 cancel_requested (BàA
-api_version (	BàA2ğ
+api_version (	BàA2–M
 GkeHub´
-ListMemberships..google.cloud.gkehub.v1.ListMembershipsRequest/.google.cloud.gkehub.v1.ListMembershipsResponse"@ÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/memberships¨
+ListMemberships..google.cloud.gkehub.v1.ListMembershipsRequest/.google.cloud.gkehub.v1.ListMembershipsResponse"@ÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/membershipsØ
+ListBoundMemberships3.google.cloud.gkehub.v1.ListBoundMembershipsRequest4.google.cloud.gkehub.v1.ListBoundMembershipsResponse"UÚA
+scope_name‚Óä“B@/v1/{scope_name=projects/*/locations/*/scopes/*}:listMemberships¨
 ListFeatures+.google.cloud.gkehub.v1.ListFeaturesRequest,.google.cloud.gkehub.v1.ListFeaturesResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/features¡
 GetMembership,.google.cloud.gkehub.v1.GetMembershipRequest".google.cloud.gkehub.v1.Membership">ÚAname‚Óä“1//v1/{name=projects/*/locations/*/memberships/*}•
 
@@ -139,7 +301,59 @@ MembershipOperationMetadataÚAparent,resource,membership_id‚Óä“;"//v1/{parent
 MembershipOperationMetadataÚAname,resource,update_mask‚Óä“;2//v1/{name=projects/*/locations/*/memberships/*}:resource×
 UpdateFeature,.google.cloud.gkehub.v1.UpdateFeatureRequest.google.longrunning.Operation"yÊA
 FeatureOperationMetadataÚAname,resource,update_mask‚Óä“82,/v1/{name=projects/*/locations/*/features/*}:resourceÛ
-GenerateConnectManifest6.google.cloud.gkehub.v1.GenerateConnectManifestRequest7.google.cloud.gkehub.v1.GenerateConnectManifestResponse"O‚Óä“IG/v1/{name=projects/*/locations/*/memberships/*}:generateConnectManifestIÊAgkehub.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB®
+GenerateConnectManifest6.google.cloud.gkehub.v1.GenerateConnectManifestRequest7.google.cloud.gkehub.v1.GenerateConnectManifestResponse"O‚Óä“IG/v1/{name=projects/*/locations/*/memberships/*}:generateConnectManifest¿
+CreateFleet*.google.cloud.gkehub.v1.CreateFleetRequest.google.longrunning.Operation"eÊA
+FleetOperationMetadataÚAparent,fleet‚Óä“3"*/v1/{parent=projects/*/locations/*}/fleets:fleet
+GetFleet\'.google.cloud.gkehub.v1.GetFleetRequest.google.cloud.gkehub.v1.Fleet"9ÚAname‚Óä“,*/v1/{name=projects/*/locations/*/fleets/*}Ê
+UpdateFleet*.google.cloud.gkehub.v1.UpdateFleetRequest.google.longrunning.Operation"pÊA
+FleetOperationMetadataÚAfleet,update_mask‚Óä“920/v1/{fleet.name=projects/*/locations/*/fleets/*}:fleetÀ
+DeleteFleet*.google.cloud.gkehub.v1.DeleteFleetRequest.google.longrunning.Operation"fÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/fleets/*}Ó
+
+ListFleets).google.cloud.gkehub.v1.ListFleetsRequest*.google.cloud.gkehub.v1.ListFleetsResponse"nÚAparent‚Óä“_*/v1/{parent=projects/*/locations/*}/fleetsZ1//v1/{parent=organizations/*/locations/*}/fleets°
+GetScopeNamespace0.google.cloud.gkehub.v1.GetScopeNamespaceRequest!.google.cloud.gkehub.v1.Namespace"FÚAname‚Óä“97/v1/{name=projects/*/locations/*/scopes/*/namespaces/*}Š
+CreateScopeNamespace3.google.cloud.gkehub.v1.CreateScopeNamespaceRequest.google.longrunning.Operation"ÊA
+	NamespaceOperationMetadataÚA)parent,scope_namespace,scope_namespace_id‚Óä“J"7/v1/{parent=projects/*/locations/*/scopes/*}/namespaces:scope_namespaceŒ
+UpdateScopeNamespace3.google.cloud.gkehub.v1.UpdateScopeNamespaceRequest.google.longrunning.Operation"ŸÊA
+	NamespaceOperationMetadataÚAscope_namespace,update_mask‚Óä“Z2G/v1/{scope_namespace.name=projects/*/locations/*/scopes/*/namespaces/*}:scope_namespaceß
+DeleteScopeNamespace3.google.cloud.gkehub.v1.DeleteScopeNamespaceRequest.google.longrunning.Operation"sÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“9*7/v1/{name=projects/*/locations/*/scopes/*/namespaces/*}È
+ListScopeNamespaces2.google.cloud.gkehub.v1.ListScopeNamespacesRequest3.google.cloud.gkehub.v1.ListScopeNamespacesResponse"HÚAparent‚Óä“97/v1/{parent=projects/*/locations/*/scopes/*}/namespacesÈ
+GetScopeRBACRoleBinding6.google.cloud.gkehub.v1.GetScopeRBACRoleBindingRequest\'.google.cloud.gkehub.v1.RBACRoleBinding"LÚAname‚Óä“?=/v1/{name=projects/*/locations/*/scopes/*/rbacrolebindings/*}¢
+CreateScopeRBACRoleBinding9.google.cloud.gkehub.v1.CreateScopeRBACRoleBindingRequest.google.longrunning.Operation"©ÊA$
+RBACRoleBindingOperationMetadataÚA)parent,rbacrolebinding,rbacrolebinding_id‚Óä“P"=/v1/{parent=projects/*/locations/*/scopes/*}/rbacrolebindings:rbacrolebinding¤
+UpdateScopeRBACRoleBinding9.google.cloud.gkehub.v1.UpdateScopeRBACRoleBindingRequest.google.longrunning.Operation"«ÊA$
+RBACRoleBindingOperationMetadataÚArbacrolebinding,update_mask‚Óä“`2M/v1/{rbacrolebinding.name=projects/*/locations/*/scopes/*/rbacrolebindings/*}:rbacrolebindingñ
+DeleteScopeRBACRoleBinding9.google.cloud.gkehub.v1.DeleteScopeRBACRoleBindingRequest.google.longrunning.Operation"yÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“?*=/v1/{name=projects/*/locations/*/scopes/*/rbacrolebindings/*}à
+ListScopeRBACRoleBindings8.google.cloud.gkehub.v1.ListScopeRBACRoleBindingsRequest9.google.cloud.gkehub.v1.ListScopeRBACRoleBindingsResponse"NÚAparent‚Óä“?=/v1/{parent=projects/*/locations/*/scopes/*}/rbacrolebindings
+GetScope\'.google.cloud.gkehub.v1.GetScopeRequest.google.cloud.gkehub.v1.Scope"9ÚAname‚Óä“,*/v1/{name=projects/*/locations/*/scopes/*}È
+CreateScope*.google.cloud.gkehub.v1.CreateScopeRequest.google.longrunning.Operation"nÊA
+ScopeOperationMetadataÚAparent,scope,scope_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/scopes:scopeÊ
+UpdateScope*.google.cloud.gkehub.v1.UpdateScopeRequest.google.longrunning.Operation"pÊA
+ScopeOperationMetadataÚAscope,update_mask‚Óä“920/v1/{scope.name=projects/*/locations/*/scopes/*}:scopeÀ
+DeleteScope*.google.cloud.gkehub.v1.DeleteScopeRequest.google.longrunning.Operation"fÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/scopes/*} 
+
+ListScopes).google.cloud.gkehub.v1.ListScopesRequest*.google.cloud.gkehub.v1.ListScopesResponse";ÚAparent‚Óä“,*/v1/{parent=projects/*/locations/*}/scopesÉ
+ListPermittedScopes2.google.cloud.gkehub.v1.ListPermittedScopesRequest3.google.cloud.gkehub.v1.ListPermittedScopesResponse"IÚAparent‚Óä“:8/v1/{parent=projects/*/locations/*}/scopes:listPermittedÁ
+GetMembershipBinding3.google.cloud.gkehub.v1.GetMembershipBindingRequest).google.cloud.gkehub.v1.MembershipBinding"IÚAname‚Óä“<:/v1/{name=projects/*/locations/*/memberships/*/bindings/*}¤
+CreateMembershipBinding6.google.cloud.gkehub.v1.CreateMembershipBindingRequest.google.longrunning.Operation"±ÊA&
+MembershipBindingOperationMetadataÚA/parent,membership_binding,membership_binding_id‚Óä“P":/v1/{parent=projects/*/locations/*/memberships/*}/bindings:membership_binding¦
+UpdateMembershipBinding6.google.cloud.gkehub.v1.UpdateMembershipBindingRequest.google.longrunning.Operation"³ÊA&
+MembershipBindingOperationMetadataÚAmembership_binding,update_mask‚Óä“c2M/v1/{membership_binding.name=projects/*/locations/*/memberships/*/bindings/*}:membership_bindingè
+DeleteMembershipBinding6.google.cloud.gkehub.v1.DeleteMembershipBindingRequest.google.longrunning.Operation"vÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“<*:/v1/{name=projects/*/locations/*/memberships/*/bindings/*}Ô
+ListMembershipBindings5.google.cloud.gkehub.v1.ListMembershipBindingsRequest6.google.cloud.gkehub.v1.ListMembershipBindingsResponse"KÚAparent‚Óä“<:/v1/{parent=projects/*/locations/*/memberships/*}/bindings×
+GetMembershipRBACRoleBinding;.google.cloud.gkehub.v1.GetMembershipRBACRoleBindingRequest\'.google.cloud.gkehub.v1.RBACRoleBinding"QÚAname‚Óä“DB/v1/{name=projects/*/locations/*/memberships/*/rbacrolebindings/*}±
+CreateMembershipRBACRoleBinding>.google.cloud.gkehub.v1.CreateMembershipRBACRoleBindingRequest.google.longrunning.Operation"®ÊA$
+RBACRoleBindingOperationMetadataÚA)parent,rbacrolebinding,rbacrolebinding_id‚Óä“U"B/v1/{parent=projects/*/locations/*/memberships/*}/rbacrolebindings:rbacrolebinding³
+UpdateMembershipRBACRoleBinding>.google.cloud.gkehub.v1.UpdateMembershipRBACRoleBindingRequest.google.longrunning.Operation"°ÊA$
+RBACRoleBindingOperationMetadataÚArbacrolebinding,update_mask‚Óä“e2R/v1/{rbacrolebinding.name=projects/*/locations/*/memberships/*/rbacrolebindings/*}:rbacrolebinding€
+DeleteMembershipRBACRoleBinding>.google.cloud.gkehub.v1.DeleteMembershipRBACRoleBindingRequest.google.longrunning.Operation"~ÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“D*B/v1/{name=projects/*/locations/*/memberships/*/rbacrolebindings/*}ô
+ListMembershipRBACRoleBindings=.google.cloud.gkehub.v1.ListMembershipRBACRoleBindingsRequest>.google.cloud.gkehub.v1.ListMembershipRBACRoleBindingsResponse"SÚAparent‚Óä“DB/v1/{parent=projects/*/locations/*/memberships/*}/rbacrolebindings¸
+%GenerateMembershipRBACRoleBindingYAMLD.google.cloud.gkehub.v1.GenerateMembershipRBACRoleBindingYAMLRequestE.google.cloud.gkehub.v1.GenerateMembershipRBACRoleBindingYAMLResponse"‚Óä“{"h/v1/{parent=projects/*/locations/*/memberships/*}/rbacrolebindings:generateMembershipRBACRoleBindingYAML:rbacrolebindingIÊAgkehub.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB®
 com.google.cloud.gkehub.v1BServiceProtoPZ2cloud.google.com/go/gkehub/apiv1/gkehubpb;gkehubpbªGoogle.Cloud.GkeHub.V1ÊGoogle\\Cloud\\GkeHub\\V1êGoogle::Cloud::GkeHub::V1bproto3'
         , true);
 
