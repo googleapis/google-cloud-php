@@ -21,6 +21,8 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Required. Full resource name of
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], such as
      * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * The path must include the project number, project id is not supported for
+     * this field.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -61,6 +63,8 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      *           Required. Full resource name of
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore], such as
      *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     *           The path must include the project number, project id is not supported for
+     *           this field.
      *     @type string $filter
      *           Optional. Filter specification to filter documents in the data store
      *           specified by data_store field. For more information on filtering, see
@@ -85,6 +89,8 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Required. Full resource name of
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], such as
      * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * The path must include the project number, project id is not supported for
+     * this field.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,6 +104,8 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Required. Full resource name of
      * [DataStore][google.cloud.discoveryengine.v1.DataStore], such as
      * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * The path must include the project number, project id is not supported for
+     * this field.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

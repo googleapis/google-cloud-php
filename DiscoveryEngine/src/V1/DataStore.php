@@ -79,6 +79,12 @@ class DataStore extends \Google\Protobuf\Internal\Message
      */
     protected $advanced_site_search_config = null;
     /**
+     * Optional. Configuration for Natural Language Query Understanding.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.NaturalLanguageQueryUnderstandingConfig natural_language_query_understanding_config = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $natural_language_query_understanding_config = null;
+    /**
      * Input only. The KMS key to be used to protect this DataStore at creation
      * time.
      * Must be set for requests that need to comply with CMEK Org Policy
@@ -211,6 +217,8 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore] was created at.
      *     @type \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig $advanced_site_search_config
      *           Optional. Configuration for advanced site search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\NaturalLanguageQueryUnderstandingConfig $natural_language_query_understanding_config
+     *           Optional. Configuration for Natural Language Query Understanding.
      *     @type string $kms_key_name
      *           Input only. The KMS key to be used to protect this DataStore at creation
      *           time.
@@ -531,6 +539,42 @@ class DataStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AdvancedSiteSearchConfig::class);
         $this->advanced_site_search_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for Natural Language Query Understanding.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.NaturalLanguageQueryUnderstandingConfig natural_language_query_understanding_config = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\NaturalLanguageQueryUnderstandingConfig|null
+     */
+    public function getNaturalLanguageQueryUnderstandingConfig()
+    {
+        return $this->natural_language_query_understanding_config;
+    }
+
+    public function hasNaturalLanguageQueryUnderstandingConfig()
+    {
+        return isset($this->natural_language_query_understanding_config);
+    }
+
+    public function clearNaturalLanguageQueryUnderstandingConfig()
+    {
+        unset($this->natural_language_query_understanding_config);
+    }
+
+    /**
+     * Optional. Configuration for Natural Language Query Understanding.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.NaturalLanguageQueryUnderstandingConfig natural_language_query_understanding_config = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\NaturalLanguageQueryUnderstandingConfig $var
+     * @return $this
+     */
+    public function setNaturalLanguageQueryUnderstandingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\NaturalLanguageQueryUnderstandingConfig::class);
+        $this->natural_language_query_understanding_config = $var;
 
         return $this;
     }
