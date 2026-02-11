@@ -82,7 +82,7 @@ class ComponentNewCommand extends Command
                 'no-update',
                 null,
                 InputOption::VALUE_NONE,
-                'Do not run the component:update:gencode command after adding the component skeleton'
+                'Do not run the component:update command after adding the component skeleton'
             )
             ->addOption(
                 'timeout',
@@ -236,13 +236,13 @@ class ComponentNewCommand extends Command
                 'component' => $new->componentName,
                 '--timeout' => $timeout,
             ];
-            if (!$this->getApplication()->has('component:update:gencode')) {
+            if (!$this->getApplication()->has('component:update')) {
                 throw new \RuntimeException(
-                    'Application does not have an component:update:gencode command. '
+                    'Application does not have an component:update command. '
                     . 'Run with --no-update to skip this.'
                 );
             }
-            $updateCommand = $this->getApplication()->find('component:update:gencode');
+            $updateCommand = $this->getApplication()->find('component:update');
             $returnCode = $updateCommand->run(new ArrayInput($args), $output);
             if ($returnCode !== Command::SUCCESS) {
                 return $returnCode;
