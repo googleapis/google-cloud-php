@@ -93,6 +93,13 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     protected $query_expansion_info = null;
     /**
+     * Output only. Natural language query understanding information for the
+     * returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo natural_language_query_understanding_info = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $natural_language_query_understanding_info = null;
+    /**
      * Session information.
      * Only set if
      * [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
@@ -107,6 +114,12 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchLinkPromotion search_link_promotions = 23;</code>
      */
     private $search_link_promotions;
+    /**
+     * Output only. Indicates the semantic state of the search response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SemanticState semantic_state = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $semantic_state = 0;
 
     /**
      * Constructor.
@@ -153,6 +166,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           is set.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo $query_expansion_info
      *           Query expansion information for the returned results.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo $natural_language_query_understanding_info
+     *           Output only. Natural language query understanding information for the
+     *           returned results.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SessionInfo $session_info
      *           Session information.
      *           Only set if
@@ -160,6 +176,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           is provided. See its description for more details.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion>|\Google\Protobuf\Internal\RepeatedField $search_link_promotions
      *           Promotions for site search.
+     *     @type int $semantic_state
+     *           Output only. Indicates the semantic state of the search response.
      * }
      */
     public function __construct($data = NULL) {
@@ -464,6 +482,44 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Natural language query understanding information for the
+     * returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo natural_language_query_understanding_info = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo|null
+     */
+    public function getNaturalLanguageQueryUnderstandingInfo()
+    {
+        return $this->natural_language_query_understanding_info;
+    }
+
+    public function hasNaturalLanguageQueryUnderstandingInfo()
+    {
+        return isset($this->natural_language_query_understanding_info);
+    }
+
+    public function clearNaturalLanguageQueryUnderstandingInfo()
+    {
+        unset($this->natural_language_query_understanding_info);
+    }
+
+    /**
+     * Output only. Natural language query understanding information for the
+     * returned results.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo natural_language_query_understanding_info = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo $var
+     * @return $this
+     */
+    public function setNaturalLanguageQueryUnderstandingInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo::class);
+        $this->natural_language_query_understanding_info = $var;
+
+        return $this;
+    }
+
+    /**
      * Session information.
      * Only set if
      * [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
@@ -527,6 +583,32 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion::class);
         $this->search_link_promotions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates the semantic state of the search response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SemanticState semantic_state = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getSemanticState()
+    {
+        return $this->semantic_state;
+    }
+
+    /**
+     * Output only. Indicates the semantic state of the search response.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SemanticState semantic_state = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSemanticState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SemanticState::class);
+        $this->semantic_state = $var;
 
         return $this;
     }

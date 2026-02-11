@@ -16,13 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomSignal extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the signal.
+     * Optional. Name of the signal.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $name = '';
     /**
-     * Float value representing the ranking signal (e.g. 1.25 for BM25).
+     * Optional. Float value representing the ranking signal (e.g. 1.25 for
+     * BM25).
      *
      * Generated from protobuf field <code>float value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -35,9 +36,10 @@ class CustomSignal extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the signal.
+     *           Optional. Name of the signal.
      *     @type float $value
-     *           Float value representing the ranking signal (e.g. 1.25 for BM25).
+     *           Optional. Float value representing the ranking signal (e.g. 1.25 for
+     *           BM25).
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +48,7 @@ class CustomSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the signal.
+     * Optional. Name of the signal.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -57,7 +59,7 @@ class CustomSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the signal.
+     * Optional. Name of the signal.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -72,7 +74,8 @@ class CustomSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Float value representing the ranking signal (e.g. 1.25 for BM25).
+     * Optional. Float value representing the ranking signal (e.g. 1.25 for
+     * BM25).
      *
      * Generated from protobuf field <code>float value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -83,7 +86,8 @@ class CustomSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Float value representing the ranking signal (e.g. 1.25 for BM25).
+     * Optional. Float value representing the ranking signal (e.g. 1.25 for
+     * BM25).
      *
      * Generated from protobuf field <code>float value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
