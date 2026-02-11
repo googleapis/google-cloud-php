@@ -1,4 +1,4 @@
-name: Major Version Release Requires 2+ yoshi-php Approvals
+name: Major Version Release Requires 2+ cloud-sdk-php-team Approvals
 
 on:
   pull_request:
@@ -23,7 +23,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
         with:
-          script: | 
+          script: |
             const { execSync } = require('child_process');
 
             const requiredApprovals = 2;
@@ -44,18 +44,18 @@ jobs:
                   .map(review => review.user.login)
               );
               if (approvals.size < requiredApprovals) {
-                core.setFailed(`Requires ${requiredApprovals}+ approvals from the yoshi-php team. Only ${approvals.size} total approvals found.`)
+                core.setFailed(`Requires ${requiredApprovals}+ approvals from the cloud-sdk-php-team team. Only ${approvals.size} total approvals found.`)
                 core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
                 return;
               }
               core.info(`Total approval count: ${approvals.size}`);
 
               // 2. Get team members
-              core.info('Fetching yoshi-php team members...');
-              const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/yoshi-php/members --jq '.[].login'`;
+              core.info('Fetching cloud-sdk-php-team team members...');
+              const teamMembersCmd = `gh api --paginate orgs/googleapis/teams/cloud-sdk-php-team/members --jq '.[].login'`;
               const teamMembersOutput = execSync(teamMembersCmd, { encoding: 'utf8', env: process.env });
               if (!teamMembersOutput.trim()) {
-                core.error('Could not fetch any members for the yoshi-php team.');
+                core.error('Could not fetch any members for the cloud-sdk-php-team team.');
               }
               const teamMembers = new Set(teamMembersOutput.trim().split('\n'));
 
@@ -63,12 +63,12 @@ jobs:
               const matchingApprovals = [...approvals].filter(login => teamMembers.has(login));
               const count = matchingApprovals.length;
 
-              core.info(`Found ${count} approval(s) from the yoshi-php team.`);
+              core.info(`Found ${count} approval(s) from the cloud-sdk-php-team team.`);
 
               if (count >= requiredApprovals) {
-                core.info(`Success: Requirement of ${requiredApprovals}+ yoshi-php approvals met with ${count} approvals.`);
+                core.info(`Success: Requirement of ${requiredApprovals}+ cloud-sdk-php-team approvals met with ${count} approvals.`);
               } else {
-                core.setFailed(`Requires ${requiredApprovals}+ approvals from the yoshi-php team. Only ${count} yoshi-php approvals found.`);
+                core.setFailed(`Requires ${requiredApprovals}+ approvals from the cloud-sdk-php-team team. Only ${count} cloud-sdk-php-team approvals found.`);
                 core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
               }
             } catch (error) {
