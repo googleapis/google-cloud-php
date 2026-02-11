@@ -1,4 +1,4 @@
-name: Major Version Release Requires 2+ cloud-sdk-php-team Approvals
+name: Major Version Release Requires 2+ Approvals
 
 on:
   pull_request:
@@ -44,7 +44,7 @@ jobs:
                   .map(review => review.user.login)
               );
               if (approvals.size < requiredApprovals) {
-                core.setFailed(`Requires ${requiredApprovals}+ approvals from the cloud-sdk-php-team team. Only ${approvals.size} total approvals found.`)
+                core.setFailed(`Requires ${requiredApprovals}+ approvals, only ${approvals.size} total approvals found.`)
                 core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
                 return;
               }
@@ -66,9 +66,9 @@ jobs:
               core.info(`Found ${count} approval(s) from the cloud-sdk-php-team team.`);
 
               if (count >= requiredApprovals) {
-                core.info(`Success: Requirement of ${requiredApprovals}+ cloud-sdk-php-team approvals met with ${count} approvals.`);
+                core.info(`Success: Requirement of ${requiredApprovals}+ approvals met with ${count} approvals.`);
               } else {
-                core.setFailed(`Requires ${requiredApprovals}+ approvals from the cloud-sdk-php-team team. Only ${count} cloud-sdk-php-team approvals found.`);
+                core.setFailed(`Requires ${requiredApprovals}+ approvals, only ${count} cloud-sdk-php-team approvals found.`);
                 core.error('RE-RUN THIS WORKFLOW AFTER THE APPROVAL REQUIREMENTS ARE MET')
               }
             } catch (error) {
