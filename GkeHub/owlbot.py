@@ -37,8 +37,10 @@ _tracked_paths.add(src)
 proto_dir = src / "v1/proto/src/Google/Cloud/GkeHub"
 s.move([proto_dir / "ConfigManagement"], dest / "src/ConfigManagement", merge=php._merge)
 s.move([proto_dir / "MultiClusterIngress"], dest / "src/MultiClusterIngress", merge=php._merge)
+s.move([proto_dir / "RbacRoleBindingActuation"], dest / "src/RbacRoleBindingActuation", merge=php._merge)
 shutil.rmtree(proto_dir / "ConfigManagement")
 shutil.rmtree(proto_dir / "MultiClusterIngress")
+shutil.rmtree(proto_dir / "RbacRoleBindingActuation")
 
 php.owlbot_main(src=src, dest=dest)
 
