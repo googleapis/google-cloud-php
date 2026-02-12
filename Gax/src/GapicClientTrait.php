@@ -121,7 +121,7 @@ trait GapicClientTrait
         $this->middlewareCallables[] = $middlewareCallable;
     }
 
-     /**
+    /**
      * Prepend a middleware to the call stack by providing a callable which will be
      * invoked at the end of each call, and will return an instance of
      * {@see MiddlewareInterface} when invoked.

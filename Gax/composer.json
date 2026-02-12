@@ -19,9 +19,9 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",
-        "squizlabs/php_codesniffer": "4.*",
         "phpspec/prophecy-phpunit": "^2.1",
-        "phpstan/phpstan": "^2.0"
+        "phpstan/phpstan": "^2.0",
+        "google/cloud-tools": "^0.16.1"
     },
     "conflict": {
         "ext-protobuf": "<4.31.0"
@@ -44,7 +44,7 @@
     "scripts": {
         "regenerate-test-protos": "dev/sh/regenerate-test-protos.sh",
         "test": "./vendor/bin/phpunit",
-        "cs-lint": "vendor/bin/phpcs --standard=./ruleset.xml",
-        "cs-fix": "vendor/bin/phpcbf --standard=./ruleset.xml"
+        "cs-lint": "vendor/bin/php-tools cs-fixer googleapis/gax-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\\-n --dry-run\"",
+        "cs-fix": "vendor/bin/php-tools cs-fixer googleapis/gax-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\\-n\""
     }
 }
