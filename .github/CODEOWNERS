@@ -5,7 +5,7 @@
 # https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners#codeowners-syntax
 
 
-# The yoshi-php team is the default owner for anything not
+# The cloud-sdk-php-team team is the default owner for anything not
 # explicitly taken by someone else.
 *                               @googleapis/cloud-sdk-php-team
 

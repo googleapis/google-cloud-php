@@ -45,6 +45,7 @@ class RepoSplitCommand extends Command
     const PARENT_TAG_NAME = 'https://github.com/%s/releases/tag/%s';
     const EXEC_DIR = '.split';
     const TOKEN_ENV = 'GH_OAUTH_TOKEN';
+    private const PHP_TEAM = RepoComplianceCommand::PHP_TEAM;
 
     private string $rootPath;
 
@@ -393,13 +394,13 @@ class RepoSplitCommand extends Command
                 }
             }
 
-            // Ensure "yoshi-php" is an admin
-            $ret = $github->updateTeamPermission('googleapis', 'yoshi-php', $repoName, 'admin');
+            // Add team permission
+            $ret = $github->updateTeamPermission('googleapis', self::PHP_TEAM, $repoName, 'admin');
 
             if ($ret) {
-                $output->writeln(sprintf('<comment>%s</comment>: Added "yoshi-php" as admin.', $componentId));
+                $output->writeln(sprintf('<comment>%s</comment>: Added "%s" as admin.', $componentId, self::PHP_TEAM));
             } else {
-                $output->writeln(sprintf('<error>%s</error>: Unable to add "yoshi-php" as admin.', $componentId));
+                $output->writeln(sprintf('<error>%s</error>: Unable to add "%s" as admin.', $componentId, self::PHP_TEAM));
 
                 return false;
             }
