@@ -49,8 +49,8 @@ class TransportCallMiddleware implements MiddlewareInterface
     public function __construct(
         private TransportInterface $transport,
         private array $transportCallMethods
-    )
-    {}
+    ) {
+    }
 
     public function __invoke(Call $call, array $options)
     {
