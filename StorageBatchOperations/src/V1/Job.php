@@ -82,6 +82,13 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool dry_run = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $dry_run = false;
+    /**
+     * Output only. If true, this Job operates on multiple buckets. Multibucket
+     * jobs are subject to different quota limits than single-bucket jobs.
+     *
+     * Generated from protobuf field <code>bool is_multi_bucket_job = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $is_multi_bucket_job = false;
     protected $source;
     protected $transformation;
 
@@ -130,6 +137,9 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Optional. If true, the job will run in dry run mode, returning the total
      *           object count and, if the object configuration is a prefix list, the bytes
      *           found from source. No transformations will be performed.
+     *     @type bool $is_multi_bucket_job
+     *           Output only. If true, this Job operates on multiple buckets. Multibucket
+     *           jobs are subject to different quota limits than single-bucket jobs.
      * }
      */
     public function __construct($data = NULL) {
@@ -616,6 +626,34 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->dry_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If true, this Job operates on multiple buckets. Multibucket
+     * jobs are subject to different quota limits than single-bucket jobs.
+     *
+     * Generated from protobuf field <code>bool is_multi_bucket_job = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getIsMultiBucketJob()
+    {
+        return $this->is_multi_bucket_job;
+    }
+
+    /**
+     * Output only. If true, this Job operates on multiple buckets. Multibucket
+     * jobs are subject to different quota limits than single-bucket jobs.
+     *
+     * Generated from protobuf field <code>bool is_multi_bucket_job = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIsMultiBucketJob($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->is_multi_bucket_job = $var;
 
         return $this;
     }

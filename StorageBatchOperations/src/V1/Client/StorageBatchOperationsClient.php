@@ -38,12 +38,15 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\StorageBatchOperations\V1\BucketOperation;
 use Google\Cloud\StorageBatchOperations\V1\CancelJobRequest;
 use Google\Cloud\StorageBatchOperations\V1\CancelJobResponse;
 use Google\Cloud\StorageBatchOperations\V1\CreateJobRequest;
 use Google\Cloud\StorageBatchOperations\V1\DeleteJobRequest;
+use Google\Cloud\StorageBatchOperations\V1\GetBucketOperationRequest;
 use Google\Cloud\StorageBatchOperations\V1\GetJobRequest;
 use Google\Cloud\StorageBatchOperations\V1\Job;
+use Google\Cloud\StorageBatchOperations\V1\ListBucketOperationsRequest;
 use Google\Cloud\StorageBatchOperations\V1\ListJobsRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -67,7 +70,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<CancelJobResponse> cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createJobAsync(CreateJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteJobAsync(DeleteJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BucketOperation> getBucketOperationAsync(GetBucketOperationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBucketOperationsAsync(ListBucketOperationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -169,6 +174,31 @@ final class StorageBatchOperationsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * bucket_operation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $job
+     * @param string $bucketOperation
+     *
+     * @return string The formatted bucket_operation resource.
+     */
+    public static function bucketOperationName(
+        string $project,
+        string $location,
+        string $job,
+        string $bucketOperation
+    ): string {
+        return self::getPathTemplate('bucketOperation')->render([
+            'project' => $project,
+            'location' => $location,
+            'job' => $job,
+            'bucket_operation' => $bucketOperation,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a crypto_key
      * resource.
      *
@@ -229,6 +259,7 @@ final class StorageBatchOperationsClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - bucketOperation: projects/{project}/locations/{location}/jobs/{job}/bucketOperations/{bucket_operation}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - job: projects/{project}/locations/{location}/jobs/{job}
      * - location: projects/{project}/locations/{location}
@@ -414,6 +445,33 @@ final class StorageBatchOperationsClient
     }
 
     /**
+     * Gets a BucketOperation.
+     *
+     * The async variant is
+     * {@see StorageBatchOperationsClient::getBucketOperationAsync()} .
+     *
+     * @example samples/V1/StorageBatchOperationsClient/get_bucket_operation.php
+     *
+     * @param GetBucketOperationRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BucketOperation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBucketOperation(GetBucketOperationRequest $request, array $callOptions = []): BucketOperation
+    {
+        return $this->startApiCall('GetBucketOperation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a batch job.
      *
      * The async variant is {@see StorageBatchOperationsClient::getJobAsync()} .
@@ -437,6 +495,35 @@ final class StorageBatchOperationsClient
     public function getJob(GetJobRequest $request, array $callOptions = []): Job
     {
         return $this->startApiCall('GetJob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists BucketOperations in a given project and job.
+     *
+     * The async variant is
+     * {@see StorageBatchOperationsClient::listBucketOperationsAsync()} .
+     *
+     * @example samples/V1/StorageBatchOperationsClient/list_bucket_operations.php
+     *
+     * @param ListBucketOperationsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBucketOperations(
+        ListBucketOperationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBucketOperations', $request, $callOptions);
     }
 
     /**
