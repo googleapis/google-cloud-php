@@ -25,7 +25,7 @@ class StorageBatchOperations
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
+ó
 Egoogle/cloud/storagebatchoperations/v1/storage_batch_operations.proto&google.cloud.storagebatchoperations.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.protoKgoogle/cloud/storagebatchoperations/v1/storage_batch_operations_types.proto#google/longrunning/operations.protogoogle/protobuf/empty.protogoogle/protobuf/timestamp.proto"±
 ListJobsRequestA
 parent (	B1àAúA+)storagebatchoperations.googleapis.com/Job
@@ -51,13 +51,28 @@ request_id (	BàAâŒÏ×"t
 name (	B1àAúA+
 )storagebatchoperations.googleapis.com/Job
 
-request_id (	BàAâŒÏ×"t
+request_id (	BàAâŒÏ×"ˆ
 DeleteJobRequest?
 name (	B1àAúA+
 )storagebatchoperations.googleapis.com/Job
 
-request_id (	BàAâŒÏ×"
-CancelJobResponse"’
+request_id (	BàAâŒÏ×
+force (BàA"
+CancelJobResponse"É
+ListBucketOperationsRequestM
+parent (	B=àAúA75storagebatchoperations.googleapis.com/BucketOperation
+filter (	BàA
+	page_size (BàA
+
+page_token (	BàA
+order_by (	BàA" 
+ListBucketOperationsResponseR
+bucket_operations (27.google.cloud.storagebatchoperations.v1.BucketOperation
+next_page_token (	
+unreachable (	"h
+GetBucketOperationRequestK
+name (	B=àAúA7
+5storagebatchoperations.googleapis.com/BucketOperation"’
 OperationMetadata
 	operation (	BàA4
 create_time (2.google.protobuf.TimestampBàA1
@@ -65,14 +80,16 @@ request_id (	BàAâŒÏ×"
 requested_cancellation (BàA
 api_version (	BàA=
 job
- (2+.google.cloud.storagebatchoperations.v1.JobBàA2‚
+ (2+.google.cloud.storagebatchoperations.v1.JobBàA2Ó
 StorageBatchOperations¸
 ListJobs7.google.cloud.storagebatchoperations.v1.ListJobsRequest8.google.cloud.storagebatchoperations.v1.ListJobsResponse"9ÚAparent‚Óä“*(/v1/{parent=projects/*/locations/*}/jobs¥
 GetJob5.google.cloud.storagebatchoperations.v1.GetJobRequest+.google.cloud.storagebatchoperations.v1.Job"7ÚAname‚Óä“*(/v1/{name=projects/*/locations/*/jobs/*}Ê
 	CreateJob8.google.cloud.storagebatchoperations.v1.CreateJobRequest.google.longrunning.Operation"dÊA
 JobOperationMetadataÚAparent,job,job_id‚Óä“/"(/v1/{parent=projects/*/locations/*}/jobs:job–
 	DeleteJob8.google.cloud.storagebatchoperations.v1.DeleteJobRequest.google.protobuf.Empty"7ÚAname‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}Ã
-	CancelJob8.google.cloud.storagebatchoperations.v1.CancelJobRequest9.google.cloud.storagebatchoperations.v1.CancelJobResponse"AÚAname‚Óä“4"//v1/{name=projects/*/locations/*/jobs/*}:cancel:*YÊA%storagebatchoperations.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB­
+	CancelJob8.google.cloud.storagebatchoperations.v1.CancelJobRequest9.google.cloud.storagebatchoperations.v1.CancelJobResponse"AÚAname‚Óä“4"//v1/{name=projects/*/locations/*/jobs/*}:cancel:*ï
+ListBucketOperationsC.google.cloud.storagebatchoperations.v1.ListBucketOperationsRequestD.google.cloud.storagebatchoperations.v1.ListBucketOperationsResponse"LÚAparent‚Óä“=;/v1/{parent=projects/*/locations/*/jobs/*}/bucketOperationsÜ
+GetBucketOperationA.google.cloud.storagebatchoperations.v1.GetBucketOperationRequest7.google.cloud.storagebatchoperations.v1.BucketOperation"JÚAname‚Óä“=;/v1/{name=projects/*/locations/*/jobs/*/bucketOperations/*}YÊA%storagebatchoperations.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB­
 *com.google.cloud.storagebatchoperations.v1BStorageBatchOperationsProtoPZbcloud.google.com/go/storagebatchoperations/apiv1/storagebatchoperationspb;storagebatchoperationspbª&Google.Cloud.StorageBatchOperations.V1Ê&Google\\Cloud\\StorageBatchOperations\\V1ê)Google::Cloud::StorageBatchOperations::V1bproto3'
         , true);
 
