@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. The type of the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterType cluster_type = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cluster_type = 0;
+    /**
      * Optional. The cluster tier.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterTier cluster_tier = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -160,6 +166,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $cluster_type
+     *           Optional. The type of the cluster.
      *     @type int $cluster_tier
      *           Optional. The cluster tier.
      *     @type string $config_bucket
@@ -235,6 +243,32 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Clusters::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The type of the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterType cluster_type = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getClusterType()
+    {
+        return $this->cluster_type;
+    }
+
+    /**
+     * Optional. The type of the cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig.ClusterType cluster_type = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClusterType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\ClusterConfig\ClusterType::class);
+        $this->cluster_type = $var;
+
+        return $this;
     }
 
     /**
