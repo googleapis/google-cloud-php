@@ -26,6 +26,12 @@ return [
             'GetAutokeyConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=folders/*/autokeyConfig}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/autokeyConfig}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -49,6 +55,16 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{autokey_config.name=folders/*/autokeyConfig}',
                 'body' => 'autokey_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{autokey_config.name=projects/*/autokeyConfig}',
+                        'body' => 'autokey_config',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'autokey_config.name' => [
                         'getters' => [

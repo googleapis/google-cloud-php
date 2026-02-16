@@ -39,12 +39,20 @@ class State
      * Generated from protobuf enum <code>UNINITIALIZED = 3;</code>
      */
     const UNINITIALIZED = 3;
+    /**
+     * The service account lacks the necessary permissions in the key project to
+     * configure Autokey.
+     *
+     * Generated from protobuf enum <code>KEY_PROJECT_PERMISSION_DENIED = 4;</code>
+     */
+    const KEY_PROJECT_PERMISSION_DENIED = 4;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::ACTIVE => 'ACTIVE',
         self::KEY_PROJECT_DELETED => 'KEY_PROJECT_DELETED',
         self::UNINITIALIZED => 'UNINITIALIZED',
+        self::KEY_PROJECT_PERMISSION_DENIED => 'KEY_PROJECT_PERMISSION_DENIED',
     ];
 
     public static function name($value)

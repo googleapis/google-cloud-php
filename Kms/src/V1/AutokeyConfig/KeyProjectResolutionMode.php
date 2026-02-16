@@ -81,6 +81,4 @@ class KeyProjectResolutionMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyProjectResolutionMode::class, \Google\Cloud\Kms\V1\AutokeyConfig_KeyProjectResolutionMode::class);
 
