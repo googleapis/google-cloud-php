@@ -371,4 +371,48 @@ class QueryResults implements \IteratorAggregate
     {
         return $this->rows();
     }
+
+    /**
+     * @param ConnectionInterface $connection Represents a connection to
+     *        BigQuery. This object is created by BigQueryClient,
+     *        and should not be instantiated outside of this client.
+     * @param string $jobId The job's ID.
+     * @param string $projectId The project's ID.
+     * @param array $info The query result's metadata.
+     * @param ValueMapper $mapper Maps values between PHP and BigQuery.
+     * @param Job $job The job from which the query results originated.
+     * @param array $queryResultsOptions Default options to be used for calls to
+     *        get query results. See
+     *        [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/getQueryResults#query-parameters)
+     *        for available options.
+     */
+    public static function fromStatelessQuery(
+        ConnectionInterface $connection,
+        array $statelessResponse,
+        ValueMapper $mapper,
+        array $queryResultsOptions = []
+    ): QueryResults {
+        $jobId = $statelessResponse['jobReference']['jobId'];
+        $projectId = $statelessResponse['jobReference']['projectId'];
+        $location = $statelessResponse['jobReference']['location'] ?? null;
+
+        $job = new Job(
+            $connection,
+            $jobId,
+            $projectId,
+            $mapper,
+            [],
+            $location
+        );
+
+        return new QueryResults(
+            $connection,
+            $jobId,
+            $projectId,
+            $statelessResponse,
+            $mapper,
+            $job,
+            $queryResultsOptions
+        );
+    }
 }

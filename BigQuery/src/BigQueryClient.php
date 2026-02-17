@@ -420,10 +420,31 @@ class BigQueryClient
         $queryResultsOptions['initialTimeoutMs'] = 10000;
 
         // Check if we can build a query Request
-        $queryRequest = $query->getQueryRequest();
+        $queryRequest = StatelessJobConfiguration::getQueryRequest($query);
 
-        if (!isNull($queryRequest)) {
-            $this->connection->statelessQuery($queryRequest);
+        if (!is_null($queryRequest)) {
+            $statelessArgs = $queryRequest + $queryResultsOptions + [
+                'projectId' => $this->projectId
+            ] + $options;
+
+            if (!isset($statelessArgs['timeoutMs'])) {
+                $statelessArgs['timeoutMs'] = $statelessArgs['initialTimeoutMs'];
+            }
+
+            $statelessResponse = $this->connection->statelessQuery($statelessArgs);
+
+            $queryResults = QueryResults::fromStatelessQuery(
+                $this->connection,
+                $statelessResponse,
+                $this->mapper,
+                $queryResultsOptions + $options
+            );
+
+            if (!$queryResults->isComplete()) {
+                $queryResults->waitUntilComplete();
+            }
+
+            return $queryResults;
         }
 
         $queryResults = $this->startQuery(
