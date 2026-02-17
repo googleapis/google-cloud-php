@@ -416,7 +416,7 @@ class Rest implements ConnectionInterface
 
     public function statelessQuery(array $args = [])
     {
-        return $this->send('query', $args);
+        return $this->send('jobs', 'query', $args);
     }
 
     /**
