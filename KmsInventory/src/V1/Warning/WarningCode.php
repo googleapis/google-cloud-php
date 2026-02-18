@@ -77,6 +77,4 @@ class WarningCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WarningCode::class, \Google\Cloud\Kms\Inventory\V1\Warning_WarningCode::class);
 

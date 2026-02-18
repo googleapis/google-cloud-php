@@ -17,8 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the organization.
-     * Example: organizations/123
+     * Required. A scope can be an organization or a project. Resources protected
+     * by the crypto key in provided scope will be returned.
+     * The following values are allowed:
+     * * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/12345678")
+     * * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     * * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
      *
      * Generated from protobuf field <code>string scope = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -68,9 +72,15 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
     private $resource_types;
 
     /**
-     * @param string $scope     Required. Resource name of the organization.
-     *                          Example: organizations/123
-     *                          Please see {@see KeyTrackingServiceClient::organizationName()} for help formatting this field.
+     * @param string $scope     Required. A scope can be an organization or a project. Resources protected
+     *                          by the crypto key in provided scope will be returned.
+     *
+     *                          The following values are allowed:
+     *
+     *                          * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/12345678")
+     *                          * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *                          * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+     *                          Please see {@see KeyTrackingServiceClient::projectName()} for help formatting this field.
      * @param string $cryptoKey Required. The resource name of the
      *                          [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
@@ -92,8 +102,12 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope
-     *           Required. Resource name of the organization.
-     *           Example: organizations/123
+     *           Required. A scope can be an organization or a project. Resources protected
+     *           by the crypto key in provided scope will be returned.
+     *           The following values are allowed:
+     *           * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/12345678")
+     *           * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     *           * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
      *     @type string $crypto_key
      *           Required. The resource name of the
      *           [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -129,8 +143,12 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the organization.
-     * Example: organizations/123
+     * Required. A scope can be an organization or a project. Resources protected
+     * by the crypto key in provided scope will be returned.
+     * The following values are allowed:
+     * * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/12345678")
+     * * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     * * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
      *
      * Generated from protobuf field <code>string scope = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -141,8 +159,12 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the organization.
-     * Example: organizations/123
+     * Required. A scope can be an organization or a project. Resources protected
+     * by the crypto key in provided scope will be returned.
+     * The following values are allowed:
+     * * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/12345678")
+     * * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+     * * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
      *
      * Generated from protobuf field <code>string scope = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
