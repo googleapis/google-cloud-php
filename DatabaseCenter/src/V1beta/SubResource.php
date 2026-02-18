@@ -56,8 +56,8 @@ class SubResource extends \Google\Protobuf\Internal\Message
      */
     protected $product = null;
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 4;</code>
      */
@@ -95,8 +95,8 @@ class SubResource extends \Google\Protobuf\Internal\Message
      *           an instance
      *           OPTIONAL
      *     @type string $container
-     *           Specifies where the resource is created. For GCP, it is the full name of
-     *           the project.
+     *           Specifies where the resource is created. For Google Cloud resources, it is
+     *           the full name of the project.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,8 +231,8 @@ class SubResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 4;</code>
      * @return string
@@ -243,8 +243,8 @@ class SubResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 4;</code>
      * @param string $var

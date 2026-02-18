@@ -24,8 +24,8 @@ class Dimension extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $container
-     *           Specifies where the resource is created. For GCP, it is the full name of
-     *           the project.
+     *           Specifies where the resource is created. For Google Cloud resources, it
+     *           is the full name of the project.
      *     @type int $product_type
      *           Type to identify a product
      *     @type int $product_engine
@@ -34,7 +34,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      *           Version of the underlying database engine
      *     @type string $location
      *           The location of the resources. It supports returning only regional
-     *           locations in GCP.
+     *           locations in Google Cloud.
      *     @type string $resource_type
      *           The type of resource defined according to the pattern:
      *           {Service Name}/{Type}. Ex:
@@ -76,8 +76,8 @@ class Dimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it
+     * is the full name of the project.
      *
      * Generated from protobuf field <code>string container = 2;</code>
      * @return string
@@ -93,8 +93,8 @@ class Dimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it
+     * is the full name of the project.
      *
      * Generated from protobuf field <code>string container = 2;</code>
      * @param string $var
@@ -203,7 +203,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
 
     /**
      * The location of the resources. It supports returning only regional
-     * locations in GCP.
+     * locations in Google Cloud.
      *
      * Generated from protobuf field <code>string location = 6;</code>
      * @return string
@@ -220,7 +220,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
 
     /**
      * The location of the resources. It supports returning only regional
-     * locations in GCP.
+     * locations in Google Cloud.
      *
      * Generated from protobuf field <code>string location = 6;</code>
      * @param string $var
