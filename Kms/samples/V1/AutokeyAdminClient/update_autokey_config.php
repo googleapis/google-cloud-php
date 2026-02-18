@@ -30,8 +30,8 @@ use Google\Cloud\Kms\V1\UpdateAutokeyConfigRequest;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a
- * folder. The caller must have both `cloudkms.autokeyConfigs.update`
+ * Updates the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+ * or a project. The caller must have both `cloudkms.autokeyConfigs.update`
  * permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy`
  * permission on the provided key project. A
  * [KeyHandle][google.cloud.kms.v1.KeyHandle] creation in the folder's

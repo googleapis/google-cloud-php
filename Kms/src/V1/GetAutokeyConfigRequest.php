@@ -18,7 +18,8 @@ class GetAutokeyConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     * `projects/{PROJECT_NUMBER}/autokeyConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -26,7 +27,8 @@ class GetAutokeyConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     *                     resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`. Please see
+     *                     resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     *                     `projects/{PROJECT_NUMBER}/autokeyConfig`. Please see
      *                     {@see AutokeyAdminClient::autokeyConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\Kms\V1\GetAutokeyConfigRequest
@@ -47,7 +49,8 @@ class GetAutokeyConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     *           resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     *           resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     *           `projects/{PROJECT_NUMBER}/autokeyConfig`.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +60,8 @@ class GetAutokeyConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     * `projects/{PROJECT_NUMBER}/autokeyConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -69,7 +73,8 @@ class GetAutokeyConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     * `projects/{PROJECT_NUMBER}/autokeyConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
