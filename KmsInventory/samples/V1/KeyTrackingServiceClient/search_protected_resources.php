@@ -31,11 +31,18 @@ use Google\Cloud\Kms\Inventory\V1\SearchProtectedResourcesRequest;
 
 /**
  * Returns metadata about the resources protected by the given Cloud KMS
- * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
+ * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud
+ * organization/project.
  *
- * @param string $formattedScope Resource name of the organization.
- *                               Example: organizations/123
- *                               Please see {@see KeyTrackingServiceClient::organizationName()} for help formatting this field.
+ * @param string $formattedScope A scope can be an organization or a project. Resources protected
+ *                               by the crypto key in provided scope will be returned.
+ *
+ *                               The following values are allowed:
+ *
+ *                               * organizations/{ORGANIZATION_NUMBER} (e.g., "organizations/12345678")
+ *                               * projects/{PROJECT_ID} (e.g., "projects/foo-bar")
+ *                               * projects/{PROJECT_NUMBER} (e.g., "projects/12345678")
+ *                               Please see {@see KeyTrackingServiceClient::projectName()} for help formatting this field.
  * @param string $cryptoKey      The resource name of the
  *                               [CryptoKey][google.cloud.kms.v1.CryptoKey].
  */
@@ -74,7 +81,7 @@ function search_protected_resources_sample(string $formattedScope, string $crypt
  */
 function callSample(): void
 {
-    $formattedScope = KeyTrackingServiceClient::organizationName('[ORGANIZATION]');
+    $formattedScope = KeyTrackingServiceClient::projectName('[PROJECT]');
     $cryptoKey = '[CRYPTO_KEY]';
 
     search_protected_resources_sample($formattedScope, $cryptoKey);

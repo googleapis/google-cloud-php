@@ -57,6 +57,7 @@ return [
             ],
             'templateMap' => [
                 'organization' => 'organizations/{organization}',
+                'project' => 'projects/{project}',
                 'projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummary' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/protectedResourcesSummary',
                 'projectLocationKeyRingCryptoKeyProtectedResourcesSummary' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary',
                 'protectedResourcesSummary' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary',

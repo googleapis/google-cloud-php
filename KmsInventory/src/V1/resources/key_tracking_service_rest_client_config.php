@@ -37,6 +37,12 @@ return [
             'SearchProtectedResources' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{scope=organizations/*}/protectedResources:search',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{scope=projects/*}/protectedResources:search',
+                    ],
+                ],
                 'placeholders' => [
                     'scope' => [
                         'getters' => [

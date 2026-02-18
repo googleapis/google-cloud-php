@@ -117,6 +117,21 @@ final class KeyTrackingServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName(string $project): string
+    {
+        return self::getPathTemplate('project')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_key_ring_crypto_key_crypto_key_version_protectedResourcesSummary
      * resource.
@@ -202,6 +217,7 @@ final class KeyTrackingServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - organization: organizations/{organization}
+     * - project: projects/{project}
      * - projectLocationKeyRingCryptoKeyCryptoKeyVersionProtectedResourcesSummary: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/protectedResourcesSummary
      * - projectLocationKeyRingCryptoKeyProtectedResourcesSummary: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary
      * - protectedResourcesSummary: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/protectedResourcesSummary
@@ -311,10 +327,16 @@ final class KeyTrackingServiceClient
 
     /**
      * Returns aggregate information about the resources protected by the given
-     * Cloud KMS [CryptoKey][google.cloud.kms.v1.CryptoKey]. Only resources within
-     * the same Cloud organization as the key will be returned. The project that
-     * holds the key must be part of an organization in order for this call to
-     * succeed.
+     * Cloud KMS [CryptoKey][google.cloud.kms.v1.CryptoKey]. By default,
+     * summary of resources within the same Cloud organization as the key will be
+     * returned, which requires the KMS organization service account to be
+     * configured(refer
+     * https://docs.cloud.google.com/kms/docs/view-key-usage#required-roles).
+     * If the KMS organization service account is not configured or key's project
+     * is not part of an organization, set
+     * [fallback_scope][google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest.fallback_scope]
+     * to `FALLBACK_SCOPE_PROJECT` to retrieve a summary of protected resources
+     * within the key's project.
      *
      * The async variant is
      * {@see KeyTrackingServiceClient::getProtectedResourcesSummaryAsync()} .
@@ -344,7 +366,8 @@ final class KeyTrackingServiceClient
 
     /**
      * Returns metadata about the resources protected by the given Cloud KMS
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud organization.
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the given Cloud
+     * organization/project.
      *
      * The async variant is
      * {@see KeyTrackingServiceClient::searchProtectedResourcesAsync()} .
