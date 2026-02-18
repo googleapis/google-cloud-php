@@ -67,6 +67,20 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount candidates_tokens_details = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $candidates_tokens_details;
+    /**
+     * Output only. A detailed breakdown by modality of the token counts from
+     * the results of tool executions, which are provided back to the model as
+     * input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount tool_use_prompt_tokens_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $tool_use_prompt_tokens_details;
+    /**
+     * Output only. The traffic type for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerateContentResponse.UsageMetadata.TrafficType traffic_type = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $traffic_type = 0;
 
     /**
      * Constructor.
@@ -94,6 +108,12 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
      *           input.
      *     @type array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $candidates_tokens_details
      *           Output only. List of modalities that were returned in the response.
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $tool_use_prompt_tokens_details
+     *           Output only. A detailed breakdown by modality of the token counts from
+     *           the results of tool executions, which are provided back to the model as
+     *           input.
+     *     @type int $traffic_type
+     *           Output only. The traffic type for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -313,6 +333,62 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModalityTokenCount::class);
         $this->candidates_tokens_details = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A detailed breakdown by modality of the token counts from
+     * the results of tool executions, which are provided back to the model as
+     * input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount tool_use_prompt_tokens_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getToolUsePromptTokensDetails()
+    {
+        return $this->tool_use_prompt_tokens_details;
+    }
+
+    /**
+     * Output only. A detailed breakdown by modality of the token counts from
+     * the results of tool executions, which are provided back to the model as
+     * input.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount tool_use_prompt_tokens_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setToolUsePromptTokensDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModalityTokenCount::class);
+        $this->tool_use_prompt_tokens_details = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The traffic type for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerateContentResponse.UsageMetadata.TrafficType traffic_type = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getTrafficType()
+    {
+        return $this->traffic_type;
+    }
+
+    /**
+     * Output only. The traffic type for this request.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GenerateContentResponse.UsageMetadata.TrafficType traffic_type = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTrafficType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\GenerateContentResponse\UsageMetadata\TrafficType::class);
+        $this->traffic_type = $var;
 
         return $this;
     }
