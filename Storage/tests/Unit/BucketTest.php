@@ -438,6 +438,40 @@ class BucketTest extends TestCase
         $this->assertArrayHasKey('terminalStorageClassUpdateTime', $autoclassInfo);
     }
 
+    public function testUpdateEncryptionEnforcementConfig()
+    {
+        $encryptionConfig = [
+            'encryption' => [
+                'defaultKmsKeyName' => 'key',
+                'googleManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted'
+                ],
+                'customerManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted'
+                ],
+                'customerSuppliedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted'
+                ],
+            ],
+        ];
+        $this->connection->patchBucket(Argument::any())->willReturn(
+            ['name' => 'bucket'] +
+            $encryptionConfig
+        );
+        $bucket = $this->getBucket([
+            'name' => 'bucket',
+        ]);
+
+        $bucket->update($encryptionConfig);
+
+        $this->assertArrayHasKey('encryption', $bucket->info());
+        $encryptionInfo = $bucket->info()['encryption'];
+        $this->assertEquals('key', $encryptionInfo['defaultKmsKeyName']);
+        $this->assertEquals('FullyRestricted', $encryptionInfo['googleManagedEncryptionEnforcementConfig']['restrictionMode']);
+        $this->assertEquals('FullyRestricted', $encryptionInfo['customerManagedEncryptionEnforcementConfig']['restrictionMode']);
+        $this->assertEquals('FullyRestricted', $encryptionInfo['customerSuppliedEncryptionEnforcementConfig']['restrictionMode']);
+    }
+
     public function testUpdatesDataWithLifecycleBuilder()
     {
         $lifecycleArr = ['test' => 'test'];

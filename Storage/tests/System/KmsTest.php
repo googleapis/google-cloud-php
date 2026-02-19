@@ -155,6 +155,41 @@ class KmsTest extends StorageTestCase
         $this->assertEquals(self::DATA, $rewrittenObject->downloadAsString());
     }
 
+    public function testEncryptionEnforcementConfig()
+    {
+        self::$bucket->update([
+            'encryption' => [
+                'googleManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'NotRestricted'
+                ],
+                'customerManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'NotRestricted'
+                ],
+                'customerSuppliedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'NotRestricted'
+                ],
+            ]
+        ]);
+
+        $info = self::$bucket->info();
+        $this->assertArrayHasKey('encryption', $info);
+        $this->assertArrayHasKey('googleManagedEncryptionEnforcementConfig', $info['encryption']);
+        $this->assertArrayHasKey('customerManagedEncryptionEnforcementConfig', $info['encryption']);
+        $this->assertArrayHasKey('customerSuppliedEncryptionEnforcementConfig', $info['encryption']);
+        $this->assertEquals('NotRestricted', $info['encryption']['googleManagedEncryptionEnforcementConfig']['restrictionMode']);
+        $this->assertEquals('NotRestricted', $info['encryption']['customerManagedEncryptionEnforcementConfig']['restrictionMode']);
+        $this->assertEquals('NotRestricted', $info['encryption']['customerSuppliedEncryptionEnforcementConfig']['restrictionMode']);
+
+        // Reset
+        self::$bucket->update([
+            'encryption' => [
+                'googleManagedEncryptionEnforcementConfig' => null,
+                'customerManagedEncryptionEnforcementConfig' => null,
+                'customerSuppliedEncryptionEnforcementConfig' => null,
+            ]
+        ]);
+    }
+
     /**
      * @param array $options
      * @return StorageObject
