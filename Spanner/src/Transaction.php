@@ -444,12 +444,14 @@ class Transaction implements TransactionalReadInterface
                 'requestOptions' => $this->requestOptions,
                 'transactionOptions' => $this->transactionOptions,
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
+                'tag' => $this->tag ?? null,
             ]);
             if (!empty($mutations)) {
                 // Set the mutation key if we have mutations but do not have a precommit token
                 $mutationKey = $mutations[array_rand($mutations)];
                 $operationTransactionOptions['mutationKey'] = $mutationKey;
             }
+
             // Execute the beginTransaction RPC.
             $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
             // Set the transaction ID of the current transaction.
