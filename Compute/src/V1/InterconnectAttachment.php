@@ -52,6 +52,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *    - BPS_20G: 20 Gbit/s
      *    - BPS_50G: 50 Gbit/s
      *    - BPS_100G: 100 Gbit/s
+     *    - BPS_400G: 400 Gbit/s
      * Check the Bandwidth enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bandwidth = 181715121;</code>
@@ -521,6 +522,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *              - BPS_20G: 20 Gbit/s
      *              - BPS_50G: 50 Gbit/s
      *              - BPS_100G: 100 Gbit/s
+     *              - BPS_400G: 400 Gbit/s
      *           Check the Bandwidth enum for the list of possible values.
      *     @type string $candidate_cloud_router_ip_address
      *           Single IPv4 address + prefix length to be configured on the cloud router
@@ -879,6 +881,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *    - BPS_20G: 20 Gbit/s
      *    - BPS_50G: 50 Gbit/s
      *    - BPS_100G: 100 Gbit/s
+     *    - BPS_400G: 400 Gbit/s
      * Check the Bandwidth enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bandwidth = 181715121;</code>
@@ -919,6 +922,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *    - BPS_20G: 20 Gbit/s
      *    - BPS_50G: 50 Gbit/s
      *    - BPS_100G: 100 Gbit/s
+     *    - BPS_400G: 400 Gbit/s
      * Check the Bandwidth enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string bandwidth = 181715121;</code>
