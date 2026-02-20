@@ -185,6 +185,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "assuredworkloads"
     },
+    "AuditManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-auditmanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-auditmanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "auditmanager"
+    },
     "AutoMl": {
         "language": "php",
         "distribution_name": "google/cloud-automl",

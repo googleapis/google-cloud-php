@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/auditmanager/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/AuditManager/$1/$2
+api-name: AuditManager
