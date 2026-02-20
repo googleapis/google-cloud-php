@@ -395,6 +395,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "certificatemanager"
     },
+    "Ces": {
+        "language": "php",
+        "distribution_name": "google/cloud-ces",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-ces/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "ces"
+    },
     "Channel": {
         "language": "php",
         "distribution_name": "google/cloud-channel",
