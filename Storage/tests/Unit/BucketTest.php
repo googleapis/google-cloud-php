@@ -481,6 +481,46 @@ class BucketTest extends TestCase
         );
     }
 
+    public function testReloadWithEncryptionEnforcementConfig()
+    {
+        $encryptionConfig = [
+            'encryption' => [
+                'defaultKmsKeyName' => 'key',
+                'googleManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted',
+                    'effectiveTime' => '2025-12-18T18:13:15Z'
+                ],
+                'customerManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'NotRestricted',
+                    'effectiveTime' => '2025-12-18T18:13:15Z'
+                ],
+                'customerSuppliedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'NotRestricted',
+                    'effectiveTime' => '2025-12-18T18:13:15Z'
+                ],
+            ],
+        ];
+        $this->connection->getBucket(Argument::any())->willReturn(
+            ['name' => self::BUCKET_NAME] +
+            $encryptionConfig
+        );
+        $bucket = $this->getBucket();
+
+        $info = $bucket->reload();
+
+        $this->assertArrayHasKey('encryption', $info);
+        $encryptionInfo = $info['encryption'];
+        $this->assertEquals('key', $encryptionInfo['defaultKmsKeyName']);
+        $this->assertEquals(
+            'FullyRestricted',
+            $encryptionInfo['googleManagedEncryptionEnforcementConfig']['restrictionMode']
+        );
+        $this->assertEquals(
+            '2025-12-18T18:13:15Z',
+            $encryptionInfo['googleManagedEncryptionEnforcementConfig']['effectiveTime']
+        );
+    }
+
     public function testUpdatesDataWithLifecycleBuilder()
     {
         $lifecycleArr = ['test' => 'test'];
