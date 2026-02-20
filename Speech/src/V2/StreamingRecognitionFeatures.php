@@ -38,6 +38,12 @@ class StreamingRecognitionFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.speech.v2.StreamingRecognitionFeatures.VoiceActivityTimeout voice_activity_timeout = 3;</code>
      */
     protected $voice_activity_timeout = null;
+    /**
+     * Optional. Endpointing sensitivity for this stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.StreamingRecognitionFeatures.EndpointingSensitivity endpointing_sensitivity = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $endpointing_sensitivity = 0;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class StreamingRecognitionFeatures extends \Google\Protobuf\Internal\Message
      *           If set, the server will automatically close the stream after the specified
      *           duration has elapsed after the last VOICE_ACTIVITY speech event has been
      *           sent. The field `voice_activity_events` must also be set to true.
+     *     @type int $endpointing_sensitivity
+     *           Optional. Endpointing sensitivity for this stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -157,6 +165,32 @@ class StreamingRecognitionFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\StreamingRecognitionFeatures\VoiceActivityTimeout::class);
         $this->voice_activity_timeout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Endpointing sensitivity for this stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.StreamingRecognitionFeatures.EndpointingSensitivity endpointing_sensitivity = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEndpointingSensitivity()
+    {
+        return $this->endpointing_sensitivity;
+    }
+
+    /**
+     * Optional. Endpointing sensitivity for this stream.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.StreamingRecognitionFeatures.EndpointingSensitivity endpointing_sensitivity = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEndpointingSensitivity($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Speech\V2\StreamingRecognitionFeatures\EndpointingSensitivity::class);
+        $this->endpointing_sensitivity = $var;
 
         return $this;
     }
