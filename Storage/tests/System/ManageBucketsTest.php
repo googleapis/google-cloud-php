@@ -524,4 +524,57 @@ class ManageBucketsTest extends StorageTestCase
         self::$client->restore($name, $generation);
         $this->assertTrue(self::$client->bucket($name)->exists());
     }
+
+    /**
+     * @dataProvider encryptionEnforcementConfigs
+     */
+    public function testCreateAndUpdateBucketWithEncryptionEnforcement($config)
+    {
+        $name = uniqid(self::TESTING_PREFIX);
+        $options = ['encryption' => $config];
+
+        // Test Creation
+        $bucket = self::createBucket(self::$client, $name, $options);
+        $this->assertArrayHasKey('encryption', $bucket->info());
+
+        $encryption = $bucket->info()['encryption'];
+        foreach ($config as $key => $val) {
+            $this->assertEquals($val['restrictionMode'], $encryption[$key]['restrictionMode']);
+            $this->assertArrayHasKey('effectiveTime', $encryption[$key]);
+        }
+
+        // Test Update (Changing restrictionMode)
+        $updatedConfig = $config;
+        $firstKey = array_key_first($updatedConfig);
+        $updatedConfig[$firstKey]['restrictionMode'] = 'NotRestricted';
+
+        $info = $bucket->update(['encryption' => $updatedConfig]);
+        $this->assertEquals(
+            'NotRestricted',
+            $info['encryption'][$firstKey]['restrictionMode']
+        );
+    }
+
+    public function encryptionEnforcementConfigs()
+    {
+        return [
+            [
+                [
+                    'googleManagedEncryptionEnforcementConfig' => [
+                        'restrictionMode' => 'FullyRestricted'
+                    ]
+                ]
+            ],
+            [
+                [
+                    'customerManagedEncryptionEnforcementConfig' => [
+                        'restrictionMode' => 'FullyRestricted'
+                    ],
+                    'customerSuppliedEncryptionEnforcementConfig' => [
+                        'restrictionMode' => 'FullyRestricted'
+                    ]
+                ]
+            ]
+        ];
+    }
 }
