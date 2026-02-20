@@ -169,12 +169,15 @@ class KmsTest extends StorageTestCase
         $this->expectException(ServiceException::class);
         $this->expectExceptionCode(412);
 
-        $key = base64_encode(openssl_random_pseudo_bytes(32));
-        self::$bucket->upload('data', [
-            'name' => uniqid(self::TESTING_PREFIX),
-            'encryptionKey' => $key
-        ]);
-        self::$bucket->update(['encryption' => null]);
+        try {
+            $key = base64_encode(openssl_random_pseudo_bytes(32));
+            self::$bucket->upload('data', [
+                'name' => uniqid(self::TESTING_PREFIX),
+                'encryptionKey' => $key
+            ]);
+        } finally {
+            self::$bucket->update(['encryption' => null]);
+        }
     }
 
     public function testUploadSucceedsWhenNotRestricted()
@@ -187,12 +190,17 @@ class KmsTest extends StorageTestCase
                 ]
             ]
         ]);
-        $object = self::$bucket->upload('data', ['name' => uniqid(self::TESTING_PREFIX)]);
+        $object = null;
+        try {
+            $object = self::$bucket->upload('data', ['name' => uniqid(self::TESTING_PREFIX)]);
 
-        $this->assertTrue($object->exists());
-
-        $object->delete();
-        self::$bucket->update(['encryption' => null]);
+            $this->assertTrue($object->exists());
+        } finally {
+            if ($object) {
+                $object->delete();
+            }
+            self::$bucket->update(['encryption' => null]);
+        }
     }
 
     /**
