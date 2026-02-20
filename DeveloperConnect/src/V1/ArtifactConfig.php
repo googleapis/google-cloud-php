@@ -34,7 +34,7 @@ class ArtifactConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DeveloperConnect\V1\GoogleArtifactRegistry $google_artifact_registry
-     *           Optional. Set if the artifact is stored in Artifact regsitry.
+     *           Optional. Set if the artifact is stored in Artifact registry.
      *     @type \Google\Cloud\DeveloperConnect\V1\GoogleArtifactAnalysis $google_artifact_analysis
      *           Optional. Set if the artifact metadata is stored in Artifact analysis.
      *     @type string $uri
@@ -50,7 +50,7 @@ class ArtifactConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set if the artifact is stored in Artifact regsitry.
+     * Optional. Set if the artifact is stored in Artifact registry.
      *
      * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GoogleArtifactRegistry google_artifact_registry = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DeveloperConnect\V1\GoogleArtifactRegistry|null
@@ -66,7 +66,7 @@ class ArtifactConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set if the artifact is stored in Artifact regsitry.
+     * Optional. Set if the artifact is stored in Artifact registry.
      *
      * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GoogleArtifactRegistry google_artifact_registry = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DeveloperConnect\V1\GoogleArtifactRegistry $var

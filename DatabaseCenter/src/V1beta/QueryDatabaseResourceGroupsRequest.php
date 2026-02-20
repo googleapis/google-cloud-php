@@ -51,12 +51,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
-     * Example: full_resource_name=~"test"
-     * Example: full_resource_name=~"test.*master"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
+     * Example: `full_resource_name=~"test"`
+     * Example: `full_resource_name=~"test.*master"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -106,11 +106,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * descending order. Add "ASC" after the field name to indicate ascending
      * order. It only supports a single field at a time.
      * For example:
-     *  order_by = "full_resource_name" sorts response in ascending order
-     *  order_by = "full_resource_name DESC" sorts response in descending order
-     *  order_by = "issue_count DESC" sorts response in descending order of
+     *  `order_by = "full_resource_name"` sorts response in ascending order
+     *  `order_by = "full_resource_name DESC"` sorts response in descending order
+     *  `order_by = "issue_count DESC"` sorts response in descending order of
      *  count of all issues associated with a resource.
-     * More explicitly, order_by = "full_resource_name, product" is not supported.
+     * More explicitly, `order_by = "full_resource_name, product"` is not
+     * supported.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -169,12 +170,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      *           operators `AND` and `OR`. When `AND` and `OR` are both used in the
      *           expression, parentheses must be appropriately used to group the
      *           combinations.
-     *           Example: location="us-east1"
-     *           Example: container="projects/123" OR container="projects/456"
-     *           Example: (container="projects/123" OR
-     *                     container="projects/456") AND location="us-east1"
-     *           Example: full_resource_name=~"test"
-     *           Example: full_resource_name=~"test.*master"
+     *           Example: `location="us-east1"`
+     *           Example: `container="projects/123" OR container="projects/456"`
+     *           Example: `(container="projects/123" OR
+     *                     container="projects/456") AND location="us-east1"`
+     *           Example: `full_resource_name=~"test"`
+     *           Example: `full_resource_name=~"test.*master"`
      *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>|\Google\Protobuf\Internal\RepeatedField $signal_type_groups
      *           Optional. Groups of signal types that are requested.
      *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalFilter>|\Google\Protobuf\Internal\RepeatedField $signal_filters
@@ -212,11 +213,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      *           descending order. Add "ASC" after the field name to indicate ascending
      *           order. It only supports a single field at a time.
      *           For example:
-     *            order_by = "full_resource_name" sorts response in ascending order
-     *            order_by = "full_resource_name DESC" sorts response in descending order
-     *            order_by = "issue_count DESC" sorts response in descending order of
+     *            `order_by = "full_resource_name"` sorts response in ascending order
+     *            `order_by = "full_resource_name DESC"` sorts response in descending order
+     *            `order_by = "issue_count DESC"` sorts response in descending order of
      *            count of all issues associated with a resource.
-     *           More explicitly, order_by = "full_resource_name, product" is not supported.
+     *           More explicitly, `order_by = "full_resource_name, product"` is not
+     *           supported.
      *     @type int $page_size
      *           Optional. If unspecified, at most 50 resource groups will be returned.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
@@ -293,12 +295,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
-     * Example: full_resource_name=~"test"
-     * Example: full_resource_name=~"test.*master"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
+     * Example: `full_resource_name=~"test"`
+     * Example: `full_resource_name=~"test.*master"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -331,12 +333,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * operators `AND` and `OR`. When `AND` and `OR` are both used in the
      * expression, parentheses must be appropriately used to group the
      * combinations.
-     * Example: location="us-east1"
-     * Example: container="projects/123" OR container="projects/456"
-     * Example: (container="projects/123" OR
-     *           container="projects/456") AND location="us-east1"
-     * Example: full_resource_name=~"test"
-     * Example: full_resource_name=~"test.*master"
+     * Example: `location="us-east1"`
+     * Example: `container="projects/123" OR container="projects/456"`
+     * Example: `(container="projects/123" OR
+     *           container="projects/456") AND location="us-east1"`
+     * Example: `full_resource_name=~"test"`
+     * Example: `full_resource_name=~"test.*master"`
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -436,11 +438,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * descending order. Add "ASC" after the field name to indicate ascending
      * order. It only supports a single field at a time.
      * For example:
-     *  order_by = "full_resource_name" sorts response in ascending order
-     *  order_by = "full_resource_name DESC" sorts response in descending order
-     *  order_by = "issue_count DESC" sorts response in descending order of
+     *  `order_by = "full_resource_name"` sorts response in ascending order
+     *  `order_by = "full_resource_name DESC"` sorts response in descending order
+     *  `order_by = "issue_count DESC"` sorts response in descending order of
      *  count of all issues associated with a resource.
-     * More explicitly, order_by = "full_resource_name, product" is not supported.
+     * More explicitly, `order_by = "full_resource_name, product"` is not
+     * supported.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -482,11 +485,12 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * descending order. Add "ASC" after the field name to indicate ascending
      * order. It only supports a single field at a time.
      * For example:
-     *  order_by = "full_resource_name" sorts response in ascending order
-     *  order_by = "full_resource_name DESC" sorts response in descending order
-     *  order_by = "issue_count DESC" sorts response in descending order of
+     *  `order_by = "full_resource_name"` sorts response in ascending order
+     *  `order_by = "full_resource_name DESC"` sorts response in descending order
+     *  `order_by = "issue_count DESC"` sorts response in descending order of
      *  count of all issues associated with a resource.
-     * More explicitly, order_by = "full_resource_name, product" is not supported.
+     * More explicitly, `order_by = "full_resource_name, product"` is not
+     * supported.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -291,11 +291,25 @@ class CryptoKeyVersionAlgorithm
     const KEM_XWING = 63;
     /**
      * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
+     * security level 1. Randomized version.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_44 = 68;</code>
+     */
+    const PQ_SIGN_ML_DSA_44 = 68;
+    /**
+     * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
      * security level 3. Randomized version.
      *
      * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_65 = 56;</code>
      */
     const PQ_SIGN_ML_DSA_65 = 56;
+    /**
+     * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
+     * security level 5. Randomized version.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_87 = 69;</code>
+     */
+    const PQ_SIGN_ML_DSA_87 = 69;
     /**
      * The post-quantum stateless hash-based digital signature algorithm, at
      * security level 1. Randomized version.
@@ -303,6 +317,37 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>PQ_SIGN_SLH_DSA_SHA2_128S = 57;</code>
      */
     const PQ_SIGN_SLH_DSA_SHA2_128S = 57;
+    /**
+     * The post-quantum stateless hash-based digital signature algorithm, at
+     * security level 1. Randomized pre-hash version supporting SHA256 digests.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256 = 60;</code>
+     */
+    const PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256 = 60;
+    /**
+     * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
+     * security level 1. Randomized version supporting externally-computed
+     * message representatives.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_44_EXTERNAL_MU = 70;</code>
+     */
+    const PQ_SIGN_ML_DSA_44_EXTERNAL_MU = 70;
+    /**
+     * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
+     * security level 3. Randomized version supporting externally-computed
+     * message representatives.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_65_EXTERNAL_MU = 67;</code>
+     */
+    const PQ_SIGN_ML_DSA_65_EXTERNAL_MU = 67;
+    /**
+     * The post-quantum Module-Lattice-Based Digital Signature Algorithm, at
+     * security level 5. Randomized version supporting externally-computed
+     * message representatives.
+     *
+     * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_87_EXTERNAL_MU = 71;</code>
+     */
+    const PQ_SIGN_ML_DSA_87_EXTERNAL_MU = 71;
 
     private static $valueToName = [
         self::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED => 'CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED',
@@ -344,8 +389,14 @@ class CryptoKeyVersionAlgorithm
         self::ML_KEM_768 => 'ML_KEM_768',
         self::ML_KEM_1024 => 'ML_KEM_1024',
         self::KEM_XWING => 'KEM_XWING',
+        self::PQ_SIGN_ML_DSA_44 => 'PQ_SIGN_ML_DSA_44',
         self::PQ_SIGN_ML_DSA_65 => 'PQ_SIGN_ML_DSA_65',
+        self::PQ_SIGN_ML_DSA_87 => 'PQ_SIGN_ML_DSA_87',
         self::PQ_SIGN_SLH_DSA_SHA2_128S => 'PQ_SIGN_SLH_DSA_SHA2_128S',
+        self::PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256 => 'PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256',
+        self::PQ_SIGN_ML_DSA_44_EXTERNAL_MU => 'PQ_SIGN_ML_DSA_44_EXTERNAL_MU',
+        self::PQ_SIGN_ML_DSA_65_EXTERNAL_MU => 'PQ_SIGN_ML_DSA_65_EXTERNAL_MU',
+        self::PQ_SIGN_ML_DSA_87_EXTERNAL_MU => 'PQ_SIGN_ML_DSA_87_EXTERNAL_MU',
     ];
 
     public static function name($value)

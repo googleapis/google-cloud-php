@@ -193,6 +193,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "assuredworkloads"
     },
+    "AuditManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-auditmanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-auditmanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "auditmanager"
+    },
     "AutoMl": {
         "language": "php",
         "distribution_name": "google/cloud-automl",
@@ -403,6 +411,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "certificatemanager"
     },
+    "Ces": {
+        "language": "php",
+        "distribution_name": "google/cloud-ces",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-ces/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "ces"
+    },
     "Channel": {
         "language": "php",
         "distribution_name": "google/cloud-channel",
@@ -487,7 +503,6 @@
         "language": "php",
         "distribution_name": "google/cloud-container",
         "release_level": "stable",
-        "codeowner_team": "@googleapis/cicd",
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-container/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "container"
@@ -830,6 +845,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gke-multi-cloud/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "gkemulticloud"
+    },
+    "GkeRecommender": {
+        "language": "php",
+        "distribution_name": "google/cloud-gkerecommender",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-gkerecommender/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "gkerecommender"
     },
     "Grafeas": {
         "language": "php",
@@ -1665,6 +1688,14 @@
         "library_type": "GAPIC_COMBO",
         "api_shortname": "translate"
     },
+    "VectorSearch": {
+        "language": "php",
+        "distribution_name": "google/cloud-vectorsearch",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-vectorsearch/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "vectorsearch"
+    },
     "VideoIntelligence": {
         "language": "php",
         "distribution_name": "google/cloud-videointelligence",
@@ -1704,6 +1735,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-vision/latest",
         "library_type": "GAPIC_COMBO",
         "api_shortname": "vision"
+    },
+    "VisionAi": {
+        "language": "php",
+        "distribution_name": "google/cloud-visionai",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-visionai/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "visionai"
     },
     "VmMigration": {
         "language": "php",
@@ -1754,5 +1793,13 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-workflows/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "workflows"
+    },
+    "WorkloadManager": {
+        "language": "php",
+        "distribution_name": "google/cloud-workloadmanager",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-workloadmanager/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "workloadmanager"
     }
 }

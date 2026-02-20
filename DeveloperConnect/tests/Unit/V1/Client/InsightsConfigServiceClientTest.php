@@ -29,8 +29,12 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DeveloperConnect\V1\Client\InsightsConfigServiceClient;
 use Google\Cloud\DeveloperConnect\V1\CreateInsightsConfigRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteInsightsConfigRequest;
+use Google\Cloud\DeveloperConnect\V1\DeploymentEvent;
+use Google\Cloud\DeveloperConnect\V1\GetDeploymentEventRequest;
 use Google\Cloud\DeveloperConnect\V1\GetInsightsConfigRequest;
 use Google\Cloud\DeveloperConnect\V1\InsightsConfig;
+use Google\Cloud\DeveloperConnect\V1\ListDeploymentEventsRequest;
+use Google\Cloud\DeveloperConnect\V1\ListDeploymentEventsResponse;
 use Google\Cloud\DeveloperConnect\V1\ListInsightsConfigsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListInsightsConfigsResponse;
 use Google\Cloud\DeveloperConnect\V1\UpdateInsightsConfigRequest;
@@ -347,6 +351,86 @@ class InsightsConfigServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getDeploymentEventTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $runtimeDeploymentUri = 'runtimeDeploymentUri269006905';
+        $expectedResponse = new DeploymentEvent();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setRuntimeDeploymentUri($runtimeDeploymentUri);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->deploymentEventName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSIGHTS_CONFIG]',
+            '[DEPLOYMENT_EVENT]'
+        );
+        $request = (new GetDeploymentEventRequest())->setName($formattedName);
+        $response = $gapicClient->getDeploymentEvent($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.InsightsConfigService/GetDeploymentEvent',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getDeploymentEventExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->deploymentEventName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSIGHTS_CONFIG]',
+            '[DEPLOYMENT_EVENT]'
+        );
+        $request = (new GetDeploymentEventRequest())->setName($formattedName);
+        try {
+            $gapicClient->getDeploymentEvent($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getInsightsConfigTest()
     {
         $transport = $this->createTransport();
@@ -404,6 +488,80 @@ class InsightsConfigServiceClientTest extends GeneratedTest
         $request = (new GetInsightsConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getInsightsConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDeploymentEventsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $deploymentEventsElement = new DeploymentEvent();
+        $deploymentEvents = [$deploymentEventsElement];
+        $expectedResponse = new ListDeploymentEventsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDeploymentEvents($deploymentEvents);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->insightsConfigName('[PROJECT]', '[LOCATION]', '[INSIGHTS_CONFIG]');
+        $request = (new ListDeploymentEventsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listDeploymentEvents($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDeploymentEvents()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.developerconnect.v1.InsightsConfigService/ListDeploymentEvents',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDeploymentEventsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->insightsConfigName('[PROJECT]', '[LOCATION]', '[INSIGHTS_CONFIG]');
+        $request = (new ListDeploymentEventsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listDeploymentEvents($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

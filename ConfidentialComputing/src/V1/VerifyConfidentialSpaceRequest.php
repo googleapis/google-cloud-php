@@ -52,6 +52,13 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialSpaceRequest.ConfidentialSpaceOptions options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $options = null;
+    /**
+     * Optional. An optional Nvidia attestation report, used to populate hardware
+     * rooted claims for Nvidia devices.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.NvidiaAttestation nvidia_attestation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $nvidia_attestation = null;
     protected $tee_attestation;
 
     /**
@@ -81,6 +88,9 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
      *           this information in the attestation.
      *     @type \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceRequest\ConfidentialSpaceOptions $options
      *           Optional. A collection of fields that modify the token output.
+     *     @type \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation $nvidia_attestation
+     *           Optional. An optional Nvidia attestation report, used to populate hardware
+     *           rooted claims for Nvidia devices.
      * }
      */
     public function __construct($data = NULL) {
@@ -320,6 +330,44 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialSpaceRequest\ConfidentialSpaceOptions::class);
         $this->options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional Nvidia attestation report, used to populate hardware
+     * rooted claims for Nvidia devices.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.NvidiaAttestation nvidia_attestation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation|null
+     */
+    public function getNvidiaAttestation()
+    {
+        return $this->nvidia_attestation;
+    }
+
+    public function hasNvidiaAttestation()
+    {
+        return isset($this->nvidia_attestation);
+    }
+
+    public function clearNvidiaAttestation()
+    {
+        unset($this->nvidia_attestation);
+    }
+
+    /**
+     * Optional. An optional Nvidia attestation report, used to populate hardware
+     * rooted claims for Nvidia devices.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.NvidiaAttestation nvidia_attestation = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation $var
+     * @return $this
+     */
+    public function setNvidiaAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation::class);
+        $this->nvidia_attestation = $var;
 
         return $this;
     }

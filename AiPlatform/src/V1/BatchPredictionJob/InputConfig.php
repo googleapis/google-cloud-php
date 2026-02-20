@@ -43,6 +43,9 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *           context OpenAPI Schema, if one is provided. The table may contain
      *           additional columns that are not described by the schema, and they will
      *           be ignored.
+     *     @type \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetSource $vertex_multimodal_dataset_source
+     *           A Vertex Managed Dataset. Currently, only datasets of type Multimodal
+     *           are supported.
      *     @type string $instances_format
      *           Required. The format in which instances are given, must be one of the
      *           [Model's][google.cloud.aiplatform.v1.BatchPredictionJob.model]
@@ -120,6 +123,39 @@ class InputConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BigQuerySource::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * A Vertex Managed Dataset. Currently, only datasets of type Multimodal
+     * are supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexMultimodalDatasetSource vertex_multimodal_dataset_source = 4;</code>
+     * @return \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetSource|null
+     */
+    public function getVertexMultimodalDatasetSource()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasVertexMultimodalDatasetSource()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * A Vertex Managed Dataset. Currently, only datasets of type Multimodal
+     * are supported.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.VertexMultimodalDatasetSource vertex_multimodal_dataset_source = 4;</code>
+     * @param \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetSource $var
+     * @return $this
+     */
+    public function setVertexMultimodalDatasetSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\VertexMultimodalDatasetSource::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

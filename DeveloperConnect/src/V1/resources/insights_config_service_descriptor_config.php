@@ -81,6 +81,18 @@ return [
                     ],
                 ],
             ],
+            'GetDeploymentEvent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\DeploymentEvent',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetInsightsConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DeveloperConnect\V1\InsightsConfig',
@@ -89,6 +101,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDeploymentEvents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDeploymentEvents',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\ListDeploymentEventsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -148,6 +180,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'deploymentEvent' => 'projects/{project}/locations/{location}/insightsConfigs/{insights_config}/deploymentEvents/{deployment_event}',
                 'insightsConfig' => 'projects/{project}/locations/{location}/insightsConfigs/{insights_config}',
                 'location' => 'projects/{project}/locations/{location}',
             ],

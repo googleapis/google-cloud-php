@@ -29,11 +29,12 @@ use Google\Cloud\Kms\V1\Client\AutokeyAdminClient;
 use Google\Cloud\Kms\V1\GetAutokeyConfigRequest;
 
 /**
- * Returns the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a
- * folder.
+ * Returns the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+ * or project.
  *
  * @param string $formattedName Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
- *                              resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`. Please see
+ *                              resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+ *                              `projects/{PROJECT_NUMBER}/autokeyConfig`. Please see
  *                              {@see AutokeyAdminClient::autokeyConfigName()} for help formatting this field.
  */
 function get_autokey_config_sample(string $formattedName): void

@@ -55,6 +55,14 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $service_account = '';
+    /**
+     * Optional. Specifies the priority for query execution in BigQuery.
+     * More information can be found at
+     * https://cloud.google.com/bigquery/docs/running-queries#queries.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.dataform.v1beta1.InvocationConfig.QueryPriority query_priority = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $query_priority = null;
 
     /**
      * Constructor.
@@ -76,6 +84,10 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. When set to true, any incremental tables will be fully refreshed.
      *     @type string $service_account
      *           Optional. The service account to run workflow invocations under.
+     *     @type int $query_priority
+     *           Optional. Specifies the priority for query execution in BigQuery.
+     *           More information can be found at
+     *           https://cloud.google.com/bigquery/docs/running-queries#queries.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +251,46 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the priority for query execution in BigQuery.
+     * More information can be found at
+     * https://cloud.google.com/bigquery/docs/running-queries#queries.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.dataform.v1beta1.InvocationConfig.QueryPriority query_priority = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getQueryPriority()
+    {
+        return isset($this->query_priority) ? $this->query_priority : 0;
+    }
+
+    public function hasQueryPriority()
+    {
+        return isset($this->query_priority);
+    }
+
+    public function clearQueryPriority()
+    {
+        unset($this->query_priority);
+    }
+
+    /**
+     * Optional. Specifies the priority for query execution in BigQuery.
+     * More information can be found at
+     * https://cloud.google.com/bigquery/docs/running-queries#queries.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.dataform.v1beta1.InvocationConfig.QueryPriority query_priority = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setQueryPriority($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataform\V1beta1\InvocationConfig\QueryPriority::class);
+        $this->query_priority = $var;
 
         return $this;
     }

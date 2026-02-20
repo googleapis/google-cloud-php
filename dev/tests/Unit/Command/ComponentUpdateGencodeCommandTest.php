@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\Command\ComponentUpdateGencodeCommand;
+use Google\Cloud\Dev\Command\ComponentUpdateCommand;
 use Google\Cloud\Dev\RunProcess;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -28,7 +28,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * @group dev
  */
-class ComponentUpdateGencodeCommandTest extends TestCase
+class ComponentUpdateCommandTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -55,8 +55,8 @@ class ComponentUpdateGencodeCommandTest extends TestCase
             ],
         ]));
         $application = new Application();
-        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir));
-        self::$commandTester = new CommandTester($application->get('component:update:gencode'));
+        $application->add(new ComponentUpdateCommand(self::$tmpDir));
+        self::$commandTester = new CommandTester($application->get('component:update'));
     }
 
     public static function tearDownAfterClass(): void
@@ -76,8 +76,8 @@ class ComponentUpdateGencodeCommandTest extends TestCase
 
         $googleapisGenPath = '/path/to/googleapis-gen';
         $application = new Application();
-        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir));
-        $commandTester = new CommandTester($application->get('component:update:gencode'));
+        $application->add(new ComponentUpdateCommand(self::$tmpDir));
+        $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
             'component' => self::COMPONENT_NAME,
@@ -96,8 +96,8 @@ class ComponentUpdateGencodeCommandTest extends TestCase
             ->willReturn('');
 
         $application = new Application();
-        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir, $runProcess->reveal()));
-        $commandTester = new CommandTester($application->get('component:update:gencode'));
+        $application->add(new ComponentUpdateCommand(self::$tmpDir, $runProcess->reveal()));
+        $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
             'component' => self::COMPONENT_NAME,
@@ -116,8 +116,8 @@ class ComponentUpdateGencodeCommandTest extends TestCase
             ->willReturn('/path/to/docker');
 
         $application = new Application();
-        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir, $runProcess->reveal()));
-        $commandTester = new CommandTester($application->get('component:update:gencode'));
+        $application->add(new ComponentUpdateCommand(self::$tmpDir, $runProcess->reveal()));
+        $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
             'component' => 'NonExistantComponent',
@@ -185,9 +185,9 @@ class ComponentUpdateGencodeCommandTest extends TestCase
             ->willReturn('');
 
         $application = new Application();
-        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir, $runProcess->reveal()));
+        $application->add(new ComponentUpdateCommand(self::$tmpDir, $runProcess->reveal()));
 
-        $commandTester = new CommandTester($application->get('component:update:gencode'));
+        $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
             'component' => self::COMPONENT_NAME,
@@ -206,9 +206,9 @@ class ComponentUpdateGencodeCommandTest extends TestCase
         $this->expectExceptionMessage('Error: The timeout option must be a positive integer');
 
         $application = new Application();
-        $application->add(new ComponentUpdateGencodeCommand(self::$tmpDir));
+        $application->add(new ComponentUpdateCommand(self::$tmpDir));
 
-        $commandTester = new CommandTester($application->get('component:update:gencode'));
+        $commandTester = new CommandTester($application->get('component:update'));
         $commandTester->setInputs([
             'Y' // Does this information look correct? [Y/n]
         ]);

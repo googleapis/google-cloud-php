@@ -21,6 +21,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
@@ -109,6 +110,7 @@ trait SnapshotTrait
      * @throws \InvalidArgumentException if an invalid `$options.readTime` is
      *     specified.
      * @throws NotFoundException If the document does not exist.
+     * @throws ServiceException
      */
     private function getSnapshot(FirestoreClient $gapicClient, $name, array $options = []): array
     {
@@ -159,6 +161,7 @@ trait SnapshotTrait
      *        firestore document paths or DocumentReference instances.
      * @param array $options Configuration options.
      * @return DocumentSnapshot[]
+     * @throws ServiceException
      */
     private function getDocumentsByPaths(
         FirestoreClient $gapicClient,

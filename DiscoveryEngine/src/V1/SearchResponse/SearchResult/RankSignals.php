@@ -16,55 +16,55 @@ use Google\Protobuf\Internal\GPBUtil;
 class RankSignals extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Keyword matching adjustment.
+     * Optional. Keyword matching adjustment.
      *
      * Generated from protobuf field <code>optional float keyword_similarity_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $keyword_similarity_score = null;
     /**
-     * Semantic relevance adjustment.
+     * Optional. Semantic relevance adjustment.
      *
      * Generated from protobuf field <code>optional float relevance_score = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $relevance_score = null;
     /**
-     * Semantic similarity adjustment.
+     * Optional. Semantic similarity adjustment.
      *
      * Generated from protobuf field <code>optional float semantic_similarity_score = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $semantic_similarity_score = null;
     /**
-     * Predicted conversion rate adjustment as a rank.
+     * Optional. Predicted conversion rate adjustment as a rank.
      *
      * Generated from protobuf field <code>optional float pctr_rank = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $pctr_rank = null;
     /**
-     * Topicality adjustment as a rank.
+     * Optional. Topicality adjustment as a rank.
      *
      * Generated from protobuf field <code>optional float topicality_rank = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $topicality_rank = null;
     /**
-     * Age of the document in hours.
+     * Optional. Age of the document in hours.
      *
      * Generated from protobuf field <code>optional float document_age = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $document_age = null;
     /**
-     * Combined custom boosts for a doc.
+     * Optional. Combined custom boosts for a doc.
      *
      * Generated from protobuf field <code>optional float boosting_factor = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $boosting_factor = null;
     /**
-     * The default rank of the result.
+     * Optional. The default rank of the result.
      *
      * Generated from protobuf field <code>float default_rank = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $default_rank = 0.0;
     /**
-     * A list of custom clearbox signals.
+     * Optional. A list of custom clearbox signals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals.CustomSignal custom_signals = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -77,23 +77,23 @@ class RankSignals extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $keyword_similarity_score
-     *           Keyword matching adjustment.
+     *           Optional. Keyword matching adjustment.
      *     @type float $relevance_score
-     *           Semantic relevance adjustment.
+     *           Optional. Semantic relevance adjustment.
      *     @type float $semantic_similarity_score
-     *           Semantic similarity adjustment.
+     *           Optional. Semantic similarity adjustment.
      *     @type float $pctr_rank
-     *           Predicted conversion rate adjustment as a rank.
+     *           Optional. Predicted conversion rate adjustment as a rank.
      *     @type float $topicality_rank
-     *           Topicality adjustment as a rank.
+     *           Optional. Topicality adjustment as a rank.
      *     @type float $document_age
-     *           Age of the document in hours.
+     *           Optional. Age of the document in hours.
      *     @type float $boosting_factor
-     *           Combined custom boosts for a doc.
+     *           Optional. Combined custom boosts for a doc.
      *     @type float $default_rank
-     *           The default rank of the result.
+     *           Optional. The default rank of the result.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal>|\Google\Protobuf\Internal\RepeatedField $custom_signals
-     *           A list of custom clearbox signals.
+     *           Optional. A list of custom clearbox signals.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,7 +102,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Keyword matching adjustment.
+     * Optional. Keyword matching adjustment.
      *
      * Generated from protobuf field <code>optional float keyword_similarity_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -123,7 +123,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Keyword matching adjustment.
+     * Optional. Keyword matching adjustment.
      *
      * Generated from protobuf field <code>optional float keyword_similarity_score = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -138,7 +138,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Semantic relevance adjustment.
+     * Optional. Semantic relevance adjustment.
      *
      * Generated from protobuf field <code>optional float relevance_score = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -159,7 +159,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Semantic relevance adjustment.
+     * Optional. Semantic relevance adjustment.
      *
      * Generated from protobuf field <code>optional float relevance_score = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -174,7 +174,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Semantic similarity adjustment.
+     * Optional. Semantic similarity adjustment.
      *
      * Generated from protobuf field <code>optional float semantic_similarity_score = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -195,7 +195,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Semantic similarity adjustment.
+     * Optional. Semantic similarity adjustment.
      *
      * Generated from protobuf field <code>optional float semantic_similarity_score = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -210,7 +210,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Predicted conversion rate adjustment as a rank.
+     * Optional. Predicted conversion rate adjustment as a rank.
      *
      * Generated from protobuf field <code>optional float pctr_rank = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -231,7 +231,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Predicted conversion rate adjustment as a rank.
+     * Optional. Predicted conversion rate adjustment as a rank.
      *
      * Generated from protobuf field <code>optional float pctr_rank = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -246,7 +246,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Topicality adjustment as a rank.
+     * Optional. Topicality adjustment as a rank.
      *
      * Generated from protobuf field <code>optional float topicality_rank = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -267,7 +267,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Topicality adjustment as a rank.
+     * Optional. Topicality adjustment as a rank.
      *
      * Generated from protobuf field <code>optional float topicality_rank = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -282,7 +282,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Age of the document in hours.
+     * Optional. Age of the document in hours.
      *
      * Generated from protobuf field <code>optional float document_age = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -303,7 +303,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Age of the document in hours.
+     * Optional. Age of the document in hours.
      *
      * Generated from protobuf field <code>optional float document_age = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -318,7 +318,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Combined custom boosts for a doc.
+     * Optional. Combined custom boosts for a doc.
      *
      * Generated from protobuf field <code>optional float boosting_factor = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -339,7 +339,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Combined custom boosts for a doc.
+     * Optional. Combined custom boosts for a doc.
      *
      * Generated from protobuf field <code>optional float boosting_factor = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -354,7 +354,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The default rank of the result.
+     * Optional. The default rank of the result.
      *
      * Generated from protobuf field <code>float default_rank = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -365,7 +365,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The default rank of the result.
+     * Optional. The default rank of the result.
      *
      * Generated from protobuf field <code>float default_rank = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
@@ -380,7 +380,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of custom clearbox signals.
+     * Optional. A list of custom clearbox signals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals.CustomSignal custom_signals = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -391,7 +391,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of custom clearbox signals.
+     * Optional. A list of custom clearbox signals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals.CustomSignal custom_signals = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal>|\Google\Protobuf\Internal\RepeatedField $var

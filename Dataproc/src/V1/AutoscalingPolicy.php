@@ -61,6 +61,13 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. The type of the clusters for which this autoscaling policy is to
+     * be configured.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy.ClusterType cluster_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cluster_type = 0;
     protected $algorithm;
 
     /**
@@ -96,6 +103,9 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *           characters, and must conform to [RFC
      *           1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      *           associated with an autoscaling policy.
+     *     @type int $cluster_type
+     *           Optional. The type of the clusters for which this autoscaling policy is to
+     *           be configured.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,6 +318,34 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of the clusters for which this autoscaling policy is to
+     * be configured.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy.ClusterType cluster_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getClusterType()
+    {
+        return $this->cluster_type;
+    }
+
+    /**
+     * Optional. The type of the clusters for which this autoscaling policy is to
+     * be configured.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingPolicy.ClusterType cluster_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClusterType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\AutoscalingPolicy\ClusterType::class);
+        $this->cluster_type = $var;
 
         return $this;
     }

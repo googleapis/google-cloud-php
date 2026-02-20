@@ -17,7 +17,8 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     * `projects/{PROJECT_NUMBER}/autokeyConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -53,6 +54,14 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $etag = '';
+    /**
+     * Optional. KeyProjectResolutionMode for the AutokeyConfig.
+     * Valid values are `DEDICATED_KEY_PROJECT`, `RESOURCE_PROJECT`, or
+     * `DISABLED`.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.KeyProjectResolutionMode key_project_resolution_mode = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $key_project_resolution_mode = 0;
 
     /**
      * Constructor.
@@ -62,7 +71,8 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     *           resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     *           resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     *           `projects/{PROJECT_NUMBER}/autokeyConfig`.
      *     @type string $key_project
      *           Optional. Name of the key project, e.g. `projects/{PROJECT_ID}` or
      *           `projects/{PROJECT_NUMBER}`, where Cloud KMS Autokey will provision a new
@@ -82,6 +92,10 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
      *           fields. This may be sent on update requests to ensure that the client has
      *           an up-to-date value before proceeding. The request will be rejected with an
      *           ABORTED error on a mismatched etag.
+     *     @type int $key_project_resolution_mode
+     *           Optional. KeyProjectResolutionMode for the AutokeyConfig.
+     *           Valid values are `DEDICATED_KEY_PROJECT`, `RESOURCE_PROJECT`, or
+     *           `DISABLED`.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,7 +105,8 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     * `projects/{PROJECT_NUMBER}/autokeyConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -103,7 +118,8 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig]
-     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.
+     * resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` or
+     * `projects/{PROJECT_NUMBER}/autokeyConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -217,6 +233,36 @@ class AutokeyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. KeyProjectResolutionMode for the AutokeyConfig.
+     * Valid values are `DEDICATED_KEY_PROJECT`, `RESOURCE_PROJECT`, or
+     * `DISABLED`.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.KeyProjectResolutionMode key_project_resolution_mode = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getKeyProjectResolutionMode()
+    {
+        return $this->key_project_resolution_mode;
+    }
+
+    /**
+     * Optional. KeyProjectResolutionMode for the AutokeyConfig.
+     * Valid values are `DEDICATED_KEY_PROJECT`, `RESOURCE_PROJECT`, or
+     * `DISABLED`.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.AutokeyConfig.KeyProjectResolutionMode key_project_resolution_mode = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setKeyProjectResolutionMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\AutokeyConfig\KeyProjectResolutionMode::class);
+        $this->key_project_resolution_mode = $var;
 
         return $this;
     }

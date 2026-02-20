@@ -203,6 +203,17 @@ return [
                     ],
                 ],
             ],
+            'FinishOAuth' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{account_connector=projects/*/locations/*/accountConnectors/*}/users:finishOAuthFlow',
+                'placeholders' => [
+                    'account_connector' => [
+                        'getters' => [
+                            'getAccountConnector',
+                        ],
+                    ],
+                ],
+            ],
             'GetAccountConnector' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/accountConnectors/*}',
@@ -276,6 +287,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'StartOAuth' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{account_connector=projects/*/locations/*/accountConnectors/*}/users:startOAuthFlow',
+                'placeholders' => [
+                    'account_connector' => [
+                        'getters' => [
+                            'getAccountConnector',
                         ],
                     ],
                 ],

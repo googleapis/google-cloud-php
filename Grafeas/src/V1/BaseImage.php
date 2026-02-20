@@ -33,6 +33,12 @@ class BaseImage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 layer_count = 3;</code>
      */
     protected $layer_count = 0;
+    /**
+     * The registry in which the base image is from.
+     *
+     * Generated from protobuf field <code>string registry = 4;</code>
+     */
+    protected $registry = '';
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class BaseImage extends \Google\Protobuf\Internal\Message
      *           The repository name in which the base image is from.
      *     @type int $layer_count
      *           The number of layers that the base image is composed of.
+     *     @type string $registry
+     *           The registry in which the base image is from.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,32 @@ class BaseImage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->layer_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The registry in which the base image is from.
+     *
+     * Generated from protobuf field <code>string registry = 4;</code>
+     * @return string
+     */
+    public function getRegistry()
+    {
+        return $this->registry;
+    }
+
+    /**
+     * The registry in which the base image is from.
+     *
+     * Generated from protobuf field <code>string registry = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegistry($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->registry = $var;
 
         return $this;
     }

@@ -20,6 +20,23 @@ class RankingExpressionBackend
      */
     const RANKING_EXPRESSION_BACKEND_UNSPECIFIED = 0;
     /**
+     * Deprecated: Use `RANK_BY_EMBEDDING` instead.
+     * Ranking by custom embedding model, the default way to evaluate the
+     * ranking expression. Legacy enum option, `RANK_BY_EMBEDDING` should be
+     * used instead.
+     *
+     * Generated from protobuf enum <code>BYOE = 1 [deprecated = true];</code>
+     */
+    const BYOE = 1;
+    /**
+     * Deprecated: Use `RANK_BY_FORMULA` instead.
+     * Ranking by custom formula. Legacy enum option, `RANK_BY_FORMULA` should
+     * be used instead.
+     *
+     * Generated from protobuf enum <code>CLEARBOX = 2 [deprecated = true];</code>
+     */
+    const CLEARBOX = 2;
+    /**
      * Ranking by custom embedding model, the default way to evaluate the
      * ranking expression.
      *
@@ -35,6 +52,8 @@ class RankingExpressionBackend
 
     private static $valueToName = [
         self::RANKING_EXPRESSION_BACKEND_UNSPECIFIED => 'RANKING_EXPRESSION_BACKEND_UNSPECIFIED',
+        self::BYOE => 'BYOE',
+        self::CLEARBOX => 'CLEARBOX',
         self::RANK_BY_EMBEDDING => 'RANK_BY_EMBEDDING',
         self::RANK_BY_FORMULA => 'RANK_BY_FORMULA',
     ];

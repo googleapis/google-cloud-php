@@ -46,7 +46,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $sql = '';
     /**
-     * Parameter names and values that bind to placeholders in the SQL string.
+     * Optional. Parameter names and values that bind to placeholders in the SQL
+     * string.
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
@@ -55,20 +56,20 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $params = null;
     /**
-     * It isn't always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value. For example, values of type `BYTES` and values
-     * of type `STRING` both appear in
+     * Optional. It isn't always possible for Cloud Spanner to infer the right SQL
+     * type from a JSON value. For example, values of type `BYTES` and values of
+     * type `STRING` both appear in
      * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
      *
-     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $param_types;
     /**
@@ -103,7 +104,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *           a `PartitionedDml` transaction for large, partition-friendly DML
      *           operations.
      *     @type \Google\Protobuf\Struct $params
-     *           Parameter names and values that bind to placeholders in the SQL string.
+     *           Optional. Parameter names and values that bind to placeholders in the SQL
+     *           string.
      *           A parameter placeholder consists of the `&#64;` character followed by the
      *           parameter name (for example, `&#64;firstName`). Parameter names can contain
      *           letters, numbers, and underscores.
@@ -112,9 +114,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      *           It's an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
-     *           It isn't always possible for Cloud Spanner to infer the right SQL type
-     *           from a JSON value. For example, values of type `BYTES` and values
-     *           of type `STRING` both appear in
+     *           Optional. It isn't always possible for Cloud Spanner to infer the right SQL
+     *           type from a JSON value. For example, values of type `BYTES` and values of
+     *           type `STRING` both appear in
      *           [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      *           In these cases, `param_types` can be used to specify the exact
      *           SQL type for some or all of the SQL query parameters. See the
@@ -242,7 +244,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameter names and values that bind to placeholders in the SQL string.
+     * Optional. Parameter names and values that bind to placeholders in the SQL
+     * string.
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
@@ -251,7 +254,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
@@ -270,7 +273,8 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameter names and values that bind to placeholders in the SQL string.
+     * Optional. Parameter names and values that bind to placeholders in the SQL
+     * string.
      * A parameter placeholder consists of the `&#64;` character followed by the
      * parameter name (for example, `&#64;firstName`). Parameter names can contain
      * letters, numbers, and underscores.
@@ -279,7 +283,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -292,16 +296,16 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It isn't always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value. For example, values of type `BYTES` and values
-     * of type `STRING` both appear in
+     * Optional. It isn't always possible for Cloud Spanner to infer the right SQL
+     * type from a JSON value. For example, values of type `BYTES` and values of
+     * type `STRING` both appear in
      * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
      *
-     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getParamTypes()
@@ -310,16 +314,16 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * It isn't always possible for Cloud Spanner to infer the right SQL type
-     * from a JSON value. For example, values of type `BYTES` and values
-     * of type `STRING` both appear in
+     * Optional. It isn't always possible for Cloud Spanner to infer the right SQL
+     * type from a JSON value. For example, values of type `BYTES` and values of
+     * type `STRING` both appear in
      * [params][google.spanner.v1.PartitionQueryRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
      *
-     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

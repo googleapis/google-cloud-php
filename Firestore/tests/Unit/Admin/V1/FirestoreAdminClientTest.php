@@ -570,10 +570,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         $name = 'name3373707';
         $multikey = true;
         $shardCount = 495377042;
+        $unique = false;
         $expectedResponse = new Index();
         $expectedResponse->setName($name);
         $expectedResponse->setMultikey($multikey);
         $expectedResponse->setShardCount($shardCount);
+        $expectedResponse->setUnique($unique);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1613,10 +1615,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $multikey = true;
         $shardCount = 495377042;
+        $unique = false;
         $expectedResponse = new Index();
         $expectedResponse->setName($name2);
         $expectedResponse->setMultikey($multikey);
         $expectedResponse->setShardCount($shardCount);
+        $expectedResponse->setUnique($unique);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');

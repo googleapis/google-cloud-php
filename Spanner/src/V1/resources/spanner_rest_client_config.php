@@ -37,7 +37,15 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/instancePartitions/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/ssdCaches/*/operations/*}:cancel',
                     ],
                 ],
                 'placeholders' => [
@@ -62,7 +70,15 @@ return [
                     ],
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/instancePartitions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/ssdCaches/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -87,7 +103,15 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/instancePartitions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/ssdCaches/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -112,7 +136,15 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/instancePartitions/*/operations}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/ssdCaches/*/operations}',
                     ],
                 ],
                 'placeholders' => [

@@ -23,8 +23,8 @@ class ResourceDetails extends \Google\Protobuf\Internal\Message
      */
     protected $full_resource_name = '';
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 2;</code>
      */
@@ -51,8 +51,8 @@ class ResourceDetails extends \Google\Protobuf\Internal\Message
      *     @type string $full_resource_name
      *           Full resource name of the resource.
      *     @type string $container
-     *           Specifies where the resource is created. For GCP, it is the full name of
-     *           the project.
+     *           Specifies where the resource is created. For Google Cloud resources, it is
+     *           the full name of the project.
      *     @type \Google\Cloud\DatabaseCenter\V1beta\Product $product
      *           Product type of the resource.
      *     @type string $location
@@ -91,8 +91,8 @@ class ResourceDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 2;</code>
      * @return string
@@ -103,8 +103,8 @@ class ResourceDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 2;</code>
      * @param string $var

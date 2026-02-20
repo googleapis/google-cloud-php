@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The InsightsConfig resource is the core configuration object to capture
  * events from your Software Development Lifecycle. It acts as the central hub
- * for managing how Developer connect understands your application, its runtime
+ * for managing how Developer Connect understands your application, its runtime
  * environments, and the artifacts deployed within them.
  *
  * Generated from protobuf message <code>google.cloud.developerconnect.v1.InsightsConfig</code>
@@ -27,13 +27,13 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. [Output only] Create timestamp
+     * Output only. Create timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Output only. [Output only] Update timestamp
+     * Output only. Update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -101,14 +101,16 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the App Hub Application.
      *           Format:
      *           projects/{project}/locations/{location}/applications/{application}
+     *     @type \Google\Cloud\DeveloperConnect\V1\Projects $projects
+     *           Optional. The projects to track with the InsightsConfig.
      *     @type string $name
      *           Identifier. The name of the InsightsConfig.
      *           Format:
      *           projects/{project}/locations/{location}/insightsConfigs/{insightsConfig}
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. [Output only] Create timestamp
+     *           Output only. Create timestamp.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. [Output only] Update timestamp
+     *           Output only. Update timestamp.
      *     @type array<\Google\Cloud\DeveloperConnect\V1\RuntimeConfig>|\Google\Protobuf\Internal\RepeatedField $runtime_configs
      *           Output only. The runtime configurations where the application is deployed.
      *     @type array<\Google\Cloud\DeveloperConnect\V1\ArtifactConfig>|\Google\Protobuf\Internal\RepeatedField $artifact_configs
@@ -175,6 +177,37 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The projects to track with the InsightsConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.Projects projects = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\Projects|null
+     */
+    public function getProjects()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasProjects()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Optional. The projects to track with the InsightsConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.Projects projects = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\Projects $var
+     * @return $this
+     */
+    public function setProjects($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\Projects::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
      * Identifier. The name of the InsightsConfig.
      * Format:
      * projects/{project}/locations/{location}/insightsConfigs/{insightsConfig}
@@ -205,7 +238,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Create timestamp
+     * Output only. Create timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -226,7 +259,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Create timestamp
+     * Output only. Create timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -241,7 +274,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Update timestamp
+     * Output only. Update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -262,7 +295,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output only] Update timestamp
+     * Output only. Update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

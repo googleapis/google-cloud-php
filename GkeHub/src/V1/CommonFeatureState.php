@@ -9,18 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * CommonFeatureState contains Hub-wide Feature status information.
+ * CommonFeatureState contains Fleet-wide Feature status information.
  *
  * Generated from protobuf message <code>google.cloud.gkehub.v1.CommonFeatureState</code>
  */
 class CommonFeatureState extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The "running state" of the Feature in this Hub.
+     * Output only. The "running state" of the Feature in this Fleet.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.FeatureState state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = null;
+    protected $feature_state;
 
     /**
      * Constructor.
@@ -28,8 +29,10 @@ class CommonFeatureState extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\GkeHub\RbacRoleBindingActuation\V1\FeatureState $rbacrolebindingactuation
+     *           RBAC Role Binding Actuation feature state
      *     @type \Google\Cloud\GkeHub\V1\FeatureState $state
-     *           Output only. The "running state" of the Feature in this Hub.
+     *           Output only. The "running state" of the Feature in this Fleet.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,38 @@ class CommonFeatureState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "running state" of the Feature in this Hub.
+     * RBAC Role Binding Actuation feature state
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.rbacrolebindingactuation.v1.FeatureState rbacrolebindingactuation = 120;</code>
+     * @return \Google\Cloud\GkeHub\RbacRoleBindingActuation\V1\FeatureState|null
+     */
+    public function getRbacrolebindingactuation()
+    {
+        return $this->readOneof(120);
+    }
+
+    public function hasRbacrolebindingactuation()
+    {
+        return $this->hasOneof(120);
+    }
+
+    /**
+     * RBAC Role Binding Actuation feature state
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.rbacrolebindingactuation.v1.FeatureState rbacrolebindingactuation = 120;</code>
+     * @param \Google\Cloud\GkeHub\RbacRoleBindingActuation\V1\FeatureState $var
+     * @return $this
+     */
+    public function setRbacrolebindingactuation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeHub\RbacRoleBindingActuation\V1\FeatureState::class);
+        $this->writeOneof(120, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The "running state" of the Feature in this Fleet.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.FeatureState state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\GkeHub\V1\FeatureState|null
@@ -59,7 +93,7 @@ class CommonFeatureState extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The "running state" of the Feature in this Hub.
+     * Output only. The "running state" of the Feature in this Fleet.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.FeatureState state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\GkeHub\V1\FeatureState $var
@@ -71,6 +105,14 @@ class CommonFeatureState extends \Google\Protobuf\Internal\Message
         $this->state = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFeatureState()
+    {
+        return $this->whichOneof("feature_state");
     }
 
 }

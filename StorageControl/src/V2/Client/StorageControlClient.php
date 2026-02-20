@@ -44,6 +44,7 @@ use Google\Cloud\Storage\Control\V2\AnywhereCache;
 use Google\Cloud\Storage\Control\V2\CreateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\CreateFolderRequest;
 use Google\Cloud\Storage\Control\V2\CreateManagedFolderRequest;
+use Google\Cloud\Storage\Control\V2\DeleteFolderRecursiveRequest;
 use Google\Cloud\Storage\Control\V2\DeleteFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\DisableAnywhereCacheRequest;
@@ -88,6 +89,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Folder> createFolderAsync(CreateFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagedFolder> createManagedFolderAsync(CreateManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFolderRecursiveAsync(DeleteFolderRecursiveRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteManagedFolderAsync(DeleteManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> disableAnywhereCacheAsync(DisableAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> getAnywhereCacheAsync(GetAnywhereCacheRequest $request, array $optionalArgs = [])
@@ -592,6 +594,35 @@ final class StorageControlClient
     public function deleteFolder(DeleteFolderRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a folder recursively. This operation is only applicable to a
+     * hierarchical namespace enabled bucket.
+     *
+     * The async variant is {@see StorageControlClient::deleteFolderRecursiveAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/delete_folder_recursive.php
+     *
+     * @param DeleteFolderRecursiveRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteFolderRecursive(
+        DeleteFolderRecursiveRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteFolderRecursive', $request, $callOptions)->wait();
     }
 
     /**

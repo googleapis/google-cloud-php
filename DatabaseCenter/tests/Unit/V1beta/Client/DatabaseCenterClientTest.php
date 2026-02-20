@@ -33,9 +33,12 @@ use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsResponse;
 use Google\Cloud\DatabaseCenter\V1beta\Client\DatabaseCenterClient;
 use Google\Cloud\DatabaseCenter\V1beta\DatabaseResourceGroup;
+use Google\Cloud\DatabaseCenter\V1beta\DatabaseResourceIssue;
 use Google\Cloud\DatabaseCenter\V1beta\Product;
 use Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsResponse;
+use Google\Cloud\DatabaseCenter\V1beta\QueryIssuesRequest;
+use Google\Cloud\DatabaseCenter\V1beta\QueryIssuesResponse;
 use Google\Cloud\DatabaseCenter\V1beta\QueryProductsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryProductsResponse;
 use Google\Rpc\Code;
@@ -276,6 +279,77 @@ class DatabaseCenterClientTest extends GeneratedTest
         $request = (new QueryDatabaseResourceGroupsRequest())->setParent($parent);
         try {
             $gapicClient->queryDatabaseResourceGroups($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryIssuesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $resourceIssuesElement = new DatabaseResourceIssue();
+        $resourceIssues = [$resourceIssuesElement];
+        $expectedResponse = new QueryIssuesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResourceIssues($resourceIssues);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new QueryIssuesRequest())->setParent($parent);
+        $response = $gapicClient->queryIssues($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResourceIssues()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.databasecenter.v1beta.DatabaseCenter/QueryIssues', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function queryIssuesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new QueryIssuesRequest())->setParent($parent);
+        try {
+            $gapicClient->queryIssues($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

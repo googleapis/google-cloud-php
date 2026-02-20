@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * DatabaseResource represents every individually configured database unit
  * representing compute and/or storage.
- * NextId: 20
  *
  * Generated from protobuf message <code>google.cloud.databasecenter.v1beta.DatabaseResource</code>
  */
@@ -37,8 +36,8 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      */
     protected $full_resource_name = '';
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 4;</code>
      */
@@ -51,8 +50,9 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
     protected $product = null;
     /**
      * The location of the resources. It supports returning only regional
-     * locations in GCP. These are of the form: "us-central1", "us-east1", etc.
-     * See https://cloud.google.com/about/locations for a list of such regions.
+     * locations in Google Cloud. These are of the form: "us-central1",
+     * "us-east1", etc. See https://cloud.google.com/about/locations for a list of
+     * such regions.
      *
      * Generated from protobuf field <code>string location = 6;</code>
      */
@@ -168,14 +168,15 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      *            `//alloydb.googleapis.com/projects/project-number/locations/us-central1/clusters/c1`
      *            `//alloydb.googleapis.com/projects/project-number/locations/us-central1/clusters/c1/instances/i1`
      *     @type string $container
-     *           Specifies where the resource is created. For GCP, it is the full name of
-     *           the project.
+     *           Specifies where the resource is created. For Google Cloud resources, it is
+     *           the full name of the project.
      *     @type \Google\Cloud\DatabaseCenter\V1beta\Product $product
      *           The product this resource represents.
      *     @type string $location
      *           The location of the resources. It supports returning only regional
-     *           locations in GCP. These are of the form: "us-central1", "us-east1", etc.
-     *           See https://cloud.google.com/about/locations for a list of such regions.
+     *           locations in Google Cloud. These are of the form: "us-central1",
+     *           "us-east1", etc. See https://cloud.google.com/about/locations for a list of
+     *           such regions.
      *     @type array<\Google\Cloud\DatabaseCenter\V1beta\Label>|\Google\Protobuf\Internal\RepeatedField $labels
      *           Labels applied on the resource. The requirements for labels assigned to
      *           Google Cloud resources may be found at
@@ -294,8 +295,8 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 4;</code>
      * @return string
@@ -306,8 +307,8 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies where the resource is created. For GCP, it is the full name of
-     * the project.
+     * Specifies where the resource is created. For Google Cloud resources, it is
+     * the full name of the project.
      *
      * Generated from protobuf field <code>string container = 4;</code>
      * @param string $var
@@ -359,8 +360,9 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
 
     /**
      * The location of the resources. It supports returning only regional
-     * locations in GCP. These are of the form: "us-central1", "us-east1", etc.
-     * See https://cloud.google.com/about/locations for a list of such regions.
+     * locations in Google Cloud. These are of the form: "us-central1",
+     * "us-east1", etc. See https://cloud.google.com/about/locations for a list of
+     * such regions.
      *
      * Generated from protobuf field <code>string location = 6;</code>
      * @return string
@@ -372,8 +374,9 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
 
     /**
      * The location of the resources. It supports returning only regional
-     * locations in GCP. These are of the form: "us-central1", "us-east1", etc.
-     * See https://cloud.google.com/about/locations for a list of such regions.
+     * locations in Google Cloud. These are of the form: "us-central1",
+     * "us-east1", etc. See https://cloud.google.com/about/locations for a list of
+     * such regions.
      *
      * Generated from protobuf field <code>string location = 6;</code>
      * @param string $var

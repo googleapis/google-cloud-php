@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * FeatureResourceState describes the state of a Feature *resource* in the
  * GkeHub API. See `FeatureState` for the "running state" of the Feature in the
- * Hub and across Memberships.
+ * Fleet and across Memberships.
  *
  * Generated from protobuf message <code>google.cloud.gkehub.v1.FeatureResourceState</code>
  */

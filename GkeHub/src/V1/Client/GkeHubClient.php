@@ -36,19 +36,58 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeHub\V1\CreateFeatureRequest;
+use Google\Cloud\GkeHub\V1\CreateFleetRequest;
+use Google\Cloud\GkeHub\V1\CreateMembershipBindingRequest;
+use Google\Cloud\GkeHub\V1\CreateMembershipRBACRoleBindingRequest;
 use Google\Cloud\GkeHub\V1\CreateMembershipRequest;
+use Google\Cloud\GkeHub\V1\CreateScopeNamespaceRequest;
+use Google\Cloud\GkeHub\V1\CreateScopeRBACRoleBindingRequest;
+use Google\Cloud\GkeHub\V1\CreateScopeRequest;
 use Google\Cloud\GkeHub\V1\DeleteFeatureRequest;
+use Google\Cloud\GkeHub\V1\DeleteFleetRequest;
+use Google\Cloud\GkeHub\V1\DeleteMembershipBindingRequest;
+use Google\Cloud\GkeHub\V1\DeleteMembershipRBACRoleBindingRequest;
 use Google\Cloud\GkeHub\V1\DeleteMembershipRequest;
+use Google\Cloud\GkeHub\V1\DeleteScopeNamespaceRequest;
+use Google\Cloud\GkeHub\V1\DeleteScopeRBACRoleBindingRequest;
+use Google\Cloud\GkeHub\V1\DeleteScopeRequest;
 use Google\Cloud\GkeHub\V1\Feature;
+use Google\Cloud\GkeHub\V1\Fleet;
 use Google\Cloud\GkeHub\V1\GenerateConnectManifestRequest;
 use Google\Cloud\GkeHub\V1\GenerateConnectManifestResponse;
+use Google\Cloud\GkeHub\V1\GenerateMembershipRBACRoleBindingYAMLRequest;
+use Google\Cloud\GkeHub\V1\GenerateMembershipRBACRoleBindingYAMLResponse;
 use Google\Cloud\GkeHub\V1\GetFeatureRequest;
+use Google\Cloud\GkeHub\V1\GetFleetRequest;
+use Google\Cloud\GkeHub\V1\GetMembershipBindingRequest;
+use Google\Cloud\GkeHub\V1\GetMembershipRBACRoleBindingRequest;
 use Google\Cloud\GkeHub\V1\GetMembershipRequest;
+use Google\Cloud\GkeHub\V1\GetScopeNamespaceRequest;
+use Google\Cloud\GkeHub\V1\GetScopeRBACRoleBindingRequest;
+use Google\Cloud\GkeHub\V1\GetScopeRequest;
+use Google\Cloud\GkeHub\V1\ListBoundMembershipsRequest;
 use Google\Cloud\GkeHub\V1\ListFeaturesRequest;
+use Google\Cloud\GkeHub\V1\ListFleetsRequest;
+use Google\Cloud\GkeHub\V1\ListMembershipBindingsRequest;
+use Google\Cloud\GkeHub\V1\ListMembershipRBACRoleBindingsRequest;
 use Google\Cloud\GkeHub\V1\ListMembershipsRequest;
+use Google\Cloud\GkeHub\V1\ListPermittedScopesRequest;
+use Google\Cloud\GkeHub\V1\ListScopeNamespacesRequest;
+use Google\Cloud\GkeHub\V1\ListScopeRBACRoleBindingsRequest;
+use Google\Cloud\GkeHub\V1\ListScopesRequest;
 use Google\Cloud\GkeHub\V1\Membership;
+use Google\Cloud\GkeHub\V1\MembershipBinding;
+use Google\Cloud\GkeHub\V1\PBNamespace;
+use Google\Cloud\GkeHub\V1\RBACRoleBinding;
+use Google\Cloud\GkeHub\V1\Scope;
 use Google\Cloud\GkeHub\V1\UpdateFeatureRequest;
+use Google\Cloud\GkeHub\V1\UpdateFleetRequest;
+use Google\Cloud\GkeHub\V1\UpdateMembershipBindingRequest;
+use Google\Cloud\GkeHub\V1\UpdateMembershipRBACRoleBindingRequest;
 use Google\Cloud\GkeHub\V1\UpdateMembershipRequest;
+use Google\Cloud\GkeHub\V1\UpdateScopeNamespaceRequest;
+use Google\Cloud\GkeHub\V1\UpdateScopeRBACRoleBindingRequest;
+use Google\Cloud\GkeHub\V1\UpdateScopeRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -82,16 +121,49 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> createFeatureAsync(CreateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createFleetAsync(CreateFleetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMembershipBindingAsync(CreateMembershipBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMembershipRBACRoleBindingAsync(CreateMembershipRBACRoleBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createScopeAsync(CreateScopeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createScopeNamespaceAsync(CreateScopeNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createScopeRBACRoleBindingAsync(CreateScopeRBACRoleBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteFeatureAsync(DeleteFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFleetAsync(DeleteFleetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteMembershipBindingAsync(DeleteMembershipBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteMembershipRBACRoleBindingAsync(DeleteMembershipRBACRoleBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteScopeAsync(DeleteScopeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteScopeNamespaceAsync(DeleteScopeNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteScopeRBACRoleBindingAsync(DeleteScopeRBACRoleBindingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateConnectManifestResponse> generateConnectManifestAsync(GenerateConnectManifestRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GenerateMembershipRBACRoleBindingYAMLResponse> generateMembershipRBACRoleBindingYAMLAsync(GenerateMembershipRBACRoleBindingYAMLRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Feature> getFeatureAsync(GetFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Fleet> getFleetAsync(GetFleetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MembershipBinding> getMembershipBindingAsync(GetMembershipBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RBACRoleBinding> getMembershipRBACRoleBindingAsync(GetMembershipRBACRoleBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Scope> getScopeAsync(GetScopeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PBNamespace> getScopeNamespaceAsync(GetScopeNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RBACRoleBinding> getScopeRBACRoleBindingAsync(GetScopeRBACRoleBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBoundMembershipsAsync(ListBoundMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFeaturesAsync(ListFeaturesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listFleetsAsync(ListFleetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMembershipBindingsAsync(ListMembershipBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMembershipRBACRoleBindingsAsync(ListMembershipRBACRoleBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listPermittedScopesAsync(ListPermittedScopesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listScopeNamespacesAsync(ListScopeNamespacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listScopeRBACRoleBindingsAsync(ListScopeRBACRoleBindingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listScopesAsync(ListScopesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateFeatureAsync(UpdateFeatureRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateFleetAsync(UpdateFleetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMembershipBindingAsync(UpdateMembershipBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMembershipRBACRoleBindingAsync(UpdateMembershipRBACRoleBindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateScopeAsync(UpdateScopeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateScopeNamespaceAsync(UpdateScopeNamespaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateScopeRBACRoleBindingAsync(UpdateScopeRBACRoleBindingRequest $request, array $optionalArgs = [])
  */
 final class GkeHubClient
 {
@@ -209,6 +281,25 @@ final class GkeHubClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a fleet
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $fleet
+     *
+     * @return string The formatted fleet resource.
+     */
+    public static function fleetName(string $project, string $location, string $fleet): string
+    {
+        return self::getPathTemplate('fleet')->render([
+            'project' => $project,
+            'location' => $location,
+            'fleet' => $fleet,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -245,12 +336,199 @@ final class GkeHubClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * membership_binding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $membership
+     * @param string $membershipbinding
+     *
+     * @return string The formatted membership_binding resource.
+     */
+    public static function membershipBindingName(
+        string $project,
+        string $location,
+        string $membership,
+        string $membershipbinding
+    ): string {
+        return self::getPathTemplate('membershipBinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'membership' => $membership,
+            'membershipbinding' => $membershipbinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a namespace
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $scope
+     * @param string $namespace
+     *
+     * @return string The formatted namespace resource.
+     */
+    public static function namespaceName(string $project, string $location, string $scope, string $namespace): string
+    {
+        return self::getPathTemplate('namespace')->render([
+            'project' => $project,
+            'location' => $location,
+            'scope' => $scope,
+            'namespace' => $namespace,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_fleet resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $fleet
+     *
+     * @return string The formatted organization_location_fleet resource.
+     */
+    public static function organizationLocationFleetName(string $organization, string $location, string $fleet): string
+    {
+        return self::getPathTemplate('organizationLocationFleet')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'fleet' => $fleet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_fleet resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $fleet
+     *
+     * @return string The formatted project_location_fleet resource.
+     */
+    public static function projectLocationFleetName(string $project, string $location, string $fleet): string
+    {
+        return self::getPathTemplate('projectLocationFleet')->render([
+            'project' => $project,
+            'location' => $location,
+            'fleet' => $fleet,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_membership_rbacrolebinding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $membership
+     * @param string $rbacrolebinding
+     *
+     * @return string The formatted project_location_membership_rbacrolebinding resource.
+     */
+    public static function projectLocationMembershipRbacrolebindingName(
+        string $project,
+        string $location,
+        string $membership,
+        string $rbacrolebinding
+    ): string {
+        return self::getPathTemplate('projectLocationMembershipRbacrolebinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'membership' => $membership,
+            'rbacrolebinding' => $rbacrolebinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_scope_rbacrolebinding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $scope
+     * @param string $rbacrolebinding
+     *
+     * @return string The formatted project_location_scope_rbacrolebinding resource.
+     */
+    public static function projectLocationScopeRbacrolebindingName(
+        string $project,
+        string $location,
+        string $scope,
+        string $rbacrolebinding
+    ): string {
+        return self::getPathTemplate('projectLocationScopeRbacrolebinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'scope' => $scope,
+            'rbacrolebinding' => $rbacrolebinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * rbac_role_binding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $scope
+     * @param string $rbacrolebinding
+     *
+     * @return string The formatted rbac_role_binding resource.
+     */
+    public static function rBACRoleBindingName(
+        string $project,
+        string $location,
+        string $scope,
+        string $rbacrolebinding
+    ): string {
+        return self::getPathTemplate('rBACRoleBinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'scope' => $scope,
+            'rbacrolebinding' => $rbacrolebinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a scope
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $scope
+     *
+     * @return string The formatted scope resource.
+     */
+    public static function scopeName(string $project, string $location, string $scope): string
+    {
+        return self::getPathTemplate('scope')->render([
+            'project' => $project,
+            'location' => $location,
+            'scope' => $scope,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - feature: projects/{project}/locations/{location}/features/{feature}
+     * - fleet: projects/{project}/locations/{location}/fleets/{fleet}
      * - location: projects/{project}/locations/{location}
      * - membership: projects/{project}/locations/{location}/memberships/{membership}
+     * - membershipBinding: projects/{project}/locations/{location}/memberships/{membership}/bindings/{membershipbinding}
+     * - namespace: projects/{project}/locations/{location}/scopes/{scope}/namespaces/{namespace}
+     * - organizationLocationFleet: organizations/{organization}/locations/{location}/fleets/{fleet}
+     * - projectLocationFleet: projects/{project}/locations/{location}/fleets/{fleet}
+     * - projectLocationMembershipRbacrolebinding: projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}
+     * - projectLocationScopeRbacrolebinding: projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}
+     * - rBACRoleBinding: projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}
+     * - scope: projects/{project}/locations/{location}/scopes/{scope}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -383,6 +661,32 @@ final class GkeHubClient
     }
 
     /**
+     * Creates a fleet.
+     *
+     * The async variant is {@see GkeHubClient::createFleetAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/create_fleet.php
+     *
+     * @param CreateFleetRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Fleet>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createFleet(CreateFleetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateFleet', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Membership.
      *
      * **This is currently only supported for GKE clusters on Google Cloud**.
@@ -413,6 +717,145 @@ final class GkeHubClient
     }
 
     /**
+     * Creates a MembershipBinding.
+     *
+     * The async variant is {@see GkeHubClient::createMembershipBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/create_membership_binding.php
+     *
+     * @param CreateMembershipBindingRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<MembershipBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMembershipBinding(
+        CreateMembershipBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateMembershipBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a Membership RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::createMembershipRBACRoleBindingAsync()}
+     * .
+     *
+     * @example samples/V1/GkeHubClient/create_membership_rbac_role_binding.php
+     *
+     * @param CreateMembershipRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RBACRoleBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMembershipRBACRoleBinding(
+        CreateMembershipRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateMembershipRBACRoleBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a Scope.
+     *
+     * The async variant is {@see GkeHubClient::createScopeAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/create_scope.php
+     *
+     * @param CreateScopeRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Scope>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createScope(CreateScopeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateScope', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a fleet namespace.
+     *
+     * The async variant is {@see GkeHubClient::createScopeNamespaceAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/create_scope_namespace.php
+     *
+     * @param CreateScopeNamespaceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<PBNamespace>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createScopeNamespace(
+        CreateScopeNamespaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateScopeNamespace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a Scope RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::createScopeRBACRoleBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/create_scope_rbac_role_binding.php
+     *
+     * @param CreateScopeRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RBACRoleBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createScopeRBACRoleBinding(
+        CreateScopeRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateScopeRBACRoleBinding', $request, $callOptions)->wait();
+    }
+
+    /**
      * Removes a Feature.
      *
      * The async variant is {@see GkeHubClient::deleteFeatureAsync()} .
@@ -436,6 +879,32 @@ final class GkeHubClient
     public function deleteFeature(DeleteFeatureRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteFeature', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes a Fleet. There must be no memberships remaining in the Fleet.
+     *
+     * The async variant is {@see GkeHubClient::deleteFleetAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/delete_fleet.php
+     *
+     * @param DeleteFleetRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteFleet(DeleteFleetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteFleet', $request, $callOptions)->wait();
     }
 
     /**
@@ -466,6 +935,145 @@ final class GkeHubClient
     public function deleteMembership(DeleteMembershipRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteMembership', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a MembershipBinding.
+     *
+     * The async variant is {@see GkeHubClient::deleteMembershipBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/delete_membership_binding.php
+     *
+     * @param DeleteMembershipBindingRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMembershipBinding(
+        DeleteMembershipBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteMembershipBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Membership RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::deleteMembershipRBACRoleBindingAsync()}
+     * .
+     *
+     * @example samples/V1/GkeHubClient/delete_membership_rbac_role_binding.php
+     *
+     * @param DeleteMembershipRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMembershipRBACRoleBinding(
+        DeleteMembershipRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteMembershipRBACRoleBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Scope.
+     *
+     * The async variant is {@see GkeHubClient::deleteScopeAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/delete_scope.php
+     *
+     * @param DeleteScopeRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteScope(DeleteScopeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteScope', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a fleet namespace.
+     *
+     * The async variant is {@see GkeHubClient::deleteScopeNamespaceAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/delete_scope_namespace.php
+     *
+     * @param DeleteScopeNamespaceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteScopeNamespace(
+        DeleteScopeNamespaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteScopeNamespace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Scope RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::deleteScopeRBACRoleBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/delete_scope_rbac_role_binding.php
+     *
+     * @param DeleteScopeRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteScopeRBACRoleBinding(
+        DeleteScopeRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteScopeRBACRoleBinding', $request, $callOptions)->wait();
     }
 
     /**
@@ -500,6 +1108,36 @@ final class GkeHubClient
     }
 
     /**
+     * Generates a YAML of the  RBAC policies for the specified
+     * RoleBinding and its associated impersonation resources.
+     *
+     * The async variant is
+     * {@see GkeHubClient::generateMembershipRBACRoleBindingYAMLAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/generate_membership_rbac_role_binding_yaml.php
+     *
+     * @param GenerateMembershipRBACRoleBindingYAMLRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateMembershipRBACRoleBindingYAMLResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateMembershipRBACRoleBindingYAML(
+        GenerateMembershipRBACRoleBindingYAMLRequest $request,
+        array $callOptions = []
+    ): GenerateMembershipRBACRoleBindingYAMLResponse {
+        return $this->startApiCall('GenerateMembershipRBACRoleBindingYAML', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single Feature.
      *
      * The async variant is {@see GkeHubClient::getFeatureAsync()} .
@@ -523,6 +1161,32 @@ final class GkeHubClient
     public function getFeature(GetFeatureRequest $request, array $callOptions = []): Feature
     {
         return $this->startApiCall('GetFeature', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the details of a fleet.
+     *
+     * The async variant is {@see GkeHubClient::getFleetAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/get_fleet.php
+     *
+     * @param GetFleetRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Fleet
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getFleet(GetFleetRequest $request, array $callOptions = []): Fleet
+    {
+        return $this->startApiCall('GetFleet', $request, $callOptions)->wait();
     }
 
     /**
@@ -552,6 +1216,171 @@ final class GkeHubClient
     }
 
     /**
+     * Returns the details of a MembershipBinding.
+     *
+     * The async variant is {@see GkeHubClient::getMembershipBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/get_membership_binding.php
+     *
+     * @param GetMembershipBindingRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MembershipBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMembershipBinding(
+        GetMembershipBindingRequest $request,
+        array $callOptions = []
+    ): MembershipBinding {
+        return $this->startApiCall('GetMembershipBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the details of a Membership RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::getMembershipRBACRoleBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/get_membership_rbac_role_binding.php
+     *
+     * @param GetMembershipRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RBACRoleBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMembershipRBACRoleBinding(
+        GetMembershipRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): RBACRoleBinding {
+        return $this->startApiCall('GetMembershipRBACRoleBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the details of a Scope.
+     *
+     * The async variant is {@see GkeHubClient::getScopeAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/get_scope.php
+     *
+     * @param GetScopeRequest $request     A request to house fields associated with the call.
+     * @param array           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Scope
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getScope(GetScopeRequest $request, array $callOptions = []): Scope
+    {
+        return $this->startApiCall('GetScope', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the details of a fleet namespace.
+     *
+     * The async variant is {@see GkeHubClient::getScopeNamespaceAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/get_scope_namespace.php
+     *
+     * @param GetScopeNamespaceRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PBNamespace
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getScopeNamespace(GetScopeNamespaceRequest $request, array $callOptions = []): PBNamespace
+    {
+        return $this->startApiCall('GetScopeNamespace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the details of a Scope RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::getScopeRBACRoleBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/get_scope_rbac_role_binding.php
+     *
+     * @param GetScopeRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RBACRoleBinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getScopeRBACRoleBinding(
+        GetScopeRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): RBACRoleBinding {
+        return $this->startApiCall('GetScopeRBACRoleBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists Memberships bound to a Scope. The response includes relevant
+     * Memberships from all regions.
+     *
+     * The async variant is {@see GkeHubClient::listBoundMembershipsAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_bound_memberships.php
+     *
+     * @param ListBoundMembershipsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBoundMemberships(
+        ListBoundMembershipsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBoundMemberships', $request, $callOptions);
+    }
+
+    /**
      * Lists Features in a given project and location.
      *
      * The async variant is {@see GkeHubClient::listFeaturesAsync()} .
@@ -575,6 +1404,90 @@ final class GkeHubClient
     public function listFeatures(ListFeaturesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListFeatures', $request, $callOptions);
+    }
+
+    /**
+     * Returns all fleets within an organization or a project that the caller has
+     * access to.
+     *
+     * The async variant is {@see GkeHubClient::listFleetsAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_fleets.php
+     *
+     * @param ListFleetsRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listFleets(ListFleetsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListFleets', $request, $callOptions);
+    }
+
+    /**
+     * Lists MembershipBindings.
+     *
+     * The async variant is {@see GkeHubClient::listMembershipBindingsAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_membership_bindings.php
+     *
+     * @param ListMembershipBindingsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMembershipBindings(
+        ListMembershipBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListMembershipBindings', $request, $callOptions);
+    }
+
+    /**
+     * Lists all Membership RBACRoleBindings.
+     *
+     * The async variant is {@see GkeHubClient::listMembershipRBACRoleBindingsAsync()}
+     * .
+     *
+     * @example samples/V1/GkeHubClient/list_membership_rbac_role_bindings.php
+     *
+     * @param ListMembershipRBACRoleBindingsRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMembershipRBACRoleBindings(
+        ListMembershipRBACRoleBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListMembershipRBACRoleBindings', $request, $callOptions);
     }
 
     /**
@@ -604,6 +1517,112 @@ final class GkeHubClient
     }
 
     /**
+     * Lists permitted Scopes.
+     *
+     * The async variant is {@see GkeHubClient::listPermittedScopesAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_permitted_scopes.php
+     *
+     * @param ListPermittedScopesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listPermittedScopes(ListPermittedScopesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListPermittedScopes', $request, $callOptions);
+    }
+
+    /**
+     * Lists fleet namespaces.
+     *
+     * The async variant is {@see GkeHubClient::listScopeNamespacesAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_scope_namespaces.php
+     *
+     * @param ListScopeNamespacesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listScopeNamespaces(ListScopeNamespacesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListScopeNamespaces', $request, $callOptions);
+    }
+
+    /**
+     * Lists all Scope RBACRoleBindings.
+     *
+     * The async variant is {@see GkeHubClient::listScopeRBACRoleBindingsAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_scope_rbac_role_bindings.php
+     *
+     * @param ListScopeRBACRoleBindingsRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listScopeRBACRoleBindings(
+        ListScopeRBACRoleBindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListScopeRBACRoleBindings', $request, $callOptions);
+    }
+
+    /**
+     * Lists Scopes.
+     *
+     * The async variant is {@see GkeHubClient::listScopesAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/list_scopes.php
+     *
+     * @param ListScopesRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listScopes(ListScopesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListScopes', $request, $callOptions);
+    }
+
+    /**
      * Updates an existing Feature.
      *
      * The async variant is {@see GkeHubClient::updateFeatureAsync()} .
@@ -630,6 +1649,32 @@ final class GkeHubClient
     }
 
     /**
+     * Updates a fleet.
+     *
+     * The async variant is {@see GkeHubClient::updateFleetAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/update_fleet.php
+     *
+     * @param UpdateFleetRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Fleet>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateFleet(UpdateFleetRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateFleet', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates an existing Membership.
      *
      * The async variant is {@see GkeHubClient::updateMembershipAsync()} .
@@ -653,5 +1698,144 @@ final class GkeHubClient
     public function updateMembership(UpdateMembershipRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateMembership', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a MembershipBinding.
+     *
+     * The async variant is {@see GkeHubClient::updateMembershipBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/update_membership_binding.php
+     *
+     * @param UpdateMembershipBindingRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<MembershipBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMembershipBinding(
+        UpdateMembershipBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateMembershipBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a Membership RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::updateMembershipRBACRoleBindingAsync()}
+     * .
+     *
+     * @example samples/V1/GkeHubClient/update_membership_rbac_role_binding.php
+     *
+     * @param UpdateMembershipRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RBACRoleBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMembershipRBACRoleBinding(
+        UpdateMembershipRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateMembershipRBACRoleBinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a scopes.
+     *
+     * The async variant is {@see GkeHubClient::updateScopeAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/update_scope.php
+     *
+     * @param UpdateScopeRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Scope>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateScope(UpdateScopeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateScope', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a fleet namespace.
+     *
+     * The async variant is {@see GkeHubClient::updateScopeNamespaceAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/update_scope_namespace.php
+     *
+     * @param UpdateScopeNamespaceRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<PBNamespace>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateScopeNamespace(
+        UpdateScopeNamespaceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateScopeNamespace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a Scope RBACRoleBinding.
+     *
+     * The async variant is {@see GkeHubClient::updateScopeRBACRoleBindingAsync()} .
+     *
+     * @example samples/V1/GkeHubClient/update_scope_rbac_role_binding.php
+     *
+     * @param UpdateScopeRBACRoleBindingRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RBACRoleBinding>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateScopeRBACRoleBinding(
+        UpdateScopeRBACRoleBindingRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateScopeRBACRoleBinding', $request, $callOptions)->wait();
     }
 }

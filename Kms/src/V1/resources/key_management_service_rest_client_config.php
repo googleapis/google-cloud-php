@@ -128,6 +128,28 @@ return [
                     ],
                 ],
             ],
+            'DeleteCryptoKey' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCryptoKeyVersion' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DestroyCryptoKeyVersion' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:destroy',
@@ -219,6 +241,17 @@ return [
                     ],
                 ],
             ],
+            'GetRetiredResource' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/retiredResources/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ImportCryptoKeyVersion' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:import',
@@ -267,6 +300,17 @@ return [
             'ListKeyRings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/keyRings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRetiredResources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/retiredResources',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

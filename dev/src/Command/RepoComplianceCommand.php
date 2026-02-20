@@ -38,6 +38,7 @@ use InvalidArgumentException;
 class RepoComplianceCommand extends Command
 {
     private const PACKAGIST_USERNAME = 'google-cloud';
+    public const PHP_TEAM = 'cloud-sdk-php-team';
     private GitHub $github;
     private Packagist $packagist;
 
@@ -145,7 +146,7 @@ discussions: false";
     {
         return !empty(array_filter(
             explode("\n", $details['teams']),
-            fn ($team) => $team === 'yoshi-php: admin'
+            fn ($team) => $team === (self::PHP_TEAM . ': admin')
         ));
     }
 
@@ -200,11 +201,12 @@ discussions: false";
             return false;
         }
         $question = new ConfirmationQuestion(sprintf(
-            'Repo %s does not have "yoshi-php" as an admin. Would you like to add it? (Y/n)',
-            $repoName
+            'Repo %s does not have "%s" as an admin. Would you like to add it? (Y/n)',
+            $repoName,
+            self::PHP_TEAM,
         ), true);
         if ($this->getHelper('question')->ask($input, $output, $question)) {
-            return $this->github->updateTeamPermission('googleapis', 'yoshi-php', $repoName, 'admin');
+            return $this->github->updateTeamPermission('googleapis', self::PHP_TEAM, $repoName, 'admin');
         }
         return false;
     }

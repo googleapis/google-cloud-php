@@ -23,6 +23,13 @@ class GetProtectedResourcesSummaryRequest extends \Google\Protobuf\Internal\Mess
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. The scope to use if the kms organization service account is not
+     * configured.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.inventory.v1.FallbackScope fallback_scope = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $fallback_scope = 0;
 
     /**
      * @param string $name Required. The resource name of the
@@ -48,6 +55,9 @@ class GetProtectedResourcesSummaryRequest extends \Google\Protobuf\Internal\Mess
      *     @type string $name
      *           Required. The resource name of the
      *           [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *     @type int $fallback_scope
+     *           Optional. The scope to use if the kms organization service account is not
+     *           configured.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,6 +89,34 @@ class GetProtectedResourcesSummaryRequest extends \Google\Protobuf\Internal\Mess
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scope to use if the kms organization service account is not
+     * configured.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.inventory.v1.FallbackScope fallback_scope = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFallbackScope()
+    {
+        return $this->fallback_scope;
+    }
+
+    /**
+     * Optional. The scope to use if the kms organization service account is not
+     * configured.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.inventory.v1.FallbackScope fallback_scope = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFallbackScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\Inventory\V1\FallbackScope::class);
+        $this->fallback_scope = $var;
 
         return $this;
     }

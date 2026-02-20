@@ -32,6 +32,15 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+    /**
+     * Optional. If set to true, any child bucket operations of the job will also
+     * be deleted. Highly recommended to be set to true by all clients. Users
+     * cannot mutate bucket operations directly, so only the jobs.delete
+     * permission is required to delete a job (and its child bucket operations).
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force = false;
 
     /**
      * @param string $name Required. The `name` of the job to delete.
@@ -63,6 +72,11 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *           `request_id` will be ignored for at least 60 minutes since the first
      *           request. The request ID must be a valid UUID with the exception that zero
      *           UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, any child bucket operations of the job will also
+     *           be deleted. Highly recommended to be set to true by all clients. Users
+     *           cannot mutate bucket operations directly, so only the jobs.delete
+     *           permission is required to delete a job (and its child bucket operations).
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +142,38 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, any child bucket operations of the job will also
+     * be deleted. Highly recommended to be set to true by all clients. Users
+     * cannot mutate bucket operations directly, so only the jobs.delete
+     * permission is required to delete a job (and its child bucket operations).
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Optional. If set to true, any child bucket operations of the job will also
+     * be deleted. Highly recommended to be set to true by all clients. Users
+     * cannot mutate bucket operations directly, so only the jobs.delete
+     * permission is required to delete a job (and its child bucket operations).
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

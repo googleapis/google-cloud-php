@@ -37,6 +37,11 @@ return [
                 'uriTemplate' => '/v1beta:queryDatabaseResourceGroups',
                 'body' => '*',
             ],
+            'QueryIssues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta:queryIssues',
+                'body' => '*',
+            ],
             'QueryProducts' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta:queryProducts',

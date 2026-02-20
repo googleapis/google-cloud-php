@@ -45,7 +45,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      */
     private $model_scores;
     /**
-     * A set of ranking signals associated with the result.
+     * Optional. A set of ranking signals associated with the result.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -71,7 +71,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $model_scores
      *           Output only. Google provided available scores.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals $rank_signals
-     *           A set of ranking signals associated with the result.
+     *           Optional. A set of ranking signals associated with the result.
      * }
      */
     public function __construct($data = NULL) {
@@ -214,7 +214,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of ranking signals associated with the result.
+     * Optional. A set of ranking signals associated with the result.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals|null
@@ -235,7 +235,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of ranking signals associated with the result.
+     * Optional. A set of ranking signals associated with the result.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals $var

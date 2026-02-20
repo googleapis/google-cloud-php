@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Feature represents the settings and status of any Hub Feature.
+ * Feature represents the settings and status of any Fleet Feature.
  *
  * Generated from protobuf message <code>google.cloud.gkehub.v1.Feature</code>
  */
@@ -23,7 +23,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * GCP labels for this Feature.
+     * Labels for this Feature.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      */
@@ -35,17 +35,18 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     protected $resource_state = null;
     /**
-     * Optional. Hub-wide Feature configuration. If this Feature does not support any
-     * Hub-wide configuration, this field may be unused.
+     * Optional. Fleet-wide Feature configuration. If this Feature does not
+     * support any Fleet-wide configuration, this field may be unused.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureSpec spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $spec = null;
     /**
-     * Optional. Membership-specific configuration for this Feature. If this Feature does
-     * not support any per-Membership configuration, this field may be unused.
+     * Optional. Membership-specific configuration for this Feature. If this
+     * Feature does not support any per-Membership configuration, this field may
+     * be unused.
      * The keys indicate which Membership the configuration is for, in the form:
-     *     projects/{p}/locations/{l}/memberships/{m}
+     * `projects/{p}/locations/{l}/memberships/{m}`
      * Where {p} is the project, {l} is a valid location and {m} is a valid
      * Membership in this project at that location. {p} WILL match the Feature's
      * project.
@@ -60,7 +61,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     private $membership_specs;
     /**
-     * Output only. The Hub-wide Feature state.
+     * Output only. The Fleet-wide Feature state.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -69,7 +70,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Output only. Membership-specific Feature status. If this Feature does
      * report any per-Membership status, this field may be unused.
      * The keys indicate which Membership the state is for, in the form:
-     *     projects/{p}/locations/{l}/memberships/{m}
+     * `projects/{p}/locations/{l}/memberships/{m}`
      * Where {p} is the project number, {l} is a valid location and {m} is a valid
      * Membership in this project at that location. {p} MUST match the Feature's
      * project number.
@@ -95,6 +96,41 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $delete_time = null;
+    /**
+     * Optional. Scope-specific configuration for this Feature. If this Feature
+     * does not support any per-Scope configuration, this field may be unused.
+     * The keys indicate which Scope the configuration is for, in the form:
+     * `projects/{p}/locations/global/scopes/{s}`
+     * Where {p} is the project, {s} is a valid Scope in this project.
+     * {p} WILL match the Feature's project.
+     * {p} will always be returned as the project number, but the project ID is
+     * also accepted during input. If the same Scope is specified in the map
+     * twice (using the project ID form, and the project number form), exactly
+     * ONE of the entries will be saved, with no guarantees as to which. For this
+     * reason, it is recommended the same format be used for all entries when
+     * mutating a Feature.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.gkehub.v1.ScopeFeatureSpec> scope_specs = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $scope_specs;
+    /**
+     * Output only. Scope-specific Feature status. If this Feature does
+     * report any per-Scope status, this field may be unused.
+     * The keys indicate which Scope the state is for, in the form:
+     * `projects/{p}/locations/global/scopes/{s}`
+     * Where {p} is the project, {s} is a valid Scope in this project.
+     * {p} WILL match the Feature's project.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.gkehub.v1.ScopeFeatureState> scope_states = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $scope_states;
+    /**
+     * Output only. List of locations that could not be reached while fetching
+     * this feature.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -106,17 +142,18 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           Output only. The full, unique name of this Feature resource in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           GCP labels for this Feature.
+     *           Labels for this Feature.
      *     @type \Google\Cloud\GkeHub\V1\FeatureResourceState $resource_state
      *           Output only. State of the Feature resource itself.
      *     @type \Google\Cloud\GkeHub\V1\CommonFeatureSpec $spec
-     *           Optional. Hub-wide Feature configuration. If this Feature does not support any
-     *           Hub-wide configuration, this field may be unused.
+     *           Optional. Fleet-wide Feature configuration. If this Feature does not
+     *           support any Fleet-wide configuration, this field may be unused.
      *     @type array|\Google\Protobuf\Internal\MapField $membership_specs
-     *           Optional. Membership-specific configuration for this Feature. If this Feature does
-     *           not support any per-Membership configuration, this field may be unused.
+     *           Optional. Membership-specific configuration for this Feature. If this
+     *           Feature does not support any per-Membership configuration, this field may
+     *           be unused.
      *           The keys indicate which Membership the configuration is for, in the form:
-     *               projects/{p}/locations/{l}/memberships/{m}
+     *           `projects/{p}/locations/{l}/memberships/{m}`
      *           Where {p} is the project, {l} is a valid location and {m} is a valid
      *           Membership in this project at that location. {p} WILL match the Feature's
      *           project.
@@ -127,12 +164,12 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           reason, it is recommended the same format be used for all entries when
      *           mutating a Feature.
      *     @type \Google\Cloud\GkeHub\V1\CommonFeatureState $state
-     *           Output only. The Hub-wide Feature state.
+     *           Output only. The Fleet-wide Feature state.
      *     @type array|\Google\Protobuf\Internal\MapField $membership_states
      *           Output only. Membership-specific Feature status. If this Feature does
      *           report any per-Membership status, this field may be unused.
      *           The keys indicate which Membership the state is for, in the form:
-     *               projects/{p}/locations/{l}/memberships/{m}
+     *           `projects/{p}/locations/{l}/memberships/{m}`
      *           Where {p} is the project number, {l} is a valid location and {m} is a valid
      *           Membership in this project at that location. {p} MUST match the Feature's
      *           project number.
@@ -142,6 +179,29 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           Output only. When the Feature resource was last updated.
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. When the Feature resource was deleted.
+     *     @type array|\Google\Protobuf\Internal\MapField $scope_specs
+     *           Optional. Scope-specific configuration for this Feature. If this Feature
+     *           does not support any per-Scope configuration, this field may be unused.
+     *           The keys indicate which Scope the configuration is for, in the form:
+     *           `projects/{p}/locations/global/scopes/{s}`
+     *           Where {p} is the project, {s} is a valid Scope in this project.
+     *           {p} WILL match the Feature's project.
+     *           {p} will always be returned as the project number, but the project ID is
+     *           also accepted during input. If the same Scope is specified in the map
+     *           twice (using the project ID form, and the project number form), exactly
+     *           ONE of the entries will be saved, with no guarantees as to which. For this
+     *           reason, it is recommended the same format be used for all entries when
+     *           mutating a Feature.
+     *     @type array|\Google\Protobuf\Internal\MapField $scope_states
+     *           Output only. Scope-specific Feature status. If this Feature does
+     *           report any per-Scope status, this field may be unused.
+     *           The keys indicate which Scope the state is for, in the form:
+     *           `projects/{p}/locations/global/scopes/{s}`
+     *           Where {p} is the project, {s} is a valid Scope in this project.
+     *           {p} WILL match the Feature's project.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Output only. List of locations that could not be reached while fetching
+     *           this feature.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,7 +238,7 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCP labels for this Feature.
+     * Labels for this Feature.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -189,7 +249,7 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCP labels for this Feature.
+     * Labels for this Feature.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -240,8 +300,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Hub-wide Feature configuration. If this Feature does not support any
-     * Hub-wide configuration, this field may be unused.
+     * Optional. Fleet-wide Feature configuration. If this Feature does not
+     * support any Fleet-wide configuration, this field may be unused.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureSpec spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeHub\V1\CommonFeatureSpec|null
@@ -262,8 +322,8 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Hub-wide Feature configuration. If this Feature does not support any
-     * Hub-wide configuration, this field may be unused.
+     * Optional. Fleet-wide Feature configuration. If this Feature does not
+     * support any Fleet-wide configuration, this field may be unused.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureSpec spec = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeHub\V1\CommonFeatureSpec $var
@@ -278,10 +338,11 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Membership-specific configuration for this Feature. If this Feature does
-     * not support any per-Membership configuration, this field may be unused.
+     * Optional. Membership-specific configuration for this Feature. If this
+     * Feature does not support any per-Membership configuration, this field may
+     * be unused.
      * The keys indicate which Membership the configuration is for, in the form:
-     *     projects/{p}/locations/{l}/memberships/{m}
+     * `projects/{p}/locations/{l}/memberships/{m}`
      * Where {p} is the project, {l} is a valid location and {m} is a valid
      * Membership in this project at that location. {p} WILL match the Feature's
      * project.
@@ -301,10 +362,11 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Membership-specific configuration for this Feature. If this Feature does
-     * not support any per-Membership configuration, this field may be unused.
+     * Optional. Membership-specific configuration for this Feature. If this
+     * Feature does not support any per-Membership configuration, this field may
+     * be unused.
      * The keys indicate which Membership the configuration is for, in the form:
-     *     projects/{p}/locations/{l}/memberships/{m}
+     * `projects/{p}/locations/{l}/memberships/{m}`
      * Where {p} is the project, {l} is a valid location and {m} is a valid
      * Membership in this project at that location. {p} WILL match the Feature's
      * project.
@@ -328,7 +390,7 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Hub-wide Feature state.
+     * Output only. The Fleet-wide Feature state.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\GkeHub\V1\CommonFeatureState|null
@@ -349,7 +411,7 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Hub-wide Feature state.
+     * Output only. The Fleet-wide Feature state.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1.CommonFeatureState state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\GkeHub\V1\CommonFeatureState $var
@@ -367,7 +429,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Output only. Membership-specific Feature status. If this Feature does
      * report any per-Membership status, this field may be unused.
      * The keys indicate which Membership the state is for, in the form:
-     *     projects/{p}/locations/{l}/memberships/{m}
+     * `projects/{p}/locations/{l}/memberships/{m}`
      * Where {p} is the project number, {l} is a valid location and {m} is a valid
      * Membership in this project at that location. {p} MUST match the Feature's
      * project number.
@@ -384,7 +446,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Output only. Membership-specific Feature status. If this Feature does
      * report any per-Membership status, this field may be unused.
      * The keys indicate which Membership the state is for, in the form:
-     *     projects/{p}/locations/{l}/memberships/{m}
+     * `projects/{p}/locations/{l}/memberships/{m}`
      * Where {p} is the project number, {l} is a valid location and {m} is a valid
      * Membership in this project at that location. {p} MUST match the Feature's
      * project number.
@@ -505,6 +567,118 @@ class Feature extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->delete_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Scope-specific configuration for this Feature. If this Feature
+     * does not support any per-Scope configuration, this field may be unused.
+     * The keys indicate which Scope the configuration is for, in the form:
+     * `projects/{p}/locations/global/scopes/{s}`
+     * Where {p} is the project, {s} is a valid Scope in this project.
+     * {p} WILL match the Feature's project.
+     * {p} will always be returned as the project number, but the project ID is
+     * also accepted during input. If the same Scope is specified in the map
+     * twice (using the project ID form, and the project number form), exactly
+     * ONE of the entries will be saved, with no guarantees as to which. For this
+     * reason, it is recommended the same format be used for all entries when
+     * mutating a Feature.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.gkehub.v1.ScopeFeatureSpec> scope_specs = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getScopeSpecs()
+    {
+        return $this->scope_specs;
+    }
+
+    /**
+     * Optional. Scope-specific configuration for this Feature. If this Feature
+     * does not support any per-Scope configuration, this field may be unused.
+     * The keys indicate which Scope the configuration is for, in the form:
+     * `projects/{p}/locations/global/scopes/{s}`
+     * Where {p} is the project, {s} is a valid Scope in this project.
+     * {p} WILL match the Feature's project.
+     * {p} will always be returned as the project number, but the project ID is
+     * also accepted during input. If the same Scope is specified in the map
+     * twice (using the project ID form, and the project number form), exactly
+     * ONE of the entries will be saved, with no guarantees as to which. For this
+     * reason, it is recommended the same format be used for all entries when
+     * mutating a Feature.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.gkehub.v1.ScopeFeatureSpec> scope_specs = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setScopeSpecs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeHub\V1\ScopeFeatureSpec::class);
+        $this->scope_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Scope-specific Feature status. If this Feature does
+     * report any per-Scope status, this field may be unused.
+     * The keys indicate which Scope the state is for, in the form:
+     * `projects/{p}/locations/global/scopes/{s}`
+     * Where {p} is the project, {s} is a valid Scope in this project.
+     * {p} WILL match the Feature's project.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.gkehub.v1.ScopeFeatureState> scope_states = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getScopeStates()
+    {
+        return $this->scope_states;
+    }
+
+    /**
+     * Output only. Scope-specific Feature status. If this Feature does
+     * report any per-Scope status, this field may be unused.
+     * The keys indicate which Scope the state is for, in the form:
+     * `projects/{p}/locations/global/scopes/{s}`
+     * Where {p} is the project, {s} is a valid Scope in this project.
+     * {p} WILL match the Feature's project.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.gkehub.v1.ScopeFeatureState> scope_states = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setScopeStates($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GkeHub\V1\ScopeFeatureState::class);
+        $this->scope_states = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. List of locations that could not be reached while fetching
+     * this feature.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Output only. List of locations that could not be reached while fetching
+     * this feature.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }
