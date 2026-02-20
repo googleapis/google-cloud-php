@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.gkerecommender.v1",
+    "libraryPackage": "Google\\Cloud\\GkeRecommender\\V1",
+    "services": {
+        "GkeInferenceQuickstart": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GkeInferenceQuickstartGapicClient",
+                    "rpcs": {
+                        "FetchBenchmarkingData": {
+                            "methods": [
+                                "fetchBenchmarkingData"
+                            ]
+                        },
+                        "FetchModelServerVersions": {
+                            "methods": [
+                                "fetchModelServerVersions"
+                            ]
+                        },
+                        "FetchModelServers": {
+                            "methods": [
+                                "fetchModelServers"
+                            ]
+                        },
+                        "FetchModels": {
+                            "methods": [
+                                "fetchModels"
+                            ]
+                        },
+                        "FetchProfiles": {
+                            "methods": [
+                                "fetchProfiles"
+                            ]
+                        },
+                        "GenerateOptimizedManifest": {
+                            "methods": [
+                                "generateOptimizedManifest"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
