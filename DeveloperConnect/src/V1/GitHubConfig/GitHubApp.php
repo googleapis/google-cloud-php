@@ -32,11 +32,18 @@ class GitHubApp
      * Generated from protobuf enum <code>FIREBASE = 2;</code>
      */
     const FIREBASE = 2;
+    /**
+     * The Gemini Code Assist Application.
+     *
+     * Generated from protobuf enum <code>GEMINI_CODE_ASSIST = 3;</code>
+     */
+    const GEMINI_CODE_ASSIST = 3;
 
     private static $valueToName = [
         self::GIT_HUB_APP_UNSPECIFIED => 'GIT_HUB_APP_UNSPECIFIED',
         self::DEVELOPER_CONNECT => 'DEVELOPER_CONNECT',
         self::FIREBASE => 'FIREBASE',
+        self::GEMINI_CODE_ASSIST => 'GEMINI_CODE_ASSIST',
     ];
 
     public static function name($value)

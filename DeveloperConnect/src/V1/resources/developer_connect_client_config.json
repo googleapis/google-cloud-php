@@ -103,6 +103,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "FinishOAuth": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetAccountConnector": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -134,6 +139,11 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "ListUsers": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "StartOAuth": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

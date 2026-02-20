@@ -35,14 +35,18 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
     protected $app_slug = '';
     /**
      * Optional. SecretManager resource containing the private key of the GitHub
-     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location).
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $private_key_secret_version = '';
     /**
      * Optional. SecretManager resource containing the webhook secret of the
-     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location).
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -82,6 +86,13 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string ssl_ca_certificate = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ssl_ca_certificate = '';
+    /**
+     * Optional. Immutable. GitHub Enterprise organization in which the GitHub App
+     * is created.
+     *
+     * Generated from protobuf field <code>string organization = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $organization = '';
 
     /**
      * Constructor.
@@ -97,10 +108,14 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The URL-friendly name of the GitHub App.
      *     @type string $private_key_secret_version
      *           Optional. SecretManager resource containing the private key of the GitHub
-     *           App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     *           supported in that location).
      *     @type string $webhook_secret_secret_version
      *           Optional. SecretManager resource containing the webhook secret of the
-     *           GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     *           supported in that location).
      *     @type int|string $app_installation_id
      *           Optional. ID of the installation of the GitHub App.
      *     @type string $installation_uri
@@ -116,6 +131,9 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
      *           Output only. GitHub Enterprise version installed at the host_uri.
      *     @type string $ssl_ca_certificate
      *           Optional. SSL certificate to use for requests to GitHub Enterprise.
+     *     @type string $organization
+     *           Optional. Immutable. GitHub Enterprise organization in which the GitHub App
+     *           is created.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,7 +221,9 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the private key of the GitHub
-     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location).
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -215,7 +235,9 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the private key of the GitHub
-     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location).
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -231,7 +253,9 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the webhook secret of the
-     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location).
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -243,7 +267,9 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the webhook secret of the
-     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location).
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -403,6 +429,34 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ssl_ca_certificate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. GitHub Enterprise organization in which the GitHub App
+     * is created.
+     *
+     * Generated from protobuf field <code>string organization = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
+     * Optional. Immutable. GitHub Enterprise organization in which the GitHub App
+     * is created.
+     *
+     * Generated from protobuf field <code>string organization = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrganization($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->organization = $var;
 
         return $this;
     }

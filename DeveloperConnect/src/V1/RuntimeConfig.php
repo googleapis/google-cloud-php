@@ -41,8 +41,12 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DeveloperConnect\V1\GKEWorkload $gke_workload
      *           Output only. Google Kubernetes Engine runtime.
+     *     @type \Google\Cloud\DeveloperConnect\V1\GoogleCloudRun $google_cloud_run
+     *           Output only. Cloud Run runtime.
      *     @type \Google\Cloud\DeveloperConnect\V1\AppHubWorkload $app_hub_workload
      *           Output only. App Hub Workload.
+     *     @type \Google\Cloud\DeveloperConnect\V1\AppHubService $app_hub_service
+     *           Output only. App Hub Service.
      *     @type string $uri
      *           Required. Immutable. The URI of the runtime configuration.
      *           For GKE, this is the cluster name.
@@ -88,6 +92,37 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Cloud Run runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GoogleCloudRun google_cloud_run = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\GoogleCloudRun|null
+     */
+    public function getGoogleCloudRun()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasGoogleCloudRun()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Output only. Cloud Run runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GoogleCloudRun google_cloud_run = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\GoogleCloudRun $var
+     * @return $this
+     */
+    public function setGoogleCloudRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\GoogleCloudRun::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. App Hub Workload.
      *
      * Generated from protobuf field <code>.google.cloud.developerconnect.v1.AppHubWorkload app_hub_workload = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -114,6 +149,37 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\AppHubWorkload::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. App Hub Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.AppHubService app_hub_service = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\AppHubService|null
+     */
+    public function getAppHubService()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasAppHubService()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Output only. App Hub Service.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.AppHubService app_hub_service = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\AppHubService $var
+     * @return $this
+     */
+    public function setAppHubService($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\AppHubService::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

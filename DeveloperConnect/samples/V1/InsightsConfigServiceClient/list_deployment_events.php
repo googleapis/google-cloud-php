@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,40 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START developerconnect_v1_generated_InsightsConfigService_DeleteInsightsConfig_sync]
+// [START developerconnect_v1_generated_InsightsConfigService_ListDeploymentEvents_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PagedListResponse;
 use Google\Cloud\DeveloperConnect\V1\Client\InsightsConfigServiceClient;
-use Google\Cloud\DeveloperConnect\V1\DeleteInsightsConfigRequest;
-use Google\Rpc\Status;
+use Google\Cloud\DeveloperConnect\V1\DeploymentEvent;
+use Google\Cloud\DeveloperConnect\V1\ListDeploymentEventsRequest;
 
 /**
- * Deletes a single Insight.
+ * Lists Deployment Events in a given insights config.
  *
- * @param string $formattedName Value for parent. Please see
- *                              {@see InsightsConfigServiceClient::insightsConfigName()} for help formatting this field.
+ * @param string $formattedParent The parent insights config that owns this collection of
+ *                                deployment events. Format:
+ *                                projects/{project}/locations/{location}/insightsConfigs/{insights_config}
+ *                                Please see {@see InsightsConfigServiceClient::insightsConfigName()} for help formatting this field.
  */
-function delete_insights_config_sample(string $formattedName): void
+function list_deployment_events_sample(string $formattedParent): void
 {
     // Create a client.
     $insightsConfigServiceClient = new InsightsConfigServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteInsightsConfigRequest())
-        ->setName($formattedName);
+    $request = (new ListDeploymentEventsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
-        /** @var OperationResponse $response */
-        $response = $insightsConfigServiceClient->deleteInsightsConfig($request);
-        $response->pollUntilComplete();
+        /** @var PagedListResponse $response */
+        $response = $insightsConfigServiceClient->listDeploymentEvents($request);
 
-        if ($response->operationSucceeded()) {
-            printf('Operation completed successfully.' . PHP_EOL);
-        } else {
-            /** @var Status $error */
-            $error = $response->getError();
-            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
+        /** @var DeploymentEvent $element */
+        foreach ($response as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -73,12 +71,12 @@ function delete_insights_config_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = InsightsConfigServiceClient::insightsConfigName(
+    $formattedParent = InsightsConfigServiceClient::insightsConfigName(
         '[PROJECT]',
         '[LOCATION]',
         '[INSIGHTS_CONFIG]'
     );
 
-    delete_insights_config_sample($formattedName);
+    list_deployment_events_sample($formattedParent);
 }
-// [END developerconnect_v1_generated_InsightsConfigService_DeleteInsightsConfig_sync]
+// [END developerconnect_v1_generated_InsightsConfigService_ListDeploymentEvents_sync]

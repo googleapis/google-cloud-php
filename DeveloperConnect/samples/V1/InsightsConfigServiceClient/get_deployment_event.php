@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,41 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START developerconnect_v1_generated_InsightsConfigService_DeleteInsightsConfig_sync]
+// [START developerconnect_v1_generated_InsightsConfigService_GetDeploymentEvent_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\DeveloperConnect\V1\Client\InsightsConfigServiceClient;
-use Google\Cloud\DeveloperConnect\V1\DeleteInsightsConfigRequest;
-use Google\Rpc\Status;
+use Google\Cloud\DeveloperConnect\V1\DeploymentEvent;
+use Google\Cloud\DeveloperConnect\V1\GetDeploymentEventRequest;
 
 /**
- * Deletes a single Insight.
+ * Gets a single Deployment Event.
  *
- * @param string $formattedName Value for parent. Please see
- *                              {@see InsightsConfigServiceClient::insightsConfigName()} for help formatting this field.
+ * @param string $formattedName The name of the deployment event to retrieve.
+ *                              Format:
+ *                              projects/{project}/locations/{location}/insightsConfigs/{insights_config}/deploymentEvents/{uuid}
+ *                              Please see {@see InsightsConfigServiceClient::deploymentEventName()} for help formatting this field.
  */
-function delete_insights_config_sample(string $formattedName): void
+function get_deployment_event_sample(string $formattedName): void
 {
     // Create a client.
     $insightsConfigServiceClient = new InsightsConfigServiceClient();
 
     // Prepare the request message.
-    $request = (new DeleteInsightsConfigRequest())
+    $request = (new GetDeploymentEventRequest())
         ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var OperationResponse $response */
-        $response = $insightsConfigServiceClient->deleteInsightsConfig($request);
-        $response->pollUntilComplete();
-
-        if ($response->operationSucceeded()) {
-            printf('Operation completed successfully.' . PHP_EOL);
-        } else {
-            /** @var Status $error */
-            $error = $response->getError();
-            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
-        }
+        /** @var DeploymentEvent $response */
+        $response = $insightsConfigServiceClient->getDeploymentEvent($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -73,12 +66,13 @@ function delete_insights_config_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = InsightsConfigServiceClient::insightsConfigName(
+    $formattedName = InsightsConfigServiceClient::deploymentEventName(
         '[PROJECT]',
         '[LOCATION]',
-        '[INSIGHTS_CONFIG]'
+        '[INSIGHTS_CONFIG]',
+        '[DEPLOYMENT_EVENT]'
     );
 
-    delete_insights_config_sample($formattedName);
+    get_deployment_event_sample($formattedName);
 }
-// [END developerconnect_v1_generated_InsightsConfigService_DeleteInsightsConfig_sync]
+// [END developerconnect_v1_generated_InsightsConfigService_GetDeploymentEvent_sync]

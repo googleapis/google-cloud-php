@@ -56,6 +56,8 @@ use Google\Cloud\DeveloperConnect\V1\FetchReadTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchReadWriteTokenRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchReadWriteTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchSelfRequest;
+use Google\Cloud\DeveloperConnect\V1\FinishOAuthRequest;
+use Google\Cloud\DeveloperConnect\V1\FinishOAuthResponse;
 use Google\Cloud\DeveloperConnect\V1\GetAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\GetConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\GetGitRepositoryLinkRequest;
@@ -64,6 +66,8 @@ use Google\Cloud\DeveloperConnect\V1\ListAccountConnectorsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListConnectionsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListGitRepositoryLinksRequest;
 use Google\Cloud\DeveloperConnect\V1\ListUsersRequest;
+use Google\Cloud\DeveloperConnect\V1\StartOAuthRequest;
+use Google\Cloud\DeveloperConnect\V1\StartOAuthResponse;
 use Google\Cloud\DeveloperConnect\V1\UpdateAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\UpdateConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\User;
@@ -101,6 +105,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<FetchReadTokenResponse> fetchReadTokenAsync(FetchReadTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchReadWriteTokenResponse> fetchReadWriteTokenAsync(FetchReadWriteTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<User> fetchSelfAsync(FetchSelfRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<FinishOAuthResponse> finishOAuthAsync(FinishOAuthRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AccountConnector> getAccountConnectorAsync(GetAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Connection> getConnectionAsync(GetConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GitRepositoryLink> getGitRepositoryLinkAsync(GetGitRepositoryLinkRequest $request, array $optionalArgs = [])
@@ -108,6 +113,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listConnectionsAsync(ListConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGitRepositoryLinksAsync(ListGitRepositoryLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listUsersAsync(ListUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<StartOAuthResponse> startOAuthAsync(StartOAuthRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAccountConnectorAsync(UpdateAccountConnectorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateConnectionAsync(UpdateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -294,6 +300,25 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a instance
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     */
+    public static function instanceName(string $project, string $location, string $instance): string
+    {
+        return self::getPathTemplate('instance')->render([
+            'project' => $project,
+            'location' => $location,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -307,6 +332,53 @@ final class DeveloperConnectClient
         return self::getPathTemplate('location')->render([
             'project' => $project,
             'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_location_secret_secret_version resource.
+     */
+    public static function projectLocationSecretSecretVersionName(
+        string $project,
+        string $location,
+        string $secret,
+        string $secretVersion
+    ): string {
+        return self::getPathTemplate('projectLocationSecretSecretVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_secret_secret_version resource.
+     */
+    public static function projectSecretSecretVersionName(
+        string $project,
+        string $secret,
+        string $secretVersion
+    ): string {
+        return self::getPathTemplate('projectSecretSecretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
         ]);
     }
 
@@ -379,7 +451,10 @@ final class DeveloperConnectClient
      * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
+     * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
+     * - projectLocationSecretSecretVersion: projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}
+     * - projectSecretSecretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - service: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}
      * - user: projects/{project}/locations/{location}/accountConnectors/{account_connector}/users/{user}
@@ -547,8 +622,9 @@ final class DeveloperConnectClient
      * Creates a GitRepositoryLink. Upon linking a Git Repository, Developer
      * Connect will configure the Git Repository to send webhook events to
      * Developer Connect. Connections that use Firebase GitHub Application will
-     * have events forwarded to the Firebase service. All other Connections will
-     * have events forwarded to Cloud Build.
+     * have events forwarded to the Firebase service. Connections that use Gemini
+     * Code Assist will have events forwarded to Gemini Code Assist service. All
+     * other Connections will have events forwarded to Cloud Build.
      *
      * The async variant is
      * {@see DeveloperConnectClient::createGitRepositoryLinkAsync()} .
@@ -909,6 +985,32 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Finishes OAuth flow for an account connector.
+     *
+     * The async variant is {@see DeveloperConnectClient::finishOAuthAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/finish_o_auth.php
+     *
+     * @param FinishOAuthRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return FinishOAuthResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function finishOAuth(FinishOAuthRequest $request, array $callOptions = []): FinishOAuthResponse
+    {
+        return $this->startApiCall('FinishOAuth', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single AccountConnector.
      *
      * The async variant is {@see DeveloperConnectClient::getAccountConnectorAsync()} .
@@ -1100,6 +1202,32 @@ final class DeveloperConnectClient
     }
 
     /**
+     * Starts OAuth flow for an account connector.
+     *
+     * The async variant is {@see DeveloperConnectClient::startOAuthAsync()} .
+     *
+     * @example samples/V1/DeveloperConnectClient/start_o_auth.php
+     *
+     * @param StartOAuthRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return StartOAuthResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startOAuth(StartOAuthRequest $request, array $callOptions = []): StartOAuthResponse
+    {
+        return $this->startApiCall('StartOAuth', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the parameters of a single AccountConnector.
      *
      * The async variant is
@@ -1182,6 +1310,13 @@ final class DeveloperConnectClient
 
     /**
      * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
      *
      * The async variant is {@see DeveloperConnectClient::listLocationsAsync()} .
      *

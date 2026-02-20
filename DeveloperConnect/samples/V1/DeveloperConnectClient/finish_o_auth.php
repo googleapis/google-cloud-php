@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,41 +22,33 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START developerconnect_v1_generated_InsightsConfigService_DeleteInsightsConfig_sync]
+// [START developerconnect_v1_generated_DeveloperConnect_FinishOAuth_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
-use Google\Cloud\DeveloperConnect\V1\Client\InsightsConfigServiceClient;
-use Google\Cloud\DeveloperConnect\V1\DeleteInsightsConfigRequest;
-use Google\Rpc\Status;
+use Google\Cloud\DeveloperConnect\V1\Client\DeveloperConnectClient;
+use Google\Cloud\DeveloperConnect\V1\FinishOAuthRequest;
+use Google\Cloud\DeveloperConnect\V1\FinishOAuthResponse;
 
 /**
- * Deletes a single Insight.
+ * Finishes OAuth flow for an account connector.
  *
- * @param string $formattedName Value for parent. Please see
- *                              {@see InsightsConfigServiceClient::insightsConfigName()} for help formatting this field.
+ * @param string $formattedAccountConnector The resource name of the AccountConnector in the format
+ *                                          `projects/&#42;/locations/&#42;/accountConnectors/*`. Please see
+ *                                          {@see DeveloperConnectClient::accountConnectorName()} for help formatting this field.
  */
-function delete_insights_config_sample(string $formattedName): void
+function finish_o_auth_sample(string $formattedAccountConnector): void
 {
     // Create a client.
-    $insightsConfigServiceClient = new InsightsConfigServiceClient();
+    $developerConnectClient = new DeveloperConnectClient();
 
     // Prepare the request message.
-    $request = (new DeleteInsightsConfigRequest())
-        ->setName($formattedName);
+    $request = (new FinishOAuthRequest())
+        ->setAccountConnector($formattedAccountConnector);
 
     // Call the API and handle any network failures.
     try {
-        /** @var OperationResponse $response */
-        $response = $insightsConfigServiceClient->deleteInsightsConfig($request);
-        $response->pollUntilComplete();
-
-        if ($response->operationSucceeded()) {
-            printf('Operation completed successfully.' . PHP_EOL);
-        } else {
-            /** @var Status $error */
-            $error = $response->getError();
-            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
-        }
+        /** @var FinishOAuthResponse $response */
+        $response = $developerConnectClient->finishOAuth($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -73,12 +65,12 @@ function delete_insights_config_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = InsightsConfigServiceClient::insightsConfigName(
+    $formattedAccountConnector = DeveloperConnectClient::accountConnectorName(
         '[PROJECT]',
         '[LOCATION]',
-        '[INSIGHTS_CONFIG]'
+        '[ACCOUNT_CONNECTOR]'
     );
 
-    delete_insights_config_sample($formattedName);
+    finish_o_auth_sample($formattedAccountConnector);
 }
-// [END developerconnect_v1_generated_InsightsConfigService_DeleteInsightsConfig_sync]
+// [END developerconnect_v1_generated_DeveloperConnect_FinishOAuth_sync]
