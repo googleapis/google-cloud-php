@@ -33,6 +33,8 @@ class Behavior
      */
     const SILENT_DATA_CORRUPTION = 111360678;
     /**
+     * Unrecoverable GPU error identified by an XID
+     *
      * Generated from protobuf enum <code>UNRECOVERABLE_GPU_ERROR = 363710747;</code>
      */
     const UNRECOVERABLE_GPU_ERROR = 363710747;
