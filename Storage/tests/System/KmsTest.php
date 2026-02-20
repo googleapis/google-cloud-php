@@ -176,9 +176,18 @@ class KmsTest extends StorageTestCase
         $this->assertArrayHasKey('googleManagedEncryptionEnforcementConfig', $info['encryption']);
         $this->assertArrayHasKey('customerManagedEncryptionEnforcementConfig', $info['encryption']);
         $this->assertArrayHasKey('customerSuppliedEncryptionEnforcementConfig', $info['encryption']);
-        $this->assertEquals('NotRestricted', $info['encryption']['googleManagedEncryptionEnforcementConfig']['restrictionMode']);
-        $this->assertEquals('NotRestricted', $info['encryption']['customerManagedEncryptionEnforcementConfig']['restrictionMode']);
-        $this->assertEquals('NotRestricted', $info['encryption']['customerSuppliedEncryptionEnforcementConfig']['restrictionMode']);
+        $this->assertEquals(
+            'NotRestricted',
+            $info['encryption']['googleManagedEncryptionEnforcementConfig']['restrictionMode']
+        );
+        $this->assertEquals(
+            'NotRestricted',
+            $info['encryption']['customerManagedEncryptionEnforcementConfig']['restrictionMode']
+        );
+        $this->assertEquals(
+            'NotRestricted',
+            $info['encryption']['customerSuppliedEncryptionEnforcementConfig']['restrictionMode']
+        );
 
         // Reset
         self::$bucket->update([

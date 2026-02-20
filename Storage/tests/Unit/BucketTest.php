@@ -467,9 +467,18 @@ class BucketTest extends TestCase
         $this->assertArrayHasKey('encryption', $bucket->info());
         $encryptionInfo = $bucket->info()['encryption'];
         $this->assertEquals('key', $encryptionInfo['defaultKmsKeyName']);
-        $this->assertEquals('FullyRestricted', $encryptionInfo['googleManagedEncryptionEnforcementConfig']['restrictionMode']);
-        $this->assertEquals('FullyRestricted', $encryptionInfo['customerManagedEncryptionEnforcementConfig']['restrictionMode']);
-        $this->assertEquals('FullyRestricted', $encryptionInfo['customerSuppliedEncryptionEnforcementConfig']['restrictionMode']);
+        $this->assertEquals(
+            'FullyRestricted',
+            $encryptionInfo['googleManagedEncryptionEnforcementConfig']['restrictionMode']
+        );
+        $this->assertEquals(
+            'FullyRestricted',
+            $encryptionInfo['customerManagedEncryptionEnforcementConfig']['restrictionMode']
+        );
+        $this->assertEquals(
+            'FullyRestricted',
+            $encryptionInfo['customerSuppliedEncryptionEnforcementConfig']['restrictionMode']
+        );
     }
 
     public function testUpdatesDataWithLifecycleBuilder()
