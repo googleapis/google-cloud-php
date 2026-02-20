@@ -423,6 +423,16 @@ class BigQueryClient
         $queryRequest = StatelessJobConfiguration::getQueryRequest($query);
 
         if (!is_null($queryRequest)) {
+            if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
+                $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
+
+                if (!isset($queryResultsOptions['formatOptions']) || !is_array($queryResultsOptions['formatOptions'])) {
+                    $queryResultsOptions['formatOptions'] = [];
+                }
+
+                $queryResultsOptions['formatOptions']['useInt64Timestamp'] = $useInt64;
+            }
+
             $statelessArgs = $queryRequest + $queryResultsOptions + [
                 'projectId' => $this->projectId
             ] + $options;
@@ -431,10 +441,11 @@ class BigQueryClient
                 $statelessArgs['timeoutMs'] = $statelessArgs['initialTimeoutMs'];
             }
 
-            $statelessResponse = $this->connection->statelessQuery($statelessArgs);
+            $statelessResponse = $this->connection->query($statelessArgs);
 
             $queryResults = QueryResults::fromStatelessQuery(
                 $this->connection,
+                $this->projectId,
                 $statelessResponse,
                 $this->mapper,
                 $queryResultsOptions + $options
