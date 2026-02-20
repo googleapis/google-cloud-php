@@ -195,6 +195,78 @@
                         "defaultKmsKeyName": {
                             "type": "string",
                             "description": "A Cloud KMS key that will be used to encrypt objects inserted into this bucket, if no encryption method is specified."
+                        },
+                        "googleManagedEncryptionEnforcementConfig": {
+                            "type": "object",
+                            "description": "Enforcement configuration for Google-managed encryption.",
+                            "properties": {
+                                "restrictionMode": {
+                                    "type": "string",
+                                    "description": "The restriction state of the encryption policy.",
+                                    "enum": [
+                                        "NotRestricted",
+                                        "FullyRestricted"
+                                    ],
+                                    "enumDescriptions": [
+                                        "No restrictions are applied to this encryption type.",
+                                        "Specific restrictions are enforced for this encryption type."
+                                    ]
+                                },
+                                "effectiveTime": {
+                                    "type": "string",
+                                    "description": "Server-determined value indicating when this configuration became effective. In RFC 3339 format.",
+                                    "format": "date-time",
+                                    "readOnly": true
+                                }
+                            }
+                        },
+                        "customerManagedEncryptionEnforcementConfig": {
+                            "type": "object",
+                            "description": "Enforcement configuration for Cloud KMS (customer-managed) encryption.",
+                            "properties": {
+                                "restrictionMode": {
+                                    "type": "string",
+                                    "description": "The restriction state of the encryption policy.",
+                                    "enum": [
+                                        "NotRestricted",
+                                        "FullyRestricted"
+                                    ],
+                                    "enumDescriptions": [
+                                        "No restrictions are applied to this encryption type.",
+                                        "Specific restrictions are enforced for this encryption type."
+                                    ]
+                                },
+                                "effectiveTime": {
+                                    "type": "string",
+                                    "description": "Server-determined value indicating when this configuration became effective. In RFC 3339 format.",
+                                    "format": "date-time",
+                                    "readOnly": true
+                                }
+                            }
+                        },
+                        "customerSuppliedEncryptionEnforcementConfig": {
+                            "type": "object",
+                            "description": "Enforcement configuration for customer-supplied encryption keys (CSEK).",
+                            "properties": {
+                                "restrictionMode": {
+                                    "type": "string",
+                                    "description": "The restriction state of the encryption policy.",
+                                    "enum": [
+                                        "NotRestricted",
+                                        "FullyRestricted"
+                                    ],
+                                    "enumDescriptions": [
+                                        "No restrictions are applied to this encryption type.",
+                                        "Specific restrictions are enforced for this encryption type."
+                                    ]
+                                },
+                                "effectiveTime": {
+                                    "type": "string",
+                                    "description": "Server-determined value indicating when this configuration became effective. In RFC 3339 format.",
+                                    "format": "date-time",
+                                    "readOnly": true
+                                }
+                            }
                         }
                     }
                 },

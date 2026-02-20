@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Testing\System\KeyManager;
 use Google\Cloud\Storage\StorageObject;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group storage
@@ -153,6 +154,45 @@ class KmsTest extends StorageTestCase
 
         $this->assertEquals($sha, $rewrittenObject->info()['customerEncryption']['keySha256']);
         $this->assertEquals(self::DATA, $rewrittenObject->downloadAsString());
+    }
+
+    public function testUploadFailsWhenCsekViolatesCmekEnforcement()
+    {
+        self::$bucket->update([
+            'encryption' => [
+                'customerSuppliedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted'
+                ]
+            ]
+        ]);
+
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionCode(412);
+
+        $key = base64_encode(openssl_random_pseudo_bytes(32));
+        self::$bucket->upload('data', [
+            'name' => uniqid(self::TESTING_PREFIX),
+            'encryptionKey' => $key
+        ]);
+        self::$bucket->update(['encryption' => null]);
+    }
+
+    public function testUploadSucceedsWhenNotRestricted()
+    {
+        self::$bucket->update([
+            'encryption' => [
+                'defaultKmsKeyName' => self::$keyName1,
+                'googleManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'NotRestricted'
+                ]
+            ]
+        ]);
+        $object = self::$bucket->upload('data', ['name' => uniqid(self::TESTING_PREFIX)]);
+
+        $this->assertTrue($object->exists());
+
+        $object->delete();
+        self::$bucket->update(['encryption' => null]);
     }
 
     /**

@@ -463,6 +463,32 @@ class BucketTest extends TestCase
         );
     }
 
+
+    public function testUpdatesEncryptionEnforcementConfig()
+    {
+        $encryptionConfig = [
+            'googleManagedEncryptionEnforcementConfig' => [
+                'restrictionMode' => 'FullyRestricted'
+            ]
+        ];
+        $this->connection->patchBucket(Argument::withEntry('encryption', $encryptionConfig))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::BUCKET_NAME,
+                'encryption' => $encryptionConfig
+            ]);
+
+        $bucket = $this->getBucket(['name' => self::BUCKET_NAME]);
+
+        $bucket->update(['encryption' => $encryptionConfig]);
+
+        $this->assertArrayHasKey('encryption', $bucket->info());
+        $this->assertEquals(
+            'FullyRestricted',
+            $bucket->info()['encryption']['googleManagedEncryptionEnforcementConfig']['restrictionMode']
+        );
+    }
+
     public function testGetsInfo()
     {
         $bucketInfo = [
