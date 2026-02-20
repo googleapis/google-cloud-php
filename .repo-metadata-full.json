@@ -1656,6 +1656,14 @@
         "library_type": "GAPIC_COMBO",
         "api_shortname": "translate"
     },
+    "VectorSearch": {
+        "language": "php",
+        "distribution_name": "google/cloud-vectorsearch",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-vectorsearch/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "vectorsearch"
+    },
     "VideoIntelligence": {
         "language": "php",
         "distribution_name": "google/cloud-videointelligence",
