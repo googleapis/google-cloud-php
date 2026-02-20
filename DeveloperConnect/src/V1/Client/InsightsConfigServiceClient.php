@@ -37,8 +37,11 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DeveloperConnect\V1\CreateInsightsConfigRequest;
 use Google\Cloud\DeveloperConnect\V1\DeleteInsightsConfigRequest;
+use Google\Cloud\DeveloperConnect\V1\DeploymentEvent;
+use Google\Cloud\DeveloperConnect\V1\GetDeploymentEventRequest;
 use Google\Cloud\DeveloperConnect\V1\GetInsightsConfigRequest;
 use Google\Cloud\DeveloperConnect\V1\InsightsConfig;
+use Google\Cloud\DeveloperConnect\V1\ListDeploymentEventsRequest;
 use Google\Cloud\DeveloperConnect\V1\ListInsightsConfigsRequest;
 use Google\Cloud\DeveloperConnect\V1\UpdateInsightsConfigRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -54,7 +57,7 @@ use Psr\Log\LoggerInterface;
  *
  * The InsightsConfig resource is the core configuration object to capture
  * events from your Software Development Lifecycle. It acts as the central hub
- * for managing how Developer connect understands your application, its runtime
+ * for managing how Developer Connect understands your application, its runtime
  * environments, and the artifacts deployed within them.
  * A user can create an InsightsConfig, list previously-requested
  * InsightsConfigs or get InsightsConfigs by their ID to determine the status of
@@ -70,7 +73,9 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<OperationResponse> createInsightsConfigAsync(CreateInsightsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInsightsConfigAsync(DeleteInsightsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DeploymentEvent> getDeploymentEventAsync(GetDeploymentEventRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<InsightsConfig> getInsightsConfigAsync(GetInsightsConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDeploymentEventsAsync(ListDeploymentEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInsightsConfigsAsync(ListInsightsConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateInsightsConfigAsync(UpdateInsightsConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -174,6 +179,31 @@ final class InsightsConfigServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * deployment_event resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $insightsConfig
+     * @param string $deploymentEvent
+     *
+     * @return string The formatted deployment_event resource.
+     */
+    public static function deploymentEventName(
+        string $project,
+        string $location,
+        string $insightsConfig,
+        string $deploymentEvent
+    ): string {
+        return self::getPathTemplate('deploymentEvent')->render([
+            'project' => $project,
+            'location' => $location,
+            'insights_config' => $insightsConfig,
+            'deployment_event' => $deploymentEvent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * insights_config resource.
      *
      * @param string $project
@@ -212,6 +242,7 @@ final class InsightsConfigServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - deploymentEvent: projects/{project}/locations/{location}/insightsConfigs/{insights_config}/deploymentEvents/{deployment_event}
      * - insightsConfig: projects/{project}/locations/{location}/insightsConfigs/{insights_config}
      * - location: projects/{project}/locations/{location}
      *
@@ -349,7 +380,7 @@ final class InsightsConfigServiceClient
     }
 
     /**
-     * Delete a single Insight.
+     * Deletes a single Insight.
      *
      * The async variant is
      * {@see InsightsConfigServiceClient::deleteInsightsConfigAsync()} .
@@ -378,6 +409,33 @@ final class InsightsConfigServiceClient
     }
 
     /**
+     * Gets a single Deployment Event.
+     *
+     * The async variant is
+     * {@see InsightsConfigServiceClient::getDeploymentEventAsync()} .
+     *
+     * @example samples/V1/InsightsConfigServiceClient/get_deployment_event.php
+     *
+     * @param GetDeploymentEventRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DeploymentEvent
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDeploymentEvent(GetDeploymentEventRequest $request, array $callOptions = []): DeploymentEvent
+    {
+        return $this->startApiCall('GetDeploymentEvent', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single Insight.
      *
      * The async variant is
@@ -402,6 +460,35 @@ final class InsightsConfigServiceClient
     public function getInsightsConfig(GetInsightsConfigRequest $request, array $callOptions = []): InsightsConfig
     {
         return $this->startApiCall('GetInsightsConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists Deployment Events in a given insights config.
+     *
+     * The async variant is
+     * {@see InsightsConfigServiceClient::listDeploymentEventsAsync()} .
+     *
+     * @example samples/V1/InsightsConfigServiceClient/list_deployment_events.php
+     *
+     * @param ListDeploymentEventsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDeploymentEvents(
+        ListDeploymentEventsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListDeploymentEvents', $request, $callOptions);
     }
 
     /**
@@ -488,6 +575,13 @@ final class InsightsConfigServiceClient
 
     /**
      * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
      *
      * The async variant is {@see InsightsConfigServiceClient::listLocationsAsync()} .
      *

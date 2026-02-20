@@ -32,7 +32,7 @@ class ProviderOAuthConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $system_provider_id
-     *           Immutable. Developer Connect provided OAuth.
+     *           Optional. Immutable. Developer Connect provided OAuth.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
      *           Required. User selected scopes to apply to the Oauth config
      *           In the event of changing scopes, user records under AccountConnector will
@@ -45,9 +45,9 @@ class ProviderOAuthConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Developer Connect provided OAuth.
+     * Optional. Immutable. Developer Connect provided OAuth.
      *
-     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.SystemProvider system_provider_id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.SystemProvider system_provider_id = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getSystemProviderId()
@@ -61,9 +61,9 @@ class ProviderOAuthConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Developer Connect provided OAuth.
+     * Optional. Immutable. Developer Connect provided OAuth.
      *
-     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.SystemProvider system_provider_id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.SystemProvider system_provider_id = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

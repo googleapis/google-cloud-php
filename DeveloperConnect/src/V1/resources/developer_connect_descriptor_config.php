@@ -315,6 +315,18 @@ return [
                     ],
                 ],
             ],
+            'FinishOAuth' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\FinishOAuthResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'account_connector',
+                        'fieldAccessors' => [
+                            'getAccountConnector',
+                        ],
+                    ],
+                ],
+            ],
             'GetAccountConnector' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\DeveloperConnect\V1\AccountConnector',
@@ -431,6 +443,18 @@ return [
                     ],
                 ],
             ],
+            'StartOAuth' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\DeveloperConnect\V1\StartOAuthResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'account_connector',
+                        'fieldAccessors' => [
+                            'getAccountConnector',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -470,7 +494,10 @@ return [
                 'connection' => 'projects/{project}/locations/{location}/connections/{connection}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'gitRepositoryLink' => 'projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}',
+                'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
+                'projectLocationSecretSecretVersion' => 'projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}',
+                'projectSecretSecretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'service' => 'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}',
                 'user' => 'projects/{project}/locations/{location}/accountConnectors/{account_connector}/users/{user}',
