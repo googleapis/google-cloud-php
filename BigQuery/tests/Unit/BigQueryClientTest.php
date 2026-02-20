@@ -162,7 +162,7 @@ class BigQueryClientTest extends TestCase
         $client = $this->getClient();
         $query = $client->query(self::QUERY_STRING);
 
-        $this->connection->statelessQuery(Argument::allOf(
+        $this->connection->query(Argument::allOf(
             Argument::withEntry('projectId', self::PROJECT_ID),
             Argument::withEntry('query', self::QUERY_STRING),
             Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')

@@ -218,10 +218,4 @@ interface ConnectionInterface
      * @return array
      */
     public function testTableIamPermissions(array $args = []);
-
-    /**
-     * @param array $args
-     * @return array
-     */
-    public function statelessQuery(array $args = []);
 }
