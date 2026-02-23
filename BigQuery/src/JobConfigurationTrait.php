@@ -27,8 +27,6 @@ trait JobConfigurationTrait
 {
     use ArrayTrait;
 
-    private const JOB_CREATION_MODE_OPTIONAL = 'JOB_CREATION_OPTIONAL';
-
     /**
      * @var string $jobIdPrefix
      */

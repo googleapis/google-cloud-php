@@ -31,6 +31,7 @@ use Ramsey\Uuid\Uuid;
 class StatelessJobConfiguration implements JobConfigurationInterface
 {
     use JobConfigurationTrait;
+    const JOB_CREATION_MODE_OPTIONAL = 'JOB_CREATION_OPTIONAL';
 
     /**
      * Returns an array that represents a QueryRequest for a stateless query.
