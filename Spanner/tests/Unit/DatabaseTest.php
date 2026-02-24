@@ -921,6 +921,32 @@ class DatabaseTest extends TestCase
         });
     }
 
+    public function testRunTransactionWithTagOption()
+    {
+        $this->spannerClient->beginTransaction(
+            Argument::that(function (BeginTransactionRequest $request) {
+                $reqOptions = $request->getRequestOptions();
+                $this->assertNotNull($reqOptions);
+                $this->assertEquals(self::TRANSACTION_TAG, $reqOptions->getTransactionTag());
+                return true;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+
+        $this->spannerClient->commit(
+            Argument::type(CommitRequest::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->commitResponse());
+
+        $this->database->runTransaction(function (Transaction $t) {
+            $t->commit();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
     public function testTransaction()
     {
         $this->spannerClient->beginTransaction(
