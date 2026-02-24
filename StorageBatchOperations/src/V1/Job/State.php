@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>FAILED = 4;</code>
      */
     const FAILED = 4;
+    /**
+     * Queued but not yet started.
+     *
+     * Generated from protobuf enum <code>QUEUED = 5;</code>
+     */
+    const QUEUED = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::CANCELED => 'CANCELED',
         self::FAILED => 'FAILED',
+        self::QUEUED => 'QUEUED',
     ];
 
     public static function name($value)

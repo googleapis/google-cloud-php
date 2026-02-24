@@ -5,13 +5,13 @@
 # https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-code-owners#codeowners-syntax
 
 
-# The yoshi-php team is the default owner for anything not
+# The cloud-sdk-php-team team is the default owner for anything not
 # explicitly taken by someone else.
 *                               @googleapis/cloud-sdk-php-team
 
-/Bigtable       @googleapis/api-bigtable @googleapis/cloud-sdk-php-team
-/Datastore/     @googleapis/api-datastore-sdk @googleapis/cloud-sdk-php-team
-/Firestore/     @googleapis/api-firestore @googleapis/cloud-sdk-php-team
-/Storage/       @googleapis/gcs-sdk-team @googleapis/cloud-sdk-php-team
-/BigQuery*/.    @googleapis/api-bigquery @googleapis/cloud-sdk-php-team
-/PubSub/        @googleapis/api-pubsub @googleapis/cloud-sdk-php-team
+/Bigtable       @googleapis/bigtable-team @googleapis/cloud-sdk-php-team
+/Datastore/     @googleapis/cloud-sdk-php-team
+/Firestore/     @googleapis/firestore-team @googleapis/cloud-sdk-php-team
+/Storage/       @googleapis/gcs-team @googleapis/cloud-sdk-php-team
+/BigQuery*/.    @googleapis/bigquery-team @googleapis/cloud-sdk-php-team
+/PubSub/        @googleapis/pubsub-team @googleapis/cloud-sdk-php-team

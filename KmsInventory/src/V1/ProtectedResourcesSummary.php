@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Aggregate information about the resources protected by a Cloud KMS key in the
- * same Cloud organization as the key.
+ * same Cloud organization/project as the key.
  *
  * Generated from protobuf message <code>google.cloud.kms.inventory.v1.ProtectedResourcesSummary</code>
  */
@@ -56,6 +56,15 @@ class ProtectedResourcesSummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, int64> locations = 4;</code>
      */
     private $locations;
+    /**
+     * Warning messages for the state of response
+     * [ProtectedResourcesSummary][google.cloud.kms.inventory.v1.ProtectedResourcesSummary]
+     * For example, if the organization service account is not configured,
+     * INSUFFICIENT_PERMISSIONS_PARTIAL_DATA warning will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.kms.inventory.v1.Warning warnings = 7;</code>
+     */
+    private $warnings;
 
     /**
      * Constructor.
@@ -79,6 +88,11 @@ class ProtectedResourcesSummary extends \Google\Protobuf\Internal\Message
      *           The number of resources protected by the key grouped by Cloud product.
      *     @type array|\Google\Protobuf\Internal\MapField $locations
      *           The number of resources protected by the key grouped by region.
+     *     @type array<\Google\Cloud\Kms\Inventory\V1\Warning>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *           Warning messages for the state of response
+     *           [ProtectedResourcesSummary][google.cloud.kms.inventory.v1.ProtectedResourcesSummary]
+     *           For example, if the organization service account is not configured,
+     *           INSUFFICIENT_PERMISSIONS_PARTIAL_DATA warning will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -246,6 +260,38 @@ class ProtectedResourcesSummary extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT64);
         $this->locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Warning messages for the state of response
+     * [ProtectedResourcesSummary][google.cloud.kms.inventory.v1.ProtectedResourcesSummary]
+     * For example, if the organization service account is not configured,
+     * INSUFFICIENT_PERMISSIONS_PARTIAL_DATA warning will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.kms.inventory.v1.Warning warnings = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWarnings()
+    {
+        return $this->warnings;
+    }
+
+    /**
+     * Warning messages for the state of response
+     * [ProtectedResourcesSummary][google.cloud.kms.inventory.v1.ProtectedResourcesSummary]
+     * For example, if the organization service account is not configured,
+     * INSUFFICIENT_PERMISSIONS_PARTIAL_DATA warning will be returned.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.kms.inventory.v1.Warning warnings = 7;</code>
+     * @param array<\Google\Cloud\Kms\Inventory\V1\Warning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWarnings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Kms\Inventory\V1\Warning::class);
+        $this->warnings = $arr;
 
         return $this;
     }

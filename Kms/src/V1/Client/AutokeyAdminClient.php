@@ -52,13 +52,15 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: Provides interfaces for managing [Cloud KMS
- * Autokey](https://cloud.google.com/kms/help/autokey) folder-level
- * configurations. A configuration is inherited by all descendent projects. A
- * configuration at one folder overrides any other configurations in its
- * ancestry. Setting a configuration on a folder is a prerequisite for Cloud KMS
- * Autokey, so that users working in a descendant project can request
- * provisioned [CryptoKeys][google.cloud.kms.v1.CryptoKey], ready for Customer
- * Managed Encryption Key (CMEK) use, on-demand.
+ * Autokey](https://cloud.google.com/kms/help/autokey) folder-level or
+ * project-level configurations. A configuration is inherited by all descendent
+ * folders and projects. A configuration at a folder or project overrides any
+ * other configurations in its ancestry. Setting a configuration on a folder is
+ * a prerequisite for Cloud KMS Autokey, so that users working in a descendant
+ * project can request provisioned [CryptoKeys][google.cloud.kms.v1.CryptoKey],
+ * ready for Customer Managed Encryption Key (CMEK) use, on-demand when using
+ * the dedicated key project mode. This is not required when using the delegated
+ * key management mode for same-project keys.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -142,6 +144,21 @@ final class AutokeyAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_autokeyConfig resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder_autokeyConfig resource.
+     */
+    public static function folderAutokeyConfigName(string $folder): string
+    {
+        return self::getPathTemplate('folderAutokeyConfig')->render([
+            'folder' => $folder,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -157,11 +174,28 @@ final class AutokeyAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_autokeyConfig resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_autokeyConfig resource.
+     */
+    public static function projectAutokeyConfigName(string $project): string
+    {
+        return self::getPathTemplate('projectAutokeyConfig')->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - autokeyConfig: folders/{folder}/autokeyConfig
+     * - folderAutokeyConfig: folders/{folder}/autokeyConfig
      * - project: projects/{project}
+     * - projectAutokeyConfig: projects/{project}/autokeyConfig
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -267,8 +301,8 @@ final class AutokeyAdminClient
     }
 
     /**
-     * Returns the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a
-     * folder.
+     * Returns the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+     * or project.
      *
      * The async variant is {@see AutokeyAdminClient::getAutokeyConfigAsync()} .
      *
@@ -323,8 +357,8 @@ final class AutokeyAdminClient
     }
 
     /**
-     * Updates the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a
-     * folder. The caller must have both `cloudkms.autokeyConfigs.update`
+     * Updates the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+     * or a project. The caller must have both `cloudkms.autokeyConfigs.update`
      * permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy`
      * permission on the provided key project. A
      * [KeyHandle][google.cloud.kms.v1.KeyHandle] creation in the folder's
@@ -382,6 +416,13 @@ final class AutokeyAdminClient
 
     /**
      * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
      *
      * The async variant is {@see AutokeyAdminClient::listLocationsAsync()} .
      *

@@ -30,13 +30,17 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\StorageBatchOperations\V1\BucketOperation;
 use Google\Cloud\StorageBatchOperations\V1\CancelJobRequest;
 use Google\Cloud\StorageBatchOperations\V1\CancelJobResponse;
 use Google\Cloud\StorageBatchOperations\V1\Client\StorageBatchOperationsClient;
 use Google\Cloud\StorageBatchOperations\V1\CreateJobRequest;
 use Google\Cloud\StorageBatchOperations\V1\DeleteJobRequest;
+use Google\Cloud\StorageBatchOperations\V1\GetBucketOperationRequest;
 use Google\Cloud\StorageBatchOperations\V1\GetJobRequest;
 use Google\Cloud\StorageBatchOperations\V1\Job;
+use Google\Cloud\StorageBatchOperations\V1\ListBucketOperationsRequest;
+use Google\Cloud\StorageBatchOperations\V1\ListBucketOperationsResponse;
 use Google\Cloud\StorageBatchOperations\V1\ListJobsRequest;
 use Google\Cloud\StorageBatchOperations\V1\ListJobsResponse;
 use Google\LongRunning\Client\OperationsClient;
@@ -164,10 +168,12 @@ class StorageBatchOperationsClientTest extends GeneratedTest
         $name = 'name3373707';
         $description = 'description-1724546052';
         $dryRun = false;
+        $isMultiBucketJob = false;
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setDryRun($dryRun);
+        $expectedResponse->setIsMultiBucketJob($isMultiBucketJob);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -348,6 +354,76 @@ class StorageBatchOperationsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getBucketOperationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $bucketName = 'bucketName283610048';
+        $expectedResponse = new BucketOperation();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setBucketName($bucketName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->bucketOperationName('[PROJECT]', '[LOCATION]', '[JOB]', '[BUCKET_OPERATION]');
+        $request = (new GetBucketOperationRequest())->setName($formattedName);
+        $response = $gapicClient->getBucketOperation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.storagebatchoperations.v1.StorageBatchOperations/GetBucketOperation',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBucketOperationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->bucketOperationName('[PROJECT]', '[LOCATION]', '[JOB]', '[BUCKET_OPERATION]');
+        $request = (new GetBucketOperationRequest())->setName($formattedName);
+        try {
+            $gapicClient->getBucketOperation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getJobTest()
     {
         $transport = $this->createTransport();
@@ -359,10 +435,12 @@ class StorageBatchOperationsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
         $dryRun = false;
+        $isMultiBucketJob = false;
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setDryRun($dryRun);
+        $expectedResponse->setIsMultiBucketJob($isMultiBucketJob);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
@@ -405,6 +483,80 @@ class StorageBatchOperationsClientTest extends GeneratedTest
         $request = (new GetJobRequest())->setName($formattedName);
         try {
             $gapicClient->getJob($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBucketOperationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $bucketOperationsElement = new BucketOperation();
+        $bucketOperations = [$bucketOperationsElement];
+        $expectedResponse = new ListBucketOperationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBucketOperations($bucketOperations);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new ListBucketOperationsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listBucketOperations($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBucketOperations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.storagebatchoperations.v1.StorageBatchOperations/ListBucketOperations',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listBucketOperationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $request = (new ListBucketOperationsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listBucketOperations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

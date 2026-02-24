@@ -164,7 +164,7 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         $expectedResponse->setProtectedResources($protectedResources);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedScope = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedScope = $gapicClient->projectName('[PROJECT]');
         $cryptoKey = 'cryptoKey-1992067615';
         $request = (new SearchProtectedResourcesRequest())->setScope($formattedScope)->setCryptoKey($cryptoKey);
         $response = $gapicClient->searchProtectedResources($request);
@@ -209,7 +209,7 @@ class KeyTrackingServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedScope = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedScope = $gapicClient->projectName('[PROJECT]');
         $cryptoKey = 'cryptoKey-1992067615';
         $request = (new SearchProtectedResourcesRequest())->setScope($formattedScope)->setCryptoKey($cryptoKey);
         try {

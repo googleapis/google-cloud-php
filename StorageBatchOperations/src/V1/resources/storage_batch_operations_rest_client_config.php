@@ -85,6 +85,17 @@ return [
                     ],
                 ],
             ],
+            'GetBucketOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/jobs/*/bucketOperations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetJob' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/jobs/*}',
@@ -92,6 +103,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBucketOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/jobs/*}/bucketOperations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

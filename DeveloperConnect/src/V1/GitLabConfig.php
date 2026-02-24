@@ -17,8 +17,9 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
-     * of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. This
-     * is used to validate webhooks.
+     * of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location). This is used to validate webhooks.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -50,8 +51,9 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $webhook_secret_secret_version
      *           Required. Immutable. SecretManager resource containing the webhook secret
-     *           of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. This
-     *           is used to validate webhooks.
+     *           of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     *           supported in that location). This is used to validate webhooks.
      *     @type \Google\Cloud\DeveloperConnect\V1\UserCredential $read_authorizer_credential
      *           Required. A GitLab personal access token with the minimum `read_api` scope
      *           access and a minimum role of `reporter`. The GitLab Projects visible to
@@ -71,8 +73,9 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
-     * of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. This
-     * is used to validate webhooks.
+     * of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location). This is used to validate webhooks.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -84,8 +87,9 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
-     * of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. This
-     * is used to validate webhooks.
+     * of a GitLab project, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
+     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * supported in that location). This is used to validate webhooks.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

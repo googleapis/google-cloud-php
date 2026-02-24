@@ -1,0 +1,355 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.ces.v1",
+    "libraryPackage": "Google\\Cloud\\Ces\\V1",
+    "services": {
+        "AgentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AgentServiceGapicClient",
+                    "rpcs": {
+                        "BatchDeleteConversations": {
+                            "methods": [
+                                "batchDeleteConversations"
+                            ]
+                        },
+                        "CreateAgent": {
+                            "methods": [
+                                "createAgent"
+                            ]
+                        },
+                        "CreateApp": {
+                            "methods": [
+                                "createApp"
+                            ]
+                        },
+                        "CreateAppVersion": {
+                            "methods": [
+                                "createAppVersion"
+                            ]
+                        },
+                        "CreateDeployment": {
+                            "methods": [
+                                "createDeployment"
+                            ]
+                        },
+                        "CreateExample": {
+                            "methods": [
+                                "createExample"
+                            ]
+                        },
+                        "CreateGuardrail": {
+                            "methods": [
+                                "createGuardrail"
+                            ]
+                        },
+                        "CreateTool": {
+                            "methods": [
+                                "createTool"
+                            ]
+                        },
+                        "CreateToolset": {
+                            "methods": [
+                                "createToolset"
+                            ]
+                        },
+                        "DeleteAgent": {
+                            "methods": [
+                                "deleteAgent"
+                            ]
+                        },
+                        "DeleteApp": {
+                            "methods": [
+                                "deleteApp"
+                            ]
+                        },
+                        "DeleteAppVersion": {
+                            "methods": [
+                                "deleteAppVersion"
+                            ]
+                        },
+                        "DeleteConversation": {
+                            "methods": [
+                                "deleteConversation"
+                            ]
+                        },
+                        "DeleteDeployment": {
+                            "methods": [
+                                "deleteDeployment"
+                            ]
+                        },
+                        "DeleteExample": {
+                            "methods": [
+                                "deleteExample"
+                            ]
+                        },
+                        "DeleteGuardrail": {
+                            "methods": [
+                                "deleteGuardrail"
+                            ]
+                        },
+                        "DeleteTool": {
+                            "methods": [
+                                "deleteTool"
+                            ]
+                        },
+                        "DeleteToolset": {
+                            "methods": [
+                                "deleteToolset"
+                            ]
+                        },
+                        "ExportApp": {
+                            "methods": [
+                                "exportApp"
+                            ]
+                        },
+                        "GetAgent": {
+                            "methods": [
+                                "getAgent"
+                            ]
+                        },
+                        "GetApp": {
+                            "methods": [
+                                "getApp"
+                            ]
+                        },
+                        "GetAppVersion": {
+                            "methods": [
+                                "getAppVersion"
+                            ]
+                        },
+                        "GetChangelog": {
+                            "methods": [
+                                "getChangelog"
+                            ]
+                        },
+                        "GetConversation": {
+                            "methods": [
+                                "getConversation"
+                            ]
+                        },
+                        "GetDeployment": {
+                            "methods": [
+                                "getDeployment"
+                            ]
+                        },
+                        "GetExample": {
+                            "methods": [
+                                "getExample"
+                            ]
+                        },
+                        "GetGuardrail": {
+                            "methods": [
+                                "getGuardrail"
+                            ]
+                        },
+                        "GetTool": {
+                            "methods": [
+                                "getTool"
+                            ]
+                        },
+                        "GetToolset": {
+                            "methods": [
+                                "getToolset"
+                            ]
+                        },
+                        "ImportApp": {
+                            "methods": [
+                                "importApp"
+                            ]
+                        },
+                        "ListAgents": {
+                            "methods": [
+                                "listAgents"
+                            ]
+                        },
+                        "ListAppVersions": {
+                            "methods": [
+                                "listAppVersions"
+                            ]
+                        },
+                        "ListApps": {
+                            "methods": [
+                                "listApps"
+                            ]
+                        },
+                        "ListChangelogs": {
+                            "methods": [
+                                "listChangelogs"
+                            ]
+                        },
+                        "ListConversations": {
+                            "methods": [
+                                "listConversations"
+                            ]
+                        },
+                        "ListDeployments": {
+                            "methods": [
+                                "listDeployments"
+                            ]
+                        },
+                        "ListExamples": {
+                            "methods": [
+                                "listExamples"
+                            ]
+                        },
+                        "ListGuardrails": {
+                            "methods": [
+                                "listGuardrails"
+                            ]
+                        },
+                        "ListTools": {
+                            "methods": [
+                                "listTools"
+                            ]
+                        },
+                        "ListToolsets": {
+                            "methods": [
+                                "listToolsets"
+                            ]
+                        },
+                        "RestoreAppVersion": {
+                            "methods": [
+                                "restoreAppVersion"
+                            ]
+                        },
+                        "UpdateAgent": {
+                            "methods": [
+                                "updateAgent"
+                            ]
+                        },
+                        "UpdateApp": {
+                            "methods": [
+                                "updateApp"
+                            ]
+                        },
+                        "UpdateDeployment": {
+                            "methods": [
+                                "updateDeployment"
+                            ]
+                        },
+                        "UpdateExample": {
+                            "methods": [
+                                "updateExample"
+                            ]
+                        },
+                        "UpdateGuardrail": {
+                            "methods": [
+                                "updateGuardrail"
+                            ]
+                        },
+                        "UpdateTool": {
+                            "methods": [
+                                "updateTool"
+                            ]
+                        },
+                        "UpdateToolset": {
+                            "methods": [
+                                "updateToolset"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SessionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SessionServiceGapicClient",
+                    "rpcs": {
+                        "BidiRunSession": {
+                            "methods": [
+                                "bidiRunSession"
+                            ]
+                        },
+                        "RunSession": {
+                            "methods": [
+                                "runSession"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ToolService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ToolServiceGapicClient",
+                    "rpcs": {
+                        "ExecuteTool": {
+                            "methods": [
+                                "executeTool"
+                            ]
+                        },
+                        "RetrieveToolSchema": {
+                            "methods": [
+                                "retrieveToolSchema"
+                            ]
+                        },
+                        "RetrieveTools": {
+                            "methods": [
+                                "retrieveTools"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "WidgetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WidgetServiceGapicClient",
+                    "rpcs": {
+                        "GenerateChatToken": {
+                            "methods": [
+                                "generateChatToken"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

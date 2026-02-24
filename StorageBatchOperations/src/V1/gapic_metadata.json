@@ -25,9 +25,19 @@
                                 "deleteJob"
                             ]
                         },
+                        "GetBucketOperation": {
+                            "methods": [
+                                "getBucketOperation"
+                            ]
+                        },
                         "GetJob": {
                             "methods": [
                                 "getJob"
+                            ]
+                        },
+                        "ListBucketOperations": {
+                            "methods": [
+                                "listBucketOperations"
                             ]
                         },
                         "ListJobs": {

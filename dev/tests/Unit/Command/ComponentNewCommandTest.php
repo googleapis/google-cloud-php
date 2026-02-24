@@ -174,8 +174,8 @@ class ComponentNewCommandTest extends TestCase
         $application = new Application();
         $application->add(new ComponentNewCommand(self::$tmpDir));
 
-        // Add dummy command for component:update:gencode and component:update:readme-sample to ensure they're called
-        $dummyCommand->getName()->willReturn('component:update:gencode');
+        // Add dummy command for component:update and component:update:readme-sample to ensure they're called
+        $dummyCommand->getName()->willReturn('component:update');
         $application->add($dummyCommand->reveal());
         $dummyCommand->getName()->willReturn('component:update:readme-sample');
         $application->add($dummyCommand->reveal());

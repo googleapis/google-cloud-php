@@ -135,7 +135,9 @@ return [
             ],
             'templateMap' => [
                 'autokeyConfig' => 'folders/{folder}/autokeyConfig',
+                'folderAutokeyConfig' => 'folders/{folder}/autokeyConfig',
                 'project' => 'projects/{project}',
+                'projectAutokeyConfig' => 'projects/{project}/autokeyConfig',
             ],
         ],
     ],

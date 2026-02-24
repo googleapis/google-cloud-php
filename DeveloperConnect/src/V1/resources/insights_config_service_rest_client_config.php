@@ -49,6 +49,17 @@ return [
                     ],
                 ],
             ],
+            'GetDeploymentEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/insightsConfigs/*/deploymentEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetInsightsConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/insightsConfigs/*}',
@@ -56,6 +67,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDeploymentEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/insightsConfigs/*}/deploymentEvents',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

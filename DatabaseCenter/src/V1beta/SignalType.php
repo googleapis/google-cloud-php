@@ -62,31 +62,31 @@ class SignalType
      */
     const SIGNAL_TYPE_LAST_BACKUP_OLD = 7;
     /**
-     * Represents if a resource violates CIS GCP Foundation 2.0.
+     * Represents if a resource violates CIS Google Cloud Platform Foundation 2.0.
      *
      * Generated from protobuf enum <code>SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0 = 8;</code>
      */
     const SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0 = 8;
     /**
-     * Represents if a resource violates CIS GCP Foundation 1.3.
+     * Represents if a resource violates CIS Google Cloud Platform Foundation 1.3.
      *
      * Generated from protobuf enum <code>SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3 = 9;</code>
      */
     const SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3 = 9;
     /**
-     * Represents if a resource violates CIS GCP Foundation 1.2.
+     * Represents if a resource violates CIS Google Cloud Platform Foundation 1.2.
      *
      * Generated from protobuf enum <code>SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2 = 10;</code>
      */
     const SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2 = 10;
     /**
-     * Represents if a resource violates CIS GCP Foundation 1.1.
+     * Represents if a resource violates CIS Google Cloud Platform Foundation 1.1.
      *
      * Generated from protobuf enum <code>SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1 = 11;</code>
      */
     const SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1 = 11;
     /**
-     * Represents if a resource violates CIS GCP Foundation 1.0.
+     * Represents if a resource violates CIS Google Cloud Platform Foundation 1.0.
      *
      * Generated from protobuf enum <code>SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0 = 12;</code>
      */

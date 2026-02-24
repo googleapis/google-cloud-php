@@ -72,7 +72,7 @@ class AccountConnector extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DeveloperConnect\V1\ProviderOAuthConfig $provider_oauth_config
-     *           Provider OAuth config.
+     *           Optional. Provider OAuth config.
      *     @type string $name
      *           Identifier. The resource name of the accountConnector, in the format
      *           `projects/{project}/locations/{location}/accountConnectors/{account_connector_id}`.
@@ -98,9 +98,9 @@ class AccountConnector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provider OAuth config.
+     * Optional. Provider OAuth config.
      *
-     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.ProviderOAuthConfig provider_oauth_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.ProviderOAuthConfig provider_oauth_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DeveloperConnect\V1\ProviderOAuthConfig|null
      */
     public function getProviderOauthConfig()
@@ -114,9 +114,9 @@ class AccountConnector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Provider OAuth config.
+     * Optional. Provider OAuth config.
      *
-     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.ProviderOAuthConfig provider_oauth_config = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.ProviderOAuthConfig provider_oauth_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DeveloperConnect\V1\ProviderOAuthConfig $var
      * @return $this
      */
