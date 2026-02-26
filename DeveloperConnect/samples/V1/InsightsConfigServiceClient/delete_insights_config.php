@@ -30,7 +30,7 @@ use Google\Cloud\DeveloperConnect\V1\DeleteInsightsConfigRequest;
 use Google\Rpc\Status;
 
 /**
- * Delete a single Insight.
+ * Deletes a single Insight.
  *
  * @param string $formattedName Value for parent. Please see
  *                              {@see InsightsConfigServiceClient::insightsConfigName()} for help formatting this field.

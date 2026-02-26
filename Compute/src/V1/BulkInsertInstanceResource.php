@@ -24,6 +24,12 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
      */
     protected $count = null;
     /**
+     * A flexible specification of machine type of instances to create.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     */
+    protected $instance_flexibility_policy = null;
+    /**
      * The instance properties defining the VM instances to be created. Required
      * if sourceInstanceTemplate is not provided.
      *
@@ -93,6 +99,8 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $count
      *           The maximum number of instances to create.
+     *     @type \Google\Cloud\Compute\V1\InstanceFlexibilityPolicy $instance_flexibility_policy
+     *           A flexible specification of machine type of instances to create.
      *     @type \Google\Cloud\Compute\V1\InstanceProperties $instance_properties
      *           The instance properties defining the VM instances to be created. Required
      *           if sourceInstanceTemplate is not provided.
@@ -169,6 +177,42 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->count = $var;
+
+        return $this;
+    }
+
+    /**
+     * A flexible specification of machine type of instances to create.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceFlexibilityPolicy|null
+     */
+    public function getInstanceFlexibilityPolicy()
+    {
+        return $this->instance_flexibility_policy;
+    }
+
+    public function hasInstanceFlexibilityPolicy()
+    {
+        return isset($this->instance_flexibility_policy);
+    }
+
+    public function clearInstanceFlexibilityPolicy()
+    {
+        unset($this->instance_flexibility_policy);
+    }
+
+    /**
+     * A flexible specification of machine type of instances to create.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 26937090;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceFlexibilityPolicy $var
+     * @return $this
+     */
+    public function setInstanceFlexibilityPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceFlexibilityPolicy::class);
+        $this->instance_flexibility_policy = $var;
 
         return $this;
     }

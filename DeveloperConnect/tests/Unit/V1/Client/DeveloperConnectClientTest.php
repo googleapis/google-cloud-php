@@ -51,6 +51,8 @@ use Google\Cloud\DeveloperConnect\V1\FetchReadTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchReadWriteTokenRequest;
 use Google\Cloud\DeveloperConnect\V1\FetchReadWriteTokenResponse;
 use Google\Cloud\DeveloperConnect\V1\FetchSelfRequest;
+use Google\Cloud\DeveloperConnect\V1\FinishOAuthRequest;
+use Google\Cloud\DeveloperConnect\V1\FinishOAuthResponse;
 use Google\Cloud\DeveloperConnect\V1\GetAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\GetConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\GetGitRepositoryLinkRequest;
@@ -64,6 +66,8 @@ use Google\Cloud\DeveloperConnect\V1\ListGitRepositoryLinksRequest;
 use Google\Cloud\DeveloperConnect\V1\ListGitRepositoryLinksResponse;
 use Google\Cloud\DeveloperConnect\V1\ListUsersRequest;
 use Google\Cloud\DeveloperConnect\V1\ListUsersResponse;
+use Google\Cloud\DeveloperConnect\V1\StartOAuthRequest;
+use Google\Cloud\DeveloperConnect\V1\StartOAuthResponse;
 use Google\Cloud\DeveloperConnect\V1\UpdateAccountConnectorRequest;
 use Google\Cloud\DeveloperConnect\V1\UpdateConnectionRequest;
 use Google\Cloud\DeveloperConnect\V1\User;
@@ -1704,6 +1708,77 @@ class DeveloperConnectClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function finishOAuthTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new FinishOAuthResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAccountConnector = $gapicClient->accountConnectorName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ACCOUNT_CONNECTOR]'
+        );
+        $request = (new FinishOAuthRequest())->setAccountConnector($formattedAccountConnector);
+        $response = $gapicClient->finishOAuth($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.developerconnect.v1.DeveloperConnect/FinishOAuth', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAccountConnector();
+        $this->assertProtobufEquals($formattedAccountConnector, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function finishOAuthExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAccountConnector = $gapicClient->accountConnectorName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ACCOUNT_CONNECTOR]'
+        );
+        $request = (new FinishOAuthRequest())->setAccountConnector($formattedAccountConnector);
+        try {
+            $gapicClient->finishOAuth($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAccountConnectorTest()
     {
         $transport = $this->createTransport();
@@ -2205,6 +2280,87 @@ class DeveloperConnectClientTest extends GeneratedTest
         $request = (new ListUsersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listUsers($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function startOAuthTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $ticket = 'ticket-873960692';
+        $codeChallenge = 'codeChallenge2114936977';
+        $codeChallengeMethod = 'codeChallengeMethod195352655';
+        $clientId = 'clientId-1904089585';
+        $authUri = 'authUri1432600149';
+        $expectedResponse = new StartOAuthResponse();
+        $expectedResponse->setTicket($ticket);
+        $expectedResponse->setCodeChallenge($codeChallenge);
+        $expectedResponse->setCodeChallengeMethod($codeChallengeMethod);
+        $expectedResponse->setClientId($clientId);
+        $expectedResponse->setAuthUri($authUri);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAccountConnector = $gapicClient->accountConnectorName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ACCOUNT_CONNECTOR]'
+        );
+        $request = (new StartOAuthRequest())->setAccountConnector($formattedAccountConnector);
+        $response = $gapicClient->startOAuth($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.developerconnect.v1.DeveloperConnect/StartOAuth', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAccountConnector();
+        $this->assertProtobufEquals($formattedAccountConnector, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function startOAuthExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAccountConnector = $gapicClient->accountConnectorName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[ACCOUNT_CONNECTOR]'
+        );
+        $request = (new StartOAuthRequest())->setAccountConnector($formattedAccountConnector);
+        try {
+            $gapicClient->startOAuth($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
