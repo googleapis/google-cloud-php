@@ -122,6 +122,10 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           Configuration for connections to an instance of Bitbucket Data Center.
      *     @type \Google\Cloud\DeveloperConnect\V1\BitbucketCloudConfig $bitbucket_cloud_config
      *           Configuration for connections to an instance of Bitbucket Clouds.
+     *     @type \Google\Cloud\DeveloperConnect\V1\SecureSourceManagerInstanceConfig $secure_source_manager_instance_config
+     *           Configuration for connections to an instance of Secure Source Manager.
+     *     @type \Google\Cloud\DeveloperConnect\V1\GenericHTTPEndpointConfig $http_config
+     *           Optional. Configuration for connections to an HTTP service provider.
      *     @type string $name
      *           Identifier. The resource name of the connection, in the format
      *           `projects/{project}/locations/{location}/connections/{connection_id}`.
@@ -346,6 +350,68 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\BitbucketCloudConfig::class);
         $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration for connections to an instance of Secure Source Manager.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.SecureSourceManagerInstanceConfig secure_source_manager_instance_config = 20;</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\SecureSourceManagerInstanceConfig|null
+     */
+    public function getSecureSourceManagerInstanceConfig()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasSecureSourceManagerInstanceConfig()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * Configuration for connections to an instance of Secure Source Manager.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.SecureSourceManagerInstanceConfig secure_source_manager_instance_config = 20;</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\SecureSourceManagerInstanceConfig $var
+     * @return $this
+     */
+    public function setSecureSourceManagerInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\SecureSourceManagerInstanceConfig::class);
+        $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for connections to an HTTP service provider.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GenericHTTPEndpointConfig http_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DeveloperConnect\V1\GenericHTTPEndpointConfig|null
+     */
+    public function getHttpConfig()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasHttpConfig()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * Optional. Configuration for connections to an HTTP service provider.
+     *
+     * Generated from protobuf field <code>.google.cloud.developerconnect.v1.GenericHTTPEndpointConfig http_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DeveloperConnect\V1\GenericHTTPEndpointConfig $var
+     * @return $this
+     */
+    public function setHttpConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeveloperConnect\V1\GenericHTTPEndpointConfig::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }

@@ -26,6 +26,7 @@ use UnexpectedValueException;
  *    - BPS_20G: 20 Gbit/s
  *    - BPS_50G: 50 Gbit/s
  *    - BPS_100G: 100 Gbit/s
+ *    - BPS_400G: 400 Gbit/s
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectAttachment.Bandwidth</code>
  */
@@ -86,6 +87,12 @@ class Bandwidth
      */
     const BPS_300M = 49607540;
     /**
+     * 400 Gbit/s
+     *
+     * Generated from protobuf enum <code>BPS_400G = 49637325;</code>
+     */
+    const BPS_400G = 49637325;
+    /**
      * 400 Mbit/s
      *
      * Generated from protobuf enum <code>BPS_400M = 49637331;</code>
@@ -126,6 +133,7 @@ class Bandwidth
         self::BPS_20G => 'BPS_20G',
         self::BPS_2G => 'BPS_2G',
         self::BPS_300M => 'BPS_300M',
+        self::BPS_400G => 'BPS_400G',
         self::BPS_400M => 'BPS_400M',
         self::BPS_500M => 'BPS_500M',
         self::BPS_50G => 'BPS_50G',

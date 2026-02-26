@@ -85,6 +85,11 @@
                                 "fetchSelf"
                             ]
                         },
+                        "FinishOAuth": {
+                            "methods": [
+                                "finishOAuth"
+                            ]
+                        },
                         "GetAccountConnector": {
                             "methods": [
                                 "getAccountConnector"
@@ -118,6 +123,11 @@
                         "ListUsers": {
                             "methods": [
                                 "listUsers"
+                            ]
+                        },
+                        "StartOAuth": {
+                            "methods": [
+                                "startOAuth"
                             ]
                         },
                         "UpdateAccountConnector": {
@@ -159,9 +169,19 @@
                                 "deleteInsightsConfig"
                             ]
                         },
+                        "GetDeploymentEvent": {
+                            "methods": [
+                                "getDeploymentEvent"
+                            ]
+                        },
                         "GetInsightsConfig": {
                             "methods": [
                                 "getInsightsConfig"
+                            ]
+                        },
+                        "ListDeploymentEvents": {
+                            "methods": [
+                                "listDeploymentEvents"
                             ]
                         },
                         "ListInsightsConfigs": {

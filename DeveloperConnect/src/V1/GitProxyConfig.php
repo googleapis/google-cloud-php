@@ -22,6 +22,17 @@ class GitProxyConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enabled = false;
+    /**
+     * Output only. The base URI for the HTTP proxy endpoint. Has
+     * the format
+     * `https://{generatedID}-c-h-{shortRegion}.developerconnect.dev`
+     * Populated only when enabled is set to true.
+     * This endpoint is used by other Google services that integrate with
+     * Developer Connect.
+     *
+     * Generated from protobuf field <code>string http_proxy_base_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $http_proxy_base_uri = '';
 
     /**
      * Constructor.
@@ -32,6 +43,13 @@ class GitProxyConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Optional. Setting this to true allows the git proxy to be used for
      *           performing git operations on the repositories linked in the connection.
+     *     @type string $http_proxy_base_uri
+     *           Output only. The base URI for the HTTP proxy endpoint. Has
+     *           the format
+     *           `https://{generatedID}-c-h-{shortRegion}.developerconnect.dev`
+     *           Populated only when enabled is set to true.
+     *           This endpoint is used by other Google services that integrate with
+     *           Developer Connect.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +81,42 @@ class GitProxyConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The base URI for the HTTP proxy endpoint. Has
+     * the format
+     * `https://{generatedID}-c-h-{shortRegion}.developerconnect.dev`
+     * Populated only when enabled is set to true.
+     * This endpoint is used by other Google services that integrate with
+     * Developer Connect.
+     *
+     * Generated from protobuf field <code>string http_proxy_base_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getHttpProxyBaseUri()
+    {
+        return $this->http_proxy_base_uri;
+    }
+
+    /**
+     * Output only. The base URI for the HTTP proxy endpoint. Has
+     * the format
+     * `https://{generatedID}-c-h-{shortRegion}.developerconnect.dev`
+     * Populated only when enabled is set to true.
+     * This endpoint is used by other Google services that integrate with
+     * Developer Connect.
+     *
+     * Generated from protobuf field <code>string http_proxy_base_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setHttpProxyBaseUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->http_proxy_base_uri = $var;
 
         return $this;
     }
