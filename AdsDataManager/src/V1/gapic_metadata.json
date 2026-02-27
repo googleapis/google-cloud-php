@@ -33,6 +33,141 @@
                     }
                 }
             }
+        },
+        "MarketingDataInsightsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MarketingDataInsightsServiceGapicClient",
+                    "rpcs": {
+                        "RetrieveInsights": {
+                            "methods": [
+                                "retrieveInsights"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PartnerLinkService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PartnerLinkServiceGapicClient",
+                    "rpcs": {
+                        "CreatePartnerLink": {
+                            "methods": [
+                                "createPartnerLink"
+                            ]
+                        },
+                        "DeletePartnerLink": {
+                            "methods": [
+                                "deletePartnerLink"
+                            ]
+                        },
+                        "SearchPartnerLinks": {
+                            "methods": [
+                                "searchPartnerLinks"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserListDirectLicenseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserListDirectLicenseServiceGapicClient",
+                    "rpcs": {
+                        "CreateUserListDirectLicense": {
+                            "methods": [
+                                "createUserListDirectLicense"
+                            ]
+                        },
+                        "GetUserListDirectLicense": {
+                            "methods": [
+                                "getUserListDirectLicense"
+                            ]
+                        },
+                        "ListUserListDirectLicenses": {
+                            "methods": [
+                                "listUserListDirectLicenses"
+                            ]
+                        },
+                        "UpdateUserListDirectLicense": {
+                            "methods": [
+                                "updateUserListDirectLicense"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserListGlobalLicenseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserListGlobalLicenseServiceGapicClient",
+                    "rpcs": {
+                        "CreateUserListGlobalLicense": {
+                            "methods": [
+                                "createUserListGlobalLicense"
+                            ]
+                        },
+                        "GetUserListGlobalLicense": {
+                            "methods": [
+                                "getUserListGlobalLicense"
+                            ]
+                        },
+                        "ListUserListGlobalLicenseCustomerInfos": {
+                            "methods": [
+                                "listUserListGlobalLicenseCustomerInfos"
+                            ]
+                        },
+                        "ListUserListGlobalLicenses": {
+                            "methods": [
+                                "listUserListGlobalLicenses"
+                            ]
+                        },
+                        "UpdateUserListGlobalLicense": {
+                            "methods": [
+                                "updateUserListGlobalLicense"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserListService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserListServiceGapicClient",
+                    "rpcs": {
+                        "CreateUserList": {
+                            "methods": [
+                                "createUserList"
+                            ]
+                        },
+                        "DeleteUserList": {
+                            "methods": [
+                                "deleteUserList"
+                            ]
+                        },
+                        "GetUserList": {
+                            "methods": [
+                                "getUserList"
+                            ]
+                        },
+                        "ListUserLists": {
+                            "methods": [
+                                "listUserLists"
+                            ]
+                        },
+                        "UpdateUserList": {
+                            "methods": [
+                                "updateUserList"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

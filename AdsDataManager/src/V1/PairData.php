@@ -11,6 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * [PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience.
  * At least one PAIR ID is required.
+ * This feature is only available to data partners.
  *
  * Generated from protobuf message <code>google.ads.datamanager.v1.PairData</code>
  */

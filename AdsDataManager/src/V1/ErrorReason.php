@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Error reasons for Data Manager API.
+ * NOTE: This enum is not frozen and new values may be added in the future.
  *
  * Protobuf type <code>google.ads.datamanager.v1.ErrorReason</code>
  */
@@ -332,6 +333,294 @@ class ErrorReason
      * Generated from protobuf enum <code>TOO_MANY_ELEMENTS = 51;</code>
      */
     const TOO_MANY_ELEMENTS = 51;
+    /**
+     * The resource already exists.
+     *
+     * Generated from protobuf enum <code>ALREADY_EXISTS = 52;</code>
+     */
+    const ALREADY_EXISTS = 52;
+    /**
+     * Attempted to set an immutable field for an update request.
+     *
+     * Generated from protobuf enum <code>IMMUTABLE_FIELD_FOR_UPDATE = 53;</code>
+     */
+    const IMMUTABLE_FIELD_FOR_UPDATE = 53;
+    /**
+     * The resource name is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_RESOURCE_NAME = 54;</code>
+     */
+    const INVALID_RESOURCE_NAME = 54;
+    /**
+     * The query filter is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_FILTER = 55;</code>
+     */
+    const INVALID_FILTER = 55;
+    /**
+     * The update mask is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_UPDATE_MASK = 56;</code>
+     */
+    const INVALID_UPDATE_MASK = 56;
+    /**
+     * The page token is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_PAGE_TOKEN = 57;</code>
+     */
+    const INVALID_PAGE_TOKEN = 57;
+    /**
+     * Cannot update a license that has been disabled.
+     *
+     * Generated from protobuf enum <code>CANNOT_UPDATE_DISABLED_LICENSE = 58;</code>
+     */
+    const CANNOT_UPDATE_DISABLED_LICENSE = 58;
+    /**
+     * Sensitive user lists cannot be licensed to this client.
+     *
+     * Generated from protobuf enum <code>CANNOT_CREATE_LICENSE_FOR_SENSITIVE_USERLIST = 59;</code>
+     */
+    const CANNOT_CREATE_LICENSE_FOR_SENSITIVE_USERLIST = 59;
+    /**
+     * Cost too low for this license.
+     *
+     * Generated from protobuf enum <code>INSUFFICIENT_COST = 60;</code>
+     */
+    const INSUFFICIENT_COST = 60;
+    /**
+     * Reseller license cannot be disabled since it is in use.
+     *
+     * Generated from protobuf enum <code>CANNOT_DISABLE_LICENSE = 61;</code>
+     */
+    const CANNOT_DISABLE_LICENSE = 61;
+    /**
+     * Invalid client account id.
+     *
+     * Generated from protobuf enum <code>INVALID_CLIENT_ACCOUNT_ID = 62;</code>
+     */
+    const INVALID_CLIENT_ACCOUNT_ID = 62;
+    /**
+     * Non-zero cost not allowed for this client account.
+     *
+     * Generated from protobuf enum <code>PRICING_ONLY_ZERO_COST_ALLOWED = 63;</code>
+     */
+    const PRICING_ONLY_ZERO_COST_ALLOWED = 63;
+    /**
+     * Cost too high for this license.
+     *
+     * Generated from protobuf enum <code>PRICE_TOO_HIGH = 64;</code>
+     */
+    const PRICE_TOO_HIGH = 64;
+    /**
+     * Customer not allowed to create license.
+     *
+     * Generated from protobuf enum <code>CUSTOMER_NOT_ALLOWED_TO_CREATE_LICENSE = 65;</code>
+     */
+    const CUSTOMER_NOT_ALLOWED_TO_CREATE_LICENSE = 65;
+    /**
+     * Pricing end date is invalid for this license.
+     *
+     * Generated from protobuf enum <code>INVALID_PRICING_END_DATE = 66;</code>
+     */
+    const INVALID_PRICING_END_DATE = 66;
+    /**
+     * Logical user list with shared or licensed segment cannot be licensed.
+     *
+     * Generated from protobuf enum <code>CANNOT_LICENSE_LOGICAL_LIST_WITH_LICENSED_OR_SHARED_SEGMENT = 67;</code>
+     */
+    const CANNOT_LICENSE_LOGICAL_LIST_WITH_LICENSED_OR_SHARED_SEGMENT = 67;
+    /**
+     * Client customer's account type in the request does not match the customer's
+     * actual account type.
+     *
+     * Generated from protobuf enum <code>MISMATCHED_ACCOUNT_TYPE = 68;</code>
+     */
+    const MISMATCHED_ACCOUNT_TYPE = 68;
+    /**
+     * License type does not support media share cost.
+     *
+     * Generated from protobuf enum <code>MEDIA_SHARE_COST_NOT_ALLOWED_FOR_LICENSE_TYPE = 69;</code>
+     */
+    const MEDIA_SHARE_COST_NOT_ALLOWED_FOR_LICENSE_TYPE = 69;
+    /**
+     * Client customer type does not support media share cost.
+     *
+     * Generated from protobuf enum <code>MEDIA_SHARE_COST_NOT_ALLOWED_FOR_CLIENT_CUSTOMER = 70;</code>
+     */
+    const MEDIA_SHARE_COST_NOT_ALLOWED_FOR_CLIENT_CUSTOMER = 70;
+    /**
+     * Invalid media share cost.
+     *
+     * Generated from protobuf enum <code>INVALID_MEDIA_SHARE_COST = 71;</code>
+     */
+    const INVALID_MEDIA_SHARE_COST = 71;
+    /**
+     * Invalid cost type.
+     *
+     * Generated from protobuf enum <code>INVALID_COST_TYPE = 72;</code>
+     */
+    const INVALID_COST_TYPE = 72;
+    /**
+     * UserList type does not support media share cost.
+     *
+     * Generated from protobuf enum <code>MEDIA_SHARE_COST_NOT_ALLOWED_FOR_NON_COMMERCE_USER_LIST = 73;</code>
+     */
+    const MEDIA_SHARE_COST_NOT_ALLOWED_FOR_NON_COMMERCE_USER_LIST = 73;
+    /**
+     * Max cost is only allowed for cost_type MEDIA_SHARE.
+     *
+     * Generated from protobuf enum <code>MAX_COST_NOT_ALLOWED = 74;</code>
+     */
+    const MAX_COST_NOT_ALLOWED = 74;
+    /**
+     * Commerce audience can only be directly licensed.
+     *
+     * Generated from protobuf enum <code>COMMERCE_AUDIENCE_CAN_ONLY_BE_DIRECTLY_LICENSED = 75;</code>
+     */
+    const COMMERCE_AUDIENCE_CAN_ONLY_BE_DIRECTLY_LICENSED = 75;
+    /**
+     * The description is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_DESCRIPTION = 76;</code>
+     */
+    const INVALID_DESCRIPTION = 76;
+    /**
+     * The display name is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_DISPLAY_NAME = 77;</code>
+     */
+    const INVALID_DISPLAY_NAME = 77;
+    /**
+     * The display name is already being used for another user list for the
+     * account.
+     *
+     * Generated from protobuf enum <code>DISPLAY_NAME_ALREADY_USED = 78;</code>
+     */
+    const DISPLAY_NAME_ALREADY_USED = 78;
+    /**
+     * Ownership is required to modify the user list.
+     *
+     * Generated from protobuf enum <code>OWNERSHIP_REQUIRED_FOR_UPDATE = 79;</code>
+     */
+    const OWNERSHIP_REQUIRED_FOR_UPDATE = 79;
+    /**
+     * The user list type is read-only and does not support mutation.
+     *
+     * Generated from protobuf enum <code>USER_LIST_MUTATION_NOT_SUPPORTED = 80;</code>
+     */
+    const USER_LIST_MUTATION_NOT_SUPPORTED = 80;
+    /**
+     * A user list which is privacy sensitive or legal rejected cannot be mutated
+     * by external users.
+     *
+     * Generated from protobuf enum <code>SENSITIVE_USER_LIST_IMMUTABLE = 81;</code>
+     */
+    const SENSITIVE_USER_LIST_IMMUTABLE = 81;
+    /**
+     * The remarketing user list's billable record field cannot be modified once
+     * it is set.
+     *
+     * Generated from protobuf enum <code>BILLABLE_RECORD_COUNT_IMMUTABLE = 82;</code>
+     */
+    const BILLABLE_RECORD_COUNT_IMMUTABLE = 82;
+    /**
+     * The user list name is reserved for system lists.
+     *
+     * Generated from protobuf enum <code>USER_LIST_NAME_RESERVED = 83;</code>
+     */
+    const USER_LIST_NAME_RESERVED = 83;
+    /**
+     * The advertiser needs to be allowlisted to use remarketing lists created
+     * from advertiser uploaded data.
+     *
+     * Generated from protobuf enum <code>ADVERTISER_NOT_ALLOWLISTED_FOR_UPLOADED_DATA = 84;</code>
+     */
+    const ADVERTISER_NOT_ALLOWLISTED_FOR_UPLOADED_DATA = 84;
+    /**
+     * The partner audience source is not supported for the user list type.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_PARTNER_AUDIENCE_SOURCE = 85;</code>
+     */
+    const UNSUPPORTED_PARTNER_AUDIENCE_SOURCE = 85;
+    /**
+     * Setting the `commerce_partner` field is only supported if the
+     * `partner_audience_source` is `COMMERCE_AUDIENCE`.
+     *
+     * Generated from protobuf enum <code>COMMERCE_PARTNER_NOT_ALLOWED = 86;</code>
+     */
+    const COMMERCE_PARTNER_NOT_ALLOWED = 86;
+    /**
+     * The `partner_audience_info` field is not supported for the user list type.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_PARTNER_AUDIENCE_INFO = 87;</code>
+     */
+    const UNSUPPORTED_PARTNER_AUDIENCE_INFO = 87;
+    /**
+     * Partner Match user lists cannot be created by manager accounts.
+     *
+     * Generated from protobuf enum <code>PARTNER_MATCH_FOR_MANAGER_ACCOUNT_DISALLOWED = 88;</code>
+     */
+    const PARTNER_MATCH_FOR_MANAGER_ACCOUNT_DISALLOWED = 88;
+    /**
+     * The data partner is not allowlisted for THIRD_PARTY_PARTNER_DATA.
+     *
+     * Generated from protobuf enum <code>DATA_PARTNER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA = 89;</code>
+     */
+    const DATA_PARTNER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA = 89;
+    /**
+     * The advertiser has not accepted the partner's terms of service.
+     *
+     * Generated from protobuf enum <code>ADVERTISER_TOS_NOT_ACCEPTED = 90;</code>
+     */
+    const ADVERTISER_TOS_NOT_ACCEPTED = 90;
+    /**
+     * The advertiser is not allowlisted for THIRD_PARTY_PARTNER_DATA.
+     *
+     * Generated from protobuf enum <code>ADVERTISER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA = 91;</code>
+     */
+    const ADVERTISER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA = 91;
+    /**
+     * This user list type is not supported for this account.
+     *
+     * Generated from protobuf enum <code>USER_LIST_TYPE_NOT_SUPPORTED_FOR_ACCOUNT = 92;</code>
+     */
+    const USER_LIST_TYPE_NOT_SUPPORTED_FOR_ACCOUNT = 92;
+    /**
+     * The `commerce_partner` field is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_COMMERCE_PARTNER = 93;</code>
+     */
+    const INVALID_COMMERCE_PARTNER = 93;
+    /**
+     * The data provider is not allowlisted to create commerce audiences.
+     *
+     * Generated from protobuf enum <code>CUSTOMER_NOT_ALLOWLISTED_FOR_COMMERCE_AUDIENCE = 94;</code>
+     */
+    const CUSTOMER_NOT_ALLOWLISTED_FOR_COMMERCE_AUDIENCE = 94;
+    /**
+     * The user list upload key types are not supported.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_USER_LIST_UPLOAD_KEY_TYPES = 95;</code>
+     */
+    const UNSUPPORTED_USER_LIST_UPLOAD_KEY_TYPES = 95;
+    /**
+     * The ingested user list info config is not supported.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_INGESTED_USER_LIST_INFO_CONFIG = 96;</code>
+     */
+    const UNSUPPORTED_INGESTED_USER_LIST_INFO_CONFIG = 96;
+    /**
+     * The account types are not supported for the user list type.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE = 97;</code>
+     */
+    const UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE = 97;
+    /**
+     * The account types are not supported for the partner link.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK = 98;</code>
+     */
+    const UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK = 98;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -386,6 +675,53 @@ class ErrorReason
         self::MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT => 'MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT',
         self::FIELD_VALUE_TOO_LONG => 'FIELD_VALUE_TOO_LONG',
         self::TOO_MANY_ELEMENTS => 'TOO_MANY_ELEMENTS',
+        self::ALREADY_EXISTS => 'ALREADY_EXISTS',
+        self::IMMUTABLE_FIELD_FOR_UPDATE => 'IMMUTABLE_FIELD_FOR_UPDATE',
+        self::INVALID_RESOURCE_NAME => 'INVALID_RESOURCE_NAME',
+        self::INVALID_FILTER => 'INVALID_FILTER',
+        self::INVALID_UPDATE_MASK => 'INVALID_UPDATE_MASK',
+        self::INVALID_PAGE_TOKEN => 'INVALID_PAGE_TOKEN',
+        self::CANNOT_UPDATE_DISABLED_LICENSE => 'CANNOT_UPDATE_DISABLED_LICENSE',
+        self::CANNOT_CREATE_LICENSE_FOR_SENSITIVE_USERLIST => 'CANNOT_CREATE_LICENSE_FOR_SENSITIVE_USERLIST',
+        self::INSUFFICIENT_COST => 'INSUFFICIENT_COST',
+        self::CANNOT_DISABLE_LICENSE => 'CANNOT_DISABLE_LICENSE',
+        self::INVALID_CLIENT_ACCOUNT_ID => 'INVALID_CLIENT_ACCOUNT_ID',
+        self::PRICING_ONLY_ZERO_COST_ALLOWED => 'PRICING_ONLY_ZERO_COST_ALLOWED',
+        self::PRICE_TOO_HIGH => 'PRICE_TOO_HIGH',
+        self::CUSTOMER_NOT_ALLOWED_TO_CREATE_LICENSE => 'CUSTOMER_NOT_ALLOWED_TO_CREATE_LICENSE',
+        self::INVALID_PRICING_END_DATE => 'INVALID_PRICING_END_DATE',
+        self::CANNOT_LICENSE_LOGICAL_LIST_WITH_LICENSED_OR_SHARED_SEGMENT => 'CANNOT_LICENSE_LOGICAL_LIST_WITH_LICENSED_OR_SHARED_SEGMENT',
+        self::MISMATCHED_ACCOUNT_TYPE => 'MISMATCHED_ACCOUNT_TYPE',
+        self::MEDIA_SHARE_COST_NOT_ALLOWED_FOR_LICENSE_TYPE => 'MEDIA_SHARE_COST_NOT_ALLOWED_FOR_LICENSE_TYPE',
+        self::MEDIA_SHARE_COST_NOT_ALLOWED_FOR_CLIENT_CUSTOMER => 'MEDIA_SHARE_COST_NOT_ALLOWED_FOR_CLIENT_CUSTOMER',
+        self::INVALID_MEDIA_SHARE_COST => 'INVALID_MEDIA_SHARE_COST',
+        self::INVALID_COST_TYPE => 'INVALID_COST_TYPE',
+        self::MEDIA_SHARE_COST_NOT_ALLOWED_FOR_NON_COMMERCE_USER_LIST => 'MEDIA_SHARE_COST_NOT_ALLOWED_FOR_NON_COMMERCE_USER_LIST',
+        self::MAX_COST_NOT_ALLOWED => 'MAX_COST_NOT_ALLOWED',
+        self::COMMERCE_AUDIENCE_CAN_ONLY_BE_DIRECTLY_LICENSED => 'COMMERCE_AUDIENCE_CAN_ONLY_BE_DIRECTLY_LICENSED',
+        self::INVALID_DESCRIPTION => 'INVALID_DESCRIPTION',
+        self::INVALID_DISPLAY_NAME => 'INVALID_DISPLAY_NAME',
+        self::DISPLAY_NAME_ALREADY_USED => 'DISPLAY_NAME_ALREADY_USED',
+        self::OWNERSHIP_REQUIRED_FOR_UPDATE => 'OWNERSHIP_REQUIRED_FOR_UPDATE',
+        self::USER_LIST_MUTATION_NOT_SUPPORTED => 'USER_LIST_MUTATION_NOT_SUPPORTED',
+        self::SENSITIVE_USER_LIST_IMMUTABLE => 'SENSITIVE_USER_LIST_IMMUTABLE',
+        self::BILLABLE_RECORD_COUNT_IMMUTABLE => 'BILLABLE_RECORD_COUNT_IMMUTABLE',
+        self::USER_LIST_NAME_RESERVED => 'USER_LIST_NAME_RESERVED',
+        self::ADVERTISER_NOT_ALLOWLISTED_FOR_UPLOADED_DATA => 'ADVERTISER_NOT_ALLOWLISTED_FOR_UPLOADED_DATA',
+        self::UNSUPPORTED_PARTNER_AUDIENCE_SOURCE => 'UNSUPPORTED_PARTNER_AUDIENCE_SOURCE',
+        self::COMMERCE_PARTNER_NOT_ALLOWED => 'COMMERCE_PARTNER_NOT_ALLOWED',
+        self::UNSUPPORTED_PARTNER_AUDIENCE_INFO => 'UNSUPPORTED_PARTNER_AUDIENCE_INFO',
+        self::PARTNER_MATCH_FOR_MANAGER_ACCOUNT_DISALLOWED => 'PARTNER_MATCH_FOR_MANAGER_ACCOUNT_DISALLOWED',
+        self::DATA_PARTNER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA => 'DATA_PARTNER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA',
+        self::ADVERTISER_TOS_NOT_ACCEPTED => 'ADVERTISER_TOS_NOT_ACCEPTED',
+        self::ADVERTISER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA => 'ADVERTISER_NOT_ALLOWLISTED_FOR_THIRD_PARTY_PARTNER_DATA',
+        self::USER_LIST_TYPE_NOT_SUPPORTED_FOR_ACCOUNT => 'USER_LIST_TYPE_NOT_SUPPORTED_FOR_ACCOUNT',
+        self::INVALID_COMMERCE_PARTNER => 'INVALID_COMMERCE_PARTNER',
+        self::CUSTOMER_NOT_ALLOWLISTED_FOR_COMMERCE_AUDIENCE => 'CUSTOMER_NOT_ALLOWLISTED_FOR_COMMERCE_AUDIENCE',
+        self::UNSUPPORTED_USER_LIST_UPLOAD_KEY_TYPES => 'UNSUPPORTED_USER_LIST_UPLOAD_KEY_TYPES',
+        self::UNSUPPORTED_INGESTED_USER_LIST_INFO_CONFIG => 'UNSUPPORTED_INGESTED_USER_LIST_INFO_CONFIG',
+        self::UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE => 'UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE',
+        self::UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK => 'UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK',
     ];
 
     public static function name($value)

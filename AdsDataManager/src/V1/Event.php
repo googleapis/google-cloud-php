@@ -75,9 +75,9 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The conversion value associated with the event, for value-based
      * conversions.
      *
-     * Generated from protobuf field <code>double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $conversion_value = 0.0;
+    protected $conversion_value = null;
     /**
      * Optional. Signal for where the event happened (web, app, in-store, etc.).
      *
@@ -495,19 +495,29 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The conversion value associated with the event, for value-based
      * conversions.
      *
-     * Generated from protobuf field <code>double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getConversionValue()
     {
-        return $this->conversion_value;
+        return isset($this->conversion_value) ? $this->conversion_value : 0.0;
+    }
+
+    public function hasConversionValue()
+    {
+        return isset($this->conversion_value);
+    }
+
+    public function clearConversionValue()
+    {
+        unset($this->conversion_value);
     }
 
     /**
      * Optional. The conversion value associated with the event, for value-based
      * conversions.
      *
-     * Generated from protobuf field <code>double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional double conversion_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */

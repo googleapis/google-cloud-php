@@ -50,6 +50,12 @@ class AccountType
      * Generated from protobuf enum <code>GOOGLE_ANALYTICS_PROPERTY = 5;</code>
      */
     const GOOGLE_ANALYTICS_PROPERTY = 5;
+    /**
+     * Google Ad Manager audience link.
+     *
+     * Generated from protobuf enum <code>GOOGLE_AD_MANAGER_AUDIENCE_LINK = 6;</code>
+     */
+    const GOOGLE_AD_MANAGER_AUDIENCE_LINK = 6;
 
     private static $valueToName = [
         self::ACCOUNT_TYPE_UNSPECIFIED => 'ACCOUNT_TYPE_UNSPECIFIED',
@@ -58,6 +64,7 @@ class AccountType
         self::DISPLAY_VIDEO_ADVERTISER => 'DISPLAY_VIDEO_ADVERTISER',
         self::DATA_PARTNER => 'DATA_PARTNER',
         self::GOOGLE_ANALYTICS_PROPERTY => 'GOOGLE_ANALYTICS_PROPERTY',
+        self::GOOGLE_AD_MANAGER_AUDIENCE_LINK => 'GOOGLE_AD_MANAGER_AUDIENCE_LINK',
     ];
 
     public static function name($value)
