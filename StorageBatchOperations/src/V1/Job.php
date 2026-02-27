@@ -119,6 +119,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Content-Encoding, Content-Language, Content-Type, Custom-Time.
      *     @type \Google\Cloud\StorageBatchOperations\V1\RewriteObject $rewrite_object
      *           Rewrite the object and updates metadata like KMS key.
+     *     @type \Google\Cloud\StorageBatchOperations\V1\UpdateObjectCustomContext $update_object_custom_context
+     *           Update object custom context.
      *     @type \Google\Cloud\StorageBatchOperations\V1\LoggingConfig $logging_config
      *           Optional. Logging configuration.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -364,6 +366,37 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageBatchOperations\V1\RewriteObject::class);
         $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * Update object custom context.
+     *
+     * Generated from protobuf field <code>.google.cloud.storagebatchoperations.v1.UpdateObjectCustomContext update_object_custom_context = 23;</code>
+     * @return \Google\Cloud\StorageBatchOperations\V1\UpdateObjectCustomContext|null
+     */
+    public function getUpdateObjectCustomContext()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasUpdateObjectCustomContext()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * Update object custom context.
+     *
+     * Generated from protobuf field <code>.google.cloud.storagebatchoperations.v1.UpdateObjectCustomContext update_object_custom_context = 23;</code>
+     * @param \Google\Cloud\StorageBatchOperations\V1\UpdateObjectCustomContext $var
+     * @return $this
+     */
+    public function setUpdateObjectCustomContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageBatchOperations\V1\UpdateObjectCustomContext::class);
+        $this->writeOneof(23, $var);
 
         return $this;
     }
