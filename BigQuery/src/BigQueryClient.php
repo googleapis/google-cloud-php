@@ -34,6 +34,8 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
+use function PHPUnit\Framework\isNull;
+
 /**
  * Google Cloud BigQuery allows you to create, manage, share and query data.
  * Find more information at the
@@ -416,6 +418,45 @@ class BigQueryClient
             'formatOptions.useInt64Timestamp'
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
+
+        // Check if we can build a query Request
+        $queryRequest = StatelessJobConfiguration::getQueryRequest($query);
+
+        if (!is_null($queryRequest)) {
+            if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
+                $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
+
+                if (!isset($queryResultsOptions['formatOptions']) || !is_array($queryResultsOptions['formatOptions'])) {
+                    $queryResultsOptions['formatOptions'] = [];
+                }
+
+                $queryResultsOptions['formatOptions']['useInt64Timestamp'] = $useInt64;
+            }
+
+            $statelessArgs = $queryRequest + $queryResultsOptions + [
+                'projectId' => $this->projectId
+            ] + $options;
+
+            if (!isset($statelessArgs['timeoutMs'])) {
+                $statelessArgs['timeoutMs'] = $statelessArgs['initialTimeoutMs'];
+            }
+
+            $statelessResponse = $this->connection->query($statelessArgs);
+
+            $queryResults = QueryResults::fromStatelessQuery(
+                $this->connection,
+                $this->projectId,
+                $statelessResponse,
+                $this->mapper,
+                $queryResultsOptions + $options
+            );
+
+            if (!$queryResults->isComplete()) {
+                $queryResults->waitUntilComplete();
+            }
+
+            return $queryResults;
+        }
 
         $queryResults = $this->startQuery(
             $query,

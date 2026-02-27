@@ -414,6 +414,11 @@ class Rest implements ConnectionInterface
         return $this->send('tables', 'setIamPolicy', $args);
     }
 
+    public function statelessQuery(array $args = [])
+    {
+        return $this->send('jobs', 'query', $args);
+    }
+
     /**
      * @param array $args
      * @return array

@@ -157,6 +157,36 @@ class BigQueryClientTest extends TestCase
         $this->assertEquals(self::JOB_ID, $queryResults->identity()['jobId']);
     }
 
+    public function testRunQueryStateless()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+
+        $this->connection->query(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('query', self::QUERY_STRING),
+            Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
+        ))
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT_ID,
+                    'location' => self::LOCATION
+                ],
+                'jobComplete' => true,
+                'schema' => ['fields' => []],
+                'rows' => []
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertEquals(self::JOB_ID, $queryResults->identity()['jobId']);
+        $this->assertTrue($queryResults->isComplete());
+    }
+
     public function testRunsQueryWithRetry()
     {
         $client = $this->getClient();
