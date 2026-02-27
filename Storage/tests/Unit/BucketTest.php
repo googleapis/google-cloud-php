@@ -183,6 +183,68 @@ class BucketTest extends TestCase
         $bucket->getResumableUploader('some more data');
     }
 
+    /**
+     * Verifies that a resumable upload triggered through a Bucket
+     * only sends the X-Goog-Hash on the final chunk.
+     */
+    public function testUploadResumableFinalChunkHashes()
+    {
+        $data = 'chunk1chunk2'; // 12 bytes
+        $name = 'test-resumable.txt';
+        $resumeUri = 'http://example.com/resumable/123';
+        $hash = 'crc32c=mb+64g==,md5=ecA+ttxFBv4gFVBh52kiWA==';
+
+        $rw = $this->prophesize(RequestWrapper::class);
+
+        // Handshake call (POST)
+        $rw->send(Argument::that(function ($request) {
+            return $request->getMethod() === 'POST';
+        }), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Response(200, ['Location' => $resumeUri]));
+
+        // Intermediate chunk (PUT) - Should NOT have X-Goog-Hash
+        $rw->send(Argument::that(function ($request) {
+            return $request->getMethod() === 'PUT'
+                && $request->getHeaderLine('Content-Range') === 'bytes 0-5/12'
+                && !$request->hasHeader('X-Goog-Hash');
+        }), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Response(308, ['Range' => 'bytes=0-5']));
+
+        // FINAL chunk (PUT) - MUST HAVE X-Goog-Hash
+        $rw->send(Argument::that(function ($request) use ($hash) {
+            return $request->getMethod() === 'PUT'
+                && $request->getHeaderLine('Content-Range') === 'bytes 6-11/12'
+                && $request->getHeaderLine('X-Goog-Hash') === $hash;
+        }), Argument::any())->willReturn(
+            new \GuzzleHttp\Psr7\Response(200, [], '{"name":"' . $name . '","generation":"1"}')
+        );
+
+        $this->connection->projectId()->willReturn(self::PROJECT_ID);
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+
+        $uploader = new ResumableUploader(
+            $rw->reveal(),
+            $data,
+            'http://example.com/upload',
+            [
+                'chunkSize' => 6,
+                'contentType' => 'text/plain',
+                'restOptions' => ['headers' => ['X-Goog-Hash' => $hash]]
+            ]
+        );
+
+        $this->connection->insertObject(Argument::any())
+            ->willReturn($uploader);
+
+        $bucket = $this->getBucket();
+        $object = $bucket->upload($data, [
+            'name' => $name,
+            'resumable' => true,
+            'chunkSize' => 6,
+        ]);
+
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($name, $object->name());
+    }
+
     public function testGetObject()
     {
         $bucket = $this->getBucket();

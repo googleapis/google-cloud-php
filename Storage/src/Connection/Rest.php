@@ -500,11 +500,29 @@ class Rest implements ConnectionInterface
         }
 
         $validate = $this->chooseValidationMethod($args);
-        if ($validate === 'md5') {
-            $args['metadata']['md5Hash'] = base64_encode(Utils::hash($args['data'], 'md5', true));
-        } elseif ($validate === 'crc32') {
-            $args['metadata']['crc32c'] = $this->crcFromStream($args['data']);
+        $md5Hash = null;
+        $crc32c = null;
+
+        if ($validate !== false) {
+            $md5Hash = base64_encode(Utils::hash($args['data'], 'md5', true));
+            $crc32c = $this->crcFromStream($args['data']);
+
+            if ($validate === 'md5') {
+                $args['metadata']['md5Hash'] = $md5Hash;
+            } elseif ($validate === 'crc32') {
+                $args['metadata']['crc32c'] = $crc32c;
+            }
         }
+
+        // Prepare the X-Goog-Hash header string
+        $xGoogHash = [];
+        if ($crc32c) {
+            $xGoogHash[] = 'crc32c=' . $crc32c;
+        }
+        if ($md5Hash) {
+            $xGoogHash[] = 'md5=' . $md5Hash;
+        }
+        $xGoogHashHeader = implode(',', $xGoogHash);
 
         $args['metadata']['name'] = $args['name'];
         if (isset($args['retention'])) {
@@ -531,6 +549,22 @@ class Rest implements ConnectionInterface
 
         $args['uploaderOptions'] = array_intersect_key($args, array_flip($uploaderOptionKeys));
         $args = array_diff_key($args, array_flip($uploaderOptionKeys));
+
+        $args['uploaderOptions']['restOptions'] ??= [];
+        $args['uploaderOptions']['restOptions']['headers'] ??= [];
+
+        // Add the X-Goog-Hash header only if there are hashes to include
+        if (!empty($xGoogHashHeader)) {
+            $args['uploaderOptions']['restOptions']['headers']['x-goog-hash'] = $xGoogHashHeader;
+        }
+
+        if (!empty($args['headers'])) {
+            $args['uploaderOptions']['restOptions']['headers'] = array_merge(
+                $args['uploaderOptions']['restOptions']['headers'],
+                $args['headers']
+            );
+        }
+        unset($args['headers']);
 
         // Passing on custom retry function to $args['uploaderOptions']
         $retryFunc = $this->getRestRetryFunction(
@@ -714,7 +748,10 @@ class Rest implements ConnectionInterface
     private function chooseValidationMethod(array $args)
     {
         // If the user provided a hash, skip hashing.
-        if (isset($args['metadata']['md5Hash']) || isset($args['metadata']['crc32c'])) {
+        if (isset($args['metadata']['md5Hash'])
+            || isset($args['metadata']['crc32c'])
+            || isset($args['headers']['x-goog-hash'])
+        ) {
             return false;
         }
 
