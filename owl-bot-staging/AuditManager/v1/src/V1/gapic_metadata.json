@@ -1,0 +1,68 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.auditmanager.v1",
+    "libraryPackage": "Google\\Cloud\\AuditManager\\V1",
+    "services": {
+        "AuditManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AuditManagerGapicClient",
+                    "rpcs": {
+                        "EnrollResource": {
+                            "methods": [
+                                "enrollResource"
+                            ]
+                        },
+                        "GenerateAuditReport": {
+                            "methods": [
+                                "generateAuditReport"
+                            ]
+                        },
+                        "GenerateAuditScopeReport": {
+                            "methods": [
+                                "generateAuditScopeReport"
+                            ]
+                        },
+                        "GetAuditReport": {
+                            "methods": [
+                                "getAuditReport"
+                            ]
+                        },
+                        "GetResourceEnrollmentStatus": {
+                            "methods": [
+                                "getResourceEnrollmentStatus"
+                            ]
+                        },
+                        "ListAuditReports": {
+                            "methods": [
+                                "listAuditReports"
+                            ]
+                        },
+                        "ListControls": {
+                            "methods": [
+                                "listControls"
+                            ]
+                        },
+                        "ListResourceEnrollmentStatuses": {
+                            "methods": [
+                                "listResourceEnrollmentStatuses"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
