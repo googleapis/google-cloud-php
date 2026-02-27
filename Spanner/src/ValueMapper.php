@@ -851,11 +851,14 @@ class ValueMapper
         array $nestedDefinition = [],
         string|null $nestedDefinitionType = null
     ): array {
-        return array_filter([
+        $result = [
             'code' => $type,
-            $nestedDefinitionType => $nestedDefinition,
             'typeAnnotation' => $typeAnnotation
-        ]);
+        ];
+        if (null !== $nestedDefinitionType) {
+            $result[$nestedDefinitionType] = $nestedDefinition;
+        }
+        return array_filter($result);
     }
 
     /**
