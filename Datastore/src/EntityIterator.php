@@ -115,7 +115,7 @@ class EntityIterator implements \Iterator
         return $this->explainMetrics;
     }
 
-    private function gatherExplainMetrics(): null|explainMetrics
+    private function gatherExplainMetrics(): null|ExplainMetrics
     {
         $metrics = null;
         $this->pageIterator->current();

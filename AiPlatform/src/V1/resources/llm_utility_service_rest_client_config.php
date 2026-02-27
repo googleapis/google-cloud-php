@@ -652,6 +652,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/studies/*/operations/*}:cancel',
                     ],
                     [
@@ -689,6 +693,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=reasoningEngines/*/sessions/*/operations/*}:cancel',
                     ],
                 ],
                 'placeholders' => [
@@ -1025,6 +1033,10 @@ return [
                     ],
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/studies/*/operations/*}',
                     ],
                     [
@@ -1082,6 +1094,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=reasoningEngines/*/sessions/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -1430,6 +1446,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/studies/*/operations/*}',
                     ],
                     [
@@ -1487,6 +1507,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=reasoningEngines/*/sessions/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -1819,6 +1843,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/studies/*}/operations',
                     ],
                     [
@@ -1888,6 +1916,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=reasoningEngines/*/sessions/*}/operations',
                     ],
                 ],
                 'placeholders' => [
@@ -2228,6 +2260,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/reasoningEngines/*/sessions/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/studies/*/operations/*}:wait',
                     ],
                     [
@@ -2285,6 +2321,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=reasoningEngines/*/sessions/*/operations/*}:wait',
                     ],
                 ],
                 'placeholders' => [
