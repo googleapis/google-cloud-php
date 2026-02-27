@@ -30,6 +30,8 @@ class SourceCodeSpec extends \Google\Protobuf\Internal\Message
      *           Source code is in a Git repository managed by Developer Connect.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\PythonSpec $python_spec
      *           Configuration for a Python application.
+     *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\ImageSpec $image_spec
+     *           Optional. Configuration for building an image with custom config file.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +128,37 @@ class SourceCodeSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\PythonSpec::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for building an image with custom config file.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.ImageSpec image_spec = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\ImageSpec|null
+     */
+    public function getImageSpec()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasImageSpec()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. Configuration for building an image with custom config file.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.SourceCodeSpec.ImageSpec image_spec = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\ImageSpec $var
+     * @return $this
+     */
+    public function setImageSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec\ImageSpec::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
