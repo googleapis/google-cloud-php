@@ -1,5 +1,83 @@
 # Changelog
 
+## 0.321.0
+
+<details><summary>googleads/data-manager 0.2.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] add `UserListService` for creating and managing user lists ([#8941](https://github.com/googleapis/google-cloud-php/issues/8941)) ([ce7b28f](https://github.com/googleapis/google-cloud-php/commit/ce7b28f1693815e8e3755bb39a2648fd05bc1d52))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.52.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add image_spec to Reasoning Engine public protos ([#8944](https://github.com/googleapis/google-cloud-php/issues/8944)) ([a1565d2](https://github.com/googleapis/google-cloud-php/commit/a1565d26c8b6ba31718f1d4a6922769372698851))
+* Add transcription fields to Session Service ([a1565d2](https://github.com/googleapis/google-cloud-php/commit/a1565d26c8b6ba31718f1d4a6922769372698851))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.4</summary>
+
+
+
+### Bug Fixes
+
+* **Datastore:** Return type casing ([#8950](https://github.com/googleapis/google-cloud-php/issues/8950)) ([d1954f3](https://github.com/googleapis/google-cloud-php/commit/d1954f327b0827450b9d4d2f8b9268b2151e8ac8))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.9.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] Add API fields related to GKE Pods and Network Policies ([#8945](https://github.com/googleapis/google-cloud-php/issues/8945)) ([d166056](https://github.com/googleapis/google-cloud-php/commit/d166056ebd97a62b1394f11ad301ecf6a29434c0))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.5.1</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** Ensure tag is passed to BeginTransactionRequest ([#8935](https://github.com/googleapis/google-cloud-php/issues/8935)) ([10ee79e](https://github.com/googleapis/google-cloud-php/commit/10ee79ee459ea99ca1df3bea2087c40631514776))
+* **Spanner:** Null array offset in value mapper ([#8949](https://github.com/googleapis/google-cloud-php/issues/8949)) ([2bf8629](https://github.com/googleapis/google-cloud-php/commit/2bf86294e11e67563aacde4fa6025fefe31f6a8c))
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations 0.5.0</summary>
+
+
+
+### Features
+
+* [StorageBatchOperations] add new transformation `update_object_custom_context` ([#8948](https://github.com/googleapis/google-cloud-php/issues/8948)) ([4f1f0fa](https://github.com/googleapis/google-cloud-php/commit/4f1f0fa371a6ecbe4e65014dc3508b5f83d8c735))
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [VectorSearch] Removed obsolete field `vertex` from message `.google.cloud.vectorsearch.v1.Ranker` ([#8955](https://github.com/googleapis/google-cloud-php/issues/8955))
+
+### Bug Fixes
+
+* [VectorSearch] Removed obsolete field `vertex` from message `.google.cloud.vectorsearch.v1.Ranker` ([#8955](https://github.com/googleapis/google-cloud-php/issues/8955)) ([f4b69d1](https://github.com/googleapis/google-cloud-php/commit/f4b69d1a4ca317e57a8852627e4046eb3005cecd))
+
+</details>
+
 ## 0.320.0
 
 <details><summary>google/cloud-ai-platform 1.51.0</summary>
