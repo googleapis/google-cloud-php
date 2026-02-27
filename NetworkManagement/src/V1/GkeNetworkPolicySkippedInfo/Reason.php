@@ -83,6 +83,4 @@ class Reason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Reason::class, \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicySkippedInfo_Reason::class);
 

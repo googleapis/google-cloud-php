@@ -730,6 +730,19 @@ class Cause
      * Generated from protobuf enum <code>HYBRID_SUBNET_NO_ROUTE = 106;</code>
      */
     const HYBRID_SUBNET_NO_ROUTE = 106;
+    /**
+     * Packet is dropped by GKE Network Policy.
+     *
+     * Generated from protobuf enum <code>GKE_NETWORK_POLICY = 108;</code>
+     */
+    const GKE_NETWORK_POLICY = 108;
+    /**
+     * Packet is dropped because there is no valid matching route from the
+     * network of the Google-managed service to the destination.
+     *
+     * Generated from protobuf enum <code>NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION = 110;</code>
+     */
+    const NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION = 110;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -835,6 +848,8 @@ class Cause
         self::NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED => 'NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED',
         self::HYBRID_SUBNET_REGION_MISMATCH => 'HYBRID_SUBNET_REGION_MISMATCH',
         self::HYBRID_SUBNET_NO_ROUTE => 'HYBRID_SUBNET_NO_ROUTE',
+        self::GKE_NETWORK_POLICY => 'GKE_NETWORK_POLICY',
+        self::NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION => 'NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION',
     ];
 
     public static function name($value)

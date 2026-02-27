@@ -216,6 +216,12 @@ class State
      */
     const ARRIVE_AT_VPC_CONNECTOR = 24;
     /**
+     * Forwarding state: arriving at a GKE Pod.
+     *
+     * Generated from protobuf enum <code>ARRIVE_AT_GKE_POD = 44;</code>
+     */
+    const ARRIVE_AT_GKE_POD = 44;
+    /**
      * Forwarding state: for packets originating from a serverless endpoint
      * forwarded through Direct VPC egress.
      *
@@ -230,6 +236,13 @@ class State
      */
     const SERVERLESS_EXTERNAL_CONNECTION = 36;
     /**
+     * Forwarding state: Layer 7 packet inspection by the firewall endpoint
+     * based on the configured security profile group.
+     *
+     * Generated from protobuf enum <code>NGFW_PACKET_INSPECTION = 47;</code>
+     */
+    const NGFW_PACKET_INSPECTION = 47;
+    /**
      * Transition state: packet header translated. The `nat` field is populated
      * with the translation information.
      *
@@ -243,6 +256,32 @@ class State
      * Generated from protobuf enum <code>SKIP_GKE_POD_IP_MASQUERADING = 40;</code>
      */
     const SKIP_GKE_POD_IP_MASQUERADING = 40;
+    /**
+     * Transition state: GKE Ingress Network Policy is skipped. The
+     * `gke_network_policy_skipped` field is populated with the reason.
+     *
+     * Generated from protobuf enum <code>SKIP_GKE_INGRESS_NETWORK_POLICY = 41;</code>
+     */
+    const SKIP_GKE_INGRESS_NETWORK_POLICY = 41;
+    /**
+     * Transition state: GKE Egress Network Policy is skipped. The
+     * `gke_network_policy_skipped` field is populated with the reason.
+     *
+     * Generated from protobuf enum <code>SKIP_GKE_EGRESS_NETWORK_POLICY = 42;</code>
+     */
+    const SKIP_GKE_EGRESS_NETWORK_POLICY = 42;
+    /**
+     * Config checking state: verify ingress GKE network policy.
+     *
+     * Generated from protobuf enum <code>APPLY_INGRESS_GKE_NETWORK_POLICY = 45;</code>
+     */
+    const APPLY_INGRESS_GKE_NETWORK_POLICY = 45;
+    /**
+     * Config checking state: verify egress GKE network policy.
+     *
+     * Generated from protobuf enum <code>APPLY_EGRESS_GKE_NETWORK_POLICY = 46;</code>
+     */
+    const APPLY_EGRESS_GKE_NETWORK_POLICY = 46;
     /**
      * Transition state: original connection is terminated and a new proxied
      * connection is initiated.
@@ -314,10 +353,16 @@ class State
         self::ARRIVE_AT_VPN_TUNNEL => 'ARRIVE_AT_VPN_TUNNEL',
         self::ARRIVE_AT_INTERCONNECT_ATTACHMENT => 'ARRIVE_AT_INTERCONNECT_ATTACHMENT',
         self::ARRIVE_AT_VPC_CONNECTOR => 'ARRIVE_AT_VPC_CONNECTOR',
+        self::ARRIVE_AT_GKE_POD => 'ARRIVE_AT_GKE_POD',
         self::DIRECT_VPC_EGRESS_CONNECTION => 'DIRECT_VPC_EGRESS_CONNECTION',
         self::SERVERLESS_EXTERNAL_CONNECTION => 'SERVERLESS_EXTERNAL_CONNECTION',
+        self::NGFW_PACKET_INSPECTION => 'NGFW_PACKET_INSPECTION',
         self::NAT => 'NAT',
         self::SKIP_GKE_POD_IP_MASQUERADING => 'SKIP_GKE_POD_IP_MASQUERADING',
+        self::SKIP_GKE_INGRESS_NETWORK_POLICY => 'SKIP_GKE_INGRESS_NETWORK_POLICY',
+        self::SKIP_GKE_EGRESS_NETWORK_POLICY => 'SKIP_GKE_EGRESS_NETWORK_POLICY',
+        self::APPLY_INGRESS_GKE_NETWORK_POLICY => 'APPLY_INGRESS_GKE_NETWORK_POLICY',
+        self::APPLY_EGRESS_GKE_NETWORK_POLICY => 'APPLY_EGRESS_GKE_NETWORK_POLICY',
         self::PROXY_CONNECTION => 'PROXY_CONNECTION',
         self::DELIVER => 'DELIVER',
         self::DROP => 'DROP',
