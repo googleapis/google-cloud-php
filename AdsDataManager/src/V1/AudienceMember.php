@@ -46,8 +46,15 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\PairData $pair_data
      *           [Publisher Advertiser Identity Reconciliation (PAIR)
      *           IDs](//support.google.com/admanager/answer/15067908).
+     *           This feature is only available to data partners.
      *     @type \Google\Ads\DataManager\V1\MobileData $mobile_data
      *           Data identifying the user's mobile devices.
+     *     @type \Google\Ads\DataManager\V1\UserIdData $user_id_data
+     *           Data related to unique identifiers for a user, as defined by the
+     *           advertiser.
+     *     @type \Google\Ads\DataManager\V1\PpidData $ppid_data
+     *           Data related to publisher provided identifiers.
+     *           This feature is only available to data partners.
      *     @type \Google\Ads\DataManager\V1\Consent $consent
      *           Optional. The consent setting for the user.
      * }
@@ -121,6 +128,7 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
     /**
      * [Publisher Advertiser Identity Reconciliation (PAIR)
      * IDs](//support.google.com/admanager/answer/15067908).
+     * This feature is only available to data partners.
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.PairData pair_data = 4;</code>
      * @return \Google\Ads\DataManager\V1\PairData|null
@@ -138,6 +146,7 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
     /**
      * [Publisher Advertiser Identity Reconciliation (PAIR)
      * IDs](//support.google.com/admanager/answer/15067908).
+     * This feature is only available to data partners.
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.PairData pair_data = 4;</code>
      * @param \Google\Ads\DataManager\V1\PairData $var
@@ -178,6 +187,72 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\MobileData::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Data related to unique identifiers for a user, as defined by the
+     * advertiser.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.UserIdData user_id_data = 6;</code>
+     * @return \Google\Ads\DataManager\V1\UserIdData|null
+     */
+    public function getUserIdData()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasUserIdData()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Data related to unique identifiers for a user, as defined by the
+     * advertiser.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.UserIdData user_id_data = 6;</code>
+     * @param \Google\Ads\DataManager\V1\UserIdData $var
+     * @return $this
+     */
+    public function setUserIdData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\UserIdData::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Data related to publisher provided identifiers.
+     * This feature is only available to data partners.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PpidData ppid_data = 7;</code>
+     * @return \Google\Ads\DataManager\V1\PpidData|null
+     */
+    public function getPpidData()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasPpidData()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Data related to publisher provided identifiers.
+     * This feature is only available to data partners.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PpidData ppid_data = 7;</code>
+     * @param \Google\Ads\DataManager\V1\PpidData $var
+     * @return $this
+     */
+    public function setPpidData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\PpidData::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

@@ -29,6 +29,10 @@ class IngestAudienceMembersStatus extends \Google\Protobuf\Internal\Message
      *           The status of the mobile data ingestion to the destination.
      *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPairDataStatus $pair_data_ingestion_status
      *           The status of the pair data ingestion to the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestUserIdDataStatus $user_id_data_ingestion_status
+     *           The status of the user id data ingestion to the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus $ppid_data_ingestion_status
+     *           The status of the ppid data ingestion to the destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +129,68 @@ class IngestAudienceMembersStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPairDataStatus::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the user id data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestUserIdDataStatus user_id_data_ingestion_status = 4;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestUserIdDataStatus|null
+     */
+    public function getUserIdDataIngestionStatus()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasUserIdDataIngestionStatus()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * The status of the user id data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestUserIdDataStatus user_id_data_ingestion_status = 4;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestUserIdDataStatus $var
+     * @return $this
+     */
+    public function setUserIdDataIngestionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestUserIdDataStatus::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the ppid data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestPpidDataStatus ppid_data_ingestion_status = 5;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus|null
+     */
+    public function getPpidDataIngestionStatus()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasPpidDataIngestionStatus()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * The status of the ppid data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestPpidDataStatus ppid_data_ingestion_status = 5;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus $var
+     * @return $this
+     */
+    public function setPpidDataIngestionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
