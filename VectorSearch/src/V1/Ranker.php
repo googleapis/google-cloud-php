@@ -25,8 +25,6 @@ class Ranker extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VectorSearch\V1\ReciprocalRankFusion $rrf
      *           Reciprocal Rank Fusion ranking.
-     *     @type \Google\Cloud\VectorSearch\V1\VertexRanker $vertex
-     *           Vertex AI ranking.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,37 +59,6 @@ class Ranker extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VectorSearch\V1\ReciprocalRankFusion::class);
         $this->writeOneof(1, $var);
-
-        return $this;
-    }
-
-    /**
-     * Vertex AI ranking.
-     *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.VertexRanker vertex = 2;</code>
-     * @return \Google\Cloud\VectorSearch\V1\VertexRanker|null
-     */
-    public function getVertex()
-    {
-        return $this->readOneof(2);
-    }
-
-    public function hasVertex()
-    {
-        return $this->hasOneof(2);
-    }
-
-    /**
-     * Vertex AI ranking.
-     *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.VertexRanker vertex = 2;</code>
-     * @param \Google\Cloud\VectorSearch\V1\VertexRanker $var
-     * @return $this
-     */
-    public function setVertex($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\VectorSearch\V1\VertexRanker::class);
-        $this->writeOneof(2, $var);
 
         return $this;
     }
