@@ -105,6 +105,11 @@ class Step extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkManagement\V1\IpMasqueradingSkippedInfo $ip_masquerading_skipped
      *           Display information of the reason why GKE Pod IP masquerading was
      *           skipped.
+     *     @type \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicyInfo $gke_network_policy
+     *           Display information of a GKE Network Policy.
+     *     @type \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicySkippedInfo $gke_network_policy_skipped
+     *           Display information of the reason why GKE Network Policy evaluation was
+     *           skipped.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudSQLInstanceInfo $cloud_sql_instance
      *           Display information of a Cloud SQL instance.
      *     @type \Google\Cloud\NetworkManagement\V1\RedisInstanceInfo $redis_instance
@@ -128,6 +133,8 @@ class Step extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo $serverless_neg
      *           Display information of a Serverless network endpoint group backend. Used
      *           only for return traces.
+     *     @type \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo $ngfw_packet_inspection
+     *           Display information of a layer 7 packet inspection by the firewall.
      * }
      */
     public function __construct($data = NULL) {
@@ -941,6 +948,70 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display information of a GKE Network Policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GkeNetworkPolicyInfo gke_network_policy = 39;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicyInfo|null
+     */
+    public function getGkeNetworkPolicy()
+    {
+        return $this->readOneof(39);
+    }
+
+    public function hasGkeNetworkPolicy()
+    {
+        return $this->hasOneof(39);
+    }
+
+    /**
+     * Display information of a GKE Network Policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GkeNetworkPolicyInfo gke_network_policy = 39;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicyInfo $var
+     * @return $this
+     */
+    public function setGkeNetworkPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicyInfo::class);
+        $this->writeOneof(39, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of the reason why GKE Network Policy evaluation was
+     * skipped.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GkeNetworkPolicySkippedInfo gke_network_policy_skipped = 40;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicySkippedInfo|null
+     */
+    public function getGkeNetworkPolicySkipped()
+    {
+        return $this->readOneof(40);
+    }
+
+    public function hasGkeNetworkPolicySkipped()
+    {
+        return $this->hasOneof(40);
+    }
+
+    /**
+     * Display information of the reason why GKE Network Policy evaluation was
+     * skipped.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.GkeNetworkPolicySkippedInfo gke_network_policy_skipped = 40;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicySkippedInfo $var
+     * @return $this
+     */
+    public function setGkeNetworkPolicySkipped($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\GkeNetworkPolicySkippedInfo::class);
+        $this->writeOneof(40, $var);
+
+        return $this;
+    }
+
+    /**
      * Display information of a Cloud SQL instance.
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.CloudSQLInstanceInfo cloud_sql_instance = 19;</code>
@@ -1279,6 +1350,37 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ServerlessNegInfo::class);
         $this->writeOneof(29, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a layer 7 packet inspection by the firewall.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NgfwPacketInspectionInfo ngfw_packet_inspection = 42;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo|null
+     */
+    public function getNgfwPacketInspection()
+    {
+        return $this->readOneof(42);
+    }
+
+    public function hasNgfwPacketInspection()
+    {
+        return $this->hasOneof(42);
+    }
+
+    /**
+     * Display information of a layer 7 packet inspection by the firewall.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NgfwPacketInspectionInfo ngfw_packet_inspection = 42;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo $var
+     * @return $this
+     */
+    public function setNgfwPacketInspection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo::class);
+        $this->writeOneof(42, $var);
 
         return $this;
     }
