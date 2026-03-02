@@ -154,7 +154,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->connection->insertJob(Argument::any())
+        $this->connection->query(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'jobComplete' => false,
@@ -179,36 +179,42 @@ class BigQueryClientTest extends SnippetTestCase
         $expectedQuery = 'SELECT commit FROM `bigquery-public-data.github_repos.commits`' .
                          'WHERE author.date < @date AND message = @message LIMIT 100';
         $this->connection
-            ->insertJob([
-                'projectId' => self::PROJECT_ID,
-                'jobReference' => ['projectId' => self::PROJECT_ID, 'jobId' => self::JOB_ID],
-                'configuration' => [
-                    'query' => [
-                        'parameterMode' => 'named',
-                        'useLegacySql' => false,
-                        'queryParameters' => [
-                            [
-                                'name' => 'date',
-                                'parameterType' => [
-                                    'type' => 'TIMESTAMP'
-                                ],
-                                'parameterValue' => [
-                                    'value' => '1980-01-01 12:15:00.000000+00:00'
-                                ]
-                            ],
-                            [
-                                'name' => 'message',
-                                'parameterType' => [
-                                    'type' => 'STRING'
-                                ],
-                                'parameterValue' => [
-                                    'value' => 'A commit message.'
-                                ]
-                            ]
+            ->query([
+                "query"=> "SELECT commit FROM `bigquery-public-data.github_repos.commits`WHERE author.date < @date AND message = @message LIMIT 100",
+                "maxResults"=> null,
+                "defaultDataset"=> null,
+                "timeoutMs"=> 10000,
+                "useQueryCache"=> null,
+                "useLegacySql"=> false,
+                "queryParameters"=> [
+                    [
+                        "parameterType"=> [
+                            "type"=> "TIMESTAMP"
                         ],
-                        'query' => $expectedQuery
+                        "parameterValue"=> [
+                            "value"=> "1980-01-01 12:15:00.000000+00:00"
+                        ],
+                        "name"=> "date"
+                    ],
+                    [
+                        "parameterType"=> [
+                            "type"=> "STRING"
+                        ],
+                        "parameterValue"=> [
+                            "value"=> "A commit message."
+                        ],
+                        "name"=> "message"
                     ]
-                ]
+                ],
+                "parameterMode"=> "named",
+                "labels"=> null,
+                "createSession"=> null,
+                "maximumBytesBilled"=> null,
+                "location"=> null,
+                "requestId"=> "myJobId",
+                "jobCreationMode"=> "JOB_CREATION_OPTIONAL",
+                "initialTimeoutMs"=> 10000,
+                "projectId"=> "my-awesome-project"
             ])
             ->shouldBeCalledTimes(1)
             ->willReturn([
@@ -233,26 +239,32 @@ class BigQueryClientTest extends SnippetTestCase
         $snippet->addLocal('bigQuery', $this->client);
         $expectedQuery = 'SELECT commit FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
         $this->connection
-            ->insertJob([
-                'projectId' => self::PROJECT_ID,
-                'jobReference' => ['projectId' => self::PROJECT_ID, 'jobId' => self::JOB_ID],
-                'configuration' => [
-                    'query' => [
-                        'parameterMode' => 'positional',
-                        'useLegacySql' => false,
-                        'queryParameters' => [
-                            [
-                                'parameterType' => [
-                                    'type' => 'STRING'
-                                ],
-                                'parameterValue' => [
-                                    'value' => 'A commit message.'
-                                ]
-                            ]
+            ->query([
+                "query"=> "SELECT commit FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100",
+                "maxResults"=> null,
+                "defaultDataset"=> null,
+                "timeoutMs"=> 10000,
+                "useQueryCache"=> null,
+                "useLegacySql"=> false,
+                "queryParameters"=> [
+                    [
+                        "parameterType"=> [
+                            "type"=> "STRING"
                         ],
-                        'query' => $expectedQuery
+                        "parameterValue"=> [
+                            "value"=> "A commit message."
+                        ]
                     ]
-                ]
+                ],
+                "parameterMode"=> "positional",
+                "labels"=> null,
+                "createSession"=> null,
+                "maximumBytesBilled"=> null,
+                "location"=> null,
+                "requestId"=> "myJobId",
+                "jobCreationMode"=> "JOB_CREATION_OPTIONAL",
+                "initialTimeoutMs"=> 10000,
+                "projectId"=> "my-awesome-project"
             ])
             ->shouldBeCalledTimes(1)
             ->willReturn([

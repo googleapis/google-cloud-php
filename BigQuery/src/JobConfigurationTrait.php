@@ -170,11 +170,6 @@ trait JobConfigurationTrait
         return $this;
     }
 
-    public function isJobIdGenerated(): bool
-    {
-        return $this->isJobIdGenerated;
-    }
-
     /**
      * Returns the job config as an array.
      *
