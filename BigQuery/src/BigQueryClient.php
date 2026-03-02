@@ -420,9 +420,9 @@ class BigQueryClient
         $queryResultsOptions['initialTimeoutMs'] = 10000;
 
         // Check if we can build a query Request
-        $queryRequest = StatelessJobConfiguration::getQueryRequest($query);
+        if ($query instanceof QueryJobConfiguration && $query->isStateless()) {
+            $queryRequest = $query->toQueryRequest();
 
-        if (!is_null($queryRequest)) {
             if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
                 $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
 
