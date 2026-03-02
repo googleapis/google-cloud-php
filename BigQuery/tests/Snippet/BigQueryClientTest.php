@@ -180,7 +180,7 @@ class BigQueryClientTest extends SnippetTestCase
                          'WHERE author.date < @date AND message = @message LIMIT 100';
         $this->connection
             ->query([
-                "query"=> "SELECT commit FROM `bigquery-public-data.github_repos.commits`WHERE author.date < @date AND message = @message LIMIT 100",
+                "query"=> $expectedQuery,
                 "maxResults"=> null,
                 "defaultDataset"=> null,
                 "timeoutMs"=> 10000,
