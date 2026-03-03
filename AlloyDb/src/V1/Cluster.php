@@ -243,6 +243,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> tags = 41 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tags;
+    /**
+     * Optional. Configuration for Dataplex integration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.DataplexConfig dataplex_config = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dataplex_config = null;
     protected $source;
 
     /**
@@ -358,6 +364,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           "123/environment": "production",
      *           "123/costCenter": "marketing"
      *           ```
+     *     @type \Google\Cloud\AlloyDb\V1\Cluster\DataplexConfig $dataplex_config
+     *           Optional. Configuration for Dataplex integration.
      * }
      */
     public function __construct($data = NULL) {
@@ -1522,6 +1530,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for Dataplex integration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.DataplexConfig dataplex_config = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Cluster\DataplexConfig|null
+     */
+    public function getDataplexConfig()
+    {
+        return $this->dataplex_config;
+    }
+
+    public function hasDataplexConfig()
+    {
+        return isset($this->dataplex_config);
+    }
+
+    public function clearDataplexConfig()
+    {
+        unset($this->dataplex_config);
+    }
+
+    /**
+     * Optional. Configuration for Dataplex integration.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Cluster.DataplexConfig dataplex_config = 47 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Cluster\DataplexConfig $var
+     * @return $this
+     */
+    public function setDataplexConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Cluster\DataplexConfig::class);
+        $this->dataplex_config = $var;
 
         return $this;
     }
