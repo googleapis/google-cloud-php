@@ -23,6 +23,37 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.VertexRagService' => [
+            'AsyncRetrieveContexts' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\AsyncRetrieveContextsResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\AsyncRetrieveContextsOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'AskContexts' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\AskContextsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'AugmentPrompt' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\AugmentPromptResponse',

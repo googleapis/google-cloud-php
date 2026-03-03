@@ -2713,6 +2713,16 @@
                 "grpc": {
                     "libraryClient": "VertexRagServiceGapicClient",
                     "rpcs": {
+                        "AskContexts": {
+                            "methods": [
+                                "askContexts"
+                            ]
+                        },
+                        "AsyncRetrieveContexts": {
+                            "methods": [
+                                "asyncRetrieveContexts"
+                            ]
+                        },
                         "AugmentPrompt": {
                             "methods": [
                                 "augmentPrompt"
