@@ -34,6 +34,18 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool return_bounding_boxes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $return_bounding_boxes = false;
+    /**
+     * Optional. Whether to include image annotations in layout parser response.
+     *
+     * Generated from protobuf field <code>bool enable_image_annotation = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_image_annotation = false;
+    /**
+     * Optional. Whether to include table annotations in layout parser response.
+     *
+     * Generated from protobuf field <code>bool enable_table_annotation = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_table_annotation = false;
 
     /**
      * Constructor.
@@ -48,6 +60,10 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $return_bounding_boxes
      *           Optional. Whether to include bounding boxes in layout parser processor
      *           response.
+     *     @type bool $enable_image_annotation
+     *           Optional. Whether to include image annotations in layout parser response.
+     *     @type bool $enable_table_annotation
+     *           Optional. Whether to include table annotations in layout parser response.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,6 +157,58 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_bounding_boxes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to include image annotations in layout parser response.
+     *
+     * Generated from protobuf field <code>bool enable_image_annotation = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableImageAnnotation()
+    {
+        return $this->enable_image_annotation;
+    }
+
+    /**
+     * Optional. Whether to include image annotations in layout parser response.
+     *
+     * Generated from protobuf field <code>bool enable_image_annotation = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableImageAnnotation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_image_annotation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to include table annotations in layout parser response.
+     *
+     * Generated from protobuf field <code>bool enable_table_annotation = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableTableAnnotation()
+    {
+        return $this->enable_table_annotation;
+    }
+
+    /**
+     * Optional. Whether to include table annotations in layout parser response.
+     *
+     * Generated from protobuf field <code>bool enable_table_annotation = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableTableAnnotation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_table_annotation = $var;
 
         return $this;
     }
