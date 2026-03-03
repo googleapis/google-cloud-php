@@ -17,6 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     * Check the AcceleratorTopologyMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string accelerator_topology_mode = 284293791;</code>
+     */
+    protected $accelerator_topology_mode = null;
+    /**
      * The number of availability domains to spread instances across. If two
      * instances are in different availability domain, they are not in the same
      * low latency network.
@@ -53,6 +61,10 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $accelerator_topology_mode
+     *           Specifies the connection mode for the accelerator topology. If not
+     *           specified, the default is AUTO_CONNECT.
+     *           Check the AcceleratorTopologyMode enum for the list of possible values.
      *     @type int $availability_domain_count
      *           The number of availability domains to spread instances across. If two
      *           instances are in different availability domain, they are not in the same
@@ -72,6 +84,46 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     * Check the AcceleratorTopologyMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string accelerator_topology_mode = 284293791;</code>
+     * @return string
+     */
+    public function getAcceleratorTopologyMode()
+    {
+        return isset($this->accelerator_topology_mode) ? $this->accelerator_topology_mode : '';
+    }
+
+    public function hasAcceleratorTopologyMode()
+    {
+        return isset($this->accelerator_topology_mode);
+    }
+
+    public function clearAcceleratorTopologyMode()
+    {
+        unset($this->accelerator_topology_mode);
+    }
+
+    /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     * Check the AcceleratorTopologyMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string accelerator_topology_mode = 284293791;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAcceleratorTopologyMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->accelerator_topology_mode = $var;
+
+        return $this;
     }
 
     /**

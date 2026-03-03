@@ -314,8 +314,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $state = null;
     /**
-     * Specific subzone in the InterconnectLocation that represents where
-     * this connection is to be provisioned.
+     * To be deprecated.
      * Check the Subzone enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string subzone = 280084972;</code>
@@ -496,8 +495,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *              Interconnect.
      *           Check the State enum for the list of possible values.
      *     @type string $subzone
-     *           Specific subzone in the InterconnectLocation that represents where
-     *           this connection is to be provisioned.
+     *           To be deprecated.
      *           Check the Subzone enum for the list of possible values.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $wire_groups
      *           Output only. [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
@@ -1847,8 +1845,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specific subzone in the InterconnectLocation that represents where
-     * this connection is to be provisioned.
+     * To be deprecated.
      * Check the Subzone enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string subzone = 280084972;</code>
@@ -1870,8 +1867,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specific subzone in the InterconnectLocation that represents where
-     * this connection is to be provisioned.
+     * To be deprecated.
      * Check the Subzone enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string subzone = 280084972;</code>

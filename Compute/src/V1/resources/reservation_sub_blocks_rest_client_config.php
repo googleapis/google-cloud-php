@@ -25,7 +25,7 @@ return [
         'google.cloud.compute.v1.ReservationSubBlocks' => [
             'Get' => [
                 'method' => 'get',
-                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name}/reservationSubBlocks/{reservation_sub_block}',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*}/reservationSubBlocks/{reservation_sub_block}',
                 'placeholders' => [
                     'parent_name' => [
                         'getters' => [
@@ -51,7 +51,7 @@ return [
             ],
             'GetIamPolicy' => [
                 'method' => 'get',
-                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_resource}/reservationSubBlocks/{resource}/getIamPolicy',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_resource=reservations/*/reservationBlocks/*}/reservationSubBlocks/{resource}/getIamPolicy',
                 'placeholders' => [
                     'parent_resource' => [
                         'getters' => [
@@ -77,7 +77,7 @@ return [
             ],
             'List' => [
                 'method' => 'get',
-                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name}/reservationSubBlocks',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*}/reservationSubBlocks',
                 'placeholders' => [
                     'parent_name' => [
                         'getters' => [
@@ -98,7 +98,7 @@ return [
             ],
             'PerformMaintenance' => [
                 'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name}/reservationSubBlocks/{reservation_sub_block}/performMaintenance',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*}/reservationSubBlocks/{reservation_sub_block}/performMaintenance',
                 'placeholders' => [
                     'parent_name' => [
                         'getters' => [
@@ -124,7 +124,7 @@ return [
             ],
             'ReportFaulty' => [
                 'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name}/reservationSubBlocks/{reservation_sub_block}/reportFaulty',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*}/reservationSubBlocks/{reservation_sub_block}/reportFaulty',
                 'body' => 'reservation_sub_blocks_report_faulty_request_resource',
                 'placeholders' => [
                     'parent_name' => [
@@ -151,7 +151,7 @@ return [
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_resource}/reservationSubBlocks/{resource}/setIamPolicy',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_resource=reservations/*/reservationBlocks/*}/reservationSubBlocks/{resource}/setIamPolicy',
                 'body' => 'zone_set_nested_policy_request_resource',
                 'placeholders' => [
                     'parent_resource' => [
@@ -178,7 +178,7 @@ return [
             ],
             'TestIamPermissions' => [
                 'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_resource}/reservationSubBlocks/{resource}/testIamPermissions',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_resource=reservations/*/reservationBlocks/*}/reservationSubBlocks/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
                     'parent_resource' => [

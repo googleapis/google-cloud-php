@@ -387,6 +387,20 @@ final class RegionNetworkEndpointGroupsClient
      * Creates a network endpoint group in the specified project using the
      * parameters that are included in the request.
      *
+     * Note: Use the following APIs to manage network endpoint groups:
+     *
+     * -
+     * To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+     * NEGs): zonal
+     * API
+     * -
+     * To manage NEGs with regional scope (such as regional internet NEGs,
+     * serverless NEGs, Private Service Connect NEGs): regional
+     * API
+     * -
+     * To manage NEGs with global scope (such as global internet NEGs):global
+     * API
+     *
      * The async variant is {@see RegionNetworkEndpointGroupsClient::insertAsync()} .
      *
      * @example samples/V1/RegionNetworkEndpointGroupsClient/insert.php

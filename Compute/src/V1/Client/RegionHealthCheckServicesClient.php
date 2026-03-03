@@ -40,6 +40,8 @@ use Google\Cloud\Compute\V1\HealthCheckService;
 use Google\Cloud\Compute\V1\InsertRegionHealthCheckServiceRequest;
 use Google\Cloud\Compute\V1\ListRegionHealthCheckServicesRequest;
 use Google\Cloud\Compute\V1\PatchRegionHealthCheckServiceRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionHealthCheckServiceRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -54,6 +56,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionHealthCheckServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRegionHealthCheckServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionHealthCheckServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionHealthCheckServiceRequest $request, array $optionalArgs = [])
  */
 final class RegionHealthCheckServicesClient
 {
@@ -401,5 +404,34 @@ final class RegionHealthCheckServicesClient
     public function patch(PatchRegionHealthCheckServiceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is
+     * {@see RegionHealthCheckServicesClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/RegionHealthCheckServicesClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRegionHealthCheckServiceRequest $request     A request to house fields associated with the call.
+     * @param array                                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRegionHealthCheckServiceRequest $request,
+        array $callOptions = []
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

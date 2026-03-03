@@ -92,6 +92,13 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ExternalVpnGatewayParams params = 78313862;</code>
+     */
+    protected $params = null;
+    /**
      * Indicates the user-supplied redundancy type of this external VPN gateway.
      * Check the RedundancyType enum for the list of possible values.
      *
@@ -148,6 +155,9 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must be
      *           a dash, lowercase letter, or digit, except the last character, which cannot
      *           be a dash.
+     *     @type \Google\Cloud\Compute\V1\ExternalVpnGatewayParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type string $redundancy_type
      *           Indicates the user-supplied redundancy type of this external VPN gateway.
      *           Check the RedundancyType enum for the list of possible values.
@@ -466,6 +476,44 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ExternalVpnGatewayParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\ExternalVpnGatewayParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ExternalVpnGatewayParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\ExternalVpnGatewayParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ExternalVpnGatewayParams::class);
+        $this->params = $var;
 
         return $this;
     }
