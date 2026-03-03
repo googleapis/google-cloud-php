@@ -105,6 +105,10 @@ class Type
      */
     const GENERAL_PURPOSE_N4 = 301912158;
     /**
+     * Generated from protobuf enum <code>GENERAL_PURPOSE_N4A = 232471459;</code>
+     */
+    const GENERAL_PURPOSE_N4A = 232471459;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE_N4D = 232471462;</code>
      */
     const GENERAL_PURPOSE_N4D = 232471462;
@@ -218,6 +222,7 @@ class Type
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',
         self::GENERAL_PURPOSE_N2D => 'GENERAL_PURPOSE_N2D',
         self::GENERAL_PURPOSE_N4 => 'GENERAL_PURPOSE_N4',
+        self::GENERAL_PURPOSE_N4A => 'GENERAL_PURPOSE_N4A',
         self::GENERAL_PURPOSE_N4D => 'GENERAL_PURPOSE_N4D',
         self::GENERAL_PURPOSE_T2D => 'GENERAL_PURPOSE_T2D',
         self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',

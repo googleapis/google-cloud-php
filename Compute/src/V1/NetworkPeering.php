@@ -111,9 +111,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     protected $stack_type = null;
     /**
-     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
-     * peering is `ACTIVE` when there's a matching configuration in the peer
-     * network.
+     * Output only. [Output Only] State for the peering.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -190,9 +188,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *           exported between peer networks. The default value is IPV4_ONLY.
      *           Check the StackType enum for the list of possible values.
      *     @type string $state
-     *           Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
-     *           peering is `ACTIVE` when there's a matching configuration in the peer
-     *           network.
+     *           Output only. [Output Only] State for the peering.
      *           Check the State enum for the list of possible values.
      *     @type string $state_details
      *           Output only. [Output Only] Details about the current state of the peering.
@@ -658,9 +654,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
-     * peering is `ACTIVE` when there's a matching configuration in the peer
-     * network.
+     * Output only. [Output Only] State for the peering.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -682,9 +676,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The
-     * peering is `ACTIVE` when there's a matching configuration in the peer
-     * network.
+     * Output only. [Output Only] State for the peering.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>

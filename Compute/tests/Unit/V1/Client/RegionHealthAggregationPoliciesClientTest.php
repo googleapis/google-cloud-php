@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,19 +26,22 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\Client\RegionHealthCheckServicesClient;
+use Google\Cloud\Compute\V1\AggregatedListRegionHealthAggregationPoliciesRequest;
+use Google\Cloud\Compute\V1\Client\RegionHealthAggregationPoliciesClient;
 use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
-use Google\Cloud\Compute\V1\DeleteRegionHealthCheckServiceRequest;
-use Google\Cloud\Compute\V1\GetRegionHealthCheckServiceRequest;
+use Google\Cloud\Compute\V1\DeleteRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\GetRegionHealthAggregationPolicyRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
-use Google\Cloud\Compute\V1\HealthCheckService;
-use Google\Cloud\Compute\V1\HealthCheckServicesList;
-use Google\Cloud\Compute\V1\InsertRegionHealthCheckServiceRequest;
-use Google\Cloud\Compute\V1\ListRegionHealthCheckServicesRequest;
+use Google\Cloud\Compute\V1\HealthAggregationPoliciesScopedList;
+use Google\Cloud\Compute\V1\HealthAggregationPolicy;
+use Google\Cloud\Compute\V1\HealthAggregationPolicyAggregatedList;
+use Google\Cloud\Compute\V1\HealthAggregationPolicyList;
+use Google\Cloud\Compute\V1\InsertRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\ListRegionHealthAggregationPoliciesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Cloud\Compute\V1\PatchRegionHealthCheckServiceRequest;
-use Google\Cloud\Compute\V1\TestIamPermissionsRegionHealthCheckServiceRequest;
+use Google\Cloud\Compute\V1\PatchRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionHealthAggregationPolicyRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
@@ -49,7 +52,7 @@ use stdClass;
  *
  * @group gapic
  */
-class RegionHealthCheckServicesClientTest extends GeneratedTest
+class RegionHealthAggregationPoliciesClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -65,13 +68,93 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return RegionHealthCheckServicesClient */
+    /** @return RegionHealthAggregationPoliciesClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new RegionHealthCheckServicesClient($options);
+        return new RegionHealthAggregationPoliciesClient($options);
+    }
+
+    /** @test */
+    public function aggregatedListTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $kind = 'kind3292052';
+        $nextPageToken = '';
+        $selfLink = 'selfLink-1691268851';
+        $items = [
+            'itemsKey' => new HealthAggregationPoliciesScopedList(),
+        ];
+        $expectedResponse = new HealthAggregationPolicyAggregatedList();
+        $expectedResponse->setId($id);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setItems($items);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListRegionHealthAggregationPoliciesRequest())->setProject($project);
+        $response = $gapicClient->aggregatedList($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionHealthAggregationPolicies/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function aggregatedListExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $request = (new AggregatedListRegionHealthAggregationPoliciesRequest())->setProject($project);
+        try {
+            $gapicClient->aggregatedList($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -100,11 +183,11 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
+        $healthAggregationPolicy = 'healthAggregationPolicy-833427470';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new DeleteRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
+        $request = (new DeleteRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicy($healthAggregationPolicy)
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->delete($request);
@@ -115,9 +198,9 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.RegionHealthAggregationPolicies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHealthAggregationPolicy();
+        $this->assertProtobufEquals($healthAggregationPolicy, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualApiRequestObject->getRegion();
@@ -177,11 +260,11 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
+        $healthAggregationPolicy = 'healthAggregationPolicy-833427470';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new DeleteRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
+        $request = (new DeleteRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicy($healthAggregationPolicy)
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->delete($request);
@@ -216,29 +299,35 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
-        $healthStatusAggregationPolicy = 'healthStatusAggregationPolicy-820578695';
+        $healthyPercentThreshold = 1001498929;
         $id = 3355;
         $kind = 'kind3292052';
+        $minHealthyThreshold = 1478301796;
         $name = 'name3373707';
+        $policyType = 'policyType-2129325529';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
-        $expectedResponse = new HealthCheckService();
+        $selfLinkWithId = 'selfLinkWithId-1029220862';
+        $expectedResponse = new HealthAggregationPolicy();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFingerprint($fingerprint);
-        $expectedResponse->setHealthStatusAggregationPolicy($healthStatusAggregationPolicy);
+        $expectedResponse->setHealthyPercentThreshold($healthyPercentThreshold);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setMinHealthyThreshold($minHealthyThreshold);
         $expectedResponse->setName($name);
+        $expectedResponse->setPolicyType($policyType);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
+        $healthAggregationPolicy = 'healthAggregationPolicy-833427470';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new GetRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
+        $request = (new GetRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicy($healthAggregationPolicy)
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->get($request);
@@ -247,9 +336,9 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.RegionHealthAggregationPolicies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getHealthAggregationPolicy();
+        $this->assertProtobufEquals($healthAggregationPolicy, $actualValue);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
@@ -279,11 +368,11 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
+        $healthAggregationPolicy = 'healthAggregationPolicy-833427470';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new GetRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
+        $request = (new GetRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicy($healthAggregationPolicy)
             ->setProject($project)
             ->setRegion($region);
         try {
@@ -325,11 +414,11 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $healthCheckServiceResource = new HealthCheckService();
+        $healthAggregationPolicyResource = new HealthAggregationPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new InsertRegionHealthCheckServiceRequest())
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
+        $request = (new InsertRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicyResource($healthAggregationPolicyResource)
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->insert($request);
@@ -340,9 +429,9 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckServiceResource();
-        $this->assertProtobufEquals($healthCheckServiceResource, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.RegionHealthAggregationPolicies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHealthAggregationPolicyResource();
+        $this->assertProtobufEquals($healthAggregationPolicyResource, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualApiRequestObject->getRegion();
@@ -402,11 +491,11 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $healthCheckServiceResource = new HealthCheckService();
+        $healthAggregationPolicyResource = new HealthAggregationPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new InsertRegionHealthCheckServiceRequest())
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
+        $request = (new InsertRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicyResource($healthAggregationPolicyResource)
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->insert($request);
@@ -442,9 +531,9 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new HealthCheckService();
+        $itemsElement = new HealthAggregationPolicy();
         $items = [$itemsElement];
-        $expectedResponse = new HealthCheckServicesList();
+        $expectedResponse = new HealthAggregationPolicyList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -454,7 +543,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionHealthCheckServicesRequest())->setProject($project)->setRegion($region);
+        $request = (new ListRegionHealthAggregationPoliciesRequest())->setProject($project)->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -464,7 +553,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/List', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionHealthAggregationPolicies/List', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
@@ -496,7 +585,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new ListRegionHealthCheckServicesRequest())->setProject($project)->setRegion($region);
+        $request = (new ListRegionHealthAggregationPoliciesRequest())->setProject($project)->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -536,13 +625,13 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $healthCheckServiceResource = new HealthCheckService();
+        $healthAggregationPolicy = 'healthAggregationPolicy-833427470';
+        $healthAggregationPolicyResource = new HealthAggregationPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new PatchRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
+        $request = (new PatchRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicy($healthAggregationPolicy)
+            ->setHealthAggregationPolicyResource($healthAggregationPolicyResource)
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->patch($request);
@@ -553,11 +642,11 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Patch', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
-        $actualValue = $actualApiRequestObject->getHealthCheckServiceResource();
-        $this->assertProtobufEquals($healthCheckServiceResource, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.RegionHealthAggregationPolicies/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getHealthAggregationPolicy();
+        $this->assertProtobufEquals($healthAggregationPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getHealthAggregationPolicyResource();
+        $this->assertProtobufEquals($healthAggregationPolicyResource, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualApiRequestObject->getRegion();
@@ -617,13 +706,13 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
-        $healthCheckServiceResource = new HealthCheckService();
+        $healthAggregationPolicy = 'healthAggregationPolicy-833427470';
+        $healthAggregationPolicyResource = new HealthAggregationPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $request = (new PatchRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setHealthCheckServiceResource($healthCheckServiceResource)
+        $request = (new PatchRegionHealthAggregationPolicyRequest())
+            ->setHealthAggregationPolicy($healthAggregationPolicy)
+            ->setHealthAggregationPolicyResource($healthAggregationPolicyResource)
             ->setProject($project)
             ->setRegion($region);
         $response = $gapicClient->patch($request);
@@ -662,7 +751,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsRegionHealthCheckServiceRequest())
+        $request = (new TestIamPermissionsRegionHealthAggregationPolicyRequest())
             ->setProject($project)
             ->setRegion($region)
             ->setResource($resource)
@@ -673,7 +762,10 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/TestIamPermissions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionHealthAggregationPolicies/TestIamPermissions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
@@ -711,7 +803,7 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-        $request = (new TestIamPermissionsRegionHealthCheckServiceRequest())
+        $request = (new TestIamPermissionsRegionHealthAggregationPolicyRequest())
             ->setProject($project)
             ->setRegion($region)
             ->setResource($resource)
@@ -730,70 +822,45 @@ class RegionHealthCheckServicesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteAsyncTest()
+    public function aggregatedListAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new RegionOperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/deleteAsyncTest');
-        $incompleteOperation->setStatus(Status::RUNNING);
-        $transport->addResponse($incompleteOperation);
-        $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/deleteAsyncTest');
-        $completeOperation->setStatus(Status::DONE);
-        $operationsTransport->addResponse($completeOperation);
+        $id = 'id3355';
+        $kind = 'kind3292052';
+        $nextPageToken = '';
+        $selfLink = 'selfLink-1691268851';
+        $items = [
+            'itemsKey' => new HealthAggregationPoliciesScopedList(),
+        ];
+        $expectedResponse = new HealthAggregationPolicyAggregatedList();
+        $expectedResponse->setId($id);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setItems($items);
+        $transport->addResponse($expectedResponse);
         // Mock request
-        $healthCheckService = 'healthCheckService-665367077';
         $project = 'project-309310695';
-        $region = 'region-934795532';
-        $request = (new DeleteRegionHealthCheckServiceRequest())
-            ->setHealthCheckService($healthCheckService)
-            ->setProject($project)
-            ->setRegion($region);
-        $response = $gapicClient->delete($request);
-        $this->assertFalse($response->isDone());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionHealthCheckServices/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getHealthCheckService();
-        $this->assertProtobufEquals($healthCheckService, $actualValue);
-        $actualValue = $actualApiRequestObject->getProject();
+        $request = (new AggregatedListRegionHealthAggregationPoliciesRequest())->setProject($project);
+        $response = $gapicClient->aggregatedListAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionHealthAggregationPolicies/AggregatedList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getRegion();
-        $this->assertProtobufEquals($region, $actualValue);
-        $expectedOperationsRequestObject = new GetRegionOperationRequest();
-        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setRegion($region);
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

@@ -20,6 +20,13 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * Location configurations mapped by location name.
      * Currently only zone names are supported and must be represented as valid
      * internal URLs, such as zones/us-central1-a.
+     * The bulkInsert operation doesn't create instances in an AI zone, even if
+     * an AI zone is available in the specified region. For example, if you set a
+     * DENY preference for us-central1-a, Compute Engine will consider
+     * us-central1-b and us-central1-c for instance creation, but not
+     * us-central1-ai1a. Also, you can't use the locations[] configuration to
+     * allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     * operations, use the locationPolicy.zones[] field.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.LocationPolicyLocation> locations = 413423454;</code>
      */
@@ -31,6 +38,14 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
      */
     protected $target_shape = null;
+    /**
+     * The bulkInsert operation applies any preferences set in the locations
+     * field to the specific zones listed in the zones field if the same zones
+     * are specified in both fields.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocationPolicyZoneConfiguration zones = 116085319;</code>
+     */
+    private $zones;
 
     /**
      * Constructor.
@@ -42,9 +57,20 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      *           Location configurations mapped by location name.
      *           Currently only zone names are supported and must be represented as valid
      *           internal URLs, such as zones/us-central1-a.
+     *           The bulkInsert operation doesn't create instances in an AI zone, even if
+     *           an AI zone is available in the specified region. For example, if you set a
+     *           DENY preference for us-central1-a, Compute Engine will consider
+     *           us-central1-b and us-central1-c for instance creation, but not
+     *           us-central1-ai1a. Also, you can't use the locations[] configuration to
+     *           allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     *           operations, use the locationPolicy.zones[] field.
      *     @type string $target_shape
      *           Strategy for distributing VMs across zones in a region.
      *           Check the TargetShape enum for the list of possible values.
+     *     @type array<\Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $zones
+     *           The bulkInsert operation applies any preferences set in the locations
+     *           field to the specific zones listed in the zones field if the same zones
+     *           are specified in both fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,6 +82,13 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * Location configurations mapped by location name.
      * Currently only zone names are supported and must be represented as valid
      * internal URLs, such as zones/us-central1-a.
+     * The bulkInsert operation doesn't create instances in an AI zone, even if
+     * an AI zone is available in the specified region. For example, if you set a
+     * DENY preference for us-central1-a, Compute Engine will consider
+     * us-central1-b and us-central1-c for instance creation, but not
+     * us-central1-ai1a. Also, you can't use the locations[] configuration to
+     * allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     * operations, use the locationPolicy.zones[] field.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.LocationPolicyLocation> locations = 413423454;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -69,6 +102,13 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * Location configurations mapped by location name.
      * Currently only zone names are supported and must be represented as valid
      * internal URLs, such as zones/us-central1-a.
+     * The bulkInsert operation doesn't create instances in an AI zone, even if
+     * an AI zone is available in the specified region. For example, if you set a
+     * DENY preference for us-central1-a, Compute Engine will consider
+     * us-central1-b and us-central1-c for instance creation, but not
+     * us-central1-ai1a. Also, you can't use the locations[] configuration to
+     * allow instance creation in an AI zone. To include an AI zone in bulkInsert
+     * operations, use the locationPolicy.zones[] field.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.LocationPolicyLocation> locations = 413423454;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -116,6 +156,36 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->target_shape = $var;
+
+        return $this;
+    }
+
+    /**
+     * The bulkInsert operation applies any preferences set in the locations
+     * field to the specific zones listed in the zones field if the same zones
+     * are specified in both fields.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocationPolicyZoneConfiguration zones = 116085319;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getZones()
+    {
+        return $this->zones;
+    }
+
+    /**
+     * The bulkInsert operation applies any preferences set in the locations
+     * field to the specific zones listed in the zones field if the same zones
+     * are specified in both fields.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocationPolicyZoneConfiguration zones = 116085319;</code>
+     * @param array<\Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setZones($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration::class);
+        $this->zones = $arr;
 
         return $this;
     }

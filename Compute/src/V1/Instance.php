@@ -361,6 +361,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $tags = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.WorkloadIdentityConfig workload_identity_config = 338198811;</code>
+     */
+    protected $workload_identity_config = null;
+    /**
      * Output only. [Output Only] URL of the zone where the instance resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -542,6 +546,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           during instance creation. The tags can be later modified by the setTags
      *           method. Each tag within the list must comply withRFC1035.
      *           Multiple tags can be specified via the 'tags.items' field.
+     *     @type \Google\Cloud\Compute\V1\WorkloadIdentityConfig $workload_identity_config
      *     @type string $zone
      *           Output only. [Output Only] URL of the zone where the instance resides.
      *           You must specify this field as part of the HTTP request URL. It is
@@ -2255,6 +2260,38 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Tags::class);
         $this->tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.WorkloadIdentityConfig workload_identity_config = 338198811;</code>
+     * @return \Google\Cloud\Compute\V1\WorkloadIdentityConfig|null
+     */
+    public function getWorkloadIdentityConfig()
+    {
+        return $this->workload_identity_config;
+    }
+
+    public function hasWorkloadIdentityConfig()
+    {
+        return isset($this->workload_identity_config);
+    }
+
+    public function clearWorkloadIdentityConfig()
+    {
+        unset($this->workload_identity_config);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.WorkloadIdentityConfig workload_identity_config = 338198811;</code>
+     * @param \Google\Cloud\Compute\V1\WorkloadIdentityConfig $var
+     * @return $this
+     */
+    public function setWorkloadIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\WorkloadIdentityConfig::class);
+        $this->workload_identity_config = $var;
 
         return $this;
     }

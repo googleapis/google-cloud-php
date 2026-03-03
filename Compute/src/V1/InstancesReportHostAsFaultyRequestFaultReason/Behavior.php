@@ -25,6 +25,12 @@ class Behavior
      */
     const BEHAVIOR_UNSPECIFIED = 85734570;
     /**
+     * Any GPU or TPU errors or faults where the accelerator becomes unusable
+     *
+     * Generated from protobuf enum <code>CHIP_ERROR = 263151669;</code>
+     */
+    const CHIP_ERROR = 263151669;
+    /**
      * Generated from protobuf enum <code>PERFORMANCE = 135701520;</code>
      */
     const PERFORMANCE = 135701520;
@@ -42,6 +48,7 @@ class Behavior
     private static $valueToName = [
         self::UNDEFINED_BEHAVIOR => 'UNDEFINED_BEHAVIOR',
         self::BEHAVIOR_UNSPECIFIED => 'BEHAVIOR_UNSPECIFIED',
+        self::CHIP_ERROR => 'CHIP_ERROR',
         self::PERFORMANCE => 'PERFORMANCE',
         self::SILENT_DATA_CORRUPTION => 'SILENT_DATA_CORRUPTION',
         self::UNRECOVERABLE_GPU_ERROR => 'UNRECOVERABLE_GPU_ERROR',

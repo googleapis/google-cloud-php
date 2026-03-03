@@ -20,9 +20,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Subnetwork extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Whether this subnetwork's ranges can conflict with existing custom routes.
      * Setting this to true allows this subnetwork's primary and secondary ranges
-     * to overlap with (and contain) static routes that have already been
+     * to overlap with (and contain) custom routes that have already been
      * configured on the corresponding network.
      * For example if a static route has range 10.1.0.0/16, a subnet
      * range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
@@ -34,7 +34,6 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * Setting this field to true will disable this feature.
      * The default value is false and applies to all existing subnetworks and
      * automatically created subnetworks.
-     * This field cannot be set to true at resource creation time.
      *
      * Generated from protobuf field <code>optional bool allow_subnet_cidr_routes_overlap = 67856209;</code>
      */
@@ -239,6 +238,13 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      */
     protected $reserved_internal_range = null;
     /**
+     * Configures subnet mask resolution for this subnetwork.
+     * Check the ResolveSubnetMask enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string resolve_subnet_mask = 517696699;</code>
+     */
+    protected $resolve_subnet_mask = null;
+    /**
      * The role of subnetwork. Currently, this field is only used when
      * purpose is set to GLOBAL_MANAGED_PROXY orREGIONAL_MANAGED_PROXY. The value can be set toACTIVE or BACKUP. An ACTIVE
      * subnetwork is one that is currently being used for Envoy-based load
@@ -254,7 +260,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * An array of configurations for secondary IP ranges for VM instances
      * contained in this subnetwork. The primary IP of such VM must belong to the
      * primary ipCidrRange of the subnetwork. The alias IPs may belong to either
-     * primary or secondary ranges. This field can be updated with apatch request.
+     * primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
      */
@@ -315,9 +321,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_subnet_cidr_routes_overlap
-     *           Whether this subnetwork's ranges can conflict with existing static routes.
+     *           Whether this subnetwork's ranges can conflict with existing custom routes.
      *           Setting this to true allows this subnetwork's primary and secondary ranges
-     *           to overlap with (and contain) static routes that have already been
+     *           to overlap with (and contain) custom routes that have already been
      *           configured on the corresponding network.
      *           For example if a static route has range 10.1.0.0/16, a subnet
      *           range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
@@ -329,7 +335,6 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           Setting this field to true will disable this feature.
      *           The default value is false and applies to all existing subnetworks and
      *           automatically created subnetworks.
-     *           This field cannot be set to true at resource creation time.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
@@ -437,6 +442,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           field can be set only at resource creation time.
      *     @type string $reserved_internal_range
      *           The URL of the reserved internal range.
+     *     @type string $resolve_subnet_mask
+     *           Configures subnet mask resolution for this subnetwork.
+     *           Check the ResolveSubnetMask enum for the list of possible values.
      *     @type string $role
      *           The role of subnetwork. Currently, this field is only used when
      *           purpose is set to GLOBAL_MANAGED_PROXY orREGIONAL_MANAGED_PROXY. The value can be set toACTIVE or BACKUP. An ACTIVE
@@ -449,7 +457,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           An array of configurations for secondary IP ranges for VM instances
      *           contained in this subnetwork. The primary IP of such VM must belong to the
      *           primary ipCidrRange of the subnetwork. The alias IPs may belong to either
-     *           primary or secondary ranges. This field can be updated with apatch request.
+     *           primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $stack_type
@@ -482,9 +490,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Whether this subnetwork's ranges can conflict with existing custom routes.
      * Setting this to true allows this subnetwork's primary and secondary ranges
-     * to overlap with (and contain) static routes that have already been
+     * to overlap with (and contain) custom routes that have already been
      * configured on the corresponding network.
      * For example if a static route has range 10.1.0.0/16, a subnet
      * range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
@@ -496,7 +504,6 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * Setting this field to true will disable this feature.
      * The default value is false and applies to all existing subnetworks and
      * automatically created subnetworks.
-     * This field cannot be set to true at resource creation time.
      *
      * Generated from protobuf field <code>optional bool allow_subnet_cidr_routes_overlap = 67856209;</code>
      * @return bool
@@ -517,9 +524,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether this subnetwork's ranges can conflict with existing static routes.
+     * Whether this subnetwork's ranges can conflict with existing custom routes.
      * Setting this to true allows this subnetwork's primary and secondary ranges
-     * to overlap with (and contain) static routes that have already been
+     * to overlap with (and contain) custom routes that have already been
      * configured on the corresponding network.
      * For example if a static route has range 10.1.0.0/16, a subnet
      * range 10.0.0.0/8 could only be created if allow_conflicting_routes=true.
@@ -531,7 +538,6 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * Setting this field to true will disable this feature.
      * The default value is false and applies to all existing subnetworks and
      * automatically created subnetworks.
-     * This field cannot be set to true at resource creation time.
      *
      * Generated from protobuf field <code>optional bool allow_subnet_cidr_routes_overlap = 67856209;</code>
      * @param bool $var
@@ -1496,6 +1502,44 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configures subnet mask resolution for this subnetwork.
+     * Check the ResolveSubnetMask enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string resolve_subnet_mask = 517696699;</code>
+     * @return string
+     */
+    public function getResolveSubnetMask()
+    {
+        return isset($this->resolve_subnet_mask) ? $this->resolve_subnet_mask : '';
+    }
+
+    public function hasResolveSubnetMask()
+    {
+        return isset($this->resolve_subnet_mask);
+    }
+
+    public function clearResolveSubnetMask()
+    {
+        unset($this->resolve_subnet_mask);
+    }
+
+    /**
+     * Configures subnet mask resolution for this subnetwork.
+     * Check the ResolveSubnetMask enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string resolve_subnet_mask = 517696699;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResolveSubnetMask($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resolve_subnet_mask = $var;
+
+        return $this;
+    }
+
+    /**
      * The role of subnetwork. Currently, this field is only used when
      * purpose is set to GLOBAL_MANAGED_PROXY orREGIONAL_MANAGED_PROXY. The value can be set toACTIVE or BACKUP. An ACTIVE
      * subnetwork is one that is currently being used for Envoy-based load
@@ -1547,7 +1591,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * An array of configurations for secondary IP ranges for VM instances
      * contained in this subnetwork. The primary IP of such VM must belong to the
      * primary ipCidrRange of the subnetwork. The alias IPs may belong to either
-     * primary or secondary ranges. This field can be updated with apatch request.
+     * primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1561,7 +1605,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * An array of configurations for secondary IP ranges for VM instances
      * contained in this subnetwork. The primary IP of such VM must belong to the
      * primary ipCidrRange of the subnetwork. The alias IPs may belong to either
-     * primary or secondary ranges. This field can be updated with apatch request.
+     * primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
      * @param array<\Google\Cloud\Compute\V1\SubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $var

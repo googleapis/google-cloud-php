@@ -32,6 +32,12 @@ class MachineType extends \Google\Protobuf\Internal\Message
      */
     protected $architecture = null;
     /**
+     * [Output Only] The configuration of bundled local SSD for the machine type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BundledLocalSsds bundled_local_ssds = 387462016;</code>
+     */
+    protected $bundled_local_ssds = null;
+    /**
      * [Output Only] Creation timestamp inRFC3339
      * text format.
      *
@@ -136,6 +142,8 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *     @type string $architecture
      *           [Output Only] The architecture of the machine type.
      *           Check the Architecture enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\BundledLocalSsds $bundled_local_ssds
+     *           [Output Only] The configuration of bundled local SSD for the machine type.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp inRFC3339
      *           text format.
@@ -241,6 +249,42 @@ class MachineType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->architecture = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The configuration of bundled local SSD for the machine type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BundledLocalSsds bundled_local_ssds = 387462016;</code>
+     * @return \Google\Cloud\Compute\V1\BundledLocalSsds|null
+     */
+    public function getBundledLocalSsds()
+    {
+        return $this->bundled_local_ssds;
+    }
+
+    public function hasBundledLocalSsds()
+    {
+        return isset($this->bundled_local_ssds);
+    }
+
+    public function clearBundledLocalSsds()
+    {
+        unset($this->bundled_local_ssds);
+    }
+
+    /**
+     * [Output Only] The configuration of bundled local SSD for the machine type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BundledLocalSsds bundled_local_ssds = 387462016;</code>
+     * @param \Google\Cloud\Compute\V1\BundledLocalSsds $var
+     * @return $this
+     */
+    public function setBundledLocalSsds($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BundledLocalSsds::class);
+        $this->bundled_local_ssds = $var;
 
         return $this;
     }

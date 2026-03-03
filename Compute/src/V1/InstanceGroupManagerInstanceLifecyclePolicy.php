@@ -42,6 +42,22 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
      * Generated from protobuf field <code>optional string force_update_on_repair = 356302027;</code>
      */
     protected $force_update_on_repair = null;
+    /**
+     * The action that a MIG performs on an unhealthy VM. A VM is marked as
+     * unhealthy when the application running on that VM fails a health check.
+     * Valid values are:
+     *    - DEFAULT_ACTION (default): MIG uses the same action
+     *    configured for instanceLifecyclePolicy.defaultActionOnFailure field.
+     *    - REPAIR: MIG automatically repairs an unhealthy VM by
+     *    recreating it.
+     *    - DO_NOTHING: MIG doesn't repair an unhealthy VM.
+     *    For more information, see
+     *    About repairing VMs in a MIG.
+     * Check the OnFailedHealthCheck enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string on_failed_health_check = 39807943;</code>
+     */
+    protected $on_failed_health_check = null;
 
     /**
      * Constructor.
@@ -69,6 +85,18 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
      *                -  YES: If configuration updates are available, they are applied
      *                during repair.
      *           Check the ForceUpdateOnRepair enum for the list of possible values.
+     *     @type string $on_failed_health_check
+     *           The action that a MIG performs on an unhealthy VM. A VM is marked as
+     *           unhealthy when the application running on that VM fails a health check.
+     *           Valid values are:
+     *              - DEFAULT_ACTION (default): MIG uses the same action
+     *              configured for instanceLifecyclePolicy.defaultActionOnFailure field.
+     *              - REPAIR: MIG automatically repairs an unhealthy VM by
+     *              recreating it.
+     *              - DO_NOTHING: MIG doesn't repair an unhealthy VM.
+     *              For more information, see
+     *              About repairing VMs in a MIG.
+     *           Check the OnFailedHealthCheck enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,6 +204,62 @@ class InstanceGroupManagerInstanceLifecyclePolicy extends \Google\Protobuf\Inter
     {
         GPBUtil::checkString($var, True);
         $this->force_update_on_repair = $var;
+
+        return $this;
+    }
+
+    /**
+     * The action that a MIG performs on an unhealthy VM. A VM is marked as
+     * unhealthy when the application running on that VM fails a health check.
+     * Valid values are:
+     *    - DEFAULT_ACTION (default): MIG uses the same action
+     *    configured for instanceLifecyclePolicy.defaultActionOnFailure field.
+     *    - REPAIR: MIG automatically repairs an unhealthy VM by
+     *    recreating it.
+     *    - DO_NOTHING: MIG doesn't repair an unhealthy VM.
+     *    For more information, see
+     *    About repairing VMs in a MIG.
+     * Check the OnFailedHealthCheck enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string on_failed_health_check = 39807943;</code>
+     * @return string
+     */
+    public function getOnFailedHealthCheck()
+    {
+        return isset($this->on_failed_health_check) ? $this->on_failed_health_check : '';
+    }
+
+    public function hasOnFailedHealthCheck()
+    {
+        return isset($this->on_failed_health_check);
+    }
+
+    public function clearOnFailedHealthCheck()
+    {
+        unset($this->on_failed_health_check);
+    }
+
+    /**
+     * The action that a MIG performs on an unhealthy VM. A VM is marked as
+     * unhealthy when the application running on that VM fails a health check.
+     * Valid values are:
+     *    - DEFAULT_ACTION (default): MIG uses the same action
+     *    configured for instanceLifecyclePolicy.defaultActionOnFailure field.
+     *    - REPAIR: MIG automatically repairs an unhealthy VM by
+     *    recreating it.
+     *    - DO_NOTHING: MIG doesn't repair an unhealthy VM.
+     *    For more information, see
+     *    About repairing VMs in a MIG.
+     * Check the OnFailedHealthCheck enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string on_failed_health_check = 39807943;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOnFailedHealthCheck($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->on_failed_health_check = $var;
 
         return $this;
     }

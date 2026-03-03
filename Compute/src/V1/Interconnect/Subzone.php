@@ -7,8 +7,7 @@ namespace Google\Cloud\Compute\V1\Interconnect;
 use UnexpectedValueException;
 
 /**
- * Specific subzone in the InterconnectLocation that represents where
- * this connection is to be provisioned.
+ * To be deprecated.
  *
  * Protobuf type <code>google.cloud.compute.v1.Interconnect.Subzone</code>
  */

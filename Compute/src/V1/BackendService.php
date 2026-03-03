@@ -437,6 +437,12 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     protected $network_pass_through_lb_traffic_policy = null;
     /**
+     * Information about the resource or system that manages the backend service.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceOrchestrationInfo orchestration_info = 441144300;</code>
+     */
+    protected $orchestration_info = null;
+    /**
      * Settings controlling the ejection of unhealthy backend endpoints from the
      * load balancing pool of each individual proxy instance that processes the
      * traffic for the given backend service. If not set, this feature is
@@ -895,6 +901,8 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           Configures traffic steering properties of internal passthrough Network
      *           Load Balancers.
      *           networkPassThroughLbTrafficPolicy cannot be specified with haPolicy.
+     *     @type \Google\Cloud\Compute\V1\BackendServiceOrchestrationInfo $orchestration_info
+     *           Information about the resource or system that manages the backend service.
      *     @type \Google\Cloud\Compute\V1\OutlierDetection $outlier_detection
      *           Settings controlling the ejection of unhealthy backend endpoints from the
      *           load balancing pool of each individual proxy instance that processes the
@@ -2571,6 +2579,42 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendServiceNetworkPassThroughLbTrafficPolicy::class);
         $this->network_pass_through_lb_traffic_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Information about the resource or system that manages the backend service.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceOrchestrationInfo orchestration_info = 441144300;</code>
+     * @return \Google\Cloud\Compute\V1\BackendServiceOrchestrationInfo|null
+     */
+    public function getOrchestrationInfo()
+    {
+        return $this->orchestration_info;
+    }
+
+    public function hasOrchestrationInfo()
+    {
+        return isset($this->orchestration_info);
+    }
+
+    public function clearOrchestrationInfo()
+    {
+        unset($this->orchestration_info);
+    }
+
+    /**
+     * Information about the resource or system that manages the backend service.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendServiceOrchestrationInfo orchestration_info = 441144300;</code>
+     * @param \Google\Cloud\Compute\V1\BackendServiceOrchestrationInfo $var
+     * @return $this
+     */
+    public function setOrchestrationInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendServiceOrchestrationInfo::class);
+        $this->orchestration_info = $var;
 
         return $this;
     }

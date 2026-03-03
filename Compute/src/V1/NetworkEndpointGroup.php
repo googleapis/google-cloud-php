@@ -13,6 +13,18 @@ use Google\Protobuf\Internal\GPBUtil;
  * A network endpoint group (NEG) defines how a set of endpoints should be
  * reached, whether they are reachable, and where they are located.
  * For more information about using NEGs for different use cases, seeNetwork endpoint groups overview.
+ * Note: Use the following APIs to manage network endpoint groups:
+ *    -
+ *    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+ *    NEGs): zonal
+ *    API
+ *    -
+ *    To manage NEGs with regional scope (such as regional internet NEGs,
+ *    serverless NEGs, Private Service Connect NEGs): regional
+ *    API
+ *    -
+ *    To manage NEGs with global scope (such as global internet NEGs):global
+ *    API
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NetworkEndpointGroup</code>
  */

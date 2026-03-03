@@ -17,6 +17,7 @@ class UsableSubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
 {
     /**
      * The range of IP addresses belonging to this subnetwork secondary range.
+     * Can be Ipv4 or Ipv6 range.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
@@ -39,6 +40,7 @@ class UsableSubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      *
      *     @type string $ip_cidr_range
      *           The range of IP addresses belonging to this subnetwork secondary range.
+     *           Can be Ipv4 or Ipv6 range.
      *     @type string $range_name
      *           The name associated with this subnetwork secondary range, used when adding
      *           an alias IP range to a VM instance.
@@ -53,6 +55,7 @@ class UsableSubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
 
     /**
      * The range of IP addresses belonging to this subnetwork secondary range.
+     * Can be Ipv4 or Ipv6 range.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
@@ -74,6 +77,7 @@ class UsableSubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
 
     /**
      * The range of IP addresses belonging to this subnetwork secondary range.
+     * Can be Ipv4 or Ipv6 range.
      *
      * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var

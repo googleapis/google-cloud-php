@@ -31,6 +31,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     private $alias_ip_ranges;
     /**
+     * Optional. If true, DNS resolution will be enabled over this interface. Only valid
+     * with network_attachment.
+     *
+     * Generated from protobuf field <code>optional bool enable_vpc_scoped_dns = 283425868;</code>
+     */
+    protected $enable_vpc_scoped_dns = null;
+    /**
      * Fingerprint hash of contents stored in this network interface.
      * This field will be ignored when inserting an Instance or
      * adding a NetworkInterface. An up-to-date
@@ -194,6 +201,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\AliasIpRange>|\Google\Protobuf\Internal\RepeatedField $alias_ip_ranges
      *           An array of alias IP ranges for this network interface.
      *           You can only specify this field for network interfaces in VPC networks.
+     *     @type bool $enable_vpc_scoped_dns
+     *           Optional. If true, DNS resolution will be enabled over this interface. Only valid
+     *           with network_attachment.
      *     @type string $fingerprint
      *           Fingerprint hash of contents stored in this network interface.
      *           This field will be ignored when inserting an Instance or
@@ -337,6 +347,44 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AliasIpRange::class);
         $this->alias_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, DNS resolution will be enabled over this interface. Only valid
+     * with network_attachment.
+     *
+     * Generated from protobuf field <code>optional bool enable_vpc_scoped_dns = 283425868;</code>
+     * @return bool
+     */
+    public function getEnableVpcScopedDns()
+    {
+        return isset($this->enable_vpc_scoped_dns) ? $this->enable_vpc_scoped_dns : false;
+    }
+
+    public function hasEnableVpcScopedDns()
+    {
+        return isset($this->enable_vpc_scoped_dns);
+    }
+
+    public function clearEnableVpcScopedDns()
+    {
+        unset($this->enable_vpc_scoped_dns);
+    }
+
+    /**
+     * Optional. If true, DNS resolution will be enabled over this interface. Only valid
+     * with network_attachment.
+     *
+     * Generated from protobuf field <code>optional bool enable_vpc_scoped_dns = 283425868;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableVpcScopedDns($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_vpc_scoped_dns = $var;
 
         return $this;
     }

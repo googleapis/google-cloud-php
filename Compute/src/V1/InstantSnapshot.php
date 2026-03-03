@@ -91,6 +91,13 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotParams params = 78313862;</code>
+     */
+    protected $params = null;
+    /**
      * Output only. [Output Only] URL of the region where the instant snapshot resides.
      * You must specify this field as part of the HTTP request URL. It is
      * not settable as a field in the request body.
@@ -217,6 +224,9 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must be
      *           a dash, lowercase letter, or digit, except the last character, which cannot
      *           be a dash.
+     *     @type \Google\Cloud\Compute\V1\InstantSnapshotParams $params
+     *           Input only. Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type string $region
      *           Output only. [Output Only] URL of the region where the instant snapshot resides.
      *           You must specify this field as part of the HTTP request URL. It is
@@ -616,6 +626,44 @@ class InstantSnapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\InstantSnapshotParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\InstantSnapshotParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstantSnapshotParams::class);
+        $this->params = $var;
 
         return $this;
     }

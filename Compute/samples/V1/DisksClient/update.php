@@ -33,7 +33,7 @@ use Google\Rpc\Status;
 /**
  * Updates the specified disk with the data included in the request.
  * The update is performed only on selected fields included as part
- * of update-mask. Only the following fields can be modified: user_license.
+ * of update-mask.
  *
  * @param string $disk    The disk name for this request.
  * @param string $project Project ID for this request.

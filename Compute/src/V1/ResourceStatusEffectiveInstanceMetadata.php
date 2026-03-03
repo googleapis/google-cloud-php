@@ -46,6 +46,12 @@ class ResourceStatusEffectiveInstanceMetadata extends \Google\Protobuf\Internal\
      */
     protected $enable_oslogin_metadata_value = null;
     /**
+     * Effective gce-container-declaration value at Instance level.
+     *
+     * Generated from protobuf field <code>optional bool gce_container_declaration_metadata_value = 219617210;</code>
+     */
+    protected $gce_container_declaration_metadata_value = null;
+    /**
      * Effective serial-port-enable value at Instance level.
      *
      * Generated from protobuf field <code>optional bool serial_port_enable_metadata_value = 430536330;</code>
@@ -80,6 +86,8 @@ class ResourceStatusEffectiveInstanceMetadata extends \Google\Protobuf\Internal\
      *           Effective enable-osconfig value at Instance level.
      *     @type bool $enable_oslogin_metadata_value
      *           Effective enable-oslogin value at Instance level.
+     *     @type bool $gce_container_declaration_metadata_value
+     *           Effective gce-container-declaration value at Instance level.
      *     @type bool $serial_port_enable_metadata_value
      *           Effective serial-port-enable value at Instance level.
      *     @type bool $serial_port_logging_enable_metadata_value
@@ -269,6 +277,42 @@ class ResourceStatusEffectiveInstanceMetadata extends \Google\Protobuf\Internal\
     {
         GPBUtil::checkBool($var);
         $this->enable_oslogin_metadata_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Effective gce-container-declaration value at Instance level.
+     *
+     * Generated from protobuf field <code>optional bool gce_container_declaration_metadata_value = 219617210;</code>
+     * @return bool
+     */
+    public function getGceContainerDeclarationMetadataValue()
+    {
+        return isset($this->gce_container_declaration_metadata_value) ? $this->gce_container_declaration_metadata_value : false;
+    }
+
+    public function hasGceContainerDeclarationMetadataValue()
+    {
+        return isset($this->gce_container_declaration_metadata_value);
+    }
+
+    public function clearGceContainerDeclarationMetadataValue()
+    {
+        unset($this->gce_container_declaration_metadata_value);
+    }
+
+    /**
+     * Effective gce-container-declaration value at Instance level.
+     *
+     * Generated from protobuf field <code>optional bool gce_container_declaration_metadata_value = 219617210;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGceContainerDeclarationMetadataValue($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->gce_container_declaration_metadata_value = $var;
 
         return $this;
     }

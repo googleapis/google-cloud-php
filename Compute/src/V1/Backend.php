@@ -151,6 +151,12 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     protected $max_utilization = null;
     /**
+     * Information about the resource or system that manages the backend.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBackendOrchestrationInfo orchestration_info = 441144300;</code>
+     */
+    protected $orchestration_info = null;
+    /**
      * This field indicates whether this backend should be fully utilized before
      * sending traffic to backends with default preference. The possible values
      * are:
@@ -255,6 +261,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      *           Optional parameter to define a target capacity for theUTILIZATION balancing mode. The valid range is[0.0, 1.0].
      *           For usage guidelines, seeUtilization
      *           balancing mode.
+     *     @type \Google\Cloud\Compute\V1\BackendBackendOrchestrationInfo $orchestration_info
+     *           Information about the resource or system that manages the backend.
      *     @type string $preference
      *           This field indicates whether this backend should be fully utilized before
      *           sending traffic to backends with default preference. The possible values
@@ -841,6 +849,42 @@ class Backend extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->max_utilization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Information about the resource or system that manages the backend.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBackendOrchestrationInfo orchestration_info = 441144300;</code>
+     * @return \Google\Cloud\Compute\V1\BackendBackendOrchestrationInfo|null
+     */
+    public function getOrchestrationInfo()
+    {
+        return $this->orchestration_info;
+    }
+
+    public function hasOrchestrationInfo()
+    {
+        return isset($this->orchestration_info);
+    }
+
+    public function clearOrchestrationInfo()
+    {
+        unset($this->orchestration_info);
+    }
+
+    /**
+     * Information about the resource or system that manages the backend.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBackendOrchestrationInfo orchestration_info = 441144300;</code>
+     * @param \Google\Cloud\Compute\V1\BackendBackendOrchestrationInfo $var
+     * @return $this
+     */
+    public function setOrchestrationInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendBackendOrchestrationInfo::class);
+        $this->orchestration_info = $var;
 
         return $this;
     }

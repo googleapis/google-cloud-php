@@ -74,6 +74,15 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
+     * Indicates the early access maintenance for the reservation.
+     * If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     * enrolled in early access maintenance and the standard notice applies.
+     * Check the EarlyAccessMaintenance enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string early_access_maintenance = 343918356;</code>
+     */
+    protected $early_access_maintenance = null;
+    /**
      * Indicates whether Compute Engine allows unplanned maintenance for your VMs;
      * for example, to fix hardware errors.
      *
@@ -113,6 +122,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     protected $name = null;
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationParams params = 78313862;</code>
+     */
+    protected $params = null;
     /**
      * Protection tier for the workload which specifies the workload expectations
      * in the event of infrastructure failures at data center (e.g. power
@@ -235,6 +251,11 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
+     *     @type string $early_access_maintenance
+     *           Indicates the early access maintenance for the reservation.
+     *           If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     *           enrolled in early access maintenance and the standard notice applies.
+     *           Check the EarlyAccessMaintenance enum for the list of possible values.
      *     @type bool $enable_emergent_maintenance
      *           Indicates whether Compute Engine allows unplanned maintenance for your VMs;
      *           for example, to fix hardware errors.
@@ -255,6 +276,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must be
      *           a dash, lowercase letter, or digit, except the last character, which cannot
      *           be a dash.
+     *     @type \Google\Cloud\Compute\V1\ReservationParams $params
+     *           Input only. Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type string $protection_tier
      *           Protection tier for the workload which specifies the workload expectations
      *           in the event of infrastructure failures at data center (e.g. power
@@ -609,6 +633,48 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Indicates the early access maintenance for the reservation.
+     * If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     * enrolled in early access maintenance and the standard notice applies.
+     * Check the EarlyAccessMaintenance enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string early_access_maintenance = 343918356;</code>
+     * @return string
+     */
+    public function getEarlyAccessMaintenance()
+    {
+        return isset($this->early_access_maintenance) ? $this->early_access_maintenance : '';
+    }
+
+    public function hasEarlyAccessMaintenance()
+    {
+        return isset($this->early_access_maintenance);
+    }
+
+    public function clearEarlyAccessMaintenance()
+    {
+        unset($this->early_access_maintenance);
+    }
+
+    /**
+     * Indicates the early access maintenance for the reservation.
+     * If this field is absent or set to NO_EARLY_ACCESS, the reservation is not
+     * enrolled in early access maintenance and the standard notice applies.
+     * Check the EarlyAccessMaintenance enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string early_access_maintenance = 343918356;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEarlyAccessMaintenance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->early_access_maintenance = $var;
+
+        return $this;
+    }
+
+    /**
      * Indicates whether Compute Engine allows unplanned maintenance for your VMs;
      * for example, to fix hardware errors.
      *
@@ -794,6 +860,44 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\ReservationParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\ReservationParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ReservationParams::class);
+        $this->params = $var;
 
         return $this;
     }

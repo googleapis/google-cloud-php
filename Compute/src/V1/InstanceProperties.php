@@ -133,7 +133,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     protected $reservation_affinity = null;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
      * values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -181,6 +181,10 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Tags tags = 3552281;</code>
      */
     protected $tags = null;
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.WorkloadIdentityConfig workload_identity_config = 338198811;</code>
+     */
+    protected $workload_identity_config = null;
 
     /**
      * Constructor.
@@ -247,7 +251,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           Specifies the reservations that instances can consume from.
      *           Note that for MachineImage, this is not supported yet.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
-     *           Resource manager tags to be bound to the instance. Tag keys and values
+     *           Input only. Resource manager tags to be bound to the instance. Tag keys and values
      *           have the same definition as resource
      *           manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
      *           values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -271,6 +275,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           properties. The tags identify valid sources or targets for network
      *           firewalls. The setTags method can modify this list of tags. Each tag within
      *           the list must comply with RFC1035.
+     *     @type \Google\Cloud\Compute\V1\WorkloadIdentityConfig $workload_identity_config
      * }
      */
     public function __construct($data = NULL) {
@@ -835,7 +840,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
      * values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -850,7 +855,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and
      * values are in the format `tagValues/456`. The field is ignored (both PUT &
@@ -1042,6 +1047,38 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Tags::class);
         $this->tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.WorkloadIdentityConfig workload_identity_config = 338198811;</code>
+     * @return \Google\Cloud\Compute\V1\WorkloadIdentityConfig|null
+     */
+    public function getWorkloadIdentityConfig()
+    {
+        return $this->workload_identity_config;
+    }
+
+    public function hasWorkloadIdentityConfig()
+    {
+        return isset($this->workload_identity_config);
+    }
+
+    public function clearWorkloadIdentityConfig()
+    {
+        unset($this->workload_identity_config);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.WorkloadIdentityConfig workload_identity_config = 338198811;</code>
+     * @param \Google\Cloud\Compute\V1\WorkloadIdentityConfig $var
+     * @return $this
+     */
+    public function setWorkloadIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\WorkloadIdentityConfig::class);
+        $this->workload_identity_config = $var;
 
         return $this;
     }

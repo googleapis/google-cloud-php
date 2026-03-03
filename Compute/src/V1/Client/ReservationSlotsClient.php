@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,37 +34,29 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AttachNetworkEndpointsRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\DeleteRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\DetachNetworkEndpointsRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\InsertRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\ListNetworkEndpointsRegionNetworkEndpointGroupsRequest;
-use Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest;
-use Google\Cloud\Compute\V1\NetworkEndpointGroup;
+use Google\Cloud\Compute\V1\GetReservationSlotRequest;
+use Google\Cloud\Compute\V1\ListReservationSlotsRequest;
+use Google\Cloud\Compute\V1\ReservationSlotsGetResponse;
+use Google\Cloud\Compute\V1\UpdateReservationSlotRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The RegionNetworkEndpointGroups API.
+ * Service Description: The ReservationSlots API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<OperationResponse> attachNetworkEndpointsAsync(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> detachNetworkEndpointsAsync(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<NetworkEndpointGroup> getAsync(GetRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listNetworkEndpointsAsync(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReservationSlotsGetResponse> getAsync(GetReservationSlotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListReservationSlotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateReservationSlotRequest $request, array $optionalArgs = [])
  */
-final class RegionNetworkEndpointGroupsClient
+final class ReservationSlotsClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionNetworkEndpointGroups';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.ReservationSlots';
 
     /**
      * The default address of the service.
@@ -95,16 +87,15 @@ final class RegionNetworkEndpointGroupsClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/region_network_endpoint_groups_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/region_network_endpoint_groups_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/reservation_slots_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/reservation_slots_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/region_network_endpoint_groups_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/reservation_slots_rest_client_config.php',
                 ],
             ],
         ];
@@ -123,9 +114,9 @@ final class RegionNetworkEndpointGroupsClient
     }
 
     /**
-     * Return an RegionOperationsClient object with the same endpoint as $this.
+     * Return an ZoneOperationsClient object with the same endpoint as $this.
      *
-     * @return RegionOperationsClient
+     * @return ZoneOperationsClient
      */
     public function getOperationsClient()
     {
@@ -136,7 +127,7 @@ final class RegionNetworkEndpointGroupsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => ['getProject', 'getRegion'],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -145,9 +136,9 @@ final class RegionNetworkEndpointGroupsClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetRegionOperationRequest',
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
             'cancelOperationRequest' => null,
-            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteRegionOperationRequest',
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
         ];
     }
 
@@ -175,7 +166,7 @@ final class RegionNetworkEndpointGroupsClient
      *
      * @param array $options ClientOptions for the client.
      *
-     * @return RegionOperationsClient
+     * @return ZoneOperationsClient
      */
     private function createOperationsClient(array $options)
     {
@@ -186,7 +177,7 @@ final class RegionNetworkEndpointGroupsClient
             return $options['operationsClient'];
         }
 
-        return new RegionOperationsClient($options);
+        return new ZoneOperationsClient($options);
     }
 
     /**
@@ -209,9 +200,9 @@ final class RegionNetworkEndpointGroupsClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient;
+     *           use Google\Cloud\Compute\V1\ReservationSlotsClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new RegionNetworkEndpointGroupsClient(['credentials' => $creds]);
+     *           $options = new ReservationSlotsClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -273,15 +264,14 @@ final class RegionNetworkEndpointGroupsClient
     }
 
     /**
-     * Attach a list of network endpoints to the specified network endpoint group.
+     * Retrieves information about the specified reservation slot.
      *
-     * The async variant is
-     * {@see RegionNetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
+     * The async variant is {@see ReservationSlotsClient::getAsync()} .
      *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/attach_network_endpoints.php
+     * @example samples/V1/ReservationSlotsClient/get.php
      *
-     * @param AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                                   $callOptions {
+     * @param GetReservationSlotRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -290,123 +280,50 @@ final class RegionNetworkEndpointGroupsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return ReservationSlotsGetResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function attachNetworkEndpoints(
-        AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('AttachNetworkEndpoints', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Deletes the specified network endpoint group. Note that the NEG cannot be
-     * deleted if it is configured as a backend of a backend service.
-     *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::deleteAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/delete.php
-     *
-     * @param DeleteRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function delete(DeleteRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Delete', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Detach the network endpoint from the specified network endpoint group.
-     *
-     * The async variant is
-     * {@see RegionNetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/detach_network_endpoints.php
-     *
-     * @param DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function detachNetworkEndpoints(
-        DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('DetachNetworkEndpoints', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns the specified network endpoint group.
-     *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::getAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/get.php
-     *
-     * @param GetRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return NetworkEndpointGroup
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function get(GetRegionNetworkEndpointGroupRequest $request, array $callOptions = []): NetworkEndpointGroup
+    public function get(GetReservationSlotRequest $request, array $callOptions = []): ReservationSlotsGetResponse
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Creates a network endpoint group in the specified project using the
-     * parameters that are included in the request.
+     * Retrieves a list of reservation slots under a single reservation.
      *
-     * Note: Use the following APIs to manage network endpoint groups:
+     * The async variant is {@see ReservationSlotsClient::listAsync()} .
      *
-     * -
-     * To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
-     * NEGs): zonal
-     * API
-     * -
-     * To manage NEGs with regional scope (such as regional internet NEGs,
-     * serverless NEGs, Private Service Connect NEGs): regional
-     * API
-     * -
-     * To manage NEGs with global scope (such as global internet NEGs):global
-     * API
+     * @example samples/V1/ReservationSlotsClient/list.php
      *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::insertAsync()} .
+     * @param ListReservationSlotsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
      *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/insert.php
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
      *
-     * @param InsertRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function list(ListReservationSlotsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Update a reservation slot in the specified sub-block.
+     *
+     * The async variant is {@see ReservationSlotsClient::updateAsync()} .
+     *
+     * @example samples/V1/ReservationSlotsClient/update.php
+     *
+     * @param UpdateReservationSlotRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -419,64 +336,8 @@ final class RegionNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
+    public function update(UpdateReservationSlotRequest $request, array $callOptions = []): OperationResponse
     {
-        return $this->startApiCall('Insert', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Retrieves the list of regional network endpoint groups available to the
-     * specified project in the given region.
-     *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::listAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/list.php
-     *
-     * @param ListRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function list(ListRegionNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('List', $request, $callOptions);
-    }
-
-    /**
-     * Lists the network endpoints in the specified network endpoint group.
-     *
-     * The async variant is
-     * {@see RegionNetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/list_network_endpoints.php
-     *
-     * @param ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
-     * @param array                                                  $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listNetworkEndpoints(
-        ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('ListNetworkEndpoints', $request, $callOptions);
+        return $this->startApiCall('Update', $request, $callOptions)->wait();
     }
 }
