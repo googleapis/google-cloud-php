@@ -106,6 +106,13 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * Input only. [Input Only] Additional parameters that are passed in the request, but are
+     * not persisted in the resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.MachineImageParams params = 78313862;</code>
+     */
+    protected $params = null;
+    /**
      * Output only. Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
@@ -230,6 +237,9 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must be
      *           a dash, lowercase letter, or digit, except the last character, which cannot
      *           be a dash.
+     *     @type \Google\Cloud\Compute\V1\MachineImageParams $params
+     *           Input only. [Input Only] Additional parameters that are passed in the request, but are
+     *           not persisted in the resource.
      *     @type bool $satisfies_pzi
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
@@ -668,6 +678,44 @@ class MachineImage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional parameters that are passed in the request, but are
+     * not persisted in the resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.MachineImageParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\MachineImageParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional parameters that are passed in the request, but are
+     * not persisted in the resource.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.MachineImageParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\MachineImageParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\MachineImageParams::class);
+        $this->params = $var;
 
         return $this;
     }

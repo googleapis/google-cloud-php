@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A flexible specification of a time range that has 3 points of
- * flexibility: (1) a flexible start time, (2) a flexible end time, (3) a
- * flexible duration.
+ * Specifies a flexible time range with flexible start time and duration.
  * It is possible to specify a contradictory time range that cannot be matched
  * by any Interval. This causes a validation error.
  *

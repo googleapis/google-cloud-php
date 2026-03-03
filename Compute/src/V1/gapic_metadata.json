@@ -3175,6 +3175,50 @@
                 }
             }
         },
+        "RegionHealthAggregationPolicies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionHealthAggregationPoliciesGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "RegionHealthCheckServices": {
             "clients": {
                 "grpc": {
@@ -3203,6 +3247,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -4048,6 +4097,30 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReservationSlots": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReservationSlotsGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
                             ]
                         }
                     }

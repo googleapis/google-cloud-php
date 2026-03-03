@@ -16,6 +16,9 @@ use UnexpectedValueException;
  *    repairing VMs in a MIG.
  *    - DO_NOTHING: MIG does not repair a failed or an unhealthy
  *    VM.
+ * Additional supported values which may be not listed in the enum directly due to technical reasons:
+ * DO_NOTHING
+ * REPAIR
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceGroupManagerInstanceLifecyclePolicy.DefaultActionOnFailure</code>
  */
@@ -28,16 +31,10 @@ class DefaultActionOnFailure
      */
     const UNDEFINED_DEFAULT_ACTION_ON_FAILURE = 0;
     /**
-     * MIG does not repair a failed or an unhealthy VM.
-     *
      * Generated from protobuf enum <code>DO_NOTHING = 451307513;</code>
      */
     const DO_NOTHING = 451307513;
     /**
-     * (Default) MIG automatically repairs a failed or an unhealthy
-     * VM by recreating it. For more information, see About
-     * repairing VMs in a MIG.
-     *
      * Generated from protobuf enum <code>REPAIR = 266277773;</code>
      */
     const REPAIR = 266277773;

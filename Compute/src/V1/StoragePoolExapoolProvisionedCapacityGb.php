@@ -16,19 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 capacity_optimized = 251131874;</code>
      */
     protected $capacity_optimized = null;
     /**
-     * Output only. Size, in GiB, of provisioned read-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned read-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 read_optimized = 389863870;</code>
      */
     protected $read_optimized = null;
     /**
-     * Output only. Size, in GiB, of provisioned write-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned write-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 write_optimized = 492523719;</code>
      */
@@ -41,11 +41,11 @@ class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $capacity_optimized
-     *           Output only. Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
+     *           Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
      *     @type int|string $read_optimized
-     *           Output only. Size, in GiB, of provisioned read-optimized capacity for this Exapool
+     *           Size, in GiB, of provisioned read-optimized capacity for this Exapool
      *     @type int|string $write_optimized
-     *           Output only. Size, in GiB, of provisioned write-optimized capacity for this Exapool
+     *           Size, in GiB, of provisioned write-optimized capacity for this Exapool
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 capacity_optimized = 251131874;</code>
      * @return int|string
@@ -75,7 +75,7 @@ class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned capacity-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 capacity_optimized = 251131874;</code>
      * @param int|string $var
@@ -90,7 +90,7 @@ class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. Size, in GiB, of provisioned read-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned read-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 read_optimized = 389863870;</code>
      * @return int|string
@@ -111,7 +111,7 @@ class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. Size, in GiB, of provisioned read-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned read-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 read_optimized = 389863870;</code>
      * @param int|string $var
@@ -126,7 +126,7 @@ class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. Size, in GiB, of provisioned write-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned write-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 write_optimized = 492523719;</code>
      * @return int|string
@@ -147,7 +147,7 @@ class StoragePoolExapoolProvisionedCapacityGb extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Output only. Size, in GiB, of provisioned write-optimized capacity for this Exapool
+     * Size, in GiB, of provisioned write-optimized capacity for this Exapool
      *
      * Generated from protobuf field <code>optional int64 write_optimized = 492523719;</code>
      * @param int|string $var

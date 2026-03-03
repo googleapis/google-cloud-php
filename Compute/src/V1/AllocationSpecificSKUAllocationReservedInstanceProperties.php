@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Properties of the SKU instances being reserved.
- * Next ID: 9
+ * Next ID: 10
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties</code>
  */

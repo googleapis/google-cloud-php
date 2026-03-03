@@ -16,6 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
+     * If set to "true", the response will contain a list of all associations for
+     * the containing folders and the containing organization of the target. The
+     * parameter has no effect if the target is an organization.
+     *
+     * Generated from protobuf field <code>optional bool include_inherited_policies = 32280076;</code>
+     */
+    protected $include_inherited_policies = null;
+    /**
      * The target resource to list associations. It is an organization, or a
      * folder.
      *
@@ -29,6 +37,10 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $include_inherited_policies
+     *           If set to "true", the response will contain a list of all associations for
+     *           the containing folders and the containing organization of the target. The
+     *           parameter has no effect if the target is an organization.
      *     @type string $target_resource
      *           The target resource to list associations. It is an organization, or a
      *           folder.
@@ -37,6 +49,46 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * If set to "true", the response will contain a list of all associations for
+     * the containing folders and the containing organization of the target. The
+     * parameter has no effect if the target is an organization.
+     *
+     * Generated from protobuf field <code>optional bool include_inherited_policies = 32280076;</code>
+     * @return bool
+     */
+    public function getIncludeInheritedPolicies()
+    {
+        return isset($this->include_inherited_policies) ? $this->include_inherited_policies : false;
+    }
+
+    public function hasIncludeInheritedPolicies()
+    {
+        return isset($this->include_inherited_policies);
+    }
+
+    public function clearIncludeInheritedPolicies()
+    {
+        unset($this->include_inherited_policies);
+    }
+
+    /**
+     * If set to "true", the response will contain a list of all associations for
+     * the containing folders and the containing organization of the target. The
+     * parameter has no effect if the target is an organization.
+     *
+     * Generated from protobuf field <code>optional bool include_inherited_policies = 32280076;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIncludeInheritedPolicies($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->include_inherited_policies = $var;
+
+        return $this;
     }
 
     /**

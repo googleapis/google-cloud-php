@@ -23,7 +23,7 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
      */
     protected $request_valid_for_duration = null;
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
@@ -45,7 +45,7 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
      *           Relative deadline for waiting for capacity. Relevant only for
      *           Instances.Insert API.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
-     *           Resource manager tags to be bound to the instance. Tag keys and values
+     *           Input only. Resource manager tags to be bound to the instance. Tag keys and values
      *           have the same definition as resource
      *           manager tags. Keys and values can be either in numeric format,
      *           such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
@@ -98,7 +98,7 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced
@@ -115,7 +115,7 @@ class InstanceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource manager tags to be bound to the instance. Tag keys and values
+     * Input only. Resource manager tags to be bound to the instance. Tag keys and values
      * have the same definition as resource
      * manager tags. Keys and values can be either in numeric format,
      * such as `tagKeys/{tag_key_id}` and `tagValues/456` or in namespaced

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,37 +34,38 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AttachNetworkEndpointsRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\DeleteRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\DetachNetworkEndpointsRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\GetRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\InsertRegionNetworkEndpointGroupRequest;
-use Google\Cloud\Compute\V1\ListNetworkEndpointsRegionNetworkEndpointGroupsRequest;
-use Google\Cloud\Compute\V1\ListRegionNetworkEndpointGroupsRequest;
-use Google\Cloud\Compute\V1\NetworkEndpointGroup;
+use Google\Cloud\Compute\V1\AggregatedListRegionHealthAggregationPoliciesRequest;
+use Google\Cloud\Compute\V1\DeleteRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\GetRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\HealthAggregationPolicy;
+use Google\Cloud\Compute\V1\InsertRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\ListRegionHealthAggregationPoliciesRequest;
+use Google\Cloud\Compute\V1\PatchRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionHealthAggregationPolicyRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The RegionNetworkEndpointGroups API.
+ * Service Description: The RegionHealthAggregationPolicies API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<OperationResponse> attachNetworkEndpointsAsync(AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> detachNetworkEndpointsAsync(DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<NetworkEndpointGroup> getAsync(GetRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionNetworkEndpointGroupRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listNetworkEndpointsAsync(ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionHealthAggregationPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionHealthAggregationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HealthAggregationPolicy> getAsync(GetRegionHealthAggregationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionHealthAggregationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionHealthAggregationPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionHealthAggregationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionHealthAggregationPolicyRequest $request, array $optionalArgs = [])
  */
-final class RegionNetworkEndpointGroupsClient
+final class RegionHealthAggregationPoliciesClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionNetworkEndpointGroups';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionHealthAggregationPolicies';
 
     /**
      * The default address of the service.
@@ -95,8 +96,9 @@ final class RegionNetworkEndpointGroupsClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/region_network_endpoint_groups_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/region_network_endpoint_groups_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/region_health_aggregation_policies_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/region_health_aggregation_policies_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
@@ -104,7 +106,7 @@ final class RegionNetworkEndpointGroupsClient
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' =>
-                        __DIR__ . '/../resources/region_network_endpoint_groups_rest_client_config.php',
+                        __DIR__ . '/../resources/region_health_aggregation_policies_rest_client_config.php',
                 ],
             ],
         ];
@@ -209,9 +211,9 @@ final class RegionNetworkEndpointGroupsClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\RegionNetworkEndpointGroupsClient;
+     *           use Google\Cloud\Compute\V1\RegionHealthAggregationPoliciesClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new RegionNetworkEndpointGroupsClient(['credentials' => $creds]);
+     *           $options = new RegionHealthAggregationPoliciesClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -273,167 +275,19 @@ final class RegionNetworkEndpointGroupsClient
     }
 
     /**
-     * Attach a list of network endpoints to the specified network endpoint group.
+     * Retrieves the list of all HealthAggregationPolicy resources,
+     * regional and global, available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is
-     * {@see RegionNetworkEndpointGroupsClient::attachNetworkEndpointsAsync()} .
+     * {@see RegionHealthAggregationPoliciesClient::aggregatedListAsync()} .
      *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/attach_network_endpoints.php
+     * @example samples/V1/RegionHealthAggregationPoliciesClient/aggregated_list.php
      *
-     * @param AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function attachNetworkEndpoints(
-        AttachNetworkEndpointsRegionNetworkEndpointGroupRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('AttachNetworkEndpoints', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Deletes the specified network endpoint group. Note that the NEG cannot be
-     * deleted if it is configured as a backend of a backend service.
-     *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::deleteAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/delete.php
-     *
-     * @param DeleteRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function delete(DeleteRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Delete', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Detach the network endpoint from the specified network endpoint group.
-     *
-     * The async variant is
-     * {@see RegionNetworkEndpointGroupsClient::detachNetworkEndpointsAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/detach_network_endpoints.php
-     *
-     * @param DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function detachNetworkEndpoints(
-        DetachNetworkEndpointsRegionNetworkEndpointGroupRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('DetachNetworkEndpoints', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns the specified network endpoint group.
-     *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::getAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/get.php
-     *
-     * @param GetRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return NetworkEndpointGroup
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function get(GetRegionNetworkEndpointGroupRequest $request, array $callOptions = []): NetworkEndpointGroup
-    {
-        return $this->startApiCall('Get', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Creates a network endpoint group in the specified project using the
-     * parameters that are included in the request.
-     *
-     * Note: Use the following APIs to manage network endpoint groups:
-     *
-     * -
-     * To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
-     * NEGs): zonal
-     * API
-     * -
-     * To manage NEGs with regional scope (such as regional internet NEGs,
-     * serverless NEGs, Private Service Connect NEGs): regional
-     * API
-     * -
-     * To manage NEGs with global scope (such as global internet NEGs):global
-     * API
-     *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::insertAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/insert.php
-     *
-     * @param InsertRegionNetworkEndpointGroupRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function insert(InsertRegionNetworkEndpointGroupRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Insert', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Retrieves the list of regional network endpoint groups available to the
-     * specified project in the given region.
-     *
-     * The async variant is {@see RegionNetworkEndpointGroupsClient::listAsync()} .
-     *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/list.php
-     *
-     * @param ListRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param AggregatedListRegionHealthAggregationPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                                $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -446,20 +300,169 @@ final class RegionNetworkEndpointGroupsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListRegionNetworkEndpointGroupsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function aggregatedList(
+        AggregatedListRegionHealthAggregationPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('AggregatedList', $request, $callOptions);
+    }
+
+    /**
+     * Deletes the specified HealthAggregationPolicy in the given region.
+     *
+     * The async variant is {@see RegionHealthAggregationPoliciesClient::deleteAsync()}
+     * .
+     *
+     * @example samples/V1/RegionHealthAggregationPoliciesClient/delete.php
+     *
+     * @param DeleteRegionHealthAggregationPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function delete(
+        DeleteRegionHealthAggregationPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('Delete', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns the specified HealthAggregationPolicy resource in the given region.
+     *
+     * The async variant is {@see RegionHealthAggregationPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/RegionHealthAggregationPoliciesClient/get.php
+     *
+     * @param GetRegionHealthAggregationPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return HealthAggregationPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function get(
+        GetRegionHealthAggregationPolicyRequest $request,
+        array $callOptions = []
+    ): HealthAggregationPolicy {
+        return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Create a HealthAggregationPolicy in the specified project in the given
+     * region using the parameters that are included in the request.
+     *
+     * The async variant is {@see RegionHealthAggregationPoliciesClient::insertAsync()}
+     * .
+     *
+     * @example samples/V1/RegionHealthAggregationPoliciesClient/insert.php
+     *
+     * @param InsertRegionHealthAggregationPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function insert(
+        InsertRegionHealthAggregationPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('Insert', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists the HealthAggregationPolicies for a project in the given region.
+     *
+     * The async variant is {@see RegionHealthAggregationPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/RegionHealthAggregationPoliciesClient/list.php
+     *
+     * @param ListRegionHealthAggregationPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function list(
+        ListRegionHealthAggregationPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
-     * Lists the network endpoints in the specified network endpoint group.
+     * Updates the specified regional HealthAggregationPolicy
+     * resource with the data included in the request. This method supportsPATCH
+     * semantics and uses theJSON merge
+     * patch format and processing rules.
+     *
+     * The async variant is {@see RegionHealthAggregationPoliciesClient::patchAsync()}
+     * .
+     *
+     * @example samples/V1/RegionHealthAggregationPoliciesClient/patch.php
+     *
+     * @param PatchRegionHealthAggregationPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patch(
+        PatchRegionHealthAggregationPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is
-     * {@see RegionNetworkEndpointGroupsClient::listNetworkEndpointsAsync()} .
+     * {@see RegionHealthAggregationPoliciesClient::testIamPermissionsAsync()} .
      *
-     * @example samples/V1/RegionNetworkEndpointGroupsClient/list_network_endpoints.php
+     * @example samples/V1/RegionHealthAggregationPoliciesClient/test_iam_permissions.php
      *
-     * @param ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request     A request to house fields associated with the call.
+     * @param TestIamPermissionsRegionHealthAggregationPolicyRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {
      *     Optional.
      *
@@ -469,14 +472,14 @@ final class RegionNetworkEndpointGroupsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return PagedListResponse
+     * @return TestPermissionsResponse
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listNetworkEndpoints(
-        ListNetworkEndpointsRegionNetworkEndpointGroupsRequest $request,
+    public function testIamPermissions(
+        TestIamPermissionsRegionHealthAggregationPolicyRequest $request,
         array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('ListNetworkEndpoints', $request, $callOptions);
+    ): TestPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

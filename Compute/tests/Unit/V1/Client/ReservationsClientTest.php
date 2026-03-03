@@ -309,6 +309,7 @@ class ReservationsClientTest extends GeneratedTest
         $deleteAtTime = 'deleteAtTime-453576507';
         $deploymentType = 'deploymentType2007335028';
         $description = 'description-1724546052';
+        $earlyAccessMaintenance = 'earlyAccessMaintenance1954531092';
         $enableEmergentMaintenance = false;
         $id = 3355;
         $kind = 'kind3292052';
@@ -326,6 +327,7 @@ class ReservationsClientTest extends GeneratedTest
         $expectedResponse->setDeleteAtTime($deleteAtTime);
         $expectedResponse->setDeploymentType($deploymentType);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEarlyAccessMaintenance($earlyAccessMaintenance);
         $expectedResponse->setEnableEmergentMaintenance($enableEmergentMaintenance);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
