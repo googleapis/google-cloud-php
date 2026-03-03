@@ -8,7 +8,6 @@
                     "UNAVAILABLE"
                 ],
                 "retry_policy_2_codes": [
-                    "RESOURCE_EXHAUSTED",
                     "UNAVAILABLE",
                     "INTERNAL",
                     "DEADLINE_EXCEEDED"
