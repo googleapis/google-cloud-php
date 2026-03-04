@@ -27,28 +27,28 @@ class PairIdInfo extends \Google\Protobuf\Internal\Message
      */
     protected $publisher_id = null;
     /**
-     * Optional. Descriptive name of the publisher to be displayed in the UI for a
+     * Required. Descriptive name of the publisher to be displayed in the UI for a
      * better targeting experience.
      *
-     * Generated from protobuf field <code>optional string publisher_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string publisher_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $publisher_name = null;
     /**
-     * Output only. This field denotes the percentage of membership match of this
+     * Required. This field denotes the percentage of membership match of this
      * user list with the corresponding publisher's first party data. Must be
      * between 0 and 100 inclusive.
      *
-     * Generated from protobuf field <code>int32 match_rate_percentage = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int32 match_rate_percentage = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $match_rate_percentage = 0;
+    protected $match_rate_percentage = null;
     /**
-     * Output only. The count of the advertiser's first party data records that
-     * have been uploaded to a clean room provider. This does not signify the size
-     * of a PAIR user list.
+     * Optional. The count of the advertiser's first party data records that have
+     * been uploaded to a clean room provider. This does not signify the size of a
+     * PAIR user list.
      *
-     * Generated from protobuf field <code>int64 advertiser_identifier_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 advertiser_identifier_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $advertiser_identifier_count = 0;
+    protected $advertiser_identifier_count = null;
     /**
      * Required. Immutable. Identifies a unique advertiser to publisher
      * relationship with one clean room provider or across multiple clean room
@@ -71,16 +71,16 @@ class PairIdInfo extends \Google\Protobuf\Internal\Message
      *           cleanroom. This cannot be used as a global identifier across multiple
      *           cleanrooms.
      *     @type string $publisher_name
-     *           Optional. Descriptive name of the publisher to be displayed in the UI for a
+     *           Required. Descriptive name of the publisher to be displayed in the UI for a
      *           better targeting experience.
      *     @type int $match_rate_percentage
-     *           Output only. This field denotes the percentage of membership match of this
+     *           Required. This field denotes the percentage of membership match of this
      *           user list with the corresponding publisher's first party data. Must be
      *           between 0 and 100 inclusive.
      *     @type int|string $advertiser_identifier_count
-     *           Output only. The count of the advertiser's first party data records that
-     *           have been uploaded to a clean room provider. This does not signify the size
-     *           of a PAIR user list.
+     *           Optional. The count of the advertiser's first party data records that have
+     *           been uploaded to a clean room provider. This does not signify the size of a
+     *           PAIR user list.
      *     @type string $clean_room_identifier
      *           Required. Immutable. Identifies a unique advertiser to publisher
      *           relationship with one clean room provider or across multiple clean room
@@ -137,10 +137,10 @@ class PairIdInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Descriptive name of the publisher to be displayed in the UI for a
+     * Required. Descriptive name of the publisher to be displayed in the UI for a
      * better targeting experience.
      *
-     * Generated from protobuf field <code>optional string publisher_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string publisher_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getPublisherName()
@@ -159,10 +159,10 @@ class PairIdInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Descriptive name of the publisher to be displayed in the UI for a
+     * Required. Descriptive name of the publisher to be displayed in the UI for a
      * better targeting experience.
      *
-     * Generated from protobuf field <code>optional string publisher_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string publisher_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -175,24 +175,34 @@ class PairIdInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field denotes the percentage of membership match of this
+     * Required. This field denotes the percentage of membership match of this
      * user list with the corresponding publisher's first party data. Must be
      * between 0 and 100 inclusive.
      *
-     * Generated from protobuf field <code>int32 match_rate_percentage = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int32 match_rate_percentage = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getMatchRatePercentage()
     {
-        return $this->match_rate_percentage;
+        return isset($this->match_rate_percentage) ? $this->match_rate_percentage : 0;
+    }
+
+    public function hasMatchRatePercentage()
+    {
+        return isset($this->match_rate_percentage);
+    }
+
+    public function clearMatchRatePercentage()
+    {
+        unset($this->match_rate_percentage);
     }
 
     /**
-     * Output only. This field denotes the percentage of membership match of this
+     * Required. This field denotes the percentage of membership match of this
      * user list with the corresponding publisher's first party data. Must be
      * between 0 and 100 inclusive.
      *
-     * Generated from protobuf field <code>int32 match_rate_percentage = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int32 match_rate_percentage = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */
@@ -205,24 +215,34 @@ class PairIdInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The count of the advertiser's first party data records that
-     * have been uploaded to a clean room provider. This does not signify the size
-     * of a PAIR user list.
+     * Optional. The count of the advertiser's first party data records that have
+     * been uploaded to a clean room provider. This does not signify the size of a
+     * PAIR user list.
      *
-     * Generated from protobuf field <code>int64 advertiser_identifier_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 advertiser_identifier_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getAdvertiserIdentifierCount()
     {
-        return $this->advertiser_identifier_count;
+        return isset($this->advertiser_identifier_count) ? $this->advertiser_identifier_count : 0;
+    }
+
+    public function hasAdvertiserIdentifierCount()
+    {
+        return isset($this->advertiser_identifier_count);
+    }
+
+    public function clearAdvertiserIdentifierCount()
+    {
+        unset($this->advertiser_identifier_count);
     }
 
     /**
-     * Output only. The count of the advertiser's first party data records that
-     * have been uploaded to a clean room provider. This does not signify the size
-     * of a PAIR user list.
+     * Optional. The count of the advertiser's first party data records that have
+     * been uploaded to a clean room provider. This does not signify the size of a
+     * PAIR user list.
      *
-     * Generated from protobuf field <code>int64 advertiser_identifier_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 advertiser_identifier_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */

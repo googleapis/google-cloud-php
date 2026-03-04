@@ -93,9 +93,9 @@ class ErrorReason
      */
     const INVALID_POSTAL_CODE = 12;
     /**
-     * Country code is not valid.
+     * Deprecated: Enum is unused in the Data Manager API.
      *
-     * Generated from protobuf enum <code>INVALID_COUNTRY_CODE = 13;</code>
+     * Generated from protobuf enum <code>INVALID_COUNTRY_CODE = 13 [deprecated = true];</code>
      */
     const INVALID_COUNTRY_CODE = 13;
     /**
@@ -621,6 +621,12 @@ class ErrorReason
      * Generated from protobuf enum <code>UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK = 98;</code>
      */
     const UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK = 98;
+    /**
+     * The user list membership duration is too long.
+     *
+     * Generated from protobuf enum <code>MEMBERSHIP_DURATION_TOO_LONG = 99;</code>
+     */
+    const MEMBERSHIP_DURATION_TOO_LONG = 99;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -722,6 +728,7 @@ class ErrorReason
         self::UNSUPPORTED_INGESTED_USER_LIST_INFO_CONFIG => 'UNSUPPORTED_INGESTED_USER_LIST_INFO_CONFIG',
         self::UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE => 'UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE',
         self::UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK => 'UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK',
+        self::MEMBERSHIP_DURATION_TOO_LONG => 'MEMBERSHIP_DURATION_TOO_LONG',
     ];
 
     public static function name($value)
