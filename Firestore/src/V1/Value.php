@@ -62,6 +62,11 @@ class Value extends \Google\Protobuf\Internal\Message
      *           **Requires:**
      *           * Must follow [field reference][FieldReference.field_path] limitations.
      *           * Not allowed to be used when writing documents.
+     *     @type string $variable_reference_value
+     *           Pointer to a variable defined elsewhere in a pipeline.
+     *           Unlike `field_reference_value` which references a field within a
+     *           document, this refers to a variable, defined in a separate namespace than
+     *           the fields of a document.
      *     @type \Google\Cloud\Firestore\V1\PBFunction $function_value
      *           A value that represents an unevaluated expression.
      *           **Requires:**
@@ -475,6 +480,43 @@ class Value extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(19, $var);
+
+        return $this;
+    }
+
+    /**
+     * Pointer to a variable defined elsewhere in a pipeline.
+     * Unlike `field_reference_value` which references a field within a
+     * document, this refers to a variable, defined in a separate namespace than
+     * the fields of a document.
+     *
+     * Generated from protobuf field <code>string variable_reference_value = 22;</code>
+     * @return string
+     */
+    public function getVariableReferenceValue()
+    {
+        return $this->readOneof(22);
+    }
+
+    public function hasVariableReferenceValue()
+    {
+        return $this->hasOneof(22);
+    }
+
+    /**
+     * Pointer to a variable defined elsewhere in a pipeline.
+     * Unlike `field_reference_value` which references a field within a
+     * document, this refers to a variable, defined in a separate namespace than
+     * the fields of a document.
+     *
+     * Generated from protobuf field <code>string variable_reference_value = 22;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVariableReferenceValue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(22, $var);
 
         return $this;
     }
