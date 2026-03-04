@@ -27,6 +27,7 @@ namespace Google\Cloud\AIPlatform\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -34,6 +35,10 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\AskContextsRequest;
+use Google\Cloud\AIPlatform\V1\AskContextsResponse;
+use Google\Cloud\AIPlatform\V1\AsyncRetrieveContextsRequest;
+use Google\Cloud\AIPlatform\V1\AsyncRetrieveContextsResponse;
 use Google\Cloud\AIPlatform\V1\AugmentPromptRequest;
 use Google\Cloud\AIPlatform\V1\AugmentPromptResponse;
 use Google\Cloud\AIPlatform\V1\CorroborateContentRequest;
@@ -48,6 +53,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -62,6 +69,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<AskContextsResponse> askContextsAsync(AskContextsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> asyncRetrieveContextsAsync(AsyncRetrieveContextsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AugmentPromptResponse> augmentPromptAsync(AugmentPromptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CorroborateContentResponse> corroborateContentAsync(CorroborateContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RetrieveContextsResponse> retrieveContextsAsync(RetrieveContextsRequest $request, array $optionalArgs = [])
@@ -98,6 +107,8 @@ final class VertexRagServiceClient
     /** The default scopes required by the service. */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -115,6 +126,54 @@ final class VertexRagServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -250,6 +309,7 @@ final class VertexRagServiceClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -261,6 +321,61 @@ final class VertexRagServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Agentic Retrieval Ask API for RAG.
+     *
+     * The async variant is {@see VertexRagServiceClient::askContextsAsync()} .
+     *
+     * @example samples/V1/VertexRagServiceClient/ask_contexts.php
+     *
+     * @param AskContextsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AskContextsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function askContexts(AskContextsRequest $request, array $callOptions = []): AskContextsResponse
+    {
+        return $this->startApiCall('AskContexts', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Asynchronous API to retrieves relevant contexts for a query.
+     *
+     * The async variant is {@see VertexRagServiceClient::asyncRetrieveContextsAsync()}
+     * .
+     *
+     * @example samples/V1/VertexRagServiceClient/async_retrieve_contexts.php
+     *
+     * @param AsyncRetrieveContextsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AsyncRetrieveContextsResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function asyncRetrieveContexts(
+        AsyncRetrieveContextsRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('AsyncRetrieveContexts', $request, $callOptions)->wait();
     }
 
     /**
