@@ -27,7 +27,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $table = '';
+    private $table = '';
     /**
      * Optional. The app profile to use for the Bigtable writes. If not specified,
      * the "default" application profile will be used. The app profile must use
@@ -35,7 +35,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_profile_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $app_profile_id = '';
+    private $app_profile_id = '';
     /**
      * Optional. The service account to use to write to Bigtable. The subscription
      * creator or updater that specifies this field must have
@@ -46,7 +46,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $service_account_email = '';
+    private $service_account_email = '';
     /**
      * Optional. When true, write the subscription name, message_id, publish_time,
      * attributes, and ordering_key to additional columns in the table under the
@@ -57,14 +57,14 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool write_metadata = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $write_metadata = false;
+    private $write_metadata = false;
     /**
      * Output only. An output-only field that indicates whether or not the
      * subscription can receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigtableConfig.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $state = 0;
+    private $state = 0;
 
     /**
      * Constructor.
