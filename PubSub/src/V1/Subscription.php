@@ -58,6 +58,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     private $cloud_storage_config = null;
     /**
+     * Optional. If delivery to Bigtable is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigtableConfig bigtable_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $bigtable_config = null;
+    /**
      * Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
      * waits for the subscriber to acknowledge receipt before resending the
      * message. In the interval after the message is delivered and before it is
@@ -303,6 +310,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig $cloud_storage_config
      *           Optional. If delivery to Google Cloud Storage is used with this
      *           subscription, this field is used to configure it.
+     *     @type \Google\Cloud\PubSub\V1\BigtableConfig $bigtable_config
+     *           Optional. If delivery to Bigtable is used with this subscription, this
+     *           field is used to configure it.
      *     @type int $ack_deadline_seconds
      *           Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
      *           waits for the subscriber to acknowledge receipt before resending the
@@ -594,6 +604,44 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\CloudStorageConfig::class);
         $this->cloud_storage_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If delivery to Bigtable is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigtableConfig bigtable_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\BigtableConfig|null
+     */
+    public function getBigtableConfig()
+    {
+        return $this->bigtable_config;
+    }
+
+    public function hasBigtableConfig()
+    {
+        return isset($this->bigtable_config);
+    }
+
+    public function clearBigtableConfig()
+    {
+        unset($this->bigtable_config);
+    }
+
+    /**
+     * Optional. If delivery to Bigtable is used with this subscription, this
+     * field is used to configure it.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigtableConfig bigtable_config = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\BigtableConfig $var
+     * @return $this
+     */
+    public function setBigtableConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\BigtableConfig::class);
+        $this->bigtable_config = $var;
 
         return $this;
     }
