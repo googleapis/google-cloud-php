@@ -116,6 +116,14 @@ $ pecl install grpc
 $ pecl install protobuf
 ```
 
+For threaded PHP runtimes (FrankenPHP, Swoole, etc.),
+[grpc-php-rs](https://github.com/BSN4/grpc-php-rs) is a drop-in alternative
+that avoids ZTS crashes and OpenSSL conflicts:
+
+```
+$ pie install bsn4/grpc
+```
+
 See [Installing gRPC and Protobuf](GRPC.md) for a complete guide.
 
 ## Caching Access Tokens

@@ -21,6 +21,21 @@ from PECL.
 
 [pecl_grpc]: https://pecl.php.net/package/gRPC
 
+## Alternative: grpc-php-rs (recommended for ZTS / FrankenPHP / Swoole)
+
+If you are using a threaded PHP runtime (FrankenPHP, Swoole, etc.) or
+experiencing OpenSSL conflicts with `ext-curl`, consider
+[grpc-php-rs](https://github.com/BSN4/grpc-php-rs) — a drop-in replacement
+for `ext-grpc` that is thread-safe and has no OpenSSL dependency.
+
+```sh
+pie install bsn4/grpc
+```
+
+Pre-built binaries are available for PHP 8.2–8.5 on Linux (x86_64/ARM64) and
+macOS ARM64. No compilation required. The `Grpc\` namespace API is identical,
+so no code changes are needed.
+
 ## Installing PECL
 
 ### Ubuntu / Debian
