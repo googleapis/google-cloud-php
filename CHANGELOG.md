@@ -1,5 +1,85 @@
 # Changelog
 
+## 0.322.0
+
+<details><summary>googleads/data-manager 0.3.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] remove empty extra_opts from the C# proto library ([#8965](https://github.com/googleapis/google-cloud-php/issues/8965)) ([f11396c](https://github.com/googleapis/google-cloud-php/commit/f11396c8c66f29f1d45064a00342bca446a2159c))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.53.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add AskContexts and AsyncRetrieveContexts APIs to VertexRagService ([#8960](https://github.com/googleapis/google-cloud-php/issues/8960)) ([ceaabc8](https://github.com/googleapis/google-cloud-php/commit/ceaabc8ccb772e400e85281c0ae673e009bb0b24))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.7.0</summary>
+
+
+
+### Features
+
+* [AlloyDb] Add a new field to support Dataplex integration configuration ([#8961](https://github.com/googleapis/google-cloud-php/issues/8961)) ([86c46fd](https://github.com/googleapis/google-cloud-php/commit/86c46fded642769edae103ff0f07b91bd269f27a))
+
+</details>
+
+<details><summary>google/cloud-compute 2.7.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20260213 ([#8959](https://github.com/googleapis/google-cloud-php/issues/8959)) ([fbb1ac4](https://github.com/googleapis/google-cloud-php/commit/fbb1ac4f85e3bd04f0dd30c449effd4951a1e5ca))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.6.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] Added a field for enabling image and table annotation for layout parser processor ([#8957](https://github.com/googleapis/google-cloud-php/issues/8957)) ([dd7cb42](https://github.com/googleapis/google-cloud-php/commit/dd7cb42aab829bdddd27204d8865718f5a77cfd9))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.2.0-RC1
+
+
+
+</summary>
+
+
+
+
+](https://github.com/googleapis/google-cloud-php/compare/v0.321.0...v0.322.0) (2026-03-06)
+
+
+### Features
+
+* [Firestore] expose the variable definition in the Cloud Firestore API ([#8958](https://github.com/googleapis/google-cloud-php/issues/8958)) ([9bfe824](https://github.com/googleapis/google-cloud-php/commit/9bfe8249bdb290c80281033c9c956887431a805b))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.19.0</summary>
+
+
+
+### Features
+
+* [PubSub] Add BigtableConfig type ([#8968](https://github.com/googleapis/google-cloud-php/issues/8968)) ([d02589d](https://github.com/googleapis/google-cloud-php/commit/d02589dc999cee9968bc42b9706f4e1bf335ff82))
+
+</details>
+
 ## 0.321.0
 
 <details><summary>googleads/data-manager 0.2.0</summary>
