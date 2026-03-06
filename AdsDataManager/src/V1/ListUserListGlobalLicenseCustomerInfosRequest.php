@@ -29,8 +29,12 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
      */
     protected $parent = '';
     /**
-     * Optional. Filters to apply to the list request. All fields need to be on
-     * the left hand side of each condition (for example: user_list_id = 123).
+     * Optional. A [filter string](https://google.aip.dev/160) to apply to the
+     * list request. All fields need to be on the left hand side of each condition
+     * (for example: `user_list_id = 123`). Fields must be specified using either
+     * all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake
+     * case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of
+     * camel case and snake case.
      * **Supported Operations:**
      * - `AND`
      * - `=`
@@ -102,8 +106,12 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
      *           list global license id with a '-' (for example,
      *           `accountTypes/DATA_PARTNER/accounts/123/userListGlobalLicenses/-`)
      *     @type string $filter
-     *           Optional. Filters to apply to the list request. All fields need to be on
-     *           the left hand side of each condition (for example: user_list_id = 123).
+     *           Optional. A [filter string](https://google.aip.dev/160) to apply to the
+     *           list request. All fields need to be on the left hand side of each condition
+     *           (for example: `user_list_id = 123`). Fields must be specified using either
+     *           all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake
+     *           case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of
+     *           camel case and snake case.
      *           **Supported Operations:**
      *           - `AND`
      *           - `=`
@@ -173,8 +181,12 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Optional. Filters to apply to the list request. All fields need to be on
-     * the left hand side of each condition (for example: user_list_id = 123).
+     * Optional. A [filter string](https://google.aip.dev/160) to apply to the
+     * list request. All fields need to be on the left hand side of each condition
+     * (for example: `user_list_id = 123`). Fields must be specified using either
+     * all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake
+     * case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of
+     * camel case and snake case.
      * **Supported Operations:**
      * - `AND`
      * - `=`
@@ -198,8 +210,12 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
     }
 
     /**
-     * Optional. Filters to apply to the list request. All fields need to be on
-     * the left hand side of each condition (for example: user_list_id = 123).
+     * Optional. A [filter string](https://google.aip.dev/160) to apply to the
+     * list request. All fields need to be on the left hand side of each condition
+     * (for example: `user_list_id = 123`). Fields must be specified using either
+     * all [camel case](https://en.wikipedia.org/wiki/Camel_case) or all [snake
+     * case](https://en.wikipedia.org/wiki/Snake_case). Don't use a combination of
+     * camel case and snake case.
      * **Supported Operations:**
      * - `AND`
      * - `=`
