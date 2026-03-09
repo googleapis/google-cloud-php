@@ -24,7 +24,6 @@ class IndexHint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
-    protected $params;
 
     /**
      * Constructor.
@@ -32,8 +31,6 @@ class IndexHint extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VectorSearch\V1\SearchHint\IndexHint\DenseScannParams $dense_scann_params
-     *           Optional. Dense ScaNN parameters.
      *     @type string $name
      *           Required. The resource name of the index to use for the search.
      *           The index must be in the same project, location, and collection.
@@ -44,37 +41,6 @@ class IndexHint extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Vectorsearch\V1\DataObjectSearchService::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Optional. Dense ScaNN parameters.
-     *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.SearchHint.IndexHint.DenseScannParams dense_scann_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\VectorSearch\V1\SearchHint\IndexHint\DenseScannParams|null
-     */
-    public function getDenseScannParams()
-    {
-        return $this->readOneof(2);
-    }
-
-    public function hasDenseScannParams()
-    {
-        return $this->hasOneof(2);
-    }
-
-    /**
-     * Optional. Dense ScaNN parameters.
-     *
-     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.SearchHint.IndexHint.DenseScannParams dense_scann_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\VectorSearch\V1\SearchHint\IndexHint\DenseScannParams $var
-     * @return $this
-     */
-    public function setDenseScannParams($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\VectorSearch\V1\SearchHint\IndexHint\DenseScannParams::class);
-        $this->writeOneof(2, $var);
-
-        return $this;
     }
 
     /**
@@ -107,14 +73,6 @@ class IndexHint extends \Google\Protobuf\Internal\Message
         $this->name = $var;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getParams()
-    {
-        return $this->whichOneof("params");
     }
 
 }
