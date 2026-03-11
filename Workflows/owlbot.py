@@ -69,15 +69,6 @@ s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
     merge=preserve_copyright_year,
 )
 
-# remove class_alias code
-s.replace(
-    "src/V*/**/*.php",
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
-
 # Fix test namespaces
 s.replace(
     'tests/Unit/Executions/*/*.php',

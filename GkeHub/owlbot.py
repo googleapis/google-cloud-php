@@ -44,15 +44,6 @@ shutil.rmtree(proto_dir / "RbacRoleBindingActuation")
 
 php.owlbot_main(src=src, dest=dest)
 
-# remove class_alias code
-s.replace(
-    "src/V*/**/*.php",
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
-
 # format generated clients
 subprocess.run([
     'npm',
