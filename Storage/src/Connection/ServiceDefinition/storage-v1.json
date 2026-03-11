@@ -198,18 +198,18 @@
                         },
                         "googleManagedEncryptionEnforcementConfig": {
                             "type": "object",
-                            "description": "Enforcement configuration for Google-managed encryption.",
+                            "description": "If set, the new objects created in this bucket must comply with this enforcement config. Changing this has no effect on existing objects; it applies to new objects only. If omitted, the new objects are allowed to be encrypted with Google Managed Encryption type by default.",
                             "properties": {
                                 "restrictionMode": {
                                     "type": "string",
-                                    "description": "The restriction state of the encryption policy.",
+                                    "description": "Restriction mode for Google-Managed Encryption Keys. Defaults to NotRestricted.",
                                     "enum": [
                                         "NotRestricted",
                                         "FullyRestricted"
                                     ],
                                     "enumDescriptions": [
-                                        "No restrictions are applied to this encryption type.",
-                                        "Specific restrictions are enforced for this encryption type."
+                                        "Creation of new objects with Google Managed Encryption is not restricted.",
+                                        "Creation of new objects with Google Managed Encryption is fully restricted."
                                     ]
                                 },
                                 "effectiveTime": {
@@ -222,18 +222,18 @@
                         },
                         "customerManagedEncryptionEnforcementConfig": {
                             "type": "object",
-                            "description": "Enforcement configuration for Cloud KMS (customer-managed) encryption.",
+                            "description": "If set, the new objects created in this bucket must comply with this enforcement config. Changing this has no effect on existing objects; it applies to new objects only. If omitted, the new objects are allowed to be encrypted with Customer Managed Encryption type by default.",
                             "properties": {
                                 "restrictionMode": {
                                     "type": "string",
-                                    "description": "The restriction state of the encryption policy.",
+                                    "description": "Restriction mode for Customer-Managed Encryption Keys. Defaults to NotRestricted.",
                                     "enum": [
                                         "NotRestricted",
                                         "FullyRestricted"
                                     ],
                                     "enumDescriptions": [
-                                        "No restrictions are applied to this encryption type.",
-                                        "Specific restrictions are enforced for this encryption type."
+                                        "Creation of new objects with Customer-Managed Encryption is not restricted.",
+                                        "Creation of new objects with Customer-Managed Encryption is fully restricted."
                                     ]
                                 },
                                 "effectiveTime": {
@@ -246,18 +246,18 @@
                         },
                         "customerSuppliedEncryptionEnforcementConfig": {
                             "type": "object",
-                            "description": "Enforcement configuration for customer-supplied encryption keys (CSEK).",
+                            "description": "If set, the new objects created in this bucket must comply with this enforcement config. Changing this has no effect on existing objects; it applies to new objects only. If omitted, the new objects are allowed to be encrypted with Customer Supplied Encryption type by default.",
                             "properties": {
                                 "restrictionMode": {
                                     "type": "string",
-                                    "description": "The restriction state of the encryption policy.",
+                                    "description": "Restriction mode for Customer-Supplied Encryption Keys. Defaults to NotRestricted.",
                                     "enum": [
                                         "NotRestricted",
                                         "FullyRestricted"
                                     ],
                                     "enumDescriptions": [
-                                        "No restrictions are applied to this encryption type.",
-                                        "Specific restrictions are enforced for this encryption type."
+                                        "Creation of new objects with Customer-Supplied Encryption is not restricted.",
+                                        "Creation of new objects with Customer-Supplied Encryption is fully restricted."
                                     ]
                                 },
                                 "effectiveTime": {
