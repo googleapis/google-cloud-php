@@ -10,7 +10,7 @@
         "google/auth": "^1.49",
         "google/grpc-gcp": "^0.4",
         "grpc/grpc": "^1.13",
-        "google/protobuf": "^4.31",
+        "google/protobuf": "^4.31||^5.0",
         "guzzlehttp/promises": "^2.0",
         "guzzlehttp/psr7": "^2.0",
         "google/common-protos": "^4.4",
