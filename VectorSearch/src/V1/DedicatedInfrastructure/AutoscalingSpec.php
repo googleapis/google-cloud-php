@@ -17,15 +17,18 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The minimum number of replicas. If not set or set to `0`,
-     * defaults to `2`. Must be >= `2` and <= `1000`.
+     * defaults to `2`. Must be >= `1` and <= `1000`.
      *
      * Generated from protobuf field <code>int32 min_replica_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $min_replica_count = 0;
     /**
-     * Optional. The maximum number of replicas. If not set or set to `0`,
-     * defaults to the greater of `min_replica_count` and `5`. Must be >=
+     * Optional. The maximum number of replicas.  Must be >=
      * `min_replica_count` and <= `1000`.
+     * For the v1beta version, if not set or set to `0`, defaults to
+     * the greater of `min_replica_count` and `5`.
+     * For all other versions, if not set or set to `0`, defaults to
+     * the greater of `min_replica_count` and `2`.
      *
      * Generated from protobuf field <code>int32 max_replica_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,11 +42,14 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type int $min_replica_count
      *           Optional. The minimum number of replicas. If not set or set to `0`,
-     *           defaults to `2`. Must be >= `2` and <= `1000`.
+     *           defaults to `2`. Must be >= `1` and <= `1000`.
      *     @type int $max_replica_count
-     *           Optional. The maximum number of replicas. If not set or set to `0`,
-     *           defaults to the greater of `min_replica_count` and `5`. Must be >=
+     *           Optional. The maximum number of replicas.  Must be >=
      *           `min_replica_count` and <= `1000`.
+     *           For the v1beta version, if not set or set to `0`, defaults to
+     *           the greater of `min_replica_count` and `5`.
+     *           For all other versions, if not set or set to `0`, defaults to
+     *           the greater of `min_replica_count` and `2`.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +59,7 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The minimum number of replicas. If not set or set to `0`,
-     * defaults to `2`. Must be >= `2` and <= `1000`.
+     * defaults to `2`. Must be >= `1` and <= `1000`.
      *
      * Generated from protobuf field <code>int32 min_replica_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -65,7 +71,7 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The minimum number of replicas. If not set or set to `0`,
-     * defaults to `2`. Must be >= `2` and <= `1000`.
+     * defaults to `2`. Must be >= `1` and <= `1000`.
      *
      * Generated from protobuf field <code>int32 min_replica_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -80,9 +86,12 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of replicas. If not set or set to `0`,
-     * defaults to the greater of `min_replica_count` and `5`. Must be >=
+     * Optional. The maximum number of replicas.  Must be >=
      * `min_replica_count` and <= `1000`.
+     * For the v1beta version, if not set or set to `0`, defaults to
+     * the greater of `min_replica_count` and `5`.
+     * For all other versions, if not set or set to `0`, defaults to
+     * the greater of `min_replica_count` and `2`.
      *
      * Generated from protobuf field <code>int32 max_replica_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -93,9 +102,12 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of replicas. If not set or set to `0`,
-     * defaults to the greater of `min_replica_count` and `5`. Must be >=
+     * Optional. The maximum number of replicas.  Must be >=
      * `min_replica_count` and <= `1000`.
+     * For the v1beta version, if not set or set to `0`, defaults to
+     * the greater of `min_replica_count` and `5`.
+     * For all other versions, if not set or set to `0`, defaults to
+     * the greater of `min_replica_count` and `2`.
      *
      * Generated from protobuf field <code>int32 max_replica_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

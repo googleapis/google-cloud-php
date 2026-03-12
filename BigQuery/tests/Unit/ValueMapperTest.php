@@ -225,6 +225,25 @@ class ValueMapperTest extends TestCase
             ],
             [
                 [
+                    'v' => null
+                ],
+                [
+                    'type' => 'RECORD',
+                    'fields' => [
+                        [
+                            'name' => 'Say',
+                            'type' => 'STRING'
+                        ],
+                        [
+                            'name' => 'To the',
+                            'type' => 'STRING'
+                        ]
+                    ]
+                ],
+                null
+            ],
+            [
+                [
                     'v' => [
                         ['v' => 'Hello'],
                         ['v' => 'World']

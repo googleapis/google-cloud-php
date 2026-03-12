@@ -70,15 +70,6 @@ s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance', merge=php._me
 # copy GPBMetadata file to metadata
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/', merge=php._merge)
 
-# remove class_alias code
-s.replace(
-    "src/V*/**/*.php",
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
-
 # fix relative cloud.google.com links
 s.replace(
     "src/**/V*/**/*.php",

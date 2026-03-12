@@ -121,6 +121,10 @@ class ValueMapper
                     ? $this->int64TimestampFromBigQuery($value)
                     : $this->floatTimestampFromBigQuery($value);
             case self::TYPE_RECORD:
+                if (is_null($value)) {
+                    return null;
+                }
+
                 return $this->recordFromBigQuery($value, $schema['fields']);
             case self::TYPE_GEOGRAPHY:
                 return new Geography((string) $value);
