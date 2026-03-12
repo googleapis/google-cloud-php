@@ -157,17 +157,7 @@ class ApiException extends Exception
     {
         $metadata = property_exists($status, 'metadata') ? $status->metadata : null;
         $errors = [];
-        if (isset($metadata['grpc-status-details-bin'])) {
-            $decodedStatus = new \Google\Rpc\Status();
-            $decodedStatus->mergeFromString($metadata['grpc-status-details-bin'][0]);
-            foreach ($decodedStatus->getDetails() as $any) {
-                if (isset(KnownTypes::JSON_TYPES[$any->getTypeUrl()])) {
-                    $class = KnownTypes::JSON_TYPES[$any->getTypeUrl()];
-                    new $class(); // add known types to descriptor pool
-                }
-                $errors[] = $any->unpack();
-            }
-        }
+
         return self::create(
             $status->details,
             $status->code,
@@ -326,11 +316,11 @@ class ApiException extends Exception
 
             $type = $error['@type'];
 
-            if (!isset(KnownTypes::JSON_TYPES[$type])) {
+            if (!isset(KnownTypes::TYPE_URLS[$type])) {
                 continue;
             }
 
-            $class = KnownTypes::JSON_TYPES[$type];
+            $class = KnownTypes::TYPE_URLS[$type];
             $message = new $class();
             $jsonMessage = json_encode(array_diff_key($error, ['@type' => true]));
             $message->mergeFromJsonString($jsonMessage);

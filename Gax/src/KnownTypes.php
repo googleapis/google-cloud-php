@@ -31,11 +31,19 @@
  */
 namespace Google\ApiCore;
 
+/**
+ * @internal
+ */
 class KnownTypes
 {
     private static bool $initialized = false;
 
-    public const GRPC_TYPES = [
+    /** @deprecated use BIN_TYPES instead */
+    public const GRPC_TYPES = self::BIN_TYPES;
+    /** @deprecated use TYPE_URLS instead */
+    public const JSON_TYPES = self::TYPE_URLS;
+
+    public const BIN_TYPES = [
         'google.rpc.retryinfo-bin' => \Google\Rpc\RetryInfo::class,
         'google.rpc.debuginfo-bin' => \Google\Rpc\DebugInfo::class,
         'google.rpc.quotafailure-bin' => \Google\Rpc\QuotaFailure::class,
@@ -48,7 +56,7 @@ class KnownTypes
         'google.rpc.preconditionfailure-bin' => \Google\Rpc\PreconditionFailure::class,
     ];
 
-    public const JSON_TYPES = [
+    public const TYPE_URLS = [
         'type.googleapis.com/google.rpc.RetryInfo' => \Google\Rpc\RetryInfo::class,
         'type.googleapis.com/google.rpc.DebugInfo' => \Google\Rpc\DebugInfo::class,
         'type.googleapis.com/google.rpc.QuotaFailure' => \Google\Rpc\QuotaFailure::class,
@@ -63,7 +71,7 @@ class KnownTypes
 
     public static function allKnownTypes(): array
     {
-        return self::GRPC_TYPES + self::JSON_TYPES;
+        return array_values(self::TYPE_URLS);
     }
 
     public static function addKnownTypesToDescriptorPool()
