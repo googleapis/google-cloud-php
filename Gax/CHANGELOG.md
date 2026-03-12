@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.42.1](https://github.com/googleapis/gax-php/compare/v1.42.0...v1.42.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/protobuf to v5 ([#655](https://github.com/googleapis/gax-php/issues/655)) ([1d89f50](https://github.com/googleapis/gax-php/commit/1d89f50510794e220fb036042612336717e8fedd))
+* Suppress unpack exceptions ([#656](https://github.com/googleapis/gax-php/issues/656)) ([989cf37](https://github.com/googleapis/gax-php/commit/989cf3710c6285b3eb71b6fc0c83d2b50508f456))
+
 ## [1.42.0](https://github.com/googleapis/gax-php/compare/v1.41.0...v1.42.0) (2026-01-22)
 
 
