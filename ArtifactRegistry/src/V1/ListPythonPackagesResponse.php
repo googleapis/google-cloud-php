@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from listing python packages.
@@ -35,7 +35,7 @@ class ListPythonPackagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\PythonPackage>|\Google\Protobuf\Internal\RepeatedField $python_packages
+     *     @type \Google\Cloud\ArtifactRegistry\V1\PythonPackage[] $python_packages
      *           The python packages returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of artifacts, or empty if there are no
@@ -51,7 +51,7 @@ class ListPythonPackagesResponse extends \Google\Protobuf\Internal\Message
      * The python packages returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.PythonPackage python_packages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\PythonPackage>
      */
     public function getPythonPackages()
     {
@@ -62,7 +62,7 @@ class ListPythonPackagesResponse extends \Google\Protobuf\Internal\Message
      * The python packages returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.PythonPackage python_packages = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\PythonPackage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\PythonPackage[] $var
      * @return $this
      */
     public function setPythonPackages($var)

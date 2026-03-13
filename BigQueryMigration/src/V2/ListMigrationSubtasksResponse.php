@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for a `ListMigrationSubtasks` call.
@@ -35,7 +35,7 @@ class ListMigrationSubtasksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\MigrationSubtask>|\Google\Protobuf\Internal\RepeatedField $migration_subtasks
+     *     @type \Google\Cloud\BigQuery\Migration\V2\MigrationSubtask[] $migration_subtasks
      *           The migration subtasks for the specified task.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListMigrationSubtasksResponse extends \Google\Protobuf\Internal\Message
      * The migration subtasks for the specified task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.MigrationSubtask migration_subtasks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\MigrationSubtask>
      */
     public function getMigrationSubtasks()
     {
@@ -62,7 +62,7 @@ class ListMigrationSubtasksResponse extends \Google\Protobuf\Internal\Message
      * The migration subtasks for the specified task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.MigrationSubtask migration_subtasks = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\MigrationSubtask>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\MigrationSubtask[] $var
      * @return $this
      */
     public function setMigrationSubtasks($var)

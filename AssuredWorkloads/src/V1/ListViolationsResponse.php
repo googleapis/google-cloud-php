@@ -5,8 +5,8 @@
 namespace Google\Cloud\AssuredWorkloads\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of ListViolations endpoint.
@@ -34,7 +34,7 @@ class ListViolationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AssuredWorkloads\V1\Violation>|\Google\Protobuf\Internal\RepeatedField $violations
+     *     @type \Google\Cloud\AssuredWorkloads\V1\Violation[] $violations
      *           List of Violations under a Workload.
      *     @type string $next_page_token
      *           The next page token. Returns empty if reached the last page.
@@ -49,7 +49,7 @@ class ListViolationsResponse extends \Google\Protobuf\Internal\Message
      * List of Violations under a Workload.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1.Violation violations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AssuredWorkloads\V1\Violation>
      */
     public function getViolations()
     {
@@ -60,7 +60,7 @@ class ListViolationsResponse extends \Google\Protobuf\Internal\Message
      * List of Violations under a Workload.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1.Violation violations = 1;</code>
-     * @param array<\Google\Cloud\AssuredWorkloads\V1\Violation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AssuredWorkloads\V1\Violation[] $var
      * @return $this
      */
     public function setViolations($var)

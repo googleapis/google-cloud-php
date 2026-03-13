@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for List BackupPlanAssociation
@@ -46,7 +46,7 @@ class ListBackupPlanAssociationsResponse extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupPlanAssociation>|\Google\Protobuf\Internal\RepeatedField $backup_plan_associations
+     *     @type \Google\Cloud\BackupDR\V1\BackupPlanAssociation[] $backup_plan_associations
      *           The list of Backup Plan Associations in the project for the specified
      *           location.
      *           If the `{location}` value in the request is "-", the response contains a
@@ -56,7 +56,7 @@ class ListBackupPlanAssociationsResponse extends \Google\Protobuf\Internal\Messa
      *           unreachable locations.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -75,7 +75,7 @@ class ListBackupPlanAssociationsResponse extends \Google\Protobuf\Internal\Messa
      * unreachable locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupPlanAssociation backup_plan_associations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupPlanAssociation>
      */
     public function getBackupPlanAssociations()
     {
@@ -92,7 +92,7 @@ class ListBackupPlanAssociationsResponse extends \Google\Protobuf\Internal\Messa
      * unreachable locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupPlanAssociation backup_plan_associations = 1;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupPlanAssociation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupPlanAssociation[] $var
      * @return $this
      */
     public function setBackupPlanAssociations($var)
@@ -133,7 +133,7 @@ class ListBackupPlanAssociationsResponse extends \Google\Protobuf\Internal\Messa
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -144,7 +144,7 @@ class ListBackupPlanAssociationsResponse extends \Google\Protobuf\Internal\Messa
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

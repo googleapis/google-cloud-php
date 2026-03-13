@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of instance tags.
@@ -29,7 +29,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type string[] $items
      *           Optional. An array of tags. Each tag must be 1-63 characters long, and
      *           comply with RFC1035.
      * }
@@ -44,7 +44,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      * comply with RFC1035.
      *
      * Generated from protobuf field <code>repeated string items = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItems()
     {
@@ -56,7 +56,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      * comply with RFC1035.
      *
      * Generated from protobuf field <code>repeated string items = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItems($var)

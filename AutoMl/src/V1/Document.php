@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A structured text document e.g. a PDF.
@@ -57,7 +57,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           An input config specifying the content of the document.
      *     @type \Google\Cloud\AutoMl\V1\TextSnippet $document_text
      *           The plain text version of this document.
-     *     @type array<\Google\Cloud\AutoMl\V1\Document\Layout>|\Google\Protobuf\Internal\RepeatedField $layout
+     *     @type \Google\Cloud\AutoMl\V1\Document\Layout[] $layout
      *           Describes the layout of the document.
      *           Sorted by [page_number][].
      *     @type \Google\Cloud\AutoMl\V1\DocumentDimensions $document_dimensions
@@ -148,7 +148,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Sorted by [page_number][].
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.Document.Layout layout = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\Document\Layout>
      */
     public function getLayout()
     {
@@ -160,7 +160,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Sorted by [page_number][].
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.Document.Layout layout = 3;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\Document\Layout>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\Document\Layout[] $var
      * @return $this
      */
     public function setLayout($var)

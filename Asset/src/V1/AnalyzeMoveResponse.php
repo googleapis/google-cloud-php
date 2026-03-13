@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for resource move analysis.
@@ -29,7 +29,7 @@ class AnalyzeMoveResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\MoveAnalysis>|\Google\Protobuf\Internal\RepeatedField $move_analysis
+     *     @type \Google\Cloud\Asset\V1\MoveAnalysis[] $move_analysis
      *           The list of analyses returned from performing the intended resource move
      *           analysis. The analysis is grouped by different Google Cloud services.
      * }
@@ -44,7 +44,7 @@ class AnalyzeMoveResponse extends \Google\Protobuf\Internal\Message
      * analysis. The analysis is grouped by different Google Cloud services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveAnalysis move_analysis = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\MoveAnalysis>
      */
     public function getMoveAnalysis()
     {
@@ -56,7 +56,7 @@ class AnalyzeMoveResponse extends \Google\Protobuf\Internal\Message
      * analysis. The analysis is grouped by different Google Cloud services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveAnalysis move_analysis = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\MoveAnalysis>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\MoveAnalysis[] $var
      * @return $this
      */
     public function setMoveAnalysis($var)

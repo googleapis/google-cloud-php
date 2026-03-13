@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A reference to a shared dataset. It is an existing BigQuery dataset with a
@@ -74,5 +74,4 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

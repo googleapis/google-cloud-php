@@ -5,8 +5,8 @@
 namespace Google\Cloud\AuditManager\V1\EnrollResourceRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The destination details where the audit report must be uploaded.
@@ -75,5 +75,4 @@ class EligibleDestination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

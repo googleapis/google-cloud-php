@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Files store content that is potentially associated with Packages or Versions.
@@ -79,7 +79,7 @@ class File extends \Google\Protobuf\Internal\Message
      *           If the file ID part contains slashes, they are escaped.
      *     @type int|string $size_bytes
      *           The size of the File in bytes.
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $hashes
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Hash[] $hashes
      *           The hashes of the file content.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the File was created.
@@ -159,7 +159,7 @@ class File extends \Google\Protobuf\Internal\Message
      * The hashes of the file content.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash hashes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Hash>
      */
     public function getHashes()
     {
@@ -170,7 +170,7 @@ class File extends \Google\Protobuf\Internal\Message
      * The hashes of the file content.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash hashes = 4;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Hash[] $var
      * @return $this
      */
     public function setHashes($var)

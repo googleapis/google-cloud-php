@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector\PrincipalInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ServiceAccount represents a GCP service account.
@@ -64,5 +64,4 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

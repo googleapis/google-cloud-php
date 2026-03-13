@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A server.
@@ -179,12 +179,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           The default value is false.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels as key value pairs.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\Lun>|\Google\Protobuf\Internal\RepeatedField $luns
+     *     @type \Google\Cloud\BareMetalSolution\V2\Lun[] $luns
      *           Immutable. List of LUNs associated with this server.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\BareMetalSolution\V2\Volume[] $volumes
      *           Input only. List of Volumes to attach to this Instance on creation.
      *           This field won't be populated in Get/List responses.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\Network>|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type \Google\Cloud\BareMetalSolution\V2\Network[] $networks
      *           Output only. List of networks associated with this server.
      *     @type bool $interactive_serial_console_enabled
      *           Output only. True if the interactive serial console feature is enabled for
@@ -200,7 +200,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Instance network template name. For eg, bondaa-bondaa, bondab-nic, etc.
      *           Generally, the template name follows the syntax of
      *           "bond<bond_mode>" or "nic".
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $logical_interfaces
+     *     @type \Google\Cloud\BareMetalSolution\V2\LogicalInterface[] $logical_interfaces
      *           List of logical interfaces for the instance. The number of logical
      *           interfaces will be the same as number of hardware bond/nic on the chosen
      *           network template. For the non-multivlan configurations (for eg, existing
@@ -467,7 +467,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Immutable. List of LUNs associated with this server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Lun luns = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\Lun>
      */
     public function getLuns()
     {
@@ -478,7 +478,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Immutable. List of LUNs associated with this server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Lun luns = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\Lun>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\Lun[] $var
      * @return $this
      */
     public function setLuns($var)
@@ -494,7 +494,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * This field won't be populated in Get/List responses.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Volume volumes = 16 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\Volume>
      */
     public function getVolumes()
     {
@@ -506,7 +506,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * This field won't be populated in Get/List responses.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Volume volumes = 16 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\Volume[] $var
      * @return $this
      */
     public function setVolumes($var)
@@ -521,7 +521,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. List of networks associated with this server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Network networks = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\Network>
      */
     public function getNetworks()
     {
@@ -532,7 +532,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. List of networks associated with this server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Network networks = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\Network>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\Network[] $var
      * @return $this
      */
     public function setNetworks($var)
@@ -669,7 +669,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Instance.logical_interfaces will be filled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface logical_interfaces = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>
      */
     public function getLogicalInterfaces()
     {
@@ -686,7 +686,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Instance.logical_interfaces will be filled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface logical_interfaces = 15;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\LogicalInterface[] $var
      * @return $this
      */
     public function setLogicalInterfaces($var)

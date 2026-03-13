@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicySearchResult\Explanation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IAM permissions
@@ -28,7 +28,7 @@ class Permissions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
+     *     @type string[] $permissions
      *           A list of permissions. A sample permission string: `compute.disk.get`.
      * }
      */
@@ -41,7 +41,7 @@ class Permissions extends \Google\Protobuf\Internal\Message
      * A list of permissions. A sample permission string: `compute.disk.get`.
      *
      * Generated from protobuf field <code>repeated string permissions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermissions()
     {
@@ -52,7 +52,7 @@ class Permissions extends \Google\Protobuf\Internal\Message
      * A list of permissions. A sample permission string: `compute.disk.get`.
      *
      * Generated from protobuf field <code>repeated string permissions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermissions($var)
@@ -64,5 +64,4 @@ class Permissions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

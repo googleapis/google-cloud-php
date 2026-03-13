@@ -5,8 +5,8 @@
 namespace Google\Cloud\AuditManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message with all the descendent resources with enrollment.
@@ -34,7 +34,7 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus>|\Google\Protobuf\Internal\RepeatedField $resource_enrollment_statuses
+     *     @type \Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus[] $resource_enrollment_statuses
      *           The resources with their enrollment status.
      *     @type string $next_page_token
      *           Output only. The token to retrieve the next page of results.
@@ -49,7 +49,7 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
      * The resources with their enrollment status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ResourceEnrollmentStatus resource_enrollment_statuses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus>
      */
     public function getResourceEnrollmentStatuses()
     {
@@ -60,7 +60,7 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
      * The resources with their enrollment status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ResourceEnrollmentStatus resource_enrollment_statuses = 1;</code>
-     * @param array<\Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus[] $var
      * @return $this
      */
     public function setResourceEnrollmentStatuses($var)

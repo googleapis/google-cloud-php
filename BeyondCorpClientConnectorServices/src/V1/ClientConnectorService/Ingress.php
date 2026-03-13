@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings of how to connect to the ClientGateway.
@@ -73,5 +73,4 @@ class Ingress extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\Environment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.batch.v1.Environment.KMSEnvMap</code>
@@ -96,5 +96,4 @@ class KMSEnvMap extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

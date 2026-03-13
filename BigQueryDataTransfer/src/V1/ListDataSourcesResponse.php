@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Returns list of supported data sources and their metadata.
@@ -37,7 +37,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSource>|\Google\Protobuf\Internal\RepeatedField $data_sources
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSource[] $data_sources
      *           List of supported data sources and their transfer settings.
      *     @type string $next_page_token
      *           Output only. The next-pagination token. For multiple-page list results,
@@ -55,7 +55,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * List of supported data sources and their transfer settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSource data_sources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataTransfer\V1\DataSource>
      */
     public function getDataSources()
     {
@@ -66,7 +66,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * List of supported data sources and their transfer settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSource data_sources = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\DataSource[] $var
      * @return $this
      */
     public function setDataSources($var)

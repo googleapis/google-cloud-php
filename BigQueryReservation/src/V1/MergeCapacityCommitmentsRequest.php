@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Reservation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -72,7 +72,7 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Parent resource that identifies admin project and location e.g.,
      *            `projects/myproject/locations/us`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $capacity_commitment_ids
+     *     @type string[] $capacity_commitment_ids
      *           Ids of capacity commitments to merge.
      *           These capacity commitments must exist under admin project and location
      *           specified in the parent.
@@ -126,7 +126,7 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      * projects/myproject/locations/US/capacityCommitments/abc
      *
      * Generated from protobuf field <code>repeated string capacity_commitment_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCapacityCommitmentIds()
     {
@@ -141,7 +141,7 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      * projects/myproject/locations/US/capacityCommitments/abc
      *
      * Generated from protobuf field <code>repeated string capacity_commitment_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCapacityCommitmentIds($var)

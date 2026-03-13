@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PlacementPolicy describes a group placement policy for the VMs controlled
@@ -127,5 +127,4 @@ class PlacementPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

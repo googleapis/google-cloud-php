@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnectors\V1\NotificationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration for Pub/Sub messaging for the AppConnector.
@@ -64,5 +64,4 @@ class CloudPubSubNotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

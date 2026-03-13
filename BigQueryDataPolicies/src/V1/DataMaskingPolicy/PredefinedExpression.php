@@ -79,7 +79,7 @@ class PredefinedExpression
      * Masking expression for email addresses.
      * The masking behavior is as follows:
      * * Syntax-valid email address: Replace username with XXXXX. For example,
-     * cloudysanfrancisco&#64;gmail.com becomes XXXXX&#64;gmail.com.
+     * cloudysanfrancisco\@gmail.com becomes XXXXX\@gmail.com.
      * * Syntax-invalid email address: Apply SHA-256 hash.
      * For more information, see [Email
      * mask](https://cloud.google.com/bigquery/docs/column-data-masking-intro#masking_options).
@@ -135,5 +135,4 @@ class PredefinedExpression
         return constant($const);
     }
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1\ExportArtifactMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The exported artifact file.
@@ -42,7 +42,7 @@ class ExportedFile extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the exported artifact file.
      *           Format: `projects/p1/locations/us/repositories/repo1/files/file1`
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $hashes
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Hash[] $hashes
      *           The hashes of the file content.
      * }
      */
@@ -116,7 +116,7 @@ class ExportedFile extends \Google\Protobuf\Internal\Message
      * The hashes of the file content.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash hashes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Hash>
      */
     public function getHashes()
     {
@@ -127,7 +127,7 @@ class ExportedFile extends \Google\Protobuf\Internal\Message
      * The hashes of the file content.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash hashes = 3;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Hash[] $var
      * @return $this
      */
     public function setHashes($var)
@@ -147,5 +147,4 @@ class ExportedFile extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AssuredWorkloads\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Workload object for managing highly regulated workloads of cloud
@@ -166,7 +166,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           Allowed characters are: lowercase and uppercase letters, numbers,
      *           hyphen, and spaces.
      *           Example: My Workload
-     *     @type array<\Google\Cloud\AssuredWorkloads\V1\Workload\ResourceInfo>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type \Google\Cloud\AssuredWorkloads\V1\Workload\ResourceInfo[] $resources
      *           Output only. The resources associated with this workload.
      *           These resources will be created when creating the workload.
      *           If any of the projects already exist, the workload creation will fail.
@@ -202,7 +202,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           This field is deprecated as of Feb 28, 2022.
      *           In order to create a Keyring, callers should specify,
      *           ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
-     *     @type array<\Google\Cloud\AssuredWorkloads\V1\Workload\ResourceSettings>|\Google\Protobuf\Internal\RepeatedField $resource_settings
+     *     @type \Google\Cloud\AssuredWorkloads\V1\Workload\ResourceSettings[] $resource_settings
      *           Input only. Resource properties that are used to customize workload resources.
      *           These properties (such as custom project id) will be used to create
      *           workload resources if possible. This field is optional.
@@ -215,7 +215,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           Output only. Represents the SAA enrollment response of the given workload.
      *           SAA enrollment response is queried during GetWorkload call.
      *           In failure cases, user friendly error message is shown in SAA details page.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $compliant_but_disallowed_services
+     *     @type string[] $compliant_but_disallowed_services
      *           Output only. Urls for services which are compliant for this Assured Workload, but which
      *           are currently disallowed by the ResourceUsageRestriction org policy.
      *           Invoke RestrictAllowedResources endpoint to allow your project developers
@@ -302,7 +302,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Always read only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1.Workload.ResourceInfo resources = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AssuredWorkloads\V1\Workload\ResourceInfo>
      */
     public function getResources()
     {
@@ -316,7 +316,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Always read only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1.Workload.ResourceInfo resources = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AssuredWorkloads\V1\Workload\ResourceInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AssuredWorkloads\V1\Workload\ResourceInfo[] $var
      * @return $this
      */
     public function setResources($var)
@@ -579,7 +579,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * workload resources if possible. This field is optional.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AssuredWorkloads\V1\Workload\ResourceSettings>
      */
     public function getResourceSettings()
     {
@@ -592,7 +592,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * workload resources if possible. This field is optional.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AssuredWorkloads\V1\Workload\ResourceSettings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AssuredWorkloads\V1\Workload\ResourceSettings[] $var
      * @return $this
      */
     public function setResourceSettings($var)
@@ -704,7 +704,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * to use these services in their environment."
      *
      * Generated from protobuf field <code>repeated string compliant_but_disallowed_services = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCompliantButDisallowedServices()
     {
@@ -718,7 +718,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * to use these services in their environment."
      *
      * Generated from protobuf field <code>repeated string compliant_but_disallowed_services = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCompliantButDisallowedServices($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BackupDrPlanConfig has additional information about Google Cloud Backup and
@@ -29,7 +29,7 @@ class BackupDrPlanConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupDrPlanRule>|\Google\Protobuf\Internal\RepeatedField $backup_dr_plan_rules
+     *     @type \Google\Cloud\BackupDR\V1\BackupDrPlanRule[] $backup_dr_plan_rules
      *           Backup rules of the backup plan resource.
      * }
      */
@@ -42,7 +42,7 @@ class BackupDrPlanConfig extends \Google\Protobuf\Internal\Message
      * Backup rules of the backup plan resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupDrPlanRule backup_dr_plan_rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupDrPlanRule>
      */
     public function getBackupDrPlanRules()
     {
@@ -53,7 +53,7 @@ class BackupDrPlanConfig extends \Google\Protobuf\Internal\Message
      * Backup rules of the backup plan resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupDrPlanRule backup_dr_plan_rules = 1;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupDrPlanRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupDrPlanRule[] $var
      * @return $this
      */
     public function setBackupDrPlanRules($var)

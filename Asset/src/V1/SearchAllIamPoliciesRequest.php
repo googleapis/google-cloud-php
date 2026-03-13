@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search all IAM policies request.
@@ -41,8 +41,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * policy structure, see the [IAM policy
      * documentation](https://cloud.google.com/iam/help/allow-policies/structure).
      * Examples:
-     * * `policy:amy&#64;gmail.com` to find IAM policy bindings that specify user
-     *   "amy&#64;gmail.com".
+     * * `policy:amy\@gmail.com` to find IAM policy bindings that specify user
+     *   "amy\@gmail.com".
      * * `policy:roles/compute.admin` to find IAM policy bindings that specify
      *   the Compute Admin role.
      * * `policy:comp*` to find IAM policy bindings that contain "comp" as a
@@ -224,8 +224,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           policy structure, see the [IAM policy
      *           documentation](https://cloud.google.com/iam/help/allow-policies/structure).
      *           Examples:
-     *           * `policy:amy&#64;gmail.com` to find IAM policy bindings that specify user
-     *             "amy&#64;gmail.com".
+     *           * `policy:amy\@gmail.com` to find IAM policy bindings that specify user
+     *             "amy\@gmail.com".
      *           * `policy:roles/compute.admin` to find IAM policy bindings that specify
      *             the Compute Admin role.
      *           * `policy:comp*` to find IAM policy bindings that contain "comp" as a
@@ -265,7 +265,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           call to this method. `page_token` must be the value of `next_page_token`
      *           from the previous response. The values of all other method parameters must
      *           be identical to those in the previous call.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type string[] $asset_types
      *           Optional. A list of asset types that the IAM policies are attached to. If
      *           empty, it will search the IAM policies that are attached to all the asset
      *           types [supported by search
@@ -353,8 +353,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * policy structure, see the [IAM policy
      * documentation](https://cloud.google.com/iam/help/allow-policies/structure).
      * Examples:
-     * * `policy:amy&#64;gmail.com` to find IAM policy bindings that specify user
-     *   "amy&#64;gmail.com".
+     * * `policy:amy\@gmail.com` to find IAM policy bindings that specify user
+     *   "amy\@gmail.com".
      * * `policy:roles/compute.admin` to find IAM policy bindings that specify
      *   the Compute Admin role.
      * * `policy:comp*` to find IAM policy bindings that contain "comp" as a
@@ -403,8 +403,8 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * policy structure, see the [IAM policy
      * documentation](https://cloud.google.com/iam/help/allow-policies/structure).
      * Examples:
-     * * `policy:amy&#64;gmail.com` to find IAM policy bindings that specify user
-     *   "amy&#64;gmail.com".
+     * * `policy:amy\@gmail.com` to find IAM policy bindings that specify user
+     *   "amy\@gmail.com".
      * * `policy:roles/compute.admin` to find IAM policy bindings that specify
      *   the Compute Admin role.
      * * `policy:comp*` to find IAM policy bindings that contain "comp" as a
@@ -529,7 +529,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAssetTypes()
     {
@@ -553,7 +553,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAssetTypes($var)

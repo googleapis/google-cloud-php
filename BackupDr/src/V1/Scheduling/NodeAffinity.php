@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1\Scheduling;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Node Affinity: the configuration of desired nodes onto which this Instance
@@ -45,7 +45,7 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
      *           Optional. Corresponds to the label key of Node resource.
      *     @type int $operator
      *           Optional. Defines the operation of node selection.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Optional. Corresponds to the label values of Node resource.
      * }
      */
@@ -130,7 +130,7 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Corresponds to the label values of Node resource.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -141,7 +141,7 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Corresponds to the label values of Node resource.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -153,5 +153,4 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Network with all used IP addresses.
@@ -36,7 +36,7 @@ class NetworkUsage extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\BareMetalSolution\V2\Network $network
      *           Network.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $used_ips
+     *     @type string[] $used_ips
      *           All used IP addresses in this network.
      * }
      */
@@ -85,7 +85,7 @@ class NetworkUsage extends \Google\Protobuf\Internal\Message
      * All used IP addresses in this network.
      *
      * Generated from protobuf field <code>repeated string used_ips = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUsedIps()
     {
@@ -96,7 +96,7 @@ class NetworkUsage extends \Google\Protobuf\Internal\Message
      * All used IP addresses in this network.
      *
      * Generated from protobuf field <code>repeated string used_ips = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUsedIps($var)

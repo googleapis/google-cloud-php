@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NpmPackage represents an npm artifact.
@@ -76,7 +76,7 @@ class NpmPackage extends \Google\Protobuf\Internal\Message
      *           Package for the artifact.
      *     @type string $version
      *           Version of this package.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Tags attached to this package.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time the package was created.
@@ -183,7 +183,7 @@ class NpmPackage extends \Google\Protobuf\Internal\Message
      * Tags attached to this package.
      *
      * Generated from protobuf field <code>repeated string tags = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -194,7 +194,7 @@ class NpmPackage extends \Google\Protobuf\Internal\Message
      * Tags attached to this package.
      *
      * Generated from protobuf field <code>repeated string tags = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

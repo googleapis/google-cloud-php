@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Operation System image.
@@ -60,11 +60,11 @@ class OSImage extends \Google\Protobuf\Internal\Message
      *           OS Image code.
      *     @type string $description
      *           OS Image description.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_instance_types
+     *     @type string[] $applicable_instance_types
      *           Instance types this image is applicable to.
      *           [Available
      *           types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_network_templates
+     *     @type string[] $supported_network_templates
      *           Network templates that can be used with this OS Image.
      * }
      */
@@ -157,7 +157,7 @@ class OSImage extends \Google\Protobuf\Internal\Message
      * types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)
      *
      * Generated from protobuf field <code>repeated string applicable_instance_types = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApplicableInstanceTypes()
     {
@@ -170,7 +170,7 @@ class OSImage extends \Google\Protobuf\Internal\Message
      * types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)
      *
      * Generated from protobuf field <code>repeated string applicable_instance_types = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApplicableInstanceTypes($var)
@@ -185,7 +185,7 @@ class OSImage extends \Google\Protobuf\Internal\Message
      * Network templates that can be used with this OS Image.
      *
      * Generated from protobuf field <code>repeated string supported_network_templates = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedNetworkTemplates()
     {
@@ -196,7 +196,7 @@ class OSImage extends \Google\Protobuf\Internal\Message
      * Network templates that can be used with this OS Image.
      *
      * Generated from protobuf field <code>repeated string supported_network_templates = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedNetworkTemplates($var)

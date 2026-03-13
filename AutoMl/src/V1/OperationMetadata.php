@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata used across all long running operations returned by AutoML API.
@@ -72,7 +72,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $progress_percent
      *           Output only. Progress of operation. Range: [0, 100].
      *           Not used currently.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type \Google\Rpc\Status[] $partial_failures
      *           Output only. Partial failures encountered.
      *           E.g. single files that couldn't be read.
      *           This field should never exceed 20 entries.
@@ -402,7 +402,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Status details field will contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialFailures()
     {
@@ -416,7 +416,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Status details field will contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 2;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialFailures($var)

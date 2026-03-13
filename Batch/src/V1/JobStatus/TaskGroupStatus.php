@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\JobStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregated task status for a TaskGroup.
@@ -38,7 +38,7 @@ class TaskGroupStatus extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $counts
      *           Count of task in each state in the TaskGroup.
      *           The map key is task state name.
-     *     @type array<\Google\Cloud\Batch\V1\JobStatus\InstanceStatus>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Batch\V1\JobStatus\InstanceStatus[] $instances
      *           Status of instances allocated for the TaskGroup.
      * }
      */
@@ -79,7 +79,7 @@ class TaskGroupStatus extends \Google\Protobuf\Internal\Message
      * Status of instances allocated for the TaskGroup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.JobStatus.InstanceStatus instances = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\JobStatus\InstanceStatus>
      */
     public function getInstances()
     {
@@ -90,7 +90,7 @@ class TaskGroupStatus extends \Google\Protobuf\Internal\Message
      * Status of instances allocated for the TaskGroup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.JobStatus.InstanceStatus instances = 2;</code>
-     * @param array<\Google\Cloud\Batch\V1\JobStatus\InstanceStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\JobStatus\InstanceStatus[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -102,5 +102,4 @@ class TaskGroupStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

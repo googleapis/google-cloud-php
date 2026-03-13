@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A new or an existing persistent disk (PD) or a local ssd attached to a VM
@@ -147,5 +147,4 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

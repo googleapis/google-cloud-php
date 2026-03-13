@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the destination Pub/Sub subscription.
@@ -134,7 +134,7 @@ class PubSubSubscription extends \Google\Protobuf\Internal\Message
      * lettering is disabled.
      * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -270,7 +270,7 @@ class PubSubSubscription extends \Google\Protobuf\Internal\Message
      *           lettering is disabled.
      *           The Pub/Sub service account associated with this subscriptions's
      *           parent project (i.e.,
-     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     *           service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      *           permission to Acknowledge() messages on this subscription.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\RetryPolicy $retry_policy
      *           Optional. A policy that specifies how Pub/Sub retries message delivery for
@@ -296,7 +296,7 @@ class PubSubSubscription extends \Google\Protobuf\Internal\Message
      *           when `enable_exactly_once_delivery` is true if the message was published
      *           multiple times by a publisher client. These copies are  considered distinct
      *           by Pub/Sub and have distinct `message_id` values.
-     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $message_transforms
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\MessageTransform[] $message_transforms
      *           Optional. Transforms to be applied to messages before they are delivered to
      *           subscribers. Transforms are applied in the order specified.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
@@ -739,7 +739,7 @@ class PubSubSubscription extends \Google\Protobuf\Internal\Message
      * lettering is disabled.
      * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -766,7 +766,7 @@ class PubSubSubscription extends \Google\Protobuf\Internal\Message
      * lettering is disabled.
      * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.analyticshub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -910,7 +910,7 @@ class PubSubSubscription extends \Google\Protobuf\Internal\Message
      * subscribers. Transforms are applied in the order specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\AnalyticsHub\V1\MessageTransform>
      */
     public function getMessageTransforms()
     {
@@ -922,7 +922,7 @@ class PubSubSubscription extends \Google\Protobuf\Internal\Message
      * subscribers. Transforms are applied in the order specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\MessageTransform[] $var
      * @return $this
      */
     public function setMessageTransforms($var)

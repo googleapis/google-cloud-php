@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The translation config to capture necessary settings for a translation task
@@ -73,7 +73,7 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      *           The default source environment values for the translation.
      *     @type string $request_source
      *           The indicator to show translation request initiator.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_types
+     *     @type string[] $target_types
      *           The types of output to generate, e.g. sql, metadata etc. If not specified,
      *           a default set of targets will be generated. Some additional target types
      *           may be slower to generate. See the documentation for the set of available
@@ -319,7 +319,7 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      * target types.
      *
      * Generated from protobuf field <code>repeated string target_types = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetTypes()
     {
@@ -333,7 +333,7 @@ class TranslationConfigDetails extends \Google\Protobuf\Internal\Message
      * target types.
      *
      * Generated from protobuf field <code>repeated string target_types = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetTypes($var)

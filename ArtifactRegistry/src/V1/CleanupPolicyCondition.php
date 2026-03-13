@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CleanupPolicyCondition is a set of conditions attached to a CleanupPolicy.
@@ -62,11 +62,11 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      *
      *     @type int $tag_state
      *           Match versions by tag status.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_prefixes
+     *     @type string[] $tag_prefixes
      *           Match versions by tag prefix. Applied on any prefix match.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version_name_prefixes
+     *     @type string[] $version_name_prefixes
      *           Match versions by version name prefix. Applied on any prefix match.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $package_name_prefixes
+     *     @type string[] $package_name_prefixes
      *           Match versions by package prefix. Applied on any prefix match.
      *     @type \Google\Protobuf\Duration $older_than
      *           Match versions older than a duration.
@@ -119,7 +119,7 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      * Match versions by tag prefix. Applied on any prefix match.
      *
      * Generated from protobuf field <code>repeated string tag_prefixes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTagPrefixes()
     {
@@ -130,7 +130,7 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      * Match versions by tag prefix. Applied on any prefix match.
      *
      * Generated from protobuf field <code>repeated string tag_prefixes = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTagPrefixes($var)
@@ -145,7 +145,7 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      * Match versions by version name prefix. Applied on any prefix match.
      *
      * Generated from protobuf field <code>repeated string version_name_prefixes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVersionNamePrefixes()
     {
@@ -156,7 +156,7 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      * Match versions by version name prefix. Applied on any prefix match.
      *
      * Generated from protobuf field <code>repeated string version_name_prefixes = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVersionNamePrefixes($var)
@@ -171,7 +171,7 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      * Match versions by package prefix. Applied on any prefix match.
      *
      * Generated from protobuf field <code>repeated string package_name_prefixes = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPackageNamePrefixes()
     {
@@ -182,7 +182,7 @@ class CleanupPolicyCondition extends \Google\Protobuf\Internal\Message
      * Match versions by package prefix. Applied on any prefix match.
      *
      * Generated from protobuf field <code>repeated string package_name_prefixes = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPackageNamePrefixes($var)

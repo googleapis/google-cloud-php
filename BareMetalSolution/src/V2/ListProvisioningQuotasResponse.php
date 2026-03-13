@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the list of provisioning quotas.
@@ -35,7 +35,7 @@ class ListProvisioningQuotasResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\ProvisioningQuota>|\Google\Protobuf\Internal\RepeatedField $provisioning_quotas
+     *     @type \Google\Cloud\BareMetalSolution\V2\ProvisioningQuota[] $provisioning_quotas
      *           The provisioning quotas registered in this project.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListProvisioningQuotasResponse extends \Google\Protobuf\Internal\Message
      * The provisioning quotas registered in this project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.ProvisioningQuota provisioning_quotas = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\ProvisioningQuota>
      */
     public function getProvisioningQuotas()
     {
@@ -62,7 +62,7 @@ class ListProvisioningQuotasResponse extends \Google\Protobuf\Internal\Message
      * The provisioning quotas registered in this project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.ProvisioningQuota provisioning_quotas = 1;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\ProvisioningQuota>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\ProvisioningQuota[] $var
      * @return $this
      */
     public function setProvisioningQuotas($var)

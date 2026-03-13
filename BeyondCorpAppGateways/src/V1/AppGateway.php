@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppGateways\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A BeyondCorp AppGateway resource represents a BeyondCorp protected AppGateway
@@ -115,7 +115,7 @@ class AppGateway extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of the AppGateway.
      *     @type string $uri
      *           Output only. Server-defined URI for this resource.
-     *     @type array<\Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\AllocatedConnection>|\Google\Protobuf\Internal\RepeatedField $allocated_connections
+     *     @type \Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\AllocatedConnection[] $allocated_connections
      *           Output only. A list of connections allocated for the Gateway
      *     @type int $host_type
      *           Required. The type of hosting used by the AppGateway.
@@ -390,7 +390,7 @@ class AppGateway extends \Google\Protobuf\Internal\Message
      * Output only. A list of connections allocated for the Gateway
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.appgateways.v1.AppGateway.AllocatedConnection allocated_connections = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\AllocatedConnection>
      */
     public function getAllocatedConnections()
     {
@@ -401,7 +401,7 @@ class AppGateway extends \Google\Protobuf\Internal\Message
      * Output only. A list of connections allocated for the Gateway
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.appgateways.v1.AppGateway.AllocatedConnection allocated_connections = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\AllocatedConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\AllocatedConnection[] $var
      * @return $this
      */
     public function setAllocatedConnections($var)

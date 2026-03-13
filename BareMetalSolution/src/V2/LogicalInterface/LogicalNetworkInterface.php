@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2\LogicalInterface;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each logical network interface is effectively a network and IP pair.
@@ -204,5 +204,4 @@ class LogicalNetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

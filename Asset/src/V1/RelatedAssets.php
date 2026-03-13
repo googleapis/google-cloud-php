@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DEPRECATED. This message only presents for the purpose of
@@ -40,7 +40,7 @@ class RelatedAssets extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\RelationshipAttributes $relationship_attributes
      *           The detailed relationship attributes.
-     *     @type array<\Google\Cloud\Asset\V1\RelatedAsset>|\Google\Protobuf\Internal\RepeatedField $assets
+     *     @type \Google\Cloud\Asset\V1\RelatedAsset[] $assets
      *           The peer resources of the relationship.
      * }
      */
@@ -89,7 +89,7 @@ class RelatedAssets extends \Google\Protobuf\Internal\Message
      * The peer resources of the relationship.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.RelatedAsset assets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\RelatedAsset>
      */
     public function getAssets()
     {
@@ -100,7 +100,7 @@ class RelatedAssets extends \Google\Protobuf\Internal\Message
      * The peer resources of the relationship.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.RelatedAsset assets = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\RelatedAsset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\RelatedAsset[] $var
      * @return $this
      */
     public function setAssets($var)

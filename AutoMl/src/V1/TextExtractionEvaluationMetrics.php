@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Model evaluation metrics for text extraction problems.
@@ -37,7 +37,7 @@ class TextExtractionEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      *     @type float $au_prc
      *           Output only. The Area under precision recall curve metric.
-     *     @type array<\Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
+     *     @type \Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry[] $confidence_metrics_entries
      *           Output only. Metrics that have confidence thresholds.
      *           Precision-recall curve can be derived from it.
      * }
@@ -78,7 +78,7 @@ class TextExtractionEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Precision-recall curve can be derived from it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.TextExtractionEvaluationMetrics.ConfidenceMetricsEntry confidence_metrics_entries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry>
      */
     public function getConfidenceMetricsEntries()
     {
@@ -90,7 +90,7 @@ class TextExtractionEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Precision-recall curve can be derived from it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.TextExtractionEvaluationMetrics.ConfidenceMetricsEntry confidence_metrics_entries = 2;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry[] $var
      * @return $this
      */
     public function setConfidenceMetricsEntries($var)

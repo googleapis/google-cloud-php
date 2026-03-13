@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Model evaluation metrics for image object detection problems.
@@ -49,7 +49,7 @@ class ImageObjectDetectionEvaluationMetrics extends \Google\Protobuf\Internal\Me
      *     @type int $evaluated_bounding_box_count
      *           Output only. The total number of bounding boxes (i.e. summed over all
      *           images) the ground truth used to create this evaluation had.
-     *     @type array<\Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $bounding_box_metrics_entries
+     *     @type \Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry[] $bounding_box_metrics_entries
      *           Output only. The bounding boxes match metrics for each
      *           Intersection-over-union threshold 0.05,0.10,...,0.95,0.96,0.97,0.98,0.99
      *           and each label confidence threshold 0.05,0.10,...,0.95,0.96,0.97,0.98,0.99
@@ -99,7 +99,7 @@ class ImageObjectDetectionEvaluationMetrics extends \Google\Protobuf\Internal\Me
      * pair.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.BoundingBoxMetricsEntry bounding_box_metrics_entries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry>
      */
     public function getBoundingBoxMetricsEntries()
     {
@@ -113,7 +113,7 @@ class ImageObjectDetectionEvaluationMetrics extends \Google\Protobuf\Internal\Me
      * pair.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.BoundingBoxMetricsEntry bounding_box_metrics_entries = 2;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry[] $var
      * @return $this
      */
     public function setBoundingBoxMetricsEntries($var)

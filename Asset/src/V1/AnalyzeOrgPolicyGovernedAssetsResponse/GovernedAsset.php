@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Google Cloud asset(resource or IAM policy) governed by the
@@ -59,7 +59,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
      *           [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.policy_bundle][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.policy_bundle].
      *           The evaluation will respect the organization policy [hierarchy
      *           rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
-     *     @type array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>|\Google\Protobuf\Internal\RepeatedField $policy_bundle
+     *     @type \Google\Cloud\Asset\V1\AnalyzerOrgPolicy[] $policy_bundle
      *           The ordered list of all organization policies from the
      *           [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource]
      *           to the scope specified in the request.
@@ -194,7 +194,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
      * the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicy policy_bundle = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>
      */
     public function getPolicyBundle()
     {
@@ -209,7 +209,7 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
      * the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicy policy_bundle = 4;</code>
-     * @param array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AnalyzerOrgPolicy[] $var
      * @return $this
      */
     public function setPolicyBundle($var)
@@ -229,5 +229,4 @@ class GovernedAsset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

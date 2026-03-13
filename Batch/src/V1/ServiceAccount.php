@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Carries information about a Google Cloud service account.
@@ -36,7 +36,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *
      *     @type string $email
      *           Email address of the service account.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           List of scopes to be enabled for this service account.
      * }
      */
@@ -75,7 +75,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * List of scopes to be enabled for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -86,7 +86,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * List of scopes to be enabled for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

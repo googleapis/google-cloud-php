@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Attached resource representation, which is defined by the corresponding
@@ -47,7 +47,7 @@ class AttachedResource extends \Google\Protobuf\Internal\Message
      *           You can find the supported attached asset types of each resource in this
      *           table:
      *           `https://cloud.google.com/asset-inventory/docs/supported-asset-types`
-     *     @type array<\Google\Cloud\Asset\V1\VersionedResource>|\Google\Protobuf\Internal\RepeatedField $versioned_resources
+     *     @type \Google\Cloud\Asset\V1\VersionedResource[] $versioned_resources
      *           Versioned resource representations of this attached resource. This is
      *           repeated because there could be multiple versions of the attached resource
      *           representations during version migration.
@@ -98,7 +98,7 @@ class AttachedResource extends \Google\Protobuf\Internal\Message
      * representations during version migration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\VersionedResource>
      */
     public function getVersionedResources()
     {
@@ -111,7 +111,7 @@ class AttachedResource extends \Google\Protobuf\Internal\Message
      * representations during version migration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 3;</code>
-     * @param array<\Google\Cloud\Asset\V1\VersionedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\VersionedResource[] $var
      * @return $this
      */
     public function setVersionedResources($var)

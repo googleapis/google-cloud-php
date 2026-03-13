@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataPolicies\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListDataPolicies method.
@@ -35,7 +35,7 @@ class ListDataPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy>|\Google\Protobuf\Internal\RepeatedField $data_policies
+     *     @type \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy[] $data_policies
      *           Data policies that belong to the requested project.
      *     @type string $next_page_token
      *           Token used to retrieve the next page of results, or empty if there are no
@@ -51,7 +51,7 @@ class ListDataPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Data policies that belong to the requested project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datapolicies.v1.DataPolicy data_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy>
      */
     public function getDataPolicies()
     {
@@ -62,7 +62,7 @@ class ListDataPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Data policies that belong to the requested project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datapolicies.v1.DataPolicy data_policies = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataPolicies\V1\DataPolicy[] $var
      * @return $this
      */
     public function setDataPolicies($var)

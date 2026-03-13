@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.batch.v1.AllocationPolicy.LocationPolicy</code>
@@ -37,7 +37,7 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_locations
+     *     @type string[] $allowed_locations
      *           A list of allowed location names represented by internal URLs.
      *           Each location can be a region or a zone.
      *           Only one region or multiple zones in one region is supported now.
@@ -72,7 +72,7 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * us-central1 and us-west1. This combination will trigger an error.
      *
      * Generated from protobuf field <code>repeated string allowed_locations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedLocations()
     {
@@ -94,7 +94,7 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * us-central1 and us-west1. This combination will trigger an error.
      *
      * Generated from protobuf field <code>repeated string allowed_locations = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedLocations($var)
@@ -106,5 +106,4 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

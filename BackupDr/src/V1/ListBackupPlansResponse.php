@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for getting a list of `BackupPlan`.
@@ -51,7 +51,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupPlan>|\Google\Protobuf\Internal\RepeatedField $backup_plans
+     *     @type \Google\Cloud\BackupDR\V1\BackupPlan[] $backup_plans
      *           The list of `BackupPlans` in the project for the specified
      *           location.
      *           If the `{location}` value in the request is "-", the response contains a
@@ -66,7 +66,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      *           a subsequent `ListBackupPlans` call to retrieve the next page of results.
      *           If this field is omitted or empty, then there are no more results to
      *           return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -86,7 +86,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * BackupPlan
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupPlan backup_plans = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupPlan>
      */
     public function getBackupPlans()
     {
@@ -104,7 +104,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * BackupPlan
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupPlan backup_plans = 1;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupPlan>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupPlan[] $var
      * @return $this
      */
     public function setBackupPlans($var)
@@ -153,7 +153,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -164,7 +164,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

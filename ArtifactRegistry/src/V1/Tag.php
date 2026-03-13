@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tags point to a version and represent an alternative name that can be used
@@ -20,7 +20,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      * The name of the tag, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
      * If the package part contains slashes, the slashes are escaped.
-     * The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     * The tag part can only have characters in [a-zA-Z0-9\-._~:\@], anything else
      * must be URL encoded.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -46,7 +46,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      *           The name of the tag, for example:
      *           "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
      *           If the package part contains slashes, the slashes are escaped.
-     *           The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     *           The tag part can only have characters in [a-zA-Z0-9\-._~:\@], anything else
      *           must be URL encoded.
      *     @type string $version
      *           The name of the version the tag refers to, for example:
@@ -64,7 +64,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      * The name of the tag, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
      * If the package part contains slashes, the slashes are escaped.
-     * The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     * The tag part can only have characters in [a-zA-Z0-9\-._~:\@], anything else
      * must be URL encoded.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -79,7 +79,7 @@ class Tag extends \Google\Protobuf\Internal\Message
      * The name of the tag, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
      * If the package part contains slashes, the slashes are escaped.
-     * The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     * The tag part can only have characters in [a-zA-Z0-9\-._~:\@], anything else
      * must be URL encoded.
      *
      * Generated from protobuf field <code>string name = 1;</code>

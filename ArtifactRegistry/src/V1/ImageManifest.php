@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of a single image manifest within a multi-arch image.
@@ -90,7 +90,7 @@ class ImageManifest extends \Google\Protobuf\Internal\Message
      *     @type string $os_version
      *           Optional. The OS version of the image, for example on Windows
      *           `10.0.14393.1066`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $os_features
+     *     @type string[] $os_features
      *           Optional. The required OS features for the image, for example on Windows
      *           `win32k`.
      *     @type string $variant
@@ -252,7 +252,7 @@ class ImageManifest extends \Google\Protobuf\Internal\Message
      * `win32k`.
      *
      * Generated from protobuf field <code>repeated string os_features = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOsFeatures()
     {
@@ -264,7 +264,7 @@ class ImageManifest extends \Google\Protobuf\Internal\Message
      * `win32k`.
      *
      * Generated from protobuf field <code>repeated string os_features = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOsFeatures($var)
