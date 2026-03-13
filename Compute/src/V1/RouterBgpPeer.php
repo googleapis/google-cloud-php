@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -219,7 +219,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type string $advertise_mode
      *           User-specified flag to indicate which mode to use for advertisement.
      *           Check the AdvertiseMode enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertised_groups
+     *     @type string[] $advertised_groups
      *           User-specified list of prefix groups to advertise in custom mode,
      *           which currently supports the following option:
      *              - ALL_SUBNETS: Advertises all of the router's own VPC subnets. This
@@ -230,7 +230,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *           These groups are advertised in addition to any specified prefixes.
      *           Leave this field blank to advertise no custom groups.
      *           Check the AdvertisedGroups enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
+     *     @type \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[] $advertised_ip_ranges
      *           User-specified list of individual IP ranges to advertise in custom mode.
      *           This field can only be populated if advertise_mode is CUSTOM and
      *           overrides the list defined for the router (in the "bgp" message).
@@ -242,7 +242,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *           priority value win.
      *     @type \Google\Cloud\Compute\V1\RouterBgpPeerBfd $bfd
      *           BFD configuration for the BGP peering.
-     *     @type array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $custom_learned_ip_ranges
+     *     @type \Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange[] $custom_learned_ip_ranges
      *           A list of user-defined custom learned route IP address ranges for a BGP
      *           session.
      *     @type int $custom_learned_route_priority
@@ -263,11 +263,11 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_ipv6
      *           Enable IPv6 traffic over BGP Peer. It is enabled by default if the
      *           peerIpAddress is version 6.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $export_policies
+     *     @type string[] $export_policies
      *           List of export policies applied to this peer, in the order they must be
      *           evaluated. The name must correspond to an existing policy that has
      *           ROUTE_POLICY_TYPE_EXPORT type.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $import_policies
+     *     @type string[] $import_policies
      *           List of import policies applied to this peer, in the order they must be
      *           evaluated. The name must correspond to an existing policy that has
      *           ROUTE_POLICY_TYPE_IMPORT type.
@@ -373,7 +373,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdvertisedGroups()
     {
@@ -393,7 +393,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdvertisedGroups($var)
@@ -412,7 +412,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>
      */
     public function getAdvertisedIpRanges()
     {
@@ -427,7 +427,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[] $var
      * @return $this
      */
     public function setAdvertisedIpRanges($var)
@@ -519,7 +519,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>
      */
     public function getCustomLearnedIpRanges()
     {
@@ -531,7 +531,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeerCustomLearnedIpRange custom_learned_ip_ranges = 481363012;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterBgpPeerCustomLearnedIpRange[] $var
      * @return $this
      */
     public function setCustomLearnedIpRanges($var)
@@ -712,7 +712,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExportPolicies()
     {
@@ -725,7 +725,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * ROUTE_POLICY_TYPE_EXPORT type.
      *
      * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExportPolicies($var)
@@ -742,7 +742,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getImportPolicies()
     {
@@ -755,7 +755,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * ROUTE_POLICY_TYPE_IMPORT type.
      *
      * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setImportPolicies($var)

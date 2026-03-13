@@ -23,6 +23,17 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.RegionHealthCheckServices' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/healthCheckServices',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{health_check_service}',

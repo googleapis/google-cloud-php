@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Forwarding Rule resource.
@@ -346,7 +346,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
      * pair, and cannot have overlapping portRanges.
-     * &#64;pattern: \\d+(?:-\\d+)?
+     * \@pattern: \\d+(?:-\\d+)?
      *
      * Generated from protobuf field <code>optional string port_range = 217518079;</code>
      */
@@ -370,7 +370,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
      * pair if they share at least one port number.
-     * &#64;pattern: \\d+(?:-\\d+)?
+     * \@pattern: \\d+(?:-\\d+)?
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
      */
@@ -633,7 +633,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           For more information about forwarding rules, refer to
      *           Forwarding rule concepts.
      *           Check the LoadBalancingScheme enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\MetadataFilter>|\Google\Protobuf\Internal\RepeatedField $metadata_filters
+     *     @type \Google\Cloud\Compute\V1\MetadataFilter[] $metadata_filters
      *           Opaque filter criteria used by load balancer to restrict routing
      *           configuration to a limited set of xDS
      *           compliant clients. In their xDS requests to load balancer, xDS clients
@@ -703,8 +703,8 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           For internal forwarding rules within the same VPC network, two or more
      *           forwarding rules cannot use the same [IPAddress, IPProtocol]
      *           pair, and cannot have overlapping portRanges.
-     *           &#64;pattern: \\d+(?:-\\d+)?
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ports
+     *           \@pattern: \\d+(?:-\\d+)?
+     *     @type string[] $ports
      *           The ports, portRange, and allPorts
      *           fields are mutually exclusive. Only packets addressed to ports in the
      *           specified range will be forwarded to the backends configured with this
@@ -723,7 +723,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           For internal forwarding rules within the same VPC network, two or more
      *           forwarding rules cannot use the same [IPAddress, IPProtocol]
      *           pair if they share at least one port number.
-     *           &#64;pattern: \\d+(?:-\\d+)?
+     *           \@pattern: \\d+(?:-\\d+)?
      *     @type int|string $psc_connection_id
      *           [Output Only] The PSC connection id of the PSC forwarding rule.
      *     @type string $psc_connection_status
@@ -738,7 +738,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
      *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
-     *     @type array<\Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration>|\Google\Protobuf\Internal\RepeatedField $service_directory_registrations
+     *     @type \Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration[] $service_directory_registrations
      *           Service Directory resources to register this forwarding rule with.
      *           Currently, only supports a single Service Directory resource.
      *     @type string $service_label
@@ -756,7 +756,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           [Output Only]
      *           The internal fully qualified service name for this forwarding rule.
      *           This field is only used for internal load balancing.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges
+     *     @type string[] $source_ip_ranges
      *           If not empty, this forwarding rule will only forward the traffic when the
      *           source IP address matches one of the IP addresses or CIDR ranges set here.
      *           Note that a forwarding rule can only have up to 64 source IP ranges, and
@@ -1738,7 +1738,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * their loadBalancingScheme set toINTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 464725739;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\MetadataFilter>
      */
     public function getMetadataFilters()
     {
@@ -1765,7 +1765,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * their loadBalancingScheme set toINTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 464725739;</code>
-     * @param array<\Google\Cloud\Compute\V1\MetadataFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\MetadataFilter[] $var
      * @return $this
      */
     public function setMetadataFilters($var)
@@ -1989,7 +1989,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
      * pair, and cannot have overlapping portRanges.
-     * &#64;pattern: \\d+(?:-\\d+)?
+     * \@pattern: \\d+(?:-\\d+)?
      *
      * Generated from protobuf field <code>optional string port_range = 217518079;</code>
      * @return string
@@ -2028,7 +2028,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
      * pair, and cannot have overlapping portRanges.
-     * &#64;pattern: \\d+(?:-\\d+)?
+     * \@pattern: \\d+(?:-\\d+)?
      *
      * Generated from protobuf field <code>optional string port_range = 217518079;</code>
      * @param string $var
@@ -2061,10 +2061,10 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
      * pair if they share at least one port number.
-     * &#64;pattern: \\d+(?:-\\d+)?
+     * \@pattern: \\d+(?:-\\d+)?
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPorts()
     {
@@ -2090,10 +2090,10 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * For internal forwarding rules within the same VPC network, two or more
      * forwarding rules cannot use the same [IPAddress, IPProtocol]
      * pair if they share at least one port number.
-     * &#64;pattern: \\d+(?:-\\d+)?
+     * \@pattern: \\d+(?:-\\d+)?
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPorts($var)
@@ -2297,7 +2297,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * Currently, only supports a single Service Directory resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration service_directory_registrations = 223549694;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration>
      */
     public function getServiceDirectoryRegistrations()
     {
@@ -2309,7 +2309,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * Currently, only supports a single Service Directory resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration service_directory_registrations = 223549694;</code>
-     * @param array<\Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration[] $var
      * @return $this
      */
     public function setServiceDirectoryRegistrations($var)
@@ -2423,7 +2423,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * example, 1.2.3.4) or a CIDR range (for example, 1.2.3.0/24).
      *
      * Generated from protobuf field <code>repeated string source_ip_ranges = 111563210;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceIpRanges()
     {
@@ -2439,7 +2439,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * example, 1.2.3.4) or a CIDR range (for example, 1.2.3.0/24).
      *
      * Generated from protobuf field <code>repeated string source_ip_ranges = 111563210;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceIpRanges($var)

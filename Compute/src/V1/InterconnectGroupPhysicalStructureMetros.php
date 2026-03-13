@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] The metros Interconnects in this group are in.
@@ -34,7 +34,7 @@ class InterconnectGroupPhysicalStructureMetros extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilities>|\Google\Protobuf\Internal\RepeatedField $facilities
+     *     @type \Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilities[] $facilities
      *     @type string $metro
      *           Output only. [Output Only] The name of the metro, as a three-letter lowercase string
      *           like "iad". This is the first component of the location of
@@ -48,7 +48,7 @@ class InterconnectGroupPhysicalStructureMetros extends \Google\Protobuf\Internal
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetrosFacilities facilities = 536683137;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilities>
      */
     public function getFacilities()
     {
@@ -57,7 +57,7 @@ class InterconnectGroupPhysicalStructureMetros extends \Google\Protobuf\Internal
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetrosFacilities facilities = 536683137;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilities>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilities[] $var
      * @return $this
      */
     public function setFacilities($var)

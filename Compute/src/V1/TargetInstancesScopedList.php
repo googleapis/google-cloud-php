@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\TargetInstance>|\Google\Protobuf\Internal\RepeatedField $target_instances
+     *     @type \Google\Cloud\Compute\V1\TargetInstance[] $target_instances
      *           A list of target instances contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of addresses when
@@ -50,7 +50,7 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
      * A list of target instances contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 392915280;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\TargetInstance>
      */
     public function getTargetInstances()
     {
@@ -61,7 +61,7 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
      * A list of target instances contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 392915280;</code>
-     * @param array<\Google\Cloud\Compute\V1\TargetInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\TargetInstance[] $var
      * @return $this
      */
     public function setTargetInstances($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * UrlMaps
@@ -53,7 +53,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hosts
+     *     @type string[] $hosts
      *           The list of host patterns to match. They must be valid hostnames with
      *           optional port numbers in the format host:port.* matches any string of ([a-z0-9-.]*). In
      *           that case, * must be the first character, and if followed by
@@ -121,7 +121,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
      * set to true.
      *
      * Generated from protobuf field <code>repeated string hosts = 99467211;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHosts()
     {
@@ -139,7 +139,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
      * set to true.
      *
      * Generated from protobuf field <code>repeated string hosts = 99467211;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHosts($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class TargetHttpsProxiesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\TargetHttpsProxy>|\Google\Protobuf\Internal\RepeatedField $target_https_proxies
+     *     @type \Google\Cloud\Compute\V1\TargetHttpsProxy[] $target_https_proxies
      *           A list of TargetHttpsProxies contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of
@@ -50,7 +50,7 @@ class TargetHttpsProxiesScopedList extends \Google\Protobuf\Internal\Message
      * A list of TargetHttpsProxies contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetHttpsProxy target_https_proxies = 366607882;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\TargetHttpsProxy>
      */
     public function getTargetHttpsProxies()
     {
@@ -61,7 +61,7 @@ class TargetHttpsProxiesScopedList extends \Google\Protobuf\Internal\Message
      * A list of TargetHttpsProxies contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetHttpsProxy target_https_proxies = 366607882;</code>
-     * @param array<\Google\Cloud\Compute\V1\TargetHttpsProxy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\TargetHttpsProxy[] $var
      * @return $this
      */
     public function setTargetHttpsProxies($var)

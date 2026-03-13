@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -28,7 +28,7 @@ class RegionTargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
+     *     @type string[] $ssl_certificates
      *           New set of SslCertificate resources to associate
      *           with this TargetHttpsProxy resource.
      * }
@@ -43,7 +43,7 @@ class RegionTargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf
      * with this TargetHttpsProxy resource.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSslCertificates()
     {
@@ -55,7 +55,7 @@ class RegionTargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf
      * with this TargetHttpsProxy resource.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSslCertificates($var)

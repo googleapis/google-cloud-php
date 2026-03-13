@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] The regions Attachments in this group are in.
@@ -32,7 +32,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetro>|\Google\Protobuf\Internal\RepeatedField $metros
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetro[] $metros
      *     @type string $region
      *           Output only. [Output Only] The name of a region, like "us-central1".
      * }
@@ -44,7 +44,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegionMetro metros = 533067386;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetro>
      */
     public function getMetros()
     {
@@ -53,7 +53,7 @@ class InterconnectAttachmentGroupLogicalStructureRegion extends \Google\Protobuf
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegionMetro metros = 533067386;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetro>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetro[] $var
      * @return $this
      */
     public function setMetros($var)

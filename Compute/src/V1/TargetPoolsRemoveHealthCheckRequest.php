@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -31,7 +31,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\HealthCheckReference>|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *     @type \Google\Cloud\Compute\V1\HealthCheckReference[] $health_checks
      *           Health check URL to be removed. This can be a full or valid partial URL.
      *           For example, the following are valid URLs:
      *              - https://www.googleapis.com/compute/beta/projects/project/global/httpHealthChecks/health-check
@@ -52,7 +52,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
      *    - global/httpHealthChecks/health-check
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HealthCheckReference>
      */
     public function getHealthChecks()
     {
@@ -67,7 +67,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
      *    - global/httpHealthChecks/health-check
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
-     * @param array<\Google\Cloud\Compute\V1\HealthCheckReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HealthCheckReference[] $var
      * @return $this
      */
     public function setHealthChecks($var)

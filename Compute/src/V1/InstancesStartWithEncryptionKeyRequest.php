@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -32,7 +32,7 @@ class InstancesStartWithEncryptionKeyRequest extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\CustomerEncryptionKeyProtectedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKeyProtectedDisk[] $disks
      *           Array of disks associated with this instance that are protected with acustomer-supplied
      *           encryption key.
      *           In order to start the instance, the disk url and its corresponding key must
@@ -55,7 +55,7 @@ class InstancesStartWithEncryptionKeyRequest extends \Google\Protobuf\Internal\M
      * should not be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CustomerEncryptionKeyProtectedDisk disks = 95594102;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\CustomerEncryptionKeyProtectedDisk>
      */
     public function getDisks()
     {
@@ -71,7 +71,7 @@ class InstancesStartWithEncryptionKeyRequest extends \Google\Protobuf\Internal\M
      * should not be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CustomerEncryptionKeyProtectedDisk disks = 95594102;</code>
-     * @param array<\Google\Cloud\Compute\V1\CustomerEncryptionKeyProtectedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\CustomerEncryptionKeyProtectedDisk[] $var
      * @return $this
      */
     public function setDisks($var)

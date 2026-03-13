@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -58,7 +58,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
      *           attachment. Similarly, if BGP MD5 is MD5_UNSUPPORTED, an error is
      *           returned if MD5 is requested.
      *           Check the BgpMd5 enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange>|\Google\Protobuf\Internal\RepeatedField $bgp_peer_asn_ranges
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange[] $bgp_peer_asn_ranges
      *           Output only. [Output Only] List of ASN ranges that the remote location is known to
      *           support. Formatted as an array of inclusive ranges {min: min-value, max:
      *           max-value}. For example, [{min: 123, max: 123}, {min: 64512, max: 65534}]
@@ -135,7 +135,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
      * are the ranges that we recommend.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange bgp_peer_asn_ranges = 475946370;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange>
      */
     public function getBgpPeerAsnRanges()
     {
@@ -151,7 +151,7 @@ class InterconnectAttachmentConfigurationConstraints extends \Google\Protobuf\In
      * are the ranges that we recommend.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange bgp_peer_asn_ranges = 475946370;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentConfigurationConstraintsBgpPeerASNRange[] $var
      * @return $this
      */
     public function setBgpPeerAsnRanges($var)

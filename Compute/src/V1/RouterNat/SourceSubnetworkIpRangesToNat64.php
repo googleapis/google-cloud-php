@@ -72,4 +72,3 @@ class SourceSubnetworkIpRangesToNat64
     }
 }
 
-

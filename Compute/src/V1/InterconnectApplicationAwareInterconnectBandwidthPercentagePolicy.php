@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -28,7 +28,7 @@ class InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy extends 
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $bandwidth_percentages
+     *     @type \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage[] $bandwidth_percentages
      *           Specify bandwidth percentages for various traffic classes for queuing
      *           type Bandwidth Percent.
      * }
@@ -43,7 +43,7 @@ class InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy extends 
      * type Bandwidth Percent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage bandwidth_percentages = 233373323;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>
      */
     public function getBandwidthPercentages()
     {
@@ -55,7 +55,7 @@ class InterconnectApplicationAwareInterconnectBandwidthPercentagePolicy extends 
      * type Bandwidth Percent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage bandwidth_percentages = 233373323;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage[] $var
      * @return $this
      */
     public function setBandwidthPercentages($var)

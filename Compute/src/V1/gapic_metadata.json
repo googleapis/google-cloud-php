@@ -3062,6 +3062,50 @@
                 }
             }
         },
+        "RegionCompositeHealthChecks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionCompositeHealthChecksGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "RegionDiskTypes": {
             "clients": {
                 "grpc": {
@@ -3224,6 +3268,11 @@
                 "grpc": {
                     "libraryClient": "RegionHealthCheckServicesGapicClient",
                     "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -3296,6 +3345,50 @@
                         "Update": {
                             "methods": [
                                 "update"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionHealthSources": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionHealthSourcesGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -3695,6 +3788,11 @@
                 "grpc": {
                     "libraryClient": "RegionNotificationEndpointsGapicClient",
                     "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -4113,6 +4211,11 @@
                                 "get"
                             ]
                         },
+                        "GetVersion": {
+                            "methods": [
+                                "getVersion"
+                            ]
+                        },
                         "List": {
                             "methods": [
                                 "list"
@@ -4140,6 +4243,11 @@
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
+                            ]
+                        },
+                        "GetVersion": {
+                            "methods": [
+                                "getVersion"
                             ]
                         },
                         "List": {

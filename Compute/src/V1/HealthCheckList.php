@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a list of HealthCheck resources.
@@ -64,7 +64,7 @@ class HealthCheckList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\HealthCheck>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\HealthCheck[] $items
      *           A list of HealthCheck resources.
      *     @type string $kind
      *           Output only. Type of resource.
@@ -125,7 +125,7 @@ class HealthCheckList extends \Google\Protobuf\Internal\Message
      * A list of HealthCheck resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheck items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HealthCheck>
      */
     public function getItems()
     {
@@ -136,7 +136,7 @@ class HealthCheckList extends \Google\Protobuf\Internal\Message
      * A list of HealthCheck resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheck items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\HealthCheck>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HealthCheck[] $var
      * @return $this
      */
     public function setItems($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an IP Address resource.
@@ -335,7 +335,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *           The URL of the subnetwork in which to reserve the address. If an IP address
      *           is specified, it must be within the subnetwork's IP range. This field can
      *           only be used with INTERNAL type with aGCE_ENDPOINT or DNS_RESOLVER purpose.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
+     *     @type string[] $users
      *           [Output Only] The URLs of the resources that are using this address.
      * }
      */
@@ -1198,7 +1198,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * [Output Only] The URLs of the resources that are using this address.
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUsers()
     {
@@ -1209,7 +1209,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * [Output Only] The URLs of the resources that are using this address.
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUsers($var)

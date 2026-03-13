@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Opaque filter criteria used by load balancers to restrict routing
@@ -57,7 +57,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\MetadataFilterLabelMatch>|\Google\Protobuf\Internal\RepeatedField $filter_labels
+     *     @type \Google\Cloud\Compute\V1\MetadataFilterLabelMatch[] $filter_labels
      *           The list of label value pairs that must match labels in the provided
      *           metadata based on filterMatchCriteria
      *           This list must not be empty and can have at the most 64 entries.
@@ -84,7 +84,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
      * This list must not be empty and can have at the most 64 entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilterLabelMatch filter_labels = 307903142;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\MetadataFilterLabelMatch>
      */
     public function getFilterLabels()
     {
@@ -97,7 +97,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
      * This list must not be empty and can have at the most 64 entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilterLabelMatch filter_labels = 307903142;</code>
-     * @param array<\Google\Cloud\Compute\V1\MetadataFilterLabelMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\MetadataFilterLabelMatch[] $var
      * @return $this
      */
     public function setFilterLabels($var)

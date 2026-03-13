@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] Reasons why configuration.topologyCapability.sla differs
@@ -85,19 +85,19 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      *     @type string $explanation
      *           Output only. [Output Only] A human-readable explanation of this requirement and
      *           why it's not met. This is set for every type of requirement.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $facilities
+     *     @type string[] $facilities
      *           Output only. [Output Only] Facilities used to explain this blocker in more detail.
      *           Like physicalStructure.metros.facilities.facility, this is a numeric
      *           string like "5467".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnects
+     *     @type string[] $interconnects
      *           Output only. [Output Only] Interconnects used to explain this blocker in more
      *           detail.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metros
+     *     @type string[] $metros
      *           Output only. [Output Only] Metros used to explain this blocker in more detail.
      *           These are three-letter lowercase strings like "iad". A blocker like
      *           INCOMPATIBLE_METROS will specify the problematic metros in this
      *           field.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type string[] $zones
      *           Output only. [Output Only] Zones used to explain this blocker in more detail.
      *           Zone names are "zone1" and/or "zone2".
      * }
@@ -227,7 +227,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * string like "5467".
      *
      * Generated from protobuf field <code>repeated string facilities = 536683137;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFacilities()
     {
@@ -240,7 +240,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * string like "5467".
      *
      * Generated from protobuf field <code>repeated string facilities = 536683137;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFacilities($var)
@@ -256,7 +256,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * detail.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInterconnects()
     {
@@ -268,7 +268,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * detail.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInterconnects($var)
@@ -286,7 +286,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * field.
      *
      * Generated from protobuf field <code>repeated string metros = 533067386;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetros()
     {
@@ -300,7 +300,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * field.
      *
      * Generated from protobuf field <code>repeated string metros = 533067386;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetros($var)
@@ -316,7 +316,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * Zone names are "zone1" and/or "zone2".
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getZones()
     {
@@ -328,7 +328,7 @@ class InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers ex
      * Zone names are "zone1" and/or "zone2".
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setZones($var)

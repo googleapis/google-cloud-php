@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Backend Service resource.
@@ -637,7 +637,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           is two weeks (1,209,600).
      *           Not supported when the backend service is referenced by a URL map that is
      *           bound to target gRPC proxy that has validateForProxyless field set to true.
-     *     @type array<\Google\Cloud\Compute\V1\Backend>|\Google\Protobuf\Internal\RepeatedField $backends
+     *     @type \Google\Cloud\Compute\V1\Backend[] $backends
      *           The list of backends that serve this BackendService.
      *     @type \Google\Cloud\Compute\V1\BackendServiceCdnPolicy $cdn_policy
      *           Cloud CDN configuration for this BackendService. Only available for
@@ -670,13 +670,13 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
-     *     @type array<\Google\Cloud\Compute\V1\BackendServiceCustomMetric>|\Google\Protobuf\Internal\RepeatedField $custom_metrics
+     *     @type \Google\Cloud\Compute\V1\BackendServiceCustomMetric[] $custom_metrics
      *           List of custom metrics that are used for theWEIGHTED_ROUND_ROBIN locality_lb_policy.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_request_headers
+     *     @type string[] $custom_request_headers
      *           Headers that the load balancer adds to proxied requests. See [Creating
      *           custom
      *           headers](https://cloud.google.com/load-balancing/docs/custom-headers).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
+     *     @type string[] $custom_response_headers
      *           Headers that the load balancer adds to proxied responses. See [Creating
      *           custom
      *           headers](https://cloud.google.com/load-balancing/docs/custom-headers).
@@ -753,7 +753,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           Therefore, haPolicy cannot be specified with healthChecks.
      *           haPolicy can only be specified for External Passthrough Network Load
      *           Balancers and Internal Passthrough Network Load Balancers.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *     @type string[] $health_checks
      *           The list of URLs to the healthChecks, httpHealthChecks (legacy), or
      *           httpsHealthChecks (legacy) resource for health checking this backend
      *           service. Not all backend services support legacy health checks. See
@@ -808,7 +808,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           For more information, refer toChoosing
      *           a load balancer.
      *           Check the LoadBalancingScheme enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\BackendServiceLocalityLoadBalancingPolicyConfig>|\Google\Protobuf\Internal\RepeatedField $locality_lb_policies
+     *     @type \Google\Cloud\Compute\V1\BackendServiceLocalityLoadBalancingPolicyConfig[] $locality_lb_policies
      *           A list of locality load-balancing policies to be used in order of
      *           preference. When you use localityLbPolicies, you must set at least one
      *           value for either the localityLbPolicies[].policy or the
@@ -974,7 +974,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           load_balancing_scheme set to INTERNAL_SELF_MANAGED.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_bindings
+     *     @type string[] $service_bindings
      *           URLs of networkservices.ServiceBinding resources.
      *           Can only be set if load balancing scheme is INTERNAL_SELF_MANAGED.
      *           If set, lists of backends and health checks must be both empty.
@@ -1012,7 +1012,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\BackendServiceTlsSettings $tls_settings
      *           Configuration for Backend Authenticated TLS and mTLS. May only be specified
      *           when the backend protocol is SSL, HTTPS or HTTP2.
-     *     @type array<\Google\Cloud\Compute\V1\BackendServiceUsedBy>|\Google\Protobuf\Internal\RepeatedField $used_by
+     *     @type \Google\Cloud\Compute\V1\BackendServiceUsedBy[] $used_by
      *           Output only. [Output Only] List of resources referencing given backend service.
      * }
      */
@@ -1075,7 +1075,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * The list of backends that serve this BackendService.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Backend backends = 510839903;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Backend>
      */
     public function getBackends()
     {
@@ -1086,7 +1086,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * The list of backends that serve this BackendService.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Backend backends = 510839903;</code>
-     * @param array<\Google\Cloud\Compute\V1\Backend>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Backend[] $var
      * @return $this
      */
     public function setBackends($var)
@@ -1385,7 +1385,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * List of custom metrics that are used for theWEIGHTED_ROUND_ROBIN locality_lb_policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceCustomMetric custom_metrics = 429453813;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendServiceCustomMetric>
      */
     public function getCustomMetrics()
     {
@@ -1396,7 +1396,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * List of custom metrics that are used for theWEIGHTED_ROUND_ROBIN locality_lb_policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceCustomMetric custom_metrics = 429453813;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendServiceCustomMetric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendServiceCustomMetric[] $var
      * @return $this
      */
     public function setCustomMetrics($var)
@@ -1413,7 +1413,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * headers](https://cloud.google.com/load-balancing/docs/custom-headers).
      *
      * Generated from protobuf field <code>repeated string custom_request_headers = 27977992;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomRequestHeaders()
     {
@@ -1426,7 +1426,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * headers](https://cloud.google.com/load-balancing/docs/custom-headers).
      *
      * Generated from protobuf field <code>repeated string custom_request_headers = 27977992;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomRequestHeaders($var)
@@ -1443,7 +1443,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * headers](https://cloud.google.com/load-balancing/docs/custom-headers).
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomResponseHeaders()
     {
@@ -1456,7 +1456,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * headers](https://cloud.google.com/load-balancing/docs/custom-headers).
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomResponseHeaders($var)
@@ -1881,7 +1881,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * healthChecks[] cannot be specified with haPolicy.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHealthChecks()
     {
@@ -1900,7 +1900,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * healthChecks[] cannot be specified with haPolicy.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHealthChecks($var)
@@ -2174,7 +2174,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * that have this configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLocalityLoadBalancingPolicyConfig locality_lb_policies = 140982557;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendServiceLocalityLoadBalancingPolicyConfig>
      */
     public function getLocalityLbPolicies()
     {
@@ -2194,7 +2194,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * that have this configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLocalityLoadBalancingPolicyConfig locality_lb_policies = 140982557;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendServiceLocalityLoadBalancingPolicyConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendServiceLocalityLoadBalancingPolicyConfig[] $var
      * @return $this
      */
     public function setLocalityLbPolicies($var)
@@ -3055,7 +3055,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * If set, lists of backends and health checks must be both empty.
      *
      * Generated from protobuf field <code>repeated string service_bindings = 133581016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceBindings()
     {
@@ -3068,7 +3068,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * If set, lists of backends and health checks must be both empty.
      *
      * Generated from protobuf field <code>repeated string service_bindings = 133581016;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceBindings($var)
@@ -3343,7 +3343,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] List of resources referencing given backend service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceUsedBy used_by = 389320729;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendServiceUsedBy>
      */
     public function getUsedBy()
     {
@@ -3354,7 +3354,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] List of resources referencing given backend service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceUsedBy used_by = 389320729;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendServiceUsedBy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendServiceUsedBy[] $var
      * @return $this
      */
     public function setUsedBy($var)

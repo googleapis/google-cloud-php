@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] An analysis of the logical layout of Attachments in this
@@ -27,7 +27,7 @@ class InterconnectAttachmentGroupLogicalStructure extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegion>|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegion[] $regions
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class InterconnectAttachmentGroupLogicalStructure extends \Google\Protobuf\Inter
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegion regions = 12367871;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegion>
      */
     public function getRegions()
     {
@@ -46,7 +46,7 @@ class InterconnectAttachmentGroupLogicalStructure extends \Google\Protobuf\Inter
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegion regions = 12367871;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegion[] $var
      * @return $this
      */
     public function setRegions($var)

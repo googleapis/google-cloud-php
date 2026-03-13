@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output only] Represents status related to the future reservation.
@@ -85,7 +85,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      *     @type string $amendment_status
      *           Output only. [Output Only] The current status of the requested amendment.
      *           Check the AmendmentStatus enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_created_reservations
+     *     @type string[] $auto_created_reservations
      *           Output only. Fully qualified urls of the automatically created reservations at
      *           start_time.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusExistingMatchingUsageInfo $existing_matching_usage_info
@@ -161,7 +161,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      * start_time.
      *
      * Generated from protobuf field <code>repeated string auto_created_reservations = 140217006;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAutoCreatedReservations()
     {
@@ -173,7 +173,7 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      * start_time.
      *
      * Generated from protobuf field <code>repeated string auto_created_reservations = 140217006;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAutoCreatedReservations($var)

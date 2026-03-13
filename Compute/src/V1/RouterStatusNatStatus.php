@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of a NAT contained in this router.
@@ -82,12 +82,12 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_allocated_nat_ips
+     *     @type string[] $auto_allocated_nat_ips
      *           Output only. A list of IPs auto-allocated for NAT. Example: ["1.1.1.1", "129.2.16.89"]
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_auto_allocated_nat_ips
+     *     @type string[] $drain_auto_allocated_nat_ips
      *           Output only. A list of IPs auto-allocated for NAT that are in drain mode.
      *           Example: ["1.1.1.1", "179.12.26.133"].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_user_allocated_nat_ips
+     *     @type string[] $drain_user_allocated_nat_ips
      *           Output only. A list of IPs user-allocated for NAT that are in drain mode.
      *           Example: ["1.1.1.1", "179.12.26.133"].
      *     @type int $min_extra_nat_ips_needed
@@ -99,11 +99,11 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      *           Output only. Unique name of this NAT.
      *     @type int $num_vm_endpoints_with_nat_mappings
      *           Output only. Number of VM endpoints (i.e., Nics) that can use NAT.
-     *     @type array<\Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus>|\Google\Protobuf\Internal\RepeatedField $rule_status
+     *     @type \Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus[] $rule_status
      *           Status of rules in this NAT.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $user_allocated_nat_ip_resources
+     *     @type string[] $user_allocated_nat_ip_resources
      *           Output only. A list of fully qualified URLs of reserved IP address resources.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $user_allocated_nat_ips
+     *     @type string[] $user_allocated_nat_ips
      *           Output only. A list of IPs user-allocated for NAT.
      *           They will be raw IP strings like "179.12.26.133".
      * }
@@ -117,7 +117,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of IPs auto-allocated for NAT. Example: ["1.1.1.1", "129.2.16.89"]
      *
      * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 510794246;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAutoAllocatedNatIps()
     {
@@ -128,7 +128,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of IPs auto-allocated for NAT. Example: ["1.1.1.1", "129.2.16.89"]
      *
      * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 510794246;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAutoAllocatedNatIps($var)
@@ -144,7 +144,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 309184557;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDrainAutoAllocatedNatIps()
     {
@@ -156,7 +156,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 309184557;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDrainAutoAllocatedNatIps($var)
@@ -172,7 +172,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 305268553;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDrainUserAllocatedNatIps()
     {
@@ -184,7 +184,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 305268553;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDrainUserAllocatedNatIps($var)
@@ -313,7 +313,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Status of rules in this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterStatusNatStatusNatRuleStatus rule_status = 140223125;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus>
      */
     public function getRuleStatus()
     {
@@ -324,7 +324,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Status of rules in this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterStatusNatStatusNatRuleStatus rule_status = 140223125;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus[] $var
      * @return $this
      */
     public function setRuleStatus($var)
@@ -339,7 +339,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of fully qualified URLs of reserved IP address resources.
      *
      * Generated from protobuf field <code>repeated string user_allocated_nat_ip_resources = 212776151;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUserAllocatedNatIpResources()
     {
@@ -350,7 +350,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of fully qualified URLs of reserved IP address resources.
      *
      * Generated from protobuf field <code>repeated string user_allocated_nat_ip_resources = 212776151;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUserAllocatedNatIpResources($var)
@@ -366,7 +366,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * They will be raw IP strings like "179.12.26.133".
      *
      * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 506878242;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUserAllocatedNatIps()
     {
@@ -378,7 +378,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      * They will be raw IP strings like "179.12.26.133".
      *
      * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 506878242;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUserAllocatedNatIps($var)

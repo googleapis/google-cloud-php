@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides the configuration for logging a type of permissions.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *         {
  *           "log_type": "DATA_READ",
  *           "exempted_members": [
- *             "user:jose&#64;example.com"
+ *             "user:jose\@example.com"
  *           ]
  *         },
  *         {
@@ -25,7 +25,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *       ]
  *     }
  * This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting
- * jose&#64;example.com from DATA_READ logging.
+ * jose\@example.com from DATA_READ logging.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AuditLogConfig</code>
  */
@@ -57,7 +57,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exempted_members
+     *     @type string[] $exempted_members
      *           Specifies the identities that do not cause logging for this type of
      *           permission.
      *           Follows the same format of Binding.members.
@@ -78,7 +78,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      * Follows the same format of Binding.members.
      *
      * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExemptedMembers()
     {
@@ -91,7 +91,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      * Follows the same format of Binding.members.
      *
      * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExemptedMembers($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] The facilities Interconnects in this metro are present
@@ -39,7 +39,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
      *           Output only. [Output Only] The ID of this facility, as a numeric string like
      *           "5467". This is the third component of the location of Interconnects
      *           in this facility.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilitiesZones>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type \Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilitiesZones[] $zones
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +89,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetrosFacilitiesZones zones = 116085319;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilitiesZones>
      */
     public function getZones()
     {
@@ -98,7 +98,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilities extends \Google\Protobu
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetrosFacilitiesZones zones = 116085319;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilitiesZones>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetrosFacilitiesZones[] $var
      * @return $this
      */
     public function setZones($var)

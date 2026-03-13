@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Upcoming Maintenance notification information.
@@ -83,7 +83,7 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      *           This timestamp value is in RFC3339 text format.
      *     @type bool $maintenance_on_shutdown
      *           Indicates whether the UpcomingMaintenance will be triggered on VM shutdown.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $maintenance_reasons
+     *     @type string[] $maintenance_reasons
      *           The reasons for the maintenance. Only valid for vms.
      *           Check the MaintenanceReasons enum for the list of possible values.
      *     @type string $maintenance_status
@@ -220,7 +220,7 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      * Check the MaintenanceReasons enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string maintenance_reasons = 140283267;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMaintenanceReasons()
     {
@@ -232,7 +232,7 @@ class UpcomingMaintenance extends \Google\Protobuf\Internal\Message
      * Check the MaintenanceReasons enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string maintenance_reasons = 140283267;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMaintenanceReasons($var)

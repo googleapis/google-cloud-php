@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -45,7 +45,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
      *           required when creating a firewall rule. This value can either be
      *           one of the following well known protocol strings (tcp,udp, icmp, esp,ah, ipip, sctp), or the IP
      *           protocol number.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type string[] $ports
      *           An optional list of ports to which this rule applies. This field is
      *           only applicable for UDP or TCP protocol. Each entry must be either
      *           an integer or a range. If not specified, this rule applies to
@@ -108,7 +108,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
      * Example inputs include: ["22"],["80","443"], and ["12345-12349"].
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPorts()
     {
@@ -123,7 +123,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
      * Example inputs include: ["22"],["80","443"], and ["12345-12349"].
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPorts($var)

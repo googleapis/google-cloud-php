@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Google Cloud Armor security policy resource.
@@ -206,7 +206,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfig $adaptive_protection_config
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfig $advanced_options_config
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyAssociation[] $associations
      *           A list of associations that belong to this policy.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
@@ -254,7 +254,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           Output only. [Output Only] URL of the region where the regional security policy
      *           resides. This field is not applicable to global security policies.
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRule[] $rules
      *           A list of rules that belong to this policy.
      *           There must always be a default rule which is a rule with priority
      *           2147483647 and match all condition (for the match condition this means
@@ -294,7 +294,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *           served from the application.
      *           This field can be set only at resource creation time.
      *           Check the Type enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField>|\Google\Protobuf\Internal\RepeatedField $user_defined_fields
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField[] $user_defined_fields
      *           Definitions of user-defined fields for CLOUD_ARMOR_NETWORK policies. A
      *           user-defined field consists of up to 4 bytes extracted from a fixed offset
      *           in the packet, relative to the IPv4, IPv6, TCP, or UDP header, with an
@@ -382,7 +382,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      * A list of associations that belong to this policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAssociation associations = 508736530;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyAssociation>
      */
     public function getAssociations()
     {
@@ -393,7 +393,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      * A list of associations that belong to this policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAssociation associations = 508736530;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyAssociation[] $var
      * @return $this
      */
     public function setAssociations($var)
@@ -876,7 +876,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      * added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRule rules = 108873975;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyRule>
      */
     public function getRules()
     {
@@ -893,7 +893,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      * added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRule rules = 108873975;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRule[] $var
      * @return $this
      */
     public function setRules($var)
@@ -1079,7 +1079,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *    mask: "0x1fff"
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyUserDefinedField user_defined_fields = 28312739;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField>
      */
     public function getUserDefinedFields()
     {
@@ -1101,7 +1101,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *    mask: "0x1fff"
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyUserDefinedField user_defined_fields = 28312739;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField[] $var
      * @return $this
      */
     public function setUserDefinedFields($var)

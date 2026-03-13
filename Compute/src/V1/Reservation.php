@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a reservation resource.  A reservation ensures that capacity is
@@ -264,7 +264,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           defined by the server.
      *     @type string $kind
      *           Output only. [Output Only] Type of the resource. Alwayscompute#reservations for reservations.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $linked_commitments
+     *     @type string[] $linked_commitments
      *           Output only. [Output Only] Full or partial URL to parent commitments. This field
      *           displays for reservations that are tied to multiple commitments.
      *     @type string $name
@@ -791,7 +791,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * displays for reservations that are tied to multiple commitments.
      *
      * Generated from protobuf field <code>repeated string linked_commitments = 470957784;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLinkedCommitments()
     {
@@ -803,7 +803,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * displays for reservations that are tied to multiple commitments.
      *
      * Generated from protobuf field <code>repeated string linked_commitments = 470957784;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLinkedCommitments($var)

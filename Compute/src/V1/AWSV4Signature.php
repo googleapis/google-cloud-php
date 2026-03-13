@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Messages
@@ -24,7 +24,7 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
      * creating a backend that uses AWS v4 signature authentication, but will not
      * be returned as part of the configuration when queried with a REST API GET
      * request.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>optional string access_key = 468922628;</code>
      */
@@ -62,7 +62,7 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
      *           creating a backend that uses AWS v4 signature authentication, but will not
      *           be returned as part of the configuration when queried with a REST API GET
      *           request.
-     *           &#64;InputOnly
+     *           \@InputOnly
      *     @type string $access_key_id
      *           The identifier of an access key used for s3 bucket authentication.
      *     @type string $access_key_version
@@ -84,7 +84,7 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
      * creating a backend that uses AWS v4 signature authentication, but will not
      * be returned as part of the configuration when queried with a REST API GET
      * request.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>optional string access_key = 468922628;</code>
      * @return string
@@ -109,7 +109,7 @@ class AWSV4Signature extends \Google\Protobuf\Internal\Message
      * creating a backend that uses AWS v4 signature authentication, but will not
      * be returned as part of the configuration when queried with a REST API GET
      * request.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>optional string access_key = 468922628;</code>
      * @param string $var

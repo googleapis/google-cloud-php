@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The current IP utilization of all subnetwork ranges. Contains the total
@@ -54,7 +54,7 @@ class SubnetworkUtilizationDetails extends \Google\Protobuf\Internal\Message
      *           Utilizations of external IPV6 IP range for NetLB.
      *     @type \Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV6Utilization $internal_ipv6_utilization
      *           Utilizations of internal IPV6 IP range.
-     *     @type array<\Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV4Utilization>|\Google\Protobuf\Internal\RepeatedField $ipv4_utilizations
+     *     @type \Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV4Utilization[] $ipv4_utilizations
      *           Utilizations of all IPV4 IP ranges. For primary ranges, the range name
      *           will be empty.
      * }
@@ -177,7 +177,7 @@ class SubnetworkUtilizationDetails extends \Google\Protobuf\Internal\Message
      * will be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkUtilizationDetailsIPV4Utilization ipv4_utilizations = 206180011;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV4Utilization>
      */
     public function getIpv4Utilizations()
     {
@@ -189,7 +189,7 @@ class SubnetworkUtilizationDetails extends \Google\Protobuf\Internal\Message
      * will be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkUtilizationDetailsIPV4Utilization ipv4_utilizations = 206180011;</code>
-     * @param array<\Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV4Utilization>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SubnetworkUtilizationDetailsIPV4Utilization[] $var
      * @return $this
      */
     public function setIpv4Utilizations($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -27,7 +27,7 @@ class RegionNetworkEndpointGroupsAttachEndpointsRequest extends \Google\Protobuf
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $network_endpoints
+     *     @type \Google\Cloud\Compute\V1\NetworkEndpoint[] $network_endpoints
      *           The list of network endpoints to be attached.
      * }
      */
@@ -40,7 +40,7 @@ class RegionNetworkEndpointGroupsAttachEndpointsRequest extends \Google\Protobuf
      * The list of network endpoints to be attached.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpoint network_endpoints = 149850285;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkEndpoint>
      */
     public function getNetworkEndpoints()
     {
@@ -51,7 +51,7 @@ class RegionNetworkEndpointGroupsAttachEndpointsRequest extends \Google\Protobuf
      * The list of network endpoints to be attached.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpoint network_endpoints = 149850285;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkEndpoint[] $var
      * @return $this
      */
     public function setNetworkEndpoints($var)

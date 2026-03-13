@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration information for enabling Media Access Control security
@@ -48,7 +48,7 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
      *           router to fallback to cleartext traffic if the MKA session cannot be
      *           established. By default, the Interconnect connection is configured with amust-secure security policy that drops all traffic if the
      *           MKA session cannot be established with your router.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectMacsecPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $pre_shared_keys
+     *     @type \Google\Cloud\Compute\V1\InterconnectMacsecPreSharedKey[] $pre_shared_keys
      *           Required. A keychain placeholder describing a set of named key objects
      *           along with their start times. A MACsec CKN/CAK is generated for each
      *           key in the key chain. Google router automatically picks the key with
@@ -111,7 +111,7 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
      * secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecPreSharedKey pre_shared_keys = 420308466;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectMacsecPreSharedKey>
      */
     public function getPreSharedKeys()
     {
@@ -126,7 +126,7 @@ class InterconnectMacsec extends \Google\Protobuf\Internal\Message
      * secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecPreSharedKey pre_shared_keys = 420308466;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectMacsecPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectMacsecPreSharedKey[] $var
      * @return $this
      */
     public function setPreSharedKeys($var)

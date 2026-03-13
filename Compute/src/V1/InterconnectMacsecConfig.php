@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MACsec configuration information for the Interconnect connection. Contains
@@ -33,7 +33,7 @@ class InterconnectMacsecConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectMacsecConfigPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $pre_shared_keys
+     *     @type \Google\Cloud\Compute\V1\InterconnectMacsecConfigPreSharedKey[] $pre_shared_keys
      *           A keychain placeholder describing a set of named key objects
      *           along with their start times. A MACsec CKN/CAK is generated for each key in
      *           the key chain. Google router automatically picks the key with the most
@@ -52,7 +52,7 @@ class InterconnectMacsecConfig extends \Google\Protobuf\Internal\Message
      * recent startTime when establishing or re-establishing a MACsec secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecConfigPreSharedKey pre_shared_keys = 420308466;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectMacsecConfigPreSharedKey>
      */
     public function getPreSharedKeys()
     {
@@ -66,7 +66,7 @@ class InterconnectMacsecConfig extends \Google\Protobuf\Internal\Message
      * recent startTime when establishing or re-establishing a MACsec secure link.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectMacsecConfigPreSharedKey pre_shared_keys = 420308466;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectMacsecConfigPreSharedKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectMacsecConfigPreSharedKey[] $var
      * @return $this
      */
     public function setPreSharedKeys($var)

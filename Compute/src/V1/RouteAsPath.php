@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -45,7 +45,7 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $as_lists
+     *     @type int[] $as_lists
      *           [Output Only] The AS numbers of the AS Path.
      *     @type string $path_segment_type
      *           [Output Only] The type of the AS Path, which can be one of the following
@@ -72,7 +72,7 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
      * [Output Only] The AS numbers of the AS Path.
      *
      * Generated from protobuf field <code>repeated uint32 as_lists = 134112584;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAsLists()
     {
@@ -83,7 +83,7 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
      * [Output Only] The AS numbers of the AS Path.
      *
      * Generated from protobuf field <code>repeated uint32 as_lists = 134112584;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAsLists($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * InstanceGroupManagers.applyUpdatesToInstances
@@ -77,7 +77,7 @@ class InstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\Internal
      *           Flag to update all instances instead of specified list of “instances”.
      *           If the flag is set to true then the instances may not be specified
      *           in the request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type string[] $instances
      *           The list of URLs of one or more instances for which you want to apply
      *           updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
      *     @type string $minimal_action
@@ -160,7 +160,7 @@ class InstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\Internal
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstances()
     {
@@ -172,7 +172,7 @@ class InstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\Internal
      * updates. Each URL can be a full URL or a partial URL, such aszones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstances($var)

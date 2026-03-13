@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -38,7 +38,7 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
      *     @type bool $force_suspend
      *           If this flag is set to true, the Instance Group Manager will proceed to
      *           suspend the instances, skipping initialization on them.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type string[] $instances
      *           The URLs of one or more instances to suspend. This can be a full URL or
      *           a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      * }
@@ -91,7 +91,7 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
      * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstances()
     {
@@ -103,7 +103,7 @@ class RegionInstanceGroupManagersSuspendInstancesRequest extends \Google\Protobu
      * a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstances($var)

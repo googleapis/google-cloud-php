@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Target VPN Gateway resource.
@@ -142,7 +142,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
+     *     @type string[] $forwarding_rules
      *           [Output Only] A list of URLs to the ForwardingRule resources.
      *           ForwardingRules are created usingcompute.forwardingRules.insert and associated with a VPN
      *           gateway.
@@ -187,7 +187,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *           [Output Only] The status of the VPN gateway,
      *           which can be one of the following: CREATING, READY, FAILED, or DELETING.
      *           Check the Status enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tunnels
+     *     @type string[] $tunnels
      *           [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are
      *           created using the compute.vpntunnels.insert method and
      *           associated with a VPN gateway.
@@ -280,7 +280,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      * gateway.
      *
      * Generated from protobuf field <code>repeated string forwarding_rules = 315821365;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getForwardingRules()
     {
@@ -293,7 +293,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      * gateway.
      *
      * Generated from protobuf field <code>repeated string forwarding_rules = 315821365;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setForwardingRules($var)
@@ -702,7 +702,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      * associated with a VPN gateway.
      *
      * Generated from protobuf field <code>repeated string tunnels = 104561931;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTunnels()
     {
@@ -715,7 +715,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      * associated with a VPN gateway.
      *
      * Generated from protobuf field <code>repeated string tunnels = 104561931;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTunnels($var)

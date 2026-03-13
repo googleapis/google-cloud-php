@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a list of network profiles.
@@ -78,7 +78,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\NetworkProfile>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\NetworkProfile[] $items
      *           A list of NetworkProfile resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Alwayscompute#networkProfileList for network profiles.
@@ -92,7 +92,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      *           continue paging through the results.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for this resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
+     *     @type string[] $unreachables
      *           Output only. [Output Only] Unreachable resources.
      *           end_interface: MixerListResponseWithEtagBuilder
      *     @type \Google\Cloud\Compute\V1\Warning $warning
@@ -176,7 +176,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      * A list of NetworkProfile resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkProfile items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkProfile>
      */
     public function getItems()
     {
@@ -187,7 +187,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      * A list of NetworkProfile resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkProfile items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkProfile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkProfile[] $var
      * @return $this
      */
     public function setItems($var)
@@ -323,7 +323,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachables()
     {
@@ -335,7 +335,7 @@ class NetworkProfilesListResponse extends \Google\Protobuf\Internal\Message
      * end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachables($var)

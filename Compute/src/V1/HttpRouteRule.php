@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The HttpRouteRule setting specifies how to match an HTTP request
@@ -173,7 +173,7 @@ class HttpRouteRule extends \Google\Protobuf\Internal\Message
      *           their loadBalancingScheme set to EXTERNAL.
      *           Not supported when the URL map is bound to a target gRPC proxy that
      *           has validateForProxyless field set to true.
-     *     @type array<\Google\Cloud\Compute\V1\HttpRouteRuleMatch>|\Google\Protobuf\Internal\RepeatedField $match_rules
+     *     @type \Google\Cloud\Compute\V1\HttpRouteRuleMatch[] $match_rules
      *           The list of criteria for matching attributes of a request to thisrouteRule. This list has OR semantics: the request matches
      *           this routeRule when any of thematchRules are satisfied. However predicates within
      *           a given matchRule have AND semantics. All predicates
@@ -402,7 +402,7 @@ class HttpRouteRule extends \Google\Protobuf\Internal\Message
      * match the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRuleMatch match_rules = 376200701;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HttpRouteRuleMatch>
      */
     public function getMatchRules()
     {
@@ -417,7 +417,7 @@ class HttpRouteRule extends \Google\Protobuf\Internal\Message
      * match the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRuleMatch match_rules = 376200701;</code>
-     * @param array<\Google\Cloud\Compute\V1\HttpRouteRuleMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HttpRouteRuleMatch[] $var
      * @return $this
      */
     public function setMatchRules($var)

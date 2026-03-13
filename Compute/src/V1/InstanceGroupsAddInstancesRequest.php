@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -27,7 +27,7 @@ class InstanceGroupsAddInstancesRequest extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Compute\V1\InstanceReference[] $instances
      *           The list of instances to add to the instance group.
      * }
      */
@@ -40,7 +40,7 @@ class InstanceGroupsAddInstancesRequest extends \Google\Protobuf\Internal\Messag
      * The list of instances to add to the instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceReference>
      */
     public function getInstances()
     {
@@ -51,7 +51,7 @@ class InstanceGroupsAddInstancesRequest extends \Google\Protobuf\Internal\Messag
      * The list of instances to add to the instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceReference[] $var
      * @return $this
      */
     public function setInstances($var)

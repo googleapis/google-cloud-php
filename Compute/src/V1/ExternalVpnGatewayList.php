@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to the list request, and contains a list of externalVpnGateways.
@@ -69,7 +69,7 @@ class ExternalVpnGatewayList extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\ExternalVpnGateway>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\ExternalVpnGateway[] $items
      *           A list of ExternalVpnGateway resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Always compute#externalVpnGatewayList for lists of externalVpnGateways.
@@ -162,7 +162,7 @@ class ExternalVpnGatewayList extends \Google\Protobuf\Internal\Message
      * A list of ExternalVpnGateway resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ExternalVpnGateway items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ExternalVpnGateway>
      */
     public function getItems()
     {
@@ -173,7 +173,7 @@ class ExternalVpnGatewayList extends \Google\Protobuf\Internal\Message
      * A list of ExternalVpnGateway resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ExternalVpnGateway items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\ExternalVpnGateway>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ExternalVpnGateway[] $var
      * @return $this
      */
     public function setItems($var)
