@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\AppProfile;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Read/write requests are routed to the nearest cluster in the instance, and
@@ -34,7 +34,7 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cluster_ids
+     *     @type string[] $cluster_ids
      *           The set of clusters to route to. The order is ignored; clusters will be
      *           tried in order of distance. If left empty, all clusters are eligible.
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny\RowAffinity $row_affinity
@@ -52,7 +52,7 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      * tried in order of distance. If left empty, all clusters are eligible.
      *
      * Generated from protobuf field <code>repeated string cluster_ids = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getClusterIds()
     {
@@ -64,7 +64,7 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      * tried in order of distance. If left empty, all clusters are eligible.
      *
      * Generated from protobuf field <code>repeated string cluster_ids = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setClusterIds($var)
@@ -117,7 +117,4 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MultiClusterRoutingUseAny::class, \Google\Cloud\Bigtable\Admin\V2\AppProfile_MultiClusterRoutingUseAny::class);
 

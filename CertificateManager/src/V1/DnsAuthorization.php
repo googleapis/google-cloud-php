@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A DnsAuthorization resource describes a way to perform domain authorization
@@ -19,7 +19,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the dns authorization. DnsAuthorization names must
      * be unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;dnsAuthorizations/&#42;`.
+     * `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -82,7 +82,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A user-defined name of the dns authorization. DnsAuthorization names must
      *           be unique globally and match pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;dnsAuthorizations/&#42;`.
+     *           `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a DnsAuthorization.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -113,7 +113,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the dns authorization. DnsAuthorization names must
      * be unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;dnsAuthorizations/&#42;`.
+     * `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -126,7 +126,7 @@ class DnsAuthorization extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the dns authorization. DnsAuthorization names must
      * be unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;dnsAuthorizations/&#42;`.
+     * `projects/{@*}locations/{@*}dnsAuthorizations/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

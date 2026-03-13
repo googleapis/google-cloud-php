@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AppendRows`.
@@ -67,7 +67,7 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      *           If backend detects a schema update, pass it to user so that user can
      *           use it to input new type of message. It will be empty when no schema
      *           updates have occurred.
-     *     @type array<\Google\Cloud\BigQuery\Storage\V1\RowError>|\Google\Protobuf\Internal\RepeatedField $row_errors
+     *     @type \Google\Cloud\BigQuery\Storage\V1\RowError[] $row_errors
      *           If a request failed due to corrupted rows, no rows in the batch will be
      *           appended. The API will return row level error info, so that the caller can
      *           remove the bad rows and retry the request.
@@ -215,7 +215,7 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      * remove the bad rows and retry the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.RowError row_errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Storage\V1\RowError>
      */
     public function getRowErrors()
     {
@@ -228,7 +228,7 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      * remove the bad rows and retry the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.RowError row_errors = 4;</code>
-     * @param array<\Google\Cloud\BigQuery\Storage\V1\RowError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Storage\V1\RowError[] $var
      * @return $this
      */
     public function setRowErrors($var)

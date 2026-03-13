@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for an export insights operation.
@@ -53,7 +53,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The time the operation finished running.
      *     @type \Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest $request
      *           The original request for export.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type \Google\Rpc\Status[] $partial_errors
      *           Partial errors during export operation that might cause the operation
      *           output to be incomplete.
      * }
@@ -176,7 +176,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialErrors()
     {
@@ -188,7 +188,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialErrors($var)

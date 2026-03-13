@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the price of the Offer.
@@ -75,7 +75,7 @@ class Price extends \Google\Protobuf\Internal\Message
      *           Example: 1 month, 6 months, 1 year, etc.
      *     @type string $external_price_uri
      *           Link to external price list, such as link to Google Voice rate card.
-     *     @type array<\Google\Cloud\Channel\V1\DiscountComponent>|\Google\Protobuf\Internal\RepeatedField $discount_components
+     *     @type \Google\Cloud\Channel\V1\DiscountComponent[] $discount_components
      *           Breakdown of the discount into its components.
      *           This will be empty if there is no discount present.
      * }
@@ -256,7 +256,7 @@ class Price extends \Google\Protobuf\Internal\Message
      * This will be empty if there is no discount present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.DiscountComponent discount_components = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\DiscountComponent>
      */
     public function getDiscountComponents()
     {
@@ -268,7 +268,7 @@ class Price extends \Google\Protobuf\Internal\Message
      * This will be empty if there is no discount present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.DiscountComponent discount_components = 5;</code>
-     * @param array<\Google\Cloud\Channel\V1\DiscountComponent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\DiscountComponent[] $var
      * @return $this
      */
     public function setDiscountComponents($var)

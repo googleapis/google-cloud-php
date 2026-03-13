@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `QueryUsageHistories` response.
@@ -28,7 +28,7 @@ class QueryUsageHistoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\UsageHistory>|\Google\Protobuf\Internal\RepeatedField $usage_histories
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\UsageHistory[] $usage_histories
      *           The usage histories that match the request.
      * }
      */
@@ -41,7 +41,7 @@ class QueryUsageHistoriesResponse extends \Google\Protobuf\Internal\Message
      * The usage histories that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.UsageHistory usage_histories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\UsageHistory>
      */
     public function getUsageHistories()
     {
@@ -52,7 +52,7 @@ class QueryUsageHistoriesResponse extends \Google\Protobuf\Internal\Message
      * The usage histories that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.UsageHistory usage_histories = 1;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\UsageHistory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\UsageHistory[] $var
      * @return $this
      */
     public function setUsageHistories($var)

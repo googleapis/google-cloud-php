@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\Budgets\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A budget is a plan that describes what you expect to spend on Cloud
@@ -92,7 +92,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      *           budget's time period, as well as other filters.
      *     @type \Google\Cloud\Billing\Budgets\V1\BudgetAmount $amount
      *           Required. Budgeted amount.
-     *     @type array<\Google\Cloud\Billing\Budgets\V1\ThresholdRule>|\Google\Protobuf\Internal\RepeatedField $threshold_rules
+     *     @type \Google\Cloud\Billing\Budgets\V1\ThresholdRule[] $threshold_rules
      *           Optional. Rules that trigger alerts (notifications of thresholds
      *           being crossed) when spend exceeds the specified percentages of the budget.
      *           Optional for `pubsubTopic` notifications.
@@ -252,7 +252,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Billing\Budgets\V1\ThresholdRule>
      */
     public function getThresholdRules()
     {
@@ -266,7 +266,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Billing\Budgets\V1\ThresholdRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Billing\Budgets\V1\ThresholdRule[] $var
      * @return $this
      */
     public function setThresholdRules($var)

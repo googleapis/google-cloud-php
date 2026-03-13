@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `ListBillingAccounts`.
@@ -36,7 +36,7 @@ class ListBillingAccountsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Billing\V1\BillingAccount>|\Google\Protobuf\Internal\RepeatedField $billing_accounts
+     *     @type \Google\Cloud\Billing\V1\BillingAccount[] $billing_accounts
      *           A list of billing accounts.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. To retrieve the next page,
@@ -53,7 +53,7 @@ class ListBillingAccountsResponse extends \Google\Protobuf\Internal\Message
      * A list of billing accounts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.v1.BillingAccount billing_accounts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Billing\V1\BillingAccount>
      */
     public function getBillingAccounts()
     {
@@ -64,7 +64,7 @@ class ListBillingAccountsResponse extends \Google\Protobuf\Internal\Message
      * A list of billing accounts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.v1.BillingAccount billing_accounts = 1;</code>
-     * @param array<\Google\Cloud\Billing\V1\BillingAccount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Billing\V1\BillingAccount[] $var
      * @return $this
      */
     public function setBillingAccounts($var)

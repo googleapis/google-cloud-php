@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a trust config.
@@ -18,7 +18,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the trust config. TrustConfig names must be
      * unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -74,7 +74,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A user-defined name of the trust config. TrustConfig names must be
      *           unique globally and match pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     *           `projects/{@*}locations/{@*}trustConfigs/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a TrustConfig.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -87,7 +87,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
-     *     @type array<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore>|\Google\Protobuf\Internal\RepeatedField $trust_stores
+     *     @type \Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore[] $trust_stores
      *           Set of trust stores to perform validation against.
      *           This field is supported when TrustConfig is configured with Load Balancers,
      *           currently not supported for SPIFFE certificate validation.
@@ -102,7 +102,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the trust config. TrustConfig names must be
      * unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -115,7 +115,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the trust config. TrustConfig names must be
      * unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -290,7 +290,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      * Only one TrustStore specified is currently allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore>
      */
     public function getTrustStores()
     {
@@ -304,7 +304,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      * Only one TrustStore specified is currently allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustStore trust_stores = 8;</code>
-     * @param array<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CertificateManager\V1\TrustConfig\TrustStore[] $var
      * @return $this
      */
     public function setTrustStores($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\DataStoreTool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Boost specifications to boost certain documents.
@@ -38,11 +38,11 @@ class BoostSpecs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_stores
+     *     @type string[] $data_stores
      *           Required. The Data Store where the boosting configuration is applied.
      *           Full resource name of DataStore, such as
      *           projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}.
-     *     @type array<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpec>|\Google\Protobuf\Internal\RepeatedField $spec
+     *     @type \Google\Cloud\Ces\V1\DataStoreTool\BoostSpec[] $spec
      *           Required. A list of boosting specifications.
      * }
      */
@@ -57,7 +57,7 @@ class BoostSpecs extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}.
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataStores()
     {
@@ -70,7 +70,7 @@ class BoostSpecs extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}.
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataStores($var)
@@ -85,7 +85,7 @@ class BoostSpecs extends \Google\Protobuf\Internal\Message
      * Required. A list of boosting specifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.BoostSpec spec = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpec>
      */
     public function getSpec()
     {
@@ -96,7 +96,7 @@ class BoostSpecs extends \Google\Protobuf\Internal\Message
      * Required. A list of boosting specifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.BoostSpec spec = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\DataStoreTool\BoostSpec[] $var
      * @return $this
      */
     public function setSpec($var)
@@ -108,5 +108,4 @@ class BoostSpecs extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

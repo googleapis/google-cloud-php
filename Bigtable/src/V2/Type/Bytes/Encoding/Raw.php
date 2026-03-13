@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type\Bytes\Encoding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Leaves the value as-is.
@@ -74,7 +74,4 @@ class Raw extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Raw::class, \Google\Cloud\Bigtable\V2\Type_Bytes_Encoding_Raw::class);
 

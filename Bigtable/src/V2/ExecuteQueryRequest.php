@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Bigtable.ExecuteQuery
@@ -67,16 +67,16 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. params contains string type keys and Bigtable type values that
      * bind to placeholders in the query string. In query string, a parameter
      * placeholder consists of the
-     * `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     * `\@` character followed by the parameter name (for example, `\@firstName`) in
      * the query string.
      * For example, if
      * `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     * then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     * then `\@firstName` will be replaced with googlesql bytes value "foo" in the
      * query string during query evaluation.
      * If `Value.kind` is not set, the value is treated as a NULL value of the
      * given type. For example, if
      * `params["firstName"] = type {string_type {}}`
-     * then `&#64;firstName` will be replaced with googlesql null string.
+     * then `\@firstName` will be replaced with googlesql null string.
      * If `query` is set, any empty `Value.type` in the map will be rejected with
      * `INVALID_ARGUMENT`.
      * If `prepared_query` is set, any empty `Value.type` in the map will be
@@ -174,16 +174,16 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      *           Required. params contains string type keys and Bigtable type values that
      *           bind to placeholders in the query string. In query string, a parameter
      *           placeholder consists of the
-     *           `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     *           `\@` character followed by the parameter name (for example, `\@firstName`) in
      *           the query string.
      *           For example, if
      *           `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     *           then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     *           then `\@firstName` will be replaced with googlesql bytes value "foo" in the
      *           query string during query evaluation.
      *           If `Value.kind` is not set, the value is treated as a NULL value of the
      *           given type. For example, if
      *           `params["firstName"] = type {string_type {}}`
-     *           then `&#64;firstName` will be replaced with googlesql null string.
+     *           then `\@firstName` will be replaced with googlesql null string.
      *           If `query` is set, any empty `Value.type` in the map will be rejected with
      *           `INVALID_ARGUMENT`.
      *           If `prepared_query` is set, any empty `Value.type` in the map will be
@@ -413,16 +413,16 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. params contains string type keys and Bigtable type values that
      * bind to placeholders in the query string. In query string, a parameter
      * placeholder consists of the
-     * `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     * `\@` character followed by the parameter name (for example, `\@firstName`) in
      * the query string.
      * For example, if
      * `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     * then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     * then `\@firstName` will be replaced with googlesql bytes value "foo" in the
      * query string during query evaluation.
      * If `Value.kind` is not set, the value is treated as a NULL value of the
      * given type. For example, if
      * `params["firstName"] = type {string_type {}}`
-     * then `&#64;firstName` will be replaced with googlesql null string.
+     * then `\@firstName` will be replaced with googlesql null string.
      * If `query` is set, any empty `Value.type` in the map will be rejected with
      * `INVALID_ARGUMENT`.
      * If `prepared_query` is set, any empty `Value.type` in the map will be
@@ -442,16 +442,16 @@ class ExecuteQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. params contains string type keys and Bigtable type values that
      * bind to placeholders in the query string. In query string, a parameter
      * placeholder consists of the
-     * `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     * `\@` character followed by the parameter name (for example, `\@firstName`) in
      * the query string.
      * For example, if
      * `params["firstName"] = bytes_value: "foo" type {bytes_type {}}`
-     * then `&#64;firstName` will be replaced with googlesql bytes value "foo" in the
+     * then `\@firstName` will be replaced with googlesql bytes value "foo" in the
      * query string during query evaluation.
      * If `Value.kind` is not set, the value is treated as a NULL value of the
      * given type. For example, if
      * `params["firstName"] = type {string_type {}}`
-     * then `&#64;firstName` will be replaced with googlesql null string.
+     * then `\@firstName` will be replaced with googlesql null string.
      * If `query` is set, any empty `Value.type` in the map will be rejected with
      * `INVALID_ARGUMENT`.
      * If `prepared_query` is set, any empty `Value.type` in the map will be

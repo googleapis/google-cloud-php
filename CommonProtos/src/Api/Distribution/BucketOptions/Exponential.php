@@ -5,8 +5,8 @@
 namespace Google\Api\Distribution\BucketOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies an exponential sequence of buckets that have a width that is
@@ -138,5 +138,4 @@ class Exponential extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

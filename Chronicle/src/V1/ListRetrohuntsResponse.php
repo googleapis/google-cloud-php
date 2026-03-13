@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListRetrohunts method.
@@ -35,7 +35,7 @@ class ListRetrohuntsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Chronicle\V1\Retrohunt>|\Google\Protobuf\Internal\RepeatedField $retrohunts
+     *     @type \Google\Cloud\Chronicle\V1\Retrohunt[] $retrohunts
      *           The retrohunts from the specified rule.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListRetrohuntsResponse extends \Google\Protobuf\Internal\Message
      * The retrohunts from the specified rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.Retrohunt retrohunts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\Retrohunt>
      */
     public function getRetrohunts()
     {
@@ -62,7 +62,7 @@ class ListRetrohuntsResponse extends \Google\Protobuf\Internal\Message
      * The retrohunts from the specified rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.Retrohunt retrohunts = 1;</code>
-     * @param array<\Google\Cloud\Chronicle\V1\Retrohunt>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\Retrohunt[] $var
      * @return $this
      */
     public function setRetrohunts($var)

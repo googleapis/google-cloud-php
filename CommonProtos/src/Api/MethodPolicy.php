@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines policies applying to an RPC method.
@@ -46,7 +46,7 @@ class MethodPolicy extends \Google\Protobuf\Internal\Message
      *           details.
      *           NOTE: This field must not be set in the proto annotation. It will be
      *           automatically filled by the service config compiler .
-     *     @type array<\Google\Api\FieldPolicy>|\Google\Protobuf\Internal\RepeatedField $request_policies
+     *     @type \Google\Api\FieldPolicy[] $request_policies
      *           Policies that are applicable to the request message.
      * }
      */
@@ -95,7 +95,7 @@ class MethodPolicy extends \Google\Protobuf\Internal\Message
      * Policies that are applicable to the request message.
      *
      * Generated from protobuf field <code>repeated .google.api.FieldPolicy request_policies = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\FieldPolicy>
      */
     public function getRequestPolicies()
     {
@@ -106,7 +106,7 @@ class MethodPolicy extends \Google\Protobuf\Internal\Message
      * Policies that are applicable to the request message.
      *
      * Generated from protobuf field <code>repeated .google.api.FieldPolicy request_policies = 2;</code>
-     * @param array<\Google\Api\FieldPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\FieldPolicy[] $var
      * @return $this
      */
     public function setRequestPolicies($var)

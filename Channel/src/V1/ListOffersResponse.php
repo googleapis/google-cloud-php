@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListOffers.
@@ -36,7 +36,7 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\Offer>|\Google\Protobuf\Internal\RepeatedField $offers
+     *     @type \Google\Cloud\Channel\V1\Offer[] $offers
      *           The list of Offers requested.
      *           The pricing information for each Offer only includes the base price.
      *           Effective prices and discounts aren't populated.
@@ -55,7 +55,7 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
      * Effective prices and discounts aren't populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Offer offers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Offer>
      */
     public function getOffers()
     {
@@ -68,7 +68,7 @@ class ListOffersResponse extends \Google\Protobuf\Internal\Message
      * Effective prices and discounts aren't populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Offer offers = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\Offer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Offer[] $var
      * @return $this
      */
     public function setOffers($var)

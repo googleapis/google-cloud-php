@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\EvaluationMetricsThresholds;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for matching tool calls.
@@ -68,5 +68,4 @@ class ToolMatchingSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

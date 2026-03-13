@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines IP configuration where this Certificate Map is serving.
@@ -36,7 +36,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $ip_address
      *           Output only. An external IP address.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type int[] $ports
      *           Output only. Ports.
      * }
      */
@@ -75,7 +75,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
      * Output only. Ports.
      *
      * Generated from protobuf field <code>repeated uint32 ports = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPorts()
     {
@@ -86,7 +86,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
      * Output only. Ports.
      *
      * Generated from protobuf field <code>repeated uint32 ports = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPorts($var)
@@ -98,5 +98,4 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

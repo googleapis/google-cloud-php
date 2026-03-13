@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1\AssignmentProtocol;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allow manual assignments triggered by administrative operations only.
@@ -30,5 +30,4 @@ class ManualAssignmentType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

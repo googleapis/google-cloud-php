@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An answer to a QaQuestion.
@@ -68,11 +68,11 @@ class QaAnswer extends \Google\Protobuf\Internal\Message
      *           Question text. E.g., "Did the agent greet the customer?"
      *     @type \Google\Cloud\ContactCenterInsights\V1\QaAnswer\AnswerValue $answer_value
      *           The main answer value, incorporating any manual edits if they exist.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           User-defined list of arbitrary tags. Matches the value from
      *           QaScorecard.ScorecardQuestion.tags. Used for grouping/organization and
      *           for weighting the score of each answer.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaAnswer\AnswerSource>|\Google\Protobuf\Internal\RepeatedField $answer_sources
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QaAnswer\AnswerSource[] $answer_sources
      *           List of all individual answers given to the question.
      * }
      */
@@ -201,7 +201,7 @@ class QaAnswer extends \Google\Protobuf\Internal\Message
      * for weighting the score of each answer.
      *
      * Generated from protobuf field <code>repeated string tags = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -214,7 +214,7 @@ class QaAnswer extends \Google\Protobuf\Internal\Message
      * for weighting the score of each answer.
      *
      * Generated from protobuf field <code>repeated string tags = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -229,7 +229,7 @@ class QaAnswer extends \Google\Protobuf\Internal\Message
      * List of all individual answers given to the question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaAnswer.AnswerSource answer_sources = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QaAnswer\AnswerSource>
      */
     public function getAnswerSources()
     {
@@ -240,7 +240,7 @@ class QaAnswer extends \Google\Protobuf\Internal\Message
      * List of all individual answers given to the question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaAnswer.AnswerSource answer_sources = 8;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaAnswer\AnswerSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QaAnswer\AnswerSource[] $var
      * @return $this
      */
     public function setAnswerSources($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VerifyConfidentialSpaceResponse is returned once a Confidential Space
@@ -44,7 +44,7 @@ class VerifyConfidentialSpaceResponse extends \Google\Protobuf\Internal\Message
      *     @type string $attestation_token
      *           Output only. The attestation token issued by this service. It contains
      *           specific platform claims based on the contents of the provided attestation.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type \Google\Rpc\Status[] $partial_errors
      *           Output only. A list of messages that carry the partial error details
      *           related to VerifyConfidentialSpace. This field is populated by errors
      *           during container image signature verification, which may reflect problems
@@ -95,7 +95,7 @@ class VerifyConfidentialSpaceResponse extends \Google\Protobuf\Internal\Message
      * image signatures.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialErrors()
     {
@@ -111,7 +111,7 @@ class VerifyConfidentialSpaceResponse extends \Google\Protobuf\Internal\Message
      * image signatures.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialErrors($var)

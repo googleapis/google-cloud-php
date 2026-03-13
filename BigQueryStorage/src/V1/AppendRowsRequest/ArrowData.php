@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Arrow schema and data.
@@ -118,5 +118,4 @@ class ArrowData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

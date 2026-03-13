@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for the `ListTerraformVersions` method.
@@ -41,12 +41,12 @@ class ListTerraformVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Config\V1\TerraformVersion>|\Google\Protobuf\Internal\RepeatedField $terraform_versions
+     *     @type \Google\Cloud\Config\V1\TerraformVersion[] $terraform_versions
      *           List of [TerraformVersion][google.cloud.config.v1.TerraformVersion]s.
      *     @type string $next_page_token
      *           Token to be supplied to the next ListTerraformVersions request via
      *           `page_token` to obtain the next set of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable resources, if any.
      * }
      */
@@ -59,7 +59,7 @@ class ListTerraformVersionsResponse extends \Google\Protobuf\Internal\Message
      * List of [TerraformVersion][google.cloud.config.v1.TerraformVersion]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.TerraformVersion terraform_versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\TerraformVersion>
      */
     public function getTerraformVersions()
     {
@@ -70,7 +70,7 @@ class ListTerraformVersionsResponse extends \Google\Protobuf\Internal\Message
      * List of [TerraformVersion][google.cloud.config.v1.TerraformVersion]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.TerraformVersion terraform_versions = 1;</code>
-     * @param array<\Google\Cloud\Config\V1\TerraformVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\TerraformVersion[] $var
      * @return $this
      */
     public function setTerraformVersions($var)
@@ -113,7 +113,7 @@ class ListTerraformVersionsResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources, if any.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListTerraformVersionsResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources, if any.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

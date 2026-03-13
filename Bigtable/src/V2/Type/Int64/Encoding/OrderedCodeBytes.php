@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type\Int64\Encoding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encodes the value in a variable length binary format of up to 10 bytes.
@@ -33,7 +33,4 @@ class OrderedCodeBytes extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrderedCodeBytes::class, \Google\Cloud\Bigtable\V2\Type_Int64_Encoding_OrderedCodeBytes::class);
 

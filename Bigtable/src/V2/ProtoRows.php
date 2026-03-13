@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Rows represented in proto format.
@@ -33,7 +33,7 @@ class ProtoRows extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\V2\Value>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\Bigtable\V2\Value[] $values
      *           A proto rows message consists of a list of values. Every N complete values
      *           defines a row, where N is equal to the  number of entries in the
      *           `metadata.proto_schema.columns` value received in the first response.
@@ -50,7 +50,7 @@ class ProtoRows extends \Google\Protobuf\Internal\Message
      * `metadata.proto_schema.columns` value received in the first response.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Value values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\Value>
      */
     public function getValues()
     {
@@ -63,7 +63,7 @@ class ProtoRows extends \Google\Protobuf\Internal\Message
      * `metadata.proto_schema.columns` value received in the first response.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Value values = 2;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\Value[] $var
      * @return $this
      */
     public function setValues($var)

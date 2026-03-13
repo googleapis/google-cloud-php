@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about issues with provisioning a Managed Certificate.
@@ -106,5 +106,4 @@ class ProvisioningIssue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

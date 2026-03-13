@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\ImportIssueModelRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Google Cloud Storage Object URI to get the issue model file from.
@@ -64,5 +64,4 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

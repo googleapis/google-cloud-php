@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\Budgets\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NotificationsRule defines notifications that are sent based on budget spend
@@ -136,7 +136,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      *           [NotificationsRule.pubsub_topic][google.cloud.billing.budgets.v1.NotificationsRule.pubsub_topic].
      *           Only "1.0" is accepted. It represents the JSON schema as defined in
      *           https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $monitoring_notification_channels
+     *     @type string[] $monitoring_notification_channels
      *           Optional. Email targets to send notifications to when a threshold is
      *           exceeded. This is in addition to the `DefaultIamRecipients` who receive
      *           alert emails based on their billing account IAM role. The value is the full
@@ -303,7 +303,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      * notifications](https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications).
      *
      * Generated from protobuf field <code>repeated string monitoring_notification_channels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMonitoringNotificationChannels()
     {
@@ -333,7 +333,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      * notifications](https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications).
      *
      * Generated from protobuf field <code>repeated string monitoring_notification_channels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMonitoringNotificationChannels($var)

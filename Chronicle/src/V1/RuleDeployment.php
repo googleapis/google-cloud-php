@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The RuleDeployment resource represents the deployment state of a Rule.
@@ -129,12 +129,12 @@ class RuleDeployment extends \Google\Protobuf\Internal\Message
      *           The run frequency of the rule deployment.
      *     @type int $execution_state
      *           Output only. The execution state of the rule deployment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $producer_rules
+     *     @type string[] $producer_rules
      *           Output only. The names of the associated/chained producer rules. Rules are
      *           considered producers for this rule if this rule explicitly filters on their
      *           ruleid. Format:
      *           `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $consumer_rules
+     *     @type string[] $consumer_rules
      *           Output only. The names of the associated/chained consumer rules. Rules are
      *           considered consumers of this rule if their rule text explicitly filters on
      *           this rule's ruleid. Format:
@@ -374,7 +374,7 @@ class RuleDeployment extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}`
      *
      * Generated from protobuf field <code>repeated string producer_rules = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProducerRules()
     {
@@ -388,7 +388,7 @@ class RuleDeployment extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}`
      *
      * Generated from protobuf field <code>repeated string producer_rules = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProducerRules($var)
@@ -406,7 +406,7 @@ class RuleDeployment extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}`
      *
      * Generated from protobuf field <code>repeated string consumer_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getConsumerRules()
     {
@@ -420,7 +420,7 @@ class RuleDeployment extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}`
      *
      * Generated from protobuf field <code>repeated string consumer_rules = 9 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setConsumerRules($var)

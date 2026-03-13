@@ -5,8 +5,8 @@
 namespace Google\Api\Distribution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `BucketOptions` describes the bucket boundaries used to create a histogram
@@ -151,5 +151,4 @@ class BucketOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

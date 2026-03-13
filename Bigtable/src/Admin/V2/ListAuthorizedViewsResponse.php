@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -37,7 +37,7 @@ class ListAuthorizedViewsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\AuthorizedView>|\Google\Protobuf\Internal\RepeatedField $authorized_views
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AuthorizedView[] $authorized_views
      *           The AuthorizedViews present in the requested table.
      *     @type string $next_page_token
      *           Set if not all tables could be returned in a single response.
@@ -54,7 +54,7 @@ class ListAuthorizedViewsResponse extends \Google\Protobuf\Internal\Message
      * The AuthorizedViews present in the requested table.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.AuthorizedView authorized_views = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\AuthorizedView>
      */
     public function getAuthorizedViews()
     {
@@ -65,7 +65,7 @@ class ListAuthorizedViewsResponse extends \Google\Protobuf\Internal\Message
      * The AuthorizedViews present in the requested table.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.AuthorizedView authorized_views = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\AuthorizedView>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\AuthorizedView[] $var
      * @return $this
      */
     public function setAuthorizedViews($var)

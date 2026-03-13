@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QaAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for holding the value of a
@@ -348,5 +348,4 @@ class AnswerValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

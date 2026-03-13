@@ -67,6 +67,3 @@ class ResponseView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResponseView::class, \Google\Cloud\Bigtable\Admin\V2\AuthorizedView_ResponseView::class);
-

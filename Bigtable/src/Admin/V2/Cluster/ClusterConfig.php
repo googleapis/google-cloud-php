@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Cluster;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a cluster.
@@ -74,7 +74,4 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClusterConfig::class, \Google\Cloud\Bigtable\Admin\V2\Cluster_ClusterConfig::class);
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\DataStoreTool\BoostSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Boost specification for a condition.
@@ -186,5 +186,4 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

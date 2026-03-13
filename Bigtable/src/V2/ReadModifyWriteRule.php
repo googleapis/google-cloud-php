@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies an atomic read/modify/write operation on the latest value of the

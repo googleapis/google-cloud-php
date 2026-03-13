@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The phrase matcher resource.
@@ -27,7 +27,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      * Output only. Immutable. The revision ID of the phrase matcher.
      * A new revision is committed whenever the matcher is changed, except when it
      * is activated or deactivated. A server generated random ID will be used.
-     * Example: locations/global/phraseMatchers/my-first-matcher&#64;1234567
+     * Example: locations/global/phraseMatchers/my-first-matcher\@1234567
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -106,7 +106,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      *           Output only. Immutable. The revision ID of the phrase matcher.
      *           A new revision is committed whenever the matcher is changed, except when it
      *           is activated or deactivated. A server generated random ID will be used.
-     *           Example: locations/global/phraseMatchers/my-first-matcher&#64;1234567
+     *           Example: locations/global/phraseMatchers/my-first-matcher\@1234567
      *     @type string $version_tag
      *           The customized version tag to use for the phrase matcher. If not specified,
      *           it will default to `revision_id`.
@@ -119,7 +119,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      *           Required. The type of this phrase matcher.
      *     @type bool $active
      *           Applies the phrase matcher only when it is active.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup>|\Google\Protobuf\Internal\RepeatedField $phrase_match_rule_groups
+     *     @type \Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup[] $phrase_match_rule_groups
      *           A list of phase match rule groups that are included in this matcher.
      *     @type \Google\Protobuf\Timestamp $activation_update_time
      *           Output only. The most recent time at which the activation status was
@@ -171,7 +171,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      * Output only. Immutable. The revision ID of the phrase matcher.
      * A new revision is committed whenever the matcher is changed, except when it
      * is activated or deactivated. A server generated random ID will be used.
-     * Example: locations/global/phraseMatchers/my-first-matcher&#64;1234567
+     * Example: locations/global/phraseMatchers/my-first-matcher\@1234567
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -185,7 +185,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      * Output only. Immutable. The revision ID of the phrase matcher.
      * A new revision is committed whenever the matcher is changed, except when it
      * is activated or deactivated. A server generated random ID will be used.
-     * Example: locations/global/phraseMatchers/my-first-matcher&#64;1234567
+     * Example: locations/global/phraseMatchers/my-first-matcher\@1234567
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -347,7 +347,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      * A list of phase match rule groups that are included in this matcher.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRuleGroup phrase_match_rule_groups = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup>
      */
     public function getPhraseMatchRuleGroups()
     {
@@ -358,7 +358,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      * A list of phase match rule groups that are included in this matcher.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRuleGroup phrase_match_rule_groups = 8;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup[] $var
      * @return $this
      */
     public function setPhraseMatchRuleGroups($var)

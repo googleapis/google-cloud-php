@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for [BinauthzManagementService.ListAttestors][].
@@ -17,7 +17,7 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the project associated with the
-     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/&#42;`.
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -61,7 +61,7 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the project associated with the
-     *           [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/&#42;`.
+     *           [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
      *     @type int $page_size
      *           Requested page size. The server may return fewer results than requested. If
      *           unspecified, the server will pick an appropriate default.
@@ -78,7 +78,7 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the project associated with the
-     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/&#42;`.
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -90,7 +90,7 @@ class ListAttestorsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the project associated with the
-     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/&#42;`.
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

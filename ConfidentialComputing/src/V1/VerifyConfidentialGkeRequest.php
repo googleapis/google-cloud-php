@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request for an attestation token, providing all the necessary information
@@ -19,7 +19,7 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the Challenge whose nonce was used to generate the
-     * attestation, in the format projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;. The
+     * attestation, in the format projects/{@*}locations/{@*}challenges/*. The
      * provided Challenge will be consumed, and cannot be used again.
      *
      * Generated from protobuf field <code>string challenge = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -44,7 +44,7 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
      *           populate any of the claims regarding platform state.
      *     @type string $challenge
      *           Required. The name of the Challenge whose nonce was used to generate the
-     *           attestation, in the format projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;. The
+     *           attestation, in the format projects/{@*}locations/{@*}challenges/*. The
      *           provided Challenge will be consumed, and cannot be used again.
      *     @type \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\ConfidentialGkeOptions $options
      *           Optional. A collection of fields that modify the token output.
@@ -90,7 +90,7 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Challenge whose nonce was used to generate the
-     * attestation, in the format projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;. The
+     * attestation, in the format projects/{@*}locations/{@*}challenges/*. The
      * provided Challenge will be consumed, and cannot be used again.
      *
      * Generated from protobuf field <code>string challenge = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -103,7 +103,7 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Challenge whose nonce was used to generate the
-     * attestation, in the format projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;. The
+     * attestation, in the format projects/{@*}locations/{@*}challenges/*. The
      * provided Challenge will be consumed, and cannot be used again.
      *
      * Generated from protobuf field <code>string challenge = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

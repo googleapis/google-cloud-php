@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\AnalysisResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Call-specific metadata created during analysis.
@@ -70,11 +70,11 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\CallAnnotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Cloud\ContactCenterInsights\V1\CallAnnotation[] $annotations
      *           A list of call annotations that apply to this call.
      *     @type array|\Google\Protobuf\Internal\MapField $entities
      *           All the entities in the call.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment>|\Google\Protobuf\Internal\RepeatedField $sentiments
+     *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment[] $sentiments
      *           Overall conversation-level sentiment for each channel of the call.
      *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSilence $silence
      *           Overall conversation-level silence during the call.
@@ -84,7 +84,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      *           All the matched phrase matchers in the call.
      *     @type \Google\Cloud\ContactCenterInsights\V1\IssueModelResult $issue_model_result
      *           Overall conversation-level issue modeling result.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult>|\Google\Protobuf\Internal\RepeatedField $qa_scorecard_results
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult[] $qa_scorecard_results
      *           Results of scoring QaScorecards.
      * }
      */
@@ -97,7 +97,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * A list of call annotations that apply to this call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.CallAnnotation annotations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\CallAnnotation>
      */
     public function getAnnotations()
     {
@@ -108,7 +108,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * A list of call annotations that apply to this call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.CallAnnotation annotations = 2;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\CallAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\CallAnnotation[] $var
      * @return $this
      */
     public function setAnnotations($var)
@@ -149,7 +149,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * Overall conversation-level sentiment for each channel of the call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.ConversationLevelSentiment sentiments = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment>
      */
     public function getSentiments()
     {
@@ -160,7 +160,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * Overall conversation-level sentiment for each channel of the call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.ConversationLevelSentiment sentiments = 4;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\ConversationLevelSentiment[] $var
      * @return $this
      */
     public function setSentiments($var)
@@ -299,7 +299,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * Results of scoring QaScorecards.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult qa_scorecard_results = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult>
      */
     public function getQaScorecardResults()
     {
@@ -310,7 +310,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      * Results of scoring QaScorecards.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult qa_scorecard_results = 10;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult[] $var
      * @return $this
      */
     public function setQaScorecardResults($var)
@@ -322,5 +322,4 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

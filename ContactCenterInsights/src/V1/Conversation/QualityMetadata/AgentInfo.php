@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about an agent involved in the conversation.
@@ -204,5 +204,4 @@ class AgentInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

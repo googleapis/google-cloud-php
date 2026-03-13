@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single interval in a time series.
@@ -108,5 +108,4 @@ class Interval extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

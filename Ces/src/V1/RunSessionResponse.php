@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class RunSessionResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\SessionOutput>|\Google\Protobuf\Internal\RepeatedField $outputs
+     *     @type \Google\Cloud\Ces\V1\SessionOutput[] $outputs
      *           Outputs for the session.
      * }
      */
@@ -42,7 +42,7 @@ class RunSessionResponse extends \Google\Protobuf\Internal\Message
      * Outputs for the session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.SessionOutput outputs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\SessionOutput>
      */
     public function getOutputs()
     {
@@ -53,7 +53,7 @@ class RunSessionResponse extends \Google\Protobuf\Internal\Message
      * Outputs for the session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.SessionOutput outputs = 1;</code>
-     * @param array<\Google\Cloud\Ces\V1\SessionOutput>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\SessionOutput[] $var
      * @return $this
      */
     public function setOutputs($var)

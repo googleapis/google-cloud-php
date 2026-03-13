@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `CreateTrustConfig` method.
@@ -17,7 +17,7 @@ class CreateTrustConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the TrustConfig. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -64,7 +64,7 @@ class CreateTrustConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the TrustConfig. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;`.
+     *           `projects/{@*}locations/*`.
      *     @type string $trust_config_id
      *           Required. A user-provided name of the TrustConfig. Must match the regexp
      *           `[a-z0-9-]{1,63}`.
@@ -79,7 +79,7 @@ class CreateTrustConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the TrustConfig. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class CreateTrustConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the TrustConfig. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

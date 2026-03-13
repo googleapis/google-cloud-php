@@ -5,8 +5,8 @@
 namespace Google\Rpc;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes additional debugging info.
@@ -34,7 +34,7 @@ class DebugInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stack_entries
+     *     @type string[] $stack_entries
      *           The stack trace entries indicating where the error occurred.
      *     @type string $detail
      *           Additional debugging information provided by the server.
@@ -49,7 +49,7 @@ class DebugInfo extends \Google\Protobuf\Internal\Message
      * The stack trace entries indicating where the error occurred.
      *
      * Generated from protobuf field <code>repeated string stack_entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStackEntries()
     {
@@ -60,7 +60,7 @@ class DebugInfo extends \Google\Protobuf\Internal\Message
      * The stack trace entries indicating where the error occurred.
      *
      * Generated from protobuf field <code>repeated string stack_entries = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStackEntries($var)

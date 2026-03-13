@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ReferenceListScope specifies the list of scope names of the reference list.
@@ -30,7 +30,7 @@ class ReferenceListScope extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scope_names
+     *     @type string[] $scope_names
      *           Optional. The list of scope names of the reference list. The scope names
      *           should be full resource names and should be of the format:
      *           `projects/{project}/locations/{location}/instances/{instance}/dataAccessScopes/{scope_name}`.
@@ -47,7 +47,7 @@ class ReferenceListScope extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/instances/{instance}/dataAccessScopes/{scope_name}`.
      *
      * Generated from protobuf field <code>repeated string scope_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopeNames()
     {
@@ -60,7 +60,7 @@ class ReferenceListScope extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/instances/{instance}/dataAccessScopes/{scope_name}`.
      *
      * Generated from protobuf field <code>repeated string scope_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopeNames($var)

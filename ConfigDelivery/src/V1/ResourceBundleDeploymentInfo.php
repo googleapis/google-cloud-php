@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceBundleDeploymentInfo represents the status of a resource bundle
@@ -64,7 +64,7 @@ class ResourceBundleDeploymentInfo extends \Google\Protobuf\Internal\Message
      *           Output only. Refers to a variant in a `ResourceBundle` release.
      *     @type int $sync_state
      *           Output only. Synchronization state of the `ResourceBundle` deployment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type string[] $messages
      *           Output only. Unordered list. Messages contains information related to the
      *           `ResourceBundle` deployment. For example, in case of an error, indicate the
      *           reason for the error. In case of a pending deployment, reason for why the
@@ -187,7 +187,7 @@ class ResourceBundleDeploymentInfo extends \Google\Protobuf\Internal\Message
      * deployment of new release is pending.
      *
      * Generated from protobuf field <code>repeated string messages = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMessages()
     {
@@ -201,7 +201,7 @@ class ResourceBundleDeploymentInfo extends \Google\Protobuf\Internal\Message
      * deployment of new release is pending.
      *
      * Generated from protobuf field <code>repeated string messages = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMessages($var)

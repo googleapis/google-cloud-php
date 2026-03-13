@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata\JobConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Extract job configuration.
@@ -36,7 +36,7 @@ class Extract extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_uris
+     *     @type string[] $destination_uris
      *           URIs where extracted data should be written. Entire list is truncated
      *           if exceeds 50K.
      *     @type bool $destination_uris_truncated
@@ -57,7 +57,7 @@ class Extract extends \Google\Protobuf\Internal\Message
      * if exceeds 50K.
      *
      * Generated from protobuf field <code>repeated string destination_uris = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationUris()
     {
@@ -69,7 +69,7 @@ class Extract extends \Google\Protobuf\Internal\Message
      * if exceeds 50K.
      *
      * Generated from protobuf field <code>repeated string destination_uris = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationUris($var)
@@ -177,5 +177,4 @@ class Extract extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

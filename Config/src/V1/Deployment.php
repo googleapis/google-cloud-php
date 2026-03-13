@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Deployment is a group of resources and configs managed and provisioned by
@@ -225,7 +225,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *     @type string $delete_logs
      *           Output only. Location of Cloud Build logs in Google Cloud Storage,
      *           populated when deleting this deployment. Format: `gs://{bucket}/{object}`.
-     *     @type array<\Google\Cloud\Config\V1\TerraformError>|\Google\Protobuf\Internal\RepeatedField $tf_errors
+     *     @type \Google\Cloud\Config\V1\TerraformError[] $tf_errors
      *           Output only. Errors encountered when deleting this deployment.
      *           Errors are truncated to 10 entries, see `delete_results` and `error_logs`
      *           for full details.
@@ -649,7 +649,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * for full details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.TerraformError tf_errors = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\TerraformError>
      */
     public function getTfErrors()
     {
@@ -662,7 +662,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * for full details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.TerraformError tf_errors = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Config\V1\TerraformError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\TerraformError[] $var
      * @return $this
      */
     public function setTfErrors($var)

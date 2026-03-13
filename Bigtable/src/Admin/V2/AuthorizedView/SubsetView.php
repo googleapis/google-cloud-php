@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\AuthorizedView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a simple AuthorizedView that is a subset of the underlying Table.
@@ -36,7 +36,7 @@ class SubsetView extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $row_prefixes
+     *     @type string[] $row_prefixes
      *           Row prefixes to be included in the AuthorizedView.
      *           To provide access to all rows, include the empty string as a prefix ("").
      *     @type array|\Google\Protobuf\Internal\MapField $family_subsets
@@ -54,7 +54,7 @@ class SubsetView extends \Google\Protobuf\Internal\Message
      * To provide access to all rows, include the empty string as a prefix ("").
      *
      * Generated from protobuf field <code>repeated bytes row_prefixes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRowPrefixes()
     {
@@ -66,7 +66,7 @@ class SubsetView extends \Google\Protobuf\Internal\Message
      * To provide access to all rows, include the empty string as a prefix ("").
      *
      * Generated from protobuf field <code>repeated bytes row_prefixes = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRowPrefixes($var)
@@ -106,7 +106,4 @@ class SubsetView extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SubsetView::class, \Google\Cloud\Bigtable\Admin\V2\AuthorizedView_SubsetView::class);
 

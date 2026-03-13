@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListSkuGroupBillableSkus.
@@ -37,7 +37,7 @@ class ListSkuGroupBillableSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\BillableSku>|\Google\Protobuf\Internal\RepeatedField $billable_skus
+     *     @type \Google\Cloud\Channel\V1\BillableSku[] $billable_skus
      *           The list of billable SKUs in the requested SKU group.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -55,7 +55,7 @@ class ListSkuGroupBillableSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of billable SKUs in the requested SKU group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.BillableSku billable_skus = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\BillableSku>
      */
     public function getBillableSkus()
     {
@@ -66,7 +66,7 @@ class ListSkuGroupBillableSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of billable SKUs in the requested SKU group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.BillableSku billable_skus = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\BillableSku>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\BillableSku[] $var
      * @return $this
      */
     public function setBillableSkus($var)

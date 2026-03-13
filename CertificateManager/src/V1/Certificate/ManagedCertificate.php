@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\Certificate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration and state of a Managed Certificate.
@@ -36,7 +36,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      * If this field is not set, the certificates will instead be publicly
      * signed as documented at
      * https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
@@ -71,18 +71,18 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type string[] $domains
      *           Immutable. The domains for which a managed SSL certificate will be
      *           generated. Wildcard domains are only supported with DNS challenge
      *           resolution.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dns_authorizations
+     *     @type string[] $dns_authorizations
      *           Immutable. Authorizations that will be used for performing domain
      *           authorization.
      *     @type string $issuance_config
      *           Immutable. The resource name for a
      *           [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      *           used to configure private PKI certificates in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     *           `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *           If this field is not set, the certificates will instead be publicly
      *           signed as documented at
      *           https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
@@ -91,7 +91,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\ProvisioningIssue $provisioning_issue
      *           Output only. Information about issues with provisioning a Managed
      *           Certificate.
-     *     @type array<\Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo>|\Google\Protobuf\Internal\RepeatedField $authorization_attempt_info
+     *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo[] $authorization_attempt_info
      *           Output only. Detailed state of the latest authorization attempt for each
      *           domain specified for managed certificate resource.
      * }
@@ -107,7 +107,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * resolution.
      *
      * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDomains()
     {
@@ -120,7 +120,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * resolution.
      *
      * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDomains($var)
@@ -136,7 +136,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * authorization.
      *
      * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDnsAuthorizations()
     {
@@ -148,7 +148,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * authorization.
      *
      * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDnsAuthorizations($var)
@@ -163,7 +163,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      * If this field is not set, the certificates will instead be publicly
      * signed as documented at
      * https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
@@ -180,7 +180,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Immutable. The resource name for a
      * [CertificateIssuanceConfig][google.cloud.certificatemanager.v1.CertificateIssuanceConfig]
      * used to configure private PKI certificates in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      * If this field is not set, the certificates will instead be publicly
      * signed as documented at
      * https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
@@ -266,7 +266,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * domain specified for managed certificate resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo authorization_attempt_info = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo>
      */
     public function getAuthorizationAttemptInfo()
     {
@@ -278,7 +278,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * domain specified for managed certificate resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo authorization_attempt_info = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo[] $var
      * @return $this
      */
     public function setAuthorizationAttemptInfo($var)
@@ -290,5 +290,4 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

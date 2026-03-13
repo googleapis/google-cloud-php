@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A partial or complete mutation.
@@ -130,7 +130,4 @@ class MutationChunk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MutationChunk::class, \Google\Cloud\Bigtable\V2\ReadChangeStreamResponse_MutationChunk::class);
 

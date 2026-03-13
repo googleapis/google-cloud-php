@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1\ListPurchasableOffersRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List Offers for CreateEntitlement purchase.
@@ -106,5 +106,4 @@ class CreateEntitlementPurchase extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
