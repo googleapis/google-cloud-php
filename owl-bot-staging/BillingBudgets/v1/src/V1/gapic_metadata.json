@@ -1,0 +1,43 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.billing.budgets.v1",
+    "libraryPackage": "Google\\Cloud\\Billing\\Budgets\\V1",
+    "services": {
+        "BudgetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BudgetServiceGapicClient",
+                    "rpcs": {
+                        "CreateBudget": {
+                            "methods": [
+                                "createBudget"
+                            ]
+                        },
+                        "DeleteBudget": {
+                            "methods": [
+                                "deleteBudget"
+                            ]
+                        },
+                        "GetBudget": {
+                            "methods": [
+                                "getBudget"
+                            ]
+                        },
+                        "ListBudgets": {
+                            "methods": [
+                                "listBudgets"
+                            ]
+                        },
+                        "UpdateBudget": {
+                            "methods": [
+                                "updateBudget"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
