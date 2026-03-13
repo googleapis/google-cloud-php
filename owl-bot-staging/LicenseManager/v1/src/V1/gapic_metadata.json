@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.licensemanager.v1",
+    "libraryPackage": "Google\\Cloud\\LicenseManager\\V1",
+    "services": {
+        "LicenseManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LicenseManagerGapicClient",
+                    "rpcs": {
+                        "AggregateUsage": {
+                            "methods": [
+                                "aggregateUsage"
+                            ]
+                        },
+                        "CreateConfiguration": {
+                            "methods": [
+                                "createConfiguration"
+                            ]
+                        },
+                        "DeactivateConfiguration": {
+                            "methods": [
+                                "deactivateConfiguration"
+                            ]
+                        },
+                        "DeleteConfiguration": {
+                            "methods": [
+                                "deleteConfiguration"
+                            ]
+                        },
+                        "GetConfiguration": {
+                            "methods": [
+                                "getConfiguration"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "GetProduct": {
+                            "methods": [
+                                "getProduct"
+                            ]
+                        },
+                        "ListConfigurations": {
+                            "methods": [
+                                "listConfigurations"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "ListProducts": {
+                            "methods": [
+                                "listProducts"
+                            ]
+                        },
+                        "QueryConfigurationLicenseUsage": {
+                            "methods": [
+                                "queryConfigurationLicenseUsage"
+                            ]
+                        },
+                        "ReactivateConfiguration": {
+                            "methods": [
+                                "reactivateConfiguration"
+                            ]
+                        },
+                        "UpdateConfiguration": {
+                            "methods": [
+                                "updateConfiguration"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
