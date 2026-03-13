@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListScannedResources RPC.
@@ -35,7 +35,7 @@ class ListScannedResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\WorkloadManager\V1\ScannedResource>|\Google\Protobuf\Internal\RepeatedField $scanned_resources
+     *     @type \Google\Cloud\WorkloadManager\V1\ScannedResource[] $scanned_resources
      *           All scanned resources in response.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListScannedResourcesResponse extends \Google\Protobuf\Internal\Message
      * All scanned resources in response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.ScannedResource scanned_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WorkloadManager\V1\ScannedResource>
      */
     public function getScannedResources()
     {
@@ -62,7 +62,7 @@ class ListScannedResourcesResponse extends \Google\Protobuf\Internal\Message
      * All scanned resources in response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.ScannedResource scanned_resources = 1;</code>
-     * @param array<\Google\Cloud\WorkloadManager\V1\ScannedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WorkloadManager\V1\ScannedResource[] $var
      * @return $this
      */
     public function setScannedResources($var)

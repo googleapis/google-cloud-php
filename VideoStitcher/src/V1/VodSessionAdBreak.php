@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for an inserted ad break.
@@ -46,9 +46,9 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\ProgressEvent>|\Google\Protobuf\Internal\RepeatedField $progress_events
+     *     @type \Google\Cloud\Video\Stitcher\V1\ProgressEvent[] $progress_events
      *           List of events that are expected to be triggered, ordered by time.
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\VodSessionAd>|\Google\Protobuf\Internal\RepeatedField $ads
+     *     @type \Google\Cloud\Video\Stitcher\V1\VodSessionAd[] $ads
      *           Ordered list of ads stitched into the ad break.
      *     @type \Google\Protobuf\Duration $end_time_offset
      *           Ad break end time in seconds relative to the start of the VOD asset.
@@ -65,7 +65,7 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * List of events that are expected to be triggered, ordered by time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.ProgressEvent progress_events = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\ProgressEvent>
      */
     public function getProgressEvents()
     {
@@ -76,7 +76,7 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * List of events that are expected to be triggered, ordered by time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.ProgressEvent progress_events = 1;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\ProgressEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\ProgressEvent[] $var
      * @return $this
      */
     public function setProgressEvents($var)
@@ -91,7 +91,7 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * Ordered list of ads stitched into the ad break.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.VodSessionAd ads = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\VodSessionAd>
      */
     public function getAds()
     {
@@ -102,7 +102,7 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * Ordered list of ads stitched into the ad break.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.VodSessionAd ads = 2;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\VodSessionAd>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\VodSessionAd[] $var
      * @return $this
      */
     public function setAds($var)

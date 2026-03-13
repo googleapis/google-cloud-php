@@ -5,8 +5,8 @@
 namespace Google\Cloud\VpcAccess\V1\Connector;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The subnet in which to house the connector
@@ -118,5 +118,4 @@ class Subnet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

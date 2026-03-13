@@ -99,6 +99,25 @@ return [
                     ],
                 ],
             ],
+            'ExportDataObjects' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VectorSearch\V1\ExportDataObjectsResponse',
+                    'metadataReturnType' => '\Google\Cloud\VectorSearch\V1\ExportDataObjectsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ImportDataObjects' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VectorSearch\V1\ImportDataObjectsResponse',

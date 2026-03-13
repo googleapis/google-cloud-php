@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the
@@ -37,7 +37,7 @@ class ListWorkflowRevisionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $workflows
+     *     @type \Google\Cloud\Workflows\V1\Workflow[] $workflows
      *           The revisions of the workflow, ordered in reverse chronological order.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -53,7 +53,7 @@ class ListWorkflowRevisionsResponse extends \Google\Protobuf\Internal\Message
      * The revisions of the workflow, ordered in reverse chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Workflows\V1\Workflow>
      */
     public function getWorkflows()
     {
@@ -64,7 +64,7 @@ class ListWorkflowRevisionsResponse extends \Google\Protobuf\Internal\Message
      * The revisions of the workflow, ordered in reverse chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
-     * @param array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Workflows\V1\Workflow[] $var
      * @return $this
      */
     public function setWorkflows($var)

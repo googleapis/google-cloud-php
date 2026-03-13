@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for "LivestreamService.ListInputs".
@@ -41,12 +41,12 @@ class ListInputsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\Input>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type \Google\Cloud\Video\LiveStream\V1\Input[] $inputs
      *           A list of inputs.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListInputsResponse extends \Google\Protobuf\Internal\Message
      * A list of inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Input inputs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\Input>
      */
     public function getInputs()
     {
@@ -70,7 +70,7 @@ class ListInputsResponse extends \Google\Protobuf\Internal\Message
      * A list of inputs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Input inputs = 1;</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\Input>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\Input[] $var
      * @return $this
      */
     public function setInputs($var)
@@ -113,7 +113,7 @@ class ListInputsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListInputsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

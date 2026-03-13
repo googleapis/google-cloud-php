@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AwsVmDetails describes a VM in AWS.
@@ -163,7 +163,7 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      *           The instance type of the VM.
      *     @type string $vpc_id
      *           The VPC ID the VM belongs to.
-     *     @type array<\Google\Cloud\VMMigration\V1\AwsSecurityGroup>|\Google\Protobuf\Internal\RepeatedField $security_groups
+     *     @type \Google\Cloud\VMMigration\V1\AwsSecurityGroup[] $security_groups
      *           The security groups the VM belongs to.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
      *           The tags of the VM.
@@ -525,7 +525,7 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      * The security groups the VM belongs to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AwsSecurityGroup security_groups = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\AwsSecurityGroup>
      */
     public function getSecurityGroups()
     {
@@ -536,7 +536,7 @@ class AwsVmDetails extends \Google\Protobuf\Internal\Message
      * The security groups the VM belongs to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AwsSecurityGroup security_groups = 14;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\AwsSecurityGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\AwsSecurityGroup[] $var
      * @return $this
      */
     public function setSecurityGroups($var)

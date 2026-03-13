@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VMware Engine network resource that provides connectivity for VMware Engine
@@ -98,7 +98,7 @@ class VmwareEngineNetwork extends \Google\Protobuf\Internal\Message
      *           Output only. Last update time of this resource.
      *     @type string $description
      *           User-provided description for this VMware Engine network.
-     *     @type array<\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\VpcNetwork>|\Google\Protobuf\Internal\RepeatedField $vpc_networks
+     *     @type \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\VpcNetwork[] $vpc_networks
      *           Output only. VMware Engine service VPC networks that provide connectivity
      *           from a private cloud to customer projects, the internet, and other Google
      *           Cloud services.
@@ -258,7 +258,7 @@ class VmwareEngineNetwork extends \Google\Protobuf\Internal\Message
      * Cloud services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.VmwareEngineNetwork.VpcNetwork vpc_networks = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\VpcNetwork>
      */
     public function getVpcNetworks()
     {
@@ -271,7 +271,7 @@ class VmwareEngineNetwork extends \Google\Protobuf\Internal\Message
      * Cloud services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.VmwareEngineNetwork.VpcNetwork vpc_networks = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\VpcNetwork>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork\VpcNetwork[] $var
      * @return $this
      */
     public function setVpcNetworks($var)

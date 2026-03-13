@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\Executions\V1\Execution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the current status of this execution.
@@ -34,7 +34,7 @@ class Status extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Workflows\Executions\V1\Execution\Status\Step>|\Google\Protobuf\Internal\RepeatedField $current_steps
+     *     @type \Google\Cloud\Workflows\Executions\V1\Execution\Status\Step[] $current_steps
      *           A list of currently executing or last executed step names for the
      *           workflow execution currently running. If the workflow has succeeded or
      *           failed, this is the last attempted or executed step. Presently, if the
@@ -59,7 +59,7 @@ class Status extends \Google\Protobuf\Internal\Message
      * ending with the most deeply nested step.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.executions.v1.Execution.Status.Step current_steps = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Workflows\Executions\V1\Execution\Status\Step>
      */
     public function getCurrentSteps()
     {
@@ -76,7 +76,7 @@ class Status extends \Google\Protobuf\Internal\Message
      * ending with the most deeply nested step.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.executions.v1.Execution.Status.Step current_steps = 1;</code>
-     * @param array<\Google\Cloud\Workflows\Executions\V1\Execution\Status\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Workflows\Executions\V1\Execution\Status\Step[] $var
      * @return $this
      */
     public function setCurrentSteps($var)
@@ -88,7 +88,4 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Status::class, \Google\Cloud\Workflows\Executions\V1\Execution_Status::class);
 

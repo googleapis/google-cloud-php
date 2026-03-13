@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\BootDiskDefaults;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains details about the image source used to create the disk.
@@ -64,5 +64,4 @@ class DiskImageDefaults extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

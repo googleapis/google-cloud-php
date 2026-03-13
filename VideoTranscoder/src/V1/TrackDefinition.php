@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Track definition for the input asset.
@@ -56,7 +56,7 @@ class TrackDefinition extends \Google\Protobuf\Internal\Message
      *
      *     @type int $input_track
      *           The input track.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $languages
+     *     @type string[] $languages
      *           Optional. A list of languages spoken in the input asset, represented by a
      *           BCP 47 language code, such as "en-US" or "sr-Latn". For more information,
      *           see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
@@ -64,7 +64,7 @@ class TrackDefinition extends \Google\Protobuf\Internal\Message
      *           Optional. Whether to automatically detect the languages present in the
      *           track. If true, the system will attempt to identify all the languages
      *           present in the track and populate the languages field.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type string[] $detected_languages
      *           Output only. A list of languages detected in the input asset, represented
      *           by a BCP 47 language code, such as "en-US" or "sr-Latn". For more
      *           information, see
@@ -119,7 +119,7 @@ class TrackDefinition extends \Google\Protobuf\Internal\Message
      * see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
      * Generated from protobuf field <code>repeated string languages = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLanguages()
     {
@@ -132,7 +132,7 @@ class TrackDefinition extends \Google\Protobuf\Internal\Message
      * see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
      * Generated from protobuf field <code>repeated string languages = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLanguages($var)
@@ -181,7 +181,7 @@ class TrackDefinition extends \Google\Protobuf\Internal\Message
      * This field is only populated if the detect_languages field is set to true.
      *
      * Generated from protobuf field <code>repeated string detected_languages = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDetectedLanguages()
     {
@@ -196,7 +196,7 @@ class TrackDefinition extends \Google\Protobuf\Internal\Message
      * This field is only populated if the detect_languages field is set to true.
      *
      * Generated from protobuf field <code>repeated string detected_languages = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDetectedLanguages($var)

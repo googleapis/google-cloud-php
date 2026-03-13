@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ImageImportJob describes the progress and result of an image import.
@@ -84,7 +84,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      *           Output only. Target details used to import a machine image.
      *     @type string $name
      *           Output only. The resource path of the ImageImportJob.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $created_resources
+     *     @type string[] $created_resources
      *           Output only. The resource paths of the resources created by the image
      *           import job.
      *     @type int $state
@@ -94,12 +94,12 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      *           when it was actually created in the target).
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The time the image import was ended.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           Output only. Provides details on the error that led to the image import
      *           state in case of an error.
-     *     @type array<\Google\Cloud\VMMigration\V1\MigrationWarning>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\VMMigration\V1\MigrationWarning[] $warnings
      *           Output only. Warnings that occurred during the image import.
-     *     @type array<\Google\Cloud\VMMigration\V1\ImageImportStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\VMMigration\V1\ImageImportStep[] $steps
      *           Output only. The image import steps list representing its progress.
      * }
      */
@@ -234,7 +234,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * import job.
      *
      * Generated from protobuf field <code>repeated string created_resources = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCreatedResources()
     {
@@ -246,7 +246,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * import job.
      *
      * Generated from protobuf field <code>repeated string created_resources = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCreatedResources($var)
@@ -362,7 +362,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * state in case of an error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -374,7 +374,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * state in case of an error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -389,7 +389,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * Output only. Warnings that occurred during the image import.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.MigrationWarning warnings = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\MigrationWarning>
      */
     public function getWarnings()
     {
@@ -400,7 +400,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * Output only. Warnings that occurred during the image import.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.MigrationWarning warnings = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\MigrationWarning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\MigrationWarning[] $var
      * @return $this
      */
     public function setWarnings($var)
@@ -415,7 +415,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The image import steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.ImageImportStep steps = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\ImageImportStep>
      */
     public function getSteps()
     {
@@ -426,7 +426,7 @@ class ImageImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The image import steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.ImageImportStep steps = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\ImageImportStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\ImageImportStep[] $var
      * @return $this
      */
     public function setSteps($var)

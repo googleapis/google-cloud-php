@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A service account.
@@ -39,7 +39,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *     @type string $email
      *           Email address of the service account. If empty, default Compute service
      *           account will be used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scope
+     *     @type string[] $scope
      *           The list of scopes to be made available for this service account. If empty,
      *           access to all Cloud APIs will be allowed.
      * }
@@ -82,7 +82,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * access to all Cloud APIs will be allowed.
      *
      * Generated from protobuf field <code>repeated string scope = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScope()
     {
@@ -94,7 +94,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * access to all Cloud APIs will be allowed.
      *
      * Generated from protobuf field <code>repeated string scope = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScope($var)

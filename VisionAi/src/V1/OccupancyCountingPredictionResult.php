@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The prediction result proto for occupancy counting.
@@ -62,14 +62,14 @@ class OccupancyCountingPredictionResult extends \Google\Protobuf\Internal\Messag
      *
      *     @type \Google\Protobuf\Timestamp $current_time
      *           Current timestamp.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\IdentifiedBox>|\Google\Protobuf\Internal\RepeatedField $identified_boxes
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\IdentifiedBox[] $identified_boxes
      *           A list of identified boxes.
      *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats $stats
      *           Detection statistics.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\TrackInfo>|\Google\Protobuf\Internal\RepeatedField $track_info
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\TrackInfo[] $track_info
      *           Track related information. All the tracks that are live at this timestamp.
      *           It only exists if tracking is enabled.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\DwellTimeInfo>|\Google\Protobuf\Internal\RepeatedField $dwell_time_info
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\DwellTimeInfo[] $dwell_time_info
      *           Dwell time related information. All the tracks that are live in a given
      *           zone with a start and end dwell time timestamp
      *     @type int|string $pts
@@ -121,7 +121,7 @@ class OccupancyCountingPredictionResult extends \Google\Protobuf\Internal\Messag
      * A list of identified boxes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox identified_boxes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\IdentifiedBox>
      */
     public function getIdentifiedBoxes()
     {
@@ -132,7 +132,7 @@ class OccupancyCountingPredictionResult extends \Google\Protobuf\Internal\Messag
      * A list of identified boxes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.IdentifiedBox identified_boxes = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\IdentifiedBox>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\IdentifiedBox[] $var
      * @return $this
      */
     public function setIdentifiedBoxes($var)
@@ -184,7 +184,7 @@ class OccupancyCountingPredictionResult extends \Google\Protobuf\Internal\Messag
      * It only exists if tracking is enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.TrackInfo track_info = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\TrackInfo>
      */
     public function getTrackInfo()
     {
@@ -196,7 +196,7 @@ class OccupancyCountingPredictionResult extends \Google\Protobuf\Internal\Messag
      * It only exists if tracking is enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.TrackInfo track_info = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\TrackInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\TrackInfo[] $var
      * @return $this
      */
     public function setTrackInfo($var)
@@ -212,7 +212,7 @@ class OccupancyCountingPredictionResult extends \Google\Protobuf\Internal\Messag
      * zone with a start and end dwell time timestamp
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.DwellTimeInfo dwell_time_info = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\DwellTimeInfo>
      */
     public function getDwellTimeInfo()
     {
@@ -224,7 +224,7 @@ class OccupancyCountingPredictionResult extends \Google\Protobuf\Internal\Messag
      * zone with a start and end dwell time timestamp
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.DwellTimeInfo dwell_time_info = 5;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\DwellTimeInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\DwellTimeInfo[] $var
      * @return $this
      */
     public function setDwellTimeInfo($var)

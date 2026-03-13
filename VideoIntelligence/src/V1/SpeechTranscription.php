@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A speech recognition result corresponding to a portion of the audio.
@@ -39,7 +39,7 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $alternatives
+     *     @type \Google\Cloud\VideoIntelligence\V1\SpeechRecognitionAlternative[] $alternatives
      *           May contain one or more recognition hypotheses (up to the maximum specified
      *           in `max_alternatives`).  These alternatives are ordered in terms of
      *           accuracy, with the top (first) alternative being the most probable, as
@@ -62,7 +62,7 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
      * ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechRecognitionAlternative alternatives = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\SpeechRecognitionAlternative>
      */
     public function getAlternatives()
     {
@@ -76,7 +76,7 @@ class SpeechTranscription extends \Google\Protobuf\Internal\Message
      * ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechRecognitionAlternative alternatives = 1;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\SpeechRecognitionAlternative[] $var
      * @return $this
      */
     public function setAlternatives($var)

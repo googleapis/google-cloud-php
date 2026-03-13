@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prediction output format for Generic Object Detection.
@@ -36,7 +36,7 @@ class ObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $current_time
      *           Current timestamp.
-     *     @type array<\Google\Cloud\VisionAI\V1\ObjectDetectionPredictionResult\IdentifiedBox>|\Google\Protobuf\Internal\RepeatedField $identified_boxes
+     *     @type \Google\Cloud\VisionAI\V1\ObjectDetectionPredictionResult\IdentifiedBox[] $identified_boxes
      *           A list of identified boxes.
      * }
      */
@@ -85,7 +85,7 @@ class ObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Message
      * A list of identified boxes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox identified_boxes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\ObjectDetectionPredictionResult\IdentifiedBox>
      */
     public function getIdentifiedBoxes()
     {
@@ -96,7 +96,7 @@ class ObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Message
      * A list of identified boxes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ObjectDetectionPredictionResult.IdentifiedBox identified_boxes = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\ObjectDetectionPredictionResult\IdentifiedBox>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\ObjectDetectionPredictionResult\IdentifiedBox[] $var
      * @return $this
      */
     public function setIdentifiedBoxes($var)

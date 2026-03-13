@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Label annotation.
@@ -57,14 +57,14 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VideoIntelligence\V1\Entity $entity
      *           Detected entity.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\Entity>|\Google\Protobuf\Internal\RepeatedField $category_entities
+     *     @type \Google\Cloud\VideoIntelligence\V1\Entity[] $category_entities
      *           Common categories for the detected entity.
      *           For example, when the label is `Terrier`, the category is likely `dog`. And
      *           in some cases there might be more than one categories e.g., `Terrier` could
      *           also be a `pet`.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LabelSegment>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelSegment[] $segments
      *           All video segments where a label was detected.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LabelFrame>|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelFrame[] $frames
      *           All video frames where a label was detected.
      *     @type string $version
      *           Feature version.
@@ -118,7 +118,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * also be a `pet`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Entity category_entities = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\Entity>
      */
     public function getCategoryEntities()
     {
@@ -132,7 +132,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * also be a `pet`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Entity category_entities = 2;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\Entity[] $var
      * @return $this
      */
     public function setCategoryEntities($var)
@@ -147,7 +147,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where a label was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelSegment segments = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LabelSegment>
      */
     public function getSegments()
     {
@@ -158,7 +158,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where a label was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelSegment segments = 3;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LabelSegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelSegment[] $var
      * @return $this
      */
     public function setSegments($var)
@@ -173,7 +173,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where a label was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelFrame frames = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LabelFrame>
      */
     public function getFrames()
     {
@@ -184,7 +184,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where a label was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelFrame frames = 4;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LabelFrame>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelFrame[] $var
      * @return $this
      */
     public function setFrames($var)

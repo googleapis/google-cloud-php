@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1\SearchHint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message to specify the index to use for the search.
@@ -76,5 +76,4 @@ class IndexHint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

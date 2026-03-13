@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Clip is a sub-resource under channel. Each clip represents a clipping
@@ -134,9 +134,9 @@ class Clip extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. An error object that describes the reason for the failure.
      *           This property only presents when `state` is `FAILED`.
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\Clip\Slice>|\Google\Protobuf\Internal\RepeatedField $slices
+     *     @type \Google\Cloud\Video\LiveStream\V1\Clip\Slice[] $slices
      *           The specified ranges of segments to generate a clip.
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\Clip\ClipManifest>|\Google\Protobuf\Internal\RepeatedField $clip_manifests
+     *     @type \Google\Cloud\Video\LiveStream\V1\Clip\ClipManifest[] $clip_manifests
      *           Required. A list of clip manifests. Currently only one clip manifest is
      *           allowed.
      *     @type int $output_type
@@ -427,7 +427,7 @@ class Clip extends \Google\Protobuf\Internal\Message
      * The specified ranges of segments to generate a clip.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Clip.Slice slices = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\Clip\Slice>
      */
     public function getSlices()
     {
@@ -438,7 +438,7 @@ class Clip extends \Google\Protobuf\Internal\Message
      * The specified ranges of segments to generate a clip.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Clip.Slice slices = 10;</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\Clip\Slice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\Clip\Slice[] $var
      * @return $this
      */
     public function setSlices($var)
@@ -454,7 +454,7 @@ class Clip extends \Google\Protobuf\Internal\Message
      * allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Clip.ClipManifest clip_manifests = 12 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\Clip\ClipManifest>
      */
     public function getClipManifests()
     {
@@ -466,7 +466,7 @@ class Clip extends \Google\Protobuf\Internal\Message
      * allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Clip.ClipManifest clip_manifests = 12 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\Clip\ClipManifest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\Clip\ClipManifest[] $var
      * @return $this
      */
     public function setClipManifests($var)

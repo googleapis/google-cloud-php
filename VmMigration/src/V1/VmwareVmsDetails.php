@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VmwareVmsDetails describes VMs in vCenter.
@@ -28,7 +28,7 @@ class VmwareVmsDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VMMigration\V1\VmwareVmDetails>|\Google\Protobuf\Internal\RepeatedField $details
+     *     @type \Google\Cloud\VMMigration\V1\VmwareVmDetails[] $details
      *           The details of the vmware VMs.
      * }
      */
@@ -41,7 +41,7 @@ class VmwareVmsDetails extends \Google\Protobuf\Internal\Message
      * The details of the vmware VMs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmwareVmDetails details = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\VmwareVmDetails>
      */
     public function getDetails()
     {
@@ -52,7 +52,7 @@ class VmwareVmsDetails extends \Google\Protobuf\Internal\Message
      * The details of the vmware VMs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmwareVmDetails details = 1;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\VmwareVmDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\VmwareVmDetails[] $var
      * @return $this
      */
     public function setDetails($var)

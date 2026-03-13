@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Utilization report details the utilization (CPU, memory, etc.) of selected
@@ -114,7 +114,7 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      *           between 2021/01/20 and 2021/01/14.
      *     @type int $vm_count
      *           Output only. Total number of VMs included in the report.
-     *     @type array<\Google\Cloud\VMMigration\V1\VmUtilizationInfo>|\Google\Protobuf\Internal\RepeatedField $vms
+     *     @type \Google\Cloud\VMMigration\V1\VmUtilizationInfo[] $vms
      *           List of utilization information per VM.
      *           When sent as part of the request, the "vm_id" field is used in order to
      *           specify which VMs to include in the report. In that case all other fields
@@ -417,7 +417,7 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      * are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmUtilizationInfo vms = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\VmUtilizationInfo>
      */
     public function getVms()
     {
@@ -431,7 +431,7 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      * are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmUtilizationInfo vms = 10;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\VmUtilizationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\VmUtilizationInfo[] $var
      * @return $this
      */
     public function setVms($var)

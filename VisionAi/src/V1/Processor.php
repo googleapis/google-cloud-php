@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Processor object.
@@ -142,10 +142,10 @@ class Processor extends \Google\Protobuf\Internal\Message
      *     @type string $configuration_typeurl
      *           Output only. The corresponding configuration can be used in the Application
      *           to customize the behavior of the processor.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_annotation_types
+     *     @type int[] $supported_annotation_types
      *     @type bool $supports_post_processing
      *           Indicates if the processor supports post processing.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_instance_types
+     *     @type int[] $supported_instance_types
      *           Which instance types this processor supports; if empty, this default to
      *           STREAMING_PREDICTION.
      * }
@@ -515,7 +515,7 @@ class Processor extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamAnnotationType supported_annotation_types = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedAnnotationTypes()
     {
@@ -524,7 +524,7 @@ class Processor extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamAnnotationType supported_annotation_types = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedAnnotationTypes($var)
@@ -566,7 +566,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      * STREAMING_PREDICTION.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Instance.InstanceType supported_instance_types = 18;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedInstanceTypes()
     {
@@ -578,7 +578,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      * STREAMING_PREDICTION.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Instance.InstanceType supported_instance_types = 18;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedInstanceTypes($var)

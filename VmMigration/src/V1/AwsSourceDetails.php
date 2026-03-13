@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AwsSourceDetails message describes a specific source details for the
@@ -81,9 +81,9 @@ class AwsSourceDetails extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. Provides details on the state of the Source in case of an
      *           error.
-     *     @type array<\Google\Cloud\VMMigration\V1\AwsSourceDetails\Tag>|\Google\Protobuf\Internal\RepeatedField $inventory_tag_list
+     *     @type \Google\Cloud\VMMigration\V1\AwsSourceDetails\Tag[] $inventory_tag_list
      *           AWS resource tags to limit the scope of the source inventory.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inventory_security_group_names
+     *     @type string[] $inventory_security_group_names
      *           AWS security group names to limit the scope of the source
      *           inventory.
      *     @type array|\Google\Protobuf\Internal\MapField $migration_resources_user_tags
@@ -226,7 +226,7 @@ class AwsSourceDetails extends \Google\Protobuf\Internal\Message
      * AWS resource tags to limit the scope of the source inventory.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AwsSourceDetails.Tag inventory_tag_list = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\AwsSourceDetails\Tag>
      */
     public function getInventoryTagList()
     {
@@ -237,7 +237,7 @@ class AwsSourceDetails extends \Google\Protobuf\Internal\Message
      * AWS resource tags to limit the scope of the source inventory.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AwsSourceDetails.Tag inventory_tag_list = 10;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\AwsSourceDetails\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\AwsSourceDetails\Tag[] $var
      * @return $this
      */
     public function setInventoryTagList($var)
@@ -253,7 +253,7 @@ class AwsSourceDetails extends \Google\Protobuf\Internal\Message
      * inventory.
      *
      * Generated from protobuf field <code>repeated string inventory_security_group_names = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInventorySecurityGroupNames()
     {
@@ -265,7 +265,7 @@ class AwsSourceDetails extends \Google\Protobuf\Internal\Message
      * inventory.
      *
      * Generated from protobuf field <code>repeated string inventory_security_group_names = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInventorySecurityGroupNames($var)

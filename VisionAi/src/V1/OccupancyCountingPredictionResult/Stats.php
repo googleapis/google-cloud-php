@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The statistics info for annotations from occupancy counting operator.
@@ -40,11 +40,11 @@ class Stats extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $full_frame_count
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $full_frame_count
      *           Counts of the full frame.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\CrossingLineCount>|\Google\Protobuf\Internal\RepeatedField $crossing_line_counts
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\CrossingLineCount[] $crossing_line_counts
      *           Crossing line counts.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ActiveZoneCount>|\Google\Protobuf\Internal\RepeatedField $active_zone_counts
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ActiveZoneCount[] $active_zone_counts
      *           Active zone counts.
      * }
      */
@@ -57,7 +57,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * Counts of the full frame.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount full_frame_count = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>
      */
     public function getFullFrameCount()
     {
@@ -68,7 +68,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * Counts of the full frame.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount full_frame_count = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $var
      * @return $this
      */
     public function setFullFrameCount($var)
@@ -83,7 +83,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * Crossing line counts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.CrossingLineCount crossing_line_counts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\CrossingLineCount>
      */
     public function getCrossingLineCounts()
     {
@@ -94,7 +94,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * Crossing line counts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.CrossingLineCount crossing_line_counts = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\CrossingLineCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\CrossingLineCount[] $var
      * @return $this
      */
     public function setCrossingLineCounts($var)
@@ -109,7 +109,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * Active zone counts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ActiveZoneCount active_zone_counts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ActiveZoneCount>
      */
     public function getActiveZoneCounts()
     {
@@ -120,7 +120,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * Active zone counts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ActiveZoneCount active_zone_counts = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ActiveZoneCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ActiveZoneCount[] $var
      * @return $this
      */
     public function setActiveZoneCounts($var)
@@ -132,5 +132,4 @@ class Stats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

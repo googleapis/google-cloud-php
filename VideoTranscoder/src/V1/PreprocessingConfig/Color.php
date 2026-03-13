@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1\PreprocessingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Color preprocessing configuration.
@@ -157,5 +157,4 @@ class Color extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ProcessorIOSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for input channel specification.
@@ -66,7 +66,7 @@ class GraphInputChannelSpec extends \Google\Protobuf\Internal\Message
      *           The data types of the current input channel.
      *           When this field has more than 1 value, it means this input channel can be
      *           connected to either of these different data types.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $accepted_data_type_uris
+     *     @type string[] $accepted_data_type_uris
      *           If specified, only those detailed data types can be connected to the
      *           processor. For example, jpeg stream for MEDIA, or PredictionResult proto
      *           for PROTO type. If unspecified, then any proto is accepted.
@@ -147,7 +147,7 @@ class GraphInputChannelSpec extends \Google\Protobuf\Internal\Message
      * for PROTO type. If unspecified, then any proto is accepted.
      *
      * Generated from protobuf field <code>repeated string accepted_data_type_uris = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAcceptedDataTypeUris()
     {
@@ -160,7 +160,7 @@ class GraphInputChannelSpec extends \Google\Protobuf\Internal\Message
      * for PROTO type. If unspecified, then any proto is accepted.
      *
      * Generated from protobuf field <code>repeated string accepted_data_type_uris = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAcceptedDataTypeUris($var)
@@ -232,5 +232,4 @@ class GraphInputChannelSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

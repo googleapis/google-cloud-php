@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search resource: SearchHypernym.
@@ -53,7 +53,7 @@ class SearchHypernym extends \Google\Protobuf\Internal\Message
      *           `projects/{project_number}/locations/{location}/corpora/{corpus}/searchHypernyms/{search_hypernym}`
      *     @type string $hypernym
      *           Optional. The hypernym.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hyponyms
+     *     @type string[] $hyponyms
      *           Optional. Hyponyms that the hypernym is mapped to.
      * }
      */
@@ -122,7 +122,7 @@ class SearchHypernym extends \Google\Protobuf\Internal\Message
      * Optional. Hyponyms that the hypernym is mapped to.
      *
      * Generated from protobuf field <code>repeated string hyponyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHyponyms()
     {
@@ -133,7 +133,7 @@ class SearchHypernym extends \Google\Protobuf\Internal\Message
      * Optional. Hyponyms that the hypernym is mapped to.
      *
      * Generated from protobuf field <code>repeated string hyponyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHyponyms($var)

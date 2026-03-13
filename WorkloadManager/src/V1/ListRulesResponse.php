@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListRules RPC.
@@ -28,7 +28,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\WorkloadManager\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\WorkloadManager\V1\Rule[] $rules
      *           All rules in response.
      * }
      */
@@ -41,7 +41,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * All rules in response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.Rule rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WorkloadManager\V1\Rule>
      */
     public function getRules()
     {
@@ -52,7 +52,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * All rules in response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.Rule rules = 1;</code>
-     * @param array<\Google\Cloud\WorkloadManager\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WorkloadManager\V1\Rule[] $var
      * @return $this
      */
     public function setRules($var)

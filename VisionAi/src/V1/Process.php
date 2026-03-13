@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing the Process object.
@@ -96,7 +96,7 @@ class Process extends \Google\Protobuf\Internal\Message
      *           Output only. The update timestamp.
      *     @type string $analysis
      *           Required. Reference to an existing Analysis resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attribute_overrides
+     *     @type string[] $attribute_overrides
      *           Optional. Attribute overrides of the Analyzers.
      *           Format for each single override item:
      *           "{analyzer_name}:{attribute_key}={value}"
@@ -251,7 +251,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * "{analyzer_name}:{attribute_key}={value}"
      *
      * Generated from protobuf field <code>repeated string attribute_overrides = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAttributeOverrides()
     {
@@ -264,7 +264,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * "{analyzer_name}:{attribute_key}={value}"
      *
      * Generated from protobuf field <code>repeated string attribute_overrides = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAttributeOverrides($var)

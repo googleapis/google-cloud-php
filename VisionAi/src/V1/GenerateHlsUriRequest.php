@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for GenerateHlsUri API.
@@ -48,7 +48,7 @@ class GenerateHlsUriRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the asset to request clips for.
      *           Format:
      *           `projects/{project_number}/locations/{location_id}/corpora/{corpus_id}/assets/{asset_id}`
-     *     @type array<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>|\Google\Protobuf\Internal\RepeatedField $temporal_partitions
+     *     @type \Google\Cloud\VisionAI\V1\Partition\TemporalPartition[] $temporal_partitions
      *           The time range to request clips for. Will be ignored if `get_live_view` is
      *           set to True. The total time range requested should be smaller than 24h.
      *     @type bool $live_view_enabled
@@ -96,7 +96,7 @@ class GenerateHlsUriRequest extends \Google\Protobuf\Internal\Message
      * set to True. The total time range requested should be smaller than 24h.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Partition.TemporalPartition temporal_partitions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>
      */
     public function getTemporalPartitions()
     {
@@ -108,7 +108,7 @@ class GenerateHlsUriRequest extends \Google\Protobuf\Internal\Message
      * set to True. The total time range requested should be smaller than 24h.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Partition.TemporalPartition temporal_partitions = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Partition\TemporalPartition[] $var
      * @return $this
      */
     public function setTemporalPartitions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1\ThreatInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Confidence that a URI is unsafe.
@@ -111,5 +111,4 @@ class Confidence extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

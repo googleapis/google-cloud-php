@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Normalized Pplyline, which represents a curve consisting of connected
@@ -29,7 +29,7 @@ class NormalizedPolyline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *     @type \Google\Cloud\VisionAI\V1\NormalizedVertex[] $normalized_vertices
      *           A sequence of vertices connected by straight lines.
      * }
      */
@@ -42,7 +42,7 @@ class NormalizedPolyline extends \Google\Protobuf\Internal\Message
      * A sequence of vertices connected by straight lines.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.NormalizedVertex normalized_vertices = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\NormalizedVertex>
      */
     public function getNormalizedVertices()
     {
@@ -53,7 +53,7 @@ class NormalizedPolyline extends \Google\Protobuf\Internal\Message
      * A sequence of vertices connected by straight lines.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.NormalizedVertex normalized_vertices = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\NormalizedVertex[] $var
      * @return $this
      */
     public function setNormalizedVertices($var)

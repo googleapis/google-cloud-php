@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A bounding polygon for the detected image annotation.
@@ -34,9 +34,9 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Vision\V1\Vertex>|\Google\Protobuf\Internal\RepeatedField $vertices
+     *     @type \Google\Cloud\Vision\V1\Vertex[] $vertices
      *           The bounding polygon vertices.
-     *     @type array<\Google\Cloud\Vision\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *     @type \Google\Cloud\Vision\V1\NormalizedVertex[] $normalized_vertices
      *           The bounding polygon normalized vertices.
      * }
      */
@@ -49,7 +49,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * The bounding polygon vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\Vertex>
      */
     public function getVertices()
     {
@@ -60,7 +60,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * The bounding polygon vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
-     * @param array<\Google\Cloud\Vision\V1\Vertex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\Vertex[] $var
      * @return $this
      */
     public function setVertices($var)
@@ -75,7 +75,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * The bounding polygon normalized vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.NormalizedVertex normalized_vertices = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\NormalizedVertex>
      */
     public function getNormalizedVertices()
     {
@@ -86,7 +86,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * The bounding polygon normalized vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.NormalizedVertex normalized_vertices = 2;</code>
-     * @param array<\Google\Cloud\Vision\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\NormalizedVertex[] $var
      * @return $this
      */
     public function setNormalizedVertices($var)

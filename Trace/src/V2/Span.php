@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A span represents a single operation within a trace. Spans can be

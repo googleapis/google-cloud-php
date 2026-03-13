@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Multiplexing settings for output stream.
@@ -72,7 +72,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *           Supported container formats:
      *           - `fmp4` - the corresponding file extension is `.m4s`
      *           - `ts` - the corresponding file extension is `.ts`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
+     *     @type string[] $elementary_streams
      *           List of `ElementaryStream`
      *           [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
      *           in this stream.
@@ -162,7 +162,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * video stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getElementaryStreams()
     {
@@ -178,7 +178,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * video stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setElementaryStreams($var)

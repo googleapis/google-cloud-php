@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input configuration for BatchTranslateDocument request.
@@ -27,7 +27,7 @@ class BatchDocumentInputConfig extends \Google\Protobuf\Internal\Message
      *           Google Cloud Storage location for the source input.
      *           This can be a single file (for example,
      *           `gs://translation-test/input.docx`) or a wildcard (for example,
-     *           `gs://translation-test/&#42;`).
+     *           `gs://translation-test/*`).
      *           File mime type is determined based on extension. Supported mime type
      *           includes:
      *           - `pdf`, application/pdf
@@ -52,7 +52,7 @@ class BatchDocumentInputConfig extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage location for the source input.
      * This can be a single file (for example,
      * `gs://translation-test/input.docx`) or a wildcard (for example,
-     * `gs://translation-test/&#42;`).
+     * `gs://translation-test/*`).
      * File mime type is determined based on extension. Supported mime type
      * includes:
      * - `pdf`, application/pdf
@@ -84,7 +84,7 @@ class BatchDocumentInputConfig extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage location for the source input.
      * This can be a single file (for example,
      * `gs://translation-test/input.docx`) or a wildcard (for example,
-     * `gs://translation-test/&#42;`).
+     * `gs://translation-test/*`).
      * File mime type is determined based on extension. Supported mime type
      * includes:
      * - `pdf`, application/pdf

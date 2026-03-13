@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for querying operator info.
@@ -36,7 +36,7 @@ class ResolveOperatorInfoRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Parent value for ResolveOperatorInfoRequest.
-     *     @type array<\Google\Cloud\VisionAI\V1\OperatorQuery>|\Google\Protobuf\Internal\RepeatedField $queries
+     *     @type \Google\Cloud\VisionAI\V1\OperatorQuery[] $queries
      *           Required. The operator queries.
      * }
      */
@@ -75,7 +75,7 @@ class ResolveOperatorInfoRequest extends \Google\Protobuf\Internal\Message
      * Required. The operator queries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorQuery queries = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OperatorQuery>
      */
     public function getQueries()
     {
@@ -86,7 +86,7 @@ class ResolveOperatorInfoRequest extends \Google\Protobuf\Internal\Message
      * Required. The operator queries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorQuery queries = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OperatorQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OperatorQuery[] $var
      * @return $this
      */
     public function setQueries($var)

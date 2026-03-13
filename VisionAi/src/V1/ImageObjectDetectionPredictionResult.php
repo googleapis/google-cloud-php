@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prediction output format for Image Object Detection.
@@ -55,17 +55,17 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $ids
+     *     @type int[]|string[] $ids
      *           The resource IDs of the AnnotationSpecs that had been identified, ordered
      *           by the confidence score descendingly. It is the id segment instead of full
      *           resource name.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $display_names
+     *     @type string[] $display_names
      *           The display names of the AnnotationSpecs that had been identified, order
      *           matches the IDs.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $confidences
+     *     @type float[] $confidences
      *           The Model's confidences in correctness of the predicted IDs, higher value
      *           means higher confidence. Order matches the Ids.
-     *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $bboxes
+     *     @type \Google\Protobuf\ListValue[] $bboxes
      *           Bounding boxes, i.e. the rectangles over the image, that pinpoint
      *           the found AnnotationSpecs. Given in order that matches the IDs. Each
      *           bounding box is an array of 4 numbers `xMin`, `xMax`, `yMin`, and
@@ -85,7 +85,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * resource name.
      *
      * Generated from protobuf field <code>repeated int64 ids = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getIds()
     {
@@ -98,7 +98,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * resource name.
      *
      * Generated from protobuf field <code>repeated int64 ids = 1;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setIds($var)
@@ -114,7 +114,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * matches the IDs.
      *
      * Generated from protobuf field <code>repeated string display_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisplayNames()
     {
@@ -126,7 +126,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * matches the IDs.
      *
      * Generated from protobuf field <code>repeated string display_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisplayNames($var)
@@ -142,7 +142,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * means higher confidence. Order matches the Ids.
      *
      * Generated from protobuf field <code>repeated float confidences = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getConfidences()
     {
@@ -154,7 +154,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * means higher confidence. Order matches the Ids.
      *
      * Generated from protobuf field <code>repeated float confidences = 3;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setConfidences($var)
@@ -174,7 +174,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * of the image.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue bboxes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\ListValue>
      */
     public function getBboxes()
     {
@@ -190,7 +190,7 @@ class ImageObjectDetectionPredictionResult extends \Google\Protobuf\Internal\Mes
      * of the image.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue bboxes = 4;</code>
-     * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\ListValue[] $var
      * @return $this
      */
     public function setBboxes($var)

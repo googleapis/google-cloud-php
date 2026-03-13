@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information related to the interstitial of a VOD session. This resource is
@@ -40,7 +40,7 @@ class VodStitchDetail extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the stitch detail in the specified VOD session, in the form of
      *           `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodStitchDetails/{id}`.
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\AdStitchDetail>|\Google\Protobuf\Internal\RepeatedField $ad_stitch_details
+     *     @type \Google\Cloud\Video\Stitcher\V1\AdStitchDetail[] $ad_stitch_details
      *           A list of ad processing details for the fetched ad playlist.
      * }
      */
@@ -81,7 +81,7 @@ class VodStitchDetail extends \Google\Protobuf\Internal\Message
      * A list of ad processing details for the fetched ad playlist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.AdStitchDetail ad_stitch_details = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\AdStitchDetail>
      */
     public function getAdStitchDetails()
     {
@@ -92,7 +92,7 @@ class VodStitchDetail extends \Google\Protobuf\Internal\Message
      * A list of ad processing details for the fetched ad playlist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.AdStitchDetail ad_stitch_details = 3;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\AdStitchDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\AdStitchDetail[] $var
      * @return $this
      */
     public function setAdStitchDetails($var)

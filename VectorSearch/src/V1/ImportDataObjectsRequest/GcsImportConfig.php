@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1\ImportDataObjectsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Google Cloud Storage configuration for the import.
@@ -148,5 +148,4 @@ class GcsImportConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

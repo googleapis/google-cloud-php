@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Deprecated. No effect.
@@ -43,9 +43,9 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $thumbnail
      *           Thumbnail of a representative face view (in JPEG format).
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\FaceSegment>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Cloud\VideoIntelligence\V1\FaceSegment[] $segments
      *           All video segments where a face was detected.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\FaceFrame>|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type \Google\Cloud\VideoIntelligence\V1\FaceFrame[] $frames
      *           All video frames where a face was detected.
      * }
      */
@@ -84,7 +84,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where a face was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceSegment segments = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\FaceSegment>
      */
     public function getSegments()
     {
@@ -95,7 +95,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where a face was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceSegment segments = 2;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\FaceSegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\FaceSegment[] $var
      * @return $this
      */
     public function setSegments($var)
@@ -110,7 +110,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where a face was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceFrame frames = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\FaceFrame>
      */
     public function getFrames()
     {
@@ -121,7 +121,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where a face was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceFrame frames = 3;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\FaceFrame>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\FaceFrame[] $var
      * @return $this
      */
     public function setFrames($var)

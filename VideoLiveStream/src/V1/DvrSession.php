@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DvrSession is a sub-resource under channel. Each DvrSession represents a DVR
@@ -96,10 +96,10 @@ class DvrSession extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. An error object that describes the reason for the failure.
      *           This property only presents when `state` is `FAILED`.
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\DvrSession\DvrManifest>|\Google\Protobuf\Internal\RepeatedField $dvr_manifests
+     *     @type \Google\Cloud\Video\LiveStream\V1\DvrSession\DvrManifest[] $dvr_manifests
      *           Required. A list of DVR manifests. Currently only one DVR manifest is
      *           allowed.
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\DvrSession\DvrWindow>|\Google\Protobuf\Internal\RepeatedField $dvr_windows
+     *     @type \Google\Cloud\Video\LiveStream\V1\DvrSession\DvrWindow[] $dvr_windows
      *           Required. The specified ranges of segments to generate a DVR recording.
      * }
      */
@@ -311,7 +311,7 @@ class DvrSession extends \Google\Protobuf\Internal\Message
      * allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.DvrSession.DvrManifest dvr_manifests = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\DvrSession\DvrManifest>
      */
     public function getDvrManifests()
     {
@@ -323,7 +323,7 @@ class DvrSession extends \Google\Protobuf\Internal\Message
      * allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.DvrSession.DvrManifest dvr_manifests = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\DvrSession\DvrManifest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\DvrSession\DvrManifest[] $var
      * @return $this
      */
     public function setDvrManifests($var)
@@ -338,7 +338,7 @@ class DvrSession extends \Google\Protobuf\Internal\Message
      * Required. The specified ranges of segments to generate a DVR recording.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.DvrSession.DvrWindow dvr_windows = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\DvrSession\DvrWindow>
      */
     public function getDvrWindows()
     {
@@ -349,7 +349,7 @@ class DvrSession extends \Google\Protobuf\Internal\Message
      * Required. The specified ranges of segments to generate a DVR recording.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.DvrSession.DvrWindow dvr_windows = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\DvrSession\DvrWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\DvrSession\DvrWindow[] $var
      * @return $this
      */
     public function setDvrWindows($var)

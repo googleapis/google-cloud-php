@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1\AutoscalingSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Autoscaling policy describes the behavior of the autoscaling
@@ -299,5 +299,4 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

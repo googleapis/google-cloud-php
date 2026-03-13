@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -37,7 +37,7 @@ class QueryDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VectorSearch\V1\DataObject>|\Google\Protobuf\Internal\RepeatedField $data_objects
+     *     @type \Google\Cloud\VectorSearch\V1\DataObject[] $data_objects
      *           Output only. The list of dataObjects that match the query.
      *     @type string $next_page_token
      *           Output only. A token to retrieve next page of results.
@@ -54,7 +54,7 @@ class QueryDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of dataObjects that match the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.DataObject data_objects = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\DataObject>
      */
     public function getDataObjects()
     {
@@ -65,7 +65,7 @@ class QueryDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of dataObjects that match the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.DataObject data_objects = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\DataObject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\DataObject[] $var
      * @return $this
      */
     public function setDataObjects($var)

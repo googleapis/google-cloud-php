@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VmwareEngine specific metadata for the given
@@ -30,7 +30,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $capabilities
+     *     @type int[] $capabilities
      *           Output only. Capabilities of this location.
      * }
      */
@@ -43,7 +43,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Capabilities of this location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.LocationMetadata.Capability capabilities = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCapabilities()
     {
@@ -54,7 +54,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Capabilities of this location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.LocationMetadata.Capability capabilities = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCapabilities($var)

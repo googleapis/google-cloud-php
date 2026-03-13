@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prediction output format for Video Classification.
@@ -52,7 +52,7 @@ class VideoClassificationPredictionResult extends \Google\Protobuf\Internal\Mess
      *           classifications have been identified. Particularly, if the end is the same
      *           as the start, it means the identification happens on a specific video
      *           frame.
-     *     @type array<\Google\Cloud\VisionAI\V1\VideoClassificationPredictionResult\IdentifiedClassification>|\Google\Protobuf\Internal\RepeatedField $classifications
+     *     @type \Google\Cloud\VisionAI\V1\VideoClassificationPredictionResult\IdentifiedClassification[] $classifications
      *           All of the classifications identified in the time range.
      * }
      */
@@ -145,7 +145,7 @@ class VideoClassificationPredictionResult extends \Google\Protobuf\Internal\Mess
      * All of the classifications identified in the time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.VideoClassificationPredictionResult.IdentifiedClassification classifications = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\VideoClassificationPredictionResult\IdentifiedClassification>
      */
     public function getClassifications()
     {
@@ -156,7 +156,7 @@ class VideoClassificationPredictionResult extends \Google\Protobuf\Internal\Mess
      * All of the classifications identified in the time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.VideoClassificationPredictionResult.IdentifiedClassification classifications = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\VideoClassificationPredictionResult\IdentifiedClassification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\VideoClassificationPredictionResult\IdentifiedClassification[] $var
      * @return $this
      */
     public function setClassifications($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CloneJob describes the process of creating a clone of a
@@ -94,7 +94,7 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. Provides details for the errors that led to the Clone Job's
      *           state.
-     *     @type array<\Google\Cloud\VMMigration\V1\CloneStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\VMMigration\V1\CloneStep[] $steps
      *           Output only. The clone steps list representing its progress.
      * }
      */
@@ -369,7 +369,7 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      * Output only. The clone steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneStep steps = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\CloneStep>
      */
     public function getSteps()
     {
@@ -380,7 +380,7 @@ class CloneJob extends \Google\Protobuf\Internal\Message
      * Output only. The clone steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneStep steps = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\CloneStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\CloneStep[] $var
      * @return $this
      */
     public function setSteps($var)

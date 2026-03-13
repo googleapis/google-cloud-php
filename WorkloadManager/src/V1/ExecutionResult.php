@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of an execution.
@@ -82,7 +82,7 @@ class ExecutionResult extends \Google\Protobuf\Internal\Message
      *           The resource that violates the rule.
      *     @type \Google\Cloud\WorkloadManager\V1\ViolationDetails $violation_details
      *           The details of violation in an evaluation result.
-     *     @type array<\Google\Cloud\WorkloadManager\V1\Command>|\Google\Protobuf\Internal\RepeatedField $commands
+     *     @type \Google\Cloud\WorkloadManager\V1\Command[] $commands
      *           The commands to remediate the violation.
      *     @type int $type
      *           Execution result type of the scanned resource.
@@ -273,7 +273,7 @@ class ExecutionResult extends \Google\Protobuf\Internal\Message
      * The commands to remediate the violation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.Command commands = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WorkloadManager\V1\Command>
      */
     public function getCommands()
     {
@@ -284,7 +284,7 @@ class ExecutionResult extends \Google\Protobuf\Internal\Message
      * The commands to remediate the violation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.Command commands = 7;</code>
-     * @param array<\Google\Cloud\WorkloadManager\V1\Command>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WorkloadManager\V1\Command[] $var
      * @return $this
      */
     public function setCommands($var)

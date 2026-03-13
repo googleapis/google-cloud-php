@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Workflow program to be executed by Workflows.
@@ -254,10 +254,10 @@ class Workflow extends \Google\Protobuf\Internal\Message
      *           "WORKFLOWS".
      *     @type int $execution_history_level
      *           Optional. Describes the execution history level to apply to this workflow.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $all_kms_keys
+     *     @type string[] $all_kms_keys
      *           Output only. A list of all KMS crypto keys used to encrypt or decrypt the
      *           data associated with the workflow.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $all_kms_keys_versions
+     *     @type string[] $all_kms_keys_versions
      *           Output only. A list of all KMS crypto key versions used to encrypt or
      *           decrypt the data associated with the workflow.
      *     @type string $crypto_key_version
@@ -802,7 +802,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * data associated with the workflow.
      *
      * Generated from protobuf field <code>repeated string all_kms_keys = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllKmsKeys()
     {
@@ -814,7 +814,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * data associated with the workflow.
      *
      * Generated from protobuf field <code>repeated string all_kms_keys = 16 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllKmsKeys($var)
@@ -830,7 +830,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * decrypt the data associated with the workflow.
      *
      * Generated from protobuf field <code>repeated string all_kms_keys_versions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllKmsKeysVersions()
     {
@@ -842,7 +842,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * decrypt the data associated with the workflow.
      *
      * Generated from protobuf field <code>repeated string all_kms_keys_versions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllKmsKeysVersions($var)

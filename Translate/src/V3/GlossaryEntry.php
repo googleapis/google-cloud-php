@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single entry in a glossary.
@@ -18,7 +18,7 @@ class GlossaryEntry extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the entry.
      * Format:
-     *   `projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;&#47;glossaryEntries/&#42;`
+     *   `projects/{@*}locations/{@*}glossaries/{@*}glossaryEntries/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -40,7 +40,7 @@ class GlossaryEntry extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the entry.
      *           Format:
-     *             `projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;&#47;glossaryEntries/&#42;`
+     *             `projects/{@*}locations/{@*}glossaries/{@*}glossaryEntries/*`
      *     @type \Google\Cloud\Translate\V3\GlossaryEntry\GlossaryTermsPair $terms_pair
      *           Used for an unidirectional glossary.
      *     @type \Google\Cloud\Translate\V3\GlossaryEntry\GlossaryTermsSet $terms_set
@@ -57,7 +57,7 @@ class GlossaryEntry extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the entry.
      * Format:
-     *   `projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;&#47;glossaryEntries/&#42;`
+     *   `projects/{@*}locations/{@*}glossaries/{@*}glossaryEntries/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -70,7 +70,7 @@ class GlossaryEntry extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the entry.
      * Format:
-     *   `projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;&#47;glossaryEntries/&#42;`
+     *   `projects/{@*}locations/{@*}glossaries/{@*}glossaryEntries/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

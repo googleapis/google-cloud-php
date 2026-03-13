@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a full analysis.
@@ -33,7 +33,7 @@ class AnalysisDefinition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\AnalyzerDefinition>|\Google\Protobuf\Internal\RepeatedField $analyzers
+     *     @type \Google\Cloud\VisionAI\V1\AnalyzerDefinition[] $analyzers
      *           Analyzer definitions.
      * }
      */
@@ -46,7 +46,7 @@ class AnalysisDefinition extends \Google\Protobuf\Internal\Message
      * Analyzer definitions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnalyzerDefinition analyzers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AnalyzerDefinition>
      */
     public function getAnalyzers()
     {
@@ -57,7 +57,7 @@ class AnalysisDefinition extends \Google\Protobuf\Internal\Message
      * Analyzer definitions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnalyzerDefinition analyzers = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AnalyzerDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AnalyzerDefinition[] $var
      * @return $this
      */
     public function setAnalyzers($var)

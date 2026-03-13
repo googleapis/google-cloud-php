@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Annotation corresponding to one detected, tracked and recognized logo class.
@@ -46,10 +46,10 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VideoIntelligence\V1\Entity $entity
      *           Entity category information to specify the logo class that all the logo
      *           tracks within this LogoRecognitionAnnotation are recognized as.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $tracks
+     *     @type \Google\Cloud\VideoIntelligence\V1\Track[] $tracks
      *           All logo tracks where the recognized logo appears. Each track corresponds
      *           to one logo instance appearing in consecutive frames.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment[] $segments
      *           All video segments where the recognized logo appears. There might be
      *           multiple instances of the same logo class appearing in one VideoSegment.
      * }
@@ -102,7 +102,7 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      * to one logo instance appearing in consecutive frames.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\Track>
      */
     public function getTracks()
     {
@@ -114,7 +114,7 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      * to one logo instance appearing in consecutive frames.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 2;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\Track[] $var
      * @return $this
      */
     public function setTracks($var)
@@ -130,7 +130,7 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      * multiple instances of the same logo class appearing in one VideoSegment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment segments = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\VideoSegment>
      */
     public function getSegments()
     {
@@ -142,7 +142,7 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      * multiple instances of the same logo class appearing in one VideoSegment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment segments = 3;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment[] $var
      * @return $this
      */
     public function setSegments($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A accelerator type that a Node can be configured with.
@@ -44,7 +44,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *           The resource name.
      *     @type string $type
      *           The accelerator type.
-     *     @type array<\Google\Cloud\Tpu\V2\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerator_configs
+     *     @type \Google\Cloud\Tpu\V2\AcceleratorConfig[] $accelerator_configs
      *           The accelerator config.
      * }
      */
@@ -109,7 +109,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      * The accelerator config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.AcceleratorConfig accelerator_configs = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\AcceleratorConfig>
      */
     public function getAcceleratorConfigs()
     {
@@ -120,7 +120,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      * The accelerator config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.AcceleratorConfig accelerator_configs = 3;</code>
-     * @param array<\Google\Cloud\Tpu\V2\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\AcceleratorConfig[] $var
      * @return $this
      */
     public function setAcceleratorConfigs($var)

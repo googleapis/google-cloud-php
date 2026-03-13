@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1\ProductSearchResults;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prediction for what the object in the bounding box is.
@@ -174,5 +174,4 @@ class ObjectAnnotation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

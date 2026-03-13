@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1\NetworkPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a network service that is managed by a `NetworkPolicy` resource.
@@ -106,5 +106,4 @@ class NetworkService extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

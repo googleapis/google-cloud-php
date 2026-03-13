@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Event;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Unmutes the stream. The task fails if the stream is not currently muted.
@@ -30,5 +30,4 @@ class UnmuteTask extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Event;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Switches to another input stream. Automatic failover is then disabled.
@@ -72,5 +72,4 @@ class InputSwitchTask extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

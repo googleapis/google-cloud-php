@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2\QueuedResource\Tpu;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the TPU node(s) being requested. Users can request either a
@@ -194,5 +194,4 @@ class NodeSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

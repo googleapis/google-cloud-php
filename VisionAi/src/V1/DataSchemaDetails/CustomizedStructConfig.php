@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\DataSchemaDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration for `CUSTOMIZED_STRUCT` data type.
@@ -64,5 +64,4 @@ class CustomizedStructConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

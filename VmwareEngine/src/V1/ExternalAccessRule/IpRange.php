@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1\ExternalAccessRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An IP range provided in any one of the supported formats.
@@ -153,5 +153,4 @@ class IpRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

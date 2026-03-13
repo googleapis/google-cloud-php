@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\OperatorDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines an argument to an operator.
@@ -111,5 +111,4 @@ class ArgumentDefinition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

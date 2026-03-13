@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1\WebDetection;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entity deduced from similar images on the Internet.
@@ -136,5 +136,4 @@ class WebEntity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

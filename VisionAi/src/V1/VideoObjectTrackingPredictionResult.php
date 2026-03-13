@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prediction output format for Video Object Tracking.
@@ -50,7 +50,7 @@ class VideoObjectTrackingPredictionResult extends \Google\Protobuf\Internal\Mess
      *           The end, inclusive, of the video's time segment in which the current
      *           identifications happen. Particularly, if the end is the same as the start,
      *           it means the identifications happen on a specific video frame.
-     *     @type array<\Google\Cloud\VisionAI\V1\VideoObjectTrackingPredictionResult\DetectedObject>|\Google\Protobuf\Internal\RepeatedField $objects
+     *     @type \Google\Cloud\VisionAI\V1\VideoObjectTrackingPredictionResult\DetectedObject[] $objects
      *           All of the objects detected in the specified time range.
      * }
      */
@@ -141,7 +141,7 @@ class VideoObjectTrackingPredictionResult extends \Google\Protobuf\Internal\Mess
      * All of the objects detected in the specified time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.VideoObjectTrackingPredictionResult.DetectedObject objects = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\VideoObjectTrackingPredictionResult\DetectedObject>
      */
     public function getObjects()
     {
@@ -152,7 +152,7 @@ class VideoObjectTrackingPredictionResult extends \Google\Protobuf\Internal\Mess
      * All of the objects detected in the specified time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.VideoObjectTrackingPredictionResult.DetectedObject objects = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\VideoObjectTrackingPredictionResult\DetectedObject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\VideoObjectTrackingPredictionResult\DetectedObject[] $var
      * @return $this
      */
     public function setObjects($var)

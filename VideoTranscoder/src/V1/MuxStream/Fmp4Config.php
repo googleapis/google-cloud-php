@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1\MuxStream;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `fmp4` container configuration.
@@ -80,5 +80,4 @@ class Fmp4Config extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

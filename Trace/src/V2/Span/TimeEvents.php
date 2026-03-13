@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2\Span;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of `TimeEvent`s. A `TimeEvent` is a time-stamped annotation
@@ -44,7 +44,7 @@ class TimeEvents extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Trace\V2\Span\TimeEvent>|\Google\Protobuf\Internal\RepeatedField $time_event
+     *     @type \Google\Cloud\Trace\V2\Span\TimeEvent[] $time_event
      *           A collection of `TimeEvent`s.
      *     @type int $dropped_annotations_count
      *           The number of dropped annotations in all the included time events.
@@ -63,7 +63,7 @@ class TimeEvents extends \Google\Protobuf\Internal\Message
      * A collection of `TimeEvent`s.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span.TimeEvent time_event = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Trace\V2\Span\TimeEvent>
      */
     public function getTimeEvent()
     {
@@ -74,7 +74,7 @@ class TimeEvents extends \Google\Protobuf\Internal\Message
      * A collection of `TimeEvent`s.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span.TimeEvent time_event = 1;</code>
-     * @param array<\Google\Cloud\Trace\V2\Span\TimeEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Trace\V2\Span\TimeEvent[] $var
      * @return $this
      */
     public function setTimeEvent($var)
@@ -142,7 +142,4 @@ class TimeEvents extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimeEvents::class, \Google\Cloud\Trace\V2\Span_TimeEvents::class);
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -64,7 +64,7 @@ class BatchUpdateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project}/locations/{location}/collections/{collection}`.
      *           The parent field in the UpdateDataObjectRequest messages must match this
      *           field.
-     *     @type array<\Google\Cloud\VectorSearch\V1\UpdateDataObjectRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\VectorSearch\V1\UpdateDataObjectRequest[] $requests
      *           Required. The request message specifying the resources to update.
      *           A maximum of 1000 DataObjects can be updated in a batch.
      * }
@@ -111,7 +111,7 @@ class BatchUpdateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 DataObjects can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.UpdateDataObjectRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\UpdateDataObjectRequest>
      */
     public function getRequests()
     {
@@ -123,7 +123,7 @@ class BatchUpdateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 DataObjects can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.UpdateDataObjectRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\UpdateDataObjectRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\UpdateDataObjectRequest[] $var
      * @return $this
      */
     public function setRequests($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A group of facet buckets to be passed back and forth between backend &
@@ -62,7 +62,7 @@ class FacetGroup extends \Google\Protobuf\Internal\Message
      *           Unique id of the facet group.
      *     @type string $display_name
      *           Display name of the facet. To be used by UI for facet rendering.
-     *     @type array<\Google\Cloud\VisionAI\V1\FacetBucket>|\Google\Protobuf\Internal\RepeatedField $buckets
+     *     @type \Google\Cloud\VisionAI\V1\FacetBucket[] $buckets
      *           Buckets associated with the facet. E.g. for "Team" facet, the bucket
      *           can be 49ers, patriots, etc.
      *     @type int $bucket_type
@@ -137,7 +137,7 @@ class FacetGroup extends \Google\Protobuf\Internal\Message
      * can be 49ers, patriots, etc.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetBucket buckets = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\FacetBucket>
      */
     public function getBuckets()
     {
@@ -149,7 +149,7 @@ class FacetGroup extends \Google\Protobuf\Internal\Message
      * can be 49ers, patriots, etc.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetBucket buckets = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\FacetBucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\FacetBucket[] $var
      * @return $this
      */
     public function setBuckets($var)

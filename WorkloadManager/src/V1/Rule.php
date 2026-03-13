@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A rule to be evaluated.
@@ -121,7 +121,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *           The document url for the rule.
      *     @type string $remediation
      *           The remediation for the rule.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           List of user-defined tags.
      *     @type int $rule_type
      *           The type of the rule.
@@ -399,7 +399,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * List of user-defined tags.
      *
      * Generated from protobuf field <code>repeated string tags = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -410,7 +410,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * List of user-defined tags.
      *
      * Generated from protobuf field <code>repeated string tags = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2\QueuedResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Guaranteed tier definition.
@@ -82,5 +82,4 @@ class Guaranteed extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Multiplexing settings for output stream.
@@ -100,7 +100,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *           See also:
      *           [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
+     *     @type string[] $elementary_streams
      *           List of
      *           [ElementaryStream.key][google.cloud.video.transcoder.v1.ElementaryStream.key]
      *           values multiplexed in this stream.
@@ -234,7 +234,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * values multiplexed in this stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getElementaryStreams()
     {
@@ -247,7 +247,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * values multiplexed in this stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setElementaryStreams($var)

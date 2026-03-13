@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -44,7 +44,7 @@ class BatchCreateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project}/locations/{location}/collections/{collection}`.
      *           The parent field in the CreateDataObjectRequest messages must match this
      *           field.
-     *     @type array<\Google\Cloud\VectorSearch\V1\CreateDataObjectRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\VectorSearch\V1\CreateDataObjectRequest[] $requests
      *           Required. The request message specifying the resources to create.
      *           A maximum of 1000 DataObjects can be created in a batch.
      * }
@@ -91,7 +91,7 @@ class BatchCreateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 DataObjects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.CreateDataObjectRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\CreateDataObjectRequest>
      */
     public function getRequests()
     {
@@ -103,7 +103,7 @@ class BatchCreateDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 DataObjects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.CreateDataObjectRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\CreateDataObjectRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\CreateDataObjectRequest[] $var
      * @return $this
      */
     public function setRequests($var)

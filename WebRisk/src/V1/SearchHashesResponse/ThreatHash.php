@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1\SearchHashesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains threat information on a matching hash.
@@ -43,7 +43,7 @@ class ThreatHash extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
+     *     @type int[] $threat_types
      *           The ThreatList this threat belongs to.
      *           This must contain at least one entry.
      *     @type string $hash
@@ -64,7 +64,7 @@ class ThreatHash extends \Google\Protobuf\Internal\Message
      * This must contain at least one entry.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getThreatTypes()
     {
@@ -76,7 +76,7 @@ class ThreatHash extends \Google\Protobuf\Internal\Message
      * This must contain at least one entry.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setThreatTypes($var)
@@ -154,5 +154,4 @@ class ThreatHash extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

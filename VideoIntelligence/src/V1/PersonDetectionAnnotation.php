@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Person detection annotation per video.
@@ -34,7 +34,7 @@ class PersonDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $tracks
+     *     @type \Google\Cloud\VideoIntelligence\V1\Track[] $tracks
      *           The detected tracks of a person.
      *     @type string $version
      *           Feature version.
@@ -49,7 +49,7 @@ class PersonDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * The detected tracks of a person.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\Track>
      */
     public function getTracks()
     {
@@ -60,7 +60,7 @@ class PersonDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * The detected tracks of a person.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 1;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\Track[] $var
      * @return $this
      */
     public function setTracks($var)

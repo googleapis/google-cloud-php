@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Face detection annotation.
@@ -40,7 +40,7 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $tracks
+     *     @type \Google\Cloud\VideoIntelligence\V1\Track[] $tracks
      *           The face tracks with attributes.
      *     @type string $thumbnail
      *           The thumbnail of a person's face.
@@ -57,7 +57,7 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * The face tracks with attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\Track>
      */
     public function getTracks()
     {
@@ -68,7 +68,7 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * The face tracks with attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 3;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\Track[] $var
      * @return $this
      */
     public function setTracks($var)

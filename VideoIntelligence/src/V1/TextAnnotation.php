@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Annotations related to one detected OCR text snippet. This will contain the
@@ -44,7 +44,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           The detected text.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\TextSegment>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Cloud\VideoIntelligence\V1\TextSegment[] $segments
      *           All video segments where OCR detected text appears.
      *     @type string $version
      *           Feature version.
@@ -85,7 +85,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where OCR detected text appears.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextSegment segments = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\TextSegment>
      */
     public function getSegments()
     {
@@ -96,7 +96,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where OCR detected text appears.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextSegment segments = 2;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\TextSegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\TextSegment[] $var
      * @return $this
      */
     public function setSegments($var)

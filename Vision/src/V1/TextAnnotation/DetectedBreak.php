@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1\TextAnnotation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Detected start or end of a structural component.
@@ -98,5 +98,4 @@ class DetectedBreak extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Video Stream Input Config.
@@ -35,8 +35,8 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $streams
-     *     @type array<\Google\Cloud\VisionAI\V1\StreamWithAnnotation>|\Google\Protobuf\Internal\RepeatedField $streams_with_annotation
+     *     @type string[] $streams
+     *     @type \Google\Cloud\VisionAI\V1\StreamWithAnnotation[] $streams_with_annotation
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string streams = 1 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getStreams()
@@ -59,7 +59,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string streams = 1 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -76,7 +76,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamWithAnnotation streams_with_annotation = 2 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\StreamWithAnnotation>
      * @deprecated
      */
     public function getStreamsWithAnnotation()
@@ -89,7 +89,7 @@ class VideoStreamInputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamWithAnnotation streams_with_annotation = 2 [deprecated = true];</code>
-     * @param array<\Google\Cloud\VisionAI\V1\StreamWithAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\StreamWithAnnotation[] $var
      * @return $this
      * @deprecated
      */

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\IngestAssetRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the data and the corresponding time range this data is for.
@@ -108,5 +108,4 @@ class TimeIndexedData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
