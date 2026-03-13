@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\Pipeline\Mediation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Transformation defines the way to transform an incoming message.
@@ -364,5 +364,4 @@ class Transformation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

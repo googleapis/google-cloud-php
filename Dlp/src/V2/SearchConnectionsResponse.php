@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for SearchConnections.
@@ -37,7 +37,7 @@ class SearchConnectionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type \Google\Cloud\Dlp\V2\Connection[] $connections
      *           List of connections that match the search query. Note that only a subset
      *           of the fields will be populated, and only "name" is guaranteed to be set.
      *           For full details of a Connection, call GetConnection with the name.
@@ -57,7 +57,7 @@ class SearchConnectionsResponse extends \Google\Protobuf\Internal\Message
      * For full details of a Connection, call GetConnection with the name.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Connection connections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Connection>
      */
     public function getConnections()
     {
@@ -70,7 +70,7 @@ class SearchConnectionsResponse extends \Google\Protobuf\Internal\Message
      * For full details of a Connection, call GetConnection with the name.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Connection connections = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Connection[] $var
      * @return $this
      */
     public function setConnections($var)

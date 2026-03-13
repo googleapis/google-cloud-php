@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DiscoveryBigQueryFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Catch-all for all other tables not specified by other filters. Should
@@ -32,5 +32,4 @@ class AllOtherBigQueryTables extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `ConfigureContactSettings` method.
@@ -17,7 +17,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the `Registration` whose contact settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -79,14 +79,14 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $registration
      *           Required. The name of the `Registration` whose contact settings are being updated,
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}registrations/*`.
      *     @type \Google\Cloud\Domains\V1\ContactSettings $contact_settings
      *           Fields of the `ContactSettings` to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The field mask describing which fields to update as a comma-separated list.
      *           For example, if only the registrant contact is being updated, the
      *           `update_mask` is `"registrant_contact"`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $contact_notices
+     *     @type int[] $contact_notices
      *           The list of contact notices that the caller acknowledges. The notices
      *           needed here depend on the values specified in `contact_settings`.
      *     @type bool $validate_only
@@ -100,7 +100,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Registration` whose contact settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -112,7 +112,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Registration` whose contact settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -207,7 +207,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      * needed here depend on the values specified in `contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactNotice contact_notices = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getContactNotices()
     {
@@ -219,7 +219,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      * needed here depend on the values specified in `contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactNotice contact_notices = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setContactNotices($var)

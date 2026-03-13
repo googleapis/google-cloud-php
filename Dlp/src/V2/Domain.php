@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A domain represents a thematic category that a data profile can fall under.
@@ -36,7 +36,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      *
      *     @type int $category
      *           A domain category that this profile is related to.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $signals
+     *     @type int[] $signals
      *           The collection of signals that influenced selection of the category.
      * }
      */
@@ -75,7 +75,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * The collection of signals that influenced selection of the category.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain.Signal signals = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSignals()
     {
@@ -86,7 +86,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * The collection of signals that influenced selection of the category.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain.Signal signals = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSignals($var)

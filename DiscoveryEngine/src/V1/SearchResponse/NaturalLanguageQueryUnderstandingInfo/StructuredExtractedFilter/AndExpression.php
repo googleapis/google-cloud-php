@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Logical `And` operator.
@@ -28,7 +28,7 @@ class AndExpression extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter\Expression>|\Google\Protobuf\Internal\RepeatedField $expressions
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter\Expression[] $expressions
      *           The expressions that were ANDed together.
      * }
      */
@@ -41,7 +41,7 @@ class AndExpression extends \Google\Protobuf\Internal\Message
      * The expressions that were ANDed together.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.Expression expressions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter\Expression>
      */
     public function getExpressions()
     {
@@ -52,7 +52,7 @@ class AndExpression extends \Google\Protobuf\Internal\Message
      * The expressions that were ANDed together.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter.Expression expressions = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter\Expression>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter\Expression[] $var
      * @return $this
      */
     public function setExpressions($var)
@@ -64,5 +64,4 @@ class AndExpression extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

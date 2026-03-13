@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The layout parsing configurations for documents.
@@ -68,15 +68,15 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_image_annotation
      *           Optional. If true, the LLM based annotation is added to the image
      *           during parsing.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $structured_content_types
+     *     @type string[] $structured_content_types
      *           Optional. Contains the required structure types to extract from the
      *           document. Supported values:
      *           * `shareholder-structure`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_html_elements
+     *     @type string[] $exclude_html_elements
      *           Optional. List of HTML elements to exclude from the parsed content.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_html_classes
+     *     @type string[] $exclude_html_classes
      *           Optional. List of HTML classes to exclude from the parsed content.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_html_ids
+     *     @type string[] $exclude_html_ids
      *           Optional. List of HTML ids to exclude from the parsed content.
      * }
      */
@@ -147,7 +147,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * * `shareholder-structure`
      *
      * Generated from protobuf field <code>repeated string structured_content_types = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStructuredContentTypes()
     {
@@ -160,7 +160,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * * `shareholder-structure`
      *
      * Generated from protobuf field <code>repeated string structured_content_types = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStructuredContentTypes($var)
@@ -175,7 +175,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of HTML elements to exclude from the parsed content.
      *
      * Generated from protobuf field <code>repeated string exclude_html_elements = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeHtmlElements()
     {
@@ -186,7 +186,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of HTML elements to exclude from the parsed content.
      *
      * Generated from protobuf field <code>repeated string exclude_html_elements = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeHtmlElements($var)
@@ -201,7 +201,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of HTML classes to exclude from the parsed content.
      *
      * Generated from protobuf field <code>repeated string exclude_html_classes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeHtmlClasses()
     {
@@ -212,7 +212,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of HTML classes to exclude from the parsed content.
      *
      * Generated from protobuf field <code>repeated string exclude_html_classes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeHtmlClasses($var)
@@ -227,7 +227,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of HTML ids to exclude from the parsed content.
      *
      * Generated from protobuf field <code>repeated string exclude_html_ids = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeHtmlIds()
     {
@@ -238,7 +238,7 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of HTML ids to exclude from the parsed content.
      *
      * Generated from protobuf field <code>repeated string exclude_html_ids = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeHtmlIds($var)
@@ -250,5 +250,4 @@ class LayoutParsingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

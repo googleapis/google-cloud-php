@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Engine\MediaRecommendationEngineConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * More feature configs of the selected engine type.
@@ -105,5 +105,4 @@ class EngineFeaturesConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

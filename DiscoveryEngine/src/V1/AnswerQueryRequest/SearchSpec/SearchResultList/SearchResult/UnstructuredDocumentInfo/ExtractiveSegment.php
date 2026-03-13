@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Extractive segment.
@@ -101,5 +101,4 @@ class ExtractiveSegment extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

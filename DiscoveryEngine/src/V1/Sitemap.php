@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A sitemap for the SiteSearchEngine.
@@ -17,7 +17,7 @@ class Sitemap extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The fully qualified resource name of the sitemap.
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/sitemaps/&#42;`
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine/sitemaps/*`
      * The `sitemap_id` suffix is system-generated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -41,7 +41,7 @@ class Sitemap extends \Google\Protobuf\Internal\Message
      *           Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.
      *     @type string $name
      *           Output only. The fully qualified resource name of the sitemap.
-     *           `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/sitemaps/&#42;`
+     *           `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine/sitemaps/*`
      *           The `sitemap_id` suffix is system-generated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The sitemap's creation time.
@@ -85,7 +85,7 @@ class Sitemap extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified resource name of the sitemap.
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/sitemaps/&#42;`
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine/sitemaps/*`
      * The `sitemap_id` suffix is system-generated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -98,7 +98,7 @@ class Sitemap extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified resource name of the sitemap.
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine/sitemaps/&#42;`
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine/sitemaps/*`
      * The `sitemap_id` suffix is system-generated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

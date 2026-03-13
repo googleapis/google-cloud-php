@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\ProcessingLocation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Processing occurs in the global region.
@@ -30,5 +30,4 @@ class GlobalProcessing extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

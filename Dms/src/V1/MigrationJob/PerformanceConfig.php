@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1\MigrationJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Performance configuration definition.
@@ -64,5 +64,4 @@ class PerformanceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

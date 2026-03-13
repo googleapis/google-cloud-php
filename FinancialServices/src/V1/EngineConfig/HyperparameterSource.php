@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1\EngineConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for bootstrapping an Engine Config with the results of another
@@ -115,5 +115,4 @@ class HyperparameterSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

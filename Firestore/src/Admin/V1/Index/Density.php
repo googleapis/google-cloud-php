@@ -107,6 +107,3 @@ class Density
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Density::class, \Google\Cloud\Firestore\Admin\V1\Index_Density::class);
-

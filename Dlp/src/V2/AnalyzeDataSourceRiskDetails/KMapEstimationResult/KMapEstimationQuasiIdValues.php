@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A tuple of values for the quasi-identifier columns.
@@ -34,7 +34,7 @@ class KMapEstimationQuasiIdValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
+     *     @type \Google\Cloud\Dlp\V2\Value[] $quasi_ids_values
      *           The quasi-identifier values.
      *     @type int|string $estimated_anonymity
      *           The estimated anonymity for these quasi-identifier values.
@@ -49,7 +49,7 @@ class KMapEstimationQuasiIdValues extends \Google\Protobuf\Internal\Message
      * The quasi-identifier values.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quasi_ids_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Value>
      */
     public function getQuasiIdsValues()
     {
@@ -60,7 +60,7 @@ class KMapEstimationQuasiIdValues extends \Google\Protobuf\Internal\Message
      * The quasi-identifier values.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quasi_ids_values = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Value[] $var
      * @return $this
      */
     public function setQuasiIdsValues($var)
@@ -98,5 +98,4 @@ class KMapEstimationQuasiIdValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

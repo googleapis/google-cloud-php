@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1\PredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Outputs is a list of places where the operation will write results.
@@ -122,5 +122,4 @@ class Outputs extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

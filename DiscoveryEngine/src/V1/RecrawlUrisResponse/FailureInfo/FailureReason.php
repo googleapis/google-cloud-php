@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about why crawling failed for a particular CorpusType, e.g.,
@@ -99,5 +99,4 @@ class FailureReason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

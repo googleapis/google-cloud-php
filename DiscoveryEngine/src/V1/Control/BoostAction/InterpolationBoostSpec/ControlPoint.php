@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The control points used to define the curve. The curve defined
@@ -124,5 +124,4 @@ class ControlPoint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

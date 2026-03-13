@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Observation.
@@ -29,7 +29,7 @@ class Observation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult>|\Google\Protobuf\Internal\RepeatedField $search_results
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult[] $search_results
      *           Search results observed by the search action, it can be snippets info
      *           or chunk info, depending on the citation type set by the user.
      * }
@@ -44,7 +44,7 @@ class Observation extends \Google\Protobuf\Internal\Message
      * or chunk info, depending on the citation type set by the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult search_results = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult>
      */
     public function getSearchResults()
     {
@@ -56,7 +56,7 @@ class Observation extends \Google\Protobuf\Internal\Message
      * or chunk info, depending on the citation type set by the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult search_results = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult[] $var
      * @return $this
      */
     public function setSearchResults($var)
@@ -68,5 +68,4 @@ class Observation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

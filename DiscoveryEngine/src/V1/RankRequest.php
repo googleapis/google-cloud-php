@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -25,9 +25,9 @@ class RankRequest extends \Google\Protobuf\Internal\Message
     protected $ranking_config = '';
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
+     * * `semantic-ranker-512\@latest`: Semantic ranking model with maximum input
      * token size 512.
-     * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
+     * It is set to `semantic-ranker-512\@latest` by default if unspecified.
      *
      * Generated from protobuf field <code>string model = 2;</code>
      */
@@ -90,15 +90,15 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`.
      *     @type string $model
      *           The identifier of the model to use. It is one of:
-     *           * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
+     *           * `semantic-ranker-512\@latest`: Semantic ranking model with maximum input
      *           token size 512.
-     *           It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
+     *           It is set to `semantic-ranker-512\@latest` by default if unspecified.
      *     @type int $top_n
      *           The number of results to return. If this is unset or no bigger than zero,
      *           returns all results.
      *     @type string $query
      *           The query to use.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\RankingRecord>|\Google\Protobuf\Internal\RepeatedField $records
+     *     @type \Google\Cloud\DiscoveryEngine\V1\RankingRecord[] $records
      *           Required. A list of records to rank. At most 200 records to rank.
      *     @type bool $ignore_record_details_in_response
      *           If true, the response will contain only record ID and score. By default, it
@@ -156,9 +156,9 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
+     * * `semantic-ranker-512\@latest`: Semantic ranking model with maximum input
      * token size 512.
-     * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
+     * It is set to `semantic-ranker-512\@latest` by default if unspecified.
      *
      * Generated from protobuf field <code>string model = 2;</code>
      * @return string
@@ -170,9 +170,9 @@ class RankRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The identifier of the model to use. It is one of:
-     * * `semantic-ranker-512&#64;latest`: Semantic ranking model with maximum input
+     * * `semantic-ranker-512\@latest`: Semantic ranking model with maximum input
      * token size 512.
-     * It is set to `semantic-ranker-512&#64;latest` by default if unspecified.
+     * It is set to `semantic-ranker-512\@latest` by default if unspecified.
      *
      * Generated from protobuf field <code>string model = 2;</code>
      * @param string $var
@@ -244,7 +244,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      * Required. A list of records to rank. At most 200 records to rank.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RankingRecord records = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\RankingRecord>
      */
     public function getRecords()
     {
@@ -255,7 +255,7 @@ class RankRequest extends \Google\Protobuf\Internal\Message
      * Required. A list of records to rank. At most 200 records to rank.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RankingRecord records = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\RankingRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\RankingRecord[] $var
      * @return $this
      */
     public function setRecords($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ImportSuggestionDenyListEntriesRequest extends \Google\Protobuf\Internal\M
 {
     /**
      * Required. The parent data store resource name for which to import denylist
-     * entries. Follows pattern projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     * entries. Follows pattern projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,7 +43,7 @@ class ImportSuggestionDenyListEntriesRequest extends \Google\Protobuf\Internal\M
      *           per line.
      *     @type string $parent
      *           Required. The parent data store resource name for which to import denylist
-     *           entries. Follows pattern projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     *           entries. Follows pattern projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +125,7 @@ class ImportSuggestionDenyListEntriesRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent data store resource name for which to import denylist
-     * entries. Follows pattern projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     * entries. Follows pattern projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -137,7 +137,7 @@ class ImportSuggestionDenyListEntriesRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent data store resource name for which to import denylist
-     * entries. Follows pattern projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     * entries. Follows pattern projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

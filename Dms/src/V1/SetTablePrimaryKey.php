@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options to configure rule type SetTablePrimaryKey.
@@ -38,7 +38,7 @@ class SetTablePrimaryKey extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $primary_key_columns
+     *     @type string[] $primary_key_columns
      *           Required. List of column names for the primary key
      *     @type string $primary_key
      *           Optional. Name for the primary key
@@ -53,7 +53,7 @@ class SetTablePrimaryKey extends \Google\Protobuf\Internal\Message
      * Required. List of column names for the primary key
      *
      * Generated from protobuf field <code>repeated string primary_key_columns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPrimaryKeyColumns()
     {
@@ -64,7 +64,7 @@ class SetTablePrimaryKey extends \Google\Protobuf\Internal\Message
      * Required. List of column names for the primary key
      *
      * Generated from protobuf field <code>repeated string primary_key_columns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPrimaryKeyColumns($var)

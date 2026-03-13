@@ -38,7 +38,7 @@ class CommonCharsToIgnore
      */
     const ALPHA_LOWER_CASE = 3;
     /**
-     * US Punctuation, one of !"#$%&'()*+,-./:;<=>?&#64;[\]^_`{|}~
+     * US Punctuation, one of !"#$%&'()*+,-./:;<=>?\@[\]^_`{|}~
      *
      * Generated from protobuf enum <code>PUNCTUATION = 4;</code>
      */
@@ -79,5 +79,4 @@ class CommonCharsToIgnore
         return constant($const);
     }
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the Service being deployed.
@@ -89,7 +89,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     protected $min_instance_count = 0;
     /**
      * The Serverless VPC Access connector that this cloud function can connect
-     * to. The format of this field is `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     * to. The format of this field is `projects/{@*}locations/{@*}connectors/*`.
      *
      * Generated from protobuf field <code>string vpc_connector = 6 [(.google.api.resource_reference) = {</code>
      */
@@ -116,7 +116,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
     protected $uri = '';
     /**
      * The email of the service's service account. If empty, defaults to
-     * `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     * `{project_number}-compute\@developer.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account_email = 10;</code>
      */
@@ -224,7 +224,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           idle instance would have been stopped in the default case.
      *     @type string $vpc_connector
      *           The Serverless VPC Access connector that this cloud function can connect
-     *           to. The format of this field is `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     *           to. The format of this field is `projects/{@*}locations/{@*}connectors/*`.
      *     @type int $vpc_connector_egress_settings
      *           The egress settings for the connector, controlling what traffic is diverted
      *           through it.
@@ -235,16 +235,16 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           Output only. URI of the Service deployed.
      *     @type string $service_account_email
      *           The email of the service's service account. If empty, defaults to
-     *           `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     *           `{project_number}-compute\@developer.gserviceaccount.com`.
      *     @type bool $all_traffic_on_latest_revision
      *           Whether 100% of traffic is routed to the latest revision.
      *           On CreateFunction and UpdateFunction, when set to true, the revision being
      *           deployed will serve 100% of traffic, ignoring any traffic split settings,
      *           if any. On GetFunction, true will be returned if the latest revision is
      *           serving 100% of traffic.
-     *     @type array<\Google\Cloud\Functions\V2\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $secret_environment_variables
+     *     @type \Google\Cloud\Functions\V2\SecretEnvVar[] $secret_environment_variables
      *           Secret environment variables configuration.
-     *     @type array<\Google\Cloud\Functions\V2\SecretVolume>|\Google\Protobuf\Internal\RepeatedField $secret_volumes
+     *     @type \Google\Cloud\Functions\V2\SecretVolume[] $secret_volumes
      *           Secret volumes configuration.
      *     @type string $revision
      *           Output only. The name of service revision.
@@ -508,7 +508,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Serverless VPC Access connector that this cloud function can connect
-     * to. The format of this field is `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     * to. The format of this field is `projects/{@*}locations/{@*}connectors/*`.
      *
      * Generated from protobuf field <code>string vpc_connector = 6 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -520,7 +520,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The Serverless VPC Access connector that this cloud function can connect
-     * to. The format of this field is `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     * to. The format of this field is `projects/{@*}locations/{@*}connectors/*`.
      *
      * Generated from protobuf field <code>string vpc_connector = 6 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -618,7 +618,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The email of the service's service account. If empty, defaults to
-     * `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     * `{project_number}-compute\@developer.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account_email = 10;</code>
      * @return string
@@ -630,7 +630,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The email of the service's service account. If empty, defaults to
-     * `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     * `{project_number}-compute\@developer.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account_email = 10;</code>
      * @param string $var
@@ -682,7 +682,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * Secret environment variables configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.SecretEnvVar secret_environment_variables = 17;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\SecretEnvVar>
      */
     public function getSecretEnvironmentVariables()
     {
@@ -693,7 +693,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * Secret environment variables configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.SecretEnvVar secret_environment_variables = 17;</code>
-     * @param array<\Google\Cloud\Functions\V2\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\SecretEnvVar[] $var
      * @return $this
      */
     public function setSecretEnvironmentVariables($var)
@@ -708,7 +708,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * Secret volumes configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.SecretVolume secret_volumes = 19;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\SecretVolume>
      */
     public function getSecretVolumes()
     {
@@ -719,7 +719,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * Secret volumes configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.SecretVolume secret_volumes = 19;</code>
-     * @param array<\Google\Cloud\Functions\V2\SecretVolume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\SecretVolume[] $var
      * @return $this
      */
     public function setSecretVolumes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1\BackgroundJobLogEntry;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details regarding an Import Rules background job.
@@ -34,7 +34,7 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type string[] $files
      *           Output only. File names used for the import rules job.
      *     @type int $file_format
      *           Output only. The requested file format.
@@ -49,7 +49,7 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
      * Output only. File names used for the import rules job.
      *
      * Generated from protobuf field <code>repeated string files = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFiles()
     {
@@ -60,7 +60,7 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
      * Output only. File names used for the import rules job.
      *
      * Generated from protobuf field <code>repeated string files = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFiles($var)
@@ -98,5 +98,4 @@ class ImportRulesJobDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

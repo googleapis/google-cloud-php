@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [Document][google.firestore.v1.Document] has been deleted.
@@ -50,7 +50,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      *     @type string $document
      *           The resource name of the [Document][google.firestore.v1.Document] that was
      *           deleted.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
+     *     @type int[] $removed_target_ids
      *           A set of target IDs for targets that previously matched this entity.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The read timestamp at which the delete was observed.
@@ -94,7 +94,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      * A set of target IDs for targets that previously matched this entity.
      *
      * Generated from protobuf field <code>repeated int32 removed_target_ids = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRemovedTargetIds()
     {
@@ -105,7 +105,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      * A set of target IDs for targets that previously matched this entity.
      *
      * Generated from protobuf field <code>repeated int32 removed_target_ids = 6;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRemovedTargetIds($var)

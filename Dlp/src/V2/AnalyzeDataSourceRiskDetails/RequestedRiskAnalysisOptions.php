@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Risk analysis options.
@@ -74,5 +74,4 @@ class RequestedRiskAnalysisOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

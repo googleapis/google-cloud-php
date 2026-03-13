@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Grounding info for a claim in the candidate and its support.
@@ -49,7 +49,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      *     @type string $claim_text
      *           Text for the claim in the candidate. Always provided when a
      *           support is found.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $support_chunk_indices
+     *     @type int[] $support_chunk_indices
      *           A list of indices (into 'support_chunks') specifying the
      *           citations associated with the claim. For instance [1,3,4] means
      *           that support_chunks[1], support_chunks[3],
@@ -100,7 +100,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * support_chunks[4] are the chunks attributed to the claim.
      *
      * Generated from protobuf field <code>repeated int32 support_chunk_indices = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportChunkIndices()
     {
@@ -114,7 +114,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * support_chunks[4] are the chunks attributed to the claim.
      *
      * Generated from protobuf field <code>repeated int32 support_chunk_indices = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportChunkIndices($var)
@@ -166,5 +166,4 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

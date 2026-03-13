@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [Firestore.Commit][google.firestore.v1.Firestore.Commit].
@@ -63,7 +63,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           Required. The database name. In the format:
      *           `projects/{project_id}/databases/{database_id}`.
-     *     @type array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $writes
+     *     @type \Google\Cloud\Firestore\V1\Write[] $writes
      *           The writes to apply.
      *           Always executed atomically and in order.
      *     @type string $transaction
@@ -108,7 +108,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * Always executed atomically and in order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Write writes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Write>
      */
     public function getWrites()
     {
@@ -120,7 +120,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * Always executed atomically and in order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Write writes = 2;</code>
-     * @param array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Write[] $var
      * @return $this
      */
     public function setWrites($var)

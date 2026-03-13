@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Unstructured document information.
@@ -70,13 +70,13 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      *           URI for the document.
      *     @type string $title
      *           Title.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\DocumentContext>|\Google\Protobuf\Internal\RepeatedField $document_contexts
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\DocumentContext[] $document_contexts
      *           List of document contexts. The content will be used for Answer
      *           Generation. This is supposed to be the main content of the document
      *           that can be long and comprehensive.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveSegment>|\Google\Protobuf\Internal\RepeatedField $extractive_segments
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveSegment[] $extractive_segments
      *           List of extractive segments.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveAnswer>|\Google\Protobuf\Internal\RepeatedField $extractive_answers
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveAnswer[] $extractive_answers
      *           Deprecated: This field is deprecated and will have no effect on
      *           the Answer generation.
      *           Please use document_contexts and extractive_segments fields.
@@ -172,7 +172,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * that can be long and comprehensive.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo.DocumentContext document_contexts = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\DocumentContext>
      */
     public function getDocumentContexts()
     {
@@ -185,7 +185,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * that can be long and comprehensive.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo.DocumentContext document_contexts = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\DocumentContext>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\DocumentContext[] $var
      * @return $this
      */
     public function setDocumentContexts($var)
@@ -200,7 +200,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * List of extractive segments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo.ExtractiveSegment extractive_segments = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveSegment>
      */
     public function getExtractiveSegments()
     {
@@ -211,7 +211,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * List of extractive segments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo.ExtractiveSegment extractive_segments = 5;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveSegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveSegment[] $var
      * @return $this
      */
     public function setExtractiveSegments($var)
@@ -229,7 +229,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * List of extractive answers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo.ExtractiveAnswer extractive_answers = 6 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveAnswer>
      * @deprecated
      */
     public function getExtractiveAnswers()
@@ -247,7 +247,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * List of extractive answers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo.ExtractiveAnswer extractive_answers = 6 [deprecated = true];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult\UnstructuredDocumentInfo\ExtractiveAnswer[] $var
      * @return $this
      * @deprecated
      */
@@ -263,5 +263,4 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

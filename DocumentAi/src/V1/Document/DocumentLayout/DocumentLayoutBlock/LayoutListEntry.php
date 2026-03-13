@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an entry in the list.
@@ -29,7 +29,7 @@ class LayoutListEntry extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock>|\Google\Protobuf\Internal\RepeatedField $blocks
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock[] $blocks
      *           A list entry is a list of blocks.
      *           Repeated blocks support further hierarchies and nested blocks.
      * }
@@ -44,7 +44,7 @@ class LayoutListEntry extends \Google\Protobuf\Internal\Message
      * Repeated blocks support further hierarchies and nested blocks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock blocks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock>
      */
     public function getBlocks()
     {
@@ -56,7 +56,7 @@ class LayoutListEntry extends \Google\Protobuf\Internal\Message
      * Repeated blocks support further hierarchies and nested blocks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock blocks = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock[] $var
      * @return $this
      */
     public function setBlocks($var)
@@ -68,5 +68,4 @@ class LayoutListEntry extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

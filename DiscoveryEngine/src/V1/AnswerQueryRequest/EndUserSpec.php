@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * End user specification.
@@ -28,7 +28,7 @@ class EndUserSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec\EndUserMetaData>|\Google\Protobuf\Internal\RepeatedField $end_user_metadata
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec\EndUserMetaData[] $end_user_metadata
      *           Optional. End user metadata.
      * }
      */
@@ -41,7 +41,7 @@ class EndUserSpec extends \Google\Protobuf\Internal\Message
      * Optional. End user metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.EndUserSpec.EndUserMetaData end_user_metadata = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec\EndUserMetaData>
      */
     public function getEndUserMetadata()
     {
@@ -52,7 +52,7 @@ class EndUserSpec extends \Google\Protobuf\Internal\Message
      * Optional. End user metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.EndUserSpec.EndUserMetaData end_user_metadata = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec\EndUserMetaData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec\EndUserMetaData[] $var
      * @return $this
      */
     public function setEndUserMetadata($var)
@@ -64,5 +64,4 @@ class EndUserSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

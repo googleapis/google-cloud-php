@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `RetrieveRegisterParameters` method.
@@ -22,7 +22,7 @@ class RetrieveRegisterParametersRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $domain_name = '';
     /**
-     * Required. The location. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The location. Must be in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,7 +53,7 @@ class RetrieveRegisterParametersRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $domain_name
      *           Required. The domain name. Unicode domain names must be expressed in Punycode format.
      *     @type string $location
-     *           Required. The location. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The location. Must be in the format `projects/{@*}locations/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +88,7 @@ class RetrieveRegisterParametersRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The location. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The location. Must be in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,7 +99,7 @@ class RetrieveRegisterParametersRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The location. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The location. Must be in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

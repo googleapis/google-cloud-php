@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListInspectTemplates.
@@ -35,7 +35,7 @@ class ListInspectTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\InspectTemplate>|\Google\Protobuf\Internal\RepeatedField $inspect_templates
+     *     @type \Google\Cloud\Dlp\V2\InspectTemplate[] $inspect_templates
      *           List of inspectTemplates, up to page_size in ListInspectTemplatesRequest.
      *     @type string $next_page_token
      *           If the next page is available then the next page token to be used in the
@@ -51,7 +51,7 @@ class ListInspectTemplatesResponse extends \Google\Protobuf\Internal\Message
      * List of inspectTemplates, up to page_size in ListInspectTemplatesRequest.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectTemplate inspect_templates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InspectTemplate>
      */
     public function getInspectTemplates()
     {
@@ -62,7 +62,7 @@ class ListInspectTemplatesResponse extends \Google\Protobuf\Internal\Message
      * List of inspectTemplates, up to page_size in ListInspectTemplatesRequest.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectTemplate inspect_templates = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InspectTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InspectTemplate[] $var
      * @return $this
      */
     public function setInspectTemplates($var)

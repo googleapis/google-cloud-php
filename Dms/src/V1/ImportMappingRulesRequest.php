@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for 'ImportMappingRules' request.
@@ -55,7 +55,7 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}.
      *     @type int $rules_format
      *           Required. The format of the rules content file.
-     *     @type array<\Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile>|\Google\Protobuf\Internal\RepeatedField $rules_files
+     *     @type \Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile[] $rules_files
      *           Required. One or more rules files.
      *     @type bool $auto_commit
      *           Required. Should the conversion workspace be committed automatically after
@@ -127,7 +127,7 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
      * Required. One or more rules files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile>
      */
     public function getRulesFiles()
     {
@@ -138,7 +138,7 @@ class ImportMappingRulesRequest extends \Google\Protobuf\Internal\Message
      * Required. One or more rules files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ImportMappingRulesRequest.RulesFile rules_files = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\ImportMappingRulesRequest\RulesFile[] $var
      * @return $this
      */
     public function setRulesFiles($var)

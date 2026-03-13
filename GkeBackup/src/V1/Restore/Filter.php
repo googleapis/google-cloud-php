@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\Restore;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the filter for `Restore`. This filter can be used to further
@@ -43,12 +43,12 @@ class Filter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeBackup\V1\ResourceSelector>|\Google\Protobuf\Internal\RepeatedField $inclusion_filters
+     *     @type \Google\Cloud\GkeBackup\V1\ResourceSelector[] $inclusion_filters
      *           Optional. Selects resources for restoration. If specified, only resources
      *           which match `inclusion_filters` will be selected for restoration. A
      *           resource will be selected if it matches any `ResourceSelector` of the
      *           `inclusion_filters`.
-     *     @type array<\Google\Cloud\GkeBackup\V1\ResourceSelector>|\Google\Protobuf\Internal\RepeatedField $exclusion_filters
+     *     @type \Google\Cloud\GkeBackup\V1\ResourceSelector[] $exclusion_filters
      *           Optional. Excludes resources from restoration. If specified,
      *           a resource will not be restored if it matches
      *           any `ResourceSelector` of the `exclusion_filters`.
@@ -66,7 +66,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * `inclusion_filters`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.ResourceSelector inclusion_filters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\ResourceSelector>
      */
     public function getInclusionFilters()
     {
@@ -80,7 +80,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * `inclusion_filters`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.ResourceSelector inclusion_filters = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\ResourceSelector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\ResourceSelector[] $var
      * @return $this
      */
     public function setInclusionFilters($var)
@@ -97,7 +97,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * any `ResourceSelector` of the `exclusion_filters`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.ResourceSelector exclusion_filters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\ResourceSelector>
      */
     public function getExclusionFilters()
     {
@@ -110,7 +110,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * any `ResourceSelector` of the `exclusion_filters`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.ResourceSelector exclusion_filters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\ResourceSelector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\ResourceSelector[] $var
      * @return $this
      */
     public function setExclusionFilters($var)
@@ -122,5 +122,4 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

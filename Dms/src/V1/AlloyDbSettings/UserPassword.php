@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1\AlloyDbSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The username/password for a database user. Used for specifying initial
@@ -133,5 +133,4 @@ class UserPassword extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

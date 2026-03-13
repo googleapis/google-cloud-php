@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\RecordCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of conditions.
@@ -28,7 +28,7 @@ class Conditions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\RecordCondition\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Dlp\V2\RecordCondition\Condition[] $conditions
      *           A collection of conditions.
      * }
      */
@@ -41,7 +41,7 @@ class Conditions extends \Google\Protobuf\Internal\Message
      * A collection of conditions.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RecordCondition.Condition conditions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\RecordCondition\Condition>
      */
     public function getConditions()
     {
@@ -52,7 +52,7 @@ class Conditions extends \Google\Protobuf\Internal\Message
      * A collection of conditions.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RecordCondition.Condition conditions = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\RecordCondition\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\RecordCondition\Condition[] $var
      * @return $this
      */
     public function setConditions($var)
@@ -64,5 +64,4 @@ class Conditions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

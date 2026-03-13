@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generalization function that buckets values based on ranges. The ranges and
@@ -37,7 +37,7 @@ class BucketingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\BucketingConfig\Bucket>|\Google\Protobuf\Internal\RepeatedField $buckets
+     *     @type \Google\Cloud\Dlp\V2\BucketingConfig\Bucket[] $buckets
      *           Set of buckets. Ranges must be non-overlapping.
      * }
      */
@@ -50,7 +50,7 @@ class BucketingConfig extends \Google\Protobuf\Internal\Message
      * Set of buckets. Ranges must be non-overlapping.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BucketingConfig.Bucket buckets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\BucketingConfig\Bucket>
      */
     public function getBuckets()
     {
@@ -61,7 +61,7 @@ class BucketingConfig extends \Google\Protobuf\Internal\Message
      * Set of buckets. Ranges must be non-overlapping.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BucketingConfig.Bucket buckets = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\BucketingConfig\Bucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\BucketingConfig\Bucket[] $var
      * @return $this
      */
     public function setBuckets($var)

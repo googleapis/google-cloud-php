@@ -5,8 +5,8 @@
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Description of a group of similar error events.
@@ -87,7 +87,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      *           error-log content and is treated as Service Data. For information about
      *           how Service Data is handled, see [Google Cloud Privacy
      *           Notice](https://cloud.google.com/terms/cloud-privacy-notice).
-     *     @type array<\Google\Cloud\ErrorReporting\V1beta1\TrackingIssue>|\Google\Protobuf\Internal\RepeatedField $tracking_issues
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\TrackingIssue[] $tracking_issues
      *           Associated tracking issues.
      *     @type int $resolution_status
      *           Error group's resolution status.
@@ -191,7 +191,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * Associated tracking issues.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TrackingIssue tracking_issues = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ErrorReporting\V1beta1\TrackingIssue>
      */
     public function getTrackingIssues()
     {
@@ -202,7 +202,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * Associated tracking issues.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TrackingIssue tracking_issues = 3;</code>
-     * @param array<\Google\Cloud\ErrorReporting\V1beta1\TrackingIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\TrackingIssue[] $var
      * @return $this
      */
     public function setTrackingIssues($var)

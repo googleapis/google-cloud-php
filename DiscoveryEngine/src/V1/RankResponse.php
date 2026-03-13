@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class RankResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\RankingRecord>|\Google\Protobuf\Internal\RepeatedField $records
+     *     @type \Google\Cloud\DiscoveryEngine\V1\RankingRecord[] $records
      *           A list of records sorted by descending score.
      * }
      */
@@ -42,7 +42,7 @@ class RankResponse extends \Google\Protobuf\Internal\Message
      * A list of records sorted by descending score.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RankingRecord records = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\RankingRecord>
      */
     public function getRecords()
     {
@@ -53,7 +53,7 @@ class RankResponse extends \Google\Protobuf\Internal\Message
      * A list of records sorted by descending score.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RankingRecord records = 5;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\RankingRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\RankingRecord[] $var
      * @return $this
      */
     public function setRecords($var)

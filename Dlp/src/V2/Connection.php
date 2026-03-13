@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A data connection to allow the DLP API to profile data in locations that
@@ -49,7 +49,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/connections/{name}`.
      *     @type int $state
      *           Required. The connection's state in its lifecycle.
-     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Dlp\V2\Error[] $errors
      *           Output only. Set if status == ERROR, to provide additional details. Will
      *           store the last 10 errors sorted with the most recent first.
      *     @type \Google\Cloud\Dlp\V2\CloudSqlProperties $cloud_sql
@@ -120,7 +120,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      * store the last 10 errors sorted with the most recent first.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
     {
@@ -132,7 +132,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      * store the last 10 errors sorted with the most recent first.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
     public function setErrors($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of a restore.
@@ -127,19 +127,19 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeBackup\V1\Namespaces $excluded_namespaces
      *           A list of selected namespaces excluded from restoration. All
      *           namespaces except those in this list will be restored.
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $substitution_rules
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule[] $substitution_rules
      *           Optional. A list of transformation rules to be applied against Kubernetes
      *           resources as they are selected for restoration from a Backup. Rules are
      *           executed in order defined - this order matters, as changes made by a rule
      *           may impact the filtering logic of subsequent rules. An empty list means no
      *           substitution will occur.
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule>|\Google\Protobuf\Internal\RepeatedField $transformation_rules
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule[] $transformation_rules
      *           Optional. A list of transformation rules to be applied against Kubernetes
      *           resources as they are selected for restoration from a Backup. Rules are
      *           executed in order defined - this order matters, as changes made by a rule
      *           may impact the filtering logic of subsequent rules. An empty list means no
      *           transformation will occur.
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding>|\Google\Protobuf\Internal\RepeatedField $volume_data_restore_policy_bindings
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding[] $volume_data_restore_policy_bindings
      *           Optional. A table that binds volumes by their scope to a restore policy.
      *           Bindings must have a unique scope. Any volumes not scoped in the bindings
      *           are subject to the policy defined in volume_data_restore_policy.
@@ -463,7 +463,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * substitution will occur.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>
      */
     public function getSubstitutionRules()
     {
@@ -478,7 +478,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * substitution will occur.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule[] $var
      * @return $this
      */
     public function setSubstitutionRules($var)
@@ -497,7 +497,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * transformation will occur.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule>
      */
     public function getTransformationRules()
     {
@@ -512,7 +512,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * transformation will occur.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule[] $var
      * @return $this
      */
     public function setTransformationRules($var)
@@ -529,7 +529,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * are subject to the policy defined in volume_data_restore_policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicyBinding volume_data_restore_policy_bindings = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding>
      */
     public function getVolumeDataRestorePolicyBindings()
     {
@@ -542,7 +542,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * are subject to the policy defined in volume_data_restore_policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicyBinding volume_data_restore_policy_bindings = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\VolumeDataRestorePolicyBinding[] $var
      * @return $this
      */
     public function setVolumeDataRestorePolicyBindings($var)

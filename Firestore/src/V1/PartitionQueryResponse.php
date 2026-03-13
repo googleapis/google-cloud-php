@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -50,7 +50,7 @@ class PartitionQueryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\V1\Cursor>|\Google\Protobuf\Internal\RepeatedField $partitions
+     *     @type \Google\Cloud\Firestore\V1\Cursor[] $partitions
      *           Partition results.
      *           Each partition is a split point that can be used by RunQuery as a starting
      *           or end point for the query results. The RunQuery requests must be made with
@@ -93,7 +93,7 @@ class PartitionQueryResponse extends \Google\Protobuf\Internal\Message
      * partitioned, or that the query is not yet supported for partitioning.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Cursor partitions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Cursor>
      */
     public function getPartitions()
     {
@@ -117,7 +117,7 @@ class PartitionQueryResponse extends \Google\Protobuf\Internal\Message
      * partitioned, or that the query is not yet supported for partitioning.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Cursor partitions = 1;</code>
-     * @param array<\Google\Cloud\Firestore\V1\Cursor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Cursor[] $var
      * @return $this
      */
     public function setPartitions($var)

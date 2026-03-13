@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\CustomInfoType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom information type based on a dictionary of words or phrases. This can
@@ -128,5 +128,4 @@ class Dictionary extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

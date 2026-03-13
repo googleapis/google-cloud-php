@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer\Reference;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Structured search information.
@@ -176,5 +176,4 @@ class StructuredDocumentInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the backup of a specific persistent volume as a component of a
@@ -19,7 +19,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the VolumeBackup resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     * Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -135,7 +135,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the VolumeBackup resource.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     *           Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -191,7 +191,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the VolumeBackup resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     * Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -203,7 +203,7 @@ class VolumeBackup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the VolumeBackup resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     * Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\TransformationErrorHandling;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Skips the data without modifying it if the requested transformation would
@@ -33,5 +33,4 @@ class LeaveUntransformed extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

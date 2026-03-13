@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\PrivacyMetric;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * k-anonymity metric, used for analysis of reidentification risk.
@@ -46,7 +46,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $quasi_ids
+     *     @type \Google\Cloud\Dlp\V2\FieldId[] $quasi_ids
      *           Set of fields to compute k-anonymity over. When multiple fields are
      *           specified, they are considered a single composite key. Structs and
      *           repeated data types are not supported; however, nested fields are
@@ -77,7 +77,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      * a repeated field.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId quasi_ids = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FieldId>
      */
     public function getQuasiIds()
     {
@@ -92,7 +92,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      * a repeated field.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId quasi_ids = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FieldId[] $var
      * @return $this
      */
     public function setQuasiIds($var)
@@ -156,5 +156,4 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

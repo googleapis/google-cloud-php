@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Matcher for the [Document][google.cloud.discoveryengine.v1.Document]s by
@@ -31,7 +31,7 @@ class FhirMatcher extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fhir_resources
+     *     @type string[] $fhir_resources
      *           Required. The FHIR resources to match by.
      *           Format:
      *           projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
@@ -48,7 +48,7 @@ class FhirMatcher extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      *
      * Generated from protobuf field <code>repeated string fhir_resources = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFhirResources()
     {
@@ -61,7 +61,7 @@ class FhirMatcher extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}
      *
      * Generated from protobuf field <code>repeated string fhir_resources = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFhirResources($var)
@@ -73,5 +73,4 @@ class FhirMatcher extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

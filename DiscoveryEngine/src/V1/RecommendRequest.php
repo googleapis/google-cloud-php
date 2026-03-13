@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Recommend method.
@@ -18,13 +18,13 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of a
      * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
+     * `projects/{@*}locations/global/collections/{@*}engines/{@*}servingConfigs/*`, or
+     * `projects/{@*}locations/global/collections/{@*}dataStores/{@*}servingConfigs/*`
      * One default serving config is created along with your recommendation engine
      * creation. The engine ID is used as the ID of the default serving
      * config. For example, for Engine
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     * `projects/{@*}locations/global/collections/{@*}engines/my-engine`, you can use
+     * `projects/{@*}locations/global/collections/{@*}engines/my-engine/servingConfigs/my-engine`
      * for your
      * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend]
      * requests.
@@ -156,13 +156,13 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *     @type string $serving_config
      *           Required. Full resource name of a
      *           [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
-     *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
-     *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
+     *           `projects/{@*}locations/global/collections/{@*}engines/{@*}servingConfigs/*`, or
+     *           `projects/{@*}locations/global/collections/{@*}dataStores/{@*}servingConfigs/*`
      *           One default serving config is created along with your recommendation engine
      *           creation. The engine ID is used as the ID of the default serving
      *           config. For example, for Engine
-     *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
-     *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     *           `projects/{@*}locations/global/collections/{@*}engines/my-engine`, you can use
+     *           `projects/{@*}locations/global/collections/{@*}engines/my-engine/servingConfigs/my-engine`
      *           for your
      *           [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend]
      *           requests.
@@ -266,13 +266,13 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of a
      * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
+     * `projects/{@*}locations/global/collections/{@*}engines/{@*}servingConfigs/*`, or
+     * `projects/{@*}locations/global/collections/{@*}dataStores/{@*}servingConfigs/*`
      * One default serving config is created along with your recommendation engine
      * creation. The engine ID is used as the ID of the default serving
      * config. For example, for Engine
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     * `projects/{@*}locations/global/collections/{@*}engines/my-engine`, you can use
+     * `projects/{@*}locations/global/collections/{@*}engines/my-engine/servingConfigs/my-engine`
      * for your
      * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend]
      * requests.
@@ -288,13 +288,13 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of a
      * [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig]:
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
+     * `projects/{@*}locations/global/collections/{@*}engines/{@*}servingConfigs/*`, or
+     * `projects/{@*}locations/global/collections/{@*}dataStores/{@*}servingConfigs/*`
      * One default serving config is created along with your recommendation engine
      * creation. The engine ID is used as the ID of the default serving
      * config. For example, for Engine
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
-     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     * `projects/{@*}locations/global/collections/{@*}engines/my-engine`, you can use
+     * `projects/{@*}locations/global/collections/{@*}engines/my-engine/servingConfigs/my-engine`
      * for your
      * [RecommendationService.Recommend][google.cloud.discoveryengine.v1.RecommendationService.Recommend]
      * requests.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\CheckGroundingResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Text and citation info for a claim in the answer candidate.
@@ -101,7 +101,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      *     @type string $claim_text
      *           Text for the claim in the answer candidate. Always provided regardless of
      *           whether citations or anti-citations are found.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $citation_indices
+     *     @type int[] $citation_indices
      *           A list of indices (into 'cited_chunks') specifying the citations
      *           associated with the claim. For instance [1,3,4] means that
      *           cited_chunks[1], cited_chunks[3], cited_chunks[4] are the facts cited
@@ -257,7 +257,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      * is supported by the fact.
      *
      * Generated from protobuf field <code>repeated int32 citation_indices = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCitationIndices()
     {
@@ -272,7 +272,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      * is supported by the fact.
      *
      * Generated from protobuf field <code>repeated int32 citation_indices = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCitationIndices($var)
@@ -370,5 +370,4 @@ class Claim extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig\AuxiliaryTable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A quasi-identifier column has a custom_tag, used to know which column
@@ -109,5 +109,4 @@ class QuasiIdField extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

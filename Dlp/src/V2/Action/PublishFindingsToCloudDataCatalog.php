@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Publish findings of a DlpJob to Data Catalog. In Data Catalog, tag
@@ -45,5 +45,4 @@ class PublishFindingsToCloudDataCatalog extends \Google\Protobuf\Internal\Messag
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Extra GCF specific location information.
@@ -28,7 +28,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $environments
+     *     @type int[] $environments
      *           The Cloud Function environments this location supports.
      * }
      */
@@ -41,7 +41,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * The Cloud Function environments this location supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.Environment environments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEnvironments()
     {
@@ -52,7 +52,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * The Cloud Function environments this location supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.Environment environments = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEnvironments($var)

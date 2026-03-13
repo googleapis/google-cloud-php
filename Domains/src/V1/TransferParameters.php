@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters required to transfer a domain from another registrar.
@@ -64,13 +64,13 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      *           The domain name. Unicode domain names are expressed in Punycode format.
      *     @type string $current_registrar
      *           The registrar that currently manages the domain.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $name_servers
+     *     @type string[] $name_servers
      *           The name servers that currently store the configuration of the domain.
      *     @type int $transfer_lock_state
      *           Indicates whether the domain is protected by a transfer lock. For a
      *           transfer to succeed, this must show `UNLOCKED`. To unlock a domain,
      *           go to its current registrar.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_privacy
+     *     @type int[] $supported_privacy
      *           Contact privacy options that the domain supports.
      *     @type \Google\Type\Money $yearly_price
      *           Price to transfer or renew the domain for one year.
@@ -137,7 +137,7 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      * The name servers that currently store the configuration of the domain.
      *
      * Generated from protobuf field <code>repeated string name_servers = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNameServers()
     {
@@ -148,7 +148,7 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      * The name servers that currently store the configuration of the domain.
      *
      * Generated from protobuf field <code>repeated string name_servers = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNameServers($var)
@@ -193,7 +193,7 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      * Contact privacy options that the domain supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactPrivacy supported_privacy = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedPrivacy()
     {
@@ -204,7 +204,7 @@ class TransferParameters extends \Google\Protobuf\Internal\Message
      * Contact privacy options that the domain supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactPrivacy supported_privacy = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedPrivacy($var)

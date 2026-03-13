@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Base structured datatype containing multi-part content of a message.
@@ -40,7 +40,7 @@ class GroundedGenerationContent extends \Google\Protobuf\Internal\Message
      *           Producer of the content. Must be either `user` or `model`.
      *           Intended to be used for multi-turn conversations. Otherwise, it can be left
      *           unset.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent\Part>|\Google\Protobuf\Internal\RepeatedField $parts
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent\Part[] $parts
      *           Ordered `Parts` that constitute a single message.
      * }
      */
@@ -83,7 +83,7 @@ class GroundedGenerationContent extends \Google\Protobuf\Internal\Message
      * Ordered `Parts` that constitute a single message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundedGenerationContent.Part parts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent\Part>
      */
     public function getParts()
     {
@@ -94,7 +94,7 @@ class GroundedGenerationContent extends \Google\Protobuf\Internal\Message
      * Ordered `Parts` that constitute a single message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundedGenerationContent.Part parts = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent\Part>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent\Part[] $var
      * @return $this
      */
     public function setParts($var)

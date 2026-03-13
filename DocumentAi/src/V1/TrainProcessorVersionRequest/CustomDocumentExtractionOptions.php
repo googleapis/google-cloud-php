@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options to control the training of the Custom Document Extraction (CDE)
@@ -65,5 +65,4 @@ class CustomDocumentExtractionOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
