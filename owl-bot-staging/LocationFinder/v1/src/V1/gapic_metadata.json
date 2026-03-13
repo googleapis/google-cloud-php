@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.locationfinder.v1",
+    "libraryPackage": "Google\\Cloud\\LocationFinder\\V1",
+    "services": {
+        "CloudLocationFinder": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudLocationFinderGapicClient",
+                    "rpcs": {
+                        "GetCloudLocation": {
+                            "methods": [
+                                "getCloudLocation"
+                            ]
+                        },
+                        "ListCloudLocations": {
+                            "methods": [
+                                "listCloudLocations"
+                            ]
+                        },
+                        "SearchCloudLocations": {
+                            "methods": [
+                                "searchCloudLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
