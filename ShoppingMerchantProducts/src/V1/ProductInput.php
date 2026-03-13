@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This resource represents input data you submit for a product, not the
@@ -37,16 +37,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProductInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The name of the product input.
+     * Identifier. The name of the product.
      * Format: `accounts/{account}/productInputs/{productinput}`
-     * where the last section `productinput` consists of:
-     * `content_language~feed_label~offer_id`
-     * example for product input name is
-     * `accounts/123/productInputs/en~US~sku123`. A legacy local product input
-     * name would be `accounts/123/productInputs/local~en~US~sku123`.
-     * Note: For calls to the v1beta version, the `productInput` section consists
-     * of: `channel~content_language~feed_label~offer_id`, for example:
-     * `accounts/123/productInputs/online~en~US~sku123`.
+     * The {productinput} segment is a unique identifier for the product.
+     * This identifier must be unique within a merchant account and generally
+     * follows the structure: `content_language~feed_label~offer_id`. Example:
+     * `en~US~sku123` For legacy local products, the structure is:
+     * `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123`
+     * The format of the {productinput} segment in the URL is automatically
+     * detected by the server, supporting two options:
+     * 1.  **Encoded Format**: The `{productinput}` segment is an unpadded
+     * base64url
+     *     encoded string (RFC 4648 Section 5). The decoded string must result
+     *     in the `content_language~feed_label~offer_id` structure. This encoding
+     *     MUST be used if any part of the product identifier (like `offer_id`)
+     *     contains characters such as `/`, `%`, or `~`.
+     *     *   Example: To represent the product ID `en~US~sku/123`, the
+     *         `{productinput}` segment must be the base64url encoding of this
+     *         string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *         for the product would be
+     *         `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`.
+     * 2.  **Plain Format**: The `{productinput}` segment is the tilde-separated
+     * string
+     *     `content_language~feed_label~offer_id`. This format is suitable only
+     *     when `content_language`, `feed_label`, and `offer_id` do not contain
+     *     URL-problematic characters like `/`, `%`, or `~`.
+     * We recommend using the **Encoded Format** for all product IDs to ensure
+     * correct parsing, especially those containing special characters. The
+     * presence of tilde (`~`) characters in the `{productinput}` segment is used
+     * to differentiate between the two formats.
+     * Note: For calls to the v1beta version, the plain format is
+     *     `channel~content_language~feed_label~offer_id`, for example:
+     *     `accounts/123/productinputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -146,16 +168,38 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The name of the product input.
+     *           Identifier. The name of the product.
      *           Format: `accounts/{account}/productInputs/{productinput}`
-     *           where the last section `productinput` consists of:
-     *           `content_language~feed_label~offer_id`
-     *           example for product input name is
-     *           `accounts/123/productInputs/en~US~sku123`. A legacy local product input
-     *           name would be `accounts/123/productInputs/local~en~US~sku123`.
-     *           Note: For calls to the v1beta version, the `productInput` section consists
-     *           of: `channel~content_language~feed_label~offer_id`, for example:
-     *           `accounts/123/productInputs/online~en~US~sku123`.
+     *           The {productinput} segment is a unique identifier for the product.
+     *           This identifier must be unique within a merchant account and generally
+     *           follows the structure: `content_language~feed_label~offer_id`. Example:
+     *           `en~US~sku123` For legacy local products, the structure is:
+     *           `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123`
+     *           The format of the {productinput} segment in the URL is automatically
+     *           detected by the server, supporting two options:
+     *           1.  **Encoded Format**: The `{productinput}` segment is an unpadded
+     *           base64url
+     *               encoded string (RFC 4648 Section 5). The decoded string must result
+     *               in the `content_language~feed_label~offer_id` structure. This encoding
+     *               MUST be used if any part of the product identifier (like `offer_id`)
+     *               contains characters such as `/`, `%`, or `~`.
+     *               *   Example: To represent the product ID `en~US~sku/123`, the
+     *                   `{productinput}` segment must be the base64url encoding of this
+     *                   string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *                   for the product would be
+     *                   `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`.
+     *           2.  **Plain Format**: The `{productinput}` segment is the tilde-separated
+     *           string
+     *               `content_language~feed_label~offer_id`. This format is suitable only
+     *               when `content_language`, `feed_label`, and `offer_id` do not contain
+     *               URL-problematic characters like `/`, `%`, or `~`.
+     *           We recommend using the **Encoded Format** for all product IDs to ensure
+     *           correct parsing, especially those containing special characters. The
+     *           presence of tilde (`~`) characters in the `{productinput}` segment is used
+     *           to differentiate between the two formats.
+     *           Note: For calls to the v1beta version, the plain format is
+     *               `channel~content_language~feed_label~offer_id`, for example:
+     *               `accounts/123/productinputs/online~en~US~sku123`.
      *     @type string $product
      *           Output only. The name of the processed product.
      *           Format: `accounts/{account}/products/{product}`
@@ -199,7 +243,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *           thrown.
      *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes $product_attributes
      *           Optional. A list of strongly-typed product attributes.
-     *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
+     *     @type \Google\Shopping\Type\CustomAttribute[] $custom_attributes
      *           Optional. A list of custom (merchant-provided) attributes. It can also be
      *           used for submitting any attribute of the data specification in its generic
      *           form (for example,
@@ -219,16 +263,38 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of the product input.
+     * Identifier. The name of the product.
      * Format: `accounts/{account}/productInputs/{productinput}`
-     * where the last section `productinput` consists of:
-     * `content_language~feed_label~offer_id`
-     * example for product input name is
-     * `accounts/123/productInputs/en~US~sku123`. A legacy local product input
-     * name would be `accounts/123/productInputs/local~en~US~sku123`.
-     * Note: For calls to the v1beta version, the `productInput` section consists
-     * of: `channel~content_language~feed_label~offer_id`, for example:
-     * `accounts/123/productInputs/online~en~US~sku123`.
+     * The {productinput} segment is a unique identifier for the product.
+     * This identifier must be unique within a merchant account and generally
+     * follows the structure: `content_language~feed_label~offer_id`. Example:
+     * `en~US~sku123` For legacy local products, the structure is:
+     * `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123`
+     * The format of the {productinput} segment in the URL is automatically
+     * detected by the server, supporting two options:
+     * 1.  **Encoded Format**: The `{productinput}` segment is an unpadded
+     * base64url
+     *     encoded string (RFC 4648 Section 5). The decoded string must result
+     *     in the `content_language~feed_label~offer_id` structure. This encoding
+     *     MUST be used if any part of the product identifier (like `offer_id`)
+     *     contains characters such as `/`, `%`, or `~`.
+     *     *   Example: To represent the product ID `en~US~sku/123`, the
+     *         `{productinput}` segment must be the base64url encoding of this
+     *         string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *         for the product would be
+     *         `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`.
+     * 2.  **Plain Format**: The `{productinput}` segment is the tilde-separated
+     * string
+     *     `content_language~feed_label~offer_id`. This format is suitable only
+     *     when `content_language`, `feed_label`, and `offer_id` do not contain
+     *     URL-problematic characters like `/`, `%`, or `~`.
+     * We recommend using the **Encoded Format** for all product IDs to ensure
+     * correct parsing, especially those containing special characters. The
+     * presence of tilde (`~`) characters in the `{productinput}` segment is used
+     * to differentiate between the two formats.
+     * Note: For calls to the v1beta version, the plain format is
+     *     `channel~content_language~feed_label~offer_id`, for example:
+     *     `accounts/123/productinputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -239,16 +305,38 @@ class ProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of the product input.
+     * Identifier. The name of the product.
      * Format: `accounts/{account}/productInputs/{productinput}`
-     * where the last section `productinput` consists of:
-     * `content_language~feed_label~offer_id`
-     * example for product input name is
-     * `accounts/123/productInputs/en~US~sku123`. A legacy local product input
-     * name would be `accounts/123/productInputs/local~en~US~sku123`.
-     * Note: For calls to the v1beta version, the `productInput` section consists
-     * of: `channel~content_language~feed_label~offer_id`, for example:
-     * `accounts/123/productInputs/online~en~US~sku123`.
+     * The {productinput} segment is a unique identifier for the product.
+     * This identifier must be unique within a merchant account and generally
+     * follows the structure: `content_language~feed_label~offer_id`. Example:
+     * `en~US~sku123` For legacy local products, the structure is:
+     * `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123`
+     * The format of the {productinput} segment in the URL is automatically
+     * detected by the server, supporting two options:
+     * 1.  **Encoded Format**: The `{productinput}` segment is an unpadded
+     * base64url
+     *     encoded string (RFC 4648 Section 5). The decoded string must result
+     *     in the `content_language~feed_label~offer_id` structure. This encoding
+     *     MUST be used if any part of the product identifier (like `offer_id`)
+     *     contains characters such as `/`, `%`, or `~`.
+     *     *   Example: To represent the product ID `en~US~sku/123`, the
+     *         `{productinput}` segment must be the base64url encoding of this
+     *         string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *         for the product would be
+     *         `accounts/123/productinputs/ZW5-VVMtc2t1LzEyMw`.
+     * 2.  **Plain Format**: The `{productinput}` segment is the tilde-separated
+     * string
+     *     `content_language~feed_label~offer_id`. This format is suitable only
+     *     when `content_language`, `feed_label`, and `offer_id` do not contain
+     *     URL-problematic characters like `/`, `%`, or `~`.
+     * We recommend using the **Encoded Format** for all product IDs to ensure
+     * correct parsing, especially those containing special characters. The
+     * presence of tilde (`~`) characters in the `{productinput}` segment is used
+     * to differentiate between the two formats.
+     * Note: For calls to the v1beta version, the plain format is
+     *     `channel~content_language~feed_label~offer_id`, for example:
+     *     `accounts/123/productinputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -536,7 +624,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * spaces upon insertion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
      */
     public function getCustomAttributes()
     {
@@ -557,7 +645,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * spaces upon insertion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
      * @return $this
      */
     public function setCustomAttributes($var)

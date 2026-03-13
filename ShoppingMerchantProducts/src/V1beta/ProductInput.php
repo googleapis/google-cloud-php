@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This resource represents input data you submit for a product, not the
@@ -183,7 +183,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      *           thrown.
      *     @type \Google\Shopping\Merchant\Products\V1beta\Attributes $attributes
      *           Optional. A list of product attributes.
-     *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
+     *     @type \Google\Shopping\Type\CustomAttribute[] $custom_attributes
      *           Optional. A list of custom (merchant-provided) attributes. It can also be
      *           used for submitting any attribute of the data specification in its generic
      *           form (for example,
@@ -504,7 +504,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * spaces upon insertion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
      */
     public function getCustomAttributes()
     {
@@ -525,7 +525,7 @@ class ProductInput extends \Google\Protobuf\Internal\Message
      * spaces upon insertion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
      * @return $this
      */
     public function setCustomAttributes($var)
