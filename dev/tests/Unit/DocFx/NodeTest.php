@@ -43,7 +43,7 @@ class NodeTest extends TestCase
         $params = $method->getParameters();
 
         // Assert the parameters have been parsed
-        $this->assertCount(8, $params);
+        $this->assertCount(9, $params);
 
         // Assert parent option parameter
         $this->assertEquals('data', $params[1]->getName());
@@ -75,6 +75,13 @@ class NodeTest extends TestCase
         $this->assertEquals(
             'Ensure special chars are decoded, such as alice@example.com.',
             $params[7]->getDescription()
+        );
+
+        $this->assertEquals('↳ escapedType', $params[8]->getName());
+        $this->assertEquals('string', $params[8]->getType());
+        $this->assertEquals(
+            'Ensure @ is escaped, such as in \@type.',
+            $params[8]->getDescription()
         );
     }
 
