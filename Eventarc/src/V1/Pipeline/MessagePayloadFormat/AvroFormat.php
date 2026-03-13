@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\Pipeline\MessagePayloadFormat;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The format of an AVRO message payload.
@@ -64,5 +64,4 @@ class AvroFormat extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

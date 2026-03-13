@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BackupConfigDetails defines the configuration of Backups created via this
@@ -285,5 +285,4 @@ class BackupConfigDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

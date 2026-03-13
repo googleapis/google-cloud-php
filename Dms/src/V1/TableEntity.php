@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Table's parent is a schema.
@@ -58,13 +58,13 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudDms\V1\ColumnEntity>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\CloudDms\V1\ColumnEntity[] $columns
      *           Table columns.
-     *     @type array<\Google\Cloud\CloudDms\V1\ConstraintEntity>|\Google\Protobuf\Internal\RepeatedField $constraints
+     *     @type \Google\Cloud\CloudDms\V1\ConstraintEntity[] $constraints
      *           Table constraints.
-     *     @type array<\Google\Cloud\CloudDms\V1\IndexEntity>|\Google\Protobuf\Internal\RepeatedField $indices
+     *     @type \Google\Cloud\CloudDms\V1\IndexEntity[] $indices
      *           Table indices.
-     *     @type array<\Google\Cloud\CloudDms\V1\TriggerEntity>|\Google\Protobuf\Internal\RepeatedField $triggers
+     *     @type \Google\Cloud\CloudDms\V1\TriggerEntity[] $triggers
      *           Table triggers.
      *     @type \Google\Protobuf\Struct $custom_features
      *           Custom engine specific features.
@@ -81,7 +81,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ColumnEntity columns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\ColumnEntity>
      */
     public function getColumns()
     {
@@ -92,7 +92,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ColumnEntity columns = 1;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\ColumnEntity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\ColumnEntity[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -107,7 +107,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table constraints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ConstraintEntity constraints = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\ConstraintEntity>
      */
     public function getConstraints()
     {
@@ -118,7 +118,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table constraints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ConstraintEntity constraints = 2;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\ConstraintEntity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\ConstraintEntity[] $var
      * @return $this
      */
     public function setConstraints($var)
@@ -133,7 +133,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table indices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.IndexEntity indices = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\IndexEntity>
      */
     public function getIndices()
     {
@@ -144,7 +144,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table indices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.IndexEntity indices = 3;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\IndexEntity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\IndexEntity[] $var
      * @return $this
      */
     public function setIndices($var)
@@ -159,7 +159,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table triggers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.TriggerEntity triggers = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\TriggerEntity>
      */
     public function getTriggers()
     {
@@ -170,7 +170,7 @@ class TableEntity extends \Google\Protobuf\Internal\Message
      * Table triggers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.TriggerEntity triggers = 4;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\TriggerEntity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\TriggerEntity[] $var
      * @return $this
      */
     public function setTriggers($var)

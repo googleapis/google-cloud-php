@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of profiles generated for a given organization or project.
@@ -34,7 +34,7 @@ class ListTableDataProfilesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\TableDataProfile>|\Google\Protobuf\Internal\RepeatedField $table_data_profiles
+     *     @type \Google\Cloud\Dlp\V2\TableDataProfile[] $table_data_profiles
      *           List of data profiles.
      *     @type string $next_page_token
      *           The next page token.
@@ -49,7 +49,7 @@ class ListTableDataProfilesResponse extends \Google\Protobuf\Internal\Message
      * List of data profiles.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TableDataProfile table_data_profiles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\TableDataProfile>
      */
     public function getTableDataProfiles()
     {
@@ -60,7 +60,7 @@ class ListTableDataProfilesResponse extends \Google\Protobuf\Internal\Message
      * List of data profiles.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TableDataProfile table_data_profiles = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\TableDataProfile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\TableDataProfile[] $var
      * @return $this
      */
     public function setTableDataProfiles($var)

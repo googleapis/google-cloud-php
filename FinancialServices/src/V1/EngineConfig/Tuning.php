@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1\EngineConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The parameters needed for the tuning operation, these are used only in
@@ -129,5 +129,4 @@ class Tuning extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters that describe the nodes in a cluster.
@@ -50,7 +50,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Key/value metadata to assign to each underlying AWS resource.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -137,7 +137,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           Volumes will be provisioned in the availability zone assigned
      *           to the node pool subnet.
      *           When unspecified, it defaults to 32 GiB with the GP2 volume type.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type \Google\Cloud\GkeMultiCloud\V1\NodeTaint[] $taints
      *           Optional. The initial taints assigned to nodes of this node pool.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The initial labels assigned to nodes of this node pool. An object
@@ -146,7 +146,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $tags
      *           Optional. Key/value metadata to assign to each underlying AWS resource.
      *           Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     *           (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     *           (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      *           255 Unicode characters.
      *     @type string $iam_instance_profile
      *           Required. The name or ARN of the AWS IAM instance profile to assign to
@@ -157,7 +157,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           When unspecified, it defaults to `ubuntu`.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsSshConfig $ssh_config
      *           Optional. The SSH configuration.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_group_ids
+     *     @type string[] $security_group_ids
      *           Optional. The IDs of additional security groups to add to nodes in this
      *           pool. The manager will automatically create security groups with minimum
      *           rules needed for a functioning cluster.
@@ -260,7 +260,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The initial taints assigned to nodes of this node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.NodeTaint taints = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>
      */
     public function getTaints()
     {
@@ -271,7 +271,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The initial taints assigned to nodes of this node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.NodeTaint taints = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\NodeTaint[] $var
      * @return $this
      */
     public function setTaints($var)
@@ -315,7 +315,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Key/value metadata to assign to each underlying AWS resource.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -329,7 +329,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Key/value metadata to assign to each underlying AWS resource.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -444,7 +444,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecurityGroupIds()
     {
@@ -457,7 +457,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecurityGroupIds($var)

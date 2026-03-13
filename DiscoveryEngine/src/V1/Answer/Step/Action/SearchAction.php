@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search action.
@@ -64,5 +64,4 @@ class SearchAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

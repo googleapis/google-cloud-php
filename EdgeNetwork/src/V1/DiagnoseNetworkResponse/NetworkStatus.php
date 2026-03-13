@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\DiagnoseNetworkResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NetworkStatus has a list of status for the subnets under the current
@@ -35,7 +35,7 @@ class NetworkStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\SubnetStatus>|\Google\Protobuf\Internal\RepeatedField $subnet_status
+     *     @type \Google\Cloud\EdgeNetwork\V1\SubnetStatus[] $subnet_status
      *           A list of status for the subnets under the current network.
      *     @type int $macsec_status_internal_links
      *           The MACsec status of internal links.
@@ -50,7 +50,7 @@ class NetworkStatus extends \Google\Protobuf\Internal\Message
      * A list of status for the subnets under the current network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.SubnetStatus subnet_status = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\SubnetStatus>
      */
     public function getSubnetStatus()
     {
@@ -61,7 +61,7 @@ class NetworkStatus extends \Google\Protobuf\Internal\Message
      * A list of status for the subnets under the current network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.SubnetStatus subnet_status = 1;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\SubnetStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\SubnetStatus[] $var
      * @return $this
      */
     public function setSubnetStatus($var)
@@ -99,5 +99,4 @@ class NetworkStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

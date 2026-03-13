@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Requirements that must be true before a table is profiled for the
@@ -38,10 +38,10 @@ class DiscoveryCloudSqlConditions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $database_engines
+     *     @type int[] $database_engines
      *           Optional. Database engines that should be profiled.
      *           Optional. Defaults to ALL_SUPPORTED_DATABASE_ENGINES if unspecified.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $types
+     *     @type int[] $types
      *           Data profiles will only be generated for the database resource types
      *           specified in this field.
      *           If not specified, defaults to [DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES].
@@ -57,7 +57,7 @@ class DiscoveryCloudSqlConditions extends \Google\Protobuf\Internal\Message
      * Optional. Defaults to ALL_SUPPORTED_DATABASE_ENGINES if unspecified.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudSqlConditions.DatabaseEngine database_engines = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDatabaseEngines()
     {
@@ -69,7 +69,7 @@ class DiscoveryCloudSqlConditions extends \Google\Protobuf\Internal\Message
      * Optional. Defaults to ALL_SUPPORTED_DATABASE_ENGINES if unspecified.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudSqlConditions.DatabaseEngine database_engines = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDatabaseEngines($var)
@@ -86,7 +86,7 @@ class DiscoveryCloudSqlConditions extends \Google\Protobuf\Internal\Message
      * If not specified, defaults to [DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES].
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudSqlConditions.DatabaseResourceType types = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTypes()
     {
@@ -99,7 +99,7 @@ class DiscoveryCloudSqlConditions extends \Google\Protobuf\Internal\Message
      * If not specified, defaults to [DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES].
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudSqlConditions.DatabaseResourceType types = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTypes($var)

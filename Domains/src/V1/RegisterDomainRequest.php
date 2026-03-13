@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `RegisterDomain` method.
@@ -17,7 +17,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the `Registration`. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -89,13 +89,13 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the `Registration`. Must be in the
-     *           format `projects/&#42;&#47;locations/&#42;`.
+     *           format `projects/{@*}locations/*`.
      *     @type \Google\Cloud\Domains\V1\Registration $registration
      *           Required. The complete `Registration` resource to be created.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $domain_notices
+     *     @type int[] $domain_notices
      *           The list of domain notices that you acknowledge. Call
      *           `RetrieveRegisterParameters` to see the notices that need acknowledgement.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $contact_notices
+     *     @type int[] $contact_notices
      *           The list of contact notices that the caller acknowledges. The notices
      *           needed here depend on the values specified in
      *           `registration.contact_settings`.
@@ -116,7 +116,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the `Registration`. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -128,7 +128,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the `Registration`. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -183,7 +183,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      * `RetrieveRegisterParameters` to see the notices that need acknowledgement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DomainNotice domain_notices = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDomainNotices()
     {
@@ -195,7 +195,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      * `RetrieveRegisterParameters` to see the notices that need acknowledgement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DomainNotice domain_notices = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDomainNotices($var)
@@ -212,7 +212,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      * `registration.contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactNotice contact_notices = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getContactNotices()
     {
@@ -225,7 +225,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      * `registration.contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactNotice contact_notices = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setContactNotices($var)

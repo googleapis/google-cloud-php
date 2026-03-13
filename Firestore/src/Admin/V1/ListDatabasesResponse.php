@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The list of databases for a project.
@@ -41,9 +41,9 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\Admin\V1\Database>|\Google\Protobuf\Internal\RepeatedField $databases
+     *     @type \Google\Cloud\Firestore\Admin\V1\Database[] $databases
      *           The databases in the project.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           In the event that data about individual databases cannot be listed they
      *           will be recorded here.
      *           An example entry might be: projects/some_project/locations/some_location
@@ -63,7 +63,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * The databases in the project.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Database databases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\Admin\V1\Database>
      */
     public function getDatabases()
     {
@@ -74,7 +74,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * The databases in the project.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Database databases = 1;</code>
-     * @param array<\Google\Cloud\Firestore\Admin\V1\Database>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\Admin\V1\Database[] $var
      * @return $this
      */
     public function setDatabases($var)
@@ -96,7 +96,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * resource or a 'List' request for the specific location.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -114,7 +114,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * resource or a 'List' request for the specific location.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

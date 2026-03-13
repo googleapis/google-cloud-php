@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for chunking config.
@@ -72,5 +72,4 @@ class ChunkingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

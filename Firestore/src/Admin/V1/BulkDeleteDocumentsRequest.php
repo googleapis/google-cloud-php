@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -74,11 +74,11 @@ class BulkDeleteDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Database to operate. Should be of the form:
      *           `projects/{project_id}/databases/{database_id}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type string[] $collection_ids
      *           Optional. IDs of the collection groups to delete. Unspecified means all
      *           collection groups.
      *           Each collection group in this list must be unique.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *     @type string[] $namespace_ids
      *           Optional. Namespaces to delete.
      *           An empty list means all namespaces. This is the recommended
      *           usage for databases that don't use namespaces.
@@ -127,7 +127,7 @@ class BulkDeleteDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Each collection group in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCollectionIds()
     {
@@ -140,7 +140,7 @@ class BulkDeleteDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Each collection group in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCollectionIds($var)
@@ -161,7 +161,7 @@ class BulkDeleteDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Each namespace in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNamespaceIds()
     {
@@ -178,7 +178,7 @@ class BulkDeleteDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Each namespace in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNamespaceIds($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification to enable natural language understanding capabilities for
@@ -71,7 +71,7 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      *     @type int $filter_extraction_condition
      *           The condition under which filter extraction should occur.
      *           Server behavior defaults to `DISABLED`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $geo_search_query_detection_field_names
+     *     @type string[] $geo_search_query_detection_field_names
      *           Field names used for location-based filtering, where geolocation filters
      *           are detected in natural language search queries.
      *           Only valid when the FilterExtractionCondition is set to `ENABLED`.
@@ -88,7 +88,7 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      *           [SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition][google.cloud.discoveryengine.v1.SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition]
      *           is set to
      *           [FilterExtractionCondition.ENABLED][google.cloud.discoveryengine.v1.SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition.ENABLED].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_field_names
+     *     @type string[] $allowed_field_names
      *           Optional. Allowlist of fields that can be used for natural language
      *           filter extraction. By default, if this is unspecified, all indexable
      *           fields are eligible for natural language filter extraction (but are not
@@ -140,7 +140,7 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      * [ServingConfig.geo_search_query_detection_field_names][google.cloud.discoveryengine.v1.ServingConfig.geo_search_query_detection_field_names].
      *
      * Generated from protobuf field <code>repeated string geo_search_query_detection_field_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGeoSearchQueryDetectionFieldNames()
     {
@@ -155,7 +155,7 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      * [ServingConfig.geo_search_query_detection_field_names][google.cloud.discoveryengine.v1.ServingConfig.geo_search_query_detection_field_names].
      *
      * Generated from protobuf field <code>repeated string geo_search_query_detection_field_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGeoSearchQueryDetectionFieldNames($var)
@@ -221,7 +221,7 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      * yet supported, and will be ignored.
      *
      * Generated from protobuf field <code>repeated string allowed_field_names = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedFieldNames()
     {
@@ -239,7 +239,7 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      * yet supported, and will be ignored.
      *
      * Generated from protobuf field <code>repeated string allowed_field_names = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedFieldNames($var)
@@ -251,5 +251,4 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
     }
 
 }
-
 

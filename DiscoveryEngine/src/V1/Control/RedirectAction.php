@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Control;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Redirects a shopper to the provided URI.
@@ -76,5 +76,4 @@ class RedirectAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

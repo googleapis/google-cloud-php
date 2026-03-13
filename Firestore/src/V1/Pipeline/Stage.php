@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\Pipeline;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single operation within a pipeline.
@@ -60,7 +60,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      *           Required. The name of the stage to evaluate.
      *           **Requires:**
      *           * must be in snake case (lower case with underscore separator).
-     *     @type array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type \Google\Cloud\Firestore\V1\Value[] $args
      *           Optional. Ordered list of arguments the given stage expects.
      *     @type array|\Google\Protobuf\Internal\MapField $options
      *           Optional. Optional named arguments that certain functions may support.
@@ -105,7 +105,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * Optional. Ordered list of arguments the given stage expects.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Value>
      */
     public function getArgs()
     {
@@ -116,7 +116,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * Optional. Ordered list of arguments the given stage expects.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Value[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -154,7 +154,4 @@ class Stage extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Stage::class, \Google\Cloud\Firestore\V1\Pipeline_Stage::class);
 

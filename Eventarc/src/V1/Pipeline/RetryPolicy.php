@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\Pipeline;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The retry policy configuration for the Pipeline. The pipeline
@@ -179,5 +179,4 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

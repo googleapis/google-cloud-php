@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataResponse\DocumentMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The value of the matcher that was used to match the
@@ -112,5 +112,4 @@ class MatcherValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

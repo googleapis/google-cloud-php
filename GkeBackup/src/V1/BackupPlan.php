@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the configuration and scheduling for a "line" of Backups.
@@ -17,7 +17,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the BackupPlan resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -51,8 +51,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. The source cluster from which Backups will be created
      * via this BackupPlan. Valid formats:
-     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * - `projects/{@*}locations/{@*}clusters/*`
+     * - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -150,7 +150,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Output only. The fully qualified name of the BackupChannel to be used to
      * create a backup. This field is set only if the cluster being backed up is
      * in a different project.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
+     * `projects/{@*}locations/{@*}backupChannels/*`
      *
      * Generated from protobuf field <code>string backup_channel = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -173,7 +173,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the BackupPlan resource.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     *           Format: `projects/{@*}locations/{@*}backupPlans/*`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -187,8 +187,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *     @type string $cluster
      *           Required. Immutable. The source cluster from which Backups will be created
      *           via this BackupPlan. Valid formats:
-     *           - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *           - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *           - `projects/{@*}locations/{@*}clusters/*`
+     *           - `projects/{@*}zones/{@*}clusters/*`
      *     @type \Google\Cloud\GkeBackup\V1\BackupPlan\RetentionPolicy $retention_policy
      *           Optional. RetentionPolicy governs lifecycle of Backups created under this
      *           plan.
@@ -238,7 +238,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *           Output only. The fully qualified name of the BackupChannel to be used to
      *           create a backup. This field is set only if the cluster being backed up is
      *           in a different project.
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
+     *           `projects/{@*}locations/{@*}backupChannels/*`
      *     @type \Google\Protobuf\Timestamp $last_successful_backup_time
      *           Output only. Completion time of the last successful Backup. This is sourced
      *           from a successful Backup's complete_time field. This field is added to
@@ -253,7 +253,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the BackupPlan resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -265,7 +265,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the BackupPlan resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -410,8 +410,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. The source cluster from which Backups will be created
      * via this BackupPlan. Valid formats:
-     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * - `projects/{@*}locations/{@*}clusters/*`
+     * - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -424,8 +424,8 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. The source cluster from which Backups will be created
      * via this BackupPlan. Valid formats:
-     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * - `projects/{@*}locations/{@*}clusters/*`
+     * - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -805,7 +805,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Output only. The fully qualified name of the BackupChannel to be used to
      * create a backup. This field is set only if the cluster being backed up is
      * in a different project.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
+     * `projects/{@*}locations/{@*}backupChannels/*`
      *
      * Generated from protobuf field <code>string backup_channel = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -819,7 +819,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Output only. The fully qualified name of the BackupChannel to be used to
      * create a backup. This field is set only if the cluster being backed up is
      * in a different project.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;`
+     * `projects/{@*}locations/{@*}backupChannels/*`
      *
      * Generated from protobuf field <code>string backup_channel = 18 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

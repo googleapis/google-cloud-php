@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about why a particular URI failed to be crawled. Each FailureInfo
@@ -37,7 +37,7 @@ class FailureInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           URI that failed to be crawled.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo\FailureReason>|\Google\Protobuf\Internal\RepeatedField $failure_reasons
+     *     @type \Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo\FailureReason[] $failure_reasons
      *           List of failure reasons by corpus type (e.g. desktop, mobile).
      * }
      */
@@ -76,7 +76,7 @@ class FailureInfo extends \Google\Protobuf\Internal\Message
      * List of failure reasons by corpus type (e.g. desktop, mobile).
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RecrawlUrisResponse.FailureInfo.FailureReason failure_reasons = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo\FailureReason>
      */
     public function getFailureReasons()
     {
@@ -87,7 +87,7 @@ class FailureInfo extends \Google\Protobuf\Internal\Message
      * List of failure reasons by corpus type (e.g. desktop, mobile).
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RecrawlUrisResponse.FailureInfo.FailureReason failure_reasons = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo\FailureReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo\FailureReason[] $var
      * @return $this
      */
     public function setFailureReasons($var)
@@ -99,5 +99,4 @@ class FailureInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

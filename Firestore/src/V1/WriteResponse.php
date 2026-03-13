@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for [Firestore.Write][google.firestore.v1.Firestore.Write].
@@ -59,7 +59,7 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
      *           A token that represents the position of this response in the stream.
      *           This can be used by a client to resume the stream at this point.
      *           This field is always set.
-     *     @type array<\Google\Cloud\Firestore\V1\WriteResult>|\Google\Protobuf\Internal\RepeatedField $write_results
+     *     @type \Google\Cloud\Firestore\V1\WriteResult[] $write_results
      *           The result of applying the writes.
      *           This i-th write result corresponds to the i-th write in the
      *           request.
@@ -137,7 +137,7 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.WriteResult write_results = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\WriteResult>
      */
     public function getWriteResults()
     {
@@ -150,7 +150,7 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.WriteResult write_results = 3;</code>
-     * @param array<\Google\Cloud\Firestore\V1\WriteResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\WriteResult[] $var
      * @return $this
      */
     public function setWriteResults($var)

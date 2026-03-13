@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\RouterStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of a BGP peer.
@@ -320,5 +320,4 @@ class BgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

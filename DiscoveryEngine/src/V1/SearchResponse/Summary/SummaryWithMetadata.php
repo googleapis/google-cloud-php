@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary with metadata information.
@@ -44,7 +44,7 @@ class SummaryWithMetadata extends \Google\Protobuf\Internal\Message
      *           Summary text with no citation information.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\CitationMetadata $citation_metadata
      *           Citation metadata for given summary.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference[] $references
      *           Document References.
      * }
      */
@@ -119,7 +119,7 @@ class SummaryWithMetadata extends \Google\Protobuf\Internal\Message
      * Document References.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.Reference references = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference>
      */
     public function getReferences()
     {
@@ -130,7 +130,7 @@ class SummaryWithMetadata extends \Google\Protobuf\Internal\Message
      * Document References.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.Reference references = 3;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference[] $var
      * @return $this
      */
     public function setReferences($var)
@@ -142,5 +142,4 @@ class SummaryWithMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

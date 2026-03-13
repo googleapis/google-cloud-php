@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Router object
@@ -107,15 +107,15 @@ class Router extends \Google\Protobuf\Internal\Message
      *           Required. The canonical name of the network to which this router belongs.
      *           The name is in the form of
      *           `projects/{project}/locations/{location}/zones/{zone}/networks/{network}`.
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\Router\PBInterface>|\Google\Protobuf\Internal\RepeatedField $interface
+     *     @type \Google\Cloud\EdgeNetwork\V1\Router\PBInterface[] $interface
      *           Router interfaces.
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\Router\BgpPeer>|\Google\Protobuf\Internal\RepeatedField $bgp_peer
+     *     @type \Google\Cloud\EdgeNetwork\V1\Router\BgpPeer[] $bgp_peer
      *           BGP peers.
      *     @type \Google\Cloud\EdgeNetwork\V1\Router\Bgp $bgp
      *           BGP information specific to this router.
      *     @type int $state
      *           Output only. Current stage of the resource to the device by config push.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $route_advertisements
+     *     @type string[] $route_advertisements
      *           Optional. A list of CIDRs in IP/Length format to advertise northbound as
      *           static routes from this router.
      * }
@@ -311,7 +311,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * Router interfaces.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.Router.Interface interface = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\Router\PBInterface>
      */
     public function getInterface()
     {
@@ -322,7 +322,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * Router interfaces.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.Router.Interface interface = 7;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\Router\PBInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\Router\PBInterface[] $var
      * @return $this
      */
     public function setInterface($var)
@@ -337,7 +337,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * BGP peers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.Router.BgpPeer bgp_peer = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\Router\BgpPeer>
      */
     public function getBgpPeer()
     {
@@ -348,7 +348,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * BGP peers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.Router.BgpPeer bgp_peer = 8;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\Router\BgpPeer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\Router\BgpPeer[] $var
      * @return $this
      */
     public function setBgpPeer($var)
@@ -426,7 +426,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * static routes from this router.
      *
      * Generated from protobuf field <code>repeated string route_advertisements = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRouteAdvertisements()
     {
@@ -438,7 +438,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * static routes from this router.
      *
      * Generated from protobuf field <code>repeated string route_advertisements = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRouteAdvertisements($var)

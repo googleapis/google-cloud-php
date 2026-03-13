@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for ListRestoreChannels.
@@ -17,7 +17,7 @@ class ListRestoreChannelsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location that contains the RestoreChannels to list.
-     * Format: `projects/&#42;&#47;locations/&#42;`
+     * Format: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -81,7 +81,7 @@ class ListRestoreChannelsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location that contains the RestoreChannels to list.
-     *           Format: `projects/&#42;&#47;locations/&#42;`
+     *           Format: `projects/{@*}locations/*`
      *     @type int $page_size
      *           Optional. The target number of results to return in a single response.
      *           If not specified, a default value will be chosen by the service.
@@ -110,7 +110,7 @@ class ListRestoreChannelsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location that contains the RestoreChannels to list.
-     * Format: `projects/&#42;&#47;locations/&#42;`
+     * Format: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -122,7 +122,7 @@ class ListRestoreChannelsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location that contains the RestoreChannels to list.
-     * Format: `projects/&#42;&#47;locations/&#42;`
+     * Format: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

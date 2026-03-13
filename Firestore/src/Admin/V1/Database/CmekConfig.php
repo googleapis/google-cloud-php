@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\Database;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The CMEK (Customer Managed Encryption Key) configuration for a Firestore
@@ -57,7 +57,7 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/kms/docs/locations.
      *           The expected format is
      *           `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $active_key_version
+     *     @type string[] $active_key_version
      *           Output only. Currently in-use [KMS key
      *           versions](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions).
      *           During [key rotation](https://cloud.google.com/kms/docs/key-rotation),
@@ -120,7 +120,7 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      * `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{key_version}`.
      *
      * Generated from protobuf field <code>repeated string active_key_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActiveKeyVersion()
     {
@@ -136,7 +136,7 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      * `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{key_version}`.
      *
      * Generated from protobuf field <code>repeated string active_key_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActiveKeyVersion($var)
@@ -148,7 +148,4 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CmekConfig::class, \Google\Cloud\Firestore\Admin\V1\Database_CmekConfig::class);
 

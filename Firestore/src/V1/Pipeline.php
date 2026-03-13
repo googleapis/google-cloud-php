@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Firestore query represented as an ordered list of operations / stages.
@@ -28,7 +28,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\V1\Pipeline\Stage>|\Google\Protobuf\Internal\RepeatedField $stages
+     *     @type \Google\Cloud\Firestore\V1\Pipeline\Stage[] $stages
      *           Required. Ordered list of stages to evaluate.
      * }
      */
@@ -41,7 +41,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * Required. Ordered list of stages to evaluate.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Pipeline.Stage stages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Pipeline\Stage>
      */
     public function getStages()
     {
@@ -52,7 +52,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * Required. Ordered list of stages to evaluate.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Pipeline.Stage stages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Firestore\V1\Pipeline\Stage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Pipeline\Stage[] $var
      * @return $this
      */
     public function setStages($var)

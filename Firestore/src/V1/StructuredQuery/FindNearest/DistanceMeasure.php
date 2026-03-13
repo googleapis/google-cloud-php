@@ -78,6 +78,3 @@ class DistanceMeasure
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DistanceMeasure::class, \Google\Cloud\Firestore\V1\StructuredQuery_FindNearest_DistanceMeasure::class);
-

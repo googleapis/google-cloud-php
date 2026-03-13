@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListRegistrations` method.
@@ -35,7 +35,7 @@ class ListRegistrationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Domains\V1\Registration>|\Google\Protobuf\Internal\RepeatedField $registrations
+     *     @type \Google\Cloud\Domains\V1\Registration[] $registrations
      *           A list of `Registration`s.
      *     @type string $next_page_token
      *           When present, there are more results to retrieve. Set `page_token` to this
@@ -51,7 +51,7 @@ class ListRegistrationsResponse extends \Google\Protobuf\Internal\Message
      * A list of `Registration`s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.Registration registrations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Domains\V1\Registration>
      */
     public function getRegistrations()
     {
@@ -62,7 +62,7 @@ class ListRegistrationsResponse extends \Google\Protobuf\Internal\Message
      * A list of `Registration`s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.Registration registrations = 1;</code>
-     * @param array<\Google\Cloud\Domains\V1\Registration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Domains\V1\Registration[] $var
      * @return $this
      */
     public function setRegistrations($var)

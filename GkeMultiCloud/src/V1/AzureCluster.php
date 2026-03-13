@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Anthos cluster running on Azure.
@@ -275,7 +275,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      *           Output only. Managed Azure resources for this cluster.
      *     @type \Google\Cloud\GkeMultiCloud\V1\LoggingConfig $logging_config
      *           Optional. Logging configuration for this cluster.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureClusterError[] $errors
      *           Output only. A set of errors found in the cluster.
      *     @type \Google\Cloud\GkeMultiCloud\V1\MonitoringConfig $monitoring_config
      *           Optional. Monitoring configuration for this cluster.
@@ -1026,7 +1026,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterError errors = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AzureClusterError>
      */
     public function getErrors()
     {
@@ -1037,7 +1037,7 @@ class AzureCluster extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterError errors = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureClusterError[] $var
      * @return $this
      */
     public function setErrors($var)

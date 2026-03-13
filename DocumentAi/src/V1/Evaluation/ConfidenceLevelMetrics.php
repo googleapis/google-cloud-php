@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Evaluation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Evaluations metrics, at a specific confidence level.
@@ -108,5 +108,4 @@ class ConfidenceLevelMetrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

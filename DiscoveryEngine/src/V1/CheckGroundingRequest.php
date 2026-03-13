@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the grounding config, such as
-     * `projects/&#42;&#47;locations/global/groundingConfigs/default_grounding_config`.
+     * `projects/{@*}locations/global/groundingConfigs/default_grounding_config`.
      *
      * Generated from protobuf field <code>string grounding_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -72,10 +72,10 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $grounding_config
      *           Required. The resource name of the grounding config, such as
-     *           `projects/&#42;&#47;locations/global/groundingConfigs/default_grounding_config`.
+     *           `projects/{@*}locations/global/groundingConfigs/default_grounding_config`.
      *     @type string $answer_candidate
      *           Answer candidate to check. It can have a maximum length of 4096 tokens.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GroundingFact>|\Google\Protobuf\Internal\RepeatedField $facts
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GroundingFact[] $facts
      *           List of facts for the grounding check.
      *           We support up to 200 facts.
      *     @type \Google\Cloud\DiscoveryEngine\V1\CheckGroundingSpec $grounding_spec
@@ -105,7 +105,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the grounding config, such as
-     * `projects/&#42;&#47;locations/global/groundingConfigs/default_grounding_config`.
+     * `projects/{@*}locations/global/groundingConfigs/default_grounding_config`.
      *
      * Generated from protobuf field <code>string grounding_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -117,7 +117,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the grounding config, such as
-     * `projects/&#42;&#47;locations/global/groundingConfigs/default_grounding_config`.
+     * `projects/{@*}locations/global/groundingConfigs/default_grounding_config`.
      *
      * Generated from protobuf field <code>string grounding_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -162,7 +162,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
      * We support up to 200 facts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundingFact facts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GroundingFact>
      */
     public function getFacts()
     {
@@ -174,7 +174,7 @@ class CheckGroundingRequest extends \Google\Protobuf\Internal\Message
      * We support up to 200 facts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundingFact facts = 3;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GroundingFact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GroundingFact[] $var
      * @return $this
      */
     public function setFacts($var)

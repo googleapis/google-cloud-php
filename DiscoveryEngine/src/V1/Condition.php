@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines circumstances to be checked before allowing a behavior
@@ -49,14 +49,14 @@ class Condition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Condition\QueryTerm>|\Google\Protobuf\Internal\RepeatedField $query_terms
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Condition\QueryTerm[] $query_terms
      *           Search only
      *           A list of terms to match the query on.
      *           Cannot be set when
      *           [Condition.query_regex][google.cloud.discoveryengine.v1.Condition.query_regex]
      *           is set.
      *           Maximum of 10 query terms.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Condition\TimeRange>|\Google\Protobuf\Internal\RepeatedField $active_time_range
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Condition\TimeRange[] $active_time_range
      *           Range of time(s) specifying when condition is active.
      *           Maximum of 10 time ranges.
      *     @type string $query_regex
@@ -80,7 +80,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Maximum of 10 query terms.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Condition.QueryTerm query_terms = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Condition\QueryTerm>
      */
     public function getQueryTerms()
     {
@@ -96,7 +96,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Maximum of 10 query terms.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Condition.QueryTerm query_terms = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Condition\QueryTerm>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Condition\QueryTerm[] $var
      * @return $this
      */
     public function setQueryTerms($var)
@@ -112,7 +112,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Maximum of 10 time ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Condition.TimeRange active_time_range = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Condition\TimeRange>
      */
     public function getActiveTimeRange()
     {
@@ -124,7 +124,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Maximum of 10 time ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Condition.TimeRange active_time_range = 3;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Condition\TimeRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Condition\TimeRange[] $var
      * @return $this
      */
     public function setActiveTimeRange($var)

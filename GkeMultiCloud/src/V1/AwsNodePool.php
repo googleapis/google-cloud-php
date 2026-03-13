@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Anthos node pool running on AWS.
@@ -191,7 +191,7 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\MaxPodsConstraint $max_pods_constraint
      *           Required. The constraint on the maximum number of pods that can be run
      *           simultaneously on a node in the node pool.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError[] $errors
      *           Output only. A set of errors found in the node pool.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodeManagement $management
      *           Optional. The Management configuration for this node pool.
@@ -638,7 +638,7 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError>
      */
     public function getErrors()
     {
@@ -649,7 +649,7 @@ class AwsNodePool extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodePoolError[] $var
      * @return $this
      */
     public function setErrors($var)

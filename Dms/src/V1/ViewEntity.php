@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * View's parent is a schema.
@@ -44,7 +44,7 @@ class ViewEntity extends \Google\Protobuf\Internal\Message
      *           The SQL code which creates the view.
      *     @type \Google\Protobuf\Struct $custom_features
      *           Custom engine specific features.
-     *     @type array<\Google\Cloud\CloudDms\V1\ConstraintEntity>|\Google\Protobuf\Internal\RepeatedField $constraints
+     *     @type \Google\Cloud\CloudDms\V1\ConstraintEntity[] $constraints
      *           View constraints.
      * }
      */
@@ -119,7 +119,7 @@ class ViewEntity extends \Google\Protobuf\Internal\Message
      * View constraints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ConstraintEntity constraints = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\ConstraintEntity>
      */
     public function getConstraints()
     {
@@ -130,7 +130,7 @@ class ViewEntity extends \Google\Protobuf\Internal\Message
      * View constraints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ConstraintEntity constraints = 3;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\ConstraintEntity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\ConstraintEntity[] $var
      * @return $this
      */
     public function setConstraints($var)

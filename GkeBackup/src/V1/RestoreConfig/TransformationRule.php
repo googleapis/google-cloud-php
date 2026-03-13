@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A transformation rule to be applied against Kubernetes resources as they
@@ -49,7 +49,7 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRuleAction>|\Google\Protobuf\Internal\RepeatedField $field_actions
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRuleAction[] $field_actions
      *           Required. A list of transformation rule actions to take against candidate
      *           resources. Actions are executed in order defined - this order matters, as
      *           they could potentially interfere with each other and the first operation
@@ -76,7 +76,7 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
      * could affect the outcome of the second operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRuleAction field_actions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRuleAction>
      */
     public function getFieldActions()
     {
@@ -90,7 +90,7 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
      * could affect the outcome of the second operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRuleAction field_actions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRuleAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRuleAction[] $var
      * @return $this
      */
     public function setFieldActions($var)
@@ -172,5 +172,4 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

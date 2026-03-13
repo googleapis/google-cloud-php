@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for the [long-running operation][google.longrunning.Operation] from

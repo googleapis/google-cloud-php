@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceFilter specifies matching criteria to limit the scope of a
@@ -54,13 +54,13 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespaces
+     *     @type string[] $namespaces
      *           Optional. (Filtering parameter) Any resource subject to transformation
      *           must be contained within one of the listed Kubernetes Namespace in the
      *           Backup. If this field is not provided, no namespace filtering will be
      *           performed (all resources in all Namespaces, including all cluster-scoped
      *           resources, will be candidates for transformation).
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $group_kinds
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $group_kinds
      *           Optional. (Filtering parameter) Any resource subject to transformation
      *           must belong to one of the listed "types". If this field is not provided,
      *           no type filtering will be performed (all resources of all types matching
@@ -87,7 +87,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * resources, will be candidates for transformation).
      *
      * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNamespaces()
     {
@@ -102,7 +102,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * resources, will be candidates for transformation).
      *
      * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNamespaces($var)
@@ -120,7 +120,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * previous filtering parameters will be candidates for transformation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>
      */
     public function getGroupKinds()
     {
@@ -134,7 +134,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * previous filtering parameters will be candidates for transformation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $var
      * @return $this
      */
     public function setGroupKinds($var)
@@ -182,5 +182,4 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

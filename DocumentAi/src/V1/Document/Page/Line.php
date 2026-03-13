@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of tokens that a human would perceive as a line.
@@ -46,7 +46,7 @@ class Line extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
      *           [Line][google.cloud.documentai.v1.Document.Page.Line].
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[] $detected_languages
      *           A list of detected languages together with confidence.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           The  history of this annotation.
@@ -99,7 +99,7 @@ class Line extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>
      */
     public function getDetectedLanguages()
     {
@@ -110,7 +110,7 @@ class Line extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 2;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[] $var
      * @return $this
      */
     public function setDetectedLanguages($var)
@@ -168,5 +168,4 @@ class Line extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

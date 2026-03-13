@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The input data used to train a new
@@ -119,5 +119,4 @@ class InputData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

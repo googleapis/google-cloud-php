@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the Build step of the function that builds a container from the
@@ -65,7 +65,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * pool.
      * If the project id is not the same as the function, then the Cloud
      * Functions Service Agent
-     * (service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * (service-<project_number>\@gcf-admin-robot.iam.gserviceaccount.com) must be
      * granted the role Cloud Build Custom Workers Builder
      * (roles/cloudbuild.customworkers.builder) in the project.
      *
@@ -153,7 +153,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      *           pool.
      *           If the project id is not the same as the function, then the Cloud
      *           Functions Service Agent
-     *           (service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     *           (service-<project_number>\@gcf-admin-robot.iam.gserviceaccount.com) must be
      *           granted the role Cloud Build Custom Workers Builder
      *           (roles/cloudbuild.customworkers.builder) in the project.
      *     @type array|\Google\Protobuf\Internal\MapField $environment_variables
@@ -421,7 +421,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * pool.
      * If the project id is not the same as the function, then the Cloud
      * Functions Service Agent
-     * (service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * (service-<project_number>\@gcf-admin-robot.iam.gserviceaccount.com) must be
      * granted the role Cloud Build Custom Workers Builder
      * (roles/cloudbuild.customworkers.builder) in the project.
      *
@@ -442,7 +442,7 @@ class BuildConfig extends \Google\Protobuf\Internal\Message
      * pool.
      * If the project id is not the same as the function, then the Cloud
      * Functions Service Agent
-     * (service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * (service-<project_number>\@gcf-admin-robot.iam.gserviceaccount.com) must be
      * granted the role Cloud Build Custom Workers Builder
      * (roles/cloudbuild.customworkers.builder) in the project.
      *

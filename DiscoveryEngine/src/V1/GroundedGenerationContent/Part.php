@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Single part of content.
@@ -72,5 +72,4 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class TrainCustomModelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Data Store, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      * This field is used to identify the data store where to train the models.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -57,7 +57,7 @@ class TrainCustomModelRequest extends \Google\Protobuf\Internal\Message
      *           Cloud Storage training input.
      *     @type string $data_store
      *           Required. The resource name of the Data Store, such as
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     *           `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      *           This field is used to identify the data store where to train the models.
      *     @type string $model_type
      *           Model to be trained. Supported values are:
@@ -107,7 +107,7 @@ class TrainCustomModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Data Store, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      * This field is used to identify the data store where to train the models.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -120,7 +120,7 @@ class TrainCustomModelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Data Store, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      * This field is used to identify the data store where to train the models.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

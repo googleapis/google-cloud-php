@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -36,7 +36,7 @@ class ListFieldsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\Admin\V1\Field>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Firestore\Admin\V1\Field[] $fields
      *           The requested fields.
      *     @type string $next_page_token
      *           A page token that may be used to request another page of results. If blank,
@@ -52,7 +52,7 @@ class ListFieldsResponse extends \Google\Protobuf\Internal\Message
      * The requested fields.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Field fields = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\Admin\V1\Field>
      */
     public function getFields()
     {
@@ -63,7 +63,7 @@ class ListFieldsResponse extends \Google\Protobuf\Internal\Message
      * The requested fields.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Field fields = 1;</code>
-     * @param array<\Google\Cloud\Firestore\Admin\V1\Field>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\Admin\V1\Field[] $var
      * @return $this
      */
     public function setFields($var)

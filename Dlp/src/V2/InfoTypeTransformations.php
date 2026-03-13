@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A type of transformation that will scan unstructured text and
@@ -32,7 +32,7 @@ class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation>|\Google\Protobuf\Internal\RepeatedField $transformations
+     *     @type \Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation[] $transformations
      *           Required. Transformation for each infoType. Cannot specify more than one
      *           for a given infoType.
      * }
@@ -47,7 +47,7 @@ class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
      * for a given infoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeTransformations.InfoTypeTransformation transformations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation>
      */
     public function getTransformations()
     {
@@ -59,7 +59,7 @@ class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
      * for a given infoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeTransformations.InfoTypeTransformation transformations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation[] $var
      * @return $this
      */
     public function setTransformations($var)

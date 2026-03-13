@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options to configure rule type SingleColumnChange.
@@ -147,7 +147,7 @@ class SingleColumnChange extends \Google\Protobuf\Internal\Message
      *           Optional. Is the column a UDT (User-defined Type).
      *     @type \Google\Protobuf\Struct $custom_features
      *           Optional. Custom engine specific features.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $set_values
+     *     @type string[] $set_values
      *           Optional. Specifies the list of values allowed in the column.
      *     @type string $comment
      *           Optional. Comment associated with the column.
@@ -514,7 +514,7 @@ class SingleColumnChange extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the list of values allowed in the column.
      *
      * Generated from protobuf field <code>repeated string set_values = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSetValues()
     {
@@ -525,7 +525,7 @@ class SingleColumnChange extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the list of values allowed in the column.
      *
      * Generated from protobuf field <code>repeated string set_values = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSetValues($var)

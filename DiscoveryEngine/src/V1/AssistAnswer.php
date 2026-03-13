@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AssistAnswer resource, main part of
@@ -59,9 +59,9 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type int $state
      *           State of the answer generation.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AssistAnswer\Reply>|\Google\Protobuf\Internal\RepeatedField $replies
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\Reply[] $replies
      *           Replies of the assistant.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $assist_skipped_reasons
+     *     @type int[] $assist_skipped_reasons
      *           Reasons for not answering the assist call.
      * }
      */
@@ -134,7 +134,7 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      * Replies of the assistant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistAnswer.Reply replies = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AssistAnswer\Reply>
      */
     public function getReplies()
     {
@@ -145,7 +145,7 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      * Replies of the assistant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistAnswer.Reply replies = 3;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AssistAnswer\Reply>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AssistAnswer\Reply[] $var
      * @return $this
      */
     public function setReplies($var)
@@ -160,7 +160,7 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      * Reasons for not answering the assist call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistAnswer.AssistSkippedReason assist_skipped_reasons = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAssistSkippedReasons()
     {
@@ -171,7 +171,7 @@ class AssistAnswer extends \Google\Protobuf\Internal\Message
      * Reasons for not answering the assist call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistAnswer.AssistSkippedReason assist_skipped_reasons = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAssistSkippedReasons($var)

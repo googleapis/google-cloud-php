@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Feature represents the settings and status of any Fleet Feature.
@@ -17,7 +17,7 @@ class Feature extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full, unique name of this Feature resource in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     * `projects/{@*}locations/{@*}features/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -140,7 +140,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full, unique name of this Feature resource in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     *           `projects/{@*}locations/{@*}features/*`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels for this Feature.
      *     @type \Google\Cloud\GkeHub\V1\FeatureResourceState $resource_state
@@ -199,7 +199,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           `projects/{p}/locations/global/scopes/{s}`
      *           Where {p} is the project, {s} is a valid Scope in this project.
      *           {p} WILL match the Feature's project.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Output only. List of locations that could not be reached while fetching
      *           this feature.
      * }
@@ -211,7 +211,7 @@ class Feature extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full, unique name of this Feature resource in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     * `projects/{@*}locations/{@*}features/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -223,7 +223,7 @@ class Feature extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full, unique name of this Feature resource in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     * `projects/{@*}locations/{@*}features/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -660,7 +660,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * this feature.
      *
      * Generated from protobuf field <code>repeated string unreachable = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -672,7 +672,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * this feature.
      *
      * Generated from protobuf field <code>repeated string unreachable = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

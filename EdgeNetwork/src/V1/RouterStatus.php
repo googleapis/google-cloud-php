@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describing the current status of a router.
@@ -37,7 +37,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type string $network
      *           The canonical name of the network to which this router belongs.
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\RouterStatus\BgpPeerStatus>|\Google\Protobuf\Internal\RepeatedField $bgp_peer_status
+     *     @type \Google\Cloud\EdgeNetwork\V1\RouterStatus\BgpPeerStatus[] $bgp_peer_status
      *           A list of BgpPeerStatus objects, describing all BGP peers related to this
      *           router.
      * }
@@ -78,7 +78,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      * router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.RouterStatus.BgpPeerStatus bgp_peer_status = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\RouterStatus\BgpPeerStatus>
      */
     public function getBgpPeerStatus()
     {
@@ -90,7 +90,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      * router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.RouterStatus.BgpPeerStatus bgp_peer_status = 2;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\RouterStatus\BgpPeerStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\RouterStatus\BgpPeerStatus[] $var
      * @return $this
      */
     public function setBgpPeerStatus($var)

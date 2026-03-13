@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata related to the progress of the
@@ -107,16 +107,16 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Operation last update time. If the operation is done, this is also the
      *           finish time.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $invalid_uris
+     *     @type string[] $invalid_uris
      *           Unique URIs in the request that have invalid format. Sample limited to
      *           1000.
      *     @type int $invalid_uris_count
      *           Total number of unique URIs in the request that have invalid format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $noindex_uris
+     *     @type string[] $noindex_uris
      *           URIs that have no index meta tag. Sample limited to 1000.
      *     @type int $noindex_uris_count
      *           Total number of URIs that have no index meta tag.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris_not_matching_target_sites
+     *     @type string[] $uris_not_matching_target_sites
      *           Unique URIs in the request that don't match any TargetSite in the
      *           DataStore, only match TargetSites that haven't been fully indexed, or match
      *           a TargetSite with type EXCLUDE. Sample limited to 1000.
@@ -217,7 +217,7 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      * 1000.
      *
      * Generated from protobuf field <code>repeated string invalid_uris = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInvalidUris()
     {
@@ -229,7 +229,7 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      * 1000.
      *
      * Generated from protobuf field <code>repeated string invalid_uris = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInvalidUris($var)
@@ -270,7 +270,7 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      * URIs that have no index meta tag. Sample limited to 1000.
      *
      * Generated from protobuf field <code>repeated string noindex_uris = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNoindexUris()
     {
@@ -281,7 +281,7 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      * URIs that have no index meta tag. Sample limited to 1000.
      *
      * Generated from protobuf field <code>repeated string noindex_uris = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNoindexUris($var)
@@ -324,7 +324,7 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      * a TargetSite with type EXCLUDE. Sample limited to 1000.
      *
      * Generated from protobuf field <code>repeated string uris_not_matching_target_sites = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUrisNotMatchingTargetSites()
     {
@@ -337,7 +337,7 @@ class RecrawlUrisMetadata extends \Google\Protobuf\Internal\Message
      * a TargetSite with type EXCLUDE. Sample limited to 1000.
      *
      * Generated from protobuf field <code>repeated string uris_not_matching_target_sites = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUrisNotMatchingTargetSites($var)

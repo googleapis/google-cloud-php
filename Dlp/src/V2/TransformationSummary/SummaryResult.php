@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\TransformationSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection that informs the user the number of times a particular
@@ -137,5 +137,4 @@ class SummaryResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

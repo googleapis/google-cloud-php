@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of ranking signals.
@@ -92,7 +92,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
      *           Optional. Combined custom boosts for a doc.
      *     @type float $default_rank
      *           Optional. The default rank of the result.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal>|\Google\Protobuf\Internal\RepeatedField $custom_signals
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal[] $custom_signals
      *           Optional. A list of custom clearbox signals.
      * }
      */
@@ -383,7 +383,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
      * Optional. A list of custom clearbox signals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals.CustomSignal custom_signals = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal>
      */
     public function getCustomSignals()
     {
@@ -394,7 +394,7 @@ class RankSignals extends \Google\Protobuf\Internal\Message
      * Optional. A list of custom clearbox signals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals.CustomSignal custom_signals = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal[] $var
      * @return $this
      */
     public function setCustomSignals($var)
@@ -406,5 +406,4 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

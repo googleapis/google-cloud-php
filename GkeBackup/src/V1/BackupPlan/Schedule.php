@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\BackupPlan;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines scheduling parameters for automatically creating Backups
@@ -259,5 +259,4 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

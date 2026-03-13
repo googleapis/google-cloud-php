@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\InspectConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration to control the number of findings returned for inspection.
@@ -80,7 +80,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *           inspection ends gradually, not abruptly. Therefore, the actual number of
      *           findings that Cloud DLP returns can be multiple times higher than this
      *           value.
-     *     @type array<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>|\Google\Protobuf\Internal\RepeatedField $max_findings_per_info_type
+     *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit[] $max_findings_per_info_type
      *           Configuration of findings limit given for specified infoTypes.
      * }
      */
@@ -175,7 +175,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      * Configuration of findings limit given for specified infoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.FindingLimits.InfoTypeLimit max_findings_per_info_type = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>
      */
     public function getMaxFindingsPerInfoType()
     {
@@ -186,7 +186,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      * Configuration of findings limit given for specified infoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.FindingLimits.InfoTypeLimit max_findings_per_info_type = 3;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit[] $var
      * @return $this
      */
     public function setMaxFindingsPerInfoType($var)
@@ -198,5 +198,4 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Replica configuration for the instance.
@@ -50,7 +50,7 @@ class ReplicaConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $state
      *           Output only. The replica state.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $state_reasons
+     *     @type int[] $state_reasons
      *           Output only. Additional information about the replication state, if
      *           available.
      *     @type string $peer_instance
@@ -96,7 +96,7 @@ class ReplicaConfig extends \Google\Protobuf\Internal\Message
      * available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.ReplicaConfig.StateReason state_reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getStateReasons()
     {
@@ -108,7 +108,7 @@ class ReplicaConfig extends \Google\Protobuf\Internal\Message
      * available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.ReplicaConfig.StateReason state_reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setStateReasons($var)

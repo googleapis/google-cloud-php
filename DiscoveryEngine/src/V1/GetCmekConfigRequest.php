@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for GetCmekConfigRequest method.
@@ -18,8 +18,8 @@ class GetCmekConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of
      * [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], such as
-     * `projects/&#42;&#47;locations/&#42;&#47;cmekConfig` or
-     * `projects/&#42;&#47;locations/&#42;&#47;cmekConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}cmekConfig` or
+     * `projects/{@*}locations/{@*}cmekConfigs/*`.
      * If the caller does not have permission to access the
      * [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], regardless of
      * whether or not it exists, a PERMISSION_DENIED error is returned.
@@ -58,8 +58,8 @@ class GetCmekConfigRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Resource name of
      *           [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], such as
-     *           `projects/&#42;&#47;locations/&#42;&#47;cmekConfig` or
-     *           `projects/&#42;&#47;locations/&#42;&#47;cmekConfigs/&#42;`.
+     *           `projects/{@*}locations/{@*}cmekConfig` or
+     *           `projects/{@*}locations/{@*}cmekConfigs/*`.
      *           If the caller does not have permission to access the
      *           [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], regardless of
      *           whether or not it exists, a PERMISSION_DENIED error is returned.
@@ -73,8 +73,8 @@ class GetCmekConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of
      * [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], such as
-     * `projects/&#42;&#47;locations/&#42;&#47;cmekConfig` or
-     * `projects/&#42;&#47;locations/&#42;&#47;cmekConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}cmekConfig` or
+     * `projects/{@*}locations/{@*}cmekConfigs/*`.
      * If the caller does not have permission to access the
      * [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], regardless of
      * whether or not it exists, a PERMISSION_DENIED error is returned.
@@ -90,8 +90,8 @@ class GetCmekConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of
      * [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], such as
-     * `projects/&#42;&#47;locations/&#42;&#47;cmekConfig` or
-     * `projects/&#42;&#47;locations/&#42;&#47;cmekConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}cmekConfig` or
+     * `projects/{@*}locations/{@*}cmekConfigs/*`.
      * If the caller does not have permission to access the
      * [CmekConfig][google.cloud.discoveryengine.v1.CmekConfig], regardless of
      * whether or not it exists, a PERMISSION_DENIED error is returned.

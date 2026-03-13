@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `GkeHub.ListFeatures` method.
@@ -36,7 +36,7 @@ class ListFeaturesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeHub\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type \Google\Cloud\GkeHub\V1\Feature[] $resources
      *           The list of matching Features
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
@@ -53,7 +53,7 @@ class ListFeaturesResponse extends \Google\Protobuf\Internal\Message
      * The list of matching Features
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Feature resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\Feature>
      */
     public function getResources()
     {
@@ -64,7 +64,7 @@ class ListFeaturesResponse extends \Google\Protobuf\Internal\Message
      * The list of matching Features
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Feature resources = 1;</code>
-     * @param array<\Google\Cloud\GkeHub\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\Feature[] $var
      * @return $this
      */
     public function setResources($var)

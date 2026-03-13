@@ -28,86 +28,7 @@ class Gsuiteaddons
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-ö%
-/google/cloud/gsuiteaddons/v1/gsuiteaddons.protogoogle.cloud.gsuiteaddons.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto>google/apps/script/type/calendar/calendar_addon_manifest.proto6google/apps/script/type/docs/docs_addon_manifest.proto8google/apps/script/type/drive/drive_addon_manifest.proto8google/apps/script/type/gmail/gmail_addon_manifest.proto-google/apps/script/type/script_manifest.proto:google/apps/script/type/sheets/sheets_addon_manifest.proto:google/apps/script/type/slides/slides_addon_manifest.protogoogle/protobuf/empty.protogoogle/protobuf/wrappers.proto"Z
-GetAuthorizationRequest?
-name (	B1‡A˙A+
-)gsuiteaddons.googleapis.com/Authorization"ß
-Authorization
-name (	
-service_account_email (	
-oauth_client_id (	:PÍAM
-)gsuiteaddons.googleapis.com/Authorization projects/{project}/authorization"Ω
-CreateDeploymentRequestC
-parent (	B3‡A˙A-
-+cloudresourcemanager.googleapis.com/Project
-deployment_id (	B‡AA
-
-deployment (2(.google.cloud.gsuiteaddons.v1.DeploymentB‡A"]
-ReplaceDeploymentRequestA
-
-deployment (2(.google.cloud.gsuiteaddons.v1.DeploymentB‡A"T
-GetDeploymentRequest<
-name (	B.‡A˙A(
-&gsuiteaddons.googleapis.com/Deployment"Ñ
-ListDeploymentsRequestC
-parent (	B3‡A˙A-
-+cloudresourcemanager.googleapis.com/Project
-	page_size (
-
-page_token (	"q
-ListDeploymentsResponse=
-deployments (2(.google.cloud.gsuiteaddons.v1.Deployment
-next_page_token (	"e
-DeleteDeploymentRequest<
-name (	B.‡A˙A(
-&gsuiteaddons.googleapis.com/Deployment
-etag (	"X
-InstallDeploymentRequest<
-name (	B.‡A˙A(
-&gsuiteaddons.googleapis.com/Deployment"Z
-UninstallDeploymentRequest<
-name (	B.‡A˙A(
-&gsuiteaddons.googleapis.com/Deployment"Z
-GetInstallStatusRequest?
-name (	B1‡A˙A+
-)gsuiteaddons.googleapis.com/InstallStatus"∑
-InstallStatus
-name (	-
-	installed (2.google.protobuf.BoolValue:iÍAf
-)gsuiteaddons.googleapis.com/InstallStatus9projects/{project}/deployments/{deployment}/installStatus"œ
-
-Deployment
-name (	
-oauth_scopes (	5
-add_ons (2$.google.cloud.gsuiteaddons.v1.AddOns
-etag (	:XÍAU
-&gsuiteaddons.googleapis.com/Deployment+projects/{project}/deployments/{deployment}"ö
-AddOns<
-common (2,.google.apps.script.type.CommonAddOnManifest@
-gmail (21.google.apps.script.type.gmail.GmailAddOnManifest@
-drive (21.google.apps.script.type.drive.DriveAddOnManifestI
-calendar (27.google.apps.script.type.calendar.CalendarAddOnManifest=
-docs (2/.google.apps.script.type.docs.DocsAddOnManifestC
-sheets (23.google.apps.script.type.sheets.SheetsAddOnManifestC
-slides
- (23.google.apps.script.type.slides.SlidesAddOnManifest:
-http_options (2$.google.apps.script.type.HttpOptions2§
-GSuiteAddOns™
-GetAuthorization5.google.cloud.gsuiteaddons.v1.GetAuthorizationRequest+.google.cloud.gsuiteaddons.v1.Authorization"2⁄AnameÇ”‰ì%#/v1/{name=projects/*/authorization}Œ
-CreateDeployment5.google.cloud.gsuiteaddons.v1.CreateDeploymentRequest(.google.cloud.gsuiteaddons.v1.Deployment"Y⁄Aparent,deployment,deployment_idÇ”‰ì1"#/v1/{parent=projects/*}/deployments:
-deployment∆
-ReplaceDeployment6.google.cloud.gsuiteaddons.v1.ReplaceDeploymentRequest(.google.cloud.gsuiteaddons.v1.Deployment"O⁄A
-deploymentÇ”‰ì<./v1/{deployment.name=projects/*/deployments/*}:
-deployment°
-GetDeployment2.google.cloud.gsuiteaddons.v1.GetDeploymentRequest(.google.cloud.gsuiteaddons.v1.Deployment"2⁄AnameÇ”‰ì%#/v1/{name=projects/*/deployments/*}¥
-ListDeployments4.google.cloud.gsuiteaddons.v1.ListDeploymentsRequest5.google.cloud.gsuiteaddons.v1.ListDeploymentsResponse"4⁄AparentÇ”‰ì%#/v1/{parent=projects/*}/deploymentsï
-DeleteDeployment5.google.cloud.gsuiteaddons.v1.DeleteDeploymentRequest.google.protobuf.Empty"2⁄AnameÇ”‰ì%*#/v1/{name=projects/*/deployments/*}¢
-InstallDeployment6.google.cloud.gsuiteaddons.v1.InstallDeploymentRequest.google.protobuf.Empty"=⁄AnameÇ”‰ì0"+/v1/{name=projects/*/deployments/*}:install:*®
-UninstallDeployment8.google.cloud.gsuiteaddons.v1.UninstallDeploymentRequest.google.protobuf.Empty"?⁄AnameÇ”‰ì2"-/v1/{name=projects/*/deployments/*}:uninstall:*∏
-GetInstallStatus5.google.cloud.gsuiteaddons.v1.GetInstallStatusRequest+.google.cloud.gsuiteaddons.v1.InstallStatus"@⁄AnameÇ”‰ì31/v1/{name=projects/*/deployments/*/installStatus}O Agsuiteaddons.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB›
- com.google.cloud.gsuiteaddons.v1BGSuiteAddOnsProtoPZDcloud.google.com/go/gsuiteaddons/apiv1/gsuiteaddonspb;gsuiteaddonspb™Google.Cloud.GSuiteAddOns.V1 Google\\Cloud\\GSuiteAddOns\\V1ÍGoogle::Cloud::GSuiteAddOns::V1bproto3'
+            "\x0A\x9A%\x0A/google/cloud/gsuiteaddons/v1/gsuiteaddons.proto\x12\x1Cgoogle.cloud.gsuiteaddons.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A>google/apps/script/type/calendar/calendar_addon_manifest.proto\x1A6google/apps/script/type/docs/docs_addon_manifest.proto\x1A8google/apps/script/type/drive/drive_addon_manifest.proto\x1A8google/apps/script/type/gmail/gmail_addon_manifest.proto\x1A-google/apps/script/type/script_manifest.proto\x1A:google/apps/script/type/sheets/sheets_addon_manifest.proto\x1A:google/apps/script/type/slides/slides_addon_manifest.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A\x1Egoogle/protobuf/wrappers.proto\"Z\x0A\x17GetAuthorizationRequest\x12?\x0A\x04name\x18\x02 \x01(\x09B1\xE0A\x02\xFAA+\x0A)gsuiteaddons.googleapis.com/Authorization\"\xA7\x01\x0A\x0DAuthorization\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12\x1D\x0A\x15service_account_email\x18\x02 \x01(\x09\x12\x17\x0A\x0Foauth_client_id\x18\x03 \x01(\x09:P\xEAAM\x0A)gsuiteaddons.googleapis.com/Authorization\x12 projects/{project}/authorization\"\xBD\x01\x0A\x17CreateDeploymentRequest\x12C\x0A\x06parent\x18\x01 \x01(\x09B3\xE0A\x02\xFAA-\x0A+cloudresourcemanager.googleapis.com/Project\x12\x1A\x0A\x0Ddeployment_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x12A\x0A\x0Adeployment\x18\x03 \x01(\x0B2(.google.cloud.gsuiteaddons.v1.DeploymentB\x03\xE0A\x02\"]\x0A\x18ReplaceDeploymentRequest\x12A\x0A\x0Adeployment\x18\x02 \x01(\x0B2(.google.cloud.gsuiteaddons.v1.DeploymentB\x03\xE0A\x02\"T\x0A\x14GetDeploymentRequest\x12<\x0A\x04name\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x0A&gsuiteaddons.googleapis.com/Deployment\"\x84\x01\x0A\x16ListDeploymentsRequest\x12C\x0A\x06parent\x18\x01 \x01(\x09B3\xE0A\x02\xFAA-\x0A+cloudresourcemanager.googleapis.com/Project\x12\x11\x0A\x09page_size\x18\x02 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x03 \x01(\x09\"q\x0A\x17ListDeploymentsResponse\x12=\x0A\x0Bdeployments\x18\x01 \x03(\x0B2(.google.cloud.gsuiteaddons.v1.Deployment\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"e\x0A\x17DeleteDeploymentRequest\x12<\x0A\x04name\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x0A&gsuiteaddons.googleapis.com/Deployment\x12\x0C\x0A\x04etag\x18\x02 \x01(\x09\"X\x0A\x18InstallDeploymentRequest\x12<\x0A\x04name\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x0A&gsuiteaddons.googleapis.com/Deployment\"Z\x0A\x1AUninstallDeploymentRequest\x12<\x0A\x04name\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x0A&gsuiteaddons.googleapis.com/Deployment\"Z\x0A\x17GetInstallStatusRequest\x12?\x0A\x04name\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)gsuiteaddons.googleapis.com/InstallStatus\"\xB7\x01\x0A\x0DInstallStatus\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12-\x0A\x09installed\x18\x02 \x01(\x0B2\x1A.google.protobuf.BoolValue:i\xEAAf\x0A)gsuiteaddons.googleapis.com/InstallStatus\x129projects/{project}/deployments/{deployment}/installStatus\"\xCF\x01\x0A\x0ADeployment\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12\x14\x0A\x0Coauth_scopes\x18\x02 \x03(\x09\x125\x0A\x07add_ons\x18\x03 \x01(\x0B2\$.google.cloud.gsuiteaddons.v1.AddOns\x12\x0C\x0A\x04etag\x18\x05 \x01(\x09:X\xEAAU\x0A&gsuiteaddons.googleapis.com/Deployment\x12+projects/{project}/deployments/{deployment}\"\x9A\x04\x0A\x06AddOns\x12<\x0A\x06common\x18\x01 \x01(\x0B2,.google.apps.script.type.CommonAddOnManifest\x12@\x0A\x05gmail\x18\x02 \x01(\x0B21.google.apps.script.type.gmail.GmailAddOnManifest\x12@\x0A\x05drive\x18\x05 \x01(\x0B21.google.apps.script.type.drive.DriveAddOnManifest\x12I\x0A\x08calendar\x18\x06 \x01(\x0B27.google.apps.script.type.calendar.CalendarAddOnManifest\x12=\x0A\x04docs\x18\x07 \x01(\x0B2/.google.apps.script.type.docs.DocsAddOnManifest\x12C\x0A\x06sheets\x18\x08 \x01(\x0B23.google.apps.script.type.sheets.SheetsAddOnManifest\x12C\x0A\x06slides\x18\x0A \x01(\x0B23.google.apps.script.type.slides.SlidesAddOnManifest\x12:\x0A\x0Chttp_options\x18\x0F \x01(\x0B2\$.google.apps.script.type.HttpOptions2\xA4\x0D\x0A\x0CGSuiteAddOns\x12\xAA\x01\x0A\x10GetAuthorization\x125.google.cloud.gsuiteaddons.v1.GetAuthorizationRequest\x1A+.google.cloud.gsuiteaddons.v1.Authorization\"2\xDAA\x04name\x82\xD3\xE4\x93\x02%\x12#/v1/{name=projects/*/authorization}\x12\xCE\x01\x0A\x10CreateDeployment\x125.google.cloud.gsuiteaddons.v1.CreateDeploymentRequest\x1A(.google.cloud.gsuiteaddons.v1.Deployment\"Y\xDAA\x1Fparent,deployment,deployment_id\x82\xD3\xE4\x93\x021\"#/v1/{parent=projects/*}/deployments:\x0Adeployment\x12\xC6\x01\x0A\x11ReplaceDeployment\x126.google.cloud.gsuiteaddons.v1.ReplaceDeploymentRequest\x1A(.google.cloud.gsuiteaddons.v1.Deployment\"O\xDAA\x0Adeployment\x82\xD3\xE4\x93\x02<\x1A./v1/{deployment.name=projects/*/deployments/*}:\x0Adeployment\x12\xA1\x01\x0A\x0DGetDeployment\x122.google.cloud.gsuiteaddons.v1.GetDeploymentRequest\x1A(.google.cloud.gsuiteaddons.v1.Deployment\"2\xDAA\x04name\x82\xD3\xE4\x93\x02%\x12#/v1/{name=projects/*/deployments/*}\x12\xB4\x01\x0A\x0FListDeployments\x124.google.cloud.gsuiteaddons.v1.ListDeploymentsRequest\x1A5.google.cloud.gsuiteaddons.v1.ListDeploymentsResponse\"4\xDAA\x06parent\x82\xD3\xE4\x93\x02%\x12#/v1/{parent=projects/*}/deployments\x12\x95\x01\x0A\x10DeleteDeployment\x125.google.cloud.gsuiteaddons.v1.DeleteDeploymentRequest\x1A\x16.google.protobuf.Empty\"2\xDAA\x04name\x82\xD3\xE4\x93\x02%*#/v1/{name=projects/*/deployments/*}\x12\xA2\x01\x0A\x11InstallDeployment\x126.google.cloud.gsuiteaddons.v1.InstallDeploymentRequest\x1A\x16.google.protobuf.Empty\"=\xDAA\x04name\x82\xD3\xE4\x93\x020\"+/v1/{name=projects/*/deployments/*}:install:\x01*\x12\xA8\x01\x0A\x13UninstallDeployment\x128.google.cloud.gsuiteaddons.v1.UninstallDeploymentRequest\x1A\x16.google.protobuf.Empty\"?\xDAA\x04name\x82\xD3\xE4\x93\x022\"-/v1/{name=projects/*/deployments/*}:uninstall:\x01*\x12\xB8\x01\x0A\x10GetInstallStatus\x125.google.cloud.gsuiteaddons.v1.GetInstallStatusRequest\x1A+.google.cloud.gsuiteaddons.v1.InstallStatus\"@\xDAA\x04name\x82\xD3\xE4\x93\x023\x121/v1/{name=projects/*/deployments/*/installStatus}\x1AO\xCAA\x1Bgsuiteaddons.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\xDD\x01\x0A com.google.cloud.gsuiteaddons.v1B\x11GSuiteAddOnsProtoP\x01ZDcloud.google.com/go/gsuiteaddons/apiv1/gsuiteaddonspb;gsuiteaddonspb\xAA\x02\x1CGoogle.Cloud.GSuiteAddOns.V1\xCA\x02\x1CGoogle\\Cloud\\GSuiteAddOns\\V1\xEA\x02\x1FGoogle::Cloud::GSuiteAddOns::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

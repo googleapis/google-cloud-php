@@ -5,8 +5,8 @@
 namespace Google\Cloud\GSuiteAddOns\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message to list deployments.
@@ -35,7 +35,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GSuiteAddOns\V1\Deployment>|\Google\Protobuf\Internal\RepeatedField $deployments
+     *     @type \Google\Cloud\GSuiteAddOns\V1\Deployment[] $deployments
      *           The list of deployments for the given project.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The list of deployments for the given project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gsuiteaddons.v1.Deployment deployments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GSuiteAddOns\V1\Deployment>
      */
     public function getDeployments()
     {
@@ -62,7 +62,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The list of deployments for the given project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gsuiteaddons.v1.Deployment deployments = 1;</code>
-     * @param array<\Google\Cloud\GSuiteAddOns\V1\Deployment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GSuiteAddOns\V1\Deployment[] $var
      * @return $this
      */
     public function setDeployments($var)

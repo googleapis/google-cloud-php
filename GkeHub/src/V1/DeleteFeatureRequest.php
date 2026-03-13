@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for `GkeHub.DeleteFeature` method.
@@ -17,7 +17,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Feature resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     * `projects/{@*}locations/{@*}features/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -69,7 +69,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The Feature resource name in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     *           `projects/{@*}locations/{@*}features/*`.
      *     @type bool $force
      *           If set to true, the delete will ignore any outstanding resources for
      *           this Feature (that is, `FeatureState.has_resources` is set to true). These
@@ -95,7 +95,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Feature resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     * `projects/{@*}locations/{@*}features/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -107,7 +107,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Feature resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;features/&#42;`.
+     * `projects/{@*}locations/{@*}features/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

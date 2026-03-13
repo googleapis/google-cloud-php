@@ -73,6 +73,3 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Firestore\Admin\V1\Field_TtlConfig_State::class);
-

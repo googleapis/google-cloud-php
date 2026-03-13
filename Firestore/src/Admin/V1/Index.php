@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Firestore indexes enable simple and complex queries against
@@ -114,7 +114,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *           time, and that have the same collection ID as this index.
      *     @type int $api_scope
      *           The API scope supported by this index.
-     *     @type array<\Google\Cloud\Firestore\Admin\V1\Index\IndexField>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Firestore\Admin\V1\Index\IndexField[] $fields
      *           The fields supported by this index.
      *           For composite indexes, this requires a minimum of 2 and a maximum of 100
      *           fields. The last field entry is always for the field path `__name__`. If,
@@ -254,7 +254,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * field path equal to the field path of the associated field.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Index.IndexField fields = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\Admin\V1\Index\IndexField>
      */
     public function getFields()
     {
@@ -273,7 +273,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * field path equal to the field path of the associated field.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Index.IndexField fields = 3;</code>
-     * @param array<\Google\Cloud\Firestore\Admin\V1\Index\IndexField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\Admin\V1\Index\IndexField[] $var
      * @return $this
      */
     public function setFields($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Firestore query for running an aggregation over a
@@ -35,7 +35,7 @@ class StructuredAggregationQuery extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery $structured_query
      *           Nested structured query.
-     *     @type array<\Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
+     *     @type \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation[] $aggregations
      *           Optional. Series of aggregations to apply over the results of the
      *           `structured_query`.
      *           Requires:
@@ -85,7 +85,7 @@ class StructuredAggregationQuery extends \Google\Protobuf\Internal\Message
      * * A minimum of one and maximum of five aggregations per query.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredAggregationQuery.Aggregation aggregations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation>
      */
     public function getAggregations()
     {
@@ -99,7 +99,7 @@ class StructuredAggregationQuery extends \Google\Protobuf\Internal\Message
      * * A minimum of one and maximum of five aggregations per query.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredAggregationQuery.Aggregation aggregations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation[] $var
      * @return $this
      */
     public function setAggregations($var)

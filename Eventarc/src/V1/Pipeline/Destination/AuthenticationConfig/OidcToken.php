@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a config used to authenticate with a Google OIDC token using
@@ -133,5 +133,4 @@ class OidcToken extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

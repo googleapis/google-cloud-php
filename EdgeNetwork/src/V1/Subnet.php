@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Subnet object
@@ -107,9 +107,9 @@ class Subnet extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type string $network
      *           Required. The network that this subnetwork belongs to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ipv4_cidr
+     *     @type string[] $ipv4_cidr
      *           The ranges of ipv4 addresses that are owned by this subnetwork.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ipv6_cidr
+     *     @type string[] $ipv6_cidr
      *           The ranges of ipv6 addresses that are owned by this subnetwork.
      *     @type int $vlan_id
      *           Optional. VLAN id provided by user. If not specified we assign one
@@ -311,7 +311,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      * The ranges of ipv4 addresses that are owned by this subnetwork.
      *
      * Generated from protobuf field <code>repeated string ipv4_cidr = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIpv4Cidr()
     {
@@ -322,7 +322,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      * The ranges of ipv4 addresses that are owned by this subnetwork.
      *
      * Generated from protobuf field <code>repeated string ipv4_cidr = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIpv4Cidr($var)
@@ -337,7 +337,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      * The ranges of ipv6 addresses that are owned by this subnetwork.
      *
      * Generated from protobuf field <code>repeated string ipv6_cidr = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIpv6Cidr()
     {
@@ -348,7 +348,7 @@ class Subnet extends \Google\Protobuf\Internal\Message
      * The ranges of ipv6 addresses that are owned by this subnetwork.
      *
      * Generated from protobuf field <code>repeated string ipv6_cidr = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIpv6Cidr($var)

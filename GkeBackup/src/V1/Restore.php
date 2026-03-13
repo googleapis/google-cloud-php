@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents both a request to Restore some portion of a Backup into
@@ -18,7 +18,7 @@ class Restore extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the Restore resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
+     * Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -55,7 +55,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      * this Restore will restore. Note that this Backup must be a sub-resource of
      * the RestorePlan's
      * [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`.
      *
      * Generated from protobuf field <code>string backup = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -63,8 +63,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The target cluster into which this Restore will restore data.
      * Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      * Inherited from parent RestorePlan's
      * [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *
@@ -173,7 +173,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the Restore resource.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
+     *           Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/*`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -190,12 +190,12 @@ class Restore extends \Google\Protobuf\Internal\Message
      *           this Restore will restore. Note that this Backup must be a sub-resource of
      *           the RestorePlan's
      *           [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
+     *           `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`.
      *     @type string $cluster
      *           Output only. The target cluster into which this Restore will restore data.
      *           Valid formats:
-     *             - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *             - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *             - `projects/{@*}locations/{@*}clusters/*`
+     *             - `projects/{@*}zones/{@*}clusters/*`
      *           Inherited from parent RestorePlan's
      *           [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig $restore_config
@@ -240,7 +240,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      *           [namespaced_resource_restore_mode][google.cloud.gkebackup.v1.RestoreConfig.namespaced_resource_restore_mode]
      *           is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or
      *           `MERGE_REPLACE_ON_CONFLICT`.
-     *     @type array<\Google\Cloud\GkeBackup\V1\VolumeDataRestorePolicyOverride>|\Google\Protobuf\Internal\RepeatedField $volume_data_restore_policy_overrides
+     *     @type \Google\Cloud\GkeBackup\V1\VolumeDataRestorePolicyOverride[] $volume_data_restore_policy_overrides
      *           Optional. Immutable. Overrides the volume data restore policies selected in
      *           the Restore Config for override-scoped resources.
      * }
@@ -252,7 +252,7 @@ class Restore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the Restore resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
+     * Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -264,7 +264,7 @@ class Restore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the Restore resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
+     * Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -412,7 +412,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      * this Restore will restore. Note that this Backup must be a sub-resource of
      * the RestorePlan's
      * [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`.
      *
      * Generated from protobuf field <code>string backup = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -428,7 +428,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      * this Restore will restore. Note that this Backup must be a sub-resource of
      * the RestorePlan's
      * [backup_plan][google.cloud.gkebackup.v1.RestorePlan.backup_plan]. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`.
      *
      * Generated from protobuf field <code>string backup = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -445,8 +445,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The target cluster into which this Restore will restore data.
      * Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      * Inherited from parent RestorePlan's
      * [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *
@@ -461,8 +461,8 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The target cluster into which this Restore will restore data.
      * Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      * Inherited from parent RestorePlan's
      * [cluster][google.cloud.gkebackup.v1.RestorePlan.cluster] value.
      *
@@ -839,7 +839,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      * the Restore Config for override-scoped resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.VolumeDataRestorePolicyOverride volume_data_restore_policy_overrides = 19 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\VolumeDataRestorePolicyOverride>
      */
     public function getVolumeDataRestorePolicyOverrides()
     {
@@ -851,7 +851,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      * the Restore Config for override-scoped resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.VolumeDataRestorePolicyOverride volume_data_restore_policy_overrides = 19 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\VolumeDataRestorePolicyOverride>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\VolumeDataRestorePolicyOverride[] $var
      * @return $this
      */
     public function setVolumeDataRestorePolicyOverrides($var)
