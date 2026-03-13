@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\CdcStrategy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CDC strategy to start replicating from a specific position in the source.
@@ -171,5 +171,4 @@ class SpecificStartPosition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

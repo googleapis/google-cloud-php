@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the workers and work items within a stage.
@@ -36,7 +36,7 @@ class StageExecutionDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\WorkerDetails>|\Google\Protobuf\Internal\RepeatedField $workers
+     *     @type \Google\Cloud\Dataflow\V1beta3\WorkerDetails[] $workers
      *           Workers that have done work on the stage.
      *     @type string $next_page_token
      *           If present, this response does not contain all requested tasks.  To obtain
@@ -53,7 +53,7 @@ class StageExecutionDetails extends \Google\Protobuf\Internal\Message
      * Workers that have done work on the stage.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkerDetails workers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\WorkerDetails>
      */
     public function getWorkers()
     {
@@ -64,7 +64,7 @@ class StageExecutionDetails extends \Google\Protobuf\Internal\Message
      * Workers that have done work on the stage.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkerDetails workers = 1;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\WorkerDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\WorkerDetails[] $var
      * @return $this
      */
     public function setWorkers($var)

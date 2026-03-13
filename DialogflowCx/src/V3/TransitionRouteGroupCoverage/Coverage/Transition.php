@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupCoverage\Coverage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A transition coverage in a transition route group.
@@ -112,5 +112,4 @@ class Transition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

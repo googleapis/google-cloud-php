@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Annotation spec set with the setting of allowing multi labels or not.
@@ -102,5 +102,4 @@ class AnnotationSpecSetConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

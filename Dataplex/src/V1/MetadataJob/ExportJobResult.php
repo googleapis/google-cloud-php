@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\MetadataJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary results from a metadata export job. The results are a snapshot of
@@ -100,5 +100,4 @@ class ExportJobResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

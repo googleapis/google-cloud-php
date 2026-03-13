@@ -20,7 +20,7 @@ class Type
      */
     const TYPE_UNSPECIFIED = 0;
     /**
-     * Examples do not contain &#64;-prefixed entity type names, but example parts
+     * Examples do not contain \@-prefixed entity type names, but example parts
      * can be annotated with entity types.
      *
      * Generated from protobuf enum <code>EXAMPLE = 1;</code>
@@ -28,7 +28,7 @@ class Type
     const EXAMPLE = 1;
     /**
      * Templates are not annotated with entity types, but they can contain
-     * &#64;-prefixed entity type names as substrings.
+     * \@-prefixed entity type names as substrings.
      * Template mode has been deprecated. Example mode is the only supported
      * way to create new training phrases. If you have existing training
      * phrases that you've created in template mode, those will continue to
@@ -64,5 +64,4 @@ class Type
         return constant($const);
     }
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Update Entry request.
@@ -50,13 +50,13 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * supports the following syntaxes:
      * * `<aspect_type_reference>` - matches an aspect of the given type and empty
      * path.
-     * * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     * * `<aspect_type_reference>\@path` - matches an aspect of the given type and
      * specified path. For example, to attach an aspect to a field that is
      * specified by the `schema` aspect, the path should have the format
      * `Schema.<field_name>`.
-     * * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
+     * * `<aspect_type_reference>\@*` - matches aspects of the given type for all
      * paths.
-     * * `*&#64;path` - matches aspects of all types on the given path.
+     * * `*\@path` - matches aspects of all types on the given path.
      * The service will not remove existing aspects matching the syntax unless
      * `delete_missing_aspects` is set to true.
      * If this field is left empty, the service treats it as specifying
@@ -105,18 +105,18 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set to true and the aspect_keys specify aspect ranges, the
      *           service deletes any existing aspects from that range that weren't provided
      *           in the request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_keys
+     *     @type string[] $aspect_keys
      *           Optional. The map keys of the Aspects which the service should modify. It
      *           supports the following syntaxes:
      *           * `<aspect_type_reference>` - matches an aspect of the given type and empty
      *           path.
-     *           * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     *           * `<aspect_type_reference>\@path` - matches an aspect of the given type and
      *           specified path. For example, to attach an aspect to a field that is
      *           specified by the `schema` aspect, the path should have the format
      *           `Schema.<field_name>`.
-     *           * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
+     *           * `<aspect_type_reference>\@*` - matches aspects of the given type for all
      *           paths.
-     *           * `*&#64;path` - matches aspects of all types on the given path.
+     *           * `*\@path` - matches aspects of all types on the given path.
      *           The service will not remove existing aspects matching the syntax unless
      *           `delete_missing_aspects` is set to true.
      *           If this field is left empty, the service treats it as specifying
@@ -269,20 +269,20 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * supports the following syntaxes:
      * * `<aspect_type_reference>` - matches an aspect of the given type and empty
      * path.
-     * * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     * * `<aspect_type_reference>\@path` - matches an aspect of the given type and
      * specified path. For example, to attach an aspect to a field that is
      * specified by the `schema` aspect, the path should have the format
      * `Schema.<field_name>`.
-     * * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
+     * * `<aspect_type_reference>\@*` - matches aspects of the given type for all
      * paths.
-     * * `*&#64;path` - matches aspects of all types on the given path.
+     * * `*\@path` - matches aspects of all types on the given path.
      * The service will not remove existing aspects matching the syntax unless
      * `delete_missing_aspects` is set to true.
      * If this field is left empty, the service treats it as specifying
      * exactly those Aspects present in the request.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAspectKeys()
     {
@@ -294,20 +294,20 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * supports the following syntaxes:
      * * `<aspect_type_reference>` - matches an aspect of the given type and empty
      * path.
-     * * `<aspect_type_reference>&#64;path` - matches an aspect of the given type and
+     * * `<aspect_type_reference>\@path` - matches an aspect of the given type and
      * specified path. For example, to attach an aspect to a field that is
      * specified by the `schema` aspect, the path should have the format
      * `Schema.<field_name>`.
-     * * `<aspect_type_reference>&#64;*` - matches aspects of the given type for all
+     * * `<aspect_type_reference>\@*` - matches aspects of the given type for all
      * paths.
-     * * `*&#64;path` - matches aspects of all types on the given path.
+     * * `*\@path` - matches aspects of all types on the given path.
      * The service will not remove existing aspects matching the syntax unless
      * `delete_missing_aspects` is set to true.
      * If this field is left empty, the service treats it as specifying
      * exactly those Aspects present in the request.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAspectKeys($var)

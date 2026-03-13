@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entry Type is a template for creating Entries.
@@ -128,7 +128,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
      *           Optional. This checksum is computed by the service, and might be sent on
      *           update and delete requests to ensure the client has an up-to-date value
      *           before proceeding.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $type_aliases
+     *     @type string[] $type_aliases
      *           Optional. Indicates the classes this Entry Type belongs to, for example,
      *           TABLE, DATABASE, MODEL.
      *     @type string $platform
@@ -136,7 +136,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
      *     @type string $system
      *           Optional. The system that Entries of this type belongs to. Examples include
      *           CloudSQL, MariaDB etc
-     *     @type array<\Google\Cloud\Dataplex\V1\EntryType\AspectInfo>|\Google\Protobuf\Internal\RepeatedField $required_aspects
+     *     @type \Google\Cloud\Dataplex\V1\EntryType\AspectInfo[] $required_aspects
      *           AspectInfo for the entry type.
      *     @type \Google\Cloud\Dataplex\V1\EntryType\Authorization $authorization
      *           Immutable. Authorization defined for this type.
@@ -390,7 +390,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
      * TABLE, DATABASE, MODEL.
      *
      * Generated from protobuf field <code>repeated string type_aliases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTypeAliases()
     {
@@ -402,7 +402,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
      * TABLE, DATABASE, MODEL.
      *
      * Generated from protobuf field <code>repeated string type_aliases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTypeAliases($var)
@@ -471,7 +471,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
      * AspectInfo for the entry type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryType.AspectInfo required_aspects = 50;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\EntryType\AspectInfo>
      */
     public function getRequiredAspects()
     {
@@ -482,7 +482,7 @@ class EntryType extends \Google\Protobuf\Internal\Message
      * AspectInfo for the entry type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryType.AspectInfo required_aspects = 50;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\EntryType\AspectInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\EntryType\AspectInfo[] $var
      * @return $this
      */
     public function setRequiredAspects($var)

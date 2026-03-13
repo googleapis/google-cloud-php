@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\BigQueryDestinationConfig\SourceHierarchyDatasets;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dataset template used for dynamic dataset creation.
@@ -172,5 +172,4 @@ class DatasetTemplate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

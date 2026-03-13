@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The environment values to be set at runtime for flex template.
@@ -236,7 +236,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *     @type string $machine_type
      *           The machine type to use for the job. Defaults to the value from the
      *           template if not specified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_experiments
+     *     @type string[] $additional_experiments
      *           Additional experiment flags for the job.
      *     @type string $network
      *           Network to which VMs will be assigned.  If empty or unspecified,
@@ -493,7 +493,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      * Additional experiment flags for the job.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalExperiments()
     {
@@ -504,7 +504,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      * Additional experiment flags for the job.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalExperiments($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -32,7 +32,7 @@ class BatchRunTestCasesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TestCaseResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TestCaseResult[] $results
      *           The test case results. The detailed
      *           [conversation
      *           turns][google.cloud.dialogflow.cx.v3.TestCaseResult.conversation_turns] are
@@ -51,7 +51,7 @@ class BatchRunTestCasesResponse extends \Google\Protobuf\Internal\Message
      * empty in this response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TestCaseResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TestCaseResult>
      */
     public function getResults()
     {
@@ -65,7 +65,7 @@ class BatchRunTestCasesResponse extends \Google\Protobuf\Internal\Message
      * empty in this response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TestCaseResult results = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TestCaseResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TestCaseResult[] $var
      * @return $this
      */
     public function setResults($var)

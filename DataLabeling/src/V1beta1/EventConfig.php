@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for video event human labeling task.
@@ -30,7 +30,7 @@ class EventConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_spec_sets
+     *     @type string[] $annotation_spec_sets
      *           Required. The list of annotation spec set resource name. Similar to video
      *           classification, we support selecting event from multiple AnnotationSpecSet
      *           at the same time.
@@ -47,7 +47,7 @@ class EventConfig extends \Google\Protobuf\Internal\Message
      * at the same time.
      *
      * Generated from protobuf field <code>repeated string annotation_spec_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAnnotationSpecSets()
     {
@@ -60,7 +60,7 @@ class EventConfig extends \Google\Protobuf\Internal\Message
      * at the same time.
      *
      * Generated from protobuf field <code>repeated string annotation_spec_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAnnotationSpecSets($var)

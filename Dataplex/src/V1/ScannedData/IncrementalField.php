@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\ScannedData;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A data range denoted by a pair of start/end values of a field.
@@ -136,5 +136,4 @@ class IncrementalField extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

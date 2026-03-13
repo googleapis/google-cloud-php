@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Evaluation result per conversation(&summary), metric and section.
@@ -76,9 +76,9 @@ class SummarizationEvaluationResult extends \Google\Protobuf\Internal\Message
      *           Output only. score calculated from decompositions
      *     @type string $section_summary
      *           Output only. Summary of this section
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\Decomposition>|\Google\Protobuf\Internal\RepeatedField $decompositions
+     *     @type \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\Decomposition[] $decompositions
      *           Output only. List of decompostion details
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult>|\Google\Protobuf\Internal\RepeatedField $evaluation_results
+     *     @type \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult[] $evaluation_results
      *           Output only. List of evaluation results.
      * }
      */
@@ -227,7 +227,7 @@ class SummarizationEvaluationResult extends \Google\Protobuf\Internal\Message
      * Output only. List of decompostion details
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.Decomposition decompositions = 7 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\Decomposition>
      * @deprecated
      */
     public function getDecompositions()
@@ -242,7 +242,7 @@ class SummarizationEvaluationResult extends \Google\Protobuf\Internal\Message
      * Output only. List of decompostion details
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.Decomposition decompositions = 7 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\Decomposition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\Decomposition[] $var
      * @return $this
      * @deprecated
      */
@@ -261,7 +261,7 @@ class SummarizationEvaluationResult extends \Google\Protobuf\Internal\Message
      * Output only. List of evaluation results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.EvaluationResult evaluation_results = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult>
      */
     public function getEvaluationResults()
     {
@@ -272,7 +272,7 @@ class SummarizationEvaluationResult extends \Google\Protobuf\Internal\Message
      * Output only. List of evaluation results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.EvaluationResult evaluation_results = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult[] $var
      * @return $this
      */
     public function setEvaluationResults($var)
@@ -284,5 +284,4 @@ class SummarizationEvaluationResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

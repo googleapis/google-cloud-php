@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\Taxonomy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The source system of the Taxonomy.
@@ -98,5 +98,4 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

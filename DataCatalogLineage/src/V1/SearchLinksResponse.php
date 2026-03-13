@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\Lineage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -37,7 +37,7 @@ class SearchLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\Lineage\V1\Link>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\Link[] $links
      *           The list of links for a given asset. Can be empty if the asset has no
      *           relations of requested type (source or target).
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class SearchLinksResponse extends \Google\Protobuf\Internal\Message
      * relations of requested type (source or target).
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.Link links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\Lineage\V1\Link>
      */
     public function getLinks()
     {
@@ -67,7 +67,7 @@ class SearchLinksResponse extends \Google\Protobuf\Internal\Message
      * relations of requested type (source or target).
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.Link links = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\Lineage\V1\Link>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\Link[] $var
      * @return $this
      */
     public function setLinks($var)

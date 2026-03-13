@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Nearest Neighbors search config. The ordering provided by FindNearest

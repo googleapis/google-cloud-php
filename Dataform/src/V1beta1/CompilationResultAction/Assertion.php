@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\CompilationResultAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an assertion upon a SQL query which is required return zero
@@ -62,14 +62,14 @@ class Assertion extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\Target>|\Google\Protobuf\Internal\RepeatedField $dependency_targets
+     *     @type \Google\Cloud\Dataform\V1beta1\Target[] $dependency_targets
      *           A list of actions that this action depends on.
      *     @type \Google\Cloud\Dataform\V1beta1\Target $parent_action
      *           The parent action of this assertion. Only set if this assertion was
      *           automatically generated.
      *     @type bool $disabled
      *           Whether this action is disabled (i.e. should not be run).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Arbitrary, user-defined tags on this action.
      *     @type string $select_query
      *           The SELECT query which must return zero rows in order for this assertion
@@ -88,7 +88,7 @@ class Assertion extends \Google\Protobuf\Internal\Message
      * A list of actions that this action depends on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Target dependency_targets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\Target>
      */
     public function getDependencyTargets()
     {
@@ -99,7 +99,7 @@ class Assertion extends \Google\Protobuf\Internal\Message
      * A list of actions that this action depends on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Target dependency_targets = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\Target>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\Target[] $var
      * @return $this
      */
     public function setDependencyTargets($var)
@@ -178,7 +178,7 @@ class Assertion extends \Google\Protobuf\Internal\Message
      * Arbitrary, user-defined tags on this action.
      *
      * Generated from protobuf field <code>repeated string tags = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -189,7 +189,7 @@ class Assertion extends \Google\Protobuf\Internal\Message
      * Arbitrary, user-defined tags on this action.
      *
      * Generated from protobuf field <code>repeated string tags = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -267,5 +267,4 @@ class Assertion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

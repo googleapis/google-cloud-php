@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The card response message.
@@ -52,7 +52,7 @@ class Card extends \Google\Protobuf\Internal\Message
      *           Optional. The subtitle of the card.
      *     @type string $image_uri
      *           Optional. The public URI to an image file for the card.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button>|\Google\Protobuf\Internal\RepeatedField $buttons
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button[] $buttons
      *           Optional. The collection of card buttons.
      * }
      */
@@ -143,7 +143,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * Optional. The collection of card buttons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button>
      */
     public function getButtons()
     {
@@ -154,7 +154,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * Optional. The collection of card buttons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button[] $var
      * @return $this
      */
     public function setButtons($var)
@@ -166,5 +166,4 @@ class Card extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

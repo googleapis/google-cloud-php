@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -39,7 +39,7 @@ class ImportIntentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $intents
+     *     @type string[] $intents
      *           The unique identifier of the imported intents.
      *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
@@ -60,7 +60,7 @@ class ImportIntentsResponse extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 1 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIntents()
     {
@@ -73,7 +73,7 @@ class ImportIntentsResponse extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 1 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIntents($var)

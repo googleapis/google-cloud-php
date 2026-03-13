@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Tool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for tools using Service Directory.
@@ -84,5 +84,4 @@ class ServiceDirectoryConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

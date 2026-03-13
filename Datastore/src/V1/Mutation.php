@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A mutation to apply to an entity.
@@ -85,7 +85,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *           If the entity already exists, only properties referenced in the mask are
      *           updated, others are left untouched.
      *           Properties referenced in the mask but not in the entity are deleted.
-     *     @type array<\Google\Cloud\Datastore\V1\PropertyTransform>|\Google\Protobuf\Internal\RepeatedField $property_transforms
+     *     @type \Google\Cloud\Datastore\V1\PropertyTransform[] $property_transforms
      *           Optional. The transforms to perform on the entity.
      *           This field can be set only when the operation is `insert`, `update`,
      *           or `upsert`. If present, the transforms are be applied to the entity
@@ -384,7 +384,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * regardless of the property mask, in order, after the operation.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyTransform property_transforms = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\PropertyTransform>
      */
     public function getPropertyTransforms()
     {
@@ -398,7 +398,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * regardless of the property mask, in order, after the operation.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyTransform property_transforms = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Datastore\V1\PropertyTransform>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\PropertyTransform[] $var
      * @return $this
      */
     public function setPropertyTransforms($var)

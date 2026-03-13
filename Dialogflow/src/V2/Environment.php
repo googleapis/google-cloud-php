@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * You can create multiple versions of your agent and publish them to separate

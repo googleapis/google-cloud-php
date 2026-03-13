@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the output of agent validation.
@@ -28,7 +28,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\ValidationError>|\Google\Protobuf\Internal\RepeatedField $validation_errors
+     *     @type \Google\Cloud\Dialogflow\V2\ValidationError[] $validation_errors
      *           Contains all validation errors.
      * }
      */
@@ -41,7 +41,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * Contains all validation errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ValidationError validation_errors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\ValidationError>
      */
     public function getValidationErrors()
     {
@@ -52,7 +52,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * Contains all validation errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ValidationError validation_errors = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\ValidationError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\ValidationError[] $var
      * @return $this
      */
     public function setValidationErrors($var)

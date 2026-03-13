@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * All configuration data for a particular Computation.
@@ -62,13 +62,13 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      *           The system stage name.
      *     @type string $computation_id
      *           The ID of the computation.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\KeyRangeLocation>|\Google\Protobuf\Internal\RepeatedField $key_ranges
+     *     @type \Google\Cloud\Dataflow\V1beta3\KeyRangeLocation[] $key_ranges
      *           The key ranges processed by the computation.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\StreamLocation>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type \Google\Cloud\Dataflow\V1beta3\StreamLocation[] $inputs
      *           The inputs to the computation.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\StreamLocation>|\Google\Protobuf\Internal\RepeatedField $outputs
+     *     @type \Google\Cloud\Dataflow\V1beta3\StreamLocation[] $outputs
      *           The outputs from the computation.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\StateFamilyConfig>|\Google\Protobuf\Internal\RepeatedField $state_families
+     *     @type \Google\Cloud\Dataflow\V1beta3\StateFamilyConfig[] $state_families
      *           The state family values.
      * }
      */
@@ -133,7 +133,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The key ranges processed by the computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.KeyRangeLocation key_ranges = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\KeyRangeLocation>
      */
     public function getKeyRanges()
     {
@@ -144,7 +144,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The key ranges processed by the computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.KeyRangeLocation key_ranges = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\KeyRangeLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\KeyRangeLocation[] $var
      * @return $this
      */
     public function setKeyRanges($var)
@@ -159,7 +159,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The inputs to the computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StreamLocation inputs = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\StreamLocation>
      */
     public function getInputs()
     {
@@ -170,7 +170,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The inputs to the computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StreamLocation inputs = 3;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\StreamLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\StreamLocation[] $var
      * @return $this
      */
     public function setInputs($var)
@@ -185,7 +185,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The outputs from the computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StreamLocation outputs = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\StreamLocation>
      */
     public function getOutputs()
     {
@@ -196,7 +196,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The outputs from the computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StreamLocation outputs = 4;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\StreamLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\StreamLocation[] $var
      * @return $this
      */
     public function setOutputs($var)
@@ -211,7 +211,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The state family values.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StateFamilyConfig state_families = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\StateFamilyConfig>
      */
     public function getStateFamilies()
     {
@@ -222,7 +222,7 @@ class ComputationTopology extends \Google\Protobuf\Internal\Message
      * The state family values.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StateFamilyConfig state_families = 7;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\StateFamilyConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\StateFamilyConfig[] $var
      * @return $this
      */
     public function setStateFamilies($var)

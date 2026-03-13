@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A fulfillment can do one or more of the following actions at the same time:
@@ -109,7 +109,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $messages
      *           The list of rich message responses to present to the user.
      *     @type string $webhook
      *           The webhook to call.
@@ -133,9 +133,9 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           The tag is typically used by the webhook service to identify which
      *           fulfillment is being called, but it could be used for other purposes.
      *           This field is required if `webhook` is specified.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\SetParameterAction>|\Google\Protobuf\Internal\RepeatedField $set_parameter_actions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\SetParameterAction[] $set_parameter_actions
      *           Set parameter values before executing the webhook.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases>|\Google\Protobuf\Internal\RepeatedField $conditional_cases
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases[] $conditional_cases
      *           Conditional cases for this fulfillment.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings $advanced_settings
      *           Hierarchical advanced settings for this fulfillment. The settings exposed
@@ -146,7 +146,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           [responses][google.cloud.dialogflow.cx.v3.Fulfillment.messages] in the
      *           fulfillment will be respected. This flag is only useful for fulfillments
      *           associated with no-match event handlers.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings>|\Google\Protobuf\Internal\RepeatedField $generators
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings[] $generators
      *           A list of Generators to be called during this fulfillment.
      * }
      */
@@ -159,7 +159,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * The list of rich message responses to present to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage messages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>
      */
     public function getMessages()
     {
@@ -170,7 +170,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * The list of rich message responses to present to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage messages = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $var
      * @return $this
      */
     public function setMessages($var)
@@ -295,7 +295,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * Set parameter values before executing the webhook.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.SetParameterAction set_parameter_actions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\SetParameterAction>
      */
     public function getSetParameterActions()
     {
@@ -306,7 +306,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * Set parameter values before executing the webhook.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.SetParameterAction set_parameter_actions = 4;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\SetParameterAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\SetParameterAction[] $var
      * @return $this
      */
     public function setSetParameterActions($var)
@@ -321,7 +321,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * Conditional cases for this fulfillment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases conditional_cases = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases>
      */
     public function getConditionalCases()
     {
@@ -332,7 +332,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * Conditional cases for this fulfillment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases conditional_cases = 5;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases[] $var
      * @return $this
      */
     public function setConditionalCases($var)
@@ -419,7 +419,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * A list of Generators to be called during this fulfillment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings>
      */
     public function getGenerators()
     {
@@ -430,7 +430,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * A list of Generators to be called during this fulfillment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.GeneratorSettings generators = 13;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\GeneratorSettings[] $var
      * @return $this
      */
     public function setGenerators($var)

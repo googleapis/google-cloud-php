@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The InsightsConfig resource is the core configuration object to capture
@@ -111,9 +111,9 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      *           Output only. Create timestamp.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Update timestamp.
-     *     @type array<\Google\Cloud\DeveloperConnect\V1\RuntimeConfig>|\Google\Protobuf\Internal\RepeatedField $runtime_configs
+     *     @type \Google\Cloud\DeveloperConnect\V1\RuntimeConfig[] $runtime_configs
      *           Output only. The runtime configurations where the application is deployed.
-     *     @type array<\Google\Cloud\DeveloperConnect\V1\ArtifactConfig>|\Google\Protobuf\Internal\RepeatedField $artifact_configs
+     *     @type \Google\Cloud\DeveloperConnect\V1\ArtifactConfig[] $artifact_configs
      *           Optional. The artifact configurations of the artifacts that are deployed.
      *     @type int $state
      *           Optional. Output only. The state of the InsightsConfig.
@@ -129,7 +129,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      *           user's intended state, and the service is actively updating the resource to
      *           reconcile them. This can happen due to user-triggered updates or
      *           system actions like failover or maintenance.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           Output only. Any errors that occurred while setting up the InsightsConfig.
      *           Each error will be in the format: `field_name: error_message`, e.g.
      *           GetAppHubApplication: Permission denied while getting App Hub
@@ -313,7 +313,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Output only. The runtime configurations where the application is deployed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.RuntimeConfig runtime_configs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeveloperConnect\V1\RuntimeConfig>
      */
     public function getRuntimeConfigs()
     {
@@ -324,7 +324,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Output only. The runtime configurations where the application is deployed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.RuntimeConfig runtime_configs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\DeveloperConnect\V1\RuntimeConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeveloperConnect\V1\RuntimeConfig[] $var
      * @return $this
      */
     public function setRuntimeConfigs($var)
@@ -339,7 +339,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Optional. The artifact configurations of the artifacts that are deployed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.ArtifactConfig artifact_configs = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeveloperConnect\V1\ArtifactConfig>
      */
     public function getArtifactConfigs()
     {
@@ -350,7 +350,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * Optional. The artifact configurations of the artifacts that are deployed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.ArtifactConfig artifact_configs = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DeveloperConnect\V1\ArtifactConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeveloperConnect\V1\ArtifactConfig[] $var
      * @return $this
      */
     public function setArtifactConfigs($var)
@@ -484,7 +484,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * application. Please grant permissions to the P4SA.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -498,7 +498,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      * application. Please grant permissions to the P4SA.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)

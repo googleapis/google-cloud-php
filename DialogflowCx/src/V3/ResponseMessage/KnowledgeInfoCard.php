@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ResponseMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents info card response. If the response contains generative
@@ -33,5 +33,4 @@ class KnowledgeInfoCard extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

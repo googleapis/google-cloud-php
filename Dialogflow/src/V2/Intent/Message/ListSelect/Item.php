@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An item in the list.
@@ -186,5 +186,4 @@ class Item extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

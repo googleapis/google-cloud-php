@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instructs the speech recognizer how to process the audio content.
@@ -167,7 +167,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           with information about the recognized speech words, e.g. start and end time
      *           offsets. If false or unspecified, Speech doesn't return any word-level
      *           information.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_hints
+     *     @type string[] $phrase_hints
      *           A list of strings containing words and phrases that the speech
      *           recognizer should recognize with higher likelihood.
      *           See [the Cloud Speech
@@ -176,7 +176,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           This field is deprecated. Please use [`speech_contexts`]() instead. If you
      *           specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will
      *           treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
-     *     @type array<\Google\Cloud\Dialogflow\V2\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *     @type \Google\Cloud\Dialogflow\V2\SpeechContext[] $speech_contexts
      *           Context information to assist speech recognition.
      *           See [the Cloud Speech
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
@@ -208,7 +208,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
      *     @type bool $enable_automatic_punctuation
      *           Enable automatic punctuation option at the speech backend.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *     @type string[] $phrase_sets
      *           A collection of phrase set resources to use for speech adaptation.
      *     @type bool $opt_out_conformer_model_migration
      *           If `true`, the request will opt out for STT conformer model migration.
@@ -365,7 +365,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getPhraseHints()
@@ -387,7 +387,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -409,7 +409,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechContext speech_contexts = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SpeechContext>
      */
     public function getSpeechContexts()
     {
@@ -423,7 +423,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechContext speech_contexts = 11;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SpeechContext[] $var
      * @return $this
      */
     public function setSpeechContexts($var)
@@ -602,7 +602,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * A collection of phrase set resources to use for speech adaptation.
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 20 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPhraseSets()
     {
@@ -613,7 +613,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * A collection of phrase set resources to use for speech adaptation.
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 20 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPhraseSets($var)

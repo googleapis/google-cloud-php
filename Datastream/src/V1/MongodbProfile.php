@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MongoDB profile.
@@ -67,7 +67,7 @@ class MongodbProfile extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\HostAddress>|\Google\Protobuf\Internal\RepeatedField $host_addresses
+     *     @type \Google\Cloud\Datastream\V1\HostAddress[] $host_addresses
      *           Required. List of host addresses for a MongoDB cluster.
      *           For SRV connection format, this list must contain exactly one DNS host
      *           without a port. For Standard connection format, this list must contain all
@@ -105,7 +105,7 @@ class MongodbProfile extends \Google\Protobuf\Internal\Message
      * the required hosts in the cluster with their respective ports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.HostAddress host_addresses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\HostAddress>
      */
     public function getHostAddresses()
     {
@@ -119,7 +119,7 @@ class MongodbProfile extends \Google\Protobuf\Internal\Message
      * the required hosts in the cluster with their respective ports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.HostAddress host_addresses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Datastream\V1\HostAddress>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\HostAddress[] $var
      * @return $this
      */
     public function setHostAddresses($var)

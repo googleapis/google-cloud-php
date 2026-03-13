@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Network configuration for the Dataproc Metastore service.
@@ -37,7 +37,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $consumers
+     *     @type \Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer[] $consumers
      *           Immutable. The consumer-side network configuration for the Dataproc
      *           Metastore instance.
      *     @type bool $custom_routes_enabled
@@ -55,7 +55,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>
      */
     public function getConsumers()
     {
@@ -67,7 +67,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer[] $var
      * @return $this
      */
     public function setConsumers($var)

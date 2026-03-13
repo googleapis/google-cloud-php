@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filter specifications for data stores.
@@ -39,7 +39,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_stores
+     *     @type string[] $data_stores
      *           Optional. Data Stores where the boosting configuration is applied. The full
      *           names of the referenced data stores. Formats:
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`
@@ -62,7 +62,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/dataStores/{data_store}`
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataStores()
     {
@@ -76,7 +76,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/dataStores/{data_store}`
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataStores($var)

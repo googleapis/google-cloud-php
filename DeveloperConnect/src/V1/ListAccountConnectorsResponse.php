@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing AccountConnectors
@@ -40,11 +40,11 @@ class ListAccountConnectorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DeveloperConnect\V1\AccountConnector>|\Google\Protobuf\Internal\RepeatedField $account_connectors
+     *     @type \Google\Cloud\DeveloperConnect\V1\AccountConnector[] $account_connectors
      *           The list of AccountConnectors
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListAccountConnectorsResponse extends \Google\Protobuf\Internal\Message
      * The list of AccountConnectors
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.AccountConnector account_connectors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeveloperConnect\V1\AccountConnector>
      */
     public function getAccountConnectors()
     {
@@ -68,7 +68,7 @@ class ListAccountConnectorsResponse extends \Google\Protobuf\Internal\Message
      * The list of AccountConnectors
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.AccountConnector account_connectors = 1;</code>
-     * @param array<\Google\Cloud\DeveloperConnect\V1\AccountConnector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeveloperConnect\V1\AccountConnector[] $var
      * @return $this
      */
     public function setAccountConnectors($var)
@@ -109,7 +109,7 @@ class ListAccountConnectorsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListAccountConnectorsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

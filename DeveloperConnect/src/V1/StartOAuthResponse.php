@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for responding to starting an OAuth flow.
@@ -71,7 +71,7 @@ class StartOAuthResponse extends \Google\Protobuf\Internal\Message
      *           Please refer to https://datatracker.ietf.org/doc/html/rfc7636#section-4.2
      *     @type string $client_id
      *           The client ID to the OAuth App of the service provider.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           The list of scopes requested by the application.
      *     @type string $auth_uri
      *           The authorization server URL to the OAuth flow of the service provider.
@@ -223,7 +223,7 @@ class StartOAuthResponse extends \Google\Protobuf\Internal\Message
      * The list of scopes requested by the application.
      *
      * Generated from protobuf field <code>repeated string scopes = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -234,7 +234,7 @@ class StartOAuthResponse extends \Google\Protobuf\Internal\Message
      * The list of scopes requested by the application.
      *
      * Generated from protobuf field <code>repeated string scopes = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

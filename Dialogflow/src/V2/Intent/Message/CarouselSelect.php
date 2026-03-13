@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The card for presenting a carousel of options to select from.
@@ -28,7 +28,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item[] $items
      *           Required. Carousel items.
      * }
      */
@@ -41,7 +41,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
      * Required. Carousel items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item>
      */
     public function getItems()
     {
@@ -52,7 +52,7 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
      * Required. Carousel items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.CarouselSelect.Item items = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect\Item[] $var
      * @return $this
      */
     public function setItems($var)
@@ -64,5 +64,4 @@ class CarouselSelect extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the parameters of a conversational query.
@@ -234,7 +234,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           used.
      *     @type \Google\Type\LatLng $geo_location
      *           The geo location of this conversational query.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $session_entity_types
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SessionEntityType[] $session_entity_types
      *           Additional session entity types to replace or extend developer entity types
      *           with. The entity synonyms apply to all languages and persist for the
      *           session of this query.
@@ -303,7 +303,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           Google's specified headers are not allowed. Including: "Host",
      *           "Content-Length", "Connection", "From", "User-Agent", "Accept-Encoding",
      *           "If-Modified-Since", "If-None-Match", "X-Forwarded-For", etc.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $flow_versions
+     *     @type string[] $flow_versions
      *           A list of flow versions to override for the request.
      *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
@@ -440,7 +440,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SessionEntityType session_entity_types = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\SessionEntityType>
      */
     public function getSessionEntityTypes()
     {
@@ -453,7 +453,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SessionEntityType session_entity_types = 3;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SessionEntityType[] $var
      * @return $this
      */
     public function setSessionEntityTypes($var)
@@ -778,7 +778,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * list.
      *
      * Generated from protobuf field <code>repeated string flow_versions = 14 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFlowVersions()
     {
@@ -795,7 +795,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * list.
      *
      * Generated from protobuf field <code>repeated string flow_versions = 14 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFlowVersions($var)

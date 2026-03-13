@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Denotes one dataAttribute in a dataTaxonomy, for example, PII.
@@ -15,9 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * ```
  * PII
  *   - ResourceAccessSpec :
- *                 - readers :foo&#64;bar.com
+ *                 - readers :foo\@bar.com
  *   - DataAccessSpec :
- *                 - readers :bar&#64;foo.com
+ *                 - readers :bar\@foo.com
  * ```
  *
  * @deprecated

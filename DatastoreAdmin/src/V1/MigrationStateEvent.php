@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An event signifying a change in state of a [migration from Cloud Datastore to

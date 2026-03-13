@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a SearchKnowledge answer.
@@ -54,7 +54,7 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      *           the search query
      *     @type int $answer_type
      *           The type of the answer.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer\AnswerSource>|\Google\Protobuf\Internal\RepeatedField $answer_sources
+     *     @type \Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer\AnswerSource[] $answer_sources
      *           All sources used to generate the answer.
      *     @type string $answer_record
      *           The name of the answer record.
@@ -125,7 +125,7 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      * All sources used to generate the answer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeAnswer.AnswerSource answer_sources = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer\AnswerSource>
      */
     public function getAnswerSources()
     {
@@ -136,7 +136,7 @@ class SearchKnowledgeAnswer extends \Google\Protobuf\Internal\Message
      * All sources used to generate the answer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeAnswer.AnswerSource answer_sources = 3;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer\AnswerSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer\AnswerSource[] $var
      * @return $this
      */
     public function setAnswerSources($var)

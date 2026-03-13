@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the current validation results.
@@ -29,7 +29,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\Validation>|\Google\Protobuf\Internal\RepeatedField $validations
+     *     @type \Google\Cloud\Datastream\V1\Validation[] $validations
      *           A list of validations (includes both executed as well as not executed
      *           validations).
      * }
@@ -44,7 +44,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * validations).
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Validation validations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\Validation>
      */
     public function getValidations()
     {
@@ -56,7 +56,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * validations).
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Validation validations = 1;</code>
-     * @param array<\Google\Cloud\Datastream\V1\Validation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\Validation[] $var
      * @return $this
      */
     public function setValidations($var)

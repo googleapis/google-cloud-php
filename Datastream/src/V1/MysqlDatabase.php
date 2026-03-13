@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MySQL database.
@@ -36,7 +36,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
      *
      *     @type string $database
      *           Database name.
-     *     @type array<\Google\Cloud\Datastream\V1\MysqlTable>|\Google\Protobuf\Internal\RepeatedField $mysql_tables
+     *     @type \Google\Cloud\Datastream\V1\MysqlTable[] $mysql_tables
      *           Tables in the database.
      * }
      */
@@ -75,7 +75,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
      * Tables in the database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlTable mysql_tables = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\MysqlTable>
      */
     public function getMysqlTables()
     {
@@ -86,7 +86,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
      * Tables in the database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlTable mysql_tables = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\MysqlTable>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\MysqlTable[] $var
      * @return $this
      */
     public function setMysqlTables($var)

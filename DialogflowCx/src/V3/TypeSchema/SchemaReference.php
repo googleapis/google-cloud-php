@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\TypeSchema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A reference to the schema of an existing tool.
@@ -106,5 +106,4 @@ class SchemaReference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

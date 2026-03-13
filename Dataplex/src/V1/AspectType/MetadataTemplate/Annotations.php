@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of the annotations of a field.
@@ -81,7 +81,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
      *           * richText: The field must be interpreted as a rich text field.
      *           * url: A fully qualified URL link.
      *           * resource: A service qualified resource reference.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $string_values
+     *     @type string[] $string_values
      *           Optional. Suggested hints for string fields. You can use them to
      *           suggest values to users through console.
      * }
@@ -238,7 +238,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
      * suggest values to users through console.
      *
      * Generated from protobuf field <code>repeated string string_values = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStringValues()
     {
@@ -250,7 +250,7 @@ class Annotations extends \Google\Protobuf\Internal\Message
      * suggest values to users through console.
      *
      * Generated from protobuf field <code>repeated string string_values = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStringValues($var)
@@ -262,5 +262,4 @@ class Annotations extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

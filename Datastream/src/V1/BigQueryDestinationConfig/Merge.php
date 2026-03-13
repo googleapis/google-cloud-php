@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\BigQueryDestinationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Merge mode defines that all changes to a table will be merged at the
@@ -31,5 +31,4 @@ class Merge extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

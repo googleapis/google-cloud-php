@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The evaluation metrics for smart reply model.
@@ -46,7 +46,7 @@ class SmartReplyMetrics extends \Google\Protobuf\Internal\Message
      *           Percentage of target participant messages in the evaluation dataset for
      *           which similar messages have appeared at least once in the allowlist. Should
      *           be [0, 1].
-     *     @type array<\Google\Cloud\Dialogflow\V2\SmartReplyMetrics\TopNMetrics>|\Google\Protobuf\Internal\RepeatedField $top_n_metrics
+     *     @type \Google\Cloud\Dialogflow\V2\SmartReplyMetrics\TopNMetrics[] $top_n_metrics
      *           Metrics of top n smart replies, sorted by [TopNMetric.n][].
      *     @type int|string $conversation_count
      *           Total number of conversations used to generate this metric.
@@ -91,7 +91,7 @@ class SmartReplyMetrics extends \Google\Protobuf\Internal\Message
      * Metrics of top n smart replies, sorted by [TopNMetric.n][].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SmartReplyMetrics.TopNMetrics top_n_metrics = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SmartReplyMetrics\TopNMetrics>
      */
     public function getTopNMetrics()
     {
@@ -102,7 +102,7 @@ class SmartReplyMetrics extends \Google\Protobuf\Internal\Message
      * Metrics of top n smart replies, sorted by [TopNMetric.n][].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SmartReplyMetrics.TopNMetrics top_n_metrics = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SmartReplyMetrics\TopNMetrics>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SmartReplyMetrics\TopNMetrics[] $var
      * @return $this
      */
     public function setTopNMetrics($var)

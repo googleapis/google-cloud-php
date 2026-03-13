@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AggregateIssueStatsRequest represents the input to the AggregateIssueStats
@@ -89,7 +89,7 @@ class AggregateIssueStatsRequest extends \Google\Protobuf\Internal\Message
      *           Example: `container="projects/123" OR container="projects/456"`
      *           Example: `(container="projects/123" OR
      *                     container="projects/456") AND location="us-east1"`
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>|\Google\Protobuf\Internal\RepeatedField $signal_type_groups
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup[] $signal_type_groups
      *           Optional. Lists of signal types that are issues.
      *     @type \Google\Type\Date $baseline_date
      *           Optional. The baseline date w.r.t. which the delta counts are calculated.
@@ -194,7 +194,7 @@ class AggregateIssueStatsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Lists of signal types that are issues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalTypeGroup signal_type_groups = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>
      */
     public function getSignalTypeGroups()
     {
@@ -205,7 +205,7 @@ class AggregateIssueStatsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Lists of signal types that are issues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalTypeGroup signal_type_groups = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup[] $var
      * @return $this
      */
     public function setSignalTypeGroups($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class ListConversationDatasetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\ConversationDataset>|\Google\Protobuf\Internal\RepeatedField $conversation_datasets
+     *     @type \Google\Cloud\Dialogflow\V2\ConversationDataset[] $conversation_datasets
      *           The list of datasets to return.
      *     @type string $next_page_token
      *           The token to use to retrieve the next page of results, or empty if there
@@ -52,7 +52,7 @@ class ListConversationDatasetsResponse extends \Google\Protobuf\Internal\Message
      * The list of datasets to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ConversationDataset conversation_datasets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\ConversationDataset>
      */
     public function getConversationDatasets()
     {
@@ -63,7 +63,7 @@ class ListConversationDatasetsResponse extends \Google\Protobuf\Internal\Message
      * The list of datasets to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ConversationDataset conversation_datasets = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\ConversationDataset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\ConversationDataset[] $var
      * @return $this
      */
     public function setConversationDatasets($var)

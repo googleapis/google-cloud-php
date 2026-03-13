@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Info associated with SCC signals.
@@ -50,7 +50,7 @@ class SCCInfo extends \Google\Protobuf\Internal\Message
      *           Name of the signal.
      *     @type string $category
      *           Name by which SCC calls this signal.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\RegulatoryStandard>|\Google\Protobuf\Internal\RepeatedField $regulatory_standards
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\RegulatoryStandard[] $regulatory_standards
      *           Compliances that are associated with the signal.
      *     @type string $external_uri
      *           External URI which points to a SCC page associated with the signal.
@@ -117,7 +117,7 @@ class SCCInfo extends \Google\Protobuf\Internal\Message
      * Compliances that are associated with the signal.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.RegulatoryStandard regulatory_standards = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\RegulatoryStandard>
      */
     public function getRegulatoryStandards()
     {
@@ -128,7 +128,7 @@ class SCCInfo extends \Google\Protobuf\Internal\Message
      * Compliances that are associated with the signal.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.RegulatoryStandard regulatory_standards = 3;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\RegulatoryStandard>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\RegulatoryStandard[] $var
      * @return $this
      */
     public function setRegulatoryStandards($var)

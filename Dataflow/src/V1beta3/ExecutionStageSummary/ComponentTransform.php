@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Description of a transform executed as part of an execution stage.
@@ -136,5 +136,4 @@ class ComponentTransform extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

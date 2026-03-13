@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A selector that chooses target cluster for jobs based on metadata.

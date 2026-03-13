@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tags contain custom metadata and are attached to Data Catalog resources. Tags

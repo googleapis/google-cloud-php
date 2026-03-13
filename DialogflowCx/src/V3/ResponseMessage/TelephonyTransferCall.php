@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ResponseMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the signal that telles the client to transfer the phone call
@@ -76,5 +76,4 @@ class TelephonyTransferCall extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

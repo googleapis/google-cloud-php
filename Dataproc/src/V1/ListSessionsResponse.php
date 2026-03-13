@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of interactive sessions.
@@ -35,7 +35,7 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\Session>|\Google\Protobuf\Internal\RepeatedField $sessions
+     *     @type \Google\Cloud\Dataproc\V1\Session[] $sessions
      *           Output only. The sessions from the specified collection.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token`, to retrieve the next page.
@@ -51,7 +51,7 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The sessions from the specified collection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Session sessions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\Session>
      */
     public function getSessions()
     {
@@ -62,7 +62,7 @@ class ListSessionsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The sessions from the specified collection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Session sessions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\Session>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\Session[] $var
      * @return $this
      */
     public function setSessions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Compute resources associated with the analyze interactive workloads.
@@ -140,5 +140,4 @@ class ComputeResources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

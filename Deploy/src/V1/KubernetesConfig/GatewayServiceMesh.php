@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\KubernetesConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the Kubernetes Gateway API service mesh configuration.
@@ -342,5 +342,4 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

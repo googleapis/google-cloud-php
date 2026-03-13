@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generators contain prompt to be sent to the LLM model to generate text. The
@@ -83,7 +83,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           custom placeholders which will be resolved during fulfillment.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Phrase $prompt_text
      *           Required. Prompt for the LLM model.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder>|\Google\Protobuf\Internal\RepeatedField $placeholders
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder[] $placeholders
      *           Optional. List of custom placeholders in the prompt text.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $llm_model_settings
      *           The LLM model settings.
@@ -204,7 +204,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Optional. List of custom placeholders in the prompt text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Generator.Placeholder placeholders = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder>
      */
     public function getPlaceholders()
     {
@@ -215,7 +215,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Optional. List of custom placeholders in the prompt text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Generator.Placeholder placeholders = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Generator\Placeholder[] $var
      * @return $this
      */
     public function setPlaceholders($var)

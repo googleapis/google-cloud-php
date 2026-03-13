@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\WebhookRequest\IntentInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a value for an intent parameter.
@@ -112,5 +112,4 @@ class IntentParameterValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Capture the resource details for resources that are included in the delta

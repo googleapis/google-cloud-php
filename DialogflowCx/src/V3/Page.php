@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Dialogflow CX conversation (session) can be described and visualized as a
@@ -153,7 +153,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Form $form
      *           The form associated with the page, used for collecting parameters
      *           relevant to the page.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $transition_route_groups
+     *     @type string[] $transition_route_groups
      *           Ordered list of
      *           [`TransitionRouteGroups`][google.cloud.dialogflow.cx.v3.TransitionRouteGroup]
      *           added to the page. Transition route groups must be unique within a page. If
@@ -169,7 +169,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *           or
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/transitionRouteGroups/<TransitionRouteGroupID>`
      *           for agent-level groups.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>|\Google\Protobuf\Internal\RepeatedField $transition_routes
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionRoute[] $transition_routes
      *           A list of transitions for the transition rules of this page.
      *           They route the conversation to another page in the same flow, or another
      *           flow.
@@ -190,7 +190,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *               [transition route
      *               groups][google.cloud.dialogflow.cx.v3.Page.transition_route_groups]
      *               with only condition specified.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>|\Google\Protobuf\Internal\RepeatedField $event_handlers
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\EventHandler[] $event_handlers
      *           Handlers associated with the page to handle events such as webhook errors,
      *           no match or no input.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings $advanced_settings
@@ -387,7 +387,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * for agent-level groups.
      *
      * Generated from protobuf field <code>repeated string transition_route_groups = 11 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTransitionRouteGroups()
     {
@@ -412,7 +412,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * for agent-level groups.
      *
      * Generated from protobuf field <code>repeated string transition_route_groups = 11 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTransitionRouteGroups($var)
@@ -446,7 +446,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *     with only condition specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRoute transition_routes = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>
      */
     public function getTransitionRoutes()
     {
@@ -476,7 +476,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *     with only condition specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRoute transition_routes = 9;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRoute[] $var
      * @return $this
      */
     public function setTransitionRoutes($var)
@@ -492,7 +492,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * no match or no input.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EventHandler event_handlers = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>
      */
     public function getEventHandlers()
     {
@@ -504,7 +504,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * no match or no input.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EventHandler event_handlers = 10;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\EventHandler[] $var
      * @return $this
      */
     public function setEventHandlers($var)

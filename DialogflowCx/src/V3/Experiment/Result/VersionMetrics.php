@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Experiment\Result;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Version variant and associated metrics.
@@ -47,7 +47,7 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
      *           The name of the flow [Version][google.cloud.dialogflow.cx.v3.Version].
      *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/versions/<VersionID>`.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\Metric[] $metrics
      *           The metrics and corresponding confidence intervals in the inference
      *           result.
      *     @type int $session_count
@@ -94,7 +94,7 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
      * result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Experiment.Result.Metric metrics = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\Metric>
      */
     public function getMetrics()
     {
@@ -106,7 +106,7 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
      * result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Experiment.Result.Metric metrics = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\Metric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\Metric[] $var
      * @return $this
      */
     public function setMetrics($var)
@@ -144,5 +144,4 @@ class VersionMetrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

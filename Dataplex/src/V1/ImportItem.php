@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An object that describes the values that you want to set for an entry and its
@@ -60,11 +60,11 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * The aspects to modify. Supports the following syntaxes:
      * * `{aspect_type_reference}`: matches aspects that belong to the specified
      * aspect type and are attached directly to the entry.
-     * * `{aspect_type_reference}&#64;{path}`: matches aspects that belong to the
+     * * `{aspect_type_reference}\@{path}`: matches aspects that belong to the
      * specified aspect type and path.
-     * * `{aspect_type_reference}&#64;*` : matches aspects of the given type for all
+     * * `{aspect_type_reference}\@*` : matches aspects of the given type for all
      * paths.
-     * * `*&#64;path` : matches aspects of all types on the given path.
+     * * `*\@path` : matches aspects of all types on the given path.
      * Replace `{aspect_type_reference}` with a reference to the aspect type, in
      * the format
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`.
@@ -106,15 +106,15 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      *           metadata import file with the values and timestamps that exist in your
      *           project. For more information, see [Comparison
      *           logic](https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_keys
+     *     @type string[] $aspect_keys
      *           The aspects to modify. Supports the following syntaxes:
      *           * `{aspect_type_reference}`: matches aspects that belong to the specified
      *           aspect type and are attached directly to the entry.
-     *           * `{aspect_type_reference}&#64;{path}`: matches aspects that belong to the
+     *           * `{aspect_type_reference}\@{path}`: matches aspects that belong to the
      *           specified aspect type and path.
-     *           * `{aspect_type_reference}&#64;*` : matches aspects of the given type for all
+     *           * `{aspect_type_reference}\@*` : matches aspects of the given type for all
      *           paths.
-     *           * `*&#64;path` : matches aspects of all types on the given path.
+     *           * `*\@path` : matches aspects of all types on the given path.
      *           Replace `{aspect_type_reference}` with a reference to the aspect type, in
      *           the format
      *           `{project_id_or_number}.{location_id}.{aspect_type_id}`.
@@ -275,11 +275,11 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * The aspects to modify. Supports the following syntaxes:
      * * `{aspect_type_reference}`: matches aspects that belong to the specified
      * aspect type and are attached directly to the entry.
-     * * `{aspect_type_reference}&#64;{path}`: matches aspects that belong to the
+     * * `{aspect_type_reference}\@{path}`: matches aspects that belong to the
      * specified aspect type and path.
-     * * `{aspect_type_reference}&#64;*` : matches aspects of the given type for all
+     * * `{aspect_type_reference}\@*` : matches aspects of the given type for all
      * paths.
-     * * `*&#64;path` : matches aspects of all types on the given path.
+     * * `*\@path` : matches aspects of all types on the given path.
      * Replace `{aspect_type_reference}` with a reference to the aspect type, in
      * the format
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`.
@@ -289,7 +289,7 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * required aspects of an entry.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAspectKeys()
     {
@@ -300,11 +300,11 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * The aspects to modify. Supports the following syntaxes:
      * * `{aspect_type_reference}`: matches aspects that belong to the specified
      * aspect type and are attached directly to the entry.
-     * * `{aspect_type_reference}&#64;{path}`: matches aspects that belong to the
+     * * `{aspect_type_reference}\@{path}`: matches aspects that belong to the
      * specified aspect type and path.
-     * * `{aspect_type_reference}&#64;*` : matches aspects of the given type for all
+     * * `{aspect_type_reference}\@*` : matches aspects of the given type for all
      * paths.
-     * * `*&#64;path` : matches aspects of all types on the given path.
+     * * `*\@path` : matches aspects of all types on the given path.
      * Replace `{aspect_type_reference}` with a reference to the aspect type, in
      * the format
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`.
@@ -314,7 +314,7 @@ class ImportItem extends \Google\Protobuf\Internal\Message
      * required aspects of an entry.
      *
      * Generated from protobuf field <code>repeated string aspect_keys = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAspectKeys($var)

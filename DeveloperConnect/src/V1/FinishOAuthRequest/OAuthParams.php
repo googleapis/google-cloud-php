@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1\FinishOAuthRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The params returned by non-Google OAuth 2.0 flow redirect.
@@ -102,5 +102,4 @@ class OAuthParams extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

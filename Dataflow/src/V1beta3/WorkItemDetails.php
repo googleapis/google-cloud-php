@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about an individual work item execution.
@@ -86,7 +86,7 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
      *           State of this work item.
      *     @type \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries $progress
      *           Progress of this work item.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Cloud\Dataflow\V1beta3\MetricUpdate[] $metrics
      *           Metrics for this work item.
      *     @type \Google\Cloud\Dataflow\V1beta3\StragglerInfo $straggler_info
      *           Information about straggler detections for this work item.
@@ -291,7 +291,7 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
      * Metrics for this work item.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>
      */
     public function getMetrics()
     {
@@ -302,7 +302,7 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
      * Metrics for this work item.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 7;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\MetricUpdate[] $var
      * @return $this
      */
     public function setMetrics($var)

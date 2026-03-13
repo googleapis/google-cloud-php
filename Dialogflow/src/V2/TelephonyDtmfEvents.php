@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A wrapper of repeated TelephonyDtmf digits.
@@ -28,7 +28,7 @@ class TelephonyDtmfEvents extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $dtmf_events
+     *     @type int[] $dtmf_events
      *           A sequence of TelephonyDtmf digits.
      * }
      */
@@ -41,7 +41,7 @@ class TelephonyDtmfEvents extends \Google\Protobuf\Internal\Message
      * A sequence of TelephonyDtmf digits.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.TelephonyDtmf dtmf_events = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDtmfEvents()
     {
@@ -52,7 +52,7 @@ class TelephonyDtmfEvents extends \Google\Protobuf\Internal\Message
      * A sequence of TelephonyDtmf digits.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.TelephonyDtmf dtmf_events = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDtmfEvents($var)

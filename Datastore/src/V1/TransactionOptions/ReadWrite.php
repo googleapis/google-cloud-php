@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1\TransactionOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options specific to read / write transactions.
@@ -64,5 +64,4 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

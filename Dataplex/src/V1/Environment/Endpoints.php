@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Environment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * URI Endpoints to access sessions associated with the Environment.
@@ -98,5 +98,4 @@ class Endpoints extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

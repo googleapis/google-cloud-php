@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List Entries response.
@@ -35,7 +35,7 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Dataplex\V1\Entry[] $entries
      *           The list of entries under the given parent location.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
      * The list of entries under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Entry entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\Entry>
      */
     public function getEntries()
     {
@@ -62,7 +62,7 @@ class ListEntriesResponse extends \Google\Protobuf\Internal\Message
      * The list of entries under the given parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Entry entries = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\Entry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\Entry[] $var
      * @return $this
      */
     public function setEntries($var)

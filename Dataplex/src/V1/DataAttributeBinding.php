@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DataAttributeBinding represents binding of attributes to resources. Eg: Bind
@@ -126,11 +126,11 @@ class DataAttributeBinding extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity_id}
      *           Must belong in the same project and region as the attribute binding, and
      *           there can only exist one active binding for a resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type string[] $attributes
      *           Optional. List of attributes to be associated with the resource, provided
      *           in the form:
      *           projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
-     *     @type array<\Google\Cloud\Dataplex\V1\DataAttributeBinding\Path>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type \Google\Cloud\Dataplex\V1\DataAttributeBinding\Path[] $paths
      *           Optional. The list of paths for items within the associated resource (eg.
      *           columns and partitions within a table) along with attribute bindings.
      * }
@@ -429,7 +429,7 @@ class DataAttributeBinding extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
      *
      * Generated from protobuf field <code>repeated string attributes = 110 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAttributes()
     {
@@ -442,7 +442,7 @@ class DataAttributeBinding extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
      *
      * Generated from protobuf field <code>repeated string attributes = 110 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAttributes($var)
@@ -458,7 +458,7 @@ class DataAttributeBinding extends \Google\Protobuf\Internal\Message
      * columns and partitions within a table) along with attribute bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataAttributeBinding.Path paths = 120 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataAttributeBinding\Path>
      */
     public function getPaths()
     {
@@ -470,7 +470,7 @@ class DataAttributeBinding extends \Google\Protobuf\Internal\Message
      * columns and partitions within a table) along with attribute bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataAttributeBinding.Path paths = 120 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataAttributeBinding\Path>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataAttributeBinding\Path[] $var
      * @return $this
      */
     public function setPaths($var)

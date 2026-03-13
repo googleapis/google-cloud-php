@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An `Automation` resource in the Cloud Deploy API.
@@ -178,7 +178,7 @@ class Automation extends \Google\Protobuf\Internal\Message
      *           creates Cloud Deploy release and rollout resources.
      *     @type \Google\Cloud\Deploy\V1\AutomationResourceSelector $selector
      *           Required. Selected resources to which the automation will be applied.
-     *     @type array<\Google\Cloud\Deploy\V1\AutomationRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Deploy\V1\AutomationRule[] $rules
      *           Required. List of Automation rules associated with the Automation resource.
      *           Must have at least one rule and limited to 250 rules per Delivery Pipeline.
      *           Note: the order of the rules here is not the same as the order of
@@ -567,7 +567,7 @@ class Automation extends \Google\Protobuf\Internal\Message
      * execution.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.AutomationRule rules = 14 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\AutomationRule>
      */
     public function getRules()
     {
@@ -581,7 +581,7 @@ class Automation extends \Google\Protobuf\Internal\Message
      * execution.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.AutomationRule rules = 14 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Deploy\V1\AutomationRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\AutomationRule[] $var
      * @return $this
      */
     public function setRules($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The profile information for each field type.
@@ -57,7 +57,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      *           rows. Not available for complex non-groupable field type, including
      *           RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE
      *           mode.
-     *     @type array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue>|\Google\Protobuf\Internal\RepeatedField $top_n_values
+     *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue[] $top_n_values
      *           Output only. The list of top N non-null values, frequency and ratio
      *           with which they occur in the scanned data. N is 10 or equal to the
      *           number of distinct values in the field, whichever is smaller. Not
@@ -144,7 +144,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      * ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue>
      */
     public function getTopNValues()
     {
@@ -159,7 +159,7 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
      * ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field.ProfileInfo.TopNValue top_n_values = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo\TopNValue[] $var
      * @return $this
      */
     public function setTopNValues($var)
@@ -272,5 +272,4 @@ class ProfileInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

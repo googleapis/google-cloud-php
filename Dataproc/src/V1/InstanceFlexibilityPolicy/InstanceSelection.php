@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines machines types and a rank to which the machines types belong.
@@ -38,7 +38,7 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $machine_types
+     *     @type string[] $machine_types
      *           Optional. Full machine-type names, e.g. "n1-standard-16".
      *     @type int $rank
      *           Optional. Preference of this instance selection. Lower number means
@@ -57,7 +57,7 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
      * Optional. Full machine-type names, e.g. "n1-standard-16".
      *
      * Generated from protobuf field <code>repeated string machine_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMachineTypes()
     {
@@ -68,7 +68,7 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
      * Optional. Full machine-type names, e.g. "n1-standard-16".
      *
      * Generated from protobuf field <code>repeated string machine_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMachineTypes($var)
@@ -114,5 +114,4 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

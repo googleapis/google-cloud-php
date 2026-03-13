@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Execution configuration for a workload.
@@ -103,7 +103,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Network URI to connect workload to.
      *     @type string $subnetwork_uri
      *           Optional. Subnetwork URI to connect workload to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type string[] $network_tags
      *           Optional. Tags used for network traffic control.
      *     @type string $kms_key
      *           Optional. The Cloud KMS key to use for encryption.
@@ -246,7 +246,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Optional. Tags used for network traffic control.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkTags()
     {
@@ -257,7 +257,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Optional. Tags used for network traffic control.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkTags($var)

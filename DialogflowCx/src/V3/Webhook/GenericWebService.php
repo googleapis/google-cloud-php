@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Webhook;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents configuration for a generic web service.
@@ -155,7 +155,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      *           When the same header name is specified in both `request_headers` and
      *           `secret_versions_for_request_headers`, the value in
      *           `secret_versions_for_request_headers` will be used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_ca_certs
+     *     @type string[] $allowed_ca_certs
      *           Optional. Specifies a list of allowed custom CA certificates (in DER
      *           format) for HTTPS verification. This overrides the default SSL trust
      *           store. If this is empty or unspecified, Dialogflow will use Google's
@@ -396,7 +396,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated bytes allowed_ca_certs = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedCaCerts()
     {
@@ -418,7 +418,7 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated bytes allowed_ca_certs = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedCaCerts($var)
@@ -652,5 +652,4 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

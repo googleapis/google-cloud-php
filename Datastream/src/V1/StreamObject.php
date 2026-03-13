@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A specific stream object (e.g a specific DB table).
@@ -72,7 +72,7 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      *           Output only. The last update time of the object.
      *     @type string $display_name
      *           Required. Display name.
-     *     @type array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Datastream\V1\Error[] $errors
      *           Output only. Active errors on the object.
      *     @type \Google\Cloud\Datastream\V1\BackfillJob $backfill_job
      *           The latest backfill job that was initiated for the stream object.
@@ -213,7 +213,7 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      * Output only. Active errors on the object.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\Error>
      */
     public function getErrors()
     {
@@ -224,7 +224,7 @@ class StreamObject extends \Google\Protobuf\Internal\Message
      * Output only. Active errors on the object.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\Error[] $var
      * @return $this
      */
     public function setErrors($var)

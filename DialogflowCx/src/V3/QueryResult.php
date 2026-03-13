@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the result of a conversational query.
@@ -212,13 +212,13 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           * MapValue value: If parameter's entity type is a composite entity then use
      *           map from composite entity property names to property values, otherwise,
      *           use parameter value.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $response_messages
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $response_messages
      *           The list of rich messages returned to the client. Responses vary from
      *           simple text messages to more sophisticated, structured payloads used
      *           to drive complex logic.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $webhook_statuses
+     *     @type \Google\Rpc\Status[] $webhook_statuses
      *           The list of webhook call status in the order of call sequence.
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $webhook_payloads
+     *     @type \Google\Protobuf\Struct[] $webhook_payloads
      *           The list of webhook payload in
      *           [WebhookResponse.payload][google.cloud.dialogflow.cx.v3.WebhookResponse.payload],
      *           in the order of call sequence. If some webhook call fails or doesn't return
@@ -559,7 +559,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * to drive complex logic.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage response_messages = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>
      */
     public function getResponseMessages()
     {
@@ -572,7 +572,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * to drive complex logic.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage response_messages = 4;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $var
      * @return $this
      */
     public function setResponseMessages($var)
@@ -587,7 +587,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * The list of webhook call status in the order of call sequence.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status webhook_statuses = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getWebhookStatuses()
     {
@@ -598,7 +598,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * The list of webhook call status in the order of call sequence.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status webhook_statuses = 13;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setWebhookStatuses($var)
@@ -616,7 +616,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * any payload, an empty `Struct` would be used instead.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct webhook_payloads = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getWebhookPayloads()
     {
@@ -630,7 +630,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * any payload, an empty `Struct` would be used instead.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct webhook_payloads = 6;</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setWebhookPayloads($var)

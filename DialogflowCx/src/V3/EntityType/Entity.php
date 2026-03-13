@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\EntityType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An **entity entry** for an associated entity type.
@@ -54,7 +54,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           For `KIND_LIST` entity types:
      *           *   A string that can contain references to other entity types (with or
      *               without aliases).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type string[] $synonyms
      *           Required. A collection of value synonyms. For example, if the entity type
      *           is *vegetable*, and `value` is *scallions*, a synonym could be *green
      *           onions*.
@@ -115,7 +115,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * *   This collection must contain exactly one synonym equal to `value`.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSynonyms()
     {
@@ -130,7 +130,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * *   This collection must contain exactly one synonym equal to `value`.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSynonyms($var)
@@ -142,5 +142,4 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

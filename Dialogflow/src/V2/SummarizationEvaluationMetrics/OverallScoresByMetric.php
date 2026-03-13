@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Overall performance per metric. This is the aggregated score for each
@@ -66,5 +66,4 @@ class OverallScoresByMetric extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

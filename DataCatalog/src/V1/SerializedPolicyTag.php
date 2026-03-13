@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A nested protocol buffer that represents a policy tag and all its
@@ -61,7 +61,7 @@ class SerializedPolicyTag extends \Google\Protobuf\Internal\Message
      *           Description of the serialized policy tag. At most
      *           2000 bytes when encoded in UTF-8. If not set, defaults to an
      *           empty description.
-     *     @type array<\Google\Cloud\DataCatalog\V1\SerializedPolicyTag>|\Google\Protobuf\Internal\RepeatedField $child_policy_tags
+     *     @type \Google\Cloud\DataCatalog\V1\SerializedPolicyTag[] $child_policy_tags
      *           Children of the policy tag, if any.
      * }
      */
@@ -160,7 +160,7 @@ class SerializedPolicyTag extends \Google\Protobuf\Internal\Message
      * Children of the policy tag, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SerializedPolicyTag child_policy_tags = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\SerializedPolicyTag>
      */
     public function getChildPolicyTags()
     {
@@ -171,7 +171,7 @@ class SerializedPolicyTag extends \Google\Protobuf\Internal\Message
      * Children of the policy tag, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SerializedPolicyTag child_policy_tags = 4;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\SerializedPolicyTag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\SerializedPolicyTag[] $var
      * @return $this
      */
     public function setChildPolicyTags($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataQualitySpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration of post scan actions of DataQualityScan.
@@ -126,5 +126,4 @@ class PostScanActions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

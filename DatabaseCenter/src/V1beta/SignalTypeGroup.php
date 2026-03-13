@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A group of signal types that specifies what the user is interested in.
@@ -42,7 +42,7 @@ class SignalTypeGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $display_name
      *           Required. The display name of a signal group.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $signal_types
+     *     @type int[] $signal_types
      *           Optional. List of signal types present in the group.
      * }
      */
@@ -81,7 +81,7 @@ class SignalTypeGroup extends \Google\Protobuf\Internal\Message
      * Optional. List of signal types present in the group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalType signal_types = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSignalTypes()
     {
@@ -92,7 +92,7 @@ class SignalTypeGroup extends \Google\Protobuf\Internal\Message
      * Optional. List of signal types present in the group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalType signal_types = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSignalTypes($var)

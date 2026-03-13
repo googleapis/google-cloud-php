@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Task;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User-specified config for running a Spark task.
@@ -66,10 +66,10 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      *           The query text.
      *           The execution args are used to declare a set of script variables
      *           (`set key="value";`).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
+     *     @type string[] $file_uris
      *           Optional. Cloud Storage URIs of files to be placed in the working
      *           directory of each executor.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $archive_uris
+     *     @type string[] $archive_uris
      *           Optional. Cloud Storage URIs of archives to be extracted into the working
      *           directory of each executor. Supported file types: .jar, .tar, .tar.gz,
      *           .tgz, and .zip.
@@ -266,7 +266,7 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      * directory of each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFileUris()
     {
@@ -278,7 +278,7 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      * directory of each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFileUris($var)
@@ -295,7 +295,7 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      * .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArchiveUris()
     {
@@ -308,7 +308,7 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
      * .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArchiveUris($var)
@@ -364,5 +364,4 @@ class SparkTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

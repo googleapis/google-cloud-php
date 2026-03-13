@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Confusion matrix of the model running the classification. Only applicable
@@ -28,7 +28,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $row
+     *     @type \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row[] $row
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.ConfusionMatrix.Row row = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row>
      */
     public function getRow()
     {
@@ -47,7 +47,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.ConfusionMatrix.Row row = 1;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row[] $var
      * @return $this
      */
     public function setRow($var)

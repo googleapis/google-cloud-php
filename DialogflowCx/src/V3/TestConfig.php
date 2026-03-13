@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents configurations for a test case.
@@ -50,7 +50,7 @@ class TestConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tracking_parameters
+     *     @type string[] $tracking_parameters
      *           Session parameters to be compared when calculating differences.
      *     @type string $flow
      *           Flow name to start the test case with.
@@ -77,7 +77,7 @@ class TestConfig extends \Google\Protobuf\Internal\Message
      * Session parameters to be compared when calculating differences.
      *
      * Generated from protobuf field <code>repeated string tracking_parameters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTrackingParameters()
     {
@@ -88,7 +88,7 @@ class TestConfig extends \Google\Protobuf\Internal\Message
      * Session parameters to be compared when calculating differences.
      *
      * Generated from protobuf field <code>repeated string tracking_parameters = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTrackingParameters($var)

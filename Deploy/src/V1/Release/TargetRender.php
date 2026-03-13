@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\Release;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of rendering for a single target.
@@ -226,5 +226,4 @@ class TargetRender extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

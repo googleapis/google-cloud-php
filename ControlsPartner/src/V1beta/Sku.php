@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the SKU a partner owns inside Google Cloud to sell to customers.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of Enumvalue, to be used for enum fields.
@@ -140,5 +140,4 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

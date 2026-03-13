@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AutomationRolloutMetadata contains Automation-related actions that
@@ -47,10 +47,10 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $promote_automation_run
      *           Output only. The name of the AutomationRun initiated by a promote release
      *           rule.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advance_automation_runs
+     *     @type string[] $advance_automation_runs
      *           Output only. The names of the AutomationRuns initiated by an advance
      *           rollout rule.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $repair_automation_runs
+     *     @type string[] $repair_automation_runs
      *           Output only. The names of the AutomationRuns initiated by a repair rollout
      *           rule.
      * }
@@ -93,7 +93,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
      * rollout rule.
      *
      * Generated from protobuf field <code>repeated string advance_automation_runs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdvanceAutomationRuns()
     {
@@ -105,7 +105,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
      * rollout rule.
      *
      * Generated from protobuf field <code>repeated string advance_automation_runs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdvanceAutomationRuns($var)
@@ -121,7 +121,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
      * rule.
      *
      * Generated from protobuf field <code>repeated string repair_automation_runs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRepairAutomationRuns()
     {
@@ -133,7 +133,7 @@ class AutomationRolloutMetadata extends \Google\Protobuf\Internal\Message
      * rule.
      *
      * Generated from protobuf field <code>repeated string repair_automation_runs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRepairAutomationRuns($var)

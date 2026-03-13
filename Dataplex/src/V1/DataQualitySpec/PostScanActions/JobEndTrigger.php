@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This trigger is triggered whenever a scan job run ends, regardless
@@ -31,5 +31,4 @@ class JobEndTrigger extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

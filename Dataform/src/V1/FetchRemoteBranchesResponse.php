@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `FetchRemoteBranches` response message.
@@ -28,7 +28,7 @@ class FetchRemoteBranchesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $branches
+     *     @type string[] $branches
      *           The remote repository's branch names.
      * }
      */
@@ -41,7 +41,7 @@ class FetchRemoteBranchesResponse extends \Google\Protobuf\Internal\Message
      * The remote repository's branch names.
      *
      * Generated from protobuf field <code>repeated string branches = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBranches()
     {
@@ -52,7 +52,7 @@ class FetchRemoteBranchesResponse extends \Google\Protobuf\Internal\Message
      * The remote repository's branch names.
      *
      * Generated from protobuf field <code>repeated string branches = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBranches($var)

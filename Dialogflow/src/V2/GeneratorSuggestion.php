@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Suggestion generated using a Generator.
@@ -35,7 +35,7 @@ class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
      *           Optional. Suggested summary.
      *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion $agent_coaching_suggestion
      *           Optional. Suggestion to coach the agent.
-     *     @type array<\Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo>|\Google\Protobuf\Internal\RepeatedField $tool_call_info
+     *     @type \Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo[] $tool_call_info
      *           Optional. List of request and response for tool calls executed.
      * }
      */
@@ -141,7 +141,7 @@ class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. List of request and response for tool calls executed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo tool_call_info = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo>
      */
     public function getToolCallInfo()
     {
@@ -152,7 +152,7 @@ class GeneratorSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. List of request and response for tool calls executed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GeneratorSuggestion.ToolCallInfo tool_call_info = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\GeneratorSuggestion\ToolCallInfo[] $var
      * @return $this
      */
     public function setToolCallInfo($var)

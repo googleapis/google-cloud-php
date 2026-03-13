@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Time windows within which actions are restricted. See the
@@ -46,9 +46,9 @@ class TimeWindows extends \Google\Protobuf\Internal\Message
      *     @type string $time_zone
      *           Required. The time zone in IANA format [IANA Time Zone
      *           Database](https://www.iana.org/time-zones) (e.g. America/New_York).
-     *     @type array<\Google\Cloud\Deploy\V1\OneTimeWindow>|\Google\Protobuf\Internal\RepeatedField $one_time_windows
+     *     @type \Google\Cloud\Deploy\V1\OneTimeWindow[] $one_time_windows
      *           Optional. One-time windows within which actions are restricted.
-     *     @type array<\Google\Cloud\Deploy\V1\WeeklyWindow>|\Google\Protobuf\Internal\RepeatedField $weekly_windows
+     *     @type \Google\Cloud\Deploy\V1\WeeklyWindow[] $weekly_windows
      *           Optional. Recurring weekly windows within which actions are restricted.
      * }
      */
@@ -89,7 +89,7 @@ class TimeWindows extends \Google\Protobuf\Internal\Message
      * Optional. One-time windows within which actions are restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.OneTimeWindow one_time_windows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\OneTimeWindow>
      */
     public function getOneTimeWindows()
     {
@@ -100,7 +100,7 @@ class TimeWindows extends \Google\Protobuf\Internal\Message
      * Optional. One-time windows within which actions are restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.OneTimeWindow one_time_windows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\OneTimeWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\OneTimeWindow[] $var
      * @return $this
      */
     public function setOneTimeWindows($var)
@@ -115,7 +115,7 @@ class TimeWindows extends \Google\Protobuf\Internal\Message
      * Optional. Recurring weekly windows within which actions are restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.WeeklyWindow weekly_windows = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\WeeklyWindow>
      */
     public function getWeeklyWindows()
     {
@@ -126,7 +126,7 @@ class TimeWindows extends \Google\Protobuf\Internal\Message
      * Optional. Recurring weekly windows within which actions are restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.WeeklyWindow weekly_windows = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\WeeklyWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\WeeklyWindow[] $var
      * @return $this
      */
     public function setWeeklyWindows($var)

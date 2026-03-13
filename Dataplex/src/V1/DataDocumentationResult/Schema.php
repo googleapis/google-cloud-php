@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataDocumentationResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Schema of the table with generated metadata of columns.
@@ -28,7 +28,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\DataDocumentationResult\Field>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult\Field[] $fields
      *           Output only. The list of columns.
      * }
      */
@@ -41,7 +41,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Output only. The list of columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataDocumentationResult.Field fields = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataDocumentationResult\Field>
      */
     public function getFields()
     {
@@ -52,7 +52,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Output only. The list of columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataDocumentationResult.Field fields = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataDocumentationResult\Field>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataDocumentationResult\Field[] $var
      * @return $this
      */
     public function setFields($var)
@@ -64,5 +64,4 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

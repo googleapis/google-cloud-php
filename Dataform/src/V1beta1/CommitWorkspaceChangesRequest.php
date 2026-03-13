@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `CommitWorkspaceChanges` request message.
@@ -53,7 +53,7 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The commit's author.
      *     @type string $commit_message
      *           Optional. The commit's message.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type string[] $paths
      *           Optional. Full file paths to commit including filename, rooted at workspace
      *           root. If left empty, all files will be committed.
      * }
@@ -156,7 +156,7 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      * root. If left empty, all files will be committed.
      *
      * Generated from protobuf field <code>repeated string paths = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPaths()
     {
@@ -168,7 +168,7 @@ class CommitWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      * root. If left empty, all files will be committed.
      *
      * Generated from protobuf field <code>repeated string paths = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPaths($var)

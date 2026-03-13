@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\KubernetesConfig\GatewayServiceMesh;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about route destinations for the Gateway API service mesh.
@@ -18,7 +18,7 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
     /**
      * Required. The clusters where the Gateway API HTTPRoute resource will be
      * deployed to. Valid entries include the associated entities IDs
-     * configured in the Target resource and "&#64;self" to include the Target
+     * configured in the Target resource and "\@self" to include the Target
      * cluster.
      *
      * Generated from protobuf field <code>repeated string destination_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -41,10 +41,10 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_ids
+     *     @type string[] $destination_ids
      *           Required. The clusters where the Gateway API HTTPRoute resource will be
      *           deployed to. Valid entries include the associated entities IDs
-     *           configured in the Target resource and "&#64;self" to include the Target
+     *           configured in the Target resource and "\@self" to include the Target
      *           cluster.
      *     @type bool $propagate_service
      *           Optional. Whether to propagate the Kubernetes Service to the route
@@ -62,11 +62,11 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
     /**
      * Required. The clusters where the Gateway API HTTPRoute resource will be
      * deployed to. Valid entries include the associated entities IDs
-     * configured in the Target resource and "&#64;self" to include the Target
+     * configured in the Target resource and "\@self" to include the Target
      * cluster.
      *
      * Generated from protobuf field <code>repeated string destination_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationIds()
     {
@@ -76,11 +76,11 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
     /**
      * Required. The clusters where the Gateway API HTTPRoute resource will be
      * deployed to. Valid entries include the associated entities IDs
-     * configured in the Target resource and "&#64;self" to include the Target
+     * configured in the Target resource and "\@self" to include the Target
      * cluster.
      *
      * Generated from protobuf field <code>repeated string destination_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationIds($var)
@@ -126,5 +126,4 @@ class RouteDestinations extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

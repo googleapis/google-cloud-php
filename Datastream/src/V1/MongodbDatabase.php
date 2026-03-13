@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MongoDB Database.
@@ -36,7 +36,7 @@ class MongodbDatabase extends \Google\Protobuf\Internal\Message
      *
      *     @type string $database
      *           Database name.
-     *     @type array<\Google\Cloud\Datastream\V1\MongodbCollection>|\Google\Protobuf\Internal\RepeatedField $collections
+     *     @type \Google\Cloud\Datastream\V1\MongodbCollection[] $collections
      *           Collections in the database.
      * }
      */
@@ -75,7 +75,7 @@ class MongodbDatabase extends \Google\Protobuf\Internal\Message
      * Collections in the database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MongodbCollection collections = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\MongodbCollection>
      */
     public function getCollections()
     {
@@ -86,7 +86,7 @@ class MongodbDatabase extends \Google\Protobuf\Internal\Message
      * Collections in the database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MongodbCollection collections = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\MongodbCollection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\MongodbCollection[] $var
      * @return $this
      */
     public function setCollections($var)

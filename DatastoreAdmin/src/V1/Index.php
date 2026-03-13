@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Datastore composite index definition.
@@ -70,7 +70,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *     @type int $ancestor
      *           Required. The index's ancestor mode.  Must not be
      *           ANCESTOR_MODE_UNSPECIFIED.
-     *     @type array<\Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type \Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty[] $properties
      *           Required. An ordered sequence of property names and their index attributes.
      *           Requires:
      *           * A maximum of 100 properties.
@@ -195,7 +195,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * * A maximum of 100 properties.
      *
      * Generated from protobuf field <code>repeated .google.datastore.admin.v1.Index.IndexedProperty properties = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty>
      */
     public function getProperties()
     {
@@ -208,7 +208,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * * A maximum of 100 properties.
      *
      * Generated from protobuf field <code>repeated .google.datastore.admin.v1.Index.IndexedProperty properties = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty[] $var
      * @return $this
      */
     public function setProperties($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataProfileSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specification for fields to include or exclude in data profile scan.
@@ -33,7 +33,7 @@ class SelectedFields extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $field_names
+     *     @type string[] $field_names
      *           Optional. Expected input is a list of fully qualified names of fields as
      *           in the schema.
      *           Only top-level field names for nested fields are supported.
@@ -56,7 +56,7 @@ class SelectedFields extends \Google\Protobuf\Internal\Message
      * 'x'.
      *
      * Generated from protobuf field <code>repeated string field_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFieldNames()
     {
@@ -72,7 +72,7 @@ class SelectedFields extends \Google\Protobuf\Internal\Message
      * 'x'.
      *
      * Generated from protobuf field <code>repeated string field_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFieldNames($var)
@@ -84,5 +84,4 @@ class SelectedFields extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

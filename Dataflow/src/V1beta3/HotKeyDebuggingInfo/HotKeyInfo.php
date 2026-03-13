@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3\HotKeyDebuggingInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about a hot key.
@@ -154,5 +154,4 @@ class HotKeyInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for responding to getting an OAuth access token.
@@ -50,7 +50,7 @@ class FetchAccessTokenResponse extends \Google\Protobuf\Internal\Message
      *           The token content.
      *     @type \Google\Protobuf\Timestamp $expiration_time
      *           Expiration timestamp. Can be empty if unknown or non-expiring.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           The scopes of the access token.
      *     @type \Google\Cloud\DeveloperConnect\V1\ExchangeError $exchange_error
      *           The error resulted from exchanging OAuth tokens from the service provider.
@@ -127,7 +127,7 @@ class FetchAccessTokenResponse extends \Google\Protobuf\Internal\Message
      * The scopes of the access token.
      *
      * Generated from protobuf field <code>repeated string scopes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -138,7 +138,7 @@ class FetchAccessTokenResponse extends \Google\Protobuf\Internal\Message
      * The scopes of the access token.
      *
      * Generated from protobuf field <code>repeated string scopes = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

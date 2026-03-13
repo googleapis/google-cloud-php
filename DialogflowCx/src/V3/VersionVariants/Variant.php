@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\VersionVariants;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single flow version with specified traffic allocation.
@@ -144,5 +144,4 @@ class Variant extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

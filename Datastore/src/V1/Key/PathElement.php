@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1\Key;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A (kind, ID/name) pair used to construct a key path.
@@ -189,5 +189,4 @@ class PathElement extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

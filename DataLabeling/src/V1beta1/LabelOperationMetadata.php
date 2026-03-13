@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata of a labeling operation, such as LabelImage or LabelVideo.
@@ -70,7 +70,7 @@ class LabelOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Details of label text entity extraction operation.
      *     @type int $progress_percent
      *           Output only. Progress of label operation. Range: [0, 100].
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type \Google\Rpc\Status[] $partial_failures
      *           Output only. Partial failures encountered.
      *           E.g. single files that couldn't be read.
      *           Status details field will contain standard GCP error details.
@@ -487,7 +487,7 @@ class LabelOperationMetadata extends \Google\Protobuf\Internal\Message
      * Status details field will contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialFailures()
     {
@@ -500,7 +500,7 @@ class LabelOperationMetadata extends \Google\Protobuf\Internal\Message
      * Status details field will contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 2;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialFailures($var)

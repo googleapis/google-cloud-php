@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Zone;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for resources attached as assets within a zone.
@@ -68,5 +68,4 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

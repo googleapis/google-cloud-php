@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom sections to return when requesting a summary of a conversation.
@@ -34,7 +34,7 @@ class Sections extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $section_types
+     *     @type int[] $section_types
      *           The selected sections chosen to return when requesting a summary of a
      *           conversation. A duplicate selected section will be treated as a single
      *           selected section. If section types are not provided, the default will
@@ -53,7 +53,7 @@ class Sections extends \Google\Protobuf\Internal\Message
      * be {SITUATION, ACTION, RESULT}.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections.SectionType section_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSectionTypes()
     {
@@ -67,7 +67,7 @@ class Sections extends \Google\Protobuf\Internal\Message
      * be {SITUATION, ACTION, RESULT}.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionQueryConfig.Sections.SectionType section_types = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSectionTypes($var)
@@ -79,5 +79,4 @@ class Sections extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

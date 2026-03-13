@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Task;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of the task execution (e.g. Jobs).
@@ -118,5 +118,4 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

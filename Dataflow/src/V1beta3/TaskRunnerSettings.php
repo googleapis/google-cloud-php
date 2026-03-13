@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Taskrunner configuration settings.
@@ -162,7 +162,7 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      *     @type string $task_group
      *           The UNIX group ID on the worker VM to use for tasks launched by
      *           taskrunner; e.g. "wheel".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type string[] $oauth_scopes
      *           The OAuth2 scopes to be requested by the taskrunner in order to
      *           access the Cloud Dataflow API.
      *     @type string $base_url
@@ -282,7 +282,7 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      * access the Cloud Dataflow API.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOauthScopes()
     {
@@ -294,7 +294,7 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      * access the Cloud Dataflow API.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOauthScopes($var)

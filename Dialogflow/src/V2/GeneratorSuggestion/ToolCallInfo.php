@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\GeneratorSuggestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request and response for a tool call.
@@ -118,5 +118,4 @@ class ToolCallInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

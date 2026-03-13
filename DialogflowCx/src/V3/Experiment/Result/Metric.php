@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Experiment\Result;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metric and corresponding confidence intervals.
@@ -229,5 +229,4 @@ class Metric extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

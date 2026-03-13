@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AutomationResourceSelector contains the information to select the resources
@@ -29,7 +29,7 @@ class AutomationResourceSelector extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Deploy\V1\TargetAttribute>|\Google\Protobuf\Internal\RepeatedField $targets
+     *     @type \Google\Cloud\Deploy\V1\TargetAttribute[] $targets
      *           Optional. Contains attributes about a target.
      * }
      */
@@ -42,7 +42,7 @@ class AutomationResourceSelector extends \Google\Protobuf\Internal\Message
      * Optional. Contains attributes about a target.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\TargetAttribute>
      */
     public function getTargets()
     {
@@ -53,7 +53,7 @@ class AutomationResourceSelector extends \Google\Protobuf\Internal\Message
      * Optional. Contains attributes about a target.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TargetAttribute targets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\TargetAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\TargetAttribute[] $var
      * @return $this
      */
     public function setTargets($var)

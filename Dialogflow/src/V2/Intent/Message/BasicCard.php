@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The basic card message. Useful for displaying information.
@@ -60,7 +60,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
      *           Required, unless image is present. The body text of the card.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\Image $image
      *           Optional. The image for the card.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>|\Google\Protobuf\Internal\RepeatedField $buttons
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button[] $buttons
      *           Optional. The collection of card buttons.
      * }
      */
@@ -187,7 +187,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
      * Optional. The collection of card buttons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>
      */
     public function getButtons()
     {
@@ -198,7 +198,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
      * Optional. The collection of card buttons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button[] $var
      * @return $this
      */
     public function setButtons($var)
@@ -210,5 +210,4 @@ class BasicCard extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

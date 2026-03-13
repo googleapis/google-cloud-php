@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of flow version variants.
@@ -28,7 +28,7 @@ class VersionVariants extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\VersionVariants\Variant>|\Google\Protobuf\Internal\RepeatedField $variants
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\VersionVariants\Variant[] $variants
      *           A list of flow version variants.
      * }
      */
@@ -41,7 +41,7 @@ class VersionVariants extends \Google\Protobuf\Internal\Message
      * A list of flow version variants.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.VersionVariants.Variant variants = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\VersionVariants\Variant>
      */
     public function getVariants()
     {
@@ -52,7 +52,7 @@ class VersionVariants extends \Google\Protobuf\Internal\Message
      * A list of flow version variants.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.VersionVariants.Variant variants = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\VersionVariants\Variant>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\VersionVariants\Variant[] $var
      * @return $this
      */
     public function setVariants($var)

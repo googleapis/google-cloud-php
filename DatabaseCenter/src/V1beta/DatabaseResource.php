@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DatabaseResource represents every individually configured database unit
@@ -156,7 +156,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\DatabaseResource>|\Google\Protobuf\Internal\RepeatedField $child_resources
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\DatabaseResource[] $child_resources
      *           List of children associated with a database group.
      *     @type string $full_resource_name
      *           The full resource name, based on CAIS resource name format
@@ -177,11 +177,11 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      *           locations in Google Cloud. These are of the form: "us-central1",
      *           "us-east1", etc. See https://cloud.google.com/about/locations for a list of
      *           such regions.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\Label>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\Label[] $labels
      *           Labels applied on the resource. The requirements for labels assigned to
      *           Google Cloud resources may be found at
      *           https://cloud.google.com/resource-manager/docs/labels-overview#requirements
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\Tag[] $tags
      *           Tags applied on the resource. The requirements for tags assigned to
      *           Google Cloud resources may be found at
      *           https://cloud.google.com/resource-manager/docs/tags/tags-overview
@@ -196,7 +196,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      *           Subtype of the resource specified at creation time.
      *     @type \Google\Cloud\DatabaseCenter\V1beta\MachineConfig $machine_config
      *           Machine configuration like CPU, memory, etc for the resource.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalGroup>|\Google\Protobuf\Internal\RepeatedField $signal_groups
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\SignalGroup[] $signal_groups
      *           The list of signal groups and count of issues related to the resource.
      *           Only those signals which have been requested would be included.
      *     @type \Google\Cloud\DatabaseCenter\V1beta\Metrics $metrics
@@ -232,7 +232,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * List of children associated with a database group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.DatabaseResource child_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\DatabaseResource>
      */
     public function getChildResources()
     {
@@ -243,7 +243,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * List of children associated with a database group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.DatabaseResource child_resources = 1;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\DatabaseResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\DatabaseResource[] $var
      * @return $this
      */
     public function setChildResources($var)
@@ -396,7 +396,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/resource-manager/docs/labels-overview#requirements
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Label labels = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\Label>
      */
     public function getLabels()
     {
@@ -409,7 +409,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/resource-manager/docs/labels-overview#requirements
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Label labels = 7;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\Label>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\Label[] $var
      * @return $this
      */
     public function setLabels($var)
@@ -426,7 +426,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/resource-manager/docs/tags/tags-overview
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Tag tags = 16;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\Tag>
      */
     public function getTags()
     {
@@ -439,7 +439,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/resource-manager/docs/tags/tags-overview
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Tag tags = 16;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\Tag[] $var
      * @return $this
      */
     public function setTags($var)
@@ -553,7 +553,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * Only those signals which have been requested would be included.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalGroup signal_groups = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\SignalGroup>
      */
     public function getSignalGroups()
     {
@@ -565,7 +565,7 @@ class DatabaseResource extends \Google\Protobuf\Internal\Message
      * Only those signals which have been requested would be included.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalGroup signal_groups = 10;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\SignalGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\SignalGroup[] $var
      * @return $this
      */
     public function setSignalGroups($var)

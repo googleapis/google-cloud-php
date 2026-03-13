@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Tool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The TLS configuration.
@@ -29,7 +29,7 @@ class TLSConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Tool\TLSConfig\CACert>|\Google\Protobuf\Internal\RepeatedField $ca_certs
+     *     @type \Google\Cloud\Dialogflow\V2\Tool\TLSConfig\CACert[] $ca_certs
      *           Required. Specifies a list of allowed custom CA certificates for HTTPS
      *           verification.
      * }
@@ -44,7 +44,7 @@ class TLSConfig extends \Google\Protobuf\Internal\Message
      * verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Tool.TLSConfig.CACert ca_certs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Tool\TLSConfig\CACert>
      */
     public function getCaCerts()
     {
@@ -56,7 +56,7 @@ class TLSConfig extends \Google\Protobuf\Internal\Message
      * verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Tool.TLSConfig.CACert ca_certs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Tool\TLSConfig\CACert>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Tool\TLSConfig\CACert[] $var
      * @return $this
      */
     public function setCaCerts($var)
@@ -68,5 +68,4 @@ class TLSConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

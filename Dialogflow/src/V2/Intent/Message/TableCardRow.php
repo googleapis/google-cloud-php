@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Row of [TableCard][google.cloud.dialogflow.v2.Intent.Message.TableCard].
@@ -34,7 +34,7 @@ class TableCardRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell>|\Google\Protobuf\Internal\RepeatedField $cells
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell[] $cells
      *           Optional. List of cells that make up this row.
      *     @type bool $divider_after
      *           Optional. Whether to add a visual divider after this row.
@@ -49,7 +49,7 @@ class TableCardRow extends \Google\Protobuf\Internal\Message
      * Optional. List of cells that make up this row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.TableCardCell cells = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell>
      */
     public function getCells()
     {
@@ -60,7 +60,7 @@ class TableCardRow extends \Google\Protobuf\Internal\Message
      * Optional. List of cells that make up this row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.TableCardCell cells = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell[] $var
      * @return $this
      */
     public function setCells($var)
@@ -98,5 +98,4 @@ class TableCardRow extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

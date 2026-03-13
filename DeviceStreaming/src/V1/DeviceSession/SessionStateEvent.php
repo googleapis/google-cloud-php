@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeviceStreaming\V1\DeviceSession;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message encapsulating a series of Session states and the time that the
@@ -147,5 +147,4 @@ class SessionStateEvent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

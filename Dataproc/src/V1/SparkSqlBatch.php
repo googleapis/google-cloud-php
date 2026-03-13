@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A configuration for running
@@ -50,7 +50,7 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $query_variables
      *           Optional. Mapping of query variable names to values (equivalent to the
      *           Spark SQL command: `SET name="value";`).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type string[] $jar_file_uris
      *           Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      * }
      */
@@ -119,7 +119,7 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getJarFileUris()
     {
@@ -130,7 +130,7 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setJarFileUris($var)

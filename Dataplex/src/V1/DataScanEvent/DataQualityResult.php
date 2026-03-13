@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataScanEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data quality result for data scan job.
@@ -286,5 +286,4 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

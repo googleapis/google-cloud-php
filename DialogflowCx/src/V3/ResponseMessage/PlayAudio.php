@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ResponseMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies an audio clip to be played by the client as part of the response.
@@ -110,5 +110,4 @@ class PlayAudio extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

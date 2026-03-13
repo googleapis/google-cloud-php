@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MySQL database structure
@@ -28,7 +28,7 @@ class MysqlRdbms extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\MysqlDatabase>|\Google\Protobuf\Internal\RepeatedField $mysql_databases
+     *     @type \Google\Cloud\Datastream\V1\MysqlDatabase[] $mysql_databases
      *           Mysql databases on the server
      * }
      */
@@ -41,7 +41,7 @@ class MysqlRdbms extends \Google\Protobuf\Internal\Message
      * Mysql databases on the server
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlDatabase mysql_databases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\MysqlDatabase>
      */
     public function getMysqlDatabases()
     {
@@ -52,7 +52,7 @@ class MysqlRdbms extends \Google\Protobuf\Internal\Message
      * Mysql databases on the server
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlDatabase mysql_databases = 1;</code>
-     * @param array<\Google\Cloud\Datastream\V1\MysqlDatabase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\MysqlDatabase[] $var
      * @return $this
      */
     public function setMysqlDatabases($var)

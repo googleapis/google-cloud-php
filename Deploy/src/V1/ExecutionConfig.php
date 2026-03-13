@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of the environment to use when calling Skaffold.
@@ -33,7 +33,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Google service account to use for execution. If unspecified,
      * the project execution service account
-     * (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) is used.
+     * (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) is used.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -70,7 +70,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $usages
+     *     @type int[] $usages
      *           Required. Usages when this configuration should be applied.
      *     @type \Google\Cloud\Deploy\V1\DefaultPool $default_pool
      *           Optional. Use default Cloud Build pool.
@@ -84,7 +84,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *     @type string $service_account
      *           Optional. Google service account to use for execution. If unspecified,
      *           the project execution service account
-     *           (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) is used.
+     *           (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) is used.
      *     @type string $artifact_storage
      *           Optional. Cloud Storage location in which to store execution outputs. This
      *           can either be a bucket ("gs://my-bucket") or a path within a bucket
@@ -108,7 +108,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Required. Usages when this configuration should be applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig.ExecutionEnvironmentUsage usages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getUsages()
     {
@@ -119,7 +119,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Required. Usages when this configuration should be applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig.ExecutionEnvironmentUsage usages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setUsages($var)
@@ -227,7 +227,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Google service account to use for execution. If unspecified,
      * the project execution service account
-     * (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) is used.
+     * (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) is used.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -240,7 +240,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Google service account to use for execution. If unspecified,
      * the project execution service account
-     * (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) is used.
+     * (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) is used.
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

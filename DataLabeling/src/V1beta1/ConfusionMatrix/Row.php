@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A row in the confusion matrix. Each entry in this row has the same
@@ -38,7 +38,7 @@ class Row extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DataLabeling\V1beta1\AnnotationSpec $annotation_spec
      *           The annotation spec of the ground truth label for this row.
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\ConfusionMatrixEntry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\ConfusionMatrixEntry[] $entries
      *           A list of the confusion matrix entries. One entry for each possible
      *           predicted label.
      * }
@@ -89,7 +89,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * predicted label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.ConfusionMatrix.ConfusionMatrixEntry entries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\ConfusionMatrixEntry>
      */
     public function getEntries()
     {
@@ -101,7 +101,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * predicted label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.ConfusionMatrix.ConfusionMatrixEntry entries = 2;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\ConfusionMatrixEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\ConfusionMatrixEntry[] $var
      * @return $this
      */
     public function setEntries($var)
@@ -113,5 +113,4 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

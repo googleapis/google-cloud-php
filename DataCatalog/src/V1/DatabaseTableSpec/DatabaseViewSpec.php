@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\DatabaseTableSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification that applies to database view.
@@ -139,5 +139,4 @@ class DatabaseViewSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

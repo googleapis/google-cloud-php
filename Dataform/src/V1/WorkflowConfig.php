@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Dataform workflow configuration.
@@ -24,7 +24,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the release config whose release_compilation_result
      * should be executed. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}releaseConfigs/*`.
      *
      * Generated from protobuf field <code>string release_config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -97,7 +97,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *     @type string $release_config
      *           Required. The name of the release config whose release_compilation_result
      *           should be executed. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     *           `projects/{@*}locations/{@*}repositories/{@*}releaseConfigs/*`.
      *     @type \Google\Cloud\Dataform\V1\InvocationConfig $invocation_config
      *           Optional. If left unset, a default InvocationConfig will be used.
      *     @type string $cron_schedule
@@ -108,7 +108,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *           cron_schedule. Must be a time zone name from the time zone database
      *           (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
      *           unspecified, the default is UTC.
-     *     @type array<\Google\Cloud\Dataform\V1\WorkflowConfig\ScheduledExecutionRecord>|\Google\Protobuf\Internal\RepeatedField $recent_scheduled_execution_records
+     *     @type \Google\Cloud\Dataform\V1\WorkflowConfig\ScheduledExecutionRecord[] $recent_scheduled_execution_records
      *           Output only. Records of the 10 most recent scheduled execution attempts,
      *           ordered in descending order of `execution_time`. Updated whenever automatic
      *           creation of a workflow invocation is triggered by cron_schedule.
@@ -158,7 +158,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the release config whose release_compilation_result
      * should be executed. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}releaseConfigs/*`.
      *
      * Generated from protobuf field <code>string release_config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -171,7 +171,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the release config whose release_compilation_result
      * should be executed. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}releaseConfigs/*`.
      *
      * Generated from protobuf field <code>string release_config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -287,7 +287,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      * creation of a workflow invocation is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.WorkflowConfig.ScheduledExecutionRecord recent_scheduled_execution_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1\WorkflowConfig\ScheduledExecutionRecord>
      */
     public function getRecentScheduledExecutionRecords()
     {
@@ -300,7 +300,7 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      * creation of a workflow invocation is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.WorkflowConfig.ScheduledExecutionRecord recent_scheduled_execution_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataform\V1\WorkflowConfig\ScheduledExecutionRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1\WorkflowConfig\ScheduledExecutionRecord[] $var
      * @return $this
      */
     public function setRecentScheduledExecutionRecords($var)

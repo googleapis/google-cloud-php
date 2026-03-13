@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -81,7 +81,7 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      *           enhance the generator.
      *     @type \Google\Cloud\Dialogflow\V2\ConversationContext $conversation_context
      *           Optional. Context of the conversation, including transcripts.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $trigger_events
+     *     @type int[] $trigger_events
      *           Optional. A list of trigger events. Generator will be triggered only if
      *           it's trigger event is included here.
      *     @type string $security_settings
@@ -266,7 +266,7 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      * it's trigger event is included here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.TriggerEvent trigger_events = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTriggerEvents()
     {
@@ -278,7 +278,7 @@ class GenerateStatelessSuggestionRequest extends \Google\Protobuf\Internal\Messa
      * it's trigger event is included here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.TriggerEvent trigger_events = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTriggerEvents($var)

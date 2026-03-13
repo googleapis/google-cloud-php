@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the parameters of the conversational query.
@@ -106,13 +106,13 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           agent settings is used.
      *     @type \Google\Type\LatLng $geo_location
      *           The geo location of this conversational query.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $contexts
+     *     @type \Google\Cloud\Dialogflow\V2\Context[] $contexts
      *           The collection of contexts to be activated before this query is
      *           executed.
      *     @type bool $reset_contexts
      *           Specifies whether to delete all contexts in the current session
      *           before the new ones are activated.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $session_entity_types
+     *     @type \Google\Cloud\Dialogflow\V2\SessionEntityType[] $session_entity_types
      *           Additional session entity types to replace or extend developer
      *           entity types with. The entity synonyms apply to all languages and persist
      *           for the session of this query.
@@ -220,7 +220,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * executed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Context>
      */
     public function getContexts()
     {
@@ -232,7 +232,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * executed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context contexts = 3;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Context[] $var
      * @return $this
      */
     public function setContexts($var)
@@ -277,7 +277,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * for the session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SessionEntityType>
      */
     public function getSessionEntityTypes()
     {
@@ -290,7 +290,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * for the session of this query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SessionEntityType session_entity_types = 5;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SessionEntityType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SessionEntityType[] $var
      * @return $this
      */
     public function setSessionEntityTypes($var)

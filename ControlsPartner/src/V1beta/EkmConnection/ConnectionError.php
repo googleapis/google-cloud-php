@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta\EkmConnection;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information around the error that occurred if the connection state is
@@ -99,5 +99,4 @@ class ConnectionError extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

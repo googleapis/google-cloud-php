@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeviceStreaming\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for DirectAccessService.ListDeviceSessions.
@@ -35,7 +35,7 @@ class ListDeviceSessionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DeviceStreaming\V1\DeviceSession>|\Google\Protobuf\Internal\RepeatedField $device_sessions
+     *     @type \Google\Cloud\DeviceStreaming\V1\DeviceSession[] $device_sessions
      *           The sessions matching the specified filter in the given cloud project.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDeviceSessionsResponse extends \Google\Protobuf\Internal\Message
      * The sessions matching the specified filter in the given cloud project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.devicestreaming.v1.DeviceSession device_sessions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeviceStreaming\V1\DeviceSession>
      */
     public function getDeviceSessions()
     {
@@ -62,7 +62,7 @@ class ListDeviceSessionsResponse extends \Google\Protobuf\Internal\Message
      * The sessions matching the specified filter in the given cloud project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.devicestreaming.v1.DeviceSession device_sessions = 1;</code>
-     * @param array<\Google\Cloud\DeviceStreaming\V1\DeviceSession>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeviceStreaming\V1\DeviceSession[] $var
      * @return $this
      */
     public function setDeviceSessions($var)

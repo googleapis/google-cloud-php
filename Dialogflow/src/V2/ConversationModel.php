@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a conversation model.
@@ -86,7 +86,7 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      *           Required. The display name of the model. At most 64 bytes long.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of this model.
-     *     @type array<\Google\Cloud\Dialogflow\V2\InputDataset>|\Google\Protobuf\Internal\RepeatedField $datasets
+     *     @type \Google\Cloud\Dialogflow\V2\InputDataset[] $datasets
      *           Required. Datasets used to create model.
      *     @type int $state
      *           Output only. State of the model. A model can only serve prediction requests
@@ -208,7 +208,7 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      * Required. Datasets used to create model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.InputDataset datasets = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\InputDataset>
      */
     public function getDatasets()
     {
@@ -219,7 +219,7 @@ class ConversationModel extends \Google\Protobuf\Internal\Message
      * Required. Datasets used to create model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.InputDataset datasets = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\InputDataset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\InputDataset[] $var
      * @return $this
      */
     public function setDatasets($var)
