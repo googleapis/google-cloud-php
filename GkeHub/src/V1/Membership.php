@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Membership contains information about a member cluster.
@@ -17,7 +17,7 @@ class Membership extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full, unique name of this Membership resource in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;memberships/{membership_id}`, set during
+     * format `projects/{@*}locations/{@*}memberships/{membership_id}`, set during
      * creation.
      * `membership_id` must be a valid RFC 1123 compliant DNS label:
      *   1. At most 63 characters in length
@@ -121,7 +121,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *           Optional. Endpoint information to reach this member.
      *     @type string $name
      *           Output only. The full, unique name of this Membership resource in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;memberships/{membership_id}`, set during
+     *           format `projects/{@*}locations/{@*}memberships/{membership_id}`, set during
      *           creation.
      *           `membership_id` must be a valid RFC 1123 compliant DNS label:
      *             1. At most 63 characters in length
@@ -205,7 +205,7 @@ class Membership extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full, unique name of this Membership resource in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;memberships/{membership_id}`, set during
+     * format `projects/{@*}locations/{@*}memberships/{membership_id}`, set during
      * creation.
      * `membership_id` must be a valid RFC 1123 compliant DNS label:
      *   1. At most 63 characters in length
@@ -224,7 +224,7 @@ class Membership extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full, unique name of this Membership resource in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;memberships/{membership_id}`, set during
+     * format `projects/{@*}locations/{@*}memberships/{membership_id}`, set during
      * creation.
      * `membership_id` must be a valid RFC 1123 compliant DNS label:
      *   1. At most 63 characters in length

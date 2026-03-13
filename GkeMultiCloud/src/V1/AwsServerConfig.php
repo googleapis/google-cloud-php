@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AwsServerConfig is the configuration of GKE cluster on AWS.
@@ -46,12 +46,12 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the config.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $valid_versions
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo[] $valid_versions
      *           List of all released Kubernetes versions, including ones which are end of
      *           life and can no longer be used.  Filter by the `enabled`
      *           property to limit to currently available versions.
      *           Valid versions supported for both create and update operations
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_aws_regions
+     *     @type string[] $supported_aws_regions
      *           The list of supported AWS regions.
      * }
      */
@@ -93,7 +93,7 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsK8sVersionInfo valid_versions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo>
      */
     public function getValidVersions()
     {
@@ -107,7 +107,7 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      * Valid versions supported for both create and update operations
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsK8sVersionInfo valid_versions = 2;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo[] $var
      * @return $this
      */
     public function setValidVersions($var)
@@ -122,7 +122,7 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      * The list of supported AWS regions.
      *
      * Generated from protobuf field <code>repeated string supported_aws_regions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedAwsRegions()
     {
@@ -133,7 +133,7 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      * The list of supported AWS regions.
      *
      * Generated from protobuf field <code>repeated string supported_aws_regions = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedAwsRegions($var)

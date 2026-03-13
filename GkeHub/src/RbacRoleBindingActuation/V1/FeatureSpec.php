@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\RbacRoleBindingActuation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * **RBAC RoleBinding Actuation**: The Hub-wide input for the
@@ -31,7 +31,7 @@ class FeatureSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_custom_roles
+     *     @type string[] $allowed_custom_roles
      *           The list of allowed custom roles (ClusterRoles). If a ClusterRole is not
      *           part of this list, it cannot be used in a Scope RBACRoleBinding. If a
      *           ClusterRole in this list is in use, it cannot be removed from the list.
@@ -48,7 +48,7 @@ class FeatureSpec extends \Google\Protobuf\Internal\Message
      * ClusterRole in this list is in use, it cannot be removed from the list.
      *
      * Generated from protobuf field <code>repeated string allowed_custom_roles = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedCustomRoles()
     {
@@ -61,7 +61,7 @@ class FeatureSpec extends \Google\Protobuf\Internal\Message
      * ClusterRole in this list is in use, it cannot be removed from the list.
      *
      * Generated from protobuf field <code>repeated string allowed_custom_roles = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedCustomRoles($var)

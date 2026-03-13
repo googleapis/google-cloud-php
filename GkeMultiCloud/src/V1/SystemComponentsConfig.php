@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SystemComponentsConfig defines the fields for customizing configurations for
@@ -35,9 +35,9 @@ class SystemComponentsConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\Toleration>|\Google\Protobuf\Internal\RepeatedField $tolerations
+     *     @type \Google\Cloud\GkeMultiCloud\V1\Toleration[] $tolerations
      *           Sets custom tolerations for pods created by auto-installed components.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\Label>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type \Google\Cloud\GkeMultiCloud\V1\Label[] $labels
      *           Sets custom labels for pods created by auto-installed components.
      * }
      */
@@ -50,7 +50,7 @@ class SystemComponentsConfig extends \Google\Protobuf\Internal\Message
      * Sets custom tolerations for pods created by auto-installed components.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.Toleration tolerations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\Toleration>
      */
     public function getTolerations()
     {
@@ -61,7 +61,7 @@ class SystemComponentsConfig extends \Google\Protobuf\Internal\Message
      * Sets custom tolerations for pods created by auto-installed components.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.Toleration tolerations = 1;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\Toleration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\Toleration[] $var
      * @return $this
      */
     public function setTolerations($var)
@@ -76,7 +76,7 @@ class SystemComponentsConfig extends \Google\Protobuf\Internal\Message
      * Sets custom labels for pods created by auto-installed components.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.Label labels = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\Label>
      */
     public function getLabels()
     {
@@ -87,7 +87,7 @@ class SystemComponentsConfig extends \Google\Protobuf\Internal\Message
      * Sets custom labels for pods created by auto-installed components.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.Label labels = 2;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\Label>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\Label[] $var
      * @return $this
      */
     public function setLabels($var)

@@ -73,6 +73,3 @@ class CRDState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CRDState::class, \Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncState_CRDState::class);
-

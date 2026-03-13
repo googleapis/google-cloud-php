@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of Membership RBACRoleBindings.
@@ -42,13 +42,13 @@ class ListMembershipRBACRoleBindingsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeHub\V1\RBACRoleBinding>|\Google\Protobuf\Internal\RepeatedField $rbacrolebindings
+     *     @type \Google\Cloud\GkeHub\V1\RBACRoleBinding[] $rbacrolebindings
      *           The list of Membership RBACRoleBindings.
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
      *           `ListMembershipRBACRoleBindings` method. The value of an empty string means
      *           that there are no more resources to return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           List of locations that could not be reached while fetching this list.
      * }
      */
@@ -61,7 +61,7 @@ class ListMembershipRBACRoleBindingsResponse extends \Google\Protobuf\Internal\M
      * The list of Membership RBACRoleBindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.RBACRoleBinding rbacrolebindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\RBACRoleBinding>
      */
     public function getRbacrolebindings()
     {
@@ -72,7 +72,7 @@ class ListMembershipRBACRoleBindingsResponse extends \Google\Protobuf\Internal\M
      * The list of Membership RBACRoleBindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.RBACRoleBinding rbacrolebindings = 1;</code>
-     * @param array<\Google\Cloud\GkeHub\V1\RBACRoleBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\RBACRoleBinding[] $var
      * @return $this
      */
     public function setRbacrolebindings($var)
@@ -117,7 +117,7 @@ class ListMembershipRBACRoleBindingsResponse extends \Google\Protobuf\Internal\M
      * List of locations that could not be reached while fetching this list.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class ListMembershipRBACRoleBindingsResponse extends \Google\Protobuf\Internal\M
      * List of locations that could not be reached while fetching this list.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

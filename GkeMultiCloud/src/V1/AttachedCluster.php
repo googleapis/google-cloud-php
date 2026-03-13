@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Anthos cluster running on customer own infrastructure.
@@ -260,7 +260,7 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      *           Output only. Workload Identity settings.
      *     @type \Google\Cloud\GkeMultiCloud\V1\LoggingConfig $logging_config
      *           Optional. Logging configuration for this cluster.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AttachedClusterError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedClusterError[] $errors
      *           Output only. A set of errors found in the cluster.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedClustersAuthorization $authorization
      *           Optional. Configuration related to the cluster RBAC settings.
@@ -843,7 +843,7 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AttachedClusterError errors = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AttachedClusterError>
      */
     public function getErrors()
     {
@@ -854,7 +854,7 @@ class AttachedCluster extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AttachedClusterError errors = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AttachedClusterError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AttachedClusterError[] $var
      * @return $this
      */
     public function setErrors($var)

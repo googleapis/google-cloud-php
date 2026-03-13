@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\RbacRoleBindingActuation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * **RBAC RoleBinding Actuation**: An empty state left as an example Hub-wide
