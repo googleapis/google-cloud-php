@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Google Kubernetes Engine cluster.
@@ -353,7 +353,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The IP address of this cluster's master endpoint.
      * The endpoint can be accessed from the internet at
-     * `https://username:password&#64;endpoint/`.
+     * `https://username:password\@endpoint/`.
      * See the `masterAuth` property of this resource for username and
      * password information.
      *
@@ -713,11 +713,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           The name of the Google Compute Engine
      *           [subnetwork](https://cloud.google.com/compute/docs/subnetworks)
      *           to which the cluster is connected.
-     *     @type array<\Google\Cloud\Container\V1\NodePool>|\Google\Protobuf\Internal\RepeatedField $node_pools
+     *     @type \Google\Cloud\Container\V1\NodePool[] $node_pools
      *           The node pools associated with this cluster.
      *           This field should not be set if "node_config" or "initial_node_count" are
      *           specified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      *           The list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available)
      *           in which the cluster's nodes should be located.
@@ -734,7 +734,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           The cluster has no SLA for uptime and master/node upgrades are disabled.
      *           Alpha enabled clusters are automatically deleted thirty days after
      *           creation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alpha_cluster_feature_gates
+     *     @type string[] $alpha_cluster_feature_gates
      *           The list of user specified Kubernetes feature gates.
      *           Each string represents the activation status of a feature gate (e.g.
      *           "featureX=true" or "featureX=false")
@@ -810,7 +810,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string $endpoint
      *           Output only. The IP address of this cluster's master endpoint.
      *           The endpoint can be accessed from the internet at
-     *           `https://username:password&#64;endpoint/`.
+     *           `https://username:password\@endpoint/`.
      *           See the `masterAuth` property of this resource for username and
      *           password information.
      *     @type string $initial_cluster_version
@@ -853,7 +853,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
      *           notation (e.g. `1.2.3.4/29`). Service addresses are
      *           typically put in the last `/16` from the container CIDR.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
+     *     @type string[] $instance_group_urls
      *           Output only. Deprecated. Use node_pools.instance_group_urls.
      *     @type int $current_node_count
      *           Output only. The number of nodes currently in the cluster. Deprecated.
@@ -877,7 +877,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           notation (e.g. `1.2.3.4/29`).
      *           This field is deprecated due to the deprecation of 2VM TPU. The end of life
      *           date for 2VM TPU is 2025-04-25.
-     *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Container\V1\StatusCondition[] $conditions
      *           Which conditions caused the current cluster state.
      *     @type \Google\Cloud\Container\V1\Autopilot $autopilot
      *           Autopilot configuration for the cluster.
@@ -1378,7 +1378,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodePool node_pools = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\NodePool>
      */
     public function getNodePools()
     {
@@ -1391,7 +1391,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodePool node_pools = 12;</code>
-     * @param array<\Google\Cloud\Container\V1\NodePool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\NodePool[] $var
      * @return $this
      */
     public function setNodePools($var)
@@ -1414,7 +1414,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * of all node pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -1433,7 +1433,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * of all node pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -1486,7 +1486,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * "featureX=true" or "featureX=false")
      *
      * Generated from protobuf field <code>repeated string alpha_cluster_feature_gates = 160;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAlphaClusterFeatureGates()
     {
@@ -1499,7 +1499,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * "featureX=true" or "featureX=false")
      *
      * Generated from protobuf field <code>repeated string alpha_cluster_feature_gates = 160;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAlphaClusterFeatureGates($var)
@@ -2459,7 +2459,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The IP address of this cluster's master endpoint.
      * The endpoint can be accessed from the internet at
-     * `https://username:password&#64;endpoint/`.
+     * `https://username:password\@endpoint/`.
      * See the `masterAuth` property of this resource for username and
      * password information.
      *
@@ -2474,7 +2474,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The IP address of this cluster's master endpoint.
      * The endpoint can be accessed from the internet at
-     * `https://username:password&#64;endpoint/`.
+     * `https://username:password\@endpoint/`.
      * See the `masterAuth` property of this resource for username and
      * password information.
      *
@@ -2762,7 +2762,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. Deprecated. Use node_pools.instance_group_urls.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getInstanceGroupUrls()
@@ -2777,7 +2777,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. Deprecated. Use node_pools.instance_group_urls.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -2968,7 +2968,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Which conditions caused the current cluster state.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 118;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\StatusCondition>
      */
     public function getConditions()
     {
@@ -2979,7 +2979,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Which conditions caused the current cluster state.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 118;</code>
-     * @param array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\StatusCondition[] $var
      * @return $this
      */
     public function setConditions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListNodePoolsRequest lists the node pool(s) for a cluster.
@@ -44,7 +44,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
     protected $cluster_id = '';
     /**
      * The parent (project, location, cluster name) where the node pools will be
-     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * listed. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
@@ -107,7 +107,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $parent
      *           The parent (project, location, cluster name) where the node pools will be
-     *           listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           listed. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,7 +225,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project, location, cluster name) where the node pools will be
-     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * listed. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @return string
@@ -237,7 +237,7 @@ class ListNodePoolsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project, location, cluster name) where the node pools will be
-     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * listed. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @param string $var

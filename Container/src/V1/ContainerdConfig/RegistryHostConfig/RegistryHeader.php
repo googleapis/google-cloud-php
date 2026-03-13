@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RegistryHeader configures headers for the registry.
@@ -36,7 +36,7 @@ class RegistryHeader extends \Google\Protobuf\Internal\Message
      *
      *     @type string $key
      *           Key configures the header key.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $value
+     *     @type string[] $value
      *           Value configures the header value.
      * }
      */
@@ -75,7 +75,7 @@ class RegistryHeader extends \Google\Protobuf\Internal\Message
      * Value configures the header value.
      *
      * Generated from protobuf field <code>repeated string value = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValue()
     {
@@ -86,7 +86,7 @@ class RegistryHeader extends \Google\Protobuf\Internal\Message
      * Value configures the header value.
      *
      * Generated from protobuf field <code>repeated string value = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValue($var)
@@ -98,5 +98,4 @@ class RegistryHeader extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

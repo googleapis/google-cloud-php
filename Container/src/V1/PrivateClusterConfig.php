@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration options for private clusters.
@@ -85,7 +85,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     protected $master_global_access_config = null;
     /**
      * Subnet to provision the master's private endpoint during cluster creation.
-     * Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
+     * Specified in projects/{@*}regions/{@*}subnetworks/* format.
      * Deprecated: Use
      * [ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork]
      * instead.
@@ -138,7 +138,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      *           instead.
      *     @type string $private_endpoint_subnetwork
      *           Subnet to provision the master's private endpoint during cluster creation.
-     *           Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
+     *           Specified in projects/{@*}regions/{@*}subnetworks/* format.
      *           Deprecated: Use
      *           [ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork]
      *           instead.
@@ -419,7 +419,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Subnet to provision the master's private endpoint during cluster creation.
-     * Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
+     * Specified in projects/{@*}regions/{@*}subnetworks/* format.
      * Deprecated: Use
      * [ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork]
      * instead.
@@ -438,7 +438,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Subnet to provision the master's private endpoint during cluster creation.
-     * Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
+     * Specified in projects/{@*}regions/{@*}subnetworks/* format.
      * Deprecated: Use
      * [ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork][google.container.v1.ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork]
      * instead.

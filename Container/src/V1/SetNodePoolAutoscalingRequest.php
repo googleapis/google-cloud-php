@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetNodePoolAutoscalingRequest sets the autoscaler settings of a node pool.
@@ -59,7 +59,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to set
      * autoscaler settings. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -91,7 +91,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to set
      *           autoscaler settings. Specified in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     *           `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -280,7 +280,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to set
      * autoscaler settings. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -293,7 +293,7 @@ class SetNodePoolAutoscalingRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to set
      * autoscaler settings. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

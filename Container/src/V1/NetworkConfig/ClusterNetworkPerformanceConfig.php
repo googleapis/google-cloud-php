@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\NetworkConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of network bandwidth tiers
@@ -74,5 +74,4 @@ class ClusterNetworkPerformanceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

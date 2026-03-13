@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AdditionalIPRangesConfig is the configuration for individual additional
@@ -52,7 +52,7 @@ class AdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      *           just the name.
      *           Example1: my-subnet
      *           Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pod_ipv4_range_names
+     *     @type string[] $pod_ipv4_range_names
      *           List of secondary ranges names within this subnetwork that can be used for
      *           pod IPs.
      *           Example1: gke-pod-range1
@@ -105,7 +105,7 @@ class AdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      * Example2: gke-pod-range1,gke-pod-range2
      *
      * Generated from protobuf field <code>repeated string pod_ipv4_range_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPodIpv4RangeNames()
     {
@@ -119,7 +119,7 @@ class AdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      * Example2: gke-pod-range1,gke-pod-range2
      *
      * Generated from protobuf field <code>repeated string pod_ipv4_range_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPodIpv4RangeNames($var)

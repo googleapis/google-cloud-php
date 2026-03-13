@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fleet is the fleet configuration for the cluster.
@@ -26,7 +26,7 @@ class Fleet extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full resource name of the registered fleet membership of
      * the cluster, in the format
-     * `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * `//gkehub.googleapis.com/projects/{@*}locations/{@*}memberships/*`.
      *
      * Generated from protobuf field <code>string membership = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -58,7 +58,7 @@ class Fleet extends \Google\Protobuf\Internal\Message
      *     @type string $membership
      *           Output only. The full resource name of the registered fleet membership of
      *           the cluster, in the format
-     *           `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     *           `//gkehub.googleapis.com/projects/{@*}locations/{@*}memberships/*`.
      *     @type bool $pre_registered
      *           Output only. Whether the cluster has been registered through the fleet
      *           API.
@@ -104,7 +104,7 @@ class Fleet extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full resource name of the registered fleet membership of
      * the cluster, in the format
-     * `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * `//gkehub.googleapis.com/projects/{@*}locations/{@*}memberships/*`.
      *
      * Generated from protobuf field <code>string membership = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -117,7 +117,7 @@ class Fleet extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full resource name of the registered fleet membership of
      * the cluster, in the format
-     * `//gkehub.googleapis.com/projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * `//gkehub.googleapis.com/projects/{@*}locations/{@*}memberships/*`.
      *
      * Generated from protobuf field <code>string membership = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

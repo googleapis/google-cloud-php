@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\NodePool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PlacementPolicy defines the placement policy used by the node pool.
@@ -144,5 +144,4 @@ class PlacementPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

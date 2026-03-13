@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * FetchClusterUpgradeInfoRequest fetches the upgrade information of a cluster.
@@ -17,8 +17,8 @@ class FetchClusterUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name (project, location, cluster) of the cluster to get.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;` or
-     * `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*` or
+     * `projects/{@*}zones/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,8 +53,8 @@ class FetchClusterUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name (project, location, cluster) of the cluster to get.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;` or
-     *           `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*` or
+     *           `projects/{@*}zones/{@*}clusters/*`.
      *     @type string $version
      *           API request version that initiates this operation.
      * }
@@ -66,8 +66,8 @@ class FetchClusterUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name (project, location, cluster) of the cluster to get.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;` or
-     * `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*` or
+     * `projects/{@*}zones/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -79,8 +79,8 @@ class FetchClusterUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name (project, location, cluster) of the cluster to get.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;` or
-     * `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*` or
+     * `projects/{@*}zones/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

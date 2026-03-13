@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\NotificationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allows filtering to one or more specific event types. If event types are
@@ -31,7 +31,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $event_type
+     *     @type int[] $event_type
      *           Event types to allowlist.
      * }
      */
@@ -44,7 +44,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Event types to allowlist.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NotificationConfig.EventType event_type = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEventType()
     {
@@ -55,7 +55,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Event types to allowlist.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NotificationConfig.EventType event_type = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEventType($var)
@@ -67,5 +67,4 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

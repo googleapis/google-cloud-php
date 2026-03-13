@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * StartIPRotationRequest creates a new IP for the cluster and then performs
@@ -45,7 +45,7 @@ class StartIPRotationRequest extends \Google\Protobuf\Internal\Message
     protected $cluster_id = '';
     /**
      * The name (project, location, cluster name) of the cluster to start IP
-     * rotation. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * rotation. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -114,7 +114,7 @@ class StartIPRotationRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
      *           The name (project, location, cluster name) of the cluster to start IP
-     *           rotation. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           rotation. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *     @type bool $rotate_credentials
      *           Whether to rotate credentials during IP rotation.
      * }
@@ -234,7 +234,7 @@ class StartIPRotationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster name) of the cluster to start IP
-     * rotation. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * rotation. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -246,7 +246,7 @@ class StartIPRotationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster name) of the cluster to start IP
-     * rotation. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * rotation. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

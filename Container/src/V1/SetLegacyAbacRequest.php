@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetLegacyAbacRequest enables or disables the ABAC authorization mechanism for
@@ -51,7 +51,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     protected $enabled = false;
     /**
      * The name (project, location, cluster name) of the cluster to set legacy
-     * abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * abac. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -120,7 +120,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      *           Required. Whether ABAC authorization will be enabled in the cluster.
      *     @type string $name
      *           The name (project, location, cluster name) of the cluster to set legacy
-     *           abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           abac. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -264,7 +264,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster name) of the cluster to set legacy
-     * abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * abac. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -276,7 +276,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster name) of the cluster to set legacy
-     * abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * abac. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var
