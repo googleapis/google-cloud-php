@@ -1,0 +1,142 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.vision.v1",
+    "libraryPackage": "Google\\Cloud\\Vision\\V1",
+    "services": {
+        "ProductSearch": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProductSearchGapicClient",
+                    "rpcs": {
+                        "AddProductToProductSet": {
+                            "methods": [
+                                "addProductToProductSet"
+                            ]
+                        },
+                        "CreateProduct": {
+                            "methods": [
+                                "createProduct"
+                            ]
+                        },
+                        "CreateProductSet": {
+                            "methods": [
+                                "createProductSet"
+                            ]
+                        },
+                        "CreateReferenceImage": {
+                            "methods": [
+                                "createReferenceImage"
+                            ]
+                        },
+                        "DeleteProduct": {
+                            "methods": [
+                                "deleteProduct"
+                            ]
+                        },
+                        "DeleteProductSet": {
+                            "methods": [
+                                "deleteProductSet"
+                            ]
+                        },
+                        "DeleteReferenceImage": {
+                            "methods": [
+                                "deleteReferenceImage"
+                            ]
+                        },
+                        "GetProduct": {
+                            "methods": [
+                                "getProduct"
+                            ]
+                        },
+                        "GetProductSet": {
+                            "methods": [
+                                "getProductSet"
+                            ]
+                        },
+                        "GetReferenceImage": {
+                            "methods": [
+                                "getReferenceImage"
+                            ]
+                        },
+                        "ImportProductSets": {
+                            "methods": [
+                                "importProductSets"
+                            ]
+                        },
+                        "ListProductSets": {
+                            "methods": [
+                                "listProductSets"
+                            ]
+                        },
+                        "ListProducts": {
+                            "methods": [
+                                "listProducts"
+                            ]
+                        },
+                        "ListProductsInProductSet": {
+                            "methods": [
+                                "listProductsInProductSet"
+                            ]
+                        },
+                        "ListReferenceImages": {
+                            "methods": [
+                                "listReferenceImages"
+                            ]
+                        },
+                        "PurgeProducts": {
+                            "methods": [
+                                "purgeProducts"
+                            ]
+                        },
+                        "RemoveProductFromProductSet": {
+                            "methods": [
+                                "removeProductFromProductSet"
+                            ]
+                        },
+                        "UpdateProduct": {
+                            "methods": [
+                                "updateProduct"
+                            ]
+                        },
+                        "UpdateProductSet": {
+                            "methods": [
+                                "updateProductSet"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ImageAnnotator": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ImageAnnotatorGapicClient",
+                    "rpcs": {
+                        "AsyncBatchAnnotateFiles": {
+                            "methods": [
+                                "asyncBatchAnnotateFiles"
+                            ]
+                        },
+                        "AsyncBatchAnnotateImages": {
+                            "methods": [
+                                "asyncBatchAnnotateImages"
+                            ]
+                        },
+                        "BatchAnnotateFiles": {
+                            "methods": [
+                                "batchAnnotateFiles"
+                            ]
+                        },
+                        "BatchAnnotateImages": {
+                            "methods": [
+                                "batchAnnotateImages"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
