@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Value specification for a parameter in `INTEGER` type.
@@ -158,5 +158,4 @@ class IntegerValueSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

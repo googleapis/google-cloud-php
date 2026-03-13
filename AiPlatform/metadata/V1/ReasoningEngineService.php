@@ -24,48 +24,7 @@ class ReasoningEngineService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-¹
-9google/cloud/aiplatform/v1/reasoning_engine_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto1google/cloud/aiplatform/v1/reasoning_engine.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"¥
-CreateReasoningEngineRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/LocationJ
-reasoning_engine (2+.google.cloud.aiplatform.v1.ReasoningEngineBàA"x
-&CreateReasoningEngineOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"\\
-GetReasoningEngineRequest?
-name (	B1àAúA+
-)aiplatform.googleapis.com/ReasoningEngine" 
-UpdateReasoningEngineRequestJ
-reasoning_engine (2+.google.cloud.aiplatform.v1.ReasoningEngineBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"x
-&UpdateReasoningEngineOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"ž
-ListReasoningEnginesRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/Location
-filter (	BàA
-	page_size (BàA
-
-page_token (	BàA"
-ListReasoningEnginesResponseF
-reasoning_engines (2+.google.cloud.aiplatform.v1.ReasoningEngine
-next_page_token (	"s
-DeleteReasoningEngineRequest?
-name (	B1àAúA+
-)aiplatform.googleapis.com/ReasoningEngine
-force (BàA2¯
-
-ReasoningEngineService—
-CreateReasoningEngine8.google.cloud.aiplatform.v1.CreateReasoningEngineRequest.google.longrunning.Operation"¤ÊA9
-ReasoningEngine&CreateReasoningEngineOperationMetadataÚAparent,reasoning_engine‚Óä“H"4/v1/{parent=projects/*/locations/*}/reasoningEngines:reasoning_engine½
-GetReasoningEngine5.google.cloud.aiplatform.v1.GetReasoningEngineRequest+.google.cloud.aiplatform.v1.ReasoningEngine"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/reasoningEngines/*}Ð
-ListReasoningEngines7.google.cloud.aiplatform.v1.ListReasoningEnginesRequest8.google.cloud.aiplatform.v1.ListReasoningEnginesResponse"EÚAparent‚Óä“64/v1/{parent=projects/*/locations/*}/reasoningEngines­
-UpdateReasoningEngine8.google.cloud.aiplatform.v1.UpdateReasoningEngineRequest.google.longrunning.Operation"ºÊA9
-ReasoningEngine&UpdateReasoningEngineOperationMetadataÚAreasoning_engine,update_mask‚Óä“Y2E/v1/{reasoning_engine.name=projects/*/locations/*/reasoningEngines/*}:reasoning_engineè
-DeleteReasoningEngine8.google.cloud.aiplatform.v1.DeleteReasoningEngineRequest.google.longrunning.Operation"vÊA0
-google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/reasoningEngines/*}MÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÙ
-com.google.cloud.aiplatform.v1BReasoningEngineServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+            "\x0A\xB9\x17\x0A9google/cloud/aiplatform/v1/reasoning_engine_service.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A*google/cloud/aiplatform/v1/operation.proto\x1A1google/cloud/aiplatform/v1/reasoning_engine.proto\x1A#google/longrunning/operations.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A google/protobuf/field_mask.proto\"\xA5\x01\x0A\x1CCreateReasoningEngineRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12J\x0A\x10reasoning_engine\x18\x02 \x01(\x0B2+.google.cloud.aiplatform.v1.ReasoningEngineB\x03\xE0A\x02\"x\x0A&CreateReasoningEngineOperationMetadata\x12N\x0A\x10generic_metadata\x18\x01 \x01(\x0B24.google.cloud.aiplatform.v1.GenericOperationMetadata\"\\\x0A\x19GetReasoningEngineRequest\x12?\x0A\x04name\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)aiplatform.googleapis.com/ReasoningEngine\"\xA0\x01\x0A\x1CUpdateReasoningEngineRequest\x12J\x0A\x10reasoning_engine\x18\x01 \x01(\x0B2+.google.cloud.aiplatform.v1.ReasoningEngineB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x01\"x\x0A&UpdateReasoningEngineOperationMetadata\x12N\x0A\x10generic_metadata\x18\x01 \x01(\x0B24.google.cloud.aiplatform.v1.GenericOperationMetadata\"\x9E\x01\x0A\x1BListReasoningEnginesRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12\x13\x0A\x06filter\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x16\x0A\x09page_size\x18\x03 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x04 \x01(\x09B\x03\xE0A\x01\"\x7F\x0A\x1CListReasoningEnginesResponse\x12F\x0A\x11reasoning_engines\x18\x01 \x03(\x0B2+.google.cloud.aiplatform.v1.ReasoningEngine\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"s\x0A\x1CDeleteReasoningEngineRequest\x12?\x0A\x04name\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)aiplatform.googleapis.com/ReasoningEngine\x12\x12\x0A\x05force\x18\x02 \x01(\x08B\x03\xE0A\x012\xAF\x0A\x0A\x16ReasoningEngineService\x12\x97\x02\x0A\x15CreateReasoningEngine\x128.google.cloud.aiplatform.v1.CreateReasoningEngineRequest\x1A\x1D.google.longrunning.Operation\"\xA4\x01\xCAA9\x0A\x0FReasoningEngine\x12&CreateReasoningEngineOperationMetadata\xDAA\x17parent,reasoning_engine\x82\xD3\xE4\x93\x02H\"4/v1/{parent=projects/*/locations/*}/reasoningEngines:\x10reasoning_engine\x12\xBD\x01\x0A\x12GetReasoningEngine\x125.google.cloud.aiplatform.v1.GetReasoningEngineRequest\x1A+.google.cloud.aiplatform.v1.ReasoningEngine\"C\xDAA\x04name\x82\xD3\xE4\x93\x026\x124/v1/{name=projects/*/locations/*/reasoningEngines/*}\x12\xD0\x01\x0A\x14ListReasoningEngines\x127.google.cloud.aiplatform.v1.ListReasoningEnginesRequest\x1A8.google.cloud.aiplatform.v1.ListReasoningEnginesResponse\"E\xDAA\x06parent\x82\xD3\xE4\x93\x026\x124/v1/{parent=projects/*/locations/*}/reasoningEngines\x12\xAD\x02\x0A\x15UpdateReasoningEngine\x128.google.cloud.aiplatform.v1.UpdateReasoningEngineRequest\x1A\x1D.google.longrunning.Operation\"\xBA\x01\xCAA9\x0A\x0FReasoningEngine\x12&UpdateReasoningEngineOperationMetadata\xDAA\x1Creasoning_engine,update_mask\x82\xD3\xE4\x93\x02Y2E/v1/{reasoning_engine.name=projects/*/locations/*/reasoningEngines/*}:\x10reasoning_engine\x12\xE8\x01\x0A\x15DeleteReasoningEngine\x128.google.cloud.aiplatform.v1.DeleteReasoningEngineRequest\x1A\x1D.google.longrunning.Operation\"v\xCAA0\x0A\x15google.protobuf.Empty\x12\x17DeleteOperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x026*4/v1/{name=projects/*/locations/*/reasoningEngines/*}\x1AM\xCAA\x19aiplatform.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\xD9\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x1BReasoningEngineServiceProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

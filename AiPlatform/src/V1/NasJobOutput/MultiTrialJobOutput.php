@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NasJobOutput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The output of a multi-trial Neural Architecture Search (NAS) jobs.
@@ -34,9 +34,9 @@ class MultiTrialJobOutput extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\NasTrial>|\Google\Protobuf\Internal\RepeatedField $search_trials
+     *     @type \Google\Cloud\AIPlatform\V1\NasTrial[] $search_trials
      *           Output only. List of NasTrials that were started as part of search stage.
-     *     @type array<\Google\Cloud\AIPlatform\V1\NasTrial>|\Google\Protobuf\Internal\RepeatedField $train_trials
+     *     @type \Google\Cloud\AIPlatform\V1\NasTrial[] $train_trials
      *           Output only. List of NasTrials that were started as part of train stage.
      * }
      */
@@ -49,7 +49,7 @@ class MultiTrialJobOutput extends \Google\Protobuf\Internal\Message
      * Output only. List of NasTrials that were started as part of search stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasTrial search_trials = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NasTrial>
      */
     public function getSearchTrials()
     {
@@ -60,7 +60,7 @@ class MultiTrialJobOutput extends \Google\Protobuf\Internal\Message
      * Output only. List of NasTrials that were started as part of search stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasTrial search_trials = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NasTrial>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NasTrial[] $var
      * @return $this
      */
     public function setSearchTrials($var)
@@ -75,7 +75,7 @@ class MultiTrialJobOutput extends \Google\Protobuf\Internal\Message
      * Output only. List of NasTrials that were started as part of train stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasTrial train_trials = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NasTrial>
      */
     public function getTrainTrials()
     {
@@ -86,7 +86,7 @@ class MultiTrialJobOutput extends \Google\Protobuf\Internal\Message
      * Output only. List of NasTrials that were started as part of train stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasTrial train_trials = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NasTrial>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NasTrial[] $var
      * @return $this
      */
     public function setTrainTrials($var)
@@ -98,5 +98,4 @@ class MultiTrialJobOutput extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

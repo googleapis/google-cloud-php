@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entity view with Feature values.
@@ -41,7 +41,7 @@ class EntityView extends \Google\Protobuf\Internal\Message
      *
      *     @type string $entity_id
      *           ID of the requested entity.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data>|\Google\Protobuf\Internal\RepeatedField $data
+     *     @type \Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data[] $data
      *           Each piece of data holds the k
      *           requested values for one requested Feature. If no values
      *           for the requested Feature exist, the corresponding cell will be empty.
@@ -90,7 +90,7 @@ class EntityView extends \Google\Protobuf\Internal\Message
      * [ReadFeatureValuesResponse.header][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.header].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.Data data = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data>
      */
     public function getData()
     {
@@ -106,7 +106,7 @@ class EntityView extends \Google\Protobuf\Internal\Message
      * [ReadFeatureValuesResponse.header][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.header].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.Data data = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data[] $var
      * @return $this
      */
     public function setData($var)
@@ -118,5 +118,4 @@ class EntityView extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

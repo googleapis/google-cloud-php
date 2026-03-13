@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\MigratableResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents one Dataset in datalabeling.googleapis.com.
@@ -49,7 +49,7 @@ class DataLabelingDataset extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/datasets/{dataset}`.
      *     @type string $dataset_display_name
      *           The Dataset's display name in datalabeling.googleapis.com.
-     *     @type array<\Google\Cloud\AIPlatform\V1\MigratableResource\DataLabelingDataset\DataLabelingAnnotatedDataset>|\Google\Protobuf\Internal\RepeatedField $data_labeling_annotated_datasets
+     *     @type \Google\Cloud\AIPlatform\V1\MigratableResource\DataLabelingDataset\DataLabelingAnnotatedDataset[] $data_labeling_annotated_datasets
      *           The migratable AnnotatedDataset in datalabeling.googleapis.com belongs to
      *           the data labeling Dataset.
      * }
@@ -120,7 +120,7 @@ class DataLabelingDataset extends \Google\Protobuf\Internal\Message
      * the data labeling Dataset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigratableResource.DataLabelingDataset.DataLabelingAnnotatedDataset data_labeling_annotated_datasets = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\MigratableResource\DataLabelingDataset\DataLabelingAnnotatedDataset>
      */
     public function getDataLabelingAnnotatedDatasets()
     {
@@ -132,7 +132,7 @@ class DataLabelingDataset extends \Google\Protobuf\Internal\Message
      * the data labeling Dataset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigratableResource.DataLabelingDataset.DataLabelingAnnotatedDataset data_labeling_annotated_datasets = 3;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\MigratableResource\DataLabelingDataset\DataLabelingAnnotatedDataset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\MigratableResource\DataLabelingDataset\DataLabelingAnnotatedDataset[] $var
      * @return $this
      */
     public function setDataLabelingAnnotatedDatasets($var)
@@ -144,5 +144,4 @@ class DataLabelingDataset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

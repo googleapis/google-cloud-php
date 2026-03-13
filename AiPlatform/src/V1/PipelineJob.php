@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An instance of a machine learning PipelineJob.
@@ -246,7 +246,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           resources being launched, if applied, such as Vertex AI
      *           Training or Dataflow job. If left unspecified, the workload is not peered
      *           with any network.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
+     *     @type string[] $reserved_ip_ranges
      *           A list of names for the reserved ip ranges under the VPC network
      *           that can be used for this Pipeline Job's workload.
      *           If set, we will deploy the Pipeline Job's workload within the provided ip
@@ -822,7 +822,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Example: ['vertex-ai-ip-range'].
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 25;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReservedIpRanges()
     {
@@ -838,7 +838,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Example: ['vertex-ai-ip-range'].
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 25;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReservedIpRanges($var)

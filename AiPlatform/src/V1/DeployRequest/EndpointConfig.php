@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\DeployRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The endpoint config to use for the deployment.
@@ -281,5 +281,4 @@ class EndpointConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Model Garden Publisher Model.
@@ -94,7 +94,7 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      *           Required. Indicates the open source category of the publisher model.
      *     @type \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction $supported_actions
      *           Optional. Supported call-to-action options.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $frameworks
+     *     @type string[] $frameworks
      *           Optional. Additional information about the model's Frameworks.
      *     @type int $launch_stage
      *           Optional. Indicates the launch stage of the model.
@@ -239,7 +239,7 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      * Optional. Additional information about the model's Frameworks.
      *
      * Generated from protobuf field <code>repeated string frameworks = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFrameworks()
     {
@@ -250,7 +250,7 @@ class PublisherModel extends \Google\Protobuf\Internal\Message
      * Optional. Additional information about the model's Frameworks.
      *
      * Generated from protobuf field <code>repeated string frameworks = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFrameworks($var)

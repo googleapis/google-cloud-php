@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagVectorDbConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config for the default RAG-managed Vector DB.
@@ -111,5 +111,4 @@ class RagManagedDb extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.ContentValidationStats</code>
@@ -64,7 +64,7 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      *           Number of records in this file that were successfully processed.
      *     @type int|string $invalid_record_count
      *           Number of records in this file we skipped due to validate errors.
-     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError[] $partial_errors
      *           The detail information of the partial failures encountered for those
      *           invalid records that couldn't be parsed.
      *           Up to 50 partial errors will be reported.
@@ -163,7 +163,7 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      * Up to 50 partial errors will be reported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.RecordError partial_errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError>
      */
     public function getPartialErrors()
     {
@@ -176,7 +176,7 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      * Up to 50 partial errors will be reported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.RecordError partial_errors = 4;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError[] $var
      * @return $this
      */
     public function setPartialErrors($var)
@@ -240,5 +240,4 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

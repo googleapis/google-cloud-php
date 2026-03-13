@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tokens info with a list of tokens and the corresponding list of token ids.
@@ -40,9 +40,9 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tokens
+     *     @type string[] $tokens
      *           A list of tokens from the input.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $token_ids
+     *     @type int[]|string[] $token_ids
      *           A list of token ids from the input.
      *     @type string $role
      *           Optional. Optional fields for the role from the corresponding Content.
@@ -57,7 +57,7 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
      * A list of tokens from the input.
      *
      * Generated from protobuf field <code>repeated bytes tokens = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTokens()
     {
@@ -68,7 +68,7 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
      * A list of tokens from the input.
      *
      * Generated from protobuf field <code>repeated bytes tokens = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTokens($var)
@@ -83,7 +83,7 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
      * A list of token ids from the input.
      *
      * Generated from protobuf field <code>repeated int64 token_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getTokenIds()
     {
@@ -94,7 +94,7 @@ class TokensInfo extends \Google\Protobuf\Internal\Message
      * A list of token ids from the input.
      *
      * Generated from protobuf field <code>repeated int64 token_ids = 2;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setTokenIds($var)

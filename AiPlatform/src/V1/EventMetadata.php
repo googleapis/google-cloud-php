@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata relating to a LLM response event.
@@ -96,7 +96,7 @@ class EventMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $interrupted
      *           Optional. Flag indicating that LLM was interrupted when generating the
      *           content. Usually it's due to user interruption during a bidi streaming.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $long_running_tool_ids
+     *     @type string[] $long_running_tool_ids
      *           Optional. Set of ids of the long running function calls.
      *           Agent client will know from this field about which function call is long
      *           running. Only valid for function call event.
@@ -245,7 +245,7 @@ class EventMetadata extends \Google\Protobuf\Internal\Message
      * running. Only valid for function call event.
      *
      * Generated from protobuf field <code>repeated string long_running_tool_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLongRunningToolIds()
     {
@@ -258,7 +258,7 @@ class EventMetadata extends \Google\Protobuf\Internal\Message
      * running. Only valid for function call event.
      *
      * Generated from protobuf field <code>repeated string long_running_tool_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLongRunningToolIds($var)

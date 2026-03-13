@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagManagedDbConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Disables the RAG Engine service and deletes all your data held
@@ -34,5 +34,4 @@ class Unprovisioned extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

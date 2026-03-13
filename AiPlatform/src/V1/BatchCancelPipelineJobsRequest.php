@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -63,7 +63,7 @@ class BatchCancelPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the PipelineJobs' parent resource.
      *           Format: `projects/{project}/locations/{location}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. The names of the PipelineJobs to cancel.
      *           A maximum of 32 PipelineJobs can be cancelled in a batch.
      *           Format:
@@ -110,7 +110,7 @@ class BatchCancelPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -124,7 +124,7 @@ class BatchCancelPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

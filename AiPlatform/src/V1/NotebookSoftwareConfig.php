@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Notebook Software Config. This is passed to the backend when user
@@ -39,7 +39,7 @@ class NotebookSoftwareConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\ColabImage $colab_image
      *           Optional. Google-managed NotebookRuntime colab image.
-     *     @type array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type \Google\Cloud\AIPlatform\V1\EnvVar[] $env
      *           Optional. Environment variables to be passed to the container.
      *           Maximum limit is 100.
      *     @type \Google\Cloud\AIPlatform\V1\PostStartupScriptConfig $post_startup_script_config
@@ -87,7 +87,7 @@ class NotebookSoftwareConfig extends \Google\Protobuf\Internal\Message
      * Maximum limit is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\EnvVar>
      */
     public function getEnv()
     {
@@ -99,7 +99,7 @@ class NotebookSoftwareConfig extends \Google\Protobuf\Internal\Message
      * Maximum limit is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\EnvVar[] $var
      * @return $this
      */
     public function setEnv($var)

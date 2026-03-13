@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\BatchPredictionJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures the input to
@@ -199,5 +199,4 @@ class InputConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

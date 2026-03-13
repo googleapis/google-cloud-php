@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A ReservationAffinity can be used to configure a Vertex AI resource (e.g., a
@@ -53,7 +53,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *           a SPECIFIC_RESERVATION by name, use
      *           `compute.googleapis.com/reservation-name` as the key and specify the name
      *           of your reservation as its value.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Optional. Corresponds to the label values of a reservation resource. This
      *           must be the full resource name of the reservation.
      * }
@@ -126,7 +126,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * must be the full resource name of the reservation.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -138,7 +138,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * must be the full resource name of the reservation.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

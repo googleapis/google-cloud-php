@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -41,7 +41,7 @@ class PurgeArtifactsResponse extends \Google\Protobuf\Internal\Message
      *     @type int|string $purge_count
      *           The number of Artifacts that this request deleted (or, if `force` is false,
      *           the number of Artifacts that will be deleted). This can be an estimate.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $purge_sample
+     *     @type string[] $purge_sample
      *           A sample of the Artifact names that will be deleted.
      *           Only populated if `force` is set to false. The maximum number of samples is
      *           100 (it is possible to return fewer).
@@ -86,7 +86,7 @@ class PurgeArtifactsResponse extends \Google\Protobuf\Internal\Message
      * 100 (it is possible to return fewer).
      *
      * Generated from protobuf field <code>repeated string purge_sample = 2 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPurgeSample()
     {
@@ -99,7 +99,7 @@ class PurgeArtifactsResponse extends \Google\Protobuf\Internal\Message
      * 100 (it is possible to return fewer).
      *
      * Generated from protobuf field <code>repeated string purge_sample = 2 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPurgeSample($var)

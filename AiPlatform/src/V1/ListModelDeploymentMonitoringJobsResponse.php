@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListModelDeploymentMonitoringJobsResponse extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob>|\Google\Protobuf\Internal\RepeatedField $model_deployment_monitoring_jobs
+     *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob[] $model_deployment_monitoring_jobs
      *           A list of ModelDeploymentMonitoringJobs that matches the specified filter
      *           in the request.
      *     @type string $next_page_token
@@ -53,7 +53,7 @@ class ListModelDeploymentMonitoringJobsResponse extends \Google\Protobuf\Interna
      * in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob model_deployment_monitoring_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob>
      */
     public function getModelDeploymentMonitoringJobs()
     {
@@ -65,7 +65,7 @@ class ListModelDeploymentMonitoringJobsResponse extends \Google\Protobuf\Interna
      * in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob model_deployment_monitoring_jobs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob[] $var
      * @return $this
      */
     public function setModelDeploymentMonitoringJobs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListTuningJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\TuningJob>|\Google\Protobuf\Internal\RepeatedField $tuning_jobs
+     *     @type \Google\Cloud\AIPlatform\V1\TuningJob[] $tuning_jobs
      *           List of TuningJobs in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -56,7 +56,7 @@ class ListTuningJobsResponse extends \Google\Protobuf\Internal\Message
      * List of TuningJobs in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TuningJob tuning_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TuningJob>
      */
     public function getTuningJobs()
     {
@@ -67,7 +67,7 @@ class ListTuningJobsResponse extends \Google\Protobuf\Internal\Message
      * List of TuningJobs in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TuningJob tuning_jobs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TuningJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TuningJob[] $var
      * @return $this
      */
     public function setTuningJobs($var)

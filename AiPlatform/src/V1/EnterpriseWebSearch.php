@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tool to search public web data, powered by Vertex AI Search and Sec4
@@ -37,7 +37,7 @@ class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_domains
+     *     @type string[] $exclude_domains
      *           Optional. List of domains to be excluded from the search results.
      *           The default limit is 2000 domains.
      *     @type int $blocking_confidence
@@ -55,7 +55,7 @@ class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
      * The default limit is 2000 domains.
      *
      * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeDomains()
     {
@@ -67,7 +67,7 @@ class EnterpriseWebSearch extends \Google\Protobuf\Internal\Message
      * The default limit is 2000 domains.
      *
      * Generated from protobuf field <code>repeated string exclude_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeDomains($var)

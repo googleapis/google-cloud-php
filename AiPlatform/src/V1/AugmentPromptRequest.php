@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for AugmentPrompt.
@@ -72,7 +72,7 @@ class AugmentPromptRequest extends \Google\Protobuf\Internal\Message
      *           The users must have permission to make a call in the project.
      *           Format:
      *           `projects/{project}/locations/{location}`.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
+     *     @type \Google\Cloud\AIPlatform\V1\Content[] $contents
      *           Optional. Input content to augment, only text format is supported for now.
      *     @type \Google\Cloud\AIPlatform\V1\AugmentPromptRequest\Model $model
      *           Optional. Metadata of the backend deployed model.
@@ -150,7 +150,7 @@ class AugmentPromptRequest extends \Google\Protobuf\Internal\Message
      * Optional. Input content to augment, only text format is supported for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Content>
      */
     public function getContents()
     {
@@ -161,7 +161,7 @@ class AugmentPromptRequest extends \Google\Protobuf\Internal\Message
      * Optional. Input content to augment, only text format is supported for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Content[] $var
      * @return $this
      */
     public function setContents($var)

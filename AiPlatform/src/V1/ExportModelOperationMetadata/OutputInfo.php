@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ExportModelOperationMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Further describes the output of the ExportModel. Supplements
@@ -111,5 +111,4 @@ class OutputInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

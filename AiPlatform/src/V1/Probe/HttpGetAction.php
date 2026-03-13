@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Probe;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * HttpGetAction describes an action based on HTTP Get requests.
@@ -66,7 +66,7 @@ class HttpGetAction extends \Google\Protobuf\Internal\Message
      *     @type string $scheme
      *           Scheme to use for connecting to the host.
      *           Defaults to HTTP. Acceptable values are "HTTP" or "HTTPS".
-     *     @type array<\Google\Cloud\AIPlatform\V1\Probe\HttpHeader>|\Google\Protobuf\Internal\RepeatedField $http_headers
+     *     @type \Google\Cloud\AIPlatform\V1\Probe\HttpHeader[] $http_headers
      *           Custom headers to set in the request. HTTP allows repeated headers.
      * }
      */
@@ -189,7 +189,7 @@ class HttpGetAction extends \Google\Protobuf\Internal\Message
      * Custom headers to set in the request. HTTP allows repeated headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Probe.HttpHeader http_headers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Probe\HttpHeader>
      */
     public function getHttpHeaders()
     {
@@ -200,7 +200,7 @@ class HttpGetAction extends \Google\Protobuf\Internal\Message
      * Custom headers to set in the request. HTTP allows repeated headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Probe.HttpHeader http_headers = 5;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Probe\HttpHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Probe\HttpHeader[] $var
      * @return $this
      */
     public function setHttpHeaders($var)
@@ -212,5 +212,4 @@ class HttpGetAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

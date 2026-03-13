@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Per user usage data.
@@ -98,5 +98,4 @@ class PerUserUsageData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

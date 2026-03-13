@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ModelEvaluationSlice;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of a slice.
@@ -174,5 +174,4 @@ class Slice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

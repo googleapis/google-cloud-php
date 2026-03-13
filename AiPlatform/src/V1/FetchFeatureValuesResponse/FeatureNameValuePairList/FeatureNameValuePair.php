@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse\FeatureNameValuePairList;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Feature name & value pair.
@@ -106,5 +106,4 @@ class FeatureNameValuePair extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

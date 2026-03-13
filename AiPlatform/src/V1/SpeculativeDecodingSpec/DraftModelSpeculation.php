@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\SpeculativeDecodingSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Draft model speculation works by using the smaller model to generate
@@ -65,5 +65,4 @@ class DraftModelSpeculation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

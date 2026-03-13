@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -70,7 +70,7 @@ class AsyncRetrieveContextsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}`.
      *     @type \Google\Cloud\AIPlatform\V1\RagQuery $query
      *           Required. Single RAG retrieve query.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type \Google\Cloud\AIPlatform\V1\Tool[] $tools
      *           Optional. The tools to use for AskContexts.
      * }
      */
@@ -151,7 +151,7 @@ class AsyncRetrieveContextsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The tools to use for AskContexts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Tool>
      */
     public function getTools()
     {
@@ -162,7 +162,7 @@ class AsyncRetrieveContextsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The tools to use for AskContexts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Tool[] $var
      * @return $this
      */
     public function setTools($var)

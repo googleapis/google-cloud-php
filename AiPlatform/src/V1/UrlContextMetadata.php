@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata related to url context retrieval tool.
@@ -28,7 +28,7 @@ class UrlContextMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\UrlMetadata>|\Google\Protobuf\Internal\RepeatedField $url_metadata
+     *     @type \Google\Cloud\AIPlatform\V1\UrlMetadata[] $url_metadata
      *           Output only. List of url context.
      * }
      */
@@ -41,7 +41,7 @@ class UrlContextMetadata extends \Google\Protobuf\Internal\Message
      * Output only. List of url context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.UrlMetadata url_metadata = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\UrlMetadata>
      */
     public function getUrlMetadata()
     {
@@ -52,7 +52,7 @@ class UrlContextMetadata extends \Google\Protobuf\Internal\Message
      * Output only. List of url context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.UrlMetadata url_metadata = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\UrlMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\UrlMetadata[] $var
      * @return $this
      */
     public function setUrlMetadata($var)

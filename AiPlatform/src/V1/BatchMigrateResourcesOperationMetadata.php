@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Runtime operation information for
@@ -37,7 +37,7 @@ class BatchMigrateResourcesOperationMetadata extends \Google\Protobuf\Internal\M
      *
      *     @type \Google\Cloud\AIPlatform\V1\GenericOperationMetadata $generic_metadata
      *           The common part of the operation metadata.
-     *     @type array<\Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult>|\Google\Protobuf\Internal\RepeatedField $partial_results
+     *     @type \Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult[] $partial_results
      *           Partial results that reflect the latest migration operation progress.
      * }
      */
@@ -86,7 +86,7 @@ class BatchMigrateResourcesOperationMetadata extends \Google\Protobuf\Internal\M
      * Partial results that reflect the latest migration operation progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchMigrateResourcesOperationMetadata.PartialResult partial_results = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult>
      */
     public function getPartialResults()
     {
@@ -97,7 +97,7 @@ class BatchMigrateResourcesOperationMetadata extends \Google\Protobuf\Internal\M
      * Partial results that reflect the latest migration operation progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchMigrateResourcesOperationMetadata.PartialResult partial_results = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult[] $var
      * @return $this
      */
     public function setPartialResults($var)

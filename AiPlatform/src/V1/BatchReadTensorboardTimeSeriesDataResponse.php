@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class BatchReadTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $time_series_data
+     *     @type \Google\Cloud\AIPlatform\V1\TimeSeriesData[] $time_series_data
      *           The returned time series data.
      * }
      */
@@ -42,7 +42,7 @@ class BatchReadTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Intern
      * The returned time series data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesData time_series_data = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TimeSeriesData>
      */
     public function getTimeSeriesData()
     {
@@ -53,7 +53,7 @@ class BatchReadTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Intern
      * The returned time series data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesData time_series_data = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TimeSeriesData[] $var
      * @return $this
      */
     public function setTimeSeriesData($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The base structured datatype containing multi-part content of a message.
@@ -44,7 +44,7 @@ class Content extends \Google\Protobuf\Internal\Message
      *           Optional. The producer of the content. Must be either 'user' or 'model'.
      *           Useful to set for multi-turn conversations, otherwise can be left blank
      *           or unset.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Part>|\Google\Protobuf\Internal\RepeatedField $parts
+     *     @type \Google\Cloud\AIPlatform\V1\Part[] $parts
      *           Required. Ordered `Parts` that constitute a single message. Parts may have
      *           different IANA MIME types.
      * }
@@ -89,7 +89,7 @@ class Content extends \Google\Protobuf\Internal\Message
      * different IANA MIME types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Part parts = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Part>
      */
     public function getParts()
     {
@@ -101,7 +101,7 @@ class Content extends \Google\Protobuf\Internal\Message
      * different IANA MIME types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Part parts = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Part>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Part[] $var
      * @return $this
      */
     public function setParts($var)

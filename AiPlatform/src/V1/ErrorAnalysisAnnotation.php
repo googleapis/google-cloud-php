@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Model error analysis for each annotation.
@@ -48,7 +48,7 @@ class ErrorAnalysisAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation\AttributedItem>|\Google\Protobuf\Internal\RepeatedField $attributed_items
+     *     @type \Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation\AttributedItem[] $attributed_items
      *           Attributed items for a given annotation, typically representing neighbors
      *           from the training sets constrained by the query type.
      *     @type int $query_type
@@ -70,7 +70,7 @@ class ErrorAnalysisAnnotation extends \Google\Protobuf\Internal\Message
      * from the training sets constrained by the query type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ErrorAnalysisAnnotation.AttributedItem attributed_items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation\AttributedItem>
      */
     public function getAttributedItems()
     {
@@ -82,7 +82,7 @@ class ErrorAnalysisAnnotation extends \Google\Protobuf\Internal\Message
      * from the training sets constrained by the query type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ErrorAnalysisAnnotation.AttributedItem attributed_items = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation\AttributedItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation\AttributedItem[] $var
      * @return $this
      */
     public function setAttributedItems($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Attributed items for a given annotation, typically representing neighbors
@@ -103,5 +103,4 @@ class AttributedItem extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

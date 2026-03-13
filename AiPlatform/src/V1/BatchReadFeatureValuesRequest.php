@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -106,14 +106,14 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}`
      *     @type \Google\Cloud\AIPlatform\V1\FeatureValueDestination $destination
      *           Required. Specifies output location and format.
-     *     @type array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField>|\Google\Protobuf\Internal\RepeatedField $pass_through_fields
+     *     @type \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField[] $pass_through_fields
      *           When not empty, the specified fields in the *_read_instances source will be
      *           joined as-is in the output, in addition to those fields from the
      *           Featurestore Entity.
      *           For BigQuery source, the type of the pass-through values will be
      *           automatically inferred. For CSV source, the pass-through values will be
      *           passed as opaque bytes.
-     *     @type array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec>|\Google\Protobuf\Internal\RepeatedField $entity_type_specs
+     *     @type \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec[] $entity_type_specs
      *           Required. Specifies EntityType grouping Features to read values of and
      *           settings.
      *     @type \Google\Protobuf\Timestamp $start_time
@@ -296,7 +296,7 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * passed as opaque bytes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.PassThroughField pass_through_fields = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField>
      */
     public function getPassThroughFields()
     {
@@ -312,7 +312,7 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * passed as opaque bytes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.PassThroughField pass_through_fields = 8;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\PassThroughField[] $var
      * @return $this
      */
     public function setPassThroughFields($var)
@@ -328,7 +328,7 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.EntityTypeSpec entity_type_specs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec>
      */
     public function getEntityTypeSpecs()
     {
@@ -340,7 +340,7 @@ class BatchReadFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchReadFeatureValuesRequest.EntityTypeSpec entity_type_specs = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest\EntityTypeSpec[] $var
      * @return $this
      */
     public function setEntityTypeSpecs($var)

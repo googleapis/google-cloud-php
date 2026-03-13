@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\JiraSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * JiraQueries contains the Jira queries and corresponding authentication.
@@ -57,9 +57,9 @@ class JiraQueries extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects
+     *     @type string[] $projects
      *           A list of Jira projects to import in their entirety.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_queries
+     *     @type string[] $custom_queries
      *           A list of custom Jira queries to import. For information about JQL (Jira
      *           Query Language), see
      *           https://support.atlassian.com/jira-service-management-cloud/docs/use-advanced-search-with-jira-query-language-jql/
@@ -83,7 +83,7 @@ class JiraQueries extends \Google\Protobuf\Internal\Message
      * A list of Jira projects to import in their entirety.
      *
      * Generated from protobuf field <code>repeated string projects = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProjects()
     {
@@ -94,7 +94,7 @@ class JiraQueries extends \Google\Protobuf\Internal\Message
      * A list of Jira projects to import in their entirety.
      *
      * Generated from protobuf field <code>repeated string projects = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProjects($var)
@@ -111,7 +111,7 @@ class JiraQueries extends \Google\Protobuf\Internal\Message
      * https://support.atlassian.com/jira-service-management-cloud/docs/use-advanced-search-with-jira-query-language-jql/
      *
      * Generated from protobuf field <code>repeated string custom_queries = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomQueries()
     {
@@ -124,7 +124,7 @@ class JiraQueries extends \Google\Protobuf\Internal\Message
      * https://support.atlassian.com/jira-service-management-cloud/docs/use-advanced-search-with-jira-query-language-jql/
      *
      * Generated from protobuf field <code>repeated string custom_queries = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomQueries($var)
@@ -230,5 +230,4 @@ class JiraQueries extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

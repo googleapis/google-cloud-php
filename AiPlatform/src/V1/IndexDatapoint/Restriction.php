@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\IndexDatapoint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Restriction of a datapoint which describe its attributes(tokens) from each
@@ -43,9 +43,9 @@ class Restriction extends \Google\Protobuf\Internal\Message
      *
      *     @type string $namespace
      *           The namespace of this restriction. e.g.: color.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_list
+     *     @type string[] $allow_list
      *           The attributes to allow in this namespace. e.g.: 'red'
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deny_list
+     *     @type string[] $deny_list
      *           The attributes to deny in this namespace. e.g.: 'blue'
      * }
      */
@@ -84,7 +84,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
      * The attributes to allow in this namespace. e.g.: 'red'
      *
      * Generated from protobuf field <code>repeated string allow_list = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowList()
     {
@@ -95,7 +95,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
      * The attributes to allow in this namespace. e.g.: 'red'
      *
      * Generated from protobuf field <code>repeated string allow_list = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowList($var)
@@ -110,7 +110,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
      * The attributes to deny in this namespace. e.g.: 'blue'
      *
      * Generated from protobuf field <code>repeated string deny_list = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDenyList()
     {
@@ -121,7 +121,7 @@ class Restriction extends \Google\Protobuf\Internal\Message
      * The attributes to deny in this namespace. e.g.: 'blue'
      *
      * Generated from protobuf field <code>repeated string deny_list = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDenyList($var)
@@ -133,5 +133,4 @@ class Restriction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

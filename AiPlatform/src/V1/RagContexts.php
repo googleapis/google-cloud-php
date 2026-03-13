@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Relevant contexts for one query.
@@ -28,7 +28,7 @@ class RagContexts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\RagContexts\Context>|\Google\Protobuf\Internal\RepeatedField $contexts
+     *     @type \Google\Cloud\AIPlatform\V1\RagContexts\Context[] $contexts
      *           All its contexts.
      * }
      */
@@ -41,7 +41,7 @@ class RagContexts extends \Google\Protobuf\Internal\Message
      * All its contexts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.RagContexts.Context contexts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\RagContexts\Context>
      */
     public function getContexts()
     {
@@ -52,7 +52,7 @@ class RagContexts extends \Google\Protobuf\Internal\Message
      * All its contexts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.RagContexts.Context contexts = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\RagContexts\Context>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\RagContexts\Context[] $var
      * @return $this
      */
     public function setContexts($var)

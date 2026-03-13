@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -49,7 +49,7 @@ class ReadIndexDatapointsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/indexEndpoints/{index_endpoint}`
      *     @type string $deployed_index_id
      *           The ID of the DeployedIndex that will serve the request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ids
+     *     @type string[] $ids
      *           IDs of the datapoints to be searched for.
      * }
      */
@@ -118,7 +118,7 @@ class ReadIndexDatapointsRequest extends \Google\Protobuf\Internal\Message
      * IDs of the datapoints to be searched for.
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIds()
     {
@@ -129,7 +129,7 @@ class ReadIndexDatapointsRequest extends \Google\Protobuf\Internal\Message
      * IDs of the datapoints to be searched for.
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIds($var)

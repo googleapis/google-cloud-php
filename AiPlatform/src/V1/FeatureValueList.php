@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container for list of values.
@@ -28,7 +28,7 @@ class FeatureValueList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureValue[] $values
      *           A list of feature values. All of them should be the same data type.
      * }
      */
@@ -41,7 +41,7 @@ class FeatureValueList extends \Google\Protobuf\Internal\Message
      * A list of feature values. All of them should be the same data type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureValue values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FeatureValue>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class FeatureValueList extends \Google\Protobuf\Internal\Message
      * A list of feature values. All of them should be the same data type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureValue values = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FeatureValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FeatureValue[] $var
      * @return $this
      */
     public function setValues($var)

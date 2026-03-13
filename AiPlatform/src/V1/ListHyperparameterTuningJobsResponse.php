@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -40,7 +40,7 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\HyperparameterTuningJob>|\Google\Protobuf\Internal\RepeatedField $hyperparameter_tuning_jobs
+     *     @type \Google\Cloud\AIPlatform\V1\HyperparameterTuningJob[] $hyperparameter_tuning_jobs
      *           List of HyperparameterTuningJobs in the requested page.
      *           [HyperparameterTuningJob.trials][google.cloud.aiplatform.v1.HyperparameterTuningJob.trials]
      *           of the jobs will be not be returned.
@@ -62,7 +62,7 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
      * of the jobs will be not be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.HyperparameterTuningJob hyperparameter_tuning_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\HyperparameterTuningJob>
      */
     public function getHyperparameterTuningJobs()
     {
@@ -75,7 +75,7 @@ class ListHyperparameterTuningJobsResponse extends \Google\Protobuf\Internal\Mes
      * of the jobs will be not be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.HyperparameterTuningJob hyperparameter_tuning_jobs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\HyperparameterTuningJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\HyperparameterTuningJob[] $var
      * @return $this
      */
     public function setHyperparameterTuningJobs($var)

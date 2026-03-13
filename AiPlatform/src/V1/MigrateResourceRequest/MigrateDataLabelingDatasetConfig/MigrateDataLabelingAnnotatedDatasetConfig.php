@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\MigrateResourceRequest\MigrateDataLabelingDatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for migrating AnnotatedDataset in datalabeling.googleapis.com to
@@ -73,5 +73,4 @@ class MigrateDataLabelingAnnotatedDatasetConfig extends \Google\Protobuf\Interna
     }
 
 }
-
 

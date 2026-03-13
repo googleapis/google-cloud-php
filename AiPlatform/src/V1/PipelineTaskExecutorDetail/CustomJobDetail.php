@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PipelineTaskExecutorDetail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The detailed info for a custom job executor.
@@ -40,7 +40,7 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
      *     @type string $job
      *           Output only. The name of the
      *           [CustomJob][google.cloud.aiplatform.v1.CustomJob].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_jobs
+     *     @type string[] $failed_jobs
      *           Output only. The names of the previously failed
      *           [CustomJob][google.cloud.aiplatform.v1.CustomJob]. The list includes the
      *           all attempts in chronological order.
@@ -85,7 +85,7 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
      * all attempts in chronological order.
      *
      * Generated from protobuf field <code>repeated string failed_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFailedJobs()
     {
@@ -98,7 +98,7 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
      * all attempts in chronological order.
      *
      * Generated from protobuf field <code>repeated string failed_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFailedJobs($var)
@@ -110,5 +110,4 @@ class CustomJobDetail extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\SpeculativeDecodingSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * N-Gram speculation works by trying to find matching tokens in the
@@ -78,5 +78,4 @@ class NgramSpeculation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

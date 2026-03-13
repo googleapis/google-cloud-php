@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encapsulates a review snippet.
@@ -132,5 +132,4 @@ class ReviewSnippet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

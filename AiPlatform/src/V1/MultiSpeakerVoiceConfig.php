@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a multi-speaker text-to-speech request.
@@ -29,7 +29,7 @@ class MultiSpeakerVoiceConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\SpeakerVoiceConfig>|\Google\Protobuf\Internal\RepeatedField $speaker_voice_configs
+     *     @type \Google\Cloud\AIPlatform\V1\SpeakerVoiceConfig[] $speaker_voice_configs
      *           Required. A list of configurations for the voices of the speakers. Exactly
      *           two speaker voice configurations must be provided.
      * }
@@ -44,7 +44,7 @@ class MultiSpeakerVoiceConfig extends \Google\Protobuf\Internal\Message
      * two speaker voice configurations must be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SpeakerVoiceConfig speaker_voice_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SpeakerVoiceConfig>
      */
     public function getSpeakerVoiceConfigs()
     {
@@ -56,7 +56,7 @@ class MultiSpeakerVoiceConfig extends \Google\Protobuf\Internal\Message
      * two speaker voice configurations must be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SpeakerVoiceConfig speaker_voice_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SpeakerVoiceConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SpeakerVoiceConfig[] $var
      * @return $this
      */
     public function setSpeakerVoiceConfigs($var)

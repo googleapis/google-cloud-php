@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * True positive, false positive, or false negative.
@@ -105,7 +105,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Output only. Type of the EvaluatedAnnotation.
-     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $predictions
+     *     @type \Google\Protobuf\Value[] $predictions
      *           Output only. The model predicted annotations.
      *           For true positive, there is one and only one prediction, which matches the
      *           only one ground truth annotation in
@@ -119,7 +119,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *           but not enough for a match.
      *           The schema of the prediction is stored in
      *           [ModelEvaluation.annotation_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]
-     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $ground_truths
+     *     @type \Google\Protobuf\Value[] $ground_truths
      *           Output only. The ground truth Annotations, i.e. the Annotations that exist
      *           in the test data the Model is evaluated on.
      *           For true positive, there is one and only one ground truth annotation, which
@@ -141,7 +141,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *           ModelEvaluation. The EvaluatedDataItemView consists of all ground truths
      *           and predictions on
      *           [data_item_payload][google.cloud.aiplatform.v1.EvaluatedAnnotation.data_item_payload].
-     *     @type array<\Google\Cloud\AIPlatform\V1\EvaluatedAnnotationExplanation>|\Google\Protobuf\Internal\RepeatedField $explanations
+     *     @type \Google\Cloud\AIPlatform\V1\EvaluatedAnnotationExplanation[] $explanations
      *           Explanations of
      *           [predictions][google.cloud.aiplatform.v1.EvaluatedAnnotation.predictions].
      *           Each element of the explanations indicates the explanation for one
@@ -152,7 +152,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      *           [predictions][google.cloud.aiplatform.v1.EvaluatedAnnotation.predictions]
      *           list. For example, the second element in the attributions list explains the
      *           second element in the predictions list.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation>|\Google\Protobuf\Internal\RepeatedField $error_analysis_annotations
+     *     @type \Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation[] $error_analysis_annotations
      *           Annotations of model error analysis results.
      * }
      */
@@ -203,7 +203,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * [ModelEvaluation.annotation_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value predictions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Value>
      */
     public function getPredictions()
     {
@@ -226,7 +226,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * [ModelEvaluation.annotation_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value predictions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Value[] $var
      * @return $this
      */
     public function setPredictions($var)
@@ -253,7 +253,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * [ModelEvaluation.annotation_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value ground_truths = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Value>
      */
     public function getGroundTruths()
     {
@@ -276,7 +276,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * [ModelEvaluation.annotation_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.annotation_schema_uri]
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value ground_truths = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Value[] $var
      * @return $this
      */
     public function setGroundTruths($var)
@@ -370,7 +370,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * second element in the predictions list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EvaluatedAnnotationExplanation explanations = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\EvaluatedAnnotationExplanation>
      */
     public function getExplanations()
     {
@@ -390,7 +390,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * second element in the predictions list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EvaluatedAnnotationExplanation explanations = 8;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\EvaluatedAnnotationExplanation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\EvaluatedAnnotationExplanation[] $var
      * @return $this
      */
     public function setExplanations($var)
@@ -405,7 +405,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * Annotations of model error analysis results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ErrorAnalysisAnnotation error_analysis_annotations = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation>
      */
     public function getErrorAnalysisAnnotations()
     {
@@ -416,7 +416,7 @@ class EvaluatedAnnotation extends \Google\Protobuf\Internal\Message
      * Annotations of model error analysis results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ErrorAnalysisAnnotation error_analysis_annotations = 9;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ErrorAnalysisAnnotation[] $var
      * @return $this
      */
     public function setErrorAnalysisAnnotations($var)

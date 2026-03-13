@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\SessionEvent>|\Google\Protobuf\Internal\RepeatedField $session_events
+     *     @type \Google\Cloud\AIPlatform\V1\SessionEvent[] $session_events
      *           A list of events matching the request. Ordered by timestamp in ascending
      *           order.
      *     @type string $next_page_token
@@ -59,7 +59,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SessionEvent session_events = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SessionEvent>
      */
     public function getSessionEvents()
     {
@@ -71,7 +71,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SessionEvent session_events = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SessionEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SessionEvent[] $var
      * @return $this
      */
     public function setSessionEvents($var)

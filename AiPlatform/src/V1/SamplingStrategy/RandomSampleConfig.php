@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\SamplingStrategy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Requests are randomly selected.
@@ -64,5 +64,4 @@ class RandomSampleConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

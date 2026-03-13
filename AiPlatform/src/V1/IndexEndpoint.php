@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Indexes are deployed into it. An IndexEndpoint can have multiple
@@ -163,7 +163,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type string $description
      *           The description of the IndexEndpoint.
-     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedIndex>|\Google\Protobuf\Internal\RepeatedField $deployed_indexes
+     *     @type \Google\Cloud\AIPlatform\V1\DeployedIndex[] $deployed_indexes
      *           Output only. The indexes deployed in this endpoint.
      *     @type string $etag
      *           Used to perform consistent read-modify-write updates. If not set, a blind
@@ -315,7 +315,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * Output only. The indexes deployed in this endpoint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedIndex deployed_indexes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DeployedIndex>
      */
     public function getDeployedIndexes()
     {
@@ -326,7 +326,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * Output only. The indexes deployed in this endpoint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedIndex deployed_indexes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DeployedIndex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DeployedIndex[] $var
      * @return $this
      */
     public function setDeployedIndexes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about the write for each key.
@@ -130,5 +130,4 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

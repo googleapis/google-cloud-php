@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec\ConditionalParameterSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the spec to match categorical values from parent parameter.
@@ -30,7 +30,7 @@ class CategoricalValueCondition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Required. Matches values of the parent parameter of 'CATEGORICAL'
      *           type. All values must exist in `categorical_value_spec` of parent
      *           parameter.
@@ -47,7 +47,7 @@ class CategoricalValueCondition extends \Google\Protobuf\Internal\Message
      * parameter.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -60,7 +60,7 @@ class CategoricalValueCondition extends \Google\Protobuf\Internal\Message
      * parameter.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -72,5 +72,4 @@ class CategoricalValueCondition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\TensorboardTimeSeries;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes metadata for a TensorboardTimeSeries.
@@ -154,5 +154,4 @@ class Metadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReasoningEngineSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification for deploying from source code.
@@ -180,5 +180,4 @@ class SourceCodeSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListModelEvaluationSlicesResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>|\Google\Protobuf\Internal\RepeatedField $model_evaluation_slices
+     *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[] $model_evaluation_slices
      *           List of ModelEvaluations in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -56,7 +56,7 @@ class ListModelEvaluationSlicesResponse extends \Google\Protobuf\Internal\Messag
      * List of ModelEvaluations in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluationSlice model_evaluation_slices = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>
      */
     public function getModelEvaluationSlices()
     {
@@ -67,7 +67,7 @@ class ListModelEvaluationSlicesResponse extends \Google\Protobuf\Internal\Messag
      * List of ModelEvaluations in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluationSlice model_evaluation_slices = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[] $var
      * @return $this
      */
     public function setModelEvaluationSlices($var)

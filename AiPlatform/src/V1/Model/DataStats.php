@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Model;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stats of data used for train or evaluate the Model.
@@ -266,5 +266,4 @@ class DataStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

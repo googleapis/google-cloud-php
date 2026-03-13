@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of boolean values.
@@ -28,7 +28,7 @@ class BoolArray extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<bool>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type bool[] $values
      *           A list of bool values.
      * }
      */
@@ -41,7 +41,7 @@ class BoolArray extends \Google\Protobuf\Internal\Message
      * A list of bool values.
      *
      * Generated from protobuf field <code>repeated bool values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<bool>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class BoolArray extends \Google\Protobuf\Internal\Message
      * A list of bool values.
      *
      * Generated from protobuf field <code>repeated bool values = 1;</code>
-     * @param array<bool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param bool[] $var
      * @return $this
      */
     public function setValues($var)

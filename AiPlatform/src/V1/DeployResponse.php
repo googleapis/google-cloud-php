@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -19,8 +19,8 @@ class DeployResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the PublisherModel resource.
      * Format:
-     * `publishers/{publisher}/models/{publisher_model}&#64;{version_id}`, or
-     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}&#64;001`
+     * `publishers/{publisher}/models/{publisher_model}\@{version_id}`, or
+     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}\@001`
      *
      * Generated from protobuf field <code>string publisher_model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -49,8 +49,8 @@ class DeployResponse extends \Google\Protobuf\Internal\Message
      *     @type string $publisher_model
      *           Output only. The name of the PublisherModel resource.
      *           Format:
-     *           `publishers/{publisher}/models/{publisher_model}&#64;{version_id}`, or
-     *           `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}&#64;001`
+     *           `publishers/{publisher}/models/{publisher_model}\@{version_id}`, or
+     *           `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}\@001`
      *     @type string $endpoint
      *           Output only. The name of the Endpoint created.
      *           Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`
@@ -67,8 +67,8 @@ class DeployResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the PublisherModel resource.
      * Format:
-     * `publishers/{publisher}/models/{publisher_model}&#64;{version_id}`, or
-     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}&#64;001`
+     * `publishers/{publisher}/models/{publisher_model}\@{version_id}`, or
+     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}\@001`
      *
      * Generated from protobuf field <code>string publisher_model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,8 +81,8 @@ class DeployResponse extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the PublisherModel resource.
      * Format:
-     * `publishers/{publisher}/models/{publisher_model}&#64;{version_id}`, or
-     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}&#64;001`
+     * `publishers/{publisher}/models/{publisher_model}\@{version_id}`, or
+     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}\@001`
      *
      * Generated from protobuf field <code>string publisher_model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

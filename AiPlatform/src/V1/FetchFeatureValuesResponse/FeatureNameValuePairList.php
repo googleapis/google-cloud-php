@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response structure in the format of key (feature name) and (feature) value
@@ -29,7 +29,7 @@ class FeatureNameValuePairList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse\FeatureNameValuePairList\FeatureNameValuePair>|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type \Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse\FeatureNameValuePairList\FeatureNameValuePair[] $features
      *           List of feature names and values.
      * }
      */
@@ -42,7 +42,7 @@ class FeatureNameValuePairList extends \Google\Protobuf\Internal\Message
      * List of feature names and values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FetchFeatureValuesResponse.FeatureNameValuePairList.FeatureNameValuePair features = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse\FeatureNameValuePairList\FeatureNameValuePair>
      */
     public function getFeatures()
     {
@@ -53,7 +53,7 @@ class FeatureNameValuePairList extends \Google\Protobuf\Internal\Message
      * List of feature names and values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FetchFeatureValuesResponse.FeatureNameValuePairList.FeatureNameValuePair features = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse\FeatureNameValuePairList\FeatureNameValuePair>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse\FeatureNameValuePairList\FeatureNameValuePair[] $var
      * @return $this
      */
     public function setFeatures($var)
@@ -65,5 +65,4 @@ class FeatureNameValuePairList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

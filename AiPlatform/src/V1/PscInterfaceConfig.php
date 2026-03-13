@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for PSC-I.
@@ -52,7 +52,7 @@ class PscInterfaceConfig extends \Google\Protobuf\Internal\Message
      *           To specify this field, you must have already [created a network attachment]
      *           (https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments).
      *           This field is only used for resources using PSC-I.
-     *     @type array<\Google\Cloud\AIPlatform\V1\DnsPeeringConfig>|\Google\Protobuf\Internal\RepeatedField $dns_peering_configs
+     *     @type \Google\Cloud\AIPlatform\V1\DnsPeeringConfig[] $dns_peering_configs
      *           Optional. DNS peering configurations. When specified, Vertex AI will
      *           attempt to configure DNS peering zones in the tenant project VPC
      *           to resolve the specified domains using the target network's Cloud DNS.
@@ -111,7 +111,7 @@ class PscInterfaceConfig extends \Google\Protobuf\Internal\Message
      * on the target project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DnsPeeringConfig dns_peering_configs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DnsPeeringConfig>
      */
     public function getDnsPeeringConfigs()
     {
@@ -126,7 +126,7 @@ class PscInterfaceConfig extends \Google\Protobuf\Internal\Message
      * on the target project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DnsPeeringConfig dns_peering_configs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DnsPeeringConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DnsPeeringConfig[] $var
      * @return $this
      */
     public function setDnsPeeringConfigs($var)

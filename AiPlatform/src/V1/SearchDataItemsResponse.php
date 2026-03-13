@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class SearchDataItemsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\DataItemView>|\Google\Protobuf\Internal\RepeatedField $data_item_views
+     *     @type \Google\Cloud\AIPlatform\V1\DataItemView[] $data_item_views
      *           The DataItemViews read.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -56,7 +56,7 @@ class SearchDataItemsResponse extends \Google\Protobuf\Internal\Message
      * The DataItemViews read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DataItemView data_item_views = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DataItemView>
      */
     public function getDataItemViews()
     {
@@ -67,7 +67,7 @@ class SearchDataItemsResponse extends \Google\Protobuf\Internal\Message
      * The DataItemViews read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DataItemView data_item_views = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DataItemView>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DataItemView[] $var
      * @return $this
      */
     public function setDataItemViews($var)

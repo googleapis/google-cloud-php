@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ModelMonitoringObjectiveConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config for Training & Prediction data skew detection. It specifies the
@@ -171,5 +171,4 @@ class TrainingPredictionSkewDetectionConfig extends \Google\Protobuf\Internal\Me
     }
 
 }
-
 

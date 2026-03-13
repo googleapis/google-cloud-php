@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for QueryDeployedModels method.
@@ -56,12 +56,12 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $deployed_models
+     *     @type \Google\Cloud\AIPlatform\V1\DeployedModel[] $deployed_models
      *           DEPRECATED Use deployed_model_refs instead.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedModelRef>|\Google\Protobuf\Internal\RepeatedField $deployed_model_refs
+     *     @type \Google\Cloud\AIPlatform\V1\DeployedModelRef[] $deployed_model_refs
      *           References to the DeployedModels that share the specified
      *           deploymentResourcePool.
      *     @type int $total_deployed_model_count
@@ -80,7 +80,7 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      * DEPRECATED Use deployed_model_refs instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 1 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DeployedModel>
      * @deprecated
      */
     public function getDeployedModels()
@@ -95,7 +95,7 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      * DEPRECATED Use deployed_model_refs instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 1 [deprecated = true];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DeployedModel[] $var
      * @return $this
      * @deprecated
      */
@@ -143,7 +143,7 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      * deploymentResourcePool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModelRef deployed_model_refs = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DeployedModelRef>
      */
     public function getDeployedModelRefs()
     {
@@ -155,7 +155,7 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      * deploymentResourcePool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModelRef deployed_model_refs = 3;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DeployedModelRef>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DeployedModelRef[] $var
      * @return $this
      */
     public function setDeployedModelRefs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregated explanation metrics for a Model over a set of instances.
@@ -46,7 +46,7 @@ class ModelExplanation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Attribution>|\Google\Protobuf\Internal\RepeatedField $mean_attributions
+     *     @type \Google\Cloud\AIPlatform\V1\Attribution[] $mean_attributions
      *           Output only. Aggregated attributions explaining the Model's prediction
      *           outputs over the set of instances. The attributions are grouped by outputs.
      *           For Models that predict only one output, such as regression Models that
@@ -95,7 +95,7 @@ class ModelExplanation extends \Google\Protobuf\Internal\Message
      * is not populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution mean_attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Attribution>
      */
     public function getMeanAttributions()
     {
@@ -124,7 +124,7 @@ class ModelExplanation extends \Google\Protobuf\Internal\Message
      * is not populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution mean_attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Attribution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Attribution[] $var
      * @return $this
      */
     public function setMeanAttributions($var)
