@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\LinuxNodeConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Hugepages amount in both 2m and 1g size
@@ -118,5 +118,4 @@ class HugepagesConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

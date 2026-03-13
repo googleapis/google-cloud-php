@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Managed Instance Group resource.
@@ -44,7 +44,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * instance name with a hyphen followed by one or more hash symbols. The hash
      * symbols indicate the number of digits. For example, a base instance name of
      * "vm-###" results in "vm-001" as a VM name.
-     * &#64;pattern
+     * \@pattern
      * [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
@@ -221,6 +221,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     protected $target_size = null;
     /**
+     * The policy that specifies how the MIG creates its VMs to achieve the target
+     * size.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerTargetSizePolicy target_size_policy = 128773506;</code>
+     */
+    protected $target_size_policy = null;
+    /**
      * The target number of stopped instances for this managed instance group.
      * This number changes when you:
      *    - Stop instance using the stopInstances
@@ -280,7 +287,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig $all_instances_config
      *           Specifies configuration that overrides the instance template configuration
      *           for the group.
-     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $auto_healing_policies
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy[] $auto_healing_policies
      *           The autohealing policy for this managed instance group. You can specify
      *           only one value.
      *     @type string $base_instance_name
@@ -293,7 +300,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           instance name with a hyphen followed by one or more hash symbols. The hash
      *           symbols indicate the number of digits. For example, a base instance name of
      *           "vm-###" results in "vm-001" as a VM name.
-     *           &#64;pattern
+     *           \@pattern
      *           [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *     @type string $creation_timestamp
      *           Output only. [Output Only] The creation timestamp for this managed instance group inRFC3339
@@ -340,7 +347,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the managed instance group. The name must be 1-63 characters
      *           long, and comply withRFC1035.
-     *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
+     *     @type \Google\Cloud\Compute\V1\NamedPort[] $named_ports
      *           [Output Only] Named ports configured on the Instance Groups complementary
      *           to this Instance Group Manager.
      *     @type string $region
@@ -361,7 +368,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           Stateful configuration for this Instanced Group Manager
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $status
      *           Output only. [Output Only] The status of this managed instance group.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type string[] $target_pools
      *           The URLs for all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
      *           apply to all of the instances in the managed instance group.
      *     @type int $target_size
@@ -369,6 +376,9 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           You can reduce this number by using the instanceGroupManager
      *           deleteInstances or abandonInstances methods. Resizing the group also
      *           changes this number.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerTargetSizePolicy $target_size_policy
+     *           The policy that specifies how the MIG creates its VMs to achieve the target
+     *           size.
      *     @type int $target_stopped_size
      *           The target number of stopped instances for this managed instance group.
      *           This number changes when you:
@@ -387,7 +397,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *              method.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy $update_policy
      *           The update policy for this managed instance group.
-     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerVersion[] $versions
      *           Specifies the instance templates used by this managed instance group to
      *           create instances.
      *           Each version is defined by an instanceTemplate and aname. Every version can appear at most once per instance
@@ -449,7 +459,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * only one value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy auto_healing_policies = 456799109;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>
      */
     public function getAutoHealingPolicies()
     {
@@ -461,7 +471,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * only one value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy auto_healing_policies = 456799109;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy[] $var
      * @return $this
      */
     public function setAutoHealingPolicies($var)
@@ -482,7 +492,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * instance name with a hyphen followed by one or more hash symbols. The hash
      * symbols indicate the number of digits. For example, a base instance name of
      * "vm-###" results in "vm-001" as a VM name.
-     * &#64;pattern
+     * \@pattern
      * [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
@@ -513,7 +523,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * instance name with a hyphen followed by one or more hash symbols. The hash
      * symbols indicate the number of digits. For example, a base instance name of
      * "vm-###" results in "vm-001" as a VM name.
-     * &#64;pattern
+     * \@pattern
      * [a-z](([-a-z0-9]{0,57})|([-a-z0-9]{0,51}-#{1,10}(\\[[0-9]{1,10}\\])?))
      *
      * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
@@ -1039,7 +1049,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NamedPort>
      */
     public function getNamedPorts()
     {
@@ -1051,7 +1061,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
-     * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NamedPort[] $var
      * @return $this
      */
     public function setNamedPorts($var)
@@ -1359,7 +1369,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetPools()
     {
@@ -1371,7 +1381,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetPools($var)
@@ -1420,6 +1430,44 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->target_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * The policy that specifies how the MIG creates its VMs to achieve the target
+     * size.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerTargetSizePolicy target_size_policy = 128773506;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerTargetSizePolicy|null
+     */
+    public function getTargetSizePolicy()
+    {
+        return $this->target_size_policy;
+    }
+
+    public function hasTargetSizePolicy()
+    {
+        return isset($this->target_size_policy);
+    }
+
+    public function clearTargetSizePolicy()
+    {
+        unset($this->target_size_policy);
+    }
+
+    /**
+     * The policy that specifies how the MIG creates its VMs to achieve the target
+     * size.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerTargetSizePolicy target_size_policy = 128773506;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerTargetSizePolicy $var
+     * @return $this
+     */
+    public function setTargetSizePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerTargetSizePolicy::class);
+        $this->target_size_policy = $var;
 
         return $this;
     }
@@ -1567,7 +1615,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>
      */
     public function getVersions()
     {
@@ -1585,7 +1633,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerVersion[] $var
      * @return $this
      */
     public function setVersions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -21,6 +21,12 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
      * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
      */
     protected $connection_limit = null;
+    /**
+     * The URL for the PSC endpoint to accept
+     *
+     * Generated from protobuf field <code>optional string endpoint_url = 223428549;</code>
+     */
+    protected $endpoint_url = null;
     /**
      * The network URL for the network to set the limit for.
      *
@@ -43,6 +49,8 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
      *     @type int $connection_limit
      *           The value of the limit to set. For endpoint_url, the limit should be no
      *           more than 1.
+     *     @type string $endpoint_url
+     *           The URL for the PSC endpoint to accept
      *     @type string $network_url
      *           The network URL for the network to set the limit for.
      *     @type string $project_id_or_num
@@ -88,6 +96,42 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     {
         GPBUtil::checkUint32($var);
         $this->connection_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * The URL for the PSC endpoint to accept
+     *
+     * Generated from protobuf field <code>optional string endpoint_url = 223428549;</code>
+     * @return string
+     */
+    public function getEndpointUrl()
+    {
+        return isset($this->endpoint_url) ? $this->endpoint_url : '';
+    }
+
+    public function hasEndpointUrl()
+    {
+        return isset($this->endpoint_url);
+    }
+
+    public function clearEndpointUrl()
+    {
+        unset($this->endpoint_url);
+    }
+
+    /**
+     * The URL for the PSC endpoint to accept
+     *
+     * Generated from protobuf field <code>optional string endpoint_url = 223428549;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEndpointUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->endpoint_url = $var;
 
         return $this;
     }

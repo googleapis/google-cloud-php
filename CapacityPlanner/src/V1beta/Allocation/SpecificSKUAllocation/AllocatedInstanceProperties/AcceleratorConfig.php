@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A specification of the type and number of accelerator cards attached to
@@ -107,5 +107,4 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -54,6 +54,3 @@ class TimestampGranularity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimestampGranularity::class, \Google\Cloud\Bigtable\Admin\V2\Table_TimestampGranularity::class);
-

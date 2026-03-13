@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Common audit log format for Google Cloud Platform API operations.
@@ -55,7 +55,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * that are already been included in `request`, `response`, `metadata` or
      * `service_data` fields.
      * When the JSON object represented here has a proto equivalent,
-     * the proto name will be indicated in the `&#64;type` property.
+     * the proto name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_original_state = 19;</code>
      */
@@ -107,7 +107,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * elsewhere in the log record.
      * It should never include user-generated data, such as file contents.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct request = 16;</code>
      */
@@ -118,7 +118,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * elsewhere in the log record.
      * It should never include user-generated data, such as file contents.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 17;</code>
      */
@@ -170,7 +170,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *           that are already been included in `request`, `response`, `metadata` or
      *           `service_data` fields.
      *           When the JSON object represented here has a proto equivalent,
-     *           the proto name will be indicated in the `&#64;type` property.
+     *           the proto name will be indicated in the `\@type` property.
      *     @type int|string $num_response_items
      *           The number of items returned from a List or Query API method,
      *           if applicable.
@@ -178,7 +178,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *           The status of the overall operation.
      *     @type \Google\Cloud\Audit\AuthenticationInfo $authentication_info
      *           Authentication information.
-     *     @type array<\Google\Cloud\Audit\AuthorizationInfo>|\Google\Protobuf\Internal\RepeatedField $authorization_info
+     *     @type \Google\Cloud\Audit\AuthorizationInfo[] $authorization_info
      *           Authorization information. If there are multiple
      *           resources or permissions involved, then there is
      *           one AuthorizationInfo element for each {resource, permission} tuple.
@@ -194,14 +194,14 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *           elsewhere in the log record.
      *           It should never include user-generated data, such as file contents.
      *           When the JSON object represented here has a proto equivalent, the proto
-     *           name will be indicated in the `&#64;type` property.
+     *           name will be indicated in the `\@type` property.
      *     @type \Google\Protobuf\Struct $response
      *           The operation response. This may not include all response elements,
      *           such as those that are too large, privacy-sensitive, or duplicated
      *           elsewhere in the log record.
      *           It should never include user-generated data, such as file contents.
      *           When the JSON object represented here has a proto equivalent, the proto
-     *           name will be indicated in the `&#64;type` property.
+     *           name will be indicated in the `\@type` property.
      *     @type \Google\Protobuf\Struct $metadata
      *           Other service-specific data about the request, response, and other
      *           information associated with the current audited event.
@@ -355,7 +355,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * that are already been included in `request`, `response`, `metadata` or
      * `service_data` fields.
      * When the JSON object represented here has a proto equivalent,
-     * the proto name will be indicated in the `&#64;type` property.
+     * the proto name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_original_state = 19;</code>
      * @return \Google\Protobuf\Struct|null
@@ -382,7 +382,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * that are already been included in `request`, `response`, `metadata` or
      * `service_data` fields.
      * When the JSON object represented here has a proto equivalent,
-     * the proto name will be indicated in the `&#64;type` property.
+     * the proto name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_original_state = 19;</code>
      * @param \Google\Protobuf\Struct $var
@@ -502,7 +502,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * one AuthorizationInfo element for each {resource, permission} tuple.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.AuthorizationInfo authorization_info = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Audit\AuthorizationInfo>
      */
     public function getAuthorizationInfo()
     {
@@ -515,7 +515,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * one AuthorizationInfo element for each {resource, permission} tuple.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.AuthorizationInfo authorization_info = 9;</code>
-     * @param array<\Google\Cloud\Audit\AuthorizationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Audit\AuthorizationInfo[] $var
      * @return $this
      */
     public function setAuthorizationInfo($var)
@@ -608,7 +608,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * elsewhere in the log record.
      * It should never include user-generated data, such as file contents.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct request = 16;</code>
      * @return \Google\Protobuf\Struct|null
@@ -634,7 +634,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * elsewhere in the log record.
      * It should never include user-generated data, such as file contents.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct request = 16;</code>
      * @param \Google\Protobuf\Struct $var
@@ -654,7 +654,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * elsewhere in the log record.
      * It should never include user-generated data, such as file contents.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 17;</code>
      * @return \Google\Protobuf\Struct|null
@@ -680,7 +680,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * elsewhere in the log record.
      * It should never include user-generated data, such as file contents.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 17;</code>
      * @param \Google\Protobuf\Struct $var

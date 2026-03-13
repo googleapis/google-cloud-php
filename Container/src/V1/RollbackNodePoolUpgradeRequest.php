@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or Failed
@@ -55,7 +55,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node poll to
      * rollback upgrade.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -133,7 +133,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool id) of the node poll to
      *           rollback upgrade.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *     @type bool $respect_pdb
      *           Option for rollback to ignore the PodDisruptionBudget.
      *           Default value is false.
@@ -289,7 +289,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node poll to
      * rollback upgrade.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -302,7 +302,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node poll to
      * rollback upgrade.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

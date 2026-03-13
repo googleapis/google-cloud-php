@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Identity and Access Management (IAM) policy, which specifies access
@@ -29,16 +29,16 @@ use Google\Protobuf\Internal\GPBUtil;
  *         {
  *           "role": "roles/resourcemanager.organizationAdmin",
  *           "members": [
- *             "user:mike&#64;example.com",
- *             "group:admins&#64;example.com",
+ *             "user:mike\@example.com",
+ *             "group:admins\@example.com",
  *             "domain:google.com",
- *             "serviceAccount:my-project-id&#64;appspot.gserviceaccount.com"
+ *             "serviceAccount:my-project-id\@appspot.gserviceaccount.com"
  *           ]
  *         },
  *         {
  *           "role": "roles/resourcemanager.organizationViewer",
  *           "members": [
- *             "user:eve&#64;example.com"
+ *             "user:eve\@example.com"
  *           ],
  *           "condition": {
  *             "title": "expirable access",
@@ -55,13 +55,13 @@ use Google\Protobuf\Internal\GPBUtil;
  * ```
  *     bindings:
  *     - members:
- *       - user:mike&#64;example.com
- *       - group:admins&#64;example.com
+ *       - user:mike\@example.com
+ *       - group:admins\@example.com
  *       - domain:google.com
- *       - serviceAccount:my-project-id&#64;appspot.gserviceaccount.com
+ *       - serviceAccount:my-project-id\@appspot.gserviceaccount.com
  *       role: roles/resourcemanager.organizationAdmin
  *     - members:
- *       - user:eve&#64;example.com
+ *       - user:eve\@example.com
  *       role: roles/resourcemanager.organizationViewer
  *       condition:
  *         title: expirable access
@@ -90,7 +90,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250
      * of these principals can be Google groups. Each occurrence of a principal
      * counts towards these limits. For example, if the `bindings` grant 50
-     * different roles to `user:alice&#64;example.com`, and not to any other
+     * different roles to `user:alice\@example.com`, and not to any other
      * principal, then you can add another 1,450 principals to the `bindings` in
      * the `Policy`.
      *
@@ -147,16 +147,16 @@ class Policy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AuditConfig>|\Google\Protobuf\Internal\RepeatedField $audit_configs
+     *     @type \Google\Cloud\Compute\V1\AuditConfig[] $audit_configs
      *           Specifies cloud audit logging configuration for this policy.
-     *     @type array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $bindings
+     *     @type \Google\Cloud\Compute\V1\Binding[] $bindings
      *           Associates a list of `members`, or principals, with a `role`. Optionally,
      *           may specify a `condition` that determines how and when the `bindings` are
      *           applied. Each of the `bindings` must contain at least one principal.
      *           The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250
      *           of these principals can be Google groups. Each occurrence of a principal
      *           counts towards these limits. For example, if the `bindings` grant 50
-     *           different roles to `user:alice&#64;example.com`, and not to any other
+     *           different roles to `user:alice\@example.com`, and not to any other
      *           principal, then you can add another 1,450 principals to the `bindings` in
      *           the `Policy`.
      *     @type string $etag
@@ -202,7 +202,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * Specifies cloud audit logging configuration for this policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 328080653;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AuditConfig>
      */
     public function getAuditConfigs()
     {
@@ -213,7 +213,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * Specifies cloud audit logging configuration for this policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 328080653;</code>
-     * @param array<\Google\Cloud\Compute\V1\AuditConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AuditConfig[] $var
      * @return $this
      */
     public function setAuditConfigs($var)
@@ -231,12 +231,12 @@ class Policy extends \Google\Protobuf\Internal\Message
      * The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250
      * of these principals can be Google groups. Each occurrence of a principal
      * counts towards these limits. For example, if the `bindings` grant 50
-     * different roles to `user:alice&#64;example.com`, and not to any other
+     * different roles to `user:alice\@example.com`, and not to any other
      * principal, then you can add another 1,450 principals to the `bindings` in
      * the `Policy`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Binding>
      */
     public function getBindings()
     {
@@ -250,12 +250,12 @@ class Policy extends \Google\Protobuf\Internal\Message
      * The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250
      * of these principals can be Google groups. Each occurrence of a principal
      * counts towards these limits. For example, if the `bindings` grant 50
-     * different roles to `user:alice&#64;example.com`, and not to any other
+     * different roles to `user:alice\@example.com`, and not to any other
      * principal, then you can add another 1,450 principals to the `bindings` in
      * the `Policy`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
-     * @param array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Binding[] $var
      * @return $this
      */
     public function setBindings($var)

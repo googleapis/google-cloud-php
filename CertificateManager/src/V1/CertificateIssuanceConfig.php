@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CertificateIssuanceConfig specifies how to issue and manage a certificate.
@@ -18,7 +18,7 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the certificate issuance config.
      * CertificateIssuanceConfig names must be unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -84,7 +84,7 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A user-defined name of the certificate issuance config.
      *           CertificateIssuanceConfig names must be unique globally and match pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     *           `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp of a CertificateIssuanceConfig.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -114,7 +114,7 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the certificate issuance config.
      * CertificateIssuanceConfig names must be unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -127,7 +127,7 @@ class CertificateIssuanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the certificate issuance config.
      * CertificateIssuanceConfig names must be unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a VPC Network resource.
@@ -258,7 +258,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\NetworkParams $params
      *           Input only. [Input Only] Additional params passed with the request, but not persisted
      *           as part of resource payload.
-     *     @type array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $peerings
+     *     @type \Google\Cloud\Compute\V1\NetworkPeering[] $peerings
      *           Output only. [Output Only] A list of network peerings for the resource.
      *     @type \Google\Cloud\Compute\V1\NetworkRoutingConfig $routing_config
      *           The network-level routing configuration for this network.  Used by Cloud
@@ -267,7 +267,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
      *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type string[] $subnetworks
      *           [Output Only] Server-defined fully-qualified URLs for all subnetworks
      *           in this VPC network.
      * }
@@ -903,7 +903,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkPeering>
      */
     public function getPeerings()
     {
@@ -914,7 +914,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkPeering[] $var
      * @return $this
      */
     public function setPeerings($var)
@@ -1040,7 +1040,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * in this VPC network.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetworks()
     {
@@ -1052,7 +1052,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * in this VPC network.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetworks($var)

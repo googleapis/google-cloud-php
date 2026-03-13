@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for requesting list of Connections.
@@ -17,7 +17,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of Connections.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -58,7 +58,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of Connections.
-     *           Format: `projects/&#42;&#47;locations/&#42;`.
+     *           Format: `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Number of results to return in the list.
      *     @type string $page_token
@@ -72,7 +72,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of Connections.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -84,7 +84,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of Connections.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

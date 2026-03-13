@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -53,7 +53,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *           Engine returns NO_RESULTS_ON_PAGE if there
      *           are no results in the response.
      *           Check the Code enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\Data>|\Google\Protobuf\Internal\RepeatedField $data
+     *     @type \Google\Cloud\Compute\V1\Data[] $data
      *           [Output Only] Metadata about this warning in key:
      *           value format. For example:
      *           "data": [
@@ -122,7 +122,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *   }
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Data>
      */
     public function getData()
     {
@@ -139,7 +139,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *   }
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
-     * @param array<\Google\Cloud\Compute\V1\Data>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Data[] $var
      * @return $this
      */
     public function setData($var)

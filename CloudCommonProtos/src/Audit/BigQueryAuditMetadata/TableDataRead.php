@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Table data read event.
@@ -74,12 +74,12 @@ class TableDataRead extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type string[] $fields
      *           List of the accessed fields. Entire list is truncated if the record size
      *           exceeds 100K.
      *     @type bool $fields_truncated
      *           True if the fields list was truncated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $policy_tags
+     *     @type string[] $policy_tags
      *           List of the referenced policy tags. That is, policy tags attached to the
      *           accessed fields or their ancestors.
      *           Policy tag resource name is a string of the format:
@@ -110,7 +110,7 @@ class TableDataRead extends \Google\Protobuf\Internal\Message
      * exceeds 100K.
      *
      * Generated from protobuf field <code>repeated string fields = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFields()
     {
@@ -122,7 +122,7 @@ class TableDataRead extends \Google\Protobuf\Internal\Message
      * exceeds 100K.
      *
      * Generated from protobuf field <code>repeated string fields = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFields($var)
@@ -166,7 +166,7 @@ class TableDataRead extends \Google\Protobuf\Internal\Message
      * `projects/<project_id>/locations/<location_id>/taxonomies/<taxonomy_id>/policyTags/<policy_tag_id>`
      *
      * Generated from protobuf field <code>repeated string policy_tags = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPolicyTags()
     {
@@ -180,7 +180,7 @@ class TableDataRead extends \Google\Protobuf\Internal\Message
      * `projects/<project_id>/locations/<location_id>/taxonomies/<taxonomy_id>/policyTags/<policy_tag_id>`
      *
      * Generated from protobuf field <code>repeated string policy_tags = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPolicyTags($var)
@@ -308,5 +308,4 @@ class TableDataRead extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

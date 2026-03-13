@@ -5,8 +5,8 @@
 namespace Google\Rpc\Context;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message defines the standard attribute vocabulary for Google APIs.
@@ -112,7 +112,7 @@ class AttributeContext extends \Google\Protobuf\Internal\Message
      *           primary one.
      *     @type \Google\Rpc\Context\AttributeContext\Api $api
      *           Represents an API operation that is involved to a network activity.
-     *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $extensions
+     *     @type \Google\Protobuf\Any[] $extensions
      *           Supports extensions for advanced use cases, such as logs and metrics.
      * }
      */
@@ -393,7 +393,7 @@ class AttributeContext extends \Google\Protobuf\Internal\Message
      * Supports extensions for advanced use cases, such as logs and metrics.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any extensions = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Any>
      */
     public function getExtensions()
     {
@@ -404,7 +404,7 @@ class AttributeContext extends \Google\Protobuf\Internal\Message
      * Supports extensions for advanced use cases, such as logs and metrics.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any extensions = 8;</code>
-     * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Any[] $var
      * @return $this
      */
     public function setExtensions($var)

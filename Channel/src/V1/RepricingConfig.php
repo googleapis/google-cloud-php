@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for repricing a Google bill over a period of time.
@@ -82,7 +82,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      *           Required. The [RebillingBasis][google.cloud.channel.v1.RebillingBasis] to
      *           use for this bill. Specifies the relative cost based on repricing costs you
      *           will apply.
-     *     @type array<\Google\Cloud\Channel\V1\ConditionalOverride>|\Google\Protobuf\Internal\RepeatedField $conditional_overrides
+     *     @type \Google\Cloud\Channel\V1\ConditionalOverride[] $conditional_overrides
      *           The conditional overrides to apply for this configuration. If you list
      *           multiple overrides, only the first valid override is used.  If you don't
      *           list any overrides, the API uses the normal adjustment and rebilling basis.
@@ -308,7 +308,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      * list any overrides, the API uses the normal adjustment and rebilling basis.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ConditionalOverride conditional_overrides = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\ConditionalOverride>
      */
     public function getConditionalOverrides()
     {
@@ -321,7 +321,7 @@ class RepricingConfig extends \Google\Protobuf\Internal\Message
      * list any overrides, the API uses the normal adjustment and rebilling basis.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ConditionalOverride conditional_overrides = 6;</code>
-     * @param array<\Google\Cloud\Channel\V1\ConditionalOverride>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\ConditionalOverride[] $var
      * @return $this
      */
     public function setConditionalOverrides($var)

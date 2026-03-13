@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inner VLAN-to-Appliance mapping.
@@ -45,7 +45,7 @@ class InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapp
      *           Required in this object. A single IPv4 or IPv6 address used as the
      *           destination IP address for ingress packets that match on both VLAN
      *           tags.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inner_vlan_tags
+     *     @type string[] $inner_vlan_tags
      *           Required in this object. Used to match the inner VLAN tag on the
      *           packet. Each entry can be a single number or a range of numbers in
      *           the range of 1 to 4094, e.g., ["1", "4001-4094"] is valid. Non-empty
@@ -108,7 +108,7 @@ class InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapp
      * The inner VLAN tags must have an ethertype value of 0x8100.
      *
      * Generated from protobuf field <code>repeated string inner_vlan_tags = 431186636;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInnerVlanTags()
     {
@@ -124,7 +124,7 @@ class InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapp
      * The inner VLAN tags must have an ethertype value of 0x8100.
      *
      * Generated from protobuf field <code>repeated string inner_vlan_tags = 431186636;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInnerVlanTags($var)

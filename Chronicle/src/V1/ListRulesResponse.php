@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListRules method.
@@ -35,7 +35,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Chronicle\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Chronicle\V1\Rule[] $rules
      *           The rules from the specified instance.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * The rules from the specified instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.Rule rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\Rule>
      */
     public function getRules()
     {
@@ -62,7 +62,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * The rules from the specified instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.Rule rules = 1;</code>
-     * @param array<\Google\Cloud\Chronicle\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\Rule[] $var
      * @return $this
      */
     public function setRules($var)

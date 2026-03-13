@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the mapping between the response code that will be returned along
@@ -62,7 +62,7 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $match_response_codes
+     *     @type string[] $match_response_codes
      *           Valid values include:
      *                - A number between 400 and 599: For example
      *                401 or 503, in which case the load balancer
@@ -110,7 +110,7 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
      * Values must be unique within matchResponseCodes and across allerrorResponseRules ofCustomErrorResponsePolicy.
      *
      * Generated from protobuf field <code>repeated string match_response_codes = 104973410;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMatchResponseCodes()
     {
@@ -132,7 +132,7 @@ class CustomErrorResponsePolicyCustomErrorResponseRule extends \Google\Protobuf\
      * Values must be unique within matchResponseCodes and across allerrorResponseRules ofCustomErrorResponsePolicy.
      *
      * Generated from protobuf field <code>repeated string match_response_codes = 104973410;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMatchResponseCodes($var)

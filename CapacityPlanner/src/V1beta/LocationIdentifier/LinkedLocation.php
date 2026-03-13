@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta\LocationIdentifier;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.capacityplanner.v1beta.LocationIdentifier.LinkedLocation</code>
@@ -123,5 +123,4 @@ class LinkedLocation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

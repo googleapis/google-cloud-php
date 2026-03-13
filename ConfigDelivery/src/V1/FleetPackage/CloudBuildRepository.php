@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1\FleetPackage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CloudBuildRepository contains information about fetching Kubernetes
@@ -55,7 +55,7 @@ class CloudBuildRepository extends \Google\Protobuf\Internal\Message
      *
      *     @type string $variants_pattern
      *           Optional. variants_pattern is a glob pattern that will be used to find
-     *           variants in the repository. Examples: `variants/&#42;.yaml`, `us-*`
+     *           variants in the repository. Examples: `variants/*.yaml`, `us-*`
      *     @type string $name
      *           Required. Name of the cloud build repository.
      *           Format is projects/{p}/locations/{l}/connections/{c}/repositories/{r}.
@@ -78,7 +78,7 @@ class CloudBuildRepository extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. variants_pattern is a glob pattern that will be used to find
-     * variants in the repository. Examples: `variants/&#42;.yaml`, `us-*`
+     * variants in the repository. Examples: `variants/*.yaml`, `us-*`
      *
      * Generated from protobuf field <code>string variants_pattern = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -95,7 +95,7 @@ class CloudBuildRepository extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. variants_pattern is a glob pattern that will be used to find
-     * variants in the repository. Examples: `variants/&#42;.yaml`, `us-*`
+     * variants in the repository. Examples: `variants/*.yaml`, `us-*`
      *
      * Generated from protobuf field <code>string variants_pattern = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -232,5 +232,4 @@ class CloudBuildRepository extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

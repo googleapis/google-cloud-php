@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -93,7 +93,7 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *           Maximum 50 characters.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $table
      *           Required. The Table to create.
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split>|\Google\Protobuf\Internal\RepeatedField $initial_splits
+     *     @type \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split[] $initial_splits
      *           The optional list of row keys that will be used to initially split the
      *           table into several tablets (tablets are similar to HBase regions).
      *           Given two split keys, `s1` and `s2`, three tablets will be created,
@@ -226,7 +226,7 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *     - Tablet 5 `[other, )                => {"other", "zz"}.`
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split>
      */
     public function getInitialSplits()
     {
@@ -250,7 +250,7 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *     - Tablet 5 `[other, )                => {"other", "zz"}.`
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split[] $var
      * @return $this
      */
     public function setInitialSplits($var)

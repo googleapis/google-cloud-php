@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -42,7 +42,7 @@ class InstanceGroupManagersDeleteInstancesRequest extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type string[] $instances
      *           The URLs of one or more instances to delete. This can be a full URL or
      *           a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *           Queued instances do not have URL and can be deleted only by name.
@@ -69,7 +69,7 @@ class InstanceGroupManagersDeleteInstancesRequest extends \Google\Protobuf\Inter
      * One cannot specify both URLs and names in a single request.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstances()
     {
@@ -83,7 +83,7 @@ class InstanceGroupManagersDeleteInstancesRequest extends \Google\Protobuf\Inter
      * One cannot specify both URLs and names in a single request.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstances($var)

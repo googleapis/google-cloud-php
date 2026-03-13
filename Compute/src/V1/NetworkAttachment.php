@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NetworkAttachments
@@ -137,7 +137,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\NetworkAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $connection_endpoints
+     *     @type \Google\Cloud\Compute\V1\NetworkAttachmentConnectedEndpoint[] $connection_endpoints
      *           Output only. [Output Only] An array of connections for all the producers connected
      *           to this network attachment.
      *     @type string $connection_preference
@@ -172,10 +172,10 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *           subnetwork associated. Because it is required that all the subnetworks must
      *           be from the same network, it is assured that the Network Attachment belongs
      *           to the same network as all the subnetworks.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $producer_accept_lists
+     *     @type string[] $producer_accept_lists
      *           Projects that are allowed to connect to this network attachment.
      *           The project can be specified using its id or number.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $producer_reject_lists
+     *     @type string[] $producer_reject_lists
      *           Projects that are not allowed to connect to this network attachment.
      *           The project can be specified using its id or number.
      *     @type string $region
@@ -187,7 +187,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
      *           Output only. [Output Only] Server-defined URL for this resource's resource id.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type string[] $subnetworks
      *           An array of URLs where each entry is the URL of a subnet
      *           provided by the service consumer to use for
      *           endpoints in the producers that connect to this network attachment.
@@ -203,7 +203,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * to this network attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkAttachmentConnectedEndpoint connection_endpoints = 326078813;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkAttachmentConnectedEndpoint>
      */
     public function getConnectionEndpoints()
     {
@@ -215,7 +215,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * to this network attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkAttachmentConnectedEndpoint connection_endpoints = 326078813;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkAttachmentConnectedEndpoint[] $var
      * @return $this
      */
     public function setConnectionEndpoints($var)
@@ -551,7 +551,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * The project can be specified using its id or number.
      *
      * Generated from protobuf field <code>repeated string producer_accept_lists = 202804523;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProducerAcceptLists()
     {
@@ -563,7 +563,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * The project can be specified using its id or number.
      *
      * Generated from protobuf field <code>repeated string producer_accept_lists = 202804523;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProducerAcceptLists($var)
@@ -579,7 +579,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * The project can be specified using its id or number.
      *
      * Generated from protobuf field <code>repeated string producer_reject_lists = 4112002;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProducerRejectLists()
     {
@@ -591,7 +591,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * The project can be specified using its id or number.
      *
      * Generated from protobuf field <code>repeated string producer_reject_lists = 4112002;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProducerRejectLists($var)
@@ -722,7 +722,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * endpoints in the producers that connect to this network attachment.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetworks()
     {
@@ -735,7 +735,7 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      * endpoints in the producers that connect to this network attachment.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetworks($var)

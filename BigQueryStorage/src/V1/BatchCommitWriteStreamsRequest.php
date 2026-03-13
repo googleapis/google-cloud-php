@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for `BatchCommitWriteStreams`.
@@ -53,7 +53,7 @@ class BatchCommitWriteStreamsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent table that all the streams should belong to, in the form
      *           of `projects/{project}/datasets/{dataset}/tables/{table}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $write_streams
+     *     @type string[] $write_streams
      *           Required. The group of streams that will be committed atomically.
      * }
      */
@@ -94,7 +94,7 @@ class BatchCommitWriteStreamsRequest extends \Google\Protobuf\Internal\Message
      * Required. The group of streams that will be committed atomically.
      *
      * Generated from protobuf field <code>repeated string write_streams = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWriteStreams()
     {
@@ -105,7 +105,7 @@ class BatchCommitWriteStreamsRequest extends \Google\Protobuf\Internal\Message
      * Required. The group of streams that will be committed atomically.
      *
      * Generated from protobuf field <code>repeated string write_streams = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWriteStreams($var)

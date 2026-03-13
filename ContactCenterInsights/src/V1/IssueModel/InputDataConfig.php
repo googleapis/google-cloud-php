@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\IssueModel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configs for the input data used to create the issue model.
@@ -151,5 +151,4 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

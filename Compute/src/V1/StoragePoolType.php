@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -163,7 +163,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
      *           Output only. [Output Only] Server-defined URL for this resource with the resource id.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_disk_types
+     *     @type string[] $supported_disk_types
      *           [Output Only] The list of disk types supported in this storage pool type.
      *     @type string $zone
      *           [Output Only] URL of the zone where the storage pool type resides.
@@ -728,7 +728,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      * [Output Only] The list of disk types supported in this storage pool type.
      *
      * Generated from protobuf field <code>repeated string supported_disk_types = 150587272;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedDiskTypes()
     {
@@ -739,7 +739,7 @@ class StoragePoolType extends \Google\Protobuf\Internal\Message
      * [Output Only] The list of disk types supported in this storage pool type.
      *
      * Generated from protobuf field <code>repeated string supported_disk_types = 150587272;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedDiskTypes($var)

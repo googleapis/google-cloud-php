@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A path-matching rule for a URL. If matched, will use the specifiedBackendService to handle the traffic arriving at this URL.
@@ -109,7 +109,7 @@ class PathRule extends \Google\Protobuf\Internal\Message
      *           error code, the policy atUrlMap.defaultCustomErrorResponsePolicy takes effect.
      *           customErrorResponsePolicy is supported only for
      *           global external Application Load Balancers.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type string[] $paths
      *           The list of path patterns to match. Each must start with /
      *           and the only place a * is allowed is at the end following
      *           a /.  The string fed to the path matcher does not include
@@ -223,7 +223,7 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * those chars are not allowed here.
      *
      * Generated from protobuf field <code>repeated string paths = 106438894;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPaths()
     {
@@ -238,7 +238,7 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * those chars are not allowed here.
      *
      * Generated from protobuf field <code>repeated string paths = 106438894;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPaths($var)

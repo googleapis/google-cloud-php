@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Credentials issued by GCP which are linked to the platform attestation. These
@@ -29,7 +29,7 @@ class GcpCredentials extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_account_id_tokens
+     *     @type string[] $service_account_id_tokens
      *           Same as id_tokens, but as a string.
      * }
      */
@@ -42,7 +42,7 @@ class GcpCredentials extends \Google\Protobuf\Internal\Message
      * Same as id_tokens, but as a string.
      *
      * Generated from protobuf field <code>repeated string service_account_id_tokens = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAccountIdTokens()
     {
@@ -53,7 +53,7 @@ class GcpCredentials extends \Google\Protobuf\Internal\Message
      * Same as id_tokens, but as a string.
      *
      * Generated from protobuf field <code>repeated string service_account_id_tokens = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAccountIdTokens($var)

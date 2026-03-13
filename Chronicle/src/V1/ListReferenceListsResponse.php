@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to a request for a list of reference lists.
@@ -36,7 +36,7 @@ class ListReferenceListsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Chronicle\V1\ReferenceList>|\Google\Protobuf\Internal\RepeatedField $reference_lists
+     *     @type \Google\Cloud\Chronicle\V1\ReferenceList[] $reference_lists
      *           The reference lists.
      *           Ordered in ascending alphabetical order by name.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListReferenceListsResponse extends \Google\Protobuf\Internal\Message
      * Ordered in ascending alphabetical order by name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.ReferenceList reference_lists = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\ReferenceList>
      */
     public function getReferenceLists()
     {
@@ -66,7 +66,7 @@ class ListReferenceListsResponse extends \Google\Protobuf\Internal\Message
      * Ordered in ascending alphabetical order by name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.ReferenceList reference_lists = 1;</code>
-     * @param array<\Google\Cloud\Chronicle\V1\ReferenceList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\ReferenceList[] $var
      * @return $this
      */
     public function setReferenceLists($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing Connections.
@@ -34,7 +34,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Build\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type \Google\Cloud\Build\V2\Connection[] $connections
      *           The list of Connections.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * The list of Connections.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v2.Connection connections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Build\V2\Connection>
      */
     public function getConnections()
     {
@@ -60,7 +60,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * The list of Connections.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v2.Connection connections = 1;</code>
-     * @param array<\Google\Cloud\Build\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Build\V2\Connection[] $var
      * @return $this
      */
     public function setConnections($var)

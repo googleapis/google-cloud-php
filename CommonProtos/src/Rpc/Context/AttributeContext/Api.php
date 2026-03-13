@@ -5,8 +5,8 @@
 namespace Google\Rpc\Context\AttributeContext;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message defines attributes associated with API operations, such as
@@ -192,5 +192,4 @@ class Api extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

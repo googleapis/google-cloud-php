@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The measure related to conversations.
@@ -103,7 +103,7 @@ class ConversationMeasure extends \Google\Protobuf\Internal\Message
      *     @type float $average_qa_normalized_score
      *           Average QA normalized score.
      *           Will exclude 0's in average calculation.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint\ConversationMeasure\QaTagScore>|\Google\Protobuf\Internal\RepeatedField $qa_tag_scores
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint\ConversationMeasure\QaTagScore[] $qa_tag_scores
      *           Average QA normalized score for all the tags.
      *     @type float $average_qa_question_normalized_score
      *           Average QA normalized score averaged for questions averaged across
@@ -411,7 +411,7 @@ class ConversationMeasure extends \Google\Protobuf\Internal\Message
      * Average QA normalized score for all the tags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.QaTagScore qa_tag_scores = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint\ConversationMeasure\QaTagScore>
      */
     public function getQaTagScores()
     {
@@ -422,7 +422,7 @@ class ConversationMeasure extends \Google\Protobuf\Internal\Message
      * Average QA normalized score for all the tags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint.ConversationMeasure.QaTagScore qa_tag_scores = 9;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint\ConversationMeasure\QaTagScore>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint\ConversationMeasure\QaTagScore[] $var
      * @return $this
      */
     public function setQaTagScores($var)
@@ -476,5 +476,4 @@ class ConversationMeasure extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

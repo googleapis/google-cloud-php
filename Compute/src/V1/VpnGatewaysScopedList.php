@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class VpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\VpnGateway>|\Google\Protobuf\Internal\RepeatedField $vpn_gateways
+     *     @type \Google\Cloud\Compute\V1\VpnGateway[] $vpn_gateways
      *           [Output Only] A list of VPN gateways contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of addresses
@@ -50,7 +50,7 @@ class VpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of VPN gateways contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGateway vpn_gateways = 259177882;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\VpnGateway>
      */
     public function getVpnGateways()
     {
@@ -61,7 +61,7 @@ class VpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of VPN gateways contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGateway vpn_gateways = 259177882;</code>
-     * @param array<\Google\Cloud\Compute\V1\VpnGateway>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\VpnGateway[] $var
      * @return $this
      */
     public function setVpnGateways($var)

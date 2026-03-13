@@ -15,10 +15,7 @@ class Annotations
           return;
         }
         $pool->internalAddGeneratedFile(
-            '
-Ã
-2google/cloud/bigquery/storage/v1/annotations.proto google.cloud.bigquery.storage.v1 google/protobuf/descriptor.protoBÀ
-$com.google.cloud.bigquery.storage.v1BAnnotationsProtoPZ>cloud.google.com/go/bigquery/storage/apiv1/storagepb;storagepbª Google.Cloud.BigQuery.Storage.V1Ê Google\\Cloud\\BigQuery\\Storage\\V1bproto3'
+            "\x0A\xC3\x02\x0A2google/cloud/bigquery/storage/v1/annotations.proto\x12 google.cloud.bigquery.storage.v1\x1A google/protobuf/descriptor.protoB\xC0\x01\x0A\$com.google.cloud.bigquery.storage.v1B\x10AnnotationsProtoP\x01Z>cloud.google.com/go/bigquery/storage/apiv1/storagepb;storagepb\xAA\x02 Google.Cloud.BigQuery.Storage.V1\xCA\x02 Google\\Cloud\\BigQuery\\Storage\\V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

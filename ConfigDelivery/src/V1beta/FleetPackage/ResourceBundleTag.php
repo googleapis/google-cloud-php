@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1beta\FleetPackage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceBundleTag contains the information to refer to a release for a
@@ -107,5 +107,4 @@ class ResourceBundleTag extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

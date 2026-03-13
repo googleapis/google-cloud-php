@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a License Code resource.
@@ -99,7 +99,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Always compute#licenseCode for
      *           licenses.
-     *     @type array<\Google\Cloud\Compute\V1\LicenseCodeLicenseAlias>|\Google\Protobuf\Internal\RepeatedField $license_alias
+     *     @type \Google\Cloud\Compute\V1\LicenseCodeLicenseAlias[] $license_alias
      *           [Output Only] URL and description aliases of Licenses with the same
      *           License Code.
      *     @type string $name
@@ -275,7 +275,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      * License Code.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LicenseCodeLicenseAlias license_alias = 43550930;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\LicenseCodeLicenseAlias>
      */
     public function getLicenseAlias()
     {
@@ -287,7 +287,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      * License Code.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LicenseCodeLicenseAlias license_alias = 43550930;</code>
-     * @param array<\Google\Cloud\Compute\V1\LicenseCodeLicenseAlias>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\LicenseCodeLicenseAlias[] $var
      * @return $this
      */
     public function setLicenseAlias($var)

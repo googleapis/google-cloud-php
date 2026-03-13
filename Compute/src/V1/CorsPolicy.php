@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specification for allowing client-side cross-origin requests. For more
@@ -95,26 +95,26 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *           the actual request can include user credentials. This field translates to
      *           the Access-Control-Allow-Credentials header.
      *           Default is false.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_headers
+     *     @type string[] $allow_headers
      *           Specifies the content for the Access-Control-Allow-Headers
      *           header.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_methods
+     *     @type string[] $allow_methods
      *           Specifies the content for the Access-Control-Allow-Methods
      *           header.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_origin_regexes
+     *     @type string[] $allow_origin_regexes
      *           Specifies a regular expression that matches allowed origins. For
      *           more information, see regular expression syntax.
      *           An origin is allowed if it matches either an item inallowOrigins or an item inallowOriginRegexes.
      *           Regular expressions can only be used when the loadBalancingScheme is
      *           set to INTERNAL_SELF_MANAGED.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_origins
+     *     @type string[] $allow_origins
      *           Specifies the list of origins that is allowed to do CORS requests.
      *           An origin is allowed if it matches either an item inallowOrigins or an item inallowOriginRegexes.
      *     @type bool $disabled
      *           If true, disables the CORS policy.
      *           The default value is false, which indicates that the CORS
      *           policy is in effect.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $expose_headers
+     *     @type string[] $expose_headers
      *           Specifies the content for the Access-Control-Expose-Headers
      *           header.
      *     @type int $max_age
@@ -177,7 +177,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * header.
      *
      * Generated from protobuf field <code>repeated string allow_headers = 45179024;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowHeaders()
     {
@@ -189,7 +189,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * header.
      *
      * Generated from protobuf field <code>repeated string allow_headers = 45179024;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowHeaders($var)
@@ -205,7 +205,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * header.
      *
      * Generated from protobuf field <code>repeated string allow_methods = 205405372;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowMethods()
     {
@@ -217,7 +217,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * header.
      *
      * Generated from protobuf field <code>repeated string allow_methods = 205405372;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowMethods($var)
@@ -236,7 +236,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowOriginRegexes()
     {
@@ -251,7 +251,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowOriginRegexes($var)
@@ -267,7 +267,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * An origin is allowed if it matches either an item inallowOrigins or an item inallowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowOrigins()
     {
@@ -279,7 +279,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * An origin is allowed if it matches either an item inallowOrigins or an item inallowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowOrigins($var)
@@ -335,7 +335,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * header.
      *
      * Generated from protobuf field <code>repeated string expose_headers = 247604747;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExposeHeaders()
     {
@@ -347,7 +347,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * header.
      *
      * Generated from protobuf field <code>repeated string expose_headers = 247604747;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExposeHeaders($var)

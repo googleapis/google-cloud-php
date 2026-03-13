@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\AggregatedListRegionHealthCheckServicesRequest;
 use Google\Cloud\Compute\V1\DeleteRegionHealthCheckServiceRequest;
 use Google\Cloud\Compute\V1\GetRegionHealthCheckServiceRequest;
 use Google\Cloud\Compute\V1\HealthCheckService;
@@ -51,6 +52,7 @@ use Psr\Log\LoggerInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionHealthCheckServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionHealthCheckServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<HealthCheckService> getAsync(GetRegionHealthCheckServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionHealthCheckServiceRequest $request, array $optionalArgs = [])
@@ -269,6 +271,39 @@ final class RegionHealthCheckServicesClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Retrieves the list of all HealthCheckService resources,
+     * regional and global, available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
+     *
+     * The async variant is
+     * {@see RegionHealthCheckServicesClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/RegionHealthCheckServicesClient/aggregated_list.php
+     *
+     * @param AggregatedListRegionHealthCheckServicesRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function aggregatedList(
+        AggregatedListRegionHealthCheckServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
     /**

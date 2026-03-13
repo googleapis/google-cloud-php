@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encapsulation of billing information for a Google Cloud Console project. A

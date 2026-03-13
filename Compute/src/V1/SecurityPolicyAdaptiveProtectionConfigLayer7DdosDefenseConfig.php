@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration options for L7 DDoS detection.
@@ -61,7 +61,7 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
      *           This field is only supported in Global Security Policies of type
      *           CLOUD_ARMOR.
      *           Check the RuleVisibility enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig>|\Google\Protobuf\Internal\RepeatedField $threshold_configs
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig[] $threshold_configs
      *           Configuration options for layer7 adaptive protection for various
      *           customizable thresholds.
      * }
@@ -162,7 +162,7 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
      * customizable thresholds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig>
      */
     public function getThresholdConfigs()
     {
@@ -174,7 +174,7 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
      * customizable thresholds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig threshold_configs = 60347805;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfig[] $var
      * @return $this
      */
     public function setThresholdConfigs($var)

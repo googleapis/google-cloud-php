@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represent a sole-tenant Node Template resource.
@@ -137,7 +137,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[] $accelerators
      *     @type string $cpu_overcommit_type
      *           CPU overcommit.
      *           Check the CpuOvercommitType enum for the list of possible values.
@@ -147,7 +147,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
-     *     @type array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Compute\V1\LocalDisk[] $disks
      *     @type int|string $id
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
@@ -196,7 +196,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorConfig>
      */
     public function getAccelerators()
     {
@@ -205,7 +205,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
-     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -332,7 +332,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\LocalDisk>
      */
     public function getDisks()
     {
@@ -341,7 +341,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
-     * @param array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\LocalDisk[] $var
      * @return $this
      */
     public function setDisks($var)

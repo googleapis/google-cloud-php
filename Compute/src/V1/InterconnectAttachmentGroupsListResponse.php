@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -74,7 +74,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      *     @type string $etag
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroup>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroup[] $items
      *           A list of InterconnectAttachmentGroup resources.
      *     @type string $kind
      *     @type string $next_page_token
@@ -85,7 +85,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      *           continue paging through the results.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
+     *     @type string[] $unreachables
      *           Output only. [Output Only] Unreachable resources.
      *           end_interface:
      *           MixerListResponseWithEtagBuilder
@@ -170,7 +170,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      * A list of InterconnectAttachmentGroup resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroup items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentGroup>
      */
     public function getItems()
     {
@@ -181,7 +181,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      * A list of InterconnectAttachmentGroup resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroup items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentGroup[] $var
      * @return $this
      */
     public function setItems($var)
@@ -310,7 +310,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      * MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachables()
     {
@@ -323,7 +323,7 @@ class InterconnectAttachmentGroupsListResponse extends \Google\Protobuf\Internal
      * MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachables($var)

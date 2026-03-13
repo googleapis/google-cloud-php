@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AcceleratorType>|\Google\Protobuf\Internal\RepeatedField $accelerator_types
+     *     @type \Google\Cloud\Compute\V1\AcceleratorType[] $accelerator_types
      *           [Output Only] A list of accelerator types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the accelerator
@@ -50,7 +50,7 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of accelerator types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorType accelerator_types = 520872357;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorType>
      */
     public function getAcceleratorTypes()
     {
@@ -61,7 +61,7 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of accelerator types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorType accelerator_types = 520872357;</code>
-     * @param array<\Google\Cloud\Compute\V1\AcceleratorType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AcceleratorType[] $var
      * @return $this
      */
     public function setAcceleratorTypes($var)

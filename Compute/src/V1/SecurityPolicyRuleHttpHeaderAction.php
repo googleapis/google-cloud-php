@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -28,7 +28,7 @@ class SecurityPolicyRuleHttpHeaderAction extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderActionHttpHeaderOption>|\Google\Protobuf\Internal\RepeatedField $request_headers_to_adds
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderActionHttpHeaderOption[] $request_headers_to_adds
      *           The list of request headers to add or overwrite if they're already
      *           present.
      * }
@@ -43,7 +43,7 @@ class SecurityPolicyRuleHttpHeaderAction extends \Google\Protobuf\Internal\Messa
      * present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderActionHttpHeaderOption request_headers_to_adds = 87987661;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderActionHttpHeaderOption>
      */
     public function getRequestHeadersToAdds()
     {
@@ -55,7 +55,7 @@ class SecurityPolicyRuleHttpHeaderAction extends \Google\Protobuf\Internal\Messa
      * present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleHttpHeaderActionHttpHeaderOption request_headers_to_adds = 87987661;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderActionHttpHeaderOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleHttpHeaderActionHttpHeaderOption[] $var
      * @return $this
      */
     public function setRequestHeadersToAdds($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A time series of metric values.
@@ -28,7 +28,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint>|\Google\Protobuf\Internal\RepeatedField $data_points
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint[] $data_points
      *           The data points that make up the time series .
      * }
      */
@@ -41,7 +41,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * The data points that make up the time series .
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint data_points = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint>
      */
     public function getDataPoints()
     {
@@ -52,7 +52,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * The data points that make up the time series .
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice.DataPoint data_points = 4;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint[] $var
      * @return $this
      */
     public function setDataPoints($var)
@@ -64,5 +64,4 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Statistics for BulkDownloadFeedbackLabels operation.
@@ -56,7 +56,7 @@ class DownloadStats extends \Google\Protobuf\Internal\Message
      *           because an error.
      *     @type int $total_files_written
      *           Total number of files written to the provided Cloud Storage bucket.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_names
+     *     @type string[] $file_names
      *           Output only. Full name of the files written to Cloud storage.
      * }
      */
@@ -151,7 +151,7 @@ class DownloadStats extends \Google\Protobuf\Internal\Message
      * Output only. Full name of the files written to Cloud storage.
      *
      * Generated from protobuf field <code>repeated string file_names = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFileNames()
     {
@@ -162,7 +162,7 @@ class DownloadStats extends \Google\Protobuf\Internal\Message
      * Output only. Full name of the files written to Cloud storage.
      *
      * Generated from protobuf field <code>repeated string file_names = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFileNames($var)
@@ -174,5 +174,4 @@ class DownloadStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

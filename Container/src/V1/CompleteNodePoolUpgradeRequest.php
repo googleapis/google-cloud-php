@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CompleteNodePoolUpgradeRequest sets the name of target node pool to complete
@@ -19,7 +19,7 @@ class CompleteNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to
      * complete upgrade.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -34,7 +34,7 @@ class CompleteNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool id) of the node pool to
      *           complete upgrade.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class CompleteNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to
      * complete upgrade.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -58,7 +58,7 @@ class CompleteNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to
      * complete upgrade.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -43,7 +43,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Metadata defined as annotations on the network endpoint group.
-     *     @type array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $health_status
+     *     @type \Google\Cloud\Compute\V1\HealthStatus[] $health_status
      *           Health state of the backend instances or endpoints in requested instance or
      *           network endpoint group, determined based on configured health checks.
      *     @type string $kind
@@ -87,7 +87,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
      * network endpoint group, determined based on configured health checks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HealthStatus>
      */
     public function getHealthStatus()
     {
@@ -99,7 +99,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
      * network endpoint group, determined based on configured health checks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
-     * @param array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HealthStatus[] $var
      * @return $this
      */
     public function setHealthStatus($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Next free: 15
@@ -104,7 +104,7 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      *           Unix timestamp of the most recent config update.
      *     @type \Google\Cloud\Compute\V1\BfdStatusPacketCounts $control_packet_counts
      *           Control packet counts for the current BFD session.
-     *     @type array<\Google\Cloud\Compute\V1\PacketIntervals>|\Google\Protobuf\Internal\RepeatedField $control_packet_intervals
+     *     @type \Google\Cloud\Compute\V1\PacketIntervals[] $control_packet_intervals
      *           Inter-packet time interval statistics for control packets.
      *     @type string $local_diagnostic
      *           The diagnostic code specifies the local system's reason for the last change
@@ -253,7 +253,7 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      * Inter-packet time interval statistics for control packets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketIntervals control_packet_intervals = 500806649;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PacketIntervals>
      */
     public function getControlPacketIntervals()
     {
@@ -264,7 +264,7 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      * Inter-packet time interval statistics for control packets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketIntervals control_packet_intervals = 500806649;</code>
-     * @param array<\Google\Cloud\Compute\V1\PacketIntervals>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PacketIntervals[] $var
      * @return $this
      */
     public function setControlPacketIntervals($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [user owned Grafeas note][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote] references a Grafeas
@@ -18,7 +18,7 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Grafeas resource name of a Attestation.Authority Note,
-     * created by the user, in the format: `projects/&#42;&#47;notes/&#42;`. This field may
+     * created by the user, in the format: `projects/{@*}notes/*`. This field may
      * not be updated.
      * An attestation by this attestor is stored as a Grafeas
      * Attestation.Authority Occurrence that names a container image and that
@@ -61,12 +61,12 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
      *
      *     @type string $note_reference
      *           Required. The Grafeas resource name of a Attestation.Authority Note,
-     *           created by the user, in the format: `projects/&#42;&#47;notes/&#42;`. This field may
+     *           created by the user, in the format: `projects/{@*}notes/*`. This field may
      *           not be updated.
      *           An attestation by this attestor is stored as a Grafeas
      *           Attestation.Authority Occurrence that names a container image and that
      *           links to this Note. Grafeas is an external dependency.
-     *     @type array<\Google\Cloud\BinaryAuthorization\V1\AttestorPublicKey>|\Google\Protobuf\Internal\RepeatedField $public_keys
+     *     @type \Google\Cloud\BinaryAuthorization\V1\AttestorPublicKey[] $public_keys
      *           Optional. Public keys that verify attestations signed by this
      *           attestor.  This field may be updated.
      *           If this field is non-empty, one of the specified public keys must
@@ -92,7 +92,7 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Grafeas resource name of a Attestation.Authority Note,
-     * created by the user, in the format: `projects/&#42;&#47;notes/&#42;`. This field may
+     * created by the user, in the format: `projects/{@*}notes/*`. This field may
      * not be updated.
      * An attestation by this attestor is stored as a Grafeas
      * Attestation.Authority Occurrence that names a container image and that
@@ -108,7 +108,7 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Grafeas resource name of a Attestation.Authority Note,
-     * created by the user, in the format: `projects/&#42;&#47;notes/&#42;`. This field may
+     * created by the user, in the format: `projects/{@*}notes/*`. This field may
      * not be updated.
      * An attestation by this attestor is stored as a Grafeas
      * Attestation.Authority Occurrence that names a container image and that
@@ -136,7 +136,7 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
      * valid attestations exist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1.AttestorPublicKey public_keys = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BinaryAuthorization\V1\AttestorPublicKey>
      */
     public function getPublicKeys()
     {
@@ -153,7 +153,7 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
      * valid attestations exist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1.AttestorPublicKey public_keys = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BinaryAuthorization\V1\AttestorPublicKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BinaryAuthorization\V1\AttestorPublicKey[] $var
      * @return $this
      */
     public function setPublicKeys($var)

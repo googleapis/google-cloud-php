@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A specification of the interface and size of disk attached to
@@ -103,5 +103,4 @@ class AllocatedDisk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

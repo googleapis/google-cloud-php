@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\Citations;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Piece of cited information.
@@ -132,5 +132,4 @@ class CitedChunk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

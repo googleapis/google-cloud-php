@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\DataStore;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The connector config for the data store connection.
@@ -136,5 +136,4 @@ class ConnectorConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

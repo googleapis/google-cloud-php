@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\BulkUploadFeedbackLabelsMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Statistics for BulkUploadFeedbackLabels operation.
@@ -132,5 +132,4 @@ class UploadStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

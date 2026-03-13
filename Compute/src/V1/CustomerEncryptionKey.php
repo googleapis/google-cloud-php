@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -32,7 +32,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      * The service account being used for the encryption request for the given KMS
      * key. If absent, the Compute Engine default service account is used.
      * For example:
-     * "kmsKeyServiceAccount": "name&#64;project_id.iam.gserviceaccount.com/
+     * "kmsKeyServiceAccount": "name\@project_id.iam.gserviceaccount.com/
      *
      * Generated from protobuf field <code>optional string kms_key_service_account = 209986261;</code>
      */
@@ -99,7 +99,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      *           The service account being used for the encryption request for the given KMS
      *           key. If absent, the Compute Engine default service account is used.
      *           For example:
-     *           "kmsKeyServiceAccount": "name&#64;project_id.iam.gserviceaccount.com/
+     *           "kmsKeyServiceAccount": "name\@project_id.iam.gserviceaccount.com/
      *     @type string $raw_key
      *           Specifies a 256-bit customer-supplied
      *           encryption key, encoded in RFC
@@ -192,7 +192,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      * The service account being used for the encryption request for the given KMS
      * key. If absent, the Compute Engine default service account is used.
      * For example:
-     * "kmsKeyServiceAccount": "name&#64;project_id.iam.gserviceaccount.com/
+     * "kmsKeyServiceAccount": "name\@project_id.iam.gserviceaccount.com/
      *
      * Generated from protobuf field <code>optional string kms_key_service_account = 209986261;</code>
      * @return string
@@ -216,7 +216,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      * The service account being used for the encryption request for the given KMS
      * key. If absent, the Compute Engine default service account is used.
      * For example:
-     * "kmsKeyServiceAccount": "name&#64;project_id.iam.gserviceaccount.com/
+     * "kmsKeyServiceAccount": "name\@project_id.iam.gserviceaccount.com/
      *
      * Generated from protobuf field <code>optional string kms_key_service_account = 209986261;</code>
      * @param string $var

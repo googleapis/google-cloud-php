@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration that applies to all conversations.
@@ -160,5 +160,4 @@ class ConversationConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

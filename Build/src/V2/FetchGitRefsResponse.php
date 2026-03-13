@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for fetching git refs
@@ -28,7 +28,7 @@ class FetchGitRefsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ref_names
+     *     @type string[] $ref_names
      *           Name of the refs fetched.
      * }
      */
@@ -41,7 +41,7 @@ class FetchGitRefsResponse extends \Google\Protobuf\Internal\Message
      * Name of the refs fetched.
      *
      * Generated from protobuf field <code>repeated string ref_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRefNames()
     {
@@ -52,7 +52,7 @@ class FetchGitRefsResponse extends \Google\Protobuf\Internal\Message
      * Name of the refs fetched.
      *
      * Generated from protobuf field <code>repeated string ref_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRefNames($var)

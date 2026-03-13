@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The redundant Interconnect connections for this endpoint.
@@ -63,7 +63,7 @@ class WireGroupEndpointInterconnect extends \Google\Protobuf\Internal\Message
      *                  projects/PROJECT_ID/global/interconnects/NAME
      *               -
      *                 https://compute.googleapis.com/compute/projects/PROJECT_ID/global/interconnects/NAME
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $vlan_tags
+     *     @type int[] $vlan_tags
      *           Required. To configure the wire group for VLAN mode, enter a VLAN tag,
      *           which is a number from `2` to `4093`. You can autoallocate a tag by
      *           entering `0`. To configure the wire group for port mode, enter `-1`.
@@ -152,7 +152,7 @@ class WireGroupEndpointInterconnect extends \Google\Protobuf\Internal\Message
      *    pseudowire.
      *
      * Generated from protobuf field <code>repeated int32 vlan_tags = 384601461;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getVlanTags()
     {
@@ -176,7 +176,7 @@ class WireGroupEndpointInterconnect extends \Google\Protobuf\Internal\Message
      *    pseudowire.
      *
      * Generated from protobuf field <code>repeated int32 vlan_tags = 384601461;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setVlanTags($var)

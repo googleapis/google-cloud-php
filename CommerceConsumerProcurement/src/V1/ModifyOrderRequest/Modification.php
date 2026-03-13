@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Modifications to make on the order.
@@ -212,5 +212,4 @@ class Modification extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

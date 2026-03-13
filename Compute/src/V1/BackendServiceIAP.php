@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identity-Aware Proxy
@@ -33,7 +33,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      * For security reasons, this value cannot be retrieved via the API.
      * Instead, the SHA-256 hash of the value is returned in the
      * oauth2ClientSecretSha256 field.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>optional string oauth2_client_secret = 50999520;</code>
      */
@@ -61,7 +61,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      *           For security reasons, this value cannot be retrieved via the API.
      *           Instead, the SHA-256 hash of the value is returned in the
      *           oauth2ClientSecretSha256 field.
-     *           &#64;InputOnly
+     *           \@InputOnly
      *     @type string $oauth2_client_secret_sha256
      *           Output only. [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      * }
@@ -150,7 +150,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      * For security reasons, this value cannot be retrieved via the API.
      * Instead, the SHA-256 hash of the value is returned in the
      * oauth2ClientSecretSha256 field.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>optional string oauth2_client_secret = 50999520;</code>
      * @return string
@@ -175,7 +175,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      * For security reasons, this value cannot be retrieved via the API.
      * Instead, the SHA-256 hash of the value is returned in the
      * oauth2ClientSecretSha256 field.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>optional string oauth2_client_secret = 50999520;</code>
      * @param string $var

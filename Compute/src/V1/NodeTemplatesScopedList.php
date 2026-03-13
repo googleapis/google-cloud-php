@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class NodeTemplatesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\NodeTemplate>|\Google\Protobuf\Internal\RepeatedField $node_templates
+     *     @type \Google\Cloud\Compute\V1\NodeTemplate[] $node_templates
      *           [Output Only] A list of node templates contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the node templates
@@ -50,7 +50,7 @@ class NodeTemplatesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of node templates contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeTemplate node_templates = 354111804;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NodeTemplate>
      */
     public function getNodeTemplates()
     {
@@ -61,7 +61,7 @@ class NodeTemplatesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of node templates contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeTemplate node_templates = 354111804;</code>
-     * @param array<\Google\Cloud\Compute\V1\NodeTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NodeTemplate[] $var
      * @return $this
      */
     public function setNodeTemplates($var)

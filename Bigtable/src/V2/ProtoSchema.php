@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResultSet schema in proto format
@@ -28,7 +28,7 @@ class ProtoSchema extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\V2\ColumnMetadata>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\Bigtable\V2\ColumnMetadata[] $columns
      *           The columns in the result set.
      * }
      */
@@ -41,7 +41,7 @@ class ProtoSchema extends \Google\Protobuf\Internal\Message
      * The columns in the result set.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ColumnMetadata columns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\ColumnMetadata>
      */
     public function getColumns()
     {
@@ -52,7 +52,7 @@ class ProtoSchema extends \Google\Protobuf\Internal\Message
      * The columns in the result set.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ColumnMetadata columns = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\ColumnMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\ColumnMetadata[] $var
      * @return $this
      */
     public function setColumns($var)

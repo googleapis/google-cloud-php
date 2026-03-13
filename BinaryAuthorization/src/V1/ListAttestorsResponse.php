@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [BinauthzManagementService.ListAttestors][].
@@ -36,7 +36,7 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BinaryAuthorization\V1\Attestor>|\Google\Protobuf\Internal\RepeatedField $attestors
+     *     @type \Google\Cloud\BinaryAuthorization\V1\Attestor[] $attestors
      *           The list of [attestors][google.cloud.binaryauthorization.v1.Attestor].
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. Pass this value in the
@@ -53,7 +53,7 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
      * The list of [attestors][google.cloud.binaryauthorization.v1.Attestor].
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1.Attestor attestors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BinaryAuthorization\V1\Attestor>
      */
     public function getAttestors()
     {
@@ -64,7 +64,7 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
      * The list of [attestors][google.cloud.binaryauthorization.v1.Attestor].
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1.Attestor attestors = 1;</code>
-     * @param array<\Google\Cloud\BinaryAuthorization\V1\Attestor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BinaryAuthorization\V1\Attestor[] $var
      * @return $this
      */
     public function setAttestors($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for Bigtable.ReadRows.
@@ -50,7 +50,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk>|\Google\Protobuf\Internal\RepeatedField $chunks
+     *     @type \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk[] $chunks
      *           A collection of a row's contents as part of the read request.
      *     @type string $last_scanned_row_key
      *           Optionally the server might return the row key of the last row it
@@ -77,7 +77,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * A collection of a row's contents as part of the read request.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk>
      */
     public function getChunks()
     {
@@ -88,7 +88,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * A collection of a row's contents as part of the read request.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadRowsResponse.CellChunk chunks = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk[] $var
      * @return $this
      */
     public function setChunks($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies (some of) the contents of a single row/column intersection of a
@@ -45,7 +45,7 @@ class Column extends \Google\Protobuf\Internal\Message
      *           which sets its `column_qualifier_regex_filter` field.
      *           May contain any byte string, including the empty string, up to 16kiB in
      *           length.
-     *     @type array<\Google\Cloud\Bigtable\V2\Cell>|\Google\Protobuf\Internal\RepeatedField $cells
+     *     @type \Google\Cloud\Bigtable\V2\Cell[] $cells
      *           Must not be empty. Sorted in order of decreasing "timestamp_micros".
      * }
      */
@@ -92,7 +92,7 @@ class Column extends \Google\Protobuf\Internal\Message
      * Must not be empty. Sorted in order of decreasing "timestamp_micros".
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Cell cells = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\Cell>
      */
     public function getCells()
     {
@@ -103,7 +103,7 @@ class Column extends \Google\Protobuf\Internal\Message
      * Must not be empty. Sorted in order of decreasing "timestamp_micros".
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Cell cells = 2;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\Cell>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\Cell[] $var
      * @return $this
      */
     public function setCells($var)

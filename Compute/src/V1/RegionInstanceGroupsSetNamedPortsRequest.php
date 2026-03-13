@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -45,7 +45,7 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
      *           method. Then, include the fingerprint in your request to ensure that you
      *           do not overwrite changes that were applied from another
      *           concurrent request.
-     *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
+     *     @type \Google\Cloud\Compute\V1\NamedPort[] $named_ports
      *           The list of named ports to set for this instance group.
      * }
      */
@@ -104,7 +104,7 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
      * The list of named ports to set for this instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NamedPort>
      */
     public function getNamedPorts()
     {
@@ -115,7 +115,7 @@ class RegionInstanceGroupsSetNamedPortsRequest extends \Google\Protobuf\Internal
      * The list of named ports to set for this instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
-     * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NamedPort[] $var
      * @return $this
      */
     public function setNamedPorts($var)

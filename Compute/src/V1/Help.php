@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides links to documentation or for performing an out of band action.
@@ -31,7 +31,7 @@ class Help extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\HelpLink>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Cloud\Compute\V1\HelpLink[] $links
      *           URL(s) pointing to additional information on handling the current error.
      * }
      */
@@ -44,7 +44,7 @@ class Help extends \Google\Protobuf\Internal\Message
      * URL(s) pointing to additional information on handling the current error.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HelpLink links = 102977465;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HelpLink>
      */
     public function getLinks()
     {
@@ -55,7 +55,7 @@ class Help extends \Google\Protobuf\Internal\Message
      * URL(s) pointing to additional information on handling the current error.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HelpLink links = 102977465;</code>
-     * @param array<\Google\Cloud\Compute\V1\HelpLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HelpLink[] $var
      * @return $this
      */
     public function setLinks($var)

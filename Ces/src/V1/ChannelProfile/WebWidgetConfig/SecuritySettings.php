@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\ChannelProfile\WebWidgetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Security settings for the web widget.
@@ -67,7 +67,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *           If `true`, the web widget will check the origin of the website that
      *           loads the web widget and only allow it to be loaded in the same origin
      *           or any of the allowed origins.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_origins
+     *     @type string[] $allowed_origins
      *           Optional. The origins that are allowed to host the web widget. An
      *           origin is defined by RFC 6454. If empty, all origins are allowed. A
      *           maximum of 100 origins is allowed. Example: "https://example.com"
@@ -153,7 +153,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * maximum of 100 origins is allowed. Example: "https://example.com"
      *
      * Generated from protobuf field <code>repeated string allowed_origins = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedOrigins()
     {
@@ -166,7 +166,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * maximum of 100 origins is allowed. Example: "https://example.com"
      *
      * Generated from protobuf field <code>repeated string allowed_origins = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedOrigins($var)
@@ -206,5 +206,4 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

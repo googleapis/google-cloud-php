@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [attestor public key][google.cloud.binaryauthorization.v1.AttestorPublicKey] that will be used to verify
@@ -54,7 +54,7 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
      *           for details.
      *     @type string $ascii_armored_pgp_public_key
      *           ASCII-armored representation of a PGP public key, as the entire output by
-     *           the command `gpg --export --armor foo&#64;example.com` (either LF or CRLF
+     *           the command `gpg --export --armor foo\@example.com` (either LF or CRLF
      *           line endings).
      *           When using this field, `id` should be left blank.  The BinAuthz API
      *           handlers will calculate the ID and fill it in automatically.  BinAuthz
@@ -140,7 +140,7 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * ASCII-armored representation of a PGP public key, as the entire output by
-     * the command `gpg --export --armor foo&#64;example.com` (either LF or CRLF
+     * the command `gpg --export --armor foo\@example.com` (either LF or CRLF
      * line endings).
      * When using this field, `id` should be left blank.  The BinAuthz API
      * handlers will calculate the ID and fill it in automatically.  BinAuthz
@@ -163,7 +163,7 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * ASCII-armored representation of a PGP public key, as the entire output by
-     * the command `gpg --export --armor foo&#64;example.com` (either LF or CRLF
+     * the command `gpg --export --armor foo\@example.com` (either LF or CRLF
      * line endings).
      * When using this field, `id` should be left blank.  The BinAuthz API
      * handlers will calculate the ID and fill it in automatically.  BinAuthz

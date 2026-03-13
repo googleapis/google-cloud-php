@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class StoragePoolTypesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\StoragePoolType>|\Google\Protobuf\Internal\RepeatedField $storage_pool_types
+     *     @type \Google\Cloud\Compute\V1\StoragePoolType[] $storage_pool_types
      *           [Output Only] A list of storage pool types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of storage pool
@@ -50,7 +50,7 @@ class StoragePoolTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of storage pool types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.StoragePoolType storage_pool_types = 276043482;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\StoragePoolType>
      */
     public function getStoragePoolTypes()
     {
@@ -61,7 +61,7 @@ class StoragePoolTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of storage pool types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.StoragePoolType storage_pool_types = 276043482;</code>
-     * @param array<\Google\Cloud\Compute\V1\StoragePoolType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\StoragePoolType[] $var
      * @return $this
      */
     public function setStoragePoolTypes($var)

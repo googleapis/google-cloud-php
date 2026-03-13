@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\EndUserAuthConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Oauth 2.0 Authorization Code authentication configuration.
@@ -68,5 +68,4 @@ class Oauth2AuthCodeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

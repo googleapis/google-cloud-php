@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of machine type to use. Every position inside this message
@@ -50,10 +50,10 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Compute\V1\AttachedDisk[] $disks
      *           Disks to be attached to the instances created from in this selection.
      *           They override the disks specified in the instance properties.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $machine_types
+     *     @type string[] $machine_types
      *           Alternative machine types to use for instances that are created from
      *           these properties. This field only accepts a machine type names, for
      *           example `n2-standard-4` and not URLs or partial URLs.
@@ -74,7 +74,7 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
      * They override the disks specified in the instance properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AttachedDisk>
      */
     public function getDisks()
     {
@@ -86,7 +86,7 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
      * They override the disks specified in the instance properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
-     * @param array<\Google\Cloud\Compute\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AttachedDisk[] $var
      * @return $this
      */
     public function setDisks($var)
@@ -103,7 +103,7 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
      * example `n2-standard-4` and not URLs or partial URLs.
      *
      * Generated from protobuf field <code>repeated string machine_types = 79720065;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMachineTypes()
     {
@@ -116,7 +116,7 @@ class InstanceFlexibilityPolicyInstanceSelection extends \Google\Protobuf\Intern
      * example `n2-standard-4` and not URLs or partial URLs.
      *
      * Generated from protobuf field <code>repeated string machine_types = 79720065;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMachineTypes($var)

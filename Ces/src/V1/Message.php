@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message within a conversation.
@@ -43,7 +43,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      *     @type string $role
      *           Optional. The role within the conversation, e.g., user, agent.
-     *     @type array<\Google\Cloud\Ces\V1\Chunk>|\Google\Protobuf\Internal\RepeatedField $chunks
+     *     @type \Google\Cloud\Ces\V1\Chunk[] $chunks
      *           Optional. Content of the message as a series of chunks.
      *     @type \Google\Protobuf\Timestamp $event_time
      *           Optional. Timestamp when the message was sent or received. Should not be
@@ -85,7 +85,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Optional. Content of the message as a series of chunks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Chunk chunks = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Chunk>
      */
     public function getChunks()
     {
@@ -96,7 +96,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Optional. Content of the message as a series of chunks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Chunk chunks = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Chunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Chunk[] $var
      * @return $this
      */
     public function setChunks($var)

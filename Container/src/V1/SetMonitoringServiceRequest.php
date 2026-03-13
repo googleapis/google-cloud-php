@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetMonitoringServiceRequest sets the monitoring service of a cluster.
@@ -58,7 +58,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
     protected $monitoring_service = '';
     /**
      * The name (project, location, cluster) of the cluster to set monitoring.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -155,7 +155,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
      *           used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set monitoring.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -315,7 +315,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set monitoring.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -327,7 +327,7 @@ class SetMonitoringServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set monitoring.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

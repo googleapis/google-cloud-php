@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `Service` is the root object of Google API service configuration (service
@@ -251,13 +251,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *           by the client for tracking purpose. Must be no longer than 63 characters
      *           and only lower case letters, digits, '.', '_' and '-' are allowed. If
      *           empty, the server may choose to generate one instead.
-     *     @type array<\Google\Protobuf\Api>|\Google\Protobuf\Internal\RepeatedField $apis
+     *     @type \Google\Protobuf\Api[] $apis
      *           A list of API interfaces exported by this service. Only the `name` field
      *           of the [google.protobuf.Api][google.protobuf.Api] needs to be provided by
      *           the configuration author, as the remaining fields will be derived from the
      *           IDL during the normalization process. It is an error to specify an API
      *           interface here which cannot be resolved against the associated IDL files.
-     *     @type array<\Google\Protobuf\Type>|\Google\Protobuf\Internal\RepeatedField $types
+     *     @type \Google\Protobuf\Type[] $types
      *           A list of all proto message types included in this API service.
      *           Types referenced directly or indirectly by the `apis` are automatically
      *           included.  Messages which are not referenced but shall be included, such as
@@ -265,7 +265,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           name by the configuration author. Example:
      *               types:
      *               - name: google.protobuf.Int32
-     *     @type array<\Google\Protobuf\Enum>|\Google\Protobuf\Internal\RepeatedField $enums
+     *     @type \Google\Protobuf\Enum[] $enums
      *           A list of all enum types included in this API service.  Enums referenced
      *           directly or indirectly by the `apis` are automatically included.  Enums
      *           which are not referenced but shall be included should be listed here by
@@ -286,17 +286,17 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Context configuration.
      *     @type \Google\Api\Usage $usage
      *           Configuration controlling usage of this service.
-     *     @type array<\Google\Api\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Api\Endpoint[] $endpoints
      *           Configuration for network endpoints.  If this is empty, then an endpoint
      *           with the same name as the service is automatically generated to service all
      *           defined APIs.
      *     @type \Google\Api\Control $control
      *           Configuration for the service control plane.
-     *     @type array<\Google\Api\LogDescriptor>|\Google\Protobuf\Internal\RepeatedField $logs
+     *     @type \Google\Api\LogDescriptor[] $logs
      *           Defines the logs used by this service.
-     *     @type array<\Google\Api\MetricDescriptor>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Api\MetricDescriptor[] $metrics
      *           Defines the metrics used by this service.
-     *     @type array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $monitored_resources
+     *     @type \Google\Api\MonitoredResourceDescriptor[] $monitored_resources
      *           Defines the monitored resources used by this service. This is required
      *           by the [Service.monitoring][google.api.Service.monitoring] and
      *           [Service.logging][google.api.Service.logging] configurations.
@@ -451,7 +451,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * interface here which cannot be resolved against the associated IDL files.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Api apis = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Api>
      */
     public function getApis()
     {
@@ -466,7 +466,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * interface here which cannot be resolved against the associated IDL files.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Api apis = 3;</code>
-     * @param array<\Google\Protobuf\Api>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Api[] $var
      * @return $this
      */
     public function setApis($var)
@@ -487,7 +487,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     - name: google.protobuf.Int32
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Type types = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Type>
      */
     public function getTypes()
     {
@@ -504,7 +504,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     - name: google.protobuf.Int32
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Type types = 4;</code>
-     * @param array<\Google\Protobuf\Type>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Type[] $var
      * @return $this
      */
     public function setTypes($var)
@@ -524,7 +524,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     - name: google.someapi.v1.SomeEnum
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Enum enums = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Enum>
      */
     public function getEnums()
     {
@@ -540,7 +540,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     - name: google.someapi.v1.SomeEnum
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Enum enums = 5;</code>
-     * @param array<\Google\Protobuf\Enum>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Enum[] $var
      * @return $this
      */
     public function setEnums($var)
@@ -809,7 +809,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * defined APIs.
      *
      * Generated from protobuf field <code>repeated .google.api.Endpoint endpoints = 18;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\Endpoint>
      */
     public function getEndpoints()
     {
@@ -822,7 +822,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * defined APIs.
      *
      * Generated from protobuf field <code>repeated .google.api.Endpoint endpoints = 18;</code>
-     * @param array<\Google\Api\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Endpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -873,7 +873,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Defines the logs used by this service.
      *
      * Generated from protobuf field <code>repeated .google.api.LogDescriptor logs = 23;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\LogDescriptor>
      */
     public function getLogs()
     {
@@ -884,7 +884,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Defines the logs used by this service.
      *
      * Generated from protobuf field <code>repeated .google.api.LogDescriptor logs = 23;</code>
-     * @param array<\Google\Api\LogDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\LogDescriptor[] $var
      * @return $this
      */
     public function setLogs($var)
@@ -899,7 +899,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Defines the metrics used by this service.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metrics = 24;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\MetricDescriptor>
      */
     public function getMetrics()
     {
@@ -910,7 +910,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Defines the metrics used by this service.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metrics = 24;</code>
-     * @param array<\Google\Api\MetricDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MetricDescriptor[] $var
      * @return $this
      */
     public function setMetrics($var)
@@ -927,7 +927,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\MonitoredResourceDescriptor>
      */
     public function getMonitoredResources()
     {
@@ -940,7 +940,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
-     * @param array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MonitoredResourceDescriptor[] $var
      * @return $this
      */
     public function setMonitoredResources($var)

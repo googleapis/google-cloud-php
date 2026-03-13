@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Target SSL Proxy resource.
@@ -148,7 +148,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $service
      *           URL to the BackendService resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
+     *     @type string[] $ssl_certificates
      *           URLs to SslCertificate resources that are used to
      *           authenticate connections to Backends. At least one SSL certificate
      *           must be specified. Currently, you may specify up to 15 SSL certificates.
@@ -529,7 +529,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      * INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSslCertificates()
     {
@@ -544,7 +544,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      * INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSslCertificates($var)

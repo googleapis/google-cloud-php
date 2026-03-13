@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata\JobConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Query job configuration.
@@ -95,7 +95,7 @@ class Query extends \Google\Protobuf\Internal\Message
      *           Destination table write disposition.
      *     @type string $default_dataset
      *           Default dataset for the query.
-     *     @type array<\Google\Cloud\Audit\BigQueryAuditMetadata\TableDefinition>|\Google\Protobuf\Internal\RepeatedField $table_definitions
+     *     @type \Google\Cloud\Audit\BigQueryAuditMetadata\TableDefinition[] $table_definitions
      *           External data sources used in the query.
      *     @type int $priority
      *           Priority given to the query.
@@ -271,7 +271,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * External data sources used in the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.TableDefinition table_definitions = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Audit\BigQueryAuditMetadata\TableDefinition>
      */
     public function getTableDefinitions()
     {
@@ -282,7 +282,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * External data sources used in the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.TableDefinition table_definitions = 6;</code>
-     * @param array<\Google\Cloud\Audit\BigQueryAuditMetadata\TableDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Audit\BigQueryAuditMetadata\TableDefinition[] $var
      * @return $this
      */
     public function setTableDefinitions($var)
@@ -384,5 +384,4 @@ class Query extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

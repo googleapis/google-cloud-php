@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response containing the recommended way of creating the specified resources
@@ -31,7 +31,7 @@ class CalendarModeAdviceResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\CalendarModeRecommendation>|\Google\Protobuf\Internal\RepeatedField $recommendations
+     *     @type \Google\Cloud\Compute\V1\CalendarModeRecommendation[] $recommendations
      *           Recommendations where, how and when to create the requested resources
      *           in order to maximize their obtainability and minimize cost.
      * }
@@ -46,7 +46,7 @@ class CalendarModeAdviceResponse extends \Google\Protobuf\Internal\Message
      * in order to maximize their obtainability and minimize cost.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CalendarModeRecommendation recommendations = 324515802;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\CalendarModeRecommendation>
      */
     public function getRecommendations()
     {
@@ -58,7 +58,7 @@ class CalendarModeAdviceResponse extends \Google\Protobuf\Internal\Message
      * in order to maximize their obtainability and minimize cost.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CalendarModeRecommendation recommendations = 324515802;</code>
-     * @param array<\Google\Cloud\Compute\V1\CalendarModeRecommendation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\CalendarModeRecommendation[] $var
      * @return $this
      */
     public function setRecommendations($var)

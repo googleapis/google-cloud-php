@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\Certificate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Certificate data for a SelfManaged Certificate.
@@ -104,5 +104,4 @@ class SelfManagedCertificate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

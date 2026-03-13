@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetMasterAuthRequest updates the admin password of a cluster.
@@ -56,7 +56,7 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
     protected $update = null;
     /**
      * The name (project, location, cluster) of the cluster to set auth.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
@@ -86,7 +86,7 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
      *           Required. A description of the update.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set auth.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -266,7 +266,7 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set auth.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @return string
@@ -278,7 +278,7 @@ class SetMasterAuthRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set auth.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @param string $var

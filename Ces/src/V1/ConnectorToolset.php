@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A toolset that generates tools from an Integration Connectors Connection.
@@ -65,7 +65,7 @@ class ConnectorToolset extends \Google\Protobuf\Internal\Message
      *           order to specify an EUC configuration here - otherwise, the Toolset
      *           creation will fail. See:
      *           https://cloud.google.com/application-integration/docs/configure-connectors-task#configure-authentication-override
-     *     @type array<\Google\Cloud\Ces\V1\Action>|\Google\Protobuf\Internal\RepeatedField $connector_actions
+     *     @type \Google\Cloud\Ces\V1\Action[] $connector_actions
      *           Required. The list of connector actions/entity operations to generate tools
      *           for.
      * }
@@ -162,7 +162,7 @@ class ConnectorToolset extends \Google\Protobuf\Internal\Message
      * for.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Action connector_actions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Action>
      */
     public function getConnectorActions()
     {
@@ -174,7 +174,7 @@ class ConnectorToolset extends \Google\Protobuf\Internal\Message
      * for.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Action connector_actions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Action[] $var
      * @return $this
      */
     public function setConnectorActions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Word-level info for words in a transcript.
@@ -198,5 +198,4 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

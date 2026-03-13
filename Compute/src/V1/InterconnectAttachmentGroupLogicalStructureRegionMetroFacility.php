@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] The facilities used for this group's Attachments'
@@ -35,7 +35,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Go
      *
      *     @type string $facility
      *           Output only. [Output Only] The name of a facility, like "iad-1234".
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone[] $zones
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +81,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Go
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone zones = 116085319;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone>
      */
     public function getZones()
     {
@@ -90,7 +90,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacility extends \Go
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone zones = 116085319;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone[] $var
      * @return $this
      */
     public function setZones($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of data points that describes the time-varying values of a
@@ -123,7 +123,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *           The resource for the time series values to return. Possible values include
      *           "gce-vcpus", "gce-ram", "gce-local-ssd", "gce-persistent-disk", "gce-gpu",
      *           "gce-tpu" and "gce-vm".
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\Point>|\Google\Protobuf\Internal\RepeatedField $points
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\Point[] $points
      *           The data points of this time series. When listing time series, points are
      *           returned in chronological order.
      *     @type string $unit
@@ -416,7 +416,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * returned in chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Point points = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\Point>
      */
     public function getPoints()
     {
@@ -428,7 +428,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * returned in chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Point points = 4;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\Point>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\Point[] $var
      * @return $this
      */
     public function setPoints($var)

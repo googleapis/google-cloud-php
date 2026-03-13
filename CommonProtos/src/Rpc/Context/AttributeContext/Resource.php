@@ -5,8 +5,8 @@
 namespace Google\Rpc\Context\AttributeContext;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message defines core attributes for a resource. A resource is an
@@ -610,5 +610,4 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a documentation page. A page can contain subpages to represent
@@ -76,7 +76,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *           The Markdown content of the page. You can use ```(== include {path}
      *           ==)``` to include content from a Markdown file. The content can be used
      *           to produce the documentation page such as HTML format page.
-     *     @type array<\Google\Api\Page>|\Google\Protobuf\Internal\RepeatedField $subpages
+     *     @type \Google\Api\Page[] $subpages
      *           Subpages of this page. The order of subpages specified here will be
      *           honored in the generated docset.
      * }
@@ -173,7 +173,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * honored in the generated docset.
      *
      * Generated from protobuf field <code>repeated .google.api.Page subpages = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\Page>
      */
     public function getSubpages()
     {
@@ -185,7 +185,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * honored in the generated docset.
      *
      * Generated from protobuf field <code>repeated .google.api.Page subpages = 3;</code>
-     * @param array<\Google\Api\Page>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Page[] $var
      * @return $this
      */
     public function setSubpages($var)

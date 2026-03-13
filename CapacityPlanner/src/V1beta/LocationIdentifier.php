@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identifier for a Google Cloud Platform location.
@@ -46,7 +46,7 @@ class LocationIdentifier extends \Google\Protobuf\Internal\Message
      *     @type string $source
      *           Required. Location where resource is sourced. For Cloud Storage, the
      *           alphabetically first location is the source.
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\LocationIdentifier\LinkedLocation>|\Google\Protobuf\Internal\RepeatedField $linked_locations
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\LocationIdentifier\LinkedLocation[] $linked_locations
      *           Optional. Other linked locations.
      * }
      */
@@ -113,7 +113,7 @@ class LocationIdentifier extends \Google\Protobuf\Internal\Message
      * Optional. Other linked locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.LocationIdentifier.LinkedLocation linked_locations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\LocationIdentifier\LinkedLocation>
      */
     public function getLinkedLocations()
     {
@@ -124,7 +124,7 @@ class LocationIdentifier extends \Google\Protobuf\Internal\Message
      * Optional. Other linked locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.LocationIdentifier.LinkedLocation linked_locations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\LocationIdentifier\LinkedLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\LocationIdentifier\LinkedLocation[] $var
      * @return $this
      */
     public function setLinkedLocations($var)

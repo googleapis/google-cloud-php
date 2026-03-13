@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\NodeGroup>|\Google\Protobuf\Internal\RepeatedField $node_groups
+     *     @type \Google\Cloud\Compute\V1\NodeGroup[] $node_groups
      *           [Output Only] A list of node groups contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the nodeGroup
@@ -50,7 +50,7 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of node groups contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeGroup node_groups = 73188017;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NodeGroup>
      */
     public function getNodeGroups()
     {
@@ -61,7 +61,7 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of node groups contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeGroup node_groups = 73188017;</code>
-     * @param array<\Google\Cloud\Compute\V1\NodeGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NodeGroup[] $var
      * @return $this
      */
     public function setNodeGroups($var)

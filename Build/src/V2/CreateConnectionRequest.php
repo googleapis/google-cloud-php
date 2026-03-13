@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for creating a Connection
@@ -17,7 +17,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Project and location where the connection will be created.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,7 +32,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the Connection, which will become the final
      * component of the Connection's resource name. Names must be unique
      * per-project per-location. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string connection_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -68,14 +68,14 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Project and location where the connection will be created.
-     *           Format: `projects/&#42;&#47;locations/&#42;`.
+     *           Format: `projects/{@*}locations/*`.
      *     @type \Google\Cloud\Build\V2\Connection $connection
      *           Required. The Connection to create.
      *     @type string $connection_id
      *           Required. The ID to use for the Connection, which will become the final
      *           component of the Connection's resource name. Names must be unique
      *           per-project per-location. Allows alphanumeric characters and any of
-     *           -._~%!$&'()*+,;=&#64;.
+     *           -._~%!$&'()*+,;=\@.
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +85,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Project and location where the connection will be created.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,7 +97,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Project and location where the connection will be created.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -151,7 +151,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the Connection, which will become the final
      * component of the Connection's resource name. Names must be unique
      * per-project per-location. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string connection_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -165,7 +165,7 @@ class CreateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the Connection, which will become the final
      * component of the Connection's resource name. Names must be unique
      * per-project per-location. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string connection_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

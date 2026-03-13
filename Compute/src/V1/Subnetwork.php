@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Subnetwork resource.
@@ -453,7 +453,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           ready to be promoted to ACTIVE or is currently draining.
      *           This field can be updated with a patch request.
      *           Check the Role enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\SubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_ranges
+     *     @type \Google\Cloud\Compute\V1\SubnetworkSecondaryRange[] $secondary_ip_ranges
      *           An array of configurations for secondary IP ranges for VM instances
      *           contained in this subnetwork. The primary IP of such VM must belong to the
      *           primary ipCidrRange of the subnetwork. The alias IPs may belong to either
@@ -473,10 +473,10 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           connections to the load balancer are being drained. A subnetwork that is
      *           draining cannot be used or modified until it reaches a status ofREADY
      *           Check the State enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $system_reserved_external_ipv6_ranges
+     *     @type string[] $system_reserved_external_ipv6_ranges
      *           Output only. [Output Only] The array of external IPv6 network ranges reserved from
      *           the subnetwork's external IPv6 range for system use.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $system_reserved_internal_ipv6_ranges
+     *     @type string[] $system_reserved_internal_ipv6_ranges
      *           Output only. [Output Only] The array of internal IPv6 network ranges reserved from
      *           the subnetwork's internal IPv6 range for system use.
      *     @type \Google\Cloud\Compute\V1\SubnetworkUtilizationDetails $utilization_details
@@ -1594,7 +1594,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SubnetworkSecondaryRange>
      */
     public function getSecondaryIpRanges()
     {
@@ -1608,7 +1608,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * primary or secondary ranges. This field can be updated with apatch request. Supports both IPv4 and IPv6 ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
-     * @param array<\Google\Cloud\Compute\V1\SubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SubnetworkSecondaryRange[] $var
      * @return $this
      */
     public function setSecondaryIpRanges($var)
@@ -1750,7 +1750,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * the subnetwork's external IPv6 range for system use.
      *
      * Generated from protobuf field <code>repeated string system_reserved_external_ipv6_ranges = 65324129;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSystemReservedExternalIpv6Ranges()
     {
@@ -1762,7 +1762,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * the subnetwork's external IPv6 range for system use.
      *
      * Generated from protobuf field <code>repeated string system_reserved_external_ipv6_ranges = 65324129;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSystemReservedExternalIpv6Ranges($var)
@@ -1778,7 +1778,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * the subnetwork's internal IPv6 range for system use.
      *
      * Generated from protobuf field <code>repeated string system_reserved_internal_ipv6_ranges = 432294995;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSystemReservedInternalIpv6Ranges()
     {
@@ -1790,7 +1790,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * the subnetwork's internal IPv6 range for system use.
      *
      * Generated from protobuf field <code>repeated string system_reserved_internal_ipv6_ranges = 432294995;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSystemReservedInternalIpv6Ranges($var)

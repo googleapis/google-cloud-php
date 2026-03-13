@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a metric type and its schema. Once a metric descriptor is created,
@@ -203,7 +203,7 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *               "custom.googleapis.com/invoice/paid/amount"
      *               "external.googleapis.com/prometheus/up"
      *               "appengine.googleapis.com/http/server/response_latencies"
-     *     @type array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type \Google\Api\LabelDescriptor[] $labels
      *           The set of labels that can be used to describe a specific
      *           instance of this metric type. For example, the
      *           `appengine.googleapis.com/http/server/response_latencies` metric
@@ -311,7 +311,7 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *           Optional. Metadata which can be used to guide usage of the metric.
      *     @type int $launch_stage
      *           Optional. The launch stage of the metric definition.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $monitored_resource_types
+     *     @type string[] $monitored_resource_types
      *           Read-only. If present, then a [time
      *           series][google.monitoring.v3.TimeSeries], which is identified partially by
      *           a metric type and a
@@ -398,7 +398,7 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      * for responses that failed.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\LabelDescriptor>
      */
     public function getLabels()
     {
@@ -414,7 +414,7 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      * for responses that failed.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 2;</code>
-     * @param array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\LabelDescriptor[] $var
      * @return $this
      */
     public function setLabels($var)
@@ -800,7 +800,7 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      * monitored resource types listed here.
      *
      * Generated from protobuf field <code>repeated string monitored_resource_types = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMonitoredResourceTypes()
     {
@@ -816,7 +816,7 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      * monitored resource types listed here.
      *
      * Generated from protobuf field <code>repeated string monitored_resource_types = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMonitoredResourceTypes($var)

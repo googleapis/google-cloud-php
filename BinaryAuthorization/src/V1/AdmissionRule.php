@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [admission rule][google.cloud.binaryauthorization.v1.AdmissionRule] specifies either that all container images
@@ -28,7 +28,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
     protected $evaluation_mode = 0;
     /**
      * Optional. The resource names of the attestors that must attest to
-     * a container image, in the format `projects/&#42;&#47;attestors/&#42;`. Each
+     * a container image, in the format `projects/{@*}attestors/*`. Each
      * attestor must exist before a policy can reference it.  To add an attestor
      * to a policy the principal issuing the policy change request must be able
      * to read the attestor resource.
@@ -53,9 +53,9 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      *
      *     @type int $evaluation_mode
      *           Required. How this admission rule will be evaluated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $require_attestations_by
+     *     @type string[] $require_attestations_by
      *           Optional. The resource names of the attestors that must attest to
-     *           a container image, in the format `projects/&#42;&#47;attestors/&#42;`. Each
+     *           a container image, in the format `projects/{@*}attestors/*`. Each
      *           attestor must exist before a policy can reference it.  To add an attestor
      *           to a policy the principal issuing the policy change request must be able
      *           to read the attestor resource.
@@ -98,7 +98,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The resource names of the attestors that must attest to
-     * a container image, in the format `projects/&#42;&#47;attestors/&#42;`. Each
+     * a container image, in the format `projects/{@*}attestors/*`. Each
      * attestor must exist before a policy can reference it.  To add an attestor
      * to a policy the principal issuing the policy change request must be able
      * to read the attestor resource.
@@ -106,7 +106,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      * REQUIRE_ATTESTATION, otherwise it must be empty.
      *
      * Generated from protobuf field <code>repeated string require_attestations_by = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequireAttestationsBy()
     {
@@ -115,7 +115,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The resource names of the attestors that must attest to
-     * a container image, in the format `projects/&#42;&#47;attestors/&#42;`. Each
+     * a container image, in the format `projects/{@*}attestors/*`. Each
      * attestor must exist before a policy can reference it.  To add an attestor
      * to a policy the principal issuing the policy change request must be able
      * to read the attestor resource.
@@ -123,7 +123,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      * REQUIRE_ATTESTATION, otherwise it must be empty.
      *
      * Generated from protobuf field <code>repeated string require_attestations_by = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequireAttestationsBy($var)

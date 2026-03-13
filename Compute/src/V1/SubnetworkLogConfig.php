@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The available logging options for this subnetwork.
@@ -107,7 +107,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      *           Configures whether all, none or a subset of metadata fields should be
      *           added to the reported VPC flow logs. Default isEXCLUDE_ALL_METADATA.
      *           Check the Metadata enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metadata_fields
+     *     @type string[] $metadata_fields
      *           Can only be specified if VPC flow logs for this subnetwork is enabled and
      *           "metadata" was set to CUSTOM_METADATA.
      * }
@@ -340,7 +340,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      * "metadata" was set to CUSTOM_METADATA.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 378461641;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetadataFields()
     {
@@ -352,7 +352,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      * "metadata" was set to CUSTOM_METADATA.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 378461641;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetadataFields($var)

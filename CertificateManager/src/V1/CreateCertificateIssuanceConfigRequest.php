@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `CreateCertificateIssuanceConfig` method.
@@ -17,7 +17,7 @@ class CreateCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
 {
     /**
      * Required. The parent resource of the certificate issuance config. Must be
-     * in the format `projects/&#42;&#47;locations/&#42;`.
+     * in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,7 +62,7 @@ class CreateCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
      *
      *     @type string $parent
      *           Required. The parent resource of the certificate issuance config. Must be
-     *           in the format `projects/&#42;&#47;locations/&#42;`.
+     *           in the format `projects/{@*}locations/*`.
      *     @type string $certificate_issuance_config_id
      *           Required. A user-provided name of the certificate config.
      *     @type \Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig $certificate_issuance_config
@@ -76,7 +76,7 @@ class CreateCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent resource of the certificate issuance config. Must be
-     * in the format `projects/&#42;&#47;locations/&#42;`.
+     * in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +88,7 @@ class CreateCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent resource of the certificate issuance config. Must be
-     * in the format `projects/&#42;&#47;locations/&#42;`.
+     * in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

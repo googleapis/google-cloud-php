@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a match condition that incoming network traffic is evaluated
@@ -79,28 +79,28 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
+     *     @type string[] $dest_ip_ranges
      *           Destination IPv4/IPv6 addresses or CIDR prefixes, in standard text
      *           format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_ports
+     *     @type string[] $dest_ports
      *           Destination port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
      *           unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_protocols
+     *     @type string[] $ip_protocols
      *           IPv4 protocol / IPv6 next header (after extension headers). Each
      *           element can be an 8-bit unsigned decimal number (e.g. "6"), range (e.g.
      *           "253-254"), or one of the following protocol names: "tcp", "udp",
      *           "icmp", "esp", "ah", "ipip", or "sctp".
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $src_asns
+     *     @type int[] $src_asns
      *           BGP Autonomous System Number associated with the source IP address.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
+     *     @type string[] $src_ip_ranges
      *           Source IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_ports
+     *     @type string[] $src_ports
      *           Source port numbers for TCP/UDP/SCTP. Each element can be a 16-bit
      *           unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_region_codes
+     *     @type string[] $src_region_codes
      *           Two-letter ISO 3166-1 alpha-2 country code associated with the source
      *           IP address.
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch>|\Google\Protobuf\Internal\RepeatedField $user_defined_fields
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch[] $user_defined_fields
      *           User-defined fields. Each element names a defined field and lists the
      *           matching values for that field.
      * }
@@ -115,7 +115,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * format.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestIpRanges()
     {
@@ -127,7 +127,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * format.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestIpRanges($var)
@@ -143,7 +143,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string dest_ports = 379902005;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestPorts()
     {
@@ -155,7 +155,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string dest_ports = 379902005;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestPorts($var)
@@ -173,7 +173,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * "icmp", "esp", "ah", "ipip", or "sctp".
      *
      * Generated from protobuf field <code>repeated string ip_protocols = 259213251;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIpProtocols()
     {
@@ -187,7 +187,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * "icmp", "esp", "ah", "ipip", or "sctp".
      *
      * Generated from protobuf field <code>repeated string ip_protocols = 259213251;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIpProtocols($var)
@@ -202,7 +202,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * BGP Autonomous System Number associated with the source IP address.
      *
      * Generated from protobuf field <code>repeated uint32 src_asns = 117825266;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSrcAsns()
     {
@@ -213,7 +213,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * BGP Autonomous System Number associated with the source IP address.
      *
      * Generated from protobuf field <code>repeated uint32 src_asns = 117825266;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSrcAsns($var)
@@ -228,7 +228,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * Source IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSrcIpRanges()
     {
@@ -239,7 +239,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * Source IPv4/IPv6 addresses or CIDR prefixes, in standard text format.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSrcIpRanges($var)
@@ -255,7 +255,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string src_ports = 445095415;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSrcPorts()
     {
@@ -267,7 +267,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * unsigned decimal number (e.g. "80") or range (e.g. "0-1023").
      *
      * Generated from protobuf field <code>repeated string src_ports = 445095415;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSrcPorts($var)
@@ -283,7 +283,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * IP address.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSrcRegionCodes()
     {
@@ -295,7 +295,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * IP address.
      *
      * Generated from protobuf field <code>repeated string src_region_codes = 99086742;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSrcRegionCodes($var)
@@ -311,7 +311,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * matching values for that field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch user_defined_fields = 28312739;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch>
      */
     public function getUserDefinedFields()
     {
@@ -323,7 +323,7 @@ class SecurityPolicyRuleNetworkMatcher extends \Google\Protobuf\Internal\Message
      * matching values for that field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch user_defined_fields = 28312739;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleNetworkMatcherUserDefinedFieldMatch[] $var
      * @return $this
      */
     public function setUserDefinedFields($var)

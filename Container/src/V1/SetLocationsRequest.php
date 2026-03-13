@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetLocationsRequest sets the locations of the cluster.
@@ -55,7 +55,7 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
     private $locations;
     /**
      * The name (project, location, cluster) of the cluster to set locations.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -132,7 +132,7 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_id
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      *           Required. The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available)
      *           in which the cluster's nodes should be located. Changing the locations a
@@ -141,7 +141,7 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
      *           This list must always include the cluster's primary zone.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set locations.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -266,7 +266,7 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
      * This list must always include the cluster's primary zone.
      *
      * Generated from protobuf field <code>repeated string locations = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -282,7 +282,7 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
      * This list must always include the cluster's primary zone.
      *
      * Generated from protobuf field <code>repeated string locations = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -295,7 +295,7 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set locations.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -307,7 +307,7 @@ class SetLocationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set locations.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for connections to an instance of GitHub Enterprise.
@@ -41,14 +41,14 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
     protected $app_slug = '';
     /**
      * SecretManager resource containing the private key of the GitHub App,
-     * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.resource_reference) = {</code>
      */
     protected $private_key_secret_version = '';
     /**
      * SecretManager resource containing the webhook secret of the GitHub App,
-     * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.resource_reference) = {</code>
      */
@@ -98,10 +98,10 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
      *           The URL-friendly name of the GitHub App.
      *     @type string $private_key_secret_version
      *           SecretManager resource containing the private key of the GitHub App,
-     *           formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           formatted as `projects/{@*}secrets/{@*}versions/*`.
      *     @type string $webhook_secret_secret_version
      *           SecretManager resource containing the webhook secret of the GitHub App,
-     *           formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           formatted as `projects/{@*}secrets/{@*}versions/*`.
      *     @type int|string $app_installation_id
      *           ID of the installation of the GitHub App.
      *     @type \Google\Cloud\Build\V2\ServiceDirectoryConfig $service_directory_config
@@ -227,7 +227,7 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * SecretManager resource containing the private key of the GitHub App,
-     * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -239,7 +239,7 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * SecretManager resource containing the private key of the GitHub App,
-     * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -255,7 +255,7 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * SecretManager resource containing the webhook secret of the GitHub App,
-     * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -267,7 +267,7 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * SecretManager resource containing the webhook secret of the GitHub App,
-     * formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an OAuth token of the account that authorized the Connection,
@@ -18,7 +18,7 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
 {
     /**
      * A SecretManager resource containing the OAuth token that authorizes
-     * the Cloud Build connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * the Cloud Build connection. Format: `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string oauth_token_secret_version = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -38,7 +38,7 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
      *
      *     @type string $oauth_token_secret_version
      *           A SecretManager resource containing the OAuth token that authorizes
-     *           the Cloud Build connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           the Cloud Build connection. Format: `projects/{@*}secrets/{@*}versions/*`.
      *     @type string $username
      *           Output only. The username associated to this token.
      * }
@@ -50,7 +50,7 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
 
     /**
      * A SecretManager resource containing the OAuth token that authorizes
-     * the Cloud Build connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * the Cloud Build connection. Format: `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string oauth_token_secret_version = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -62,7 +62,7 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
 
     /**
      * A SecretManager resource containing the OAuth token that authorizes
-     * the Cloud Build connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * the Cloud Build connection. Format: `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string oauth_token_secret_version = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -16,7 +16,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
 {
     /**
      * The URL for a specific instance.
-     * &#64;required compute.instancegroups.addInstances/removeInstances
+     * \@required compute.instancegroups.addInstances/removeInstances
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
@@ -30,7 +30,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
      *
      *     @type string $instance
      *           The URL for a specific instance.
-     *           &#64;required compute.instancegroups.addInstances/removeInstances
+     *           \@required compute.instancegroups.addInstances/removeInstances
      * }
      */
     public function __construct($data = NULL) {
@@ -40,7 +40,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
 
     /**
      * The URL for a specific instance.
-     * &#64;required compute.instancegroups.addInstances/removeInstances
+     * \@required compute.instancegroups.addInstances/removeInstances
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
@@ -62,7 +62,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
 
     /**
      * The URL for a specific instance.
-     * &#64;required compute.instancegroups.addInstances/removeInstances
+     * \@required compute.instancegroups.addInstances/removeInstances
      *
      * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var

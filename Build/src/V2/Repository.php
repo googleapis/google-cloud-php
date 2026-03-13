@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A repository associated to a parent connection.
@@ -17,7 +17,7 @@ class Repository extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Resource name of the repository, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -69,7 +69,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Resource name of the repository, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     *           `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *     @type string $remote_uri
      *           Required. Git Clone HTTPS URI.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -93,7 +93,7 @@ class Repository extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Resource name of the repository, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -105,7 +105,7 @@ class Repository extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Resource name of the repository, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

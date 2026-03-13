@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource change represents a change to a resource in the state file.
@@ -56,7 +56,7 @@ class ResourceChange extends \Google\Protobuf\Internal\Message
      *           Output only. Terraform info of the resource change.
      *     @type int $intent
      *           Output only. The intent of the resource change.
-     *     @type array<\Google\Cloud\Config\V1\PropertyChange>|\Google\Protobuf\Internal\RepeatedField $property_changes
+     *     @type \Google\Cloud\Config\V1\PropertyChange[] $property_changes
      *           Output only. The property changes of the resource change.
      * }
      */
@@ -161,7 +161,7 @@ class ResourceChange extends \Google\Protobuf\Internal\Message
      * Output only. The property changes of the resource change.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.PropertyChange property_changes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\PropertyChange>
      */
     public function getPropertyChanges()
     {
@@ -172,7 +172,7 @@ class ResourceChange extends \Google\Protobuf\Internal\Message
      * Output only. The property changes of the resource change.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.PropertyChange property_changes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Config\V1\PropertyChange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\PropertyChange[] $var
      * @return $this
      */
     public function setPropertyChanges($var)

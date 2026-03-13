@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Mutation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Mutation which deletes all cells from the specified column family.
@@ -68,7 +68,4 @@ class DeleteFromFamily extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeleteFromFamily::class, \Google\Cloud\Bigtable\V2\Mutation_DeleteFromFamily::class);
 
