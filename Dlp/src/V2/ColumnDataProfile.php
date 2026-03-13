@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The profile for a scanned column within a table.
@@ -183,7 +183,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *           If it's been determined this column can be identified as a single type,
      *           this will be set. Otherwise the column either has unidentifiable content
      *           or mixed types.
-     *     @type array<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $other_matches
+     *     @type \Google\Cloud\Dlp\V2\OtherInfoTypeSummary[] $other_matches
      *           Other types found within this column. List will be unordered.
      *     @type int $estimated_null_percentage
      *           Approximate percentage of entries being null in the column.
@@ -633,7 +633,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      * Other types found within this column. List will be unordered.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.OtherInfoTypeSummary other_matches = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>
      */
     public function getOtherMatches()
     {
@@ -644,7 +644,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      * Other types found within this column. List will be unordered.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.OtherInfoTypeSummary other_matches = 10;</code>
-     * @param array<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\OtherInfoTypeSummary[] $var
      * @return $this
      */
     public function setOtherMatches($var)

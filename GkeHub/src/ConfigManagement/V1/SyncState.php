@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\ConfigManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * State indicating an ACM's progress syncing configurations to a cluster
@@ -83,7 +83,7 @@ class SyncState extends \Google\Protobuf\Internal\Message
      *           Timestamp type of when ACM last successfully synced the repo
      *     @type int $code
      *           Sync status code
-     *     @type array<\Google\Cloud\GkeHub\ConfigManagement\V1\SyncError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\SyncError[] $errors
      *           A list of errors resulting from problematic configs.
      *           This list will be truncated after 100 errors, although it is
      *           unlikely for that many errors to simultaneously exist.
@@ -276,7 +276,7 @@ class SyncState extends \Google\Protobuf\Internal\Message
      * unlikely for that many errors to simultaneously exist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.SyncError errors = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\ConfigManagement\V1\SyncError>
      */
     public function getErrors()
     {
@@ -289,7 +289,7 @@ class SyncState extends \Google\Protobuf\Internal\Message
      * unlikely for that many errors to simultaneously exist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.SyncError errors = 6;</code>
-     * @param array<\Google\Cloud\GkeHub\ConfigManagement\V1\SyncError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\ConfigManagement\V1\SyncError[] $var
      * @return $this
      */
     public function setErrors($var)

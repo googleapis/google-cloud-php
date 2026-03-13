@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for listing DLP jobs.
@@ -34,7 +34,7 @@ class ListDlpJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\DlpJob>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Dlp\V2\DlpJob[] $jobs
      *           A list of DlpJobs that matches the specified filter in the request.
      *     @type string $next_page_token
      *           The standard List next-page token.
@@ -49,7 +49,7 @@ class ListDlpJobsResponse extends \Google\Protobuf\Internal\Message
      * A list of DlpJobs that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DlpJob jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\DlpJob>
      */
     public function getJobs()
     {
@@ -60,7 +60,7 @@ class ListDlpJobsResponse extends \Google\Protobuf\Internal\Message
      * A list of DlpJobs that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DlpJob jobs = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\DlpJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\DlpJob[] $var
      * @return $this
      */
     public function setJobs($var)

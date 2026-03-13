@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to generate a YAML of the RBAC policies for the specified
@@ -18,7 +18,7 @@ class GenerateMembershipRBACRoleBindingYAMLRequest extends \Google\Protobuf\Inte
 {
     /**
      * Required. The parent (project and location) where the RBACRoleBinding will
-     * be created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * be created. Specified in the format `projects/{@*}locations/{@*}memberships/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,7 +50,7 @@ class GenerateMembershipRBACRoleBindingYAMLRequest extends \Google\Protobuf\Inte
      *
      *     @type string $parent
      *           Required. The parent (project and location) where the RBACRoleBinding will
-     *           be created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     *           be created. Specified in the format `projects/{@*}locations/{@*}memberships/*`.
      *     @type string $rbacrolebinding_id
      *           Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id`
      *           must be a valid RFC 1123 compliant DNS label:
@@ -70,7 +70,7 @@ class GenerateMembershipRBACRoleBindingYAMLRequest extends \Google\Protobuf\Inte
 
     /**
      * Required. The parent (project and location) where the RBACRoleBinding will
-     * be created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * be created. Specified in the format `projects/{@*}locations/{@*}memberships/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -82,7 +82,7 @@ class GenerateMembershipRBACRoleBindingYAMLRequest extends \Google\Protobuf\Inte
 
     /**
      * Required. The parent (project and location) where the RBACRoleBinding will
-     * be created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * be created. Specified in the format `projects/{@*}locations/{@*}memberships/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

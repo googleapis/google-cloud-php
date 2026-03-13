@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [Firestore.Write][google.firestore.v1.Firestore.Write].
@@ -83,7 +83,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      *           The ID of the write stream to resume.
      *           This may only be set in the first message. When left empty, a new write
      *           stream will be created.
-     *     @type array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $writes
+     *     @type \Google\Cloud\Firestore\V1\Write[] $writes
      *           The writes to apply.
      *           Always executed atomically and in order.
      *           This must be empty on the first request.
@@ -177,7 +177,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      * This must not be empty on all other requests.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Write writes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Write>
      */
     public function getWrites()
     {
@@ -192,7 +192,7 @@ class WriteRequest extends \Google\Protobuf\Internal\Message
      * This must not be empty on all other requests.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Write writes = 3;</code>
-     * @param array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Write[] $var
      * @return $this
      */
     public function setWrites($var)

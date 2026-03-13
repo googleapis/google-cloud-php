@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\Pipeline\MessagePayloadFormat;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The format of a JSON message payload.
@@ -30,5 +30,4 @@ class JsonFormat extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

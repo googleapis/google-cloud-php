@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1\DnsSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a Delegation Signer (DS) record, which is needed to enable DNSSEC
@@ -168,5 +168,4 @@ class DsRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

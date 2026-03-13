@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DiscoveryCloudSqlGenerationCadence;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * How frequently to modify the profile when the table's schema is modified.
@@ -36,7 +36,7 @@ class SchemaModifiedCadence extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $types
+     *     @type int[] $types
      *           The types of schema modifications to consider.
      *           Defaults to NEW_COLUMNS.
      *     @type int $frequency
@@ -54,7 +54,7 @@ class SchemaModifiedCadence extends \Google\Protobuf\Internal\Message
      * Defaults to NEW_COLUMNS.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence.CloudSqlSchemaModification types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTypes()
     {
@@ -66,7 +66,7 @@ class SchemaModifiedCadence extends \Google\Protobuf\Internal\Message
      * Defaults to NEW_COLUMNS.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence.CloudSqlSchemaModification types = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTypes($var)
@@ -106,5 +106,4 @@ class SchemaModifiedCadence extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

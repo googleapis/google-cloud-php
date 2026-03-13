@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Amazon S3 bucket conditions.
@@ -36,10 +36,10 @@ class AmazonS3BucketConditions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $bucket_types
+     *     @type int[] $bucket_types
      *           Optional. Bucket types that should be profiled.
      *           Optional. Defaults to TYPE_ALL_SUPPORTED if unspecified.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $object_storage_classes
+     *     @type int[] $object_storage_classes
      *           Optional. Object classes that should be profiled.
      *           Optional. Defaults to ALL_SUPPORTED_CLASSES if unspecified.
      * }
@@ -54,7 +54,7 @@ class AmazonS3BucketConditions extends \Google\Protobuf\Internal\Message
      * Optional. Defaults to TYPE_ALL_SUPPORTED if unspecified.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AmazonS3BucketConditions.BucketType bucket_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getBucketTypes()
     {
@@ -66,7 +66,7 @@ class AmazonS3BucketConditions extends \Google\Protobuf\Internal\Message
      * Optional. Defaults to TYPE_ALL_SUPPORTED if unspecified.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AmazonS3BucketConditions.BucketType bucket_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setBucketTypes($var)
@@ -82,7 +82,7 @@ class AmazonS3BucketConditions extends \Google\Protobuf\Internal\Message
      * Optional. Defaults to ALL_SUPPORTED_CLASSES if unspecified.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AmazonS3BucketConditions.ObjectStorageClass object_storage_classes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getObjectStorageClasses()
     {
@@ -94,7 +94,7 @@ class AmazonS3BucketConditions extends \Google\Protobuf\Internal\Message
      * Optional. Defaults to ALL_SUPPORTED_CLASSES if unspecified.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AmazonS3BucketConditions.ObjectStorageClass object_storage_classes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setObjectStorageClasses($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Constraint expression of a number field. Example: price < 100.
@@ -170,5 +170,4 @@ class NumberConstraint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

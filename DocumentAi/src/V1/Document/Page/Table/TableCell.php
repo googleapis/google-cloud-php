@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page\Table;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A cell representation inside the table.
@@ -54,7 +54,7 @@ class TableCell extends \Google\Protobuf\Internal\Message
      *           How many rows this cell spans.
      *     @type int $col_span
      *           How many columns this cell spans.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[] $detected_languages
      *           A list of detected languages together with confidence.
      * }
      */
@@ -157,7 +157,7 @@ class TableCell extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>
      */
     public function getDetectedLanguages()
     {
@@ -168,7 +168,7 @@ class TableCell extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 4;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[] $var
      * @return $this
      */
     public function setDetectedLanguages($var)
@@ -180,5 +180,4 @@ class TableCell extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

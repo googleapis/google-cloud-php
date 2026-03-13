@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\PurgeIdentityMappingsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source to purge identity mapping entries from.
@@ -28,7 +28,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\IdentityMappingEntry>|\Google\Protobuf\Internal\RepeatedField $identity_mapping_entries
+     *     @type \Google\Cloud\DiscoveryEngine\V1\IdentityMappingEntry[] $identity_mapping_entries
      *           A maximum of 10000 entries can be purged at one time
      * }
      */
@@ -41,7 +41,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * A maximum of 10000 entries can be purged at one time
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.IdentityMappingEntry identity_mapping_entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\IdentityMappingEntry>
      */
     public function getIdentityMappingEntries()
     {
@@ -52,7 +52,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * A maximum of 10000 entries can be purged at one time
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.IdentityMappingEntry identity_mapping_entries = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\IdentityMappingEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\IdentityMappingEntry[] $var
      * @return $this
      */
     public function setIdentityMappingEntries($var)
@@ -64,5 +64,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

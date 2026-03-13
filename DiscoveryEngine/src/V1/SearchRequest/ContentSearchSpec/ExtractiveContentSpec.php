@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A specification for configuring the extractive content in a search
@@ -321,5 +321,4 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

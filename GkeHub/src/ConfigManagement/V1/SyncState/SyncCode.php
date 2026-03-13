@@ -94,6 +94,3 @@ class SyncCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SyncCode::class, \Google\Cloud\GkeHub\ConfigManagement\V1\SyncState_SyncCode::class);
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\DataStore;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Estimation of data size per data store.
@@ -264,5 +264,4 @@ class BillingEstimation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

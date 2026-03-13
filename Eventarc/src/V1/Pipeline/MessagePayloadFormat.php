@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\Pipeline;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the format of message data.
@@ -138,5 +138,4 @@ class MessagePayloadFormat extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

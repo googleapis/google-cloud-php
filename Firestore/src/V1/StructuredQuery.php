@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Firestore query.
@@ -142,11 +142,11 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *           This acts as a [DocumentMask][google.firestore.v1.DocumentMask] over the
      *           documents returned from a query. When not set, assumes that the caller
      *           wants all fields returned.
-     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector>|\Google\Protobuf\Internal\RepeatedField $from
+     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector[] $from
      *           The collections to query.
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Filter $where
      *           The filter to apply.
-     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\Order>|\Google\Protobuf\Internal\RepeatedField $order_by
+     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Order[] $order_by
      *           The order to apply to the query results.
      *           Firestore allows callers to provide a full ordering, a partial ordering, or
      *           no ordering at all. In all cases, Firestore guarantees a stable ordering
@@ -261,7 +261,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * The collections to query.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.CollectionSelector from = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector>
      */
     public function getFrom()
     {
@@ -272,7 +272,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * The collections to query.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.CollectionSelector from = 2;</code>
-     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector[] $var
      * @return $this
      */
     public function setFrom($var)
@@ -338,7 +338,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *     `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Order order_by = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\StructuredQuery\Order>
      */
     public function getOrderBy()
     {
@@ -364,7 +364,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *     `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Order order_by = 4;</code>
-     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\Order>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\StructuredQuery\Order[] $var
      * @return $this
      */
     public function setOrderBy($var)

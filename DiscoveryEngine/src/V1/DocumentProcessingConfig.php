@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A singleton resource of
@@ -23,7 +23,7 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
     /**
      * The full resource name of the Document Processing Config.
      * Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;documentProcessingConfig`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}documentProcessingConfig`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -72,7 +72,7 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The full resource name of the Document Processing Config.
      *           Format:
-     *           `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;documentProcessingConfig`.
+     *           `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}documentProcessingConfig`.
      *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ChunkingConfig $chunking_config
      *           Whether chunking mode is enabled.
      *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig $default_parsing_config
@@ -105,7 +105,7 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
     /**
      * The full resource name of the Document Processing Config.
      * Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;documentProcessingConfig`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}documentProcessingConfig`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -118,7 +118,7 @@ class DocumentProcessingConfig extends \Google\Protobuf\Internal\Message
     /**
      * The full resource name of the Document Processing Config.
      * Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;documentProcessingConfig`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}documentProcessingConfig`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

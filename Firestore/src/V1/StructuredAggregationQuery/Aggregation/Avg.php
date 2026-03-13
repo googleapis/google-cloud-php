@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Average of the values of the requested field.
@@ -80,7 +80,4 @@ class Avg extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Avg::class, \Google\Cloud\Firestore\V1\StructuredAggregationQuery_Aggregation_Avg::class);
 

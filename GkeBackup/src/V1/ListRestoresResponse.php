@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListRestores.
@@ -43,14 +43,14 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeBackup\V1\Restore>|\Google\Protobuf\Internal\RepeatedField $restores
+     *     @type \Google\Cloud\GkeBackup\V1\Restore[] $restores
      *           The list of Restores matching the given criteria.
      *     @type string $next_page_token
      *           A token which may be sent as
      *           [page_token][google.cloud.gkebackup.v1.ListRestoresRequest.page_token] in a
      *           subsequent `ListRestores` call to retrieve the next page of results. If
      *           this field is omitted or empty, then there are no more results to return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -63,7 +63,7 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
      * The list of Restores matching the given criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.Restore restores = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\Restore>
      */
     public function getRestores()
     {
@@ -74,7 +74,7 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
      * The list of Restores matching the given criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.Restore restores = 1;</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\Restore>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\Restore[] $var
      * @return $this
      */
     public function setRestores($var)
@@ -121,7 +121,7 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -132,7 +132,7 @@ class ListRestoresResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

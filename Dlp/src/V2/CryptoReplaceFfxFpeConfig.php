@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Replaces an identifier with a surrogate using Format Preserving Encryption
@@ -115,7 +115,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      *           This must be encoded as ASCII.
      *           The order of characters does not matter.
      *           The full list of allowed characters is:
-     *           ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/``
+     *           ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!\@#$%^&*()_-+={[}]|\:;"'<,>.?/``
      *     @type int $radix
      *           The native way to select the alphabet. Must be in the range [2, 95].
      *     @type \Google\Cloud\Dlp\V2\InfoType $surrogate_info_type
@@ -286,7 +286,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * This must be encoded as ASCII.
      * The order of characters does not matter.
      * The full list of allowed characters is:
-     * ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/``
+     * ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!\@#$%^&*()_-+={[}]|\:;"'<,>.?/``
      *
      * Generated from protobuf field <code>string custom_alphabet = 5;</code>
      * @return string
@@ -310,7 +310,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * This must be encoded as ASCII.
      * The order of characters does not matter.
      * The full list of allowed characters is:
-     * ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!&#64;#$%^&*()_-+={[}]|\:;"'<,>.?/``
+     * ``0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~`!\@#$%^&*()_-+={[}]|\:;"'<,>.?/``
      *
      * Generated from protobuf field <code>string custom_alphabet = 5;</code>
      * @param string $var

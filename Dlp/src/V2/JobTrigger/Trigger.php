@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\JobTrigger;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * What event needs to occur for a new job to be started.
@@ -105,5 +105,4 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,9 +19,9 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Search serving config, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/&#42;&#47;servingConfigs/default_serving_config`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *
@@ -142,9 +142,9 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $serving_config
      *           Required. The resource name of the Search serving config, such as
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     *           `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      *           or
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/&#42;&#47;servingConfigs/default_serving_config`.
+     *           `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
      *           This field is used to identify the serving configuration name, set
      *           of models used to make the search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Query $query
@@ -212,9 +212,9 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Search serving config, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/&#42;&#47;servingConfigs/default_serving_config`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *
@@ -228,9 +228,9 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Search serving config, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/&#42;&#47;servingConfigs/default_serving_config`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/{@*}servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *

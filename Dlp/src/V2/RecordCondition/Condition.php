@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\RecordCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The field type of `value` and `field` do not need to match to be
@@ -168,5 +168,4 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

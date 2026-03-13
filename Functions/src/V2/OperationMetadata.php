@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the metadata of the long-running operation.
@@ -121,7 +121,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *           API version used to start the operation.
      *     @type \Google\Protobuf\Any $request_resource
      *           The original request that started the operation.
-     *     @type array<\Google\Cloud\Functions\V2\Stage>|\Google\Protobuf\Internal\RepeatedField $stages
+     *     @type \Google\Cloud\Functions\V2\Stage[] $stages
      *           Mechanism for reporting in-progress stages
      *     @type string $source_token
      *           An identifier for Firebase function sources. Disclaimer: This field is only
@@ -389,7 +389,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Mechanism for reporting in-progress stages
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.Stage stages = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\Stage>
      */
     public function getStages()
     {
@@ -400,7 +400,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Mechanism for reporting in-progress stages
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.Stage stages = 9;</code>
-     * @param array<\Google\Cloud\Functions\V2\Stage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\Stage[] $var
      * @return $this
      */
     public function setStages($var)

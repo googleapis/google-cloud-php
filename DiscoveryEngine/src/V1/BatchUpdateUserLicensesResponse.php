@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,9 +36,9 @@ class BatchUpdateUserLicensesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\UserLicense>|\Google\Protobuf\Internal\RepeatedField $user_licenses
+     *     @type \Google\Cloud\DiscoveryEngine\V1\UserLicense[] $user_licenses
      *           UserLicenses successfully updated.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $error_samples
+     *     @type \Google\Rpc\Status[] $error_samples
      *           A sample of errors encountered while processing the request.
      * }
      */
@@ -51,7 +51,7 @@ class BatchUpdateUserLicensesResponse extends \Google\Protobuf\Internal\Message
      * UserLicenses successfully updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.UserLicense user_licenses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\UserLicense>
      */
     public function getUserLicenses()
     {
@@ -62,7 +62,7 @@ class BatchUpdateUserLicensesResponse extends \Google\Protobuf\Internal\Message
      * UserLicenses successfully updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.UserLicense user_licenses = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\UserLicense>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\UserLicense[] $var
      * @return $this
      */
     public function setUserLicenses($var)
@@ -77,7 +77,7 @@ class BatchUpdateUserLicensesResponse extends \Google\Protobuf\Internal\Message
      * A sample of errors encountered while processing the request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrorSamples()
     {
@@ -88,7 +88,7 @@ class BatchUpdateUserLicensesResponse extends \Google\Protobuf\Internal\Message
      * A sample of errors encountered while processing the request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 2;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrorSamples($var)

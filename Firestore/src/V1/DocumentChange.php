@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [Document][google.firestore.v1.Document] has changed.
@@ -49,9 +49,9 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\Document $document
      *           The new state of the [Document][google.firestore.v1.Document].
      *           If `mask` is set, contains only fields that were updated or added.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $target_ids
+     *     @type int[] $target_ids
      *           A set of target IDs of targets that match this document.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
+     *     @type int[] $removed_target_ids
      *           A set of target IDs for targets that no longer match this document.
      * }
      */
@@ -102,7 +102,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      * A set of target IDs of targets that match this document.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTargetIds()
     {
@@ -113,7 +113,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      * A set of target IDs of targets that match this document.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTargetIds($var)
@@ -128,7 +128,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      * A set of target IDs for targets that no longer match this document.
      *
      * Generated from protobuf field <code>repeated int32 removed_target_ids = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRemovedTargetIds()
     {
@@ -139,7 +139,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      * A set of target IDs for targets that no longer match this document.
      *
      * Generated from protobuf field <code>repeated int32 removed_target_ids = 6;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRemovedTargetIds($var)

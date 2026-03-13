@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information for a custom Generative AI model created by the user. These
@@ -100,5 +100,4 @@ class CustomGenAiModelInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

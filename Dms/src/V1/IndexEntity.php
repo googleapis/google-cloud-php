@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Index is not used as an independent entity, it is retrieved as part of a
@@ -58,7 +58,7 @@ class IndexEntity extends \Google\Protobuf\Internal\Message
      *           The name of the index.
      *     @type string $type
      *           Type of index, for example B-TREE.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $table_columns
+     *     @type string[] $table_columns
      *           Table columns used as part of the Index, for example B-TREE index should
      *           list the columns which constitutes the index.
      *     @type bool $unique
@@ -129,7 +129,7 @@ class IndexEntity extends \Google\Protobuf\Internal\Message
      * list the columns which constitutes the index.
      *
      * Generated from protobuf field <code>repeated string table_columns = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTableColumns()
     {
@@ -141,7 +141,7 @@ class IndexEntity extends \Google\Protobuf\Internal\Message
      * list the columns which constitutes the index.
      *
      * Generated from protobuf field <code>repeated string table_columns = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTableColumns($var)

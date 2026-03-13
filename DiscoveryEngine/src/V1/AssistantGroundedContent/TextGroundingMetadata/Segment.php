@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Grounding information for a segment of the text.
@@ -60,7 +60,7 @@ class Segment extends \Google\Protobuf\Internal\Message
      *           length of more than one).
      *     @type int|string $end_index
      *           End of the segment, exclusive.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reference_indices
+     *     @type int[] $reference_indices
      *           References for the segment.
      *     @type float $grounding_score
      *           Score for the segment.
@@ -133,7 +133,7 @@ class Segment extends \Google\Protobuf\Internal\Message
      * References for the segment.
      *
      * Generated from protobuf field <code>repeated int32 reference_indices = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getReferenceIndices()
     {
@@ -144,7 +144,7 @@ class Segment extends \Google\Protobuf\Internal\Message
      * References for the segment.
      *
      * Generated from protobuf field <code>repeated int32 reference_indices = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setReferenceIndices($var)
@@ -208,5 +208,4 @@ class Segment extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

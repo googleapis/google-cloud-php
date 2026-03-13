@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Step information.
@@ -52,7 +52,7 @@ class Step extends \Google\Protobuf\Internal\Message
      *           The description of the step.
      *     @type string $thought
      *           The thought of the step.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action[] $actions
      *           Actions.
      * }
      */
@@ -143,7 +143,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * Actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action actions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action>
      */
     public function getActions()
     {
@@ -154,7 +154,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * Actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action actions = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action[] $var
      * @return $this
      */
     public function setActions($var)
@@ -166,5 +166,4 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

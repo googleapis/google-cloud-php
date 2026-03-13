@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter defining the entities that a mapping rule should be applied to.
@@ -79,7 +79,7 @@ class MappingRuleFilter extends \Google\Protobuf\Internal\Message
      *     @type string $entity_name_contains
      *           Optional. The rule should be applied to entities whose non-qualified name
      *           contains the given string.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type string[] $entities
      *           Optional. The rule should be applied to specific entities defined by their
      *           fully qualified names.
      * }
@@ -214,7 +214,7 @@ class MappingRuleFilter extends \Google\Protobuf\Internal\Message
      * fully qualified names.
      *
      * Generated from protobuf field <code>repeated string entities = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntities()
     {
@@ -226,7 +226,7 @@ class MappingRuleFilter extends \Google\Protobuf\Internal\Message
      * fully qualified names.
      *
      * Generated from protobuf field <code>repeated string entities = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntities($var)

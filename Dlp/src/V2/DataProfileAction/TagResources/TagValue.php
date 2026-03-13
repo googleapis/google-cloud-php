@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DataProfileAction\TagResources;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A value of a tag.
@@ -81,5 +81,4 @@ class TagValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

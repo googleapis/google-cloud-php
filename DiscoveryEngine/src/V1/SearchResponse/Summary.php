@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary of the top N search results specified by the summary spec.
@@ -50,7 +50,7 @@ class Summary extends \Google\Protobuf\Internal\Message
      *
      *     @type string $summary_text
      *           The summary content.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $summary_skipped_reasons
+     *     @type int[] $summary_skipped_reasons
      *           Additional summary-skipped reasons. This provides the reason for ignored
      *           cases. If nothing is skipped, this field is not set.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\SafetyAttributes $safety_attributes
@@ -96,7 +96,7 @@ class Summary extends \Google\Protobuf\Internal\Message
      * cases. If nothing is skipped, this field is not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.SummarySkippedReason summary_skipped_reasons = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSummarySkippedReasons()
     {
@@ -108,7 +108,7 @@ class Summary extends \Google\Protobuf\Internal\Message
      * cases. If nothing is skipped, this field is not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.SummarySkippedReason summary_skipped_reasons = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSummarySkippedReasons($var)
@@ -194,5 +194,4 @@ class Summary extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Control;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Promote certain links based on some trigger queries.
@@ -110,5 +110,4 @@ class PromoteAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

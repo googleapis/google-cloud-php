@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The output of the validation given the document and the validation rules.
@@ -35,7 +35,7 @@ class EntityValidationOutput extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput\ValidationResult>|\Google\Protobuf\Internal\RepeatedField $validation_results
+     *     @type \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput\ValidationResult[] $validation_results
      *           The result of each validation rule.
      *     @type bool $pass_all_rules
      *           The overall result of the validation, true if all applicable rules are
@@ -51,7 +51,7 @@ class EntityValidationOutput extends \Google\Protobuf\Internal\Message
      * The result of each validation rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityValidationOutput.ValidationResult validation_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput\ValidationResult>
      */
     public function getValidationResults()
     {
@@ -62,7 +62,7 @@ class EntityValidationOutput extends \Google\Protobuf\Internal\Message
      * The result of each validation rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityValidationOutput.ValidationResult validation_results = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput\ValidationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput\ValidationResult[] $var
      * @return $this
      */
     public function setValidationResults($var)
@@ -102,5 +102,4 @@ class EntityValidationOutput extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

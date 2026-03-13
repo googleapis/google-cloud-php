@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single field in the database.
@@ -35,7 +35,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * not any field.
      * A special `Field` contains the default indexing settings for all fields.
      * This field's resource name is:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/&#42;`
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
@@ -84,7 +84,7 @@ class Field extends \Google\Protobuf\Internal\Message
      *           not any field.
      *           A special `Field` contains the default indexing settings for all fields.
      *           This field's resource name is:
-     *           `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/&#42;`
+     *           `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`
      *           Indexes defined on this `Field` will be applied to all fields which do not
      *           have their own `Field` index configuration.
      *     @type \Google\Cloud\Firestore\Admin\V1\Field\IndexConfig $index_config
@@ -121,7 +121,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * not any field.
      * A special `Field` contains the default indexing settings for all fields.
      * This field's resource name is:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/&#42;`
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
@@ -151,7 +151,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * not any field.
      * A special `Field` contains the default indexing settings for all fields.
      * This field's resource name is:
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/&#42;`
+     * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *

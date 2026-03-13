@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Chunk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Page span of the chunk.
@@ -98,5 +98,4 @@ class PageSpan extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for discovery to scan resources for profile generation.
@@ -134,7 +134,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *           Only set when the parent is an org.
      *     @type \Google\Cloud\Dlp\V2\OtherCloudDiscoveryStartingLocation $other_cloud_starting_location
      *           Must be set only when scanning other clouds.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inspect_templates
+     *     @type string[] $inspect_templates
      *           Detection logic for profile generation.
      *           Not all template features are used by Discovery. FindingLimits,
      *           include_quote and exclude_info_types have no impact on
@@ -148,11 +148,11 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *           scanned.
      *           For more information, see
      *           https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
-     *     @type array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\Dlp\V2\DataProfileAction[] $actions
      *           Actions to execute at the completion of scanning.
-     *     @type array<\Google\Cloud\Dlp\V2\DiscoveryTarget>|\Google\Protobuf\Internal\RepeatedField $targets
+     *     @type \Google\Cloud\Dlp\V2\DiscoveryTarget[] $targets
      *           Target to match against for determining what to scan and how frequently.
-     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Dlp\V2\Error[] $errors
      *           Output only. A stream of errors encountered when the config was activated.
      *           Repeated errors may result in the config automatically being paused. Output
      *           only field. Will return the last 100 errors. Whenever the config is
@@ -320,7 +320,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInspectTemplates()
     {
@@ -343,7 +343,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInspectTemplates($var)
@@ -358,7 +358,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of scanning.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfileAction actions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\DataProfileAction>
      */
     public function getActions()
     {
@@ -369,7 +369,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of scanning.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfileAction actions = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\DataProfileAction[] $var
      * @return $this
      */
     public function setActions($var)
@@ -384,7 +384,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * Target to match against for determining what to scan and how frequently.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryTarget targets = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\DiscoveryTarget>
      */
     public function getTargets()
     {
@@ -395,7 +395,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * Target to match against for determining what to scan and how frequently.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryTarget targets = 5;</code>
-     * @param array<\Google\Cloud\Dlp\V2\DiscoveryTarget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\DiscoveryTarget[] $var
      * @return $this
      */
     public function setTargets($var)
@@ -413,7 +413,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * modified this list will be cleared.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
     {
@@ -427,7 +427,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * modified this list will be cleared.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
     public function setErrors($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\FetchSitemapsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Matcher for the [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s.
@@ -73,5 +73,4 @@ class Matcher extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

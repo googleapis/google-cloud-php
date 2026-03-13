@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Representation for transformation matrix, intended to be compatible and
@@ -179,5 +179,4 @@ class Matrix extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

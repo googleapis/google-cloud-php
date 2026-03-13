@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Validation result for a single validation rule.
@@ -170,5 +170,4 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

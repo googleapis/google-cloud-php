@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options defining a file or a set of files within a Cloud Storage
@@ -99,7 +99,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *           types, setting this field has no effect. For more information, see [Limits
      *           on bytes scanned per
      *           file](https://cloud.google.com/sensitive-data-protection/docs/supported-file-types#max-byte-size-per-file).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $file_types
+     *     @type int[] $file_types
      *           List of file type groups to include in the scan.
      *           If empty, all files are scanned and available data format processors
      *           are applied. In addition, the binary content of the selected files
@@ -244,7 +244,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getFileTypes()
     {
@@ -261,7 +261,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setFileTypes($var)

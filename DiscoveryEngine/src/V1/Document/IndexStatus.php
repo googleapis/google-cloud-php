@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Index status of the document.
@@ -46,7 +46,7 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $index_time
      *           The time when the document was indexed.
      *           If this field is populated, it means the document has been indexed.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $error_samples
+     *     @type \Google\Rpc\Status[] $error_samples
      *           A sample of errors encountered while indexing the document.
      *           If this field is populated, the document is not indexed due to errors.
      *     @type string $pending_message
@@ -102,7 +102,7 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
      * If this field is populated, the document is not indexed due to errors.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrorSamples()
     {
@@ -114,7 +114,7 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
      * If this field is populated, the document is not indexed due to errors.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 2;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrorSamples($var)
@@ -154,5 +154,4 @@ class IndexStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

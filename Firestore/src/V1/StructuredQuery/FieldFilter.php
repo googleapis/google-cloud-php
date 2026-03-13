@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\StructuredQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter on a specific field.
@@ -152,7 +152,4 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldFilter::class, \Google\Cloud\Firestore\V1\StructuredQuery_FieldFilter::class);
 

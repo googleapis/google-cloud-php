@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\BackupPlanBinding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains metadata about the backup plan/backup.
@@ -53,7 +53,7 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The fully qualified name of the last successful Backup
      * created under this BackupPlan.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string last_successful_backup = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -97,7 +97,7 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
      *     @type string $last_successful_backup
      *           Output only. The fully qualified name of the last successful Backup
      *           created under this BackupPlan.
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     *           `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *     @type \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails\BackupConfigDetails $backup_config_details
      *           Output only. Contains details about the BackupConfig of Backups created
      *           via this BackupPlan.
@@ -274,7 +274,7 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The fully qualified name of the last successful Backup
      * created under this BackupPlan.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string last_successful_backup = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -287,7 +287,7 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The fully qualified name of the last successful Backup
      * created under this BackupPlan.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string last_successful_backup = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -378,5 +378,4 @@ class BackupPlanDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

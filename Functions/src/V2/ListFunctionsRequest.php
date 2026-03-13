@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `ListFunctions` method.
@@ -17,7 +17,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which the function should be
-     * listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     * listed, specified in the format `projects/{@*}locations/*` If you want to
      * list functions in all locations, use "-" in place of a location. When
      * listing functions in all locations, if one or more location(s) are
      * unreachable, the response will contain functions from all reachable
@@ -87,7 +87,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which the function should be
-     *           listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     *           listed, specified in the format `projects/{@*}locations/*` If you want to
      *           list functions in all locations, use "-" in place of a location. When
      *           listing functions in all locations, if one or more location(s) are
      *           unreachable, the response will contain functions from all reachable
@@ -118,7 +118,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the function should be
-     * listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     * listed, specified in the format `projects/{@*}locations/*` If you want to
      * list functions in all locations, use "-" in place of a location. When
      * listing functions in all locations, if one or more location(s) are
      * unreachable, the response will contain functions from all reachable
@@ -134,7 +134,7 @@ class ListFunctionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the function should be
-     * listed, specified in the format `projects/&#42;&#47;locations/&#42;` If you want to
+     * listed, specified in the format `projects/{@*}locations/*` If you want to
      * list functions in all locations, use "-" in place of a location. When
      * listing functions in all locations, if one or more location(s) are
      * unreachable, the response will contain functions from all reachable

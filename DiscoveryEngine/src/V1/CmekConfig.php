@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configurations used to enable CMEK data encryption with Cloud KMS keys.
@@ -90,7 +90,7 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The default CmekConfig for the Customer.
      *     @type int|string $last_rotation_timestamp_micros
      *           Output only. The timestamp of the last key rotation.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SingleRegionKey>|\Google\Protobuf\Internal\RepeatedField $single_region_keys
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SingleRegionKey[] $single_region_keys
      *           Optional. Single-regional CMEKs that are required for some VAIS features.
      *     @type int $notebooklm_state
      *           Output only. Whether the NotebookLM Corpus is ready to be used.
@@ -269,7 +269,7 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      * Optional. Single-regional CMEKs that are required for some VAIS features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SingleRegionKey single_region_keys = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SingleRegionKey>
      */
     public function getSingleRegionKeys()
     {
@@ -280,7 +280,7 @@ class CmekConfig extends \Google\Protobuf\Internal\Message
      * Optional. Single-regional CMEKs that are required for some VAIS features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SingleRegionKey single_region_keys = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SingleRegionKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SingleRegionKey[] $var
      * @return $this
      */
     public function setSingleRegionKeys($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\ProcessorVersion\GenAiModelInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information for a pretrained Google-managed foundation model.
@@ -102,5 +102,4 @@ class FoundationGenAiModelInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

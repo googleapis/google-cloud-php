@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -45,7 +45,7 @@ class BatchCreateTargetSitesRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine`.
      *           The parent field in the CreateBookRequest messages must either be empty or
      *           match this field.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\CreateTargetSiteRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\DiscoveryEngine\V1\CreateTargetSiteRequest[] $requests
      *           Required. The request message specifying the resources to create.
      *           A maximum of 20 TargetSites can be created in a batch.
      * }
@@ -92,7 +92,7 @@ class BatchCreateTargetSitesRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 20 TargetSites can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CreateTargetSiteRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\CreateTargetSiteRequest>
      */
     public function getRequests()
     {
@@ -104,7 +104,7 @@ class BatchCreateTargetSitesRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 20 TargetSites can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CreateTargetSiteRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\CreateTargetSiteRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\CreateTargetSiteRequest[] $var
      * @return $this
      */
     public function setRequests($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -30,7 +30,7 @@ class ListCustomModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\CustomTuningModel>|\Google\Protobuf\Internal\RepeatedField $models
+     *     @type \Google\Cloud\DiscoveryEngine\V1\CustomTuningModel[] $models
      *           List of custom tuning models.
      * }
      */
@@ -43,7 +43,7 @@ class ListCustomModelsResponse extends \Google\Protobuf\Internal\Message
      * List of custom tuning models.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CustomTuningModel models = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\CustomTuningModel>
      */
     public function getModels()
     {
@@ -54,7 +54,7 @@ class ListCustomModelsResponse extends \Google\Protobuf\Internal\Message
      * List of custom tuning models.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CustomTuningModel models = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\CustomTuningModel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\CustomTuningModel[] $var
      * @return $this
      */
     public function setModels($var)

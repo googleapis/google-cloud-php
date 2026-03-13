@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `ConfigureDnsSettings` method.
@@ -17,7 +17,7 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the `Registration` whose DNS settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -83,7 +83,7 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $registration
      *           Required. The name of the `Registration` whose DNS settings are being updated,
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}registrations/*`.
      *     @type \Google\Cloud\Domains\V1\DnsSettings $dns_settings
      *           Fields of the `DnsSettings` to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -106,7 +106,7 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Registration` whose DNS settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -118,7 +118,7 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Registration` whose DNS settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

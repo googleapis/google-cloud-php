@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Partially mask a string by replacing a given number of characters with a
@@ -100,7 +100,7 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      *           input string `1234-5678-9012-3456` is masked as `00000000000000-3456`.
      *           If `masking_character` is `*`, `number_to_mask` is `3`, and `reverse_order`
      *           is `true`, then the string `12345` is masked as `12***`.
-     *     @type array<\Google\Cloud\Dlp\V2\CharsToIgnore>|\Google\Protobuf\Internal\RepeatedField $characters_to_ignore
+     *     @type \Google\Cloud\Dlp\V2\CharsToIgnore[] $characters_to_ignore
      *           When masking a string, items in this list will be skipped when replacing
      *           characters. For example, if the input string is `555-555-5555` and you
      *           instruct Cloud DLP to skip `-` and mask 5 characters with `*`, Cloud DLP
@@ -237,7 +237,7 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      * returns `***-**5-5555`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CharsToIgnore characters_to_ignore = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\CharsToIgnore>
      */
     public function getCharactersToIgnore()
     {
@@ -251,7 +251,7 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      * returns `***-**5-5555`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CharsToIgnore characters_to_ignore = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\CharsToIgnore>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\CharsToIgnore[] $var
      * @return $this
      */
     public function setCharactersToIgnore($var)

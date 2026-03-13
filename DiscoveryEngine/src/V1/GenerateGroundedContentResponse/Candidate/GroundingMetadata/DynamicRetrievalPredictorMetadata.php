@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the metadata about the dynamic retrieval predictor.
@@ -124,5 +124,4 @@ class DynamicRetrievalPredictorMetadata extends \Google\Protobuf\Internal\Messag
     }
 
 }
-
 

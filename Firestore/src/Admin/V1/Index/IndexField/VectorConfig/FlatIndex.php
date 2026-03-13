@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An index that stores vectors in a flat data structure, and supports
@@ -31,7 +31,4 @@ class FlatIndex extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FlatIndex::class, \Google\Cloud\Firestore\Admin\V1\Index_IndexField_VectorConfig_FlatIndex::class);
 

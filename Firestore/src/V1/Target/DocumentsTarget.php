@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\Target;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A target specified by a set of documents names.
@@ -31,7 +31,7 @@ class DocumentsTarget extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type string[] $documents
      *           The names of the documents to retrieve. In the format:
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *           The request will fail if any of the document is not a child resource of
@@ -50,7 +50,7 @@ class DocumentsTarget extends \Google\Protobuf\Internal\Message
      * the given `database`. Duplicate names will be elided.
      *
      * Generated from protobuf field <code>repeated string documents = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDocuments()
     {
@@ -64,7 +64,7 @@ class DocumentsTarget extends \Google\Protobuf\Internal\Message
      * the given `database`. Duplicate names will be elided.
      *
      * Generated from protobuf field <code>repeated string documents = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDocuments($var)
@@ -76,7 +76,4 @@ class DocumentsTarget extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DocumentsTarget::class, \Google\Cloud\Firestore\V1\Target_DocumentsTarget::class);
 

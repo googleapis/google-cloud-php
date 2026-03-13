@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\ProcessorVersion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about Generative AI model-based processor versions.
@@ -105,5 +105,4 @@ class GenAiModelInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

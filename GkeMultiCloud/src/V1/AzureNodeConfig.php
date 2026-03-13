@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters that describe the configuration of all node machines
@@ -38,7 +38,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. A set of tags to apply to all underlying Azure resources for this
      * node pool. This currently only includes Virtual Machine Scale Sets.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -104,7 +104,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. A set of tags to apply to all underlying Azure resources for this
      *           node pool. This currently only includes Virtual Machine Scale Sets.
      *           Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     *           (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     *           (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      *           255 Unicode characters.
      *     @type string $image_type
      *           Optional. The OS image type to use on node pool instances.
@@ -116,7 +116,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureConfigEncryption $config_encryption
      *           Optional. Configuration related to vm config encryption.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type \Google\Cloud\GkeMultiCloud\V1\NodeTaint[] $taints
      *           Optional. The initial taints assigned to nodes of this node pool.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The initial labels assigned to nodes of this node pool. An object
@@ -205,7 +205,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. A set of tags to apply to all underlying Azure resources for this
      * node pool. This currently only includes Virtual Machine Scale Sets.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -220,7 +220,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. A set of tags to apply to all underlying Azure resources for this
      * node pool. This currently only includes Virtual Machine Scale Sets.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -377,7 +377,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The initial taints assigned to nodes of this node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.NodeTaint taints = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>
      */
     public function getTaints()
     {
@@ -388,7 +388,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The initial taints assigned to nodes of this node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.NodeTaint taints = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\NodeTaint[] $var
      * @return $this
      */
     public function setTaints($var)

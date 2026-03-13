@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Document>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Document[] $documents
      *           The [Document][google.cloud.discoveryengine.v1.Document]s.
      *     @type string $next_page_token
      *           A token that can be sent as
@@ -57,7 +57,7 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      * The [Document][google.cloud.discoveryengine.v1.Document]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Document documents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Document>
      */
     public function getDocuments()
     {
@@ -68,7 +68,7 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      * The [Document][google.cloud.discoveryengine.v1.Document]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Document documents = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Document>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Document[] $var
      * @return $this
      */
     public function setDocuments($var)

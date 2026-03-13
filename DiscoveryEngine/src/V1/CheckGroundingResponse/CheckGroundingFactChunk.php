@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\CheckGroundingResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fact chunk for grounding check.
@@ -64,5 +64,4 @@ class CheckGroundingFactChunk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1\MigrationJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dump flags definition.
@@ -28,7 +28,7 @@ class DumpFlags extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudDms\V1\MigrationJob\DumpFlag>|\Google\Protobuf\Internal\RepeatedField $dump_flags
+     *     @type \Google\Cloud\CloudDms\V1\MigrationJob\DumpFlag[] $dump_flags
      *           The flags for the initial dump.
      * }
      */
@@ -41,7 +41,7 @@ class DumpFlags extends \Google\Protobuf\Internal\Message
      * The flags for the initial dump.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.MigrationJob.DumpFlag dump_flags = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\MigrationJob\DumpFlag>
      */
     public function getDumpFlags()
     {
@@ -52,7 +52,7 @@ class DumpFlags extends \Google\Protobuf\Internal\Message
      * The flags for the initial dump.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.MigrationJob.DumpFlag dump_flags = 1;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\MigrationJob\DumpFlag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\MigrationJob\DumpFlag[] $var
      * @return $this
      */
     public function setDumpFlags($var)
@@ -64,5 +64,4 @@ class DumpFlags extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Control\BoostAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification for custom ranking based on customer specified attribute
@@ -68,7 +68,7 @@ class InterpolationBoostSpec extends \Google\Protobuf\Internal\Message
      *     @type int $interpolation_type
      *           Optional. The interpolation type to be applied to connect the control
      *           points listed below.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec\ControlPoint>|\Google\Protobuf\Internal\RepeatedField $control_points
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec\ControlPoint[] $control_points
      *           Optional. The control points used to define the curve. The monotonic
      *           function (defined through the interpolation_type above) passes through
      *           the control points listed here.
@@ -175,7 +175,7 @@ class InterpolationBoostSpec extends \Google\Protobuf\Internal\Message
      * the control points listed here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Control.BoostAction.InterpolationBoostSpec.ControlPoint control_points = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec\ControlPoint>
      */
     public function getControlPoints()
     {
@@ -188,7 +188,7 @@ class InterpolationBoostSpec extends \Google\Protobuf\Internal\Message
      * the control points listed here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Control.BoostAction.InterpolationBoostSpec.ControlPoint control_points = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec\ControlPoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Control\BoostAction\InterpolationBoostSpec\ControlPoint[] $var
      * @return $this
      */
     public function setControlPoints($var)
@@ -200,5 +200,4 @@ class InterpolationBoostSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

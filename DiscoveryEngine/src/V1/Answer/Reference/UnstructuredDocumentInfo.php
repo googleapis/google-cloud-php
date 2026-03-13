@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer\Reference;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Unstructured document information.
@@ -59,7 +59,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      *           URI for the document.
      *     @type string $title
      *           Title.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Reference\UnstructuredDocumentInfo\ChunkContent>|\Google\Protobuf\Internal\RepeatedField $chunk_contents
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\UnstructuredDocumentInfo\ChunkContent[] $chunk_contents
      *           List of cited chunk contents derived from document content.
      *     @type \Google\Protobuf\Struct $struct_data
      *           The structured JSON metadata for the document.
@@ -153,7 +153,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * List of cited chunk contents derived from document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Reference.UnstructuredDocumentInfo.ChunkContent chunk_contents = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Reference\UnstructuredDocumentInfo\ChunkContent>
      */
     public function getChunkContents()
     {
@@ -164,7 +164,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * List of cited chunk contents derived from document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Reference.UnstructuredDocumentInfo.ChunkContent chunk_contents = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Reference\UnstructuredDocumentInfo\ChunkContent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Reference\UnstructuredDocumentInfo\ChunkContent[] $var
      * @return $this
      */
     public function setChunkContents($var)
@@ -214,5 +214,4 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

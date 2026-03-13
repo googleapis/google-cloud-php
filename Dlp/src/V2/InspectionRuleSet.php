@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Rule set for modifying a set of infoTypes to alter behavior under certain
@@ -35,9 +35,9 @@ class InspectionRuleSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type \Google\Cloud\Dlp\V2\InfoType[] $info_types
      *           List of infoTypes this rule set is applied to.
-     *     @type array<\Google\Cloud\Dlp\V2\InspectionRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Dlp\V2\InspectionRule[] $rules
      *           Set of rules to be applied to infoTypes. The rules are applied in order.
      * }
      */
@@ -50,7 +50,7 @@ class InspectionRuleSet extends \Google\Protobuf\Internal\Message
      * List of infoTypes this rule set is applied to.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InfoType>
      */
     public function getInfoTypes()
     {
@@ -61,7 +61,7 @@ class InspectionRuleSet extends \Google\Protobuf\Internal\Message
      * List of infoTypes this rule set is applied to.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InfoType[] $var
      * @return $this
      */
     public function setInfoTypes($var)
@@ -76,7 +76,7 @@ class InspectionRuleSet extends \Google\Protobuf\Internal\Message
      * Set of rules to be applied to infoTypes. The rules are applied in order.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRule rules = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InspectionRule>
      */
     public function getRules()
     {
@@ -87,7 +87,7 @@ class InspectionRuleSet extends \Google\Protobuf\Internal\Message
      * Set of rules to be applied to infoTypes. The rules are applied in order.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRule rules = 2;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InspectionRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InspectionRule[] $var
      * @return $this
      */
     public function setRules($var)
