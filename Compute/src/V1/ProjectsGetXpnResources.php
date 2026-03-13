@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -54,7 +54,7 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
      *           the query parameter pageToken in the next list request.
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
-     *     @type array<\Google\Cloud\Compute\V1\XpnResourceId>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type \Google\Cloud\Compute\V1\XpnResourceId[] $resources
      *           Service resources (a.k.a service projects) attached to this project as
      *           their shared VPC host.
      * }
@@ -151,7 +151,7 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
      * their shared VPC host.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.XpnResourceId resources = 164412965;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\XpnResourceId>
      */
     public function getResources()
     {
@@ -163,7 +163,7 @@ class ProjectsGetXpnResources extends \Google\Protobuf\Internal\Message
      * their shared VPC host.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.XpnResourceId resources = 164412965;</code>
-     * @param array<\Google\Cloud\Compute\V1\XpnResourceId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\XpnResourceId[] $var
      * @return $this
      */
     public function setResources($var)

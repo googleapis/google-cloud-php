@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message containing Cloud CDN configuration for a backend bucket.
@@ -179,7 +179,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\BackendBucketCdnPolicyBypassCacheOnRequestHeader>|\Google\Protobuf\Internal\RepeatedField $bypass_cache_on_request_headers
+     *     @type \Google\Cloud\Compute\V1\BackendBucketCdnPolicyBypassCacheOnRequestHeader[] $bypass_cache_on_request_headers
      *           Bypass the cache when the specified request headers are matched - e.g.
      *           Pragma or Authorization headers. Up to 5 headers can be specified.
      *           The cache is bypassed for all cdnPolicy.cacheMode settings.
@@ -253,7 +253,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      *           451 (Unavailable For Legal Reasons): 120s
      *           HTTP 405 (Method Not Found), 501 (Not Implemented): 60s.
      *           These defaults can be overridden in negative_caching_policy.
-     *     @type array<\Google\Cloud\Compute\V1\BackendBucketCdnPolicyNegativeCachingPolicy>|\Google\Protobuf\Internal\RepeatedField $negative_caching_policy
+     *     @type \Google\Cloud\Compute\V1\BackendBucketCdnPolicyNegativeCachingPolicy[] $negative_caching_policy
      *           Sets a cache TTL for the specified HTTP status code.
      *           negative_caching must be enabled to configure negative_caching_policy.
      *           Omitting the policy and leaving negative_caching enabled will use
@@ -286,7 +286,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      *           public, max-age=[TTL]" header, regardless of any existing
      *           Cache-Control header. The actual headers served in responses will not be
      *           altered.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $signed_url_key_names
+     *     @type string[] $signed_url_key_names
      *           [Output Only] Names of the keys for signing request URLs.
      * }
      */
@@ -301,7 +301,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      * The cache is bypassed for all cdnPolicy.cacheMode settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketCdnPolicyBypassCacheOnRequestHeader bypass_cache_on_request_headers = 486203082;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendBucketCdnPolicyBypassCacheOnRequestHeader>
      */
     public function getBypassCacheOnRequestHeaders()
     {
@@ -314,7 +314,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      * The cache is bypassed for all cdnPolicy.cacheMode settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketCdnPolicyBypassCacheOnRequestHeader bypass_cache_on_request_headers = 486203082;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendBucketCdnPolicyBypassCacheOnRequestHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendBucketCdnPolicyBypassCacheOnRequestHeader[] $var
      * @return $this
      */
     public function setBypassCacheOnRequestHeaders($var)
@@ -668,7 +668,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      * negative caching when a policy exists.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketCdnPolicyNegativeCachingPolicy negative_caching_policy = 155359996;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendBucketCdnPolicyNegativeCachingPolicy>
      */
     public function getNegativeCachingPolicy()
     {
@@ -686,7 +686,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      * negative caching when a policy exists.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketCdnPolicyNegativeCachingPolicy negative_caching_policy = 155359996;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendBucketCdnPolicyNegativeCachingPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendBucketCdnPolicyNegativeCachingPolicy[] $var
      * @return $this
      */
     public function setNegativeCachingPolicy($var)
@@ -845,7 +845,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      * [Output Only] Names of the keys for signing request URLs.
      *
      * Generated from protobuf field <code>repeated string signed_url_key_names = 371848885;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSignedUrlKeyNames()
     {
@@ -856,7 +856,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      * [Output Only] Names of the keys for signing request URLs.
      *
      * Generated from protobuf field <code>repeated string signed_url_key_names = 371848885;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSignedUrlKeyNames($var)

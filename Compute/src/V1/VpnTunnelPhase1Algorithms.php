@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -37,10 +37,10 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dh
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $encryption
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $integrity
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prf
+     *     @type string[] $dh
+     *     @type string[] $encryption
+     *     @type string[] $integrity
+     *     @type string[] $prf
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +50,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string dh = 3204;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDh()
     {
@@ -59,7 +59,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string dh = 3204;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDh($var)
@@ -72,7 +72,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEncryption()
     {
@@ -81,7 +81,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string encryption = 97980291;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEncryption($var)
@@ -94,7 +94,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIntegrity()
     {
@@ -103,7 +103,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string integrity = 492830541;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIntegrity($var)
@@ -116,7 +116,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string prf = 111268;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPrf()
     {
@@ -125,7 +125,7 @@ class VpnTunnelPhase1Algorithms extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string prf = 111268;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPrf($var)

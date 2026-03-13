@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Commitment>|\Google\Protobuf\Internal\RepeatedField $commitments
+     *     @type \Google\Cloud\Compute\V1\Commitment[] $commitments
      *           [Output Only] The list of commitments contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of commitments
@@ -50,7 +50,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] The list of commitments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Commitment>
      */
     public function getCommitments()
     {
@@ -61,7 +61,7 @@ class CommitmentsScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] The list of commitments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Commitment commitments = 450664446;</code>
-     * @param array<\Google\Cloud\Compute\V1\Commitment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Commitment[] $var
      * @return $this
      */
     public function setCommitments($var)

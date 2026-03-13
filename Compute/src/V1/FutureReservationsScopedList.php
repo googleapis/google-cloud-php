@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class FutureReservationsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\FutureReservation>|\Google\Protobuf\Internal\RepeatedField $future_reservations
+     *     @type \Google\Cloud\Compute\V1\FutureReservation[] $future_reservations
      *           A list of future reservations contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of future reservations when
@@ -50,7 +50,7 @@ class FutureReservationsScopedList extends \Google\Protobuf\Internal\Message
      * A list of future reservations contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FutureReservation future_reservations = 131778339;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FutureReservation>
      */
     public function getFutureReservations()
     {
@@ -61,7 +61,7 @@ class FutureReservationsScopedList extends \Google\Protobuf\Internal\Message
      * A list of future reservations contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FutureReservation future_reservations = 131778339;</code>
-     * @param array<\Google\Cloud\Compute\V1\FutureReservation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FutureReservation[] $var
      * @return $this
      */
     public function setFutureReservations($var)

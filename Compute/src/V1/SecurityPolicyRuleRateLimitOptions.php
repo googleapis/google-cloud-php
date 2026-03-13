@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -196,7 +196,7 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
      *           For "fairshare" action, this value is limited to ALL i.e. a single rate
      *           limit threshold is enforced for all the requests matching the rule.
      *           Check the EnforceOnKey enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig>|\Google\Protobuf\Internal\RepeatedField $enforce_on_key_configs
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig[] $enforce_on_key_configs
      *           If specified, any combination of values of
      *           enforce_on_key_type/enforce_on_key_name is treated as the key on which
      *           ratelimit threshold/action is enforced. You can specify up to 3
@@ -478,7 +478,7 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
      * enforce_on_key must not be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig enforce_on_key_configs = 33906478;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig>
      */
     public function getEnforceOnKeyConfigs()
     {
@@ -493,7 +493,7 @@ class SecurityPolicyRuleRateLimitOptions extends \Google\Protobuf\Internal\Messa
      * enforce_on_key must not be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig enforce_on_key_configs = 33906478;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig[] $var
      * @return $this
      */
     public function setEnforceOnKeyConfigs($var)

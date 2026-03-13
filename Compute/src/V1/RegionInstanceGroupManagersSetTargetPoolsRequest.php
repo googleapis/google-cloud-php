@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -40,7 +40,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      *           Fingerprint of the target pools information, which is a hash of the
      *           contents. This field is used for optimistic locking when you update the
      *           target pool entries. This field is optional.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type string[] $target_pools
      *           The URL of all TargetPool resources to which instances in theinstanceGroup field are added. The target pools automatically
      *           apply to all of the instances in the managed instance group.
      * }
@@ -95,7 +95,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetPools()
     {
@@ -107,7 +107,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      * apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetPools($var)

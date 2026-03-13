@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -27,7 +27,7 @@ class InstancesAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type string[] $resource_policies
      *           Resource policies to be added to this instance.
      * }
      */
@@ -40,7 +40,7 @@ class InstancesAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Mess
      * Resource policies to be added to this instance.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourcePolicies()
     {
@@ -51,7 +51,7 @@ class InstancesAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Mess
      * Resource policies to be added to this instance.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourcePolicies($var)

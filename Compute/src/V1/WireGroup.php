@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource that represents a group of redundant wires.
@@ -144,7 +144,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      *           Output only. Topology details for the wire group configuration.
      *     @type \Google\Cloud\Compute\V1\WireProperties $wire_properties
      *           Properties for all wires in the wire group.
-     *     @type array<\Google\Cloud\Compute\V1\Wire>|\Google\Protobuf\Internal\RepeatedField $wires
+     *     @type \Google\Cloud\Compute\V1\Wire[] $wires
      *           Output only. The single/redundant wire(s) managed by the wire group.
      * }
      */
@@ -571,7 +571,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      * Output only. The single/redundant wire(s) managed by the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Wire wires = 113139854;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Wire>
      */
     public function getWires()
     {
@@ -582,7 +582,7 @@ class WireGroup extends \Google\Protobuf\Internal\Message
      * Output only. The single/redundant wire(s) managed by the wire group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Wire wires = 113139854;</code>
-     * @param array<\Google\Cloud\Compute\V1\Wire>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Wire[] $var
      * @return $this
      */
     public function setWires($var)

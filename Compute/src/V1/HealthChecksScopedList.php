@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class HealthChecksScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\HealthCheck>|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *     @type \Google\Cloud\Compute\V1\HealthCheck[] $health_checks
      *           A list of HealthChecks contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of
@@ -50,7 +50,7 @@ class HealthChecksScopedList extends \Google\Protobuf\Internal\Message
      * A list of HealthChecks contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheck health_checks = 448370606;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HealthCheck>
      */
     public function getHealthChecks()
     {
@@ -61,7 +61,7 @@ class HealthChecksScopedList extends \Google\Protobuf\Internal\Message
      * A list of HealthChecks contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheck health_checks = 448370606;</code>
-     * @param array<\Google\Cloud\Compute\V1\HealthCheck>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HealthCheck[] $var
      * @return $this
      */
     public function setHealthChecks($var)

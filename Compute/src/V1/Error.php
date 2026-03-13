@@ -5,11 +5,11 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
- * Output only. Errors that prevented the ResizeRequest to be fulfilled.
+ * Output only. [Output Only] Encountered errors.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Error</code>
  */
@@ -29,7 +29,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Compute\V1\Errors[] $errors
      *           [Output Only] The array of errors encountered while processing this
      *           operation.
      * }
@@ -44,7 +44,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Errors>
      */
     public function getErrors()
     {
@@ -56,7 +56,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
-     * @param array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Errors[] $var
      * @return $this
      */
     public function setErrors($var)

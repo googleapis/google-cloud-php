@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -39,12 +39,12 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $action_token_site_keys
+     *     @type string[] $action_token_site_keys
      *           A list of site keys to be used during the validation of reCAPTCHA
      *           action-tokens. The provided site keys need to be created from
      *           reCAPTCHA API under the same project where the security policy is
      *           created.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $session_token_site_keys
+     *     @type string[] $session_token_site_keys
      *           A list of site keys to be used during the validation of reCAPTCHA
      *           session-tokens. The provided site keys need to be created from
      *           reCAPTCHA API under the same project where the security policy is
@@ -63,7 +63,7 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
      * created.
      *
      * Generated from protobuf field <code>repeated string action_token_site_keys = 59929885;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActionTokenSiteKeys()
     {
@@ -77,7 +77,7 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
      * created.
      *
      * Generated from protobuf field <code>repeated string action_token_site_keys = 59929885;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActionTokenSiteKeys($var)
@@ -95,7 +95,7 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
      * created.
      *
      * Generated from protobuf field <code>repeated string session_token_site_keys = 333363581;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSessionTokenSiteKeys()
     {
@@ -109,7 +109,7 @@ class SecurityPolicyRuleMatcherExprOptionsRecaptchaOptions extends \Google\Proto
      * created.
      *
      * Generated from protobuf field <code>repeated string session_token_site_keys = 333363581;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSessionTokenSiteKeys($var)

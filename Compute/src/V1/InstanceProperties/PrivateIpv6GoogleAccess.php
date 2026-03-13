@@ -75,4 +75,3 @@ class PrivateIpv6GoogleAccess
     }
 }
 
-

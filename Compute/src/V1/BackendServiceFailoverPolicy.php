@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For load balancers that have configurable
@@ -29,7 +29,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This can be set to true only if the protocol isTCP.
+     * This can be set to true if the protocol isTCP, UDP, or UNSPECIFIED.
      * The default is false.
      *
      * Generated from protobuf field <code>optional bool disable_connection_drain_on_failover = 182150753;</code>
@@ -77,7 +77,7 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $disable_connection_drain_on_failover
-     *           This can be set to true only if the protocol isTCP.
+     *           This can be set to true if the protocol isTCP, UDP, or UNSPECIFIED.
      *           The default is false.
      *     @type bool $drop_traffic_if_unhealthy
      *           If set to true, connections to the
@@ -113,7 +113,7 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This can be set to true only if the protocol isTCP.
+     * This can be set to true if the protocol isTCP, UDP, or UNSPECIFIED.
      * The default is false.
      *
      * Generated from protobuf field <code>optional bool disable_connection_drain_on_failover = 182150753;</code>
@@ -135,7 +135,7 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This can be set to true only if the protocol isTCP.
+     * This can be set to true if the protocol isTCP, UDP, or UNSPECIFIED.
      * The default is false.
      *
      * Generated from protobuf field <code>optional bool disable_connection_drain_on_failover = 182150753;</code>

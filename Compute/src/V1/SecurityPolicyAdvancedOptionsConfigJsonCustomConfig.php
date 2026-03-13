@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -32,7 +32,7 @@ class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig extends \Google\Protob
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $content_types
+     *     @type string[] $content_types
      *           A list of custom Content-Type header values to apply the JSON parsing.
      *           As per RFC 1341, a Content-Type header value has the following format:
      *           Content-Type := type "/" subtype *[";" parameter]
@@ -55,7 +55,7 @@ class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig extends \Google\Protob
      * excluded.
      *
      * Generated from protobuf field <code>repeated string content_types = 17428787;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getContentTypes()
     {
@@ -71,7 +71,7 @@ class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig extends \Google\Protob
      * excluded.
      *
      * Generated from protobuf field <code>repeated string content_types = 17428787;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setContentTypes($var)

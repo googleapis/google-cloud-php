@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Autoscaler resource.
@@ -204,7 +204,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *                the statusDetails field.
      *           New values might be added in the future.
      *           Check the Status enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\AutoscalerStatusDetails>|\Google\Protobuf\Internal\RepeatedField $status_details
+     *     @type \Google\Cloud\Compute\V1\AutoscalerStatusDetails[] $status_details
      *           [Output Only] Human-readable details about the current state of the
      *           autoscaler. Read the documentation forCommonly
      *           returned status messages for examples of status messages you might
@@ -677,7 +677,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      * encounter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 363353845;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AutoscalerStatusDetails>
      */
     public function getStatusDetails()
     {
@@ -691,7 +691,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      * encounter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 363353845;</code>
-     * @param array<\Google\Cloud\Compute\V1\AutoscalerStatusDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AutoscalerStatusDetails[] $var
      * @return $this
      */
     public function setStatusDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class UrlMapsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\UrlMap>|\Google\Protobuf\Internal\RepeatedField $url_maps
+     *     @type \Google\Cloud\Compute\V1\UrlMap[] $url_maps
      *           A list of UrlMaps contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of
@@ -50,7 +50,7 @@ class UrlMapsScopedList extends \Google\Protobuf\Internal\Message
      * A list of UrlMaps contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UrlMap url_maps = 103352167;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\UrlMap>
      */
     public function getUrlMaps()
     {
@@ -61,7 +61,7 @@ class UrlMapsScopedList extends \Google\Protobuf\Internal\Message
      * A list of UrlMaps contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UrlMap url_maps = 103352167;</code>
-     * @param array<\Google\Cloud\Compute\V1\UrlMap>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\UrlMap[] $var
      * @return $this
      */
     public function setUrlMaps($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -21,12 +21,25 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
      */
     protected $all_instances_config = null;
     /**
+     * Output only. [Output Only] The accelerator topology applied to this MIG.
+     * Currently only one accelerator topology is supported.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopology applied_accelerator_topologies = 481392547;</code>
+     */
+    private $applied_accelerator_topologies;
+    /**
      * Output only. [Output Only] The URL of theAutoscaler
      * that targets this instance group manager.
      *
      * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
      */
     protected $autoscaler = null;
+    /**
+     * Output only. [Output Only] The status of bulk instance operation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperation bulk_instance_operation = 501667466;</code>
+     */
+    protected $bulk_instance_operation = null;
     /**
      * Output only. [Output Only] A bit indicating whether the managed instance group is in a
      * stable state. A stable state means that: none of the instances in the
@@ -61,9 +74,14 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig $all_instances_config
      *           Output only. [Output only] Status of all-instances configuration on the group.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAcceleratorTopology[] $applied_accelerator_topologies
+     *           Output only. [Output Only] The accelerator topology applied to this MIG.
+     *           Currently only one accelerator topology is supported.
      *     @type string $autoscaler
      *           Output only. [Output Only] The URL of theAutoscaler
      *           that targets this instance group manager.
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusBulkInstanceOperation $bulk_instance_operation
+     *           Output only. [Output Only] The status of bulk instance operation.
      *     @type bool $is_stable
      *           Output only. [Output Only] A bit indicating whether the managed instance group is in a
      *           stable state. A stable state means that: none of the instances in the
@@ -121,6 +139,34 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. [Output Only] The accelerator topology applied to this MIG.
+     * Currently only one accelerator topology is supported.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopology applied_accelerator_topologies = 481392547;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceGroupManagerStatusAcceleratorTopology>
+     */
+    public function getAppliedAcceleratorTopologies()
+    {
+        return $this->applied_accelerator_topologies;
+    }
+
+    /**
+     * Output only. [Output Only] The accelerator topology applied to this MIG.
+     * Currently only one accelerator topology is supported.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopology applied_accelerator_topologies = 481392547;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAcceleratorTopology[] $var
+     * @return $this
+     */
+    public function setAppliedAcceleratorTopologies($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAcceleratorTopology::class);
+        $this->applied_accelerator_topologies = $arr;
+
+        return $this;
+    }
+
+    /**
      * Output only. [Output Only] The URL of theAutoscaler
      * that targets this instance group manager.
      *
@@ -154,6 +200,42 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->autoscaler = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] The status of bulk instance operation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperation bulk_instance_operation = 501667466;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusBulkInstanceOperation|null
+     */
+    public function getBulkInstanceOperation()
+    {
+        return $this->bulk_instance_operation;
+    }
+
+    public function hasBulkInstanceOperation()
+    {
+        return isset($this->bulk_instance_operation);
+    }
+
+    public function clearBulkInstanceOperation()
+    {
+        unset($this->bulk_instance_operation);
+    }
+
+    /**
+     * Output only. [Output Only] The status of bulk instance operation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperation bulk_instance_operation = 501667466;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusBulkInstanceOperation $var
+     * @return $this
+     */
+    public function setBulkInstanceOperation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerStatusBulkInstanceOperation::class);
+        $this->bulk_instance_operation = $var;
 
         return $this;
     }

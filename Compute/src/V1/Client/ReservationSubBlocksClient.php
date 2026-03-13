@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\GetIamPolicyReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\GetReservationSubBlockRequest;
+use Google\Cloud\Compute\V1\GetVersionReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\ListReservationSubBlocksRequest;
 use Google\Cloud\Compute\V1\PerformMaintenanceReservationSubBlockRequest;
 use Google\Cloud\Compute\V1\Policy;
@@ -55,6 +56,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<ReservationSubBlocksGetResponse> getAsync(GetReservationSubBlockRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyReservationSubBlockRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> getVersionAsync(GetVersionReservationSubBlockRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListReservationSubBlocksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> performMaintenanceAsync(PerformMaintenanceReservationSubBlockRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> reportFaultyAsync(ReportFaultyReservationSubBlockRequest $request, array $optionalArgs = [])
@@ -326,6 +328,34 @@ final class ReservationSubBlocksClient
     public function getIamPolicy(GetIamPolicyReservationSubBlockRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Allows customers to get SBOM versions of a reservation subBlock.
+     *
+     * The async variant is {@see ReservationSubBlocksClient::getVersionAsync()} .
+     *
+     * @example samples/V1/ReservationSubBlocksClient/get_version.php
+     *
+     * @param GetVersionReservationSubBlockRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getVersion(
+        GetVersionReservationSubBlockRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('GetVersion', $request, $callOptions)->wait();
     }
 
     /**

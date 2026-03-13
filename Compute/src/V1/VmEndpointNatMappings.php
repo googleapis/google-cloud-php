@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contain information of Nat mapping for a VM endpoint (i.e., NIC).
@@ -34,7 +34,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
      *
      *     @type string $instance_name
      *           Output only. Name of the VM instance which the endpoint belongs to
-     *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings>|\Google\Protobuf\Internal\RepeatedField $interface_nat_mappings
+     *     @type \Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings[] $interface_nat_mappings
      * }
      */
     public function __construct($data = NULL) {
@@ -80,7 +80,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappings interface_nat_mappings = 256196617;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings>
      */
     public function getInterfaceNatMappings()
     {
@@ -89,7 +89,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappings interface_nat_mappings = 256196617;</code>
-     * @param array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings[] $var
      * @return $this
      */
     public function setInterfaceNatMappings($var)

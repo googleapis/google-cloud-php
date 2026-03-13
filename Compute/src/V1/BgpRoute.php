@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -53,9 +53,9 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\BgpRouteAsPath>|\Google\Protobuf\Internal\RepeatedField $as_paths
+     *     @type \Google\Cloud\Compute\V1\BgpRouteAsPath[] $as_paths
      *           Output only. [Output only] AS-PATH for the route
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $communities
+     *     @type string[] $communities
      *           Output only. [Output only] BGP communities in human-readable A:B format.
      *     @type \Google\Cloud\Compute\V1\BgpRouteNetworkLayerReachabilityInformation $destination
      *           Output only. [Output only] Destination IP range for the route, in human-readable CIDR
@@ -76,7 +76,7 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      * Output only. [Output only] AS-PATH for the route
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BgpRouteAsPath as_paths = 137568929;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BgpRouteAsPath>
      */
     public function getAsPaths()
     {
@@ -87,7 +87,7 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      * Output only. [Output only] AS-PATH for the route
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BgpRouteAsPath as_paths = 137568929;</code>
-     * @param array<\Google\Cloud\Compute\V1\BgpRouteAsPath>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BgpRouteAsPath[] $var
      * @return $this
      */
     public function setAsPaths($var)
@@ -102,7 +102,7 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      * Output only. [Output only] BGP communities in human-readable A:B format.
      *
      * Generated from protobuf field <code>repeated string communities = 188262983;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCommunities()
     {
@@ -113,7 +113,7 @@ class BgpRoute extends \Google\Protobuf\Internal\Message
      * Output only. [Output only] BGP communities in human-readable A:B format.
      *
      * Generated from protobuf field <code>repeated string communities = 188262983;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCommunities($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration information for application awareness on this Cloud
@@ -50,7 +50,7 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
      *     @type string $profile_description
      *           Description for the application awareness profile on this Cloud
      *           Interconnect.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $shape_average_percentages
+     *     @type \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage[] $shape_average_percentages
      *           Optional field to specify a list of shape average percentages to be
      *           applied in conjunction with StrictPriorityPolicy or
      *           BandwidthPercentagePolicy.
@@ -138,7 +138,7 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
      * BandwidthPercentagePolicy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage shape_average_percentages = 259857497;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>
      */
     public function getShapeAveragePercentages()
     {
@@ -151,7 +151,7 @@ class InterconnectApplicationAwareInterconnect extends \Google\Protobuf\Internal
      * BandwidthPercentagePolicy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectApplicationAwareInterconnectBandwidthPercentage shape_average_percentages = 259857497;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnectBandwidthPercentage[] $var
      * @return $this
      */
     public function setShapeAveragePercentages($var)

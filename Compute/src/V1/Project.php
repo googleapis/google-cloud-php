@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Project resource.
@@ -155,7 +155,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *           [Output Only] Default service account used by VMs running in this project.
      *     @type string $description
      *           An optional textual description of the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
+     *     @type string[] $enabled_features
      *           An optional list of restricted features enabled for use on this project.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is
@@ -167,7 +167,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The project ID. For example: my-example-project. Use the
      *           project ID to make requests to Compute Engine.
-     *     @type array<\Google\Cloud\Compute\V1\Quota>|\Google\Protobuf\Internal\RepeatedField $quotas
+     *     @type \Google\Cloud\Compute\V1\Quota[] $quotas
      *           [Output Only] Quotas assigned to this project.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -428,7 +428,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEnabledFeatures()
     {
@@ -439,7 +439,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * An optional list of restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEnabledFeatures($var)
@@ -570,7 +570,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * [Output Only] Quotas assigned to this project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Quota quotas = 125341947;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Quota>
      */
     public function getQuotas()
     {
@@ -581,7 +581,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * [Output Only] Quotas assigned to this project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Quota quotas = 125341947;</code>
-     * @param array<\Google\Cloud\Compute\V1\Quota>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Quota[] $var
      * @return $this
      */
     public function setQuotas($var)

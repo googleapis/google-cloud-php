@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request message for Instances.Update. See the method description for details.
@@ -15,6 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Whether to discard local SSDs from the instance during restart
+     * default value is false.
+     *
+     * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
+     */
+    protected $discard_local_ssd = null;
     /**
      * Name of the instance resource to update.
      *
@@ -102,6 +109,9 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $discard_local_ssd
+     *           Whether to discard local SSDs from the instance during restart
+     *           default value is false.
      *     @type string $instance
      *           Name of the instance resource to update.
      *     @type \Google\Cloud\Compute\V1\Instance $instance_resource
@@ -140,6 +150,44 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Whether to discard local SSDs from the instance during restart
+     * default value is false.
+     *
+     * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
+     * @return bool
+     */
+    public function getDiscardLocalSsd()
+    {
+        return isset($this->discard_local_ssd) ? $this->discard_local_ssd : false;
+    }
+
+    public function hasDiscardLocalSsd()
+    {
+        return isset($this->discard_local_ssd);
+    }
+
+    public function clearDiscardLocalSsd()
+    {
+        unset($this->discard_local_ssd);
+    }
+
+    /**
+     * Whether to discard local SSDs from the instance during restart
+     * default value is false.
+     *
+     * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDiscardLocalSsd($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->discard_local_ssd = $var;
+
+        return $this;
     }
 
     /**

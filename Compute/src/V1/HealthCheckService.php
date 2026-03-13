@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Health-Check as a Service resource.
@@ -147,7 +147,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *           request will fail with error 412 conditionNotMet. To see the
      *           latest fingerprint, make a get() request to retrieve the
      *           HealthCheckService.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *     @type string[] $health_checks
      *           A list of URLs to the HealthCheck resources. Must have
      *           at least one HealthCheck, and not more than 10 for regionalHealthCheckService, and not more than 1 for globalHealthCheckService.HealthCheck resources must haveportSpecification=USE_SERVING_PORT orportSpecification=USE_FIXED_PORT. For
      *           regional HealthCheckService, theHealthCheck must be regional and in the same
@@ -179,12 +179,12 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *           must be a lowercase letter, and all following characters must be a dash,
      *           lowercase letter, or digit, except the last character, which cannot be a
      *           dash.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_endpoint_groups
+     *     @type string[] $network_endpoint_groups
      *           A list of URLs to the NetworkEndpointGroup
      *           resources. Must not have more than 100.  For regionalHealthCheckService, NEGs must be in
      *           zones in the region of the HealthCheckService. For globalHealthCheckServices, the NetworkEndpointGroups
      *           must be global INTERNET_IP_PORT.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_endpoints
+     *     @type string[] $notification_endpoints
      *           A list of URLs to the NotificationEndpoint
      *           resources. Must not have more than 10.  A list of endpoints for
      *           receiving notifications of change in health status. For regionalHealthCheckService,NotificationEndpoint must be regional and in the
@@ -337,7 +337,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      * only be used with global INTERNET_IP_PORTNetworkEndpointGroups.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHealthChecks()
     {
@@ -354,7 +354,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      * only be used with global INTERNET_IP_PORTNetworkEndpointGroups.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHealthChecks($var)
@@ -548,7 +548,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      * must be global INTERNET_IP_PORT.
      *
      * Generated from protobuf field <code>repeated string network_endpoint_groups = 29346733;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkEndpointGroups()
     {
@@ -562,7 +562,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      * must be global INTERNET_IP_PORT.
      *
      * Generated from protobuf field <code>repeated string network_endpoint_groups = 29346733;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkEndpointGroups($var)
@@ -580,7 +580,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      * same region. For global HealthCheckService,NotificationEndpoint must be global.
      *
      * Generated from protobuf field <code>repeated string notification_endpoints = 406728490;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNotificationEndpoints()
     {
@@ -594,7 +594,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      * same region. For global HealthCheckService,NotificationEndpoint must be global.
      *
      * Generated from protobuf field <code>repeated string notification_endpoints = 406728490;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNotificationEndpoints($var)

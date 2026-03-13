@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains NAT IP information of a NAT config (i.e. usage status, mode).
@@ -34,7 +34,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping>|\Google\Protobuf\Internal\RepeatedField $nat_ip_info_mappings
+     *     @type \Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping[] $nat_ip_info_mappings
      *           Output only. A list of all NAT IPs assigned to this NAT config.
      *     @type string $nat_name
      *           Output only. Name of the NAT config which the NAT IP belongs to.
@@ -49,7 +49,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
      * Output only. A list of all NAT IPs assigned to this NAT config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NatIpInfoNatIpInfoMapping nat_ip_info_mappings = 241401884;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping>
      */
     public function getNatIpInfoMappings()
     {
@@ -60,7 +60,7 @@ class NatIpInfo extends \Google\Protobuf\Internal\Message
      * Output only. A list of all NAT IPs assigned to this NAT config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NatIpInfoNatIpInfoMapping nat_ip_info_mappings = 241401884;</code>
-     * @param array<\Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NatIpInfoNatIpInfoMapping[] $var
      * @return $this
      */
     public function setNatIpInfoMappings($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a ServiceAttachment resource.
@@ -212,7 +212,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $connected_endpoints
+     *     @type \Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint[] $connected_endpoints
      *           Output only. [Output Only] An array of connections for all the consumers connected to
      *           this service attachment.
      *     @type string $connection_preference
@@ -221,14 +221,14 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           service attachment is one that always accepts the connection from consumer
      *           forwarding rules.
      *           Check the ConnectionPreference enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit>|\Google\Protobuf\Internal\RepeatedField $consumer_accept_lists
+     *     @type \Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit[] $consumer_accept_lists
      *           Specifies which consumer projects or networks are allowed to connect to the
      *           service attachment. Each project or network has a connection limit. A given
      *           service attachment can manage connections at either the project or network
      *           level. Therefore, both the accept and reject lists for a given service
      *           attachment must contain either only projects or only networks or only
      *           endpoints.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $consumer_reject_lists
+     *     @type string[] $consumer_reject_lists
      *           Specifies a list of projects or networks that are not allowed to connect to
      *           this service attachment. The project can be specified using its project ID
      *           or project number and the network can be specified using its URL. A given
@@ -241,7 +241,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domain_names
+     *     @type string[] $domain_names
      *           If specified, the domain name will be used during the integration between
      *           the PSC connected endpoints and the Cloud DNS. For example, this is a valid
      *           domain name: "p.mycompany.com.". Current max number of domain names
@@ -273,7 +273,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_subnets
+     *     @type string[] $nat_subnets
      *           An array of URLs where each entry is the URL of a subnet provided
      *           by the service producer to use for NAT in this service attachment.
      *     @type string $producer_forwarding_rule
@@ -326,7 +326,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * this service attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint connected_endpoints = 72223688;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint>
      */
     public function getConnectedEndpoints()
     {
@@ -338,7 +338,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * this service attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint connected_endpoints = 72223688;</code>
-     * @param array<\Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint[] $var
      * @return $this
      */
     public function setConnectedEndpoints($var)
@@ -402,7 +402,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConsumerProjectLimit consumer_accept_lists = 402725703;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit>
      */
     public function getConsumerAcceptLists()
     {
@@ -418,7 +418,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConsumerProjectLimit consumer_accept_lists = 402725703;</code>
-     * @param array<\Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit[] $var
      * @return $this
      */
     public function setConsumerAcceptLists($var)
@@ -438,7 +438,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * attachment must contain either only projects or only networks.
      *
      * Generated from protobuf field <code>repeated string consumer_reject_lists = 204033182;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getConsumerRejectLists()
     {
@@ -454,7 +454,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * attachment must contain either only projects or only networks.
      *
      * Generated from protobuf field <code>repeated string consumer_reject_lists = 204033182;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setConsumerRejectLists($var)
@@ -548,7 +548,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * supported is 1.
      *
      * Generated from protobuf field <code>repeated string domain_names = 6450189;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDomainNames()
     {
@@ -562,7 +562,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * supported is 1.
      *
      * Generated from protobuf field <code>repeated string domain_names = 6450189;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDomainNames($var)
@@ -814,7 +814,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * by the service producer to use for NAT in this service attachment.
      *
      * Generated from protobuf field <code>repeated string nat_subnets = 374785944;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNatSubnets()
     {
@@ -826,7 +826,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * by the service producer to use for NAT in this service attachment.
      *
      * Generated from protobuf field <code>repeated string nat_subnets = 374785944;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNatSubnets($var)

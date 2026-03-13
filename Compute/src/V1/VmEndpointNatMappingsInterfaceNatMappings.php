@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contain information of Nat mapping for an interface of this endpoint.
@@ -75,12 +75,12 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ip_port_ranges
+     *     @type string[] $drain_nat_ip_port_ranges
      *           Output only. List of all drain IP:port-range mappings assigned to this interface.
      *           These ranges are inclusive, that is, both the first and the last
      *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
      *           "1.1.1.1:2234-2234"].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ip_port_ranges
+     *     @type string[] $nat_ip_port_ranges
      *           Output only. A list of all IP:port-range mappings assigned to this interface.
      *           These ranges are inclusive, that is, both the first and the last
      *           ports can be used for NAT. Example: ["2.2.2.2:12345-12355",
@@ -92,7 +92,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      *     @type int $num_total_nat_ports
      *           Output only. Total number of ports across all NAT IPs allocated to this interface.
      *           It equals to the aggregated port number in the field nat_ip_port_ranges.
-     *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings>|\Google\Protobuf\Internal\RepeatedField $rule_mappings
+     *     @type \Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings[] $rule_mappings
      *           Output only. Information about mappings provided by rules in this NAT.
      *     @type string $source_alias_ip_range
      *           Output only. Alias IP range for this interface endpoint.
@@ -114,7 +114,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDrainNatIpPortRanges()
     {
@@ -128,7 +128,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDrainNatIpPortRanges($var)
@@ -146,7 +146,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNatIpPortRanges()
     {
@@ -160,7 +160,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNatIpPortRanges($var)
@@ -253,7 +253,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * Output only. Information about mappings provided by rules in this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings rule_mappings = 486192968;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings>
      */
     public function getRuleMappings()
     {
@@ -264,7 +264,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * Output only. Information about mappings provided by rules in this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings rule_mappings = 486192968;</code>
-     * @param array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappingsNatRuleMappings[] $var
      * @return $this
      */
     public function setRuleMappings($var)

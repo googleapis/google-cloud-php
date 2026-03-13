@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Two-level VLAN-to-Appliance mapping rule.
@@ -54,7 +54,7 @@ class InterconnectAttachmentL2ForwardingApplianceMapping extends \Google\Protobu
      *           a more specific inner VLAN tag.
      *           Unset field (null-value) indicates both VLAN tags are required to be
      *           mapped. Otherwise, defaultApplianceIpAddress is used.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping>|\Google\Protobuf\Internal\RepeatedField $inner_vlan_to_appliance_mappings
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping[] $inner_vlan_to_appliance_mappings
      *           Optional. Used to match against the inner VLAN when the packet
      *           contains two VLAN tags.
      *           A list of mapping rules from inner VLAN tags to IP addresses. If the
@@ -121,7 +121,7 @@ class InterconnectAttachmentL2ForwardingApplianceMapping extends \Google\Protobu
      * applianceIpAddress is used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping inner_vlan_to_appliance_mappings = 97387944;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping>
      */
     public function getInnerVlanToApplianceMappings()
     {
@@ -136,7 +136,7 @@ class InterconnectAttachmentL2ForwardingApplianceMapping extends \Google\Protobu
      * applianceIpAddress is used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping inner_vlan_to_appliance_mappings = 97387944;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentL2ForwardingApplianceMappingInnerVlanToApplianceMapping[] $var
      * @return $this
      */
     public function setInnerVlanToApplianceMappings($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an external VPN gateway.
@@ -127,7 +127,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\ExternalVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
+     *     @type \Google\Cloud\Compute\V1\ExternalVpnGatewayInterface[] $interfaces
      *           A list of interfaces for this external VPN gateway.
      *           If your peer-side gateway is an on-premises gateway and non-AWS cloud
      *           providers' gateway, at most two interfaces can be provided for an external
@@ -292,7 +292,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      * interfaces should be provided for an external VPN gateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ExternalVpnGatewayInterface interfaces = 12073562;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ExternalVpnGatewayInterface>
      */
     public function getInterfaces()
     {
@@ -307,7 +307,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      * interfaces should be provided for an external VPN gateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ExternalVpnGatewayInterface interfaces = 12073562;</code>
-     * @param array<\Google\Cloud\Compute\V1\ExternalVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ExternalVpnGatewayInterface[] $var
      * @return $this
      */
     public function setInterfaces($var)

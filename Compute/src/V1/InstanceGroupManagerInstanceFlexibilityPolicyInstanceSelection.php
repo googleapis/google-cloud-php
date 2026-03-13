@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -37,7 +37,7 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $machine_types
+     *     @type string[] $machine_types
      *           Full machine-type names, e.g. "n1-standard-16".
      *     @type int $rank
      *           Preference of this instance selection. Lower number means higher
@@ -56,7 +56,7 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
      * Full machine-type names, e.g. "n1-standard-16".
      *
      * Generated from protobuf field <code>repeated string machine_types = 79720065;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMachineTypes()
     {
@@ -67,7 +67,7 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection extends \Go
      * Full machine-type names, e.g. "n1-standard-16".
      *
      * Generated from protobuf field <code>repeated string machine_types = 79720065;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMachineTypes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -50,13 +50,13 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $I_p_protocols
+     *     @type string[] $I_p_protocols
      *           Protocols that apply as filter on mirrored traffic.
      *           If no protocols are specified, all traffic that matches the specified
      *           CIDR ranges is mirrored.
      *           If neither cidrRanges nor IPProtocols is specified, all IPv4 traffic is
      *           mirrored.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cidr_ranges
+     *     @type string[] $cidr_ranges
      *           One or more IPv4 or IPv6 CIDR ranges that apply as filters on the source
      *           (ingress) or destination (egress) IP in the IP header. If no ranges are
      *           specified, all IPv4 traffic that matches the specified IPProtocols is
@@ -82,7 +82,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * mirrored.
      *
      * Generated from protobuf field <code>repeated string I_p_protocols = 98544854;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIPProtocols()
     {
@@ -97,7 +97,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * mirrored.
      *
      * Generated from protobuf field <code>repeated string I_p_protocols = 98544854;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIPProtocols($var)
@@ -117,7 +117,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * "0.0.0.0/0,::/0".
      *
      * Generated from protobuf field <code>repeated string cidr_ranges = 487901697;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCidrRanges()
     {
@@ -133,7 +133,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * "0.0.0.0/0,::/0".
      *
      * Generated from protobuf field <code>repeated string cidr_ranges = 487901697;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCidrRanges($var)

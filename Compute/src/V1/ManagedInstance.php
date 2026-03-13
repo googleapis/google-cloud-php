@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Managed Instance resource.
@@ -155,7 +155,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *     @type string $instance
      *           Output only. [Output Only] The URL of the instance. The URL can exist even if the
      *           instance has not yet been created.
-     *     @type array<\Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth>|\Google\Protobuf\Internal\RepeatedField $instance_health
+     *     @type \Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth[] $instance_health
      *           Output only. [Output Only] Health state of the instance per health-check.
      *     @type string $instance_status
      *           Output only. [Output Only] The status of the instance. This field is empty when
@@ -351,7 +351,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Health state of the instance per health-check.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstanceInstanceHealth instance_health = 382667078;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth>
      */
     public function getInstanceHealth()
     {
@@ -362,7 +362,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Health state of the instance per health-check.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstanceInstanceHealth instance_health = 382667078;</code>
-     * @param array<\Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth[] $var
      * @return $this
      */
     public function setInstanceHealth($var)

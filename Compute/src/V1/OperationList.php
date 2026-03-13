@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a list of Operation resources.
@@ -68,7 +68,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\Operation[] $items
      *           [Output Only] A list of Operation resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Always `compute#operations` for Operations
@@ -133,7 +133,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of Operation resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Operation items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Operation>
      */
     public function getItems()
     {
@@ -144,7 +144,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of Operation resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Operation items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Operation[] $var
      * @return $this
      */
     public function setItems($var)

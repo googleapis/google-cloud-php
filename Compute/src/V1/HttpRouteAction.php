@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -175,7 +175,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *           for classic Application Load Balancers.
      *           Not supported when the URL map is bound to a target gRPC proxy that
      *           has the validateForProxyless field set to true.
-     *     @type array<\Google\Cloud\Compute\V1\WeightedBackendService>|\Google\Protobuf\Internal\RepeatedField $weighted_backend_services
+     *     @type \Google\Cloud\Compute\V1\WeightedBackendService[] $weighted_backend_services
      *           A list of weighted backend services to send traffic to when a route match
      *           occurs. The weights determine the fraction of traffic that flows to
      *           their corresponding backend service. If all traffic needs to
@@ -540,7 +540,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * specified in this HttpRouteAction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 337028049;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\WeightedBackendService>
      */
     public function getWeightedBackendServices()
     {
@@ -559,7 +559,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * specified in this HttpRouteAction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 337028049;</code>
-     * @param array<\Google\Cloud\Compute\V1\WeightedBackendService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\WeightedBackendService[] $var
      * @return $this
      */
     public function setWeightedBackendServices($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The authentication and authorization settings for a BackendService.
@@ -69,7 +69,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *            clientTlsPolicy only applies to a globalBackendService with the loadBalancingScheme set
      *           to INTERNAL_SELF_MANAGED.
      *            If left blank, communications are not encrypted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_alt_names
+     *     @type string[] $subject_alt_names
      *           Optional. A list of Subject Alternative Names (SANs) that the client
      *           verifies during a mutual TLS handshake with an server/endpoint for thisBackendService. When the server presents its X.509 certificate
      *           to the client, the client inspects the certificate'ssubjectAltName field. If the field contains one of the
@@ -190,7 +190,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * mode).
      *
      * Generated from protobuf field <code>repeated string subject_alt_names = 330029535;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubjectAltNames()
     {
@@ -212,7 +212,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * mode).
      *
      * Generated from protobuf field <code>repeated string subject_alt_names = 330029535;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubjectAltNames($var)

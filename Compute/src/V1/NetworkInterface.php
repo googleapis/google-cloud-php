@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A network interface resource attached to an instance.
@@ -194,11 +194,11 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $access_configs
+     *     @type \Google\Cloud\Compute\V1\AccessConfig[] $access_configs
      *           An array of configurations for this interface. Currently, only one access
      *           config, ONE_TO_ONE_NAT, is supported. If there are noaccessConfigs specified, then this instance will have
      *           no external internet access.
-     *     @type array<\Google\Cloud\Compute\V1\AliasIpRange>|\Google\Protobuf\Internal\RepeatedField $alias_ip_ranges
+     *     @type \Google\Cloud\Compute\V1\AliasIpRange[] $alias_ip_ranges
      *           An array of alias IP ranges for this network interface.
      *           You can only specify this field for network interfaces in VPC networks.
      *     @type bool $enable_vpc_scoped_dns
@@ -215,7 +215,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           Check the IgmpQuery enum for the list of possible values.
      *     @type int $internal_ipv6_prefix_length
      *           The prefix length of the primary internal IPv6 range.
-     *     @type array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $ipv6_access_configs
+     *     @type \Google\Cloud\Compute\V1\AccessConfig[] $ipv6_access_configs
      *           An array of IPv6 access configurations for this interface. Currently, only
      *           one IPv6 access config, DIRECT_IPV6, is supported. If there
      *           is no ipv6AccessConfig specified, then this instance will
@@ -299,7 +299,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * no external internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig access_configs = 111058326;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AccessConfig>
      */
     public function getAccessConfigs()
     {
@@ -312,7 +312,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * no external internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig access_configs = 111058326;</code>
-     * @param array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AccessConfig[] $var
      * @return $this
      */
     public function setAccessConfigs($var)
@@ -328,7 +328,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * You can only specify this field for network interfaces in VPC networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ip_ranges = 165085631;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AliasIpRange>
      */
     public function getAliasIpRanges()
     {
@@ -340,7 +340,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * You can only specify this field for network interfaces in VPC networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ip_ranges = 165085631;</code>
-     * @param array<\Google\Cloud\Compute\V1\AliasIpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AliasIpRange[] $var
      * @return $this
      */
     public function setAliasIpRanges($var)
@@ -514,7 +514,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * have no external IPv6 Internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig ipv6_access_configs = 483472110;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AccessConfig>
      */
     public function getIpv6AccessConfigs()
     {
@@ -528,7 +528,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * have no external IPv6 Internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig ipv6_access_configs = 483472110;</code>
-     * @param array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AccessConfig[] $var
      * @return $this
      */
     public function setIpv6AccessConfigs($var)

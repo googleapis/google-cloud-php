@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -35,7 +35,7 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $instance_group_managers
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManager[] $instance_group_managers
      *           Output only. [Output Only] The list of managed instance groups that are contained in
      *           the specified project and zone.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
@@ -53,7 +53,7 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
      * the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager instance_group_managers = 214072592;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceGroupManager>
      */
     public function getInstanceGroupManagers()
     {
@@ -65,7 +65,7 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
      * the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager instance_group_managers = 214072592;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManager[] $var
      * @return $this
      */
     public function setInstanceGroupManagers($var)

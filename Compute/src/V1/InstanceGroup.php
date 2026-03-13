@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Instance Group resource.
@@ -149,7 +149,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the instance group. The name must be 1-63 characters
      *           long, and comply withRFC1035.
-     *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
+     *     @type \Google\Cloud\Compute\V1\NamedPort[] $named_ports
      *           Optional. Assigns a name to a port number. For example:{name: "http", port: 80}
      *           This
      *           allows the system to reference ports by the assigned name instead of a
@@ -423,7 +423,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      * Named ports apply to all instances in this instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NamedPort>
      */
     public function getNamedPorts()
     {
@@ -440,7 +440,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      * Named ports apply to all instances in this instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
-     * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NamedPort[] $var
      * @return $this
      */
     public function setNamedPorts($var)

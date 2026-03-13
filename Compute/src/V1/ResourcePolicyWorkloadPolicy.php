@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the workload policy.
@@ -22,6 +22,14 @@ class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
      */
     protected $accelerator_topology = null;
+    /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     * Check the AcceleratorTopologyMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string accelerator_topology_mode = 284293791;</code>
+     */
+    protected $accelerator_topology_mode = null;
     /**
      * Specifies the maximum distance between instances.
      * Check the MaxTopologyDistance enum for the list of possible values.
@@ -46,6 +54,10 @@ class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $accelerator_topology
      *           Specifies the topology required to create a partition for VMs that have
      *           interconnected GPUs.
+     *     @type string $accelerator_topology_mode
+     *           Specifies the connection mode for the accelerator topology. If not
+     *           specified, the default is AUTO_CONNECT.
+     *           Check the AcceleratorTopologyMode enum for the list of possible values.
      *     @type string $max_topology_distance
      *           Specifies the maximum distance between instances.
      *           Check the MaxTopologyDistance enum for the list of possible values.
@@ -93,6 +105,46 @@ class ResourcePolicyWorkloadPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->accelerator_topology = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     * Check the AcceleratorTopologyMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string accelerator_topology_mode = 284293791;</code>
+     * @return string
+     */
+    public function getAcceleratorTopologyMode()
+    {
+        return isset($this->accelerator_topology_mode) ? $this->accelerator_topology_mode : '';
+    }
+
+    public function hasAcceleratorTopologyMode()
+    {
+        return isset($this->accelerator_topology_mode);
+    }
+
+    public function clearAcceleratorTopologyMode()
+    {
+        unset($this->accelerator_topology_mode);
+    }
+
+    /**
+     * Specifies the connection mode for the accelerator topology. If not
+     * specified, the default is AUTO_CONNECT.
+     * Check the AcceleratorTopologyMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string accelerator_topology_mode = 284293791;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAcceleratorTopologyMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->accelerator_topology_mode = $var;
 
         return $this;
     }

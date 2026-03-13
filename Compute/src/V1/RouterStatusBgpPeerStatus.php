@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -151,7 +151,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $advertised_routes
+     *     @type \Google\Cloud\Compute\V1\Route[] $advertised_routes
      *           Routes that were advertised to the remote BGP peer
      *     @type \Google\Cloud\Compute\V1\BfdStatus $bfd_status
      *     @type bool $enable_ipv4
@@ -213,7 +213,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * Routes that were advertised to the remote BGP peer
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 333393068;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Route>
      */
     public function getAdvertisedRoutes()
     {
@@ -224,7 +224,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * Routes that were advertised to the remote BGP peer
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 333393068;</code>
-     * @param array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Route[] $var
      * @return $this
      */
     public function setAdvertisedRoutes($var)

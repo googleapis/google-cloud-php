@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Persistent Disk Snapshot resource.
@@ -361,7 +361,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     @type bool $guest_flush
      *           [Input Only] Whether to attempt an application consistent snapshot by
      *           informing the OS to prepare for the snapshot process.
-     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type \Google\Cloud\Compute\V1\GuestOsFeature[] $guest_os_features
      *           Output only. [Output Only] A list of features to enable on the guest operating system.
      *           Applicable only for bootable images. Read
      *           Enabling guest operating system features to see a list of available
@@ -385,10 +385,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           Labels to apply to this snapshot. These can be later modified by
      *           the setLabels method.
      *           Label values may be empty.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type int[]|string[] $license_codes
      *           Output only. [Output Only] Integer license codes indicating which licenses are attached
      *           to this snapshot.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           Output only. [Output Only] A list of public visible licenses that apply to this
      *           snapshot. This can be because the original image had licenses attached
      *           (such as a Windows image).
@@ -478,7 +478,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           the size of the snapshot is being updated, or UP_TO_DATE,
      *           meaning the size of the snapshot is up-to-date.
      *           Check the StorageBytesStatus enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
+     *     @type string[] $storage_locations
      *           Cloud Storage bucket storage location of the snapshot (regional or
      *           multi-regional).
      * }
@@ -879,7 +879,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\GuestOsFeature>
      */
     public function getGuestOsFeatures()
     {
@@ -893,7 +893,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\GuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -1065,7 +1065,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * to this snapshot.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getLicenseCodes()
     {
@@ -1077,7 +1077,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * to this snapshot.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setLicenseCodes($var)
@@ -1094,7 +1094,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * (such as a Windows image).
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -1107,7 +1107,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * (such as a Windows image).
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)
@@ -1935,7 +1935,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStorageLocations()
     {
@@ -1947,7 +1947,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStorageLocations($var)

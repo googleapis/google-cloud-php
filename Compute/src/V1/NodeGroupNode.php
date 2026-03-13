@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -107,18 +107,18 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[] $accelerators
      *           Accelerators for this node.
      *     @type \Google\Cloud\Compute\V1\InstanceConsumptionInfo $consumed_resources
      *           Output only. Node resources that are reserved by all instances.
      *     @type string $cpu_overcommit_type
      *           CPU overcommit.
      *           Check the CpuOvercommitType enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Compute\V1\LocalDisk[] $disks
      *           Local disk configurations.
-     *     @type array<\Google\Cloud\Compute\V1\InstanceConsumptionData>|\Google\Protobuf\Internal\RepeatedField $instance_consumption_data
+     *     @type \Google\Cloud\Compute\V1\InstanceConsumptionData[] $instance_consumption_data
      *           Output only. Instance data that shows consumed resources on the node.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type string[] $instances
      *           Instances scheduled on this node.
      *     @type string $name
      *           The name of the node.
@@ -148,7 +148,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Accelerators for this node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorConfig>
      */
     public function getAccelerators()
     {
@@ -159,7 +159,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Accelerators for this node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
-     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -248,7 +248,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Local disk configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\LocalDisk>
      */
     public function getDisks()
     {
@@ -259,7 +259,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Local disk configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
-     * @param array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\LocalDisk[] $var
      * @return $this
      */
     public function setDisks($var)
@@ -274,7 +274,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Output only. Instance data that shows consumed resources on the node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceConsumptionData instance_consumption_data = 84715576;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceConsumptionData>
      */
     public function getInstanceConsumptionData()
     {
@@ -285,7 +285,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Output only. Instance data that shows consumed resources on the node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceConsumptionData instance_consumption_data = 84715576;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceConsumptionData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceConsumptionData[] $var
      * @return $this
      */
     public function setInstanceConsumptionData($var)
@@ -300,7 +300,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Instances scheduled on this node.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstances()
     {
@@ -311,7 +311,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Instances scheduled on this node.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstances($var)

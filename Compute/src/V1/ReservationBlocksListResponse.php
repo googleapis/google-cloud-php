@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of reservation blocks under a single reservation.
@@ -64,7 +64,7 @@ class ReservationBlocksListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\ReservationBlock>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\ReservationBlock[] $items
      *           A list of reservation block resources.
      *     @type string $kind
      *           Type of the resource. Alwayscompute#reservationBlock for a list of reservation blocks.
@@ -125,7 +125,7 @@ class ReservationBlocksListResponse extends \Google\Protobuf\Internal\Message
      * A list of reservation block resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationBlock items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ReservationBlock>
      */
     public function getItems()
     {
@@ -136,7 +136,7 @@ class ReservationBlocksListResponse extends \Google\Protobuf\Internal\Message
      * A list of reservation block resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationBlock items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\ReservationBlock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ReservationBlock[] $var
      * @return $this
      */
     public function setItems($var)

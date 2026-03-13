@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Autoscaler policy.
@@ -119,7 +119,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyCpuUtilization $cpu_utilization
      *           Defines the CPU utilization policy that allows the autoscaler to scale
      *           based on the average CPU utilization of a managed instance group.
-     *     @type array<\Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization>|\Google\Protobuf\Internal\RepeatedField $custom_metric_utilizations
+     *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization[] $custom_metric_utilizations
      *           Configuration parameters of autoscaling based on a custom metric.
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyLoadBalancingUtilization $load_balancing_utilization
      *           Configuration parameters of autoscaling based on load balancer.
@@ -256,7 +256,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Configuration parameters of autoscaling based on a custom metric.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization custom_metric_utilizations = 131972850;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization>
      */
     public function getCustomMetricUtilizations()
     {
@@ -267,7 +267,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Configuration parameters of autoscaling based on a custom metric.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization custom_metric_utilizations = 131972850;</code>
-     * @param array<\Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization[] $var
      * @return $this
      */
     public function setCustomMetricUtilizations($var)

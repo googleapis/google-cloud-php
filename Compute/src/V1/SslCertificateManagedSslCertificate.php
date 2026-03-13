@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration and status of a managed SSL certificate.
@@ -48,7 +48,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      *     @type array|\Google\Protobuf\Internal\MapField $domain_status
      *           Output only. [Output only] Detailed statuses of the domains specified for managed
      *           certificate resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type string[] $domains
      *           The domains for which a managed SSL certificate will be generated. Each
      *           Google-managed SSL certificate supports up to the [maximum number of
      *           domains per Google-managed SSL
@@ -98,7 +98,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      * certificate](/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDomains()
     {
@@ -112,7 +112,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      * certificate](/load-balancing/docs/quotas#ssl_certificates).
      *
      * Generated from protobuf field <code>repeated string domains = 226935855;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDomains($var)
