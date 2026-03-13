@@ -1,0 +1,208 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.telcoautomation.v1",
+    "libraryPackage": "Google\\Cloud\\TelcoAutomation\\V1",
+    "services": {
+        "TelcoAutomation": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TelcoAutomationGapicClient",
+                    "rpcs": {
+                        "ApplyDeployment": {
+                            "methods": [
+                                "applyDeployment"
+                            ]
+                        },
+                        "ApplyHydratedDeployment": {
+                            "methods": [
+                                "applyHydratedDeployment"
+                            ]
+                        },
+                        "ApproveBlueprint": {
+                            "methods": [
+                                "approveBlueprint"
+                            ]
+                        },
+                        "ComputeDeploymentStatus": {
+                            "methods": [
+                                "computeDeploymentStatus"
+                            ]
+                        },
+                        "CreateBlueprint": {
+                            "methods": [
+                                "createBlueprint"
+                            ]
+                        },
+                        "CreateDeployment": {
+                            "methods": [
+                                "createDeployment"
+                            ]
+                        },
+                        "CreateEdgeSlm": {
+                            "methods": [
+                                "createEdgeSlm"
+                            ]
+                        },
+                        "CreateOrchestrationCluster": {
+                            "methods": [
+                                "createOrchestrationCluster"
+                            ]
+                        },
+                        "DeleteBlueprint": {
+                            "methods": [
+                                "deleteBlueprint"
+                            ]
+                        },
+                        "DeleteEdgeSlm": {
+                            "methods": [
+                                "deleteEdgeSlm"
+                            ]
+                        },
+                        "DeleteOrchestrationCluster": {
+                            "methods": [
+                                "deleteOrchestrationCluster"
+                            ]
+                        },
+                        "DiscardBlueprintChanges": {
+                            "methods": [
+                                "discardBlueprintChanges"
+                            ]
+                        },
+                        "DiscardDeploymentChanges": {
+                            "methods": [
+                                "discardDeploymentChanges"
+                            ]
+                        },
+                        "GetBlueprint": {
+                            "methods": [
+                                "getBlueprint"
+                            ]
+                        },
+                        "GetDeployment": {
+                            "methods": [
+                                "getDeployment"
+                            ]
+                        },
+                        "GetEdgeSlm": {
+                            "methods": [
+                                "getEdgeSlm"
+                            ]
+                        },
+                        "GetHydratedDeployment": {
+                            "methods": [
+                                "getHydratedDeployment"
+                            ]
+                        },
+                        "GetOrchestrationCluster": {
+                            "methods": [
+                                "getOrchestrationCluster"
+                            ]
+                        },
+                        "GetPublicBlueprint": {
+                            "methods": [
+                                "getPublicBlueprint"
+                            ]
+                        },
+                        "ListBlueprintRevisions": {
+                            "methods": [
+                                "listBlueprintRevisions"
+                            ]
+                        },
+                        "ListBlueprints": {
+                            "methods": [
+                                "listBlueprints"
+                            ]
+                        },
+                        "ListDeploymentRevisions": {
+                            "methods": [
+                                "listDeploymentRevisions"
+                            ]
+                        },
+                        "ListDeployments": {
+                            "methods": [
+                                "listDeployments"
+                            ]
+                        },
+                        "ListEdgeSlms": {
+                            "methods": [
+                                "listEdgeSlms"
+                            ]
+                        },
+                        "ListHydratedDeployments": {
+                            "methods": [
+                                "listHydratedDeployments"
+                            ]
+                        },
+                        "ListOrchestrationClusters": {
+                            "methods": [
+                                "listOrchestrationClusters"
+                            ]
+                        },
+                        "ListPublicBlueprints": {
+                            "methods": [
+                                "listPublicBlueprints"
+                            ]
+                        },
+                        "ProposeBlueprint": {
+                            "methods": [
+                                "proposeBlueprint"
+                            ]
+                        },
+                        "RejectBlueprint": {
+                            "methods": [
+                                "rejectBlueprint"
+                            ]
+                        },
+                        "RemoveDeployment": {
+                            "methods": [
+                                "removeDeployment"
+                            ]
+                        },
+                        "RollbackDeployment": {
+                            "methods": [
+                                "rollbackDeployment"
+                            ]
+                        },
+                        "SearchBlueprintRevisions": {
+                            "methods": [
+                                "searchBlueprintRevisions"
+                            ]
+                        },
+                        "SearchDeploymentRevisions": {
+                            "methods": [
+                                "searchDeploymentRevisions"
+                            ]
+                        },
+                        "UpdateBlueprint": {
+                            "methods": [
+                                "updateBlueprint"
+                            ]
+                        },
+                        "UpdateDeployment": {
+                            "methods": [
+                                "updateDeployment"
+                            ]
+                        },
+                        "UpdateHydratedDeployment": {
+                            "methods": [
+                                "updateHydratedDeployment"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

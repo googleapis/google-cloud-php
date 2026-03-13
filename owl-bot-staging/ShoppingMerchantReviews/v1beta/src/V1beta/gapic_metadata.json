@@ -1,0 +1,67 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.reviews.v1beta",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Reviews\\V1beta",
+    "services": {
+        "MerchantReviewsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MerchantReviewsServiceGapicClient",
+                    "rpcs": {
+                        "DeleteMerchantReview": {
+                            "methods": [
+                                "deleteMerchantReview"
+                            ]
+                        },
+                        "GetMerchantReview": {
+                            "methods": [
+                                "getMerchantReview"
+                            ]
+                        },
+                        "InsertMerchantReview": {
+                            "methods": [
+                                "insertMerchantReview"
+                            ]
+                        },
+                        "ListMerchantReviews": {
+                            "methods": [
+                                "listMerchantReviews"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProductReviewsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProductReviewsServiceGapicClient",
+                    "rpcs": {
+                        "DeleteProductReview": {
+                            "methods": [
+                                "deleteProductReview"
+                            ]
+                        },
+                        "GetProductReview": {
+                            "methods": [
+                                "getProductReview"
+                            ]
+                        },
+                        "InsertProductReview": {
+                            "methods": [
+                                "insertProductReview"
+                            ]
+                        },
+                        "ListProductReviews": {
+                            "methods": [
+                                "listProductReviews"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
