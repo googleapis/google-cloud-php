@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An action that describes the behavior when the form is submitted.
@@ -112,7 +112,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *           clicked or otherwise activated.
      *           For example usage, see [Read form
      *           data](https://developers.google.com/workspace/chat/read-form-data).
-     *     @type array<\Google\Apps\Card\V1\Action\ActionParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Apps\Card\V1\Action\ActionParameter[] $parameters
      *           List of action parameters.
      *     @type int $load_indicator
      *           Specifies the loading indicator that the action displays while
@@ -148,7 +148,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *           specified, a loading indicator isn't shown. If specified for
      *           an add-on, the entire card is stripped and nothing is shown in the client.
      *           [Google Chat apps](https://developers.google.com/workspace/chat):
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_widgets
+     *     @type string[] $required_widgets
      *           Optional. Fill this list with the names of widgets that this Action
      *           needs for a valid submission.
      *           If the widgets listed here don't have a value when this Action is invoked,
@@ -203,7 +203,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * List of action parameters.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Action.ActionParameter parameters = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Action\ActionParameter>
      */
     public function getParameters()
     {
@@ -214,7 +214,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * List of action parameters.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Action.ActionParameter parameters = 2;</code>
-     * @param array<\Google\Apps\Card\V1\Action\ActionParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Action\ActionParameter[] $var
      * @return $this
      */
     public function setParameters($var)
@@ -368,7 +368,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>repeated string required_widgets = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequiredWidgets()
     {
@@ -384,7 +384,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * apps](https://developers.google.com/workspace/extend):
      *
      * Generated from protobuf field <code>repeated string required_widgets = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequiredWidgets($var)

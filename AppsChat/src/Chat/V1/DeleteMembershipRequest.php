@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to delete a membership in a space.
@@ -26,7 +26,7 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * and the `spaces/{space}/members/{member}` format.
      * You can use the email as an alias for `{member}`. For example,
-     * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     * `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      * email of the Google Chat user.
      * When deleting an app membership, requires the `chat.memberships.app` scope
      * and `spaces/{space}/members/app` format.
@@ -97,7 +97,7 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      *           and the `spaces/{space}/members/{member}` format.
      *           You can use the email as an alias for `{member}`. For example,
-     *           `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     *           `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      *           email of the Google Chat user.
      *           When deleting an app membership, requires the `chat.memberships.app` scope
      *           and `spaces/{space}/members/app` format.
@@ -129,7 +129,7 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * and the `spaces/{space}/members/{member}` format.
      * You can use the email as an alias for `{member}`. For example,
-     * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     * `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      * email of the Google Chat user.
      * When deleting an app membership, requires the `chat.memberships.app` scope
      * and `spaces/{space}/members/app` format.
@@ -154,7 +154,7 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * and the `spaces/{space}/members/{member}` format.
      * You can use the email as an alias for `{member}`. For example,
-     * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     * `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      * email of the Google Chat user.
      * When deleting an app membership, requires the `chat.memberships.app` scope
      * and `spaces/{space}/members/app` format.

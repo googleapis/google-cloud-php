@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A domain serving an App Engine application.
@@ -18,7 +18,7 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the `DomainMapping` resource in the API. Example:
      * `apps/myapp/domainMapping/example.com`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -41,7 +41,7 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      * The resource records required to configure this domain mapping. These
      * records must be added to the domain's DNS configuration in order to
      * serve the application via this domain mapping.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.ResourceRecord resource_records = 4;</code>
      */
@@ -56,18 +56,18 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Full path to the `DomainMapping` resource in the API. Example:
      *           `apps/myapp/domainMapping/example.com`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $id
      *           Relative name of the domain serving the application. Example:
      *           `example.com`.
      *     @type \Google\Cloud\AppEngine\V1\SslSettings $ssl_settings
      *           SSL configuration for this domain. If unconfigured, this domain will not
      *           serve with SSL.
-     *     @type array<\Google\Cloud\AppEngine\V1\ResourceRecord>|\Google\Protobuf\Internal\RepeatedField $resource_records
+     *     @type \Google\Cloud\AppEngine\V1\ResourceRecord[] $resource_records
      *           The resource records required to configure this domain mapping. These
      *           records must be added to the domain's DNS configuration in order to
      *           serve the application via this domain mapping.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +78,7 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the `DomainMapping` resource in the API. Example:
      * `apps/myapp/domainMapping/example.com`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -91,7 +91,7 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the `DomainMapping` resource in the API. Example:
      * `apps/myapp/domainMapping/example.com`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -175,10 +175,10 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      * The resource records required to configure this domain mapping. These
      * records must be added to the domain's DNS configuration in order to
      * serve the application via this domain mapping.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.ResourceRecord resource_records = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\ResourceRecord>
      */
     public function getResourceRecords()
     {
@@ -189,10 +189,10 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      * The resource records required to configure this domain mapping. These
      * records must be added to the domain's DNS configuration in order to
      * serve the application via this domain mapping.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.ResourceRecord resource_records = 4;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\ResourceRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\ResourceRecord[] $var
      * @return $this
      */
     public function setResourceRecords($var)

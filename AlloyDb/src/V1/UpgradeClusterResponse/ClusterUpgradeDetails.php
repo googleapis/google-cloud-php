@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\UpgradeClusterResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Upgrade details of a cluster. This cluster can be primary or secondary.
@@ -70,9 +70,9 @@ class ClusterUpgradeDetails extends \Google\Protobuf\Internal\Message
      *           Database version of the cluster after the upgrade operation. This will be
      *           the target version if the upgrade was successful otherwise it remains the
      *           same as that before the upgrade operation.
-     *     @type array<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\StageInfo>|\Google\Protobuf\Internal\RepeatedField $stage_info
+     *     @type \Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\StageInfo[] $stage_info
      *           Array containing stage info associated with this cluster.
-     *     @type array<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\InstanceUpgradeDetails>|\Google\Protobuf\Internal\RepeatedField $instance_upgrade_details
+     *     @type \Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\InstanceUpgradeDetails[] $instance_upgrade_details
      *           Upgrade details of the instances directly associated with this cluster.
      * }
      */
@@ -193,7 +193,7 @@ class ClusterUpgradeDetails extends \Google\Protobuf\Internal\Message
      * Array containing stage info associated with this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterResponse.StageInfo stage_info = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\StageInfo>
      */
     public function getStageInfo()
     {
@@ -204,7 +204,7 @@ class ClusterUpgradeDetails extends \Google\Protobuf\Internal\Message
      * Array containing stage info associated with this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterResponse.StageInfo stage_info = 5;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\StageInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\StageInfo[] $var
      * @return $this
      */
     public function setStageInfo($var)
@@ -219,7 +219,7 @@ class ClusterUpgradeDetails extends \Google\Protobuf\Internal\Message
      * Upgrade details of the instances directly associated with this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterResponse.InstanceUpgradeDetails instance_upgrade_details = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\InstanceUpgradeDetails>
      */
     public function getInstanceUpgradeDetails()
     {
@@ -230,7 +230,7 @@ class ClusterUpgradeDetails extends \Google\Protobuf\Internal\Message
      * Upgrade details of the instances directly associated with this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterResponse.InstanceUpgradeDetails instance_upgrade_details = 6;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\InstanceUpgradeDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\InstanceUpgradeDetails[] $var
      * @return $this
      */
     public function setInstanceUpgradeDetails($var)
@@ -242,5 +242,4 @@ class ClusterUpgradeDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

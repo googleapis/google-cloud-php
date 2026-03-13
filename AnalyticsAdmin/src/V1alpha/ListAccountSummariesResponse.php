@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListAccountSummaries RPC.
@@ -35,7 +35,7 @@ class ListAccountSummariesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccountSummary>|\Google\Protobuf\Internal\RepeatedField $account_summaries
+     *     @type \Google\Analytics\Admin\V1alpha\AccountSummary[] $account_summaries
      *           Account summaries of all accounts the caller has access to.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAccountSummariesResponse extends \Google\Protobuf\Internal\Message
      * Account summaries of all accounts the caller has access to.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccountSummary account_summaries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccountSummary>
      */
     public function getAccountSummaries()
     {
@@ -62,7 +62,7 @@ class ListAccountSummariesResponse extends \Google\Protobuf\Internal\Message
      * Account summaries of all accounts the caller has access to.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccountSummary account_summaries = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccountSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccountSummary[] $var
      * @return $this
      */
     public function setAccountSummaries($var)

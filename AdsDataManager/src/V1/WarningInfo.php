@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Warning counts for each type of warning.
@@ -28,7 +28,7 @@ class WarningInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\WarningCount>|\Google\Protobuf\Internal\RepeatedField $warning_counts
+     *     @type \Google\Ads\DataManager\V1\WarningCount[] $warning_counts
      *           A list of warnings and counts per warning reason.
      * }
      */
@@ -41,7 +41,7 @@ class WarningInfo extends \Google\Protobuf\Internal\Message
      * A list of warnings and counts per warning reason.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.WarningCount warning_counts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\WarningCount>
      */
     public function getWarningCounts()
     {
@@ -52,7 +52,7 @@ class WarningInfo extends \Google\Protobuf\Internal\Message
      * A list of warnings and counts per warning reason.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.WarningCount warning_counts = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\WarningCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\WarningCount[] $var
      * @return $this
      */
     public function setWarningCounts($var)

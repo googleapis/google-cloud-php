@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a user list that is populated by user provided data.
@@ -71,7 +71,7 @@ class IngestedUserListInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $upload_key_types
+     *     @type int[] $upload_key_types
      *           Required. Immutable. Upload key types of this user list.
      *     @type \Google\Ads\DataManager\V1\ContactIdInfo $contact_id_info
      *           Optional. Additional information when `CONTACT_ID` is one of the
@@ -103,7 +103,7 @@ class IngestedUserListInfo extends \Google\Protobuf\Internal\Message
      * Required. Immutable. Upload key types of this user list.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.IngestedUserListInfo.UploadKeyType upload_key_types = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getUploadKeyTypes()
     {
@@ -114,7 +114,7 @@ class IngestedUserListInfo extends \Google\Protobuf\Internal\Message
      * Required. Immutable. Upload key types of this user list.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.IngestedUserListInfo.UploadKeyType upload_key_types = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setUploadKeyTypes($var)

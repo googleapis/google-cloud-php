@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a sorting in a report.
@@ -248,5 +248,4 @@ class Sort extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Machine resources for a version.
@@ -59,7 +59,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      *           Disk size (GB) needed.
      *     @type float $memory_gb
      *           Memory (GB) needed.
-     *     @type array<\Google\Cloud\AppEngine\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\AppEngine\V1\Volume[] $volumes
      *           User specified volumes.
      *     @type string $kms_key_reference
      *           The name of the encryption key that is stored in Google Cloud KMS.
@@ -153,7 +153,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      * User specified volumes.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Volume volumes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\Volume>
      */
     public function getVolumes()
     {
@@ -164,7 +164,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      * User specified volumes.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Volume volumes = 4;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\Volume[] $var
      * @return $this
      */
     public function setVolumes($var)

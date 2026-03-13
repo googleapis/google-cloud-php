@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\AudienceDimensionOrMetricFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter for numeric or date values between certain values on a dimension
@@ -119,5 +119,4 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

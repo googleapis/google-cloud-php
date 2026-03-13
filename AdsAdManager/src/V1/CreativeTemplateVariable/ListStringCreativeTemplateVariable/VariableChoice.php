@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\CreativeTemplateVariable\ListStringCreativeTemplateVariable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stores variable choices selectable by users.
@@ -138,5 +138,4 @@ class VariableChoice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

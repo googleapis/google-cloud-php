@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message to get space notification setting.
@@ -19,7 +19,7 @@ class GetSpaceNotificationSettingRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Required. Format: users/{user}/spaces/{space}/spaceNotificationSetting
      * - `users/me/spaces/{space}/spaceNotificationSetting`, OR
-     * - `users/user&#64;example.com/spaces/{space}/spaceNotificationSetting`, OR
+     * - `users/user\@example.com/spaces/{space}/spaceNotificationSetting`, OR
      * - `users/123456789/spaces/{space}/spaceNotificationSetting`.
      * Note: Only the caller's user id or email is allowed in the path.
      *
@@ -55,7 +55,7 @@ class GetSpaceNotificationSettingRequest extends \Google\Protobuf\Internal\Messa
      *     @type string $name
      *           Required. Format: users/{user}/spaces/{space}/spaceNotificationSetting
      *           - `users/me/spaces/{space}/spaceNotificationSetting`, OR
-     *           - `users/user&#64;example.com/spaces/{space}/spaceNotificationSetting`, OR
+     *           - `users/user\@example.com/spaces/{space}/spaceNotificationSetting`, OR
      *           - `users/123456789/spaces/{space}/spaceNotificationSetting`.
      *           Note: Only the caller's user id or email is allowed in the path.
      * }
@@ -68,7 +68,7 @@ class GetSpaceNotificationSettingRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Required. Format: users/{user}/spaces/{space}/spaceNotificationSetting
      * - `users/me/spaces/{space}/spaceNotificationSetting`, OR
-     * - `users/user&#64;example.com/spaces/{space}/spaceNotificationSetting`, OR
+     * - `users/user\@example.com/spaces/{space}/spaceNotificationSetting`, OR
      * - `users/123456789/spaces/{space}/spaceNotificationSetting`.
      * Note: Only the caller's user id or email is allowed in the path.
      *
@@ -83,7 +83,7 @@ class GetSpaceNotificationSettingRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Required. Format: users/{user}/spaces/{space}/spaceNotificationSetting
      * - `users/me/spaces/{space}/spaceNotificationSetting`, OR
-     * - `users/user&#64;example.com/spaces/{space}/spaceNotificationSetting`, OR
+     * - `users/user\@example.com/spaces/{space}/spaceNotificationSetting`, OR
      * - `users/123456789/spaces/{space}/spaceNotificationSetting`.
      * Note: Only the caller's user id or email is allowed in the path.
      *

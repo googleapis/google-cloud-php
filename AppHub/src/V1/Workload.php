@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Workload is an App Hub data model that contains a discovered workload, which

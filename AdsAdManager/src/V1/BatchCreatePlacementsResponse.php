@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `BatchCreatePlacements` method.
@@ -28,7 +28,7 @@ class BatchCreatePlacementsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\Placement>|\Google\Protobuf\Internal\RepeatedField $placements
+     *     @type \Google\Ads\AdManager\V1\Placement[] $placements
      *           The `Placement` objects created.
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreatePlacementsResponse extends \Google\Protobuf\Internal\Message
      * The `Placement` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Placement placements = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Placement>
      */
     public function getPlacements()
     {
@@ -52,7 +52,7 @@ class BatchCreatePlacementsResponse extends \Google\Protobuf\Internal\Message
      * The `Placement` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Placement placements = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\Placement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\Placement[] $var
      * @return $this
      */
     public function setPlacements($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiGateway\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ApiGatewayService.ListApiConfigs
@@ -40,11 +40,11 @@ class ListApiConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiGateway\V1\ApiConfig>|\Google\Protobuf\Internal\RepeatedField $api_configs
+     *     @type \Google\Cloud\ApiGateway\V1\ApiConfig[] $api_configs
      *           API Configs.
      *     @type string $next_page_token
      *           Next page token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
+     *     @type string[] $unreachable_locations
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListApiConfigsResponse extends \Google\Protobuf\Internal\Message
      * API Configs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig api_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiGateway\V1\ApiConfig>
      */
     public function getApiConfigs()
     {
@@ -68,7 +68,7 @@ class ListApiConfigsResponse extends \Google\Protobuf\Internal\Message
      * API Configs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig api_configs = 1;</code>
-     * @param array<\Google\Cloud\ApiGateway\V1\ApiConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiGateway\V1\ApiConfig[] $var
      * @return $this
      */
     public function setApiConfigs($var)
@@ -109,7 +109,7 @@ class ListApiConfigsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachableLocations()
     {
@@ -120,7 +120,7 @@ class ListApiConfigsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachableLocations($var)

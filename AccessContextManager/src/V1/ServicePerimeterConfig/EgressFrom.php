@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1\ServicePerimeterConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the conditions under which an [EgressPolicy]
@@ -48,7 +48,7 @@ class EgressFrom extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $identities
+     *     @type string[] $identities
      *           A list of identities that are allowed access through this [EgressPolicy].
      *           Should be in the format of email address. The email address should
      *           represent individual user or service account only.
@@ -69,7 +69,7 @@ class EgressFrom extends \Google\Protobuf\Internal\Message
      * represent individual user or service account only.
      *
      * Generated from protobuf field <code>repeated string identities = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIdentities()
     {
@@ -82,7 +82,7 @@ class EgressFrom extends \Google\Protobuf\Internal\Message
      * represent individual user or service account only.
      *
      * Generated from protobuf field <code>repeated string identities = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIdentities($var)
@@ -124,5 +124,4 @@ class EgressFrom extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

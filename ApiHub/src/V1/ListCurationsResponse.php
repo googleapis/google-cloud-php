@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListCurations][ApiHub.ListCurations] method's response.
@@ -35,7 +35,7 @@ class ListCurationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Curation>|\Google\Protobuf\Internal\RepeatedField $curations
+     *     @type \Google\Cloud\ApiHub\V1\Curation[] $curations
      *           The curation resources present in the API hub.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListCurationsResponse extends \Google\Protobuf\Internal\Message
      * The curation resources present in the API hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Curation curations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Curation>
      */
     public function getCurations()
     {
@@ -62,7 +62,7 @@ class ListCurationsResponse extends \Google\Protobuf\Internal\Message
      * The curation resources present in the API hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Curation curations = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Curation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Curation[] $var
      * @return $this
      */
     public function setCurations($var)

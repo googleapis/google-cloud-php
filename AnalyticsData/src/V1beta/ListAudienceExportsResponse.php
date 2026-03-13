@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of all audience exports for a property.
@@ -35,7 +35,7 @@ class ListAudienceExportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1beta\AudienceExport>|\Google\Protobuf\Internal\RepeatedField $audience_exports
+     *     @type \Google\Analytics\Data\V1beta\AudienceExport[] $audience_exports
      *           Each audience export for a property.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAudienceExportsResponse extends \Google\Protobuf\Internal\Message
      * Each audience export for a property.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.AudienceExport audience_exports = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\AudienceExport>
      */
     public function getAudienceExports()
     {
@@ -62,7 +62,7 @@ class ListAudienceExportsResponse extends \Google\Protobuf\Internal\Message
      * Each audience export for a property.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.AudienceExport audience_exports = 1;</code>
-     * @param array<\Google\Analytics\Data\V1beta\AudienceExport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\AudienceExport[] $var
      * @return $this
      */
     public function setAudienceExports($var)

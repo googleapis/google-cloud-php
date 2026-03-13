@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1\ServicePerimeterConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the conditions under which an [IngressPolicy]
@@ -54,7 +54,7 @@ class IngressTo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation[] $operations
      *           A list of [ApiOperations]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation]
      *           allowed to be performed by the sources specified in corresponding
@@ -62,7 +62,7 @@ class IngressTo extends \Google\Protobuf\Internal\Message
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressFrom]
      *           in this [ServicePerimeter]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeter].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type string[] $resources
      *           A list of resources, currently only projects in the form
      *           `projects/<projectnumber>`, protected by this [ServicePerimeter]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeter] that are
@@ -88,7 +88,7 @@ class IngressTo extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.ServicePerimeter].
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation>
      */
     public function getOperations()
     {
@@ -105,7 +105,7 @@ class IngressTo extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.ServicePerimeter].
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation operations = 1;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\ApiOperation[] $var
      * @return $this
      */
     public function setOperations($var)
@@ -127,7 +127,7 @@ class IngressTo extends \Google\Protobuf\Internal\Message
      * perimeter are allowed.
      *
      * Generated from protobuf field <code>repeated string resources = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResources()
     {
@@ -145,7 +145,7 @@ class IngressTo extends \Google\Protobuf\Internal\Message
      * perimeter are allowed.
      *
      * Generated from protobuf field <code>repeated string resources = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResources($var)
@@ -157,5 +157,4 @@ class IngressTo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

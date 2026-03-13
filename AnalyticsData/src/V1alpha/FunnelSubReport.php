@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Funnel sub reports contain the dimension and metric data values. For example,
@@ -51,15 +51,15 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $dimension_headers
+     *     @type \Google\Analytics\Data\V1alpha\DimensionHeader[] $dimension_headers
      *           Describes dimension columns. Funnel reports always include the funnel step
      *           dimension in sub report responses. Additional dimensions like breakdowns,
      *           dates, and next actions may be present in the response if requested.
-     *     @type array<\Google\Analytics\Data\V1alpha\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $metric_headers
+     *     @type \Google\Analytics\Data\V1alpha\MetricHeader[] $metric_headers
      *           Describes metric columns. Funnel reports always include active users in sub
      *           report responses. The funnel table includes additional metrics like
      *           completion rate, abandonments, and abandonments rate.
-     *     @type array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Analytics\Data\V1alpha\Row[] $rows
      *           Rows of dimension value combinations and metric values in the report.
      *     @type \Google\Analytics\Data\V1alpha\FunnelResponseMetadata $metadata
      *           Metadata for the funnel report.
@@ -76,7 +76,7 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      * dates, and next actions may be present in the response if requested.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DimensionHeader dimension_headers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\DimensionHeader>
      */
     public function getDimensionHeaders()
     {
@@ -89,7 +89,7 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      * dates, and next actions may be present in the response if requested.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DimensionHeader dimension_headers = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\DimensionHeader[] $var
      * @return $this
      */
     public function setDimensionHeaders($var)
@@ -106,7 +106,7 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      * completion rate, abandonments, and abandonments rate.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.MetricHeader metric_headers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\MetricHeader>
      */
     public function getMetricHeaders()
     {
@@ -119,7 +119,7 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      * completion rate, abandonments, and abandonments rate.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.MetricHeader metric_headers = 2;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\MetricHeader[] $var
      * @return $this
      */
     public function setMetricHeaders($var)
@@ -134,7 +134,7 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row rows = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\Row>
      */
     public function getRows()
     {
@@ -145,7 +145,7 @@ class FunnelSubReport extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row rows = 3;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\Row[] $var
      * @return $this
      */
     public function setRows($var)

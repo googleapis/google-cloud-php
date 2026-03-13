@@ -5,8 +5,8 @@
 namespace Google\Cloud\AdvisoryNotifications\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message which contains notification details.
@@ -48,7 +48,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AdvisoryNotifications\V1\Message\Body $body
      *           The message content.
-     *     @type array<\Google\Cloud\AdvisoryNotifications\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $attachments
+     *     @type \Google\Cloud\AdvisoryNotifications\V1\Attachment[] $attachments
      *           The attachments to download.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The Message creation timestamp.
@@ -101,7 +101,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The attachments to download.
      *
      * Generated from protobuf field <code>repeated .google.cloud.advisorynotifications.v1.Attachment attachments = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AdvisoryNotifications\V1\Attachment>
      */
     public function getAttachments()
     {
@@ -112,7 +112,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The attachments to download.
      *
      * Generated from protobuf field <code>repeated .google.cloud.advisorynotifications.v1.Attachment attachments = 2;</code>
-     * @param array<\Google\Cloud\AdvisoryNotifications\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AdvisoryNotifications\V1\Attachment[] $var
      * @return $this
      */
     public function setAttachments($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for CreateRollupProperty RPC.
@@ -36,7 +36,7 @@ class CreateRollupPropertyResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Analytics\Admin\V1alpha\Property $rollup_property
      *           The created roll-up property.
-     *     @type array<\Google\Analytics\Admin\V1alpha\RollupPropertySourceLink>|\Google\Protobuf\Internal\RepeatedField $rollup_property_source_links
+     *     @type \Google\Analytics\Admin\V1alpha\RollupPropertySourceLink[] $rollup_property_source_links
      *           The created roll-up property source links.
      * }
      */
@@ -85,7 +85,7 @@ class CreateRollupPropertyResponse extends \Google\Protobuf\Internal\Message
      * The created roll-up property source links.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.RollupPropertySourceLink rollup_property_source_links = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\RollupPropertySourceLink>
      */
     public function getRollupPropertySourceLinks()
     {
@@ -96,7 +96,7 @@ class CreateRollupPropertyResponse extends \Google\Protobuf\Internal\Message
      * The created roll-up property source links.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.RollupPropertySourceLink rollup_property_source_links = 2;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\RollupPropertySourceLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\RollupPropertySourceLink[] $var
      * @return $this
      */
     public function setRollupPropertySourceLinks($var)

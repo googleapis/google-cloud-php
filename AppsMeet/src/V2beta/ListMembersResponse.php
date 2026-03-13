@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of list members.
@@ -35,7 +35,7 @@ class ListMembersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Meet\V2beta\Member>|\Google\Protobuf\Internal\RepeatedField $members
+     *     @type \Google\Apps\Meet\V2beta\Member[] $members
      *           The list of members for the current page.
      *     @type string $next_page_token
      *           Token to be circulated back for further list call if current list doesn't
@@ -51,7 +51,7 @@ class ListMembersResponse extends \Google\Protobuf\Internal\Message
      * The list of members for the current page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2beta.Member members = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Meet\V2beta\Member>
      */
     public function getMembers()
     {
@@ -62,7 +62,7 @@ class ListMembersResponse extends \Google\Protobuf\Internal\Message
      * The list of members for the current page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2beta.Member members = 1;</code>
-     * @param array<\Google\Apps\Meet\V2beta\Member>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Meet\V2beta\Member[] $var
      * @return $this
      */
     public function setMembers($var)

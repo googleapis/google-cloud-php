@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiRegistry\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing McpTools
@@ -40,11 +40,11 @@ class ListMcpToolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiRegistry\V1beta\McpTool>|\Google\Protobuf\Internal\RepeatedField $mcp_tools
+     *     @type \Google\Cloud\ApiRegistry\V1beta\McpTool[] $mcp_tools
      *           The list of McpTool
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListMcpToolsResponse extends \Google\Protobuf\Internal\Message
      * The list of McpTool
      *
      * Generated from protobuf field <code>repeated .google.cloud.apiregistry.v1beta.McpTool mcp_tools = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiRegistry\V1beta\McpTool>
      */
     public function getMcpTools()
     {
@@ -68,7 +68,7 @@ class ListMcpToolsResponse extends \Google\Protobuf\Internal\Message
      * The list of McpTool
      *
      * Generated from protobuf field <code>repeated .google.cloud.apiregistry.v1beta.McpTool mcp_tools = 1;</code>
-     * @param array<\Google\Cloud\ApiRegistry\V1beta\McpTool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiRegistry\V1beta\McpTool[] $var
      * @return $this
      */
     public function setMcpTools($var)
@@ -109,7 +109,7 @@ class ListMcpToolsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListMcpToolsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

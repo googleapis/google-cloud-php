@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of string parameters to supply when the action method is invoked.
@@ -105,5 +105,4 @@ class ActionParameter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

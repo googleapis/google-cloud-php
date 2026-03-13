@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `BatchCreateEntitySignalsMappings` method.
@@ -28,7 +28,7 @@ class BatchCreateEntitySignalsMappingsResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\EntitySignalsMapping>|\Google\Protobuf\Internal\RepeatedField $entity_signals_mappings
+     *     @type \Google\Ads\AdManager\V1\EntitySignalsMapping[] $entity_signals_mappings
      *           The `EntitySignalsMapping` objects created.
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateEntitySignalsMappingsResponse extends \Google\Protobuf\Internal
      * The `EntitySignalsMapping` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.EntitySignalsMapping entity_signals_mappings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\EntitySignalsMapping>
      */
     public function getEntitySignalsMappings()
     {
@@ -52,7 +52,7 @@ class BatchCreateEntitySignalsMappingsResponse extends \Google\Protobuf\Internal
      * The `EntitySignalsMapping` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.EntitySignalsMapping entity_signals_mappings = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\EntitySignalsMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\EntitySignalsMapping[] $var
      * @return $this
      */
     public function setEntitySignalsMappings($var)

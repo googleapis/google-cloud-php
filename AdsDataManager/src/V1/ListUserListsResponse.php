@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListUserLists.
@@ -35,7 +35,7 @@ class ListUserListsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\UserList>|\Google\Protobuf\Internal\RepeatedField $user_lists
+     *     @type \Google\Ads\DataManager\V1\UserList[] $user_lists
      *           The user lists from the specified account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListUserListsResponse extends \Google\Protobuf\Internal\Message
      * The user lists from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserList user_lists = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\UserList>
      */
     public function getUserLists()
     {
@@ -62,7 +62,7 @@ class ListUserListsResponse extends \Google\Protobuf\Internal\Message
      * The user lists from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserList user_lists = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\UserList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\UserList[] $var
      * @return $this
      */
     public function setUserLists($var)

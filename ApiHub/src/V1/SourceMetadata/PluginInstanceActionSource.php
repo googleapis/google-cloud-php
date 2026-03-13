@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\SourceMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PluginInstanceActionSource represents the plugin instance action source.
@@ -106,5 +106,4 @@ class PluginInstanceActionSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

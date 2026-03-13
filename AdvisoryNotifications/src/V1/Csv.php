@@ -5,8 +5,8 @@
 namespace Google\Cloud\AdvisoryNotifications\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of a CSV file attachment, as a list of column headers and
@@ -36,9 +36,9 @@ class Csv extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type string[] $headers
      *           The list of headers for data columns in a CSV file.
-     *     @type array<\Google\Cloud\AdvisoryNotifications\V1\Csv\CsvRow>|\Google\Protobuf\Internal\RepeatedField $data_rows
+     *     @type \Google\Cloud\AdvisoryNotifications\V1\Csv\CsvRow[] $data_rows
      *           The list of data rows in a CSV file, as string arrays rather than as a
      *           single comma-separated string.
      * }
@@ -52,7 +52,7 @@ class Csv extends \Google\Protobuf\Internal\Message
      * The list of headers for data columns in a CSV file.
      *
      * Generated from protobuf field <code>repeated string headers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHeaders()
     {
@@ -63,7 +63,7 @@ class Csv extends \Google\Protobuf\Internal\Message
      * The list of headers for data columns in a CSV file.
      *
      * Generated from protobuf field <code>repeated string headers = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHeaders($var)
@@ -79,7 +79,7 @@ class Csv extends \Google\Protobuf\Internal\Message
      * single comma-separated string.
      *
      * Generated from protobuf field <code>repeated .google.cloud.advisorynotifications.v1.Csv.CsvRow data_rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AdvisoryNotifications\V1\Csv\CsvRow>
      */
     public function getDataRows()
     {
@@ -91,7 +91,7 @@ class Csv extends \Google\Protobuf\Internal\Message
      * single comma-separated string.
      *
      * Generated from protobuf field <code>repeated .google.cloud.advisorynotifications.v1.Csv.CsvRow data_rows = 2;</code>
-     * @param array<\Google\Cloud\AdvisoryNotifications\V1\Csv\CsvRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AdvisoryNotifications\V1\Csv\CsvRow[] $var
      * @return $this
      */
     public function setDataRows($var)

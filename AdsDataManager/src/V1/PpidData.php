@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Publisher provided identifiers data holding the ppids. At least one ppid is
@@ -30,7 +30,7 @@ class PpidData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ppids
+     *     @type string[] $ppids
      *           Required. The list of publisher provided identifiers for a user.
      * }
      */
@@ -43,7 +43,7 @@ class PpidData extends \Google\Protobuf\Internal\Message
      * Required. The list of publisher provided identifiers for a user.
      *
      * Generated from protobuf field <code>repeated string ppids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPpids()
     {
@@ -54,7 +54,7 @@ class PpidData extends \Google\Protobuf\Internal\Message
      * Required. The list of publisher provided identifiers for a user.
      *
      * Generated from protobuf field <code>repeated string ppids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPpids($var)

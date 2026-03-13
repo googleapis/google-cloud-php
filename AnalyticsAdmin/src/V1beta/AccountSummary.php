@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A virtual resource representing an overview of an account and
@@ -61,7 +61,7 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
      *           Example: "accounts/1000"
      *     @type string $display_name
      *           Display name for the account referred to in this account summary.
-     *     @type array<\Google\Analytics\Admin\V1beta\PropertySummary>|\Google\Protobuf\Internal\RepeatedField $property_summaries
+     *     @type \Google\Analytics\Admin\V1beta\PropertySummary[] $property_summaries
      *           List of summaries for child accounts of this account.
      * }
      */
@@ -160,7 +160,7 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
      * List of summaries for child accounts of this account.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.PropertySummary property_summaries = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\PropertySummary>
      */
     public function getPropertySummaries()
     {
@@ -171,7 +171,7 @@ class AccountSummary extends \Google\Protobuf\Internal\Message
      * List of summaries for child accounts of this account.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.PropertySummary property_summaries = 4;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\PropertySummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\PropertySummary[] $var
      * @return $this
      */
     public function setPropertySummaries($var)

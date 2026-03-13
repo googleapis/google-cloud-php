@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Event Create Rule defines conditions that will trigger the creation
@@ -80,7 +80,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      *           * be less than 40 characters
      *           * consist only of letters, digits or _ (underscores)
      *           * start with a letter
-     *     @type array<\Google\Analytics\Admin\V1alpha\MatchingCondition>|\Google\Protobuf\Internal\RepeatedField $event_conditions
+     *     @type \Google\Analytics\Admin\V1alpha\MatchingCondition[] $event_conditions
      *           Required. Must have at least one condition, and can have up to 10 max.
      *           Conditions on the source event must match for this rule to be applied.
      *     @type bool $source_copy_parameters
@@ -88,7 +88,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      *           If false, or unset, all non-internal parameters are not copied from the
      *           source event. Parameter mutations are applied after the parameters have
      *           been copied.
-     *     @type array<\Google\Analytics\Admin\V1alpha\ParameterMutation>|\Google\Protobuf\Internal\RepeatedField $parameter_mutations
+     *     @type \Google\Analytics\Admin\V1alpha\ParameterMutation[] $parameter_mutations
      *           Parameter mutations define parameter behavior on the new event, and
      *           are applied in order.
      *           A maximum of 20 mutations can be applied.
@@ -168,7 +168,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      * Conditions on the source event must match for this rule to be applied.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.MatchingCondition event_conditions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\MatchingCondition>
      */
     public function getEventConditions()
     {
@@ -180,7 +180,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      * Conditions on the source event must match for this rule to be applied.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.MatchingCondition event_conditions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\MatchingCondition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\MatchingCondition[] $var
      * @return $this
      */
     public function setEventConditions($var)
@@ -229,7 +229,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      * A maximum of 20 mutations can be applied.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ParameterMutation parameter_mutations = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\ParameterMutation>
      */
     public function getParameterMutations()
     {
@@ -242,7 +242,7 @@ class EventCreateRule extends \Google\Protobuf\Internal\Message
      * A maximum of 20 mutations can be applied.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ParameterMutation parameter_mutations = 5;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\ParameterMutation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\ParameterMutation[] $var
      * @return $this
      */
     public function setParameterMutations($var)

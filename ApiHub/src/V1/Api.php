@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An API resource in the API Hub.
@@ -219,7 +219,7 @@ class Api extends \Google\Protobuf\Internal\Message
      *           Optional. The documentation for the API resource.
      *     @type \Google\Cloud\ApiHub\V1\Owner $owner
      *           Optional. Owner details for the API resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type string[] $versions
      *           Output only. The list of versions present in an API resource.
      *           Note: An API resource can be associated with more than 1 version.
      *           Format is
@@ -293,7 +293,7 @@ class Api extends \Google\Protobuf\Internal\Message
      *           not a directory.
      *     @type string $fingerprint
      *           Optional. Fingerprint of the API resource.
-     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *     @type \Google\Cloud\ApiHub\V1\SourceMetadata[] $source_metadata
      *           Output only. The list of sources and metadata from the sources of the API
      *           resource.
      *     @type \Google\Cloud\ApiHub\V1\AttributeValues $api_functional_requirements
@@ -480,7 +480,7 @@ class Api extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}`
      *
      * Generated from protobuf field <code>repeated string versions = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVersions()
     {
@@ -494,7 +494,7 @@ class Api extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}`
      *
      * Generated from protobuf field <code>repeated string versions = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVersions($var)
@@ -970,7 +970,7 @@ class Api extends \Google\Protobuf\Internal\Message
      * resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\SourceMetadata>
      */
     public function getSourceMetadata()
     {
@@ -982,7 +982,7 @@ class Api extends \Google\Protobuf\Internal\Message
      * resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\SourceMetadata[] $var
      * @return $this
      */
     public function setSourceMetadata($var)

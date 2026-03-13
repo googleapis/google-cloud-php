@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.alloydb.v1.RestartInstanceRequest</code>
@@ -92,7 +92,7 @@ class RestartInstanceRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set, performs request validation, for example, permission
      *           checks and any other type of validation, but does not actually execute the
      *           create request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $node_ids
+     *     @type string[] $node_ids
      *           Optional. Full name of the nodes as obtained from INSTANCE_VIEW_FULL to
      *           restart upon. Applicable only to read instances.
      * }
@@ -211,7 +211,7 @@ class RestartInstanceRequest extends \Google\Protobuf\Internal\Message
      * restart upon. Applicable only to read instances.
      *
      * Generated from protobuf field <code>repeated string node_ids = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNodeIds()
     {
@@ -223,7 +223,7 @@ class RestartInstanceRequest extends \Google\Protobuf\Internal\Message
      * restart upon. Applicable only to read instances.
      *
      * Generated from protobuf field <code>repeated string node_ids = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNodeIds($var)

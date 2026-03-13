@@ -5,8 +5,8 @@
 namespace Google\Apps\Events\Subscriptions\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A subscription to receive events about a Google Workspace resource. To learn
@@ -158,7 +158,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           A user can only authorize your app to create one subscription for a given
      *           target resource. If your app tries to create another subscription with the
      *           same user credentials, the request returns an `ALREADY_EXISTS` error.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $event_types
+     *     @type string[] $event_types
      *           Required. Immutable. Unordered list. Input for creating a subscription.
      *           Otherwise, output only. One or more types of events to receive about the
      *           target resource. Formatted according to the CloudEvents specification.
@@ -386,7 +386,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * the request returns an HTTP `400 Bad Request` status code.
      *
      * Generated from protobuf field <code>repeated string event_types = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEventTypes()
     {
@@ -407,7 +407,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * the request returns an HTTP `400 Bad Request` status code.
      *
      * Generated from protobuf field <code>repeated string event_types = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEventTypes($var)

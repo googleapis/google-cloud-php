@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListApiSpecRevisionsResponse.
@@ -35,7 +35,7 @@ class ListApiSpecRevisionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApigeeRegistry\V1\ApiSpec>|\Google\Protobuf\Internal\RepeatedField $api_specs
+     *     @type \Google\Cloud\ApigeeRegistry\V1\ApiSpec[] $api_specs
      *           The revisions of the spec.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListApiSpecRevisionsResponse extends \Google\Protobuf\Internal\Message
      * The revisions of the spec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeregistry.v1.ApiSpec api_specs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApigeeRegistry\V1\ApiSpec>
      */
     public function getApiSpecs()
     {
@@ -62,7 +62,7 @@ class ListApiSpecRevisionsResponse extends \Google\Protobuf\Internal\Message
      * The revisions of the spec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeregistry.v1.ApiSpec api_specs = 1;</code>
-     * @param array<\Google\Cloud\ApigeeRegistry\V1\ApiSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApigeeRegistry\V1\ApiSpec[] $var
      * @return $this
      */
     public function setApiSpecs($var)

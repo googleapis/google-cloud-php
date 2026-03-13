@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1\RequestStatusPerDestination;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status of the pair data removal from the destination.
@@ -114,5 +114,4 @@ class RemovePairDataStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

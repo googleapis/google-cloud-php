@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing DiscoveredApiOperations
@@ -36,7 +36,7 @@ class ListDiscoveredApiOperationsResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\DiscoveredApiOperation>|\Google\Protobuf\Internal\RepeatedField $discovered_api_operations
+     *     @type \Google\Cloud\ApiHub\V1\DiscoveredApiOperation[] $discovered_api_operations
      *           The DiscoveredApiOperations from the specified project, location
      *           and DiscoveredApiObservation.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListDiscoveredApiOperationsResponse extends \Google\Protobuf\Internal\Mess
      * and DiscoveredApiObservation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiOperation discovered_api_operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\DiscoveredApiOperation>
      */
     public function getDiscoveredApiOperations()
     {
@@ -66,7 +66,7 @@ class ListDiscoveredApiOperationsResponse extends \Google\Protobuf\Internal\Mess
      * and DiscoveredApiObservation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiOperation discovered_api_operations = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\DiscoveredApiOperation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\DiscoveredApiOperation[] $var
      * @return $this
      */
     public function setDiscoveredApiOperations($var)

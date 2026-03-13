@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for a Data Access Record Report.
@@ -154,13 +154,13 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *           'properties/123' if "123" is your Google Analytics property ID. To request
      *           at the account level, entity should be for example 'accounts/1234' if
      *           "1234" is your Google Analytics Account ID.
-     *     @type array<\Google\Analytics\Admin\V1beta\AccessDimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Analytics\Admin\V1beta\AccessDimension[] $dimensions
      *           The dimensions requested and displayed in the response. Requests are
      *           allowed up to 9 dimensions.
-     *     @type array<\Google\Analytics\Admin\V1beta\AccessMetric>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Analytics\Admin\V1beta\AccessMetric[] $metrics
      *           The metrics requested and displayed in the response. Requests are allowed
      *           up to 10 metrics.
-     *     @type array<\Google\Analytics\Admin\V1beta\AccessDateRange>|\Google\Protobuf\Internal\RepeatedField $date_ranges
+     *     @type \Google\Analytics\Admin\V1beta\AccessDateRange[] $date_ranges
      *           Date ranges of access records to read. If multiple date ranges are
      *           requested, each response row will contain a zero based date range index. If
      *           two date ranges overlap, the access records for the overlapping days is
@@ -201,7 +201,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      *           Formatted as strings from the IANA Time Zone database
      *           (https://www.iana.org/time-zones); for example "America/New_York" or
      *           "Asia/Tokyo".
-     *     @type array<\Google\Analytics\Admin\V1beta\AccessOrderBy>|\Google\Protobuf\Internal\RepeatedField $order_bys
+     *     @type \Google\Analytics\Admin\V1beta\AccessOrderBy[] $order_bys
      *           Specifies how rows are ordered in the response.
      *     @type bool $return_entity_quota
      *           Toggles whether to return the current state of this Analytics Property's
@@ -268,7 +268,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * allowed up to 9 dimensions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessDimension dimensions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\AccessDimension>
      */
     public function getDimensions()
     {
@@ -280,7 +280,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * allowed up to 9 dimensions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessDimension dimensions = 2;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\AccessDimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\AccessDimension[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -296,7 +296,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * up to 10 metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessMetric metrics = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\AccessMetric>
      */
     public function getMetrics()
     {
@@ -308,7 +308,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * up to 10 metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessMetric metrics = 3;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\AccessMetric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\AccessMetric[] $var
      * @return $this
      */
     public function setMetrics($var)
@@ -327,7 +327,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * to 2 date ranges.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessDateRange date_ranges = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\AccessDateRange>
      */
     public function getDateRanges()
     {
@@ -342,7 +342,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * to 2 date ranges.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessDateRange date_ranges = 4;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\AccessDateRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\AccessDateRange[] $var
      * @return $this
      */
     public function setDateRanges($var)
@@ -557,7 +557,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * Specifies how rows are ordered in the response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessOrderBy order_bys = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\AccessOrderBy>
      */
     public function getOrderBys()
     {
@@ -568,7 +568,7 @@ class RunAccessReportRequest extends \Google\Protobuf\Internal\Message
      * Specifies how rows are ordered in the response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.AccessOrderBy order_bys = 10;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\AccessOrderBy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\AccessOrderBy[] $var
      * @return $this
      */
     public function setOrderBys($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListPrivateAuctionsRequest` containing
@@ -50,7 +50,7 @@ class ListPrivateAuctionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\PrivateAuction>|\Google\Protobuf\Internal\RepeatedField $private_auctions
+     *     @type \Google\Ads\AdManager\V1\PrivateAuction[] $private_auctions
      *           The `PrivateAuction` objects from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListPrivateAuctionsResponse extends \Google\Protobuf\Internal\Message
      * The `PrivateAuction` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.PrivateAuction private_auctions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\PrivateAuction>
      */
     public function getPrivateAuctions()
     {
@@ -87,7 +87,7 @@ class ListPrivateAuctionsResponse extends \Google\Protobuf\Internal\Message
      * The `PrivateAuction` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.PrivateAuction private_auctions = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\PrivateAuction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\PrivateAuction[] $var
      * @return $this
      */
     public function setPrivateAuctions($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListTranscripts method.
@@ -35,7 +35,7 @@ class ListTranscriptsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Meet\V2\Transcript>|\Google\Protobuf\Internal\RepeatedField $transcripts
+     *     @type \Google\Apps\Meet\V2\Transcript[] $transcripts
      *           List of transcripts in one page.
      *     @type string $next_page_token
      *           Token to be circulated back for further List call if current List doesn't
@@ -51,7 +51,7 @@ class ListTranscriptsResponse extends \Google\Protobuf\Internal\Message
      * List of transcripts in one page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2.Transcript transcripts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Meet\V2\Transcript>
      */
     public function getTranscripts()
     {
@@ -62,7 +62,7 @@ class ListTranscriptsResponse extends \Google\Protobuf\Internal\Message
      * List of transcripts in one page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2.Transcript transcripts = 1;</code>
-     * @param array<\Google\Apps\Meet\V2\Transcript>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Meet\V2\Transcript[] $var
      * @return $this
      */
     public function setTranscripts($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for creating a membership.
@@ -41,9 +41,9 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * users in the same Workspace organization `{user}` can also be the `id` of
      * the [person](https://developers.google.com/people/api/rest/v1/people) from
      * the People API, or the `id` for the user in the Directory API. For example,
-     * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     * if the People API Person profile ID for `user\@example.com` is `123456789`,
      * you can add the user to the space by setting the `membership.member.name`
-     * to `users/user&#64;example.com` or `users/123456789`.
+     * to `users/user\@example.com` or `users/123456789`.
      * Inviting users external to the Workspace organization that owns the space
      * requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
@@ -153,9 +153,9 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *           users in the same Workspace organization `{user}` can also be the `id` of
      *           the [person](https://developers.google.com/people/api/rest/v1/people) from
      *           the People API, or the `id` for the user in the Directory API. For example,
-     *           if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     *           if the People API Person profile ID for `user\@example.com` is `123456789`,
      *           you can add the user to the space by setting the `membership.member.name`
-     *           to `users/user&#64;example.com` or `users/123456789`.
+     *           to `users/user\@example.com` or `users/123456789`.
      *           Inviting users external to the Workspace organization that owns the space
      *           requires [user
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
@@ -230,9 +230,9 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * users in the same Workspace organization `{user}` can also be the `id` of
      * the [person](https://developers.google.com/people/api/rest/v1/people) from
      * the People API, or the `id` for the user in the Directory API. For example,
-     * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     * if the People API Person profile ID for `user\@example.com` is `123456789`,
      * you can add the user to the space by setting the `membership.member.name`
-     * to `users/user&#64;example.com` or `users/123456789`.
+     * to `users/user\@example.com` or `users/123456789`.
      * Inviting users external to the Workspace organization that owns the space
      * requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
@@ -278,9 +278,9 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      * users in the same Workspace organization `{user}` can also be the `id` of
      * the [person](https://developers.google.com/people/api/rest/v1/people) from
      * the People API, or the `id` for the user in the Directory API. For example,
-     * if the People API Person profile ID for `user&#64;example.com` is `123456789`,
+     * if the People API Person profile ID for `user\@example.com` is `123456789`,
      * you can add the user to the space by setting the `membership.member.name`
-     * to `users/user&#64;example.com` or `users/123456789`.
+     * to `users/user\@example.com` or `users/123456789`.
      * Inviting users external to the Workspace organization that owns the space
      * requires [user
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).

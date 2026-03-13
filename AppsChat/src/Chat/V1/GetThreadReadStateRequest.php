@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for GetThreadReadStateRequest API.
@@ -22,7 +22,7 @@ class GetThreadReadStateRequest extends \Google\Protobuf\Internal\Message
      * - The `me` alias. For example,
      * `users/me/spaces/{space}/threads/{thread}/threadReadState`.
      * - Their Workspace email address. For example,
-     * `users/user&#64;example.com/spaces/{space}/threads/{thread}/threadReadState`.
+     * `users/user\@example.com/spaces/{space}/threads/{thread}/threadReadState`.
      * - Their user id. For example,
      * `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
      * Format: users/{user}/spaces/{space}/threads/{thread}/threadReadState
@@ -73,7 +73,7 @@ class GetThreadReadStateRequest extends \Google\Protobuf\Internal\Message
      *           - The `me` alias. For example,
      *           `users/me/spaces/{space}/threads/{thread}/threadReadState`.
      *           - Their Workspace email address. For example,
-     *           `users/user&#64;example.com/spaces/{space}/threads/{thread}/threadReadState`.
+     *           `users/user\@example.com/spaces/{space}/threads/{thread}/threadReadState`.
      *           - Their user id. For example,
      *           `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
      *           Format: users/{user}/spaces/{space}/threads/{thread}/threadReadState
@@ -91,7 +91,7 @@ class GetThreadReadStateRequest extends \Google\Protobuf\Internal\Message
      * - The `me` alias. For example,
      * `users/me/spaces/{space}/threads/{thread}/threadReadState`.
      * - Their Workspace email address. For example,
-     * `users/user&#64;example.com/spaces/{space}/threads/{thread}/threadReadState`.
+     * `users/user\@example.com/spaces/{space}/threads/{thread}/threadReadState`.
      * - Their user id. For example,
      * `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
      * Format: users/{user}/spaces/{space}/threads/{thread}/threadReadState
@@ -111,7 +111,7 @@ class GetThreadReadStateRequest extends \Google\Protobuf\Internal\Message
      * - The `me` alias. For example,
      * `users/me/spaces/{space}/threads/{thread}/threadReadState`.
      * - Their Workspace email address. For example,
-     * `users/user&#64;example.com/spaces/{space}/threads/{thread}/threadReadState`.
+     * `users/user\@example.com/spaces/{space}/threads/{thread}/threadReadState`.
      * - Their user id. For example,
      * `users/123456789/spaces/{space}/threads/{thread}/threadReadState`.
      * Format: users/{user}/spaces/{space}/threads/{thread}/threadReadState

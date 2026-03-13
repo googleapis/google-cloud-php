@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A binding of a user to a set of roles.
@@ -50,14 +50,14 @@ class AccessBinding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $user
      *           If set, the email address of the user to set roles for.
-     *           Format: "someuser&#64;gmail.com"
+     *           Format: "someuser\@gmail.com"
      *     @type string $name
      *           Output only. Resource name of this binding.
      *           Format: accounts/{account}/accessBindings/{access_binding} or
      *           properties/{property}/accessBindings/{access_binding}
      *           Example:
      *           "accounts/100/accessBindings/200"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type string[] $roles
      *           A list of roles for to grant to the parent resource.
      *           Valid values:
      *           predefinedRoles/viewer
@@ -77,7 +77,7 @@ class AccessBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * If set, the email address of the user to set roles for.
-     * Format: "someuser&#64;gmail.com"
+     * Format: "someuser\@gmail.com"
      *
      * Generated from protobuf field <code>string user = 2;</code>
      * @return string
@@ -94,7 +94,7 @@ class AccessBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * If set, the email address of the user to set roles for.
-     * Format: "someuser&#64;gmail.com"
+     * Format: "someuser\@gmail.com"
      *
      * Generated from protobuf field <code>string user = 2;</code>
      * @param string $var
@@ -155,7 +155,7 @@ class AccessBinding extends \Google\Protobuf\Internal\Message
      * deleted.
      *
      * Generated from protobuf field <code>repeated string roles = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRoles()
     {
@@ -175,7 +175,7 @@ class AccessBinding extends \Google\Protobuf\Internal\Message
      * deleted.
      *
      * Generated from protobuf field <code>repeated string roles = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRoles($var)

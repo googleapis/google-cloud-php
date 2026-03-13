@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Respresents an API Observation observed in one of the sources.
@@ -118,7 +118,7 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/discoveredApiObservations/{discovered_api_observation}`
      *     @type int $style
      *           Optional. Style of ApiObservation
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $server_ips
+     *     @type string[] $server_ips
      *           Optional. The IP address (IPv4 or IPv6) of the origin server that the
      *           request was sent to. This field can include port information. Examples:
      *           `"192.168.1.1"`, `"10.0.0.1:80"`, `"FE80::0202:B3FF:FE1E:8329"`.
@@ -126,14 +126,14 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      *           Optional. The hostname of requests processed for this Observation.
      *     @type \Google\Protobuf\Timestamp $last_event_detected_time
      *           Optional. Last event detected time stamp
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_locations
+     *     @type string[] $source_locations
      *           Optional. The location of the observation source.
      *     @type int|string $api_operation_count
      *           Optional. The number of observed API Operations.
      *     @type string $origin
      *           Optional. For an observation pushed from a gcp resource, this would be the
      *           gcp project id.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $source_types
+     *     @type int[] $source_types
      *           Optional. The type of the source from which the observation was collected.
      *     @type int|string $known_operations_count
      *           Output only. The number of known API Operations.
@@ -215,7 +215,7 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      * `"192.168.1.1"`, `"10.0.0.1:80"`, `"FE80::0202:B3FF:FE1E:8329"`.
      *
      * Generated from protobuf field <code>repeated string server_ips = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServerIps()
     {
@@ -228,7 +228,7 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      * `"192.168.1.1"`, `"10.0.0.1:80"`, `"FE80::0202:B3FF:FE1E:8329"`.
      *
      * Generated from protobuf field <code>repeated string server_ips = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServerIps($var)
@@ -305,7 +305,7 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      * Optional. The location of the observation source.
      *
      * Generated from protobuf field <code>repeated string source_locations = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceLocations()
     {
@@ -316,7 +316,7 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      * Optional. The location of the observation source.
      *
      * Generated from protobuf field <code>repeated string source_locations = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceLocations($var)
@@ -385,7 +385,7 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      * Optional. The type of the source from which the observation was collected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiObservation.SourceType source_types = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSourceTypes()
     {
@@ -396,7 +396,7 @@ class DiscoveredApiObservation extends \Google\Protobuf\Internal\Message
      * Optional. The type of the source from which the observation was collected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiObservation.SourceType source_types = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSourceTypes($var)

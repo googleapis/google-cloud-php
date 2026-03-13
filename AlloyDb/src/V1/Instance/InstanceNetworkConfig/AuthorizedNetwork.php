@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AuthorizedNetwork contains metadata for an authorized network.
@@ -64,5 +64,4 @@ class AuthorizedNetwork extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

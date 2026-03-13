@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a logical AND of individual custom targeting expressions.
@@ -40,11 +40,11 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\CustomTargetingLiteral>|\Google\Protobuf\Internal\RepeatedField $custom_targeting_literals
+     *     @type \Google\Ads\AdManager\V1\CustomTargetingLiteral[] $custom_targeting_literals
      *           Optional. Leaf targeting expressions for custom key/values.
-     *     @type array<\Google\Ads\AdManager\V1\AudienceSegmentTargeting>|\Google\Protobuf\Internal\RepeatedField $audience_segment_targetings
+     *     @type \Google\Ads\AdManager\V1\AudienceSegmentTargeting[] $audience_segment_targetings
      *           Optional. Leaf targeting expressions for audience segments.
-     *     @type array<\Google\Ads\AdManager\V1\CmsMetadataTargeting>|\Google\Protobuf\Internal\RepeatedField $cms_metadata_targetings
+     *     @type \Google\Ads\AdManager\V1\CmsMetadataTargeting[] $cms_metadata_targetings
      *           Optional. Leaf targeting expressions for cms metadata.
      * }
      */
@@ -57,7 +57,7 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * Optional. Leaf targeting expressions for custom key/values.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingLiteral custom_targeting_literals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomTargetingLiteral>
      */
     public function getCustomTargetingLiterals()
     {
@@ -68,7 +68,7 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * Optional. Leaf targeting expressions for custom key/values.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingLiteral custom_targeting_literals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomTargetingLiteral>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomTargetingLiteral[] $var
      * @return $this
      */
     public function setCustomTargetingLiterals($var)
@@ -83,7 +83,7 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * Optional. Leaf targeting expressions for audience segments.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AudienceSegmentTargeting audience_segment_targetings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AudienceSegmentTargeting>
      */
     public function getAudienceSegmentTargetings()
     {
@@ -94,7 +94,7 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * Optional. Leaf targeting expressions for audience segments.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AudienceSegmentTargeting audience_segment_targetings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\AudienceSegmentTargeting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AudienceSegmentTargeting[] $var
      * @return $this
      */
     public function setAudienceSegmentTargetings($var)
@@ -109,7 +109,7 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * Optional. Leaf targeting expressions for cms metadata.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsMetadataTargeting cms_metadata_targetings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CmsMetadataTargeting>
      */
     public function getCmsMetadataTargetings()
     {
@@ -120,7 +120,7 @@ class CustomTargetingClause extends \Google\Protobuf\Internal\Message
      * Optional. Leaf targeting expressions for cms metadata.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsMetadataTargeting cms_metadata_targetings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\CmsMetadataTargeting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CmsMetadataTargeting[] $var
      * @return $this
      */
     public function setCmsMetadataTargetings($var)

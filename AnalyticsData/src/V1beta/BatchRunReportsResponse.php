@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The batch response containing multiple reports.
@@ -36,7 +36,7 @@ class BatchRunReportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1beta\RunReportResponse>|\Google\Protobuf\Internal\RepeatedField $reports
+     *     @type \Google\Analytics\Data\V1beta\RunReportResponse[] $reports
      *           Individual responses. Each response has a separate report request.
      *     @type string $kind
      *           Identifies what kind of resource this message is. This `kind` is always the
@@ -53,7 +53,7 @@ class BatchRunReportsResponse extends \Google\Protobuf\Internal\Message
      * Individual responses. Each response has a separate report request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunReportResponse reports = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\RunReportResponse>
      */
     public function getReports()
     {
@@ -64,7 +64,7 @@ class BatchRunReportsResponse extends \Google\Protobuf\Internal\Message
      * Individual responses. Each response has a separate report request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunReportResponse reports = 1;</code>
-     * @param array<\Google\Analytics\Data\V1beta\RunReportResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\RunReportResponse[] $var
      * @return $this
      */
     public function setReports($var)

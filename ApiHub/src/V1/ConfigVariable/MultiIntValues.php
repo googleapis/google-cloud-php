@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\ConfigVariable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config variable value of data type multi int.
@@ -28,7 +28,7 @@ class MultiIntValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type int[] $values
      *           Optional. The config variable value of data type multi int.
      * }
      */
@@ -41,7 +41,7 @@ class MultiIntValues extends \Google\Protobuf\Internal\Message
      * Optional. The config variable value of data type multi int.
      *
      * Generated from protobuf field <code>repeated int32 values = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class MultiIntValues extends \Google\Protobuf\Internal\Message
      * Optional. The config variable value of data type multi int.
      *
      * Generated from protobuf field <code>repeated int32 values = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setValues($var)
@@ -64,5 +64,4 @@ class MultiIntValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

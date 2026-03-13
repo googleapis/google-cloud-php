@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents targeting for audience segments. The values are combined in a
@@ -44,7 +44,7 @@ class AudienceSegmentTargeting extends \Google\Protobuf\Internal\Message
      *     @type bool $negative
      *           Whether this expression is negatively targeted, meaning it matches
      *           ad requests that exclude the below values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $audience_segments
+     *     @type string[] $audience_segments
      *           Optional. The targeted audience segments.
      *           This is either the resource name of a first-party audience segment or an
      *           alias to the effective third-party audience segment. Third-party audience
@@ -105,7 +105,7 @@ class AudienceSegmentTargeting extends \Google\Protobuf\Internal\Message
      * will be normalized to `networks/1234/audienceSegments/4567`.
      *
      * Generated from protobuf field <code>repeated string audience_segments = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAudienceSegments()
     {
@@ -121,7 +121,7 @@ class AudienceSegmentTargeting extends \Google\Protobuf\Internal\Message
      * will be normalized to `networks/1234/audienceSegments/4567`.
      *
      * Generated from protobuf field <code>repeated string audience_segments = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAudienceSegments($var)

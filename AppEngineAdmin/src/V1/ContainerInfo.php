@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Docker image that is used to create a container and start a VM instance for
@@ -20,7 +20,7 @@ class ContainerInfo extends \Google\Protobuf\Internal\Message
     /**
      * URI to the hosted container image in Google Container Registry. The URI
      * must be fully qualified and include a tag or digest.
-     * Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image&#64;digest"
+     * Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image\@digest"
      *
      * Generated from protobuf field <code>string image = 1;</code>
      */
@@ -35,7 +35,7 @@ class ContainerInfo extends \Google\Protobuf\Internal\Message
      *     @type string $image
      *           URI to the hosted container image in Google Container Registry. The URI
      *           must be fully qualified and include a tag or digest.
-     *           Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image&#64;digest"
+     *           Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image\@digest"
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class ContainerInfo extends \Google\Protobuf\Internal\Message
     /**
      * URI to the hosted container image in Google Container Registry. The URI
      * must be fully qualified and include a tag or digest.
-     * Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image&#64;digest"
+     * Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image\@digest"
      *
      * Generated from protobuf field <code>string image = 1;</code>
      * @return string
@@ -59,7 +59,7 @@ class ContainerInfo extends \Google\Protobuf\Internal\Message
     /**
      * URI to the hosted container image in Google Container Registry. The URI
      * must be fully qualified and include a tag or digest.
-     * Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image&#64;digest"
+     * Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image\@digest"
      *
      * Generated from protobuf field <code>string image = 1;</code>
      * @param string $var

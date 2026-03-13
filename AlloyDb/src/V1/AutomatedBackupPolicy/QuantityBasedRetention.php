@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\AutomatedBackupPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A quantity based policy specifies that a certain number of the most recent
@@ -65,5 +65,4 @@ class QuantityBasedRetention extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

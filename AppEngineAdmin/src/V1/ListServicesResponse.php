@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `Services.ListServices`.
@@ -34,7 +34,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppEngine\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type \Google\Cloud\AppEngine\V1\Service[] $services
      *           The services belonging to the requested application.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -49,7 +49,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The services belonging to the requested application.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Service services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\Service>
      */
     public function getServices()
     {
@@ -60,7 +60,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The services belonging to the requested application.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Service services = 1;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\Service[] $var
      * @return $this
      */
     public function setServices($var)

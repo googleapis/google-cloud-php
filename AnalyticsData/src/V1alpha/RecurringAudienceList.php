@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A recurring audience list produces new audience lists each day. Audience
@@ -110,7 +110,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      *     @type string $audience_display_name
      *           Output only. The descriptive display name for this audience. For example,
      *           "Purchasers".
-     *     @type array<\Google\Analytics\Data\V1alpha\AudienceDimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Analytics\Data\V1alpha\AudienceDimension[] $dimensions
      *           Required. The dimensions requested and displayed in the audience list
      *           response.
      *     @type int $active_days_remaining
@@ -122,7 +122,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      *           properties default to 14 days and have a maximum of 30 days.
      *           The minimum value allowed during creation is 1. Requests above their
      *           respective maximum will be coerced to their maximum.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $audience_lists
+     *     @type string[] $audience_lists
      *           Output only. Audience list resource names for audience list instances
      *           created for this recurring audience list. One audience list is created for
      *           each day, and the audience list will be listed here.
@@ -245,7 +245,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      * response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.AudienceDimension dimensions = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\AudienceDimension>
      */
     public function getDimensions()
     {
@@ -257,7 +257,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      * response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.AudienceDimension dimensions = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Analytics\Data\V1alpha\AudienceDimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\AudienceDimension[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -325,7 +325,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      * This list is ordered with the most recently created audience list first.
      *
      * Generated from protobuf field <code>repeated string audience_lists = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAudienceLists()
     {
@@ -339,7 +339,7 @@ class RecurringAudienceList extends \Google\Protobuf\Internal\Message
      * This list is ordered with the most recently created audience list first.
      *
      * Generated from protobuf field <code>repeated string audience_lists = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAudienceLists($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta\DimensionExpression;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Used to convert a dimension value to a single case.
@@ -68,5 +68,4 @@ class CaseExpression extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

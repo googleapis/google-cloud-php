@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A flag for a report. Flags are used show if certain thresholds are met.
@@ -41,7 +41,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\Filter[] $filters
      *           Required. Filters to apply for the flag.
      *     @type string $name
      *           Optional. Name of the flag.
@@ -59,7 +59,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * Required. Filters to apply for the flag.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Filter filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\Filter>
      */
     public function getFilters()
     {
@@ -70,7 +70,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * Required. Filters to apply for the flag.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Filter filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\Filter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\Filter[] $var
      * @return $this
      */
     public function setFilters($var)
@@ -114,5 +114,4 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

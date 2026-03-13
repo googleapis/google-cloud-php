@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AuthorizedCertificates.ListAuthorizedCertificates`.
@@ -34,7 +34,7 @@ class ListAuthorizedCertificatesResponse extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppEngine\V1\AuthorizedCertificate>|\Google\Protobuf\Internal\RepeatedField $certificates
+     *     @type \Google\Cloud\AppEngine\V1\AuthorizedCertificate[] $certificates
      *           The SSL certificates the user is authorized to administer.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -49,7 +49,7 @@ class ListAuthorizedCertificatesResponse extends \Google\Protobuf\Internal\Messa
      * The SSL certificates the user is authorized to administer.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.AuthorizedCertificate certificates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\AuthorizedCertificate>
      */
     public function getCertificates()
     {
@@ -60,7 +60,7 @@ class ListAuthorizedCertificatesResponse extends \Google\Protobuf\Internal\Messa
      * The SSL certificates the user is authorized to administer.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.AuthorizedCertificate certificates = 1;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\AuthorizedCertificate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\AuthorizedCertificate[] $var
      * @return $this
      */
     public function setCertificates($var)

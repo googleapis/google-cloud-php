@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\CustomFieldValue;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represent custom field value type.
@@ -171,5 +171,4 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

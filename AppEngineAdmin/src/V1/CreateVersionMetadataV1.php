@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for the given [google.longrunning.Operation][google.longrunning.Operation] during a
@@ -18,7 +18,7 @@ class CreateVersionMetadataV1 extends \Google\Protobuf\Internal\Message
 {
     /**
      * The Cloud Build ID if one was created as part of the version create.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string cloud_build_id = 1;</code>
      */
@@ -32,7 +32,7 @@ class CreateVersionMetadataV1 extends \Google\Protobuf\Internal\Message
      *
      *     @type string $cloud_build_id
      *           The Cloud Build ID if one was created as part of the version create.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +42,7 @@ class CreateVersionMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Build ID if one was created as part of the version create.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string cloud_build_id = 1;</code>
      * @return string
@@ -54,7 +54,7 @@ class CreateVersionMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Build ID if one was created as part of the version create.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string cloud_build_id = 1;</code>
      * @param string $var

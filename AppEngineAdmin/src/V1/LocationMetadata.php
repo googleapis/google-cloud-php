@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for the given [google.cloud.location.Location][google.cloud.location.Location].
@@ -17,14 +17,14 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * App Engine standard environment is available in the given location.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>bool standard_environment_available = 2;</code>
      */
     protected $standard_environment_available = false;
     /**
      * App Engine flexible environment is available in the given location.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>bool flexible_environment_available = 4;</code>
      */
@@ -45,10 +45,10 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $standard_environment_available
      *           App Engine standard environment is available in the given location.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type bool $flexible_environment_available
      *           App Engine flexible environment is available in the given location.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type bool $search_api_available
      *           Output only. [Search API](https://cloud.google.com/appengine/docs/standard/python/search)
      *           is available in the given location.
@@ -61,7 +61,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * App Engine standard environment is available in the given location.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>bool standard_environment_available = 2;</code>
      * @return bool
@@ -73,7 +73,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * App Engine standard environment is available in the given location.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>bool standard_environment_available = 2;</code>
      * @param bool $var
@@ -89,7 +89,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * App Engine flexible environment is available in the given location.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>bool flexible_environment_available = 4;</code>
      * @return bool
@@ -101,7 +101,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * App Engine flexible environment is available in the given location.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>bool flexible_environment_available = 4;</code>
      * @param bool $var

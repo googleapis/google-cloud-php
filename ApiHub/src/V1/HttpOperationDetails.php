@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An HTTP-based API Operation, sometimes called a "REST" Operation.
@@ -54,7 +54,7 @@ class HttpOperationDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\ApiHub\V1\HttpOperation $http_operation
      *           Required. An HTTP Operation.
-     *     @type array<\Google\Cloud\ApiHub\V1\HttpOperationDetails\PathParam>|\Google\Protobuf\Internal\RepeatedField $path_params
+     *     @type \Google\Cloud\ApiHub\V1\HttpOperationDetails\PathParam[] $path_params
      *           Optional. Path params of HttpOperation
      *     @type array|\Google\Protobuf\Internal\MapField $query_params
      *           Optional. Query params of HttpOperation
@@ -109,7 +109,7 @@ class HttpOperationDetails extends \Google\Protobuf\Internal\Message
      * Optional. Path params of HttpOperation
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.HttpOperationDetails.PathParam path_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\HttpOperationDetails\PathParam>
      */
     public function getPathParams()
     {
@@ -120,7 +120,7 @@ class HttpOperationDetails extends \Google\Protobuf\Internal\Message
      * Optional. Path params of HttpOperation
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.HttpOperationDetails.PathParam path_params = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\HttpOperationDetails\PathParam>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\HttpOperationDetails\PathParam[] $var
      * @return $this
      */
     public function setPathParams($var)

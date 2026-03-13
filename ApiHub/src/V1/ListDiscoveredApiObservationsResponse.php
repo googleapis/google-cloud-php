@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing DiscoveredApiObservations
@@ -35,7 +35,7 @@ class ListDiscoveredApiObservationsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\DiscoveredApiObservation>|\Google\Protobuf\Internal\RepeatedField $discovered_api_observations
+     *     @type \Google\Cloud\ApiHub\V1\DiscoveredApiObservation[] $discovered_api_observations
      *           The DiscoveredApiObservation from the specified project and location.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDiscoveredApiObservationsResponse extends \Google\Protobuf\Internal\Me
      * The DiscoveredApiObservation from the specified project and location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiObservation discovered_api_observations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\DiscoveredApiObservation>
      */
     public function getDiscoveredApiObservations()
     {
@@ -62,7 +62,7 @@ class ListDiscoveredApiObservationsResponse extends \Google\Protobuf\Internal\Me
      * The DiscoveredApiObservation from the specified project and location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiObservation discovered_api_observations = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\DiscoveredApiObservation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\DiscoveredApiObservation[] $var
      * @return $this
      */
     public function setDiscoveredApiObservations($var)

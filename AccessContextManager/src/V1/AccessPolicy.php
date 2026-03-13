@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `AccessPolicy` is a container for `AccessLevels` (which define the necessary
@@ -96,7 +96,7 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      *           `organizations/{organization_id}`
      *     @type string $title
      *           Required. Human readable title. Does not affect behavior.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           The scopes of a policy define which resources an ACM policy can restrict,
      *           and where ACM resources can be referenced.
      *           For example, a policy with scopes=["folders/123"] has the following
@@ -228,7 +228,7 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      * Format: list of `folders/{folder_number}` or `projects/{project_number}`
      *
      * Generated from protobuf field <code>repeated string scopes = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -252,7 +252,7 @@ class AccessPolicy extends \Google\Protobuf\Internal\Message
      * Format: list of `folders/{folder_number}` or `projects/{project_number}`
      *
      * Generated from protobuf field <code>repeated string scopes = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

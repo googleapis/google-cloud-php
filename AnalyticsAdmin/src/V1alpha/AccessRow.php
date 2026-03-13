@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Access report data for each row.
@@ -36,10 +36,10 @@ class AccessRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccessDimensionValue>|\Google\Protobuf\Internal\RepeatedField $dimension_values
+     *     @type \Google\Analytics\Admin\V1alpha\AccessDimensionValue[] $dimension_values
      *           List of dimension values. These values are in the same order as specified
      *           in the request.
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccessMetricValue>|\Google\Protobuf\Internal\RepeatedField $metric_values
+     *     @type \Google\Analytics\Admin\V1alpha\AccessMetricValue[] $metric_values
      *           List of metric values. These values are in the same order as specified
      *           in the request.
      * }
@@ -54,7 +54,7 @@ class AccessRow extends \Google\Protobuf\Internal\Message
      * in the request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessDimensionValue dimension_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccessDimensionValue>
      */
     public function getDimensionValues()
     {
@@ -66,7 +66,7 @@ class AccessRow extends \Google\Protobuf\Internal\Message
      * in the request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessDimensionValue dimension_values = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccessDimensionValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccessDimensionValue[] $var
      * @return $this
      */
     public function setDimensionValues($var)
@@ -82,7 +82,7 @@ class AccessRow extends \Google\Protobuf\Internal\Message
      * in the request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessMetricValue metric_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccessMetricValue>
      */
     public function getMetricValues()
     {
@@ -94,7 +94,7 @@ class AccessRow extends \Google\Protobuf\Internal\Message
      * in the request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessMetricValue metric_values = 2;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccessMetricValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccessMetricValue[] $var
      * @return $this
      */
     public function setMetricValues($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Card;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A card action is the action associated with the card. For example,
@@ -112,5 +112,4 @@ class CardAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

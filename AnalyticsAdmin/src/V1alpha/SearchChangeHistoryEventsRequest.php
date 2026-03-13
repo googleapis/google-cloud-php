@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for SearchChangeHistoryEvents RPC.
@@ -104,13 +104,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *           made to this property or its child resources.
      *           Format: properties/{propertyId}
      *           Example: `properties/100`
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $resource_type
+     *     @type int[] $resource_type
      *           Optional. If set, only return changes if they are for a resource that
      *           matches at least one of these types.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $action
+     *     @type int[] $action
      *           Optional. If set, only return changes that match one or more of these types
      *           of actions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $actor_email
+     *     @type string[] $actor_email
      *           Optional. If set, only return changes if they are made by a user in this
      *           list.
      *     @type \Google\Protobuf\Timestamp $earliest_change_time
@@ -206,7 +206,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * matches at least one of these types.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ChangeHistoryResourceType resource_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getResourceType()
     {
@@ -218,7 +218,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * matches at least one of these types.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ChangeHistoryResourceType resource_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setResourceType($var)
@@ -234,7 +234,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * of actions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ActionType action = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAction()
     {
@@ -246,7 +246,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * of actions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ActionType action = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAction($var)
@@ -262,7 +262,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * list.
      *
      * Generated from protobuf field <code>repeated string actor_email = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActorEmail()
     {
@@ -274,7 +274,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * list.
      *
      * Generated from protobuf field <code>repeated string actor_email = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActorEmail($var)

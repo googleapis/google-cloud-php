@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for a list spaces request.
@@ -37,7 +37,7 @@ class ListSpacesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\Space>|\Google\Protobuf\Internal\RepeatedField $spaces
+     *     @type \Google\Apps\Chat\V1\Space[] $spaces
      *           List of spaces in the requested (or first) page.
      *           Note: The `permissionSettings` field is not returned in the Space
      *           object for list requests.
@@ -57,7 +57,7 @@ class ListSpacesResponse extends \Google\Protobuf\Internal\Message
      * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Space>
      */
     public function getSpaces()
     {
@@ -70,7 +70,7 @@ class ListSpacesResponse extends \Google\Protobuf\Internal\Message
      * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
-     * @param array<\Google\Apps\Chat\V1\Space>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Space[] $var
      * @return $this
      */
     public function setSpaces($var)

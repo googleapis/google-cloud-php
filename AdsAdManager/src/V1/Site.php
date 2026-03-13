@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Site represents a domain owned or represented by a network. For a parent
@@ -75,7 +75,7 @@ class Site extends \Google\Protobuf\Internal\Message
      *           Output only. Status of the review performed on the Site by Google.
      *     @type \Google\Protobuf\Timestamp $approval_status_update_time
      *           Output only. The latest Site approval status change time.
-     *     @type array<\Google\Ads\AdManager\V1\DisapprovalReason>|\Google\Protobuf\Internal\RepeatedField $disapproval_reasons
+     *     @type \Google\Ads\AdManager\V1\DisapprovalReason[] $disapproval_reasons
      *           Output only. Provides reasons for disapproving the Site. It is null when
      *           the Site is not disapproved.
      * }
@@ -264,7 +264,7 @@ class Site extends \Google\Protobuf\Internal\Message
      * the Site is not disapproved.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DisapprovalReason disapproval_reasons = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\DisapprovalReason>
      */
     public function getDisapprovalReasons()
     {
@@ -276,7 +276,7 @@ class Site extends \Google\Protobuf\Internal\Message
      * the Site is not disapproved.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DisapprovalReason disapproval_reasons = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Ads\AdManager\V1\DisapprovalReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\DisapprovalReason[] $var
      * @return $this
      */
     public function setDisapprovalReasons($var)

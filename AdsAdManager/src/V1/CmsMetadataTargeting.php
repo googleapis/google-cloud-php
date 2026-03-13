@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents targeting for CMS metadata. The values are ORed together.
@@ -38,7 +38,7 @@ class CmsMetadataTargeting extends \Google\Protobuf\Internal\Message
      *     @type bool $negative
      *           Whether this expression is negatively targeted, meaning it matches
      *           ad requests that exclude the below values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cms_metadata_values
+     *     @type string[] $cms_metadata_values
      *           Optional. The resource names of the targeted CMS metadata values.
      * }
      */
@@ -89,7 +89,7 @@ class CmsMetadataTargeting extends \Google\Protobuf\Internal\Message
      * Optional. The resource names of the targeted CMS metadata values.
      *
      * Generated from protobuf field <code>repeated string cms_metadata_values = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCmsMetadataValues()
     {
@@ -100,7 +100,7 @@ class CmsMetadataTargeting extends \Google\Protobuf\Internal\Message
      * Optional. The resource names of the targeted CMS metadata values.
      *
      * Generated from protobuf field <code>repeated string cms_metadata_values = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCmsMetadataValues($var)

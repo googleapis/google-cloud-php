@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ConnectionInfo singleton resource.
@@ -18,7 +18,7 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the ConnectionInfo singleton resource, e.g.:
-     * projects/{project}/locations/{location}/clusters/&#42;&#47;instances/&#42;&#47;connectionInfo
+     * projects/{project}/locations/{location}/clusters/{@*}instances/{@*}connectionInfo
      * This field currently has no semantic meaning.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -55,7 +55,7 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the ConnectionInfo singleton resource, e.g.:
-     *           projects/{project}/locations/{location}/clusters/&#42;&#47;instances/&#42;&#47;connectionInfo
+     *           projects/{project}/locations/{location}/clusters/{@*}instances/{@*}connectionInfo
      *           This field currently has no semantic meaning.
      *     @type string $ip_address
      *           Output only. The private network IP address for the Instance. This is the
@@ -76,7 +76,7 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the ConnectionInfo singleton resource, e.g.:
-     * projects/{project}/locations/{location}/clusters/&#42;&#47;instances/&#42;&#47;connectionInfo
+     * projects/{project}/locations/{location}/clusters/{@*}instances/{@*}connectionInfo
      * This field currently has no semantic meaning.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -89,7 +89,7 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the ConnectionInfo singleton resource, e.g.:
-     * projects/{project}/locations/{location}/clusters/&#42;&#47;instances/&#42;&#47;connectionInfo
+     * projects/{project}/locations/{location}/clusters/{@*}instances/{@*}connectionInfo
      * This field currently has no semantic meaning.
      *
      * Generated from protobuf field <code>string name = 1;</code>

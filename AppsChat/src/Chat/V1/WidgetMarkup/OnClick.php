@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\WidgetMarkup;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An `onclick` action (for example, open a link).
@@ -105,5 +105,4 @@ class OnClick extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

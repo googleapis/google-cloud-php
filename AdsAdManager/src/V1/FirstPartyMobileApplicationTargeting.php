@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * First-party mobile application targeting.
@@ -36,10 +36,10 @@ class FirstPartyMobileApplicationTargeting extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_applications
+     *     @type string[] $targeted_applications
      *           Optional. The resource names of the first-party applications that should be
      *           targeted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_applications
+     *     @type string[] $excluded_applications
      *           Optional. The resource names of the first-party applications that should be
      *           excluded.
      * }
@@ -54,7 +54,7 @@ class FirstPartyMobileApplicationTargeting extends \Google\Protobuf\Internal\Mes
      * targeted.
      *
      * Generated from protobuf field <code>repeated string targeted_applications = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedApplications()
     {
@@ -66,7 +66,7 @@ class FirstPartyMobileApplicationTargeting extends \Google\Protobuf\Internal\Mes
      * targeted.
      *
      * Generated from protobuf field <code>repeated string targeted_applications = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedApplications($var)
@@ -82,7 +82,7 @@ class FirstPartyMobileApplicationTargeting extends \Google\Protobuf\Internal\Mes
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_applications = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedApplications()
     {
@@ -94,7 +94,7 @@ class FirstPartyMobileApplicationTargeting extends \Google\Protobuf\Internal\Mes
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_applications = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedApplications($var)

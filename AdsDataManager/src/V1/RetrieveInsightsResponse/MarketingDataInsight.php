@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1\RetrieveInsightsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Insights for marketing data.
@@ -37,7 +37,7 @@ class MarketingDataInsight extends \Google\Protobuf\Internal\Message
      *
      *     @type int $dimension
      *           The dimension to which the insight belongs.
-     *     @type array<\Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight\MarketingDataInsightsAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight\MarketingDataInsightsAttribute[] $attributes
      *           Insights for values of a given dimension.
      * }
      */
@@ -76,7 +76,7 @@ class MarketingDataInsight extends \Google\Protobuf\Internal\Message
      * Insights for values of a given dimension.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.RetrieveInsightsResponse.MarketingDataInsight.MarketingDataInsightsAttribute attributes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight\MarketingDataInsightsAttribute>
      */
     public function getAttributes()
     {
@@ -87,7 +87,7 @@ class MarketingDataInsight extends \Google\Protobuf\Internal\Message
      * Insights for values of a given dimension.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.RetrieveInsightsResponse.MarketingDataInsight.MarketingDataInsightsAttribute attributes = 2;</code>
-     * @param array<\Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight\MarketingDataInsightsAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight\MarketingDataInsightsAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)
@@ -99,5 +99,4 @@ class MarketingDataInsight extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

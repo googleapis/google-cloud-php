@@ -5,8 +5,8 @@
 namespace Google\Cloud\AccessApproval\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The properties associated with the resource of the request.

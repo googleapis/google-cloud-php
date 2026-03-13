@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * EncryptionInfo describes the encryption information of a cluster or a backup.
@@ -37,7 +37,7 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type int $encryption_type
      *           Output only. Type of encryption.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kms_key_versions
+     *     @type string[] $kms_key_versions
      *           Output only. Cloud KMS key versions that are being used to protect the
      *           database or the backup.
      * }
@@ -78,7 +78,7 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      * database or the backup.
      *
      * Generated from protobuf field <code>repeated string kms_key_versions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKmsKeyVersions()
     {
@@ -90,7 +90,7 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      * database or the backup.
      *
      * Generated from protobuf field <code>repeated string kms_key_versions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKmsKeyVersions($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `BatchCreateContacts` method.
@@ -63,7 +63,7 @@ class BatchCreateContactsRequest extends \Google\Protobuf\Internal\Message
      *           Format: `networks/{network_code}`
      *           The parent field in the CreateContactRequest must match this
      *           field.
-     *     @type array<\Google\Ads\AdManager\V1\CreateContactRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Ads\AdManager\V1\CreateContactRequest[] $requests
      *           Required. The `Contact` objects to create.
      *           A maximum of 100 objects can be created in a batch.
      * }
@@ -110,7 +110,7 @@ class BatchCreateContactsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 objects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreateContactRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreateContactRequest>
      */
     public function getRequests()
     {
@@ -122,7 +122,7 @@ class BatchCreateContactsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 objects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreateContactRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\CreateContactRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CreateContactRequest[] $var
      * @return $this
      */
     public function setRequests($var)

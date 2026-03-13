@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\AudienceSequenceFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A condition that must occur in the specified step order for this user
@@ -219,5 +219,4 @@ class AudienceSequenceStep extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

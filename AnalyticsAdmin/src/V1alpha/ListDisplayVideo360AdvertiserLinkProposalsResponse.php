@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListDisplayVideo360AdvertiserLinkProposals RPC.
@@ -35,7 +35,7 @@ class ListDisplayVideo360AdvertiserLinkProposalsResponse extends \Google\Protobu
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal>|\Google\Protobuf\Internal\RepeatedField $display_video_360_advertiser_link_proposals
+     *     @type \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal[] $display_video_360_advertiser_link_proposals
      *           List of DisplayVideo360AdvertiserLinkProposals.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDisplayVideo360AdvertiserLinkProposalsResponse extends \Google\Protobu
      * List of DisplayVideo360AdvertiserLinkProposals.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLinkProposal display_video_360_advertiser_link_proposals = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal>
      */
     public function getDisplayVideo360AdvertiserLinkProposals()
     {
@@ -62,7 +62,7 @@ class ListDisplayVideo360AdvertiserLinkProposalsResponse extends \Google\Protobu
      * List of DisplayVideo360AdvertiserLinkProposals.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLinkProposal display_video_360_advertiser_link_proposals = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal[] $var
      * @return $this
      */
     public function setDisplayVideo360AdvertiserLinkProposals($var)

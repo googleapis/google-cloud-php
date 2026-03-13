@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Mobile Carrier Targeting.
@@ -37,10 +37,10 @@ class MobileCarrierTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_mobile_carriers
+     *     @type string[] $targeted_mobile_carriers
      *           Optional. A list of mobile carrier resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_mobile_carriers
+     *     @type string[] $excluded_mobile_carriers
      *           Optional. A list of mobile carrier resource names that should be excluded.
      * }
      */
@@ -54,7 +54,7 @@ class MobileCarrierTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_mobile_carriers = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedMobileCarriers()
     {
@@ -66,7 +66,7 @@ class MobileCarrierTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_mobile_carriers = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedMobileCarriers($var)
@@ -81,7 +81,7 @@ class MobileCarrierTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of mobile carrier resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_mobile_carriers = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedMobileCarriers()
     {
@@ -92,7 +92,7 @@ class MobileCarrierTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of mobile carrier resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_mobile_carriers = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedMobileCarriers($var)

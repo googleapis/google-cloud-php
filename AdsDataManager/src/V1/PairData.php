@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [PAIR](//support.google.com/admanager/answer/15067908) IDs for the audience.
@@ -34,7 +34,7 @@ class PairData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pair_ids
+     *     @type string[] $pair_ids
      *           Required. Cleanroom-provided PII data, hashed with SHA256, and encrypted
      *           with an EC commutative cipher using publisher key for the
      *           [PAIR]((//support.google.com/admanager/answer/15067908)) user list. At most
@@ -55,7 +55,7 @@ class PairData extends \Google\Protobuf\Internal\Message
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      *
      * Generated from protobuf field <code>repeated string pair_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPairIds()
     {
@@ -70,7 +70,7 @@ class PairData extends \Google\Protobuf\Internal\Message
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      *
      * Generated from protobuf field <code>repeated string pair_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPairIds($var)

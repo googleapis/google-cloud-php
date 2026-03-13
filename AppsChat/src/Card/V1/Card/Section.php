@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Card;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A section contains a collection of widgets that are rendered
@@ -87,7 +87,7 @@ class Section extends \Google\Protobuf\Internal\Message
      *           [Formatting
      *           text in Google Workspace
      *           add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
-     *     @type array<\Google\Apps\Card\V1\Widget>|\Google\Protobuf\Internal\RepeatedField $widgets
+     *     @type \Google\Apps\Card\V1\Widget[] $widgets
      *           All the widgets in the section.
      *           Must contain at least one widget.
      *     @type bool $collapsible
@@ -163,7 +163,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * Must contain at least one widget.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Widget widgets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Widget>
      */
     public function getWidgets()
     {
@@ -175,7 +175,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * Must contain at least one widget.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Widget widgets = 2;</code>
-     * @param array<\Google\Apps\Card\V1\Widget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Widget[] $var
      * @return $this
      */
     public function setWidgets($var)
@@ -301,5 +301,4 @@ class Section extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

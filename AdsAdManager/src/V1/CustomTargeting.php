@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the top level targeting expression for custom key/values,
@@ -29,7 +29,7 @@ class CustomTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\CustomTargetingClause>|\Google\Protobuf\Internal\RepeatedField $custom_targeting_clauses
+     *     @type \Google\Ads\AdManager\V1\CustomTargetingClause[] $custom_targeting_clauses
      *           Optional. These clauses are all ORed together.
      * }
      */
@@ -42,7 +42,7 @@ class CustomTargeting extends \Google\Protobuf\Internal\Message
      * Optional. These clauses are all ORed together.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingClause custom_targeting_clauses = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomTargetingClause>
      */
     public function getCustomTargetingClauses()
     {
@@ -53,7 +53,7 @@ class CustomTargeting extends \Google\Protobuf\Internal\Message
      * Optional. These clauses are all ORed together.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingClause custom_targeting_clauses = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomTargetingClause>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomTargetingClause[] $var
      * @return $this
      */
     public function setCustomTargetingClauses($var)

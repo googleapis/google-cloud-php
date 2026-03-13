@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The options for a scheduled report.
@@ -45,7 +45,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
      *           Information pertaining to schedule itself.
      *     @type int $delivery_condition
      *           Option for when to deliver the scheduled report.
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\Flag>|\Google\Protobuf\Internal\RepeatedField $flags
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\Flag[] $flags
      *           Optional. The flags evaluated when ReportDeliveryOption.WHEN_FLAG_PRESENT
      *           is specified.
      * }
@@ -122,7 +122,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
      * is specified.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Flag flags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\Flag>
      */
     public function getFlags()
     {
@@ -134,7 +134,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
      * is specified.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Flag flags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\Flag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\Flag[] $var
      * @return $this
      */
     public function setFlags($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for BatchUpdateAccessBindings RPC.
@@ -47,7 +47,7 @@ class BatchUpdateAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      *           Formats:
      *           - accounts/{account}
      *           - properties/{property}
-     *     @type array<\Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest[] $requests
      *           Required. The requests specifying the access bindings to update.
      *           A maximum of 1000 access bindings can be updated in a batch.
      * }
@@ -98,7 +98,7 @@ class BatchUpdateAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 access bindings can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.UpdateAccessBindingRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest>
      */
     public function getRequests()
     {
@@ -110,7 +110,7 @@ class BatchUpdateAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 access bindings can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.UpdateAccessBindingRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\UpdateAccessBindingRequest[] $var
      * @return $this
      */
     public function setRequests($var)

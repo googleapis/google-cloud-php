@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListApis][google.cloud.apihub.v1.ApiHub.ListApis] method's request.
@@ -103,29 +103,29 @@ class ListApisRequest extends \Google\Protobuf\Internal\Message
      * three filter fields are allowed in the filter string and if provided
      * more than that then `INVALID_ARGUMENT` error is returned by the API.
      * Here are a few examples:
-     *   * `owner.email = \"apihub&#64;google.com\"` -  - The owner team email is
-     *   _apihub&#64;google.com_.
-     *   * `owner.email = \"apihub&#64;google.com\" AND create_time <
+     *   * `owner.email = \"apihub\@google.com\"` -  - The owner team email is
+     *   _apihub\@google.com_.
+     *   * `owner.email = \"apihub\@google.com\" AND create_time <
      *   \"2021-08-15T14:50:00Z\" AND create_time > \"2021-08-10T12:00:00Z\"` -
-     *   The owner team email is _apihub&#64;google.com_ and the api was created
+     *   The owner team email is _apihub\@google.com_ and the api was created
      *   before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_.
-     *   * `owner.email = \"apihub&#64;google.com\" OR team.enum_values.values.id:
+     *   * `owner.email = \"apihub\@google.com\" OR team.enum_values.values.id:
      *   apihub-team-id` - The filter string specifies the APIs where the owner
-     *   team email is _apihub&#64;google.com_ or the id of the allowed value
+     *   team email is _apihub\@google.com_ or the id of the allowed value
      *   associated with the team attribute is _apihub-team-id_.
-     *   * `owner.email = \"apihub&#64;google.com\" OR
+     *   * `owner.email = \"apihub\@google.com\" OR
      *   team.enum_values.values.display_name: ApiHub Team` - The filter string
-     *   specifies the APIs where the owner team email is _apihub&#64;google.com_ or
+     *   specifies the APIs where the owner team email is _apihub\@google.com_ or
      *   the display name of the allowed value associated with the team attribute
      *   is `ApiHub Team`.
-     *   * `owner.email = \"apihub&#64;google.com\" AND
+     *   * `owner.email = \"apihub\@google.com\" AND
      *   attributes.projects/test-project-id/locations/test-location-id/
      *   attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
      *   test_enum_id AND
      *   attributes.projects/test-project-id/locations/test-location-id/
      *   attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values:
      *   test_string_value`  - The filter string specifies the APIs where the
-     *   owner team email is _apihub&#64;google.com_ and the id of the allowed value
+     *   owner team email is _apihub\@google.com_ and the id of the allowed value
      *   associated with the user defined attribute of type enum is _test_enum_id_
      *   and the value of the user defined attribute of type string is _test_..
      *
@@ -256,29 +256,29 @@ class ListApisRequest extends \Google\Protobuf\Internal\Message
      *           three filter fields are allowed in the filter string and if provided
      *           more than that then `INVALID_ARGUMENT` error is returned by the API.
      *           Here are a few examples:
-     *             * `owner.email = \"apihub&#64;google.com\"` -  - The owner team email is
-     *             _apihub&#64;google.com_.
-     *             * `owner.email = \"apihub&#64;google.com\" AND create_time <
+     *             * `owner.email = \"apihub\@google.com\"` -  - The owner team email is
+     *             _apihub\@google.com_.
+     *             * `owner.email = \"apihub\@google.com\" AND create_time <
      *             \"2021-08-15T14:50:00Z\" AND create_time > \"2021-08-10T12:00:00Z\"` -
-     *             The owner team email is _apihub&#64;google.com_ and the api was created
+     *             The owner team email is _apihub\@google.com_ and the api was created
      *             before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_.
-     *             * `owner.email = \"apihub&#64;google.com\" OR team.enum_values.values.id:
+     *             * `owner.email = \"apihub\@google.com\" OR team.enum_values.values.id:
      *             apihub-team-id` - The filter string specifies the APIs where the owner
-     *             team email is _apihub&#64;google.com_ or the id of the allowed value
+     *             team email is _apihub\@google.com_ or the id of the allowed value
      *             associated with the team attribute is _apihub-team-id_.
-     *             * `owner.email = \"apihub&#64;google.com\" OR
+     *             * `owner.email = \"apihub\@google.com\" OR
      *             team.enum_values.values.display_name: ApiHub Team` - The filter string
-     *             specifies the APIs where the owner team email is _apihub&#64;google.com_ or
+     *             specifies the APIs where the owner team email is _apihub\@google.com_ or
      *             the display name of the allowed value associated with the team attribute
      *             is `ApiHub Team`.
-     *             * `owner.email = \"apihub&#64;google.com\" AND
+     *             * `owner.email = \"apihub\@google.com\" AND
      *             attributes.projects/test-project-id/locations/test-location-id/
      *             attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
      *             test_enum_id AND
      *             attributes.projects/test-project-id/locations/test-location-id/
      *             attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values:
      *             test_string_value`  - The filter string specifies the APIs where the
-     *             owner team email is _apihub&#64;google.com_ and the id of the allowed value
+     *             owner team email is _apihub\@google.com_ and the id of the allowed value
      *             associated with the user defined attribute of type enum is _test_enum_id_
      *             and the value of the user defined attribute of type string is _test_..
      *     @type int $page_size
@@ -407,29 +407,29 @@ class ListApisRequest extends \Google\Protobuf\Internal\Message
      * three filter fields are allowed in the filter string and if provided
      * more than that then `INVALID_ARGUMENT` error is returned by the API.
      * Here are a few examples:
-     *   * `owner.email = \"apihub&#64;google.com\"` -  - The owner team email is
-     *   _apihub&#64;google.com_.
-     *   * `owner.email = \"apihub&#64;google.com\" AND create_time <
+     *   * `owner.email = \"apihub\@google.com\"` -  - The owner team email is
+     *   _apihub\@google.com_.
+     *   * `owner.email = \"apihub\@google.com\" AND create_time <
      *   \"2021-08-15T14:50:00Z\" AND create_time > \"2021-08-10T12:00:00Z\"` -
-     *   The owner team email is _apihub&#64;google.com_ and the api was created
+     *   The owner team email is _apihub\@google.com_ and the api was created
      *   before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_.
-     *   * `owner.email = \"apihub&#64;google.com\" OR team.enum_values.values.id:
+     *   * `owner.email = \"apihub\@google.com\" OR team.enum_values.values.id:
      *   apihub-team-id` - The filter string specifies the APIs where the owner
-     *   team email is _apihub&#64;google.com_ or the id of the allowed value
+     *   team email is _apihub\@google.com_ or the id of the allowed value
      *   associated with the team attribute is _apihub-team-id_.
-     *   * `owner.email = \"apihub&#64;google.com\" OR
+     *   * `owner.email = \"apihub\@google.com\" OR
      *   team.enum_values.values.display_name: ApiHub Team` - The filter string
-     *   specifies the APIs where the owner team email is _apihub&#64;google.com_ or
+     *   specifies the APIs where the owner team email is _apihub\@google.com_ or
      *   the display name of the allowed value associated with the team attribute
      *   is `ApiHub Team`.
-     *   * `owner.email = \"apihub&#64;google.com\" AND
+     *   * `owner.email = \"apihub\@google.com\" AND
      *   attributes.projects/test-project-id/locations/test-location-id/
      *   attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
      *   test_enum_id AND
      *   attributes.projects/test-project-id/locations/test-location-id/
      *   attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values:
      *   test_string_value`  - The filter string specifies the APIs where the
-     *   owner team email is _apihub&#64;google.com_ and the id of the allowed value
+     *   owner team email is _apihub\@google.com_ and the id of the allowed value
      *   associated with the user defined attribute of type enum is _test_enum_id_
      *   and the value of the user defined attribute of type string is _test_..
      *
@@ -522,29 +522,29 @@ class ListApisRequest extends \Google\Protobuf\Internal\Message
      * three filter fields are allowed in the filter string and if provided
      * more than that then `INVALID_ARGUMENT` error is returned by the API.
      * Here are a few examples:
-     *   * `owner.email = \"apihub&#64;google.com\"` -  - The owner team email is
-     *   _apihub&#64;google.com_.
-     *   * `owner.email = \"apihub&#64;google.com\" AND create_time <
+     *   * `owner.email = \"apihub\@google.com\"` -  - The owner team email is
+     *   _apihub\@google.com_.
+     *   * `owner.email = \"apihub\@google.com\" AND create_time <
      *   \"2021-08-15T14:50:00Z\" AND create_time > \"2021-08-10T12:00:00Z\"` -
-     *   The owner team email is _apihub&#64;google.com_ and the api was created
+     *   The owner team email is _apihub\@google.com_ and the api was created
      *   before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_.
-     *   * `owner.email = \"apihub&#64;google.com\" OR team.enum_values.values.id:
+     *   * `owner.email = \"apihub\@google.com\" OR team.enum_values.values.id:
      *   apihub-team-id` - The filter string specifies the APIs where the owner
-     *   team email is _apihub&#64;google.com_ or the id of the allowed value
+     *   team email is _apihub\@google.com_ or the id of the allowed value
      *   associated with the team attribute is _apihub-team-id_.
-     *   * `owner.email = \"apihub&#64;google.com\" OR
+     *   * `owner.email = \"apihub\@google.com\" OR
      *   team.enum_values.values.display_name: ApiHub Team` - The filter string
-     *   specifies the APIs where the owner team email is _apihub&#64;google.com_ or
+     *   specifies the APIs where the owner team email is _apihub\@google.com_ or
      *   the display name of the allowed value associated with the team attribute
      *   is `ApiHub Team`.
-     *   * `owner.email = \"apihub&#64;google.com\" AND
+     *   * `owner.email = \"apihub\@google.com\" AND
      *   attributes.projects/test-project-id/locations/test-location-id/
      *   attributes/17650f90-4a29-4971-b3c0-d5532da3764b.enum_values.values.id:
      *   test_enum_id AND
      *   attributes.projects/test-project-id/locations/test-location-id/
      *   attributes/1765\0f90-4a29-5431-b3d0-d5532da3764c.string_values.values:
      *   test_string_value`  - The filter string specifies the APIs where the
-     *   owner team email is _apihub&#64;google.com_ and the id of the allowed value
+     *   owner team email is _apihub\@google.com_ and the id of the allowed value
      *   associated with the user defined attribute of type enum is _test_enum_id_
      *   and the value of the user defined attribute of type string is _test_..
      *

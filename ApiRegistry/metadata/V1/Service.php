@@ -20,46 +20,7 @@ class Service
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Apiregistry\V1\Resources::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-Ñ
-)google/cloud/apiregistry/v1/service.protogoogle.cloud.apiregistry.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto+google/cloud/apiregistry/v1/resources.proto"V
-GetMcpServerRequest?
-name (	B1‡A˙A+
-)cloudapiregistry.googleapis.com/McpServer"Ø
-ListMcpServersRequest9
-parent (	B)‡A˙A#
-!locations.googleapis.com/Location
-	page_size (B‡A
-
-page_token (	B‡A
-filter (	B‡A
-order_by (	B‡A"à
-ListMcpServersResponse;
-mcp_servers (2&.google.cloud.apiregistry.v1.McpServer
-next_page_token (	
-unreachable (	B‡A"R
-GetMcpToolRequest=
-name (	B/‡A˙A)
-\'cloudapiregistry.googleapis.com/McpTool"≥
-ListMcpToolsRequest?
-parent (	B/‡A˙A)\'cloudapiregistry.googleapis.com/McpTool
-	page_size (B‡A
-
-page_token (	B‡A
-filter (	B‡A
-order_by (	B‡A"Ç
-ListMcpToolsResponse7
-	mcp_tools (2$.google.cloud.apiregistry.v1.McpTool
-next_page_token (	
-unreachable (	B‡A2ø
-CloudApiRegistryß
-GetMcpServer0.google.cloud.apiregistry.v1.GetMcpServerRequest&.google.cloud.apiregistry.v1.McpServer"=⁄AnameÇ”‰ì0./v1/{name=projects/*/locations/*/mcpServers/*}∫
-ListMcpServers2.google.cloud.apiregistry.v1.ListMcpServersRequest3.google.cloud.apiregistry.v1.ListMcpServersResponse"?⁄AparentÇ”‰ì0./v1/{parent=projects/*/locations/*}/mcpServers¨
-
-GetMcpTool..google.cloud.apiregistry.v1.GetMcpToolRequest$.google.cloud.apiregistry.v1.McpTool"H⁄AnameÇ”‰ì;9/v1/{name=projects/*/locations/*/mcpServers/*/mcpTools/*}ø
-ListMcpTools0.google.cloud.apiregistry.v1.ListMcpToolsRequest1.google.cloud.apiregistry.v1.ListMcpToolsResponse"J⁄AparentÇ”‰ì;9/v1/{parent=projects/*/locations/*/mcpServers/*}/mcpToolsS Acloudapiregistry.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB…
-com.google.cloud.apiregistry.v1BServiceProtoPZAcloud.google.com/go/apiregistry/apiv1/apiregistrypb;apiregistrypb™Google.Cloud.ApiRegistry.V1 Google\\Cloud\\ApiRegistry\\V1ÍGoogle::Cloud::ApiRegistry::V1ÍAu
-,cloudapiregistry.googleapis.com/ApiNamespaceEprojects/{project}/locations/{location}/apiNamespaces/{api_namespace}bproto3'
+            "\x0A\x84\x11\x0A)google/cloud/apiregistry/v1/service.proto\x12\x1Bgoogle.cloud.apiregistry.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A+google/cloud/apiregistry/v1/resources.proto\"V\x0A\x13GetMcpServerRequest\x12?\x0A\x04name\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)cloudapiregistry.googleapis.com/McpServer\"\xAF\x01\x0A\x15ListMcpServersRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12\x16\x0A\x09page_size\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x03 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x04 \x01(\x09B\x03\xE0A\x01\x12\x15\x0A\x08order_by\x18\x05 \x01(\x09B\x03\xE0A\x01\"\x88\x01\x0A\x16ListMcpServersResponse\x12;\x0A\x0Bmcp_servers\x18\x01 \x03(\x0B2&.google.cloud.apiregistry.v1.McpServer\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x18\x0A\x0Bunreachable\x18\x03 \x03(\x09B\x03\xE0A\x06\"R\x0A\x11GetMcpToolRequest\x12=\x0A\x04name\x18\x01 \x01(\x09B/\xE0A\x02\xFAA)\x0A'cloudapiregistry.googleapis.com/McpTool\"\xB3\x01\x0A\x13ListMcpToolsRequest\x12?\x0A\x06parent\x18\x01 \x01(\x09B/\xE0A\x02\xFAA)\x12'cloudapiregistry.googleapis.com/McpTool\x12\x16\x0A\x09page_size\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x03 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x04 \x01(\x09B\x03\xE0A\x01\x12\x15\x0A\x08order_by\x18\x05 \x01(\x09B\x03\xE0A\x01\"\x82\x01\x0A\x14ListMcpToolsResponse\x127\x0A\x09mcp_tools\x18\x01 \x03(\x0B2\$.google.cloud.apiregistry.v1.McpTool\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x18\x0A\x0Bunreachable\x18\x03 \x03(\x09B\x03\xE0A\x062\xBF\x06\x0A\x10CloudApiRegistry\x12\xA7\x01\x0A\x0CGetMcpServer\x120.google.cloud.apiregistry.v1.GetMcpServerRequest\x1A&.google.cloud.apiregistry.v1.McpServer\"=\xDAA\x04name\x82\xD3\xE4\x93\x020\x12./v1/{name=projects/*/locations/*/mcpServers/*}\x12\xBA\x01\x0A\x0EListMcpServers\x122.google.cloud.apiregistry.v1.ListMcpServersRequest\x1A3.google.cloud.apiregistry.v1.ListMcpServersResponse\"?\xDAA\x06parent\x82\xD3\xE4\x93\x020\x12./v1/{parent=projects/*/locations/*}/mcpServers\x12\xAC\x01\x0A\x0AGetMcpTool\x12..google.cloud.apiregistry.v1.GetMcpToolRequest\x1A\$.google.cloud.apiregistry.v1.McpTool\"H\xDAA\x04name\x82\xD3\xE4\x93\x02;\x129/v1/{name=projects/*/locations/*/mcpServers/*/mcpTools/*}\x12\xBF\x01\x0A\x0CListMcpTools\x120.google.cloud.apiregistry.v1.ListMcpToolsRequest\x1A1.google.cloud.apiregistry.v1.ListMcpToolsResponse\"J\xDAA\x06parent\x82\xD3\xE4\x93\x02;\x129/v1/{parent=projects/*/locations/*/mcpServers/*}/mcpTools\x1AS\xCAA\x1Fcloudapiregistry.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\xC9\x02\x0A\x1Fcom.google.cloud.apiregistry.v1B\x0CServiceProtoP\x01ZAcloud.google.com/go/apiregistry/apiv1/apiregistrypb;apiregistrypb\xAA\x02\x1BGoogle.Cloud.ApiRegistry.V1\xCA\x02\x1BGoogle\\Cloud\\ApiRegistry\\V1\xEA\x02\x1EGoogle::Cloud::ApiRegistry::V1\xEAAu\x0A,cloudapiregistry.googleapis.com/ApiNamespace\x12Eprojects/{project}/locations/{location}/apiNamespaces/{api_namespace}b\x06proto3"
         , true);
 
         static::$is_initialized = true;

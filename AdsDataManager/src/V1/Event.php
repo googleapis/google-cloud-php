@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An event representing a user interaction with an advertiser's website or app.
@@ -154,7 +154,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_references
+     *     @type string[] $destination_references
      *           Optional. Reference string used to determine the destination. If empty, the
      *           event will be sent to all
      *           [destinations][google.ads.datamanager.v1.IngestEventsRequest.destinations]
@@ -189,10 +189,10 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\CartData $cart_data
      *           Optional. Information about the transaction and items associated with the
      *           event.
-     *     @type array<\Google\Ads\DataManager\V1\CustomVariable>|\Google\Protobuf\Internal\RepeatedField $custom_variables
+     *     @type \Google\Ads\DataManager\V1\CustomVariable[] $custom_variables
      *           Optional. Additional key/value pair information to send to the conversion
      *           containers (conversion action or FL activity).
-     *     @type array<\Google\Ads\DataManager\V1\ExperimentalField>|\Google\Protobuf\Internal\RepeatedField $experimental_fields
+     *     @type \Google\Ads\DataManager\V1\ExperimentalField[] $experimental_fields
      *           Optional. A list of key/value pairs for experimental fields that may
      *           eventually be promoted to be part of the API.
      *     @type \Google\Ads\DataManager\V1\UserProperties $user_properties
@@ -205,7 +205,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *           this GA4 web stream.
      *     @type string $user_id
      *           Optional. A unique identifier for a user, as defined by the advertiser.
-     *     @type array<\Google\Ads\DataManager\V1\EventParameter>|\Google\Protobuf\Internal\RepeatedField $additional_event_parameters
+     *     @type \Google\Ads\DataManager\V1\EventParameter[] $additional_event_parameters
      *           Optional. A bucket of any [event
      *           parameters](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
      *           to be included within the event that were not already specified using other
@@ -224,7 +224,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * in the request.
      *
      * Generated from protobuf field <code>repeated string destination_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationReferences()
     {
@@ -238,7 +238,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * in the request.
      *
      * Generated from protobuf field <code>repeated string destination_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationReferences($var)
@@ -636,7 +636,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * containers (conversion action or FL activity).
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.CustomVariable custom_variables = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\CustomVariable>
      */
     public function getCustomVariables()
     {
@@ -648,7 +648,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * containers (conversion action or FL activity).
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.CustomVariable custom_variables = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\DataManager\V1\CustomVariable>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\CustomVariable[] $var
      * @return $this
      */
     public function setCustomVariables($var)
@@ -664,7 +664,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * eventually be promoted to be part of the API.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ExperimentalField experimental_fields = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\ExperimentalField>
      */
     public function getExperimentalFields()
     {
@@ -676,7 +676,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * eventually be promoted to be part of the API.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ExperimentalField experimental_fields = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\DataManager\V1\ExperimentalField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\ExperimentalField[] $var
      * @return $this
      */
     public function setExperimentalFields($var)
@@ -812,7 +812,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * structured fields.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.EventParameter additional_event_parameters = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\EventParameter>
      */
     public function getAdditionalEventParameters()
     {
@@ -826,7 +826,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * structured fields.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.EventParameter additional_event_parameters = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\DataManager\V1\EventParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\EventParameter[] $var
      * @return $this
      */
     public function setAdditionalEventParameters($var)

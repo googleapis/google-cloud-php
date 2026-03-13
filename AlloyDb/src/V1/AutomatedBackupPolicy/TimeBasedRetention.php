@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\AutomatedBackupPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A time based retention policy specifies that all backups within a certain
@@ -75,5 +75,4 @@ class TimeBasedRetention extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListProperties RPC.
@@ -35,7 +35,7 @@ class ListPropertiesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1beta\Property>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type \Google\Analytics\Admin\V1beta\Property[] $properties
      *           Results that matched the filter criteria and were accessible to the caller.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListPropertiesResponse extends \Google\Protobuf\Internal\Message
      * Results that matched the filter criteria and were accessible to the caller.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.Property properties = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\Property>
      */
     public function getProperties()
     {
@@ -62,7 +62,7 @@ class ListPropertiesResponse extends \Google\Protobuf\Internal\Message
      * Results that matched the filter criteria and were accessible to the caller.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.Property properties = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\Property>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\Property[] $var
      * @return $this
      */
     public function setProperties($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\ActionResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of widget autocomplete results.
@@ -28,7 +28,7 @@ class SelectionItems extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Card\V1\SelectionInput\SelectionItem>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Apps\Card\V1\SelectionInput\SelectionItem[] $items
      *           An array of the SelectionItem objects.
      * }
      */
@@ -41,7 +41,7 @@ class SelectionItems extends \Google\Protobuf\Internal\Message
      * An array of the SelectionItem objects.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.SelectionInput.SelectionItem items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\SelectionInput\SelectionItem>
      */
     public function getItems()
     {
@@ -52,7 +52,7 @@ class SelectionItems extends \Google\Protobuf\Internal\Message
      * An array of the SelectionItem objects.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.SelectionInput.SelectionItem items = 1;</code>
-     * @param array<\Google\Apps\Card\V1\SelectionInput\SelectionItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\SelectionInput\SelectionItem[] $var
      * @return $this
      */
     public function setItems($var)
@@ -64,5 +64,4 @@ class SelectionItems extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

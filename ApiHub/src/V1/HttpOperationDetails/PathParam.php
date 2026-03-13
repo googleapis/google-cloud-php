@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\HttpOperationDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * HTTP Path parameter.
@@ -98,5 +98,4 @@ class PathParam extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SupportedDatabaseFlag gives general information about a database flag,
@@ -94,7 +94,7 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
      *     @type bool $accepts_multiple_values
      *           Whether the database flag accepts multiple values. If true,
      *           a comma-separated list of stringified values may be specified.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_db_versions
+     *     @type int[] $supported_db_versions
      *           Major database engine versions for which this flag is supported.
      *     @type bool $requires_db_restart
      *           Whether setting or updating this flag on an Instance requires a database
@@ -373,7 +373,7 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
      * Major database engine versions for which this flag is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.DatabaseVersion supported_db_versions = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedDbVersions()
     {
@@ -384,7 +384,7 @@ class SupportedDatabaseFlag extends \Google\Protobuf\Internal\Message
      * Major database engine versions for which this flag is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.DatabaseVersion supported_db_versions = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedDbVersions($var)

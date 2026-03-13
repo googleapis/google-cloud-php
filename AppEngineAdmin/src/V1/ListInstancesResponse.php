@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `Instances.ListInstances`.
@@ -34,7 +34,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppEngine\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\AppEngine\V1\Instance[] $instances
      *           The instances belonging to the requested version.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -49,7 +49,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The instances belonging to the requested version.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Instance instances = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\Instance>
      */
     public function getInstances()
     {
@@ -60,7 +60,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The instances belonging to the requested version.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Instance instances = 1;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\Instance[] $var
      * @return $this
      */
     public function setInstances($var)
