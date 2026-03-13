@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QaQuestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing a possible answer to the question.
@@ -259,5 +259,4 @@ class AnswerChoice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The metadata for a bulk analyze conversations operation.
@@ -79,7 +79,7 @@ class BulkAnalyzeConversationsMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $total_requested_analyses_count
      *           Total number of analyses requested. Computed by the number of conversations
      *           returned by `filter` multiplied by `analysis_percentage` in the request.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type \Google\Rpc\Status[] $partial_errors
      *           Output only. Partial errors during bulk analyze operation that might cause
      *           the operation output to be incomplete.
      * }
@@ -282,7 +282,7 @@ class BulkAnalyzeConversationsMetadata extends \Google\Protobuf\Internal\Message
      * the operation output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialErrors()
     {
@@ -294,7 +294,7 @@ class BulkAnalyzeConversationsMetadata extends \Google\Protobuf\Internal\Message
      * the operation output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialErrors($var)

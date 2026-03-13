@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A DataAccessScope is a boolean expression of data access labels used
@@ -105,7 +105,7 @@ class DataAccessScope extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The unique full name of the data access scope.
      *           The name should comply with https://google.aip.dev/122 standards.
-     *     @type array<\Google\Cloud\Chronicle\V1\DataAccessLabelReference>|\Google\Protobuf\Internal\RepeatedField $allowed_data_access_labels
+     *     @type \Google\Cloud\Chronicle\V1\DataAccessLabelReference[] $allowed_data_access_labels
      *           Optional. The allowed labels for the scope.
      *           Either allow_all or allowed_data_access_labels needs to be provided.
      *           When provided, there has to be at least one label allowed for the scope to
@@ -113,7 +113,7 @@ class DataAccessScope extends \Google\Protobuf\Internal\Message
      *           The logical operator for evaluation of the allowed labels is OR.
      *           E.g.: A customer with scope with allowed labels A and B will be able
      *           to see data with labeled with A or B or (A and B).
-     *     @type array<\Google\Cloud\Chronicle\V1\DataAccessLabelReference>|\Google\Protobuf\Internal\RepeatedField $denied_data_access_labels
+     *     @type \Google\Cloud\Chronicle\V1\DataAccessLabelReference[] $denied_data_access_labels
      *           Optional. The denied labels for the scope.
      *           The logical operator for evaluation of the denied labels is AND.
      *           E.g.: A customer with scope with denied labels A and B won't be able
@@ -186,7 +186,7 @@ class DataAccessScope extends \Google\Protobuf\Internal\Message
      * to see data with labeled with A or B or (A and B).
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessLabelReference allowed_data_access_labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\DataAccessLabelReference>
      */
     public function getAllowedDataAccessLabels()
     {
@@ -203,7 +203,7 @@ class DataAccessScope extends \Google\Protobuf\Internal\Message
      * to see data with labeled with A or B or (A and B).
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessLabelReference allowed_data_access_labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Chronicle\V1\DataAccessLabelReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\DataAccessLabelReference[] $var
      * @return $this
      */
     public function setAllowedDataAccessLabels($var)
@@ -222,7 +222,7 @@ class DataAccessScope extends \Google\Protobuf\Internal\Message
      * and data with labels A and B.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessLabelReference denied_data_access_labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\DataAccessLabelReference>
      */
     public function getDeniedDataAccessLabels()
     {
@@ -237,7 +237,7 @@ class DataAccessScope extends \Google\Protobuf\Internal\Message
      * and data with labels A and B.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessLabelReference denied_data_access_labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Chronicle\V1\DataAccessLabelReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\DataAccessLabelReference[] $var
      * @return $this
      */
     public function setDeniedDataAccessLabels($var)

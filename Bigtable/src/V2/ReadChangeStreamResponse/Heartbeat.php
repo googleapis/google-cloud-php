@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A periodic message with information that can be used to checkpoint
@@ -143,7 +143,4 @@ class Heartbeat extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Heartbeat::class, \Google\Cloud\Bigtable\V2\ReadChangeStreamResponse_Heartbeat::class);
 

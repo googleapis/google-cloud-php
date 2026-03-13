@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1beta\Fleet;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A label selector is a label query over a set of resources. An empty label
@@ -73,5 +73,4 @@ class LabelSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Bigtable.MutateRow.
@@ -134,7 +134,7 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      *           "default" application profile will be used.
      *     @type string $row_key
      *           Required. The key of the row to which the mutation should be applied.
-     *     @type array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type \Google\Cloud\Bigtable\V2\Mutation[] $mutations
      *           Required. Changes to be atomically applied to the specified row. Entries
      *           are applied in order, meaning that earlier mutations can be masked by later
      *           ones. Must contain at least one entry and at most 100000.
@@ -272,7 +272,7 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      * ones. Must contain at least one entry and at most 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\Mutation>
      */
     public function getMutations()
     {
@@ -285,7 +285,7 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      * ones. Must contain at least one entry and at most 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $var
      * @return $this
      */
     public function setMutations($var)

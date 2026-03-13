@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for TuneQaScorecardRevision endpoint.
@@ -67,9 +67,9 @@ class TuneQaScorecardRevisionMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The time the operation finished running.
      *     @type \Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionRequest $request
      *           Output only. The original request.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetValidationResult>|\Google\Protobuf\Internal\RepeatedField $qa_question_dataset_validation_results
+     *     @type \Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetValidationResult[] $qa_question_dataset_validation_results
      *           Output only. The results of data validation per question in the request.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetTuningMetrics>|\Google\Protobuf\Internal\RepeatedField $qa_question_dataset_tuning_metrics
+     *     @type \Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetTuningMetrics[] $qa_question_dataset_tuning_metrics
      *           Output only. The metrics for each QaQuestion in the TuneScorecardRevision
      *           request.
      *     @type float $tuning_completion_ratio
@@ -195,7 +195,7 @@ class TuneQaScorecardRevisionMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The results of data validation per question in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetValidationResult qa_question_dataset_validation_results = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetValidationResult>
      */
     public function getQaQuestionDatasetValidationResults()
     {
@@ -206,7 +206,7 @@ class TuneQaScorecardRevisionMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The results of data validation per question in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetValidationResult qa_question_dataset_validation_results = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetValidationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetValidationResult[] $var
      * @return $this
      */
     public function setQaQuestionDatasetValidationResults($var)
@@ -222,7 +222,7 @@ class TuneQaScorecardRevisionMetadata extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics qa_question_dataset_tuning_metrics = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetTuningMetrics>
      */
     public function getQaQuestionDatasetTuningMetrics()
     {
@@ -234,7 +234,7 @@ class TuneQaScorecardRevisionMetadata extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.TuneQaScorecardRevisionMetadata.QaQuestionDatasetTuningMetrics qa_question_dataset_tuning_metrics = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetTuningMetrics>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata\QaQuestionDatasetTuningMetrics[] $var
      * @return $this
      */
     public function setQaQuestionDatasetTuningMetrics($var)

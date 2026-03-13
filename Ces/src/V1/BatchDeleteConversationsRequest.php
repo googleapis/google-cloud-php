@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -57,7 +57,7 @@ class BatchDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the app to delete conversations from.
      *           Format:
      *           `projects/{project}/locations/{location}/apps/{app}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $conversations
+     *     @type string[] $conversations
      *           Required. The resource names of the conversations to delete.
      * }
      */
@@ -100,7 +100,7 @@ class BatchDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource names of the conversations to delete.
      *
      * Generated from protobuf field <code>repeated string conversations = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getConversations()
     {
@@ -111,7 +111,7 @@ class BatchDeleteConversationsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource names of the conversations to delete.
      *
      * Generated from protobuf field <code>repeated string conversations = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setConversations($var)

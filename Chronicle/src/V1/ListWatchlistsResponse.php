@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing watchlists.
@@ -35,7 +35,7 @@ class ListWatchlistsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Chronicle\V1\Watchlist>|\Google\Protobuf\Internal\RepeatedField $watchlists
+     *     @type \Google\Cloud\Chronicle\V1\Watchlist[] $watchlists
      *           Optional. The watchlists from the specified instance.
      *     @type string $next_page_token
      *           Optional. A token, which can be sent as `page_token` to retrieve the next
@@ -51,7 +51,7 @@ class ListWatchlistsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The watchlists from the specified instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.Watchlist watchlists = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\Watchlist>
      */
     public function getWatchlists()
     {
@@ -62,7 +62,7 @@ class ListWatchlistsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The watchlists from the specified instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.Watchlist watchlists = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Chronicle\V1\Watchlist>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\Watchlist[] $var
      * @return $this
      */
     public function setWatchlists($var)

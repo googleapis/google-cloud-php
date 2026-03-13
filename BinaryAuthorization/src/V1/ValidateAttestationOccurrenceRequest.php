@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      * [occurrence][grafeas.v1.Occurrence], in the format
-     * `projects/&#42;&#47;attestors/&#42;`.
+     * `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>string attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -57,7 +57,7 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
      *     @type string $attestor
      *           Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      *           [occurrence][grafeas.v1.Occurrence], in the format
-     *           `projects/&#42;&#47;attestors/&#42;`.
+     *           `projects/{@*}attestors/*`.
      *     @type \Grafeas\V1\AttestationOccurrence $attestation
      *           Required. An [AttestationOccurrence][grafeas.v1.AttestationOccurrence] to
      *           be checked that it can be verified by the Attestor. It does not have to be
@@ -79,7 +79,7 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      * [occurrence][grafeas.v1.Occurrence], in the format
-     * `projects/&#42;&#47;attestors/&#42;`.
+     * `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>string attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -92,7 +92,7 @@ class ValidateAttestationOccurrenceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Required. The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
      * [occurrence][grafeas.v1.Occurrence], in the format
-     * `projects/&#42;&#47;attestors/&#42;`.
+     * `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>string attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

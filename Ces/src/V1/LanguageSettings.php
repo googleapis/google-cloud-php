@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Language settings of the app.
@@ -58,7 +58,7 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type string $default_language_code
      *           Optional. The default language code of the app.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_language_codes
+     *     @type string[] $supported_language_codes
      *           Optional. List of languages codes supported by the app, in addition to the
      *           `default_language_code`.
      *     @type bool $enable_multilingual_support
@@ -112,7 +112,7 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      * `default_language_code`.
      *
      * Generated from protobuf field <code>repeated string supported_language_codes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedLanguageCodes()
     {
@@ -124,7 +124,7 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      * `default_language_code`.
      *
      * Generated from protobuf field <code>repeated string supported_language_codes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedLanguageCodes($var)

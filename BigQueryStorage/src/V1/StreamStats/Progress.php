@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1\StreamStats;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.bigquery.storage.v1.StreamStats.Progress</code>
@@ -136,5 +136,4 @@ class Progress extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

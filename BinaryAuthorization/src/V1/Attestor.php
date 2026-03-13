@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [attestor][google.cloud.binaryauthorization.v1.Attestor] that attests to container image
@@ -19,7 +19,7 @@ class Attestor extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name, in the format:
-     * `projects/&#42;&#47;attestors/&#42;`. This field may not be updated.
+     * `projects/{@*}attestors/*`. This field may not be updated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,7 +47,7 @@ class Attestor extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name, in the format:
-     *           `projects/&#42;&#47;attestors/&#42;`. This field may not be updated.
+     *           `projects/{@*}attestors/*`. This field may not be updated.
      *     @type string $description
      *           Optional. A descriptive comment.  This field may be updated.
      *           The field may be displayed in chooser dialogs.
@@ -65,7 +65,7 @@ class Attestor extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name, in the format:
-     * `projects/&#42;&#47;attestors/&#42;`. This field may not be updated.
+     * `projects/{@*}attestors/*`. This field may not be updated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -77,7 +77,7 @@ class Attestor extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name, in the format:
-     * `projects/&#42;&#47;attestors/&#42;`. This field may not be updated.
+     * `projects/{@*}attestors/*`. This field may not be updated.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

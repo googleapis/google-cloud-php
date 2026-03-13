@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains validation results for a question in the tuning request.
@@ -45,7 +45,7 @@ class QaQuestionDatasetValidationResult extends \Google\Protobuf\Internal\Messag
      *     @type string $question
      *           Output only. The resource path of the question whose dataset was
      *           evaluated for tuning.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $dataset_validation_warnings
+     *     @type int[] $dataset_validation_warnings
      *           A list of any applicable data validation warnings about the question's
      *           feedback labels.
      *     @type int $valid_feedback_labels_count
@@ -90,7 +90,7 @@ class QaQuestionDatasetValidationResult extends \Google\Protobuf\Internal\Messag
      * feedback labels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.DatasetValidationWarning dataset_validation_warnings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDatasetValidationWarnings()
     {
@@ -102,7 +102,7 @@ class QaQuestionDatasetValidationResult extends \Google\Protobuf\Internal\Messag
      * feedback labels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.DatasetValidationWarning dataset_validation_warnings = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDatasetValidationWarnings($var)
@@ -140,5 +140,4 @@ class QaQuestionDatasetValidationResult extends \Google\Protobuf\Internal\Messag
     }
 
 }
-
 

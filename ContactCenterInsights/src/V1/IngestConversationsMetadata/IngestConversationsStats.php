@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\IngestConversationsMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Statistics for IngestConversations operation.
@@ -178,5 +178,4 @@ class IngestConversationsStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

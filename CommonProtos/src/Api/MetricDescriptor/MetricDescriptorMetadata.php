@@ -5,8 +5,8 @@
 namespace Google\Api\MetricDescriptor;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional annotations that can be used to guide the usage of a metric.
@@ -67,7 +67,7 @@ class MetricDescriptorMetadata extends \Google\Protobuf\Internal\Message
      *           The delay of data points caused by ingestion. Data points older than this
      *           age are guaranteed to be ingested and available to be read, excluding
      *           data loss due to errors.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $time_series_resource_hierarchy_level
+     *     @type int[] $time_series_resource_hierarchy_level
      *           The scope of the timeseries data of the metric.
      * }
      */
@@ -198,7 +198,7 @@ class MetricDescriptorMetadata extends \Google\Protobuf\Internal\Message
      * The scope of the timeseries data of the metric.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor.MetricDescriptorMetadata.TimeSeriesResourceHierarchyLevel time_series_resource_hierarchy_level = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTimeSeriesResourceHierarchyLevel()
     {
@@ -209,7 +209,7 @@ class MetricDescriptorMetadata extends \Google\Protobuf\Internal\Message
      * The scope of the timeseries data of the metric.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor.MetricDescriptorMetadata.TimeSeriesResourceHierarchyLevel time_series_resource_hierarchy_level = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTimeSeriesResourceHierarchyLevel($var)
@@ -221,5 +221,4 @@ class MetricDescriptorMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

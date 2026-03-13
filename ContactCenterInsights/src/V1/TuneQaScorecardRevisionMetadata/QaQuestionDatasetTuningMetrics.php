@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\TuneQaScorecardRevisionMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains performance metrics for each QaQuestion in the
@@ -113,5 +113,4 @@ class QaQuestionDatasetTuningMetrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

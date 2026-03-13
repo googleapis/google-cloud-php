@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A structured data value, consisting of fields which map to dynamically
@@ -37,7 +37,7 @@ class Struct extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\Type\Struct\Field>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Struct\Field[] $fields
      *           The names and types of the fields in this struct.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Struct\Encoding $encoding
      *           The encoding to use when converting to or from lower level types.
@@ -52,7 +52,7 @@ class Struct extends \Google\Protobuf\Internal\Message
      * The names and types of the fields in this struct.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Type.Struct.Field fields = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\Type\Struct\Field>
      */
     public function getFields()
     {
@@ -63,7 +63,7 @@ class Struct extends \Google\Protobuf\Internal\Message
      * The names and types of the fields in this struct.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Type.Struct.Field fields = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\Type\Struct\Field>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Struct\Field[] $var
      * @return $this
      */
     public function setFields($var)
@@ -111,7 +111,4 @@ class Struct extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Struct::class, \Google\Cloud\Bigtable\Admin\V2\Type_Struct::class);
 

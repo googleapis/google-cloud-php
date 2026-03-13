@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\TriggerAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The agent will immediately respond with a generative answer.
@@ -64,5 +64,4 @@ class GenerativeAnswer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

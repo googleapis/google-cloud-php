@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about the lock which locked the deployment.
@@ -34,7 +34,7 @@ class LockInfo extends \Google\Protobuf\Internal\Message
      */
     protected $info = '';
     /**
-     * user&#64;hostname when available
+     * user\@hostname when available
      *
      * Generated from protobuf field <code>string who = 4;</code>
      */
@@ -65,7 +65,7 @@ class LockInfo extends \Google\Protobuf\Internal\Message
      *     @type string $info
      *           Extra information to store with the lock, provided by the caller.
      *     @type string $who
-     *           user&#64;hostname when available
+     *           user\@hostname when available
      *     @type string $version
      *           Terraform version
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -156,7 +156,7 @@ class LockInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * user&#64;hostname when available
+     * user\@hostname when available
      *
      * Generated from protobuf field <code>string who = 4;</code>
      * @return string
@@ -167,7 +167,7 @@ class LockInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * user&#64;hostname when available
+     * user\@hostname when available
      *
      * Generated from protobuf field <code>string who = 4;</code>
      * @param string $var

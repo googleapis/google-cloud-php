@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for the ambient sound to be played with the synthesized agent
@@ -44,7 +44,7 @@ class AmbientSoundConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Ambient noise as a mono-channel, 16kHz WAV file stored in
      *           [Cloud Storage](https://cloud.google.com/storage).
      *           Note: Please make sure the CES service agent
-     *           `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com` has
+     *           `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com` has
      *           `storage.objects.get` permission to the Cloud Storage object.
      *     @type string $prebuilt_ambient_sound
      *           Optional. Name of the prebuilt ambient sound.
@@ -124,7 +124,7 @@ class AmbientSoundConfig extends \Google\Protobuf\Internal\Message
      * Optional. Ambient noise as a mono-channel, 16kHz WAV file stored in
      * [Cloud Storage](https://cloud.google.com/storage).
      * Note: Please make sure the CES service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com` has
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com` has
      * `storage.objects.get` permission to the Cloud Storage object.
      *
      * Generated from protobuf field <code>string gcs_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -144,7 +144,7 @@ class AmbientSoundConfig extends \Google\Protobuf\Internal\Message
      * Optional. Ambient noise as a mono-channel, 16kHz WAV file stored in
      * [Cloud Storage](https://cloud.google.com/storage).
      * Note: Please make sure the CES service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com` has
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com` has
      * `storage.objects.get` permission to the Cloud Storage object.
      *
      * Generated from protobuf field <code>string gcs_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

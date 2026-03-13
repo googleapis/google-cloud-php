@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a personal access token that authorized the Connection,
@@ -19,7 +19,7 @@ class UserCredential extends \Google\Protobuf\Internal\Message
     /**
      * Required. A SecretManager resource containing the user token that
      * authorizes the Cloud Build connection. Format:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string user_token_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,7 +40,7 @@ class UserCredential extends \Google\Protobuf\Internal\Message
      *     @type string $user_token_secret_version
      *           Required. A SecretManager resource containing the user token that
      *           authorizes the Cloud Build connection. Format:
-     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}secrets/{@*}versions/*`.
      *     @type string $username
      *           Output only. The username associated to this token.
      * }
@@ -53,7 +53,7 @@ class UserCredential extends \Google\Protobuf\Internal\Message
     /**
      * Required. A SecretManager resource containing the user token that
      * authorizes the Cloud Build connection. Format:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string user_token_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -66,7 +66,7 @@ class UserCredential extends \Google\Protobuf\Internal\Message
     /**
      * Required. A SecretManager resource containing the user token that
      * authorizes the Cloud Build connection. Format:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string user_token_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

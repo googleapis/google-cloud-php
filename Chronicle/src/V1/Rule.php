@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Rule resource represents a user-created rule.
@@ -198,10 +198,10 @@ class Rule extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Output only. User-facing type of the rule. Extracted from the events
      *           section of rule text. Populated in BASIC view and FULL view.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reference_lists
+     *     @type string[] $reference_lists
      *           Output only. Resource names of the reference lists used in this rule.
      *           Populated in FULL view.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_run_frequencies
+     *     @type int[] $allowed_run_frequencies
      *           Output only. The run frequencies that are allowed for the rule.
      *           Populated in BASIC view and FULL view.
      *     @type string $etag
@@ -218,7 +218,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *           both the user's and the rule's scopes.
      *           The scope should be in the format:
      *           `projects/{project}/locations/{location}/instances/{instance}/dataAccessScopes/{scope}`.
-     *     @type array<\Google\Cloud\Chronicle\V1\CompilationDiagnostic>|\Google\Protobuf\Internal\RepeatedField $compilation_diagnostics
+     *     @type \Google\Cloud\Chronicle\V1\CompilationDiagnostic[] $compilation_diagnostics
      *           Output only. A list of a rule's corresponding compilation diagnostic
      *           messages such as compilation errors and compilation warnings. Populated in
      *           FULL view.
@@ -585,7 +585,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * Populated in FULL view.
      *
      * Generated from protobuf field <code>repeated string reference_lists = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferenceLists()
     {
@@ -597,7 +597,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * Populated in FULL view.
      *
      * Generated from protobuf field <code>repeated string reference_lists = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferenceLists($var)
@@ -613,7 +613,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * Populated in BASIC view and FULL view.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.RunFrequency allowed_run_frequencies = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllowedRunFrequencies()
     {
@@ -625,7 +625,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * Populated in BASIC view and FULL view.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.RunFrequency allowed_run_frequencies = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllowedRunFrequencies($var)
@@ -714,7 +714,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * FULL view.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.CompilationDiagnostic compilation_diagnostics = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\CompilationDiagnostic>
      */
     public function getCompilationDiagnostics()
     {
@@ -727,7 +727,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * FULL view.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.CompilationDiagnostic compilation_diagnostics = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Chronicle\V1\CompilationDiagnostic>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\CompilationDiagnostic[] $var
      * @return $this
      */
     public function setCompilationDiagnostics($var)

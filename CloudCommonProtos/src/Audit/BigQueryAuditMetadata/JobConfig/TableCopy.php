@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata\JobConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Table copy job configuration.
@@ -72,7 +72,7 @@ class TableCopy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_tables
+     *     @type string[] $source_tables
      *           Source tables. Entire list is truncated if exceeds 50K.
      *     @type bool $source_tables_truncated
      *           True if the source_tables field was truncated.
@@ -101,7 +101,7 @@ class TableCopy extends \Google\Protobuf\Internal\Message
      * Source tables. Entire list is truncated if exceeds 50K.
      *
      * Generated from protobuf field <code>repeated string source_tables = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceTables()
     {
@@ -112,7 +112,7 @@ class TableCopy extends \Google\Protobuf\Internal\Message
      * Source tables. Entire list is truncated if exceeds 50K.
      *
      * Generated from protobuf field <code>repeated string source_tables = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceTables($var)
@@ -330,5 +330,4 @@ class TableCopy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

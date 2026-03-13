@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource drift represents a drift to a resource in the state file.
@@ -48,7 +48,7 @@ class ResourceDrift extends \Google\Protobuf\Internal\Message
      *           'projects/{project_id}/locations/{location}/previews/{preview}/resourceDrifts/{resource_drift}'.
      *     @type \Google\Cloud\Config\V1\ResourceDriftTerraformInfo $terraform_info
      *           Output only. Terraform info of the resource drift.
-     *     @type array<\Google\Cloud\Config\V1\PropertyDrift>|\Google\Protobuf\Internal\RepeatedField $property_drifts
+     *     @type \Google\Cloud\Config\V1\PropertyDrift[] $property_drifts
      *           Output only. The property drifts of the resource drift.
      * }
      */
@@ -127,7 +127,7 @@ class ResourceDrift extends \Google\Protobuf\Internal\Message
      * Output only. The property drifts of the resource drift.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.PropertyDrift property_drifts = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\PropertyDrift>
      */
     public function getPropertyDrifts()
     {
@@ -138,7 +138,7 @@ class ResourceDrift extends \Google\Protobuf\Internal\Message
      * Output only. The property drifts of the resource drift.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.PropertyDrift property_drifts = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Config\V1\PropertyDrift>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\PropertyDrift[] $var
      * @return $this
      */
     public function setPropertyDrifts($var)

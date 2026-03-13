@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\ChannelProfile;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the persona property of a channel.
@@ -64,5 +64,4 @@ class PersonaProperty extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

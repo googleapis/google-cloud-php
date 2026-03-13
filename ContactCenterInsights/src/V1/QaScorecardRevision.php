@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A revision of a QaScorecard.
@@ -68,7 +68,7 @@ class QaScorecardRevision extends \Google\Protobuf\Internal\Message
      *           The snapshot of the scorecard at the time of this revision's creation.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp that the revision was created.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alternate_ids
+     *     @type string[] $alternate_ids
      *           Output only. Alternative IDs for this revision of the scorecard, e.g.,
      *           `latest`.
      *     @type int $state
@@ -188,7 +188,7 @@ class QaScorecardRevision extends \Google\Protobuf\Internal\Message
      * `latest`.
      *
      * Generated from protobuf field <code>repeated string alternate_ids = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAlternateIds()
     {
@@ -200,7 +200,7 @@ class QaScorecardRevision extends \Google\Protobuf\Internal\Message
      * `latest`.
      *
      * Generated from protobuf field <code>repeated string alternate_ids = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAlternateIds($var)

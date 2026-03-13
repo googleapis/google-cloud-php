@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Bigtable.PrepareQuery
@@ -43,9 +43,9 @@ class PrepareQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. `param_types` is a map of parameter identifier strings to their
      * `Type`s.
      * In query string, a parameter placeholder consists of the
-     * `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     * `\@` character followed by the parameter name (for example, `\@firstName`) in
      * the query string.
-     * For example, if param_types["firstName"] = Bytes then &#64;firstName will be a
+     * For example, if param_types["firstName"] = Bytes then \@firstName will be a
      * query parameter of type Bytes. The specific `Value` to be used for the
      * query execution must be sent in `ExecuteQueryRequest` in the `params` map.
      *
@@ -121,9 +121,9 @@ class PrepareQueryRequest extends \Google\Protobuf\Internal\Message
      *           Required. `param_types` is a map of parameter identifier strings to their
      *           `Type`s.
      *           In query string, a parameter placeholder consists of the
-     *           `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     *           `\@` character followed by the parameter name (for example, `\@firstName`) in
      *           the query string.
-     *           For example, if param_types["firstName"] = Bytes then &#64;firstName will be a
+     *           For example, if param_types["firstName"] = Bytes then \@firstName will be a
      *           query parameter of type Bytes. The specific `Value` to be used for the
      *           query execution must be sent in `ExecuteQueryRequest` in the `params` map.
      * }
@@ -260,9 +260,9 @@ class PrepareQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. `param_types` is a map of parameter identifier strings to their
      * `Type`s.
      * In query string, a parameter placeholder consists of the
-     * `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     * `\@` character followed by the parameter name (for example, `\@firstName`) in
      * the query string.
-     * For example, if param_types["firstName"] = Bytes then &#64;firstName will be a
+     * For example, if param_types["firstName"] = Bytes then \@firstName will be a
      * query parameter of type Bytes. The specific `Value` to be used for the
      * query execution must be sent in `ExecuteQueryRequest` in the `params` map.
      *
@@ -278,9 +278,9 @@ class PrepareQueryRequest extends \Google\Protobuf\Internal\Message
      * Required. `param_types` is a map of parameter identifier strings to their
      * `Type`s.
      * In query string, a parameter placeholder consists of the
-     * `&#64;` character followed by the parameter name (for example, `&#64;firstName`) in
+     * `\@` character followed by the parameter name (for example, `\@firstName`) in
      * the query string.
-     * For example, if param_types["firstName"] = Bytes then &#64;firstName will be a
+     * For example, if param_types["firstName"] = Bytes then \@firstName will be a
      * query parameter of type Bytes. The specific `Value` to be used for the
      * query execution must be sent in `ExecuteQueryRequest` in the `params` map.
      *

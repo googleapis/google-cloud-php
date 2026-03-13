@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\DataStoreTool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Boost specification to boost certain documents.
@@ -28,7 +28,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $condition_boost_specs
+     *     @type \Google\Cloud\Ces\V1\DataStoreTool\BoostSpec\ConditionBoostSpec[] $condition_boost_specs
      *           Required. A list of boosting specifications.
      * }
      */
@@ -41,7 +41,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * Required. A list of boosting specifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.BoostSpec.ConditionBoostSpec condition_boost_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpec\ConditionBoostSpec>
      */
     public function getConditionBoostSpecs()
     {
@@ -52,7 +52,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * Required. A list of boosting specifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.BoostSpec.ConditionBoostSpec condition_boost_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\DataStoreTool\BoostSpec\ConditionBoostSpec[] $var
      * @return $this
      */
     public function setConditionBoostSpecs($var)
@@ -64,5 +64,4 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

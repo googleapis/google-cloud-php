@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A descriptor for defining project properties for a service. One service may
@@ -41,7 +41,7 @@ class ProjectProperties extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Api\Property>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type \Google\Api\Property[] $properties
      *           List of per consumer project-specific properties.
      * }
      */
@@ -54,7 +54,7 @@ class ProjectProperties extends \Google\Protobuf\Internal\Message
      * List of per consumer project-specific properties.
      *
      * Generated from protobuf field <code>repeated .google.api.Property properties = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\Property>
      */
     public function getProperties()
     {
@@ -65,7 +65,7 @@ class ProjectProperties extends \Google\Protobuf\Internal\Message
      * List of per consumer project-specific properties.
      *
      * Generated from protobuf field <code>repeated .google.api.Property properties = 1;</code>
-     * @param array<\Google\Api\Property>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Property[] $var
      * @return $this
      */
     public function setProperties($var)

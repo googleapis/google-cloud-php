@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.bigquery.storage.v1.ProtoRows</code>
@@ -28,7 +28,7 @@ class ProtoRows extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $serialized_rows
+     *     @type string[] $serialized_rows
      *           A sequence of rows serialized as a Protocol Buffer.
      *           See https://developers.google.com/protocol-buffers/docs/overview for more
      *           information on deserializing this field.
@@ -45,7 +45,7 @@ class ProtoRows extends \Google\Protobuf\Internal\Message
      * information on deserializing this field.
      *
      * Generated from protobuf field <code>repeated bytes serialized_rows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSerializedRows()
     {
@@ -58,7 +58,7 @@ class ProtoRows extends \Google\Protobuf\Internal\Message
      * information on deserializing this field.
      *
      * Generated from protobuf field <code>repeated bytes serialized_rows = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSerializedRows($var)

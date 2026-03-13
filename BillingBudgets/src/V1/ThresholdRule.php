@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\Budgets\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ThresholdRule contains the definition of a threshold. Threshold rules define

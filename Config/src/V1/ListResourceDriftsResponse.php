@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to a 'ListResourceDrifts' call. Contains a list of ResourceDrifts.
@@ -42,13 +42,13 @@ class ListResourceDriftsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Config\V1\ResourceDrift>|\Google\Protobuf\Internal\RepeatedField $resource_drifts
+     *     @type \Google\Cloud\Config\V1\ResourceDrift[] $resource_drifts
      *           List of ResourceDrifts.
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
      *           'ListResourceDrifts' method. The value of an empty string means that
      *           there are no more resources to return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable resources, if any.
      * }
      */
@@ -61,7 +61,7 @@ class ListResourceDriftsResponse extends \Google\Protobuf\Internal\Message
      * List of ResourceDrifts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.ResourceDrift resource_drifts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\ResourceDrift>
      */
     public function getResourceDrifts()
     {
@@ -72,7 +72,7 @@ class ListResourceDriftsResponse extends \Google\Protobuf\Internal\Message
      * List of ResourceDrifts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.ResourceDrift resource_drifts = 1;</code>
-     * @param array<\Google\Cloud\Config\V1\ResourceDrift>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\ResourceDrift[] $var
      * @return $this
      */
     public function setResourceDrifts($var)
@@ -117,7 +117,7 @@ class ListResourceDriftsResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources, if any.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class ListResourceDriftsResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources, if any.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

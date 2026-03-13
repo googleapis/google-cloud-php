@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\AppProfile;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data Boost is a serverless compute capability that lets you run
@@ -78,7 +78,4 @@ class DataBoostIsolationReadOnly extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataBoostIsolationReadOnly::class, \Google\Cloud\Bigtable\Admin\V2\AppProfile_DataBoostIsolationReadOnly::class);
 

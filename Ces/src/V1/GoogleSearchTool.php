@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a tool to perform Google web searches for grounding.
@@ -71,15 +71,15 @@ class GoogleSearchTool extends \Google\Protobuf\Internal\Message
      *           Required. The name of the tool.
      *     @type string $description
      *           Optional. Description of the tool's purpose.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $context_urls
+     *     @type string[] $context_urls
      *           Optional. Content will be fetched directly from these URLs for context and
      *           grounding. Example: "https://example.com/path.html". A maximum of 20 URLs
      *           are allowed.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $preferred_domains
+     *     @type string[] $preferred_domains
      *           Optional. Specifies domains to restrict search results to.
      *           Example: "example.com", "another.site". A maximum of 20 domains can be
      *           specified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_domains
+     *     @type string[] $exclude_domains
      *           Optional. List of domains to be excluded from the search results.
      *           Example: "example.com".
      *           A maximum of 2000 domains can be excluded.
@@ -151,7 +151,7 @@ class GoogleSearchTool extends \Google\Protobuf\Internal\Message
      * are allowed.
      *
      * Generated from protobuf field <code>repeated string context_urls = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getContextUrls()
     {
@@ -164,7 +164,7 @@ class GoogleSearchTool extends \Google\Protobuf\Internal\Message
      * are allowed.
      *
      * Generated from protobuf field <code>repeated string context_urls = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setContextUrls($var)
@@ -181,7 +181,7 @@ class GoogleSearchTool extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated string preferred_domains = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPreferredDomains()
     {
@@ -194,7 +194,7 @@ class GoogleSearchTool extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated string preferred_domains = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPreferredDomains($var)
@@ -211,7 +211,7 @@ class GoogleSearchTool extends \Google\Protobuf\Internal\Message
      * A maximum of 2000 domains can be excluded.
      *
      * Generated from protobuf field <code>repeated string exclude_domains = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeDomains()
     {
@@ -224,7 +224,7 @@ class GoogleSearchTool extends \Google\Protobuf\Internal\Message
      * A maximum of 2000 domains can be excluded.
      *
      * Generated from protobuf field <code>repeated string exclude_domains = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeDomains($var)

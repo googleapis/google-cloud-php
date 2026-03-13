@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies (some of) the contents of a single row/column/timestamp of a table.
@@ -58,7 +58,7 @@ class Cell extends \Google\Protobuf\Internal\Message
      *           The value stored in the cell.
      *           May contain any byte string, including the empty string, up to 100MiB in
      *           length.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type string[] $labels
      *           Labels applied to the cell by a [RowFilter][google.bigtable.v2.RowFilter].
      * }
      */
@@ -137,7 +137,7 @@ class Cell extends \Google\Protobuf\Internal\Message
      * Labels applied to the cell by a [RowFilter][google.bigtable.v2.RowFilter].
      *
      * Generated from protobuf field <code>repeated string labels = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLabels()
     {
@@ -148,7 +148,7 @@ class Cell extends \Google\Protobuf\Internal\Message
      * Labels applied to the cell by a [RowFilter][google.bigtable.v2.RowFilter].
      *
      * Generated from protobuf field <code>repeated string labels = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLabels($var)

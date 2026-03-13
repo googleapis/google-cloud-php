@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\CertificateMap;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a Target Proxy that uses this Certificate Map.
@@ -33,12 +33,12 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
      *     @type string $target_https_proxy
      *           Output only. This field returns the resource name in the following
      *           format:
-     *           `//compute.googleapis.com/projects/&#42;&#47;global/targetHttpsProxies/&#42;`.
+     *           `//compute.googleapis.com/projects/{@*}global/targetHttpsProxies/*`.
      *     @type string $target_ssl_proxy
      *           Output only. This field returns the resource name in the following
      *           format:
-     *           `//compute.googleapis.com/projects/&#42;&#47;global/targetSslProxies/&#42;`.
-     *     @type array<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget\IpConfig>|\Google\Protobuf\Internal\RepeatedField $ip_configs
+     *           `//compute.googleapis.com/projects/{@*}global/targetSslProxies/*`.
+     *     @type \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget\IpConfig[] $ip_configs
      *           Output only. IP configurations for this Target Proxy where the
      *           Certificate Map is serving.
      * }
@@ -51,7 +51,7 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     /**
      * Output only. This field returns the resource name in the following
      * format:
-     * `//compute.googleapis.com/projects/&#42;&#47;global/targetHttpsProxies/&#42;`.
+     * `//compute.googleapis.com/projects/{@*}global/targetHttpsProxies/*`.
      *
      * Generated from protobuf field <code>string target_https_proxy = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -69,7 +69,7 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     /**
      * Output only. This field returns the resource name in the following
      * format:
-     * `//compute.googleapis.com/projects/&#42;&#47;global/targetHttpsProxies/&#42;`.
+     * `//compute.googleapis.com/projects/{@*}global/targetHttpsProxies/*`.
      *
      * Generated from protobuf field <code>string target_https_proxy = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -86,7 +86,7 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     /**
      * Output only. This field returns the resource name in the following
      * format:
-     * `//compute.googleapis.com/projects/&#42;&#47;global/targetSslProxies/&#42;`.
+     * `//compute.googleapis.com/projects/{@*}global/targetSslProxies/*`.
      *
      * Generated from protobuf field <code>string target_ssl_proxy = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -104,7 +104,7 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     /**
      * Output only. This field returns the resource name in the following
      * format:
-     * `//compute.googleapis.com/projects/&#42;&#47;global/targetSslProxies/&#42;`.
+     * `//compute.googleapis.com/projects/{@*}global/targetSslProxies/*`.
      *
      * Generated from protobuf field <code>string target_ssl_proxy = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -123,7 +123,7 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
      * Certificate Map is serving.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget.IpConfig ip_configs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget\IpConfig>
      */
     public function getIpConfigs()
     {
@@ -135,7 +135,7 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
      * Certificate Map is serving.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget.IpConfig ip_configs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget\IpConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget\IpConfig[] $var
      * @return $this
      */
     public function setIpConfigs($var)
@@ -155,5 +155,4 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

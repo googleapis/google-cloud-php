@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request for an attestation token, providing all the necessary information
@@ -18,7 +18,7 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the Challenge whose nonce was used to generate the
-     * attestation, in the format `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`. The
+     * attestation, in the format `projects/{@*}locations/{@*}challenges/*`. The
      * provided Challenge will be consumed, and cannot be used again.
      *
      * Generated from protobuf field <code>string challenge = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -74,12 +74,12 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
      *           used to populate any of the claims regarding platform state.
      *     @type string $challenge
      *           Required. The name of the Challenge whose nonce was used to generate the
-     *           attestation, in the format `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`. The
+     *           attestation, in the format `projects/{@*}locations/{@*}challenges/*`. The
      *           provided Challenge will be consumed, and cannot be used again.
      *     @type \Google\Cloud\ConfidentialComputing\V1\GcpCredentials $gcp_credentials
      *           Optional. Credentials used to populate the "emails" claim in the
      *           claims_token. If not present, token will not contain the "emails" claim.
-     *     @type array<\Google\Cloud\ConfidentialComputing\V1\SignedEntity>|\Google\Protobuf\Internal\RepeatedField $signed_entities
+     *     @type \Google\Cloud\ConfidentialComputing\V1\SignedEntity[] $signed_entities
      *           Optional. A list of signed entities containing container image signatures
      *           that can be used for server-side signature verification.
      *     @type \Google\Cloud\ConfidentialComputing\V1\GceShieldedIdentity $gce_shielded_identity
@@ -164,7 +164,7 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Challenge whose nonce was used to generate the
-     * attestation, in the format `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`. The
+     * attestation, in the format `projects/{@*}locations/{@*}challenges/*`. The
      * provided Challenge will be consumed, and cannot be used again.
      *
      * Generated from protobuf field <code>string challenge = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -177,7 +177,7 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Challenge whose nonce was used to generate the
-     * attestation, in the format `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`. The
+     * attestation, in the format `projects/{@*}locations/{@*}challenges/*`. The
      * provided Challenge will be consumed, and cannot be used again.
      *
      * Generated from protobuf field <code>string challenge = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -235,7 +235,7 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
      * that can be used for server-side signature verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.SignedEntity signed_entities = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ConfidentialComputing\V1\SignedEntity>
      */
     public function getSignedEntities()
     {
@@ -247,7 +247,7 @@ class VerifyConfidentialSpaceRequest extends \Google\Protobuf\Internal\Message
      * that can be used for server-side signature verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.SignedEntity signed_entities = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ConfidentialComputing\V1\SignedEntity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ConfidentialComputing\V1\SignedEntity[] $var
      * @return $this
      */
     public function setSignedEntities($var)

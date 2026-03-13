@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BigtableInstanceAdmin.ListMaterializedViews.
@@ -35,7 +35,7 @@ class ListMaterializedViewsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\MaterializedView>|\Google\Protobuf\Internal\RepeatedField $materialized_views
+     *     @type \Google\Cloud\Bigtable\Admin\V2\MaterializedView[] $materialized_views
      *           The list of requested materialized views.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListMaterializedViewsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested materialized views.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.MaterializedView materialized_views = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\MaterializedView>
      */
     public function getMaterializedViews()
     {
@@ -62,7 +62,7 @@ class ListMaterializedViewsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested materialized views.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.MaterializedView materialized_views = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\MaterializedView>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\MaterializedView[] $var
      * @return $this
      */
     public function setMaterializedViews($var)

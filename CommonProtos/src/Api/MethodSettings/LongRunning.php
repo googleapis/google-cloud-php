@@ -5,8 +5,8 @@
 namespace Google\Api\MethodSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes settings to use when generating API methods that use the
@@ -220,5 +220,4 @@ class LongRunning extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

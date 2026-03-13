@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregated statistics about an issue.
@@ -140,5 +140,4 @@ class IssueStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

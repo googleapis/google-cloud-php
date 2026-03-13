@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\DnsAuthorization;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The structure describing the DNS Resource Record that needs to be added
@@ -142,5 +142,4 @@ class DnsResourceRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ID and description of a report that was used to generate report data.
@@ -63,7 +63,7 @@ class Report extends \Google\Protobuf\Internal\Message
      *           accounts/{account_id}/reports/{report_id}
      *     @type string $display_name
      *           A human-readable name for this report.
-     *     @type array<\Google\Cloud\Channel\V1\Column>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\Channel\V1\Column[] $columns
      *           The list of columns included in the report. This defines the schema of
      *           the report results.
      *     @type string $description
@@ -141,7 +141,7 @@ class Report extends \Google\Protobuf\Internal\Message
      * the report results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Column columns = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Column>
      */
     public function getColumns()
     {
@@ -153,7 +153,7 @@ class Report extends \Google\Protobuf\Internal\Message
      * the report results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Column columns = 3;</code>
-     * @param array<\Google\Cloud\Channel\V1\Column>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Column[] $var
      * @return $this
      */
     public function setColumns($var)

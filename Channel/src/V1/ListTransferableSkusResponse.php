@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\TransferableSku>|\Google\Protobuf\Internal\RepeatedField $transferable_skus
+     *     @type \Google\Cloud\Channel\V1\TransferableSku[] $transferable_skus
      *           Information about existing SKUs for a customer that needs a transfer.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -56,7 +56,7 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
      * Information about existing SKUs for a customer that needs a transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableSku transferable_skus = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\TransferableSku>
      */
     public function getTransferableSkus()
     {
@@ -67,7 +67,7 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
      * Information about existing SKUs for a customer that needs a transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableSku transferable_skus = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\TransferableSku>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\TransferableSku[] $var
      * @return $this
      */
     public function setTransferableSkus($var)

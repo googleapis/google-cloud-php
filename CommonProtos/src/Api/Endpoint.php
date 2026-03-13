@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `Endpoint` describes a network address of a service that serves a set of
@@ -77,7 +77,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The canonical name of this endpoint.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aliases
+     *     @type string[] $aliases
      *           Aliases for this endpoint, these will be served by the same UrlMap as the
      *           parent endpoint, and will be provisioned in the GCP stack for the Regional
      *           Endpoints.
@@ -133,7 +133,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Endpoints.
      *
      * Generated from protobuf field <code>repeated string aliases = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAliases()
     {
@@ -146,7 +146,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Endpoints.
      *
      * Generated from protobuf field <code>repeated string aliases = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAliases($var)

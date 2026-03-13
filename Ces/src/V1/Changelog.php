@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Changelogs represent a change made to the app or to an resource within the
@@ -121,7 +121,7 @@ class Changelog extends \Google\Protobuf\Internal\Message
      *           Output only. The original resource before the change.
      *     @type \Google\Protobuf\Struct $new_resource
      *           Output only. The new resource after the change.
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $dependent_resources
+     *     @type \Google\Protobuf\Struct[] $dependent_resources
      *           Output only. The dependent resources that were changed.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the change was made.
@@ -400,7 +400,7 @@ class Changelog extends \Google\Protobuf\Internal\Message
      * Output only. The dependent resources that were changed.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct dependent_resources = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getDependentResources()
     {
@@ -411,7 +411,7 @@ class Changelog extends \Google\Protobuf\Internal\Message
      * Output only. The dependent resources that were changed.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct dependent_resources = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setDependentResources($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListChannelPartnerRepricingConfigsResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig>|\Google\Protobuf\Internal\RepeatedField $channel_partner_repricing_configs
+     *     @type \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig[] $channel_partner_repricing_configs
      *           The repricing configs for this channel partner.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -56,7 +56,7 @@ class ListChannelPartnerRepricingConfigsResponse extends \Google\Protobuf\Intern
      * The repricing configs for this channel partner.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ChannelPartnerRepricingConfig channel_partner_repricing_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig>
      */
     public function getChannelPartnerRepricingConfigs()
     {
@@ -67,7 +67,7 @@ class ListChannelPartnerRepricingConfigsResponse extends \Google\Protobuf\Intern
      * The repricing configs for this channel partner.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ChannelPartnerRepricingConfig channel_partner_repricing_configs = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig[] $var
      * @return $this
      */
     public function setChannelPartnerRepricingConfigs($var)

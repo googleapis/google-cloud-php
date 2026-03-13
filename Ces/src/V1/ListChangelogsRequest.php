@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -51,7 +51,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      * * `action="Create"` (case-sensitive exact match)
      * * `resource_type:agent`
      * * `resource_name:my-agent`
-     * * `author:me&#64;example.com`
+     * * `author:me\@example.com`
      * * `create_time > "2025-01-01T00:00:00Z"`
      * * `create_time <= "2025-01-01T00:00:00Z" AND resource_type:tool`
      *
@@ -109,7 +109,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      *           * `action="Create"` (case-sensitive exact match)
      *           * `resource_type:agent`
      *           * `resource_name:my-agent`
-     *           * `author:me&#64;example.com`
+     *           * `author:me\@example.com`
      *           * `create_time > "2025-01-01T00:00:00Z"`
      *           * `create_time <= "2025-01-01T00:00:00Z" AND resource_type:tool`
      *     @type string $order_by
@@ -222,7 +222,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      * * `action="Create"` (case-sensitive exact match)
      * * `resource_type:agent`
      * * `resource_name:my-agent`
-     * * `author:me&#64;example.com`
+     * * `author:me\@example.com`
      * * `create_time > "2025-01-01T00:00:00Z"`
      * * `create_time <= "2025-01-01T00:00:00Z" AND resource_type:tool`
      *
@@ -246,7 +246,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      * * `action="Create"` (case-sensitive exact match)
      * * `resource_type:agent`
      * * `resource_name:my-agent`
-     * * `author:me&#64;example.com`
+     * * `author:me\@example.com`
      * * `create_time > "2025-01-01T00:00:00Z"`
      * * `create_time <= "2025-01-01T00:00:00Z" AND resource_type:tool`
      *

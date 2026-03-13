@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for creating repositoritories in batch.
@@ -17,7 +17,7 @@ class BatchCreateRepositoriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The connection to contain all the repositories being created.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;connections/&#42;
+     * Format: projects/{@*}locations/{@*}connections/*
      * The parent field in the CreateRepositoryRequest messages
      * must either be empty or match this field.
      *
@@ -58,10 +58,10 @@ class BatchCreateRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The connection to contain all the repositories being created.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;connections/&#42;
+     *           Format: projects/{@*}locations/{@*}connections/*
      *           The parent field in the CreateRepositoryRequest messages
      *           must either be empty or match this field.
-     *     @type array<\Google\Cloud\Build\V2\CreateRepositoryRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\Build\V2\CreateRepositoryRequest[] $requests
      *           Required. The request messages specifying the repositories to create.
      * }
      */
@@ -72,7 +72,7 @@ class BatchCreateRepositoriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The connection to contain all the repositories being created.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;connections/&#42;
+     * Format: projects/{@*}locations/{@*}connections/*
      * The parent field in the CreateRepositoryRequest messages
      * must either be empty or match this field.
      *
@@ -86,7 +86,7 @@ class BatchCreateRepositoriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The connection to contain all the repositories being created.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;connections/&#42;
+     * Format: projects/{@*}locations/{@*}connections/*
      * The parent field in the CreateRepositoryRequest messages
      * must either be empty or match this field.
      *
@@ -106,7 +106,7 @@ class BatchCreateRepositoriesRequest extends \Google\Protobuf\Internal\Message
      * Required. The request messages specifying the repositories to create.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v2.CreateRepositoryRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Build\V2\CreateRepositoryRequest>
      */
     public function getRequests()
     {
@@ -117,7 +117,7 @@ class BatchCreateRepositoriesRequest extends \Google\Protobuf\Internal\Message
      * Required. The request messages specifying the repositories to create.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v2.CreateRepositoryRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Build\V2\CreateRepositoryRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Build\V2\CreateRepositoryRequest[] $var
      * @return $this
      */
     public function setRequests($var)

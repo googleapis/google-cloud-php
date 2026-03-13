@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search suggestions from [Google Search
@@ -20,7 +20,7 @@ class GoogleSearchSuggestions extends \Google\Protobuf\Internal\Message
      * Compliant HTML and CSS styling for search suggestions.
      * The provided HTML and CSS automatically adapts to your device settings,
      * displaying in either light or dark mode indicated by
-     * `&#64;media(prefers-color-scheme)`.
+     * `\@media(prefers-color-scheme)`.
      *
      * Generated from protobuf field <code>repeated string htmls = 1;</code>
      */
@@ -39,12 +39,12 @@ class GoogleSearchSuggestions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $htmls
+     *     @type string[] $htmls
      *           Compliant HTML and CSS styling for search suggestions.
      *           The provided HTML and CSS automatically adapts to your device settings,
      *           displaying in either light or dark mode indicated by
-     *           `&#64;media(prefers-color-scheme)`.
-     *     @type array<\Google\Cloud\Ces\V1\WebSearchQuery>|\Google\Protobuf\Internal\RepeatedField $web_search_queries
+     *           `\@media(prefers-color-scheme)`.
+     *     @type \Google\Cloud\Ces\V1\WebSearchQuery[] $web_search_queries
      *           List of queries used to perform the google search along with the search
      *           result URIs forming the search suggestions.
      * }
@@ -58,10 +58,10 @@ class GoogleSearchSuggestions extends \Google\Protobuf\Internal\Message
      * Compliant HTML and CSS styling for search suggestions.
      * The provided HTML and CSS automatically adapts to your device settings,
      * displaying in either light or dark mode indicated by
-     * `&#64;media(prefers-color-scheme)`.
+     * `\@media(prefers-color-scheme)`.
      *
      * Generated from protobuf field <code>repeated string htmls = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHtmls()
     {
@@ -72,10 +72,10 @@ class GoogleSearchSuggestions extends \Google\Protobuf\Internal\Message
      * Compliant HTML and CSS styling for search suggestions.
      * The provided HTML and CSS automatically adapts to your device settings,
      * displaying in either light or dark mode indicated by
-     * `&#64;media(prefers-color-scheme)`.
+     * `\@media(prefers-color-scheme)`.
      *
      * Generated from protobuf field <code>repeated string htmls = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHtmls($var)
@@ -91,7 +91,7 @@ class GoogleSearchSuggestions extends \Google\Protobuf\Internal\Message
      * result URIs forming the search suggestions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.WebSearchQuery web_search_queries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\WebSearchQuery>
      */
     public function getWebSearchQueries()
     {
@@ -103,7 +103,7 @@ class GoogleSearchSuggestions extends \Google\Protobuf\Internal\Message
      * result URIs forming the search suggestions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.WebSearchQuery web_search_queries = 2;</code>
-     * @param array<\Google\Cloud\Ces\V1\WebSearchQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\WebSearchQuery[] $var
      * @return $this
      */
     public function setWebSearchQueries($var)

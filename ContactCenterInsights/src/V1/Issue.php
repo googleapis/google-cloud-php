@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The issue resource.
@@ -71,7 +71,7 @@ class Issue extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which this issue was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The most recent time that this issue was updated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sample_utterances
+     *     @type string[] $sample_utterances
      *           Output only. Resource names of the sample representative utterances that
      *           match to this issue.
      *     @type string $display_description
@@ -216,7 +216,7 @@ class Issue extends \Google\Protobuf\Internal\Message
      * match to this issue.
      *
      * Generated from protobuf field <code>repeated string sample_utterances = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSampleUtterances()
     {
@@ -228,7 +228,7 @@ class Issue extends \Google\Protobuf\Internal\Message
      * match to this issue.
      *
      * Generated from protobuf field <code>repeated string sample_utterances = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSampleUtterances($var)

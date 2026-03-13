@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -56,7 +56,7 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
      *           Required. The resource name of the reseller's customer account where the
      *           entitlements transfer from. Parent uses the format:
      *           accounts/{account_id}/customers/{customer_id}
-     *     @type array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $entitlements
+     *     @type \Google\Cloud\Channel\V1\Entitlement[] $entitlements
      *           Required. The entitlements to transfer to Google.
      *     @type string $request_id
      *           Optional. You can specify an optional unique request ID, and if you need to
@@ -110,7 +110,7 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
      * Required. The entitlements to transfer to Google.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Entitlement>
      */
     public function getEntitlements()
     {
@@ -121,7 +121,7 @@ class TransferEntitlementsToGoogleRequest extends \Google\Protobuf\Internal\Mess
      * Required. The entitlements to transfer to Google.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Entitlement[] $var
      * @return $this
      */
     public function setEntitlements($var)
