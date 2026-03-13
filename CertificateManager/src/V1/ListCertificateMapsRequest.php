@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `ListCertificateMaps` method.
@@ -17,7 +17,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which the certificate maps should
-     * be listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * be listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -74,7 +74,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which the certificate maps should
-     *           be listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           be listed, specified in the format `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Maximum number of certificate maps to return per call.
      *     @type string $page_token
@@ -96,7 +96,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the certificate maps should
-     * be listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * be listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,7 +108,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the certificate maps should
-     * be listed, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * be listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

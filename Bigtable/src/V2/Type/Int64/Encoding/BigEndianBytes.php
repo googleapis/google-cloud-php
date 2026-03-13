@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type\Int64\Encoding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encodes the value as an 8-byte big-endian two's complement value.
@@ -91,7 +91,4 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BigEndianBytes::class, \Google\Cloud\Bigtable\V2\Type_Int64_Encoding_BigEndianBytes::class);
 

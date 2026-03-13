@@ -375,7 +375,7 @@ class ErrorReason
      *       "metadata": {
      *         "service": "storage.googleapis.com",
      *         "method": "google.storage.v1.Storage.GetObject",
-     *         "email": "user&#64;123.iam.gserviceaccount.com"
+     *         "email": "user\@123.iam.gserviceaccount.com"
      *       }
      *     }
      *

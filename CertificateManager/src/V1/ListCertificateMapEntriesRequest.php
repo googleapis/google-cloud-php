@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `ListCertificateMapEntries` method.
@@ -18,7 +18,7 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project, location and certificate map from which the
      * certificate map entries should be listed, specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -81,7 +81,7 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The project, location and certificate map from which the
      *           certificate map entries should be listed, specified in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     *           `projects/{@*}locations/{@*}certificateMaps/*`.
      *     @type int $page_size
      *           Maximum number of certificate map entries to return. The service may return
      *           fewer than this value.
@@ -108,7 +108,7 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project, location and certificate map from which the
      * certificate map entries should be listed, specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -121,7 +121,7 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project, location and certificate map from which the
      * certificate map entries should be listed, specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

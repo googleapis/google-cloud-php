@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [policy][google.cloud.binaryauthorization.v1.Policy] for container image binary authorization.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Policy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name, in the format `projects/&#42;&#47;policy`. There is
+     * Output only. The resource name, in the format `projects/{@*}policy`. There is
      * at most one policy per project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -102,7 +102,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name, in the format `projects/&#42;&#47;policy`. There is
+     *           Output only. The resource name, in the format `projects/{@*}policy`. There is
      *           at most one policy per project.
      *     @type string $description
      *           Optional. A descriptive comment.
@@ -111,7 +111,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           policy for common system-level images. Images not covered by the global
      *           policy will be subject to the project admission policy. This setting
      *           has no effect when specified inside a global admission policy.
-     *     @type array<\Google\Cloud\BinaryAuthorization\V1\AdmissionWhitelistPattern>|\Google\Protobuf\Internal\RepeatedField $admission_whitelist_patterns
+     *     @type \Google\Cloud\BinaryAuthorization\V1\AdmissionWhitelistPattern[] $admission_whitelist_patterns
      *           Optional. Admission policy allowlisting. A matching admission request will
      *           always be permitted. This feature is typically used to exclude Google or
      *           third-party infrastructure images from Binary Authorization policies.
@@ -148,7 +148,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name, in the format `projects/&#42;&#47;policy`. There is
+     * Output only. The resource name, in the format `projects/{@*}policy`. There is
      * at most one policy per project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -160,7 +160,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name, in the format `projects/&#42;&#47;policy`. There is
+     * Output only. The resource name, in the format `projects/{@*}policy`. There is
      * at most one policy per project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -239,7 +239,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * third-party infrastructure images from Binary Authorization policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern admission_whitelist_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BinaryAuthorization\V1\AdmissionWhitelistPattern>
      */
     public function getAdmissionWhitelistPatterns()
     {
@@ -252,7 +252,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * third-party infrastructure images from Binary Authorization policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern admission_whitelist_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BinaryAuthorization\V1\AdmissionWhitelistPattern>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BinaryAuthorization\V1\AdmissionWhitelistPattern[] $var
      * @return $this
      */
     public function setAdmissionWhitelistPatterns($var)

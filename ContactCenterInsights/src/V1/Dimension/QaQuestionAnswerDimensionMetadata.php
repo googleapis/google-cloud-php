@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\Dimension;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata about the QA question-answer dimension.
@@ -168,5 +168,4 @@ class QaQuestionAnswerDimensionMetadata extends \Google\Protobuf\Internal\Messag
     }
 
 }
-
 

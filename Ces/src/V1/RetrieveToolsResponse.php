@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class RetrieveToolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type \Google\Cloud\Ces\V1\Tool[] $tools
      *           Required. The list of tools that are included in the specified toolset.
      * }
      */
@@ -42,7 +42,7 @@ class RetrieveToolsResponse extends \Google\Protobuf\Internal\Message
      * Required. The list of tools that are included in the specified toolset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Tool>
      */
     public function getTools()
     {
@@ -53,7 +53,7 @@ class RetrieveToolsResponse extends \Google\Protobuf\Internal\Message
      * Required. The list of tools that are included in the specified toolset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Tool[] $var
      * @return $this
      */
     public function setTools($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -96,7 +96,7 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      *           of the previous
      *           [CloudChannelReportsService.FetchReportResults][google.cloud.channel.v1.CloudChannelReportsService.FetchReportResults]
      *           call.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $partition_keys
+     *     @type string[] $partition_keys
      *           Optional. List of keys specifying which report partitions to return.
      *           If empty, returns all partitions.
      * }
@@ -213,7 +213,7 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      * If empty, returns all partitions.
      *
      * Generated from protobuf field <code>repeated string partition_keys = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPartitionKeys()
     {
@@ -225,7 +225,7 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      * If empty, returns all partitions.
      *
      * Generated from protobuf field <code>repeated string partition_keys = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPartitionKeys($var)

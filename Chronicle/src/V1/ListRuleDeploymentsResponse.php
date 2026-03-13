@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListRuleDeployments.
@@ -35,7 +35,7 @@ class ListRuleDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Chronicle\V1\RuleDeployment>|\Google\Protobuf\Internal\RepeatedField $rule_deployments
+     *     @type \Google\Cloud\Chronicle\V1\RuleDeployment[] $rule_deployments
      *           The rule deployments from all rules.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListRuleDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The rule deployments from all rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.RuleDeployment rule_deployments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\RuleDeployment>
      */
     public function getRuleDeployments()
     {
@@ -62,7 +62,7 @@ class ListRuleDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The rule deployments from all rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.RuleDeployment rule_deployments = 1;</code>
-     * @param array<\Google\Cloud\Chronicle\V1\RuleDeployment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\RuleDeployment[] $var
      * @return $this
      */
     public function setRuleDeployments($var)

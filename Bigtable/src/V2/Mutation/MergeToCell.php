@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Mutation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Mutation which merges accumulated state into a cell in an `Aggregate`
@@ -221,7 +221,4 @@ class MergeToCell extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MergeToCell::class, \Google\Cloud\Bigtable\V2\Mutation_MergeToCell::class);
 

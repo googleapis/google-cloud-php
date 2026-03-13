@@ -62,6 +62,3 @@ class Priority
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Priority::class, \Google\Cloud\Bigtable\Admin\V2\AppProfile_Priority::class);
-

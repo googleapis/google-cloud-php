@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BigtableInstanceAdmin.ListLogicalViews.
@@ -35,7 +35,7 @@ class ListLogicalViewsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\LogicalView>|\Google\Protobuf\Internal\RepeatedField $logical_views
+     *     @type \Google\Cloud\Bigtable\Admin\V2\LogicalView[] $logical_views
      *           The list of requested logical views.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListLogicalViewsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested logical views.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.LogicalView logical_views = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\LogicalView>
      */
     public function getLogicalViews()
     {
@@ -62,7 +62,7 @@ class ListLogicalViewsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested logical views.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.LogicalView logical_views = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\LogicalView>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\LogicalView[] $var
      * @return $this
      */
     public function setLogicalViews($var)

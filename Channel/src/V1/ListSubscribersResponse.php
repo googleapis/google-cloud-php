@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response Message for ListSubscribers.
@@ -43,7 +43,7 @@ class ListSubscribersResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $topic
      *           Name of the topic registered with the reseller.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type string[] $service_accounts
      *           List of service accounts which have subscriber access to the topic.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
@@ -85,7 +85,7 @@ class ListSubscribersResponse extends \Google\Protobuf\Internal\Message
      * List of service accounts which have subscriber access to the topic.
      *
      * Generated from protobuf field <code>repeated string service_accounts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAccounts()
     {
@@ -96,7 +96,7 @@ class ListSubscribersResponse extends \Google\Protobuf\Internal\Message
      * List of service accounts which have subscriber access to the topic.
      *
      * Generated from protobuf field <code>repeated string service_accounts = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAccounts($var)

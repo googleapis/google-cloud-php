@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The conversation resource.
@@ -195,7 +195,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Output only. The conversation's latest analysis, if one exists.
      *     @type \Google\Cloud\ContactCenterInsights\V1\ConversationSummarizationSuggestionData $latest_summary
      *           Output only. Latest summary of the conversation.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $runtime_annotations
+     *     @type \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation[] $runtime_annotations
      *           Output only. The annotations that were generated during the customer and
      *           agent interaction.
      *     @type array|\Google\Protobuf\Internal\MapField $dialogflow_intents
@@ -833,7 +833,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * agent interaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.RuntimeAnnotation runtime_annotations = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>
      */
     public function getRuntimeAnnotations()
     {
@@ -845,7 +845,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * agent interaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.RuntimeAnnotation runtime_annotations = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation[] $var
      * @return $this
      */
     public function setRuntimeAnnotations($var)

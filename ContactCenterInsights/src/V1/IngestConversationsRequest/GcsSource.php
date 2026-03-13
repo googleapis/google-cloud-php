@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for Cloud Storage bucket sources.
@@ -68,7 +68,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *           name to
      *               be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and
      *               `gs://bucket/metadata/conversation1.json`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_metadata_keys
+     *     @type string[] $custom_metadata_keys
      *           Optional. Custom keys to extract as conversation labels from metadata
      *           files in `metadata_bucket_uri`. Keys not included in this field will be
      *           ignored. Note that there is a limit of 100 labels per conversation.
@@ -187,7 +187,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * ignored. Note that there is a limit of 100 labels per conversation.
      *
      * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomMetadataKeys()
     {
@@ -200,7 +200,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * ignored. Note that there is a limit of 100 labels per conversation.
      *
      * Generated from protobuf field <code>repeated string custom_metadata_keys = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomMetadataKeys($var)
@@ -212,5 +212,4 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

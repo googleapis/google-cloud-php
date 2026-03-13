@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of an external data source used in a query.
@@ -36,7 +36,7 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Name of the table, used in queries.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_uris
+     *     @type string[] $source_uris
      *           URIs for the data.
      * }
      */
@@ -75,7 +75,7 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
      * URIs for the data.
      *
      * Generated from protobuf field <code>repeated string source_uris = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceUris()
     {
@@ -86,7 +86,7 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
      * URIs for the data.
      *
      * Generated from protobuf field <code>repeated string source_uris = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceUris($var)
@@ -98,5 +98,4 @@ class TableDefinition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

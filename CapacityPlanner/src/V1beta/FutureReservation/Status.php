@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta\FutureReservation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents status related to the future reservation.
@@ -61,7 +61,7 @@ class Status extends \Google\Protobuf\Internal\Message
      *           after the Future Reservation is in the APPROVED state. The lock_time is
      *           an RFC3339 string. The procurement_status will transition to PROCURING
      *           state at this time.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_created_reservations
+     *     @type string[] $auto_created_reservations
      *           Fully qualified urls of the automatically created reservations at
      *           start_time.
      *     @type int|string $fulfilled_count
@@ -150,7 +150,7 @@ class Status extends \Google\Protobuf\Internal\Message
      * start_time.
      *
      * Generated from protobuf field <code>repeated string auto_created_reservations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAutoCreatedReservations()
     {
@@ -162,7 +162,7 @@ class Status extends \Google\Protobuf\Internal\Message
      * start_time.
      *
      * Generated from protobuf field <code>repeated string auto_created_reservations = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAutoCreatedReservations($var)
@@ -204,5 +204,4 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

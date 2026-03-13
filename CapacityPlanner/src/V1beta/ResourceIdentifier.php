@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The identifier for a Google Cloud Platform resource.
@@ -36,7 +36,7 @@ class ResourceIdentifier extends \Google\Protobuf\Internal\Message
      *
      *     @type string $service_name
      *     @type string $resource_name
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\ResourceAttribute>|\Google\Protobuf\Internal\RepeatedField $resource_attributes
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\ResourceAttribute[] $resource_attributes
      * }
      */
     public function __construct($data = NULL) {
@@ -90,7 +90,7 @@ class ResourceIdentifier extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.ResourceAttribute resource_attributes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\ResourceAttribute>
      */
     public function getResourceAttributes()
     {
@@ -99,7 +99,7 @@ class ResourceIdentifier extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.ResourceAttribute resource_attributes = 3;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\ResourceAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\ResourceAttribute[] $var
      * @return $this
      */
     public function setResourceAttributes($var)

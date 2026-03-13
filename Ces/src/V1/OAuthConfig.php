@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configurations for authentication with OAuth.
@@ -33,7 +33,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/secrets/{secret}/versions/{version}`
      * Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      * service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string client_secret_version = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -68,11 +68,11 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project}/secrets/{secret}/versions/{version}`
      *           Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      *           service agent
-     *           `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     *           `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *     @type string $token_endpoint
      *           Required. The token endpoint in the OAuth provider to exchange for an
      *           access token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           Optional. The OAuth scopes to grant.
      * }
      */
@@ -139,7 +139,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/secrets/{secret}/versions/{version}`
      * Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      * service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string client_secret_version = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -155,7 +155,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/secrets/{secret}/versions/{version}`
      * Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      * service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string client_secret_version = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -201,7 +201,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      * Optional. The OAuth scopes to grant.
      *
      * Generated from protobuf field <code>repeated string scopes = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -212,7 +212,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      * Optional. The OAuth scopes to grant.
      *
      * Generated from protobuf field <code>repeated string scopes = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1\AppendRowsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AppendResult is returned for successful append requests.
@@ -107,5 +107,4 @@ class AppendResult extends \Google\Protobuf\Internal\Message
         return $this;}
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -50,7 +50,7 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Channel\V1\ReportResultsMetadata $report_metadata
      *           The metadata for the report results (display name, columns, row count, and
      *           date ranges).
-     *     @type array<\Google\Cloud\Channel\V1\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Cloud\Channel\V1\Row[] $rows
      *           The report's lists of values. Each row follows the settings and ordering
      *           of the columns from `report_metadata`.
      *     @type string $next_page_token
@@ -107,7 +107,7 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
      * of the columns from `report_metadata`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Row rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Row>
      */
     public function getRows()
     {
@@ -119,7 +119,7 @@ class FetchReportResultsResponse extends \Google\Protobuf\Internal\Message
      * of the columns from `report_metadata`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Row rows = 2;</code>
-     * @param array<\Google\Cloud\Channel\V1\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Row[] $var
      * @return $this
      */
     public function setRows($var)

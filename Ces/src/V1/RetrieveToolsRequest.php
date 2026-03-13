@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -42,7 +42,7 @@ class RetrieveToolsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the toolset to retrieve the tools for.
      *           Format:
      *           `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tool_ids
+     *     @type string[] $tool_ids
      *           Optional. The identifiers of the tools to retrieve from the toolset.
      *           If empty, all tools in the toolset will be returned.
      * }
@@ -87,7 +87,7 @@ class RetrieveToolsRequest extends \Google\Protobuf\Internal\Message
      * If empty, all tools in the toolset will be returned.
      *
      * Generated from protobuf field <code>repeated string tool_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getToolIds()
     {
@@ -99,7 +99,7 @@ class RetrieveToolsRequest extends \Google\Protobuf\Internal\Message
      * If empty, all tools in the toolset will be returned.
      *
      * Generated from protobuf field <code>repeated string tool_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setToolIds($var)

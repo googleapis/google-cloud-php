@@ -88,6 +88,3 @@ class ReplicationState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReplicationState::class, \Google\Cloud\Bigtable\Admin\V2\Table_ClusterState_ReplicationState::class);
-

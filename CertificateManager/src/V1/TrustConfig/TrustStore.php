@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\TrustConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a trust store.
@@ -38,10 +38,10 @@ class TrustStore extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor>|\Google\Protobuf\Internal\RepeatedField $trust_anchors
+     *     @type \Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor[] $trust_anchors
      *           List of Trust Anchors to be used while performing validation
      *           against a given TrustStore.
-     *     @type array<\Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA>|\Google\Protobuf\Internal\RepeatedField $intermediate_cas
+     *     @type \Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA[] $intermediate_cas
      *           Set of intermediate CA certificates used for the path building
      *           phase of chain validation.
      *           The field is currently not supported if TrustConfig is used for the
@@ -58,7 +58,7 @@ class TrustStore extends \Google\Protobuf\Internal\Message
      * against a given TrustStore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor>
      */
     public function getTrustAnchors()
     {
@@ -70,7 +70,7 @@ class TrustStore extends \Google\Protobuf\Internal\Message
      * against a given TrustStore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.TrustAnchor trust_anchors = 1;</code>
-     * @param array<\Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CertificateManager\V1\TrustConfig\TrustAnchor[] $var
      * @return $this
      */
     public function setTrustAnchors($var)
@@ -88,7 +88,7 @@ class TrustStore extends \Google\Protobuf\Internal\Message
      * workload certificate feature.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA>
      */
     public function getIntermediateCas()
     {
@@ -102,7 +102,7 @@ class TrustStore extends \Google\Protobuf\Internal\Message
      * workload certificate feature.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.TrustConfig.IntermediateCA intermediate_cas = 2;</code>
-     * @param array<\Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CertificateManager\V1\TrustConfig\IntermediateCA[] $var
      * @return $this
      */
     public function setIntermediateCas($var)
@@ -114,5 +114,4 @@ class TrustStore extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

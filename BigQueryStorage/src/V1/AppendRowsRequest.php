@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for `AppendRows`.
@@ -35,8 +35,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * An example of a possible sequence of requests with write_stream fields
      * within a single connection:
      * * r1: {write_stream: stream_name_1}
-     * * r2: {write_stream: /&#42;omit*&#47;}
-     * * r3: {write_stream: /&#42;omit*&#47;}
+     * * r2: {write_stream: /*omit{@*}}
+     * * r3: {write_stream: /*omit{@*}}
      * * r4: {write_stream: stream_name_2}
      * * r5: {write_stream: stream_name_2}
      * The destination changed in request_4, so the write_stream field must be
@@ -161,8 +161,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      *           An example of a possible sequence of requests with write_stream fields
      *           within a single connection:
      *           * r1: {write_stream: stream_name_1}
-     *           * r2: {write_stream: /&#42;omit*&#47;}
-     *           * r3: {write_stream: /&#42;omit*&#47;}
+     *           * r2: {write_stream: /*omit{@*}}
+     *           * r3: {write_stream: /*omit{@*}}
      *           * r4: {write_stream: stream_name_2}
      *           * r5: {write_stream: stream_name_2}
      *           The destination changed in request_4, so the write_stream field must be
@@ -225,8 +225,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * An example of a possible sequence of requests with write_stream fields
      * within a single connection:
      * * r1: {write_stream: stream_name_1}
-     * * r2: {write_stream: /&#42;omit*&#47;}
-     * * r3: {write_stream: /&#42;omit*&#47;}
+     * * r2: {write_stream: /*omit{@*}}
+     * * r3: {write_stream: /*omit{@*}}
      * * r4: {write_stream: stream_name_2}
      * * r5: {write_stream: stream_name_2}
      * The destination changed in request_4, so the write_stream field must be
@@ -254,8 +254,8 @@ class AppendRowsRequest extends \Google\Protobuf\Internal\Message
      * An example of a possible sequence of requests with write_stream fields
      * within a single connection:
      * * r1: {write_stream: stream_name_1}
-     * * r2: {write_stream: /&#42;omit*&#47;}
-     * * r3: {write_stream: /&#42;omit*&#47;}
+     * * r2: {write_stream: /*omit{@*}}
+     * * r3: {write_stream: /*omit{@*}}
      * * r4: {write_stream: stream_name_2}
      * * r5: {write_stream: stream_name_2}
      * The destination changed in request_4, so the write_stream field must be

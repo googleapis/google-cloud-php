@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A value that combines incremental updates into a summarized value.
@@ -274,7 +274,4 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Aggregate::class, \Google\Cloud\Bigtable\V2\Type_Aggregate::class);
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1\AwsPrincipalTagsOptions\AllowedPrincipalTags;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allowed Container Image Signatures. Key IDs are required to allow
@@ -31,7 +31,7 @@ class ContainerImageSignatures extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $key_ids
+     *     @type string[] $key_ids
      *           Optional. List of key ids to filter into the Principal tags. Only keys
      *           that have been validated and added to the token will be filtered into
      *           principal tags. Unrecognized key ids will be ignored.
@@ -48,7 +48,7 @@ class ContainerImageSignatures extends \Google\Protobuf\Internal\Message
      * principal tags. Unrecognized key ids will be ignored.
      *
      * Generated from protobuf field <code>repeated string key_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKeyIds()
     {
@@ -61,7 +61,7 @@ class ContainerImageSignatures extends \Google\Protobuf\Internal\Message
      * principal tags. Unrecognized key ids will be ignored.
      *
      * Generated from protobuf field <code>repeated string key_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKeyIds($var)
@@ -73,5 +73,4 @@ class ContainerImageSignatures extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

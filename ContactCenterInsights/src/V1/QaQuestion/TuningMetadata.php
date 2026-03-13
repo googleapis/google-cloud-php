@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QaQuestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata about the tuning operation for the question. Will only be set if a
@@ -47,7 +47,7 @@ class TuningMetadata extends \Google\Protobuf\Internal\Message
      *     @type int|string $total_valid_label_count
      *           Total number of valid labels provided for the question at the time of
      *           tuining.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $dataset_validation_warnings
+     *     @type int[] $dataset_validation_warnings
      *           A list of any applicable data validation warnings about the question's
      *           feedback labels.
      *     @type string $tuning_error
@@ -93,7 +93,7 @@ class TuningMetadata extends \Google\Protobuf\Internal\Message
      * feedback labels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.DatasetValidationWarning dataset_validation_warnings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDatasetValidationWarnings()
     {
@@ -105,7 +105,7 @@ class TuningMetadata extends \Google\Protobuf\Internal\Message
      * feedback labels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.DatasetValidationWarning dataset_validation_warnings = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDatasetValidationWarnings($var)
@@ -145,5 +145,4 @@ class TuningMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

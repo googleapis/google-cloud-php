@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for querying metrics.
@@ -76,7 +76,7 @@ class QueryMetricsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $time_granularity
      *           The time granularity of each data point in the time series.
      *           Defaults to NONE if this field is unspecified.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Cloud\ContactCenterInsights\V1\Dimension[] $dimensions
      *           The dimensions that determine the grouping key for the query. Defaults to
      *           no dimension if this field is unspecified. If a dimension is specified,
      *           its key must also be specified. Each dimension's key must be unique.
@@ -192,7 +192,7 @@ class QueryMetricsRequest extends \Google\Protobuf\Internal\Message
      * Up to one dimension is supported for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Dimension dimensions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\Dimension>
      */
     public function getDimensions()
     {
@@ -208,7 +208,7 @@ class QueryMetricsRequest extends \Google\Protobuf\Internal\Message
      * Up to one dimension is supported for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Dimension dimensions = 4;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\Dimension[] $var
      * @return $this
      */
     public function setDimensions($var)

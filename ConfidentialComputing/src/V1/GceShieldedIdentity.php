@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GceShieldedIdentity contains information about a Compute Engine instance.
@@ -41,7 +41,7 @@ class GceShieldedIdentity extends \Google\Protobuf\Internal\Message
      *           Optional. DER-encoded X.509 certificate of the Attestation Key (otherwise
      *           known as an AK or a TPM restricted signing key) used to generate the
      *           quotes.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ak_cert_chain
+     *     @type string[] $ak_cert_chain
      *           Optional. List of DER-encoded X.509 certificates which, together with the
      *           ak_cert, chain back to a trusted Root Certificate.
      * }
@@ -86,7 +86,7 @@ class GceShieldedIdentity extends \Google\Protobuf\Internal\Message
      * ak_cert, chain back to a trusted Root Certificate.
      *
      * Generated from protobuf field <code>repeated bytes ak_cert_chain = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAkCertChain()
     {
@@ -98,7 +98,7 @@ class GceShieldedIdentity extends \Google\Protobuf\Internal\Message
      * ak_cert, chain back to a trusted Root Certificate.
      *
      * Generated from protobuf field <code>repeated bytes ak_cert_chain = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAkCertChain($var)

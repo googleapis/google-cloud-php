@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NOTE: This API is intended to be used by Apache Beam BigtableIO.
@@ -30,7 +30,7 @@ class StreamContinuationTokens extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\V2\StreamContinuationToken>|\Google\Protobuf\Internal\RepeatedField $tokens
+     *     @type \Google\Cloud\Bigtable\V2\StreamContinuationToken[] $tokens
      *           List of continuation tokens.
      * }
      */
@@ -43,7 +43,7 @@ class StreamContinuationTokens extends \Google\Protobuf\Internal\Message
      * List of continuation tokens.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.StreamContinuationToken tokens = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\StreamContinuationToken>
      */
     public function getTokens()
     {
@@ -54,7 +54,7 @@ class StreamContinuationTokens extends \Google\Protobuf\Internal\Message
      * List of continuation tokens.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.StreamContinuationToken tokens = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\StreamContinuationToken>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\StreamContinuationToken[] $var
      * @return $this
      */
     public function setTokens($var)

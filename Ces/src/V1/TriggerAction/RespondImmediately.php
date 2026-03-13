@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\TriggerAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The agent will immediately respond with a preconfigured response.
@@ -29,7 +29,7 @@ class RespondImmediately extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\TriggerAction\Response>|\Google\Protobuf\Internal\RepeatedField $responses
+     *     @type \Google\Cloud\Ces\V1\TriggerAction\Response[] $responses
      *           Required. The canned responses for the agent to choose from. The response
      *           is chosen randomly.
      * }
@@ -44,7 +44,7 @@ class RespondImmediately extends \Google\Protobuf\Internal\Message
      * is chosen randomly.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.TriggerAction.Response responses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\TriggerAction\Response>
      */
     public function getResponses()
     {
@@ -56,7 +56,7 @@ class RespondImmediately extends \Google\Protobuf\Internal\Message
      * is chosen randomly.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.TriggerAction.Response responses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\TriggerAction\Response>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\TriggerAction\Response[] $var
      * @return $this
      */
     public function setResponses($var)
@@ -68,5 +68,4 @@ class RespondImmediately extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

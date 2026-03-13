@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the generator configuration for a method.
@@ -86,7 +86,7 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      *                    poll_delay_multiplier: 1.5
      *                    max_poll_delay: 360s # 6 minutes
      *                    total_poll_timeout: 54000s # 90 minutes
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_populated_fields
+     *     @type string[] $auto_populated_fields
      *           List of top-level fields of the request message, that should be
      *           automatically populated by the client libraries based on their
      *           (google.api.field_info).format. Currently supported format: UUID4.
@@ -211,7 +211,7 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      *        - request_id
      *
      * Generated from protobuf field <code>repeated string auto_populated_fields = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAutoPopulatedFields()
     {
@@ -230,7 +230,7 @@ class MethodSettings extends \Google\Protobuf\Internal\Message
      *        - request_id
      *
      * Generated from protobuf field <code>repeated string auto_populated_fields = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAutoPopulatedFields($var)

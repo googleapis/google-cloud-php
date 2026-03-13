@@ -5,8 +5,8 @@
 namespace Google\Rpc;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `Status` type defines a logical error model that is suitable for
@@ -58,7 +58,7 @@ class Status extends \Google\Protobuf\Internal\Message
      *           user-facing error message should be localized and sent in the
      *           [google.rpc.Status.details][google.rpc.Status.details] field, or localized
      *           by the client.
-     *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $details
+     *     @type \Google\Protobuf\Any[] $details
      *           A list of messages that carry the error details.  There is a common set of
      *           message types for APIs to use.
      * }
@@ -133,7 +133,7 @@ class Status extends \Google\Protobuf\Internal\Message
      * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Any>
      */
     public function getDetails()
     {
@@ -145,7 +145,7 @@ class Status extends \Google\Protobuf\Internal\Message
      * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 3;</code>
-     * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Any[] $var
      * @return $this
      */
     public function setDetails($var)

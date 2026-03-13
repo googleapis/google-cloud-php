@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\ReadChangeStreamResponse\MutationChunk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the chunking of this mutation.
@@ -138,7 +138,4 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChunkInfo::class, \Google\Cloud\Bigtable\V2\ReadChangeStreamResponse_MutationChunk_ChunkInfo::class);
 

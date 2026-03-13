@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\Guardrail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Guardrail that bans certain content from being used in the conversation.
@@ -53,12 +53,12 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $banned_contents
+     *     @type string[] $banned_contents
      *           Optional. List of banned phrases. Applies to both user inputs and agent
      *           responses.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $banned_contents_in_user_input
+     *     @type string[] $banned_contents_in_user_input
      *           Optional. List of banned phrases. Applies only to user inputs.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $banned_contents_in_agent_response
+     *     @type string[] $banned_contents_in_agent_response
      *           Optional. List of banned phrases. Applies only to agent responses.
      *     @type int $match_type
      *           Required. Match type for the content filter.
@@ -76,7 +76,7 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
      * responses.
      *
      * Generated from protobuf field <code>repeated string banned_contents = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBannedContents()
     {
@@ -88,7 +88,7 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
      * responses.
      *
      * Generated from protobuf field <code>repeated string banned_contents = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBannedContents($var)
@@ -103,7 +103,7 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
      * Optional. List of banned phrases. Applies only to user inputs.
      *
      * Generated from protobuf field <code>repeated string banned_contents_in_user_input = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBannedContentsInUserInput()
     {
@@ -114,7 +114,7 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
      * Optional. List of banned phrases. Applies only to user inputs.
      *
      * Generated from protobuf field <code>repeated string banned_contents_in_user_input = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBannedContentsInUserInput($var)
@@ -129,7 +129,7 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
      * Optional. List of banned phrases. Applies only to agent responses.
      *
      * Generated from protobuf field <code>repeated string banned_contents_in_agent_response = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBannedContentsInAgentResponse()
     {
@@ -140,7 +140,7 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
      * Optional. List of banned phrases. Applies only to agent responses.
      *
      * Generated from protobuf field <code>repeated string banned_contents_in_agent_response = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBannedContentsInAgentResponse($var)
@@ -204,5 +204,4 @@ class ContentFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

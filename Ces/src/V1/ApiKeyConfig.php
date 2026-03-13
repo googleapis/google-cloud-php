@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configurations for authentication with API key.
@@ -28,7 +28,7 @@ class ApiKeyConfig extends \Google\Protobuf\Internal\Message
      * API key. Format: `projects/{project}/secrets/{secret}/versions/{version}`
      * Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      * service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string api_key_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,7 +55,7 @@ class ApiKeyConfig extends \Google\Protobuf\Internal\Message
      *           API key. Format: `projects/{project}/secrets/{secret}/versions/{version}`
      *           Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      *           service agent
-     *           `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     *           `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *     @type int $request_location
      *           Required. Key location in the request.
      * }
@@ -100,7 +100,7 @@ class ApiKeyConfig extends \Google\Protobuf\Internal\Message
      * API key. Format: `projects/{project}/secrets/{secret}/versions/{version}`
      * Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      * service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string api_key_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -115,7 +115,7 @@ class ApiKeyConfig extends \Google\Protobuf\Internal\Message
      * API key. Format: `projects/{project}/secrets/{secret}/versions/{version}`
      * Note: You should grant `roles/secretmanager.secretAccessor` role to the CES
      * service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string api_key_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

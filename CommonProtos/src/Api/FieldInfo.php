@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Rich semantic information of an API field beyond basic typing.
@@ -42,7 +42,7 @@ class FieldInfo extends \Google\Protobuf\Internal\Message
      *           The standard format of a field value. This does not explicitly configure
      *           any API consumer, just documents the API's format for the field it is
      *           applied to.
-     *     @type array<\Google\Api\TypeReference>|\Google\Protobuf\Internal\RepeatedField $referenced_types
+     *     @type \Google\Api\TypeReference[] $referenced_types
      *           The type(s) that the annotated, generic field may represent.
      *           Currently, this must only be used on fields of type `google.protobuf.Any`.
      *           Supporting other generic types may be considered in the future.
@@ -89,7 +89,7 @@ class FieldInfo extends \Google\Protobuf\Internal\Message
      * Supporting other generic types may be considered in the future.
      *
      * Generated from protobuf field <code>repeated .google.api.TypeReference referenced_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\TypeReference>
      */
     public function getReferencedTypes()
     {
@@ -102,7 +102,7 @@ class FieldInfo extends \Google\Protobuf\Internal\Message
      * Supporting other generic types may be considered in the future.
      *
      * Generated from protobuf field <code>repeated .google.api.TypeReference referenced_types = 2;</code>
-     * @param array<\Google\Api\TypeReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\TypeReference[] $var
      * @return $this
      */
     public function setReferencedTypes($var)

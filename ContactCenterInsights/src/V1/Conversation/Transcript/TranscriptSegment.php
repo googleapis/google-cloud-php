@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A segment of a full transcript.
@@ -89,7 +89,7 @@ class TranscriptSegment extends \Google\Protobuf\Internal\Message
      *     @type float $confidence
      *           A confidence estimate between 0.0 and 1.0 of the fidelity of this
      *           segment. A default value of 0.0 indicates that the value is unset.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo>|\Google\Protobuf\Internal\RepeatedField $words
+     *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo[] $words
      *           A list of the word-specific information for each word in the segment.
      *     @type string $language_code
      *           The language code of this segment as a
@@ -207,7 +207,7 @@ class TranscriptSegment extends \Google\Protobuf\Internal\Message
      * A list of the word-specific information for each word in the segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment.WordInfo words = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo>
      */
     public function getWords()
     {
@@ -218,7 +218,7 @@ class TranscriptSegment extends \Google\Protobuf\Internal\Message
      * A list of the word-specific information for each word in the segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment.WordInfo words = 3;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo[] $var
      * @return $this
      */
     public function setWords($var)
@@ -400,5 +400,4 @@ class TranscriptSegment extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

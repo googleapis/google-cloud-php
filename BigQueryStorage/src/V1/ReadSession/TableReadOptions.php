@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1\ReadSession;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options dictating how we read a table.
@@ -98,7 +98,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $selected_fields
+     *     @type string[] $selected_fields
      *           Optional. The names of the fields in the table to be returned. If no
      *           field names are specified, then all fields in the table are returned.
      *           Nested fields -- the child elements of a STRUCT field -- can be selected
@@ -210,7 +210,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * specified in this list.
      *
      * Generated from protobuf field <code>repeated string selected_fields = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSelectedFields()
     {
@@ -259,7 +259,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * specified in this list.
      *
      * Generated from protobuf field <code>repeated string selected_fields = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSelectedFields($var)
@@ -465,5 +465,4 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

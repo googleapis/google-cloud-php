@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * TableFieldSchema defines a single field/column within a table schema.
@@ -138,7 +138,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *           Required. The field data type.
      *     @type int $mode
      *           Optional. The field mode. The default value is NULLABLE.
-     *     @type array<\Google\Cloud\BigQuery\Storage\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema[] $fields
      *           Optional. Describes the nested schema fields if the type property is set to
      *           STRUCT.
      *     @type string $description
@@ -288,7 +288,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      * STRUCT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.TableFieldSchema fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Storage\V1\TableFieldSchema>
      */
     public function getFields()
     {
@@ -300,7 +300,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      * STRUCT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.TableFieldSchema fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BigQuery\Storage\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema[] $var
      * @return $this
      */
     public function setFields($var)

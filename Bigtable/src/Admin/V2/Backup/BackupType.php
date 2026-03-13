@@ -64,6 +64,3 @@ class BackupType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BackupType::class, \Google\Cloud\Bigtable\Admin\V2\Backup_BackupType::class);
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for how the audio interactions should be recorded.
@@ -22,7 +22,7 @@ class AudioRecordingConfig extends \Google\Protobuf\Internal\Message
      * requirements.
      * Note: If the Cloud Storage bucket is in a different project from the app,
      * you should grant `storage.objects.create` permission to the CES service
-     * agent `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * agent `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string gcs_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,7 +56,7 @@ class AudioRecordingConfig extends \Google\Protobuf\Internal\Message
      *           requirements.
      *           Note: If the Cloud Storage bucket is in a different project from the app,
      *           you should grant `storage.objects.create` permission to the CES service
-     *           agent `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     *           agent `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *     @type string $gcs_path_prefix
      *           Optional. The Cloud Storage path prefix for audio recordings.
      *           This prefix can include the following placeholders, which will be
@@ -82,7 +82,7 @@ class AudioRecordingConfig extends \Google\Protobuf\Internal\Message
      * requirements.
      * Note: If the Cloud Storage bucket is in a different project from the app,
      * you should grant `storage.objects.create` permission to the CES service
-     * agent `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * agent `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string gcs_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -99,7 +99,7 @@ class AudioRecordingConfig extends \Google\Protobuf\Internal\Message
      * requirements.
      * Note: If the Cloud Storage bucket is in a different project from the app,
      * you should grant `storage.objects.create` permission to the CES service
-     * agent `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * agent `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string gcs_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

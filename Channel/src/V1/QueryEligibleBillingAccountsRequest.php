@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for QueryEligibleBillingAccounts.
@@ -39,7 +39,7 @@ class QueryEligibleBillingAccountsRequest extends \Google\Protobuf\Internal\Mess
      *     @type string $customer
      *           Required. The resource name of the customer to list eligible billing
      *           accounts for. Format: accounts/{account_id}/customers/{customer_id}.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $skus
+     *     @type string[] $skus
      *           Required. List of SKUs to list eligible billing accounts for. At least one
      *           SKU is required. Format: products/{product_id}/skus/{sku_id}.
      * }
@@ -82,7 +82,7 @@ class QueryEligibleBillingAccountsRequest extends \Google\Protobuf\Internal\Mess
      * SKU is required. Format: products/{product_id}/skus/{sku_id}.
      *
      * Generated from protobuf field <code>repeated string skus = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSkus()
     {
@@ -94,7 +94,7 @@ class QueryEligibleBillingAccountsRequest extends \Google\Protobuf\Internal\Mess
      * SKU is required. Format: products/{product_id}/skus/{sku_id}.
      *
      * Generated from protobuf field <code>repeated string skus = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSkus($var)

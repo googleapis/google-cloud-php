@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An app serves as a top-level container for a group of agents, including the
@@ -217,15 +217,15 @@ class App extends \Google\Protobuf\Internal\Message
      *           default to PARALLEL.
      *     @type \Google\Cloud\Ces\V1\EvaluationMetricsThresholds $evaluation_metrics_thresholds
      *           Optional. The evaluation thresholds for the app.
-     *     @type array<\Google\Cloud\Ces\V1\App\VariableDeclaration>|\Google\Protobuf\Internal\RepeatedField $variable_declarations
+     *     @type \Google\Cloud\Ces\V1\App\VariableDeclaration[] $variable_declarations
      *           Optional. The declarations of the variables.
-     *     @type array<\Google\Cloud\Ces\V1\App\VariableDeclaration>|\Google\Protobuf\Internal\RepeatedField $predefined_variable_declarations
+     *     @type \Google\Cloud\Ces\V1\App\VariableDeclaration[] $predefined_variable_declarations
      *           Output only. The declarations of predefined variables for the app.
      *     @type string $global_instruction
      *           Optional. Instructions for all the agents in the app.
      *           You can use this instruction to set up a stable identity or personality
      *           across all the agents.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $guardrails
+     *     @type string[] $guardrails
      *           Optional. List of guardrails for the app.
      *           Format:
      *           `projects/{project}/locations/{location}/apps/{app}/guardrails/{guardrail}`
@@ -644,7 +644,7 @@ class App extends \Google\Protobuf\Internal\Message
      * Optional. The declarations of the variables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.App.VariableDeclaration variable_declarations = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\App\VariableDeclaration>
      */
     public function getVariableDeclarations()
     {
@@ -655,7 +655,7 @@ class App extends \Google\Protobuf\Internal\Message
      * Optional. The declarations of the variables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.App.VariableDeclaration variable_declarations = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\App\VariableDeclaration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\App\VariableDeclaration[] $var
      * @return $this
      */
     public function setVariableDeclarations($var)
@@ -670,7 +670,7 @@ class App extends \Google\Protobuf\Internal\Message
      * Output only. The declarations of predefined variables for the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.App.VariableDeclaration predefined_variable_declarations = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\App\VariableDeclaration>
      */
     public function getPredefinedVariableDeclarations()
     {
@@ -681,7 +681,7 @@ class App extends \Google\Protobuf\Internal\Message
      * Output only. The declarations of predefined variables for the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.App.VariableDeclaration predefined_variable_declarations = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Ces\V1\App\VariableDeclaration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\App\VariableDeclaration[] $var
      * @return $this
      */
     public function setPredefinedVariableDeclarations($var)
@@ -728,7 +728,7 @@ class App extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apps/{app}/guardrails/{guardrail}`
      *
      * Generated from protobuf field <code>repeated string guardrails = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGuardrails()
     {
@@ -741,7 +741,7 @@ class App extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apps/{app}/guardrails/{guardrail}`
      *
      * Generated from protobuf field <code>repeated string guardrails = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGuardrails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -54,7 +54,7 @@ class ModifyOrderRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the order to update.
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderRequest\Modification>|\Google\Protobuf\Internal\RepeatedField $modifications
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderRequest\Modification[] $modifications
      *           Optional. Modifications for an existing Order created by an Offer.
      *           Required when Offer based Order is being modified, except for when going
      *           from an offer to a public plan.
@@ -104,7 +104,7 @@ class ModifyOrderRequest extends \Google\Protobuf\Internal\Message
      * from an offer to a public plan.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.ModifyOrderRequest.Modification modifications = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderRequest\Modification>
      */
     public function getModifications()
     {
@@ -117,7 +117,7 @@ class ModifyOrderRequest extends \Google\Protobuf\Internal\Message
      * from an offer to a public plan.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.ModifyOrderRequest.Modification modifications = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderRequest\Modification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\ModifyOrderRequest\Modification[] $var
      * @return $this
      */
     public function setModifications($var)

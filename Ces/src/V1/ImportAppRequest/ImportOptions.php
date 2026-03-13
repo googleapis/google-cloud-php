@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\ImportAppRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration options for the app import process.
@@ -66,5 +66,4 @@ class ImportOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
