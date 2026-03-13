@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Conditions to be met for a product to have free shipping.

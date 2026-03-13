@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of Cloud Storage locations.
@@ -26,7 +26,7 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +36,7 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string locations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -45,7 +45,7 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string locations = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -57,5 +57,4 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

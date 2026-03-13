@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reports\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fields available for query in `product_view` table.
@@ -296,7 +296,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *           Normalized [shipping
      *           label](https://support.google.com/merchants/answer/6324504) specified in
      *           the data source.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtin
+     *     @type string[] $gtin
      *           List of Global Trade Item Numbers (GTINs) of the product.
      *     @type string $item_group_id
      *           Item group id provided by the merchant for grouping variants together.
@@ -309,7 +309,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *           Expiration date for the product, specified on insertion.
      *     @type int $aggregated_reporting_context_status
      *           Aggregated status.
-     *     @type array<\Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue>|\Google\Protobuf\Internal\RepeatedField $item_issues
+     *     @type \Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue[] $item_issues
      *           List of item issues for the product.
      *           **This field cannot be used for sorting the results.**
      *           **Only selected attributes of this field (for example,
@@ -1125,7 +1125,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
      * List of Global Trade Item Numbers (GTINs) of the product.
      *
      * Generated from protobuf field <code>repeated string gtin = 21;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGtin()
     {
@@ -1136,7 +1136,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
      * List of Global Trade Item Numbers (GTINs) of the product.
      *
      * Generated from protobuf field <code>repeated string gtin = 21;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGtin($var)
@@ -1337,7 +1337,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
      * results.**
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.ItemIssue item_issues = 27;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue>
      */
     public function getItemIssues()
     {
@@ -1352,7 +1352,7 @@ class ProductView extends \Google\Protobuf\Internal\Message
      * results.**
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.ItemIssue item_issues = 27;</code>
-     * @param array<\Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue[] $var
      * @return $this
      */
     public function setItemIssues($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * QueryResult contains the result of executing a single SQL statement.
@@ -54,10 +54,10 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Sql\V1\Column>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\Sql\V1\Column[] $columns
      *           List of columns included in the result. This also includes the data type
      *           of the column.
-     *     @type array<\Google\Cloud\Sql\V1\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Cloud\Sql\V1\Row[] $rows
      *           Rows returned by the SQL statement.
      *     @type string $message
      *           Message related to the SQL execution result.
@@ -78,7 +78,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * of the column.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Column columns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\Column>
      */
     public function getColumns()
     {
@@ -90,7 +90,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * of the column.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Column columns = 1;</code>
-     * @param array<\Google\Cloud\Sql\V1\Column>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\Column[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -105,7 +105,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Rows returned by the SQL statement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Row rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\Row>
      */
     public function getRows()
     {
@@ -116,7 +116,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Rows returned by the SQL statement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Row rows = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\Row[] $var
      * @return $this
      */
     public function setRows($var)

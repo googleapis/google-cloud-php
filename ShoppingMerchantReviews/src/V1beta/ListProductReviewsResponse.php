@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * response message for the ListProductReviews method.
@@ -35,7 +35,7 @@ class ListProductReviewsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Reviews\V1beta\ProductReview>|\Google\Protobuf\Internal\RepeatedField $product_reviews
+     *     @type \Google\Shopping\Merchant\Reviews\V1beta\ProductReview[] $product_reviews
      *           The product review.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListProductReviewsResponse extends \Google\Protobuf\Internal\Message
      * The product review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.ProductReview product_reviews = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reviews\V1beta\ProductReview>
      */
     public function getProductReviews()
     {
@@ -62,7 +62,7 @@ class ListProductReviewsResponse extends \Google\Protobuf\Internal\Message
      * The product review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.ProductReview product_reviews = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Reviews\V1beta\ProductReview>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reviews\V1beta\ProductReview[] $var
      * @return $this
      */
     public function setProductReviews($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides a summary of the bucket level error statistics.
@@ -74,7 +74,7 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
      *           Optional. Count of successfully validated buckets.
      *     @type int|string $permission_denied_count
      *           Optional. Count of buckets with permission denied errors.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permission_denied_bucket_ids
+     *     @type string[] $permission_denied_bucket_ids
      *           Optional. Subset of bucket names that have permission denied.
      *     @type int|string $non_management_hub_entitled_count
      *           Optional. Count of buckets that are not subscribed to Storage
@@ -86,7 +86,7 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
      *     @type int|string $non_storage_intelligence_entitled_count
      *           Optional. Count of buckets that are not subscribed to Storage
      *           Intelligence.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $non_storage_intelligence_entitled_bucket_ids
+     *     @type string[] $non_storage_intelligence_entitled_bucket_ids
      *           Optional. Subset of bucket names that are not subscribed to Storage
      *           Intelligence.
      * }
@@ -152,7 +152,7 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
      * Optional. Subset of bucket names that have permission denied.
      *
      * Generated from protobuf field <code>repeated string permission_denied_bucket_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermissionDeniedBucketIds()
     {
@@ -163,7 +163,7 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
      * Optional. Subset of bucket names that have permission denied.
      *
      * Generated from protobuf field <code>repeated string permission_denied_bucket_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermissionDeniedBucketIds($var)
@@ -271,7 +271,7 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
      * Intelligence.
      *
      * Generated from protobuf field <code>repeated string non_storage_intelligence_entitled_bucket_ids = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNonStorageIntelligenceEntitledBucketIds()
     {
@@ -283,7 +283,7 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
      * Intelligence.
      *
      * Generated from protobuf field <code>repeated string non_storage_intelligence_entitled_bucket_ids = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNonStorageIntelligenceEntitledBucketIds($var)
@@ -295,5 +295,4 @@ class BucketErrors extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

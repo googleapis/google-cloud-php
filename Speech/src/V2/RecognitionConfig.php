@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides information to the Recognizer that specifies how to process the
@@ -102,7 +102,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           and the models supported in each region can be found in the [Table Of
      *           Supported
      *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type string[] $language_codes
      *           Optional. The language of the supplied audio as a
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
      *           Language tags are normalized to BCP-47 before they are used eg "en-us"
@@ -253,7 +253,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * will include the language tag of the language detected in the audio.
      *
      * Generated from protobuf field <code>repeated string language_codes = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLanguageCodes()
     {
@@ -272,7 +272,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * will include the language tag of the language detected in the audio.
      *
      * Generated from protobuf field <code>repeated string language_codes = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLanguageCodes($var)

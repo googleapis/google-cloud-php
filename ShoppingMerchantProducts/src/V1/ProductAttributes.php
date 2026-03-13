@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Product attributes.
@@ -215,7 +215,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $installment = null;
     /**
-     * Number of periods (months or years) and amount of payment per period
+     * Number of periods (weeks, months or years) and amount of payment per period
      * for an item with an associated subscription contract.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.SubscriptionCost subscription_cost = 33;</code>
@@ -345,6 +345,26 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int64 min_handling_time = 45;</code>
      */
     protected $min_handling_time = null;
+    /**
+     * The business days during which orders can be handled. If not provided,
+     * Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_handling_business_days = 143;</code>
+     */
+    private $shipping_handling_business_days;
+    /**
+     * The business days during which orders are in transit.
+     * If not provided, Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_transit_business_days = 144;</code>
+     */
+    private $shipping_transit_business_days;
+    /**
+     * The handling cutoff times for shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.HandlingCutoffTime handling_cutoff_times = 141;</code>
+     */
+    private $handling_cutoff_times;
     /**
      * The shipping label of the product, used to group product in account-level
      * shipping rules.
@@ -710,7 +730,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           URL for the canonical version of your item's landing page.
      *     @type string $image_link
      *           URL of an image of the item.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_image_links
+     *     @type string[] $additional_image_links
      *           Additional URLs of images of the item.
      *     @type \Google\Protobuf\Timestamp $expiration_date
      *           Date on which the item should expire, as specified upon insertion, in
@@ -754,7 +774,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           querying products, this field will contain the user provided value. There
      *           is currently no way to get back the auto assigned google product
      *           categories through the API.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtins
+     *     @type string[] $gtins
      *           Global Trade Item Numbers
      *           ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      *           item.
@@ -778,15 +798,15 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Products\V1\ProductInstallment $installment
      *           Number and amount of installments to pay for an item.
      *     @type \Google\Shopping\Merchant\Products\V1\SubscriptionCost $subscription_cost
-     *           Number of periods (months or years) and amount of payment per period
+     *           Number of periods (weeks, months or years) and amount of payment per period
      *           for an item with an associated subscription contract.
      *     @type \Google\Shopping\Merchant\Products\V1\LoyaltyPoints $loyalty_points
      *           Loyalty points that users receive after purchasing the item. Japan only.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\LoyaltyProgram>|\Google\Protobuf\Internal\RepeatedField $loyalty_programs
+     *     @type \Google\Shopping\Merchant\Products\V1\LoyaltyProgram[] $loyalty_programs
      *           A list of loyalty program information that is used to surface loyalty
      *           benefits (for example, better pricing, points, etc) to the user of this
      *           item.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_types
+     *     @type string[] $product_types
      *           Categories of the item (formatted as in [product data
      *           specification](https://support.google.com/merchants/answer/7052112#product_category)).
      *     @type \Google\Shopping\Type\Price $sale_price
@@ -810,11 +830,11 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Products\V1\ProductWeight $product_weight
      *           The weight of the product in the units provided. The value must be
      *           between 0 (exclusive) and 2000 (inclusive).
-     *     @type array<\Google\Shopping\Merchant\Products\V1\Shipping>|\Google\Protobuf\Internal\RepeatedField $shipping
+     *     @type \Google\Shopping\Merchant\Products\V1\Shipping[] $shipping
      *           Shipping rules.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping>|\Google\Protobuf\Internal\RepeatedField $carrier_shipping
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping[] $carrier_shipping
      *           Rules for carrier-based shipping.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\FreeShippingThreshold>|\Google\Protobuf\Internal\RepeatedField $free_shipping_threshold
+     *     @type \Google\Shopping\Merchant\Products\V1\FreeShippingThreshold[] $free_shipping_threshold
      *           Conditions to be met for a product to have free shipping.
      *     @type \Google\Shopping\Merchant\Products\V1\ShippingWeight $shipping_weight
      *           Weight of the item for shipping.
@@ -828,6 +848,14 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           Maximal product handling time (in business days).
      *     @type int|string $min_handling_time
      *           Minimal product handling time (in business days).
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig[] $shipping_handling_business_days
+     *           The business days during which orders can be handled. If not provided,
+     *           Monday to Friday business days will be assumed.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig[] $shipping_transit_business_days
+     *           The business days during which orders are in transit.
+     *           If not provided, Monday to Friday business days will be assumed.
+     *     @type \Google\Shopping\Merchant\Products\V1\HandlingCutoffTime[] $handling_cutoff_times
+     *           The handling cutoff times for shipping.
      *     @type string $shipping_label
      *           The shipping label of the product, used to group product in account-level
      *           shipping rules.
@@ -843,7 +871,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           System in which the size is specified. Recommended for apparel items.
      *           For more information, see
      *           [Size system](https://support.google.com/merchants/answer/6324502).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $size_types
+     *     @type int[] $size_types
      *           The cut of the item. It can be used to represent combined size types for
      *           apparel items. Maximum two of size types can be provided, see
      *           [Size type](https://support.google.com/merchants/answer/6324497).
@@ -870,21 +898,21 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           otherwise. For more information, see
      *           [Display ads
      *           attribute](https://support.google.com/merchants/answer/6069387).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ads_labels
+     *     @type string[] $ads_labels
      *           Similar to ads_grouping, but only works on CPC.
      *     @type string $ads_redirect
      *           Allows advertisers to override the item URL when the product is shown
      *           within the context of Product ads.
      *     @type \Google\Shopping\Type\Price $cost_of_goods_sold
      *           Cost of goods sold. Used for gross profit reporting.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $product_details
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductDetail[] $product_details
      *           Technical specification or additional product details.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_highlights
+     *     @type string[] $product_highlights
      *           Bullet points describing the most relevant [product
      *           highlights](https://support.google.com/merchants/answer/9216100).
      *     @type string $display_ads_id
      *           An identifier for an item for dynamic remarketing campaigns.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $display_ads_similar_ids
+     *     @type string[] $display_ads_similar_ids
      *           Advertiser-specified recommendations. For more information, see
      *           [Display ads attribute
      *           specification](https://support.google.com/merchants/answer/6069387).
@@ -897,7 +925,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           Offer margin for dynamic remarketing campaigns. For more information, see
      *           [Display ads
      *           attribute](https://support.google.com/merchants/answer/6069387).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
+     *     @type string[] $promotion_ids
      *           The unique ID of a promotion.
      *     @type int $pickup_method
      *           The [pickup](https://support.google.com/merchants/answer/14634021) option
@@ -927,7 +955,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *     @type string $custom_label_4
      *           [Custom label 4](https://support.google.com/merchants/answer/6324473) for
      *           custom grouping of items in a Shopping campaign.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $included_destinations
+     *     @type int[] $included_destinations
      *           The list of destinations to include for this target (corresponds to
      *           checked check boxes in Merchant Center). Default destinations are always
      *           included unless provided in `excludedDestinations`.
@@ -936,7 +964,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           destination](https://support.google.com/merchants/answer/7501026).
      *           Note: We recommend setting destinations on datasources level for most use
      *           cases. Use this field within products to only setup exceptions.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $excluded_destinations
+     *     @type int[] $excluded_destinations
      *           The list of destinations to exclude for this target (corresponds to
      *           unchecked check boxes in Merchant Center).
      *           For more information, see
@@ -944,7 +972,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           destination](https://support.google.com/merchants/answer/6324486).
      *           Note: We recommend setting destinations on datasources level for most use
      *           cases. Use this field within products to only setup exceptions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $shopping_ads_excluded_countries
+     *     @type string[] $shopping_ads_excluded_countries
      *           List of country codes [(ISO 3166-1
      *           alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the
      *           offer from Shopping Ads destination. Countries from this list are removed
@@ -956,18 +984,18 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *     @type int $pause
      *           Publication of this item will be temporarily
      *           [paused](https://support.google.com/merchants/answer/11909930).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $lifestyle_image_links
+     *     @type string[] $lifestyle_image_links
      *           Additional URLs of lifestyle images of the item, used to explicitly
      *           identify images that showcase your item in a real-world context. See the
      *           [Help Center article](https://support.google.com/merchants/answer/9103186)
      *           for more information.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\CloudExportAdditionalProperties>|\Google\Protobuf\Internal\RepeatedField $cloud_export_additional_properties
+     *     @type \Google\Shopping\Merchant\Products\V1\CloudExportAdditionalProperties[] $cloud_export_additional_properties
      *           Extra fields to export to the Cloud Retail program.
      *     @type string $virtual_model_link
      *           URL of the 3D image of the item. See the
      *           [Help Center article](https://support.google.com/merchants/answer/13674896)
      *           for more information.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductCertification>|\Google\Protobuf\Internal\RepeatedField $certifications
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductCertification[] $certifications
      *           Product Certifications, for example for energy efficiency labeling of
      *           products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home)
      *           database. See the [Help
@@ -984,7 +1012,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           (https://support.google.com/merchants/answer/13949249) projects,
      *           ensuring that discounts on business offers do not fall below this value,
      *           thereby preserving the offer's value and profitability.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductSustainabilityIncentive>|\Google\Protobuf\Internal\RepeatedField $sustainability_incentives
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductSustainabilityIncentive[] $sustainability_incentives
      *           The list of sustainability incentive programs.
      * }
      */
@@ -1293,7 +1321,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Additional URLs of images of the item.
      *
      * Generated from protobuf field <code>repeated string additional_image_links = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalImageLinks()
     {
@@ -1304,7 +1332,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Additional URLs of images of the item.
      *
      * Generated from protobuf field <code>repeated string additional_image_links = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalImageLinks($var)
@@ -1758,7 +1786,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * You can provide up to 10 GTINs.
      *
      * Generated from protobuf field <code>repeated string gtins = 140;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGtins()
     {
@@ -1772,7 +1800,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * You can provide up to 10 GTINs.
      *
      * Generated from protobuf field <code>repeated string gtins = 140;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGtins($var)
@@ -2044,7 +2072,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of periods (months or years) and amount of payment per period
+     * Number of periods (weeks, months or years) and amount of payment per period
      * for an item with an associated subscription contract.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.SubscriptionCost subscription_cost = 33;</code>
@@ -2066,7 +2094,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of periods (months or years) and amount of payment per period
+     * Number of periods (weeks, months or years) and amount of payment per period
      * for an item with an associated subscription contract.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.SubscriptionCost subscription_cost = 33;</code>
@@ -2123,7 +2151,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * item.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.LoyaltyProgram loyalty_programs = 136;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\LoyaltyProgram>
      */
     public function getLoyaltyPrograms()
     {
@@ -2136,7 +2164,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * item.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.LoyaltyProgram loyalty_programs = 136;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\LoyaltyProgram>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\LoyaltyProgram[] $var
      * @return $this
      */
     public function setLoyaltyPrograms($var)
@@ -2152,7 +2180,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * specification](https://support.google.com/merchants/answer/7052112#product_category)).
      *
      * Generated from protobuf field <code>repeated string product_types = 35;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductTypes()
     {
@@ -2164,7 +2192,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * specification](https://support.google.com/merchants/answer/7052112#product_category)).
      *
      * Generated from protobuf field <code>repeated string product_types = 35;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductTypes($var)
@@ -2445,7 +2473,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Shipping rules.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.Shipping shipping = 39;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\Shipping>
      */
     public function getShipping()
     {
@@ -2456,7 +2484,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Shipping rules.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.Shipping shipping = 39;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\Shipping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\Shipping[] $var
      * @return $this
      */
     public function setShipping($var)
@@ -2471,7 +2499,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Rules for carrier-based shipping.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.CarrierShipping carrier_shipping = 142;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping>
      */
     public function getCarrierShipping()
     {
@@ -2482,7 +2510,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Rules for carrier-based shipping.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.CarrierShipping carrier_shipping = 142;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\CarrierShipping[] $var
      * @return $this
      */
     public function setCarrierShipping($var)
@@ -2497,7 +2525,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Conditions to be met for a product to have free shipping.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.FreeShippingThreshold free_shipping_threshold = 135;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\FreeShippingThreshold>
      */
     public function getFreeShippingThreshold()
     {
@@ -2508,7 +2536,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Conditions to be met for a product to have free shipping.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.FreeShippingThreshold free_shipping_threshold = 135;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\FreeShippingThreshold>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\FreeShippingThreshold[] $var
      * @return $this
      */
     public function setFreeShippingThreshold($var)
@@ -2736,6 +2764,88 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The business days during which orders can be handled. If not provided,
+     * Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_handling_business_days = 143;</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig>
+     */
+    public function getShippingHandlingBusinessDays()
+    {
+        return $this->shipping_handling_business_days;
+    }
+
+    /**
+     * The business days during which orders can be handled. If not provided,
+     * Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_handling_business_days = 143;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig[] $var
+     * @return $this
+     */
+    public function setShippingHandlingBusinessDays($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig::class);
+        $this->shipping_handling_business_days = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The business days during which orders are in transit.
+     * If not provided, Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_transit_business_days = 144;</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig>
+     */
+    public function getShippingTransitBusinessDays()
+    {
+        return $this->shipping_transit_business_days;
+    }
+
+    /**
+     * The business days during which orders are in transit.
+     * If not provided, Monday to Friday business days will be assumed.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ShippingBusinessDaysConfig shipping_transit_business_days = 144;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig[] $var
+     * @return $this
+     */
+    public function setShippingTransitBusinessDays($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\ShippingBusinessDaysConfig::class);
+        $this->shipping_transit_business_days = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The handling cutoff times for shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.HandlingCutoffTime handling_cutoff_times = 141;</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\HandlingCutoffTime>
+     */
+    public function getHandlingCutoffTimes()
+    {
+        return $this->handling_cutoff_times;
+    }
+
+    /**
+     * The handling cutoff times for shipping.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.HandlingCutoffTime handling_cutoff_times = 141;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\HandlingCutoffTime[] $var
+     * @return $this
+     */
+    public function setHandlingCutoffTimes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\HandlingCutoffTime::class);
+        $this->handling_cutoff_times = $arr;
+
+        return $this;
+    }
+
+    /**
      * The shipping label of the product, used to group product in account-level
      * shipping rules.
      *
@@ -2899,7 +3009,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * [Size type](https://support.google.com/merchants/answer/6324497).
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.SizeType size_types = 50;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSizeTypes()
     {
@@ -2912,7 +3022,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * [Size type](https://support.google.com/merchants/answer/6324497).
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.SizeType size_types = 50;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSizeTypes($var)
@@ -3197,7 +3307,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Similar to ads_grouping, but only works on CPC.
      *
      * Generated from protobuf field <code>repeated string ads_labels = 60;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdsLabels()
     {
@@ -3208,7 +3318,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Similar to ads_grouping, but only works on CPC.
      *
      * Generated from protobuf field <code>repeated string ads_labels = 60;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdsLabels($var)
@@ -3297,7 +3407,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Technical specification or additional product details.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductDetail product_details = 63;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductDetail>
      */
     public function getProductDetails()
     {
@@ -3308,7 +3418,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Technical specification or additional product details.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductDetail product_details = 63;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\ProductDetail[] $var
      * @return $this
      */
     public function setProductDetails($var)
@@ -3324,7 +3434,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * highlights](https://support.google.com/merchants/answer/9216100).
      *
      * Generated from protobuf field <code>repeated string product_highlights = 64;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductHighlights()
     {
@@ -3336,7 +3446,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * highlights](https://support.google.com/merchants/answer/9216100).
      *
      * Generated from protobuf field <code>repeated string product_highlights = 64;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductHighlights($var)
@@ -3389,7 +3499,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * specification](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>repeated string display_ads_similar_ids = 66;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisplayAdsSimilarIds()
     {
@@ -3402,7 +3512,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * specification](https://support.google.com/merchants/answer/6069387).
      *
      * Generated from protobuf field <code>repeated string display_ads_similar_ids = 66;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisplayAdsSimilarIds($var)
@@ -3531,7 +3641,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * The unique ID of a promotion.
      *
      * Generated from protobuf field <code>repeated string promotion_ids = 70;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPromotionIds()
     {
@@ -3542,7 +3652,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * The unique ID of a promotion.
      *
      * Generated from protobuf field <code>repeated string promotion_ids = 70;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPromotionIds($var)
@@ -3908,7 +4018,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum included_destinations = 76;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIncludedDestinations()
     {
@@ -3926,7 +4036,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum included_destinations = 76;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIncludedDestinations($var)
@@ -3947,7 +4057,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum excluded_destinations = 77;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getExcludedDestinations()
     {
@@ -3964,7 +4074,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * cases. Use this field within products to only setup exceptions.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum excluded_destinations = 77;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setExcludedDestinations($var)
@@ -3982,7 +4092,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * from countries configured in data source settings.
      *
      * Generated from protobuf field <code>repeated string shopping_ads_excluded_countries = 78;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getShoppingAdsExcludedCountries()
     {
@@ -3996,7 +4106,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * from countries configured in data source settings.
      *
      * Generated from protobuf field <code>repeated string shopping_ads_excluded_countries = 78;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setShoppingAdsExcludedCountries($var)
@@ -4092,7 +4202,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * for more information.
      *
      * Generated from protobuf field <code>repeated string lifestyle_image_links = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLifestyleImageLinks()
     {
@@ -4106,7 +4216,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * for more information.
      *
      * Generated from protobuf field <code>repeated string lifestyle_image_links = 14;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLifestyleImageLinks($var)
@@ -4121,7 +4231,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Extra fields to export to the Cloud Retail program.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.CloudExportAdditionalProperties cloud_export_additional_properties = 84;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\CloudExportAdditionalProperties>
      */
     public function getCloudExportAdditionalProperties()
     {
@@ -4132,7 +4242,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Extra fields to export to the Cloud Retail program.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.CloudExportAdditionalProperties cloud_export_additional_properties = 84;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\CloudExportAdditionalProperties>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\CloudExportAdditionalProperties[] $var
      * @return $this
      */
     public function setCloudExportAdditionalProperties($var)
@@ -4191,7 +4301,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * article for more information.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductCertification certifications = 123;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductCertification>
      */
     public function getCertifications()
     {
@@ -4206,7 +4316,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * article for more information.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductCertification certifications = 123;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\ProductCertification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\ProductCertification[] $var
      * @return $this
      */
     public function setCertifications($var)
@@ -4339,7 +4449,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * The list of sustainability incentive programs.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductSustainabilityIncentive sustainability_incentives = 138;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductSustainabilityIncentive>
      */
     public function getSustainabilityIncentives()
     {
@@ -4350,7 +4460,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * The list of sustainability incentive programs.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductSustainabilityIncentive sustainability_incentives = 138;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\ProductSustainabilityIncentive>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\ProductSustainabilityIncentive[] $var
      * @return $this
      */
     public function setSustainabilityIncentives($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tasks\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for [GetQueue][google.cloud.tasks.v2.CloudTasks.GetQueue].

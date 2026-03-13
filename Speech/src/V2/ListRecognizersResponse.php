@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the
@@ -38,7 +38,7 @@ class ListRecognizersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Speech\V2\Recognizer>|\Google\Protobuf\Internal\RepeatedField $recognizers
+     *     @type \Google\Cloud\Speech\V2\Recognizer[] $recognizers
      *           The list of requested Recognizers.
      *     @type string $next_page_token
      *           A token, which can be sent as
@@ -56,7 +56,7 @@ class ListRecognizersResponse extends \Google\Protobuf\Internal\Message
      * The list of requested Recognizers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.Recognizer recognizers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\Recognizer>
      */
     public function getRecognizers()
     {
@@ -67,7 +67,7 @@ class ListRecognizersResponse extends \Google\Protobuf\Internal\Message
      * The list of requested Recognizers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.Recognizer recognizers = 1;</code>
-     * @param array<\Google\Cloud\Speech\V2\Recognizer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\Recognizer[] $var
      * @return $this
      */
     public function setRecognizers($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response payload containing a list of the backups.
@@ -42,12 +42,12 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Sql\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $backups
+     *     @type \Google\Cloud\Sql\V1\Backup[] $backups
      *           A list of backups.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, then there aren't subsequent pages.
-     *     @type array<\Google\Cloud\Sql\V1\ApiWarning>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\Sql\V1\ApiWarning[] $warnings
      *           If a region isn't unavailable or if an unknown error occurs, then a warning
      *           message is returned.
      * }
@@ -61,7 +61,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * A list of backups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Backup backups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\Backup>
      */
     public function getBackups()
     {
@@ -72,7 +72,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * A list of backups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Backup backups = 1;</code>
-     * @param array<\Google\Cloud\Sql\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\Backup[] $var
      * @return $this
      */
     public function setBackups($var)
@@ -116,7 +116,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * message is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ApiWarning warnings = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\ApiWarning>
      */
     public function getWarnings()
     {
@@ -128,7 +128,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * message is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ApiWarning warnings = 3;</code>
-     * @param array<\Google\Cloud\Sql\V1\ApiWarning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\ApiWarning[] $var
      * @return $this
      */
     public function setWarnings($var)

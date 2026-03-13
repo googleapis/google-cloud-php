@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.sql.v1.SqlUsersUpdateRequest</code>
@@ -71,7 +71,7 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      *           Name of the user in the instance.
      *     @type string $project
      *           Project ID of the project that contains the instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_roles
+     *     @type string[] $database_roles
      *           Optional. List of database roles to grant to the user. body.database_roles
      *           will be ignored for update request.
      *     @type bool $revoke_existing_roles
@@ -195,7 +195,7 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      * will be ignored for update request.
      *
      * Generated from protobuf field <code>repeated string database_roles = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDatabaseRoles()
     {
@@ -207,7 +207,7 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      * will be ignored for update request.
      *
      * Generated from protobuf field <code>repeated string database_roles = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDatabaseRoles($var)

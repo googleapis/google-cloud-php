@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1\InputField;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Choice input allows the business to select one of the offered choices. Some
@@ -33,7 +33,7 @@ class ChoiceInput extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\InputField\ChoiceInput\ChoiceInputOption>|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\InputField\ChoiceInput\ChoiceInputOption[] $options
      *           A list of choices. Only one option can be selected.
      * }
      */
@@ -46,7 +46,7 @@ class ChoiceInput extends \Google\Protobuf\Internal\Message
      * A list of choices. Only one option can be selected.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.InputField.ChoiceInput.ChoiceInputOption options = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\InputField\ChoiceInput\ChoiceInputOption>
      */
     public function getOptions()
     {
@@ -57,7 +57,7 @@ class ChoiceInput extends \Google\Protobuf\Internal\Message
      * A list of choices. Only one option can be selected.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.InputField.ChoiceInput.ChoiceInputOption options = 1;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\InputField\ChoiceInput\ChoiceInputOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\InputField\ChoiceInput\ChoiceInputOption[] $var
      * @return $this
      */
     public function setOptions($var)
@@ -69,5 +69,4 @@ class ChoiceInput extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

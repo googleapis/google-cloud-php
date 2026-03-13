@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom attribute values that are either filterable or non-filterable.
@@ -71,7 +71,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $string_values
+     *     @type string[] $string_values
      *           Exactly one of
      *           [string_values][google.cloud.talent.v4.CustomAttribute.string_values] or
      *           [long_values][google.cloud.talent.v4.CustomAttribute.long_values] must be
@@ -83,7 +83,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           500B. For unfilterable `string_values`, the maximum total byte size of
      *           unfilterable `string_values` is 50KB.
      *           Empty string isn't allowed.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $long_values
+     *     @type int[]|string[] $long_values
      *           Exactly one of
      *           [string_values][google.cloud.talent.v4.CustomAttribute.string_values] or
      *           [long_values][google.cloud.talent.v4.CustomAttribute.long_values] must be
@@ -125,7 +125,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Empty string isn't allowed.
      *
      * Generated from protobuf field <code>repeated string string_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStringValues()
     {
@@ -146,7 +146,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Empty string isn't allowed.
      *
      * Generated from protobuf field <code>repeated string string_values = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStringValues($var)
@@ -169,7 +169,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated int64 long_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getLongValues()
     {
@@ -188,7 +188,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated int64 long_values = 2;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setLongValues($var)

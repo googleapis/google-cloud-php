@@ -5,8 +5,8 @@
 namespace Google\Cloud\TextToSpeech\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The top-level message sent by the client for the
@@ -18,7 +18,7 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource states of the request in the form of
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -58,7 +58,7 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           The resource states of the request in the form of
-     *           `projects/&#42;&#47;locations/&#42;`.
+     *           `projects/{@*}locations/*`.
      *     @type \Google\Cloud\TextToSpeech\V1\SynthesisInput $input
      *           Required. The Synthesizer requires either plain text or SSML as input.
      *     @type \Google\Cloud\TextToSpeech\V1\AudioConfig $audio_config
@@ -78,7 +78,7 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource states of the request in the form of
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -90,7 +90,7 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource states of the request in the form of
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

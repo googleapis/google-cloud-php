@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListAggregateProductStatuses` method.
@@ -35,7 +35,7 @@ class ListAggregateProductStatusesResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus>|\Google\Protobuf\Internal\RepeatedField $aggregate_product_statuses
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus[] $aggregate_product_statuses
      *           The `AggregateProductStatuses` resources for the given account.
      *     @type string $next_page_token
      *           A token, which can be sent as `pageToken` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAggregateProductStatusesResponse extends \Google\Protobuf\Internal\Mes
      * The `AggregateProductStatuses` resources for the given account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.AggregateProductStatus aggregate_product_statuses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus>
      */
     public function getAggregateProductStatuses()
     {
@@ -62,7 +62,7 @@ class ListAggregateProductStatusesResponse extends \Google\Protobuf\Internal\Mes
      * The `AggregateProductStatuses` resources for the given account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.AggregateProductStatus aggregate_product_statuses = 1;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus[] $var
      * @return $this
      */
     public function setAggregateProductStatuses($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Flow that can be selected for an action. When a business selects a flow,
@@ -80,7 +80,7 @@ class ActionFlow extends \Google\Protobuf\Internal\Message
      *           Text value describing the intent for the action flow. It can be used as an
      *           input label if business needs to pick one of multiple flows. For example:
      *           "I disagree with the issue"
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\InputField>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\InputField[] $inputs
      *           A list of input fields.
      *     @type string $dialog_title
      *           Title of the request dialog. For example: "Before you request a review"
@@ -164,7 +164,7 @@ class ActionFlow extends \Google\Protobuf\Internal\Message
      * A list of input fields.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.InputField inputs = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\InputField>
      */
     public function getInputs()
     {
@@ -175,7 +175,7 @@ class ActionFlow extends \Google\Protobuf\Internal\Message
      * A list of input fields.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.InputField inputs = 3;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\InputField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\InputField[] $var
      * @return $this
      */
     public function setInputs($var)

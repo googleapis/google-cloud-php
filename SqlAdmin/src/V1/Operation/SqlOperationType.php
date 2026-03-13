@@ -417,4 +417,3 @@ class SqlOperationType
     }
 }
 
-

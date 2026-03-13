@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListPublicBlueprints`.
@@ -35,7 +35,7 @@ class ListPublicBlueprintsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\TelcoAutomation\V1\PublicBlueprint>|\Google\Protobuf\Internal\RepeatedField $public_blueprints
+     *     @type \Google\Cloud\TelcoAutomation\V1\PublicBlueprint[] $public_blueprints
      *           The list of public blueprints to return.
      *     @type string $next_page_token
      *           Output only. A token identifying a page of results the server should
@@ -51,7 +51,7 @@ class ListPublicBlueprintsResponse extends \Google\Protobuf\Internal\Message
      * The list of public blueprints to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.PublicBlueprint public_blueprints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TelcoAutomation\V1\PublicBlueprint>
      */
     public function getPublicBlueprints()
     {
@@ -62,7 +62,7 @@ class ListPublicBlueprintsResponse extends \Google\Protobuf\Internal\Message
      * The list of public blueprints to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.PublicBlueprint public_blueprints = 1;</code>
-     * @param array<\Google\Cloud\TelcoAutomation\V1\PublicBlueprint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TelcoAutomation\V1\PublicBlueprint[] $var
      * @return $this
      */
     public function setPublicBlueprints($var)

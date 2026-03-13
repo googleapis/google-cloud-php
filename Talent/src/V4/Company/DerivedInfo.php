@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4\Company;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Derived details about the company.
@@ -82,5 +82,4 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

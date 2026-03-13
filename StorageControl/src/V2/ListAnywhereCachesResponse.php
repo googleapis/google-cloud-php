@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListAnywhereCaches.
@@ -35,7 +35,7 @@ class ListAnywhereCachesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Storage\Control\V2\AnywhereCache>|\Google\Protobuf\Internal\RepeatedField $anywhere_caches
+     *     @type \Google\Cloud\Storage\Control\V2\AnywhereCache[] $anywhere_caches
      *           The list of items.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAnywhereCachesResponse extends \Google\Protobuf\Internal\Message
      * The list of items.
      *
      * Generated from protobuf field <code>repeated .google.storage.control.v2.AnywhereCache anywhere_caches = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Storage\Control\V2\AnywhereCache>
      */
     public function getAnywhereCaches()
     {
@@ -62,7 +62,7 @@ class ListAnywhereCachesResponse extends \Google\Protobuf\Internal\Message
      * The list of items.
      *
      * Generated from protobuf field <code>repeated .google.storage.control.v2.AnywhereCache anywhere_caches = 1;</code>
-     * @param array<\Google\Cloud\Storage\Control\V2\AnywhereCache>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Storage\Control\V2\AnywhereCache[] $var
      * @return $this
      */
     public function setAnywhereCaches($var)

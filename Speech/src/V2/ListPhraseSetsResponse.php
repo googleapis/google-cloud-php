@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the
@@ -38,7 +38,7 @@ class ListPhraseSetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Speech\V2\PhraseSet>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *     @type \Google\Cloud\Speech\V2\PhraseSet[] $phrase_sets
      *           The list of requested PhraseSets.
      *     @type string $next_page_token
      *           A token, which can be sent as
@@ -56,7 +56,7 @@ class ListPhraseSetsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested PhraseSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.PhraseSet phrase_sets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\PhraseSet>
      */
     public function getPhraseSets()
     {
@@ -67,7 +67,7 @@ class ListPhraseSetsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested PhraseSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.PhraseSet phrase_sets = 1;</code>
-     * @param array<\Google\Cloud\Speech\V2\PhraseSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\PhraseSet[] $var
      * @return $this
      */
     public function setPhraseSets($var)

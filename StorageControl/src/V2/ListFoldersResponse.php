@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListFolders.
@@ -35,7 +35,7 @@ class ListFoldersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Storage\Control\V2\Folder>|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type \Google\Cloud\Storage\Control\V2\Folder[] $folders
      *           The list of child folders
      *     @type string $next_page_token
      *           The continuation token, used to page through large result sets. Provide
@@ -51,7 +51,7 @@ class ListFoldersResponse extends \Google\Protobuf\Internal\Message
      * The list of child folders
      *
      * Generated from protobuf field <code>repeated .google.storage.control.v2.Folder folders = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Storage\Control\V2\Folder>
      */
     public function getFolders()
     {
@@ -62,7 +62,7 @@ class ListFoldersResponse extends \Google\Protobuf\Internal\Message
      * The list of child folders
      *
      * Generated from protobuf field <code>repeated .google.storage.control.v2.Folder folders = 1;</code>
-     * @param array<\Google\Cloud\Storage\Control\V2\Folder>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Storage\Control\V2\Folder[] $var
      * @return $this
      */
     public function setFolders($var)

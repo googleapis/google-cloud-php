@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filter on job compensation type and amount.
@@ -50,7 +50,7 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Required. Type of filter.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $units
+     *     @type int[] $units
      *           Required. Specify desired `base compensation entry's`
      *           [CompensationInfo.CompensationUnit][google.cloud.talent.v4.CompensationInfo.CompensationUnit].
      *     @type \Google\Cloud\Talent\V4\CompensationInfo\CompensationRange $range
@@ -96,7 +96,7 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      * [CompensationInfo.CompensationUnit][google.cloud.talent.v4.CompensationInfo.CompensationUnit].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.CompensationInfo.CompensationUnit units = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getUnits()
     {
@@ -108,7 +108,7 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      * [CompensationInfo.CompensationUnit][google.cloud.talent.v4.CompensationInfo.CompensationUnit].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.CompensationInfo.CompensationUnit units = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setUnits($var)

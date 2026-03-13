@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tasks\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A queue is a container of related tasks. Queues are configured to manage

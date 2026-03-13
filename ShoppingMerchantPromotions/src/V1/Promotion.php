@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Promotions\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a promotion. See the following articles for more details.
@@ -144,7 +144,7 @@ class Promotion extends \Google\Protobuf\Internal\Message
      *           countries, [Free Listings and Shopping
      *           ads](https://support.google.com/merchants/answer/4588460) [Local Inventory
      *           ads](https://support.google.com/merchants/answer/10146326)
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $redemption_channel
+     *     @type int[] $redemption_channel
      *           Required. [Redemption
      *           channel](https://support.google.com/merchants/answer/13837674?ref_topic=13773355&sjid=17642868584668136159-NC)
      *           for the promotion. At least one channel is required.
@@ -152,7 +152,7 @@ class Promotion extends \Google\Protobuf\Internal\Message
      *           Output only. The primary data source of the promotion.
      *     @type \Google\Shopping\Merchant\Promotions\V1\Attributes $attributes
      *           Optional. A list of promotion attributes.
-     *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
+     *     @type \Google\Shopping\Type\CustomAttribute[] $custom_attributes
      *           Optional. A list of custom (merchant-provided) attributes. It can also be
      *           used for submitting any attribute of the data specification in its generic
      *           form (for example,
@@ -319,7 +319,7 @@ class Promotion extends \Google\Protobuf\Internal\Message
      * for the promotion. At least one channel is required.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1.RedemptionChannel redemption_channel = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRedemptionChannel()
     {
@@ -332,7 +332,7 @@ class Promotion extends \Google\Protobuf\Internal\Message
      * for the promotion. At least one channel is required.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1.RedemptionChannel redemption_channel = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRedemptionChannel($var)
@@ -414,7 +414,7 @@ class Promotion extends \Google\Protobuf\Internal\Message
      * API.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
      */
     public function getCustomAttributes()
     {
@@ -430,7 +430,7 @@ class Promotion extends \Google\Protobuf\Internal\Message
      * API.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
      * @return $this
      */
     public function setCustomAttributes($var)

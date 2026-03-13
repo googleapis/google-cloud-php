@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instances ListServerCas response.
@@ -38,7 +38,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $certs
+     *     @type \Google\Cloud\Sql\V1\SslCert[] $certs
      *           List of server CA certificates for the instance.
      *     @type string $active_version
      *     @type string $kind
@@ -54,7 +54,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
      * List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert certs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SslCert>
      */
     public function getCerts()
     {
@@ -65,7 +65,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
      * List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert certs = 1;</code>
-     * @param array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SslCert[] $var
      * @return $this
      */
     public function setCerts($var)

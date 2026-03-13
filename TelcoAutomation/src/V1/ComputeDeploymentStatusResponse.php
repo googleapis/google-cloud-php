@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ComputeDeploymentStatus`.
@@ -44,7 +44,7 @@ class ComputeDeploymentStatusResponse extends \Google\Protobuf\Internal\Message
      *           The name of the deployment.
      *     @type int $aggregated_status
      *           Output only. Aggregated status of a deployment.
-     *     @type array<\Google\Cloud\TelcoAutomation\V1\ResourceStatus>|\Google\Protobuf\Internal\RepeatedField $resource_statuses
+     *     @type \Google\Cloud\TelcoAutomation\V1\ResourceStatus[] $resource_statuses
      *           Output only. Resource level status details in deployments.
      * }
      */
@@ -109,7 +109,7 @@ class ComputeDeploymentStatusResponse extends \Google\Protobuf\Internal\Message
      * Output only. Resource level status details in deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.ResourceStatus resource_statuses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TelcoAutomation\V1\ResourceStatus>
      */
     public function getResourceStatuses()
     {
@@ -120,7 +120,7 @@ class ComputeDeploymentStatusResponse extends \Google\Protobuf\Internal\Message
      * Output only. Resource level status details in deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.ResourceStatus resource_statuses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\TelcoAutomation\V1\ResourceStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TelcoAutomation\V1\ResourceStatus[] $var
      * @return $this
      */
     public function setResourceStatuses($var)

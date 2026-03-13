@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4\Job;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Application related details of a job posting.
@@ -48,7 +48,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $emails
+     *     @type string[] $emails
      *           Use this field to specify email address(es) to which resumes or
      *           applications can be sent.
      *           The maximum number of allowed characters for each entry is 255.
@@ -58,7 +58,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 3,000.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type string[] $uris
      *           Use this URI field to direct an applicant to a website, for example to
      *           link to an online application form.
      *           The maximum number of allowed characters for each entry is 2,000.
@@ -75,7 +75,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters for each entry is 255.
      *
      * Generated from protobuf field <code>repeated string emails = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEmails()
     {
@@ -88,7 +88,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters for each entry is 255.
      *
      * Generated from protobuf field <code>repeated string emails = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEmails($var)
@@ -139,7 +139,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters for each entry is 2,000.
      *
      * Generated from protobuf field <code>repeated string uris = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUris()
     {
@@ -152,7 +152,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters for each entry is 2,000.
      *
      * Generated from protobuf field <code>repeated string uris = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUris($var)
@@ -164,5 +164,4 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

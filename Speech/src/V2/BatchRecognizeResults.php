@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output type for Cloud Storage of BatchRecognize transcripts. Though this
@@ -37,7 +37,7 @@ class BatchRecognizeResults extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Speech\V2\SpeechRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Speech\V2\SpeechRecognitionResult[] $results
      *           Sequential list of transcription results corresponding to sequential
      *           portions of audio.
      *     @type \Google\Cloud\Speech\V2\RecognitionResponseMetadata $metadata
@@ -54,7 +54,7 @@ class BatchRecognizeResults extends \Google\Protobuf\Internal\Message
      * portions of audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechRecognitionResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\SpeechRecognitionResult>
      */
     public function getResults()
     {
@@ -66,7 +66,7 @@ class BatchRecognizeResults extends \Google\Protobuf\Internal\Message
      * portions of audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechRecognitionResult results = 1;</code>
-     * @param array<\Google\Cloud\Speech\V2\SpeechRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\SpeechRecognitionResult[] $var
      * @return $this
      */
     public function setResults($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of project numbers
@@ -26,7 +26,7 @@ class SourceProjects extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $project_numbers
+     *     @type int[]|string[] $project_numbers
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +36,7 @@ class SourceProjects extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated int64 project_numbers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getProjectNumbers()
     {
@@ -45,7 +45,7 @@ class SourceProjects extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated int64 project_numbers = 1;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setProjectNumbers($var)
@@ -57,5 +57,4 @@ class SourceProjects extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

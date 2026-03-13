@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the
@@ -148,7 +148,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           [config][google.cloud.speech.v2.BatchRecognizeRequest.config] completely
      *           overrides and replaces the config in the recognizer for this recognition
      *           request.
-     *     @type array<\Google\Cloud\Speech\V2\BatchRecognizeFileMetadata>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type \Google\Cloud\Speech\V2\BatchRecognizeFileMetadata[] $files
      *           Audio files with file metadata for ASR.
      *           The maximum number of files allowed to be specified is 15.
      *     @type \Google\Cloud\Speech\V2\RecognitionOutputConfig $recognition_output_config
@@ -305,7 +305,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of files allowed to be specified is 15.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\BatchRecognizeFileMetadata>
      */
     public function getFiles()
     {
@@ -317,7 +317,7 @@ class BatchRecognizeRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of files allowed to be specified is 15.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.BatchRecognizeFileMetadata files = 3;</code>
-     * @param array<\Google\Cloud\Speech\V2\BatchRecognizeFileMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\BatchRecognizeFileMetadata[] $var
      * @return $this
      */
     public function setFiles($var)

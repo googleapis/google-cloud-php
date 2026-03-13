@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing OrchestrationClusters.
@@ -40,11 +40,11 @@ class ListOrchestrationClustersResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\TelcoAutomation\V1\OrchestrationCluster>|\Google\Protobuf\Internal\RepeatedField $orchestration_clusters
+     *     @type \Google\Cloud\TelcoAutomation\V1\OrchestrationCluster[] $orchestration_clusters
      *           The list of OrchestrationCluster
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListOrchestrationClustersResponse extends \Google\Protobuf\Internal\Messag
      * The list of OrchestrationCluster
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.OrchestrationCluster orchestration_clusters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TelcoAutomation\V1\OrchestrationCluster>
      */
     public function getOrchestrationClusters()
     {
@@ -68,7 +68,7 @@ class ListOrchestrationClustersResponse extends \Google\Protobuf\Internal\Messag
      * The list of OrchestrationCluster
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.OrchestrationCluster orchestration_clusters = 1;</code>
-     * @param array<\Google\Cloud\TelcoAutomation\V1\OrchestrationCluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TelcoAutomation\V1\OrchestrationCluster[] $var
      * @return $this
      */
     public function setOrchestrationClusters($var)
@@ -109,7 +109,7 @@ class ListOrchestrationClustersResponse extends \Google\Protobuf\Internal\Messag
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListOrchestrationClustersResponse extends \Google\Protobuf\Internal\Messag
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

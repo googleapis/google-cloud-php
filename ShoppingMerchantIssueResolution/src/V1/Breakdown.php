@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A detailed impact breakdown for a group of regions where the impact of the
@@ -41,11 +41,11 @@ class Breakdown extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\Breakdown\Region>|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\Breakdown\Region[] $regions
      *           Lists of regions. Should be rendered as a title for this group of details.
      *           The full list should be shown to the business. If the list is too long, it
      *           is recommended to make it expandable.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $details
+     *     @type string[] $details
      *           Human readable, localized description of issue's effect on different
      *           targets. Should be rendered as a list.
      *           For example:
@@ -64,7 +64,7 @@ class Breakdown extends \Google\Protobuf\Internal\Message
      * is recommended to make it expandable.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Breakdown.Region regions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\Breakdown\Region>
      */
     public function getRegions()
     {
@@ -77,7 +77,7 @@ class Breakdown extends \Google\Protobuf\Internal\Message
      * is recommended to make it expandable.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Breakdown.Region regions = 1;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\Breakdown\Region>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\Breakdown\Region[] $var
      * @return $this
      */
     public function setRegions($var)
@@ -96,7 +96,7 @@ class Breakdown extends \Google\Protobuf\Internal\Message
      * * "Products not showing organically"
      *
      * Generated from protobuf field <code>repeated string details = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDetails()
     {
@@ -111,7 +111,7 @@ class Breakdown extends \Google\Protobuf\Internal\Message
      * * "Products not showing organically"
      *
      * Generated from protobuf field <code>repeated string details = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDetails($var)

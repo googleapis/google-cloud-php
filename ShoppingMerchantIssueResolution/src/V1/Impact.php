@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Overall impact of the issue.
@@ -52,7 +52,7 @@ class Impact extends \Google\Protobuf\Internal\Message
      *           in 25 countries"
      *     @type int $severity
      *           The severity of the issue.
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\Breakdown>|\Google\Protobuf\Internal\RepeatedField $breakdowns
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\Breakdown[] $breakdowns
      *           Detailed impact breakdown. Explains the types of restriction the issue has
      *           in different shopping destinations and territory. If present, it should be
      *           rendered to the business. Can be shown as a mouse over dropdown or a
@@ -129,7 +129,7 @@ class Impact extends \Google\Protobuf\Internal\Message
      * impact details.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Breakdown breakdowns = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\Breakdown>
      */
     public function getBreakdowns()
     {
@@ -144,7 +144,7 @@ class Impact extends \Google\Protobuf\Internal\Message
      * impact details.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Breakdown breakdowns = 3;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\Breakdown>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\Breakdown[] $var
      * @return $this
      */
     public function setBreakdowns($var)

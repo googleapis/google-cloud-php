@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tasks\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing tasks using
@@ -39,7 +39,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Tasks\V2\Task>|\Google\Protobuf\Internal\RepeatedField $tasks
+     *     @type \Google\Cloud\Tasks\V2\Task[] $tasks
      *           The list of tasks.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -58,7 +58,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * The list of tasks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tasks.v2.Task tasks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tasks\V2\Task>
      */
     public function getTasks()
     {
@@ -69,7 +69,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * The list of tasks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tasks.v2.Task tasks = 1;</code>
-     * @param array<\Google\Cloud\Tasks\V2\Task>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tasks\V2\Task[] $var
      * @return $this
      */
     public function setTasks($var)

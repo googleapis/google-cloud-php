@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the Cloud Logging behavior.
@@ -35,9 +35,9 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_actions
+     *     @type int[] $log_actions
      *           Required. Specifies the actions to be logged.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_action_states
+     *     @type int[] $log_action_states
      *           Required. States in which Action are logged.If empty, no logs are
      *           generated.
      * }
@@ -51,7 +51,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * Required. Specifies the actions to be logged.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.LoggingConfig.LoggableAction log_actions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getLogActions()
     {
@@ -62,7 +62,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * Required. Specifies the actions to be logged.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.LoggingConfig.LoggableAction log_actions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setLogActions($var)
@@ -78,7 +78,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * generated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.LoggingConfig.LoggableActionState log_action_states = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getLogActionStates()
     {
@@ -90,7 +90,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * generated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.LoggingConfig.LoggableActionState log_action_states = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setLogActionStates($var)

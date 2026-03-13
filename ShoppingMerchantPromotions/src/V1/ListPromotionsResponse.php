@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Promotions\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListPromotions` method.
@@ -35,7 +35,7 @@ class ListPromotionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Promotions\V1\Promotion>|\Google\Protobuf\Internal\RepeatedField $promotions
+     *     @type \Google\Shopping\Merchant\Promotions\V1\Promotion[] $promotions
      *           The processed promotions from the specified account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListPromotionsResponse extends \Google\Protobuf\Internal\Message
      * The processed promotions from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1.Promotion promotions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Promotions\V1\Promotion>
      */
     public function getPromotions()
     {
@@ -62,7 +62,7 @@ class ListPromotionsResponse extends \Google\Protobuf\Internal\Message
      * The processed promotions from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1.Promotion promotions = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Promotions\V1\Promotion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Promotions\V1\Promotion[] $var
      * @return $this
      */
     public function setPromotions($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Notifications\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The change that happened to the product including old value, new value,

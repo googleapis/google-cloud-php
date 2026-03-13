@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instance verify external sync settings request.
@@ -94,7 +94,7 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      *     @type int $sync_parallel_level
      *           Optional. Parallel level for initial data sync. Only applicable for
      *           PostgreSQL.
-     *     @type array<\Google\Cloud\Sql\V1\ExternalSyncSelectedObject>|\Google\Protobuf\Internal\RepeatedField $selected_objects
+     *     @type \Google\Cloud\Sql\V1\ExternalSyncSelectedObject[] $selected_objects
      *           Optional. Migrate only the specified objects from the source instance. If
      *           this field is empty, then migrate all objects.
      * }
@@ -328,7 +328,7 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      * this field is empty, then migrate all objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ExternalSyncSelectedObject selected_objects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\ExternalSyncSelectedObject>
      */
     public function getSelectedObjects()
     {
@@ -340,7 +340,7 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      * this field is empty, then migrate all objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ExternalSyncSelectedObject selected_objects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Sql\V1\ExternalSyncSelectedObject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\ExternalSyncSelectedObject[] $var
      * @return $this
      */
     public function setSelectedObjects($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing Jobs
@@ -40,11 +40,11 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\StorageBatchOperations\V1\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\StorageBatchOperations\V1\Job[] $jobs
      *           A list of storage batch jobs.
      *     @type string $next_page_token
      *           A token identifying a page of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * A list of storage batch jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.Job jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageBatchOperations\V1\Job>
      */
     public function getJobs()
     {
@@ -68,7 +68,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * A list of storage batch jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.Job jobs = 1;</code>
-     * @param array<\Google\Cloud\StorageBatchOperations\V1\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageBatchOperations\V1\Job[] $var
      * @return $this
      */
     public function setJobs($var)
@@ -109,7 +109,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

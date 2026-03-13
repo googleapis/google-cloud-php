@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instances ListServerCertificates response.
@@ -47,9 +47,9 @@ class InstancesListServerCertificatesResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $ca_certs
+     *     @type \Google\Cloud\Sql\V1\SslCert[] $ca_certs
      *           List of server CA certificates for the instance.
-     *     @type array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $server_certs
+     *     @type \Google\Cloud\Sql\V1\SslCert[] $server_certs
      *           List of server certificates for the instance, signed by the corresponding
      *           CA from the `ca_certs` list.
      *     @type string $active_version
@@ -67,7 +67,7 @@ class InstancesListServerCertificatesResponse extends \Google\Protobuf\Internal\
      * List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert ca_certs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SslCert>
      */
     public function getCaCerts()
     {
@@ -78,7 +78,7 @@ class InstancesListServerCertificatesResponse extends \Google\Protobuf\Internal\
      * List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert ca_certs = 1;</code>
-     * @param array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SslCert[] $var
      * @return $this
      */
     public function setCaCerts($var)
@@ -94,7 +94,7 @@ class InstancesListServerCertificatesResponse extends \Google\Protobuf\Internal\
      * CA from the `ca_certs` list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert server_certs = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SslCert>
      */
     public function getServerCerts()
     {
@@ -106,7 +106,7 @@ class InstancesListServerCertificatesResponse extends \Google\Protobuf\Internal\
      * CA from the `ca_certs` list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert server_certs = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SslCert[] $var
      * @return $this
      */
     public function setServerCerts($var)

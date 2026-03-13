@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Target metric for read pool auto scaling.
@@ -118,5 +118,4 @@ class TargetMetric extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

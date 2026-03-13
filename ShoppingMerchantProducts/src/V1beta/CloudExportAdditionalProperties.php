@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Product property for the Cloud Retail API.
@@ -89,7 +89,7 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      *           Name of the given property. For example,
      *           "Screen-Resolution" for a TV product. Maximum string size is 256
      *           characters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text_value
+     *     @type string[] $text_value
      *           Text value of the given property. For example,
      *           "8K(UHD)" could be a text value for a TV product. Maximum
      *           repeatedness of this value is 400. Values are stored in an arbitrary but
@@ -97,11 +97,11 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      *     @type bool $bool_value
      *           Boolean value of the given property. For example for a TV product,
      *           "True" or "False" if the screen is UHD.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $int_value
+     *     @type int[]|string[] $int_value
      *           Integer values of the given property. For example, 1080 for a TV
      *           product's Screen Resolution. Maximum repeatedness of this value
      *           is 400. Values are stored in an arbitrary but consistent order.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $float_value
+     *     @type float[] $float_value
      *           Float values of the given property. For example for a TV product
      *           1.2345. Maximum repeatedness of this value is 400. Values
      *           are stored in an arbitrary but consistent order.
@@ -168,7 +168,7 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      * consistent order. Maximum string size is 256 characters.
      *
      * Generated from protobuf field <code>repeated string text_value = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTextValue()
     {
@@ -182,7 +182,7 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      * consistent order. Maximum string size is 256 characters.
      *
      * Generated from protobuf field <code>repeated string text_value = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTextValue($var)
@@ -237,7 +237,7 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      * is 400. Values are stored in an arbitrary but consistent order.
      *
      * Generated from protobuf field <code>repeated int64 int_value = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getIntValue()
     {
@@ -250,7 +250,7 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      * is 400. Values are stored in an arbitrary but consistent order.
      *
      * Generated from protobuf field <code>repeated int64 int_value = 4;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setIntValue($var)
@@ -267,7 +267,7 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      * are stored in an arbitrary but consistent order.
      *
      * Generated from protobuf field <code>repeated float float_value = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getFloatValue()
     {
@@ -280,7 +280,7 @@ class CloudExportAdditionalProperties extends \Google\Protobuf\Internal\Message
      * are stored in an arbitrary but consistent order.
      *
      * Generated from protobuf field <code>repeated float float_value = 5;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setFloatValue($var)

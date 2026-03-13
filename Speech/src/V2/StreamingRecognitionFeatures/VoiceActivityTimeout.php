@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2\StreamingRecognitionFeatures;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Events that a timeout can be set on for voice activity.
@@ -134,5 +134,4 @@ class VoiceActivityTimeout extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

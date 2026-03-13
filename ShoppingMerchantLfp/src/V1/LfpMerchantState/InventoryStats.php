@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Lfp\V1\LfpMerchantState;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inventory statistics for a merchant.
@@ -190,5 +190,4 @@ class InventoryStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

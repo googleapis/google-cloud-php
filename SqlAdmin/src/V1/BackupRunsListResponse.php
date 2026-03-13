@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Backup run list results.
@@ -43,7 +43,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#backupRunsList`.
-     *     @type array<\Google\Cloud\Sql\V1\BackupRun>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Sql\V1\BackupRun[] $items
      *           A list of backup runs in reverse chronological order of the enqueued time.
      *     @type string $next_page_token
      *           The continuation token, used to page through large result sets. Provide
@@ -85,7 +85,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      * A list of backup runs in reverse chronological order of the enqueued time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.BackupRun items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\BackupRun>
      */
     public function getItems()
     {
@@ -96,7 +96,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      * A list of backup runs in reverse chronological order of the enqueued time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.BackupRun items = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\BackupRun>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\BackupRun[] $var
      * @return $this
      */
     public function setItems($var)

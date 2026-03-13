@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Database instances list response.
@@ -49,9 +49,9 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#instancesList`.
-     *     @type array<\Google\Cloud\Sql\V1\ApiWarning>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\Sql\V1\ApiWarning[] $warnings
      *           List of warnings that occurred while handling the request.
-     *     @type array<\Google\Cloud\Sql\V1\DatabaseInstance>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Sql\V1\DatabaseInstance[] $items
      *           List of database instance resources.
      *     @type string $next_page_token
      *           The continuation token, used to page through large result sets. Provide
@@ -93,7 +93,7 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
      * List of warnings that occurred while handling the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ApiWarning warnings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\ApiWarning>
      */
     public function getWarnings()
     {
@@ -104,7 +104,7 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
      * List of warnings that occurred while handling the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ApiWarning warnings = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\ApiWarning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\ApiWarning[] $var
      * @return $this
      */
     public function setWarnings($var)
@@ -119,7 +119,7 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
      * List of database instance resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DatabaseInstance items = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\DatabaseInstance>
      */
     public function getItems()
     {
@@ -130,7 +130,7 @@ class InstancesListResponse extends \Google\Protobuf\Internal\Message
      * List of database instance resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DatabaseInstance items = 3;</code>
-     * @param array<\Google\Cloud\Sql\V1\DatabaseInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\DatabaseInstance[] $var
      * @return $this
      */
     public function setItems($var)

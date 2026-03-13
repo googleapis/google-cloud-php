@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The shipping information for the order.
@@ -528,5 +528,4 @@ class ShippingInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

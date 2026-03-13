@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A review for a product. For more information, see
@@ -73,7 +73,7 @@ class ProductReview extends \Google\Protobuf\Internal\Message
      *           publisher’s system.
      *     @type \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes $product_review_attributes
      *           Optional. A list of product review attributes.
-     *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
+     *     @type \Google\Shopping\Type\CustomAttribute[] $custom_attributes
      *           Optional. A list of custom (merchant-provided) attributes.
      *     @type string $data_source
      *           Output only. The primary data source of the product review.
@@ -185,7 +185,7 @@ class ProductReview extends \Google\Protobuf\Internal\Message
      * Optional. A list of custom (merchant-provided) attributes.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
      */
     public function getCustomAttributes()
     {
@@ -196,7 +196,7 @@ class ProductReview extends \Google\Protobuf\Internal\Message
      * Optional. A list of custom (merchant-provided) attributes.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
      * @return $this
      */
     public function setCustomAttributes($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The issue associated with the promotion.
@@ -95,7 +95,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      *           Output only. A detailed issue description in English.
      *     @type string $documentation
      *           Output only. The URL of a web page to help with resolving this issue.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_countries
+     *     @type string[] $applicable_countries
      *           Output only. List of country codes (ISO 3166-1 alpha-2) where issue
      *           applies to the offer.
      * }
@@ -320,7 +320,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      * applies to the offer.
      *
      * Generated from protobuf field <code>repeated string applicable_countries = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApplicableCountries()
     {
@@ -332,7 +332,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      * applies to the offer.
      *
      * Generated from protobuf field <code>repeated string applicable_countries = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApplicableCountries($var)
@@ -344,5 +344,4 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

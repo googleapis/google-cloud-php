@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * On-premises instance configuration.
@@ -109,7 +109,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      *           The dump file to create the Cloud SQL replica.
      *     @type \Google\Cloud\Sql\V1\InstanceReference $source_instance
      *           The reference to Cloud SQL instance if the source is Cloud SQL.
-     *     @type array<\Google\Cloud\Sql\V1\SelectedObjects>|\Google\Protobuf\Internal\RepeatedField $selected_objects
+     *     @type \Google\Cloud\Sql\V1\SelectedObjects[] $selected_objects
      *           Optional. A list of objects that the user selects for replication from an
      *           external source instance.
      *     @type int $ssl_option
@@ -372,7 +372,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      * external source instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SelectedObjects selected_objects = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SelectedObjects>
      */
     public function getSelectedObjects()
     {
@@ -384,7 +384,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      * external source instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SelectedObjects selected_objects = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Sql\V1\SelectedObjects>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SelectedObjects[] $var
      * @return $this
      */
     public function setSelectedObjects($var)

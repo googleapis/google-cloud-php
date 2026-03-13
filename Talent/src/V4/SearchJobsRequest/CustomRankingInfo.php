@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4\SearchJobsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom ranking information for
@@ -179,5 +179,4 @@ class CustomRankingInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

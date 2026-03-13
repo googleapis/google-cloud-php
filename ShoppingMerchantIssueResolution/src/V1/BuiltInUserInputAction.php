@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Action that is implemented and performed in (your) third-party application.
@@ -54,7 +54,7 @@ class BuiltInUserInputAction extends \Google\Protobuf\Internal\Message
      *           [TriggerActionRequest.payload][google.shopping.merchant.issueresolution.v1.TriggerActionRequest.payload]
      *           to call the `triggeraction` method. The content should be treated as opaque
      *           and must not be modified.
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\ActionFlow>|\Google\Protobuf\Internal\RepeatedField $flows
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\ActionFlow[] $flows
      *           Actions may provide multiple different flows. Business selects one that
      *           fits best to their intent. Selecting the flow is the first step in user's
      *           interaction with the action. It affects what input fields will be available
@@ -109,7 +109,7 @@ class BuiltInUserInputAction extends \Google\Protobuf\Internal\Message
      * and required and also how the request will be processed.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.ActionFlow flows = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\ActionFlow>
      */
     public function getFlows()
     {
@@ -123,7 +123,7 @@ class BuiltInUserInputAction extends \Google\Protobuf\Internal\Message
      * and required and also how the request will be processed.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.ActionFlow flows = 3;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\ActionFlow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\ActionFlow[] $var
      * @return $this
      */
     public function setFlows($var)

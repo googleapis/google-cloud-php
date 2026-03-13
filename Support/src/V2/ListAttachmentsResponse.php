@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for the ListAttachments endpoint.
@@ -36,7 +36,7 @@ class ListAttachmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Support\V2\Attachment>|\Google\Protobuf\Internal\RepeatedField $attachments
+     *     @type \Google\Cloud\Support\V2\Attachment[] $attachments
      *           The list of attachments associated with a case.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. Set this in the `page_token`
@@ -53,7 +53,7 @@ class ListAttachmentsResponse extends \Google\Protobuf\Internal\Message
      * The list of attachments associated with a case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Attachment attachments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Support\V2\Attachment>
      */
     public function getAttachments()
     {
@@ -64,7 +64,7 @@ class ListAttachmentsResponse extends \Google\Protobuf\Internal\Message
      * The list of attachments associated with a case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Attachment attachments = 1;</code>
-     * @param array<\Google\Cloud\Support\V2\Attachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Support\V2\Attachment[] $var
      * @return $this
      */
     public function setAttachments($var)

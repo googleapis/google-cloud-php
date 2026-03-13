@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Pre-check major version upgrade context.
@@ -42,7 +42,7 @@ class PreCheckMajorVersionUpgradeContext extends \Google\Protobuf\Internal\Messa
      *
      *     @type int $target_database_version
      *           Required. The target database version to upgrade to.
-     *     @type array<\Google\Cloud\Sql\V1\PreCheckResponse>|\Google\Protobuf\Internal\RepeatedField $pre_check_response
+     *     @type \Google\Cloud\Sql\V1\PreCheckResponse[] $pre_check_response
      *           Output only. The responses from the precheck operation.
      *     @type string $kind
      *           Optional. This is always `sql#preCheckMajorVersionUpgradeContext`.
@@ -83,7 +83,7 @@ class PreCheckMajorVersionUpgradeContext extends \Google\Protobuf\Internal\Messa
      * Output only. The responses from the precheck operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PreCheckResponse pre_check_response = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\PreCheckResponse>
      */
     public function getPreCheckResponse()
     {
@@ -94,7 +94,7 @@ class PreCheckMajorVersionUpgradeContext extends \Google\Protobuf\Internal\Messa
      * Output only. The responses from the precheck operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PreCheckResponse pre_check_response = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\PreCheckResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\PreCheckResponse[] $var
      * @return $this
      */
     public function setPreCheckResponse($var)

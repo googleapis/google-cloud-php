@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ItemLevelIssue of the product review status.
@@ -306,5 +306,4 @@ class ProductReviewItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

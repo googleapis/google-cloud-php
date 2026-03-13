@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CustomClass for biasing in speech recognition. Used to define a set of words
@@ -131,7 +131,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. User-settable, human-readable name for the CustomClass. Must be
      *           63 characters or less.
-     *     @type array<\Google\Cloud\Speech\V2\CustomClass\ClassItem>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Speech\V2\CustomClass\ClassItem[] $items
      *           A collection of class items.
      *     @type int $state
      *           Output only. The CustomClass lifecycle state.
@@ -259,7 +259,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      * A collection of class items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.CustomClass.ClassItem items = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\CustomClass\ClassItem>
      */
     public function getItems()
     {
@@ -270,7 +270,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      * A collection of class items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.CustomClass.ClassItem items = 5;</code>
-     * @param array<\Google\Cloud\Speech\V2\CustomClass\ClassItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\CustomClass\ClassItem[] $var
      * @return $this
      */
     public function setItems($var)

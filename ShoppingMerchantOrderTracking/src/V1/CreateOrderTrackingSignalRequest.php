@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\OrderTracking\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Signals only can be created but not updated.

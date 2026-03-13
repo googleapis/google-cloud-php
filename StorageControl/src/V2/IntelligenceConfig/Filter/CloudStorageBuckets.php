@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2\IntelligenceConfig\Filter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of buckets.
@@ -35,7 +35,7 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $bucket_id_regexes
+     *     @type string[] $bucket_id_regexes
      *           Optional. A regex pattern for matching bucket names. Regex should
      *           follow the syntax specified in
      *           [google/re2](https://github.com/google/re2). For example,
@@ -62,7 +62,7 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
      * use `sample_bucket`.
      *
      * Generated from protobuf field <code>repeated string bucket_id_regexes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBucketIdRegexes()
     {
@@ -80,7 +80,7 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
      * use `sample_bucket`.
      *
      * Generated from protobuf field <code>repeated string bucket_id_regexes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBucketIdRegexes($var)
@@ -92,5 +92,4 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

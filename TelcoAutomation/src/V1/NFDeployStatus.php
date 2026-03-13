@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Deployment status of NFDeploy.
@@ -46,7 +46,7 @@ class NFDeployStatus extends \Google\Protobuf\Internal\Message
      *     @type int $ready_nfs
      *           Output only. Total number of NFs targeted by this deployment with a Ready
      *           Condition set.
-     *     @type array<\Google\Cloud\TelcoAutomation\V1\NFDeploySiteStatus>|\Google\Protobuf\Internal\RepeatedField $sites
+     *     @type \Google\Cloud\TelcoAutomation\V1\NFDeploySiteStatus[] $sites
      *           Output only. Per-Site Status.
      * }
      */
@@ -113,7 +113,7 @@ class NFDeployStatus extends \Google\Protobuf\Internal\Message
      * Output only. Per-Site Status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.NFDeploySiteStatus sites = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TelcoAutomation\V1\NFDeploySiteStatus>
      */
     public function getSites()
     {
@@ -124,7 +124,7 @@ class NFDeployStatus extends \Google\Protobuf\Internal\Message
      * Output only. Per-Site Status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.NFDeploySiteStatus sites = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\TelcoAutomation\V1\NFDeploySiteStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TelcoAutomation\V1\NFDeploySiteStatus[] $var
      * @return $this
      */
     public function setSites($var)

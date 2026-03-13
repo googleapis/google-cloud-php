@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing BucketOperations
@@ -40,11 +40,11 @@ class ListBucketOperationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\StorageBatchOperations\V1\BucketOperation>|\Google\Protobuf\Internal\RepeatedField $bucket_operations
+     *     @type \Google\Cloud\StorageBatchOperations\V1\BucketOperation[] $bucket_operations
      *           A list of storage batch bucket operations.
      *     @type string $next_page_token
      *           A token identifying a page of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListBucketOperationsResponse extends \Google\Protobuf\Internal\Message
      * A list of storage batch bucket operations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.BucketOperation bucket_operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageBatchOperations\V1\BucketOperation>
      */
     public function getBucketOperations()
     {
@@ -68,7 +68,7 @@ class ListBucketOperationsResponse extends \Google\Protobuf\Internal\Message
      * A list of storage batch bucket operations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.BucketOperation bucket_operations = 1;</code>
-     * @param array<\Google\Cloud\StorageBatchOperations\V1\BucketOperation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageBatchOperations\V1\BucketOperation[] $var
      * @return $this
      */
     public function setBucketOperations($var)
@@ -109,7 +109,7 @@ class ListBucketOperationsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListBucketOperationsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)
