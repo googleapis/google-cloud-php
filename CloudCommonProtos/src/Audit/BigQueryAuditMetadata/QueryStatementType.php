@@ -298,4 +298,3 @@ class QueryStatementType
     }
 }
 
-

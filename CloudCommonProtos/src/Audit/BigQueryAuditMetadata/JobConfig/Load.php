@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata\JobConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Load job configuration.
@@ -73,7 +73,7 @@ class Load extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_uris
+     *     @type string[] $source_uris
      *           URIs for the data to be imported. Entire list is truncated if exceeds
      *           40K.
      *     @type bool $source_uris_truncated
@@ -104,7 +104,7 @@ class Load extends \Google\Protobuf\Internal\Message
      * 40K.
      *
      * Generated from protobuf field <code>repeated string source_uris = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceUris()
     {
@@ -116,7 +116,7 @@ class Load extends \Google\Protobuf\Internal\Message
      * 40K.
      *
      * Generated from protobuf field <code>repeated string source_uris = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceUris($var)
@@ -324,5 +324,4 @@ class Load extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

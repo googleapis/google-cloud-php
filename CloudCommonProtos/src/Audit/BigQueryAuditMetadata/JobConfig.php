@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Job configuration.
@@ -241,5 +241,4 @@ class JobConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

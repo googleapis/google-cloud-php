@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Location information about a resource.
@@ -46,7 +46,7 @@ class ResourceLocation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $current_locations
+     *     @type string[] $current_locations
      *           The locations of a resource after the execution of the operation.
      *           Requests to create or delete a location based resource must populate
      *           the 'current_locations' field and not the 'original_locations' field.
@@ -54,7 +54,7 @@ class ResourceLocation extends \Google\Protobuf\Internal\Message
      *               "europe-west1-a"
      *               "us-east1"
      *               "nam3"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $original_locations
+     *     @type string[] $original_locations
      *           The locations of a resource prior to the execution of the operation.
      *           Requests that mutate the resource's location must populate both the
      *           'original_locations' as well as the 'current_locations' fields.
@@ -79,7 +79,7 @@ class ResourceLocation extends \Google\Protobuf\Internal\Message
      *     "nam3"
      *
      * Generated from protobuf field <code>repeated string current_locations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCurrentLocations()
     {
@@ -96,7 +96,7 @@ class ResourceLocation extends \Google\Protobuf\Internal\Message
      *     "nam3"
      *
      * Generated from protobuf field <code>repeated string current_locations = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCurrentLocations($var)
@@ -117,7 +117,7 @@ class ResourceLocation extends \Google\Protobuf\Internal\Message
      *     "nam3"
      *
      * Generated from protobuf field <code>repeated string original_locations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOriginalLocations()
     {
@@ -134,7 +134,7 @@ class ResourceLocation extends \Google\Protobuf\Internal\Message
      *     "nam3"
      *
      * Generated from protobuf field <code>repeated string original_locations = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOriginalLocations($var)

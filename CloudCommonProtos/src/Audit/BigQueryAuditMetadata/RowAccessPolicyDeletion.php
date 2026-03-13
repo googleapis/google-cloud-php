@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Row access policy deletion event.
@@ -43,7 +43,7 @@ class RowAccessPolicyDeletion extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Audit\BigQueryAuditMetadata\RowAccessPolicy>|\Google\Protobuf\Internal\RepeatedField $row_access_policies
+     *     @type \Google\Cloud\Audit\BigQueryAuditMetadata\RowAccessPolicy[] $row_access_policies
      *           The row access policies that were deleted. At present, only populated
      *           when a single policy is dropped.
      *     @type string $job_name
@@ -64,7 +64,7 @@ class RowAccessPolicyDeletion extends \Google\Protobuf\Internal\Message
      * when a single policy is dropped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.RowAccessPolicy row_access_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Audit\BigQueryAuditMetadata\RowAccessPolicy>
      */
     public function getRowAccessPolicies()
     {
@@ -76,7 +76,7 @@ class RowAccessPolicyDeletion extends \Google\Protobuf\Internal\Message
      * when a single policy is dropped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.RowAccessPolicy row_access_policies = 1;</code>
-     * @param array<\Google\Cloud\Audit\BigQueryAuditMetadata\RowAccessPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Audit\BigQueryAuditMetadata\RowAccessPolicy[] $var
      * @return $this
      */
     public function setRowAccessPolicies($var)
@@ -144,5 +144,4 @@ class RowAccessPolicyDeletion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
