@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\PinControlMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of product ids which have associated pins.
@@ -28,7 +28,7 @@ class ProductPins extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_id
+     *     @type string[] $product_id
      *           List of product ids which have associated pins.
      * }
      */
@@ -41,7 +41,7 @@ class ProductPins extends \Google\Protobuf\Internal\Message
      * List of product ids which have associated pins.
      *
      * Generated from protobuf field <code>repeated string product_id = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductId()
     {
@@ -52,7 +52,7 @@ class ProductPins extends \Google\Protobuf\Internal\Message
      * List of product ids which have associated pins.
      *
      * Generated from protobuf field <code>repeated string product_id = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductId($var)
@@ -64,5 +64,4 @@ class ProductPins extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

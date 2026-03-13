@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListUserEvents method.
@@ -35,7 +35,7 @@ class ListUserEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $user_events
+     *     @type \Google\Cloud\RecommendationEngine\V1beta1\UserEvent[] $user_events
      *           The user events.
      *     @type string $next_page_token
      *           If empty, the list is complete. If nonempty, the token to pass to the next
@@ -51,7 +51,7 @@ class ListUserEventsResponse extends \Google\Protobuf\Internal\Message
      * The user events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.UserEvent user_events = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>
      */
     public function getUserEvents()
     {
@@ -62,7 +62,7 @@ class ListUserEventsResponse extends \Google\Protobuf\Internal\Message
      * The user events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.UserEvent user_events = 1;</code>
-     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\UserEvent[] $var
      * @return $this
      */
     public function setUserEvents($var)

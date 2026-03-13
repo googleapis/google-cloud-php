@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The event being assessed.
@@ -174,7 +174,7 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type string $ja4
      *           Optional. JA4 fingerprint for SSL clients. To learn how to compute this
      *           fingerprint, please refer to https://github.com/FoxIO-LLC/ja4.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type string[] $headers
      *           Optional. HTTP header information about the request.
      *     @type bool $firewall_policy_evaluation
      *           Optional. Flag for enabling firewall policy config assessment.
@@ -520,7 +520,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. HTTP header information about the request.
      *
      * Generated from protobuf field <code>repeated string headers = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHeaders()
     {
@@ -531,7 +531,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. HTTP header information about the request.
      *
      * Generated from protobuf field <code>repeated string headers = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHeaders($var)

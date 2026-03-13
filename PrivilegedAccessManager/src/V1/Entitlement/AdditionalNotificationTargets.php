@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\Entitlement;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `AdditionalNotificationTargets` includes email addresses to be notified.
@@ -36,10 +36,10 @@ class AdditionalNotificationTargets extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $admin_email_recipients
+     *     @type string[] $admin_email_recipients
      *           Optional. Additional email addresses to be notified when a principal
      *           (requester) is granted access.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $requester_email_recipients
+     *     @type string[] $requester_email_recipients
      *           Optional. Additional email address to be notified about an eligible
      *           entitlement.
      * }
@@ -54,7 +54,7 @@ class AdditionalNotificationTargets extends \Google\Protobuf\Internal\Message
      * (requester) is granted access.
      *
      * Generated from protobuf field <code>repeated string admin_email_recipients = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdminEmailRecipients()
     {
@@ -66,7 +66,7 @@ class AdditionalNotificationTargets extends \Google\Protobuf\Internal\Message
      * (requester) is granted access.
      *
      * Generated from protobuf field <code>repeated string admin_email_recipients = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdminEmailRecipients($var)
@@ -82,7 +82,7 @@ class AdditionalNotificationTargets extends \Google\Protobuf\Internal\Message
      * entitlement.
      *
      * Generated from protobuf field <code>repeated string requester_email_recipients = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequesterEmailRecipients()
     {
@@ -94,7 +94,7 @@ class AdditionalNotificationTargets extends \Google\Protobuf\Internal\Message
      * entitlement.
      *
      * Generated from protobuf field <code>repeated string requester_email_recipients = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequesterEmailRecipients($var)
@@ -106,5 +106,4 @@ class AdditionalNotificationTargets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

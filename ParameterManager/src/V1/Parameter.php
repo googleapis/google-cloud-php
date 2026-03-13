@@ -5,8 +5,8 @@
 namespace Google\Cloud\ParameterManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Parameter resource
@@ -17,7 +17,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. [Output only] The resource name of the Parameter in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -58,7 +58,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Parameter Versions. If not set, the default Google-managed encryption key
      * will be used. Cloud KMS CryptoKeys must reside in the same location as the
      * Parameter. The expected format is
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -72,7 +72,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. [Output only] The resource name of the Parameter in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;`.
+     *           `projects/{@*}locations/{@*}parameters/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. [Output only] Create time stamp
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -89,7 +89,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *           Parameter Versions. If not set, the default Google-managed encryption key
      *           will be used. Cloud KMS CryptoKeys must reside in the same location as the
      *           Parameter. The expected format is
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +99,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. [Output only] The resource name of the Parameter in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -111,7 +111,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. [Output only] The resource name of the Parameter in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -292,7 +292,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Parameter Versions. If not set, the default Google-managed encryption key
      * will be used. Cloud KMS CryptoKeys must reside in the same location as the
      * Parameter. The expected format is
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -317,7 +317,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Parameter Versions. If not set, the default Google-managed encryption key
      * will be used. Cloud KMS CryptoKeys must reside in the same location as the
      * Parameter. The expected format is
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\OutputConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The BigQuery output destination configuration.
@@ -140,5 +140,4 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

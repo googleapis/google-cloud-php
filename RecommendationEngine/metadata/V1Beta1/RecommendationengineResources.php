@@ -16,15 +16,7 @@ class RecommendationengineResources
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-≤	
-Ngoogle/cloud/recommendationengine/v1beta1/recommendationengine_resources.proto)google.cloud.recommendationengine.v1beta1B¨
--com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAI™)Google.Cloud.RecommendationEngine.V1Beta1 )Google\\Cloud\\RecommendationEngine\\V1beta1Í,Google::Cloud::RecommendationEngine::V1beta1ÍAi
-+recommendationengine.googleapis.com/Catalog:projects/{project}/locations/{location}/catalogs/{catalog}ÍAí
-3recommendationengine.googleapis.com/CatalogItemPath[projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path}ÍAÜ
-.recommendationengine.googleapis.com/EventStoreTprojects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}ÍAŸ
-@recommendationengine.googleapis.com/PredictionApiKeyRegistrationîprojects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}/predictionApiKeyRegistrations/{prediction_api_key_registration}ÍAú
--recommendationengine.googleapis.com/Placementkprojects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}/placements/{placement}bproto3'
+            "\x0A\xB2\x09\x0ANgoogle/cloud/recommendationengine/v1beta1/recommendationengine_resources.proto\x12)google.cloud.recommendationengine.v1beta1B\xAC\x08\x0A-com.google.cloud.recommendationengine.v1beta1P\x01Zacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb\xA2\x02\x05RECAI\xAA\x02)Google.Cloud.RecommendationEngine.V1Beta1\xCA\x02)Google\\Cloud\\RecommendationEngine\\V1beta1\xEA\x02,Google::Cloud::RecommendationEngine::V1beta1\xEAAi\x0A+recommendationengine.googleapis.com/Catalog\x12:projects/{project}/locations/{location}/catalogs/{catalog}\xEAA\x92\x01\x0A3recommendationengine.googleapis.com/CatalogItemPath\x12[projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path}\xEAA\x86\x01\x0A.recommendationengine.googleapis.com/EventStore\x12Tprojects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}\xEAA\xD9\x01\x0A@recommendationengine.googleapis.com/PredictionApiKeyRegistration\x12\x94\x01projects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}/predictionApiKeyRegistrations/{prediction_api_key_registration}\xEAA\x9C\x01\x0A-recommendationengine.googleapis.com/Placement\x12kprojects/{project}/locations/{location}/catalogs/{catalog}/eventStores/{event_store}/placements/{placement}b\x06proto3"
         , true);
 
         static::$is_initialized = true;

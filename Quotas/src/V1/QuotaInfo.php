@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudQuotas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * QuotaInfo represents information about a particular quota for a given
@@ -159,7 +159,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      *           every 10 seconds.
      *     @type int $container_type
      *           The container type of the QuotaInfo.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type string[] $dimensions
      *           The dimensions the quota is defined on.
      *     @type string $metric_display_name
      *           The display name of the quota metric
@@ -171,7 +171,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      *           Whether it is eligible to request a higher quota value for this quota.
      *     @type bool $is_fixed
      *           Whether the quota value is fixed or adjustable
-     *     @type array<\Google\Cloud\CloudQuotas\V1\DimensionsInfo>|\Google\Protobuf\Internal\RepeatedField $dimensions_infos
+     *     @type \Google\Cloud\CloudQuotas\V1\DimensionsInfo[] $dimensions_infos
      *           The collection of dimensions info ordered by their dimensions from more
      *           specific ones to less specific ones.
      *     @type bool $is_concurrent
@@ -396,7 +396,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      * The dimensions the quota is defined on.
      *
      * Generated from protobuf field <code>repeated string dimensions = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDimensions()
     {
@@ -407,7 +407,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      * The dimensions the quota is defined on.
      *
      * Generated from protobuf field <code>repeated string dimensions = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -563,7 +563,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      * specific ones to less specific ones.
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1.DimensionsInfo dimensions_infos = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudQuotas\V1\DimensionsInfo>
      */
     public function getDimensionsInfos()
     {
@@ -575,7 +575,7 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      * specific ones to less specific ones.
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1.DimensionsInfo dimensions_infos = 14;</code>
-     * @param array<\Google\Cloud\CloudQuotas\V1\DimensionsInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudQuotas\V1\DimensionsInfo[] $var
      * @return $this
      */
     public function setDimensionsInfos($var)

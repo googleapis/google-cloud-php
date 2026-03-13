@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a specific IAM [Policy][google.iam.v1.Policy] contributed
@@ -91,7 +91,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      *           The IAM policy attached to the resource.
      *           If the sender of the request does not have access to the policy, this field
      *           is empty.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation>|\Google\Protobuf\Internal\RepeatedField $binding_explanations
+     *     @type \Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation[] $binding_explanations
      *           Details about how each binding in the policy affects the principal's
      *           ability, or inability, to use the permission for the resource.
      *           If the sender of the request does not have access to the policy, this field
@@ -229,7 +229,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      * is omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.v1.BindingExplanation binding_explanations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation>
      */
     public function getBindingExplanations()
     {
@@ -243,7 +243,7 @@ class ExplainedPolicy extends \Google\Protobuf\Internal\Message
      * is omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.v1.BindingExplanation binding_explanations = 4;</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\V1\BindingExplanation[] $var
      * @return $this
      */
     public function setBindingExplanations($var)

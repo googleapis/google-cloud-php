@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\PrivilegedAccess\GcpIamAccess;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IAM role bindings that are created after a successful grant.
@@ -126,5 +126,4 @@ class RoleBinding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

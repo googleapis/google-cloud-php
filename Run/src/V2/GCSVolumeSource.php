@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a volume backed by a Cloud Storage bucket using Cloud Storage
@@ -46,7 +46,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
      *           Cloud Storage Bucket name.
      *     @type bool $read_only
      *           If true, the volume will be mounted as read only for all mounts.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mount_options
+     *     @type string[] $mount_options
      *           A list of additional flags to pass to the gcsfuse CLI.
      *           Options should be specified without the leading "--".
      * }
@@ -113,7 +113,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
      * Options should be specified without the leading "--".
      *
      * Generated from protobuf field <code>repeated string mount_options = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMountOptions()
     {
@@ -125,7 +125,7 @@ class GCSVolumeSource extends \Google\Protobuf\Internal\Message
      * Options should be specified without the leading "--".
      *
      * Generated from protobuf field <code>repeated string mount_options = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMountOptions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ParameterManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing RenderParameterVersionResponse resource
@@ -17,7 +17,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Resource identifier of a ParameterVersion in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string parameter_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parameter_version
      *           Output only. Resource identifier of a ParameterVersion in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *     @type \Google\Cloud\ParameterManager\V1\ParameterVersionPayload $payload
      *           Payload content of a ParameterVersion resource.
      *     @type string $rendered_payload
@@ -63,7 +63,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource identifier of a ParameterVersion in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string parameter_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class RenderParameterVersionResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Resource identifier of a ParameterVersion in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string parameter_version = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

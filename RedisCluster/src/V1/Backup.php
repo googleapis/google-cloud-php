@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Backup of a cluster.
@@ -132,7 +132,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the backup will expire.
      *     @type string $engine_version
      *           Output only. redis-7.2, valkey-7.5
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\BackupFile>|\Google\Protobuf\Internal\RepeatedField $backup_files
+     *     @type \Google\Cloud\Redis\Cluster\V1\BackupFile[] $backup_files
      *           Output only. List of backup files of the backup.
      *     @type int $node_type
      *           Output only. Node type of the cluster.
@@ -367,7 +367,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. List of backup files of the backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.BackupFile backup_files = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\BackupFile>
      */
     public function getBackupFiles()
     {
@@ -378,7 +378,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. List of backup files of the backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.BackupFile backup_files = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\BackupFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\BackupFile[] $var
      * @return $this
      */
     public function setBackupFiles($var)

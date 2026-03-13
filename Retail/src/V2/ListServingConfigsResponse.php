@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListServingConfigs method.
@@ -34,7 +34,7 @@ class ListServingConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\ServingConfig>|\Google\Protobuf\Internal\RepeatedField $serving_configs
+     *     @type \Google\Cloud\Retail\V2\ServingConfig[] $serving_configs
      *           All the ServingConfigs for a given catalog.
      *     @type string $next_page_token
      *           Pagination token, if not returned indicates the last page.
@@ -49,7 +49,7 @@ class ListServingConfigsResponse extends \Google\Protobuf\Internal\Message
      * All the ServingConfigs for a given catalog.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ServingConfig serving_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\ServingConfig>
      */
     public function getServingConfigs()
     {
@@ -60,7 +60,7 @@ class ListServingConfigsResponse extends \Google\Protobuf\Internal\Message
      * All the ServingConfigs for a given catalog.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ServingConfig serving_configs = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\ServingConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\ServingConfig[] $var
      * @return $this
      */
     public function setServingConfigs($var)

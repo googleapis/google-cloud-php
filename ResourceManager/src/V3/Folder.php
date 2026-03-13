@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A folder in an organization's resource hierarchy, used to

@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListIpOverrides.
@@ -35,7 +35,7 @@ class ListIpOverridesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData>|\Google\Protobuf\Internal\RepeatedField $ip_overrides
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData[] $ip_overrides
      *           IP Overrides details.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results. If this field is empty, no keys
@@ -51,7 +51,7 @@ class ListIpOverridesResponse extends \Google\Protobuf\Internal\Message
      * IP Overrides details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.IpOverrideData ip_overrides = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData>
      */
     public function getIpOverrides()
     {
@@ -62,7 +62,7 @@ class ListIpOverridesResponse extends \Google\Protobuf\Internal\Message
      * IP Overrides details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.IpOverrideData ip_overrides = 1;</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData[] $var
      * @return $this
      */
     public function setIpOverrides($var)

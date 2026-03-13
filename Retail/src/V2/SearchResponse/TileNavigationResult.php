@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This field specifies all related information for tile navigation that will
@@ -30,7 +30,7 @@ class TileNavigationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Tile>|\Google\Protobuf\Internal\RepeatedField $tiles
+     *     @type \Google\Cloud\Retail\V2\Tile[] $tiles
      *           The current tiles that are used for tile navigation, sorted by
      *           engagement.
      * }
@@ -45,7 +45,7 @@ class TileNavigationResult extends \Google\Protobuf\Internal\Message
      * engagement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Tile tiles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Tile>
      */
     public function getTiles()
     {
@@ -57,7 +57,7 @@ class TileNavigationResult extends \Google\Protobuf\Internal\Message
      * engagement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Tile tiles = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\Tile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Tile[] $var
      * @return $this
      */
     public function setTiles($var)
@@ -69,5 +69,4 @@ class TileNavigationResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

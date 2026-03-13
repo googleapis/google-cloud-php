@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional filter that client side need to apply.
@@ -78,5 +78,4 @@ class AdditionalFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

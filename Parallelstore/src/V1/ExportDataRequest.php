@@ -5,8 +5,8 @@
 namespace Google\Cloud\Parallelstore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Export data from Parallelstore to Cloud Storage.
@@ -45,7 +45,7 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      * If unspecified, the Parallelstore service agent is used:
-     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
+     * `service-<PROJECT_NUMBER>\@gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -91,7 +91,7 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      *           * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      *           * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      *           If unspecified, the Parallelstore service agent is used:
-     *           `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
+     *           `service-<PROJECT_NUMBER>\@gcp-sa-parallelstore.iam.gserviceaccount.com`
      *     @type \Google\Cloud\Parallelstore\V1\TransferMetadataOptions $metadata_options
      *           Optional. The metadata options for the export data.
      * }
@@ -243,7 +243,7 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      * If unspecified, the Parallelstore service agent is used:
-     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
+     * `service-<PROJECT_NUMBER>\@gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -261,7 +261,7 @@ class ExportDataRequest extends \Google\Protobuf\Internal\Message
      * * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      * * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}`
      * If unspecified, the Parallelstore service agent is used:
-     * `service-<PROJECT_NUMBER>&#64;gcp-sa-parallelstore.iam.gserviceaccount.com`
+     * `service-<PROJECT_NUMBER>\@gcp-sa-parallelstore.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_account = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

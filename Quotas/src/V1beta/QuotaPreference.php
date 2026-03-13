@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudQuotas\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * QuotaPreference represents the preferred quota configuration specified for

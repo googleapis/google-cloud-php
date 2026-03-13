@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\PrivilegedAccess;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `GcpIamAccess` represents IAM based access control on a Google Cloud
@@ -46,7 +46,7 @@ class GcpIamAccess extends \Google\Protobuf\Internal\Message
      *           Required. The type of this resource.
      *     @type string $resource
      *           Required. Name of the resource.
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\PrivilegedAccess\GcpIamAccess\RoleBinding>|\Google\Protobuf\Internal\RepeatedField $role_bindings
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\PrivilegedAccess\GcpIamAccess\RoleBinding[] $role_bindings
      *           Required. Role bindings that are created on successful grant.
      * }
      */
@@ -111,7 +111,7 @@ class GcpIamAccess extends \Google\Protobuf\Internal\Message
      * Required. Role bindings that are created on successful grant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.PrivilegedAccess.GcpIamAccess.RoleBinding role_bindings = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\PrivilegedAccess\GcpIamAccess\RoleBinding>
      */
     public function getRoleBindings()
     {
@@ -122,7 +122,7 @@ class GcpIamAccess extends \Google\Protobuf\Internal\Message
      * Required. Role bindings that are created on successful grant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.PrivilegedAccess.GcpIamAccess.RoleBinding role_bindings = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\PrivilegedAccess\GcpIamAccess\RoleBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\PrivilegedAccess\GcpIamAccess\RoleBinding[] $var
      * @return $this
      */
     public function setRoleBindings($var)
@@ -134,5 +134,4 @@ class GcpIamAccess extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

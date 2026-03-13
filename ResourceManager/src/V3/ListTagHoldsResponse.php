@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ListTagHolds response.
@@ -41,7 +41,7 @@ class ListTagHoldsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ResourceManager\V3\TagHold>|\Google\Protobuf\Internal\RepeatedField $tag_holds
+     *     @type \Google\Cloud\ResourceManager\V3\TagHold[] $tag_holds
      *           A possibly paginated list of TagHolds.
      *     @type string $next_page_token
      *           Pagination token.
@@ -63,7 +63,7 @@ class ListTagHoldsResponse extends \Google\Protobuf\Internal\Message
      * A possibly paginated list of TagHolds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagHold tag_holds = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ResourceManager\V3\TagHold>
      */
     public function getTagHolds()
     {
@@ -74,7 +74,7 @@ class ListTagHoldsResponse extends \Google\Protobuf\Internal\Message
      * A possibly paginated list of TagHolds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagHold tag_holds = 1;</code>
-     * @param array<\Google\Cloud\ResourceManager\V3\TagHold>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ResourceManager\V3\TagHold[] $var
      * @return $this
      */
     public function setTagHolds($var)

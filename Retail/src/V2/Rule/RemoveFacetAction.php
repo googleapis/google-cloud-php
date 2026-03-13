@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Removes an attribute/facet in the request if is present.
@@ -44,7 +44,7 @@ class RemoveFacetAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attribute_names
+     *     @type string[] $attribute_names
      *           The attribute names (i.e. facet keys) to remove from the dynamic facets
      *           (if present in the request). There can't be more 3 attribute names.
      *           Each attribute name should be a valid attribute name, be non-empty and
@@ -63,7 +63,7 @@ class RemoveFacetAction extends \Google\Protobuf\Internal\Message
      * contain at most 80 characters.
      *
      * Generated from protobuf field <code>repeated string attribute_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAttributeNames()
     {
@@ -77,7 +77,7 @@ class RemoveFacetAction extends \Google\Protobuf\Internal\Message
      * contain at most 80 characters.
      *
      * Generated from protobuf field <code>repeated string attribute_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAttributeNames($var)
@@ -89,5 +89,4 @@ class RemoveFacetAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

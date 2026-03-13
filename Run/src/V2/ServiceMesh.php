@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for Cloud Service Mesh. For more information see

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\CatalogAttribute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Possible options for the facet that corresponds to the current attribute
@@ -75,7 +75,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $facet_intervals
+     *     @type \Google\Cloud\Retail\V2\Interval[] $facet_intervals
      *           If you don't set the facet
      *           [SearchRequest.FacetSpec.FacetKey.intervals][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.intervals]
      *           in the request to a numerical attribute, then we use the computed
@@ -87,11 +87,11 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      *           interval must have a lower bound or an upper bound. If both bounds are
      *           provided, then the lower bound must be smaller or equal than the upper
      *           bound.
-     *     @type array<\Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\IgnoredFacetValues>|\Google\Protobuf\Internal\RepeatedField $ignored_facet_values
+     *     @type \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\IgnoredFacetValues[] $ignored_facet_values
      *           Each instance represents a list of attribute values to ignore as facet
      *           values for a specific time range. The maximum number of instances per
      *           [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] is 25.
-     *     @type array<\Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\MergedFacetValue>|\Google\Protobuf\Internal\RepeatedField $merged_facet_values
+     *     @type \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\MergedFacetValue[] $merged_facet_values
      *           Each instance replaces a list of facet values by a merged facet
      *           value. If a facet value is not in any list, then it will stay the same.
      *           To avoid conflicts, only paths of length 1 are accepted. In other words,
@@ -128,7 +128,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      * bound.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval facet_intervals = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Interval>
      */
     public function getFacetIntervals()
     {
@@ -149,7 +149,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      * bound.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval facet_intervals = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Interval[] $var
      * @return $this
      */
     public function setFacetIntervals($var)
@@ -166,7 +166,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] is 25.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CatalogAttribute.FacetConfig.IgnoredFacetValues ignored_facet_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\IgnoredFacetValues>
      */
     public function getIgnoredFacetValues()
     {
@@ -179,7 +179,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] is 25.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CatalogAttribute.FacetConfig.IgnoredFacetValues ignored_facet_values = 2;</code>
-     * @param array<\Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\IgnoredFacetValues>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\IgnoredFacetValues[] $var
      * @return $this
      */
     public function setIgnoredFacetValues($var)
@@ -201,7 +201,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      * feature is available only for textual custom attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CatalogAttribute.FacetConfig.MergedFacetValue merged_facet_values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\MergedFacetValue>
      */
     public function getMergedFacetValues()
     {
@@ -219,7 +219,7 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
      * feature is available only for textual custom attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CatalogAttribute.FacetConfig.MergedFacetValue merged_facet_values = 3;</code>
-     * @param array<\Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\MergedFacetValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig\MergedFacetValue[] $var
      * @return $this
      */
     public function setMergedFacetValues($var)
@@ -309,5 +309,4 @@ class FacetConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

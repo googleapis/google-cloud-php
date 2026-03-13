@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1\StreamingPullResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Acknowledgment IDs sent in one or more previous requests to modify the
@@ -43,12 +43,12 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ack_ids
+     *     @type string[] $ack_ids
      *           Optional. Successfully processed acknowledgment IDs.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $invalid_ack_ids
+     *     @type string[] $invalid_ack_ids
      *           Optional. List of acknowledgment IDs that were malformed or whose
      *           acknowledgment deadline has expired.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $temporary_failed_ack_ids
+     *     @type string[] $temporary_failed_ack_ids
      *           Optional. List of acknowledgment IDs that failed processing with
      *           temporary issues.
      * }
@@ -62,7 +62,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAckIds()
     {
@@ -73,7 +73,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      * Optional. Successfully processed acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAckIds($var)
@@ -89,7 +89,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInvalidAckIds()
     {
@@ -101,7 +101,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      * acknowledgment deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInvalidAckIds($var)
@@ -117,7 +117,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTemporaryFailedAckIds()
     {
@@ -129,7 +129,7 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
      * temporary issues.
      *
      * Generated from protobuf field <code>repeated string temporary_failed_ack_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTemporaryFailedAckIds($var)
@@ -141,5 +141,4 @@ class ModifyAckDeadlineConfirmation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

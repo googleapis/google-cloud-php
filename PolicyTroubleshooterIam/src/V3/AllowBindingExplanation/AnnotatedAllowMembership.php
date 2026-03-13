@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3\AllowBindingExplanation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about whether the role binding includes the principal.
@@ -102,5 +102,4 @@ class AnnotatedAllowMembership extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

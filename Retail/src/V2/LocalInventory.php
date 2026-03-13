@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inventory information at a place (e.g. a store) identified
@@ -104,7 +104,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *             unset or set to false.
      *           * The max summed total bytes of custom attribute keys and values per
      *             product is 5MiB.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fulfillment_types
+     *     @type string[] $fulfillment_types
      *           Optional. Supported fulfillment types. Valid fulfillment type values
      *           include commonly used types (such as pickup in store and same day
      *           delivery), and custom types. Customers have to map custom types to their
@@ -273,7 +273,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFulfillmentTypes()
     {
@@ -301,7 +301,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFulfillmentTypes($var)

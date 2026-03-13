@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fulfillment information, such as the store IDs for in-store pickup or region
@@ -73,7 +73,7 @@ class FulfillmentInfo extends \Google\Protobuf\Internal\Message
      *           * "custom-type-5"
      *           If this field is set to an invalid value other than these, an
      *           INVALID_ARGUMENT error is returned.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $place_ids
+     *     @type string[] $place_ids
      *           The IDs for this [type][google.cloud.retail.v2.FulfillmentInfo.type], such
      *           as the store IDs for
      *           [FulfillmentInfo.type.pickup-in-store][google.cloud.retail.v2.FulfillmentInfo.type]
@@ -156,7 +156,7 @@ class FulfillmentInfo extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated string place_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPlaceIds()
     {
@@ -175,7 +175,7 @@ class FulfillmentInfo extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated string place_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPlaceIds($var)

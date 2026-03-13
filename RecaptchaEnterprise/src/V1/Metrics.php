@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metrics for a single Key.
@@ -57,10 +57,10 @@ class Metrics extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Inclusive start time aligned to a day in the America/Los_Angeles (Pacific)
      *           timezone.
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>|\Google\Protobuf\Internal\RepeatedField $score_metrics
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics[] $score_metrics
      *           Metrics are continuous and in order by dates, and in the granularity
      *           of day. All Key types should have score-based data.
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics>|\Google\Protobuf\Internal\RepeatedField $challenge_metrics
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics[] $challenge_metrics
      *           Metrics are continuous and in order by dates, and in the granularity
      *           of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have
      *           challenge-based data.
@@ -142,7 +142,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      * of day. All Key types should have score-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ScoreMetrics score_metrics = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>
      */
     public function getScoreMetrics()
     {
@@ -154,7 +154,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      * of day. All Key types should have score-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ScoreMetrics score_metrics = 2;</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\ScoreMetrics[] $var
      * @return $this
      */
     public function setScoreMetrics($var)
@@ -171,7 +171,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      * challenge-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ChallengeMetrics challenge_metrics = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics>
      */
     public function getChallengeMetrics()
     {
@@ -184,7 +184,7 @@ class Metrics extends \Google\Protobuf\Internal\Message
      * challenge-based data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.ChallengeMetrics challenge_metrics = 3;</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\ChallengeMetrics[] $var
      * @return $this
      */
     public function setChallengeMetrics($var)

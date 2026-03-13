@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListControls method.
@@ -34,7 +34,7 @@ class ListControlsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Control>|\Google\Protobuf\Internal\RepeatedField $controls
+     *     @type \Google\Cloud\Retail\V2\Control[] $controls
      *           All the Controls for a given catalog.
      *     @type string $next_page_token
      *           Pagination token, if not returned indicates the last page.
@@ -49,7 +49,7 @@ class ListControlsResponse extends \Google\Protobuf\Internal\Message
      * All the Controls for a given catalog.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Control controls = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Control>
      */
     public function getControls()
     {
@@ -60,7 +60,7 @@ class ListControlsResponse extends \Google\Protobuf\Internal\Message
      * All the Controls for a given catalog.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Control controls = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\Control>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Control[] $var
      * @return $this
      */
     public function setControls($var)

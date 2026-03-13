@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * OrgPolicyViolationsPreview is a resource providing a preview of the
@@ -109,7 +109,7 @@ class OrgPolicyViolationsPreview extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview\ResourceCounts $resource_counts
      *           Output only. A summary of the state of all resources scanned for compliance
      *           with the changed OrgPolicy.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_constraints
+     *     @type string[] $custom_constraints
      *           Output only. The names of the constraints against which all
      *           `OrgPolicyViolations` were evaluated.
      *           If `OrgPolicyOverlay` only contains `PolicyOverlay` then it contains
@@ -312,7 +312,7 @@ class OrgPolicyViolationsPreview extends \Google\Protobuf\Internal\Message
      * Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`
      *
      * Generated from protobuf field <code>repeated string custom_constraints = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomConstraints()
     {
@@ -331,7 +331,7 @@ class OrgPolicyViolationsPreview extends \Google\Protobuf\Internal\Message
      * Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`
      *
      * Generated from protobuf field <code>repeated string custom_constraints = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomConstraints($var)

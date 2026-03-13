@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for active A/B testing experiment.
@@ -18,7 +18,7 @@ class ExperimentInfo extends \Google\Protobuf\Internal\Message
     /**
      * The fully qualified resource name of the experiment that provides the
      * serving config under test, should an active experiment exist. For example:
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/experiments/experiment_id`
+     * `projects/{@*}locations/global/catalogs/default_catalog/experiments/experiment_id`
      *
      * Generated from protobuf field <code>string experiment = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class ExperimentInfo extends \Google\Protobuf\Internal\Message
      *     @type string $experiment
      *           The fully qualified resource name of the experiment that provides the
      *           serving config under test, should an active experiment exist. For example:
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/experiments/experiment_id`
+     *           `projects/{@*}locations/global/catalogs/default_catalog/experiments/experiment_id`
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +81,7 @@ class ExperimentInfo extends \Google\Protobuf\Internal\Message
     /**
      * The fully qualified resource name of the experiment that provides the
      * serving config under test, should an active experiment exist. For example:
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/experiments/experiment_id`
+     * `projects/{@*}locations/global/catalogs/default_catalog/experiments/experiment_id`
      *
      * Generated from protobuf field <code>string experiment = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -94,7 +94,7 @@ class ExperimentInfo extends \Google\Protobuf\Internal\Message
     /**
      * The fully qualified resource name of the experiment that provides the
      * serving config under test, should an active experiment exist. For example:
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/experiments/experiment_id`
+     * `projects/{@*}locations/global/catalogs/default_catalog/experiments/experiment_id`
      *
      * Generated from protobuf field <code>string experiment = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

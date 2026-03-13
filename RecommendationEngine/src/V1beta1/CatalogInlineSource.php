@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for the input config for ImportCatalogItems method.
@@ -29,7 +29,7 @@ class CatalogInlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem>|\Google\Protobuf\Internal\RepeatedField $catalog_items
+     *     @type \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem[] $catalog_items
      *           Optional. A list of catalog items to update/create. Recommended max of 10k
      *           items.
      * }
@@ -44,7 +44,7 @@ class CatalogInlineSource extends \Google\Protobuf\Internal\Message
      * items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.CatalogItem catalog_items = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem>
      */
     public function getCatalogItems()
     {
@@ -56,7 +56,7 @@ class CatalogInlineSource extends \Google\Protobuf\Internal\Message
      * items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.CatalogItem catalog_items = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem[] $var
      * @return $this
      */
     public function setCatalogItems($var)

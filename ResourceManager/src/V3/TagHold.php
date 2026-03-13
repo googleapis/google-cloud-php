@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A TagHold represents the use of a TagValue that is not captured by

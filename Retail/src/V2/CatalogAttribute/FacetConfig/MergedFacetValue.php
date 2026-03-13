@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Replaces a set of textual facet values by the same (possibly different)
@@ -41,7 +41,7 @@ class MergedFacetValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           All the facet values that are replaces by the same
      *           [merged_value][google.cloud.retail.v2.CatalogAttribute.FacetConfig.MergedFacetValue.merged_value]
      *           that follows. The maximum number of values per MergedFacetValue is 25.
@@ -63,7 +63,7 @@ class MergedFacetValue extends \Google\Protobuf\Internal\Message
      * Each value can have up to 128 characters.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -77,7 +77,7 @@ class MergedFacetValue extends \Google\Protobuf\Internal\Message
      * Each value can have up to 128 characters.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -117,5 +117,4 @@ class MergedFacetValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

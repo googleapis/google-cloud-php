@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -100,11 +100,11 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $product
      *           Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      *           such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      *           If the caller does not have permission to access the
      *           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      *           exists, a PERMISSION_DENIED error is returned.
-     *     @type array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $local_inventories
+     *     @type \Google\Cloud\Retail\V2\LocalInventory[] $local_inventories
      *           Required. A list of inventory information at difference places. Each place
      *           is identified by its place ID. At most 3000 inventories are allowed per
      *           request.
@@ -140,7 +140,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -156,7 +156,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -179,7 +179,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\LocalInventory>
      */
     public function getLocalInventories()
     {
@@ -192,7 +192,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\LocalInventory[] $var
      * @return $this
      */
     public function setLocalInventories($var)

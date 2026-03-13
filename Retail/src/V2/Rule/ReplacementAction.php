@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Replaces a term in the query. Multiple replacement candidates can be
@@ -44,7 +44,7 @@ class ReplacementAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_terms
+     *     @type string[] $query_terms
      *           Terms from the search query.
      *           Will be replaced by replacement term.
      *           Can specify up to 100 terms.
@@ -65,7 +65,7 @@ class ReplacementAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string query_terms = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQueryTerms()
     {
@@ -78,7 +78,7 @@ class ReplacementAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string query_terms = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQueryTerms($var)
@@ -142,5 +142,4 @@ class ReplacementAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

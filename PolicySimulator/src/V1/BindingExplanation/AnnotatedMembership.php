@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1\BindingExplanation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about whether the binding includes the principal.
@@ -102,5 +102,4 @@ class AnnotatedMembership extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

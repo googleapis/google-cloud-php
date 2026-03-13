@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Cloud Run Instance represents a single group of containers running in a
@@ -346,10 +346,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           information, visit
      *           https://cloud.google.com/run/docs/configuring/connecting-vpc.
      *     @type string $service_account
-     *     @type array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type \Google\Cloud\Run\V2\Container[] $containers
      *           Required. Holds the single container that defines the unit of execution for
      *           this Instance.
-     *     @type array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\Run\V2\Volume[] $volumes
      *           A list of Volumes to make available to containers.
      *     @type string $encryption_key
      *           A reference to a customer managed encryption key (CMEK) to use to encrypt
@@ -387,17 +387,17 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           status, and detailed error information in case it did not reach a serving
      *           state. See comments in `reconciling` for additional information on
      *           reconciliation process in Cloud Run.
-     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Run\V2\Condition[] $conditions
      *           Output only. The Conditions of all other associated sub-resources. They
      *           contain additional diagnostics information in case the Instance does not
      *           reach its Serving state. See comments in `reconciling` for additional
      *           information on reconciliation process in Cloud Run.
-     *     @type array<\Google\Cloud\Run\V2\ContainerStatus>|\Google\Protobuf\Internal\RepeatedField $container_statuses
+     *     @type \Google\Cloud\Run\V2\ContainerStatus[] $container_statuses
      *           Output only. Status information for each of the specified containers. The
      *           status includes the resolved digest for specified images.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
+     *     @type string[] $urls
      *           Output only. All URLs serving traffic for this Instance.
      *     @type bool $reconciling
      *           Output only. Returns true if the Instance is currently being acted upon by
@@ -986,7 +986,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * this Instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 20 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Container>
      */
     public function getContainers()
     {
@@ -998,7 +998,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * this Instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 20 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Container[] $var
      * @return $this
      */
     public function setContainers($var)
@@ -1013,7 +1013,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 21;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Volume>
      */
     public function getVolumes()
     {
@@ -1024,7 +1024,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 21;</code>
-     * @param array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Volume[] $var
      * @return $this
      */
     public function setVolumes($var)
@@ -1396,7 +1396,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 43 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Condition>
      */
     public function getConditions()
     {
@@ -1410,7 +1410,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 43 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Condition[] $var
      * @return $this
      */
     public function setConditions($var)
@@ -1426,7 +1426,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * status includes the resolved digest for specified images.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.ContainerStatus container_statuses = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\ContainerStatus>
      */
     public function getContainerStatuses()
     {
@@ -1438,7 +1438,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * status includes the resolved digest for specified images.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.ContainerStatus container_statuses = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\ContainerStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\ContainerStatus[] $var
      * @return $this
      */
     public function setContainerStatuses($var)
@@ -1479,7 +1479,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. All URLs serving traffic for this Instance.
      *
      * Generated from protobuf field <code>repeated string urls = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUrls()
     {
@@ -1490,7 +1490,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. All URLs serving traffic for this Instance.
      *
      * Generated from protobuf field <code>repeated string urls = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUrls($var)

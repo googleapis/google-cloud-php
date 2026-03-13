@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2\SubmitBuildRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Build the source using Docker. This means the source has a Dockerfile.
@@ -30,5 +30,4 @@ class DockerBuild extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

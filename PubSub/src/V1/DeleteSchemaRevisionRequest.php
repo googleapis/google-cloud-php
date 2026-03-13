@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `DeleteSchemaRevision` method.
@@ -18,7 +18,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the schema revision to be deleted, with a revision ID
      * explicitly included.
-     * Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
+     * Example: `projects/123/schemas/my-schema\@c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -63,7 +63,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the schema revision to be deleted, with a revision ID
      *           explicitly included.
-     *           Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
+     *           Example: `projects/123/schemas/my-schema\@c7cfa2a8`
      *     @type string $revision_id
      *           Optional. This field is deprecated and should not be used for specifying
      *           the revision ID. The revision ID should be specified via the `name`
@@ -78,7 +78,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the schema revision to be deleted, with a revision ID
      * explicitly included.
-     * Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
+     * Example: `projects/123/schemas/my-schema\@c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class DeleteSchemaRevisionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the schema revision to be deleted, with a revision ID
      * explicitly included.
-     * Example: `projects/123/schemas/my-schema&#64;c7cfa2a8`
+     * Example: `projects/123/schemas/my-schema\@c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

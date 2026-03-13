@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User-defined JavaScript function that can transform or filter a Pub/Sub
@@ -27,9 +27,9 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      * Required. JavaScript code that contains a function `function_name` with the
      * below signature:
      * ```
-     *   /&#42;*
+     *   /**
      *   * Transforms a Pub/Sub message.
-     *   * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
+     *   * \@return {(Object<string, (string | Object<string, string>)>|null)} - To
      *   * filter a message, return `null`. To transform a message return a map
      *   * with the following keys:
      *   *   - (required) 'data' : {string}
@@ -37,17 +37,17 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   * Returning empty `attributes` will remove all attributes from the
      *   * message.
      *   *
-     *   * &#64;param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
+     *   * \@param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
      *   * message. Keys:
      *   *   - (required) 'data' : {string}
      *   *   - (required) 'attributes' : {Object<string, string>}
      *   *
-     *   * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
+     *   * \@param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *   * Keys:
      *   *   - (optional) 'message_id'  : {string}
      *   *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *   *   - (optional) 'ordering_key': {string}
-     *   *&#47;
+     *   {@*}
      *   function <function_name>(message, metadata) {
      *   }
      * ```
@@ -69,9 +69,9 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *           Required. JavaScript code that contains a function `function_name` with the
      *           below signature:
      *           ```
-     *             /&#42;*
+     *             /**
      *             * Transforms a Pub/Sub message.
-     *             * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
+     *             * \@return {(Object<string, (string | Object<string, string>)>|null)} - To
      *             * filter a message, return `null`. To transform a message return a map
      *             * with the following keys:
      *             *   - (required) 'data' : {string}
@@ -79,17 +79,17 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *             * Returning empty `attributes` will remove all attributes from the
      *             * message.
      *             *
-     *             * &#64;param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
+     *             * \@param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
      *             * message. Keys:
      *             *   - (required) 'data' : {string}
      *             *   - (required) 'attributes' : {Object<string, string>}
      *             *
-     *             * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
+     *             * \@param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *             * Keys:
      *             *   - (optional) 'message_id'  : {string}
      *             *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *             *   - (optional) 'ordering_key': {string}
-     *             *&#47;
+     *             {@*}
      *             function <function_name>(message, metadata) {
      *             }
      *           ```
@@ -132,9 +132,9 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      * Required. JavaScript code that contains a function `function_name` with the
      * below signature:
      * ```
-     *   /&#42;*
+     *   /**
      *   * Transforms a Pub/Sub message.
-     *   * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
+     *   * \@return {(Object<string, (string | Object<string, string>)>|null)} - To
      *   * filter a message, return `null`. To transform a message return a map
      *   * with the following keys:
      *   *   - (required) 'data' : {string}
@@ -142,17 +142,17 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   * Returning empty `attributes` will remove all attributes from the
      *   * message.
      *   *
-     *   * &#64;param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
+     *   * \@param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
      *   * message. Keys:
      *   *   - (required) 'data' : {string}
      *   *   - (required) 'attributes' : {Object<string, string>}
      *   *
-     *   * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
+     *   * \@param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *   * Keys:
      *   *   - (optional) 'message_id'  : {string}
      *   *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *   *   - (optional) 'ordering_key': {string}
-     *   *&#47;
+     *   {@*}
      *   function <function_name>(message, metadata) {
      *   }
      * ```
@@ -169,9 +169,9 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      * Required. JavaScript code that contains a function `function_name` with the
      * below signature:
      * ```
-     *   /&#42;*
+     *   /**
      *   * Transforms a Pub/Sub message.
-     *   * &#64;return {(Object<string, (string | Object<string, string>)>|null)} - To
+     *   * \@return {(Object<string, (string | Object<string, string>)>|null)} - To
      *   * filter a message, return `null`. To transform a message return a map
      *   * with the following keys:
      *   *   - (required) 'data' : {string}
@@ -179,17 +179,17 @@ class JavaScriptUDF extends \Google\Protobuf\Internal\Message
      *   * Returning empty `attributes` will remove all attributes from the
      *   * message.
      *   *
-     *   * &#64;param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
+     *   * \@param  {(Object<string, (string | Object<string, string>)>} Pub/Sub
      *   * message. Keys:
      *   *   - (required) 'data' : {string}
      *   *   - (required) 'attributes' : {Object<string, string>}
      *   *
-     *   * &#64;param  {Object<string, any>} metadata - Pub/Sub message metadata.
+     *   * \@param  {Object<string, any>} metadata - Pub/Sub message metadata.
      *   * Keys:
      *   *   - (optional) 'message_id'  : {string}
      *   *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format
      *   *   - (optional) 'ordering_key': {string}
-     *   *&#47;
+     *   {@*}
      *   function <function_name>(message, metadata) {
      *   }
      * ```

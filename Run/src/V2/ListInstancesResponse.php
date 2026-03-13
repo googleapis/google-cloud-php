@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message containing a list of Instances.
@@ -35,7 +35,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Run\V2\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Run\V2\Instance[] $instances
      *           The resulting list of Instances.
      *     @type string $next_page_token
      *           A token indicating there are more items than page_size. Use it in the next
@@ -51,7 +51,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The resulting list of Instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Instance instances = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Instance>
      */
     public function getInstances()
     {
@@ -62,7 +62,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The resulting list of Instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Instance instances = 1;</code>
-     * @param array<\Google\Cloud\Run\V2\Instance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Instance[] $var
      * @return $this
      */
     public function setInstances($var)

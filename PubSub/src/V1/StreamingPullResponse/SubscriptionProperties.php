@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1\StreamingPullResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Subscription properties sent as part of the response.
@@ -102,5 +102,4 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to request to list firewall policies belonging to a project.
@@ -35,7 +35,7 @@ class ListFirewallPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $firewall_policies
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy[] $firewall_policies
      *           Policy details.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results. It is set to empty if no
@@ -51,7 +51,7 @@ class ListFirewallPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Policy details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallPolicy firewall_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy>
      */
     public function getFirewallPolicies()
     {
@@ -62,7 +62,7 @@ class ListFirewallPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Policy details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallPolicy firewall_policies = 1;</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy[] $var
      * @return $this
      */
     public function setFirewallPolicies($var)

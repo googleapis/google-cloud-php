@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListTopicSubscriptions` method.
@@ -37,7 +37,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subscriptions
+     *     @type string[] $subscriptions
      *           Optional. The names of subscriptions attached to the topic specified in the
      *           request.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubscriptions()
     {
@@ -68,7 +68,7 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated string subscriptions = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubscriptions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Task represents a single run of a container to completion.
@@ -308,10 +308,10 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Output only. The name of the parent Job.
      *     @type string $execution
      *           Output only. The name of the parent Execution.
-     *     @type array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type \Google\Cloud\Run\V2\Container[] $containers
      *           Holds the single container that defines the unit of execution for this
      *           task.
-     *     @type array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\Run\V2\Volume[] $volumes
      *           A list of Volumes to make available to containers.
      *     @type int $max_retries
      *           Number of retries allowed per Task, before marking this Task failed.
@@ -330,7 +330,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Output only. Indicates whether the resource's reconciliation is still in
      *           progress. See comments in `Job.reconciling` for additional information on
      *           reconciliation process in Cloud Run.
-     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Run\V2\Condition[] $conditions
      *           Output only. The Condition of this Task, containing its readiness status,
      *           and detailed error information in case it did not reach the desired state.
      *     @type int|string $observed_generation
@@ -852,7 +852,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Container>
      */
     public function getContainers()
     {
@@ -864,7 +864,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 14;</code>
-     * @param array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Container[] $var
      * @return $this
      */
     public function setContainers($var)
@@ -879,7 +879,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Volume>
      */
     public function getVolumes()
     {
@@ -890,7 +890,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 15;</code>
-     * @param array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Volume[] $var
      * @return $this
      */
     public function setVolumes($var)
@@ -1060,7 +1060,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Condition>
      */
     public function getConditions()
     {
@@ -1072,7 +1072,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * and detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Condition[] $var
      * @return $this
      */
     public function setConditions($var)

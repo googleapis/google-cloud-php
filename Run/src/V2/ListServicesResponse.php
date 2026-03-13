@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message containing a list of Services.
@@ -42,12 +42,12 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Run\V2\Service>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type \Google\Cloud\Run\V2\Service[] $services
      *           The resulting list of Services.
      *     @type string $next_page_token
      *           A token indicating there are more items than page_size. Use it in the next
      *           ListServices request to continue.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Output only. For global requests, returns the list of regions that could
      *           not be reached within the deadline.
      * }
@@ -61,7 +61,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The resulting list of Services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Service services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Service>
      */
     public function getServices()
     {
@@ -72,7 +72,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The resulting list of Services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Service services = 1;</code>
-     * @param array<\Google\Cloud\Run\V2\Service>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Service[] $var
      * @return $this
      */
     public function setServices($var)
@@ -116,7 +116,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * not be reached within the deadline.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * not be reached within the deadline.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

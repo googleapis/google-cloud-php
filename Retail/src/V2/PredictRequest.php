@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Predict method.
@@ -17,9 +17,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full resource name of the format:
-     * `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/&#42;}`
+     * `{placement=projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/*}`
      * or
-     * `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/&#42;}`.
+     * `{placement=projects/{@*}locations/global/catalogs/default_catalog/placements/*}`.
      * We recommend using the `servingConfigs` resource. `placements` is a legacy
      * resource.
      * The ID of the Recommendations AI serving config or placement.
@@ -170,9 +170,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $placement
      *           Required. Full resource name of the format:
-     *           `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/&#42;}`
+     *           `{placement=projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/*}`
      *           or
-     *           `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/&#42;}`.
+     *           `{placement=projects/{@*}locations/global/catalogs/default_catalog/placements/*}`.
      *           We recommend using the `servingConfigs` resource. `placements` is a legacy
      *           resource.
      *           The ID of the Recommendations AI serving config or placement.
@@ -290,9 +290,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of the format:
-     * `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/&#42;}`
+     * `{placement=projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/*}`
      * or
-     * `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/&#42;}`.
+     * `{placement=projects/{@*}locations/global/catalogs/default_catalog/placements/*}`.
      * We recommend using the `servingConfigs` resource. `placements` is a legacy
      * resource.
      * The ID of the Recommendations AI serving config or placement.
@@ -313,9 +313,9 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of the format:
-     * `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/&#42;}`
+     * `{placement=projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/*}`
      * or
-     * `{placement=projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/&#42;}`.
+     * `{placement=projects/{@*}locations/global/catalogs/default_catalog/placements/*}`.
      * We recommend using the `servingConfigs` resource. `placements` is a legacy
      * resource.
      * The ID of the Recommendations AI serving config or placement.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Autocomplete parameters.
@@ -18,7 +18,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Catalog for which the completion is performed.
      * Full resource name of catalog, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -128,7 +128,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $catalog
      *           Required. Catalog for which the completion is performed.
      *           Full resource name of catalog, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog`.
      *     @type string $query
      *           Required. The query used to generate suggestions.
      *           The maximum number of allowed characters is 255.
@@ -139,7 +139,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           should not change if the visitor logs in or out of the website.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type string[] $language_codes
      *           Note that this field applies for `user-data` dataset only. For requests
      *           with `cloud-retail` dataset, setting this field has no effect.
      *           The language filters applied to the output suggestions. If set, it should
@@ -202,7 +202,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Catalog for which the completion is performed.
      * Full resource name of catalog, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -215,7 +215,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Catalog for which the completion is performed.
      * Full resource name of catalog, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -304,7 +304,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLanguageCodes()
     {
@@ -322,7 +322,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLanguageCodes($var)

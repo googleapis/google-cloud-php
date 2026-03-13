@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for the input config for ImportUserEvents method.
@@ -28,7 +28,7 @@ class UserEventInlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $user_events
+     *     @type \Google\Cloud\RecommendationEngine\V1beta1\UserEvent[] $user_events
      *           Optional. A list of user events to import. Recommended max of 10k items.
      * }
      */
@@ -41,7 +41,7 @@ class UserEventInlineSource extends \Google\Protobuf\Internal\Message
      * Optional. A list of user events to import. Recommended max of 10k items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.UserEvent user_events = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>
      */
     public function getUserEvents()
     {
@@ -52,7 +52,7 @@ class UserEventInlineSource extends \Google\Protobuf\Internal\Message
      * Optional. A list of user events to import. Recommended max of 10k items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.UserEvent user_events = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\UserEvent[] $var
      * @return $this
      */
     public function setUserEvents($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `Pull` method.
@@ -32,7 +32,7 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $received_messages
+     *     @type \Google\Cloud\PubSub\V1\ReceivedMessage[] $received_messages
      *           Optional. Received Pub/Sub messages. The list will be empty if there are no
      *           more messages available in the backlog, or if no messages could be returned
      *           before the request timeout. For JSON, the response can be entirely
@@ -53,7 +53,7 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      * even if there are more messages available in the backlog.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PubSub\V1\ReceivedMessage>
      */
     public function getReceivedMessages()
     {
@@ -68,7 +68,7 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      * even if there are more messages available in the backlog.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PubSub\V1\ReceivedMessage[] $var
      * @return $this
      */
     public function setReceivedMessages($var)

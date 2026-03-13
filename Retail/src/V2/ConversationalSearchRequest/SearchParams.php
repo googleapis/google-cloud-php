@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\ConversationalSearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search parameters.
@@ -208,5 +208,4 @@ class SearchParams extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

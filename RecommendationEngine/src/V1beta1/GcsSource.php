@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Google Cloud Storage location for input content.
@@ -20,7 +20,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Storage URIs to input files. URI can be up to
      * 2000 characters long. URIs can match the full object path (for example,
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
-     * files, such as `gs://bucket/directory/&#42;.json`. A request can
+     * files, such as `gs://bucket/directory/*.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
      * [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
@@ -35,11 +35,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_uris
+     *     @type string[] $input_uris
      *           Required. Google Cloud Storage URIs to input files. URI can be up to
      *           2000 characters long. URIs can match the full object path (for example,
      *           `gs://bucket/directory/object.json`) or a pattern matching one or more
-     *           files, such as `gs://bucket/directory/&#42;.json`. A request can
+     *           files, such as `gs://bucket/directory/*.json`. A request can
      *           contain at most 100 files, and each file can be up to 2 GB. See
      *           [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      *           for the expected file format and setup instructions.
@@ -54,13 +54,13 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Storage URIs to input files. URI can be up to
      * 2000 characters long. URIs can match the full object path (for example,
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
-     * files, such as `gs://bucket/directory/&#42;.json`. A request can
+     * files, such as `gs://bucket/directory/*.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
      * [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInputUris()
     {
@@ -71,13 +71,13 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Storage URIs to input files. URI can be up to
      * 2000 characters long. URIs can match the full object path (for example,
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
-     * files, such as `gs://bucket/directory/&#42;.json`. A request can
+     * files, such as `gs://bucket/directory/*.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
      * [Importing catalog information](/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInputUris($var)

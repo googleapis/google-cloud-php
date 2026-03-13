@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2\VpcAccess;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Direct VPC egress settings.
@@ -60,7 +60,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           network and subnetwork are specified, the given VPC subnetwork must
      *           belong to the given VPC network. If subnetwork is not specified, the
      *           subnetwork with the same name with the network will be used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. Network tags applied to this Cloud Run resource.
      * }
      */
@@ -141,7 +141,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * Optional. Network tags applied to this Cloud Run resource.
      *
      * Generated from protobuf field <code>repeated string tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -152,7 +152,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * Optional. Network tags applied to this Cloud Run resource.
      *
      * Generated from protobuf field <code>repeated string tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -164,5 +164,4 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

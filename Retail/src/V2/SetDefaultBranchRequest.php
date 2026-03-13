@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message to set a specified branch as new default_branch.
@@ -17,7 +17,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Full resource name of the catalog, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -74,7 +74,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $catalog
      *           Full resource name of the catalog, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog`.
      *     @type string $branch_id
      *           The final component of the resource name of a branch.
      *           This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
@@ -101,7 +101,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Full resource name of the catalog, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -113,7 +113,7 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Full resource name of the catalog, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

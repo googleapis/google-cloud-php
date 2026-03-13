@@ -5,8 +5,8 @@
 namespace Google\Cloud\Recommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains an operation for a resource loosely based on the JSON-PATCH format
@@ -78,22 +78,22 @@ class Operation extends \Google\Protobuf\Internal\Message
      * * Example:
      * ```
      * {
-     *   "/versions/&#42;&#47;name" : "it-123"
-     *   "/versions/&#42;&#47;targetSize/percent": 20
+     *   "/versions/{@*}name" : "it-123"
+     *   "/versions/{@*}targetSize/percent": 20
      * }
      * ```
      * * Example:
      * ```
      * {
-     *   "/bindings/&#42;&#47;role": "roles/owner"
-     *   "/bindings/&#42;&#47;condition" : null
+     *   "/bindings/{@*}role": "roles/owner"
+     *   "/bindings/{@*}condition" : null
      * }
      * ```
      * * Example:
      * ```
      * {
-     *   "/bindings/&#42;&#47;role": "roles/owner"
-     *   "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
+     *   "/bindings/{@*}role": "roles/owner"
+     *   "/bindings/{@*}members/*" : ["x\@example.com", "y\@example.com"]
      * }
      * ```
      * When both path_filters and path_value_matchers are set, an implicit AND
@@ -159,22 +159,22 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           * Example:
      *           ```
      *           {
-     *             "/versions/&#42;&#47;name" : "it-123"
-     *             "/versions/&#42;&#47;targetSize/percent": 20
+     *             "/versions/{@*}name" : "it-123"
+     *             "/versions/{@*}targetSize/percent": 20
      *           }
      *           ```
      *           * Example:
      *           ```
      *           {
-     *             "/bindings/&#42;&#47;role": "roles/owner"
-     *             "/bindings/&#42;&#47;condition" : null
+     *             "/bindings/{@*}role": "roles/owner"
+     *             "/bindings/{@*}condition" : null
      *           }
      *           ```
      *           * Example:
      *           ```
      *           {
-     *             "/bindings/&#42;&#47;role": "roles/owner"
-     *             "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
+     *             "/bindings/{@*}role": "roles/owner"
+     *             "/bindings/{@*}members/*" : ["x\@example.com", "y\@example.com"]
      *           }
      *           ```
      *           When both path_filters and path_value_matchers are set, an implicit AND
@@ -447,22 +447,22 @@ class Operation extends \Google\Protobuf\Internal\Message
      * * Example:
      * ```
      * {
-     *   "/versions/&#42;&#47;name" : "it-123"
-     *   "/versions/&#42;&#47;targetSize/percent": 20
+     *   "/versions/{@*}name" : "it-123"
+     *   "/versions/{@*}targetSize/percent": 20
      * }
      * ```
      * * Example:
      * ```
      * {
-     *   "/bindings/&#42;&#47;role": "roles/owner"
-     *   "/bindings/&#42;&#47;condition" : null
+     *   "/bindings/{@*}role": "roles/owner"
+     *   "/bindings/{@*}condition" : null
      * }
      * ```
      * * Example:
      * ```
      * {
-     *   "/bindings/&#42;&#47;role": "roles/owner"
-     *   "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
+     *   "/bindings/{@*}role": "roles/owner"
+     *   "/bindings/{@*}members/*" : ["x\@example.com", "y\@example.com"]
      * }
      * ```
      * When both path_filters and path_value_matchers are set, an implicit AND
@@ -485,22 +485,22 @@ class Operation extends \Google\Protobuf\Internal\Message
      * * Example:
      * ```
      * {
-     *   "/versions/&#42;&#47;name" : "it-123"
-     *   "/versions/&#42;&#47;targetSize/percent": 20
+     *   "/versions/{@*}name" : "it-123"
+     *   "/versions/{@*}targetSize/percent": 20
      * }
      * ```
      * * Example:
      * ```
      * {
-     *   "/bindings/&#42;&#47;role": "roles/owner"
-     *   "/bindings/&#42;&#47;condition" : null
+     *   "/bindings/{@*}role": "roles/owner"
+     *   "/bindings/{@*}condition" : null
      * }
      * ```
      * * Example:
      * ```
      * {
-     *   "/bindings/&#42;&#47;role": "roles/owner"
-     *   "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
+     *   "/bindings/{@*}role": "roles/owner"
+     *   "/bindings/{@*}members/*" : ["x\@example.com", "y\@example.com"]
      * }
      * ```
      * When both path_filters and path_value_matchers are set, an implicit AND

@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\TransactionData;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about a user's account involved in the transaction.
@@ -250,5 +250,4 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

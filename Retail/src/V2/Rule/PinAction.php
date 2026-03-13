@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Pins one or more specified products to a specific position in the
@@ -115,5 +115,4 @@ class PinAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

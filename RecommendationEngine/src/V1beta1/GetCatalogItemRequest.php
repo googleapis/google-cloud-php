@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for GetCatalogItem method.
@@ -17,7 +17,7 @@ class GetCatalogItemRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full resource name of catalog item, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class GetCatalogItemRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Full resource name of catalog item, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetCatalogItemRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of catalog item, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetCatalogItemRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of catalog item, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

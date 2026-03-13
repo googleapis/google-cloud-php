@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings specific to keys that can be used by Android apps.
@@ -50,7 +50,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $allow_all_package_names
      *           Optional. If set to true, allowed_package_names are not enforced.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
+     *     @type string[] $allowed_package_names
      *           Optional. Android package names of apps allowed to use the key.
      *           Example: 'com.companyname.appname'
      *           Each key supports a maximum of 250 package names. To use a key on more
@@ -105,7 +105,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      * against your list of allowed package names.
      *
      * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedPackageNames()
     {
@@ -122,7 +122,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      * against your list of allowed package names.
      *
      * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedPackageNames($var)

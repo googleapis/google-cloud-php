@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -84,11 +84,11 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $product
      *           Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      *           such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      *           If the caller does not have permission to access the
      *           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      *           exists, a PERMISSION_DENIED error is returned.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $place_ids
+     *     @type string[] $place_ids
      *           Required. A list of place IDs to have their inventory deleted.
      *           At most 3000 place IDs are allowed per request.
      *     @type \Google\Protobuf\Timestamp $remove_time
@@ -112,7 +112,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -128,7 +128,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -150,7 +150,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * At most 3000 place IDs are allowed per request.
      *
      * Generated from protobuf field <code>repeated string place_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPlaceIds()
     {
@@ -162,7 +162,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * At most 3000 place IDs are allowed per request.
      *
      * Generated from protobuf field <code>repeated string place_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPlaceIds($var)

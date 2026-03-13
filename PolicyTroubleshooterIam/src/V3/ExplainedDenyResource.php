@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a specific resource contributed to the deny policy
@@ -80,7 +80,7 @@ class ExplainedDenyResource extends \Google\Protobuf\Internal\Message
      *           is omitted.
      *           For examples of full resource names for Google Cloud services, see
      *           https://cloud.google.com/iam/help/troubleshooter/full-resource-names.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyPolicy>|\Google\Protobuf\Internal\RepeatedField $explained_policies
+     *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyPolicy[] $explained_policies
      *           List of IAM deny policies that were evaluated to check the principal's
      *           denied permissions, with annotations to indicate how each policy
      *           contributed to the final result.
@@ -178,7 +178,7 @@ class ExplainedDenyResource extends \Google\Protobuf\Internal\Message
      * contributed to the final result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ExplainedDenyPolicy explained_policies = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyPolicy>
      */
     public function getExplainedPolicies()
     {
@@ -191,7 +191,7 @@ class ExplainedDenyResource extends \Google\Protobuf\Internal\Message
      * contributed to the final result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ExplainedDenyPolicy explained_policies = 3;</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyPolicy[] $var
      * @return $this
      */
     public function setExplainedPolicies($var)

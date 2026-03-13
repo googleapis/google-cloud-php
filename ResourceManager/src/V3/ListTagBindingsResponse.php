@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ListTagBindings response.
@@ -41,7 +41,7 @@ class ListTagBindingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ResourceManager\V3\TagBinding>|\Google\Protobuf\Internal\RepeatedField $tag_bindings
+     *     @type \Google\Cloud\ResourceManager\V3\TagBinding[] $tag_bindings
      *           A possibly paginated list of TagBindings for the specified resource.
      *     @type string $next_page_token
      *           Pagination token.
@@ -63,7 +63,7 @@ class ListTagBindingsResponse extends \Google\Protobuf\Internal\Message
      * A possibly paginated list of TagBindings for the specified resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagBinding tag_bindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ResourceManager\V3\TagBinding>
      */
     public function getTagBindings()
     {
@@ -74,7 +74,7 @@ class ListTagBindingsResponse extends \Google\Protobuf\Internal\Message
      * A possibly paginated list of TagBindings for the specified resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagBinding tag_bindings = 1;</code>
-     * @param array<\Google\Cloud\ResourceManager\V3\TagBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ResourceManager\V3\TagBinding[] $var
      * @return $this
      */
     public function setTagBindings($var)
