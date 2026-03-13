@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.servicehealth.v1",
+    "libraryPackage": "Google\\Cloud\\ServiceHealth\\V1",
+    "services": {
+        "ServiceHealth": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServiceHealthGapicClient",
+                    "rpcs": {
+                        "GetEvent": {
+                            "methods": [
+                                "getEvent"
+                            ]
+                        },
+                        "GetOrganizationEvent": {
+                            "methods": [
+                                "getOrganizationEvent"
+                            ]
+                        },
+                        "GetOrganizationImpact": {
+                            "methods": [
+                                "getOrganizationImpact"
+                            ]
+                        },
+                        "ListEvents": {
+                            "methods": [
+                                "listEvents"
+                            ]
+                        },
+                        "ListOrganizationEvents": {
+                            "methods": [
+                                "listOrganizationEvents"
+                            ]
+                        },
+                        "ListOrganizationImpacts": {
+                            "methods": [
+                                "listOrganizationImpacts"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.inventories.v1beta",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Inventories\\V1beta",
+    "services": {
+        "LocalInventoryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LocalInventoryServiceGapicClient",
+                    "rpcs": {
+                        "DeleteLocalInventory": {
+                            "methods": [
+                                "deleteLocalInventory"
+                            ]
+                        },
+                        "InsertLocalInventory": {
+                            "methods": [
+                                "insertLocalInventory"
+                            ]
+                        },
+                        "ListLocalInventories": {
+                            "methods": [
+                                "listLocalInventories"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionalInventoryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionalInventoryServiceGapicClient",
+                    "rpcs": {
+                        "DeleteRegionalInventory": {
+                            "methods": [
+                                "deleteRegionalInventory"
+                            ]
+                        },
+                        "InsertRegionalInventory": {
+                            "methods": [
+                                "insertRegionalInventory"
+                            ]
+                        },
+                        "ListRegionalInventories": {
+                            "methods": [
+                                "listRegionalInventories"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
