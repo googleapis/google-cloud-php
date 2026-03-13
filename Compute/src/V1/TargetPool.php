@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Target Pool resource.
@@ -184,7 +184,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           directed back to the primary pool in the "force" mode, where traffic
      *           will be spread to the healthy instances with the
      *           best effort, or to all instances when no instance is healthy.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *     @type string[] $health_checks
      *           The URL of the HttpHealthCheck resource. A member instance in this
      *           pool is considered healthy if and only if the health checks pass.
      *           Only legacy HttpHealthChecks are supported. Only one health check may be
@@ -192,7 +192,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type string[] $instances
      *           A list of resource URLs to the virtual machine instances serving this pool.
      *           They must live in zones contained in the same region as this pool.
      *     @type string $kind
@@ -432,7 +432,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHealthChecks()
     {
@@ -446,7 +446,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHealthChecks($var)
@@ -500,7 +500,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * They must live in zones contained in the same region as this pool.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstances()
     {
@@ -512,7 +512,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * They must live in zones contained in the same region as this pool.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstances($var)

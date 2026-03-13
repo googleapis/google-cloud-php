@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Firewall Rule resource.
@@ -218,19 +218,19 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Allowed>|\Google\Protobuf\Internal\RepeatedField $allowed
+     *     @type \Google\Cloud\Compute\V1\Allowed[] $allowed
      *           The list of ALLOW rules specified by this firewall. Each rule specifies a
      *           protocol and port-range tuple that describes a permitted connection.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
-     *     @type array<\Google\Cloud\Compute\V1\Denied>|\Google\Protobuf\Internal\RepeatedField $denied
+     *     @type \Google\Cloud\Compute\V1\Denied[] $denied
      *           The list of DENY rules specified by this firewall. Each rule specifies a
      *           protocol and port-range tuple that describes a denied connection.
      *     @type string $description
      *           An optional description of this resource. Provide this field when you
      *           create the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_ranges
+     *     @type string[] $destination_ranges
      *           If destination ranges are specified, the firewall rule applies only to
      *           traffic that has destination IP address in these ranges. These ranges must
      *           be expressed inCIDR format. Both IPv4 and IPv6 are supported.
@@ -287,7 +287,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *           rules, use a priority number less than `65535`.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ranges
+     *     @type string[] $source_ranges
      *           If source ranges are specified, the firewall rule applies only to traffic
      *           that has a source IP address in these ranges. These ranges must be
      *           expressed inCIDR format. One or both of sourceRanges
@@ -297,7 +297,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *           from a resource with a matching tag listed in thesourceTags field. The connection does not need to match
      *           both fields for the rule to
      *           apply. Both IPv4 and IPv6 are supported.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_service_accounts
+     *     @type string[] $source_service_accounts
      *           If source service accounts are specified, the firewall rules apply only to
      *           traffic originating from an instance with a service account in this list.
      *           Source service accounts cannot be used to control traffic to an instance's
@@ -307,7 +307,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *           has a source IP address within the sourceRanges OR a source
      *           IP that belongs to an instance with service account listed insourceServiceAccount. The connection does not need to match
      *           both fields for the firewall to apply.sourceServiceAccounts cannot be used at the same time assourceTags or targetTags.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_tags
+     *     @type string[] $source_tags
      *           If source tags are specified, the firewall rule applies only to traffic
      *           with source IPs that match the primary network interfaces of VM instances
      *           that have the tag and are in the same VPC network.
@@ -320,13 +320,13 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *           resource with a matching tag listed in the sourceTags
      *           field. The connection does not need to match both fields for the
      *           firewall to apply.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
+     *     @type string[] $target_service_accounts
      *           A list of service accounts indicating sets of instances located in the
      *           network that may make network connections as specified inallowed[].targetServiceAccounts cannot be used at the same time astargetTags or sourceTags.
      *           If neither targetServiceAccounts nor targetTags
      *           are specified, the firewall rule applies to all instances on the specified
      *           network.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_tags
+     *     @type string[] $target_tags
      *           A list of tags that controls which instances the firewall rule
      *           applies to. If targetTags are specified, then the firewall
      *           rule applies only to instances in the VPC network that have one of those
@@ -344,7 +344,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * protocol and port-range tuple that describes a permitted connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Allowed allowed = 162398632;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Allowed>
      */
     public function getAllowed()
     {
@@ -356,7 +356,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * protocol and port-range tuple that describes a permitted connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Allowed allowed = 162398632;</code>
-     * @param array<\Google\Cloud\Compute\V1\Allowed>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Allowed[] $var
      * @return $this
      */
     public function setAllowed($var)
@@ -410,7 +410,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * protocol and port-range tuple that describes a denied connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Denied denied = 275217307;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Denied>
      */
     public function getDenied()
     {
@@ -422,7 +422,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * protocol and port-range tuple that describes a denied connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Denied denied = 275217307;</code>
-     * @param array<\Google\Cloud\Compute\V1\Denied>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Denied[] $var
      * @return $this
      */
     public function setDenied($var)
@@ -477,7 +477,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * be expressed inCIDR format. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string destination_ranges = 305699879;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationRanges()
     {
@@ -490,7 +490,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * be expressed inCIDR format. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string destination_ranges = 305699879;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationRanges($var)
@@ -939,7 +939,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * apply. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string source_ranges = 200097658;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceRanges()
     {
@@ -958,7 +958,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * apply. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string source_ranges = 200097658;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceRanges($var)
@@ -981,7 +981,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * both fields for the firewall to apply.sourceServiceAccounts cannot be used at the same time assourceTags or targetTags.
      *
      * Generated from protobuf field <code>repeated string source_service_accounts = 105100756;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceServiceAccounts()
     {
@@ -1000,7 +1000,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * both fields for the firewall to apply.sourceServiceAccounts cannot be used at the same time assourceTags or targetTags.
      *
      * Generated from protobuf field <code>repeated string source_service_accounts = 105100756;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceServiceAccounts($var)
@@ -1026,7 +1026,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * firewall to apply.
      *
      * Generated from protobuf field <code>repeated string source_tags = 452222397;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceTags()
     {
@@ -1048,7 +1048,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * firewall to apply.
      *
      * Generated from protobuf field <code>repeated string source_tags = 452222397;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceTags($var)
@@ -1067,7 +1067,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * network.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 457639710;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetServiceAccounts()
     {
@@ -1082,7 +1082,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * network.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 457639710;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetServiceAccounts($var)
@@ -1101,7 +1101,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * applies to all instances on the specified network.
      *
      * Generated from protobuf field <code>repeated string target_tags = 62901767;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetTags()
     {
@@ -1116,7 +1116,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * applies to all instances on the specified network.
      *
      * Generated from protobuf field <code>repeated string target_tags = 62901767;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetTags($var)

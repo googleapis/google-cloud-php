@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a list of managed instance groups.
@@ -66,7 +66,7 @@ class RegionInstanceGroupManagerList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Output only. [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManager[] $items
      *           A list of InstanceGroupManager resources.
      *     @type string $kind
      *           Output only. [Output Only] The resource type, which is always
@@ -129,7 +129,7 @@ class RegionInstanceGroupManagerList extends \Google\Protobuf\Internal\Message
      * A list of InstanceGroupManager resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceGroupManager>
      */
     public function getItems()
     {
@@ -140,7 +140,7 @@ class RegionInstanceGroupManagerList extends \Google\Protobuf\Internal\Message
      * A list of InstanceGroupManager resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManager[] $var
      * @return $this
      */
     public function setItems($var)

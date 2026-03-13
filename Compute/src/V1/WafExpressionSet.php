@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -46,14 +46,14 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aliases
+     *     @type string[] $aliases
      *           A list of alternate IDs. The format should be:
      *           - E.g. XSS-stable
      *           Generic suffix like "stable" is particularly useful if a policy
      *           likes to avail newer set of expressions without having to change
      *           the policy.
      *           A given alias name can't be used for more than one entity set.
-     *     @type array<\Google\Cloud\Compute\V1\WafExpressionSetExpression>|\Google\Protobuf\Internal\RepeatedField $expressions
+     *     @type \Google\Cloud\Compute\V1\WafExpressionSetExpression[] $expressions
      *           List of available expressions.
      *     @type string $id
      *           Google specified expression set ID. The format should be:
@@ -75,7 +75,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * A given alias name can't be used for more than one entity set.
      *
      * Generated from protobuf field <code>repeated string aliases = 159207166;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAliases()
     {
@@ -91,7 +91,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * A given alias name can't be used for more than one entity set.
      *
      * Generated from protobuf field <code>repeated string aliases = 159207166;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAliases($var)
@@ -106,7 +106,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * List of available expressions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSetExpression expressions = 175554779;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\WafExpressionSetExpression>
      */
     public function getExpressions()
     {
@@ -117,7 +117,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * List of available expressions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSetExpression expressions = 175554779;</code>
-     * @param array<\Google\Cloud\Compute\V1\WafExpressionSetExpression>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\WafExpressionSetExpression[] $var
      * @return $this
      */
     public function setExpressions($var)

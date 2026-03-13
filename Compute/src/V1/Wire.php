@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A pseudowire that connects two Interconnect connections.
@@ -61,7 +61,7 @@ class Wire extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] Indicates whether the wire is enabled.
      *           When false, the wire is disabled. When true and when the wire group of
      *           the wire is also enabled, the wire is enabled. Defaults to true.
-     *     @type array<\Google\Cloud\Compute\V1\WireEndpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\Compute\V1\WireEndpoint[] $endpoints
      *           Output only. Wire endpoints are specific Interconnect connections.
      *     @type string $label
      *           Output only. [Output Only] A label that identifies the wire. The format of this label
@@ -127,7 +127,7 @@ class Wire extends \Google\Protobuf\Internal\Message
      * Output only. Wire endpoints are specific Interconnect connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireEndpoint endpoints = 287085950;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\WireEndpoint>
      */
     public function getEndpoints()
     {
@@ -138,7 +138,7 @@ class Wire extends \Google\Protobuf\Internal\Message
      * Output only. Wire endpoints are specific Interconnect connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WireEndpoint endpoints = 287085950;</code>
-     * @param array<\Google\Cloud\Compute\V1\WireEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\WireEndpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)

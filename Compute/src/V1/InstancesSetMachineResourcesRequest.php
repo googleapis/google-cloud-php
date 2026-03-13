@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -27,7 +27,7 @@ class InstancesSetMachineResourcesRequest extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
+     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[] $guest_accelerators
      *           A list of the type and count of accelerator cards attached to the instance.
      * }
      */
@@ -40,7 +40,7 @@ class InstancesSetMachineResourcesRequest extends \Google\Protobuf\Internal\Mess
      * A list of the type and count of accelerator cards attached to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorConfig>
      */
     public function getGuestAccelerators()
     {
@@ -51,7 +51,7 @@ class InstancesSetMachineResourcesRequest extends \Google\Protobuf\Internal\Mess
      * A list of the type and count of accelerator cards attached to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
-     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setGuestAccelerators($var)

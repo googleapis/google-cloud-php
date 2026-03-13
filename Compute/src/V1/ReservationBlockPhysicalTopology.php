@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -43,7 +43,7 @@ class ReservationBlockPhysicalTopology extends \Google\Protobuf\Internal\Message
      *           The hash of the capacity block within the cluster.
      *     @type string $cluster
      *           The cluster name of the reservation block.
-     *     @type array<\Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance[] $instances
      *           Output only. The detailed instances information for a given Block
      * }
      */
@@ -128,7 +128,7 @@ class ReservationBlockPhysicalTopology extends \Google\Protobuf\Internal\Message
      * Output only. The detailed instances information for a given Block
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstance instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance>
      */
     public function getInstances()
     {
@@ -139,7 +139,7 @@ class ReservationBlockPhysicalTopology extends \Google\Protobuf\Internal\Message
      * Output only. The detailed instances information for a given Block
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationBlockPhysicalTopologyInstance instances = 29097598;</code>
-     * @param array<\Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ReservationBlockPhysicalTopologyInstance[] $var
      * @return $this
      */
     public function setInstances($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -27,7 +27,7 @@ class SecurityPolicyRulePreconfiguredWafConfig extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusion>|\Google\Protobuf\Internal\RepeatedField $exclusions
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusion[] $exclusions
      *           A list of exclusions to apply during preconfigured WAF evaluation.
      * }
      */
@@ -40,7 +40,7 @@ class SecurityPolicyRulePreconfiguredWafConfig extends \Google\Protobuf\Internal
      * A list of exclusions to apply during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusion exclusions = 208665701;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusion>
      */
     public function getExclusions()
     {
@@ -51,7 +51,7 @@ class SecurityPolicyRulePreconfiguredWafConfig extends \Google\Protobuf\Internal
      * A list of exclusions to apply during preconfigured WAF evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRulePreconfiguredWafConfigExclusion exclusions = 208665701;</code>
-     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRulePreconfiguredWafConfigExclusion[] $var
      * @return $this
      */
     public function setExclusions($var)

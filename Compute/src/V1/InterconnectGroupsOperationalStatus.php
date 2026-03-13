@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to get the status of the interconnect group with extra detail.
@@ -58,7 +58,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
      *           Check the GroupStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupIntent $intent
      *           Output only. The intent of the resource, as returned by Get.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatusInterconnectStatus>|\Google\Protobuf\Internal\RepeatedField $interconnect_statuses
+     *     @type \Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatusInterconnectStatus[] $interconnect_statuses
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupConfigured $operational
      *           Output only. The operational state of the group, including only active Interconnects.
      * }
@@ -180,7 +180,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupsOperationalStatusInterconnectStatus interconnect_statuses = 446756017;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatusInterconnectStatus>
      */
     public function getInterconnectStatuses()
     {
@@ -189,7 +189,7 @@ class InterconnectGroupsOperationalStatus extends \Google\Protobuf\Internal\Mess
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupsOperationalStatusInterconnectStatus interconnect_statuses = 446756017;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatusInterconnectStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectGroupsOperationalStatusInterconnectStatus[] $var
      * @return $this
      */
     public function setInterconnectStatuses($var)

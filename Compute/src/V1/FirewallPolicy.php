@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Firewall Policy resource.
@@ -165,7 +165,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyAssociation[] $associations
      *           A list of associations that belong to this firewall policy.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
@@ -203,7 +203,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *           Name of the resource. For Organization Firewall Policies it's a
      *           [Output Only] numeric ID allocated by Google Cloud which uniquely
      *           identifies the Organization Firewall Policy.
-     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule[] $packet_mirroring_rules
      *           A list of packet mirroring rules that belong to this policy.
      *     @type string $parent
      *           Output only. [Output Only] The parent of the firewall policy.
@@ -220,7 +220,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type int $rule_tuple_count
      *           Output only. [Output Only] Total count of all firewall policy rule tuples. A firewall
      *           policy can not exceed a set number of tuples.
-     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule[] $rules
      *           A list of rules that belong to this policy.
      *           There must always be a default rule (rule with priority 2147483647 and
      *           match "*"). If no rules are provided when creating a firewall policy, a
@@ -251,7 +251,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * A list of associations that belong to this firewall policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyAssociation associations = 508736530;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>
      */
     public function getAssociations()
     {
@@ -262,7 +262,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * A list of associations that belong to this firewall policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyAssociation associations = 508736530;</code>
-     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyAssociation[] $var
      * @return $this
      */
     public function setAssociations($var)
@@ -573,7 +573,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * A list of packet mirroring rules that belong to this policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FirewallPolicyRule>
      */
     public function getPacketMirroringRules()
     {
@@ -584,7 +584,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * A list of packet mirroring rules that belong to this policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
-     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule[] $var
      * @return $this
      */
     public function setPacketMirroringRules($var)
@@ -760,7 +760,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * default rule with action "allow" will be added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FirewallPolicyRule>
      */
     public function getRules()
     {
@@ -774,7 +774,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * default rule with action "allow" will be added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
-     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule[] $var
      * @return $this
      */
     public function setRules($var)

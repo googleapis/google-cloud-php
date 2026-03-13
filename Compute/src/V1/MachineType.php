@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Machine Type resource.
@@ -136,7 +136,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\Compute\V1\Accelerators[] $accelerators
      *           [Output Only] A list of accelerator configurations assigned to this
      *           machine type.
      *     @type string $architecture
@@ -192,7 +192,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      * machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Accelerators accelerators = 269577064;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Accelerators>
      */
     public function getAccelerators()
     {
@@ -204,7 +204,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      * machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Accelerators accelerators = 269577064;</code>
-     * @param array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Accelerators[] $var
      * @return $this
      */
     public function setAccelerators($var)

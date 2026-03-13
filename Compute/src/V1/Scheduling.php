@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sets the scheduling options for an Instance.
@@ -177,7 +177,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *     @type int $min_node_cpus
      *           The minimum number of virtual CPUs this instance will consume when running
      *           on a sole-tenant node.
-     *     @type array<\Google\Cloud\Compute\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $node_affinities
+     *     @type \Google\Cloud\Compute\V1\SchedulingNodeAffinity[] $node_affinities
      *           A set of node affinity and anti-affinity configurations. Refer toConfiguring node
      *           affinity for more information.
      *           Overrides reservationAffinity.
@@ -542,7 +542,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      * Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SchedulingNodeAffinity node_affinities = 461799971;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SchedulingNodeAffinity>
      */
     public function getNodeAffinities()
     {
@@ -555,7 +555,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      * Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SchedulingNodeAffinity node_affinities = 461799971;</code>
-     * @param array<\Google\Cloud\Compute\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SchedulingNodeAffinity[] $var
      * @return $this
      */
     public function setNodeAffinities($var)

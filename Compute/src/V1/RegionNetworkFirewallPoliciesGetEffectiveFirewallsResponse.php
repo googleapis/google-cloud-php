@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -36,12 +36,12 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $firewall_policys
+     *     @type \Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy[] $firewall_policys
      *           Output only. [Output only] Effective firewalls from firewall policy. It applies to
      *           Regional Network Firewall Policies in the specified region, Global Network
      *           Firewall Policies and Hierachial Firewall Policies which are associated
      *           with the network.
-     *     @type array<\Google\Cloud\Compute\V1\Firewall>|\Google\Protobuf\Internal\RepeatedField $firewalls
+     *     @type \Google\Cloud\Compute\V1\Firewall[] $firewalls
      *           Effective firewalls on the network.
      * }
      */
@@ -57,7 +57,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
      * with the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>
      */
     public function getFirewallPolicys()
     {
@@ -71,7 +71,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
      * with the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
-     * @param array<\Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy[] $var
      * @return $this
      */
     public function setFirewallPolicys($var)
@@ -86,7 +86,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
      * Effective firewalls on the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Firewall firewalls = 272245619;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Firewall>
      */
     public function getFirewalls()
     {
@@ -97,7 +97,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse extends \Google
      * Effective firewalls on the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Firewall firewalls = 272245619;</code>
-     * @param array<\Google\Cloud\Compute\V1\Firewall>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Firewall[] $var
      * @return $this
      */
     public function setFirewalls($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A matcher for the path portion of the URL. The BackendService
@@ -127,8 +127,8 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * forward slash character ("/").
      * The order by which path rules are specified does not matter.
      * Matches are always done on the longest-path-first basis.
-     * For example: a pathRule with a path /a/b/c/&#42; will match
-     * before /a/b/&#42; irrespective of the order in which those paths appear in this
+     * For example: a pathRule with a path /a/b/c/* will match
+     * before /a/b/* irrespective of the order in which those paths appear in this
      * list.
      * Within a given pathMatcher, only one ofpathRules or routeRules must be set.
      *
@@ -226,18 +226,18 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      *           has validateForProxyless field set to true.
      *     @type string $name
      *           The name to which this PathMatcher is referred by theHostRule.
-     *     @type array<\Google\Cloud\Compute\V1\PathRule>|\Google\Protobuf\Internal\RepeatedField $path_rules
+     *     @type \Google\Cloud\Compute\V1\PathRule[] $path_rules
      *           The list of path rules. Use this list instead of routeRules
      *           when routing based on simple path matching is all that's required. A path
      *           rule can only include a wildcard character (*) after a
      *           forward slash character ("/").
      *           The order by which path rules are specified does not matter.
      *           Matches are always done on the longest-path-first basis.
-     *           For example: a pathRule with a path /a/b/c/&#42; will match
-     *           before /a/b/&#42; irrespective of the order in which those paths appear in this
+     *           For example: a pathRule with a path /a/b/c/* will match
+     *           before /a/b/* irrespective of the order in which those paths appear in this
      *           list.
      *           Within a given pathMatcher, only one ofpathRules or routeRules must be set.
-     *     @type array<\Google\Cloud\Compute\V1\HttpRouteRule>|\Google\Protobuf\Internal\RepeatedField $route_rules
+     *     @type \Google\Cloud\Compute\V1\HttpRouteRule[] $route_rules
      *           The list of HTTP route rules. Use this list instead ofpathRules when advanced route matching and routing actions are
      *           desired. routeRules are evaluated in order of priority, from
      *           the lowest to highest number.
@@ -630,13 +630,13 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * forward slash character ("/").
      * The order by which path rules are specified does not matter.
      * Matches are always done on the longest-path-first basis.
-     * For example: a pathRule with a path /a/b/c/&#42; will match
-     * before /a/b/&#42; irrespective of the order in which those paths appear in this
+     * For example: a pathRule with a path /a/b/c/* will match
+     * before /a/b/* irrespective of the order in which those paths appear in this
      * list.
      * Within a given pathMatcher, only one ofpathRules or routeRules must be set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathRule path_rules = 104439901;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PathRule>
      */
     public function getPathRules()
     {
@@ -650,13 +650,13 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * forward slash character ("/").
      * The order by which path rules are specified does not matter.
      * Matches are always done on the longest-path-first basis.
-     * For example: a pathRule with a path /a/b/c/&#42; will match
-     * before /a/b/&#42; irrespective of the order in which those paths appear in this
+     * For example: a pathRule with a path /a/b/c/* will match
+     * before /a/b/* irrespective of the order in which those paths appear in this
      * list.
      * Within a given pathMatcher, only one ofpathRules or routeRules must be set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathRule path_rules = 104439901;</code>
-     * @param array<\Google\Cloud\Compute\V1\PathRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PathRule[] $var
      * @return $this
      */
     public function setPathRules($var)
@@ -674,7 +674,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * Within a given pathMatcher, you can set only one ofpathRules or routeRules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 376292225;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HttpRouteRule>
      */
     public function getRouteRules()
     {
@@ -688,7 +688,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * Within a given pathMatcher, you can set only one ofpathRules or routeRules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 376292225;</code>
-     * @param array<\Google\Cloud\Compute\V1\HttpRouteRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HttpRouteRule[] $var
      * @return $this
      */
     public function setRouteRules($var)

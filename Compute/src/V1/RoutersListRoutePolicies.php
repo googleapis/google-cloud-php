@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -84,11 +84,11 @@ class RoutersListRoutePolicies extends \Google\Protobuf\Internal\Message
      *           the query parameter pageToken in the next list request.
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
-     *     @type array<\Google\Cloud\Compute\V1\RoutePolicy>|\Google\Protobuf\Internal\RepeatedField $result
+     *     @type \Google\Cloud\Compute\V1\RoutePolicy[] $result
      *           [Output Only] A list of route policies.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for this resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
+     *     @type string[] $unreachables
      *           Output only. [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
@@ -253,7 +253,7 @@ class RoutersListRoutePolicies extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of route policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RoutePolicy result = 139315229;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RoutePolicy>
      */
     public function getResult()
     {
@@ -264,7 +264,7 @@ class RoutersListRoutePolicies extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of route policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RoutePolicy result = 139315229;</code>
-     * @param array<\Google\Cloud\Compute\V1\RoutePolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RoutePolicy[] $var
      * @return $this
      */
     public function setResult($var)
@@ -315,7 +315,7 @@ class RoutersListRoutePolicies extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachables()
     {
@@ -326,7 +326,7 @@ class RoutersListRoutePolicies extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachables($var)

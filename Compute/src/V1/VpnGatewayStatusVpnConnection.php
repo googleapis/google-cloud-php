@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A VPN connection contains all VPN tunnels connected from this VpnGateway
@@ -62,7 +62,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      *           This field is mutually exclusive with peer_gcp_gateway.
      *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState $state
      *           HighAvailabilityRequirementState for the VPN connection.
-     *     @type array<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>|\Google\Protobuf\Internal\RepeatedField $tunnels
+     *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusTunnel[] $tunnels
      *           List of VPN tunnels that are in this VPN connection.
      * }
      */
@@ -191,7 +191,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      * List of VPN tunnels that are in this VPN connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusTunnel tunnels = 104561931;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>
      */
     public function getTunnels()
     {
@@ -202,7 +202,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      * List of VPN tunnels that are in this VPN connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusTunnel tunnels = 104561931;</code>
-     * @param array<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\VpnGatewayStatusTunnel[] $var
      * @return $this
      */
     public function setTunnels($var)

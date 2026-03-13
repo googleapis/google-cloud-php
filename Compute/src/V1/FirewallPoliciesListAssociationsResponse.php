@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyAssociation[] $associations
      *           A list of associations.
      *     @type string $kind
      *           Output only. [Output Only] Type of firewallPolicy associations. Alwayscompute#FirewallPoliciesListAssociations for lists of
@@ -50,7 +50,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      * A list of associations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyAssociation associations = 508736530;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>
      */
     public function getAssociations()
     {
@@ -61,7 +61,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      * A list of associations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyAssociation associations = 508736530;</code>
-     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyAssociation[] $var
      * @return $this
      */
     public function setAssociations($var)

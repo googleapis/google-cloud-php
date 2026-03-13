@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] How reliable this topology is configured to be, and why
@@ -35,7 +35,7 @@ class InterconnectGroupConfiguredTopologyCapability extends \Google\Protobuf\Int
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers>|\Google\Protobuf\Internal\RepeatedField $intended_capability_blockers
+     *     @type \Google\Cloud\Compute\V1\InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers[] $intended_capability_blockers
      *     @type string $supported_sla
      *           
      *           Check the SupportedSla enum for the list of possible values.
@@ -48,7 +48,7 @@ class InterconnectGroupConfiguredTopologyCapability extends \Google\Protobuf\Int
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers intended_capability_blockers = 531644140;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers>
      */
     public function getIntendedCapabilityBlockers()
     {
@@ -57,7 +57,7 @@ class InterconnectGroupConfiguredTopologyCapability extends \Google\Protobuf\Int
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers intended_capability_blockers = 531644140;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectGroupConfiguredTopologyCapabilityIntendedCapabilityBlockers[] $var
      * @return $this
      */
     public function setIntendedCapabilityBlockers($var)

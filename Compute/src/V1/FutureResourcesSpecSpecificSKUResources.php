@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -46,7 +46,7 @@ class FutureResourcesSpecSpecificSKUResources extends \Google\Protobuf\Internal\
      *
      *     @type int|string $instance_count
      *           Size of the request, in instance count.
-     *     @type array<\Google\Cloud\Compute\V1\FutureResourcesSpecLocalSsdPartition>|\Google\Protobuf\Internal\RepeatedField $local_ssd_partitions
+     *     @type \Google\Cloud\Compute\V1\FutureResourcesSpecLocalSsdPartition[] $local_ssd_partitions
      *           Local SSD partitions. You do not have to include SSD partitions that
      *           are built in the machine type.
      *     @type string $machine_type
@@ -103,7 +103,7 @@ class FutureResourcesSpecSpecificSKUResources extends \Google\Protobuf\Internal\
      * are built in the machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FutureResourcesSpecLocalSsdPartition local_ssd_partitions = 470688568;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FutureResourcesSpecLocalSsdPartition>
      */
     public function getLocalSsdPartitions()
     {
@@ -115,7 +115,7 @@ class FutureResourcesSpecSpecificSKUResources extends \Google\Protobuf\Internal\
      * are built in the machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FutureResourcesSpecLocalSsdPartition local_ssd_partitions = 470688568;</code>
-     * @param array<\Google\Cloud\Compute\V1\FutureResourcesSpecLocalSsdPartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FutureResourcesSpecLocalSsdPartition[] $var
      * @return $this
      */
     public function setLocalSsdPartitions($var)

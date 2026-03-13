@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -76,7 +76,7 @@ class RoutePolicy extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Route Policy name, which must be a resource ID segment and unique
      *           within all the router's Route Policies. Name should conform to RFC1035.
-     *     @type array<\Google\Cloud\Compute\V1\RoutePolicyPolicyTerm>|\Google\Protobuf\Internal\RepeatedField $terms
+     *     @type \Google\Cloud\Compute\V1\RoutePolicyPolicyTerm[] $terms
      *           List of terms (the order in the list is not important, they are evaluated
      *           in order of priority). Order of policies is not retained and might change
      *           when getting policy later.
@@ -220,7 +220,7 @@ class RoutePolicy extends \Google\Protobuf\Internal\Message
      * when getting policy later.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RoutePolicyPolicyTerm terms = 110250375;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RoutePolicyPolicyTerm>
      */
     public function getTerms()
     {
@@ -233,7 +233,7 @@ class RoutePolicy extends \Google\Protobuf\Internal\Message
      * when getting policy later.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RoutePolicyPolicyTerm terms = 110250375;</code>
-     * @param array<\Google\Cloud\Compute\V1\RoutePolicyPolicyTerm>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RoutePolicyPolicyTerm[] $var
      * @return $this
      */
     public function setTerms($var)

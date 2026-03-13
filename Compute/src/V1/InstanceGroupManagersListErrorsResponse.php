@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -37,7 +37,7 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InstanceManagedByIgmError>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\InstanceManagedByIgmError[] $items
      *           Output only. [Output Only] The list of errors of the managed instance group.
      *     @type string $next_page_token
      *           Output only. [Output Only] This token allows you to get the next page of results for
@@ -56,7 +56,7 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
      * Output only. [Output Only] The list of errors of the managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceManagedByIgmError items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceManagedByIgmError>
      */
     public function getItems()
     {
@@ -67,7 +67,7 @@ class InstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Internal\
      * Output only. [Output Only] The list of errors of the managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceManagedByIgmError items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceManagedByIgmError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceManagedByIgmError[] $var
      * @return $this
      */
     public function setItems($var)

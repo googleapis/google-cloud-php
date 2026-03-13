@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -289,7 +289,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $address_purposes
+     *     @type string[] $address_purposes
      *           Specifies what address purposes are supported. If empty, all address
      *           purposes are supported.
      *           Check the AddressPurposes enum for the list of possible values.
@@ -376,10 +376,10 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *     @type string $allow_vpn
      *           Specifies whether VPN creation is allowed.
      *           Check the AllowVpn enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $firewall_policy_types
+     *     @type string[] $firewall_policy_types
      *           
      *           Check the FirewallPolicyTypes enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interface_types
+     *     @type string[] $interface_types
      *           If set, limits the interface types that the network supports. If
      *           empty, all interface types are supported.
      *           Check the InterfaceTypes enum for the list of possible values.
@@ -388,18 +388,18 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      *           Check the Multicast enum for the list of possible values.
      *     @type string $predefined_network_internal_ipv6_range
      *           Specifies a predefined internal IPv6 range for the network.
-     *     @type array<\Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange>|\Google\Protobuf\Internal\RepeatedField $predefined_subnetwork_ranges
+     *     @type \Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange[] $predefined_subnetwork_ranges
      *           Predefined subnetwork ranges for the network.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnet_purposes
+     *     @type string[] $subnet_purposes
      *           Specifies which subnetwork purposes are supported.
      *           Check the SubnetPurposes enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnet_stack_types
+     *     @type string[] $subnet_stack_types
      *           Specifies which subnetwork stack types are supported.
      *           Check the SubnetStackTypes enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_purposes
+     *     @type string[] $subnetwork_purposes
      *           Output only. Specifies which subnetwork purposes are supported.
      *           Check the SubnetworkPurposes enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetwork_stack_types
+     *     @type string[] $subnetwork_stack_types
      *           Output only. Specifies which subnetwork stack types are supported.
      *           Check the SubnetworkStackTypes enum for the list of possible values.
      *     @type string $unicast
@@ -418,7 +418,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the AddressPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string address_purposes = 433024768;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAddressPurposes()
     {
@@ -431,7 +431,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the AddressPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string address_purposes = 433024768;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAddressPurposes($var)
@@ -1477,7 +1477,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the FirewallPolicyTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string firewall_policy_types = 390742027;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFirewallPolicyTypes()
     {
@@ -1489,7 +1489,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the FirewallPolicyTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string firewall_policy_types = 390742027;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFirewallPolicyTypes($var)
@@ -1506,7 +1506,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the InterfaceTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string interface_types = 157981171;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInterfaceTypes()
     {
@@ -1519,7 +1519,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the InterfaceTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string interface_types = 157981171;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInterfaceTypes($var)
@@ -1608,7 +1608,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Predefined subnetwork ranges for the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkProfileNetworkFeaturesPredefinedSubnetworkRange predefined_subnetwork_ranges = 408740430;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange>
      */
     public function getPredefinedSubnetworkRanges()
     {
@@ -1619,7 +1619,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Predefined subnetwork ranges for the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkProfileNetworkFeaturesPredefinedSubnetworkRange predefined_subnetwork_ranges = 408740430;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkProfileNetworkFeaturesPredefinedSubnetworkRange[] $var
      * @return $this
      */
     public function setPredefinedSubnetworkRanges($var)
@@ -1635,7 +1635,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnet_purposes = 301338039;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetPurposes()
     {
@@ -1647,7 +1647,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnet_purposes = 301338039;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetPurposes($var)
@@ -1663,7 +1663,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnet_stack_types = 521008672;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetStackTypes()
     {
@@ -1675,7 +1675,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnet_stack_types = 521008672;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetStackTypes($var)
@@ -1691,7 +1691,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetworkPurposes()
     {
@@ -1703,7 +1703,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetworkPurposes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_purposes = 528240710;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetworkPurposes($var)
@@ -1719,7 +1719,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetworkStackTypes()
     {
@@ -1731,7 +1731,7 @@ class NetworkProfileNetworkFeatures extends \Google\Protobuf\Internal\Message
      * Check the SubnetworkStackTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string subnetwork_stack_types = 436827441;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetworkStackTypes($var)

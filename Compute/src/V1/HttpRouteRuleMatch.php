@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * HttpRouteRuleMatch specifies a set of criteria for matching
@@ -132,7 +132,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *           fullPathMatch must be from 1 to 1024 characters.
      *           Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match must be
      *           specified.
-     *     @type array<\Google\Cloud\Compute\V1\HttpHeaderMatch>|\Google\Protobuf\Internal\RepeatedField $header_matches
+     *     @type \Google\Cloud\Compute\V1\HttpHeaderMatch[] $header_matches
      *           Specifies a list of header match criteria, all of which must match
      *           corresponding headers in the request.
      *     @type bool $ignore_case
@@ -141,7 +141,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *           The default value is false.
      *           ignoreCase must not be used with regexMatch.
      *           Not supported when the URL map is bound to a target gRPC proxy.
-     *     @type array<\Google\Cloud\Compute\V1\MetadataFilter>|\Google\Protobuf\Internal\RepeatedField $metadata_filters
+     *     @type \Google\Cloud\Compute\V1\MetadataFilter[] $metadata_filters
      *           Opaque filter criteria used by the load balancer to restrict routing
      *           configuration to a limited set of xDS
      *           compliant clients. In their xDS requests to the load balancer, xDS clients
@@ -180,7 +180,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *           treated as a literal character, not as a wildcard.
      *           Only one of prefixMatch, fullPathMatch,regexMatch or path_template_match can be
      *           used within a matchRule.
-     *     @type array<\Google\Cloud\Compute\V1\HttpQueryParameterMatch>|\Google\Protobuf\Internal\RepeatedField $query_parameter_matches
+     *     @type \Google\Cloud\Compute\V1\HttpQueryParameterMatch[] $query_parameter_matches
      *           Specifies a list of query parameter match criteria, all of which must
      *           match corresponding query parameters in the request.
      *           Not supported when the URL map is bound to a target gRPC proxy.
@@ -252,7 +252,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * corresponding headers in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 361903489;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HttpHeaderMatch>
      */
     public function getHeaderMatches()
     {
@@ -264,7 +264,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * corresponding headers in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 361903489;</code>
-     * @param array<\Google\Cloud\Compute\V1\HttpHeaderMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HttpHeaderMatch[] $var
      * @return $this
      */
     public function setHeaderMatches($var)
@@ -339,7 +339,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 464725739;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\MetadataFilter>
      */
     public function getMetadataFilters()
     {
@@ -366,7 +366,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 464725739;</code>
-     * @param array<\Google\Cloud\Compute\V1\MetadataFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\MetadataFilter[] $var
      * @return $this
      */
     public function setMetadataFilters($var)
@@ -489,7 +489,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * Not supported when the URL map is bound to a target gRPC proxy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 286231270;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HttpQueryParameterMatch>
      */
     public function getQueryParameterMatches()
     {
@@ -502,7 +502,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * Not supported when the URL map is bound to a target gRPC proxy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 286231270;</code>
-     * @param array<\Google\Cloud\Compute\V1\HttpQueryParameterMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HttpQueryParameterMatch[] $var
      * @return $this
      */
     public function setQueryParameterMatches($var)

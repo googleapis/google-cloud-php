@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Image resource.
@@ -353,7 +353,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           When creating disks, you can specify an image family instead of a specific
      *           image name. The image family always returns its latest image that is not
      *           deprecated. The name of the image family must comply with RFC1035.
-     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type \Google\Cloud\Compute\V1\GuestOsFeature[] $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable
      *           only for bootable images. To see a list of available options, see theguestOSfeatures[].type parameter.
      *     @type int|string $id
@@ -385,9 +385,9 @@ class Image extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this image. These can be later modified by
      *           the setLabels method.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type int[]|string[] $license_codes
      *           Integer license codes indicating which licenses are attached to this image.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           Any applicable license URI.
      *     @type string $name
      *           Name of the resource; provided by the client when the resource is created.
@@ -481,7 +481,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           created and the status is set to READY. Possible
      *           values are FAILED, PENDING, orREADY.
      *           Check the Status enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
+     *     @type string[] $storage_locations
      *           Cloud Storage bucket storage location of the image (regional or
      *           multi-regional).
      * }
@@ -810,7 +810,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * only for bootable images. To see a list of available options, see theguestOSfeatures[].type parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\GuestOsFeature>
      */
     public function getGuestOsFeatures()
     {
@@ -822,7 +822,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * only for bootable images. To see a list of available options, see theguestOSfeatures[].type parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\GuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -1045,7 +1045,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * Integer license codes indicating which licenses are attached to this image.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getLicenseCodes()
     {
@@ -1056,7 +1056,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * Integer license codes indicating which licenses are attached to this image.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setLicenseCodes($var)
@@ -1071,7 +1071,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * Any applicable license URI.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -1082,7 +1082,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * Any applicable license URI.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)
@@ -1858,7 +1858,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStorageLocations()
     {
@@ -1870,7 +1870,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStorageLocations($var)

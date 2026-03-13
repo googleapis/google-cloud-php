@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class VpnTunnelsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\VpnTunnel>|\Google\Protobuf\Internal\RepeatedField $vpn_tunnels
+     *     @type \Google\Cloud\Compute\V1\VpnTunnel[] $vpn_tunnels
      *           A list of VPN tunnels contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of addresses when
@@ -50,7 +50,7 @@ class VpnTunnelsScopedList extends \Google\Protobuf\Internal\Message
      * A list of VPN tunnels contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnTunnel vpn_tunnels = 163494080;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\VpnTunnel>
      */
     public function getVpnTunnels()
     {
@@ -61,7 +61,7 @@ class VpnTunnelsScopedList extends \Google\Protobuf\Internal\Message
      * A list of VPN tunnels contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnTunnel vpn_tunnels = 163494080;</code>
-     * @param array<\Google\Cloud\Compute\V1\VpnTunnel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\VpnTunnel[] $var
      * @return $this
      */
     public function setVpnTunnels($var)

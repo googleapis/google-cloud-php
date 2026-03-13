@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * LINT.IfChange
@@ -185,7 +185,7 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
      *           Indicates that this is a Cross-Cloud Interconnect. This field specifies
      *           the location outside of Google's network that the interconnect is
      *           connected to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $requested_features
+     *     @type string[] $requested_features
      *           Optional. List of features requested for this Interconnect connection,
      *           which can take one of the following values:
      *              - IF_MACSEC: If specified, then the connection is created on MACsec
@@ -611,7 +611,7 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequestedFeatures()
     {
@@ -630,7 +630,7 @@ class InterconnectGroupsCreateMembersInterconnectInput extends \Google\Protobuf\
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequestedFeatures($var)

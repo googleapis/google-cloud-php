@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -45,7 +45,7 @@ class UrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $load_balancing_schemes
+     *     @type string[] $load_balancing_schemes
      *           Specifies the load balancer type(s) this validation request is for. UseEXTERNAL_MANAGED for global external Application Load
      *           Balancers and regional external Application Load Balancers.
      *           Use EXTERNAL for classic Application Load Balancers.
@@ -84,7 +84,7 @@ class UrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
      * Check the LoadBalancingSchemes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string load_balancing_schemes = 6308527;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLoadBalancingSchemes()
     {
@@ -107,7 +107,7 @@ class UrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
      * Check the LoadBalancingSchemes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string load_balancing_schemes = 6308527;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLoadBalancingSchemes($var)

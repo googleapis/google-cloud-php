@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a list of VmEndpointNatMappings.
@@ -76,7 +76,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      *           the query parameter pageToken in the next list request.
      *           Subsequent list requests will have their own nextPageToken to
      *           continue paging through the results.
-     *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappings>|\Google\Protobuf\Internal\RepeatedField $result
+     *     @type \Google\Cloud\Compute\V1\VmEndpointNatMappings[] $result
      *           [Output Only] A list of Nat mapping information of VM endpoints.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for this resource.
@@ -213,7 +213,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of Nat mapping information of VM endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappings result = 139315229;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\VmEndpointNatMappings>
      */
     public function getResult()
     {
@@ -224,7 +224,7 @@ class VmEndpointNatMappingsList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of Nat mapping information of VM endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappings result = 139315229;</code>
-     * @param array<\Google\Cloud\Compute\V1\VmEndpointNatMappings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\VmEndpointNatMappings[] $var
      * @return $this
      */
     public function setResult($var)

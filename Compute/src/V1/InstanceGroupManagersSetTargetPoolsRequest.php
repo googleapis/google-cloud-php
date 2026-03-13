@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -48,7 +48,7 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
      *           method. Then, include the fingerprint in your request to ensure that you
      *           do not overwrite changes that were applied from another
      *           concurrent request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type string[] $target_pools
      *           The list of target pool URLs that instances in this managed instance group
      *           belong to. The managed instance group applies these target pools to all
      *           of the instances in the group. Existing instances and new instances in the
@@ -113,7 +113,7 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
      * group all receive these target pool settings.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetPools()
     {
@@ -127,7 +127,7 @@ class InstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\Intern
      * group all receive these target pool settings.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetPools($var)

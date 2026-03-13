@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -27,7 +27,7 @@ class NodeGroupsDeleteNodesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type string[] $nodes
      *           Names of the nodes to delete.
      * }
      */
@@ -40,7 +40,7 @@ class NodeGroupsDeleteNodesRequest extends \Google\Protobuf\Internal\Message
      * Names of the nodes to delete.
      *
      * Generated from protobuf field <code>repeated string nodes = 104993457;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNodes()
     {
@@ -51,7 +51,7 @@ class NodeGroupsDeleteNodesRequest extends \Google\Protobuf\Internal\Message
      * Names of the nodes to delete.
      *
      * Generated from protobuf field <code>repeated string nodes = 104993457;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNodes($var)

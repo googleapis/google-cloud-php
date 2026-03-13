@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -32,7 +32,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $health_status
+     *     @type \Google\Cloud\Compute\V1\HealthStatus[] $health_status
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Alwayscompute#targetPoolInstanceHealth when checking the health of
      *           an instance.
@@ -45,7 +45,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HealthStatus>
      */
     public function getHealthStatus()
     {
@@ -54,7 +54,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
-     * @param array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HealthStatus[] $var
      * @return $this
      */
     public function setHealthStatus($var)

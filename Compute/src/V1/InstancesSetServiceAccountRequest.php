@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -35,7 +35,7 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
      *
      *     @type string $email
      *           Email address of the service account.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           The list of scopes to be made available for this service account.
      * }
      */
@@ -84,7 +84,7 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
      * The list of scopes to be made available for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 165973151;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -95,7 +95,7 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
      * The list of scopes to be made available for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 165973151;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

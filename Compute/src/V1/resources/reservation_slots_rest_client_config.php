@@ -49,6 +49,33 @@ return [
                     ],
                 ],
             ],
+            'GetVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*/reservationSubBlocks/*}/reservationSlots/{reservation_slot}/getVersion',
+                'body' => 'reservation_slots_get_version_request_resource',
+                'placeholders' => [
+                    'parent_name' => [
+                        'getters' => [
+                            'getParentName',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'reservation_slot' => [
+                        'getters' => [
+                            'getReservationSlot',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'List' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*/reservationSubBlocks/*}/reservationSlots',

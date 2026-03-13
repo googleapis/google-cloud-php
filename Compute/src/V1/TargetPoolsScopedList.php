@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\TargetPool>|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type \Google\Cloud\Compute\V1\TargetPool[] $target_pools
      *           A list of target pools contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of addresses when
@@ -50,7 +50,7 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
      * A list of target pools contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetPool target_pools = 336072617;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\TargetPool>
      */
     public function getTargetPools()
     {
@@ -61,7 +61,7 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
      * A list of target pools contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetPool target_pools = 336072617;</code>
-     * @param array<\Google\Cloud\Compute\V1\TargetPool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\TargetPool[] $var
      * @return $this
      */
     public function setTargetPools($var)

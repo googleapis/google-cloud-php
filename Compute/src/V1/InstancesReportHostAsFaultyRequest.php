@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -35,7 +35,7 @@ class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Messa
      *     @type string $disruption_schedule
      *           The disruption schedule for the VM. Required field, only allows IMMEDIATE.
      *           Check the DisruptionSchedule enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequestFaultReason>|\Google\Protobuf\Internal\RepeatedField $fault_reasons
+     *     @type \Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequestFaultReason[] $fault_reasons
      * }
      */
     public function __construct($data = NULL) {
@@ -83,7 +83,7 @@ class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstancesReportHostAsFaultyRequestFaultReason fault_reasons = 168056210;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequestFaultReason>
      */
     public function getFaultReasons()
     {
@@ -92,7 +92,7 @@ class InstancesReportHostAsFaultyRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstancesReportHostAsFaultyRequestFaultReason fault_reasons = 168056210;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequestFaultReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstancesReportHostAsFaultyRequestFaultReason[] $var
      * @return $this
      */
     public function setFaultReasons($var)

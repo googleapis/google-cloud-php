@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a machine image resource.
@@ -244,12 +244,12 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
      *           Output only. [Output Only] Reserved for future use.
-     *     @type array<\Google\Cloud\Compute\V1\SavedDisk>|\Google\Protobuf\Internal\RepeatedField $saved_disks
+     *     @type \Google\Cloud\Compute\V1\SavedDisk[] $saved_disks
      *           Output only. An array of Machine Image specific properties for disks attached to the
      *           source instance
      *     @type string $self_link
      *           Output only. [Output Only] The URL for this machine image. The server defines this URL.
-     *     @type array<\Google\Cloud\Compute\V1\SourceDiskEncryptionKey>|\Google\Protobuf\Internal\RepeatedField $source_disk_encryption_keys
+     *     @type \Google\Cloud\Compute\V1\SourceDiskEncryptionKey[] $source_disk_encryption_keys
      *           [Input Only] Thecustomer-supplied
      *           encryption key of the disks attached to the source instance. Required
      *           if the source disk is protected by a customer-supplied encryption key.
@@ -266,7 +266,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      *     @type string $status
      *           Output only. [Output Only] The status of the machine image. One of the following values:INVALID, CREATING, READY,DELETING, and UPLOADING.
      *           Check the Status enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
+     *     @type string[] $storage_locations
      *           The regional or multi-regional Cloud Storage bucket location where themachine image is
      *           stored.
      *     @type int|string $total_storage_bytes
@@ -797,7 +797,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      * source instance
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SavedDisk saved_disks = 397424318;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SavedDisk>
      */
     public function getSavedDisks()
     {
@@ -809,7 +809,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      * source instance
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SavedDisk saved_disks = 397424318;</code>
-     * @param array<\Google\Cloud\Compute\V1\SavedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SavedDisk[] $var
      * @return $this
      */
     public function setSavedDisks($var)
@@ -862,7 +862,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      * if the source disk is protected by a customer-supplied encryption key.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SourceDiskEncryptionKey source_disk_encryption_keys = 370408498;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SourceDiskEncryptionKey>
      */
     public function getSourceDiskEncryptionKeys()
     {
@@ -875,7 +875,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      * if the source disk is protected by a customer-supplied encryption key.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SourceDiskEncryptionKey source_disk_encryption_keys = 370408498;</code>
-     * @param array<\Google\Cloud\Compute\V1\SourceDiskEncryptionKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SourceDiskEncryptionKey[] $var
      * @return $this
      */
     public function setSourceDiskEncryptionKeys($var)
@@ -1013,7 +1013,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      * stored.
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStorageLocations()
     {
@@ -1025,7 +1025,7 @@ class MachineImage extends \Google\Protobuf\Internal\Message
      * stored.
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStorageLocations($var)

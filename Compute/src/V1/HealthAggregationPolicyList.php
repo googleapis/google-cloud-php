@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -64,7 +64,7 @@ class HealthAggregationPolicyList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\HealthAggregationPolicy>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\HealthAggregationPolicy[] $items
      *           A list of HealthAggregationPolicy resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of the resource. Alwayscompute#healthAggregationPolicy for health aggregation
@@ -126,7 +126,7 @@ class HealthAggregationPolicyList extends \Google\Protobuf\Internal\Message
      * A list of HealthAggregationPolicy resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthAggregationPolicy items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HealthAggregationPolicy>
      */
     public function getItems()
     {
@@ -137,7 +137,7 @@ class HealthAggregationPolicyList extends \Google\Protobuf\Internal\Message
      * A list of HealthAggregationPolicy resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthAggregationPolicy items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\HealthAggregationPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HealthAggregationPolicy[] $var
      * @return $this
      */
     public function setItems($var)

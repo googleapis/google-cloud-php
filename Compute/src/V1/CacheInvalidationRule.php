@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -45,7 +45,7 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cache_tags
+     *     @type string[] $cache_tags
      *           A list of cache tags used to identify cached objects.
      *              - Cache tags are specified when the response is first cached, by setting
      *              the `Cache-Tag` response header at the origin.
@@ -76,7 +76,7 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      * Up to 10 tags can be specified in a single invalidation request.
      *
      * Generated from protobuf field <code>repeated string cache_tags = 29073078;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCacheTags()
     {
@@ -94,7 +94,7 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      * Up to 10 tags can be specified in a single invalidation request.
      *
      * Generated from protobuf field <code>repeated string cache_tags = 29073078;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCacheTags($var)

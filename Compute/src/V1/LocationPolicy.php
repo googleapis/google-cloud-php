@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for location policy among multiple possible locations
@@ -67,7 +67,7 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $target_shape
      *           Strategy for distributing VMs across zones in a region.
      *           Check the TargetShape enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type \Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration[] $zones
      *           The bulkInsert operation applies any preferences set in the locations
      *           field to the specific zones listed in the zones field if the same zones
      *           are specified in both fields.
@@ -166,7 +166,7 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * are specified in both fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocationPolicyZoneConfiguration zones = 116085319;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration>
      */
     public function getZones()
     {
@@ -179,7 +179,7 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * are specified in both fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocationPolicyZoneConfiguration zones = 116085319;</code>
-     * @param array<\Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\LocationPolicyZoneConfiguration[] $var
      * @return $this
      */
     public function setZones($var)

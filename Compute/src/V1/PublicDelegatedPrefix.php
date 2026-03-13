@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A PublicDelegatedPrefix resource represents an IP block within a
@@ -224,7 +224,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *     @type string $parent_prefix
      *           The URL of parent prefix. Either PublicAdvertisedPrefix or
      *           PublicDelegatedPrefix.
-     *     @type array<\Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix>|\Google\Protobuf\Internal\RepeatedField $public_delegated_sub_prefixs
+     *     @type \Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix[] $public_delegated_sub_prefixs
      *           The list of sub public delegated prefixes that exist for this public
      *           delegated prefix.
      *     @type string $region
@@ -810,7 +810,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      * delegated prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix public_delegated_sub_prefixs = 188940044;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix>
      */
     public function getPublicDelegatedSubPrefixs()
     {
@@ -822,7 +822,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      * delegated prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix public_delegated_sub_prefixs = 188940044;</code>
-     * @param array<\Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix[] $var
      * @return $this
      */
     public function setPublicDelegatedSubPrefixs($var)

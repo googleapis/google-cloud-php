@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -77,7 +77,7 @@ class FutureReservationsListResponse extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\FutureReservation>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\FutureReservation[] $items
      *           [Output Only] A list of future reservation resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of resource.Alwayscompute#FutureReservationsListResponse for lists of
@@ -90,7 +90,7 @@ class FutureReservationsListResponse extends \Google\Protobuf\Internal\Message
      *           continue paging through the results.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for this resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
+     *     @type string[] $unreachables
      *           Output only. [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
@@ -175,7 +175,7 @@ class FutureReservationsListResponse extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of future reservation resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FutureReservation items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FutureReservation>
      */
     public function getItems()
     {
@@ -186,7 +186,7 @@ class FutureReservationsListResponse extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of future reservation resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FutureReservation items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\FutureReservation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FutureReservation[] $var
      * @return $this
      */
     public function setItems($var)
@@ -319,7 +319,7 @@ class FutureReservationsListResponse extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachables()
     {
@@ -330,7 +330,7 @@ class FutureReservationsListResponse extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachables($var)

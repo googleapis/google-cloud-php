@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a health check resource.
@@ -218,7 +218,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *           global health checks.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_regions
+     *     @type string[] $source_regions
      *           The list of cloud regions from which health checks are performed. If any
      *           regions are specified, then exactly 3 regions should be specified. The
      *           region names must be valid names of Google Cloud regions.
@@ -814,7 +814,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *    instance group auto-healing.
      *
      * Generated from protobuf field <code>repeated string source_regions = 405568475;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceRegions()
     {
@@ -838,7 +838,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *    instance group auto-healing.
      *
      * Generated from protobuf field <code>repeated string source_regions = 405568475;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceRegions($var)

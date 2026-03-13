@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Info for a slice of a given topology.
@@ -36,7 +36,7 @@ class AcceleratorTopologiesInfoAcceleratorTopologyInfo extends \Google\Protobuf\
      *
      *     @type string $accelerator_topology
      *           The accelerator topology.
-     *     @type array<\Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState>|\Google\Protobuf\Internal\RepeatedField $info_per_topology_states
+     *     @type \Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState[] $info_per_topology_states
      *           Info for each topology state.
      * }
      */
@@ -85,7 +85,7 @@ class AcceleratorTopologiesInfoAcceleratorTopologyInfo extends \Google\Protobuf\
      * Info for each topology state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState info_per_topology_states = 183777695;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState>
      */
     public function getInfoPerTopologyStates()
     {
@@ -96,7 +96,7 @@ class AcceleratorTopologiesInfoAcceleratorTopologyInfo extends \Google\Protobuf\
      * Info for each topology state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState info_per_topology_states = 183777695;</code>
-     * @param array<\Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfoInfoPerTopologyState[] $var
      * @return $this
      */
     public function setInfoPerTopologyStates($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class SslPoliciesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\SslPolicy>|\Google\Protobuf\Internal\RepeatedField $ssl_policies
+     *     @type \Google\Cloud\Compute\V1\SslPolicy[] $ssl_policies
      *           A list of SslPolicies contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of
@@ -50,7 +50,7 @@ class SslPoliciesScopedList extends \Google\Protobuf\Internal\Message
      * A list of SslPolicies contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslPolicy ssl_policies = 209941027;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\SslPolicy>
      */
     public function getSslPolicies()
     {
@@ -61,7 +61,7 @@ class SslPoliciesScopedList extends \Google\Protobuf\Internal\Message
      * A list of SslPolicies contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslPolicy ssl_policies = 209941027;</code>
-     * @param array<\Google\Cloud\Compute\V1\SslPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\SslPolicy[] $var
      * @return $this
      */
     public function setSslPolicies($var)
