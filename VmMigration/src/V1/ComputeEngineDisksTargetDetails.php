@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ComputeEngineDisksTargetDetails is a collection of created Persistent Disks
@@ -34,7 +34,7 @@ class ComputeEngineDisksTargetDetails extends \Google\Protobuf\Internal\Message
      *           Details of the disks-only migration target.
      *     @type \Google\Cloud\VMMigration\V1\DisksMigrationVmTargetDetails $vm_target_details
      *           Details for the VM the migrated data disks are attached to.
-     *     @type array<\Google\Cloud\VMMigration\V1\PersistentDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\VMMigration\V1\PersistentDisk[] $disks
      *           The details of each created Persistent Disk.
      * }
      */
@@ -109,7 +109,7 @@ class ComputeEngineDisksTargetDetails extends \Google\Protobuf\Internal\Message
      * The details of each created Persistent Disk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.PersistentDisk disks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\PersistentDisk>
      */
     public function getDisks()
     {
@@ -120,7 +120,7 @@ class ComputeEngineDisksTargetDetails extends \Google\Protobuf\Internal\Message
      * The details of each created Persistent Disk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.PersistentDisk disks = 1;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\PersistentDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\PersistentDisk[] $var
      * @return $this
      */
     public function setDisks($var)

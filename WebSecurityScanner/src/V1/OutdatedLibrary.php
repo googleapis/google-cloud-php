@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information reported for an outdated library.
@@ -44,7 +44,7 @@ class OutdatedLibrary extends \Google\Protobuf\Internal\Message
      *           The name of the outdated library.
      *     @type string $version
      *           The version number.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $learn_more_urls
+     *     @type string[] $learn_more_urls
      *           URLs to learn more information about the vulnerabilities in the library.
      * }
      */
@@ -109,7 +109,7 @@ class OutdatedLibrary extends \Google\Protobuf\Internal\Message
      * URLs to learn more information about the vulnerabilities in the library.
      *
      * Generated from protobuf field <code>repeated string learn_more_urls = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLearnMoreUrls()
     {
@@ -120,7 +120,7 @@ class OutdatedLibrary extends \Google\Protobuf\Internal\Message
      * URLs to learn more information about the vulnerabilities in the library.
      *
      * Generated from protobuf field <code>repeated string learn_more_urls = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLearnMoreUrls($var)

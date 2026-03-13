@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Normalized bounding polygon for text (that might not be aligned with axis).
@@ -42,7 +42,7 @@ class NormalizedBoundingPoly extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $vertices
+     *     @type \Google\Cloud\VideoIntelligence\V1\NormalizedVertex[] $vertices
      *           Normalized vertices of the bounding polygon.
      * }
      */
@@ -55,7 +55,7 @@ class NormalizedBoundingPoly extends \Google\Protobuf\Internal\Message
      * Normalized vertices of the bounding polygon.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.NormalizedVertex vertices = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\NormalizedVertex>
      */
     public function getVertices()
     {
@@ -66,7 +66,7 @@ class NormalizedBoundingPoly extends \Google\Protobuf\Internal\Message
      * Normalized vertices of the bounding polygon.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.NormalizedVertex vertices = 1;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\NormalizedVertex[] $var
      * @return $this
      */
     public function setVertices($var)

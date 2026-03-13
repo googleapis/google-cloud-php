@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\SchemaKeySortingStrategy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Option for one data schema key.
@@ -146,5 +146,4 @@ class Option extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\PreprocessingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Video cropping configuration for the input video. The cropped input video
@@ -167,5 +167,4 @@ class Crop extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

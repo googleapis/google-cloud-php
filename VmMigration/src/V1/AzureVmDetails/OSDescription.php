@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\AzureVmDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message describing the VM's OS. Including OS, Publisher, Offer and Plan
@@ -167,5 +167,4 @@ class OSDescription extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

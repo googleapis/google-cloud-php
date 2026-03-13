@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListCorpora.
@@ -37,7 +37,7 @@ class ListCorporaResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\Corpus>|\Google\Protobuf\Internal\RepeatedField $corpora
+     *     @type \Google\Cloud\VisionAI\V1\Corpus[] $corpora
      *           The corpora in the project.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -55,7 +55,7 @@ class ListCorporaResponse extends \Google\Protobuf\Internal\Message
      * The corpora in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Corpus corpora = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Corpus>
      */
     public function getCorpora()
     {
@@ -66,7 +66,7 @@ class ListCorporaResponse extends \Google\Protobuf\Internal\Message
      * The corpora in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Corpus corpora = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Corpus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Corpus[] $var
      * @return $this
      */
     public function setCorpora($var)

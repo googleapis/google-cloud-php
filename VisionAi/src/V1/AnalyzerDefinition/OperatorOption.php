@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\AnalyzerDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Option related to the operator.
@@ -98,5 +98,4 @@ class OperatorOption extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\Application;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message storing the runtime information of the application.
@@ -42,7 +42,7 @@ class ApplicationRuntimeInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $deploy_time
      *           Timestamp when the engine be deployed
-     *     @type array<\Google\Cloud\VisionAI\V1\Application\ApplicationRuntimeInfo\GlobalOutputResource>|\Google\Protobuf\Internal\RepeatedField $global_output_resources
+     *     @type \Google\Cloud\VisionAI\V1\Application\ApplicationRuntimeInfo\GlobalOutputResource[] $global_output_resources
      *           Globally created resources like warehouse dataschemas.
      *     @type \Google\Cloud\VisionAI\V1\Application\ApplicationRuntimeInfo\MonitoringConfig $monitoring_config
      *           Monitoring-related configuration for this application.
@@ -93,7 +93,7 @@ class ApplicationRuntimeInfo extends \Google\Protobuf\Internal\Message
      * Globally created resources like warehouse dataschemas.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Application.ApplicationRuntimeInfo.GlobalOutputResource global_output_resources = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Application\ApplicationRuntimeInfo\GlobalOutputResource>
      */
     public function getGlobalOutputResources()
     {
@@ -104,7 +104,7 @@ class ApplicationRuntimeInfo extends \Google\Protobuf\Internal\Message
      * Globally created resources like warehouse dataschemas.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Application.ApplicationRuntimeInfo.GlobalOutputResource global_output_resources = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Application\ApplicationRuntimeInfo\GlobalOutputResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Application\ApplicationRuntimeInfo\GlobalOutputResource[] $var
      * @return $this
      */
     public function setGlobalOutputResources($var)
@@ -152,5 +152,4 @@ class ApplicationRuntimeInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

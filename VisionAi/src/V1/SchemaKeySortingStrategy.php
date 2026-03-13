@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A strategy to specify how to sort by data schema key.
@@ -28,7 +28,7 @@ class SchemaKeySortingStrategy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\SchemaKeySortingStrategy\Option>|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type \Google\Cloud\VisionAI\V1\SchemaKeySortingStrategy\Option[] $options
      *           Options in the front have high priority than those in the back.
      * }
      */
@@ -41,7 +41,7 @@ class SchemaKeySortingStrategy extends \Google\Protobuf\Internal\Message
      * Options in the front have high priority than those in the back.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SchemaKeySortingStrategy.Option options = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\SchemaKeySortingStrategy\Option>
      */
     public function getOptions()
     {
@@ -52,7 +52,7 @@ class SchemaKeySortingStrategy extends \Google\Protobuf\Internal\Message
      * Options in the front have high priority than those in the back.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SchemaKeySortingStrategy.Option options = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\SchemaKeySortingStrategy\Option>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\SchemaKeySortingStrategy\Option[] $var
      * @return $this
      */
     public function setOptions($var)

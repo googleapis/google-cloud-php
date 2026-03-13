@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents migration resource error information that can be used with
@@ -61,7 +61,7 @@ class MigrationError extends \Google\Protobuf\Internal\Message
      *           Output only. The localized error message.
      *     @type \Google\Rpc\LocalizedMessage $action_item
      *           Output only. Suggested action for solving the error.
-     *     @type array<\Google\Rpc\Help\Link>|\Google\Protobuf\Internal\RepeatedField $help_links
+     *     @type \Google\Rpc\Help\Link[] $help_links
      *           Output only. URL(s) pointing to additional information on handling the
      *           current error.
      *     @type \Google\Protobuf\Timestamp $error_time
@@ -176,7 +176,7 @@ class MigrationError extends \Google\Protobuf\Internal\Message
      * current error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Help.Link help_links = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Help\Link>
      */
     public function getHelpLinks()
     {
@@ -188,7 +188,7 @@ class MigrationError extends \Google\Protobuf\Internal\Message
      * current error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Help.Link help_links = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Help\Link>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Help\Link[] $var
      * @return $this
      */
     public function setHelpLinks($var)

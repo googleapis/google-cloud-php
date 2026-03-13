@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for [ListNodes][google.cloud.tpu.v2.Tpu.ListNodes].
@@ -40,11 +40,11 @@ class ListNodesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Tpu\V2\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\Tpu\V2\Node[] $nodes
      *           The listed nodes.
      *     @type string $next_page_token
      *           The next page token or empty if none.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListNodesResponse extends \Google\Protobuf\Internal\Message
      * The listed nodes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.Node nodes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\Node>
      */
     public function getNodes()
     {
@@ -68,7 +68,7 @@ class ListNodesResponse extends \Google\Protobuf\Internal\Message
      * The listed nodes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.Node nodes = 1;</code>
-     * @param array<\Google\Cloud\Tpu\V2\Node>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\Node[] $var
      * @return $this
      */
     public function setNodes($var)
@@ -109,7 +109,7 @@ class ListNodesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListNodesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

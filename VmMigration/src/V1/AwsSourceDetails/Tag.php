@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\AwsSourceDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tag is an AWS tag representation.
@@ -98,5 +98,4 @@ class Tag extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

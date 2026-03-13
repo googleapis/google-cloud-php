@@ -60,6 +60,3 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Trace\V2\Span_Link_Type::class);
-

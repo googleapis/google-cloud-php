@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for the active zone count.
@@ -36,7 +36,7 @@ class ActiveZoneCount extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VisionAI\V1\StreamAnnotation $annotation
      *           Active zone annotation from the user.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $counts
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $counts
      *           Counts in the zone.
      * }
      */
@@ -85,7 +85,7 @@ class ActiveZoneCount extends \Google\Protobuf\Internal\Message
      * Counts in the zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount counts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>
      */
     public function getCounts()
     {
@@ -96,7 +96,7 @@ class ActiveZoneCount extends \Google\Protobuf\Internal\Message
      * Counts in the zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount counts = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $var
      * @return $this
      */
     public function setCounts($var)
@@ -108,5 +108,4 @@ class ActiveZoneCount extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

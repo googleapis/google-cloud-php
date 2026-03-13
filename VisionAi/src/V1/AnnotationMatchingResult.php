@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stores the criteria-annotation matching results for each search result item.
@@ -46,7 +46,7 @@ class AnnotationMatchingResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VisionAI\V1\Criteria $criteria
      *           The criteria used for matching. It can be an input search criteria or a
      *           criteria converted from a facet selection.
-     *     @type array<\Google\Cloud\VisionAI\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $matched_annotations
+     *     @type \Google\Cloud\VisionAI\V1\Annotation[] $matched_annotations
      *           Matched annotations for the criteria.
      *     @type \Google\Rpc\Status $status
      *           Status of the match result. Possible values:
@@ -101,7 +101,7 @@ class AnnotationMatchingResult extends \Google\Protobuf\Internal\Message
      * Matched annotations for the criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Annotation matched_annotations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Annotation>
      */
     public function getMatchedAnnotations()
     {
@@ -112,7 +112,7 @@ class AnnotationMatchingResult extends \Google\Protobuf\Internal\Message
      * Matched annotations for the criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Annotation matched_annotations = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Annotation[] $var
      * @return $this
      */
     public function setMatchedAnnotations($var)

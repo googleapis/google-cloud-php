@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for Crossing line count.
@@ -54,13 +54,13 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VisionAI\V1\StreamAnnotation $annotation
      *           Line annotation from the user.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $positive_direction_counts
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $positive_direction_counts
      *           The direction that follows the right hand rule.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $negative_direction_counts
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $negative_direction_counts
      *           The direction that is opposite to the right hand rule.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount>|\Google\Protobuf\Internal\RepeatedField $accumulated_positive_direction_counts
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount[] $accumulated_positive_direction_counts
      *           The accumulated positive count.
-     *     @type array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount>|\Google\Protobuf\Internal\RepeatedField $accumulated_negative_direction_counts
+     *     @type \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount[] $accumulated_negative_direction_counts
      *           The accumulated negative count.
      * }
      */
@@ -109,7 +109,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The direction that follows the right hand rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount positive_direction_counts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>
      */
     public function getPositiveDirectionCounts()
     {
@@ -120,7 +120,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The direction that follows the right hand rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount positive_direction_counts = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $var
      * @return $this
      */
     public function setPositiveDirectionCounts($var)
@@ -135,7 +135,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The direction that is opposite to the right hand rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount negative_direction_counts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>
      */
     public function getNegativeDirectionCounts()
     {
@@ -146,7 +146,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The direction that is opposite to the right hand rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.ObjectCount negative_direction_counts = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\ObjectCount[] $var
      * @return $this
      */
     public function setNegativeDirectionCounts($var)
@@ -161,7 +161,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The accumulated positive count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount accumulated_positive_direction_counts = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount>
      */
     public function getAccumulatedPositiveDirectionCounts()
     {
@@ -172,7 +172,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The accumulated positive count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount accumulated_positive_direction_counts = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount[] $var
      * @return $this
      */
     public function setAccumulatedPositiveDirectionCounts($var)
@@ -187,7 +187,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The accumulated negative count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount accumulated_negative_direction_counts = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount>
      */
     public function getAccumulatedNegativeDirectionCounts()
     {
@@ -198,7 +198,7 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
      * The accumulated negative count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OccupancyCountingPredictionResult.Stats.AccumulatedObjectCount accumulated_negative_direction_counts = 5;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats\AccumulatedObjectCount[] $var
      * @return $this
      */
     public function setAccumulatedNegativeDirectionCounts($var)
@@ -210,5 +210,4 @@ class CrossingLineCount extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

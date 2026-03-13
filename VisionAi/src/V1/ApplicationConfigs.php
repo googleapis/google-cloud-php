@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message storing the graph of the application.
@@ -34,7 +34,7 @@ class ApplicationConfigs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\VisionAI\V1\Node[] $nodes
      *           A list of nodes  in the application graph.
      *     @type \Google\Cloud\VisionAI\V1\ApplicationConfigs\EventDeliveryConfig $event_delivery_config
      *           Event-related configuration for this application.
@@ -49,7 +49,7 @@ class ApplicationConfigs extends \Google\Protobuf\Internal\Message
      * A list of nodes  in the application graph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Node nodes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Node>
      */
     public function getNodes()
     {
@@ -60,7 +60,7 @@ class ApplicationConfigs extends \Google\Protobuf\Internal\Message
      * A list of nodes  in the application graph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Node nodes = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Node>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Node[] $var
      * @return $this
      */
     public function setNodes($var)

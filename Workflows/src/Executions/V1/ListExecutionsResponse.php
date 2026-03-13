@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\Executions\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the
@@ -37,7 +37,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Workflows\Executions\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $executions
+     *     @type \Google\Cloud\Workflows\Executions\V1\Execution[] $executions
      *           The executions which match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -53,7 +53,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * The executions which match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.executions.v1.Execution executions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Workflows\Executions\V1\Execution>
      */
     public function getExecutions()
     {
@@ -64,7 +64,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * The executions which match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.executions.v1.Execution executions = 1;</code>
-     * @param array<\Google\Cloud\Workflows\Executions\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Workflows\Executions\V1\Execution[] $var
      * @return $this
      */
     public function setExecutions($var)

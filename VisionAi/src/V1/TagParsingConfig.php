@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for tag parsing.
@@ -29,7 +29,7 @@ class TagParsingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\TagParsingConfig\EntityParsingConfig>|\Google\Protobuf\Internal\RepeatedField $entity_parsing_configs
+     *     @type \Google\Cloud\VisionAI\V1\TagParsingConfig\EntityParsingConfig[] $entity_parsing_configs
      *           Each tag entity class may have an optional EntityParsingConfig which is
      *           used to help parse the entities of the class.
      * }
@@ -44,7 +44,7 @@ class TagParsingConfig extends \Google\Protobuf\Internal\Message
      * used to help parse the entities of the class.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.TagParsingConfig.EntityParsingConfig entity_parsing_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\TagParsingConfig\EntityParsingConfig>
      */
     public function getEntityParsingConfigs()
     {
@@ -56,7 +56,7 @@ class TagParsingConfig extends \Google\Protobuf\Internal\Message
      * used to help parse the entities of the class.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.TagParsingConfig.EntityParsingConfig entity_parsing_configs = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\TagParsingConfig\EntityParsingConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\TagParsingConfig\EntityParsingConfig[] $var
      * @return $this
      */
     public function setEntityParsingConfigs($var)

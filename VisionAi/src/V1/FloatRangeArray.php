@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of float range values.
@@ -28,7 +28,7 @@ class FloatRangeArray extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\FloatRange>|\Google\Protobuf\Internal\RepeatedField $float_ranges
+     *     @type \Google\Cloud\VisionAI\V1\FloatRange[] $float_ranges
      *           Float range values.
      * }
      */
@@ -41,7 +41,7 @@ class FloatRangeArray extends \Google\Protobuf\Internal\Message
      * Float range values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FloatRange float_ranges = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\FloatRange>
      */
     public function getFloatRanges()
     {
@@ -52,7 +52,7 @@ class FloatRangeArray extends \Google\Protobuf\Internal\Message
      * Float range values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FloatRange float_ranges = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\FloatRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\FloatRange[] $var
      * @return $this
      */
     public function setFloatRanges($var)

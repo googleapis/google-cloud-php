@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1\Slate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GamSlate object has Google Ad Manager (GAM) related properties for the
@@ -99,5 +99,4 @@ class GamSlate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

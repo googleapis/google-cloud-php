@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message about target streamInput to remove.
@@ -57,5 +57,4 @@ class TargetStreamInput extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

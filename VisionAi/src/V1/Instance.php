@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Instance object
@@ -100,12 +100,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           A description for this instance.
      *     @type int $instance_type
      *           The instance type for the current instance.
-     *     @type array<\Google\Cloud\VisionAI\V1\Instance\InputResource>|\Google\Protobuf\Internal\RepeatedField $input_resources
+     *     @type \Google\Cloud\VisionAI\V1\Instance\InputResource[] $input_resources
      *           The input resources for the current application instance.
      *           For example:
      *           input_resources:
      *           visionai.googleapis.com/v1/projects/123/locations/us-central1/clusters/456/streams/stream-a
-     *     @type array<\Google\Cloud\VisionAI\V1\Instance\OutputResource>|\Google\Protobuf\Internal\RepeatedField $output_resources
+     *     @type \Google\Cloud\VisionAI\V1\Instance\OutputResource[] $output_resources
      *           All the output resources associated to one application instance.
      *     @type int $state
      *           State of the instance.
@@ -325,7 +325,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * visionai.googleapis.com/v1/projects/123/locations/us-central1/clusters/456/streams/stream-a
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Instance.InputResource input_resources = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Instance\InputResource>
      */
     public function getInputResources()
     {
@@ -339,7 +339,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * visionai.googleapis.com/v1/projects/123/locations/us-central1/clusters/456/streams/stream-a
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Instance.InputResource input_resources = 6;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Instance\InputResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Instance\InputResource[] $var
      * @return $this
      */
     public function setInputResources($var)
@@ -354,7 +354,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * All the output resources associated to one application instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Instance.OutputResource output_resources = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Instance\OutputResource>
      */
     public function getOutputResources()
     {
@@ -365,7 +365,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * All the output resources associated to one application instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Instance.OutputResource output_resources = 7;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Instance\OutputResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Instance\OutputResource[] $var
      * @return $this
      */
     public function setOutputResources($var)

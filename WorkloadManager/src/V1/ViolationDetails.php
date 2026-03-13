@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The violation in an evaluation result.
@@ -52,7 +52,7 @@ class ViolationDetails extends \Google\Protobuf\Internal\Message
      *           The service account associated with the resource.
      *     @type array|\Google\Protobuf\Internal\MapField $observed
      *           Details of the violation.
-     *     @type array<\Google\Cloud\WorkloadManager\V1\RuleOutput>|\Google\Protobuf\Internal\RepeatedField $rule_output
+     *     @type \Google\Cloud\WorkloadManager\V1\RuleOutput[] $rule_output
      *           Output only. The rule output of the violation.
      * }
      */
@@ -143,7 +143,7 @@ class ViolationDetails extends \Google\Protobuf\Internal\Message
      * Output only. The rule output of the violation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.RuleOutput rule_output = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WorkloadManager\V1\RuleOutput>
      */
     public function getRuleOutput()
     {
@@ -154,7 +154,7 @@ class ViolationDetails extends \Google\Protobuf\Internal\Message
      * Output only. The rule output of the violation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.RuleOutput rule_output = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\WorkloadManager\V1\RuleOutput>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WorkloadManager\V1\RuleOutput[] $var
      * @return $this
      */
     public function setRuleOutput($var)

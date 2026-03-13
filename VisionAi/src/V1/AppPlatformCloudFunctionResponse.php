@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message of the response from customer's Cloud Function to AppPlatform.
@@ -45,14 +45,14 @@ class AppPlatformCloudFunctionResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionResponse\StructedOutputAnnotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionResponse\StructedOutputAnnotation[] $annotations
      *           The modified annotations that is returned back to AppPlatform.
      *           If the annotations fields are empty, then those annotations will be dropped
      *           by AppPlatform.
      *     @type bool $annotation_passthrough
      *           If set to true, AppPlatform will use original annotations instead of
      *           dropping them, even if it is empty in the annotations filed.
-     *     @type array<\Google\Cloud\VisionAI\V1\AppPlatformEventBody>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Google\Cloud\VisionAI\V1\AppPlatformEventBody[] $events
      *           The event notifications that is returned back to AppPlatform. Typically it
      *           will then be configured to be consumed/forwared to a operator that handles
      *           events, such as Pub/Sub operator.
@@ -69,7 +69,7 @@ class AppPlatformCloudFunctionResponse extends \Google\Protobuf\Internal\Message
      * by AppPlatform.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AppPlatformCloudFunctionResponse.StructedOutputAnnotation annotations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionResponse\StructedOutputAnnotation>
      */
     public function getAnnotations()
     {
@@ -82,7 +82,7 @@ class AppPlatformCloudFunctionResponse extends \Google\Protobuf\Internal\Message
      * by AppPlatform.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AppPlatformCloudFunctionResponse.StructedOutputAnnotation annotations = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionResponse\StructedOutputAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionResponse\StructedOutputAnnotation[] $var
      * @return $this
      */
     public function setAnnotations($var)
@@ -127,7 +127,7 @@ class AppPlatformCloudFunctionResponse extends \Google\Protobuf\Internal\Message
      * events, such as Pub/Sub operator.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AppPlatformEventBody events = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AppPlatformEventBody>
      */
     public function getEvents()
     {
@@ -140,7 +140,7 @@ class AppPlatformCloudFunctionResponse extends \Google\Protobuf\Internal\Message
      * events, such as Pub/Sub operator.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AppPlatformEventBody events = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AppPlatformEventBody>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AppPlatformEventBody[] $var
      * @return $this
      */
     public function setEvents($var)

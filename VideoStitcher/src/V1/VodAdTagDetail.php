@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information related to the details for one ad tag. This resource is only
@@ -40,7 +40,7 @@ class VodAdTagDetail extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the ad tag detail for the specified VOD session, in the form of
      *           `projects/{project}/locations/{location}/vodSessions/{vod_session_id}/vodAdTagDetails/{id}`.
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\AdRequest>|\Google\Protobuf\Internal\RepeatedField $ad_requests
+     *     @type \Google\Cloud\Video\Stitcher\V1\AdRequest[] $ad_requests
      *           A list of ad requests for one ad tag.
      * }
      */
@@ -81,7 +81,7 @@ class VodAdTagDetail extends \Google\Protobuf\Internal\Message
      * A list of ad requests for one ad tag.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.AdRequest ad_requests = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\AdRequest>
      */
     public function getAdRequests()
     {
@@ -92,7 +92,7 @@ class VodAdTagDetail extends \Google\Protobuf\Internal\Message
      * A list of ad requests for one ad tag.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.AdRequest ad_requests = 2;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\AdRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\AdRequest[] $var
      * @return $this
      */
     public function setAdRequests($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2\Span;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A time-stamped annotation or message event in the Span.
@@ -149,7 +149,4 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimeEvent::class, \Google\Cloud\Trace\V2\Span_TimeEvent::class);
 

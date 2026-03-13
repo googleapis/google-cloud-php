@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1\SearchHint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * KnnHint will be used if search should be explicitly done on system's
@@ -31,5 +31,4 @@ class KnnHint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

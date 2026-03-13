@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A description of resources that are dedicated to a DeployedModel, and
@@ -108,7 +108,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *           quotas. Specifically, you will be charged for max_replica_count *
      *           number of cores in the selected machine type) and (max_replica_count *
      *           number of GPUs per replica in the selected machine type).
-     *     @type array<\Google\Cloud\VisionAI\V1\AutoscalingMetricSpec>|\Google\Protobuf\Internal\RepeatedField $autoscaling_metric_specs
+     *     @type \Google\Cloud\VisionAI\V1\AutoscalingMetricSpec[] $autoscaling_metric_specs
      *           Immutable. The metric specifications that overrides a resource
      *           utilization metric (CPU utilization, accelerator's duty cycle, and so on)
      *           target value (default to 60 if not set). At most one entry is allowed per
@@ -283,7 +283,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      * to `80`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AutoscalingMetricSpec autoscaling_metric_specs = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AutoscalingMetricSpec>
      */
     public function getAutoscalingMetricSpecs()
     {
@@ -313,7 +313,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      * to `80`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AutoscalingMetricSpec autoscaling_metric_specs = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AutoscalingMetricSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AutoscalingMetricSpec[] $var
      * @return $this
      */
     public function setAutoscalingMetricSpecs($var)

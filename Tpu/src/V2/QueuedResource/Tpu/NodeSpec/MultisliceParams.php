@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2\QueuedResource\Tpu\NodeSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters to specify for multislice QueuedResource requests. This
@@ -124,5 +124,4 @@ class MultisliceParams extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

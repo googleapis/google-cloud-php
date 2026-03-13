@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for a search request.
@@ -36,7 +36,7 @@ class SearchDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VectorSearch\V1\SearchResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\VectorSearch\V1\SearchResult[] $results
      *           Output only. The list of dataObjects that match the search criteria.
      *     @type string $next_page_token
      *           Output only. A token to retrieve next page of results.
@@ -53,7 +53,7 @@ class SearchDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of dataObjects that match the search criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.SearchResult results = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\SearchResult>
      */
     public function getResults()
     {
@@ -64,7 +64,7 @@ class SearchDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of dataObjects that match the search criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.SearchResult results = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\SearchResult[] $var
      * @return $this
      */
     public function setResults($var)

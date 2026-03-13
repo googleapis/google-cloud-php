@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ApplicationConfigs;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * message storing the config for event delivery
@@ -132,5 +132,4 @@ class EventDeliveryConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

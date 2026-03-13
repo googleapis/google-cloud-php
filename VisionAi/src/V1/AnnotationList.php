@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List representation in annotation.
@@ -28,7 +28,7 @@ class AnnotationList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\AnnotationValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\VisionAI\V1\AnnotationValue[] $values
      *           The values of `LIST` data type annotation.
      * }
      */
@@ -41,7 +41,7 @@ class AnnotationList extends \Google\Protobuf\Internal\Message
      * The values of `LIST` data type annotation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnnotationValue values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AnnotationValue>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class AnnotationList extends \Google\Protobuf\Internal\Message
      * The values of `LIST` data type annotation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnnotationValue values = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AnnotationValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AnnotationValue[] $var
      * @return $this
      */
     public function setValues($var)

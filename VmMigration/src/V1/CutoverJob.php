@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CutoverJob message describes a cutover of a migrating VM. The CutoverJob is
@@ -105,7 +105,7 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
      *     @type string $state_message
      *           Output only. A message providing possible extra details about the current
      *           state.
-     *     @type array<\Google\Cloud\VMMigration\V1\CutoverStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\VMMigration\V1\CutoverStep[] $steps
      *           Output only. The cutover steps list representing its progress.
      * }
      */
@@ -434,7 +434,7 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
      * Output only. The cutover steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverStep steps = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\CutoverStep>
      */
     public function getSteps()
     {
@@ -445,7 +445,7 @@ class CutoverJob extends \Google\Protobuf\Internal\Message
      * Output only. The cutover steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverStep steps = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\CutoverStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\CutoverStep[] $var
      * @return $this
      */
     public function setSteps($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -42,12 +42,12 @@ class ListVmwareEngineNetworksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork>|\Google\Protobuf\Internal\RepeatedField $vmware_engine_networks
+     *     @type \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork[] $vmware_engine_networks
      *           A list of VMware Engine networks.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable resources.
      * }
      */
@@ -60,7 +60,7 @@ class ListVmwareEngineNetworksResponse extends \Google\Protobuf\Internal\Message
      * A list of VMware Engine networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.VmwareEngineNetwork vmware_engine_networks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork>
      */
     public function getVmwareEngineNetworks()
     {
@@ -71,7 +71,7 @@ class ListVmwareEngineNetworksResponse extends \Google\Protobuf\Internal\Message
      * A list of VMware Engine networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.VmwareEngineNetwork vmware_engine_networks = 1;</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork[] $var
      * @return $this
      */
     public function setVmwareEngineNetworks($var)
@@ -114,7 +114,7 @@ class ListVmwareEngineNetworksResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -125,7 +125,7 @@ class ListVmwareEngineNetworksResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListExecutionResults RPC.
@@ -35,7 +35,7 @@ class ListExecutionResultsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\WorkloadManager\V1\ExecutionResult>|\Google\Protobuf\Internal\RepeatedField $execution_results
+     *     @type \Google\Cloud\WorkloadManager\V1\ExecutionResult[] $execution_results
      *           The versions from the specified publisher.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListExecutionResultsResponse extends \Google\Protobuf\Internal\Message
      * The versions from the specified publisher.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.ExecutionResult execution_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WorkloadManager\V1\ExecutionResult>
      */
     public function getExecutionResults()
     {
@@ -62,7 +62,7 @@ class ListExecutionResultsResponse extends \Google\Protobuf\Internal\Message
      * The versions from the specified publisher.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workloadmanager.v1.ExecutionResult execution_results = 1;</code>
-     * @param array<\Google\Cloud\WorkloadManager\V1\ExecutionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WorkloadManager\V1\ExecutionResult[] $var
      * @return $this
      */
     public function setExecutionResults($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -58,7 +58,7 @@ class BatchDeleteDataObjectsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the Collection to delete the DataObjects in.
      *           Format: `projects/{project}/locations/{location}/collections/{collection}`.
-     *     @type array<\Google\Cloud\VectorSearch\V1\DeleteDataObjectRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\VectorSearch\V1\DeleteDataObjectRequest[] $requests
      *           Required. The request message specifying the resources to delete.
      *           A maximum of 1000 DataObjects can be deleted in a batch.
      * }
@@ -101,7 +101,7 @@ class BatchDeleteDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 DataObjects can be deleted in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.DeleteDataObjectRequest requests = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\DeleteDataObjectRequest>
      */
     public function getRequests()
     {
@@ -113,7 +113,7 @@ class BatchDeleteDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 DataObjects can be deleted in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.DeleteDataObjectRequest requests = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\DeleteDataObjectRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\DeleteDataObjectRequest[] $var
      * @return $this
      */
     public function setRequests($var)

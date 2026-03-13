@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ReceiveEventsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetupRequest is the first message sent to the service to setup the RPC
@@ -297,5 +297,4 @@ class SetupRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\DvrSession;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DvrWindow represents a DVR window.
@@ -72,5 +72,4 @@ class DvrWindow extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

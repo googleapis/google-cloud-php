@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2\Span\TimeEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Text annotation with a set of attributes.
@@ -126,7 +126,4 @@ class Annotation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Annotation::class, \Google\Cloud\Trace\V2\Span_TimeEvent_Annotation::class);
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ! Information about a vulnerability with an HTML.
@@ -36,7 +36,7 @@ class Form extends \Google\Protobuf\Internal\Message
      *
      *     @type string $action_uri
      *           ! The URI where to send the form when it's submitted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type string[] $fields
      *           ! The names of form fields related to the vulnerability.
      * }
      */
@@ -75,7 +75,7 @@ class Form extends \Google\Protobuf\Internal\Message
      * ! The names of form fields related to the vulnerability.
      *
      * Generated from protobuf field <code>repeated string fields = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFields()
     {
@@ -86,7 +86,7 @@ class Form extends \Google\Protobuf\Internal\Message
      * ! The names of form fields related to the vulnerability.
      *
      * Generated from protobuf field <code>repeated string fields = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFields($var)

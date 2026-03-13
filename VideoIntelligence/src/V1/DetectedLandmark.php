@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A generic detected landmark represented by name in string format and a 2D

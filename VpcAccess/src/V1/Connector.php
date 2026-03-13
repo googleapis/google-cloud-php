@@ -5,8 +5,8 @@
 namespace Google\Cloud\VpcAccess\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of a Serverless VPC Access connector.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Connector extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name in the format `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     * The resource name in the format `projects/{@*}locations/{@*}connectors/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -90,7 +90,7 @@ class Connector extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name in the format `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     *           The resource name in the format `projects/{@*}locations/{@*}connectors/*`.
      *     @type string $network
      *           Name of a VPC network.
      *     @type string $ip_cidr_range
@@ -102,7 +102,7 @@ class Connector extends \Google\Protobuf\Internal\Message
      *           Minimum throughput of the connector in Mbps. Default and min is 200.
      *     @type int $max_throughput
      *           Maximum throughput of the connector in Mbps. Default is 300, max is 1000.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $connected_projects
+     *     @type string[] $connected_projects
      *           Output only. List of projects using the connector.
      *     @type \Google\Cloud\VpcAccess\V1\Connector\Subnet $subnet
      *           The subnet in which to house the VPC Access Connector.
@@ -120,7 +120,7 @@ class Connector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name in the format `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     * The resource name in the format `projects/{@*}locations/{@*}connectors/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -131,7 +131,7 @@ class Connector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name in the format `projects/&#42;&#47;locations/&#42;&#47;connectors/&#42;`.
+     * The resource name in the format `projects/{@*}locations/{@*}connectors/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -281,7 +281,7 @@ class Connector extends \Google\Protobuf\Internal\Message
      * Output only. List of projects using the connector.
      *
      * Generated from protobuf field <code>repeated string connected_projects = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getConnectedProjects()
     {
@@ -292,7 +292,7 @@ class Connector extends \Google\Protobuf\Internal\Message
      * Output only. List of projects using the connector.
      *
      * Generated from protobuf field <code>repeated string connected_projects = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setConnectedProjects($var)

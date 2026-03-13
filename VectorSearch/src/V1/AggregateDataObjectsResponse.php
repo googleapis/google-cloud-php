@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class AggregateDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $aggregate_results
+     *     @type \Google\Protobuf\Struct[] $aggregate_results
      *           Output only. The aggregated results of the query.
      * }
      */
@@ -42,7 +42,7 @@ class AggregateDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The aggregated results of the query.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct aggregate_results = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getAggregateResults()
     {
@@ -53,7 +53,7 @@ class AggregateDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The aggregated results of the query.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct aggregate_results = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setAggregateResults($var)

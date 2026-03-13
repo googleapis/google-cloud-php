@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * External access firewall rules for filtering incoming traffic destined to
@@ -158,20 +158,20 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      *           The IP protocol to which the external access rule applies. This value can
      *           be one of the following three protocol strings (not case-sensitive):
      *           `tcp`, `udp`, or `icmp`.
-     *     @type array<\Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange>|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges
+     *     @type \Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange[] $source_ip_ranges
      *           If source ranges are specified, the external access rule applies only to
      *           traffic that has a source IP address in these ranges. These ranges can
      *           either be expressed in the CIDR format or as an IP address. As only inbound
      *           rules are supported, `ExternalAddress` resources cannot be the source IP
      *           addresses of an external access rule. To match all source addresses,
      *           specify `0.0.0.0/0`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ports
+     *     @type string[] $source_ports
      *           A list of source ports to which the external access rule applies. This
      *           field is only applicable for the UDP or TCP protocol.
      *           Each entry must be either an integer or a range. For example: `["22"]`,
      *           `["80","443"]`, or `["12345-12349"]`. To match all source ports, specify
      *           `["0-65535"]`.
-     *     @type array<\Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange>|\Google\Protobuf\Internal\RepeatedField $destination_ip_ranges
+     *     @type \Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange[] $destination_ip_ranges
      *           If destination ranges are specified, the external access rule applies only
      *           to the traffic that has a destination IP address in these ranges. The
      *           specified IP addresses must have reserved external IP addresses in the
@@ -179,7 +179,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      *           the scope of the parent network policy, specify `0.0.0.0/0`. To match a
      *           specific external IP address, specify it using the
      *           `IpRange.external_address` property.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_ports
+     *     @type string[] $destination_ports
      *           A list of destination ports to which the external access rule applies. This
      *           field is only applicable for the UDP or TCP protocol.
      *           Each entry must be either an integer or a range. For example: `["22"]`,
@@ -431,7 +431,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * specify `0.0.0.0/0`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.ExternalAccessRule.IpRange source_ip_ranges = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange>
      */
     public function getSourceIpRanges()
     {
@@ -447,7 +447,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * specify `0.0.0.0/0`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.ExternalAccessRule.IpRange source_ip_ranges = 9;</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange[] $var
      * @return $this
      */
     public function setSourceIpRanges($var)
@@ -466,7 +466,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * `["0-65535"]`.
      *
      * Generated from protobuf field <code>repeated string source_ports = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourcePorts()
     {
@@ -481,7 +481,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * `["0-65535"]`.
      *
      * Generated from protobuf field <code>repeated string source_ports = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourcePorts($var)
@@ -502,7 +502,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * `IpRange.external_address` property.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.ExternalAccessRule.IpRange destination_ip_ranges = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange>
      */
     public function getDestinationIpRanges()
     {
@@ -519,7 +519,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * `IpRange.external_address` property.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.ExternalAccessRule.IpRange destination_ip_ranges = 11;</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\ExternalAccessRule\IpRange[] $var
      * @return $this
      */
     public function setDestinationIpRanges($var)
@@ -538,7 +538,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * specify `["0-65535"]`.
      *
      * Generated from protobuf field <code>repeated string destination_ports = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationPorts()
     {
@@ -553,7 +553,7 @@ class ExternalAccessRule extends \Google\Protobuf\Internal\Message
      * specify `["0-65535"]`.
      *
      * Generated from protobuf field <code>repeated string destination_ports = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationPorts($var)

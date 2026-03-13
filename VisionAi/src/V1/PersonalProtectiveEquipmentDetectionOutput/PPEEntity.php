@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The entity info for annotations from PPE detection prediction result.
@@ -170,5 +170,4 @@ class PPEEntity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

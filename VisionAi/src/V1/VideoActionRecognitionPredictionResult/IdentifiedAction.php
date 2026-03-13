@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\VideoActionRecognitionPredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each IdentifiedAction is one particular identification of an action
@@ -138,5 +138,4 @@ class IdentifiedAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

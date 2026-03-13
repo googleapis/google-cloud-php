@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing node object.
@@ -79,7 +79,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *           Node config.
      *     @type string $processor
      *           Processor name refer to the chosen processor resource.
-     *     @type array<\Google\Cloud\VisionAI\V1\Node\InputEdge>|\Google\Protobuf\Internal\RepeatedField $parents
+     *     @type \Google\Cloud\VisionAI\V1\Node\InputEdge[] $parents
      *           Parent node. Input node should not have parent node. For V1 Alpha1/Beta
      *           only media warehouse node can have multiple parents, other types of nodes
      *           will only have one parent.
@@ -269,7 +269,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * will only have one parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Node.InputEdge parents = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Node\InputEdge>
      */
     public function getParents()
     {
@@ -282,7 +282,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * will only have one parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Node.InputEdge parents = 5;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Node\InputEdge>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Node\InputEdge[] $var
      * @return $this
      */
     public function setParents($var)

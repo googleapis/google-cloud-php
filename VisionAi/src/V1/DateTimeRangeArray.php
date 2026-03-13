@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of datetime range values.
@@ -28,7 +28,7 @@ class DateTimeRangeArray extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\DateTimeRange>|\Google\Protobuf\Internal\RepeatedField $date_time_ranges
+     *     @type \Google\Cloud\VisionAI\V1\DateTimeRange[] $date_time_ranges
      *           Date time ranges.
      * }
      */
@@ -41,7 +41,7 @@ class DateTimeRangeArray extends \Google\Protobuf\Internal\Message
      * Date time ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.DateTimeRange date_time_ranges = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\DateTimeRange>
      */
     public function getDateTimeRanges()
     {
@@ -52,7 +52,7 @@ class DateTimeRangeArray extends \Google\Protobuf\Internal\Message
      * Date time ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.DateTimeRange date_time_ranges = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\DateTimeRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\DateTimeRange[] $var
      * @return $this
      */
     public function setDateTimeRanges($var)

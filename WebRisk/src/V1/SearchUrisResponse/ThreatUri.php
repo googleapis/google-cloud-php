@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1\SearchUrisResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains threat information on a matching uri.
@@ -35,7 +35,7 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
+     *     @type int[] $threat_types
      *           The ThreatList this threat belongs to.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           The cache lifetime for the returned match. Clients must not cache this
@@ -51,7 +51,7 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
      * The ThreatList this threat belongs to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getThreatTypes()
     {
@@ -62,7 +62,7 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
      * The ThreatList this threat belongs to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setThreatTypes($var)
@@ -112,5 +112,4 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

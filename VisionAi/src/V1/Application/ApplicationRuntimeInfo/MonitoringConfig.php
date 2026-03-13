@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\Application\ApplicationRuntimeInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Monitoring-related configuration for an application.
@@ -64,5 +64,4 @@ class MonitoringConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

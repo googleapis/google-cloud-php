@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * TextAnnotation contains a structured representation of OCR extracted text.
@@ -41,7 +41,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Vision\V1\Page>|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type \Google\Cloud\Vision\V1\Page[] $pages
      *           List of pages detected by OCR.
      *     @type string $text
      *           UTF-8 text detected on the pages.
@@ -56,7 +56,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * List of pages detected by OCR.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\Page>
      */
     public function getPages()
     {
@@ -67,7 +67,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * List of pages detected by OCR.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
-     * @param array<\Google\Cloud\Vision\V1\Page>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\Page[] $var
      * @return $this
      */
     public function setPages($var)

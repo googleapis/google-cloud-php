@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A ScanRun is a output-only resource representing an actual run of the scan.
@@ -133,7 +133,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\WebSecurityScanner\V1\ScanRunErrorTrace $error_trace
      *           Output only. If result_state is an ERROR, this field provides the primary reason for
      *           scan's termination and more details, if such are available.
-     *     @type array<\Google\Cloud\WebSecurityScanner\V1\ScanRunWarningTrace>|\Google\Protobuf\Internal\RepeatedField $warning_traces
+     *     @type \Google\Cloud\WebSecurityScanner\V1\ScanRunWarningTrace[] $warning_traces
      *           Output only. A list of warnings, if such are encountered during this scan run.
      * }
      */
@@ -460,7 +460,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      * Output only. A list of warnings, if such are encountered during this scan run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.ScanRunWarningTrace warning_traces = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WebSecurityScanner\V1\ScanRunWarningTrace>
      */
     public function getWarningTraces()
     {
@@ -471,7 +471,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      * Output only. A list of warnings, if such are encountered during this scan run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.ScanRunWarningTrace warning_traces = 11;</code>
-     * @param array<\Google\Cloud\WebSecurityScanner\V1\ScanRunWarningTrace>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WebSecurityScanner\V1\ScanRunWarningTrace[] $var
      * @return $this
      */
     public function setWarningTraces($var)

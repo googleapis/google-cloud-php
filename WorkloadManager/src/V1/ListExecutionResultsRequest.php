@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the ListExecutionResults RPC.
@@ -17,7 +17,7 @@ class ListExecutionResultsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The execution results.
-     * Format: {parent}/evaluations/&#42;&#47;executions/&#42;&#47;results.
+     * Format: {parent}/evaluations/{@*}executions/{@*}results.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,7 +64,7 @@ class ListExecutionResultsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The execution results.
-     *           Format: {parent}/evaluations/&#42;&#47;executions/&#42;&#47;results.
+     *           Format: {parent}/evaluations/{@*}executions/{@*}results.
      *     @type int $page_size
      *           Requested page size. Server may return fewer items than requested.
      *           If unspecified, server will pick an appropriate default.
@@ -81,7 +81,7 @@ class ListExecutionResultsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The execution results.
-     * Format: {parent}/evaluations/&#42;&#47;executions/&#42;&#47;results.
+     * Format: {parent}/evaluations/{@*}executions/{@*}results.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -93,7 +93,7 @@ class ListExecutionResultsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The execution results.
-     * Format: {parent}/evaluations/&#42;&#47;executions/&#42;&#47;results.
+     * Format: {parent}/evaluations/{@*}executions/{@*}results.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

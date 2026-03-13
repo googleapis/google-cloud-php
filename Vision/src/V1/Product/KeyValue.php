@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1\Product;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A product label represented as a key-value pair.
@@ -106,5 +106,4 @@ class KeyValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\FacetProperty;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If bucket type is FIXED_RANGE, specify how values are bucketized. Use
@@ -166,5 +166,4 @@ class FixedRangeBucketSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

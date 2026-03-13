@@ -25,285 +25,7 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-ªi
-.google/cloud/video/livestream/v1/service.proto google.cloud.video.livestream.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/field_info.protogoogle/api/resource.proto0google/cloud/video/livestream/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"µ
-CreateAssetRequest7
-parent (	B\'àAúA!livestream.googleapis.com/Asset;
-asset (2\'.google.cloud.video.livestream.v1.AssetBàA
-asset_id (	BàA
-
-request_id (	"_
-DeleteAssetRequest5
-name (	B\'àAúA!
-livestream.googleapis.com/Asset
-
-request_id (	"•
-ListAssetsRequest7
-parent (	B\'àAúA!livestream.googleapis.com/Asset
-	page_size (
-
-page_token (	
-filter (	
-order_by (	"{
-ListAssetsResponse7
-assets (2\'.google.cloud.video.livestream.v1.Asset
-next_page_token (	
-unreachable (	"H
-GetAssetRequest5
-name (	B\'àAúA!
-livestream.googleapis.com/Asset"¿
-CreateChannelRequest9
-parent (	B)àAúA#!livestream.googleapis.com/Channel?
-channel (2).google.cloud.video.livestream.v1.ChannelBàA
-
-channel_id (	BàA
-
-request_id (	"™
-ListChannelsRequest9
-parent (	B)àAúA#!livestream.googleapis.com/Channel
-	page_size (
-
-page_token (	
-filter (	
-order_by (	"
-ListChannelsResponse;
-channels (2).google.cloud.video.livestream.v1.Channel
-next_page_token (	
-unreachable (	"L
-GetChannelRequest7
-name (	B)àAúA#
-!livestream.googleapis.com/Channel"r
-DeleteChannelRequest7
-name (	B)àAúA#
-!livestream.googleapis.com/Channel
-
-request_id (	
-force ("œ
-UpdateChannelRequest/
-update_mask (2.google.protobuf.FieldMask?
-channel (2).google.cloud.video.livestream.v1.ChannelBàA
-
-request_id (	"b
-StartChannelRequest7
-name (	B)àAúA#
-!livestream.googleapis.com/Channel
-
-request_id (	"a
-StopChannelRequest7
-name (	B)àAúA#
-!livestream.googleapis.com/Channel
-
-request_id (	"”
-StartDistributionRequest7
-name (	B)àAúA#
-!livestream.googleapis.com/Channel
-distribution_keys (	BàA
-
-request_id (	BàAâŒÏ×"“
-StopDistributionRequest7
-name (	B)àAúA#
-!livestream.googleapis.com/Channel
-distribution_keys (	BàA
-
-request_id (	BàAâŒÏ×"µ
-CreateInputRequest7
-parent (	B\'àAúA!livestream.googleapis.com/Input;
-input (2\'.google.cloud.video.livestream.v1.InputBàA
-input_id (	BàA
-
-request_id (	"•
-ListInputsRequest7
-parent (	B\'àAúA!livestream.googleapis.com/Input
-	page_size (
-
-page_token (	
-filter (	
-order_by (	"{
-ListInputsResponse7
-inputs (2\'.google.cloud.video.livestream.v1.Input
-next_page_token (	
-unreachable (	"H
-GetInputRequest5
-name (	B\'àAúA!
-livestream.googleapis.com/Input"_
-DeleteInputRequest5
-name (	B\'àAúA!
-livestream.googleapis.com/Input
-
-request_id (	"–
-UpdateInputRequest/
-update_mask (2.google.protobuf.FieldMask;
-input (2\'.google.cloud.video.livestream.v1.InputBàA
-
-request_id (	"µ
-CreateEventRequest7
-parent (	B\'àAúA!livestream.googleapis.com/Event;
-event (2\'.google.cloud.video.livestream.v1.EventBàA
-event_id (	BàA
-
-request_id (	"•
-ListEventsRequest7
-parent (	B\'àAúA!livestream.googleapis.com/Event
-	page_size (
-
-page_token (	
-filter (	
-order_by (	"{
-ListEventsResponse7
-events (2\'.google.cloud.video.livestream.v1.Event
-next_page_token (	
-unreachable (	"H
-GetEventRequest5
-name (	B\'àAúA!
-livestream.googleapis.com/Event"_
-DeleteEventRequest5
-name (	B\'àAúA!
-livestream.googleapis.com/Event
-
-request_id (	"
-ChannelOperationResponse"“
-ListClipsRequest6
-parent (	B&àAúA livestream.googleapis.com/Clip
-	page_size (
-
-page_token (	
-filter (	
-order_by (	"x
-ListClipsResponse5
-clips (2&.google.cloud.video.livestream.v1.Clip
-next_page_token (	
-unreachable (	"F
-GetClipRequest4
-name (	B&àAúA 
-livestream.googleapis.com/Clip"µ
-CreateClipRequest6
-parent (	B&àAúA livestream.googleapis.com/Clip
-clip_id (	BàA9
-clip (2&.google.cloud.video.livestream.v1.ClipBàA
-
-request_id (	BàA"j
-DeleteClipRequest4
-name (	B&àAúA 
-livestream.googleapis.com/Clip
-
-request_id (	BàAâŒÏ×"³
-ListDvrSessionsRequest<
-parent (	B,àAúA&$livestream.googleapis.com/DvrSession
-	page_size (BàA
-
-page_token (	BàA
-filter (	BàA
-order_by (	BàA"‹
-ListDvrSessionsResponseB
-dvr_sessions (2,.google.cloud.video.livestream.v1.DvrSession
-next_page_token (	
-unreachable (	"R
-GetDvrSessionRequest:
-name (	B,àAúA&
-$livestream.googleapis.com/DvrSession"İ
-CreateDvrSessionRequest<
-parent (	B,àAúA&$livestream.googleapis.com/DvrSession
-dvr_session_id (	BàAF
-dvr_session (2,.google.cloud.video.livestream.v1.DvrSessionBàA
-
-request_id (	BàAâŒÏ×"v
-DeleteDvrSessionRequest:
-name (	B,àAúA&
-$livestream.googleapis.com/DvrSession
-
-request_id (	BàAâŒÏ×"¸
-UpdateDvrSessionRequest4
-update_mask (2.google.protobuf.FieldMaskBàAF
-dvr_session (2,.google.cloud.video.livestream.v1.DvrSessionBàA
-
-request_id (	BàAâŒÏ×"ã
-OperationMetadata4
-create_time (2.google.protobuf.TimestampBàA1
-end_time (2.google.protobuf.TimestampBàA
-target (	BàA
-verb (	BàA#
-requested_cancellation (BàA
-api_version (	BàA"F
-GetPoolRequest4
-name (	B&àAúA 
-livestream.googleapis.com/Pool"“
-UpdatePoolRequest/
-update_mask (2.google.protobuf.FieldMask9
-pool (2&.google.cloud.video.livestream.v1.PoolBàA
-
-request_id (	"L
-PreviewInputRequest5
-name (	B\'àAúA!
-livestream.googleapis.com/Input"9
-PreviewInputResponse
-uri (	
-bearer_token (	2¸7
-LivestreamServiceà
-CreateChannel6.google.cloud.video.livestream.v1.CreateChannelRequest.google.longrunning.Operation"xÊA
-ChannelOperationMetadataÚAparent,channel,channel_id‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channel¼
-ListChannels5.google.cloud.video.livestream.v1.ListChannelsRequest6.google.cloud.video.livestream.v1.ListChannelsResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/channels©
-
-GetChannel3.google.cloud.video.livestream.v1.GetChannelRequest).google.cloud.video.livestream.v1.Channel";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/channels/*}Ğ
-DeleteChannel6.google.cloud.video.livestream.v1.DeleteChannelRequest.google.longrunning.Operation"hÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“.*,/v1/{name=projects/*/locations/*/channels/*}â
-UpdateChannel6.google.cloud.video.livestream.v1.UpdateChannelRequest.google.longrunning.Operation"zÊA
-ChannelOperationMetadataÚAchannel,update_mask‚Óä“?24/v1/{channel.name=projects/*/locations/*/channels/*}:channelÚ
-StartChannel5.google.cloud.video.livestream.v1.StartChannelRequest.google.longrunning.Operation"tÊA-
-ChannelOperationResponseOperationMetadataÚAname‚Óä“7"2/v1/{name=projects/*/locations/*/channels/*}:start:*×
-StopChannel4.google.cloud.video.livestream.v1.StopChannelRequest.google.longrunning.Operation"sÊA-
-ChannelOperationResponseOperationMetadataÚAname‚Óä“6"1/v1/{name=projects/*/locations/*/channels/*}:stop:*ƒ
-StartDistribution:.google.cloud.video.livestream.v1.StartDistributionRequest.google.longrunning.Operation"’ÊA-
-ChannelOperationResponseOperationMetadataÚAname,distribution_keys‚Óä“C">/v1/{name=projects/*/locations/*/channels/*}:startdistribution:*€
-StopDistribution9.google.cloud.video.livestream.v1.StopDistributionRequest.google.longrunning.Operation"‘ÊA-
-ChannelOperationResponseOperationMetadataÚAname,distribution_keys‚Óä“B"=/v1/{name=projects/*/locations/*/channels/*}:stopdistribution:*Ò
-CreateInput4.google.cloud.video.livestream.v1.CreateInputRequest.google.longrunning.Operation"nÊA
-InputOperationMetadataÚAparent,input,input_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/inputs:input´
-
-ListInputs3.google.cloud.video.livestream.v1.ListInputsRequest4.google.cloud.video.livestream.v1.ListInputsResponse";ÚAparent‚Óä“,*/v1/{parent=projects/*/locations/*}/inputs¡
-GetInput1.google.cloud.video.livestream.v1.GetInputRequest\'.google.cloud.video.livestream.v1.Input"9ÚAname‚Óä“,*/v1/{name=projects/*/locations/*/inputs/*}Ê
-DeleteInput4.google.cloud.video.livestream.v1.DeleteInputRequest.google.longrunning.Operation"fÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/inputs/*}Ô
-UpdateInput4.google.cloud.video.livestream.v1.UpdateInputRequest.google.longrunning.Operation"pÊA
-InputOperationMetadataÚAinput,update_mask‚Óä“920/v1/{input.name=projects/*/locations/*/inputs/*}:inputÃ
-PreviewInput5.google.cloud.video.livestream.v1.PreviewInputRequest6.google.cloud.video.livestream.v1.PreviewInputResponse"DÚAname‚Óä“7"2/v1/{name=projects/*/locations/*/inputs/*}:preview:*Ê
-CreateEvent4.google.cloud.video.livestream.v1.CreateEventRequest\'.google.cloud.video.livestream.v1.Event"\\ÚAparent,event,event_id‚Óä“>"5/v1/{parent=projects/*/locations/*/channels/*}/events:event¿
-
-ListEvents3.google.cloud.video.livestream.v1.ListEventsRequest4.google.cloud.video.livestream.v1.ListEventsResponse"FÚAparent‚Óä“75/v1/{parent=projects/*/locations/*/channels/*}/events¬
-GetEvent1.google.cloud.video.livestream.v1.GetEventRequest\'.google.cloud.video.livestream.v1.Event"DÚAname‚Óä“75/v1/{name=projects/*/locations/*/channels/*/events/*}¡
-DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"DÚAname‚Óä“7*5/v1/{name=projects/*/locations/*/channels/*/events/*}»
-	ListClips2.google.cloud.video.livestream.v1.ListClipsRequest3.google.cloud.video.livestream.v1.ListClipsResponse"EÚAparent‚Óä“64/v1/{parent=projects/*/locations/*/channels/*}/clips¨
-GetClip0.google.cloud.video.livestream.v1.GetClipRequest&.google.cloud.video.livestream.v1.Clip"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/channels/*/clips/*}Ö
-
-CreateClip3.google.cloud.video.livestream.v1.CreateClipRequest.google.longrunning.Operation"tÊA
-ClipOperationMetadataÚAparent,clip,clip_id‚Óä“<"4/v1/{parent=projects/*/locations/*/channels/*}/clips:clipÒ
-
-DeleteClip3.google.cloud.video.livestream.v1.DeleteClipRequest.google.longrunning.Operation"pÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/channels/*/clips/*}„
-CreateDvrSession9.google.cloud.video.livestream.v1.CreateDvrSessionRequest.google.longrunning.Operation"•ÊA
-
-DvrSessionOperationMetadataÚA!parent,dvr_session,dvr_session_id‚Óä“I":/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions:dvr_sessionÓ
-ListDvrSessions8.google.cloud.video.livestream.v1.ListDvrSessionsRequest9.google.cloud.video.livestream.v1.ListDvrSessionsResponse"KÚAparent‚Óä“<:/v1/{parent=projects/*/locations/*/channels/*}/dvrSessionsÀ
-GetDvrSession6.google.cloud.video.livestream.v1.GetDvrSessionRequest,.google.cloud.video.livestream.v1.DvrSession"IÚAname‚Óä“<:/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}ä
-DeleteDvrSession9.google.cloud.video.livestream.v1.DeleteDvrSessionRequest.google.longrunning.Operation"vÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“<*:/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}†
-UpdateDvrSession9.google.cloud.video.livestream.v1.UpdateDvrSessionRequest.google.longrunning.Operation"—ÊA
-
-DvrSessionOperationMetadataÚAdvr_session,update_mask‚Óä“U2F/v1/{dvr_session.name=projects/*/locations/*/channels/*/dvrSessions/*}:dvr_sessionÒ
-CreateAsset4.google.cloud.video.livestream.v1.CreateAssetRequest.google.longrunning.Operation"nÊA
-AssetOperationMetadataÚAparent,asset,asset_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/assets:assetÊ
-DeleteAsset4.google.cloud.video.livestream.v1.DeleteAssetRequest.google.longrunning.Operation"fÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/assets/*}¡
-GetAsset1.google.cloud.video.livestream.v1.GetAssetRequest\'.google.cloud.video.livestream.v1.Asset"9ÚAname‚Óä“,*/v1/{name=projects/*/locations/*/assets/*}´
-
-ListAssets3.google.cloud.video.livestream.v1.ListAssetsRequest4.google.cloud.video.livestream.v1.ListAssetsResponse";ÚAparent‚Óä“,*/v1/{parent=projects/*/locations/*}/assets
-GetPool0.google.cloud.video.livestream.v1.GetPoolRequest&.google.cloud.video.livestream.v1.Pool"8ÚAname‚Óä“+)/v1/{name=projects/*/locations/*/pools/*}Í
-
-UpdatePool3.google.cloud.video.livestream.v1.UpdatePoolRequest.google.longrunning.Operation"kÊA
-PoolOperationMetadataÚApool,update_mask‚Óä“62./v1/{pool.name=projects/*/locations/*/pools/*}:poolMÊAlivestream.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¡
-$com.google.cloud.video.livestream.v1BServiceProtoPZDcloud.google.com/go/video/livestream/apiv1/livestreampb;livestreampbª Google.Cloud.Video.LiveStream.V1Ê Google\\Cloud\\Video\\LiveStream\\V1ê$Google::Cloud::Video::LiveStream::V1êAd
-*secretmanager.googleapis.com/SecretVersion6projects/{project}/secrets/{secret}/versions/{version}êAN
-compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
+            "\x0A\xAAi\x0A.google/cloud/video/livestream/v1/service.proto\x12 google.cloud.video.livestream.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x1Bgoogle/api/field_info.proto\x1A\x19google/api/resource.proto\x1A0google/cloud/video/livestream/v1/resources.proto\x1A#google/longrunning/operations.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A google/protobuf/field_mask.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xB5\x01\x0A\x12CreateAssetRequest\x127\x0A\x06parent\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x12\x1Flivestream.googleapis.com/Asset\x12;\x0A\x05asset\x18\x02 \x01(\x0B2'.google.cloud.video.livestream.v1.AssetB\x03\xE0A\x02\x12\x15\x0A\x08asset_id\x18\x03 \x01(\x09B\x03\xE0A\x02\x12\x12\x0A\x0Arequest_id\x18\x04 \x01(\x09\"_\x0A\x12DeleteAssetRequest\x125\x0A\x04name\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x0A\x1Flivestream.googleapis.com/Asset\x12\x12\x0A\x0Arequest_id\x18\x02 \x01(\x09\"\x95\x01\x0A\x11ListAssetsRequest\x127\x0A\x06parent\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x12\x1Flivestream.googleapis.com/Asset\x12\x11\x0A\x09page_size\x18\x02 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x03 \x01(\x09\x12\x0E\x0A\x06filter\x18\x04 \x01(\x09\x12\x10\x0A\x08order_by\x18\x05 \x01(\x09\"{\x0A\x12ListAssetsResponse\x127\x0A\x06assets\x18\x01 \x03(\x0B2'.google.cloud.video.livestream.v1.Asset\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x13\x0A\x0Bunreachable\x18\x03 \x03(\x09\"H\x0A\x0FGetAssetRequest\x125\x0A\x04name\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x0A\x1Flivestream.googleapis.com/Asset\"\xBF\x01\x0A\x14CreateChannelRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x12!livestream.googleapis.com/Channel\x12?\x0A\x07channel\x18\x02 \x01(\x0B2).google.cloud.video.livestream.v1.ChannelB\x03\xE0A\x02\x12\x17\x0A\x0Achannel_id\x18\x03 \x01(\x09B\x03\xE0A\x02\x12\x12\x0A\x0Arequest_id\x18\x04 \x01(\x09\"\x99\x01\x0A\x13ListChannelsRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x12!livestream.googleapis.com/Channel\x12\x11\x0A\x09page_size\x18\x02 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x03 \x01(\x09\x12\x0E\x0A\x06filter\x18\x04 \x01(\x09\x12\x10\x0A\x08order_by\x18\x05 \x01(\x09\"\x81\x01\x0A\x14ListChannelsResponse\x12;\x0A\x08channels\x18\x01 \x03(\x0B2).google.cloud.video.livestream.v1.Channel\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x13\x0A\x0Bunreachable\x18\x03 \x03(\x09\"L\x0A\x11GetChannelRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!livestream.googleapis.com/Channel\"r\x0A\x14DeleteChannelRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!livestream.googleapis.com/Channel\x12\x12\x0A\x0Arequest_id\x18\x02 \x01(\x09\x12\x0D\x0A\x05force\x18\x03 \x01(\x08\"\x9C\x01\x0A\x14UpdateChannelRequest\x12/\x0A\x0Bupdate_mask\x18\x01 \x01(\x0B2\x1A.google.protobuf.FieldMask\x12?\x0A\x07channel\x18\x02 \x01(\x0B2).google.cloud.video.livestream.v1.ChannelB\x03\xE0A\x02\x12\x12\x0A\x0Arequest_id\x18\x03 \x01(\x09\"b\x0A\x13StartChannelRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!livestream.googleapis.com/Channel\x12\x12\x0A\x0Arequest_id\x18\x02 \x01(\x09\"a\x0A\x12StopChannelRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!livestream.googleapis.com/Channel\x12\x12\x0A\x0Arequest_id\x18\x02 \x01(\x09\"\x94\x01\x0A\x18StartDistributionRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!livestream.googleapis.com/Channel\x12\x1E\x0A\x11distribution_keys\x18\x02 \x03(\x09B\x03\xE0A\x01\x12\x1F\x0A\x0Arequest_id\x18\x03 \x01(\x09B\x0B\xE0A\x01\xE2\x8C\xCF\xD7\x08\x02\x08\x01\"\x93\x01\x0A\x17StopDistributionRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!livestream.googleapis.com/Channel\x12\x1E\x0A\x11distribution_keys\x18\x02 \x03(\x09B\x03\xE0A\x01\x12\x1F\x0A\x0Arequest_id\x18\x03 \x01(\x09B\x0B\xE0A\x01\xE2\x8C\xCF\xD7\x08\x02\x08\x01\"\xB5\x01\x0A\x12CreateInputRequest\x127\x0A\x06parent\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x12\x1Flivestream.googleapis.com/Input\x12;\x0A\x05input\x18\x02 \x01(\x0B2'.google.cloud.video.livestream.v1.InputB\x03\xE0A\x02\x12\x15\x0A\x08input_id\x18\x03 \x01(\x09B\x03\xE0A\x02\x12\x12\x0A\x0Arequest_id\x18\x04 \x01(\x09\"\x95\x01\x0A\x11ListInputsRequest\x127\x0A\x06parent\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x12\x1Flivestream.googleapis.com/Input\x12\x11\x0A\x09page_size\x18\x02 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x03 \x01(\x09\x12\x0E\x0A\x06filter\x18\x04 \x01(\x09\x12\x10\x0A\x08order_by\x18\x05 \x01(\x09\"{\x0A\x12ListInputsResponse\x127\x0A\x06inputs\x18\x01 \x03(\x0B2'.google.cloud.video.livestream.v1.Input\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x13\x0A\x0Bunreachable\x18\x03 \x03(\x09\"H\x0A\x0FGetInputRequest\x125\x0A\x04name\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x0A\x1Flivestream.googleapis.com/Input\"_\x0A\x12DeleteInputRequest\x125\x0A\x04name\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x0A\x1Flivestream.googleapis.com/Input\x12\x12\x0A\x0Arequest_id\x18\x02 \x01(\x09\"\x96\x01\x0A\x12UpdateInputRequest\x12/\x0A\x0Bupdate_mask\x18\x01 \x01(\x0B2\x1A.google.protobuf.FieldMask\x12;\x0A\x05input\x18\x02 \x01(\x0B2'.google.cloud.video.livestream.v1.InputB\x03\xE0A\x02\x12\x12\x0A\x0Arequest_id\x18\x03 \x01(\x09\"\xB5\x01\x0A\x12CreateEventRequest\x127\x0A\x06parent\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x12\x1Flivestream.googleapis.com/Event\x12;\x0A\x05event\x18\x02 \x01(\x0B2'.google.cloud.video.livestream.v1.EventB\x03\xE0A\x02\x12\x15\x0A\x08event_id\x18\x03 \x01(\x09B\x03\xE0A\x02\x12\x12\x0A\x0Arequest_id\x18\x04 \x01(\x09\"\x95\x01\x0A\x11ListEventsRequest\x127\x0A\x06parent\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x12\x1Flivestream.googleapis.com/Event\x12\x11\x0A\x09page_size\x18\x02 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x03 \x01(\x09\x12\x0E\x0A\x06filter\x18\x04 \x01(\x09\x12\x10\x0A\x08order_by\x18\x05 \x01(\x09\"{\x0A\x12ListEventsResponse\x127\x0A\x06events\x18\x01 \x03(\x0B2'.google.cloud.video.livestream.v1.Event\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x13\x0A\x0Bunreachable\x18\x03 \x03(\x09\"H\x0A\x0FGetEventRequest\x125\x0A\x04name\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x0A\x1Flivestream.googleapis.com/Event\"_\x0A\x12DeleteEventRequest\x125\x0A\x04name\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x0A\x1Flivestream.googleapis.com/Event\x12\x12\x0A\x0Arequest_id\x18\x02 \x01(\x09\"\x1A\x0A\x18ChannelOperationResponse\"\x93\x01\x0A\x10ListClipsRequest\x126\x0A\x06parent\x18\x01 \x01(\x09B&\xE0A\x02\xFAA \x12\x1Elivestream.googleapis.com/Clip\x12\x11\x0A\x09page_size\x18\x02 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x03 \x01(\x09\x12\x0E\x0A\x06filter\x18\x04 \x01(\x09\x12\x10\x0A\x08order_by\x18\x05 \x01(\x09\"x\x0A\x11ListClipsResponse\x125\x0A\x05clips\x18\x01 \x03(\x0B2&.google.cloud.video.livestream.v1.Clip\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x13\x0A\x0Bunreachable\x18\x03 \x03(\x09\"F\x0A\x0EGetClipRequest\x124\x0A\x04name\x18\x01 \x01(\x09B&\xE0A\x02\xFAA \x0A\x1Elivestream.googleapis.com/Clip\"\xB5\x01\x0A\x11CreateClipRequest\x126\x0A\x06parent\x18\x01 \x01(\x09B&\xE0A\x02\xFAA \x12\x1Elivestream.googleapis.com/Clip\x12\x14\x0A\x07clip_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x129\x0A\x04clip\x18\x03 \x01(\x0B2&.google.cloud.video.livestream.v1.ClipB\x03\xE0A\x02\x12\x17\x0A\x0Arequest_id\x18\x04 \x01(\x09B\x03\xE0A\x01\"j\x0A\x11DeleteClipRequest\x124\x0A\x04name\x18\x01 \x01(\x09B&\xE0A\x02\xFAA \x0A\x1Elivestream.googleapis.com/Clip\x12\x1F\x0A\x0Arequest_id\x18\x02 \x01(\x09B\x0B\xE0A\x01\xE2\x8C\xCF\xD7\x08\x02\x08\x01\"\xB3\x01\x0A\x16ListDvrSessionsRequest\x12<\x0A\x06parent\x18\x01 \x01(\x09B,\xE0A\x02\xFAA&\x12\$livestream.googleapis.com/DvrSession\x12\x16\x0A\x09page_size\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x03 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x04 \x01(\x09B\x03\xE0A\x01\x12\x15\x0A\x08order_by\x18\x05 \x01(\x09B\x03\xE0A\x01\"\x8B\x01\x0A\x17ListDvrSessionsResponse\x12B\x0A\x0Cdvr_sessions\x18\x01 \x03(\x0B2,.google.cloud.video.livestream.v1.DvrSession\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\x12\x13\x0A\x0Bunreachable\x18\x03 \x03(\x09\"R\x0A\x14GetDvrSessionRequest\x12:\x0A\x04name\x18\x01 \x01(\x09B,\xE0A\x02\xFAA&\x0A\$livestream.googleapis.com/DvrSession\"\xDD\x01\x0A\x17CreateDvrSessionRequest\x12<\x0A\x06parent\x18\x01 \x01(\x09B,\xE0A\x02\xFAA&\x12\$livestream.googleapis.com/DvrSession\x12\x1B\x0A\x0Edvr_session_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x12F\x0A\x0Bdvr_session\x18\x03 \x01(\x0B2,.google.cloud.video.livestream.v1.DvrSessionB\x03\xE0A\x02\x12\x1F\x0A\x0Arequest_id\x18\x04 \x01(\x09B\x0B\xE0A\x01\xE2\x8C\xCF\xD7\x08\x02\x08\x01\"v\x0A\x17DeleteDvrSessionRequest\x12:\x0A\x04name\x18\x01 \x01(\x09B,\xE0A\x02\xFAA&\x0A\$livestream.googleapis.com/DvrSession\x12\x1F\x0A\x0Arequest_id\x18\x02 \x01(\x09B\x0B\xE0A\x01\xE2\x8C\xCF\xD7\x08\x02\x08\x01\"\xB8\x01\x0A\x17UpdateDvrSessionRequest\x124\x0A\x0Bupdate_mask\x18\x01 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x02\x12F\x0A\x0Bdvr_session\x18\x02 \x01(\x0B2,.google.cloud.video.livestream.v1.DvrSessionB\x03\xE0A\x02\x12\x1F\x0A\x0Arequest_id\x18\x03 \x01(\x09B\x0B\xE0A\x01\xE2\x8C\xCF\xD7\x08\x02\x08\x01\"\xE3\x01\x0A\x11OperationMetadata\x124\x0A\x0Bcreate_time\x18\x01 \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x121\x0A\x08end_time\x18\x02 \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x12\x13\x0A\x06target\x18\x03 \x01(\x09B\x03\xE0A\x03\x12\x11\x0A\x04verb\x18\x04 \x01(\x09B\x03\xE0A\x03\x12#\x0A\x16requested_cancellation\x18\x05 \x01(\x08B\x03\xE0A\x03\x12\x18\x0A\x0Bapi_version\x18\x06 \x01(\x09B\x03\xE0A\x03\"F\x0A\x0EGetPoolRequest\x124\x0A\x04name\x18\x01 \x01(\x09B&\xE0A\x02\xFAA \x0A\x1Elivestream.googleapis.com/Pool\"\x93\x01\x0A\x11UpdatePoolRequest\x12/\x0A\x0Bupdate_mask\x18\x01 \x01(\x0B2\x1A.google.protobuf.FieldMask\x129\x0A\x04pool\x18\x02 \x01(\x0B2&.google.cloud.video.livestream.v1.PoolB\x03\xE0A\x02\x12\x12\x0A\x0Arequest_id\x18\x03 \x01(\x09\"L\x0A\x13PreviewInputRequest\x125\x0A\x04name\x18\x01 \x01(\x09B'\xE0A\x02\xFAA!\x0A\x1Flivestream.googleapis.com/Input\"9\x0A\x14PreviewInputResponse\x12\x0B\x0A\x03uri\x18\x01 \x01(\x09\x12\x14\x0A\x0Cbearer_token\x18\x02 \x01(\x092\xB87\x0A\x11LivestreamService\x12\xE0\x01\x0A\x0DCreateChannel\x126.google.cloud.video.livestream.v1.CreateChannelRequest\x1A\x1D.google.longrunning.Operation\"x\xCAA\x1C\x0A\x07Channel\x12\x11OperationMetadata\xDAA\x19parent,channel,channel_id\x82\xD3\xE4\x93\x027\",/v1/{parent=projects/*/locations/*}/channels:\x07channel\x12\xBC\x01\x0A\x0CListChannels\x125.google.cloud.video.livestream.v1.ListChannelsRequest\x1A6.google.cloud.video.livestream.v1.ListChannelsResponse\"=\xDAA\x06parent\x82\xD3\xE4\x93\x02.\x12,/v1/{parent=projects/*/locations/*}/channels\x12\xA9\x01\x0A\x0AGetChannel\x123.google.cloud.video.livestream.v1.GetChannelRequest\x1A).google.cloud.video.livestream.v1.Channel\";\xDAA\x04name\x82\xD3\xE4\x93\x02.\x12,/v1/{name=projects/*/locations/*/channels/*}\x12\xD0\x01\x0A\x0DDeleteChannel\x126.google.cloud.video.livestream.v1.DeleteChannelRequest\x1A\x1D.google.longrunning.Operation\"h\xCAA*\x0A\x15google.protobuf.Empty\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02.*,/v1/{name=projects/*/locations/*/channels/*}\x12\xE2\x01\x0A\x0DUpdateChannel\x126.google.cloud.video.livestream.v1.UpdateChannelRequest\x1A\x1D.google.longrunning.Operation\"z\xCAA\x1C\x0A\x07Channel\x12\x11OperationMetadata\xDAA\x13channel,update_mask\x82\xD3\xE4\x93\x02?24/v1/{channel.name=projects/*/locations/*/channels/*}:\x07channel\x12\xDA\x01\x0A\x0CStartChannel\x125.google.cloud.video.livestream.v1.StartChannelRequest\x1A\x1D.google.longrunning.Operation\"t\xCAA-\x0A\x18ChannelOperationResponse\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x027\"2/v1/{name=projects/*/locations/*/channels/*}:start:\x01*\x12\xD7\x01\x0A\x0BStopChannel\x124.google.cloud.video.livestream.v1.StopChannelRequest\x1A\x1D.google.longrunning.Operation\"s\xCAA-\x0A\x18ChannelOperationResponse\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x026\"1/v1/{name=projects/*/locations/*/channels/*}:stop:\x01*\x12\x83\x02\x0A\x11StartDistribution\x12:.google.cloud.video.livestream.v1.StartDistributionRequest\x1A\x1D.google.longrunning.Operation\"\x92\x01\xCAA-\x0A\x18ChannelOperationResponse\x12\x11OperationMetadata\xDAA\x16name,distribution_keys\x82\xD3\xE4\x93\x02C\">/v1/{name=projects/*/locations/*/channels/*}:startdistribution:\x01*\x12\x80\x02\x0A\x10StopDistribution\x129.google.cloud.video.livestream.v1.StopDistributionRequest\x1A\x1D.google.longrunning.Operation\"\x91\x01\xCAA-\x0A\x18ChannelOperationResponse\x12\x11OperationMetadata\xDAA\x16name,distribution_keys\x82\xD3\xE4\x93\x02B\"=/v1/{name=projects/*/locations/*/channels/*}:stopdistribution:\x01*\x12\xD2\x01\x0A\x0BCreateInput\x124.google.cloud.video.livestream.v1.CreateInputRequest\x1A\x1D.google.longrunning.Operation\"n\xCAA\x1A\x0A\x05Input\x12\x11OperationMetadata\xDAA\x15parent,input,input_id\x82\xD3\xE4\x93\x023\"*/v1/{parent=projects/*/locations/*}/inputs:\x05input\x12\xB4\x01\x0A\x0AListInputs\x123.google.cloud.video.livestream.v1.ListInputsRequest\x1A4.google.cloud.video.livestream.v1.ListInputsResponse\";\xDAA\x06parent\x82\xD3\xE4\x93\x02,\x12*/v1/{parent=projects/*/locations/*}/inputs\x12\xA1\x01\x0A\x08GetInput\x121.google.cloud.video.livestream.v1.GetInputRequest\x1A'.google.cloud.video.livestream.v1.Input\"9\xDAA\x04name\x82\xD3\xE4\x93\x02,\x12*/v1/{name=projects/*/locations/*/inputs/*}\x12\xCA\x01\x0A\x0BDeleteInput\x124.google.cloud.video.livestream.v1.DeleteInputRequest\x1A\x1D.google.longrunning.Operation\"f\xCAA*\x0A\x15google.protobuf.Empty\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02,**/v1/{name=projects/*/locations/*/inputs/*}\x12\xD4\x01\x0A\x0BUpdateInput\x124.google.cloud.video.livestream.v1.UpdateInputRequest\x1A\x1D.google.longrunning.Operation\"p\xCAA\x1A\x0A\x05Input\x12\x11OperationMetadata\xDAA\x11input,update_mask\x82\xD3\xE4\x93\x02920/v1/{input.name=projects/*/locations/*/inputs/*}:\x05input\x12\xC3\x01\x0A\x0CPreviewInput\x125.google.cloud.video.livestream.v1.PreviewInputRequest\x1A6.google.cloud.video.livestream.v1.PreviewInputResponse\"D\xDAA\x04name\x82\xD3\xE4\x93\x027\"2/v1/{name=projects/*/locations/*/inputs/*}:preview:\x01*\x12\xCA\x01\x0A\x0BCreateEvent\x124.google.cloud.video.livestream.v1.CreateEventRequest\x1A'.google.cloud.video.livestream.v1.Event\"\\\xDAA\x15parent,event,event_id\x82\xD3\xE4\x93\x02>\"5/v1/{parent=projects/*/locations/*/channels/*}/events:\x05event\x12\xBF\x01\x0A\x0AListEvents\x123.google.cloud.video.livestream.v1.ListEventsRequest\x1A4.google.cloud.video.livestream.v1.ListEventsResponse\"F\xDAA\x06parent\x82\xD3\xE4\x93\x027\x125/v1/{parent=projects/*/locations/*/channels/*}/events\x12\xAC\x01\x0A\x08GetEvent\x121.google.cloud.video.livestream.v1.GetEventRequest\x1A'.google.cloud.video.livestream.v1.Event\"D\xDAA\x04name\x82\xD3\xE4\x93\x027\x125/v1/{name=projects/*/locations/*/channels/*/events/*}\x12\xA1\x01\x0A\x0BDeleteEvent\x124.google.cloud.video.livestream.v1.DeleteEventRequest\x1A\x16.google.protobuf.Empty\"D\xDAA\x04name\x82\xD3\xE4\x93\x027*5/v1/{name=projects/*/locations/*/channels/*/events/*}\x12\xBB\x01\x0A\x09ListClips\x122.google.cloud.video.livestream.v1.ListClipsRequest\x1A3.google.cloud.video.livestream.v1.ListClipsResponse\"E\xDAA\x06parent\x82\xD3\xE4\x93\x026\x124/v1/{parent=projects/*/locations/*/channels/*}/clips\x12\xA8\x01\x0A\x07GetClip\x120.google.cloud.video.livestream.v1.GetClipRequest\x1A&.google.cloud.video.livestream.v1.Clip\"C\xDAA\x04name\x82\xD3\xE4\x93\x026\x124/v1/{name=projects/*/locations/*/channels/*/clips/*}\x12\xD6\x01\x0A\x0ACreateClip\x123.google.cloud.video.livestream.v1.CreateClipRequest\x1A\x1D.google.longrunning.Operation\"t\xCAA\x19\x0A\x04Clip\x12\x11OperationMetadata\xDAA\x13parent,clip,clip_id\x82\xD3\xE4\x93\x02<\"4/v1/{parent=projects/*/locations/*/channels/*}/clips:\x04clip\x12\xD2\x01\x0A\x0ADeleteClip\x123.google.cloud.video.livestream.v1.DeleteClipRequest\x1A\x1D.google.longrunning.Operation\"p\xCAA*\x0A\x15google.protobuf.Empty\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x026*4/v1/{name=projects/*/locations/*/channels/*/clips/*}\x12\x84\x02\x0A\x10CreateDvrSession\x129.google.cloud.video.livestream.v1.CreateDvrSessionRequest\x1A\x1D.google.longrunning.Operation\"\x95\x01\xCAA\x1F\x0A\x0ADvrSession\x12\x11OperationMetadata\xDAA!parent,dvr_session,dvr_session_id\x82\xD3\xE4\x93\x02I\":/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions:\x0Bdvr_session\x12\xD3\x01\x0A\x0FListDvrSessions\x128.google.cloud.video.livestream.v1.ListDvrSessionsRequest\x1A9.google.cloud.video.livestream.v1.ListDvrSessionsResponse\"K\xDAA\x06parent\x82\xD3\xE4\x93\x02<\x12:/v1/{parent=projects/*/locations/*/channels/*}/dvrSessions\x12\xC0\x01\x0A\x0DGetDvrSession\x126.google.cloud.video.livestream.v1.GetDvrSessionRequest\x1A,.google.cloud.video.livestream.v1.DvrSession\"I\xDAA\x04name\x82\xD3\xE4\x93\x02<\x12:/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}\x12\xE4\x01\x0A\x10DeleteDvrSession\x129.google.cloud.video.livestream.v1.DeleteDvrSessionRequest\x1A\x1D.google.longrunning.Operation\"v\xCAA*\x0A\x15google.protobuf.Empty\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02<*:/v1/{name=projects/*/locations/*/channels/*/dvrSessions/*}\x12\x86\x02\x0A\x10UpdateDvrSession\x129.google.cloud.video.livestream.v1.UpdateDvrSessionRequest\x1A\x1D.google.longrunning.Operation\"\x97\x01\xCAA\x1F\x0A\x0ADvrSession\x12\x11OperationMetadata\xDAA\x17dvr_session,update_mask\x82\xD3\xE4\x93\x02U2F/v1/{dvr_session.name=projects/*/locations/*/channels/*/dvrSessions/*}:\x0Bdvr_session\x12\xD2\x01\x0A\x0BCreateAsset\x124.google.cloud.video.livestream.v1.CreateAssetRequest\x1A\x1D.google.longrunning.Operation\"n\xCAA\x1A\x0A\x05Asset\x12\x11OperationMetadata\xDAA\x15parent,asset,asset_id\x82\xD3\xE4\x93\x023\"*/v1/{parent=projects/*/locations/*}/assets:\x05asset\x12\xCA\x01\x0A\x0BDeleteAsset\x124.google.cloud.video.livestream.v1.DeleteAssetRequest\x1A\x1D.google.longrunning.Operation\"f\xCAA*\x0A\x15google.protobuf.Empty\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02,**/v1/{name=projects/*/locations/*/assets/*}\x12\xA1\x01\x0A\x08GetAsset\x121.google.cloud.video.livestream.v1.GetAssetRequest\x1A'.google.cloud.video.livestream.v1.Asset\"9\xDAA\x04name\x82\xD3\xE4\x93\x02,\x12*/v1/{name=projects/*/locations/*/assets/*}\x12\xB4\x01\x0A\x0AListAssets\x123.google.cloud.video.livestream.v1.ListAssetsRequest\x1A4.google.cloud.video.livestream.v1.ListAssetsResponse\";\xDAA\x06parent\x82\xD3\xE4\x93\x02,\x12*/v1/{parent=projects/*/locations/*}/assets\x12\x9D\x01\x0A\x07GetPool\x120.google.cloud.video.livestream.v1.GetPoolRequest\x1A&.google.cloud.video.livestream.v1.Pool\"8\xDAA\x04name\x82\xD3\xE4\x93\x02+\x12)/v1/{name=projects/*/locations/*/pools/*}\x12\xCD\x01\x0A\x0AUpdatePool\x123.google.cloud.video.livestream.v1.UpdatePoolRequest\x1A\x1D.google.longrunning.Operation\"k\xCAA\x19\x0A\x04Pool\x12\x11OperationMetadata\xDAA\x10pool,update_mask\x82\xD3\xE4\x93\x0262./v1/{pool.name=projects/*/locations/*/pools/*}:\x04pool\x1AM\xCAA\x19livestream.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\xA1\x03\x0A\$com.google.cloud.video.livestream.v1B\x0CServiceProtoP\x01ZDcloud.google.com/go/video/livestream/apiv1/livestreampb;livestreampb\xAA\x02 Google.Cloud.Video.LiveStream.V1\xCA\x02 Google\\Cloud\\Video\\LiveStream\\V1\xEA\x02\$Google::Cloud::Video::LiveStream::V1\xEAAd\x0A*secretmanager.googleapis.com/SecretVersion\x126projects/{project}/secrets/{secret}/versions/{version}\xEAAN\x0A\x1Ecompute.googleapis.com/Network\x12,projects/{project}/global/networks/{network}b\x06proto3"
         , true);
 
         static::$is_initialized = true;

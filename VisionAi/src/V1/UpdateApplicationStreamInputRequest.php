@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for updating stream input to an Application.
@@ -64,7 +64,7 @@ class UpdateApplicationStreamInputRequest extends \Google\Protobuf\Internal\Mess
      *           Required. the name of the application to retrieve.
      *           Format:
      *           "projects/{project}/locations/{location}/applications/{application}"
-     *     @type array<\Google\Cloud\VisionAI\V1\ApplicationStreamInput>|\Google\Protobuf\Internal\RepeatedField $application_stream_inputs
+     *     @type \Google\Cloud\VisionAI\V1\ApplicationStreamInput[] $application_stream_inputs
      *           The stream inputs to update, the stream resource name is the key of each
      *           StreamInput, and it must be unique within each application.
      *     @type string $request_id
@@ -124,7 +124,7 @@ class UpdateApplicationStreamInputRequest extends \Google\Protobuf\Internal\Mess
      * StreamInput, and it must be unique within each application.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ApplicationStreamInput application_stream_inputs = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\ApplicationStreamInput>
      */
     public function getApplicationStreamInputs()
     {
@@ -136,7 +136,7 @@ class UpdateApplicationStreamInputRequest extends \Google\Protobuf\Internal\Mess
      * StreamInput, and it must be unique within each application.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ApplicationStreamInput application_stream_inputs = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\ApplicationStreamInput>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\ApplicationStreamInput[] $var
      * @return $this
      */
     public function setApplicationStreamInputs($var)

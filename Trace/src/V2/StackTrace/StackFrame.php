@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2\StackTrace;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single stack frame in a stack trace.
@@ -342,7 +342,4 @@ class StackFrame extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StackFrame::class, \Google\Cloud\Trace\V2\StackTrace_StackFrame::class);
 

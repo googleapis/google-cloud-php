@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\Partition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Partition of asset in space.
@@ -206,5 +206,4 @@ class SpatialPartition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Compute Engine disk target details.
@@ -60,7 +60,7 @@ class ComputeEngineDisk extends \Google\Protobuf\Internal\Message
      *     @type string $zone
      *           Required. The Compute Engine zone in which to create the disk. Should be of
      *           the form: projects/{target-project}/locations/{zone}
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type string[] $replica_zones
      *           Optional. Replication zones of the regional disk. Should be of the form:
      *           projects/{target-project}/locations/{replica-zone}
      *           Currently only one replica zone is supported.
@@ -139,7 +139,7 @@ class ComputeEngineDisk extends \Google\Protobuf\Internal\Message
      * Currently only one replica zone is supported.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaZones()
     {
@@ -152,7 +152,7 @@ class ComputeEngineDisk extends \Google\Protobuf\Internal\Message
      * Currently only one replica zone is supported.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaZones($var)

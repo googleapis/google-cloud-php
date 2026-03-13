@@ -5,8 +5,8 @@
 namespace Google\Cloud\VpcAccess\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing Serverless VPC Access connectors.
@@ -34,7 +34,7 @@ class ListConnectorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VpcAccess\V1\Connector>|\Google\Protobuf\Internal\RepeatedField $connectors
+     *     @type \Google\Cloud\VpcAccess\V1\Connector[] $connectors
      *           List of Serverless VPC Access connectors.
      *     @type string $next_page_token
      *           Continuation token.
@@ -49,7 +49,7 @@ class ListConnectorsResponse extends \Google\Protobuf\Internal\Message
      * List of Serverless VPC Access connectors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vpcaccess.v1.Connector connectors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VpcAccess\V1\Connector>
      */
     public function getConnectors()
     {
@@ -60,7 +60,7 @@ class ListConnectorsResponse extends \Google\Protobuf\Internal\Message
      * List of Serverless VPC Access connectors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vpcaccess.v1.Connector connectors = 1;</code>
-     * @param array<\Google\Cloud\VpcAccess\V1\Connector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VpcAccess\V1\Connector[] $var
      * @return $this
      */
     public function setConnectors($var)

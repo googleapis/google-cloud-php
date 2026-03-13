@@ -52,6 +52,3 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Workflows\Executions\V1\Execution_StateError_Type::class);
-

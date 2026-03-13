@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing SearchHypernyms.
@@ -35,7 +35,7 @@ class ListSearchHypernymsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\SearchHypernym>|\Google\Protobuf\Internal\RepeatedField $search_hypernyms
+     *     @type \Google\Cloud\VisionAI\V1\SearchHypernym[] $search_hypernyms
      *           The SearchHypernyms from the specified corpus.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListSearchHypernymsResponse extends \Google\Protobuf\Internal\Message
      * The SearchHypernyms from the specified corpus.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SearchHypernym search_hypernyms = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\SearchHypernym>
      */
     public function getSearchHypernyms()
     {
@@ -62,7 +62,7 @@ class ListSearchHypernymsResponse extends \Google\Protobuf\Internal\Message
      * The SearchHypernyms from the specified corpus.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SearchHypernym search_hypernyms = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\SearchHypernym>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\SearchHypernym[] $var
      * @return $this
      */
     public function setSearchHypernyms($var)

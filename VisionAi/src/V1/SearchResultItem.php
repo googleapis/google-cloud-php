@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search result contains asset name and corresponding time ranges.
@@ -75,7 +75,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      *           The resource name of the asset.
      *           Format:
      *           `projects/{project_number}/locations/{location_id}/corpora/{corpus_id}/assets/{asset_id}`
-     *     @type array<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Cloud\VisionAI\V1\Partition\TemporalPartition[] $segments
      *           The matched asset segments.
      *           Deprecated: please use singular `segment` field.
      *     @type \Google\Cloud\VisionAI\V1\Partition\TemporalPartition $segment
@@ -88,10 +88,10 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      *           retrieved media content. The value is in the range of [-1, 1].
      *           Note that search ranking is not only decided by this relevance score, but
      *           also other factors such as the match of annotations.
-     *     @type array<\Google\Cloud\VisionAI\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $requested_annotations
+     *     @type \Google\Cloud\VisionAI\V1\Annotation[] $requested_annotations
      *           Search result annotations specified by result_annotation_keys in search
      *           request.
-     *     @type array<\Google\Cloud\VisionAI\V1\AnnotationMatchingResult>|\Google\Protobuf\Internal\RepeatedField $annotation_matching_results
+     *     @type \Google\Cloud\VisionAI\V1\AnnotationMatchingResult[] $annotation_matching_results
      *           Criteria or facet-selection based annotation matching results associated to
      *           this search result item. Only contains results for criteria or
      *           facet_selections with fetch_matched_annotations=true.
@@ -137,7 +137,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      * Deprecated: please use singular `segment` field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Partition.TemporalPartition segments = 2 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>
      * @deprecated
      */
     public function getSegments()
@@ -153,7 +153,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      * Deprecated: please use singular `segment` field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Partition.TemporalPartition segments = 2 [deprecated = true];</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Partition\TemporalPartition[] $var
      * @return $this
      * @deprecated
      */
@@ -247,7 +247,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Annotation requested_annotations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Annotation>
      */
     public function getRequestedAnnotations()
     {
@@ -259,7 +259,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Annotation requested_annotations = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Annotation[] $var
      * @return $this
      */
     public function setRequestedAnnotations($var)
@@ -276,7 +276,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      * facet_selections with fetch_matched_annotations=true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnnotationMatchingResult annotation_matching_results = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AnnotationMatchingResult>
      */
     public function getAnnotationMatchingResults()
     {
@@ -289,7 +289,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      * facet_selections with fetch_matched_annotations=true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnnotationMatchingResult annotation_matching_results = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AnnotationMatchingResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AnnotationMatchingResult[] $var
      * @return $this
      */
     public function setAnnotationMatchingResults($var)

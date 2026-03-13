@@ -99,6 +99,18 @@ return [
                     ],
                 ],
             ],
+            'ExportDataObjects' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*}:exportDataObjects',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCollection' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*}',

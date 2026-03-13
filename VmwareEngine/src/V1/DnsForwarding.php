@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DNS forwarding config.
@@ -62,7 +62,7 @@ class DnsForwarding extends \Google\Protobuf\Internal\Message
      *           Output only. Creation time of this resource.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Last update time of this resource.
-     *     @type array<\Google\Cloud\VmwareEngine\V1\DnsForwarding\ForwardingRule>|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
+     *     @type \Google\Cloud\VmwareEngine\V1\DnsForwarding\ForwardingRule[] $forwarding_rules
      *           Required. List of domain mappings to configure
      * }
      */
@@ -181,7 +181,7 @@ class DnsForwarding extends \Google\Protobuf\Internal\Message
      * Required. List of domain mappings to configure
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.DnsForwarding.ForwardingRule forwarding_rules = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\DnsForwarding\ForwardingRule>
      */
     public function getForwardingRules()
     {
@@ -192,7 +192,7 @@ class DnsForwarding extends \Google\Protobuf\Internal\Message
      * Required. List of domain mappings to configure
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.DnsForwarding.ForwardingRule forwarding_rules = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\DnsForwarding\ForwardingRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\DnsForwarding\ForwardingRule[] $var
      * @return $this
      */
     public function setForwardingRules($var)

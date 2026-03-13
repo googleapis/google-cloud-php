@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\CustomProcessorSourceInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describes product recognizer artifact.
@@ -18,7 +18,7 @@ class ProductRecognizerArtifact extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of RetailProductRecognitionIndex.
      * Format is
-     * 'projects/&#42;&#47;locations/&#42;&#47;retailCatalogs/&#42;&#47;retailProductRecognitionIndexes/&#42;'
+     * 'projects/{@*}locations/{@*}retailCatalogs/{@*}retailProductRecognitionIndexes/*'
      *
      * Generated from protobuf field <code>string retail_product_recognition_index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,7 +40,7 @@ class ProductRecognizerArtifact extends \Google\Protobuf\Internal\Message
      *     @type string $retail_product_recognition_index
      *           Required. Resource name of RetailProductRecognitionIndex.
      *           Format is
-     *           'projects/&#42;&#47;locations/&#42;&#47;retailCatalogs/&#42;&#47;retailProductRecognitionIndexes/&#42;'
+     *           'projects/{@*}locations/{@*}retailCatalogs/{@*}retailProductRecognitionIndexes/*'
      *     @type string $vertex_model
      *           Optional. The resource name of embedding model hosted in Vertex AI
      *           Platform.
@@ -54,7 +54,7 @@ class ProductRecognizerArtifact extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of RetailProductRecognitionIndex.
      * Format is
-     * 'projects/&#42;&#47;locations/&#42;&#47;retailCatalogs/&#42;&#47;retailProductRecognitionIndexes/&#42;'
+     * 'projects/{@*}locations/{@*}retailCatalogs/{@*}retailProductRecognitionIndexes/*'
      *
      * Generated from protobuf field <code>string retail_product_recognition_index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -67,7 +67,7 @@ class ProductRecognizerArtifact extends \Google\Protobuf\Internal\Message
     /**
      * Required. Resource name of RetailProductRecognitionIndex.
      * Format is
-     * 'projects/&#42;&#47;locations/&#42;&#47;retailCatalogs/&#42;&#47;retailProductRecognitionIndexes/&#42;'
+     * 'projects/{@*}locations/{@*}retailCatalogs/{@*}retailProductRecognitionIndexes/*'
      *
      * Generated from protobuf field <code>string retail_product_recognition_index = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -110,5 +110,4 @@ class ProductRecognizerArtifact extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

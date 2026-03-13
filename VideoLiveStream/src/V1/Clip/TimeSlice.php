@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Clip;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * TimeSlice represents a tuple of Unix epoch timestamps that specifies a time
@@ -119,5 +119,4 @@ class TimeSlice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

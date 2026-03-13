@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Multiple async file annotation requests are batched into a single service
@@ -65,7 +65,7 @@ class AsyncBatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[] $requests
      *           Required. Individual async file annotation requests for this batch.
      *     @type string $parent
      *           Optional. Target project and location to make a call.
@@ -93,7 +93,7 @@ class AsyncBatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      * Required. Individual async file annotation requests for this batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AsyncAnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest>
      */
     public function getRequests()
     {
@@ -104,7 +104,7 @@ class AsyncBatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      * Required. Individual async file annotation requests for this batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AsyncAnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest[] $var
      * @return $this
      */
     public function setRequests($var)

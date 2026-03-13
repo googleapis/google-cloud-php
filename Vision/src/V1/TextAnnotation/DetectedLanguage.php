@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1\TextAnnotation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Detected language for a structural component.
@@ -106,5 +106,4 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

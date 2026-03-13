@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Clip;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Slice represents a slice of the requested clip.
@@ -72,5 +72,4 @@ class Slice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

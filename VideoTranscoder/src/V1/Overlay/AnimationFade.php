@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1\Overlay;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Display overlay object with fade animation.
@@ -216,5 +216,4 @@ class AnimationFade extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

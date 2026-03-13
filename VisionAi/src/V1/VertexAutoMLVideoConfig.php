@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing VertexAutoMLVideoConfig.
@@ -53,7 +53,7 @@ class VertexAutoMLVideoConfig extends \Google\Protobuf\Internal\Message
      *     @type float $confidence_threshold
      *           Only entities with higher score than the threshold will be returned.
      *           Value 0.0 means returns all the detected entities.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocked_labels
+     *     @type string[] $blocked_labels
      *           Labels specified in this field won't be returned.
      *     @type int $max_predictions
      *           At most this many predictions will be returned per output frame.
@@ -101,7 +101,7 @@ class VertexAutoMLVideoConfig extends \Google\Protobuf\Internal\Message
      * Labels specified in this field won't be returned.
      *
      * Generated from protobuf field <code>repeated string blocked_labels = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlockedLabels()
     {
@@ -112,7 +112,7 @@ class VertexAutoMLVideoConfig extends \Google\Protobuf\Internal\Message
      * Labels specified in this field won't be returned.
      *
      * Generated from protobuf field <code>repeated string blocked_labels = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlockedLabels($var)

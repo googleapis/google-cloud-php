@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for AnalyzeAsset.
@@ -40,7 +40,7 @@ class AnalyzeAssetMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\AnalyzeAssetMetadata\AnalysisStatus>|\Google\Protobuf\Internal\RepeatedField $analysis_status
+     *     @type \Google\Cloud\VisionAI\V1\AnalyzeAssetMetadata\AnalysisStatus[] $analysis_status
      *           The status of analysis on all search capabilities.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The start time of the operation.
@@ -57,7 +57,7 @@ class AnalyzeAssetMetadata extends \Google\Protobuf\Internal\Message
      * The status of analysis on all search capabilities.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnalyzeAssetMetadata.AnalysisStatus analysis_status = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AnalyzeAssetMetadata\AnalysisStatus>
      */
     public function getAnalysisStatus()
     {
@@ -68,7 +68,7 @@ class AnalyzeAssetMetadata extends \Google\Protobuf\Internal\Message
      * The status of analysis on all search capabilities.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnalyzeAssetMetadata.AnalysisStatus analysis_status = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AnalyzeAssetMetadata\AnalysisStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AnalyzeAssetMetadata\AnalysisStatus[] $var
      * @return $this
      */
     public function setAnalysisStatus($var)

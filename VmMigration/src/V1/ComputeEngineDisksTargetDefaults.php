@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ComputeEngineDisksTargetDefaults is a collection of details for creating
@@ -47,7 +47,7 @@ class ComputeEngineDisksTargetDefaults extends \Google\Protobuf\Internal\Message
      *     @type string $target_project
      *           The full path of the resource of type TargetProject which represents the
      *           Compute Engine project in which to create the Persistent Disks.
-     *     @type array<\Google\Cloud\VMMigration\V1\PersistentDiskDefaults>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\VMMigration\V1\PersistentDiskDefaults[] $disks
      *           The details of each Persistent Disk to create.
      * }
      */
@@ -181,7 +181,7 @@ class ComputeEngineDisksTargetDefaults extends \Google\Protobuf\Internal\Message
      * The details of each Persistent Disk to create.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.PersistentDiskDefaults disks = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\PersistentDiskDefaults>
      */
     public function getDisks()
     {
@@ -192,7 +192,7 @@ class ComputeEngineDisksTargetDefaults extends \Google\Protobuf\Internal\Message
      * The details of each Persistent Disk to create.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.PersistentDiskDefaults disks = 4;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\PersistentDiskDefaults>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\PersistentDiskDefaults[] $var
      * @return $this
      */
     public function setDisks($var)

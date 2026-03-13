@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\FacetProperty;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If bucket type is CUSTOM_RANGE, specify how values are bucketized. Use
@@ -35,7 +35,7 @@ class CustomRangeBucketSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\FacetValue>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\VisionAI\V1\FacetValue[] $endpoints
      *           Currently, only integer type is supported for this field.
      * }
      */
@@ -48,7 +48,7 @@ class CustomRangeBucketSpec extends \Google\Protobuf\Internal\Message
      * Currently, only integer type is supported for this field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetValue endpoints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\FacetValue>
      */
     public function getEndpoints()
     {
@@ -59,7 +59,7 @@ class CustomRangeBucketSpec extends \Google\Protobuf\Internal\Message
      * Currently, only integer type is supported for this field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetValue endpoints = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\FacetValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\FacetValue[] $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -71,5 +71,4 @@ class CustomRangeBucketSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how the threat was discovered.
@@ -37,7 +37,7 @@ class ThreatDiscovery extends \Google\Protobuf\Internal\Message
      *
      *     @type int $platform
      *           Platform on which the threat was discovered.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $region_codes
+     *     @type string[] $region_codes
      *           CLDR region code of the countries/regions the URI poses a threat ordered
      *           from most impact to least impact. Example: "US" for United States.
      * }
@@ -78,7 +78,7 @@ class ThreatDiscovery extends \Google\Protobuf\Internal\Message
      * from most impact to least impact. Example: "US" for United States.
      *
      * Generated from protobuf field <code>repeated string region_codes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegionCodes()
     {
@@ -90,7 +90,7 @@ class ThreatDiscovery extends \Google\Protobuf\Internal\Message
      * from most impact to least impact. Example: "US" for United States.
      *
      * Generated from protobuf field <code>repeated string region_codes = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegionCodes($var)
