@@ -5,8 +5,8 @@
 namespace Google\Cloud\TextToSpeech\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of turns for multi-speaker synthesis.
@@ -28,7 +28,7 @@ class MultiSpeakerMarkup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup\Turn>|\Google\Protobuf\Internal\RepeatedField $turns
+     *     @type \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup\Turn[] $turns
      *           Required. Speaker turns.
      * }
      */
@@ -41,7 +41,7 @@ class MultiSpeakerMarkup extends \Google\Protobuf\Internal\Message
      * Required. Speaker turns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.MultiSpeakerMarkup.Turn turns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup\Turn>
      */
     public function getTurns()
     {
@@ -52,7 +52,7 @@ class MultiSpeakerMarkup extends \Google\Protobuf\Internal\Message
      * Required. Speaker turns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.MultiSpeakerMarkup.Turn turns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup\Turn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup\Turn[] $var
      * @return $this
      */
     public function setTurns($var)

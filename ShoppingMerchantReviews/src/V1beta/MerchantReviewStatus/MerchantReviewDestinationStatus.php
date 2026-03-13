@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The destination status of the merchant review status.
@@ -64,5 +64,4 @@ class MerchantReviewDestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

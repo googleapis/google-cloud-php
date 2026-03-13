@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The managed connection pooling configuration.
@@ -42,7 +42,7 @@ class ConnectionPoolConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $connection_pooling_enabled
      *           Whether managed connection pooling is enabled.
-     *     @type array<\Google\Cloud\Sql\V1\ConnectionPoolFlags>|\Google\Protobuf\Internal\RepeatedField $flags
+     *     @type \Google\Cloud\Sql\V1\ConnectionPoolFlags[] $flags
      *           Optional. List of connection pool configuration flags.
      *     @type int $pooler_count
      *           Output only. Number of connection poolers.
@@ -93,7 +93,7 @@ class ConnectionPoolConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of connection pool configuration flags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectionPoolFlags flags = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\ConnectionPoolFlags>
      */
     public function getFlags()
     {
@@ -104,7 +104,7 @@ class ConnectionPoolConfig extends \Google\Protobuf\Internal\Message
      * Optional. List of connection pool configuration flags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectionPoolFlags flags = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Sql\V1\ConnectionPoolFlags>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\ConnectionPoolFlags[] $var
      * @return $this
      */
     public function setFlags($var)

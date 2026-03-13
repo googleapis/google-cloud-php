@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4\CompensationInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A compensation entry that represents one component of compensation, such
@@ -370,5 +370,4 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

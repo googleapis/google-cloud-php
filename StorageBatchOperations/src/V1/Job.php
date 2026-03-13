@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Storage Batch Operations Job description.
@@ -131,7 +131,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. The time that the job was completed.
      *     @type \Google\Cloud\StorageBatchOperations\V1\Counters $counters
      *           Output only. Information about the progress of the job.
-     *     @type array<\Google\Cloud\StorageBatchOperations\V1\ErrorSummary>|\Google\Protobuf\Internal\RepeatedField $error_summaries
+     *     @type \Google\Cloud\StorageBatchOperations\V1\ErrorSummary[] $error_summaries
      *           Output only. Summarizes errors encountered with sample error log entries.
      *     @type int $state
      *           Output only. State of the job.
@@ -585,7 +585,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. Summarizes errors encountered with sample error log entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.ErrorSummary error_summaries = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageBatchOperations\V1\ErrorSummary>
      */
     public function getErrorSummaries()
     {
@@ -596,7 +596,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. Summarizes errors encountered with sample error log entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.ErrorSummary error_summaries = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\StorageBatchOperations\V1\ErrorSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageBatchOperations\V1\ErrorSummary[] $var
      * @return $this
      */
     public function setErrorSummaries($var)

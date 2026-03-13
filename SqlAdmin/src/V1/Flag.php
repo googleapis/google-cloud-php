@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A flag resource.
@@ -110,7 +110,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      *           The type of the flag. Flags are typed to being `BOOLEAN`, `STRING`,
      *           `INTEGER` or `NONE`. `NONE` is used for flags that do not take a
      *           value, such as `skip_grant_tables`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $applies_to
+     *     @type int[] $applies_to
      *           The database version this flag applies to. Can be
      *           MySQL instances: `MYSQL_8_0`, `MYSQL_8_0_18`, `MYSQL_8_0_26`, `MYSQL_5_7`,
      *           or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
@@ -121,7 +121,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      *           `SQLSERVER_2019_WEB`.
      *           See [the complete
      *           list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_string_values
+     *     @type string[] $allowed_string_values
      *           For `STRING` flags, a list of strings that the value can be set to.
      *     @type \Google\Protobuf\Int64Value $min_value
      *           For `INTEGER` flags, the minimum allowed value.
@@ -134,7 +134,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      *           This is always `sql#flag`.
      *     @type \Google\Protobuf\BoolValue $in_beta
      *           Whether or not the flag is considered in beta.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_int_values
+     *     @type int[]|string[] $allowed_int_values
      *           Use this field if only certain integers are accepted. Can be combined
      *           with min_value and max_value to add additional values.
      *     @type int $flag_scope
@@ -221,7 +221,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlDatabaseVersion applies_to = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAppliesTo()
     {
@@ -241,7 +241,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlDatabaseVersion applies_to = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAppliesTo($var)
@@ -256,7 +256,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * For `STRING` flags, a list of strings that the value can be set to.
      *
      * Generated from protobuf field <code>repeated string allowed_string_values = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedStringValues()
     {
@@ -267,7 +267,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * For `STRING` flags, a list of strings that the value can be set to.
      *
      * Generated from protobuf field <code>repeated string allowed_string_values = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedStringValues($var)
@@ -565,7 +565,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * with min_value and max_value to add additional values.
      *
      * Generated from protobuf field <code>repeated int64 allowed_int_values = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getAllowedIntValues()
     {
@@ -577,7 +577,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      * with min_value and max_value to add additional values.
      *
      * Generated from protobuf field <code>repeated int64 allowed_int_values = 10;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setAllowedIntValues($var)

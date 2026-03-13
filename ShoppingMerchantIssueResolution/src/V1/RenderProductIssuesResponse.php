@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response containing an issue resolution content and actions for listed
@@ -39,7 +39,7 @@ class RenderProductIssuesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\RenderedIssue>|\Google\Protobuf\Internal\RepeatedField $rendered_issues
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\RenderedIssue[] $rendered_issues
      *           List of issues for a given product.
      *           This list can be shown with compressed, expandable items. In the compressed
      *           form, the
@@ -72,7 +72,7 @@ class RenderProductIssuesResponse extends \Google\Protobuf\Internal\Message
      * should be rendered.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.RenderedIssue rendered_issues = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\RenderedIssue>
      */
     public function getRenderedIssues()
     {
@@ -93,7 +93,7 @@ class RenderProductIssuesResponse extends \Google\Protobuf\Internal\Message
      * should be rendered.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.RenderedIssue rendered_issues = 1;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\RenderedIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\RenderedIssue[] $var
      * @return $this
      */
     public function setRenderedIssues($var)

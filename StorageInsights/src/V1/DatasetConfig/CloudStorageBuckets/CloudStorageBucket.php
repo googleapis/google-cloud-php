@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig\CloudStorageBuckets;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the bucket by its name or a regex pattern to match buckets.
@@ -108,5 +108,4 @@ class CloudStorageBucket extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PSC settings for a Cloud SQL instance.
@@ -56,13 +56,13 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $psc_enabled
      *           Whether PSC connectivity is enabled for this instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_consumer_projects
+     *     @type string[] $allowed_consumer_projects
      *           Optional. The list of consumer projects that are allow-listed for PSC
      *           connections to this instance. This instance can be connected to with PSC
      *           from any network in these projects.
      *           Each consumer project in this list may be represented by a project number
      *           (numeric) or by a project id (alphanumeric).
-     *     @type array<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $psc_auto_connections
+     *     @type \Google\Cloud\Sql\V1\PscAutoConnectionConfig[] $psc_auto_connections
      *           Optional. The list of settings for requested Private Service Connect
      *           consumer endpoints that can be used to connect to this Cloud SQL instance.
      *     @type string $network_attachment_uri
@@ -121,7 +121,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * (numeric) or by a project id (alphanumeric).
      *
      * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedConsumerProjects()
     {
@@ -136,7 +136,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * (numeric) or by a project id (alphanumeric).
      *
      * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedConsumerProjects($var)
@@ -152,7 +152,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * consumer endpoints that can be used to connect to this Cloud SQL instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PscAutoConnectionConfig psc_auto_connections = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>
      */
     public function getPscAutoConnections()
     {
@@ -164,7 +164,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * consumer endpoints that can be used to connect to this Cloud SQL instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PscAutoConnectionConfig psc_auto_connections = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\PscAutoConnectionConfig[] $var
      * @return $this
      */
     public function setPscAutoConnections($var)

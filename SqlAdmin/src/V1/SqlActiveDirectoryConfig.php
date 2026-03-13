@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
@@ -67,7 +67,7 @@ class SqlActiveDirectoryConfig extends \Google\Protobuf\Internal\Message
      *           The name of the domain (e.g., mydomain.com).
      *     @type int $mode
      *           Optional. The mode of the Active Directory configuration.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dns_servers
+     *     @type string[] $dns_servers
      *           Optional. Domain controller IPv4 addresses used to bootstrap Active
      *           Directory.
      *     @type string $admin_credential_secret_name
@@ -166,7 +166,7 @@ class SqlActiveDirectoryConfig extends \Google\Protobuf\Internal\Message
      * Directory.
      *
      * Generated from protobuf field <code>repeated string dns_servers = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDnsServers()
     {
@@ -178,7 +178,7 @@ class SqlActiveDirectoryConfig extends \Google\Protobuf\Internal\Message
      * Directory.
      *
      * Generated from protobuf field <code>repeated string dns_servers = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDnsServers($var)

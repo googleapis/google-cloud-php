@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An issue affecting specific business or their product.
@@ -171,7 +171,7 @@ class RenderedIssue extends \Google\Protobuf\Internal\Message
      *           [severity][google.shopping.merchant.issueresolution.v1.Impact.severity] can
      *           be styled differently. They may use a different color or icon to signal the
      *           difference between `ERROR`, `WARNING` and `INFO`.
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\Action[] $actions
      *           A list of actionable steps that can be executed to solve the issue. An
      *           example is requesting a re-review or providing arguments when business
      *           disagrees with the issue.
@@ -524,7 +524,7 @@ class RenderedIssue extends \Google\Protobuf\Internal\Message
      * expand the issue.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Action actions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\Action>
      */
     public function getActions()
     {
@@ -540,7 +540,7 @@ class RenderedIssue extends \Google\Protobuf\Internal\Message
      * expand the issue.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Action actions = 4;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\Action[] $var
      * @return $this
      */
     public function setActions($var)

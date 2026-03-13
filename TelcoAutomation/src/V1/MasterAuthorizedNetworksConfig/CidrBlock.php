@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1\MasterAuthorizedNetworksConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CidrBlock contains an optional name and one CIDR block.
@@ -114,5 +114,4 @@ class CidrBlock extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

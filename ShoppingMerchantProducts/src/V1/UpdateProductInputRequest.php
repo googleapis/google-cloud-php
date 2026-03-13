@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the UpdateProductInput method.
@@ -20,7 +20,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The product input resource to update. Information you submit will
-     * be applied to the processed product as well.
+     * be applied to the processed product as well. The `name` field within this
+     * resource identifies the product input to be updated.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductInput product_input = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,7 +54,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param \Google\Shopping\Merchant\Products\V1\ProductInput $productInput Required. The product input resource to update. Information you submit will
-     *                                                                         be applied to the processed product as well.
+     *                                                                         be applied to the processed product as well. The `name` field within this
+     *                                                                         resource identifies the product input to be updated.
      * @param \Google\Protobuf\FieldMask                         $updateMask   Optional. The list of product attributes to be updated.
      *
      *                                                                         If the update mask is omitted, then it is treated as implied field mask
@@ -89,7 +91,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Shopping\Merchant\Products\V1\ProductInput $product_input
      *           Required. The product input resource to update. Information you submit will
-     *           be applied to the processed product as well.
+     *           be applied to the processed product as well. The `name` field within this
+     *           resource identifies the product input to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. The list of product attributes to be updated.
      *           If the update mask is omitted, then it is treated as implied field mask
@@ -116,7 +119,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The product input resource to update. Information you submit will
-     * be applied to the processed product as well.
+     * be applied to the processed product as well. The `name` field within this
+     * resource identifies the product input to be updated.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductInput product_input = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Shopping\Merchant\Products\V1\ProductInput|null
@@ -138,7 +142,8 @@ class UpdateProductInputRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The product input resource to update. Information you submit will
-     * be applied to the processed product as well.
+     * be applied to the processed product as well. The `name` field within this
+     * resource identifies the product input to be updated.
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductInput product_input = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Shopping\Merchant\Products\V1\ProductInput $var

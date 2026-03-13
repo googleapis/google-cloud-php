@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Lfp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListLfpStores method.
@@ -35,7 +35,7 @@ class ListLfpStoresResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Lfp\V1\LfpStore>|\Google\Protobuf\Internal\RepeatedField $lfp_stores
+     *     @type \Google\Shopping\Merchant\Lfp\V1\LfpStore[] $lfp_stores
      *           The stores from the specified merchant.
      *     @type string $next_page_token
      *           A token, which can be sent as `pageToken` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListLfpStoresResponse extends \Google\Protobuf\Internal\Message
      * The stores from the specified merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1.LfpStore lfp_stores = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Lfp\V1\LfpStore>
      */
     public function getLfpStores()
     {
@@ -62,7 +62,7 @@ class ListLfpStoresResponse extends \Google\Protobuf\Internal\Message
      * The stores from the specified merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1.LfpStore lfp_stores = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Lfp\V1\LfpStore>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Lfp\V1\LfpStore[] $var
      * @return $this
      */
     public function setLfpStores($var)

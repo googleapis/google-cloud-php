@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Quota\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListAccountLimits` method.
@@ -35,7 +35,7 @@ class ListAccountLimitsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Quota\V1\AccountLimit>|\Google\Protobuf\Internal\RepeatedField $account_limits
+     *     @type \Google\Shopping\Merchant\Quota\V1\AccountLimit[] $account_limits
      *           The limits for the given account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAccountLimitsResponse extends \Google\Protobuf\Internal\Message
      * The limits for the given account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.quota.v1.AccountLimit account_limits = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Quota\V1\AccountLimit>
      */
     public function getAccountLimits()
     {
@@ -62,7 +62,7 @@ class ListAccountLimitsResponse extends \Google\Protobuf\Internal\Message
      * The limits for the given account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.quota.v1.AccountLimit account_limits = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Quota\V1\AccountLimit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Quota\V1\AccountLimit[] $var
      * @return $this
      */
     public function setAccountLimits($var)

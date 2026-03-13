@@ -273,11 +273,11 @@ final class ProductInputsServiceClient
 
     /**
      * [Uploads a product input to your Merchant Center
-     * account](/merchant/api/guides/products/overview#upload-product-input). You
+     * account](/merchant/api/guides/products/add-manage#add_a_product). You
      * must have a products [data
-     * source](/merchant/api/guides/data-sources/overview) to be able to insert a
-     * product. The unique identifier of the data source is passed as a query
-     * parameter in the request URL.
+     * source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source)
+     * to be able to insert a product. The unique identifier of the data source is
+     * passed as a query parameter in the request URL.
      *
      * If a product input with the same contentLanguage, offerId, and dataSource
      * already exists, then the product input inserted by this method replaces
@@ -312,6 +312,8 @@ final class ProductInputsServiceClient
 
     /**
      * Updates the existing product input in your Merchant Center account.
+     * The name of the product input to update is taken from the `name` field
+     * within the `ProductInput` resource.
      *
      * After inserting, updating, or deleting a product input, it may take several
      * minutes before the processed product can be retrieved.

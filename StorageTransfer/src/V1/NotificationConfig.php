@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification to configure notifications published to Pub/Sub.
@@ -68,7 +68,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *           notifications. Must be of the format: `projects/{project}/topics/{topic}`.
      *           Not matching this format results in an
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $event_types
+     *     @type int[] $event_types
      *           Event types for which a notification is desired. If empty, send
      *           notifications for all event types.
      *     @type int $payload_format
@@ -117,7 +117,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * notifications for all event types.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.NotificationConfig.EventType event_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEventTypes()
     {
@@ -129,7 +129,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * notifications for all event types.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.NotificationConfig.EventType event_types = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEventTypes($var)

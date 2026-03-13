@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4\Job;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Derived details about the job posting.
@@ -39,13 +39,13 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Talent\V4\Location>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type \Google\Cloud\Talent\V4\Location[] $locations
      *           Structured locations of the job, resolved from
      *           [Job.addresses][google.cloud.talent.v4.Job.addresses].
      *           [locations][google.cloud.talent.v4.Job.DerivedInfo.locations] are exactly
      *           matched to [Job.addresses][google.cloud.talent.v4.Job.addresses] in the
      *           same order.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $job_categories
+     *     @type int[] $job_categories
      *           Job categories derived from [Job.title][google.cloud.talent.v4.Job.title]
      *           and [Job.description][google.cloud.talent.v4.Job.description].
      * }
@@ -63,7 +63,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      * same order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Location locations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Talent\V4\Location>
      */
     public function getLocations()
     {
@@ -78,7 +78,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      * same order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Location locations = 1;</code>
-     * @param array<\Google\Cloud\Talent\V4\Location>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Talent\V4\Location[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -94,7 +94,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      * and [Job.description][google.cloud.talent.v4.Job.description].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.JobCategory job_categories = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getJobCategories()
     {
@@ -106,7 +106,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      * and [Job.description][google.cloud.talent.v4.Job.description].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.JobCategory job_categories = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setJobCategories($var)
@@ -118,5 +118,4 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

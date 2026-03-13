@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status of a product, data validation issues, that is, information about
@@ -56,9 +56,9 @@ class ProductStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductStatus\DestinationStatus>|\Google\Protobuf\Internal\RepeatedField $destination_statuses
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductStatus\DestinationStatus[] $destination_statuses
      *           The intended destinations for the product.
-     *     @type array<\Google\Shopping\Merchant\Products\V1\ProductStatus\ItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $item_level_issues
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductStatus\ItemLevelIssue[] $item_level_issues
      *           A list of all issues associated with the product.
      *     @type \Google\Protobuf\Timestamp $creation_date
      *           Date on which the item has been created, in [ISO
@@ -80,7 +80,7 @@ class ProductStatus extends \Google\Protobuf\Internal\Message
      * The intended destinations for the product.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductStatus.DestinationStatus destination_statuses = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductStatus\DestinationStatus>
      */
     public function getDestinationStatuses()
     {
@@ -91,7 +91,7 @@ class ProductStatus extends \Google\Protobuf\Internal\Message
      * The intended destinations for the product.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductStatus.DestinationStatus destination_statuses = 3;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\ProductStatus\DestinationStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\ProductStatus\DestinationStatus[] $var
      * @return $this
      */
     public function setDestinationStatuses($var)
@@ -106,7 +106,7 @@ class ProductStatus extends \Google\Protobuf\Internal\Message
      * A list of all issues associated with the product.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductStatus.ItemLevelIssue item_level_issues = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductStatus\ItemLevelIssue>
      */
     public function getItemLevelIssues()
     {
@@ -117,7 +117,7 @@ class ProductStatus extends \Google\Protobuf\Internal\Message
      * A list of all issues associated with the product.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductStatus.ItemLevelIssue item_level_issues = 4;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1\ProductStatus\ItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1\ProductStatus\ItemLevelIssue[] $var
      * @return $this
      */
     public function setItemLevelIssues($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Deployment contains a collection of YAML files (This collection is also known
@@ -142,7 +142,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *     @type string $repository
      *           Output only. Name of the repository where the deployment package files are
      *           stored.
-     *     @type array<\Google\Cloud\TelcoAutomation\V1\File>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type \Google\Cloud\TelcoAutomation\V1\File[] $files
      *           Optional. Files present in a deployment.
      *           When invoking UpdateDeployment API, only the modified files should be
      *           included in this. Files that are not included in the update of a deployment
@@ -378,7 +378,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * will not be changed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.File files = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TelcoAutomation\V1\File>
      */
     public function getFiles()
     {
@@ -392,7 +392,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * will not be changed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.File files = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\TelcoAutomation\V1\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TelcoAutomation\V1\File[] $var
      * @return $this
      */
     public function setFiles($var)

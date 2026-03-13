@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2\StorageLayout;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for Custom Dual Regions.  It should specify precisely two
@@ -30,7 +30,7 @@ class CustomPlacementConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_locations
+     *     @type string[] $data_locations
      *           List of locations to use for data placement.
      * }
      */
@@ -43,7 +43,7 @@ class CustomPlacementConfig extends \Google\Protobuf\Internal\Message
      * List of locations to use for data placement.
      *
      * Generated from protobuf field <code>repeated string data_locations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataLocations()
     {
@@ -54,7 +54,7 @@ class CustomPlacementConfig extends \Google\Protobuf\Internal\Message
      * List of locations to use for data placement.
      *
      * Generated from protobuf field <code>repeated string data_locations = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataLocations($var)
@@ -66,5 +66,4 @@ class CustomPlacementConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes list of buckets and their objects to be transformed.
@@ -30,7 +30,7 @@ class BucketList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\StorageBatchOperations\V1\BucketList\Bucket>|\Google\Protobuf\Internal\RepeatedField $buckets
+     *     @type \Google\Cloud\StorageBatchOperations\V1\BucketList\Bucket[] $buckets
      *           Required. List of buckets and their objects to be transformed. Currently,
      *           only one bucket configuration is supported. If multiple buckets are
      *           specified, an error will be returned.
@@ -47,7 +47,7 @@ class BucketList extends \Google\Protobuf\Internal\Message
      * specified, an error will be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.BucketList.Bucket buckets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageBatchOperations\V1\BucketList\Bucket>
      */
     public function getBuckets()
     {
@@ -60,7 +60,7 @@ class BucketList extends \Google\Protobuf\Internal\Message
      * specified, an error will be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.BucketList.Bucket buckets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\StorageBatchOperations\V1\BucketList\Bucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageBatchOperations\V1\BucketList\Bucket[] $var
      * @return $this
      */
     public function setBuckets($var)

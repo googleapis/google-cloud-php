@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of the Master Authorized Network that support multiple CIDRs
@@ -29,7 +29,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\TelcoAutomation\V1\MasterAuthorizedNetworksConfig\CidrBlock>|\Google\Protobuf\Internal\RepeatedField $cidr_blocks
+     *     @type \Google\Cloud\TelcoAutomation\V1\MasterAuthorizedNetworksConfig\CidrBlock[] $cidr_blocks
      *           Optional. cidr_blocks define up to 50 external networks that could access
      *           Kubernetes master through HTTPS.
      * }
@@ -44,7 +44,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * Kubernetes master through HTTPS.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.MasterAuthorizedNetworksConfig.CidrBlock cidr_blocks = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TelcoAutomation\V1\MasterAuthorizedNetworksConfig\CidrBlock>
      */
     public function getCidrBlocks()
     {
@@ -56,7 +56,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * Kubernetes master through HTTPS.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.MasterAuthorizedNetworksConfig.CidrBlock cidr_blocks = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\TelcoAutomation\V1\MasterAuthorizedNetworksConfig\CidrBlock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TelcoAutomation\V1\MasterAuthorizedNetworksConfig\CidrBlock[] $var
      * @return $this
      */
     public function setCidrBlocks($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Promotions\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Attributes.
@@ -327,7 +327,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           attribute to signal the type of promotion that you are running. Depending
      *           on type of the selected coupon value [some attributes are
      *           required](https://support.google.com/merchants/answer/6393006?ref_topic=7322920).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $promotion_destinations
+     *     @type int[] $promotion_destinations
      *           Required. The list of destinations (also known as [Marketing
      *           methods](https://support.google.com/merchants/answer/15130232)) where the
      *           promotion applies to. If you don't specify a destination by including a
@@ -339,50 +339,50 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           `FREE_LOCAL_LISTINGS`, `LOCAL_INVENTORY_ADS`. For more details see
      *           [Promotion
      *           destination](https://support.google.com/merchants/answer/13837465?sjid=5155774230887277618-NC)
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $item_id_inclusion
+     *     @type string[] $item_id_inclusion
      *           Optional. Product filter by [item
      *           ID](https://support.google.com/merchants/answer/13861565?ref_topic=13773355&sjid=17642868584668136159-NC)
      *           for the promotion. The product filter attributes only applies when the
      *           products eligible for promotion product applicability
      *           `product_applicability` attribute is set to
      *           [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $brand_inclusion
+     *     @type string[] $brand_inclusion
      *           Optional. Product filter by brand for the promotion. The product filter
      *           attributes only applies when the products eligible for promotion product
      *           applicability `product_applicability` attribute is set to
      *           [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $item_group_id_inclusion
+     *     @type string[] $item_group_id_inclusion
      *           Optional. Product filter by item group ID for the promotion. The product
      *           filter attributes only applies when the products eligible for promotion
      *           product applicability [product_applicability] attribute is set to
      *           [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_type_inclusion
+     *     @type string[] $product_type_inclusion
      *           Optional. Product filter by product type for the promotion. The product
      *           filter attributes only applies when the products eligible for promotion
      *           product applicability `product_applicability` attribute is set to
      *           [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $item_id_exclusion
+     *     @type string[] $item_id_exclusion
      *           Optional. Product filter by [item ID
      *           exclusion](https://support.google.com/merchants/answer/13863524?ref_topic=13773355&sjid=17642868584668136159-NC)
      *           for the promotion. The product filter attributes only applies when the
      *           products eligible for promotion product applicability
      *           `product_applicability` attribute is set to
      *           [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $brand_exclusion
+     *     @type string[] $brand_exclusion
      *           Optional. Product filter by [brand
      *           exclusion](https://support.google.com/merchants/answer/13861679?ref_topic=13773355&sjid=17642868584668136159-NC)
      *           for the promotion. The product filter attributes only applies when the
      *           products eligible for promotion product applicability
      *           `product_applicability` attribute is set to
      *           [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $item_group_id_exclusion
+     *     @type string[] $item_group_id_exclusion
      *           Optional. Product filter by [item group
      *           ID](https://support.google.com/merchants/answer/13837298?ref_topic=13773355&sjid=17642868584668136159-NC).
      *           The product filter attributes only applies when the products eligible for
      *           promotion product applicability `product_applicability` attribute is set to
      *           [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *           exclusion for the promotion.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_type_exclusion
+     *     @type string[] $product_type_exclusion
      *           Optional. Product filter by [product type
      *           exclusion](https://support.google.com/merchants/answer/13863746?ref_topic=13773355&sjid=17642868584668136159-NC)
      *           for the promotion. The product filter attributes only applies when the
@@ -445,7 +445,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           included. An `INVALID_ARGUMENT` error is thrown if `store_applicability` is
      *           set to `ALL_STORES` and `store_codes_inclusion` or `score_code_exclusion`
      *           is set to a value.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $store_codes_inclusion
+     *     @type string[] $store_codes_inclusion
      *           Optional. [Store codes to
      *           include](https://support.google.com/merchants/answer/13857470?ref_topic=13773355&sjid=17642868584668136159-NC)
      *           for the promotion. The store filter attributes only applies when the
@@ -456,7 +456,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           the [Local product inventory data
      *           specification](https://support.google.com/merchants/answer/3061342) for
      *           more information.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $store_codes_exclusion
+     *     @type string[] $store_codes_exclusion
      *           Optional. [Store codes to
      *           exclude](https://support.google.com/merchants/answer/13859586?ref_topic=13773355&sjid=17642868584668136159-NC)
      *           for the promotion. The store filter attributes only applies when the
@@ -644,7 +644,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * destination](https://support.google.com/merchants/answer/13837465?sjid=5155774230887277618-NC)
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum promotion_destinations = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPromotionDestinations()
     {
@@ -665,7 +665,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * destination](https://support.google.com/merchants/answer/13837465?sjid=5155774230887277618-NC)
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum promotion_destinations = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPromotionDestinations($var)
@@ -685,7 +685,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string item_id_inclusion = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItemIdInclusion()
     {
@@ -701,7 +701,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string item_id_inclusion = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItemIdInclusion($var)
@@ -719,7 +719,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string brand_inclusion = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBrandInclusion()
     {
@@ -733,7 +733,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string brand_inclusion = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBrandInclusion($var)
@@ -751,7 +751,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string item_group_id_inclusion = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItemGroupIdInclusion()
     {
@@ -765,7 +765,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string item_group_id_inclusion = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItemGroupIdInclusion($var)
@@ -783,7 +783,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string product_type_inclusion = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductTypeInclusion()
     {
@@ -797,7 +797,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string product_type_inclusion = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductTypeInclusion($var)
@@ -817,7 +817,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string item_id_exclusion = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItemIdExclusion()
     {
@@ -833,7 +833,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string item_id_exclusion = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItemIdExclusion($var)
@@ -853,7 +853,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string brand_exclusion = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBrandExclusion()
     {
@@ -869,7 +869,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string brand_exclusion = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBrandExclusion($var)
@@ -889,7 +889,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * exclusion for the promotion.
      *
      * Generated from protobuf field <code>repeated string item_group_id_exclusion = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItemGroupIdExclusion()
     {
@@ -905,7 +905,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * exclusion for the promotion.
      *
      * Generated from protobuf field <code>repeated string item_group_id_exclusion = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItemGroupIdExclusion($var)
@@ -925,7 +925,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string product_type_exclusion = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductTypeExclusion()
     {
@@ -941,7 +941,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_products](https://support.google.com/merchants/answer/13837299?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string product_type_exclusion = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductTypeExclusion($var)
@@ -1421,7 +1421,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * more information.
      *
      * Generated from protobuf field <code>repeated string store_codes_inclusion = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStoreCodesInclusion()
     {
@@ -1441,7 +1441,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * more information.
      *
      * Generated from protobuf field <code>repeated string store_codes_inclusion = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStoreCodesInclusion($var)
@@ -1460,7 +1460,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_stores](https://support.google.com/merchants/answer/13857563?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string store_codes_exclusion = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStoreCodesExclusion()
     {
@@ -1475,7 +1475,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * [specific_stores](https://support.google.com/merchants/answer/13857563?ref_topic=13773355&sjid=17642868584668136159-NC).
      *
      * Generated from protobuf field <code>repeated string store_codes_exclusion = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStoreCodesExclusion($var)

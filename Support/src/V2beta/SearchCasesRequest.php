@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for the SearchCases endpoint.
@@ -45,7 +45,7 @@ class SearchCasesRequest extends \Google\Protobuf\Internal\Message
      * - `project="projects/my-project-id"`
      * - `project="projects/123456789"`
      * - `organization="organizations/123456789" AND state=CLOSED`
-     * - `project="projects/my-project-id" AND creator.email="tester&#64;example.com"`
+     * - `project="projects/my-project-id" AND creator.email="tester\@example.com"`
      * - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      *
      * Generated from protobuf field <code>string query = 1;</code>
@@ -98,7 +98,7 @@ class SearchCasesRequest extends \Google\Protobuf\Internal\Message
      *           - `project="projects/my-project-id"`
      *           - `project="projects/123456789"`
      *           - `organization="organizations/123456789" AND state=CLOSED`
-     *           - `project="projects/my-project-id" AND creator.email="tester&#64;example.com"`
+     *           - `project="projects/my-project-id" AND creator.email="tester\@example.com"`
      *           - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      *     @type int $page_size
      *           The maximum number of cases fetched with each request. The default page
@@ -163,7 +163,7 @@ class SearchCasesRequest extends \Google\Protobuf\Internal\Message
      * - `project="projects/my-project-id"`
      * - `project="projects/123456789"`
      * - `organization="organizations/123456789" AND state=CLOSED`
-     * - `project="projects/my-project-id" AND creator.email="tester&#64;example.com"`
+     * - `project="projects/my-project-id" AND creator.email="tester\@example.com"`
      * - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      *
      * Generated from protobuf field <code>string query = 1;</code>
@@ -198,7 +198,7 @@ class SearchCasesRequest extends \Google\Protobuf\Internal\Message
      * - `project="projects/my-project-id"`
      * - `project="projects/123456789"`
      * - `organization="organizations/123456789" AND state=CLOSED`
-     * - `project="projects/my-project-id" AND creator.email="tester&#64;example.com"`
+     * - `project="projects/my-project-id" AND creator.email="tester\@example.com"`
      * - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      *
      * Generated from protobuf field <code>string query = 1;</code>

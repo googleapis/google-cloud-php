@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Notifications\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListNotificationSubscription method.
@@ -35,7 +35,7 @@ class ListNotificationSubscriptionsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Notifications\V1beta\NotificationSubscription>|\Google\Protobuf\Internal\RepeatedField $notification_subscriptions
+     *     @type \Google\Shopping\Merchant\Notifications\V1beta\NotificationSubscription[] $notification_subscriptions
      *           The list of notification subscriptions requested by the merchant.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListNotificationSubscriptionsResponse extends \Google\Protobuf\Internal\Me
      * The list of notification subscriptions requested by the merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.notifications.v1beta.NotificationSubscription notification_subscriptions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Notifications\V1beta\NotificationSubscription>
      */
     public function getNotificationSubscriptions()
     {
@@ -62,7 +62,7 @@ class ListNotificationSubscriptionsResponse extends \Google\Protobuf\Internal\Me
      * The list of notification subscriptions requested by the merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.notifications.v1beta.NotificationSubscription notification_subscriptions = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Notifications\V1beta\NotificationSubscription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Notifications\V1beta\NotificationSubscription[] $var
      * @return $this
      */
     public function setNotificationSubscriptions($var)

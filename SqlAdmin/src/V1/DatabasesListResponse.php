@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Database list response.
@@ -36,7 +36,7 @@ class DatabasesListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#databasesList`.
-     *     @type array<\Google\Cloud\Sql\V1\Database>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Sql\V1\Database[] $items
      *           List of database resources in the instance.
      * }
      */
@@ -75,7 +75,7 @@ class DatabasesListResponse extends \Google\Protobuf\Internal\Message
      * List of database resources in the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Database items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\Database>
      */
     public function getItems()
     {
@@ -86,7 +86,7 @@ class DatabasesListResponse extends \Google\Protobuf\Internal\Message
      * List of database resources in the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Database items = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\Database>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\Database[] $var
      * @return $this
      */
     public function setItems($var)

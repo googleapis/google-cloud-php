@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Recognizer message. Stores recognition configuration and metadata.
@@ -179,7 +179,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *           and the models supported in each region can be found in the [Table Of
      *           Supported
      *           Models](https://cloud.google.com/speech-to-text/v2/docs/speech-to-text-supported-languages).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type string[] $language_codes
      *           Optional. This field is now deprecated. Prefer the
      *           [`language_codes`][google.cloud.speech.v2.RecognitionConfig.language_codes]
      *           field in the
@@ -388,7 +388,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      * "en-US".
      *
      * Generated from protobuf field <code>repeated string language_codes = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getLanguageCodes()
@@ -416,7 +416,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      * "en-US".
      *
      * Generated from protobuf field <code>repeated string language_codes = 17 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */

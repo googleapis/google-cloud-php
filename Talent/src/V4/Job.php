@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Job resource represents a job posting (also referred to as a "job listing"
@@ -398,7 +398,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 100,000.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $addresses
+     *     @type string[] $addresses
      *           Strongly recommended for the best service experience.
      *           Location(s) where the employer is looking to hire for this job posting.
      *           Specifying the full street address(es) of the hiring location enables
@@ -429,7 +429,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           The maximum number of allowed characters is 500.
      *     @type \Google\Cloud\Talent\V4\Job\ApplicationInfo $application_info
      *           Job application information.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $job_benefits
+     *     @type int[] $job_benefits
      *           The benefits included with the job.
      *     @type \Google\Cloud\Talent\V4\CompensationInfo $compensation_info
      *           Job compensation information (a.k.a. "pay rate") i.e., the compensation
@@ -445,13 +445,13 @@ class Job extends \Google\Protobuf\Internal\Message
      *           allowed, with each string no more than 255 characters. For unfilterable
      *           `string_values`, the maximum total size of `string_values` across all keys
      *           is 50KB.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $degree_types
+     *     @type int[] $degree_types
      *           The desired education degrees for the job, such as Bachelors, Masters.
      *     @type string $department
      *           The department or functional area within the company with the open
      *           position.
      *           The maximum number of allowed characters is 255.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $employment_types
+     *     @type int[] $employment_types
      *           The employment type(s) of a job, for example,
      *           [full time][google.cloud.talent.v4.EmploymentType.FULL_TIME] or
      *           [part time][google.cloud.talent.v4.EmploymentType.PART_TIME].
@@ -798,7 +798,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAddresses()
     {
@@ -836,7 +836,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAddresses($var)
@@ -887,7 +887,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The benefits included with the job.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.JobBenefit job_benefits = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getJobBenefits()
     {
@@ -898,7 +898,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The benefits included with the job.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.JobBenefit job_benefits = 8;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setJobBenefits($var)
@@ -995,7 +995,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The desired education degrees for the job, such as Bachelors, Masters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.DegreeType degree_types = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDegreeTypes()
     {
@@ -1006,7 +1006,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The desired education degrees for the job, such as Bachelors, Masters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.DegreeType degree_types = 11;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDegreeTypes($var)
@@ -1053,7 +1053,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * [part time][google.cloud.talent.v4.EmploymentType.PART_TIME].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.EmploymentType employment_types = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEmploymentTypes()
     {
@@ -1066,7 +1066,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * [part time][google.cloud.talent.v4.EmploymentType.PART_TIME].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.EmploymentType employment_types = 13;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEmploymentTypes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of kubernetes yaml files which are deployed on a Workload
@@ -55,7 +55,7 @@ class HydratedDeployment extends \Google\Protobuf\Internal\Message
      *           Output only. The name of the hydrated deployment.
      *     @type int $state
      *           Output only. State of the hydrated deployment (DRAFT, APPLIED).
-     *     @type array<\Google\Cloud\TelcoAutomation\V1\File>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type \Google\Cloud\TelcoAutomation\V1\File[] $files
      *           Optional. File contents of a hydrated deployment.
      *           When invoking UpdateHydratedBlueprint API, only the modified files should
      *           be included in this. Files that are not included in the update of a
@@ -129,7 +129,7 @@ class HydratedDeployment extends \Google\Protobuf\Internal\Message
      * hydrated deployment will not be changed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.File files = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TelcoAutomation\V1\File>
      */
     public function getFiles()
     {
@@ -143,7 +143,7 @@ class HydratedDeployment extends \Google\Protobuf\Internal\Message
      * hydrated deployment will not be changed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.telcoautomation.v1.File files = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\TelcoAutomation\V1\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TelcoAutomation\V1\File[] $var
      * @return $this
      */
     public function setFiles($var)

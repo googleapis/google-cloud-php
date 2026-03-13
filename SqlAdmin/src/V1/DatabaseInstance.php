@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Cloud SQL instance resource.
@@ -402,7 +402,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type string $master_instance_name
      *           The name of the instance which will act as primary in the replication
      *           setup.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_names
+     *     @type string[] $replica_names
      *           The replicas of the instance.
      *     @type \Google\Protobuf\Int64Value $max_disk_size
      *           The maximum disk size of the instance in bytes.
@@ -413,7 +413,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Monitoring API instead. Please see [this
      *           announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ)
      *           for details.
-     *     @type array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type \Google\Cloud\Sql\V1\IpMapping[] $ip_addresses
      *           The assigned IP addresses for the instance.
      *     @type \Google\Cloud\Sql\V1\SslCert $server_ca_cert
      *           SSL configuration.
@@ -441,7 +441,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           object to determine the database type.
      *     @type string $self_link
      *           The URI of this resource.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reason
+     *     @type int[] $suspension_reason
      *           If the instance state is SUSPENDED, the reason for the suspension.
      *     @type string $connection_name
      *           Connection name of the Cloud SQL instance used in connection strings.
@@ -490,11 +490,11 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the instance was created in
      *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
      *           `2012-11-15T16:19:00.094Z`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_maintenance_versions
+     *     @type string[] $available_maintenance_versions
      *           Output only. List all maintenance versions applicable on the instance
      *     @type string $maintenance_version
      *           The current software version on the instance.
-     *     @type array<\Google\Cloud\Sql\V1\AvailableDatabaseVersion>|\Google\Protobuf\Internal\RepeatedField $upgradable_database_versions
+     *     @type \Google\Cloud\Sql\V1\AvailableDatabaseVersion[] $upgradable_database_versions
      *           Output only. All database versions that are available for upgrade.
      *     @type int $sql_network_architecture
      *     @type string $psc_service_attachment_link
@@ -536,10 +536,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/resource-manager/docs/tags/tags-overview.
      *     @type int $node_count
      *           The number of read pool nodes in a read pool.
-     *     @type array<\Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig[] $nodes
      *           Output only. Entries containing information about each read pool node of
      *           the read pool.
-     *     @type array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $dns_names
+     *     @type \Google\Cloud\Sql\V1\DnsNameMapping[] $dns_names
      *           Output only. The list of DNS names used by this instance.
      * }
      */
@@ -760,7 +760,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * The replicas of the instance.
      *
      * Generated from protobuf field <code>repeated string replica_names = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaNames()
     {
@@ -771,7 +771,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * The replicas of the instance.
      *
      * Generated from protobuf field <code>repeated string replica_names = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaNames($var)
@@ -958,7 +958,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * The assigned IP addresses for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\IpMapping>
      */
     public function getIpAddresses()
     {
@@ -969,7 +969,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * The assigned IP addresses for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 11;</code>
-     * @param array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\IpMapping[] $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -1270,7 +1270,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * If the instance state is SUSPENDED, the reason for the suspension.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlSuspensionReason suspension_reason = 21;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSuspensionReason()
     {
@@ -1281,7 +1281,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * If the instance state is SUSPENDED, the reason for the suspension.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlSuspensionReason suspension_reason = 21;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSuspensionReason($var)
@@ -1765,7 +1765,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Output only. List all maintenance versions applicable on the instance
      *
      * Generated from protobuf field <code>repeated string available_maintenance_versions = 41 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableMaintenanceVersions()
     {
@@ -1776,7 +1776,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Output only. List all maintenance versions applicable on the instance
      *
      * Generated from protobuf field <code>repeated string available_maintenance_versions = 41 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableMaintenanceVersions($var)
@@ -1817,7 +1817,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Output only. All database versions that are available for upgrade.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\AvailableDatabaseVersion>
      */
     public function getUpgradableDatabaseVersions()
     {
@@ -1828,7 +1828,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Output only. All database versions that are available for upgrade.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AvailableDatabaseVersion upgradable_database_versions = 45 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\AvailableDatabaseVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\AvailableDatabaseVersion[] $var
      * @return $this
      */
     public function setUpgradableDatabaseVersions($var)
@@ -2395,7 +2395,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * the read pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig>
      */
     public function getNodes()
     {
@@ -2407,7 +2407,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * the read pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DatabaseInstance.PoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\DatabaseInstance\PoolNodeConfig[] $var
      * @return $this
      */
     public function setNodes($var)
@@ -2422,7 +2422,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 67 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\DnsNameMapping>
      */
     public function getDnsNames()
     {
@@ -2433,7 +2433,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 67 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\DnsNameMapping[] $var
      * @return $this
      */
     public function setDnsNames($var)

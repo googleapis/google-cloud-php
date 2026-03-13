@@ -18,11 +18,7 @@ class CloudSqlFeatureEligibility
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-µ
-7google/cloud/sql/v1/cloud_sql_feature_eligibility.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.proto2:
-SqlFeatureEligibilityServiceÊAsqladmin.googleapis.comBg
-com.google.cloud.sql.v1BCloudSqlFeatureEligibilityProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
+            "\x0A\xB5\x02\x0A7google/cloud/sql/v1/cloud_sql_feature_eligibility.proto\x12\x13google.cloud.sql.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto2:\x0A\x1CSqlFeatureEligibilityService\x1A\x1A\xCAA\x17sqladmin.googleapis.comBg\x0A\x17com.google.cloud.sql.v1B\x1FCloudSqlFeatureEligibilityProtoP\x01Z)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

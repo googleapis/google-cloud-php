@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * How the issue affects the serving of the product.
@@ -35,7 +35,7 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext>|\Google\Protobuf\Internal\RepeatedField $severity_per_reporting_context
+     *     @type \Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext[] $severity_per_reporting_context
      *           Issue severity per reporting context.
      *     @type int $aggregated_severity
      *           Aggregated severity of the issue for all reporting contexts it affects.
@@ -51,7 +51,7 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
      * Issue severity per reporting context.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext>
      */
     public function getSeverityPerReportingContext()
     {
@@ -62,7 +62,7 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
      * Issue severity per reporting context.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext[] $var
      * @return $this
      */
     public function setSeverityPerReportingContext($var)
@@ -112,5 +112,4 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

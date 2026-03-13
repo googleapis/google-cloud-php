@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * In a GcsData resource, an object's name is the Cloud Storage object's

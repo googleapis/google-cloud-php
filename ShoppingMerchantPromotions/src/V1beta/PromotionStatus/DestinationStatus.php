@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status for the specified destination.
@@ -98,5 +98,4 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

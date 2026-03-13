@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a collection of updates to apply to custom contexts identified
@@ -38,7 +38,7 @@ class CustomContextUpdates extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $updates
      *           Optional. Insert or update the existing custom contexts.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $keys_to_clear
+     *     @type string[] $keys_to_clear
      *           Optional. Custom contexts to clear by key.
      *           A key cannot be present in both `updates` and `keys_to_clear`.
      * }
@@ -79,7 +79,7 @@ class CustomContextUpdates extends \Google\Protobuf\Internal\Message
      * A key cannot be present in both `updates` and `keys_to_clear`.
      *
      * Generated from protobuf field <code>repeated string keys_to_clear = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKeysToClear()
     {
@@ -91,7 +91,7 @@ class CustomContextUpdates extends \Google\Protobuf\Internal\Message
      * A key cannot be present in both `updates` and `keys_to_clear`.
      *
      * Generated from protobuf field <code>repeated string keys_to_clear = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKeysToClear($var)

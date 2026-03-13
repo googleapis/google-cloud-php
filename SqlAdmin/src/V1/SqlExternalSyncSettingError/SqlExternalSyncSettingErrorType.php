@@ -138,7 +138,7 @@ class SqlExternalSyncSettingErrorType
      */
     const UNSUPPORTED_DEFINER = 21;
     /**
-     * SQL Server &#64;&#64;SERVERNAME does not match actual host name.
+     * SQL Server \@\@SERVERNAME does not match actual host name.
      *
      * Generated from protobuf enum <code>SQLSERVER_SERVERNAME_MISMATCH = 22;</code>
      */
@@ -474,5 +474,4 @@ class SqlExternalSyncSettingErrorType
         return constant($const);
     }
 }
-
 

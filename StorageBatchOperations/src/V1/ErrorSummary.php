@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A summary of errors by error code, plus a count and sample error log
@@ -45,7 +45,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      *           Required. The canonical error code.
      *     @type int|string $error_count
      *           Required. Number of errors encountered per `error_code`.
-     *     @type array<\Google\Cloud\StorageBatchOperations\V1\ErrorLogEntry>|\Google\Protobuf\Internal\RepeatedField $error_log_entries
+     *     @type \Google\Cloud\StorageBatchOperations\V1\ErrorLogEntry[] $error_log_entries
      *           Required. Sample error logs.
      * }
      */
@@ -110,7 +110,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      * Required. Sample error logs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.ErrorLogEntry error_log_entries = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageBatchOperations\V1\ErrorLogEntry>
      */
     public function getErrorLogEntries()
     {
@@ -121,7 +121,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      * Required. Sample error logs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.storagebatchoperations.v1.ErrorLogEntry error_log_entries = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\StorageBatchOperations\V1\ErrorLogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageBatchOperations\V1\ErrorLogEntry[] $var
      * @return $this
      */
     public function setErrorLogEntries($var)

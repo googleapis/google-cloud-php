@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the InsertProductInput method.
@@ -32,8 +32,8 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
      * Required. The primary or supplemental product data source name. If the
      * product already exists and data source provided is different, then the
      * product will be moved to a new data source. For more information, see
-     * [Overview of Data sources
-     * sub-API](/merchant/api/guides/data-sources/overview).
+     * [Create a primary data
+     * source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source).
      * Only API data sources are supported.
      * Format: `accounts/{account}/dataSources/{datasource}`. For example,
      * `accounts/123456/dataSources/104628`.
@@ -57,8 +57,8 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
      *           Required. The primary or supplemental product data source name. If the
      *           product already exists and data source provided is different, then the
      *           product will be moved to a new data source. For more information, see
-     *           [Overview of Data sources
-     *           sub-API](/merchant/api/guides/data-sources/overview).
+     *           [Create a primary data
+     *           source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source).
      *           Only API data sources are supported.
      *           Format: `accounts/{account}/dataSources/{datasource}`. For example,
      *           `accounts/123456/dataSources/104628`.
@@ -137,8 +137,8 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
      * Required. The primary or supplemental product data source name. If the
      * product already exists and data source provided is different, then the
      * product will be moved to a new data source. For more information, see
-     * [Overview of Data sources
-     * sub-API](/merchant/api/guides/data-sources/overview).
+     * [Create a primary data
+     * source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source).
      * Only API data sources are supported.
      * Format: `accounts/{account}/dataSources/{datasource}`. For example,
      * `accounts/123456/dataSources/104628`.
@@ -155,8 +155,8 @@ class InsertProductInputRequest extends \Google\Protobuf\Internal\Message
      * Required. The primary or supplemental product data source name. If the
      * product already exists and data source provided is different, then the
      * product will be moved to a new data source. For more information, see
-     * [Overview of Data sources
-     * sub-API](/merchant/api/guides/data-sources/overview).
+     * [Create a primary data
+     * source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source).
      * Only API data sources are supported.
      * Format: `accounts/{account}/dataSources/{datasource}`. For example,
      * `accounts/123456/dataSources/104628`.

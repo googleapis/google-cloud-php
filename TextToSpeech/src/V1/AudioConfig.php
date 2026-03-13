@@ -5,8 +5,8 @@
 namespace Google\Cloud\TextToSpeech\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Description of audio data to be synthesized.
@@ -109,7 +109,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      *           quality), unless the specified sample rate is not supported for the
      *           encoding chosen, in which case it will fail the request and return
      *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $effects_profile_id
+     *     @type string[] $effects_profile_id
      *           Optional. Input only. An identifier which selects 'audio effects' profiles
      *           that are applied on (post synthesized) text to speech. Effects are applied
      *           on top of each other in the order they are given. See
@@ -298,7 +298,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      * current supported profile ids.
      *
      * Generated from protobuf field <code>repeated string effects_profile_id = 6 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEffectsProfileId()
     {
@@ -314,7 +314,7 @@ class AudioConfig extends \Google\Protobuf\Internal\Message
      * current supported profile ids.
      *
      * Generated from protobuf field <code>repeated string effects_profile_id = 6 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEffectsProfileId($var)

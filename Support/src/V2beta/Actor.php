@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Actor represents an entity that performed an action. For example, an actor

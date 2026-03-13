@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes prefixes of objects to be transformed.
@@ -32,7 +32,7 @@ class PrefixList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $included_object_prefixes
+     *     @type string[] $included_object_prefixes
      *           Optional. Include prefixes of the objects to be transformed.
      *           * Supports full object name
      *           * Supports prefix of the object name
@@ -53,7 +53,7 @@ class PrefixList extends \Google\Protobuf\Internal\Message
      * * Supports empty string for all objects in a bucket.
      *
      * Generated from protobuf field <code>repeated string included_object_prefixes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludedObjectPrefixes()
     {
@@ -68,7 +68,7 @@ class PrefixList extends \Google\Protobuf\Internal\Message
      * * Supports empty string for all objects in a bucket.
      *
      * Generated from protobuf field <code>repeated string included_object_prefixes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludedObjectPrefixes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response from ListAgentPools.
@@ -34,7 +34,7 @@ class ListAgentPoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\StorageTransfer\V1\AgentPool>|\Google\Protobuf\Internal\RepeatedField $agent_pools
+     *     @type \Google\Cloud\StorageTransfer\V1\AgentPool[] $agent_pools
      *           A list of agent pools.
      *     @type string $next_page_token
      *           The list next page token.
@@ -49,7 +49,7 @@ class ListAgentPoolsResponse extends \Google\Protobuf\Internal\Message
      * A list of agent pools.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.AgentPool agent_pools = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageTransfer\V1\AgentPool>
      */
     public function getAgentPools()
     {
@@ -60,7 +60,7 @@ class ListAgentPoolsResponse extends \Google\Protobuf\Internal\Message
      * A list of agent pools.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.AgentPool agent_pools = 1;</code>
-     * @param array<\Google\Cloud\StorageTransfer\V1\AgentPool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageTransfer\V1\AgentPool[] $var
      * @return $this
      */
     public function setAgentPools($var)

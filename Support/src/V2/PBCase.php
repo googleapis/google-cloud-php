@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Case is an object that contains the details of a support case. It
@@ -156,7 +156,7 @@ class PBCase extends \Google\Protobuf\Internal\Message
      *           The timezone of the user who created the support case.
      *           It should be in a format IANA recognizes: https://www.iana.org/time-zones.
      *           There is no additional validation done by the API.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subscriber_email_addresses
+     *     @type string[] $subscriber_email_addresses
      *           The email addresses to receive updates on this case.
      *     @type int $state
      *           Output only. The current status of the support case.
@@ -342,7 +342,7 @@ class PBCase extends \Google\Protobuf\Internal\Message
      * The email addresses to receive updates on this case.
      *
      * Generated from protobuf field <code>repeated string subscriber_email_addresses = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubscriberEmailAddresses()
     {
@@ -353,7 +353,7 @@ class PBCase extends \Google\Protobuf\Internal\Message
      * The email addresses to receive updates on this case.
      *
      * Generated from protobuf field <code>repeated string subscriber_email_addresses = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubscriberEmailAddresses($var)

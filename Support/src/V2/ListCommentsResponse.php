@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for the ListComments endpoint.
@@ -36,7 +36,7 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Support\V2\Comment>|\Google\Protobuf\Internal\RepeatedField $comments
+     *     @type \Google\Cloud\Support\V2\Comment[] $comments
      *           List of the comments associated with the case.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. Set this in the `page_token`
@@ -53,7 +53,7 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
      * List of the comments associated with the case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Comment comments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Support\V2\Comment>
      */
     public function getComments()
     {
@@ -64,7 +64,7 @@ class ListCommentsResponse extends \Google\Protobuf\Internal\Message
      * List of the comments associated with the case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Comment comments = 1;</code>
-     * @param array<\Google\Cloud\Support\V2\Comment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Support\V2\Comment[] $var
      * @return $this
      */
     public function setComments($var)

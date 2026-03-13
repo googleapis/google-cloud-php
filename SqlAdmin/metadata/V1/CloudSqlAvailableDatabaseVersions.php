@@ -19,11 +19,7 @@ class CloudSqlAvailableDatabaseVersions
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-æ
-?google/cloud/sql/v1/cloud_sql_available_database_versions.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2A
-#SqlAvailableDatabaseVersionsServiceÊAsqladmin.googleapis.comBn
-com.google.cloud.sql.v1B&CloudSqlAvailableDatabaseVersionsProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
+            "\x0A\xE6\x02\x0A?google/cloud/sql/v1/cloud_sql_available_database_versions.proto\x12\x13google.cloud.sql.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto2A\x0A#SqlAvailableDatabaseVersionsService\x1A\x1A\xCAA\x17sqladmin.googleapis.comBn\x0A\x17com.google.cloud.sql.v1B&CloudSqlAvailableDatabaseVersionsProtoP\x01Z)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

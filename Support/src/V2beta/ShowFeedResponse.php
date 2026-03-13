@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for the ShowFeed endpoint.
@@ -36,7 +36,7 @@ class ShowFeedResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Support\V2beta\FeedItem>|\Google\Protobuf\Internal\RepeatedField $feed_items
+     *     @type \Google\Cloud\Support\V2beta\FeedItem[] $feed_items
      *           The list of feed items associated with the given Case.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. This should be set in the
@@ -53,7 +53,7 @@ class ShowFeedResponse extends \Google\Protobuf\Internal\Message
      * The list of feed items associated with the given Case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2beta.FeedItem feed_items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Support\V2beta\FeedItem>
      */
     public function getFeedItems()
     {
@@ -64,7 +64,7 @@ class ShowFeedResponse extends \Google\Protobuf\Internal\Message
      * The list of feed items associated with the given Case.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2beta.FeedItem feed_items = 1;</code>
-     * @param array<\Google\Cloud\Support\V2beta\FeedItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Support\V2beta\FeedItem[] $var
      * @return $this
      */
     public function setFeedItems($var)

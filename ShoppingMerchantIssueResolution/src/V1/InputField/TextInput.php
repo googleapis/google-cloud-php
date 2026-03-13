@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1\InputField;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Text input allows the business to provide a text value.
@@ -220,5 +220,4 @@ class TextInput extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

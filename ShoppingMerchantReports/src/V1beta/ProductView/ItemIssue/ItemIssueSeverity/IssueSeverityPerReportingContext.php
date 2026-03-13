@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue\ItemIssueSeverity;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Issue severity per reporting context.
@@ -44,10 +44,10 @@ class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
      *
      *     @type int $reporting_context
      *           Reporting context the issue applies to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disapproved_countries
+     *     @type string[] $disapproved_countries
      *           List of disapproved countries in the reporting context, represented
      *           in ISO 3166 format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $demoted_countries
+     *     @type string[] $demoted_countries
      *           List of demoted countries in the reporting context, represented in
      *           ISO 3166 format.
      * }
@@ -98,7 +98,7 @@ class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
      * in ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisapprovedCountries()
     {
@@ -110,7 +110,7 @@ class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
      * in ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisapprovedCountries($var)
@@ -126,7 +126,7 @@ class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
      * ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string demoted_countries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDemotedCountries()
     {
@@ -138,7 +138,7 @@ class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
      * ISO 3166 format.
      *
      * Generated from protobuf field <code>repeated string demoted_countries = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDemotedCountries($var)
@@ -150,5 +150,4 @@ class IssueSeverityPerReportingContext extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

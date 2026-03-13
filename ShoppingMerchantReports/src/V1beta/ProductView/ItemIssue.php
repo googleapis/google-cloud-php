@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reports\V1beta\ProductView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Item issue associated with the product.
@@ -162,5 +162,4 @@ class ItemIssue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

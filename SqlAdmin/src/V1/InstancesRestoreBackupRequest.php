@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Database instance restore backup request.
@@ -82,7 +82,7 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
      *           instance's major database version and you can only increase the disk size.
      *           You can use this field to restore new instances only. This field is not
      *           applicable for restore to existing instances.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restore_instance_clear_overrides_field_names
+     *     @type string[] $restore_instance_clear_overrides_field_names
      *           Optional. This field has the same purpose as restore_instance_settings,
      *           changes any instance settings stored in the backup you are restoring from.
      *           With the difference that these fields are cleared in the settings.
@@ -243,7 +243,7 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
      * With the difference that these fields are cleared in the settings.
      *
      * Generated from protobuf field <code>repeated string restore_instance_clear_overrides_field_names = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRestoreInstanceClearOverridesFieldNames()
     {
@@ -256,7 +256,7 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
      * With the difference that these fields are cleared in the settings.
      *
      * Generated from protobuf field <code>repeated string restore_instance_clear_overrides_field_names = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRestoreInstanceClearOverridesFieldNames($var)

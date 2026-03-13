@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Google Cloud SQL service tier resource.
@@ -62,7 +62,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      *           This is always `sql#tier`.
      *     @type int|string $Disk_Quota
      *           The maximum disk size of this tier in bytes.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $region
+     *     @type string[] $region
      *           The applicable regions for this tier.
      * }
      */
@@ -181,7 +181,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      * The applicable regions for this tier.
      *
      * Generated from protobuf field <code>repeated string region = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegion()
     {
@@ -192,7 +192,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      * The applicable regions for this tier.
      *
      * Generated from protobuf field <code>repeated string region = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegion($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\ImportContext;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.sql.v1.ImportContext.SqlCsvImportOptions</code>
@@ -62,7 +62,7 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           The table to which CSV data is imported.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type string[] $columns
      *           The columns to which CSV data is imported. If not specified, all columns
      *           of the database table are loaded with CSV data.
      *     @type string $escape_character
@@ -114,7 +114,7 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
      * of the database table are loaded with CSV data.
      *
      * Generated from protobuf field <code>repeated string columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getColumns()
     {
@@ -126,7 +126,7 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
      * of the database table are loaded with CSV data.
      *
      * Generated from protobuf field <code>repeated string columns = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -248,5 +248,4 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

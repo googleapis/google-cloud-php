@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Lfp\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The LFP state of a merchant.
@@ -62,13 +62,13 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
      *     @type int|string $linked_gbps
      *           Number of [GBPs](https://www.google.com/business/) this merchant has access
      *           to.
-     *     @type array<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\LfpStoreState>|\Google\Protobuf\Internal\RepeatedField $store_states
+     *     @type \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\LfpStoreState[] $store_states
      *           Output only. The state per store from the specified merchant. The field
      *           will be absent if the merchant has no stores submitted through LFP.
      *     @type \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\InventoryStats $inventory_stats
      *           The inventory statistics for the merchant. The field will be absent if the
      *           merchant has no inventory submitted through LFP.
-     *     @type array<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\CountrySettings>|\Google\Protobuf\Internal\RepeatedField $country_settings
+     *     @type \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\CountrySettings[] $country_settings
      *           Country-specific settings for the merchant.
      * }
      */
@@ -138,7 +138,7 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
      * will be absent if the merchant has no stores submitted through LFP.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1beta.LfpMerchantState.LfpStoreState store_states = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\LfpStoreState>
      */
     public function getStoreStates()
     {
@@ -150,7 +150,7 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
      * will be absent if the merchant has no stores submitted through LFP.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1beta.LfpMerchantState.LfpStoreState store_states = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\LfpStoreState>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\LfpStoreState[] $var
      * @return $this
      */
     public function setStoreStates($var)
@@ -203,7 +203,7 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
      * Country-specific settings for the merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1beta.LfpMerchantState.CountrySettings country_settings = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\CountrySettings>
      */
     public function getCountrySettings()
     {
@@ -214,7 +214,7 @@ class LfpMerchantState extends \Google\Protobuf\Internal\Message
      * Country-specific settings for the merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.lfp.v1beta.LfpMerchantState.CountrySettings country_settings = 5;</code>
-     * @param array<\Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\CountrySettings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState\CountrySettings[] $var
      * @return $this
      */
     public function setCountrySettings($var)

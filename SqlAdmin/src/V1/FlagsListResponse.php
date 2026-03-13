@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Flags list response.
@@ -36,7 +36,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#flagsList`.
-     *     @type array<\Google\Cloud\Sql\V1\Flag>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Sql\V1\Flag[] $items
      *           List of flags.
      * }
      */
@@ -75,7 +75,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
      * List of flags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Flag items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\Flag>
      */
     public function getItems()
     {
@@ -86,7 +86,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
      * List of flags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Flag items = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\Flag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\Flag[] $var
      * @return $this
      */
     public function setItems($var)
