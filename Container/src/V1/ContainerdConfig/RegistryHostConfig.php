@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ContainerdConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RegistryHostConfig configures the top-level structure for a single
@@ -55,7 +55,7 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
      *           Examples:
      *           - my.customdomain.com
      *           - 10.0.1.2:5000
-     *     @type array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\HostConfig>|\Google\Protobuf\Internal\RepeatedField $hosts
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\HostConfig[] $hosts
      *           HostConfig configures a list of host-specific configurations for the
      *           server.
      *           Each server can have at most 10 host configurations.
@@ -112,7 +112,7 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
      * Each server can have at most 10 host configurations.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.HostConfig hosts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\HostConfig>
      */
     public function getHosts()
     {
@@ -125,7 +125,7 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
      * Each server can have at most 10 host configurations.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.HostConfig hosts = 2;</code>
-     * @param array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\HostConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\HostConfig[] $var
      * @return $this
      */
     public function setHosts($var)
@@ -137,5 +137,4 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

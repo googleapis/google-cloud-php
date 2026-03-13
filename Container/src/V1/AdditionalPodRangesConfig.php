@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AdditionalPodRangesConfig is the configuration for additional pod secondary
@@ -35,9 +35,9 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pod_range_names
+     *     @type string[] $pod_range_names
      *           Name for pod secondary ipv4 range which has the actual range defined ahead.
-     *     @type array<\Google\Cloud\Container\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $pod_range_info
+     *     @type \Google\Cloud\Container\V1\RangeInfo[] $pod_range_info
      *           Output only. Information for additional pod range.
      * }
      */
@@ -50,7 +50,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      * Name for pod secondary ipv4 range which has the actual range defined ahead.
      *
      * Generated from protobuf field <code>repeated string pod_range_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPodRangeNames()
     {
@@ -61,7 +61,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      * Name for pod secondary ipv4 range which has the actual range defined ahead.
      *
      * Generated from protobuf field <code>repeated string pod_range_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPodRangeNames($var)
@@ -76,7 +76,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      * Output only. Information for additional pod range.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\RangeInfo>
      */
     public function getPodRangeInfo()
     {
@@ -87,7 +87,7 @@ class AdditionalPodRangesConfig extends \Google\Protobuf\Internal\Message
      * Output only. Information for additional pod range.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.RangeInfo pod_range_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Container\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\RangeInfo[] $var
      * @return $this
      */
     public function setPodRangeInfo($var)

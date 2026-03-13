@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PrivilegedAdmissionConfig stores the list of authorized allowlist
@@ -24,7 +24,7 @@ class PrivilegedAdmissionConfig extends \Google\Protobuf\Internal\Message
      * `gke://<partner_name>/<app_name>/<allowlist_path>`, or customer-owned, in
      * the format `gs://<bucket_name>/<allowlist_path>`.
      * Wildcards (`*`) are supported to authorize all allowlists under specific
-     * paths or directories. Example: `gs://my-bucket/&#42;` will authorize all
+     * paths or directories. Example: `gs://my-bucket/*` will authorize all
      * allowlists under the `my-bucket` bucket.
      *
      * Generated from protobuf field <code>repeated string allowlist_paths = 1;</code>
@@ -37,7 +37,7 @@ class PrivilegedAdmissionConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowlist_paths
+     *     @type string[] $allowlist_paths
      *           The customer allowlist Cloud Storage paths for the cluster. These paths are
      *           used with the `--autopilot-privileged-admission` flag to authorize
      *           privileged workloads in Autopilot clusters.
@@ -45,7 +45,7 @@ class PrivilegedAdmissionConfig extends \Google\Protobuf\Internal\Message
      *           `gke://<partner_name>/<app_name>/<allowlist_path>`, or customer-owned, in
      *           the format `gs://<bucket_name>/<allowlist_path>`.
      *           Wildcards (`*`) are supported to authorize all allowlists under specific
-     *           paths or directories. Example: `gs://my-bucket/&#42;` will authorize all
+     *           paths or directories. Example: `gs://my-bucket/*` will authorize all
      *           allowlists under the `my-bucket` bucket.
      * }
      */
@@ -62,11 +62,11 @@ class PrivilegedAdmissionConfig extends \Google\Protobuf\Internal\Message
      * `gke://<partner_name>/<app_name>/<allowlist_path>`, or customer-owned, in
      * the format `gs://<bucket_name>/<allowlist_path>`.
      * Wildcards (`*`) are supported to authorize all allowlists under specific
-     * paths or directories. Example: `gs://my-bucket/&#42;` will authorize all
+     * paths or directories. Example: `gs://my-bucket/*` will authorize all
      * allowlists under the `my-bucket` bucket.
      *
      * Generated from protobuf field <code>repeated string allowlist_paths = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowlistPaths()
     {
@@ -81,11 +81,11 @@ class PrivilegedAdmissionConfig extends \Google\Protobuf\Internal\Message
      * `gke://<partner_name>/<app_name>/<allowlist_path>`, or customer-owned, in
      * the format `gs://<bucket_name>/<allowlist_path>`.
      * Wildcards (`*`) are supported to authorize all allowlists under specific
-     * paths or directories. Example: `gs://my-bucket/&#42;` will authorize all
+     * paths or directories. Example: `gs://my-bucket/*` will authorize all
      * allowlists under the `my-bucket` bucket.
      *
      * Generated from protobuf field <code>repeated string allowlist_paths = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowlistPaths($var)

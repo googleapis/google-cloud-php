@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SoleTenantConfig contains the NodeAffinities to specify what shared sole
@@ -37,7 +37,7 @@ class SoleTenantConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Container\V1\SoleTenantConfig\NodeAffinity>|\Google\Protobuf\Internal\RepeatedField $node_affinities
+     *     @type \Google\Cloud\Container\V1\SoleTenantConfig\NodeAffinity[] $node_affinities
      *           NodeAffinities used to match to a shared sole tenant node group.
      *     @type int $min_node_cpus
      *           Optional. The minimum number of virtual CPUs this instance will consume
@@ -54,7 +54,7 @@ class SoleTenantConfig extends \Google\Protobuf\Internal\Message
      * NodeAffinities used to match to a shared sole tenant node group.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.SoleTenantConfig.NodeAffinity node_affinities = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\SoleTenantConfig\NodeAffinity>
      */
     public function getNodeAffinities()
     {
@@ -65,7 +65,7 @@ class SoleTenantConfig extends \Google\Protobuf\Internal\Message
      * NodeAffinities used to match to a shared sole tenant node group.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.SoleTenantConfig.NodeAffinity node_affinities = 1;</code>
-     * @param array<\Google\Cloud\Container\V1\SoleTenantConfig\NodeAffinity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\SoleTenantConfig\NodeAffinity[] $var
      * @return $this
      */
     public function setNodeAffinities($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\NodePool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NodeDrainConfig contains the node drain related configurations for this
@@ -75,5 +75,4 @@ class NodeDrainConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

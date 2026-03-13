@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about operation (or operation stage) progress.
@@ -59,14 +59,14 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *           Status of an operation stage.
      *           Unset for single-stage operations.
-     *     @type array<\Google\Cloud\Container\V1\OperationProgress\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Cloud\Container\V1\OperationProgress\Metric[] $metrics
      *           Progress metric bundle, for example:
      *             metrics: [{name: "nodes done",     int_value: 15},
      *                       {name: "nodes total",    int_value: 32}]
      *           or
      *             metrics: [{name: "progress",       double_value: 0.56},
      *                       {name: "progress scale", double_value: 1.0}]
-     *     @type array<\Google\Cloud\Container\V1\OperationProgress>|\Google\Protobuf\Internal\RepeatedField $stages
+     *     @type \Google\Cloud\Container\V1\OperationProgress[] $stages
      *           Substages of an operation or a stage.
      * }
      */
@@ -140,7 +140,7 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      *             {name: "progress scale", double_value: 1.0}]
      *
      * Generated from protobuf field <code>repeated .google.container.v1.OperationProgress.Metric metrics = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\OperationProgress\Metric>
      */
     public function getMetrics()
     {
@@ -156,7 +156,7 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      *             {name: "progress scale", double_value: 1.0}]
      *
      * Generated from protobuf field <code>repeated .google.container.v1.OperationProgress.Metric metrics = 3;</code>
-     * @param array<\Google\Cloud\Container\V1\OperationProgress\Metric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\OperationProgress\Metric[] $var
      * @return $this
      */
     public function setMetrics($var)
@@ -171,7 +171,7 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      * Substages of an operation or a stage.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.OperationProgress stages = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\OperationProgress>
      */
     public function getStages()
     {
@@ -182,7 +182,7 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      * Substages of an operation or a stage.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.OperationProgress stages = 4;</code>
-     * @param array<\Google\Cloud\Container\V1\OperationProgress>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\OperationProgress[] $var
      * @return $this
      */
     public function setStages($var)

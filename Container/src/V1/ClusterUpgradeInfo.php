@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ClusterUpgradeInfo contains the upgrade information of a cluster.
@@ -68,11 +68,11 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      *           minor_target_version indicates the target version for minor upgrade.
      *     @type string $patch_target_version
      *           patch_target_version indicates the target version for patch upgrade.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $auto_upgrade_status
+     *     @type int[] $auto_upgrade_status
      *           The auto upgrade status.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $paused_reason
+     *     @type int[] $paused_reason
      *           The auto upgrade paused reason.
-     *     @type array<\Google\Cloud\Container\V1\UpgradeDetails>|\Google\Protobuf\Internal\RepeatedField $upgrade_details
+     *     @type \Google\Cloud\Container\V1\UpgradeDetails[] $upgrade_details
      *           The list of past auto upgrades.
      *     @type string $end_of_standard_support_timestamp
      *           The cluster's current minor version's end of standard support timestamp.
@@ -161,7 +161,7 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      * The auto upgrade status.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ClusterUpgradeInfo.AutoUpgradeStatus auto_upgrade_status = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAutoUpgradeStatus()
     {
@@ -172,7 +172,7 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      * The auto upgrade status.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ClusterUpgradeInfo.AutoUpgradeStatus auto_upgrade_status = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAutoUpgradeStatus($var)
@@ -187,7 +187,7 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      * The auto upgrade paused reason.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ClusterUpgradeInfo.AutoUpgradePausedReason paused_reason = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPausedReason()
     {
@@ -198,7 +198,7 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      * The auto upgrade paused reason.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ClusterUpgradeInfo.AutoUpgradePausedReason paused_reason = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPausedReason($var)
@@ -213,7 +213,7 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      * The list of past auto upgrades.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.UpgradeDetails upgrade_details = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\UpgradeDetails>
      */
     public function getUpgradeDetails()
     {
@@ -224,7 +224,7 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      * The list of past auto upgrades.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.UpgradeDetails upgrade_details = 4;</code>
-     * @param array<\Google\Cloud\Container\V1\UpgradeDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\UpgradeDetails[] $var
      * @return $this
      */
     public function setUpgradeDetails($var)

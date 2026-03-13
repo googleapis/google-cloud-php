@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\NodePool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * These upgrade settings control the level of parallelism and the level of
@@ -235,5 +235,4 @@ class UpgradeSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

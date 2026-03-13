@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of Kubernetes [node
@@ -29,7 +29,7 @@ class NodeTaints extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type \Google\Cloud\Container\V1\NodeTaint[] $taints
      *           List of node taints.
      * }
      */
@@ -42,7 +42,7 @@ class NodeTaints extends \Google\Protobuf\Internal\Message
      * List of node taints.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\NodeTaint>
      */
     public function getTaints()
     {
@@ -53,7 +53,7 @@ class NodeTaints extends \Google\Protobuf\Internal\Message
      * List of node taints.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 1;</code>
-     * @param array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\NodeTaint[] $var
      * @return $this
      */
     public function setTaints($var)

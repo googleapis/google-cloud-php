@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AutoprovisioningNodePoolDefaults contains defaults for a node pool created
@@ -111,7 +111,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type string[] $oauth_scopes
      *           Scopes that are used by NAP when creating node pools.
      *     @type string $service_account
      *           The Google Cloud Platform Service Account to be used by the node VMs.
@@ -165,7 +165,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Scopes that are used by NAP when creating node pools.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOauthScopes()
     {
@@ -176,7 +176,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Scopes that are used by NAP when creating node pools.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOauthScopes($var)
