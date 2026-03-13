@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\GoogleSearchTool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prompt settings used by the model when processing or summarizing the
@@ -115,5 +115,4 @@ class PromptConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

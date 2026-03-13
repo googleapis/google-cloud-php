@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single item within an order.
@@ -61,7 +61,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *           Output only. A change made on the item which is pending and not yet
      *           effective. Absence of this field indicates the line item is not undergoing
      *           a change.
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemChange>|\Google\Protobuf\Internal\RepeatedField $change_history
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemChange[] $change_history
      *           Output only. Changes made on the item that are not pending anymore which
      *           might be because they already took effect, were reverted by the customer,
      *           or were rejected by the partner. No more operations are allowed on these
@@ -184,7 +184,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * changes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItemChange change_history = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemChange>
      */
     public function getChangeHistory()
     {
@@ -198,7 +198,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * changes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItemChange change_history = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemChange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemChange[] $var
      * @return $this
      */
     public function setChangeHistory($var)

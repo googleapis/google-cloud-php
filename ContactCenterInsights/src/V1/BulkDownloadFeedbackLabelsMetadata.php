@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for the BulkDownloadFeedbackLabel endpoint.
@@ -59,7 +59,7 @@ class BulkDownloadFeedbackLabelsMetadata extends \Google\Protobuf\Internal\Messa
      *           Output only. The time the operation finished running.
      *     @type \Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsRequest $request
      *           Output only. The original request for download.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type \Google\Rpc\Status[] $partial_errors
      *           Partial errors during ingest operation that might cause the operation
      *           output to be incomplete.
      *     @type \Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsMetadata\DownloadStats $download_stats
@@ -184,7 +184,7 @@ class BulkDownloadFeedbackLabelsMetadata extends \Google\Protobuf\Internal\Messa
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialErrors()
     {
@@ -196,7 +196,7 @@ class BulkDownloadFeedbackLabelsMetadata extends \Google\Protobuf\Internal\Messa
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialErrors($var)

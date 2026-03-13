@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output configuration for export destination.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of etcd encryption.
@@ -63,11 +63,11 @@ class DatabaseEncryption extends \Google\Protobuf\Internal\Message
      *           The desired state of etcd encryption.
      *     @type int $current_state
      *           Output only. The current state of etcd encryption.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $decryption_keys
+     *     @type string[] $decryption_keys
      *           Output only. Keys in use by the cluster for decrypting
      *           existing objects, in addition to the key in `key_name`.
      *           Each item is a CloudKMS key resource.
-     *     @type array<\Google\Cloud\Container\V1\DatabaseEncryption\OperationError>|\Google\Protobuf\Internal\RepeatedField $last_operation_errors
+     *     @type \Google\Cloud\Container\V1\DatabaseEncryption\OperationError[] $last_operation_errors
      *           Output only. Records errors seen during DatabaseEncryption update
      *           operations.
      * }
@@ -173,7 +173,7 @@ class DatabaseEncryption extends \Google\Protobuf\Internal\Message
      * Each item is a CloudKMS key resource.
      *
      * Generated from protobuf field <code>repeated string decryption_keys = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDecryptionKeys()
     {
@@ -186,7 +186,7 @@ class DatabaseEncryption extends \Google\Protobuf\Internal\Message
      * Each item is a CloudKMS key resource.
      *
      * Generated from protobuf field <code>repeated string decryption_keys = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDecryptionKeys($var)
@@ -202,7 +202,7 @@ class DatabaseEncryption extends \Google\Protobuf\Internal\Message
      * operations.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.DatabaseEncryption.OperationError last_operation_errors = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\DatabaseEncryption\OperationError>
      */
     public function getLastOperationErrors()
     {
@@ -214,7 +214,7 @@ class DatabaseEncryption extends \Google\Protobuf\Internal\Message
      * operations.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.DatabaseEncryption.OperationError last_operation_errors = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Container\V1\DatabaseEncryption\OperationError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\DatabaseEncryption\OperationError[] $var
      * @return $this
      */
     public function setLastOperationErrors($var)

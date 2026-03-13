@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Subnetwork>|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type \Google\Cloud\Compute\V1\Subnetwork[] $subnetworks
      *           A list of subnetworks contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           An informational warning that appears when the list of addresses
@@ -50,7 +50,7 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
      * A list of subnetworks contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Subnetwork subnetworks = 415853125;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Subnetwork>
      */
     public function getSubnetworks()
     {
@@ -61,7 +61,7 @@ class SubnetworksScopedList extends \Google\Protobuf\Internal\Message
      * A list of subnetworks contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Subnetwork subnetworks = 415853125;</code>
-     * @param array<\Google\Cloud\Compute\V1\Subnetwork>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Subnetwork[] $var
      * @return $this
      */
     public function setSubnetworks($var)

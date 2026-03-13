@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If enabled, Bigtable will route the request based on the row key of the
@@ -38,7 +38,4 @@ class RowAffinity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RowAffinity::class, \Google\Cloud\Bigtable\Admin\V2\AppProfile_MultiClusterRoutingUseAny_RowAffinity::class);
 

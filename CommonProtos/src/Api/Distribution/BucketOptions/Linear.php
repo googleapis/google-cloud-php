@@ -5,8 +5,8 @@
 namespace Google\Api\Distribution\BucketOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a linear sequence of buckets that all have the same width
@@ -138,5 +138,4 @@ class Linear extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

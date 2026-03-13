@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RegionInstanceGroupManagers.deletePerInstanceConfigs
@@ -29,7 +29,7 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           The list of instance names for which we want to delete per-instance configs
      *           on this managed instance group.
      * }
@@ -44,7 +44,7 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
      * on this managed instance group.
      *
      * Generated from protobuf field <code>repeated string names = 104585032;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -56,7 +56,7 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
      * on this managed instance group.
      *
      * Generated from protobuf field <code>repeated string names = 104585032;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

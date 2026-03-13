@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\TransferRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Deterministic transfer rule. When the condition evaluates to true, the
@@ -112,5 +112,4 @@ class DeterministicTransfer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\DataStoreTool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for searching within an Engine, potentially targeting
@@ -51,7 +51,7 @@ class EngineSource extends \Google\Protobuf\Internal\Message
      *           Required. Full resource name of the Engine.
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
-     *     @type array<\Google\Cloud\Ces\V1\DataStoreTool\DataStoreSource>|\Google\Protobuf\Internal\RepeatedField $data_store_sources
+     *     @type \Google\Cloud\Ces\V1\DataStoreTool\DataStoreSource[] $data_store_sources
      *           Optional. Use to target specific DataStores within the Engine.
      *           If empty, the search applies to all DataStores associated with the
      *           Engine.
@@ -102,7 +102,7 @@ class EngineSource extends \Google\Protobuf\Internal\Message
      * Engine.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.DataStoreSource data_store_sources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\DataStoreTool\DataStoreSource>
      */
     public function getDataStoreSources()
     {
@@ -115,7 +115,7 @@ class EngineSource extends \Google\Protobuf\Internal\Message
      * Engine.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.DataStoreSource data_store_sources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\DataStoreTool\DataStoreSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\DataStoreTool\DataStoreSource[] $var
      * @return $this
      */
     public function setDataStoreSources($var)
@@ -157,5 +157,4 @@ class EngineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

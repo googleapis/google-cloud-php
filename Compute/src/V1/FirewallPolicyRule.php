@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a rule that describes one or more match conditions along with
@@ -189,11 +189,11 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *           https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group
      *           Must be specified if action is one of 'apply_security_profile_group' or
      *           'mirror'. Cannot be specified for other actions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_resources
+     *     @type string[] $target_resources
      *           A list of network resource URLs to which this rule applies.  This field
      *           allows you to control which network's VMs get this rule.  If this field
      *           is left blank, all VMs within the organization will receive the rule.
-     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>|\Google\Protobuf\Internal\RepeatedField $target_secure_tags
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag[] $target_secure_tags
      *           A list of secure tags that controls which instances the firewall rule
      *           applies to. If targetSecureTag are specified, then the
      *           firewall rule applies only to instances in the VPC network that have one
@@ -202,7 +202,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *           If neither targetServiceAccounts nortargetSecureTag are specified, the firewall rule applies
      *           to all instances on the specified network.
      *           Maximum number of target label tags allowed is 256.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
+     *     @type string[] $target_service_accounts
      *           A list of service accounts indicating the sets of instances that are
      *           applied with this rule.
      *     @type bool $tls_inspect
@@ -660,7 +660,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      * is left blank, all VMs within the organization will receive the rule.
      *
      * Generated from protobuf field <code>repeated string target_resources = 528230647;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetResources()
     {
@@ -673,7 +673,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      * is left blank, all VMs within the organization will receive the rule.
      *
      * Generated from protobuf field <code>repeated string target_resources = 528230647;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetResources($var)
@@ -695,7 +695,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      * Maximum number of target label tags allowed is 256.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag target_secure_tags = 468132403;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>
      */
     public function getTargetSecureTags()
     {
@@ -713,7 +713,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      * Maximum number of target label tags allowed is 256.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag target_secure_tags = 468132403;</code>
-     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag[] $var
      * @return $this
      */
     public function setTargetSecureTags($var)
@@ -729,7 +729,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      * applied with this rule.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 457639710;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetServiceAccounts()
     {
@@ -741,7 +741,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      * applied with this rule.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 457639710;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetServiceAccounts($var)

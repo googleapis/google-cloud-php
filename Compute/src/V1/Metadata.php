@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A metadata key/value entry.
@@ -58,7 +58,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *           otherwise the request will fail with error412 conditionNotMet.
      *           To see the latest fingerprint, make a get() request to
      *           retrieve the resource.
-     *     @type array<\Google\Cloud\Compute\V1\Items>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\Items[] $items
      *           Array of key/value pairs. The total size of all keys and values must be
      *           less than 512 KB.
      *     @type string $kind
@@ -126,7 +126,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * less than 512 KB.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Items items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Items>
      */
     public function getItems()
     {
@@ -138,7 +138,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * less than 512 KB.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Items items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\Items>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Items[] $var
      * @return $this
      */
     public function setItems($var)

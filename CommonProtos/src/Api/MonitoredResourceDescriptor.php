@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An object that describes the schema of a
@@ -104,7 +104,7 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. A detailed description of the monitored resource type that might
      *           be used in documentation.
-     *     @type array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type \Google\Api\LabelDescriptor[] $labels
      *           Required. A set of labels used to describe instances of this monitored
      *           resource type. For example, an individual Google Cloud SQL database is
      *           identified by values for the labels `"database_id"` and `"zone"`.
@@ -255,7 +255,7 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      * identified by values for the labels `"database_id"` and `"zone"`.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\LabelDescriptor>
      */
     public function getLabels()
     {
@@ -268,7 +268,7 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      * identified by values for the labels `"database_id"` and `"zone"`.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 4;</code>
-     * @param array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\LabelDescriptor[] $var
      * @return $this
      */
     public function setLabels($var)

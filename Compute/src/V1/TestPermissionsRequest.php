@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -28,7 +28,7 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
+     *     @type string[] $permissions
      *           The set of permissions to check for the 'resource'. Permissions with
      *           wildcards (such as '*' or 'storage.*') are not allowed.
      * }
@@ -43,7 +43,7 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
      * wildcards (such as '*' or 'storage.*') are not allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermissions()
     {
@@ -55,7 +55,7 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
      * wildcards (such as '*' or 'storage.*') are not allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermissions($var)

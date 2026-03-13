@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceBundle represent a collection of kubernetes configuration resources.

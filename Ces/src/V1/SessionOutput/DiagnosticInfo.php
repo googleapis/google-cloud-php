@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\SessionOutput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains execution details during the processing.
@@ -35,7 +35,7 @@ class DiagnosticInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Ces\V1\Message[] $messages
      *           List of the messages that happened during the processing.
      *     @type \Google\Cloud\Ces\V1\Span $root_span
      *           A trace of the entire request processing, represented as a root span.
@@ -51,7 +51,7 @@ class DiagnosticInfo extends \Google\Protobuf\Internal\Message
      * List of the messages that happened during the processing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Message>
      */
     public function getMessages()
     {
@@ -62,7 +62,7 @@ class DiagnosticInfo extends \Google\Protobuf\Internal\Message
      * List of the messages that happened during the processing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 1;</code>
-     * @param array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Message[] $var
      * @return $this
      */
     public function setMessages($var)
@@ -112,5 +112,4 @@ class DiagnosticInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

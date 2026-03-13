@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] A connection connected to this service attachment.
@@ -27,6 +27,12 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>optional string endpoint = 130489749;</code>
      */
     protected $endpoint = null;
+    /**
+     * The url of a connected endpoint with resource id.
+     *
+     * Generated from protobuf field <code>optional string endpoint_with_id = 444867210;</code>
+     */
+    protected $endpoint_with_id = null;
     /**
      * NAT IPs of the connected PSC endpoint and those of other endpoints
      * propagated from it.
@@ -65,7 +71,9 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           The url of the consumer network.
      *     @type string $endpoint
      *           The url of a connected endpoint.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ips
+     *     @type string $endpoint_with_id
+     *           The url of a connected endpoint with resource id.
+     *     @type string[] $nat_ips
      *           NAT IPs of the connected PSC endpoint and those of other endpoints
      *           propagated from it.
      *     @type int $propagated_connection_count
@@ -156,11 +164,47 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     }
 
     /**
+     * The url of a connected endpoint with resource id.
+     *
+     * Generated from protobuf field <code>optional string endpoint_with_id = 444867210;</code>
+     * @return string
+     */
+    public function getEndpointWithId()
+    {
+        return isset($this->endpoint_with_id) ? $this->endpoint_with_id : '';
+    }
+
+    public function hasEndpointWithId()
+    {
+        return isset($this->endpoint_with_id);
+    }
+
+    public function clearEndpointWithId()
+    {
+        unset($this->endpoint_with_id);
+    }
+
+    /**
+     * The url of a connected endpoint with resource id.
+     *
+     * Generated from protobuf field <code>optional string endpoint_with_id = 444867210;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEndpointWithId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->endpoint_with_id = $var;
+
+        return $this;
+    }
+
+    /**
      * NAT IPs of the connected PSC endpoint and those of other endpoints
      * propagated from it.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNatIps()
     {
@@ -172,7 +216,7 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      * propagated from it.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNatIps($var)

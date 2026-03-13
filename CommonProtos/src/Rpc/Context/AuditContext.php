@@ -5,8 +5,8 @@
 namespace Google\Rpc\Context;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `AuditContext` provides information that is needed for audit logging.

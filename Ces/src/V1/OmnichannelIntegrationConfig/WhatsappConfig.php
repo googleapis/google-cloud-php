@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\OmnichannelIntegrationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * How Omnichannel should receive/reply events from WhatsApp.
@@ -246,5 +246,4 @@ class WhatsappConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

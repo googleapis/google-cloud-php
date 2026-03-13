@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encapsulates the geographic taxonomy data for a sku.
@@ -37,7 +37,7 @@ class GeoTaxonomy extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           The type of Geo Taxonomy: GLOBAL, REGIONAL, or MULTI_REGIONAL.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type string[] $regions
      *           The list of regions associated with a sku. Empty for Global skus, which are
      *           associated with all Google Cloud regions.
      * }
@@ -78,7 +78,7 @@ class GeoTaxonomy extends \Google\Protobuf\Internal\Message
      * associated with all Google Cloud regions.
      *
      * Generated from protobuf field <code>repeated string regions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegions()
     {
@@ -90,7 +90,7 @@ class GeoTaxonomy extends \Google\Protobuf\Internal\Message
      * associated with all Google Cloud regions.
      *
      * Generated from protobuf field <code>repeated string regions = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegions($var)

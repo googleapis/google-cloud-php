@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] Which SLA this group is configured to support, and why this
@@ -37,7 +37,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLA extends \Google\Proto
      *     @type string $effective_sla
      *           
      *           Check the EffectiveSla enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers>|\Google\Protobuf\Internal\RepeatedField $intended_sla_blockers
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers[] $intended_sla_blockers
      * }
      */
     public function __construct($data = NULL) {
@@ -85,7 +85,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLA extends \Google\Proto
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers intended_sla_blockers = 448370308;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers>
      */
     public function getIntendedSlaBlockers()
     {
@@ -94,7 +94,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLA extends \Google\Proto
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers intended_sla_blockers = 448370308;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers[] $var
      * @return $this
      */
     public function setIntendedSlaBlockers($var)

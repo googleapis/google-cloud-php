@@ -5,8 +5,8 @@
 namespace Google\Rpc;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes violations in a client request. This error type focuses on the
@@ -29,7 +29,7 @@ class BadRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Rpc\BadRequest\FieldViolation>|\Google\Protobuf\Internal\RepeatedField $field_violations
+     *     @type \Google\Rpc\BadRequest\FieldViolation[] $field_violations
      *           Describes all violations in a client request.
      * }
      */
@@ -42,7 +42,7 @@ class BadRequest extends \Google\Protobuf\Internal\Message
      * Describes all violations in a client request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.BadRequest.FieldViolation field_violations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\BadRequest\FieldViolation>
      */
     public function getFieldViolations()
     {
@@ -53,7 +53,7 @@ class BadRequest extends \Google\Protobuf\Internal\Message
      * Describes all violations in a client request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.BadRequest.FieldViolation field_violations = 1;</code>
-     * @param array<\Google\Rpc\BadRequest\FieldViolation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\BadRequest\FieldViolation[] $var
      * @return $this
      */
     public function setFieldViolations($var)

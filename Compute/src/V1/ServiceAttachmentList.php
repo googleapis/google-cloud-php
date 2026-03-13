@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -63,7 +63,7 @@ class ServiceAttachmentList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\ServiceAttachment>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\ServiceAttachment[] $items
      *           A list of ServiceAttachment resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of the resource. Alwayscompute#serviceAttachment for service attachments.
@@ -124,7 +124,7 @@ class ServiceAttachmentList extends \Google\Protobuf\Internal\Message
      * A list of ServiceAttachment resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachment items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ServiceAttachment>
      */
     public function getItems()
     {
@@ -135,7 +135,7 @@ class ServiceAttachmentList extends \Google\Protobuf\Internal\Message
      * A list of ServiceAttachment resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachment items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\ServiceAttachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ServiceAttachment[] $var
      * @return $this
      */
     public function setItems($var)

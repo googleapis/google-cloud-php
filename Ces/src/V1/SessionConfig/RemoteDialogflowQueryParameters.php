@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\SessionConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters)
@@ -167,5 +167,4 @@ class RemoteDialogflowQueryParameters extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -43,7 +43,7 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
      *           How to behave when configured.topologyCapability.supportedSLA would not
      *           equal intent.topologyCapability after this call.
      *           Check the IntentMismatchBehavior enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput>|\Google\Protobuf\Internal\RepeatedField $interconnects
+     *     @type \Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput[] $interconnects
      *     @type \Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput $template_interconnect
      *           Parameters for the Interconnects to create.
      * }
@@ -95,7 +95,7 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput interconnects = 520187301;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput>
      */
     public function getInterconnects()
     {
@@ -104,7 +104,7 @@ class InterconnectGroupsCreateMembers extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput interconnects = 520187301;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectGroupsCreateMembersInterconnectInput[] $var
      * @return $this
      */
     public function setInterconnects($var)

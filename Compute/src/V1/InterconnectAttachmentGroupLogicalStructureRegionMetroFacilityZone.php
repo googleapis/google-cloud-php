@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] The zones that Attachments in this group are present
@@ -38,7 +38,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone extends
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attachments
+     *     @type string[] $attachments
      *           Output only. [Output Only] URLs of Attachments in the given zone, to the given
      *           region, on Interconnects in the given facility and metro. Every
      *           Attachment in the AG has such an entry.
@@ -57,7 +57,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone extends
      * Attachment in the AG has such an entry.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAttachments()
     {
@@ -70,7 +70,7 @@ class InterconnectAttachmentGroupLogicalStructureRegionMetroFacilityZone extends
      * Attachment in the AG has such an entry.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAttachments($var)

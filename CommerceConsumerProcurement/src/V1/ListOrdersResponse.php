@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -35,7 +35,7 @@ class ListOrdersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\Order>|\Google\Protobuf\Internal\RepeatedField $orders
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\Order[] $orders
      *           The list of orders in this response.
      *     @type string $next_page_token
      *           The token for fetching the next page.
@@ -50,7 +50,7 @@ class ListOrdersResponse extends \Google\Protobuf\Internal\Message
      * The list of orders in this response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.Order orders = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\Order>
      */
     public function getOrders()
     {
@@ -61,7 +61,7 @@ class ListOrdersResponse extends \Google\Protobuf\Internal\Message
      * The list of orders in this response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.Order orders = 1;</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\Order>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\Order[] $var
      * @return $this
      */
     public function setOrders($var)

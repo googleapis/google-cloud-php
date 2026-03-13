@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `DeleteCertificateIssuanceConfig` method.
@@ -17,7 +17,7 @@ class DeleteCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
 {
     /**
      * Required. A name of the certificate issuance config to delete. Must be in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * the format `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class DeleteCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
      *
      *     @type string $name
      *           Required. A name of the certificate issuance config to delete. Must be in
-     *           the format `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     *           the format `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class DeleteCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. A name of the certificate issuance config to delete. Must be in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * the format `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class DeleteCertificateIssuanceConfigRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. A name of the certificate issuance config to delete. Must be in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;certificateIssuanceConfigs/&#42;`.
+     * the format `projects/{@*}locations/{@*}certificateIssuanceConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

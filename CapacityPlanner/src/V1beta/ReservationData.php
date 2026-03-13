@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response entity for reservations data.
@@ -72,9 +72,9 @@ class ReservationData extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\CapacityPlanner\V1beta\TimeSeries $used_reservation_values
      *           The collection of data points that represent the aggregated used value for
      *           reservations filtered by the criteria.
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\FutureReservation>|\Google\Protobuf\Internal\RepeatedField $future_reservations
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\FutureReservation[] $future_reservations
      *           Future reservations filtered by the criteria.
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\Allocation>|\Google\Protobuf\Internal\RepeatedField $allocations
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\Allocation[] $allocations
      *           Allocations filtered by the criteria.
      * }
      */
@@ -199,7 +199,7 @@ class ReservationData extends \Google\Protobuf\Internal\Message
      * Future reservations filtered by the criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.FutureReservation future_reservations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\FutureReservation>
      */
     public function getFutureReservations()
     {
@@ -210,7 +210,7 @@ class ReservationData extends \Google\Protobuf\Internal\Message
      * Future reservations filtered by the criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.FutureReservation future_reservations = 3;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\FutureReservation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\FutureReservation[] $var
      * @return $this
      */
     public function setFutureReservations($var)
@@ -225,7 +225,7 @@ class ReservationData extends \Google\Protobuf\Internal\Message
      * Allocations filtered by the criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Allocation allocations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\Allocation>
      */
     public function getAllocations()
     {
@@ -236,7 +236,7 @@ class ReservationData extends \Google\Protobuf\Internal\Message
      * Allocations filtered by the criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Allocation allocations = 4;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\Allocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\Allocation[] $var
      * @return $this
      */
     public function setAllocations($var)

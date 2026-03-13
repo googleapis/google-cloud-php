@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -58,7 +58,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus[] $items
      *           A list of NetworkEndpointWithHealthStatus resources.
      *     @type string $kind
      *           Output only. [Output Only] The resource type, which is alwayscompute#networkEndpointGroupsListNetworkEndpoints for the list
@@ -118,7 +118,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
      * A list of NetworkEndpointWithHealthStatus resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpointWithHealthStatus items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus>
      */
     public function getItems()
     {
@@ -129,7 +129,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
      * A list of NetworkEndpointWithHealthStatus resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpointWithHealthStatus items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus[] $var
      * @return $this
      */
     public function setItems($var)

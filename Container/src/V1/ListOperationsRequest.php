@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListOperationsRequest lists operations.
@@ -36,7 +36,7 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
     protected $zone = '';
     /**
      * The parent (project and location) where the operations will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Specified in the format `projects/{@*}locations/*`.
      * Location "-" matches all zones and all regions.
      *
      * Generated from protobuf field <code>string parent = 4;</code>
@@ -95,7 +95,7 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *           deprecated and replaced by the parent field.
      *     @type string $parent
      *           The parent (project and location) where the operations will be listed.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Specified in the format `projects/{@*}locations/*`.
      *           Location "-" matches all zones and all regions.
      * }
      */
@@ -180,7 +180,7 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the operations will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Specified in the format `projects/{@*}locations/*`.
      * Location "-" matches all zones and all regions.
      *
      * Generated from protobuf field <code>string parent = 4;</code>
@@ -193,7 +193,7 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the operations will be listed.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Specified in the format `projects/{@*}locations/*`.
      * Location "-" matches all zones and all regions.
      *
      * Generated from protobuf field <code>string parent = 4;</code>

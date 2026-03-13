@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -98,7 +98,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $source
      *           Optional. Indicate the source of the conversation. If not set, Source.Live
      *           will be applied by default. Will be deprecated in favor of `sources` field.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type int[] $sources
      *           Optional. Indicate the sources of the conversations. If not set, all
      *           available sources will be applied by default.
      * }
@@ -257,7 +257,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      * available sources will be applied by default.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Conversation.Source sources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSources()
     {
@@ -269,7 +269,7 @@ class ListConversationsRequest extends \Google\Protobuf\Internal\Message
      * available sources will be applied by default.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Conversation.Source sources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSources($var)

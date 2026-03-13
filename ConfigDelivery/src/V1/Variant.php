@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Variant represents the content of a `ResourceBundle` variant.
@@ -56,7 +56,7 @@ class Variant extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. labels to represent any metadata associated with the variant.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type string[] $resources
      *           Required. Input only. Unordered list. resources contain the kubernetes
      *           manifests (YAMLs) for this variant.
      *     @type string $name
@@ -104,7 +104,7 @@ class Variant extends \Google\Protobuf\Internal\Message
      * manifests (YAMLs) for this variant.
      *
      * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResources()
     {
@@ -116,7 +116,7 @@ class Variant extends \Google\Protobuf\Internal\Message
      * manifests (YAMLs) for this variant.
      *
      * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResources($var)

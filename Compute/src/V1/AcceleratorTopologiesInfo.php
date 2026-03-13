@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Info for accelerator topologies within a densely packed reservation.
@@ -28,7 +28,7 @@ class AcceleratorTopologiesInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfo>|\Google\Protobuf\Internal\RepeatedField $accelerator_topology_infos
+     *     @type \Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfo[] $accelerator_topology_infos
      *           Info for each accelerator topology.
      * }
      */
@@ -41,7 +41,7 @@ class AcceleratorTopologiesInfo extends \Google\Protobuf\Internal\Message
      * Info for each accelerator topology.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorTopologiesInfoAcceleratorTopologyInfo accelerator_topology_infos = 219451401;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfo>
      */
     public function getAcceleratorTopologyInfos()
     {
@@ -52,7 +52,7 @@ class AcceleratorTopologiesInfo extends \Google\Protobuf\Internal\Message
      * Info for each accelerator topology.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorTopologiesInfoAcceleratorTopologyInfo accelerator_topology_infos = 219451401;</code>
-     * @param array<\Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AcceleratorTopologiesInfoAcceleratorTopologyInfo[] $var
      * @return $this
      */
     public function setAcceleratorTopologyInfos($var)

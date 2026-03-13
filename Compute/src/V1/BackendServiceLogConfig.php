@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The available logging options for the load balancer traffic served by this
@@ -63,7 +63,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable
      *           Denotes whether to enable logging for the load balancer
      *           traffic served by this backend service. The default value is false.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $optional_fields
+     *     @type string[] $optional_fields
      *           This field can only be specified if logging is enabled for this backend
      *           service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
      *           of optional fields you want to include in the logs. For example:
@@ -134,7 +134,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      * serverGkeDetails.pod.podNamespace
      *
      * Generated from protobuf field <code>repeated string optional_fields = 528589944;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOptionalFields()
     {
@@ -149,7 +149,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      * serverGkeDetails.pod.podNamespace
      *
      * Generated from protobuf field <code>repeated string optional_fields = 528589944;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOptionalFields($var)

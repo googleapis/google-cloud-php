@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the custom error response policy that must be applied when the
@@ -51,7 +51,7 @@ class CustomErrorResponsePolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\CustomErrorResponsePolicyCustomErrorResponseRule>|\Google\Protobuf\Internal\RepeatedField $error_response_rules
+     *     @type \Google\Cloud\Compute\V1\CustomErrorResponsePolicyCustomErrorResponseRule[] $error_response_rules
      *           Specifies rules for returning error responses.
      *           In a given policy, if you specify rules for both a range of error codes
      *           as well as rules for specific error codes then rules with specific error
@@ -88,7 +88,7 @@ class CustomErrorResponsePolicy extends \Google\Protobuf\Internal\Message
      * However if the backend service returns a 403, the rule for4xx takes effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CustomErrorResponsePolicyCustomErrorResponseRule error_response_rules = 14620304;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\CustomErrorResponsePolicyCustomErrorResponseRule>
      */
     public function getErrorResponseRules()
     {
@@ -105,7 +105,7 @@ class CustomErrorResponsePolicy extends \Google\Protobuf\Internal\Message
      * However if the backend service returns a 403, the rule for4xx takes effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.CustomErrorResponsePolicyCustomErrorResponseRule error_response_rules = 14620304;</code>
-     * @param array<\Google\Cloud\Compute\V1\CustomErrorResponsePolicyCustomErrorResponseRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\CustomErrorResponsePolicyCustomErrorResponseRule[] $var
      * @return $this
      */
     public function setErrorResponseRules($var)

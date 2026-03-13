@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -71,7 +71,7 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
      *           IP address and port. When both sni and subjectAltNames[] are specified,
      *           the load balancer matches the backend certificate's SAN only to
      *           subjectAltNames[].
-     *     @type array<\Google\Cloud\Compute\V1\BackendServiceTlsSettingsSubjectAltName>|\Google\Protobuf\Internal\RepeatedField $subject_alt_names
+     *     @type \Google\Cloud\Compute\V1\BackendServiceTlsSettingsSubjectAltName[] $subject_alt_names
      *           A list of Subject Alternative Names (SANs) that the Load Balancer
      *           verifies during a TLS handshake with the backend. When the server
      *           presents its X.509 certificate to the Load Balancer, the Load Balancer
@@ -190,7 +190,7 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
      * balancer matches the backend certificate's SAN only to subjectAltNames[].
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceTlsSettingsSubjectAltName subject_alt_names = 330029535;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendServiceTlsSettingsSubjectAltName>
      */
     public function getSubjectAltNames()
     {
@@ -207,7 +207,7 @@ class BackendServiceTlsSettings extends \Google\Protobuf\Internal\Message
      * balancer matches the backend certificate's SAN only to subjectAltNames[].
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceTlsSettingsSubjectAltName subject_alt_names = 330029535;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendServiceTlsSettingsSubjectAltName>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendServiceTlsSettingsSubjectAltName[] $var
      * @return $this
      */
     public function setSubjectAltNames($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -44,14 +44,14 @@ class ListAppsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\App>|\Google\Protobuf\Internal\RepeatedField $apps
+     *     @type \Google\Cloud\Ces\V1\App[] $apps
      *           The list of apps.
      *     @type string $next_page_token
      *           A token that can be sent as
      *           [ListAppsRequest.page_token][google.cloud.ces.v1.ListAppsRequest.page_token]
      *           to retrieve the next page. Absence of this field indicates there are no
      *           subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. Locations that could not be reached.
      * }
      */
@@ -64,7 +64,7 @@ class ListAppsResponse extends \Google\Protobuf\Internal\Message
      * The list of apps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.App apps = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\App>
      */
     public function getApps()
     {
@@ -75,7 +75,7 @@ class ListAppsResponse extends \Google\Protobuf\Internal\Message
      * The list of apps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.App apps = 1;</code>
-     * @param array<\Google\Cloud\Ces\V1\App>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\App[] $var
      * @return $this
      */
     public function setApps($var)
@@ -122,7 +122,7 @@ class ListAppsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -133,7 +133,7 @@ class ListAppsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

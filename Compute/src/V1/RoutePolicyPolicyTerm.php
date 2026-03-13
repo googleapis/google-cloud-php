@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -42,7 +42,7 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Expr>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\Compute\V1\Expr[] $actions
      *           CEL expressions to evaluate to modify a route when this term matches.
      *     @type \Google\Cloud\Compute\V1\Expr $match
      *           CEL expression evaluated against a route to determine if this term
@@ -62,7 +62,7 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
      * CEL expressions to evaluate to modify a route when this term matches.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Expr actions = 448809213;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Expr>
      */
     public function getActions()
     {
@@ -73,7 +73,7 @@ class RoutePolicyPolicyTerm extends \Google\Protobuf\Internal\Message
      * CEL expressions to evaluate to modify a route when this term matches.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Expr actions = 448809213;</code>
-     * @param array<\Google\Cloud\Compute\V1\Expr>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Expr[] $var
      * @return $this
      */
     public function setActions($var)

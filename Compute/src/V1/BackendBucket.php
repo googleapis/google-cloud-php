@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Cloud Storage Bucket resource.
@@ -142,7 +142,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp inRFC3339
      *           text format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
+     *     @type string[] $custom_response_headers
      *           Headers that the Application Load Balancer should add to proxied responses.
      *     @type string $description
      *           An optional textual description of the resource; provided by the client
@@ -176,7 +176,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           as part of resource payload.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type array<\Google\Cloud\Compute\V1\BackendBucketUsedBy>|\Google\Protobuf\Internal\RepeatedField $used_by
+     *     @type \Google\Cloud\Compute\V1\BackendBucketUsedBy[] $used_by
      *           Output only. [Output Only] List of resources referencing that backend bucket.
      * }
      */
@@ -339,7 +339,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Headers that the Application Load Balancer should add to proxied responses.
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomResponseHeaders()
     {
@@ -350,7 +350,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Headers that the Application Load Balancer should add to proxied responses.
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomResponseHeaders($var)
@@ -717,7 +717,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] List of resources referencing that backend bucket.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendBucketUsedBy>
      */
     public function getUsedBy()
     {
@@ -728,7 +728,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] List of resources referencing that backend bucket.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendBucketUsedBy used_by = 389320729;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendBucketUsedBy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendBucketUsedBy[] $var
      * @return $this
      */
     public function setUsedBy($var)

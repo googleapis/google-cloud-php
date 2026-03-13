@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of a NAT Rule contained in this NAT.
@@ -57,10 +57,10 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $active_nat_ips
+     *     @type string[] $active_nat_ips
      *           Output only. A list of active IPs for NAT.
      *           Example: ["1.1.1.1", "179.12.26.133"].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
+     *     @type string[] $drain_nat_ips
      *           Output only. A list of IPs for NAT that are in drain mode.
      *           Example: ["1.1.1.1", "179.12.26.133"].
      *     @type int $min_extra_ips_needed
@@ -84,7 +84,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string active_nat_ips = 208517077;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActiveNatIps()
     {
@@ -96,7 +96,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string active_nat_ips = 208517077;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActiveNatIps($var)
@@ -112,7 +112,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDrainNatIps()
     {
@@ -124,7 +124,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
      * Example: ["1.1.1.1", "179.12.26.133"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDrainNatIps($var)

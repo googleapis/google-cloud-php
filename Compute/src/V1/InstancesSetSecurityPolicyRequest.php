@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -37,7 +37,7 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type string[] $network_interfaces
      *           The network interfaces that the security policy will be applied to. Network
      *           interfaces use the nicN naming format. You can only set a
      *           security policy for network interfaces with an access config.
@@ -58,7 +58,7 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
      * security policy for network interfaces with an access config.
      *
      * Generated from protobuf field <code>repeated string network_interfaces = 52735243;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkInterfaces()
     {
@@ -71,7 +71,7 @@ class InstancesSetSecurityPolicyRequest extends \Google\Protobuf\Internal\Messag
      * security policy for network interfaces with an access config.
      *
      * Generated from protobuf field <code>repeated string network_interfaces = 52735243;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)

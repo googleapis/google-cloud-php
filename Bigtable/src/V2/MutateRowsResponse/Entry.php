@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\MutateRowsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of applying a passed mutation in the original request.
@@ -124,7 +124,4 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Entry::class, \Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry::class);
 

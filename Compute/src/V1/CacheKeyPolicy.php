@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message containing what to include in the cache key for a request for Cloud
@@ -77,9 +77,9 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $include_host
      *           If true, requests to different hosts will be cached separately.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_http_headers
+     *     @type string[] $include_http_headers
      *           Allows HTTP request headers (by name) to be used in the cache key.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_named_cookies
+     *     @type string[] $include_named_cookies
      *           Allows HTTP cookies (by name) to be used in the cache key.
      *           The name=value pair will be used in the cache key Cloud CDN generates.
      *     @type bool $include_protocol
@@ -89,12 +89,12 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      *           query_string_whitelist and query_string_blacklist. If neither is set, the
      *           entire query string will be included. If false, the query string will be
      *           excluded from the cache key entirely.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_string_blacklist
+     *     @type string[] $query_string_blacklist
      *           Names of query string parameters to exclude in cache keys. All other
      *           parameters will be included. Either specify query_string_whitelist or
      *           query_string_blacklist, not both. '&' and '=' will be percent encoded and
      *           not treated as delimiters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_string_whitelist
+     *     @type string[] $query_string_whitelist
      *           Names of query string parameters to include in cache keys. All other
      *           parameters will be excluded. Either specify query_string_whitelist or
      *           query_string_blacklist, not both. '&' and '=' will be percent encoded and
@@ -146,7 +146,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * Allows HTTP request headers (by name) to be used in the cache key.
      *
      * Generated from protobuf field <code>repeated string include_http_headers = 2489606;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludeHttpHeaders()
     {
@@ -157,7 +157,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * Allows HTTP request headers (by name) to be used in the cache key.
      *
      * Generated from protobuf field <code>repeated string include_http_headers = 2489606;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludeHttpHeaders($var)
@@ -173,7 +173,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * The name=value pair will be used in the cache key Cloud CDN generates.
      *
      * Generated from protobuf field <code>repeated string include_named_cookies = 87316530;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludeNamedCookies()
     {
@@ -185,7 +185,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * The name=value pair will be used in the cache key Cloud CDN generates.
      *
      * Generated from protobuf field <code>repeated string include_named_cookies = 87316530;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludeNamedCookies($var)
@@ -281,7 +281,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_blacklist = 354964742;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQueryStringBlacklist()
     {
@@ -295,7 +295,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_blacklist = 354964742;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQueryStringBlacklist($var)
@@ -313,7 +313,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_whitelist = 52456496;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQueryStringWhitelist()
     {
@@ -327,7 +327,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_whitelist = 52456496;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQueryStringWhitelist($var)

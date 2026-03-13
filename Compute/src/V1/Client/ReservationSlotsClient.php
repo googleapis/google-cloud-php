@@ -35,6 +35,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\GetReservationSlotRequest;
+use Google\Cloud\Compute\V1\GetVersionReservationSlotRequest;
 use Google\Cloud\Compute\V1\ListReservationSlotsRequest;
 use Google\Cloud\Compute\V1\ReservationSlotsGetResponse;
 use Google\Cloud\Compute\V1\UpdateReservationSlotRequest;
@@ -48,6 +49,7 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<ReservationSlotsGetResponse> getAsync(GetReservationSlotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> getVersionAsync(GetVersionReservationSlotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListReservationSlotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateReservationSlotRequest $request, array $optionalArgs = [])
  */
@@ -287,6 +289,32 @@ final class ReservationSlotsClient
     public function get(GetReservationSlotRequest $request, array $callOptions = []): ReservationSlotsGetResponse
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Allows customers to get SBOM versions of a reservation slot.
+     *
+     * The async variant is {@see ReservationSlotsClient::getVersionAsync()} .
+     *
+     * @example samples/V1/ReservationSlotsClient/get_version.php
+     *
+     * @param GetVersionReservationSlotRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getVersion(GetVersionReservationSlotRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('GetVersion', $request, $callOptions)->wait();
     }
 
     /**

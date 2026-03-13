@@ -62,6 +62,3 @@ class RequestStatsView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RequestStatsView::class, \Google\Cloud\Bigtable\V2\ReadRowsRequest_RequestStatsView::class);
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an SSL Policy resource.
@@ -95,8 +95,9 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     protected $name = null;
     /**
      * Profile specifies the set of SSL features that can be used by the load
-     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED, orCUSTOM. If using CUSTOM, the set of SSL features
-     * to enable must be specified in the customFeatures field.
+     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
+     * the customFeatures field. If using FIPS_202205,
+     * the min_tls_version field must be set to TLS_1_2.
      * Check the Profile enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string profile = 227445161;</code>
@@ -132,14 +133,14 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_features
+     *     @type string[] $custom_features
      *           A list of features enabled when the selected profile is CUSTOM. The
      *            method returns the set of features that can be
      *           specified in this list. This field must be empty if the profile is notCUSTOM.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
+     *     @type string[] $enabled_features
      *           Output only. [Output Only] The list of features enabled in the SSL policy.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object.
@@ -169,15 +170,16 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *           dash.
      *     @type string $profile
      *           Profile specifies the set of SSL features that can be used by the load
-     *           balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED, orCUSTOM. If using CUSTOM, the set of SSL features
-     *           to enable must be specified in the customFeatures field.
+     *           balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
+     *           the customFeatures field. If using FIPS_202205,
+     *           the min_tls_version field must be set to TLS_1_2.
      *           Check the Profile enum for the list of possible values.
      *     @type string $region
      *           Output only. [Output Only] URL of the region where the regional SSL policy
      *           resides. This field is not applicable to global SSL policies.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for the resource.
-     *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\Compute\V1\Warnings[] $warnings
      *           Output only. [Output Only] If potential misconfigurations are detected for this
      *           SSL policy, this field will be populated with warning messages.
      * }
@@ -231,7 +233,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * specified in this list. This field must be empty if the profile is notCUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomFeatures()
     {
@@ -244,7 +246,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * specified in this list. This field must be empty if the profile is notCUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomFeatures($var)
@@ -297,7 +299,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] The list of features enabled in the SSL policy.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEnabledFeatures()
     {
@@ -308,7 +310,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] The list of features enabled in the SSL policy.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEnabledFeatures($var)
@@ -533,8 +535,9 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Profile specifies the set of SSL features that can be used by the load
-     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED, orCUSTOM. If using CUSTOM, the set of SSL features
-     * to enable must be specified in the customFeatures field.
+     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
+     * the customFeatures field. If using FIPS_202205,
+     * the min_tls_version field must be set to TLS_1_2.
      * Check the Profile enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string profile = 227445161;</code>
@@ -557,8 +560,9 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Profile specifies the set of SSL features that can be used by the load
-     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED, orCUSTOM. If using CUSTOM, the set of SSL features
-     * to enable must be specified in the customFeatures field.
+     * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
+     * the customFeatures field. If using FIPS_202205,
+     * the min_tls_version field must be set to TLS_1_2.
      * Check the Profile enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string profile = 227445161;</code>
@@ -652,7 +656,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * SSL policy, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Warnings>
      */
     public function getWarnings()
     {
@@ -664,7 +668,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * SSL policy, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @param array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Warnings[] $var
      * @return $this
      */
     public function setWarnings($var)

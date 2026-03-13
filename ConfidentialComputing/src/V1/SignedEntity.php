@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SignedEntity represents an OCI image object containing everything necessary
@@ -30,7 +30,7 @@ class SignedEntity extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ConfidentialComputing\V1\ContainerImageSignature>|\Google\Protobuf\Internal\RepeatedField $container_image_signatures
+     *     @type \Google\Cloud\ConfidentialComputing\V1\ContainerImageSignature[] $container_image_signatures
      *           Optional. A list of container image signatures attached to an OCI image
      *           object.
      * }
@@ -45,7 +45,7 @@ class SignedEntity extends \Google\Protobuf\Internal\Message
      * object.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.ContainerImageSignature container_image_signatures = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ConfidentialComputing\V1\ContainerImageSignature>
      */
     public function getContainerImageSignatures()
     {
@@ -57,7 +57,7 @@ class SignedEntity extends \Google\Protobuf\Internal\Message
      * object.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.ContainerImageSignature container_image_signatures = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ConfidentialComputing\V1\ContainerImageSignature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ConfidentialComputing\V1\ContainerImageSignature[] $var
      * @return $this
      */
     public function setContainerImageSignatures($var)

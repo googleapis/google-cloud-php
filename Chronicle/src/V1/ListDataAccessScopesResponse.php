@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListDataAccessScopes.
@@ -41,7 +41,7 @@ class ListDataAccessScopesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Chronicle\V1\DataAccessScope>|\Google\Protobuf\Internal\RepeatedField $data_access_scopes
+     *     @type \Google\Cloud\Chronicle\V1\DataAccessScope[] $data_access_scopes
      *           List of data access scopes.
      *     @type bool $global_data_access_scope_granted
      *           Whether or not global scope is granted to the user.
@@ -59,7 +59,7 @@ class ListDataAccessScopesResponse extends \Google\Protobuf\Internal\Message
      * List of data access scopes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessScope data_access_scopes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\DataAccessScope>
      */
     public function getDataAccessScopes()
     {
@@ -70,7 +70,7 @@ class ListDataAccessScopesResponse extends \Google\Protobuf\Internal\Message
      * List of data access scopes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessScope data_access_scopes = 1;</code>
-     * @param array<\Google\Cloud\Chronicle\V1\DataAccessScope>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\DataAccessScope[] $var
      * @return $this
      */
     public function setDataAccessScopes($var)

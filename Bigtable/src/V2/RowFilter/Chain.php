@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\RowFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A RowFilter which sends rows through several RowFilters in sequence.
@@ -30,7 +30,7 @@ class Chain extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Cloud\Bigtable\V2\RowFilter[] $filters
      *           The elements of "filters" are chained together to process the input row:
      *           in row -> f(0) -> intermediate row -> f(1) -> ... -> f(N) -> out row
      *           The full chain is executed atomically.
@@ -47,7 +47,7 @@ class Chain extends \Google\Protobuf\Internal\Message
      * The full chain is executed atomically.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\RowFilter>
      */
     public function getFilters()
     {
@@ -60,7 +60,7 @@ class Chain extends \Google\Protobuf\Internal\Message
      * The full chain is executed atomically.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\RowFilter[] $var
      * @return $this
      */
     public function setFilters($var)
@@ -72,7 +72,4 @@ class Chain extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Chain::class, \Google\Cloud\Bigtable\V2\RowFilter_Chain::class);
 

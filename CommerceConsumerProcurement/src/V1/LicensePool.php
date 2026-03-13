@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A license pool represents a pool of licenses that can be assigned to users.

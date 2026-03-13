@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Type\Struct\Encoding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fields are encoded independently and concatenated with a configurable
@@ -78,7 +78,4 @@ class DelimitedBytes extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DelimitedBytes::class, \Google\Cloud\Bigtable\Admin\V2\Type_Struct_Encoding_DelimitedBytes::class);
 

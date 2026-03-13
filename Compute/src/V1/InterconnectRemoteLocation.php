@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Cross-Cloud Interconnect Remote Location resource.
@@ -250,7 +250,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      *     @type string $peeringdb_facility_id
      *           Output only. [Output Only] The peeringdb identifier for this facility (corresponding
      *           with a netfac type in peeringdb).
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectRemoteLocationPermittedConnections>|\Google\Protobuf\Internal\RepeatedField $permitted_connections
+     *     @type \Google\Cloud\Compute\V1\InterconnectRemoteLocationPermittedConnections[] $permitted_connections
      *           Output only. [Output Only] Permitted connections.
      *     @type string $remote_service
      *           Output only. [Output Only] Indicates the service provider present at the remote
@@ -947,7 +947,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Permitted connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectRemoteLocationPermittedConnections permitted_connections = 442063278;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectRemoteLocationPermittedConnections>
      */
     public function getPermittedConnections()
     {
@@ -958,7 +958,7 @@ class InterconnectRemoteLocation extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Permitted connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectRemoteLocationPermittedConnections permitted_connections = 442063278;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectRemoteLocationPermittedConnections>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectRemoteLocationPermittedConnections[] $var
      * @return $this
      */
     public function setPermittedConnections($var)

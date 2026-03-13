@@ -5,8 +5,8 @@
 namespace Google\Api\PythonSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Experimental features to be included during client library generation.
@@ -170,5 +170,4 @@ class ExperimentalFeatures extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

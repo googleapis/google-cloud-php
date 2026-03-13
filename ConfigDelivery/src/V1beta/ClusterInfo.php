@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ClusterInfo represents status of a resource bundle rollout for a cluster.
@@ -81,7 +81,7 @@ class ClusterInfo extends \Google\Protobuf\Internal\Message
      *           Output only. Current state of the resource bundle.
      *     @type int $state
      *           Output only. State of the rollout for the cluster.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type string[] $messages
      *           Output only. Unordered list. Messages convey additional information related
      *           to the deployment.
      *     @type \Google\Protobuf\Timestamp $start_time
@@ -260,7 +260,7 @@ class ClusterInfo extends \Google\Protobuf\Internal\Message
      * to the deployment.
      *
      * Generated from protobuf field <code>repeated string messages = 6 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMessages()
     {
@@ -272,7 +272,7 @@ class ClusterInfo extends \Google\Protobuf\Internal\Message
      * to the deployment.
      *
      * Generated from protobuf field <code>repeated string messages = 6 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMessages($var)

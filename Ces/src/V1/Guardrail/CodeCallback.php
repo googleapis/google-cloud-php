@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\Guardrail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Guardrail that blocks the conversation based on the code callbacks
@@ -295,5 +295,4 @@ class CodeCallback extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

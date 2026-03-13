@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -25,6 +25,11 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Zones where the regional managed instance group will create and manage
      * its instances.
+     * By default, a regional MIG doesn't automatically select an AI zone to create
+     * instances, even if an AI zone is available in the specified region. To
+     * create instances in an AI zone in the selected region, you must explicitly
+     * specify it in the distribution policy together with the other preferred
+     * zones.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DistributionPolicyZoneConfiguration zones = 116085319;</code>
      */
@@ -40,9 +45,14 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
      *           The distribution shape to which the group converges either proactively or
      *           on resize events (depending on the value set inupdatePolicy.instanceRedistributionType).
      *           Check the TargetShape enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type \Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration[] $zones
      *           Zones where the regional managed instance group will create and manage
      *           its instances.
+     *           By default, a regional MIG doesn't automatically select an AI zone to create
+     *           instances, even if an AI zone is available in the specified region. To
+     *           create instances in an AI zone in the selected region, you must explicitly
+     *           specify it in the distribution policy together with the other preferred
+     *           zones.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,9 +103,14 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Zones where the regional managed instance group will create and manage
      * its instances.
+     * By default, a regional MIG doesn't automatically select an AI zone to create
+     * instances, even if an AI zone is available in the specified region. To
+     * create instances in an AI zone in the selected region, you must explicitly
+     * specify it in the distribution policy together with the other preferred
+     * zones.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DistributionPolicyZoneConfiguration zones = 116085319;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration>
      */
     public function getZones()
     {
@@ -105,9 +120,14 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Zones where the regional managed instance group will create and manage
      * its instances.
+     * By default, a regional MIG doesn't automatically select an AI zone to create
+     * instances, even if an AI zone is available in the specified region. To
+     * create instances in an AI zone in the selected region, you must explicitly
+     * specify it in the distribution policy together with the other preferred
+     * zones.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DistributionPolicyZoneConfiguration zones = 116085319;</code>
-     * @param array<\Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration[] $var
      * @return $this
      */
     public function setZones($var)

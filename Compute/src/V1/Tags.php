@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of instance tags.
@@ -49,7 +49,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      *           up-to-date fingerprint hash in order to update or change tags.
      *           To see the latest fingerprint, make get() request to the
      *           instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type string[] $items
      *           An array of tags. Each tag must be 1-63 characters long, and comply
      *           with RFC1035.
      * }
@@ -112,7 +112,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      * with RFC1035.
      *
      * Generated from protobuf field <code>repeated string items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItems()
     {
@@ -124,7 +124,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      * with RFC1035.
      *
      * Generated from protobuf field <code>repeated string items = 100526016;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItems($var)

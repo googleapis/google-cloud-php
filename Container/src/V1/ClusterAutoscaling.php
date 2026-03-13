@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ClusterAutoscaling contains global, per-cluster information
@@ -74,7 +74,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable_node_autoprovisioning
      *           Enables automatic node pool creation and deletion.
-     *     @type array<\Google\Cloud\Container\V1\ResourceLimit>|\Google\Protobuf\Internal\RepeatedField $resource_limits
+     *     @type \Google\Cloud\Container\V1\ResourceLimit[] $resource_limits
      *           Contains global constraints regarding minimum and maximum
      *           amount of resources in the cluster.
      *     @type int $autoscaling_profile
@@ -82,7 +82,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\AutoprovisioningNodePoolDefaults $autoprovisioning_node_pool_defaults
      *           AutoprovisioningNodePoolDefaults contains defaults for a node pool
      *           created by NAP.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $autoprovisioning_locations
+     *     @type string[] $autoprovisioning_locations
      *           The list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available)
      *           in which the NodePool's nodes can be created by NAP.
@@ -129,7 +129,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * amount of resources in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ResourceLimit resource_limits = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ResourceLimit>
      */
     public function getResourceLimits()
     {
@@ -141,7 +141,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * amount of resources in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ResourceLimit resource_limits = 2;</code>
-     * @param array<\Google\Cloud\Container\V1\ResourceLimit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ResourceLimit[] $var
      * @return $this
      */
     public function setResourceLimits($var)
@@ -222,7 +222,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * in which the NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAutoprovisioningLocations()
     {
@@ -235,7 +235,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * in which the NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAutoprovisioningLocations($var)

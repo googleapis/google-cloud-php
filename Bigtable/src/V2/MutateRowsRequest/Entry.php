@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\MutateRowsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A mutation for a given row.
@@ -45,7 +45,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      *     @type string $row_key
      *           The key of the row to which the `mutations` should be applied.
-     *     @type array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type \Google\Cloud\Bigtable\V2\Mutation[] $mutations
      *           Required. Changes to be atomically applied to the specified row.
      *           Mutations are applied in order, meaning that earlier mutations can be
      *           masked by later ones. You must specify at least one mutation.
@@ -91,7 +91,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * masked by later ones. You must specify at least one mutation.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\Mutation>
      */
     public function getMutations()
     {
@@ -104,7 +104,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * masked by later ones. You must specify at least one mutation.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $var
      * @return $this
      */
     public function setMutations($var)
@@ -154,7 +154,4 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Entry::class, \Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry::class);
 

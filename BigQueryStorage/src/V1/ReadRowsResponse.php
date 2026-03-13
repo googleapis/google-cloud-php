@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response from calling `ReadRows` may include row data, progress and

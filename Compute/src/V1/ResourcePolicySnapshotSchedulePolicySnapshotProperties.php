@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specified snapshot properties for scheduled snapshots created by this
@@ -56,7 +56,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to scheduled snapshots. These can be later modified
      *           by the setLabels method. Label values may be empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
+     *     @type string[] $storage_locations
      *           Cloud Storage bucket storage location of the auto snapshot (regional or
      *           multi-regional).
      * }
@@ -171,7 +171,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStorageLocations()
     {
@@ -183,7 +183,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      * multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStorageLocations($var)

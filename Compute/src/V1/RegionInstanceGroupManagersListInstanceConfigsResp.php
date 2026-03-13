@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -43,7 +43,7 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Protobu
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\PerInstanceConfig[] $items
      *           Output only. [Output Only] The list of PerInstanceConfig.
      *     @type string $next_page_token
      *           Output only. [Output Only] This token allows you to get the next page of results for
@@ -64,7 +64,7 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Protobu
      * Output only. [Output Only] The list of PerInstanceConfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PerInstanceConfig>
      */
     public function getItems()
     {
@@ -75,7 +75,7 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Protobu
      * Output only. [Output Only] The list of PerInstanceConfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PerInstanceConfig[] $var
      * @return $this
      */
     public function setItems($var)

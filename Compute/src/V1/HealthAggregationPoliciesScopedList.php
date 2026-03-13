@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class HealthAggregationPoliciesScopedList extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\HealthAggregationPolicy>|\Google\Protobuf\Internal\RepeatedField $health_aggregation_policies
+     *     @type \Google\Cloud\Compute\V1\HealthAggregationPolicy[] $health_aggregation_policies
      *           A list of HealthAggregationPolicys contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of health aggregation
@@ -50,7 +50,7 @@ class HealthAggregationPoliciesScopedList extends \Google\Protobuf\Internal\Mess
      * A list of HealthAggregationPolicys contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthAggregationPolicy health_aggregation_policies = 87589904;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\HealthAggregationPolicy>
      */
     public function getHealthAggregationPolicies()
     {
@@ -61,7 +61,7 @@ class HealthAggregationPoliciesScopedList extends \Google\Protobuf\Internal\Mess
      * A list of HealthAggregationPolicys contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthAggregationPolicy health_aggregation_policies = 87589904;</code>
-     * @param array<\Google\Cloud\Compute\V1\HealthAggregationPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\HealthAggregationPolicy[] $var
      * @return $this
      */
     public function setHealthAggregationPolicies($var)

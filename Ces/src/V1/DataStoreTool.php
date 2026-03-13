@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tool to retrieve from Vertex AI Search datastore or engine for grounding.
@@ -65,9 +65,9 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      *           Required. The data store tool name.
      *     @type string $description
      *           Optional. The tool description.
-     *     @type array<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpecs>|\Google\Protobuf\Internal\RepeatedField $boost_specs
+     *     @type \Google\Cloud\Ces\V1\DataStoreTool\BoostSpecs[] $boost_specs
      *           Optional. Boost specification to boost certain documents.
-     *     @type array<\Google\Cloud\Ces\V1\DataStoreTool\ModalityConfig>|\Google\Protobuf\Internal\RepeatedField $modality_configs
+     *     @type \Google\Cloud\Ces\V1\DataStoreTool\ModalityConfig[] $modality_configs
      *           Optional. The modality configs for the data store.
      *     @type int $filter_parameter_behavior
      *           Optional. The filter parameter behavior.
@@ -198,7 +198,7 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      * Optional. Boost specification to boost certain documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.BoostSpecs boost_specs = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpecs>
      */
     public function getBoostSpecs()
     {
@@ -209,7 +209,7 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      * Optional. Boost specification to boost certain documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.BoostSpecs boost_specs = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\DataStoreTool\BoostSpecs>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\DataStoreTool\BoostSpecs[] $var
      * @return $this
      */
     public function setBoostSpecs($var)
@@ -224,7 +224,7 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      * Optional. The modality configs for the data store.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.ModalityConfig modality_configs = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\DataStoreTool\ModalityConfig>
      */
     public function getModalityConfigs()
     {
@@ -235,7 +235,7 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      * Optional. The modality configs for the data store.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.DataStoreTool.ModalityConfig modality_configs = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\DataStoreTool\ModalityConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\DataStoreTool\ModalityConfig[] $var
      * @return $this
      */
     public function setModalityConfigs($var)

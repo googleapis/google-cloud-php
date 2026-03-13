@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Challenge from the server used to guarantee freshness of attestations
@@ -17,7 +17,7 @@ class Challenge extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name for this Challenge in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`
+     * `projects/{@*}locations/{@*}challenges/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -56,7 +56,7 @@ class Challenge extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name for this Challenge in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`
+     *           `projects/{@*}locations/{@*}challenges/*`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which this Challenge was created
      *     @type \Google\Protobuf\Timestamp $expire_time
@@ -75,7 +75,7 @@ class Challenge extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name for this Challenge in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`
+     * `projects/{@*}locations/{@*}challenges/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -87,7 +87,7 @@ class Challenge extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name for this Challenge in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;challenges/&#42;`
+     * `projects/{@*}locations/{@*}challenges/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

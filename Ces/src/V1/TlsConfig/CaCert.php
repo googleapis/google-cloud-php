@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\TlsConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The CA certificate.
@@ -138,5 +138,4 @@ class CaCert extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

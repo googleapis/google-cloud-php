@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CertificateConfig configures certificate for the registry.
@@ -90,5 +90,4 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

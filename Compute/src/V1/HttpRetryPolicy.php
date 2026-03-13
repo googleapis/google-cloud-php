@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The retry policy associates with HttpRouteRule
@@ -91,7 +91,7 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
      *           among all backend services associated with the route.
      *           Not supported when the URL map is bound to a target gRPC proxy that
      *           has the validateForProxyless field set to true.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $retry_conditions
+     *     @type string[] $retry_conditions
      *           Specifies one or more conditions when this retry policy applies. Valid
      *           values are:
      *              - 5xx: retry is attempted if the instance or endpoint
@@ -256,7 +256,7 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
      *    - unavailable
      *
      * Generated from protobuf field <code>repeated string retry_conditions = 28815535;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRetryConditions()
     {
@@ -300,7 +300,7 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
      *    - unavailable
      *
      * Generated from protobuf field <code>repeated string retry_conditions = 28815535;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRetryConditions($var)

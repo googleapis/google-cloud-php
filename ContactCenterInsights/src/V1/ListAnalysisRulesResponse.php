@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response of listing views.
@@ -35,7 +35,7 @@ class ListAnalysisRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\AnalysisRule>|\Google\Protobuf\Internal\RepeatedField $analysis_rules
+     *     @type \Google\Cloud\ContactCenterInsights\V1\AnalysisRule[] $analysis_rules
      *           The analysis_rule that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAnalysisRulesResponse extends \Google\Protobuf\Internal\Message
      * The analysis_rule that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.AnalysisRule analysis_rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\AnalysisRule>
      */
     public function getAnalysisRules()
     {
@@ -62,7 +62,7 @@ class ListAnalysisRulesResponse extends \Google\Protobuf\Internal\Message
      * The analysis_rule that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.AnalysisRule analysis_rules = 1;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\AnalysisRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\AnalysisRule[] $var
      * @return $this
      */
     public function setAnalysisRules($var)

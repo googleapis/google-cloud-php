@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Job statistics.
@@ -83,7 +83,7 @@ class JobStats extends \Google\Protobuf\Internal\Message
      *           Extract job statistics.
      *     @type int|string $total_slot_ms
      *           The total number of slot-ms consumed by the query job.
-     *     @type array<\Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage>|\Google\Protobuf\Internal\RepeatedField $reservation_usage
+     *     @type \Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage[] $reservation_usage
      *           Reservation usage attributed from each tier of a reservation hierarchy.
      *           This field reported misleading information and will no longer be
      *           populated. Aggregate usage of all jobs submitted to a reservation
@@ -333,7 +333,7 @@ class JobStats extends \Google\Protobuf\Internal\Message
      * should provide a more reliable indicator of reservation imbalance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage>
      * @deprecated
      */
     public function getReservationUsage()
@@ -351,7 +351,7 @@ class JobStats extends \Google\Protobuf\Internal\Message
      * should provide a more reliable indicator of reservation imbalance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.BigQueryAuditMetadata.JobStats.ReservationResourceUsage reservation_usage = 11 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Audit\BigQueryAuditMetadata\JobStats\ReservationResourceUsage[] $var
      * @return $this
      * @deprecated
      */
@@ -427,5 +427,4 @@ class JobStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

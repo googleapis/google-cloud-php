@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the ReadSession.
@@ -135,7 +135,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *           table.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions $read_options
      *           Optional. Read options for this session (e.g. column selection, filters).
-     *     @type array<\Google\Cloud\BigQuery\Storage\V1\ReadStream>|\Google\Protobuf\Internal\RepeatedField $streams
+     *     @type \Google\Cloud\BigQuery\Storage\V1\ReadStream[] $streams
      *           Output only. A list of streams created with the session.
      *           At least one stream is created with the session. In the future, larger
      *           request_stream_count values *may* result in this list being unpopulated,
@@ -438,7 +438,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * instead, which is not yet available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.ReadStream streams = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Storage\V1\ReadStream>
      */
     public function getStreams()
     {
@@ -453,7 +453,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * instead, which is not yet available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.ReadStream streams = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BigQuery\Storage\V1\ReadStream>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Storage\V1\ReadStream[] $var
      * @return $this
      */
     public function setStreams($var)

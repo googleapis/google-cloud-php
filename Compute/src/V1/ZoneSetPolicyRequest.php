@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -43,7 +43,7 @@ class ZoneSetPolicyRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $bindings
+     *     @type \Google\Cloud\Compute\V1\Binding[] $bindings
      *           Flatten Policy to create a backwacd compatible wire-format.
      *           Deprecated. Use 'policy' to specify bindings.
      *     @type string $etag
@@ -65,7 +65,7 @@ class ZoneSetPolicyRequest extends \Google\Protobuf\Internal\Message
      * Deprecated. Use 'policy' to specify bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Binding>
      */
     public function getBindings()
     {
@@ -77,7 +77,7 @@ class ZoneSetPolicyRequest extends \Google\Protobuf\Internal\Message
      * Deprecated. Use 'policy' to specify bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
-     * @param array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Binding[] $var
      * @return $this
      */
     public function setBindings($var)

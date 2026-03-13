@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * LoggingComponentConfig is cluster logging component configuration.
@@ -28,7 +28,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $enable_components
+     *     @type int[] $enable_components
      *           Select components to collect logs. An empty set would disable all logging.
      * }
      */
@@ -41,7 +41,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * Select components to collect logs. An empty set would disable all logging.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.LoggingComponentConfig.Component enable_components = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEnableComponents()
     {
@@ -52,7 +52,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * Select components to collect logs. An empty set would disable all logging.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.LoggingComponentConfig.Component enable_components = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEnableComponents($var)

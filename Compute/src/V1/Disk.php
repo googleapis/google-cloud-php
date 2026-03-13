@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Persistent Disk resource.
@@ -535,7 +535,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           to provide a key to use the disk later.
      *     @type bool $enable_confidential_compute
      *           Whether this disk is using confidential compute mode.
-     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type \Google\Cloud\Compute\V1\GuestOsFeature[] $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable
      *           only for bootable images. Read
      *           Enabling guest operating system features to see a list of available
@@ -564,9 +564,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type string $last_detach_timestamp
      *           Output only. [Output Only] Last detach timestamp inRFC3339
      *           text format.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type int[]|string[] $license_codes
      *           Integer license codes indicating which licenses are attached to this disk.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           A list of publicly visible licenses. Reserved for Google's use.
      *     @type string $location_hint
      *           An opaque location hint used to place the disk close to other resources.
@@ -605,10 +605,10 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           regional resources.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type string[] $replica_zones
      *           URLs of the zones where the disk should be replicated to. Only applicable
      *           for regional resources.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type string[] $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations.
      *     @type \Google\Cloud\Compute\V1\DiskResourceStatus $resource_status
      *           Output only. [Output Only] Status information for the disk resource.
@@ -737,7 +737,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           URL of the disk type resource describing which disk type to use to create
      *           the disk. Provide this when creating the disk. For example:projects/project/zones/zone/diskTypes/pd-ssd. See Persistent disk
      *           types.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
+     *     @type string[] $users
      *           Output only. [Output Only] Links to the users of the disk (attached instances)
      *           in form:projects/project/zones/zone/instances/instance
      *     @type string $zone
@@ -1096,7 +1096,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\GuestOsFeature>
      */
     public function getGuestOsFeatures()
     {
@@ -1110,7 +1110,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\GuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -1355,7 +1355,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Integer license codes indicating which licenses are attached to this disk.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getLicenseCodes()
     {
@@ -1366,7 +1366,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Integer license codes indicating which licenses are attached to this disk.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setLicenseCodes($var)
@@ -1381,7 +1381,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * A list of publicly visible licenses. Reserved for Google's use.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -1392,7 +1392,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * A list of publicly visible licenses. Reserved for Google's use.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)
@@ -1738,7 +1738,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * for regional resources.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaZones()
     {
@@ -1750,7 +1750,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * for regional resources.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaZones($var)
@@ -1765,7 +1765,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this disk for automatic snapshot creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourcePolicies()
     {
@@ -1776,7 +1776,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this disk for automatic snapshot creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourcePolicies($var)
@@ -2718,7 +2718,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * in form:projects/project/zones/zone/instances/instance
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUsers()
     {
@@ -2730,7 +2730,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * in form:projects/project/zones/zone/instances/instance
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUsers($var)

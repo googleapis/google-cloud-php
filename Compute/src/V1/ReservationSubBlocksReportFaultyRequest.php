@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -47,7 +47,7 @@ class ReservationSubBlocksReportFaultyRequest extends \Google\Protobuf\Internal\
      *     @type string $failure_component
      *           The component that experienced the fault.
      *           Check the FailureComponent enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequestFaultReason>|\Google\Protobuf\Internal\RepeatedField $fault_reasons
+     *     @type \Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequestFaultReason[] $fault_reasons
      *           The reasons for the fault experienced with the subBlock.
      * }
      */
@@ -136,7 +136,7 @@ class ReservationSubBlocksReportFaultyRequest extends \Google\Protobuf\Internal\
      * The reasons for the fault experienced with the subBlock.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationSubBlocksReportFaultyRequestFaultReason fault_reasons = 168056210;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequestFaultReason>
      */
     public function getFaultReasons()
     {
@@ -147,7 +147,7 @@ class ReservationSubBlocksReportFaultyRequest extends \Google\Protobuf\Internal\
      * The reasons for the fault experienced with the subBlock.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ReservationSubBlocksReportFaultyRequestFaultReason fault_reasons = 168056210;</code>
-     * @param array<\Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequestFaultReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ReservationSubBlocksReportFaultyRequestFaultReason[] $var
      * @return $this
      */
     public function setFaultReasons($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -46,7 +46,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusAttachmentStatus>|\Google\Protobuf\Internal\RepeatedField $attachment_statuses
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusAttachmentStatus[] $attachment_statuses
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentGroupConfigured $configured
      *     @type string $group_status
      *           Output only. Summarizes the status of the group.
@@ -63,7 +63,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupsOperationalStatusAttachmentStatus attachment_statuses = 491132860;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusAttachmentStatus>
      */
     public function getAttachmentStatuses()
     {
@@ -72,7 +72,7 @@ class InterconnectAttachmentGroupsOperationalStatus extends \Google\Protobuf\Int
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachmentGroupsOperationalStatusAttachmentStatus attachment_statuses = 491132860;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusAttachmentStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachmentGroupsOperationalStatusAttachmentStatus[] $var
      * @return $this
      */
     public function setAttachmentStatuses($var)

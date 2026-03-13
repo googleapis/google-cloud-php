@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1\RepricingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Applies the repricing configuration at the channel partner level.
@@ -36,5 +36,4 @@ class ChannelPartnerGranularity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\NetworkEdgeSecurityService>|\Google\Protobuf\Internal\RepeatedField $network_edge_security_services
+     *     @type \Google\Cloud\Compute\V1\NetworkEdgeSecurityService[] $network_edge_security_services
      *           A list of NetworkEdgeSecurityServices contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of
@@ -50,7 +50,7 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
      * A list of NetworkEdgeSecurityServices contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEdgeSecurityService network_edge_security_services = 35530156;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkEdgeSecurityService>
      */
     public function getNetworkEdgeSecurityServices()
     {
@@ -61,7 +61,7 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
      * A list of NetworkEdgeSecurityServices contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEdgeSecurityService network_edge_security_services = 35530156;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkEdgeSecurityService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkEdgeSecurityService[] $var
      * @return $this
      */
     public function setNetworkEdgeSecurityServices($var)

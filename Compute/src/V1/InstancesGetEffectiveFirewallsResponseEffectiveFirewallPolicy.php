@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -74,12 +74,12 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      *           of the firewall policy.
      *     @type string $name
      *           Output only. [Output Only] The name of the firewall policy.
-     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $packet_mirroring_rules
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule[] $packet_mirroring_rules
      *           Output only. [Output Only] The packet mirroring rules that apply to the instance.
      *     @type int $priority
      *           Output only. [Output only] Priority of firewall policy association. Not applicable for
      *           type=HIERARCHY.
-     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule[] $rules
      *           [Output Only] The rules that apply to the instance. Only rules that
      *           target the specific VM instance are returned if target service accounts
      *           or target secure tags are specified in the rules.
@@ -174,7 +174,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      * Output only. [Output Only] The packet mirroring rules that apply to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FirewallPolicyRule>
      */
     public function getPacketMirroringRules()
     {
@@ -185,7 +185,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      * Output only. [Output Only] The packet mirroring rules that apply to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule packet_mirroring_rules = 531644356;</code>
-     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule[] $var
      * @return $this
      */
     public function setPacketMirroringRules($var)
@@ -240,7 +240,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      * or target secure tags are specified in the rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FirewallPolicyRule>
      */
     public function getRules()
     {
@@ -253,7 +253,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      * or target secure tags are specified in the rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
-     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule[] $var
      * @return $this
      */
     public function setRules($var)

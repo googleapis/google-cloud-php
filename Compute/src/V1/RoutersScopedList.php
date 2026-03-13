@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class RoutersScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Router>|\Google\Protobuf\Internal\RepeatedField $routers
+     *     @type \Google\Cloud\Compute\V1\Router[] $routers
      *           A list of routers contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of routers when
@@ -50,7 +50,7 @@ class RoutersScopedList extends \Google\Protobuf\Internal\Message
      * A list of routers contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Router routers = 311906890;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Router>
      */
     public function getRouters()
     {
@@ -61,7 +61,7 @@ class RoutersScopedList extends \Google\Protobuf\Internal\Message
      * A list of routers contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Router routers = 311906890;</code>
-     * @param array<\Google\Cloud\Compute\V1\Router>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Router[] $var
      * @return $this
      */
     public function setRouters($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\V1\PricingExpression;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The price rate indicating starting usage and its corresponding price.
@@ -120,5 +120,4 @@ class TierRate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

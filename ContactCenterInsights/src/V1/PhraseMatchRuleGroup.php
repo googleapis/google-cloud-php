@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message representing a rule in the phrase matcher.
@@ -36,7 +36,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Required. The type of this phrase match rule group.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRule>|\Google\Protobuf\Internal\RepeatedField $phrase_match_rules
+     *     @type \Google\Cloud\ContactCenterInsights\V1\PhraseMatchRule[] $phrase_match_rules
      *           A list of phrase match rules that are included in this group.
      * }
      */
@@ -75,7 +75,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
      * A list of phrase match rules that are included in this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRule phrase_match_rules = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRule>
      */
     public function getPhraseMatchRules()
     {
@@ -86,7 +86,7 @@ class PhraseMatchRuleGroup extends \Google\Protobuf\Internal\Message
      * A list of phrase match rules that are included in this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRule phrase_match_rules = 2;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\PhraseMatchRule[] $var
      * @return $this
      */
     public function setPhraseMatchRules($var)

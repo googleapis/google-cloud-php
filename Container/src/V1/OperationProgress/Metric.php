@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\OperationProgress;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Progress metric is (string, int|float|string) pair.
@@ -172,5 +172,4 @@ class Metric extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

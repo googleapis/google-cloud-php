@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] A list of resize requests.
@@ -65,7 +65,7 @@ class InstanceGroupManagerResizeRequestsListResponse extends \Google\Protobuf\In
      *
      *     @type string $id
      *           Output only. [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest[] $items
      *           A list of resize request resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of the resource. Alwayscompute#instanceGroupManagerResizeRequestList for
@@ -127,7 +127,7 @@ class InstanceGroupManagerResizeRequestsListResponse extends \Google\Protobuf\In
      * A list of resize request resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerResizeRequest items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest>
      */
     public function getItems()
     {
@@ -138,7 +138,7 @@ class InstanceGroupManagerResizeRequestsListResponse extends \Google\Protobuf\In
      * A list of resize request resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerResizeRequest items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest[] $var
      * @return $this
      */
     public function setItems($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\NodeType>|\Google\Protobuf\Internal\RepeatedField $node_types
+     *     @type \Google\Cloud\Compute\V1\NodeType[] $node_types
      *           [Output Only] A list of node types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the node types
@@ -50,7 +50,7 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of node types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 482172924;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NodeType>
      */
     public function getNodeTypes()
     {
@@ -61,7 +61,7 @@ class NodeTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of node types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeType node_types = 482172924;</code>
-     * @param array<\Google\Cloud\Compute\V1\NodeType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NodeType[] $var
      * @return $this
      */
     public function setNodeTypes($var)

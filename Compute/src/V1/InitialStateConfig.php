@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Initial State for shielded instance,
@@ -47,11 +47,11 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $dbs
+     *     @type \Google\Cloud\Compute\V1\FileContentBuffer[] $dbs
      *           The Key Database (db).
-     *     @type array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $dbxs
+     *     @type \Google\Cloud\Compute\V1\FileContentBuffer[] $dbxs
      *           The forbidden key database (dbx).
-     *     @type array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $keks
+     *     @type \Google\Cloud\Compute\V1\FileContentBuffer[] $keks
      *           The Key Exchange Key (KEK).
      *     @type \Google\Cloud\Compute\V1\FileContentBuffer $pk
      *           The Platform Key (PK).
@@ -66,7 +66,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The Key Database (db).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer dbs = 99253;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FileContentBuffer>
      */
     public function getDbs()
     {
@@ -77,7 +77,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The Key Database (db).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer dbs = 99253;</code>
-     * @param array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FileContentBuffer[] $var
      * @return $this
      */
     public function setDbs($var)
@@ -92,7 +92,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The forbidden key database (dbx).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer dbxs = 3077113;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FileContentBuffer>
      */
     public function getDbxs()
     {
@@ -103,7 +103,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The forbidden key database (dbx).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer dbxs = 3077113;</code>
-     * @param array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FileContentBuffer[] $var
      * @return $this
      */
     public function setDbxs($var)
@@ -118,7 +118,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The Key Exchange Key (KEK).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer keks = 3288130;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\FileContentBuffer>
      */
     public function getKeks()
     {
@@ -129,7 +129,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The Key Exchange Key (KEK).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FileContentBuffer keks = 3288130;</code>
-     * @param array<\Google\Cloud\Compute\V1\FileContentBuffer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\FileContentBuffer[] $var
      * @return $this
      */
     public function setKeks($var)

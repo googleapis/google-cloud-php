@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BigQuery row access policy.
@@ -72,5 +72,4 @@ class RowAccessPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

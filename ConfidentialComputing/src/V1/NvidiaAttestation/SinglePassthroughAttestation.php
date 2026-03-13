@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Single GPU Passthrough (SPT) attestation.
@@ -74,5 +74,4 @@ class SinglePassthroughAttestation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

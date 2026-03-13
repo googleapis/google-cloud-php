@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines TLS certificate.
@@ -17,7 +17,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
 {
     /**
      * A user-defined name of the certificate. Certificate names must be unique
-     * globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
+     * globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -83,7 +83,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           A user-defined name of the certificate. Certificate names must be unique
-     *           globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
+     *           globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
      *     @type string $description
      *           One or more paragraphs of text description of a certificate.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -96,7 +96,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *           If set, defines data of a self-managed certificate.
      *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate $managed
      *           If set, contains configuration and state of a managed certificate.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $san_dnsnames
+     *     @type string[] $san_dnsnames
      *           Output only. The list of Subject Alternative Names of dnsName type defined
      *           in the certificate (see RFC 5280 4.2.1.6). Managed certificates that
      *           haven't been provisioned yet have this field populated with a value of the
@@ -116,7 +116,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
 
     /**
      * A user-defined name of the certificate. Certificate names must be unique
-     * globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
+     * globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -128,7 +128,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
 
     /**
      * A user-defined name of the certificate. Certificate names must be unique
-     * globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;certificates/&#42;`.
+     * globally and match pattern `projects/{@*}locations/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -335,7 +335,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * managed.domains field.
      *
      * Generated from protobuf field <code>repeated string san_dnsnames = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSanDnsnames()
     {
@@ -349,7 +349,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * managed.domains field.
      *
      * Generated from protobuf field <code>repeated string san_dnsnames = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSanDnsnames($var)

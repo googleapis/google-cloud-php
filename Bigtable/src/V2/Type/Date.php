@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Date
@@ -31,7 +31,4 @@ class Date extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Date::class, \Google\Cloud\Bigtable\V2\Type_Date::class);
 

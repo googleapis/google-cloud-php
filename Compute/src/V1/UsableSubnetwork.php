@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Subnetwork which the current user has compute.subnetworks.use permission on.
@@ -124,7 +124,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *           ready to be promoted to ACTIVE or is currently draining.
      *           This field can be updated with a patch request.
      *           Check the Role enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_ranges
+     *     @type \Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange[] $secondary_ip_ranges
      *           Secondary IP ranges.
      *     @type string $stack_type
      *           The stack type for the subnet. If set to IPV4_ONLY, new VMs
@@ -421,7 +421,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      * Secondary IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UsableSubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange>
      */
     public function getSecondaryIpRanges()
     {
@@ -432,7 +432,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      * Secondary IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UsableSubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
-     * @param array<\Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange[] $var
      * @return $this
      */
     public function setSecondaryIpRanges($var)

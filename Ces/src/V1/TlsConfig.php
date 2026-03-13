@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The TLS configuration.
@@ -29,7 +29,7 @@ class TlsConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\TlsConfig\CaCert>|\Google\Protobuf\Internal\RepeatedField $ca_certs
+     *     @type \Google\Cloud\Ces\V1\TlsConfig\CaCert[] $ca_certs
      *           Required. Specifies a list of allowed custom CA certificates for HTTPS
      *           verification.
      * }
@@ -44,7 +44,7 @@ class TlsConfig extends \Google\Protobuf\Internal\Message
      * verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.TlsConfig.CaCert ca_certs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\TlsConfig\CaCert>
      */
     public function getCaCerts()
     {
@@ -56,7 +56,7 @@ class TlsConfig extends \Google\Protobuf\Internal\Message
      * verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.TlsConfig.CaCert ca_certs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\TlsConfig\CaCert>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\TlsConfig\CaCert[] $var
      * @return $this
      */
     public function setCaCerts($var)

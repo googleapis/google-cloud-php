@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1\TpmAttestation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about Platform Control Registers (PCRs) including a signature
@@ -167,5 +167,4 @@ class Quote extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

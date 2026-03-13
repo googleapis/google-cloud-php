@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\DataStoreSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An engine to which the data stores are connected.
@@ -108,5 +108,4 @@ class Engine extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

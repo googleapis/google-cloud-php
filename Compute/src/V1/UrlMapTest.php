@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for the expected URL mappings.
@@ -99,7 +99,7 @@ class UrlMapTest extends \Google\Protobuf\Internal\Message
      *           For rules with urlRedirect, the test passes only ifexpectedRedirectResponseCode matches the HTTP status code in
      *           load balancer's redirect response.
      *           expectedRedirectResponseCode cannot be set whenservice is set.
-     *     @type array<\Google\Cloud\Compute\V1\UrlMapTestHeader>|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type \Google\Cloud\Compute\V1\UrlMapTestHeader[] $headers
      *           HTTP headers for this request. If headers contains
      *           a host header, then host must also match the header value.
      *     @type string $host
@@ -256,7 +256,7 @@ class UrlMapTest extends \Google\Protobuf\Internal\Message
      * a host header, then host must also match the header value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UrlMapTestHeader headers = 258436998;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\UrlMapTestHeader>
      */
     public function getHeaders()
     {
@@ -268,7 +268,7 @@ class UrlMapTest extends \Google\Protobuf\Internal\Message
      * a host header, then host must also match the header value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UrlMapTestHeader headers = 258436998;</code>
-     * @param array<\Google\Cloud\Compute\V1\UrlMapTestHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\UrlMapTestHeader[] $var
      * @return $this
      */
     public function setHeaders($var)

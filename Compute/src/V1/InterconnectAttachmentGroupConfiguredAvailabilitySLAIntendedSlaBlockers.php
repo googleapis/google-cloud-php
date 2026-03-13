@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] Reasons why configuration.availabilitySLA.sla differs from
@@ -78,7 +78,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attachments
+     *     @type string[] $attachments
      *           Output only. [Output Only] URLs of any particular Attachments to explain this
      *           blocker in more detail.
      *     @type string $blocker_type
@@ -90,17 +90,17 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      *     @type string $explanation
      *           Output only. [Output Only] A human-readable explanation of this requirement and
      *           why it's not met. This is set for every type of requirement.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metros
+     *     @type string[] $metros
      *           Output only. [Output Only] Metros used to explain this blocker in more detail.
      *           These are three-letter lowercase strings like "iad". This will be set
      *           for some blockers (like NO_ATTACHMENTS_IN_METRO_AND_ZONE) but does
      *           not apply to others.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type string[] $regions
      *           Output only. [Output Only] Regions used to explain this blocker in more
      *           detail. These are region names formatted like "us-central1". This
      *           will be set for some blockers (like INCOMPATIBLE_REGIONS) but does
      *           not apply to others.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type string[] $zones
      *           Output only. [Output Only] Zones used to explain this blocker in more detail.
      *           Format is "zone1" and/or "zone2". This will be set for some blockers
      *           (like  MISSING_ZONE) but does not apply to others.
@@ -116,7 +116,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * blocker in more detail.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAttachments()
     {
@@ -128,7 +128,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * blocker in more detail.
      *
      * Generated from protobuf field <code>repeated string attachments = 334744496;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAttachments($var)
@@ -260,7 +260,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * not apply to others.
      *
      * Generated from protobuf field <code>repeated string metros = 533067386;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetros()
     {
@@ -274,7 +274,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * not apply to others.
      *
      * Generated from protobuf field <code>repeated string metros = 533067386;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetros($var)
@@ -292,7 +292,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * not apply to others.
      *
      * Generated from protobuf field <code>repeated string regions = 12367871;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegions()
     {
@@ -306,7 +306,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * not apply to others.
      *
      * Generated from protobuf field <code>repeated string regions = 12367871;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegions($var)
@@ -323,7 +323,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * (like  MISSING_ZONE) but does not apply to others.
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getZones()
     {
@@ -336,7 +336,7 @@ class InterconnectAttachmentGroupConfiguredAvailabilitySLAIntendedSlaBlockers ex
      * (like  MISSING_ZONE) but does not apply to others.
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setZones($var)

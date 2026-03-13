@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Operation resource.
@@ -67,6 +67,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
     protected $error = null;
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GetVersionOperationMetadata get_version_operation_metadata = 173230167;</code>
+     */
+    protected $get_version_operation_metadata = null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as `NOT FOUND`.
@@ -199,7 +203,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     protected $target_link = null;
     /**
      * [Output Only] User who requested the operation, for example:
-     * `user&#64;example.com` or
+     * `user\@example.com` or
      * `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *
      * Generated from protobuf field <code>optional string user = 3599307;</code>
@@ -240,6 +244,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\Error $error
      *           [Output Only] If errors are generated during processing of the operation,
      *           this field will be populated.
+     *     @type \Google\Cloud\Compute\V1\GetVersionOperationMetadata $get_version_operation_metadata
      *     @type string $http_error_message
      *           [Output Only] If the operation fails, this field contains the HTTP error
      *           message that was returned, such as `NOT FOUND`.
@@ -301,9 +306,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           that the snapshot was created from.
      *     @type string $user
      *           [Output Only] User who requested the operation, for example:
-     *           `user&#64;example.com` or
+     *           `user\@example.com` or
      *           `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
-     *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\Compute\V1\Warnings[] $warnings
      *           [Output Only] If warning messages are generated during processing of the
      *           operation, this field will be populated.
      *     @type string $zone
@@ -500,6 +505,38 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Error::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GetVersionOperationMetadata get_version_operation_metadata = 173230167;</code>
+     * @return \Google\Cloud\Compute\V1\GetVersionOperationMetadata|null
+     */
+    public function getGetVersionOperationMetadata()
+    {
+        return $this->get_version_operation_metadata;
+    }
+
+    public function hasGetVersionOperationMetadata()
+    {
+        return isset($this->get_version_operation_metadata);
+    }
+
+    public function clearGetVersionOperationMetadata()
+    {
+        unset($this->get_version_operation_metadata);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GetVersionOperationMetadata get_version_operation_metadata = 173230167;</code>
+     * @param \Google\Cloud\Compute\V1\GetVersionOperationMetadata $var
+     * @return $this
+     */
+    public function setGetVersionOperationMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\GetVersionOperationMetadata::class);
+        $this->get_version_operation_metadata = $var;
 
         return $this;
     }
@@ -1198,7 +1235,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] User who requested the operation, for example:
-     * `user&#64;example.com` or
+     * `user\@example.com` or
      * `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *
      * Generated from protobuf field <code>optional string user = 3599307;</code>
@@ -1221,7 +1258,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] User who requested the operation, for example:
-     * `user&#64;example.com` or
+     * `user\@example.com` or
      * `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      *
      * Generated from protobuf field <code>optional string user = 3599307;</code>
@@ -1241,7 +1278,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * operation, this field will be populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Warnings>
      */
     public function getWarnings()
     {
@@ -1253,7 +1290,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * operation, this field will be populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @param array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Warnings[] $var
      * @return $this
      */
     public function setWarnings($var)

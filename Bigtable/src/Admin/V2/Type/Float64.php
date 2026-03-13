@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Float64
@@ -31,7 +31,4 @@ class Float64 extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Float64::class, \Google\Cloud\Bigtable\Admin\V2\Type_Float64::class);
 

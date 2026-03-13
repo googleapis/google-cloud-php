@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -31,7 +31,7 @@ class TargetPoolsAddInstanceRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Compute\V1\InstanceReference[] $instances
      *           A full or partial URL to an instance to add to this target pool. This can
      *           be a full or partial URL. For example, the following are valid URLs:
      *              - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone/instances/instance-name
@@ -52,7 +52,7 @@ class TargetPoolsAddInstanceRequest extends \Google\Protobuf\Internal\Message
      *    - zones/zone/instances/instance-name
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceReference>
      */
     public function getInstances()
     {
@@ -67,7 +67,7 @@ class TargetPoolsAddInstanceRequest extends \Google\Protobuf\Internal\Message
      *    - zones/zone/instances/instance-name
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceReference[] $var
      * @return $this
      */
     public function setInstances($var)

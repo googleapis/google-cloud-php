@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies (some of) the contents of a single row/column family intersection
@@ -47,7 +47,7 @@ class Family extends \Google\Protobuf\Internal\Message
      *           Must match `[-_.a-zA-Z0-9]+`, except that AggregatingRowProcessors may
      *           produce cells in a sentinel family with an empty name.
      *           Must be no greater than 64 characters in length.
-     *     @type array<\Google\Cloud\Bigtable\V2\Column>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\Bigtable\V2\Column[] $columns
      *           Must not be empty. Sorted in order of increasing "qualifier".
      * }
      */
@@ -96,7 +96,7 @@ class Family extends \Google\Protobuf\Internal\Message
      * Must not be empty. Sorted in order of increasing "qualifier".
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Column columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\Column>
      */
     public function getColumns()
     {
@@ -107,7 +107,7 @@ class Family extends \Google\Protobuf\Internal\Message
      * Must not be empty. Sorted in order of increasing "qualifier".
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Column columns = 2;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\Column>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\Column[] $var
      * @return $this
      */
     public function setColumns($var)

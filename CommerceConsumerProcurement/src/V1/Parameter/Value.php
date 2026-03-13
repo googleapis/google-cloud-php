@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1\Parameter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.commerce.consumer.procurement.v1.Parameter.Value</code>
@@ -136,5 +136,4 @@ class Value extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
